@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO implements InstructorDAO{
  
@@ -73,7 +76,7 @@ public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public Instructor load(String id,Map<String,Object> options) throws Exception{
@@ -640,9 +643,9 @@ public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return instructor;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 
-			companyTraining.clearFromAll();
+			companyTrainingItem.clearFromAll();
 		}
 		
 		
@@ -672,9 +675,9 @@ public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return instructor;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearCompany();
-			companyTraining.clearInstructor();
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearCompany();
+			companyTrainingItem.clearInstructor();
 			
 		}
 		
@@ -716,9 +719,9 @@ public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return instructor;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearTrainingCourseType();
-			companyTraining.clearInstructor();
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearTrainingCourseType();
+			companyTrainingItem.clearInstructor();
 			
 		}
 		
@@ -914,6 +917,9 @@ public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 	public SmartList<Instructor> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getInstructorMapper());
 	}
+	
+	
+
 }
 
 

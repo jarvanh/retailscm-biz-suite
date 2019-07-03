@@ -541,8 +541,8 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
+		for(String retailStoreIdItem: retailStoreIds){
+			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);

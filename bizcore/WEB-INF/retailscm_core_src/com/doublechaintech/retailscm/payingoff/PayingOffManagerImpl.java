@@ -614,8 +614,8 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfPayingOff(payingOffId);
-		for(String employeeSalarySheetId: employeeSalarySheetIds){
-			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
+			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(PayingOffManagerException.class);

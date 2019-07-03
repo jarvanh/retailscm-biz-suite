@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TrainingCourseTypeDAO{
  
@@ -73,7 +76,7 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public TrainingCourseType load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return trainingCourseType;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 
-			companyTraining.clearFromAll();
+			companyTrainingItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return trainingCourseType;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearCompany();
-			companyTraining.clearTrainingCourseType();
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearCompany();
+			companyTrainingItem.clearTrainingCourseType();
 			
 		}
 		
@@ -692,9 +695,9 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return trainingCourseType;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearInstructor();
-			companyTraining.clearTrainingCourseType();
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearInstructor();
+			companyTrainingItem.clearTrainingCourseType();
 			
 		}
 		
@@ -890,6 +893,9 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<TrainingCourseType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTrainingCourseTypeMapper());
 	}
+	
+	
+
 }
 
 

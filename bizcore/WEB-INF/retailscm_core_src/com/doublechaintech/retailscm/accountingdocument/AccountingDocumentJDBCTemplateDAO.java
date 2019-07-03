@@ -40,7 +40,10 @@ import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentTy
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentDAO{
  
@@ -149,7 +152,7 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public AccountingDocument load(String id,Map<String,Object> options) throws Exception{
@@ -1342,9 +1345,9 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return accountingDocument;
 		}
 		
-		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
 
-			originalVoucher.clearFromAll();
+			originalVoucherItem.clearFromAll();
 		}
 		
 		
@@ -1370,9 +1373,9 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return accountingDocument;
 		}
 		
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
+		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
 
-			accountingDocumentLine.clearFromAll();
+			accountingDocumentLineItem.clearFromAll();
 		}
 		
 		
@@ -1402,9 +1405,9 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return accountingDocument;
 		}
 		
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
-			accountingDocumentLine.clearAccountingSubject();
-			accountingDocumentLine.clearBelongsTo();
+		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
+			accountingDocumentLineItem.clearAccountingSubject();
+			accountingDocumentLineItem.clearBelongsTo();
 			
 		}
 		
@@ -1716,6 +1719,9 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<AccountingDocument> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentMapper());
 	}
+	
+	
+
 }
 
 

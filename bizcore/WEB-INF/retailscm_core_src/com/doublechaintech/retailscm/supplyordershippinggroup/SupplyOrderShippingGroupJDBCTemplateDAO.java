@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SupplyOrderShippingGroupJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderShippingGroupDAO{
  
@@ -52,7 +55,7 @@ public class SupplyOrderShippingGroupJDBCTemplateDAO extends RetailscmNamingServ
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SupplyOrderShippingGroup load(String id,Map<String,Object> options) throws Exception{
@@ -549,6 +552,9 @@ public class SupplyOrderShippingGroupJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<SupplyOrderShippingGroup> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderShippingGroupMapper());
 	}
+	
+	
+
 }
 
 

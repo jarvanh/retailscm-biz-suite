@@ -757,8 +757,8 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTermination(terminationId);
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
+		for(String employeeIdItem: employeeIds){
+			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);

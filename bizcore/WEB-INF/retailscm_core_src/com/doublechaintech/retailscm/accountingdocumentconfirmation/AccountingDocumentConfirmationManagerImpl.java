@@ -523,8 +523,8 @@ public class AccountingDocumentConfirmationManagerImpl extends CustomRetailscmCh
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocumentConfirmation(accountingDocumentConfirmationId);
-		for(String accountingDocumentId: accountingDocumentIds){
-			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
+		for(String accountingDocumentIdItem: accountingDocumentIds){
+			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentConfirmationManagerException.class);

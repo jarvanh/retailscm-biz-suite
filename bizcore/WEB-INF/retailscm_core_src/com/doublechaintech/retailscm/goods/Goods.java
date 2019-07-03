@@ -811,6 +811,27 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Goods){
+		
+			
+			Goods dest =(Goods)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeRfid(getRfid());
+			dest.mergeUom(getUom());
+			dest.mergeMaxPackage(getMaxPackage());
+			dest.mergeExpireTime(getExpireTime());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

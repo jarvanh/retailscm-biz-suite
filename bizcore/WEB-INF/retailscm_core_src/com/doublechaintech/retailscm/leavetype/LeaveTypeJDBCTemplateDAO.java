@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LeaveTypeDAO{
  
@@ -73,7 +76,7 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public LeaveType load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return leaveType;
 		}
 		
-		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
+		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
 
-			employeeLeave.clearFromAll();
+			employeeLeaveItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return leaveType;
 		}
 		
-		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
-			employeeLeave.clearWho();
-			employeeLeave.clearType();
+		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
+			employeeLeaveItem.clearWho();
+			employeeLeaveItem.clearType();
 			
 		}
 		
@@ -846,6 +849,9 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<LeaveType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLeaveTypeMapper());
 	}
+	
+	
+
 }
 
 

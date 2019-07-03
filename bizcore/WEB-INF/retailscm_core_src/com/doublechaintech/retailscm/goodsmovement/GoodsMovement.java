@@ -530,6 +530,29 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsMovement){
+		
+			
+			GoodsMovement dest =(GoodsMovement)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeMoveTime(getMoveTime());
+			dest.mergeFacility(getFacility());
+			dest.mergeFacilityId(getFacilityId());
+			dest.mergeFromIp(getFromIp());
+			dest.mergeUserAgent(getUserAgent());
+			dest.mergeSessionId(getSessionId());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

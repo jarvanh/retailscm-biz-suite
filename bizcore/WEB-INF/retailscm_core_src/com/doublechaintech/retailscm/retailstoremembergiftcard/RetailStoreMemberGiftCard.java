@@ -440,6 +440,24 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreMemberGiftCard){
+		
+			
+			RetailStoreMemberGiftCard dest =(RetailStoreMemberGiftCard)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeNumber(getNumber());
+			dest.mergeRemain(getRemain());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

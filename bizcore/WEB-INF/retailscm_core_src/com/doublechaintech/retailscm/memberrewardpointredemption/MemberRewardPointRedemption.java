@@ -280,6 +280,23 @@ public class MemberRewardPointRedemption extends BaseEntity implements  java.io.
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof MemberRewardPointRedemption){
+		
+			
+			MemberRewardPointRedemption dest =(MemberRewardPointRedemption)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergePoint(getPoint());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

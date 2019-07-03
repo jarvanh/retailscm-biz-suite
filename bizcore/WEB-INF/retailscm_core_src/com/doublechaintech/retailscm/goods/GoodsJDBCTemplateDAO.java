@@ -46,7 +46,10 @@ import com.doublechaintech.retailscm.receivingspace.ReceivingSpaceDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsDAO{
  
@@ -172,7 +175,7 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public Goods load(String id,Map<String,Object> options) throws Exception{
@@ -1729,9 +1732,9 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
 			return goods;
 		}
 		
-		for(GoodsMovement goodsMovement: externalGoodsMovementList){
+		for(GoodsMovement goodsMovementItem: externalGoodsMovementList){
 
-			goodsMovement.clearFromAll();
+			goodsMovementItem.clearFromAll();
 		}
 		
 		
@@ -1761,9 +1764,9 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
 			return goods;
 		}
 		
-		for(GoodsMovement goodsMovement: externalGoodsMovementList){
-			goodsMovement.clearFacilityId();
-			goodsMovement.clearGoods();
+		for(GoodsMovement goodsMovementItem: externalGoodsMovementList){
+			goodsMovementItem.clearFacilityId();
+			goodsMovementItem.clearGoods();
 			
 		}
 		
@@ -1805,9 +1808,9 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
 			return goods;
 		}
 		
-		for(GoodsMovement goodsMovement: externalGoodsMovementList){
-			goodsMovement.clearSessionId();
-			goodsMovement.clearGoods();
+		for(GoodsMovement goodsMovementItem: externalGoodsMovementList){
+			goodsMovementItem.clearSessionId();
+			goodsMovementItem.clearGoods();
 			
 		}
 		
@@ -2003,6 +2006,9 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
 	public SmartList<Goods> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsMapper());
 	}
+	
+	
+
 }
 
 

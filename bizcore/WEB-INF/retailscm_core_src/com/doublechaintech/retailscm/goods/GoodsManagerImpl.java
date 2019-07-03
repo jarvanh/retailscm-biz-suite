@@ -1364,8 +1364,8 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 			String goodsMovementIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoods(goodsId);
-		for(String goodsMovementId: goodsMovementIds){
-			userContext.getChecker().checkIdOfGoodsMovement(goodsMovementId);
+		for(String goodsMovementIdItem: goodsMovementIds){
+			userContext.getChecker().checkIdOfGoodsMovement(goodsMovementIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsManagerException.class);

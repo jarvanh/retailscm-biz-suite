@@ -402,13 +402,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 	
 	
 	public void setWebSite(String webSite){
-		this.mWebSite = trimString(webSite);;
+		this.mWebSite = trimString(encodeUrl(webSite));;
 	}
 	public String getWebSite(){
 		return this.mWebSite;
 	}
 	public RetailStoreCountryCenter updateWebSite(String webSite){
-		this.mWebSite = trimString(webSite);;
+		this.mWebSite = trimString(encodeUrl(webSite));;
 		this.changed = true;
 		return this;
 	}
@@ -3367,6 +3367,29 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 
 		}
 		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreCountryCenter){
+		
+			
+			RetailStoreCountryCenter dest =(RetailStoreCountryCenter)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeServiceNumber(getServiceNumber());
+			dest.mergeFounded(getFounded());
+			dest.mergeWebSite(getWebSite());
+			dest.mergeAddress(getAddress());
+			dest.mergeOperatedBy(getOperatedBy());
+			dest.mergeLegalRepresentative(getLegalRepresentative());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
 		return baseDest;
 	}
 	

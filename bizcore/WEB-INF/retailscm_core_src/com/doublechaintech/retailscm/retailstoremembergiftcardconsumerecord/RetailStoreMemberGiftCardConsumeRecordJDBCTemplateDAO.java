@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.retailstoremembergiftcard.RetailStoreMember
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberGiftCardConsumeRecordDAO{
  
@@ -63,7 +66,7 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreMemberGiftCardConsumeRecord load(String id,Map<String,Object> options) throws Exception{
@@ -682,6 +685,9 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
 	public SmartList<RetailStoreMemberGiftCardConsumeRecord> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberGiftCardConsumeRecordMapper());
 	}
+	
+	
+
 }
 
 

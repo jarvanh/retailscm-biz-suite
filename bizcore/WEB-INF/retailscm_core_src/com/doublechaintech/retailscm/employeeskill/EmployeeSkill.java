@@ -270,6 +270,22 @@ public class EmployeeSkill extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeSkill){
+		
+			
+			EmployeeSkill dest =(EmployeeSkill)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

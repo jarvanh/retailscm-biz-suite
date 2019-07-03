@@ -441,6 +441,3 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 
 
 
-
-
-

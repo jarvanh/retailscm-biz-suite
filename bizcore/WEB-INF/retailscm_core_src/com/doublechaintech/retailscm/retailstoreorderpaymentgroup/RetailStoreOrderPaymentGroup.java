@@ -280,6 +280,23 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderPaymentGroup){
+		
+			
+			RetailStoreOrderPaymentGroup dest =(RetailStoreOrderPaymentGroup)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeCardNumber(getCardNumber());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -607,6 +607,28 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Instructor){
+		
+			
+			Instructor dest =(Instructor)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeFamilyName(getFamilyName());
+			dest.mergeGivenName(getGivenName());
+			dest.mergeCellPhone(getCellPhone());
+			dest.mergeEmail(getEmail());
+			dest.mergeIntroduction(getIntroduction());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

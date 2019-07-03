@@ -569,8 +569,8 @@ public class RetailStoreMemberGiftCardManagerImpl extends CustomRetailscmChecker
 			String retailStoreMemberGiftCardConsumeRecordIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreMemberGiftCard(retailStoreMemberGiftCardId);
-		for(String retailStoreMemberGiftCardConsumeRecordId: retailStoreMemberGiftCardConsumeRecordIds){
-			userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
+		for(String retailStoreMemberGiftCardConsumeRecordIdItem: retailStoreMemberGiftCardConsumeRecordIds){
+			userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberGiftCardManagerException.class);

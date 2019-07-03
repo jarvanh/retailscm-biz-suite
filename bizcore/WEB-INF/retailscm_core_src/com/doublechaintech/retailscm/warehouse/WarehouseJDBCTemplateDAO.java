@@ -40,7 +40,10 @@ import com.doublechaintech.retailscm.receivingspace.ReceivingSpaceDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implements WarehouseDAO{
  
@@ -199,7 +202,7 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public Warehouse load(String id,Map<String,Object> options) throws Exception{
@@ -1280,9 +1283,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
-		for(StorageSpace storageSpace: externalStorageSpaceList){
+		for(StorageSpace storageSpaceItem: externalStorageSpaceList){
 
-			storageSpace.clearFromAll();
+			storageSpaceItem.clearFromAll();
 		}
 		
 		
@@ -1308,9 +1311,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
-		for(SmartPallet smartPallet: externalSmartPalletList){
+		for(SmartPallet smartPalletItem: externalSmartPalletList){
 
-			smartPallet.clearFromAll();
+			smartPalletItem.clearFromAll();
 		}
 		
 		
@@ -1336,9 +1339,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
-		for(SupplierSpace supplierSpace: externalSupplierSpaceList){
+		for(SupplierSpace supplierSpaceItem: externalSupplierSpaceList){
 
-			supplierSpace.clearFromAll();
+			supplierSpaceItem.clearFromAll();
 		}
 		
 		
@@ -1364,9 +1367,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
-		for(ReceivingSpace receivingSpace: externalReceivingSpaceList){
+		for(ReceivingSpace receivingSpaceItem: externalReceivingSpaceList){
 
-			receivingSpace.clearFromAll();
+			receivingSpaceItem.clearFromAll();
 		}
 		
 		
@@ -1392,9 +1395,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
-		for(ShippingSpace shippingSpace: externalShippingSpaceList){
+		for(ShippingSpace shippingSpaceItem: externalShippingSpaceList){
 
-			shippingSpace.clearFromAll();
+			shippingSpaceItem.clearFromAll();
 		}
 		
 		
@@ -1420,9 +1423,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
-		for(DamageSpace damageSpace: externalDamageSpaceList){
+		for(DamageSpace damageSpaceItem: externalDamageSpaceList){
 
-			damageSpace.clearFromAll();
+			damageSpaceItem.clearFromAll();
 		}
 		
 		
@@ -1448,9 +1451,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
-		for(WarehouseAsset warehouseAsset: externalWarehouseAssetList){
+		for(WarehouseAsset warehouseAssetItem: externalWarehouseAssetList){
 
-			warehouseAsset.clearFromAll();
+			warehouseAssetItem.clearFromAll();
 		}
 		
 		
@@ -2330,6 +2333,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<Warehouse> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getWarehouseMapper());
 	}
+	
+	
+
 }
 
 

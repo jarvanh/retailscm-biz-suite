@@ -627,8 +627,8 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 			String transportTaskIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTruckDriver(truckDriverId);
-		for(String transportTaskId: transportTaskIds){
-			userContext.getChecker().checkIdOfTransportTask(transportTaskId);
+		for(String transportTaskIdItem: transportTaskIds){
+			userContext.getChecker().checkIdOfTransportTask(transportTaskIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TruckDriverManagerException.class);

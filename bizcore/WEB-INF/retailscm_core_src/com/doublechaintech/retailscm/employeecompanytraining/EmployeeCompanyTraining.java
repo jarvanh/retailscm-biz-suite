@@ -281,6 +281,22 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeCompanyTraining){
+		
+			
+			EmployeeCompanyTraining dest =(EmployeeCompanyTraining)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

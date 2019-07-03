@@ -1739,8 +1739,8 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
 			String supplyOrderLineItemIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		for(String supplyOrderLineItemId: supplyOrderLineItemIds){
-			userContext.getChecker().checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
+		for(String supplyOrderLineItemIdItem: supplyOrderLineItemIds){
+			userContext.getChecker().checkIdOfSupplyOrderLineItem(supplyOrderLineItemIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderManagerException.class);
@@ -1994,8 +1994,8 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
 			String supplyOrderShippingGroupIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		for(String supplyOrderShippingGroupId: supplyOrderShippingGroupIds){
-			userContext.getChecker().checkIdOfSupplyOrderShippingGroup(supplyOrderShippingGroupId);
+		for(String supplyOrderShippingGroupIdItem: supplyOrderShippingGroupIds){
+			userContext.getChecker().checkIdOfSupplyOrderShippingGroup(supplyOrderShippingGroupIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderManagerException.class);
@@ -2237,8 +2237,8 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
 			String supplyOrderPaymentGroupIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		for(String supplyOrderPaymentGroupId: supplyOrderPaymentGroupIds){
-			userContext.getChecker().checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
+		for(String supplyOrderPaymentGroupIdItem: supplyOrderPaymentGroupIds){
+			userContext.getChecker().checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderManagerException.class);
@@ -2536,8 +2536,8 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		for(String goodsId: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsId);
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderManagerException.class);

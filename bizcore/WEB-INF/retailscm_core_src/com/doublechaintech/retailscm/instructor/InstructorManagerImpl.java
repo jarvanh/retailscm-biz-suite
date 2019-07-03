@@ -610,8 +610,8 @@ public class InstructorManagerImpl extends CustomRetailscmCheckerManager impleme
 			String companyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfInstructor(instructorId);
-		for(String companyTrainingId: companyTrainingIds){
-			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingId);
+		for(String companyTrainingIdItem: companyTrainingIds){
+			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(InstructorManagerException.class);

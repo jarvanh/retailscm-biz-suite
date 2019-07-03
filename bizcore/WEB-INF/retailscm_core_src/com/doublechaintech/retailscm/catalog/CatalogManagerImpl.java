@@ -525,8 +525,8 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 			String levelOneCategoryIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCatalog(catalogId);
-		for(String levelOneCategoryId: levelOneCategoryIds){
-			userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryId);
+		for(String levelOneCategoryIdItem: levelOneCategoryIds){
+			userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);

@@ -240,6 +240,22 @@ public class MemberWishlistProduct extends BaseEntity implements  java.io.Serial
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof MemberWishlistProduct){
+		
+			
+			MemberWishlistProduct dest =(MemberWishlistProduct)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

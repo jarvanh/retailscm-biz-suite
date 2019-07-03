@@ -280,6 +280,23 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ConsumerOrderPaymentGroup){
+		
+			
+			ConsumerOrderPaymentGroup dest =(ConsumerOrderPaymentGroup)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeCardNumber(getCardNumber());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -1294,8 +1294,8 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 			String originalVoucherIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		for(String originalVoucherId: originalVoucherIds){
-			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
+		for(String originalVoucherIdItem: originalVoucherIds){
+			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentManagerException.class);
@@ -1666,8 +1666,8 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 			String accountingDocumentLineIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		for(String accountingDocumentLineId: accountingDocumentLineIds){
-			userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+		for(String accountingDocumentLineIdItem: accountingDocumentLineIds){
+			userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentManagerException.class);

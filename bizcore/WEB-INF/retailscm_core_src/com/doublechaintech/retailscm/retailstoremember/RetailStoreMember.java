@@ -1127,6 +1127,23 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreMember){
+		
+			
+			RetailStoreMember dest =(RetailStoreMember)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeMobilePhone(getMobilePhone());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -48,7 +48,10 @@ import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderDAO{
  
@@ -213,7 +216,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SupplyOrder load(String id,Map<String,Object> options) throws Exception{
@@ -1858,9 +1861,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(SupplyOrderLineItem supplyOrderLineItem: externalSupplyOrderLineItemList){
+		for(SupplyOrderLineItem supplyOrderLineItemItem: externalSupplyOrderLineItemList){
 
-			supplyOrderLineItem.clearFromAll();
+			supplyOrderLineItemItem.clearFromAll();
 		}
 		
 		
@@ -1890,9 +1893,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(SupplyOrderLineItem supplyOrderLineItem: externalSupplyOrderLineItemList){
-			supplyOrderLineItem.clearSkuId();
-			supplyOrderLineItem.clearBizOrder();
+		for(SupplyOrderLineItem supplyOrderLineItemItem: externalSupplyOrderLineItemList){
+			supplyOrderLineItemItem.clearSkuId();
+			supplyOrderLineItemItem.clearBizOrder();
 			
 		}
 		
@@ -1930,9 +1933,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(SupplyOrderShippingGroup supplyOrderShippingGroup: externalSupplyOrderShippingGroupList){
+		for(SupplyOrderShippingGroup supplyOrderShippingGroupItem: externalSupplyOrderShippingGroupList){
 
-			supplyOrderShippingGroup.clearFromAll();
+			supplyOrderShippingGroupItem.clearFromAll();
 		}
 		
 		
@@ -1958,9 +1961,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(SupplyOrderPaymentGroup supplyOrderPaymentGroup: externalSupplyOrderPaymentGroupList){
+		for(SupplyOrderPaymentGroup supplyOrderPaymentGroupItem: externalSupplyOrderPaymentGroupList){
 
-			supplyOrderPaymentGroup.clearFromAll();
+			supplyOrderPaymentGroupItem.clearFromAll();
 		}
 		
 		
@@ -1986,9 +1989,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
+		for(Goods goodsItem: externalGoodsList){
 
-			goods.clearFromAll();
+			goodsItem.clearFromAll();
 		}
 		
 		
@@ -2018,9 +2021,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2062,9 +2065,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearReceivingSpace();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2106,9 +2109,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearGoodsAllocation();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2150,9 +2153,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSmartPallet();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2194,9 +2197,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearShippingSpace();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearShippingSpace();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2238,9 +2241,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2282,9 +2285,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStore();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2326,9 +2329,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearBizOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStoreOrder();
+			goodsItem.clearBizOrder();
 			
 		}
 		
@@ -2872,6 +2875,9 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<SupplyOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderMapper());
 	}
+	
+	
+
 }
 
 

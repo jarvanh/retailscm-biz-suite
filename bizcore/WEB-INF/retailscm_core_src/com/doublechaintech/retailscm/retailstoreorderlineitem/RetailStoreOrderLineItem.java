@@ -405,6 +405,26 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderLineItem){
+		
+			
+			RetailStoreOrderLineItem dest =(RetailStoreOrderLineItem)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeSkuId(getSkuId());
+			dest.mergeSkuName(getSkuName());
+			dest.mergeAmount(getAmount());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeUnitOfMeasurement(getUnitOfMeasurement());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

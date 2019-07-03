@@ -30,7 +30,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TerminationDAO{
  
@@ -84,7 +87,7 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public Termination load(String id,Map<String,Object> options) throws Exception{
@@ -743,9 +746,9 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return termination;
 		}
 		
-		for(Employee employee: externalEmployeeList){
+		for(Employee employeeItem: externalEmployeeList){
 
-			employee.clearFromAll();
+			employeeItem.clearFromAll();
 		}
 		
 		
@@ -775,9 +778,9 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return termination;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCompany();
-			employee.clearTermination();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCompany();
+			employeeItem.clearTermination();
 			
 		}
 		
@@ -819,9 +822,9 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return termination;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearTermination();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearDepartment();
+			employeeItem.clearTermination();
 			
 		}
 		
@@ -863,9 +866,9 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return termination;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearTermination();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOccupation();
+			employeeItem.clearTermination();
 			
 		}
 		
@@ -907,9 +910,9 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return termination;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearResponsibleFor();
-			employee.clearTermination();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearResponsibleFor();
+			employeeItem.clearTermination();
 			
 		}
 		
@@ -951,9 +954,9 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return termination;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearTermination();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCurrentSalaryGrade();
+			employeeItem.clearTermination();
 			
 		}
 		
@@ -1149,6 +1152,9 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<Termination> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTerminationMapper());
 	}
+	
+	
+
 }
 
 

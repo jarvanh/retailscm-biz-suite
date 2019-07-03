@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.stockcountissuetrack.StockCountIssueTrackDA
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsShelfStockCountDAO{
  
@@ -73,7 +76,7 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmNamingServiceD
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public GoodsShelfStockCount load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmNamingServiceD
 			return goodsShelfStockCount;
 		}
 		
-		for(StockCountIssueTrack stockCountIssueTrack: externalStockCountIssueTrackList){
+		for(StockCountIssueTrack stockCountIssueTrackItem: externalStockCountIssueTrackList){
 
-			stockCountIssueTrack.clearFromAll();
+			stockCountIssueTrackItem.clearFromAll();
 		}
 		
 		
@@ -802,6 +805,9 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmNamingServiceD
 	public SmartList<GoodsShelfStockCount> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsShelfStockCountMapper());
 	}
+	
+	
+
 }
 
 

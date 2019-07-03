@@ -48,7 +48,10 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ConsumerOrderDAO{
  
@@ -223,7 +226,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public ConsumerOrder load(String id,Map<String,Object> options) throws Exception{
@@ -1834,9 +1837,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
-		for(ConsumerOrderLineItem consumerOrderLineItem: externalConsumerOrderLineItemList){
+		for(ConsumerOrderLineItem consumerOrderLineItemItem: externalConsumerOrderLineItemList){
 
-			consumerOrderLineItem.clearFromAll();
+			consumerOrderLineItemItem.clearFromAll();
 		}
 		
 		
@@ -1866,9 +1869,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
-		for(ConsumerOrderLineItem consumerOrderLineItem: externalConsumerOrderLineItemList){
-			consumerOrderLineItem.clearSkuId();
-			consumerOrderLineItem.clearBizOrder();
+		for(ConsumerOrderLineItem consumerOrderLineItemItem: externalConsumerOrderLineItemList){
+			consumerOrderLineItemItem.clearSkuId();
+			consumerOrderLineItemItem.clearBizOrder();
 			
 		}
 		
@@ -1906,9 +1909,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
-		for(ConsumerOrderShippingGroup consumerOrderShippingGroup: externalConsumerOrderShippingGroupList){
+		for(ConsumerOrderShippingGroup consumerOrderShippingGroupItem: externalConsumerOrderShippingGroupList){
 
-			consumerOrderShippingGroup.clearFromAll();
+			consumerOrderShippingGroupItem.clearFromAll();
 		}
 		
 		
@@ -1934,9 +1937,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
-		for(ConsumerOrderPaymentGroup consumerOrderPaymentGroup: externalConsumerOrderPaymentGroupList){
+		for(ConsumerOrderPaymentGroup consumerOrderPaymentGroupItem: externalConsumerOrderPaymentGroupList){
 
-			consumerOrderPaymentGroup.clearFromAll();
+			consumerOrderPaymentGroupItem.clearFromAll();
 		}
 		
 		
@@ -1962,9 +1965,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
-		for(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment: externalConsumerOrderPriceAdjustmentList){
+		for(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustmentItem: externalConsumerOrderPriceAdjustmentList){
 
-			consumerOrderPriceAdjustment.clearFromAll();
+			consumerOrderPriceAdjustmentItem.clearFromAll();
 		}
 		
 		
@@ -1990,9 +1993,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
-		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
 
-			retailStoreMemberGiftCardConsumeRecord.clearFromAll();
+			retailStoreMemberGiftCardConsumeRecordItem.clearFromAll();
 		}
 		
 		
@@ -2022,9 +2025,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
-		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
-			retailStoreMemberGiftCardConsumeRecord.clearOwner();
-			retailStoreMemberGiftCardConsumeRecord.clearBizOrder();
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
+			retailStoreMemberGiftCardConsumeRecordItem.clearOwner();
+			retailStoreMemberGiftCardConsumeRecordItem.clearBizOrder();
 			
 		}
 		
@@ -2684,6 +2687,9 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<ConsumerOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getConsumerOrderMapper());
 	}
+	
+	
+
 }
 
 

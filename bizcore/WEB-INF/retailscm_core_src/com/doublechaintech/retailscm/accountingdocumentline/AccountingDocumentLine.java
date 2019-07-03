@@ -390,6 +390,25 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingDocumentLine){
+		
+			
+			AccountingDocumentLine dest =(AccountingDocumentLine)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeCode(getCode());
+			dest.mergeDirect(getDirect());
+			dest.mergeAmount(getAmount());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

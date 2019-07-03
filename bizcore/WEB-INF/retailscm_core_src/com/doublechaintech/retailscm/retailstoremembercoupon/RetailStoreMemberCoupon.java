@@ -320,6 +320,24 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreMemberCoupon){
+		
+			
+			RetailStoreMemberCoupon dest =(RetailStoreMemberCoupon)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeNumber(getNumber());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

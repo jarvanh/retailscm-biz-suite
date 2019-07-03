@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderLineItemDAO{
  
@@ -52,7 +55,7 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmNamingServiceDA
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SupplyOrderLineItem load(String id,Map<String,Object> options) throws Exception{
@@ -555,6 +558,9 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmNamingServiceDA
 	public SmartList<SupplyOrderLineItem> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderLineItemMapper());
 	}
+	
+	
+
 }
 
 

@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentLineDAO{
  
@@ -63,7 +66,7 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServic
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public AccountingDocumentLine load(String id,Map<String,Object> options) throws Exception{
@@ -684,6 +687,9 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServic
 	public SmartList<AccountingDocumentLine> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentLineMapper());
 	}
+	
+	
+
 }
 
 

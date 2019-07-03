@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberGiftCardDAO{
  
@@ -73,7 +76,7 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreMemberGiftCard load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreMemberGiftCard;
 		}
 		
-		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
 
-			retailStoreMemberGiftCardConsumeRecord.clearFromAll();
+			retailStoreMemberGiftCardConsumeRecordItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreMemberGiftCard;
 		}
 		
-		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
-			retailStoreMemberGiftCardConsumeRecord.clearBizOrder();
-			retailStoreMemberGiftCardConsumeRecord.clearOwner();
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
+			retailStoreMemberGiftCardConsumeRecordItem.clearBizOrder();
+			retailStoreMemberGiftCardConsumeRecordItem.clearOwner();
 			
 		}
 		
@@ -846,6 +849,9 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 	public SmartList<RetailStoreMemberGiftCard> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberGiftCardMapper());
 	}
+	
+	
+
 }
 
 

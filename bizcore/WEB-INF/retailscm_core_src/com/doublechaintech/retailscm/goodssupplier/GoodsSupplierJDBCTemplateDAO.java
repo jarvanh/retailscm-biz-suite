@@ -32,7 +32,10 @@ import com.doublechaintech.retailscm.accountset.AccountSetDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsSupplierDAO{
  
@@ -115,7 +118,7 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public GoodsSupplier load(String id,Map<String,Object> options) throws Exception{
@@ -850,9 +853,9 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
-		for(SupplierProduct supplierProduct: externalSupplierProductList){
+		for(SupplierProduct supplierProductItem: externalSupplierProductList){
 
-			supplierProduct.clearFromAll();
+			supplierProductItem.clearFromAll();
 		}
 		
 		
@@ -878,9 +881,9 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 
-			supplyOrder.clearFromAll();
+			supplyOrderItem.clearFromAll();
 		}
 		
 		
@@ -910,9 +913,9 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-			supplyOrder.clearBuyer();
-			supplyOrder.clearSeller();
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearBuyer();
+			supplyOrderItem.clearSeller();
 			
 		}
 		
@@ -950,9 +953,9 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
+		for(AccountSet accountSetItem: externalAccountSetList){
 
-			accountSet.clearFromAll();
+			accountSetItem.clearFromAll();
 		}
 		
 		
@@ -982,9 +985,9 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearCountryCenter();
-			accountSet.clearGoodsSupplier();
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearCountryCenter();
+			accountSetItem.clearGoodsSupplier();
 			
 		}
 		
@@ -1026,9 +1029,9 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearRetailStore();
-			accountSet.clearGoodsSupplier();
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearRetailStore();
+			accountSetItem.clearGoodsSupplier();
 			
 		}
 		
@@ -1456,6 +1459,9 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<GoodsSupplier> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsSupplierMapper());
 	}
+	
+	
+
 }
 
 

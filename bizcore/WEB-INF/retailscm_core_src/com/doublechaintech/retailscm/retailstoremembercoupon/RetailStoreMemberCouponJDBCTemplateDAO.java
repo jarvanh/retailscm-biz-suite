@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberCouponDAO{
  
@@ -52,7 +55,7 @@ public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmNamingServi
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreMemberCoupon load(String id,Map<String,Object> options) throws Exception{
@@ -567,6 +570,9 @@ public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmNamingServi
 	public SmartList<RetailStoreMemberCoupon> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberCouponMapper());
 	}
+	
+	
+
 }
 
 

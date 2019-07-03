@@ -980,6 +980,30 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountSet){
+		
+			
+			AccountSet dest =(AccountSet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeYearSet(getYearSet());
+			dest.mergeEffectiveDate(getEffectiveDate());
+			dest.mergeAccountingSystem(getAccountingSystem());
+			dest.mergeDomesticCurrencyCode(getDomesticCurrencyCode());
+			dest.mergeDomesticCurrencyName(getDomesticCurrencyName());
+			dest.mergeOpeningBank(getOpeningBank());
+			dest.mergeAccountNumber(getAccountNumber());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

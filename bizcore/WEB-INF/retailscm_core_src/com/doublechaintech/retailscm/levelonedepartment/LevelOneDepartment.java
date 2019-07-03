@@ -480,6 +480,25 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof LevelOneDepartment){
+		
+			
+			LevelOneDepartment dest =(LevelOneDepartment)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeDescription(getDescription());
+			dest.mergeManager(getManager());
+			dest.mergeFounded(getFounded());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class AccountingPeriodJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingPeriodDAO{
  
@@ -73,7 +76,7 @@ public class AccountingPeriodJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public AccountingPeriod load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class AccountingPeriodJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return accountingPeriod;
 		}
 		
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
+		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
 
-			accountingDocument.clearFromAll();
+			accountingDocumentItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class AccountingPeriodJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return accountingPeriod;
 		}
 		
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
-			accountingDocument.clearDocumentType();
-			accountingDocument.clearAccountingPeriod();
+		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
+			accountingDocumentItem.clearDocumentType();
+			accountingDocumentItem.clearAccountingPeriod();
 			
 		}
 		
@@ -846,6 +849,9 @@ public class AccountingPeriodJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	public SmartList<AccountingPeriod> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingPeriodMapper());
 	}
+	
+	
+
 }
 
 

@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.eventattendance.EventAttendanceDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CityEventDAO{
  
@@ -73,7 +76,7 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public CityEvent load(String id,Map<String,Object> options) throws Exception{
@@ -634,9 +637,9 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return cityEvent;
 		}
 		
-		for(EventAttendance eventAttendance: externalEventAttendanceList){
+		for(EventAttendance eventAttendanceItem: externalEventAttendanceList){
 
-			eventAttendance.clearFromAll();
+			eventAttendanceItem.clearFromAll();
 		}
 		
 		
@@ -666,9 +669,9 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return cityEvent;
 		}
 		
-		for(EventAttendance eventAttendance: externalEventAttendanceList){
-			eventAttendance.clearPotentialCustomer();
-			eventAttendance.clearCityEvent();
+		for(EventAttendance eventAttendanceItem: externalEventAttendanceList){
+			eventAttendanceItem.clearPotentialCustomer();
+			eventAttendanceItem.clearCityEvent();
 			
 		}
 		
@@ -864,6 +867,9 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<CityEvent> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCityEventMapper());
 	}
+	
+	
+
 }
 
 

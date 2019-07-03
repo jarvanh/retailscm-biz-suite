@@ -450,6 +450,25 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsPackaging){
+		
+			
+			GoodsPackaging dest =(GoodsPackaging)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergePackageName(getPackageName());
+			dest.mergeRfid(getRfid());
+			dest.mergePackageTime(getPackageTime());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ShippingSpaceDAO{
  
@@ -73,7 +76,7 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public ShippingSpace load(String id,Map<String,Object> options) throws Exception{
@@ -640,9 +643,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
+		for(Goods goodsItem: externalGoodsList){
 
-			goods.clearFromAll();
+			goodsItem.clearFromAll();
 		}
 		
 		
@@ -672,9 +675,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -716,9 +719,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearReceivingSpace();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -760,9 +763,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearGoodsAllocation();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -804,9 +807,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSmartPallet();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -848,9 +851,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -892,9 +895,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStore();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -936,9 +939,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearBizOrder();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -980,9 +983,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return shippingSpace;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearShippingSpace();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStoreOrder();
+			goodsItem.clearShippingSpace();
 			
 		}
 		
@@ -1178,6 +1181,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<ShippingSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getShippingSpaceMapper());
 	}
+	
+	
+
 }
 
 

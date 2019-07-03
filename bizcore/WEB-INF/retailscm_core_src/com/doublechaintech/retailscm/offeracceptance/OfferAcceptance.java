@@ -410,6 +410,24 @@ public class OfferAcceptance extends BaseEntity implements  java.io.Serializable
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof OfferAcceptance){
+		
+			
+			OfferAcceptance dest =(OfferAcceptance)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeAcceptTime(getAcceptTime());
+			dest.mergeComments(getComments());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

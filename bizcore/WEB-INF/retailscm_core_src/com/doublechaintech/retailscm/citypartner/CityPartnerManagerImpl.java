@@ -615,8 +615,8 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 			String potentialCustomerIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		for(String potentialCustomerId: potentialCustomerIds){
-			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
+		for(String potentialCustomerIdItem: potentialCustomerIds){
+			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
@@ -883,8 +883,8 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		for(String potentialCustomerContactId: potentialCustomerContactIds){
-			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		for(String potentialCustomerContactIdItem: potentialCustomerContactIds){
+			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);

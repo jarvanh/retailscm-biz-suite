@@ -560,8 +560,8 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 			String consumerOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		for(String consumerOrderId: consumerOrderIds){
-			userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
+		for(String consumerOrderIdItem: consumerOrderIds){
+			userContext.getChecker().checkIdOfConsumerOrder(consumerOrderIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
@@ -947,8 +947,8 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		for(String supplyOrderId: supplyOrderIds){
-			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
+		for(String supplyOrderIdItem: supplyOrderIds){
+			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);

@@ -32,7 +32,10 @@ import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTrai
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CompanyTrainingDAO{
  
@@ -95,7 +98,7 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public CompanyTraining load(String id,Map<String,Object> options) throws Exception{
@@ -892,9 +895,9 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return companyTraining;
 		}
 		
-		for(EmployeeCompanyTraining employeeCompanyTraining: externalEmployeeCompanyTrainingList){
+		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
 
-			employeeCompanyTraining.clearFromAll();
+			employeeCompanyTrainingItem.clearFromAll();
 		}
 		
 		
@@ -924,9 +927,9 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return companyTraining;
 		}
 		
-		for(EmployeeCompanyTraining employeeCompanyTraining: externalEmployeeCompanyTrainingList){
-			employeeCompanyTraining.clearEmployee();
-			employeeCompanyTraining.clearTraining();
+		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
+			employeeCompanyTrainingItem.clearEmployee();
+			employeeCompanyTrainingItem.clearTraining();
 			
 		}
 		
@@ -1122,6 +1125,9 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public SmartList<CompanyTraining> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCompanyTrainingMapper());
 	}
+	
+	
+
 }
 
 

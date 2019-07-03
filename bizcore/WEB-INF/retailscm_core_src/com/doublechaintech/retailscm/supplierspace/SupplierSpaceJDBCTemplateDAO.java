@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplierSpaceDAO{
  
@@ -73,7 +76,7 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SupplierSpace load(String id,Map<String,Object> options) throws Exception{
@@ -638,9 +641,9 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return supplierSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 
-			goodsShelf.clearFromAll();
+			goodsShelfItem.clearFromAll();
 		}
 		
 		
@@ -670,9 +673,9 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return supplierSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearStorageSpace();
-			goodsShelf.clearSupplierSpace();
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearStorageSpace();
+			goodsShelfItem.clearSupplierSpace();
 			
 		}
 		
@@ -714,9 +717,9 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return supplierSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearDamageSpace();
-			goodsShelf.clearSupplierSpace();
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearDamageSpace();
+			goodsShelfItem.clearSupplierSpace();
 			
 		}
 		
@@ -912,6 +915,9 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<SupplierSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplierSpaceMapper());
 	}
+	
+	
+
 }
 
 

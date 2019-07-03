@@ -525,8 +525,8 @@ public class MemberWishlistManagerImpl extends CustomRetailscmCheckerManager imp
 			String memberWishlistProductIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfMemberWishlist(memberWishlistId);
-		for(String memberWishlistProductId: memberWishlistProductIds){
-			userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductId);
+		for(String memberWishlistProductIdItem: memberWishlistProductIds){
+			userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(MemberWishlistManagerException.class);

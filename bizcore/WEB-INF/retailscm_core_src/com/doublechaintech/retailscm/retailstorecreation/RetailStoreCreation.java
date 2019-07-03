@@ -330,6 +330,22 @@ public class RetailStoreCreation extends BaseEntity implements  java.io.Serializ
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreCreation){
+		
+			
+			RetailStoreCreation dest =(RetailStoreCreation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

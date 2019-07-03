@@ -595,8 +595,8 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		for(String goodsShelfId: goodsShelfIds){
-			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
+		for(String goodsShelfIdItem: goodsShelfIds){
+			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);

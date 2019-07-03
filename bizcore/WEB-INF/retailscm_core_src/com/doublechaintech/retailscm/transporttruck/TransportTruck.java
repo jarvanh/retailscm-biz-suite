@@ -640,6 +640,29 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TransportTruck){
+		
+			
+			TransportTruck dest =(TransportTruck)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergePlateNumber(getPlateNumber());
+			dest.mergeContactNumber(getContactNumber());
+			dest.mergeVehicleLicenseNumber(getVehicleLicenseNumber());
+			dest.mergeEngineNumber(getEngineNumber());
+			dest.mergeMakeDate(getMakeDate());
+			dest.mergeMileage(getMileage());
+			dest.mergeBodyColor(getBodyColor());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

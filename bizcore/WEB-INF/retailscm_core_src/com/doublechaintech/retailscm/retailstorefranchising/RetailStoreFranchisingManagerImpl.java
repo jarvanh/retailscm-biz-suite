@@ -541,8 +541,8 @@ public class RetailStoreFranchisingManagerImpl extends CustomRetailscmCheckerMan
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreFranchising(retailStoreFranchisingId);
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
+		for(String retailStoreIdItem: retailStoreIds){
+			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreFranchisingManagerException.class);

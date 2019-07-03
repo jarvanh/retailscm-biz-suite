@@ -370,6 +370,23 @@ public class RetailStoreOrderConfirmation extends BaseEntity implements  java.io
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderConfirmation){
+		
+			
+			RetailStoreOrderConfirmation dest =(RetailStoreOrderConfirmation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeConfirmTime(getConfirmTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

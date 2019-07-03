@@ -490,6 +490,23 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderDelivery){
+		
+			
+			SupplyOrderDelivery dest =(SupplyOrderDelivery)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeDeliveryTime(getDeliveryTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

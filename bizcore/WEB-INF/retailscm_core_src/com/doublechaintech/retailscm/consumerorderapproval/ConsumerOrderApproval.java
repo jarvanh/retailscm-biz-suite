@@ -250,6 +250,23 @@ public class ConsumerOrderApproval extends BaseEntity implements  java.io.Serial
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ConsumerOrderApproval){
+		
+			
+			ConsumerOrderApproval dest =(ConsumerOrderApproval)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeApproveTime(getApproveTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

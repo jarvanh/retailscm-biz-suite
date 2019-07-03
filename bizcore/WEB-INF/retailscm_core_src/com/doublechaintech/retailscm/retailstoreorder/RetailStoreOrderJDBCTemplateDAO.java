@@ -48,7 +48,10 @@ import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOr
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreOrderDAO{
  
@@ -213,7 +216,7 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreOrder load(String id,Map<String,Object> options) throws Exception{
@@ -1858,9 +1861,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(RetailStoreOrderLineItem retailStoreOrderLineItem: externalRetailStoreOrderLineItemList){
+		for(RetailStoreOrderLineItem retailStoreOrderLineItemItem: externalRetailStoreOrderLineItemList){
 
-			retailStoreOrderLineItem.clearFromAll();
+			retailStoreOrderLineItemItem.clearFromAll();
 		}
 		
 		
@@ -1890,9 +1893,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(RetailStoreOrderLineItem retailStoreOrderLineItem: externalRetailStoreOrderLineItemList){
-			retailStoreOrderLineItem.clearSkuId();
-			retailStoreOrderLineItem.clearBizOrder();
+		for(RetailStoreOrderLineItem retailStoreOrderLineItemItem: externalRetailStoreOrderLineItemList){
+			retailStoreOrderLineItemItem.clearSkuId();
+			retailStoreOrderLineItemItem.clearBizOrder();
 			
 		}
 		
@@ -1930,9 +1933,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(RetailStoreOrderShippingGroup retailStoreOrderShippingGroup: externalRetailStoreOrderShippingGroupList){
+		for(RetailStoreOrderShippingGroup retailStoreOrderShippingGroupItem: externalRetailStoreOrderShippingGroupList){
 
-			retailStoreOrderShippingGroup.clearFromAll();
+			retailStoreOrderShippingGroupItem.clearFromAll();
 		}
 		
 		
@@ -1958,9 +1961,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroup: externalRetailStoreOrderPaymentGroupList){
+		for(RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroupItem: externalRetailStoreOrderPaymentGroupList){
 
-			retailStoreOrderPaymentGroup.clearFromAll();
+			retailStoreOrderPaymentGroupItem.clearFromAll();
 		}
 		
 		
@@ -1986,9 +1989,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
+		for(Goods goodsItem: externalGoodsList){
 
-			goods.clearFromAll();
+			goodsItem.clearFromAll();
 		}
 		
 		
@@ -2018,9 +2021,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2062,9 +2065,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearReceivingSpace();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2106,9 +2109,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearGoodsAllocation();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2150,9 +2153,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSmartPallet();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2194,9 +2197,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearShippingSpace();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearShippingSpace();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2238,9 +2241,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2282,9 +2285,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStore();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2326,9 +2329,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return retailStoreOrder;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearRetailStoreOrder();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearBizOrder();
+			goodsItem.clearRetailStoreOrder();
 			
 		}
 		
@@ -2872,6 +2875,9 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	public SmartList<RetailStoreOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreOrderMapper());
 	}
+	
+	
+
 }
 
 

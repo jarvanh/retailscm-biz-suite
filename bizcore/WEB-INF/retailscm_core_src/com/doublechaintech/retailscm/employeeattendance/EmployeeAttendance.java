@@ -360,6 +360,25 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeAttendance){
+		
+			
+			EmployeeAttendance dest =(EmployeeAttendance)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeEnterTime(getEnterTime());
+			dest.mergeLeaveTime(getLeaveTime());
+			dest.mergeDurationHours(getDurationHours());
+			dest.mergeRemark(getRemark());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

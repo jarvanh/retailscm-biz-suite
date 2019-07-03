@@ -370,6 +370,23 @@ public class SupplyOrderPicking extends BaseEntity implements  java.io.Serializa
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderPicking){
+		
+			
+			SupplyOrderPicking dest =(SupplyOrderPicking)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeProcessTime(getProcessTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

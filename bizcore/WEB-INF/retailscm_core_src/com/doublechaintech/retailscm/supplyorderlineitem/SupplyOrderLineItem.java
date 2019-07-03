@@ -405,6 +405,26 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderLineItem){
+		
+			
+			SupplyOrderLineItem dest =(SupplyOrderLineItem)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeSkuId(getSkuId());
+			dest.mergeSkuName(getSkuName());
+			dest.mergeAmount(getAmount());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeUnitOfMeasurement(getUnitOfMeasurement());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

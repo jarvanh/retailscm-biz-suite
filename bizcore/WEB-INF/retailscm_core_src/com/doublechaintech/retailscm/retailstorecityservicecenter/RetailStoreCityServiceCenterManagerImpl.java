@@ -604,8 +604,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String cityPartnerIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-		for(String cityPartnerId: cityPartnerIds){
-			userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
+		for(String cityPartnerIdItem: cityPartnerIds){
+			userContext.getChecker().checkIdOfCityPartner(cityPartnerIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);
@@ -862,8 +862,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String potentialCustomerIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-		for(String potentialCustomerId: potentialCustomerIds){
-			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
+		for(String potentialCustomerIdItem: potentialCustomerIds){
+			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);
@@ -1115,8 +1115,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String cityEventIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-		for(String cityEventId: cityEventIds){
-			userContext.getChecker().checkIdOfCityEvent(cityEventId);
+		for(String cityEventIdItem: cityEventIds){
+			userContext.getChecker().checkIdOfCityEvent(cityEventIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);
@@ -1394,8 +1394,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
+		for(String retailStoreIdItem: retailStoreIds){
+			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);

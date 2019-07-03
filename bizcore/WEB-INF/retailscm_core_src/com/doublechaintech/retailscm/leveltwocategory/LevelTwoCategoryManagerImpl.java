@@ -525,8 +525,8 @@ public class LevelTwoCategoryManagerImpl extends CustomRetailscmCheckerManager i
 			String levelThreeCategoryIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfLevelTwoCategory(levelTwoCategoryId);
-		for(String levelThreeCategoryId: levelThreeCategoryIds){
-			userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		for(String levelThreeCategoryIdItem: levelThreeCategoryIds){
+			userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoCategoryManagerException.class);

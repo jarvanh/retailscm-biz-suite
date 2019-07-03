@@ -574,8 +574,8 @@ public class ProvinceCenterDepartmentManagerImpl extends CustomRetailscmCheckerM
 			String provinceCenterEmployeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfProvinceCenterDepartment(provinceCenterDepartmentId);
-		for(String provinceCenterEmployeeId: provinceCenterEmployeeIds){
-			userContext.getChecker().checkIdOfProvinceCenterEmployee(provinceCenterEmployeeId);
+		for(String provinceCenterEmployeeIdItem: provinceCenterEmployeeIds){
+			userContext.getChecker().checkIdOfProvinceCenterEmployee(provinceCenterEmployeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ProvinceCenterDepartmentManagerException.class);

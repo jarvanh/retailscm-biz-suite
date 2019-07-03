@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LevelThreeDepartmentDAO{
  
@@ -73,7 +76,7 @@ public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceD
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public LevelThreeDepartment load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceD
 			return levelThreeDepartment;
 		}
 		
-		for(Employee employee: externalEmployeeList){
+		for(Employee employeeItem: externalEmployeeList){
 
-			employee.clearFromAll();
+			employeeItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceD
 			return levelThreeDepartment;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCompany();
-			employee.clearDepartment();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCompany();
+			employeeItem.clearDepartment();
 			
 		}
 		
@@ -692,9 +695,9 @@ public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceD
 			return levelThreeDepartment;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearDepartment();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOccupation();
+			employeeItem.clearDepartment();
 			
 		}
 		
@@ -736,9 +739,9 @@ public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceD
 			return levelThreeDepartment;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearResponsibleFor();
-			employee.clearDepartment();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearResponsibleFor();
+			employeeItem.clearDepartment();
 			
 		}
 		
@@ -780,9 +783,9 @@ public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceD
 			return levelThreeDepartment;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearDepartment();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCurrentSalaryGrade();
+			employeeItem.clearDepartment();
 			
 		}
 		
@@ -978,6 +981,9 @@ public class LevelThreeDepartmentJDBCTemplateDAO extends RetailscmNamingServiceD
 	public SmartList<LevelThreeDepartment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelThreeDepartmentMapper());
 	}
+	
+	
+
 }
 
 

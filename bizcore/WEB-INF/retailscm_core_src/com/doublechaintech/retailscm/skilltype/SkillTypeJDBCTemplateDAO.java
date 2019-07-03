@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.employeeskill.EmployeeSkillDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SkillTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SkillTypeDAO{
  
@@ -73,7 +76,7 @@ public class SkillTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SkillType load(String id,Map<String,Object> options) throws Exception{
@@ -614,9 +617,9 @@ public class SkillTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return skillType;
 		}
 		
-		for(EmployeeSkill employeeSkill: externalEmployeeSkillList){
+		for(EmployeeSkill employeeSkillItem: externalEmployeeSkillList){
 
-			employeeSkill.clearFromAll();
+			employeeSkillItem.clearFromAll();
 		}
 		
 		
@@ -646,9 +649,9 @@ public class SkillTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return skillType;
 		}
 		
-		for(EmployeeSkill employeeSkill: externalEmployeeSkillList){
-			employeeSkill.clearEmployee();
-			employeeSkill.clearSkillType();
+		for(EmployeeSkill employeeSkillItem: externalEmployeeSkillList){
+			employeeSkillItem.clearEmployee();
+			employeeSkillItem.clearSkillType();
 			
 		}
 		
@@ -844,6 +847,9 @@ public class SkillTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<SkillType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSkillTypeMapper());
 	}
+	
+	
+
 }
 
 

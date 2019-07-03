@@ -370,6 +370,23 @@ public class RetailStoreOrderShipment extends BaseEntity implements  java.io.Ser
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderShipment){
+		
+			
+			RetailStoreOrderShipment dest =(RetailStoreOrderShipment)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeShipTime(getShipTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

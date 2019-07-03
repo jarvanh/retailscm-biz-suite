@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartmentDA
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LevelTwoDepartmentDAO{
  
@@ -73,7 +76,7 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public LevelTwoDepartment load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return levelTwoDepartment;
 		}
 		
-		for(LevelThreeDepartment levelThreeDepartment: externalLevelThreeDepartmentList){
+		for(LevelThreeDepartment levelThreeDepartmentItem: externalLevelThreeDepartmentList){
 
-			levelThreeDepartment.clearFromAll();
+			levelThreeDepartmentItem.clearFromAll();
 		}
 		
 		
@@ -802,6 +805,9 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<LevelTwoDepartment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelTwoDepartmentMapper());
 	}
+	
+	
+
 }
 
 

@@ -410,6 +410,24 @@ public class JobApplication extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof JobApplication){
+		
+			
+			JobApplication dest =(JobApplication)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeApplicationTime(getApplicationTime());
+			dest.mergeWho(getWho());
+			dest.mergeComments(getComments());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

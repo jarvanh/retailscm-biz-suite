@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmNamingServiceDAO implements MemberRewardPointRedemptionDAO{
  
@@ -52,7 +55,7 @@ public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmNamingS
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public MemberRewardPointRedemption load(String id,Map<String,Object> options) throws Exception{
@@ -549,6 +552,9 @@ public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmNamingS
 	public SmartList<MemberRewardPointRedemption> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getMemberRewardPointRedemptionMapper());
 	}
+	
+	
+
 }
 
 

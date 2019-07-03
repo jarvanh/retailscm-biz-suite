@@ -320,6 +320,24 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ProductSupplyDuration){
+		
+			
+			ProductSupplyDuration dest =(ProductSupplyDuration)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeDuration(getDuration());
+			dest.mergePrice(getPrice());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

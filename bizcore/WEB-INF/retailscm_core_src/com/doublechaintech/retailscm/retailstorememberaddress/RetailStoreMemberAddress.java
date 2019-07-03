@@ -327,6 +327,24 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreMemberAddress){
+		
+			
+			RetailStoreMemberAddress dest =(RetailStoreMemberAddress)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeMobilePhone(getMobilePhone());
+			dest.mergeAddress(getAddress());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

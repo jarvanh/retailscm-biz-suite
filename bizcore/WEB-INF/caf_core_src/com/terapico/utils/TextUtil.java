@@ -281,8 +281,12 @@ public class TextUtil {
         if (isBlank(orgStr)) {
             return orgStr;
         }
+        boolean isMask = moreFlag.matches("^\\*+$");
+        if (isMask && (headChars + tailChars) >= orgStr.length()) {
+        	return orgStr;
+        }
         int finalLen = headChars + tailChars + (moreFlag == null ? 0 : moreFlag.length());
-        if (orgStr.length() <= finalLen) {
+        if (orgStr.length() <= finalLen && !isMask) {
             return orgStr;
         }
         StringBuilder sb = new StringBuilder();

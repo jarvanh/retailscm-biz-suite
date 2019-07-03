@@ -629,8 +629,8 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
+		for(String employeeIdItem: employeeIds){
+			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);

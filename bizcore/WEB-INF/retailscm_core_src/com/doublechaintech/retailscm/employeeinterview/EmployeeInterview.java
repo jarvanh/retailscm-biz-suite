@@ -270,6 +270,22 @@ public class EmployeeInterview extends BaseEntity implements  java.io.Serializab
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeInterview){
+		
+			
+			EmployeeInterview dest =(EmployeeInterview)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeRemark(getRemark());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

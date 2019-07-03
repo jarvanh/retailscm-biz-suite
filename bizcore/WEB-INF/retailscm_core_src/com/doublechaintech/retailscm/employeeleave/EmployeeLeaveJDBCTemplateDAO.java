@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class EmployeeLeaveJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeLeaveDAO{
  
@@ -63,7 +66,7 @@ public class EmployeeLeaveJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public EmployeeLeave load(String id,Map<String,Object> options) throws Exception{
@@ -680,6 +683,9 @@ public class EmployeeLeaveJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<EmployeeLeave> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeLeaveMapper());
 	}
+	
+	
+
 }
 
 

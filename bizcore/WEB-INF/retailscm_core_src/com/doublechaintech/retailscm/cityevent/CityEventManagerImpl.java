@@ -565,8 +565,8 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 			String eventAttendanceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-		for(String eventAttendanceId: eventAttendanceIds){
-			userContext.getChecker().checkIdOfEventAttendance(eventAttendanceId);
+		for(String eventAttendanceIdItem: eventAttendanceIds){
+			userContext.getChecker().checkIdOfEventAttendance(eventAttendanceIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);

@@ -680,8 +680,8 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			String goodsShelfStockCountIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		for(String goodsShelfStockCountId: goodsShelfStockCountIds){
-			userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
+		for(String goodsShelfStockCountIdItem: goodsShelfStockCountIds){
+			userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
@@ -932,8 +932,8 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			String goodsAllocationIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		for(String goodsAllocationId: goodsAllocationIds){
-			userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationId);
+		for(String goodsAllocationIdItem: goodsAllocationIds){
+			userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);

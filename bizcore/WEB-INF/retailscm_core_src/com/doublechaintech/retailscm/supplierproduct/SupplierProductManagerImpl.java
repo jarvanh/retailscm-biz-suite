@@ -545,8 +545,8 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 			String productSupplyDurationIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-		for(String productSupplyDurationId: productSupplyDurationIds){
-			userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationId);
+		for(String productSupplyDurationIdItem: productSupplyDurationIds){
+			userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);

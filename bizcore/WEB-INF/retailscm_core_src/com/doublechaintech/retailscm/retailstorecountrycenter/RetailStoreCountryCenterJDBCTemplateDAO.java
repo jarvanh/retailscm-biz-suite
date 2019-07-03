@@ -72,7 +72,10 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreCountryCenterDAO{
 
@@ -545,7 +548,7 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreCountryCenter load(String id,Map<String,Object> options) throws Exception{
@@ -2974,9 +2977,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Catalog catalog: externalCatalogList){
+		for(Catalog catalogItem: externalCatalogList){
 
-			catalog.clearFromAll();
+			catalogItem.clearFromAll();
 		}
 		
 		
@@ -3002,9 +3005,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(RetailStoreProvinceCenter retailStoreProvinceCenter: externalRetailStoreProvinceCenterList){
+		for(RetailStoreProvinceCenter retailStoreProvinceCenterItem: externalRetailStoreProvinceCenterList){
 
-			retailStoreProvinceCenter.clearFromAll();
+			retailStoreProvinceCenterItem.clearFromAll();
 		}
 		
 		
@@ -3030,9 +3033,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(RetailStore retailStore: externalRetailStoreList){
+		for(RetailStore retailStoreItem: externalRetailStoreList){
 
-			retailStore.clearFromAll();
+			retailStoreItem.clearFromAll();
 		}
 		
 		
@@ -3062,9 +3065,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(RetailStore retailStore: externalRetailStoreList){
-			retailStore.clearCityServiceCenter();
-			retailStore.clearRetailStoreCountryCenter();
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearCityServiceCenter();
+			retailStoreItem.clearRetailStoreCountryCenter();
 			
 		}
 		
@@ -3102,9 +3105,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(RetailStoreMember retailStoreMember: externalRetailStoreMemberList){
+		for(RetailStoreMember retailStoreMemberItem: externalRetailStoreMemberList){
 
-			retailStoreMember.clearFromAll();
+			retailStoreMemberItem.clearFromAll();
 		}
 		
 		
@@ -3130,9 +3133,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(GoodsSupplier goodsSupplier: externalGoodsSupplierList){
+		for(GoodsSupplier goodsSupplierItem: externalGoodsSupplierList){
 
-			goodsSupplier.clearFromAll();
+			goodsSupplierItem.clearFromAll();
 		}
 		
 		
@@ -3158,9 +3161,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 
-			supplyOrder.clearFromAll();
+			supplyOrderItem.clearFromAll();
 		}
 		
 		
@@ -3190,9 +3193,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-			supplyOrder.clearSeller();
-			supplyOrder.clearBuyer();
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearSeller();
+			supplyOrderItem.clearBuyer();
 			
 		}
 		
@@ -3230,9 +3233,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
 
-			retailStoreOrder.clearFromAll();
+			retailStoreOrderItem.clearFromAll();
 		}
 		
 		
@@ -3262,9 +3265,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
-			retailStoreOrder.clearBuyer();
-			retailStoreOrder.clearSeller();
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearBuyer();
+			retailStoreOrderItem.clearSeller();
 			
 		}
 		
@@ -3302,9 +3305,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Warehouse warehouse: externalWarehouseList){
+		for(Warehouse warehouseItem: externalWarehouseList){
 
-			warehouse.clearFromAll();
+			warehouseItem.clearFromAll();
 		}
 		
 		
@@ -3330,9 +3333,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(TransportFleet transportFleet: externalTransportFleetList){
+		for(TransportFleet transportFleetItem: externalTransportFleetList){
 
-			transportFleet.clearFromAll();
+			transportFleetItem.clearFromAll();
 		}
 		
 		
@@ -3358,9 +3361,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
+		for(AccountSet accountSetItem: externalAccountSetList){
 
-			accountSet.clearFromAll();
+			accountSetItem.clearFromAll();
 		}
 		
 		
@@ -3390,9 +3393,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearRetailStore();
-			accountSet.clearCountryCenter();
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearRetailStore();
+			accountSetItem.clearCountryCenter();
 			
 		}
 		
@@ -3434,9 +3437,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearGoodsSupplier();
-			accountSet.clearCountryCenter();
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearGoodsSupplier();
+			accountSetItem.clearCountryCenter();
 			
 		}
 		
@@ -3474,9 +3477,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(LevelOneDepartment levelOneDepartment: externalLevelOneDepartmentList){
+		for(LevelOneDepartment levelOneDepartmentItem: externalLevelOneDepartmentList){
 
-			levelOneDepartment.clearFromAll();
+			levelOneDepartmentItem.clearFromAll();
 		}
 		
 		
@@ -3502,9 +3505,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(SkillType skillType: externalSkillTypeList){
+		for(SkillType skillTypeItem: externalSkillTypeList){
 
-			skillType.clearFromAll();
+			skillTypeItem.clearFromAll();
 		}
 		
 		
@@ -3530,9 +3533,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(ResponsibilityType responsibilityType: externalResponsibilityTypeList){
+		for(ResponsibilityType responsibilityTypeItem: externalResponsibilityTypeList){
 
-			responsibilityType.clearFromAll();
+			responsibilityTypeItem.clearFromAll();
 		}
 		
 		
@@ -3558,9 +3561,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(TerminationReason terminationReason: externalTerminationReasonList){
+		for(TerminationReason terminationReasonItem: externalTerminationReasonList){
 
-			terminationReason.clearFromAll();
+			terminationReasonItem.clearFromAll();
 		}
 		
 		
@@ -3586,9 +3589,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(TerminationType terminationType: externalTerminationTypeList){
+		for(TerminationType terminationTypeItem: externalTerminationTypeList){
 
-			terminationType.clearFromAll();
+			terminationTypeItem.clearFromAll();
 		}
 		
 		
@@ -3614,9 +3617,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(OccupationType occupationType: externalOccupationTypeList){
+		for(OccupationType occupationTypeItem: externalOccupationTypeList){
 
-			occupationType.clearFromAll();
+			occupationTypeItem.clearFromAll();
 		}
 		
 		
@@ -3642,9 +3645,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(LeaveType leaveType: externalLeaveTypeList){
+		for(LeaveType leaveTypeItem: externalLeaveTypeList){
 
-			leaveType.clearFromAll();
+			leaveTypeItem.clearFromAll();
 		}
 		
 		
@@ -3670,9 +3673,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(SalaryGrade salaryGrade: externalSalaryGradeList){
+		for(SalaryGrade salaryGradeItem: externalSalaryGradeList){
 
-			salaryGrade.clearFromAll();
+			salaryGradeItem.clearFromAll();
 		}
 		
 		
@@ -3698,9 +3701,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(InterviewType interviewType: externalInterviewTypeList){
+		for(InterviewType interviewTypeItem: externalInterviewTypeList){
 
-			interviewType.clearFromAll();
+			interviewTypeItem.clearFromAll();
 		}
 		
 		
@@ -3726,9 +3729,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(TrainingCourseType trainingCourseType: externalTrainingCourseTypeList){
+		for(TrainingCourseType trainingCourseTypeItem: externalTrainingCourseTypeList){
 
-			trainingCourseType.clearFromAll();
+			trainingCourseTypeItem.clearFromAll();
 		}
 		
 		
@@ -3754,9 +3757,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(PublicHoliday publicHoliday: externalPublicHolidayList){
+		for(PublicHoliday publicHolidayItem: externalPublicHolidayList){
 
-			publicHoliday.clearFromAll();
+			publicHolidayItem.clearFromAll();
 		}
 		
 		
@@ -3782,9 +3785,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Employee employee: externalEmployeeList){
+		for(Employee employeeItem: externalEmployeeList){
 
-			employee.clearFromAll();
+			employeeItem.clearFromAll();
 		}
 		
 		
@@ -3814,9 +3817,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearCompany();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearDepartment();
+			employeeItem.clearCompany();
 			
 		}
 		
@@ -3858,9 +3861,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearCompany();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOccupation();
+			employeeItem.clearCompany();
 			
 		}
 		
@@ -3902,9 +3905,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearResponsibleFor();
-			employee.clearCompany();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearResponsibleFor();
+			employeeItem.clearCompany();
 			
 		}
 		
@@ -3946,9 +3949,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearCompany();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCurrentSalaryGrade();
+			employeeItem.clearCompany();
 			
 		}
 		
@@ -3986,9 +3989,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(Instructor instructor: externalInstructorList){
+		for(Instructor instructorItem: externalInstructorList){
 
-			instructor.clearFromAll();
+			instructorItem.clearFromAll();
 		}
 		
 		
@@ -4014,9 +4017,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 
-			companyTraining.clearFromAll();
+			companyTrainingItem.clearFromAll();
 		}
 		
 		
@@ -4046,9 +4049,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearInstructor();
-			companyTraining.clearCompany();
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearInstructor();
+			companyTrainingItem.clearCompany();
 			
 		}
 		
@@ -4090,9 +4093,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearTrainingCourseType();
-			companyTraining.clearCompany();
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearTrainingCourseType();
+			companyTrainingItem.clearCompany();
 			
 		}
 		
@@ -6956,6 +6959,89 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<RetailStoreCountryCenter> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreCountryCenterMapper());
 	}
+	
+	
+    
+	public Map<String, Integer> countBySql(String sql, Object[] params) {
+		if (params == null || params.length == 0) {
+			return new HashMap<>();
+		}
+		List<Map<String, Object>> result = this.getJdbcTemplateObject().queryForList(sql, params);
+		if (result == null || result.isEmpty()) {
+			return new HashMap<>();
+		}
+		Map<String, Integer> cntMap = new HashMap<>();
+		for (Map<String, Object> data : result) {
+			String key = (String) data.get("id");
+			Number value = (Number) data.get("count");
+			cntMap.put(key, value.intValue());
+		}
+		this.logSQLAndParameters("countBySql", sql, params, cntMap.size() + " Counts");
+		return cntMap;
+	}
+
+	public Integer singleCountBySql(String sql, Object[] params) {
+		Integer cnt = this.getJdbcTemplateObject().queryForObject(sql, params, Integer.class);
+		logSQLAndParameters("singleCountBySql", sql, params, cnt + "");
+		return cnt;
+	}
+
+	public BigDecimal summaryBySql(String sql, Object[] params) {
+		BigDecimal cnt = this.getJdbcTemplateObject().queryForObject(sql, params, BigDecimal.class);
+		logSQLAndParameters("summaryBySql", sql, params, cnt + "");
+		return cnt == null ? BigDecimal.ZERO : cnt;
+	}
+
+	public <T> List<T> queryForList(String sql, Object[] params, Class<T> claxx) {
+		List<T> result = this.getJdbcTemplateObject().queryForList(sql, params, claxx);
+		logSQLAndParameters("queryForList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public Map<String, Object> queryForMap(String sql, Object[] params) throws DataAccessException {
+		Map<String, Object> result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForMap(sql, params);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public <T> T queryForObject(String sql, Object[] params, Class<T> claxx) throws DataAccessException {
+		T result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForObject(sql, params, claxx);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public List<Map<String, Object>> queryAsMapList(String sql, Object[] params) {
+		List<Map<String, Object>> result = getJdbcTemplateObject().queryForList(sql, params);
+		logSQLAndParameters("queryAsMapList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public synchronized int updateBySql(String sql, Object[] params) {
+		int result = getJdbcTemplateObject().update(sql, params);
+		logSQLAndParameters("updateBySql", sql, params, result + " items");
+		return result;
+	}
+
+	public void execSqlWithRowCallback(String sql, Object[] args, RowCallbackHandler callback) {
+		getJdbcTemplateObject().query(sql, args, callback);
+	}
+
+	public void executeSql(String sql) {
+		logSQLAndParameters("executeSql", sql, new Object[] {}, "");
+		getJdbcTemplateObject().execute(sql);
+	}
+
+
 }
 
 

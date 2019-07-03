@@ -72,7 +72,10 @@ import com.doublechaintech.retailscm.employeeeducation.EmployeeEducationDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeDAO{
  
@@ -425,7 +428,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public Employee load(String id,Map<String,Object> options) throws Exception{
@@ -3242,9 +3245,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeCompanyTraining employeeCompanyTraining: externalEmployeeCompanyTrainingList){
+		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
 
-			employeeCompanyTraining.clearFromAll();
+			employeeCompanyTrainingItem.clearFromAll();
 		}
 		
 		
@@ -3274,9 +3277,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeCompanyTraining employeeCompanyTraining: externalEmployeeCompanyTrainingList){
-			employeeCompanyTraining.clearTraining();
-			employeeCompanyTraining.clearEmployee();
+		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
+			employeeCompanyTrainingItem.clearTraining();
+			employeeCompanyTrainingItem.clearEmployee();
 			
 		}
 		
@@ -3314,9 +3317,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeSkill employeeSkill: externalEmployeeSkillList){
+		for(EmployeeSkill employeeSkillItem: externalEmployeeSkillList){
 
-			employeeSkill.clearFromAll();
+			employeeSkillItem.clearFromAll();
 		}
 		
 		
@@ -3346,9 +3349,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeSkill employeeSkill: externalEmployeeSkillList){
-			employeeSkill.clearSkillType();
-			employeeSkill.clearEmployee();
+		for(EmployeeSkill employeeSkillItem: externalEmployeeSkillList){
+			employeeSkillItem.clearSkillType();
+			employeeSkillItem.clearEmployee();
 			
 		}
 		
@@ -3386,9 +3389,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeePerformance employeePerformance: externalEmployeePerformanceList){
+		for(EmployeePerformance employeePerformanceItem: externalEmployeePerformanceList){
 
-			employeePerformance.clearFromAll();
+			employeePerformanceItem.clearFromAll();
 		}
 		
 		
@@ -3414,9 +3417,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeWorkExperience employeeWorkExperience: externalEmployeeWorkExperienceList){
+		for(EmployeeWorkExperience employeeWorkExperienceItem: externalEmployeeWorkExperienceList){
 
-			employeeWorkExperience.clearFromAll();
+			employeeWorkExperienceItem.clearFromAll();
 		}
 		
 		
@@ -3442,9 +3445,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
+		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
 
-			employeeLeave.clearFromAll();
+			employeeLeaveItem.clearFromAll();
 		}
 		
 		
@@ -3474,9 +3477,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
-			employeeLeave.clearType();
-			employeeLeave.clearWho();
+		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
+			employeeLeaveItem.clearType();
+			employeeLeaveItem.clearWho();
 			
 		}
 		
@@ -3514,9 +3517,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
+		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
 
-			employeeInterview.clearFromAll();
+			employeeInterviewItem.clearFromAll();
 		}
 		
 		
@@ -3546,9 +3549,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
-			employeeInterview.clearInterviewType();
-			employeeInterview.clearEmployee();
+		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
+			employeeInterviewItem.clearInterviewType();
+			employeeInterviewItem.clearEmployee();
 			
 		}
 		
@@ -3586,9 +3589,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeAttendance employeeAttendance: externalEmployeeAttendanceList){
+		for(EmployeeAttendance employeeAttendanceItem: externalEmployeeAttendanceList){
 
-			employeeAttendance.clearFromAll();
+			employeeAttendanceItem.clearFromAll();
 		}
 		
 		
@@ -3614,9 +3617,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeQualifier employeeQualifier: externalEmployeeQualifierList){
+		for(EmployeeQualifier employeeQualifierItem: externalEmployeeQualifierList){
 
-			employeeQualifier.clearFromAll();
+			employeeQualifierItem.clearFromAll();
 		}
 		
 		
@@ -3642,9 +3645,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeEducation employeeEducation: externalEmployeeEducationList){
+		for(EmployeeEducation employeeEducationItem: externalEmployeeEducationList){
 
-			employeeEducation.clearFromAll();
+			employeeEducationItem.clearFromAll();
 		}
 		
 		
@@ -3670,9 +3673,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeAward employeeAward: externalEmployeeAwardList){
+		for(EmployeeAward employeeAwardItem: externalEmployeeAwardList){
 
-			employeeAward.clearFromAll();
+			employeeAwardItem.clearFromAll();
 		}
 		
 		
@@ -3698,9 +3701,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
 
-			employeeSalarySheet.clearFromAll();
+			employeeSalarySheetItem.clearFromAll();
 		}
 		
 		
@@ -3730,9 +3733,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
-			employeeSalarySheet.clearCurrentSalaryGrade();
-			employeeSalarySheet.clearEmployee();
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearCurrentSalaryGrade();
+			employeeSalarySheetItem.clearEmployee();
 			
 		}
 		
@@ -3770,9 +3773,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 			return employee;
 		}
 		
-		for(PayingOff payingOff: externalPayingOffList){
+		for(PayingOff payingOffItem: externalPayingOffList){
 
-			payingOff.clearFromAll();
+			payingOffItem.clearFromAll();
 		}
 		
 		
@@ -5232,6 +5235,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
 	public SmartList<Employee> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeMapper());
 	}
+	
+	
+
 }
 
 

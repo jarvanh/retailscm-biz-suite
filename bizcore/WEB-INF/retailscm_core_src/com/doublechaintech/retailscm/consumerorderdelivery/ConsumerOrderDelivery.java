@@ -250,6 +250,23 @@ public class ConsumerOrderDelivery extends BaseEntity implements  java.io.Serial
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ConsumerOrderDelivery){
+		
+			
+			ConsumerOrderDelivery dest =(ConsumerOrderDelivery)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeDeliveryTime(getDeliveryTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

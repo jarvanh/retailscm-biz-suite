@@ -554,8 +554,8 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			String employeeSkillIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		for(String employeeSkillId: employeeSkillIds){
-			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
+		for(String employeeSkillIdItem: employeeSkillIds){
+			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);

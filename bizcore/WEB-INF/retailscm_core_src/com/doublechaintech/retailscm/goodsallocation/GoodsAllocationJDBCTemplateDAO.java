@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsAllocationDAO{
  
@@ -73,7 +76,7 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public GoodsAllocation load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
+		for(Goods goodsItem: externalGoodsList){
 
-			goods.clearFromAll();
+			goodsItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -692,9 +695,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearReceivingSpace();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -736,9 +739,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSmartPallet();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -780,9 +783,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearShippingSpace();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearShippingSpace();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -824,9 +827,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -868,9 +871,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStore();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -912,9 +915,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearBizOrder();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -956,9 +959,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return goodsAllocation;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearGoodsAllocation();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStoreOrder();
+			goodsItem.clearGoodsAllocation();
 			
 		}
 		
@@ -1154,6 +1157,9 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public SmartList<GoodsAllocation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsAllocationMapper());
 	}
+	
+	
+
 }
 
 

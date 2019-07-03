@@ -2352,6 +2352,31 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Employee){
+		
+			
+			Employee dest =(Employee)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeFamilyName(getFamilyName());
+			dest.mergeGivenName(getGivenName());
+			dest.mergeEmail(getEmail());
+			dest.mergeCity(getCity());
+			dest.mergeAddress(getAddress());
+			dest.mergeCellPhone(getCellPhone());
+			dest.mergeSalaryAccount(getSalaryAccount());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

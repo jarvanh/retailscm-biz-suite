@@ -36,7 +36,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountSetDAO{
  
@@ -137,7 +140,7 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public AccountSet load(String id,Map<String,Object> options) throws Exception{
@@ -1116,9 +1119,9 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return accountSet;
 		}
 		
-		for(AccountingSubject accountingSubject: externalAccountingSubjectList){
+		for(AccountingSubject accountingSubjectItem: externalAccountingSubjectList){
 
-			accountingSubject.clearFromAll();
+			accountingSubjectItem.clearFromAll();
 		}
 		
 		
@@ -1144,9 +1147,9 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return accountSet;
 		}
 		
-		for(AccountingPeriod accountingPeriod: externalAccountingPeriodList){
+		for(AccountingPeriod accountingPeriodItem: externalAccountingPeriodList){
 
-			accountingPeriod.clearFromAll();
+			accountingPeriodItem.clearFromAll();
 		}
 		
 		
@@ -1172,9 +1175,9 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return accountSet;
 		}
 		
-		for(AccountingDocumentType accountingDocumentType: externalAccountingDocumentTypeList){
+		for(AccountingDocumentType accountingDocumentTypeItem: externalAccountingDocumentTypeList){
 
-			accountingDocumentType.clearFromAll();
+			accountingDocumentTypeItem.clearFromAll();
 		}
 		
 		
@@ -1590,6 +1593,9 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 	public SmartList<AccountSet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountSetMapper());
 	}
+	
+	
+
 }
 
 

@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.accountset.AccountSetDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class AccountingSubjectJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingSubjectDAO{
  
@@ -73,7 +76,7 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public AccountingSubject load(String id,Map<String,Object> options) throws Exception{
@@ -618,9 +621,9 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return accountingSubject;
 		}
 		
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
+		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
 
-			accountingDocumentLine.clearFromAll();
+			accountingDocumentLineItem.clearFromAll();
 		}
 		
 		
@@ -650,9 +653,9 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return accountingSubject;
 		}
 		
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
-			accountingDocumentLine.clearBelongsTo();
-			accountingDocumentLine.clearAccountingSubject();
+		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
+			accountingDocumentLineItem.clearBelongsTo();
+			accountingDocumentLineItem.clearAccountingSubject();
 			
 		}
 		
@@ -848,6 +851,9 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public SmartList<AccountingSubject> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingSubjectMapper());
 	}
+	
+	
+
 }
 
 

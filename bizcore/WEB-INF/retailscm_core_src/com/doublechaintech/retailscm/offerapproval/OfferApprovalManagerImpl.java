@@ -629,8 +629,8 @@ public class OfferApprovalManagerImpl extends CustomRetailscmCheckerManager impl
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfOfferApproval(offerApprovalId);
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
+		for(String employeeIdItem: employeeIds){
+			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(OfferApprovalManagerException.class);

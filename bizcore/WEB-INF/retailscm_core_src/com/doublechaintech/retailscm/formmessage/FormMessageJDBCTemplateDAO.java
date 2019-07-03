@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.genericform.GenericFormDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class FormMessageJDBCTemplateDAO extends RetailscmNamingServiceDAO implements FormMessageDAO{
  
@@ -52,7 +55,7 @@ public class FormMessageJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public FormMessage load(String id,Map<String,Object> options) throws Exception{
@@ -549,6 +552,9 @@ public class FormMessageJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<FormMessage> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getFormMessageMapper());
 	}
+	
+	
+
 }
 
 

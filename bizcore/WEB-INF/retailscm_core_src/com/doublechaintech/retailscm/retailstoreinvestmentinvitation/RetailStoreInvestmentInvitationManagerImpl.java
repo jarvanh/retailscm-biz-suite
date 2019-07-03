@@ -541,8 +541,8 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
+		for(String retailStoreIdItem: retailStoreIds){
+			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);

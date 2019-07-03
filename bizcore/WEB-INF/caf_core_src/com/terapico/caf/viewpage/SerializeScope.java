@@ -1,9 +1,14 @@
 package com.terapico.caf.viewpage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.terapico.utils.TextUtil;
 
 @JsonIgnoreType
 public class SerializeScope {
@@ -216,6 +221,31 @@ public class SerializeScope {
 		return newScope;
 	}
 
+	public Map<String, Object> showScope() {
+		Map<String, Object> result = new HashMap<>();
+		if (this.fields != null) {
+			Iterator<Entry<String, SerializeScope>> it = fields.entrySet().iterator();
+			while(it.hasNext()) {
+				Entry<String, SerializeScope> ent = it.next();
+				String key =ent.getKey();
+				String fName = key;
+				SerializeScope node = ent.getValue();
+				if (node.getAliasName() != null) {
+					fName = node.getAliasName();
+				}
+				Map<String, Object> subScope = node.showScope();
+				if (subScope != null && subScope.size() > 0) {
+					result.put(fName, subScope);
+				}else {
+					result.put(fName, !node.excludeMode);
+				}
+//				System.out.println(result);
+			}
+		}
+		
+		return result;
+	}
+	
 	@Override
 	public String toString() {
 		return "SerializeScope [fields=" + fields + ", excludeMode=" + excludeMode + ", nodeType=" + nodeType
@@ -235,7 +265,8 @@ public class SerializeScope {
 		if (this.fields == null) {
 			return null;
 		}
-		return fields.get(propertyName);
+		curNode = fields.get(propertyName);
+		return this;
 	}
 	
 }

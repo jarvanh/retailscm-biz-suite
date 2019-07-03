@@ -684,8 +684,8 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 			String potentialCustomerContactPersonIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
-		for(String potentialCustomerContactPersonId: potentialCustomerContactPersonIds){
-			userContext.getChecker().checkIdOfPotentialCustomerContactPerson(potentialCustomerContactPersonId);
+		for(String potentialCustomerContactPersonIdItem: potentialCustomerContactPersonIds){
+			userContext.getChecker().checkIdOfPotentialCustomerContactPerson(potentialCustomerContactPersonIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
@@ -952,8 +952,8 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
-		for(String potentialCustomerContactId: potentialCustomerContactIds){
-			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		for(String potentialCustomerContactIdItem: potentialCustomerContactIds){
+			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
@@ -1208,8 +1208,8 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 			String eventAttendanceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
-		for(String eventAttendanceId: eventAttendanceIds){
-			userContext.getChecker().checkIdOfEventAttendance(eventAttendanceId);
+		for(String eventAttendanceIdItem: eventAttendanceIds){
+			userContext.getChecker().checkIdOfEventAttendance(eventAttendanceIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerManagerException.class);

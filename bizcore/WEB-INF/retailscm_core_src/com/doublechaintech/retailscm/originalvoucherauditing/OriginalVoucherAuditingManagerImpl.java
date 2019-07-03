@@ -513,8 +513,8 @@ public class OriginalVoucherAuditingManagerImpl extends CustomRetailscmCheckerMa
 			String originalVoucherIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfOriginalVoucherAuditing(originalVoucherAuditingId);
-		for(String originalVoucherId: originalVoucherIds){
-			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
+		for(String originalVoucherIdItem: originalVoucherIds){
+			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherAuditingManagerException.class);

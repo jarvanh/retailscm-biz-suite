@@ -127,4 +127,36 @@ public class RestUtil {
         response.close();
         return body;
     }
+
+
+	public static String postJson(String url, String json) throws Exception{
+		String body = "";
+
+		CloseableHttpClient client = getHttpClient();
+
+		HttpPost httpPost = new HttpPost(url);
+
+		StringEntity entityParams = null;
+		CloseableHttpResponse response = null;
+		HttpEntity entity = null;
+		try{
+			entityParams = new StringEntity(json);
+			httpPost.setEntity(entityParams);
+			response = client.execute(httpPost);
+			entity = response.getEntity();
+			if (entity != null) {
+				body = EntityUtils.toString(entity);
+			}
+		}
+		catch(Exception e){
+
+		}finally {
+			EntityUtils.consume(entity);
+			if (response != null){
+				response.close();
+			}
+		}
+
+		return body;
+	}
 }

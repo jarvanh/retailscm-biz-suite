@@ -521,8 +521,8 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-		for(String supplyOrderId: supplyOrderIds){
-			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
+		for(String supplyOrderIdItem: supplyOrderIds){
+			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);

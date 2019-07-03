@@ -569,8 +569,8 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		for(String accountingDocumentId: accountingDocumentIds){
-			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
+		for(String accountingDocumentIdItem: accountingDocumentIds){
+			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);

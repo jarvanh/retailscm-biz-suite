@@ -330,6 +330,22 @@ public class RetailStoreClosing extends BaseEntity implements  java.io.Serializa
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreClosing){
+		
+			
+			RetailStoreClosing dest =(RetailStoreClosing)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

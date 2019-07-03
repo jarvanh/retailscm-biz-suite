@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class TerminationReasonJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TerminationReasonDAO{
  
@@ -73,7 +76,7 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public TerminationReason load(String id,Map<String,Object> options) throws Exception{
@@ -614,9 +617,9 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return terminationReason;
 		}
 		
-		for(Termination termination: externalTerminationList){
+		for(Termination terminationItem: externalTerminationList){
 
-			termination.clearFromAll();
+			terminationItem.clearFromAll();
 		}
 		
 		
@@ -646,9 +649,9 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return terminationReason;
 		}
 		
-		for(Termination termination: externalTerminationList){
-			termination.clearType();
-			termination.clearReason();
+		for(Termination terminationItem: externalTerminationList){
+			terminationItem.clearType();
+			terminationItem.clearReason();
 			
 		}
 		
@@ -844,6 +847,9 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public SmartList<TerminationReason> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTerminationReasonMapper());
 	}
+	
+	
+
 }
 
 

@@ -440,6 +440,24 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof LevelThreeDepartment){
+		
+			
+			LevelThreeDepartment dest =(LevelThreeDepartment)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeDescription(getDescription());
+			dest.mergeFounded(getFounded());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

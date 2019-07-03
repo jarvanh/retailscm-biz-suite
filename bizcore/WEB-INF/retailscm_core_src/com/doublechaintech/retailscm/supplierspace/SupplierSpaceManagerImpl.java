@@ -595,8 +595,8 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		for(String goodsShelfId: goodsShelfIds){
-			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
+		for(String goodsShelfIdItem: goodsShelfIds){
+			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);

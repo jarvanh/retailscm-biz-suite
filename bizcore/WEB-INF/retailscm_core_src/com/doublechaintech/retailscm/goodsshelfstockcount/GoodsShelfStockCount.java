@@ -440,6 +440,24 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsShelfStockCount){
+		
+			
+			GoodsShelfStockCount dest =(GoodsShelfStockCount)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeCountTime(getCountTime());
+			dest.mergeSummary(getSummary());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

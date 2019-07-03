@@ -550,8 +550,8 @@ public class LevelOneDepartmentManagerImpl extends CustomRetailscmCheckerManager
 			String levelTwoDepartmentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfLevelOneDepartment(levelOneDepartmentId);
-		for(String levelTwoDepartmentId: levelTwoDepartmentIds){
-			userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		for(String levelTwoDepartmentIdItem: levelTwoDepartmentIds){
+			userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(LevelOneDepartmentManagerException.class);

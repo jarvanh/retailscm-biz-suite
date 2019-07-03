@@ -460,6 +460,26 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof PotentialCustomerContact){
+		
+			
+			PotentialCustomerContact dest =(PotentialCustomerContact)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeContactDate(getContactDate());
+			dest.mergeContactMethod(getContactMethod());
+			dest.mergeDescription(getDescription());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

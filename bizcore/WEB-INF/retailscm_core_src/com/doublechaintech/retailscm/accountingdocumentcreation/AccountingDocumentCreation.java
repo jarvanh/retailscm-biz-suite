@@ -410,6 +410,24 @@ public class AccountingDocumentCreation extends BaseEntity implements  java.io.S
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingDocumentCreation){
+		
+			
+			AccountingDocumentCreation dest =(AccountingDocumentCreation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeComments(getComments());
+			dest.mergeMakeDate(getMakeDate());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

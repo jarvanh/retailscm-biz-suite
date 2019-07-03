@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PayingOffDAO{
  
@@ -73,7 +76,7 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public PayingOff load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return payingOff;
 		}
 		
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
 
-			employeeSalarySheet.clearFromAll();
+			employeeSalarySheetItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return payingOff;
 		}
 		
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
-			employeeSalarySheet.clearEmployee();
-			employeeSalarySheet.clearPayingOff();
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearEmployee();
+			employeeSalarySheetItem.clearPayingOff();
 			
 		}
 		
@@ -692,9 +695,9 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return payingOff;
 		}
 		
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
-			employeeSalarySheet.clearCurrentSalaryGrade();
-			employeeSalarySheet.clearPayingOff();
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearCurrentSalaryGrade();
+			employeeSalarySheetItem.clearPayingOff();
 			
 		}
 		
@@ -890,6 +893,9 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<PayingOff> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPayingOffMapper());
 	}
+	
+	
+
 }
 
 

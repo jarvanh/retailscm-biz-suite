@@ -350,6 +350,24 @@ public class RetailStoreMemberGiftCardConsumeRecord extends BaseEntity implement
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreMemberGiftCardConsumeRecord){
+		
+			
+			RetailStoreMemberGiftCardConsumeRecord dest =(RetailStoreMemberGiftCardConsumeRecord)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeOccureTime(getOccureTime());
+			dest.mergeNumber(getNumber());
+			dest.mergeAmount(getAmount());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

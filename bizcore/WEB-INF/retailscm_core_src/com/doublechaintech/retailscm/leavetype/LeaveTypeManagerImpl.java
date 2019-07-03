@@ -564,8 +564,8 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-		for(String employeeLeaveId: employeeLeaveIds){
-			userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
+		for(String employeeLeaveIdItem: employeeLeaveIds){
+			userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);

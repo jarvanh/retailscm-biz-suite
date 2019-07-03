@@ -32,7 +32,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreProvinceCenterDAO{
  
@@ -115,7 +118,7 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingSer
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreProvinceCenter load(String id,Map<String,Object> options) throws Exception{
@@ -846,9 +849,9 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreProvinceCenter;
 		}
 		
-		for(ProvinceCenterDepartment provinceCenterDepartment: externalProvinceCenterDepartmentList){
+		for(ProvinceCenterDepartment provinceCenterDepartmentItem: externalProvinceCenterDepartmentList){
 
-			provinceCenterDepartment.clearFromAll();
+			provinceCenterDepartmentItem.clearFromAll();
 		}
 		
 		
@@ -874,9 +877,9 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreProvinceCenter;
 		}
 		
-		for(ProvinceCenterEmployee provinceCenterEmployee: externalProvinceCenterEmployeeList){
+		for(ProvinceCenterEmployee provinceCenterEmployeeItem: externalProvinceCenterEmployeeList){
 
-			provinceCenterEmployee.clearFromAll();
+			provinceCenterEmployeeItem.clearFromAll();
 		}
 		
 		
@@ -906,9 +909,9 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreProvinceCenter;
 		}
 		
-		for(ProvinceCenterEmployee provinceCenterEmployee: externalProvinceCenterEmployeeList){
-			provinceCenterEmployee.clearDepartment();
-			provinceCenterEmployee.clearProvinceCenter();
+		for(ProvinceCenterEmployee provinceCenterEmployeeItem: externalProvinceCenterEmployeeList){
+			provinceCenterEmployeeItem.clearDepartment();
+			provinceCenterEmployeeItem.clearProvinceCenter();
 			
 		}
 		
@@ -946,9 +949,9 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreProvinceCenter;
 		}
 		
-		for(RetailStoreCityServiceCenter retailStoreCityServiceCenter: externalRetailStoreCityServiceCenterList){
+		for(RetailStoreCityServiceCenter retailStoreCityServiceCenterItem: externalRetailStoreCityServiceCenterList){
 
-			retailStoreCityServiceCenter.clearFromAll();
+			retailStoreCityServiceCenterItem.clearFromAll();
 		}
 		
 		
@@ -1364,6 +1367,9 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingSer
 	public SmartList<RetailStoreProvinceCenter> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreProvinceCenterMapper());
 	}
+	
+	
+
 }
 
 

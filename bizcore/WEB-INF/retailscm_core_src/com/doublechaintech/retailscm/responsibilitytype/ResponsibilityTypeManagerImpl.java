@@ -675,8 +675,8 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
+		for(String employeeIdItem: employeeIds){
+			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);

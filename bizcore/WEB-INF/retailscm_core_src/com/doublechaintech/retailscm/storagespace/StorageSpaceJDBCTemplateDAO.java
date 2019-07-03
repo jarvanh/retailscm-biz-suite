@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements StorageSpaceDAO{
  
@@ -73,7 +76,7 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public StorageSpace load(String id,Map<String,Object> options) throws Exception{
@@ -638,9 +641,9 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 			return storageSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 
-			goodsShelf.clearFromAll();
+			goodsShelfItem.clearFromAll();
 		}
 		
 		
@@ -670,9 +673,9 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 			return storageSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearSupplierSpace();
-			goodsShelf.clearStorageSpace();
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearSupplierSpace();
+			goodsShelfItem.clearStorageSpace();
 			
 		}
 		
@@ -714,9 +717,9 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 			return storageSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearDamageSpace();
-			goodsShelf.clearStorageSpace();
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearDamageSpace();
+			goodsShelfItem.clearStorageSpace();
 			
 		}
 		
@@ -912,6 +915,9 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	public SmartList<StorageSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getStorageSpaceMapper());
 	}
+	
+	
+
 }
 
 

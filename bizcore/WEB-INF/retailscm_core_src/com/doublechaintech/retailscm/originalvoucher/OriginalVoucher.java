@@ -279,13 +279,13 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	
 	
 	public void setVoucherImage(String voucherImage){
-		this.mVoucherImage = trimString(voucherImage);;
+		this.mVoucherImage = trimString(encodeUrl(voucherImage));;
 	}
 	public String getVoucherImage(){
 		return this.mVoucherImage;
 	}
 	public OriginalVoucher updateVoucherImage(String voucherImage){
-		this.mVoucherImage = trimString(voucherImage);;
+		this.mVoucherImage = trimString(encodeUrl(voucherImage));;
 		this.changed = true;
 		return this;
 	}
@@ -506,6 +506,27 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 
 		}
 		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof OriginalVoucher){
+		
+			
+			OriginalVoucher dest =(OriginalVoucher)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeMadeBy(getMadeBy());
+			dest.mergeReceivedBy(getReceivedBy());
+			dest.mergeVoucherType(getVoucherType());
+			dest.mergeVoucherImage(getVoucherImage());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
 		return baseDest;
 	}
 	

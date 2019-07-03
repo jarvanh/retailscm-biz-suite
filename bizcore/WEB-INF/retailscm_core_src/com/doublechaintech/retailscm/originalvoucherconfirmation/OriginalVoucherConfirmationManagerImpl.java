@@ -513,8 +513,8 @@ public class OriginalVoucherConfirmationManagerImpl extends CustomRetailscmCheck
 			String originalVoucherIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfOriginalVoucherConfirmation(originalVoucherConfirmationId);
-		for(String originalVoucherId: originalVoucherIds){
-			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
+		for(String originalVoucherIdItem: originalVoucherIds){
+			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherConfirmationManagerException.class);

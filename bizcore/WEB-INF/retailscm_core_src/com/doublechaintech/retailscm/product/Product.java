@@ -310,13 +310,13 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 	
 	
 	public void setPicture(String picture){
-		this.mPicture = trimString(picture);;
+		this.mPicture = trimString(encodeUrl(picture));;
 	}
 	public String getPicture(){
 		return this.mPicture;
 	}
 	public Product updatePicture(String picture){
-		this.mPicture = trimString(picture);;
+		this.mPicture = trimString(encodeUrl(picture));;
 		this.changed = true;
 		return this;
 	}
@@ -557,6 +557,27 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 
 		}
 		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Product){
+		
+			
+			Product dest =(Product)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeOrigin(getOrigin());
+			dest.mergeRemark(getRemark());
+			dest.mergeBrand(getBrand());
+			dest.mergePicture(getPicture());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
 		return baseDest;
 	}
 	

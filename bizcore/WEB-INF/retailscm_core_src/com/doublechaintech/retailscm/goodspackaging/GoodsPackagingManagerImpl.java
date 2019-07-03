@@ -708,8 +708,8 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-		for(String goodsId: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsId);
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);

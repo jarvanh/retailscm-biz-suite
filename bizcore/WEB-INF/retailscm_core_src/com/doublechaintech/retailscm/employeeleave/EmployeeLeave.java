@@ -310,6 +310,23 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeLeave){
+		
+			
+			EmployeeLeave dest =(EmployeeLeave)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeLeaveDurationHour(getLeaveDurationHour());
+			dest.mergeRemark(getRemark());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

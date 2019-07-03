@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerC
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class PotentialCustomerContactPersonJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PotentialCustomerContactPersonDAO{
  
@@ -73,7 +76,7 @@ public class PotentialCustomerContactPersonJDBCTemplateDAO extends RetailscmNami
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public PotentialCustomerContactPerson load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class PotentialCustomerContactPersonJDBCTemplateDAO extends RetailscmNami
 			return potentialCustomerContactPerson;
 		}
 		
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
 
-			potentialCustomerContact.clearFromAll();
+			potentialCustomerContactItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class PotentialCustomerContactPersonJDBCTemplateDAO extends RetailscmNami
 			return potentialCustomerContactPerson;
 		}
 		
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
-			potentialCustomerContact.clearPotentialCustomer();
-			potentialCustomerContact.clearContactTo();
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
+			potentialCustomerContactItem.clearPotentialCustomer();
+			potentialCustomerContactItem.clearContactTo();
 			
 		}
 		
@@ -692,9 +695,9 @@ public class PotentialCustomerContactPersonJDBCTemplateDAO extends RetailscmNami
 			return potentialCustomerContactPerson;
 		}
 		
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
-			potentialCustomerContact.clearCityPartner();
-			potentialCustomerContact.clearContactTo();
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
+			potentialCustomerContactItem.clearCityPartner();
+			potentialCustomerContactItem.clearContactTo();
 			
 		}
 		
@@ -890,6 +893,9 @@ public class PotentialCustomerContactPersonJDBCTemplateDAO extends RetailscmNami
 	public SmartList<PotentialCustomerContactPerson> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPotentialCustomerContactPersonMapper());
 	}
+	
+	
+
 }
 
 

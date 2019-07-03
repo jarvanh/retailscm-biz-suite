@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.provincecenteremployee.ProvinceCenterEmploy
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ProvinceCenterDepartmentDAO{
  
@@ -73,7 +76,7 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public ProvinceCenterDepartment load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 			return provinceCenterDepartment;
 		}
 		
-		for(ProvinceCenterEmployee provinceCenterEmployee: externalProvinceCenterEmployeeList){
+		for(ProvinceCenterEmployee provinceCenterEmployeeItem: externalProvinceCenterEmployeeList){
 
-			provinceCenterEmployee.clearFromAll();
+			provinceCenterEmployeeItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 			return provinceCenterDepartment;
 		}
 		
-		for(ProvinceCenterEmployee provinceCenterEmployee: externalProvinceCenterEmployeeList){
-			provinceCenterEmployee.clearProvinceCenter();
-			provinceCenterEmployee.clearDepartment();
+		for(ProvinceCenterEmployee provinceCenterEmployeeItem: externalProvinceCenterEmployeeList){
+			provinceCenterEmployeeItem.clearProvinceCenter();
+			provinceCenterEmployeeItem.clearDepartment();
 			
 		}
 		
@@ -846,6 +849,9 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<ProvinceCenterDepartment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getProvinceCenterDepartmentMapper());
 	}
+	
+	
+
 }
 
 

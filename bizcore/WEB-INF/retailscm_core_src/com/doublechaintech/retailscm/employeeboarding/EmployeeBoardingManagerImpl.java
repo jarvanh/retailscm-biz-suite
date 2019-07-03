@@ -629,8 +629,8 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
+		for(String employeeIdItem: employeeIds){
+			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);

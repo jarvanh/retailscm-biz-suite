@@ -280,6 +280,23 @@ public class SupplyOrderPaymentGroup extends BaseEntity implements  java.io.Seri
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderPaymentGroup){
+		
+			
+			SupplyOrderPaymentGroup dest =(SupplyOrderPaymentGroup)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeCardNumber(getCardNumber());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

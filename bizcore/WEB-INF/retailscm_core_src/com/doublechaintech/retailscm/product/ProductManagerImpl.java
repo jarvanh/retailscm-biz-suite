@@ -576,8 +576,8 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 			String skuIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfProduct(productId);
-		for(String skuId: skuIds){
-			userContext.getChecker().checkIdOfSku(skuId);
+		for(String skuIdItem: skuIds){
+			userContext.getChecker().checkIdOfSku(skuIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);

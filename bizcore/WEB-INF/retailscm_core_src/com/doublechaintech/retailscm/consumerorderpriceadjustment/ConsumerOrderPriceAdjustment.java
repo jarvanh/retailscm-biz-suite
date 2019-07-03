@@ -320,6 +320,24 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ConsumerOrderPriceAdjustment){
+		
+			
+			ConsumerOrderPriceAdjustment dest =(ConsumerOrderPriceAdjustment)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeAmount(getAmount());
+			dest.mergeProvider(getProvider());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

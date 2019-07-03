@@ -749,8 +749,8 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationId);
-		for(String goodsId: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsId);
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsAllocationManagerException.class);

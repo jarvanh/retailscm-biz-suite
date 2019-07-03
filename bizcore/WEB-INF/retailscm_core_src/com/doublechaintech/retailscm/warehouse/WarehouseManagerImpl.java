@@ -603,8 +603,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String storageSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		for(String storageSpaceId: storageSpaceIds){
-			userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
+		for(String storageSpaceIdItem: storageSpaceIds){
+			userContext.getChecker().checkIdOfStorageSpace(storageSpaceIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -874,8 +874,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String smartPalletIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		for(String smartPalletId: smartPalletIds){
-			userContext.getChecker().checkIdOfSmartPallet(smartPalletId);
+		for(String smartPalletIdItem: smartPalletIds){
+			userContext.getChecker().checkIdOfSmartPallet(smartPalletIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -1145,8 +1145,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String supplierSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		for(String supplierSpaceId: supplierSpaceIds){
-			userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
+		for(String supplierSpaceIdItem: supplierSpaceIds){
+			userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -1421,8 +1421,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String receivingSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		for(String receivingSpaceId: receivingSpaceIds){
-			userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceId);
+		for(String receivingSpaceIdItem: receivingSpaceIds){
+			userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -1701,8 +1701,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String shippingSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		for(String shippingSpaceId: shippingSpaceIds){
-			userContext.getChecker().checkIdOfShippingSpace(shippingSpaceId);
+		for(String shippingSpaceIdItem: shippingSpaceIds){
+			userContext.getChecker().checkIdOfShippingSpace(shippingSpaceIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -1976,8 +1976,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String damageSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		for(String damageSpaceId: damageSpaceIds){
-			userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
+		for(String damageSpaceIdItem: damageSpaceIds){
+			userContext.getChecker().checkIdOfDamageSpace(damageSpaceIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -2232,8 +2232,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String warehouseAssetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		for(String warehouseAssetId: warehouseAssetIds){
-			userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetId);
+		for(String warehouseAssetIdItem: warehouseAssetIds){
+			userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);

@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreOrderPaymentGroupJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreOrderPaymentGroupDAO{
  
@@ -52,7 +55,7 @@ public class RetailStoreOrderPaymentGroupJDBCTemplateDAO extends RetailscmNaming
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreOrderPaymentGroup load(String id,Map<String,Object> options) throws Exception{
@@ -549,6 +552,9 @@ public class RetailStoreOrderPaymentGroupJDBCTemplateDAO extends RetailscmNaming
 	public SmartList<RetailStoreOrderPaymentGroup> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreOrderPaymentGroupMapper());
 	}
+	
+	
+
 }
 
 

@@ -680,6 +680,24 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreProvinceCenter){
+		
+			
+			RetailStoreProvinceCenter dest =(RetailStoreProvinceCenter)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeFounded(getFounded());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

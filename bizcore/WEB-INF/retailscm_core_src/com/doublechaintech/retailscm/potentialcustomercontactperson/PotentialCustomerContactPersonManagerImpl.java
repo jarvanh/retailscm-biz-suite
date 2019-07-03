@@ -599,8 +599,8 @@ public class PotentialCustomerContactPersonManagerImpl extends CustomRetailscmCh
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfPotentialCustomerContactPerson(potentialCustomerContactPersonId);
-		for(String potentialCustomerContactId: potentialCustomerContactIds){
-			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		for(String potentialCustomerContactIdItem: potentialCustomerContactIds){
+			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerContactPersonManagerException.class);

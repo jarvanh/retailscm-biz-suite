@@ -510,8 +510,8 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 			String employeeCompanyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfScoring(scoringId);
-		for(String employeeCompanyTrainingId: employeeCompanyTrainingIds){
-			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		for(String employeeCompanyTrainingIdItem: employeeCompanyTrainingIds){
+			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);

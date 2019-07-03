@@ -158,6 +158,7 @@ import com.doublechaintech.retailscm.formaction.FormAction;
 public class RetailscmBaseViewScope {
 
 	protected static SerializeScope RetailStoreCountryCenterBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCountryCenter.ID_PROPERTY)
 		.field(RetailStoreCountryCenter.NAME_PROPERTY)
 		.field(RetailStoreCountryCenter.SERVICE_NUMBER_PROPERTY)
@@ -174,6 +175,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CatalogBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
 		;
@@ -183,6 +185,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneCategoryBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneCategory.ID_PROPERTY)
 		.field(LevelOneCategory.NAME_PROPERTY)
 		;
@@ -192,6 +195,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoCategoryBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoCategory.ID_PROPERTY)
 		.field(LevelTwoCategory.NAME_PROPERTY)
 		;
@@ -201,6 +205,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeCategoryBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeCategory.ID_PROPERTY)
 		.field(LevelThreeCategory.NAME_PROPERTY)
 		;
@@ -210,6 +215,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Product.ID_PROPERTY)
 		.field(Product.NAME_PROPERTY)
 		.field(Product.ORIGIN_PROPERTY)
@@ -224,6 +230,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkuBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Sku.ID_PROPERTY)
 		.field(Sku.NAME_PROPERTY)
 		.field(Sku.SIZE_PROPERTY)
@@ -239,6 +246,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreProvinceCenterBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreProvinceCenter.ID_PROPERTY)
 		.field(RetailStoreProvinceCenter.NAME_PROPERTY)
 		.field(RetailStoreProvinceCenter.FOUNDED_PROPERTY)
@@ -250,6 +258,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterDepartmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
@@ -261,6 +270,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterEmployeeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterEmployee.ID_PROPERTY)
 		.field(ProvinceCenterEmployee.NAME_PROPERTY)
 		.field(ProvinceCenterEmployee.MOBILE_PROPERTY)
@@ -273,6 +283,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCityServiceCenterBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCityServiceCenter.ID_PROPERTY)
 		.field(RetailStoreCityServiceCenter.NAME_PROPERTY)
 		.field(RetailStoreCityServiceCenter.FOUNDED_PROPERTY)
@@ -284,6 +295,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityPartnerBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityPartner.ID_PROPERTY)
 		.field(CityPartner.NAME_PROPERTY)
 		.field(CityPartner.MOBILE_PROPERTY)
@@ -296,6 +308,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomer.ID_PROPERTY)
 		.field(PotentialCustomer.NAME_PROPERTY)
 		.field(PotentialCustomer.MOBILE_PROPERTY)
@@ -308,6 +321,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactPersonBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContactPerson.ID_PROPERTY)
 		.field(PotentialCustomerContactPerson.NAME_PROPERTY)
 		.field(PotentialCustomerContactPerson.MOBILE_PROPERTY)
@@ -319,6 +333,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContact.ID_PROPERTY)
 		.field(PotentialCustomerContact.NAME_PROPERTY)
 		.field(PotentialCustomerContact.CONTACT_DATE_PROPERTY)
@@ -332,6 +347,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityEventBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityEvent.ID_PROPERTY)
 		.field(CityEvent.NAME_PROPERTY)
 		.field(CityEvent.MOBILE_PROPERTY)
@@ -344,6 +360,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EventAttendanceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EventAttendance.ID_PROPERTY)
 		.field(EventAttendance.NAME_PROPERTY)
 		.field(EventAttendance.DESCRIPTION_PROPERTY)
@@ -354,6 +371,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStore.ID_PROPERTY)
 		.field(RetailStore.NAME_PROPERTY)
 		.field(RetailStore.TELEPHONE_PROPERTY)
@@ -371,6 +389,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCreationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCreation.ID_PROPERTY)
 		.field(RetailStoreCreation.COMMENT_PROPERTY)
 		;
@@ -380,6 +399,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreInvestmentInvitationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreInvestmentInvitation.ID_PROPERTY)
 		.field(RetailStoreInvestmentInvitation.COMMENT_PROPERTY)
 		;
@@ -389,6 +409,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreFranchisingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreFranchising.ID_PROPERTY)
 		.field(RetailStoreFranchising.COMMENT_PROPERTY)
 		;
@@ -398,6 +419,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreDecorationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreDecoration.ID_PROPERTY)
 		.field(RetailStoreDecoration.COMMENT_PROPERTY)
 		;
@@ -407,6 +429,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOpeningBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOpening.ID_PROPERTY)
 		.field(RetailStoreOpening.COMMENT_PROPERTY)
 		;
@@ -416,6 +439,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreClosingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreClosing.ID_PROPERTY)
 		.field(RetailStoreClosing.COMMENT_PROPERTY)
 		;
@@ -425,6 +449,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMember.ID_PROPERTY)
 		.field(RetailStoreMember.NAME_PROPERTY)
 		.field(RetailStoreMember.MOBILE_PHONE_PROPERTY)
@@ -435,6 +460,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
@@ -446,6 +472,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderConfirmation.ID_PROPERTY)
 		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
 		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -456,6 +483,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderApprovalBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderApproval.ID_PROPERTY)
 		.field(ConsumerOrderApproval.WHO_PROPERTY)
 		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
@@ -466,6 +494,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderProcessingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderProcessing.ID_PROPERTY)
 		.field(ConsumerOrderProcessing.WHO_PROPERTY)
 		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -476,6 +505,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShipmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShipment.ID_PROPERTY)
 		.field(ConsumerOrderShipment.WHO_PROPERTY)
 		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
@@ -486,6 +516,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderDeliveryBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderDelivery.ID_PROPERTY)
 		.field(ConsumerOrderDelivery.WHO_PROPERTY)
 		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -496,6 +527,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderLineItemBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderLineItem.ID_PROPERTY)
 		.field(ConsumerOrderLineItem.SKU_ID_PROPERTY)
 		.field(ConsumerOrderLineItem.SKU_NAME_PROPERTY)
@@ -510,6 +542,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShippingGroupBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShippingGroup.ID_PROPERTY)
 		.field(ConsumerOrderShippingGroup.NAME_PROPERTY)
 		.field(ConsumerOrderShippingGroup.AMOUNT_PROPERTY)
@@ -520,6 +553,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPaymentGroupBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPaymentGroup.ID_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.NAME_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.CARD_NUMBER_PROPERTY)
@@ -530,6 +564,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPriceAdjustmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPriceAdjustment.ID_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.NAME_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.AMOUNT_PROPERTY)
@@ -541,6 +576,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberCouponBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberCoupon.ID_PROPERTY)
 		.field(RetailStoreMemberCoupon.NAME_PROPERTY)
 		.field(RetailStoreMemberCoupon.NUMBER_PROPERTY)
@@ -552,6 +588,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlist.ID_PROPERTY)
 		.field(MemberWishlist.NAME_PROPERTY)
 		;
@@ -561,6 +598,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPoint.ID_PROPERTY)
 		.field(MemberRewardPoint.NAME_PROPERTY)
 		.field(MemberRewardPoint.POINT_PROPERTY)
@@ -571,6 +609,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointRedemptionBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPointRedemption.ID_PROPERTY)
 		.field(MemberRewardPointRedemption.NAME_PROPERTY)
 		.field(MemberRewardPointRedemption.POINT_PROPERTY)
@@ -581,6 +620,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistProductBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlistProduct.ID_PROPERTY)
 		.field(MemberWishlistProduct.NAME_PROPERTY)
 		;
@@ -590,6 +630,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberAddressBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberAddress.ID_PROPERTY)
 		.field(RetailStoreMemberAddress.NAME_PROPERTY)
 		.field(RetailStoreMemberAddress.MOBILE_PHONE_PROPERTY)
@@ -601,6 +642,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCard.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCard.NAME_PROPERTY)
 		.field(RetailStoreMemberGiftCard.NUMBER_PROPERTY)
@@ -612,6 +654,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardConsumeRecordBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCardConsumeRecord.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.OCCURE_TIME_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.NUMBER_PROPERTY)
@@ -623,6 +666,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsSupplierBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsSupplier.ID_PROPERTY)
 		.field(GoodsSupplier.NAME_PROPERTY)
 		.field(GoodsSupplier.SUPPLY_PRODUCT_PROPERTY)
@@ -636,6 +680,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierProductBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierProduct.ID_PROPERTY)
 		.field(SupplierProduct.PRODUCT_NAME_PROPERTY)
 		.field(SupplierProduct.PRODUCT_DESCRIPTION_PROPERTY)
@@ -647,6 +692,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductSupplyDurationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProductSupplyDuration.ID_PROPERTY)
 		.field(ProductSupplyDuration.QUANTITY_PROPERTY)
 		.field(ProductSupplyDuration.DURATION_PROPERTY)
@@ -658,6 +704,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrder.ID_PROPERTY)
 		.field(SupplyOrder.TITLE_PROPERTY)
 		.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY)
@@ -670,6 +717,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderConfirmation.ID_PROPERTY)
 		.field(SupplyOrderConfirmation.WHO_PROPERTY)
 		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -680,6 +728,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderApprovalBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderApproval.ID_PROPERTY)
 		.field(SupplyOrderApproval.WHO_PROPERTY)
 		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
@@ -690,6 +739,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderProcessingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderProcessing.ID_PROPERTY)
 		.field(SupplyOrderProcessing.WHO_PROPERTY)
 		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -700,6 +750,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPickingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPicking.ID_PROPERTY)
 		.field(SupplyOrderPicking.WHO_PROPERTY)
 		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
@@ -710,6 +761,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShipmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShipment.ID_PROPERTY)
 		.field(SupplyOrderShipment.WHO_PROPERTY)
 		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
@@ -720,6 +772,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderDeliveryBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderDelivery.ID_PROPERTY)
 		.field(SupplyOrderDelivery.WHO_PROPERTY)
 		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -730,6 +783,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderLineItemBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderLineItem.ID_PROPERTY)
 		.field(SupplyOrderLineItem.SKU_ID_PROPERTY)
 		.field(SupplyOrderLineItem.SKU_NAME_PROPERTY)
@@ -743,6 +797,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShippingGroupBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShippingGroup.ID_PROPERTY)
 		.field(SupplyOrderShippingGroup.NAME_PROPERTY)
 		.field(SupplyOrderShippingGroup.AMOUNT_PROPERTY)
@@ -753,6 +808,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPaymentGroupBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPaymentGroup.ID_PROPERTY)
 		.field(SupplyOrderPaymentGroup.NAME_PROPERTY)
 		.field(SupplyOrderPaymentGroup.CARD_NUMBER_PROPERTY)
@@ -763,6 +819,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrder.ID_PROPERTY)
 		.field(RetailStoreOrder.TITLE_PROPERTY)
 		.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY)
@@ -775,6 +832,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
 		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
 		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -785,6 +843,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderApprovalBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderApproval.ID_PROPERTY)
 		.field(RetailStoreOrderApproval.WHO_PROPERTY)
 		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
@@ -795,6 +854,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderProcessingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderProcessing.ID_PROPERTY)
 		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
 		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -805,6 +865,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPickingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPicking.ID_PROPERTY)
 		.field(RetailStoreOrderPicking.WHO_PROPERTY)
 		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
@@ -815,6 +876,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShipmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShipment.ID_PROPERTY)
 		.field(RetailStoreOrderShipment.WHO_PROPERTY)
 		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
@@ -825,6 +887,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderDeliveryBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderDelivery.ID_PROPERTY)
 		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
 		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -835,6 +898,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderLineItem.ID_PROPERTY)
 		.field(RetailStoreOrderLineItem.SKU_ID_PROPERTY)
 		.field(RetailStoreOrderLineItem.SKU_NAME_PROPERTY)
@@ -848,6 +912,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShippingGroupBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShippingGroup.ID_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.AMOUNT_PROPERTY)
@@ -858,6 +923,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPaymentGroupBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPaymentGroup.ID_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.CARD_NUMBER_PROPERTY)
@@ -868,6 +934,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Warehouse.ID_PROPERTY)
 		.field(Warehouse.LOCATION_PROPERTY)
 		.field(Warehouse.CONTACT_NUMBER_PROPERTY)
@@ -882,6 +949,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StorageSpaceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StorageSpace.ID_PROPERTY)
 		.field(StorageSpace.LOCATION_PROPERTY)
 		.field(StorageSpace.CONTACT_NUMBER_PROPERTY)
@@ -896,6 +964,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SmartPalletBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SmartPallet.ID_PROPERTY)
 		.field(SmartPallet.LOCATION_PROPERTY)
 		.field(SmartPallet.CONTACT_NUMBER_PROPERTY)
@@ -910,6 +979,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelf.ID_PROPERTY)
 		.field(GoodsShelf.LOCATION_PROPERTY)
 		.field(GoodsShelf.LAST_UPDATE_TIME_PROPERTY)
@@ -920,6 +990,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfStockCountBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelfStockCount.ID_PROPERTY)
 		.field(GoodsShelfStockCount.TITLE_PROPERTY)
 		.field(GoodsShelfStockCount.COUNT_TIME_PROPERTY)
@@ -931,6 +1002,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StockCountIssueTrackBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StockCountIssueTrack.ID_PROPERTY)
 		.field(StockCountIssueTrack.TITLE_PROPERTY)
 		.field(StockCountIssueTrack.COUNT_TIME_PROPERTY)
@@ -942,6 +1014,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsAllocationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsAllocation.ID_PROPERTY)
 		.field(GoodsAllocation.LOCATION_PROPERTY)
 		.field(GoodsAllocation.LATITUDE_PROPERTY)
@@ -953,6 +1026,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Goods.ID_PROPERTY)
 		.field(Goods.NAME_PROPERTY)
 		.field(Goods.RFID_PROPERTY)
@@ -967,6 +1041,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsPackagingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsPackaging.ID_PROPERTY)
 		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
 		.field(GoodsPackaging.RFID_PROPERTY)
@@ -979,6 +1054,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsMovementBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsMovement.ID_PROPERTY)
 		.field(GoodsMovement.MOVE_TIME_PROPERTY)
 		.field(GoodsMovement.FACILITY_PROPERTY)
@@ -995,6 +1071,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierSpaceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierSpace.ID_PROPERTY)
 		.field(SupplierSpace.LOCATION_PROPERTY)
 		.field(SupplierSpace.CONTACT_NUMBER_PROPERTY)
@@ -1009,6 +1086,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ReceivingSpaceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ReceivingSpace.ID_PROPERTY)
 		.field(ReceivingSpace.LOCATION_PROPERTY)
 		.field(ReceivingSpace.CONTACT_NUMBER_PROPERTY)
@@ -1024,6 +1102,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ShippingSpaceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ShippingSpace.ID_PROPERTY)
 		.field(ShippingSpace.LOCATION_PROPERTY)
 		.field(ShippingSpace.CONTACT_NUMBER_PROPERTY)
@@ -1039,6 +1118,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope DamageSpaceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(DamageSpace.ID_PROPERTY)
 		.field(DamageSpace.LOCATION_PROPERTY)
 		.field(DamageSpace.CONTACT_NUMBER_PROPERTY)
@@ -1053,6 +1133,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseAssetBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(WarehouseAsset.ID_PROPERTY)
 		.field(WarehouseAsset.NAME_PROPERTY)
 		.field(WarehouseAsset.POSITION_PROPERTY)
@@ -1064,6 +1145,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportFleetBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportFleet.ID_PROPERTY)
 		.field(TransportFleet.NAME_PROPERTY)
 		.field(TransportFleet.CONTACT_NUMBER_PROPERTY)
@@ -1075,6 +1157,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTruckBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTruck.ID_PROPERTY)
 		.field(TransportTruck.NAME_PROPERTY)
 		.field(TransportTruck.PLATE_NUMBER_PROPERTY)
@@ -1091,6 +1174,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TruckDriverBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TruckDriver.ID_PROPERTY)
 		.field(TruckDriver.NAME_PROPERTY)
 		.field(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY)
@@ -1102,6 +1186,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTask.ID_PROPERTY)
 		.field(TransportTask.NAME_PROPERTY)
 		.field(TransportTask.START_PROPERTY)
@@ -1115,6 +1200,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskTrackBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTaskTrack.ID_PROPERTY)
 		.field(TransportTaskTrack.TRACK_TIME_PROPERTY)
 		.field(TransportTaskTrack.LATITUDE_PROPERTY)
@@ -1126,6 +1212,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountSetBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountSet.ID_PROPERTY)
 		.field(AccountSet.NAME_PROPERTY)
 		.field(AccountSet.YEAR_SET_PROPERTY)
@@ -1143,6 +1230,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingSubjectBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingSubject.ID_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_CODE_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_NAME_PROPERTY)
@@ -1155,6 +1243,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingPeriodBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingPeriod.ID_PROPERTY)
 		.field(AccountingPeriod.NAME_PROPERTY)
 		.field(AccountingPeriod.START_DATE_PROPERTY)
@@ -1166,6 +1255,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentType.ID_PROPERTY)
 		.field(AccountingDocumentType.NAME_PROPERTY)
 		.field(AccountingDocumentType.DESCRIPTION_PROPERTY)
@@ -1176,6 +1266,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocument.ID_PROPERTY)
 		.field(AccountingDocument.NAME_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
@@ -1187,6 +1278,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentCreationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentCreation.ID_PROPERTY)
 		.field(AccountingDocumentCreation.WHO_PROPERTY)
 		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
@@ -1198,6 +1290,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentConfirmation.ID_PROPERTY)
 		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
 		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
@@ -1209,6 +1302,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentAuditingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentAuditing.ID_PROPERTY)
 		.field(AccountingDocumentAuditing.WHO_PROPERTY)
 		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
@@ -1220,6 +1314,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentPostingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentPosting.ID_PROPERTY)
 		.field(AccountingDocumentPosting.WHO_PROPERTY)
 		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
@@ -1231,6 +1326,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucher.ID_PROPERTY)
 		.field(OriginalVoucher.TITLE_PROPERTY)
 		.field(OriginalVoucher.MADE_BY_PROPERTY)
@@ -1245,6 +1341,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherCreationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherCreation.ID_PROPERTY)
 		.field(OriginalVoucherCreation.WHO_PROPERTY)
 		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
@@ -1256,6 +1353,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherConfirmation.ID_PROPERTY)
 		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
 		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
@@ -1267,6 +1365,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherAuditingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherAuditing.ID_PROPERTY)
 		.field(OriginalVoucherAuditing.WHO_PROPERTY)
 		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
@@ -1278,6 +1377,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentLine.ID_PROPERTY)
 		.field(AccountingDocumentLine.NAME_PROPERTY)
 		.field(AccountingDocumentLine.CODE_PROPERTY)
@@ -1290,6 +1390,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneDepartmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
@@ -1302,6 +1403,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoDepartmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoDepartment.ID_PROPERTY)
 		.field(LevelTwoDepartment.NAME_PROPERTY)
 		.field(LevelTwoDepartment.DESCRIPTION_PROPERTY)
@@ -1313,6 +1415,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeDepartmentBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeDepartment.ID_PROPERTY)
 		.field(LevelThreeDepartment.NAME_PROPERTY)
 		.field(LevelThreeDepartment.DESCRIPTION_PROPERTY)
@@ -1324,6 +1427,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkillTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SkillType.ID_PROPERTY)
 		.field(SkillType.CODE_PROPERTY)
 		.field(SkillType.DESCRIPTION_PROPERTY)
@@ -1334,6 +1438,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ResponsibilityTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ResponsibilityType.ID_PROPERTY)
 		.field(ResponsibilityType.CODE_PROPERTY)
 		.field(ResponsibilityType.BASE_DESCRIPTION_PROPERTY)
@@ -1345,6 +1450,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationReasonBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationReason.ID_PROPERTY)
 		.field(TerminationReason.CODE_PROPERTY)
 		.field(TerminationReason.DESCRIPTION_PROPERTY)
@@ -1355,6 +1461,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationType.ID_PROPERTY)
 		.field(TerminationType.CODE_PROPERTY)
 		.field(TerminationType.BASE_DESCRIPTION_PROPERTY)
@@ -1366,6 +1473,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OccupationTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OccupationType.ID_PROPERTY)
 		.field(OccupationType.CODE_PROPERTY)
 		.field(OccupationType.DESCRIPTION_PROPERTY)
@@ -1377,6 +1485,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LeaveTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LeaveType.ID_PROPERTY)
 		.field(LeaveType.CODE_PROPERTY)
 		.field(LeaveType.DESCRIPTION_PROPERTY)
@@ -1388,6 +1497,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SalaryGradeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SalaryGrade.ID_PROPERTY)
 		.field(SalaryGrade.CODE_PROPERTY)
 		.field(SalaryGrade.NAME_PROPERTY)
@@ -1399,6 +1509,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InterviewTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(InterviewType.ID_PROPERTY)
 		.field(InterviewType.CODE_PROPERTY)
 		.field(InterviewType.DESCRIPTION_PROPERTY)
@@ -1410,6 +1521,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TrainingCourseTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TrainingCourseType.ID_PROPERTY)
 		.field(TrainingCourseType.CODE_PROPERTY)
 		.field(TrainingCourseType.NAME_PROPERTY)
@@ -1421,6 +1533,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PublicHolidayBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PublicHoliday.ID_PROPERTY)
 		.field(PublicHoliday.CODE_PROPERTY)
 		.field(PublicHoliday.NAME_PROPERTY)
@@ -1432,6 +1545,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Termination.ID_PROPERTY)
 		.field(Termination.COMMENT_PROPERTY)
 		;
@@ -1441,6 +1555,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ViewBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(View.ID_PROPERTY)
 		.field(View.WHO_PROPERTY)
 		.field(View.ASSESSMENT_PROPERTY)
@@ -1452,6 +1567,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Employee.ID_PROPERTY)
 		.field(Employee.TITLE_PROPERTY)
 		.field(Employee.FAMILY_NAME_PROPERTY)
@@ -1470,6 +1586,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope JobApplicationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(JobApplication.ID_PROPERTY)
 		.field(JobApplication.APPLICATION_TIME_PROPERTY)
 		.field(JobApplication.WHO_PROPERTY)
@@ -1481,6 +1598,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProfessionInterviewBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProfessionInterview.ID_PROPERTY)
 		.field(ProfessionInterview.WHO_PROPERTY)
 		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
@@ -1492,6 +1610,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope HrInterviewBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(HrInterview.ID_PROPERTY)
 		.field(HrInterview.WHO_PROPERTY)
 		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
@@ -1503,6 +1622,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferApprovalBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferApproval.ID_PROPERTY)
 		.field(OfferApproval.WHO_PROPERTY)
 		.field(OfferApproval.APPROVE_TIME_PROPERTY)
@@ -1514,6 +1634,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferAcceptanceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferAcceptance.ID_PROPERTY)
 		.field(OfferAcceptance.WHO_PROPERTY)
 		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
@@ -1525,6 +1646,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBoardingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeBoarding.ID_PROPERTY)
 		.field(EmployeeBoarding.WHO_PROPERTY)
 		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
@@ -1536,6 +1658,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InstructorBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Instructor.ID_PROPERTY)
 		.field(Instructor.TITLE_PROPERTY)
 		.field(Instructor.FAMILY_NAME_PROPERTY)
@@ -1551,6 +1674,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CompanyTrainingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CompanyTraining.ID_PROPERTY)
 		.field(CompanyTraining.TITLE_PROPERTY)
 		.field(CompanyTraining.TIME_START_PROPERTY)
@@ -1563,6 +1687,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ScoringBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Scoring.ID_PROPERTY)
 		.field(Scoring.SCORED_BY_PROPERTY)
 		.field(Scoring.SCORE_PROPERTY)
@@ -1574,6 +1699,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeCompanyTrainingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeCompanyTraining.ID_PROPERTY)
 		.field(EmployeeCompanyTraining.CURRENT_STATUS_PROPERTY)
 		;
@@ -1583,6 +1709,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSkillBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSkill.ID_PROPERTY)
 		.field(EmployeeSkill.DESCRIPTION_PROPERTY)
 		;
@@ -1592,6 +1719,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeePerformanceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeePerformance.ID_PROPERTY)
 		.field(EmployeePerformance.PERFORMANCE_COMMENT_PROPERTY)
 		;
@@ -1601,6 +1729,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeWorkExperienceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeWorkExperience.ID_PROPERTY)
 		.field(EmployeeWorkExperience.START_PROPERTY)
 		.field(EmployeeWorkExperience.END_PROPERTY)
@@ -1613,6 +1742,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeLeaveBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeLeave.ID_PROPERTY)
 		.field(EmployeeLeave.LEAVE_DURATION_HOUR_PROPERTY)
 		.field(EmployeeLeave.REMARK_PROPERTY)
@@ -1623,6 +1753,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeInterviewBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeInterview.ID_PROPERTY)
 		.field(EmployeeInterview.REMARK_PROPERTY)
 		;
@@ -1632,6 +1763,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAttendanceBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAttendance.ID_PROPERTY)
 		.field(EmployeeAttendance.ENTER_TIME_PROPERTY)
 		.field(EmployeeAttendance.LEAVE_TIME_PROPERTY)
@@ -1644,6 +1776,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeQualifierBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeQualifier.ID_PROPERTY)
 		.field(EmployeeQualifier.QUALIFIED_TIME_PROPERTY)
 		.field(EmployeeQualifier.TYPE_PROPERTY)
@@ -1656,6 +1789,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeEducationBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeEducation.ID_PROPERTY)
 		.field(EmployeeEducation.COMPLETE_TIME_PROPERTY)
 		.field(EmployeeEducation.TYPE_PROPERTY)
@@ -1667,6 +1801,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAwardBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAward.ID_PROPERTY)
 		.field(EmployeeAward.COMPLETE_TIME_PROPERTY)
 		.field(EmployeeAward.TYPE_PROPERTY)
@@ -1678,6 +1813,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSalarySheetBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSalarySheet.ID_PROPERTY)
 		.field(EmployeeSalarySheet.BASE_SALARY_PROPERTY)
 		.field(EmployeeSalarySheet.BONUS_PROPERTY)
@@ -1694,6 +1830,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PayingOffBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PayingOff.ID_PROPERTY)
 		.field(PayingOff.WHO_PROPERTY)
 		.field(PayingOff.PAID_TIME_PROPERTY)
@@ -1705,6 +1842,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserDomainBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserDomain.ID_PROPERTY)
 		.field(UserDomain.NAME_PROPERTY)
 		;
@@ -1714,6 +1852,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserWhiteListBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserWhiteList.ID_PROPERTY)
 		.field(UserWhiteList.USER_IDENTITY_PROPERTY)
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
@@ -1724,11 +1863,15 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUser.ID_PROPERTY)
 		.field(SecUser.LOGIN_PROPERTY)
 		.field(SecUser.MOBILE_PROPERTY)
 		.field(SecUser.EMAIL_PROPERTY)
 		.field(SecUser.PWD_PROPERTY)
+		.field(SecUser.WEIXIN_OPENID_PROPERTY)
+		.field(SecUser.WEIXIN_APPID_PROPERTY)
+		.field(SecUser.ACCESS_TOKEN_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
@@ -1740,6 +1883,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBlockingBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUserBlocking.ID_PROPERTY)
 		.field(SecUserBlocking.WHO_PROPERTY)
 		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
@@ -1751,6 +1895,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserAppBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserApp.ID_PROPERTY)
 		.field(UserApp.TITLE_PROPERTY)
 		.field(UserApp.APP_ICON_PROPERTY)
@@ -1766,6 +1911,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ListAccessBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ListAccess.ID_PROPERTY)
 		.field(ListAccess.NAME_PROPERTY)
 		.field(ListAccess.INTERNAL_NAME_PROPERTY)
@@ -1781,6 +1927,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ObjectAccessBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ObjectAccess.ID_PROPERTY)
 		.field(ObjectAccess.NAME_PROPERTY)
 		.field(ObjectAccess.OBJECT_TYPE_PROPERTY)
@@ -1800,6 +1947,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LoginHistoryBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LoginHistory.ID_PROPERTY)
 		.field(LoginHistory.LOGIN_TIME_PROPERTY)
 		.field(LoginHistory.FROM_IP_PROPERTY)
@@ -1811,6 +1959,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GenericFormBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GenericForm.ID_PROPERTY)
 		.field(GenericForm.TITLE_PROPERTY)
 		.field(GenericForm.DESCRIPTION_PROPERTY)
@@ -1821,6 +1970,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormMessageBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormMessage.ID_PROPERTY)
 		.field(FormMessage.TITLE_PROPERTY)
 		.field(FormMessage.LEVEL_PROPERTY)
@@ -1831,6 +1981,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldMessageBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormFieldMessage.ID_PROPERTY)
 		.field(FormFieldMessage.TITLE_PROPERTY)
 		.field(FormFieldMessage.PARAMETER_NAME_PROPERTY)
@@ -1842,6 +1993,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormField.ID_PROPERTY)
 		.field(FormField.LABEL_PROPERTY)
 		.field(FormField.LOCALE_KEY_PROPERTY)
@@ -1865,6 +2017,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormActionBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormAction.ID_PROPERTY)
 		.field(FormAction.LABEL_PROPERTY)
 		.field(FormAction.LOCALE_KEY_PROPERTY)
@@ -1878,6 +2031,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCountryCenterBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCountryCenter.ID_PROPERTY)
 		.field(RetailStoreCountryCenter.NAME_PROPERTY)
 		.field(RetailStoreCountryCenter.SERVICE_NUMBER_PROPERTY)
@@ -1894,6 +2048,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CatalogBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
 		;
@@ -1903,6 +2058,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneCategoryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneCategory.ID_PROPERTY)
 		.field(LevelOneCategory.NAME_PROPERTY)
 		;
@@ -1912,6 +2068,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoCategoryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoCategory.ID_PROPERTY)
 		.field(LevelTwoCategory.NAME_PROPERTY)
 		;
@@ -1921,6 +2078,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeCategoryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeCategory.ID_PROPERTY)
 		.field(LevelThreeCategory.NAME_PROPERTY)
 		;
@@ -1930,6 +2088,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Product.ID_PROPERTY)
 		.field(Product.NAME_PROPERTY)
 		.field(Product.ORIGIN_PROPERTY)
@@ -1944,6 +2103,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkuBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Sku.ID_PROPERTY)
 		.field(Sku.NAME_PROPERTY)
 		.field(Sku.SIZE_PROPERTY)
@@ -1959,6 +2119,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreProvinceCenterBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreProvinceCenter.ID_PROPERTY)
 		.field(RetailStoreProvinceCenter.NAME_PROPERTY)
 		.field(RetailStoreProvinceCenter.FOUNDED_PROPERTY)
@@ -1970,6 +2131,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterDepartmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
@@ -1981,6 +2143,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterEmployeeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterEmployee.ID_PROPERTY)
 		.field(ProvinceCenterEmployee.NAME_PROPERTY)
 		.field(ProvinceCenterEmployee.MOBILE_PROPERTY)
@@ -1993,6 +2156,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCityServiceCenterBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCityServiceCenter.ID_PROPERTY)
 		.field(RetailStoreCityServiceCenter.NAME_PROPERTY)
 		.field(RetailStoreCityServiceCenter.FOUNDED_PROPERTY)
@@ -2004,6 +2168,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityPartnerBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityPartner.ID_PROPERTY)
 		.field(CityPartner.NAME_PROPERTY)
 		.field(CityPartner.MOBILE_PROPERTY)
@@ -2016,6 +2181,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomer.ID_PROPERTY)
 		.field(PotentialCustomer.NAME_PROPERTY)
 		.field(PotentialCustomer.MOBILE_PROPERTY)
@@ -2028,6 +2194,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactPersonBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContactPerson.ID_PROPERTY)
 		.field(PotentialCustomerContactPerson.NAME_PROPERTY)
 		.field(PotentialCustomerContactPerson.MOBILE_PROPERTY)
@@ -2039,6 +2206,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContact.ID_PROPERTY)
 		.field(PotentialCustomerContact.NAME_PROPERTY)
 		.field(PotentialCustomerContact.CONTACT_DATE_PROPERTY)
@@ -2052,6 +2220,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityEventBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityEvent.ID_PROPERTY)
 		.field(CityEvent.NAME_PROPERTY)
 		.field(CityEvent.MOBILE_PROPERTY)
@@ -2064,6 +2233,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EventAttendanceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EventAttendance.ID_PROPERTY)
 		.field(EventAttendance.NAME_PROPERTY)
 		.field(EventAttendance.DESCRIPTION_PROPERTY)
@@ -2074,6 +2244,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStore.ID_PROPERTY)
 		.field(RetailStore.NAME_PROPERTY)
 		.field(RetailStore.TELEPHONE_PROPERTY)
@@ -2091,6 +2262,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCreationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCreation.ID_PROPERTY)
 		.field(RetailStoreCreation.COMMENT_PROPERTY)
 		;
@@ -2100,6 +2272,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreInvestmentInvitationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreInvestmentInvitation.ID_PROPERTY)
 		.field(RetailStoreInvestmentInvitation.COMMENT_PROPERTY)
 		;
@@ -2109,6 +2282,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreFranchisingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreFranchising.ID_PROPERTY)
 		.field(RetailStoreFranchising.COMMENT_PROPERTY)
 		;
@@ -2118,6 +2292,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreDecorationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreDecoration.ID_PROPERTY)
 		.field(RetailStoreDecoration.COMMENT_PROPERTY)
 		;
@@ -2127,6 +2302,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOpeningBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOpening.ID_PROPERTY)
 		.field(RetailStoreOpening.COMMENT_PROPERTY)
 		;
@@ -2136,6 +2312,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreClosingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreClosing.ID_PROPERTY)
 		.field(RetailStoreClosing.COMMENT_PROPERTY)
 		;
@@ -2145,6 +2322,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMember.ID_PROPERTY)
 		.field(RetailStoreMember.NAME_PROPERTY)
 		.field(RetailStoreMember.MOBILE_PHONE_PROPERTY)
@@ -2155,6 +2333,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
@@ -2166,6 +2345,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderConfirmation.ID_PROPERTY)
 		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
 		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -2176,6 +2356,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderApproval.ID_PROPERTY)
 		.field(ConsumerOrderApproval.WHO_PROPERTY)
 		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
@@ -2186,6 +2367,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderProcessingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderProcessing.ID_PROPERTY)
 		.field(ConsumerOrderProcessing.WHO_PROPERTY)
 		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -2196,6 +2378,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShipmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShipment.ID_PROPERTY)
 		.field(ConsumerOrderShipment.WHO_PROPERTY)
 		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
@@ -2206,6 +2389,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderDeliveryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderDelivery.ID_PROPERTY)
 		.field(ConsumerOrderDelivery.WHO_PROPERTY)
 		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -2216,6 +2400,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderLineItemBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderLineItem.ID_PROPERTY)
 		.field(ConsumerOrderLineItem.SKU_ID_PROPERTY)
 		.field(ConsumerOrderLineItem.SKU_NAME_PROPERTY)
@@ -2230,6 +2415,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShippingGroupBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShippingGroup.ID_PROPERTY)
 		.field(ConsumerOrderShippingGroup.NAME_PROPERTY)
 		.field(ConsumerOrderShippingGroup.AMOUNT_PROPERTY)
@@ -2240,6 +2426,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPaymentGroupBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPaymentGroup.ID_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.NAME_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.CARD_NUMBER_PROPERTY)
@@ -2250,6 +2437,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPriceAdjustmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPriceAdjustment.ID_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.NAME_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.AMOUNT_PROPERTY)
@@ -2261,6 +2449,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberCouponBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberCoupon.ID_PROPERTY)
 		.field(RetailStoreMemberCoupon.NAME_PROPERTY)
 		.field(RetailStoreMemberCoupon.NUMBER_PROPERTY)
@@ -2272,6 +2461,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlist.ID_PROPERTY)
 		.field(MemberWishlist.NAME_PROPERTY)
 		;
@@ -2281,6 +2471,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPoint.ID_PROPERTY)
 		.field(MemberRewardPoint.NAME_PROPERTY)
 		.field(MemberRewardPoint.POINT_PROPERTY)
@@ -2291,6 +2482,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointRedemptionBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPointRedemption.ID_PROPERTY)
 		.field(MemberRewardPointRedemption.NAME_PROPERTY)
 		.field(MemberRewardPointRedemption.POINT_PROPERTY)
@@ -2301,6 +2493,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistProductBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlistProduct.ID_PROPERTY)
 		.field(MemberWishlistProduct.NAME_PROPERTY)
 		;
@@ -2310,6 +2503,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberAddressBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberAddress.ID_PROPERTY)
 		.field(RetailStoreMemberAddress.NAME_PROPERTY)
 		.field(RetailStoreMemberAddress.MOBILE_PHONE_PROPERTY)
@@ -2321,6 +2515,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCard.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCard.NAME_PROPERTY)
 		.field(RetailStoreMemberGiftCard.NUMBER_PROPERTY)
@@ -2332,6 +2527,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardConsumeRecordBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCardConsumeRecord.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.OCCURE_TIME_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.NUMBER_PROPERTY)
@@ -2343,6 +2539,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsSupplierBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsSupplier.ID_PROPERTY)
 		.field(GoodsSupplier.NAME_PROPERTY)
 		.field(GoodsSupplier.SUPPLY_PRODUCT_PROPERTY)
@@ -2356,6 +2553,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierProductBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierProduct.ID_PROPERTY)
 		.field(SupplierProduct.PRODUCT_NAME_PROPERTY)
 		.field(SupplierProduct.PRODUCT_DESCRIPTION_PROPERTY)
@@ -2367,6 +2565,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductSupplyDurationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProductSupplyDuration.ID_PROPERTY)
 		.field(ProductSupplyDuration.QUANTITY_PROPERTY)
 		.field(ProductSupplyDuration.DURATION_PROPERTY)
@@ -2378,6 +2577,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrder.ID_PROPERTY)
 		.field(SupplyOrder.TITLE_PROPERTY)
 		.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY)
@@ -2390,6 +2590,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderConfirmation.ID_PROPERTY)
 		.field(SupplyOrderConfirmation.WHO_PROPERTY)
 		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -2400,6 +2601,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderApproval.ID_PROPERTY)
 		.field(SupplyOrderApproval.WHO_PROPERTY)
 		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
@@ -2410,6 +2612,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderProcessingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderProcessing.ID_PROPERTY)
 		.field(SupplyOrderProcessing.WHO_PROPERTY)
 		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -2420,6 +2623,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPickingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPicking.ID_PROPERTY)
 		.field(SupplyOrderPicking.WHO_PROPERTY)
 		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
@@ -2430,6 +2634,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShipmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShipment.ID_PROPERTY)
 		.field(SupplyOrderShipment.WHO_PROPERTY)
 		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
@@ -2440,6 +2645,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderDeliveryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderDelivery.ID_PROPERTY)
 		.field(SupplyOrderDelivery.WHO_PROPERTY)
 		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -2450,6 +2656,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderLineItemBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderLineItem.ID_PROPERTY)
 		.field(SupplyOrderLineItem.SKU_ID_PROPERTY)
 		.field(SupplyOrderLineItem.SKU_NAME_PROPERTY)
@@ -2463,6 +2670,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShippingGroupBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShippingGroup.ID_PROPERTY)
 		.field(SupplyOrderShippingGroup.NAME_PROPERTY)
 		.field(SupplyOrderShippingGroup.AMOUNT_PROPERTY)
@@ -2473,6 +2681,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPaymentGroupBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPaymentGroup.ID_PROPERTY)
 		.field(SupplyOrderPaymentGroup.NAME_PROPERTY)
 		.field(SupplyOrderPaymentGroup.CARD_NUMBER_PROPERTY)
@@ -2483,6 +2692,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrder.ID_PROPERTY)
 		.field(RetailStoreOrder.TITLE_PROPERTY)
 		.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY)
@@ -2495,6 +2705,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
 		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
 		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -2505,6 +2716,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderApproval.ID_PROPERTY)
 		.field(RetailStoreOrderApproval.WHO_PROPERTY)
 		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
@@ -2515,6 +2727,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderProcessingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderProcessing.ID_PROPERTY)
 		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
 		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -2525,6 +2738,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPickingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPicking.ID_PROPERTY)
 		.field(RetailStoreOrderPicking.WHO_PROPERTY)
 		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
@@ -2535,6 +2749,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShipmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShipment.ID_PROPERTY)
 		.field(RetailStoreOrderShipment.WHO_PROPERTY)
 		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
@@ -2545,6 +2760,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderDeliveryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderDelivery.ID_PROPERTY)
 		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
 		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -2555,6 +2771,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderLineItem.ID_PROPERTY)
 		.field(RetailStoreOrderLineItem.SKU_ID_PROPERTY)
 		.field(RetailStoreOrderLineItem.SKU_NAME_PROPERTY)
@@ -2568,6 +2785,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShippingGroupBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShippingGroup.ID_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.AMOUNT_PROPERTY)
@@ -2578,6 +2796,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPaymentGroupBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPaymentGroup.ID_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.CARD_NUMBER_PROPERTY)
@@ -2588,6 +2807,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Warehouse.ID_PROPERTY)
 		.field(Warehouse.LOCATION_PROPERTY)
 		.field(Warehouse.CONTACT_NUMBER_PROPERTY)
@@ -2602,6 +2822,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StorageSpaceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StorageSpace.ID_PROPERTY)
 		.field(StorageSpace.LOCATION_PROPERTY)
 		.field(StorageSpace.CONTACT_NUMBER_PROPERTY)
@@ -2616,6 +2837,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SmartPalletBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SmartPallet.ID_PROPERTY)
 		.field(SmartPallet.LOCATION_PROPERTY)
 		.field(SmartPallet.CONTACT_NUMBER_PROPERTY)
@@ -2630,6 +2852,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelf.ID_PROPERTY)
 		.field(GoodsShelf.LOCATION_PROPERTY)
 		.field(GoodsShelf.LAST_UPDATE_TIME_PROPERTY)
@@ -2640,6 +2863,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfStockCountBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelfStockCount.ID_PROPERTY)
 		.field(GoodsShelfStockCount.TITLE_PROPERTY)
 		.field(GoodsShelfStockCount.COUNT_TIME_PROPERTY)
@@ -2651,6 +2875,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StockCountIssueTrackBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StockCountIssueTrack.ID_PROPERTY)
 		.field(StockCountIssueTrack.TITLE_PROPERTY)
 		.field(StockCountIssueTrack.COUNT_TIME_PROPERTY)
@@ -2662,6 +2887,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsAllocationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsAllocation.ID_PROPERTY)
 		.field(GoodsAllocation.LOCATION_PROPERTY)
 		.field(GoodsAllocation.LATITUDE_PROPERTY)
@@ -2673,6 +2899,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Goods.ID_PROPERTY)
 		.field(Goods.NAME_PROPERTY)
 		.field(Goods.RFID_PROPERTY)
@@ -2687,6 +2914,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsPackagingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsPackaging.ID_PROPERTY)
 		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
 		.field(GoodsPackaging.RFID_PROPERTY)
@@ -2699,6 +2927,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsMovementBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsMovement.ID_PROPERTY)
 		.field(GoodsMovement.MOVE_TIME_PROPERTY)
 		.field(GoodsMovement.FACILITY_PROPERTY)
@@ -2715,6 +2944,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierSpaceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierSpace.ID_PROPERTY)
 		.field(SupplierSpace.LOCATION_PROPERTY)
 		.field(SupplierSpace.CONTACT_NUMBER_PROPERTY)
@@ -2729,6 +2959,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ReceivingSpaceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ReceivingSpace.ID_PROPERTY)
 		.field(ReceivingSpace.LOCATION_PROPERTY)
 		.field(ReceivingSpace.CONTACT_NUMBER_PROPERTY)
@@ -2744,6 +2975,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ShippingSpaceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ShippingSpace.ID_PROPERTY)
 		.field(ShippingSpace.LOCATION_PROPERTY)
 		.field(ShippingSpace.CONTACT_NUMBER_PROPERTY)
@@ -2759,6 +2991,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope DamageSpaceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(DamageSpace.ID_PROPERTY)
 		.field(DamageSpace.LOCATION_PROPERTY)
 		.field(DamageSpace.CONTACT_NUMBER_PROPERTY)
@@ -2773,6 +3006,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseAssetBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(WarehouseAsset.ID_PROPERTY)
 		.field(WarehouseAsset.NAME_PROPERTY)
 		.field(WarehouseAsset.POSITION_PROPERTY)
@@ -2784,6 +3018,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportFleetBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportFleet.ID_PROPERTY)
 		.field(TransportFleet.NAME_PROPERTY)
 		.field(TransportFleet.CONTACT_NUMBER_PROPERTY)
@@ -2795,6 +3030,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTruckBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTruck.ID_PROPERTY)
 		.field(TransportTruck.NAME_PROPERTY)
 		.field(TransportTruck.PLATE_NUMBER_PROPERTY)
@@ -2811,6 +3047,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TruckDriverBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TruckDriver.ID_PROPERTY)
 		.field(TruckDriver.NAME_PROPERTY)
 		.field(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY)
@@ -2822,6 +3059,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTask.ID_PROPERTY)
 		.field(TransportTask.NAME_PROPERTY)
 		.field(TransportTask.START_PROPERTY)
@@ -2835,6 +3073,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskTrackBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTaskTrack.ID_PROPERTY)
 		.field(TransportTaskTrack.TRACK_TIME_PROPERTY)
 		.field(TransportTaskTrack.LATITUDE_PROPERTY)
@@ -2846,6 +3085,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountSetBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountSet.ID_PROPERTY)
 		.field(AccountSet.NAME_PROPERTY)
 		.field(AccountSet.YEAR_SET_PROPERTY)
@@ -2863,6 +3103,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingSubjectBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingSubject.ID_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_CODE_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_NAME_PROPERTY)
@@ -2875,6 +3116,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingPeriodBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingPeriod.ID_PROPERTY)
 		.field(AccountingPeriod.NAME_PROPERTY)
 		.field(AccountingPeriod.START_DATE_PROPERTY)
@@ -2886,6 +3128,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentType.ID_PROPERTY)
 		.field(AccountingDocumentType.NAME_PROPERTY)
 		.field(AccountingDocumentType.DESCRIPTION_PROPERTY)
@@ -2896,6 +3139,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocument.ID_PROPERTY)
 		.field(AccountingDocument.NAME_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
@@ -2907,6 +3151,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentCreationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentCreation.ID_PROPERTY)
 		.field(AccountingDocumentCreation.WHO_PROPERTY)
 		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
@@ -2918,6 +3163,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentConfirmation.ID_PROPERTY)
 		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
 		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
@@ -2929,6 +3175,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentAuditingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentAuditing.ID_PROPERTY)
 		.field(AccountingDocumentAuditing.WHO_PROPERTY)
 		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
@@ -2940,6 +3187,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentPostingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentPosting.ID_PROPERTY)
 		.field(AccountingDocumentPosting.WHO_PROPERTY)
 		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
@@ -2951,6 +3199,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucher.ID_PROPERTY)
 		.field(OriginalVoucher.TITLE_PROPERTY)
 		.field(OriginalVoucher.MADE_BY_PROPERTY)
@@ -2965,6 +3214,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherCreationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherCreation.ID_PROPERTY)
 		.field(OriginalVoucherCreation.WHO_PROPERTY)
 		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
@@ -2976,6 +3226,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherConfirmation.ID_PROPERTY)
 		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
 		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
@@ -2987,6 +3238,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherAuditingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherAuditing.ID_PROPERTY)
 		.field(OriginalVoucherAuditing.WHO_PROPERTY)
 		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
@@ -2998,6 +3250,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentLine.ID_PROPERTY)
 		.field(AccountingDocumentLine.NAME_PROPERTY)
 		.field(AccountingDocumentLine.CODE_PROPERTY)
@@ -3010,6 +3263,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneDepartmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
@@ -3022,6 +3276,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoDepartmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoDepartment.ID_PROPERTY)
 		.field(LevelTwoDepartment.NAME_PROPERTY)
 		.field(LevelTwoDepartment.DESCRIPTION_PROPERTY)
@@ -3033,6 +3288,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeDepartmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeDepartment.ID_PROPERTY)
 		.field(LevelThreeDepartment.NAME_PROPERTY)
 		.field(LevelThreeDepartment.DESCRIPTION_PROPERTY)
@@ -3044,6 +3300,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkillTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SkillType.ID_PROPERTY)
 		.field(SkillType.CODE_PROPERTY)
 		.field(SkillType.DESCRIPTION_PROPERTY)
@@ -3054,6 +3311,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ResponsibilityTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ResponsibilityType.ID_PROPERTY)
 		.field(ResponsibilityType.CODE_PROPERTY)
 		.field(ResponsibilityType.BASE_DESCRIPTION_PROPERTY)
@@ -3065,6 +3323,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationReasonBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationReason.ID_PROPERTY)
 		.field(TerminationReason.CODE_PROPERTY)
 		.field(TerminationReason.DESCRIPTION_PROPERTY)
@@ -3075,6 +3334,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationType.ID_PROPERTY)
 		.field(TerminationType.CODE_PROPERTY)
 		.field(TerminationType.BASE_DESCRIPTION_PROPERTY)
@@ -3086,6 +3346,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OccupationTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OccupationType.ID_PROPERTY)
 		.field(OccupationType.CODE_PROPERTY)
 		.field(OccupationType.DESCRIPTION_PROPERTY)
@@ -3097,6 +3358,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LeaveTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LeaveType.ID_PROPERTY)
 		.field(LeaveType.CODE_PROPERTY)
 		.field(LeaveType.DESCRIPTION_PROPERTY)
@@ -3108,6 +3370,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SalaryGradeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SalaryGrade.ID_PROPERTY)
 		.field(SalaryGrade.CODE_PROPERTY)
 		.field(SalaryGrade.NAME_PROPERTY)
@@ -3119,6 +3382,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InterviewTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(InterviewType.ID_PROPERTY)
 		.field(InterviewType.CODE_PROPERTY)
 		.field(InterviewType.DESCRIPTION_PROPERTY)
@@ -3130,6 +3394,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TrainingCourseTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TrainingCourseType.ID_PROPERTY)
 		.field(TrainingCourseType.CODE_PROPERTY)
 		.field(TrainingCourseType.NAME_PROPERTY)
@@ -3141,6 +3406,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PublicHolidayBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PublicHoliday.ID_PROPERTY)
 		.field(PublicHoliday.CODE_PROPERTY)
 		.field(PublicHoliday.NAME_PROPERTY)
@@ -3152,6 +3418,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Termination.ID_PROPERTY)
 		.field(Termination.COMMENT_PROPERTY)
 		;
@@ -3161,6 +3428,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ViewBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(View.ID_PROPERTY)
 		.field(View.WHO_PROPERTY)
 		.field(View.ASSESSMENT_PROPERTY)
@@ -3172,6 +3440,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Employee.ID_PROPERTY)
 		.field(Employee.TITLE_PROPERTY)
 		.field(Employee.FAMILY_NAME_PROPERTY)
@@ -3190,6 +3459,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope JobApplicationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(JobApplication.ID_PROPERTY)
 		.field(JobApplication.APPLICATION_TIME_PROPERTY)
 		.field(JobApplication.WHO_PROPERTY)
@@ -3201,6 +3471,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProfessionInterviewBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProfessionInterview.ID_PROPERTY)
 		.field(ProfessionInterview.WHO_PROPERTY)
 		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
@@ -3212,6 +3483,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope HrInterviewBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(HrInterview.ID_PROPERTY)
 		.field(HrInterview.WHO_PROPERTY)
 		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
@@ -3223,6 +3495,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferApproval.ID_PROPERTY)
 		.field(OfferApproval.WHO_PROPERTY)
 		.field(OfferApproval.APPROVE_TIME_PROPERTY)
@@ -3234,6 +3507,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferAcceptanceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferAcceptance.ID_PROPERTY)
 		.field(OfferAcceptance.WHO_PROPERTY)
 		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
@@ -3245,6 +3519,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBoardingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeBoarding.ID_PROPERTY)
 		.field(EmployeeBoarding.WHO_PROPERTY)
 		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
@@ -3256,6 +3531,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InstructorBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Instructor.ID_PROPERTY)
 		.field(Instructor.TITLE_PROPERTY)
 		.field(Instructor.FAMILY_NAME_PROPERTY)
@@ -3271,6 +3547,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CompanyTrainingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CompanyTraining.ID_PROPERTY)
 		.field(CompanyTraining.TITLE_PROPERTY)
 		.field(CompanyTraining.TIME_START_PROPERTY)
@@ -3283,6 +3560,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ScoringBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Scoring.ID_PROPERTY)
 		.field(Scoring.SCORED_BY_PROPERTY)
 		.field(Scoring.SCORE_PROPERTY)
@@ -3294,6 +3572,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeCompanyTrainingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeCompanyTraining.ID_PROPERTY)
 		.field(EmployeeCompanyTraining.CURRENT_STATUS_PROPERTY)
 		;
@@ -3303,6 +3582,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSkillBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSkill.ID_PROPERTY)
 		.field(EmployeeSkill.DESCRIPTION_PROPERTY)
 		;
@@ -3312,6 +3592,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeePerformanceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeePerformance.ID_PROPERTY)
 		.field(EmployeePerformance.PERFORMANCE_COMMENT_PROPERTY)
 		;
@@ -3321,6 +3602,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeWorkExperienceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeWorkExperience.ID_PROPERTY)
 		.field(EmployeeWorkExperience.START_PROPERTY)
 		.field(EmployeeWorkExperience.END_PROPERTY)
@@ -3333,6 +3615,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeLeaveBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeLeave.ID_PROPERTY)
 		.field(EmployeeLeave.LEAVE_DURATION_HOUR_PROPERTY)
 		.field(EmployeeLeave.REMARK_PROPERTY)
@@ -3343,6 +3626,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeInterviewBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeInterview.ID_PROPERTY)
 		.field(EmployeeInterview.REMARK_PROPERTY)
 		;
@@ -3352,6 +3636,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAttendanceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAttendance.ID_PROPERTY)
 		.field(EmployeeAttendance.ENTER_TIME_PROPERTY)
 		.field(EmployeeAttendance.LEAVE_TIME_PROPERTY)
@@ -3364,6 +3649,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeQualifierBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeQualifier.ID_PROPERTY)
 		.field(EmployeeQualifier.QUALIFIED_TIME_PROPERTY)
 		.field(EmployeeQualifier.TYPE_PROPERTY)
@@ -3376,6 +3662,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeEducationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeEducation.ID_PROPERTY)
 		.field(EmployeeEducation.COMPLETE_TIME_PROPERTY)
 		.field(EmployeeEducation.TYPE_PROPERTY)
@@ -3387,6 +3674,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAwardBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAward.ID_PROPERTY)
 		.field(EmployeeAward.COMPLETE_TIME_PROPERTY)
 		.field(EmployeeAward.TYPE_PROPERTY)
@@ -3398,6 +3686,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSalarySheetBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSalarySheet.ID_PROPERTY)
 		.field(EmployeeSalarySheet.BASE_SALARY_PROPERTY)
 		.field(EmployeeSalarySheet.BONUS_PROPERTY)
@@ -3414,6 +3703,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PayingOffBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PayingOff.ID_PROPERTY)
 		.field(PayingOff.WHO_PROPERTY)
 		.field(PayingOff.PAID_TIME_PROPERTY)
@@ -3425,6 +3715,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserDomainBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserDomain.ID_PROPERTY)
 		.field(UserDomain.NAME_PROPERTY)
 		;
@@ -3434,6 +3725,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserWhiteListBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserWhiteList.ID_PROPERTY)
 		.field(UserWhiteList.USER_IDENTITY_PROPERTY)
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
@@ -3444,11 +3736,15 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUser.ID_PROPERTY)
 		.field(SecUser.LOGIN_PROPERTY)
 		.field(SecUser.MOBILE_PROPERTY)
 		.field(SecUser.EMAIL_PROPERTY)
 		.field(SecUser.PWD_PROPERTY)
+		.field(SecUser.WEIXIN_OPENID_PROPERTY)
+		.field(SecUser.WEIXIN_APPID_PROPERTY)
+		.field(SecUser.ACCESS_TOKEN_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
@@ -3460,6 +3756,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBlockingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUserBlocking.ID_PROPERTY)
 		.field(SecUserBlocking.WHO_PROPERTY)
 		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
@@ -3471,6 +3768,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserAppBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserApp.ID_PROPERTY)
 		.field(UserApp.TITLE_PROPERTY)
 		.field(UserApp.APP_ICON_PROPERTY)
@@ -3486,6 +3784,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ListAccessBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ListAccess.ID_PROPERTY)
 		.field(ListAccess.NAME_PROPERTY)
 		.field(ListAccess.INTERNAL_NAME_PROPERTY)
@@ -3501,6 +3800,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ObjectAccessBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ObjectAccess.ID_PROPERTY)
 		.field(ObjectAccess.NAME_PROPERTY)
 		.field(ObjectAccess.OBJECT_TYPE_PROPERTY)
@@ -3520,6 +3820,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LoginHistoryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LoginHistory.ID_PROPERTY)
 		.field(LoginHistory.LOGIN_TIME_PROPERTY)
 		.field(LoginHistory.FROM_IP_PROPERTY)
@@ -3531,6 +3832,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GenericFormBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GenericForm.ID_PROPERTY)
 		.field(GenericForm.TITLE_PROPERTY)
 		.field(GenericForm.DESCRIPTION_PROPERTY)
@@ -3541,6 +3843,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormMessageBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormMessage.ID_PROPERTY)
 		.field(FormMessage.TITLE_PROPERTY)
 		.field(FormMessage.LEVEL_PROPERTY)
@@ -3551,6 +3854,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldMessageBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormFieldMessage.ID_PROPERTY)
 		.field(FormFieldMessage.TITLE_PROPERTY)
 		.field(FormFieldMessage.PARAMETER_NAME_PROPERTY)
@@ -3562,6 +3866,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormField.ID_PROPERTY)
 		.field(FormField.LABEL_PROPERTY)
 		.field(FormField.LOCALE_KEY_PROPERTY)
@@ -3585,6 +3890,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormActionBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormAction.ID_PROPERTY)
 		.field(FormAction.LABEL_PROPERTY)
 		.field(FormAction.LOCALE_KEY_PROPERTY)
@@ -3598,6 +3904,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCountryCenterBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCountryCenter.ID_PROPERTY)
 		.field(RetailStoreCountryCenter.NAME_PROPERTY)
 		.field(RetailStoreCountryCenter.SERVICE_NUMBER_PROPERTY)
@@ -3638,6 +3945,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CatalogBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
 		.field(Catalog.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -3649,6 +3957,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneCategoryBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneCategory.ID_PROPERTY)
 		.field(LevelOneCategory.CATALOG_PROPERTY, getCatalogSummaryScope())
 		.field(LevelOneCategory.NAME_PROPERTY)
@@ -3660,6 +3969,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoCategoryBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoCategory.ID_PROPERTY)
 		.field(LevelTwoCategory.PARENT_CATEGORY_PROPERTY, getLevelOneCategorySummaryScope())
 		.field(LevelTwoCategory.NAME_PROPERTY)
@@ -3671,6 +3981,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeCategoryBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeCategory.ID_PROPERTY)
 		.field(LevelThreeCategory.PARENT_CATEGORY_PROPERTY, getLevelTwoCategorySummaryScope())
 		.field(LevelThreeCategory.NAME_PROPERTY)
@@ -3682,6 +3993,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Product.ID_PROPERTY)
 		.field(Product.NAME_PROPERTY)
 		.field(Product.PARENT_CATEGORY_PROPERTY, getLevelThreeCategorySummaryScope())
@@ -3698,6 +4010,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkuBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Sku.ID_PROPERTY)
 		.field(Sku.NAME_PROPERTY)
 		.field(Sku.SIZE_PROPERTY)
@@ -3715,6 +4028,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreProvinceCenterBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreProvinceCenter.ID_PROPERTY)
 		.field(RetailStoreProvinceCenter.NAME_PROPERTY)
 		.field(RetailStoreProvinceCenter.FOUNDED_PROPERTY)
@@ -3730,6 +4044,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterDepartmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
@@ -3743,6 +4058,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterEmployeeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterEmployee.ID_PROPERTY)
 		.field(ProvinceCenterEmployee.NAME_PROPERTY)
 		.field(ProvinceCenterEmployee.MOBILE_PROPERTY)
@@ -3757,6 +4073,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCityServiceCenterBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCityServiceCenter.ID_PROPERTY)
 		.field(RetailStoreCityServiceCenter.NAME_PROPERTY)
 		.field(RetailStoreCityServiceCenter.FOUNDED_PROPERTY)
@@ -3773,6 +4090,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityPartnerBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityPartner.ID_PROPERTY)
 		.field(CityPartner.NAME_PROPERTY)
 		.field(CityPartner.MOBILE_PROPERTY)
@@ -3788,6 +4106,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomer.ID_PROPERTY)
 		.field(PotentialCustomer.NAME_PROPERTY)
 		.field(PotentialCustomer.MOBILE_PROPERTY)
@@ -3805,6 +4124,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactPersonBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContactPerson.ID_PROPERTY)
 		.field(PotentialCustomerContactPerson.NAME_PROPERTY)
 		.field(PotentialCustomerContactPerson.MOBILE_PROPERTY)
@@ -3818,6 +4138,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContact.ID_PROPERTY)
 		.field(PotentialCustomerContact.NAME_PROPERTY)
 		.field(PotentialCustomerContact.CONTACT_DATE_PROPERTY)
@@ -3834,6 +4155,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityEventBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityEvent.ID_PROPERTY)
 		.field(CityEvent.NAME_PROPERTY)
 		.field(CityEvent.MOBILE_PROPERTY)
@@ -3848,6 +4170,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EventAttendanceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EventAttendance.ID_PROPERTY)
 		.field(EventAttendance.NAME_PROPERTY)
 		.field(EventAttendance.POTENTIAL_CUSTOMER_PROPERTY, getPotentialCustomerSummaryScope())
@@ -3860,6 +4183,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStore.ID_PROPERTY)
 		.field(RetailStore.NAME_PROPERTY)
 		.field(RetailStore.TELEPHONE_PROPERTY)
@@ -3890,6 +4214,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCreationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCreation.ID_PROPERTY)
 		.field(RetailStoreCreation.COMMENT_PROPERTY)
 		.field(RetailStoreCreation.RETAIL_STORE_LIST, getRetailStoreSecondaryListItemScope())
@@ -3900,6 +4225,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreInvestmentInvitationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreInvestmentInvitation.ID_PROPERTY)
 		.field(RetailStoreInvestmentInvitation.COMMENT_PROPERTY)
 		.field(RetailStoreInvestmentInvitation.RETAIL_STORE_LIST, getRetailStoreSecondaryListItemScope())
@@ -3910,6 +4236,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreFranchisingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreFranchising.ID_PROPERTY)
 		.field(RetailStoreFranchising.COMMENT_PROPERTY)
 		.field(RetailStoreFranchising.RETAIL_STORE_LIST, getRetailStoreSecondaryListItemScope())
@@ -3920,6 +4247,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreDecorationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreDecoration.ID_PROPERTY)
 		.field(RetailStoreDecoration.COMMENT_PROPERTY)
 		.field(RetailStoreDecoration.RETAIL_STORE_LIST, getRetailStoreSecondaryListItemScope())
@@ -3930,6 +4258,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOpeningBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOpening.ID_PROPERTY)
 		.field(RetailStoreOpening.COMMENT_PROPERTY)
 		.field(RetailStoreOpening.RETAIL_STORE_LIST, getRetailStoreSecondaryListItemScope())
@@ -3940,6 +4269,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreClosingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreClosing.ID_PROPERTY)
 		.field(RetailStoreClosing.COMMENT_PROPERTY)
 		.field(RetailStoreClosing.RETAIL_STORE_LIST, getRetailStoreSecondaryListItemScope())
@@ -3950,6 +4280,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMember.ID_PROPERTY)
 		.field(RetailStoreMember.NAME_PROPERTY)
 		.field(RetailStoreMember.MOBILE_PHONE_PROPERTY)
@@ -3968,6 +4299,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -3991,6 +4323,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderConfirmationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderConfirmation.ID_PROPERTY)
 		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
 		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -4001,6 +4334,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderApprovalBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderApproval.ID_PROPERTY)
 		.field(ConsumerOrderApproval.WHO_PROPERTY)
 		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
@@ -4011,6 +4345,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderProcessingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderProcessing.ID_PROPERTY)
 		.field(ConsumerOrderProcessing.WHO_PROPERTY)
 		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -4021,6 +4356,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShipmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShipment.ID_PROPERTY)
 		.field(ConsumerOrderShipment.WHO_PROPERTY)
 		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
@@ -4031,6 +4367,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderDeliveryBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderDelivery.ID_PROPERTY)
 		.field(ConsumerOrderDelivery.WHO_PROPERTY)
 		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -4041,6 +4378,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderLineItemBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderLineItem.ID_PROPERTY)
 		.field(ConsumerOrderLineItem.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
 		.field(ConsumerOrderLineItem.SKU_ID_PROPERTY)
@@ -4056,6 +4394,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShippingGroupBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShippingGroup.ID_PROPERTY)
 		.field(ConsumerOrderShippingGroup.NAME_PROPERTY)
 		.field(ConsumerOrderShippingGroup.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
@@ -4067,6 +4406,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPaymentGroupBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPaymentGroup.ID_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.NAME_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
@@ -4078,6 +4418,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPriceAdjustmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPriceAdjustment.ID_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.NAME_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
@@ -4090,6 +4431,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberCouponBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberCoupon.ID_PROPERTY)
 		.field(RetailStoreMemberCoupon.NAME_PROPERTY)
 		.field(RetailStoreMemberCoupon.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -4102,6 +4444,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlist.ID_PROPERTY)
 		.field(MemberWishlist.NAME_PROPERTY)
 		.field(MemberWishlist.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -4113,6 +4456,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPoint.ID_PROPERTY)
 		.field(MemberRewardPoint.NAME_PROPERTY)
 		.field(MemberRewardPoint.POINT_PROPERTY)
@@ -4124,6 +4468,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointRedemptionBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPointRedemption.ID_PROPERTY)
 		.field(MemberRewardPointRedemption.NAME_PROPERTY)
 		.field(MemberRewardPointRedemption.POINT_PROPERTY)
@@ -4135,6 +4480,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistProductBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlistProduct.ID_PROPERTY)
 		.field(MemberWishlistProduct.NAME_PROPERTY)
 		.field(MemberWishlistProduct.OWNER_PROPERTY, getMemberWishlistSummaryScope())
@@ -4145,6 +4491,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberAddressBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberAddress.ID_PROPERTY)
 		.field(RetailStoreMemberAddress.NAME_PROPERTY)
 		.field(RetailStoreMemberAddress.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -4157,6 +4504,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCard.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCard.NAME_PROPERTY)
 		.field(RetailStoreMemberGiftCard.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -4170,6 +4518,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardConsumeRecordBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCardConsumeRecord.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.OCCURE_TIME_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.OWNER_PROPERTY, getRetailStoreMemberGiftCardSummaryScope())
@@ -4183,6 +4532,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsSupplierBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsSupplier.ID_PROPERTY)
 		.field(GoodsSupplier.NAME_PROPERTY)
 		.field(GoodsSupplier.SUPPLY_PRODUCT_PROPERTY)
@@ -4200,6 +4550,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierProductBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierProduct.ID_PROPERTY)
 		.field(SupplierProduct.PRODUCT_NAME_PROPERTY)
 		.field(SupplierProduct.PRODUCT_DESCRIPTION_PROPERTY)
@@ -4213,6 +4564,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductSupplyDurationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProductSupplyDuration.ID_PROPERTY)
 		.field(ProductSupplyDuration.QUANTITY_PROPERTY)
 		.field(ProductSupplyDuration.DURATION_PROPERTY)
@@ -4225,6 +4577,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrder.ID_PROPERTY)
 		.field(SupplyOrder.BUYER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(SupplyOrder.SELLER_PROPERTY, getGoodsSupplierSummaryScope())
@@ -4249,6 +4602,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderConfirmationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderConfirmation.ID_PROPERTY)
 		.field(SupplyOrderConfirmation.WHO_PROPERTY)
 		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -4261,6 +4615,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderApprovalBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderApproval.ID_PROPERTY)
 		.field(SupplyOrderApproval.WHO_PROPERTY)
 		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
@@ -4273,6 +4628,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderProcessingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderProcessing.ID_PROPERTY)
 		.field(SupplyOrderProcessing.WHO_PROPERTY)
 		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -4285,6 +4641,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPickingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPicking.ID_PROPERTY)
 		.field(SupplyOrderPicking.WHO_PROPERTY)
 		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
@@ -4296,6 +4653,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShipmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShipment.ID_PROPERTY)
 		.field(SupplyOrderShipment.WHO_PROPERTY)
 		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
@@ -4308,6 +4666,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderDeliveryBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderDelivery.ID_PROPERTY)
 		.field(SupplyOrderDelivery.WHO_PROPERTY)
 		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -4320,6 +4679,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderLineItemBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderLineItem.ID_PROPERTY)
 		.field(SupplyOrderLineItem.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
 		.field(SupplyOrderLineItem.SKU_ID_PROPERTY)
@@ -4334,6 +4694,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShippingGroupBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShippingGroup.ID_PROPERTY)
 		.field(SupplyOrderShippingGroup.NAME_PROPERTY)
 		.field(SupplyOrderShippingGroup.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
@@ -4345,6 +4706,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPaymentGroupBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPaymentGroup.ID_PROPERTY)
 		.field(SupplyOrderPaymentGroup.NAME_PROPERTY)
 		.field(SupplyOrderPaymentGroup.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
@@ -4356,6 +4718,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrder.ID_PROPERTY)
 		.field(RetailStoreOrder.BUYER_PROPERTY, getRetailStoreSummaryScope())
 		.field(RetailStoreOrder.SELLER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -4380,6 +4743,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderConfirmationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
 		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
 		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -4391,6 +4755,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderApprovalBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderApproval.ID_PROPERTY)
 		.field(RetailStoreOrderApproval.WHO_PROPERTY)
 		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
@@ -4402,6 +4767,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderProcessingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderProcessing.ID_PROPERTY)
 		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
 		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -4413,6 +4779,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPickingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPicking.ID_PROPERTY)
 		.field(RetailStoreOrderPicking.WHO_PROPERTY)
 		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
@@ -4424,6 +4791,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShipmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShipment.ID_PROPERTY)
 		.field(RetailStoreOrderShipment.WHO_PROPERTY)
 		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
@@ -4435,6 +4803,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderDeliveryBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderDelivery.ID_PROPERTY)
 		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
 		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -4446,6 +4815,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderLineItem.ID_PROPERTY)
 		.field(RetailStoreOrderLineItem.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
 		.field(RetailStoreOrderLineItem.SKU_ID_PROPERTY)
@@ -4460,6 +4830,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShippingGroupBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShippingGroup.ID_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
@@ -4471,6 +4842,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPaymentGroupBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPaymentGroup.ID_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
@@ -4482,6 +4854,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Warehouse.ID_PROPERTY)
 		.field(Warehouse.LOCATION_PROPERTY)
 		.field(Warehouse.CONTACT_NUMBER_PROPERTY)
@@ -4504,6 +4877,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StorageSpaceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StorageSpace.ID_PROPERTY)
 		.field(StorageSpace.LOCATION_PROPERTY)
 		.field(StorageSpace.CONTACT_NUMBER_PROPERTY)
@@ -4520,6 +4894,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SmartPalletBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SmartPallet.ID_PROPERTY)
 		.field(SmartPallet.LOCATION_PROPERTY)
 		.field(SmartPallet.CONTACT_NUMBER_PROPERTY)
@@ -4536,6 +4911,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelf.ID_PROPERTY)
 		.field(GoodsShelf.LOCATION_PROPERTY)
 		.field(GoodsShelf.STORAGE_SPACE_PROPERTY, getStorageSpaceSummaryScope())
@@ -4551,6 +4927,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfStockCountBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelfStockCount.ID_PROPERTY)
 		.field(GoodsShelfStockCount.TITLE_PROPERTY)
 		.field(GoodsShelfStockCount.COUNT_TIME_PROPERTY)
@@ -4564,6 +4941,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StockCountIssueTrackBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StockCountIssueTrack.ID_PROPERTY)
 		.field(StockCountIssueTrack.TITLE_PROPERTY)
 		.field(StockCountIssueTrack.COUNT_TIME_PROPERTY)
@@ -4576,6 +4954,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsAllocationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsAllocation.ID_PROPERTY)
 		.field(GoodsAllocation.LOCATION_PROPERTY)
 		.field(GoodsAllocation.LATITUDE_PROPERTY)
@@ -4589,6 +4968,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Goods.ID_PROPERTY)
 		.field(Goods.NAME_PROPERTY)
 		.field(Goods.RFID_PROPERTY)
@@ -4614,6 +4994,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsPackagingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsPackaging.ID_PROPERTY)
 		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
 		.field(GoodsPackaging.RFID_PROPERTY)
@@ -4627,6 +5008,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsMovementBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsMovement.ID_PROPERTY)
 		.field(GoodsMovement.MOVE_TIME_PROPERTY)
 		.field(GoodsMovement.FACILITY_PROPERTY)
@@ -4644,6 +5026,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierSpaceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierSpace.ID_PROPERTY)
 		.field(SupplierSpace.LOCATION_PROPERTY)
 		.field(SupplierSpace.CONTACT_NUMBER_PROPERTY)
@@ -4660,6 +5043,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ReceivingSpaceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ReceivingSpace.ID_PROPERTY)
 		.field(ReceivingSpace.LOCATION_PROPERTY)
 		.field(ReceivingSpace.CONTACT_NUMBER_PROPERTY)
@@ -4677,6 +5061,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ShippingSpaceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ShippingSpace.ID_PROPERTY)
 		.field(ShippingSpace.LOCATION_PROPERTY)
 		.field(ShippingSpace.CONTACT_NUMBER_PROPERTY)
@@ -4694,6 +5079,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope DamageSpaceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(DamageSpace.ID_PROPERTY)
 		.field(DamageSpace.LOCATION_PROPERTY)
 		.field(DamageSpace.CONTACT_NUMBER_PROPERTY)
@@ -4710,6 +5096,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseAssetBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(WarehouseAsset.ID_PROPERTY)
 		.field(WarehouseAsset.NAME_PROPERTY)
 		.field(WarehouseAsset.POSITION_PROPERTY)
@@ -4722,6 +5109,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportFleetBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportFleet.ID_PROPERTY)
 		.field(TransportFleet.NAME_PROPERTY)
 		.field(TransportFleet.CONTACT_NUMBER_PROPERTY)
@@ -4737,6 +5125,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTruckBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTruck.ID_PROPERTY)
 		.field(TransportTruck.NAME_PROPERTY)
 		.field(TransportTruck.PLATE_NUMBER_PROPERTY)
@@ -4755,6 +5144,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TruckDriverBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TruckDriver.ID_PROPERTY)
 		.field(TruckDriver.NAME_PROPERTY)
 		.field(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY)
@@ -4768,6 +5158,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTask.ID_PROPERTY)
 		.field(TransportTask.NAME_PROPERTY)
 		.field(TransportTask.START_PROPERTY)
@@ -4787,6 +5178,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskTrackBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTaskTrack.ID_PROPERTY)
 		.field(TransportTaskTrack.TRACK_TIME_PROPERTY)
 		.field(TransportTaskTrack.LATITUDE_PROPERTY)
@@ -4799,6 +5191,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountSetBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountSet.ID_PROPERTY)
 		.field(AccountSet.NAME_PROPERTY)
 		.field(AccountSet.YEAR_SET_PROPERTY)
@@ -4822,6 +5215,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingSubjectBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingSubject.ID_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_CODE_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_NAME_PROPERTY)
@@ -4836,6 +5230,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingPeriodBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingPeriod.ID_PROPERTY)
 		.field(AccountingPeriod.NAME_PROPERTY)
 		.field(AccountingPeriod.START_DATE_PROPERTY)
@@ -4849,6 +5244,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentType.ID_PROPERTY)
 		.field(AccountingDocumentType.NAME_PROPERTY)
 		.field(AccountingDocumentType.DESCRIPTION_PROPERTY)
@@ -4861,6 +5257,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocument.ID_PROPERTY)
 		.field(AccountingDocument.NAME_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
@@ -4880,6 +5277,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentCreationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentCreation.ID_PROPERTY)
 		.field(AccountingDocumentCreation.WHO_PROPERTY)
 		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
@@ -4892,6 +5290,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentConfirmationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentConfirmation.ID_PROPERTY)
 		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
 		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
@@ -4904,6 +5303,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentAuditingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentAuditing.ID_PROPERTY)
 		.field(AccountingDocumentAuditing.WHO_PROPERTY)
 		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
@@ -4916,6 +5316,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentPostingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentPosting.ID_PROPERTY)
 		.field(AccountingDocumentPosting.WHO_PROPERTY)
 		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
@@ -4928,6 +5329,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucher.ID_PROPERTY)
 		.field(OriginalVoucher.TITLE_PROPERTY)
 		.field(OriginalVoucher.MADE_BY_PROPERTY)
@@ -4946,6 +5348,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherCreationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherCreation.ID_PROPERTY)
 		.field(OriginalVoucherCreation.WHO_PROPERTY)
 		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
@@ -4958,6 +5361,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherConfirmationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherConfirmation.ID_PROPERTY)
 		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
 		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
@@ -4970,6 +5374,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherAuditingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherAuditing.ID_PROPERTY)
 		.field(OriginalVoucherAuditing.WHO_PROPERTY)
 		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
@@ -4982,6 +5387,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentLine.ID_PROPERTY)
 		.field(AccountingDocumentLine.NAME_PROPERTY)
 		.field(AccountingDocumentLine.CODE_PROPERTY)
@@ -4996,6 +5402,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneDepartmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.BELONGS_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(LevelOneDepartment.NAME_PROPERTY)
@@ -5010,6 +5417,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoDepartmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoDepartment.ID_PROPERTY)
 		.field(LevelTwoDepartment.BELONGS_TO_PROPERTY, getLevelOneDepartmentSummaryScope())
 		.field(LevelTwoDepartment.NAME_PROPERTY)
@@ -5023,6 +5431,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeDepartmentBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeDepartment.ID_PROPERTY)
 		.field(LevelThreeDepartment.BELONGS_TO_PROPERTY, getLevelTwoDepartmentSummaryScope())
 		.field(LevelThreeDepartment.NAME_PROPERTY)
@@ -5036,6 +5445,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkillTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SkillType.ID_PROPERTY)
 		.field(SkillType.CODE_PROPERTY)
 		.field(SkillType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5048,6 +5458,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ResponsibilityTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ResponsibilityType.ID_PROPERTY)
 		.field(ResponsibilityType.CODE_PROPERTY)
 		.field(ResponsibilityType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5061,6 +5472,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationReasonBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationReason.ID_PROPERTY)
 		.field(TerminationReason.CODE_PROPERTY)
 		.field(TerminationReason.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5073,6 +5485,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationType.ID_PROPERTY)
 		.field(TerminationType.CODE_PROPERTY)
 		.field(TerminationType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5086,6 +5499,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OccupationTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OccupationType.ID_PROPERTY)
 		.field(OccupationType.CODE_PROPERTY)
 		.field(OccupationType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5099,6 +5513,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LeaveTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LeaveType.ID_PROPERTY)
 		.field(LeaveType.CODE_PROPERTY)
 		.field(LeaveType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5112,6 +5527,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SalaryGradeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SalaryGrade.ID_PROPERTY)
 		.field(SalaryGrade.CODE_PROPERTY)
 		.field(SalaryGrade.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5126,6 +5542,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InterviewTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(InterviewType.ID_PROPERTY)
 		.field(InterviewType.CODE_PROPERTY)
 		.field(InterviewType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5139,6 +5556,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TrainingCourseTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TrainingCourseType.ID_PROPERTY)
 		.field(TrainingCourseType.CODE_PROPERTY)
 		.field(TrainingCourseType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5152,6 +5570,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PublicHolidayBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PublicHoliday.ID_PROPERTY)
 		.field(PublicHoliday.CODE_PROPERTY)
 		.field(PublicHoliday.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5164,6 +5583,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Termination.ID_PROPERTY)
 		.field(Termination.REASON_PROPERTY, getTerminationReasonSummaryScope())
 		.field(Termination.TYPE_PROPERTY, getTerminationTypeSummaryScope())
@@ -5176,6 +5596,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ViewBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(View.ID_PROPERTY)
 		.field(View.WHO_PROPERTY)
 		.field(View.ASSESSMENT_PROPERTY)
@@ -5187,6 +5608,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Employee.ID_PROPERTY)
 		.field(Employee.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(Employee.TITLE_PROPERTY)
@@ -5229,6 +5651,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope JobApplicationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(JobApplication.ID_PROPERTY)
 		.field(JobApplication.APPLICATION_TIME_PROPERTY)
 		.field(JobApplication.WHO_PROPERTY)
@@ -5241,6 +5664,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProfessionInterviewBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProfessionInterview.ID_PROPERTY)
 		.field(ProfessionInterview.WHO_PROPERTY)
 		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
@@ -5253,6 +5677,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope HrInterviewBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(HrInterview.ID_PROPERTY)
 		.field(HrInterview.WHO_PROPERTY)
 		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
@@ -5265,6 +5690,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferApprovalBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferApproval.ID_PROPERTY)
 		.field(OfferApproval.WHO_PROPERTY)
 		.field(OfferApproval.APPROVE_TIME_PROPERTY)
@@ -5277,6 +5703,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferAcceptanceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferAcceptance.ID_PROPERTY)
 		.field(OfferAcceptance.WHO_PROPERTY)
 		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
@@ -5289,6 +5716,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBoardingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeBoarding.ID_PROPERTY)
 		.field(EmployeeBoarding.WHO_PROPERTY)
 		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
@@ -5301,6 +5729,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InstructorBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Instructor.ID_PROPERTY)
 		.field(Instructor.TITLE_PROPERTY)
 		.field(Instructor.FAMILY_NAME_PROPERTY)
@@ -5318,6 +5747,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CompanyTrainingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CompanyTraining.ID_PROPERTY)
 		.field(CompanyTraining.TITLE_PROPERTY)
 		.field(CompanyTraining.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5334,6 +5764,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ScoringBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Scoring.ID_PROPERTY)
 		.field(Scoring.SCORED_BY_PROPERTY)
 		.field(Scoring.SCORE_PROPERTY)
@@ -5346,6 +5777,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeCompanyTrainingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeCompanyTraining.ID_PROPERTY)
 		.field(EmployeeCompanyTraining.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeCompanyTraining.TRAINING_PROPERTY, getCompanyTrainingSummaryScope())
@@ -5358,6 +5790,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSkillBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSkill.ID_PROPERTY)
 		.field(EmployeeSkill.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeSkill.SKILL_TYPE_PROPERTY, getSkillTypeSummaryScope())
@@ -5369,6 +5802,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeePerformanceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeePerformance.ID_PROPERTY)
 		.field(EmployeePerformance.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeePerformance.PERFORMANCE_COMMENT_PROPERTY)
@@ -5379,6 +5813,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeWorkExperienceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeWorkExperience.ID_PROPERTY)
 		.field(EmployeeWorkExperience.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeWorkExperience.START_PROPERTY)
@@ -5392,6 +5827,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeLeaveBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeLeave.ID_PROPERTY)
 		.field(EmployeeLeave.WHO_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeLeave.TYPE_PROPERTY, getLeaveTypeSummaryScope())
@@ -5404,6 +5840,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeInterviewBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeInterview.ID_PROPERTY)
 		.field(EmployeeInterview.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeInterview.INTERVIEW_TYPE_PROPERTY, getInterviewTypeSummaryScope())
@@ -5415,6 +5852,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAttendanceBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAttendance.ID_PROPERTY)
 		.field(EmployeeAttendance.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeAttendance.ENTER_TIME_PROPERTY)
@@ -5428,6 +5866,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeQualifierBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeQualifier.ID_PROPERTY)
 		.field(EmployeeQualifier.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeQualifier.QUALIFIED_TIME_PROPERTY)
@@ -5441,6 +5880,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeEducationBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeEducation.ID_PROPERTY)
 		.field(EmployeeEducation.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeEducation.COMPLETE_TIME_PROPERTY)
@@ -5453,6 +5893,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAwardBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAward.ID_PROPERTY)
 		.field(EmployeeAward.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeAward.COMPLETE_TIME_PROPERTY)
@@ -5465,6 +5906,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSalarySheetBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSalarySheet.ID_PROPERTY)
 		.field(EmployeeSalarySheet.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeSalarySheet.CURRENT_SALARY_GRADE_PROPERTY, getSalaryGradeSummaryScope())
@@ -5484,6 +5926,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PayingOffBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PayingOff.ID_PROPERTY)
 		.field(PayingOff.WHO_PROPERTY)
 		.field(PayingOff.PAID_FOR_PROPERTY, getEmployeeSummaryScope())
@@ -5497,6 +5940,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserDomainBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserDomain.ID_PROPERTY)
 		.field(UserDomain.NAME_PROPERTY)
 		.field(UserDomain.USER_WHITE_LIST_LIST, getUserWhiteListSecondaryListItemScope())
@@ -5508,6 +5952,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserWhiteListBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserWhiteList.ID_PROPERTY)
 		.field(UserWhiteList.USER_IDENTITY_PROPERTY)
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
@@ -5519,11 +5964,15 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUser.ID_PROPERTY)
 		.field(SecUser.LOGIN_PROPERTY)
 		.field(SecUser.MOBILE_PROPERTY)
 		.field(SecUser.EMAIL_PROPERTY)
 		.field(SecUser.PWD_PROPERTY)
+		.field(SecUser.WEIXIN_OPENID_PROPERTY)
+		.field(SecUser.WEIXIN_APPID_PROPERTY)
+		.field(SecUser.ACCESS_TOKEN_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
@@ -5539,6 +5988,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBlockingBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUserBlocking.ID_PROPERTY)
 		.field(SecUserBlocking.WHO_PROPERTY)
 		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
@@ -5551,6 +6001,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserAppBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserApp.ID_PROPERTY)
 		.field(UserApp.TITLE_PROPERTY)
 		.field(UserApp.SEC_USER_PROPERTY, getSecUserSummaryScope())
@@ -5569,6 +6020,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ListAccessBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ListAccess.ID_PROPERTY)
 		.field(ListAccess.NAME_PROPERTY)
 		.field(ListAccess.INTERNAL_NAME_PROPERTY)
@@ -5585,6 +6037,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ObjectAccessBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ObjectAccess.ID_PROPERTY)
 		.field(ObjectAccess.NAME_PROPERTY)
 		.field(ObjectAccess.OBJECT_TYPE_PROPERTY)
@@ -5605,6 +6058,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LoginHistoryBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LoginHistory.ID_PROPERTY)
 		.field(LoginHistory.LOGIN_TIME_PROPERTY)
 		.field(LoginHistory.FROM_IP_PROPERTY)
@@ -5617,6 +6071,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GenericFormBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GenericForm.ID_PROPERTY)
 		.field(GenericForm.TITLE_PROPERTY)
 		.field(GenericForm.DESCRIPTION_PROPERTY)
@@ -5631,6 +6086,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormMessageBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormMessage.ID_PROPERTY)
 		.field(FormMessage.TITLE_PROPERTY)
 		.field(FormMessage.FORM_PROPERTY, getGenericFormSummaryScope())
@@ -5642,6 +6098,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldMessageBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormFieldMessage.ID_PROPERTY)
 		.field(FormFieldMessage.TITLE_PROPERTY)
 		.field(FormFieldMessage.PARAMETER_NAME_PROPERTY)
@@ -5654,6 +6111,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormField.ID_PROPERTY)
 		.field(FormField.LABEL_PROPERTY)
 		.field(FormField.LOCALE_KEY_PROPERTY)
@@ -5678,6 +6136,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormActionBaseListItemScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormAction.ID_PROPERTY)
 		.field(FormAction.LABEL_PROPERTY)
 		.field(FormAction.LOCALE_KEY_PROPERTY)
@@ -5692,6 +6151,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCountryCenterBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCountryCenter.ID_PROPERTY)
 		.field(RetailStoreCountryCenter.NAME_PROPERTY)
 		.field(RetailStoreCountryCenter.SERVICE_NUMBER_PROPERTY)
@@ -5732,6 +6192,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CatalogBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
 		.field(Catalog.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -5743,6 +6204,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneCategoryBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneCategory.ID_PROPERTY)
 		.field(LevelOneCategory.CATALOG_PROPERTY, getCatalogSummaryScope())
 		.field(LevelOneCategory.NAME_PROPERTY)
@@ -5754,6 +6216,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoCategoryBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoCategory.ID_PROPERTY)
 		.field(LevelTwoCategory.PARENT_CATEGORY_PROPERTY, getLevelOneCategorySummaryScope())
 		.field(LevelTwoCategory.NAME_PROPERTY)
@@ -5765,6 +6228,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeCategoryBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeCategory.ID_PROPERTY)
 		.field(LevelThreeCategory.PARENT_CATEGORY_PROPERTY, getLevelTwoCategorySummaryScope())
 		.field(LevelThreeCategory.NAME_PROPERTY)
@@ -5776,6 +6240,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Product.ID_PROPERTY)
 		.field(Product.NAME_PROPERTY)
 		.field(Product.PARENT_CATEGORY_PROPERTY, getLevelThreeCategorySummaryScope())
@@ -5792,6 +6257,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkuBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Sku.ID_PROPERTY)
 		.field(Sku.NAME_PROPERTY)
 		.field(Sku.SIZE_PROPERTY)
@@ -5809,6 +6275,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreProvinceCenterBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreProvinceCenter.ID_PROPERTY)
 		.field(RetailStoreProvinceCenter.NAME_PROPERTY)
 		.field(RetailStoreProvinceCenter.FOUNDED_PROPERTY)
@@ -5824,6 +6291,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterDepartmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
@@ -5837,6 +6305,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProvinceCenterEmployeeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProvinceCenterEmployee.ID_PROPERTY)
 		.field(ProvinceCenterEmployee.NAME_PROPERTY)
 		.field(ProvinceCenterEmployee.MOBILE_PROPERTY)
@@ -5851,6 +6320,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCityServiceCenterBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCityServiceCenter.ID_PROPERTY)
 		.field(RetailStoreCityServiceCenter.NAME_PROPERTY)
 		.field(RetailStoreCityServiceCenter.FOUNDED_PROPERTY)
@@ -5867,6 +6337,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityPartnerBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityPartner.ID_PROPERTY)
 		.field(CityPartner.NAME_PROPERTY)
 		.field(CityPartner.MOBILE_PROPERTY)
@@ -5882,6 +6353,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomer.ID_PROPERTY)
 		.field(PotentialCustomer.NAME_PROPERTY)
 		.field(PotentialCustomer.MOBILE_PROPERTY)
@@ -5899,6 +6371,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactPersonBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContactPerson.ID_PROPERTY)
 		.field(PotentialCustomerContactPerson.NAME_PROPERTY)
 		.field(PotentialCustomerContactPerson.MOBILE_PROPERTY)
@@ -5912,6 +6385,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PotentialCustomerContactBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PotentialCustomerContact.ID_PROPERTY)
 		.field(PotentialCustomerContact.NAME_PROPERTY)
 		.field(PotentialCustomerContact.CONTACT_DATE_PROPERTY)
@@ -5928,6 +6402,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CityEventBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CityEvent.ID_PROPERTY)
 		.field(CityEvent.NAME_PROPERTY)
 		.field(CityEvent.MOBILE_PROPERTY)
@@ -5942,6 +6417,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EventAttendanceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EventAttendance.ID_PROPERTY)
 		.field(EventAttendance.NAME_PROPERTY)
 		.field(EventAttendance.POTENTIAL_CUSTOMER_PROPERTY, getPotentialCustomerSummaryScope())
@@ -5954,6 +6430,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStore.ID_PROPERTY)
 		.field(RetailStore.NAME_PROPERTY)
 		.field(RetailStore.TELEPHONE_PROPERTY)
@@ -5984,6 +6461,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreCreationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreCreation.ID_PROPERTY)
 		.field(RetailStoreCreation.COMMENT_PROPERTY)
 		.field(RetailStoreCreation.RETAIL_STORE_LIST, getRetailStoreListItemScope())
@@ -5994,6 +6472,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreInvestmentInvitationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreInvestmentInvitation.ID_PROPERTY)
 		.field(RetailStoreInvestmentInvitation.COMMENT_PROPERTY)
 		.field(RetailStoreInvestmentInvitation.RETAIL_STORE_LIST, getRetailStoreListItemScope())
@@ -6004,6 +6483,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreFranchisingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreFranchising.ID_PROPERTY)
 		.field(RetailStoreFranchising.COMMENT_PROPERTY)
 		.field(RetailStoreFranchising.RETAIL_STORE_LIST, getRetailStoreListItemScope())
@@ -6014,6 +6494,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreDecorationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreDecoration.ID_PROPERTY)
 		.field(RetailStoreDecoration.COMMENT_PROPERTY)
 		.field(RetailStoreDecoration.RETAIL_STORE_LIST, getRetailStoreListItemScope())
@@ -6024,6 +6505,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOpeningBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOpening.ID_PROPERTY)
 		.field(RetailStoreOpening.COMMENT_PROPERTY)
 		.field(RetailStoreOpening.RETAIL_STORE_LIST, getRetailStoreListItemScope())
@@ -6034,6 +6516,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreClosingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreClosing.ID_PROPERTY)
 		.field(RetailStoreClosing.COMMENT_PROPERTY)
 		.field(RetailStoreClosing.RETAIL_STORE_LIST, getRetailStoreListItemScope())
@@ -6044,6 +6527,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMember.ID_PROPERTY)
 		.field(RetailStoreMember.NAME_PROPERTY)
 		.field(RetailStoreMember.MOBILE_PHONE_PROPERTY)
@@ -6062,6 +6546,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -6085,6 +6570,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderConfirmationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderConfirmation.ID_PROPERTY)
 		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
 		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -6095,6 +6581,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderApprovalBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderApproval.ID_PROPERTY)
 		.field(ConsumerOrderApproval.WHO_PROPERTY)
 		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
@@ -6105,6 +6592,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderProcessingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderProcessing.ID_PROPERTY)
 		.field(ConsumerOrderProcessing.WHO_PROPERTY)
 		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -6115,6 +6603,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShipmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShipment.ID_PROPERTY)
 		.field(ConsumerOrderShipment.WHO_PROPERTY)
 		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
@@ -6125,6 +6614,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderDeliveryBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderDelivery.ID_PROPERTY)
 		.field(ConsumerOrderDelivery.WHO_PROPERTY)
 		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -6135,6 +6625,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderLineItemBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderLineItem.ID_PROPERTY)
 		.field(ConsumerOrderLineItem.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
 		.field(ConsumerOrderLineItem.SKU_ID_PROPERTY)
@@ -6150,6 +6641,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderShippingGroupBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderShippingGroup.ID_PROPERTY)
 		.field(ConsumerOrderShippingGroup.NAME_PROPERTY)
 		.field(ConsumerOrderShippingGroup.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
@@ -6161,6 +6653,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPaymentGroupBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPaymentGroup.ID_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.NAME_PROPERTY)
 		.field(ConsumerOrderPaymentGroup.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
@@ -6172,6 +6665,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ConsumerOrderPriceAdjustmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderPriceAdjustment.ID_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.NAME_PROPERTY)
 		.field(ConsumerOrderPriceAdjustment.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
@@ -6184,6 +6678,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberCouponBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberCoupon.ID_PROPERTY)
 		.field(RetailStoreMemberCoupon.NAME_PROPERTY)
 		.field(RetailStoreMemberCoupon.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -6196,6 +6691,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlist.ID_PROPERTY)
 		.field(MemberWishlist.NAME_PROPERTY)
 		.field(MemberWishlist.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -6207,6 +6703,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPoint.ID_PROPERTY)
 		.field(MemberRewardPoint.NAME_PROPERTY)
 		.field(MemberRewardPoint.POINT_PROPERTY)
@@ -6218,6 +6715,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberRewardPointRedemptionBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberRewardPointRedemption.ID_PROPERTY)
 		.field(MemberRewardPointRedemption.NAME_PROPERTY)
 		.field(MemberRewardPointRedemption.POINT_PROPERTY)
@@ -6229,6 +6727,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope MemberWishlistProductBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(MemberWishlistProduct.ID_PROPERTY)
 		.field(MemberWishlistProduct.NAME_PROPERTY)
 		.field(MemberWishlistProduct.OWNER_PROPERTY, getMemberWishlistSummaryScope())
@@ -6239,6 +6738,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberAddressBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberAddress.ID_PROPERTY)
 		.field(RetailStoreMemberAddress.NAME_PROPERTY)
 		.field(RetailStoreMemberAddress.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -6251,6 +6751,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCard.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCard.NAME_PROPERTY)
 		.field(RetailStoreMemberGiftCard.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
@@ -6264,6 +6765,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreMemberGiftCardConsumeRecordBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreMemberGiftCardConsumeRecord.ID_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.OCCURE_TIME_PROPERTY)
 		.field(RetailStoreMemberGiftCardConsumeRecord.OWNER_PROPERTY, getRetailStoreMemberGiftCardSummaryScope())
@@ -6277,6 +6779,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsSupplierBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsSupplier.ID_PROPERTY)
 		.field(GoodsSupplier.NAME_PROPERTY)
 		.field(GoodsSupplier.SUPPLY_PRODUCT_PROPERTY)
@@ -6294,6 +6797,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierProductBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierProduct.ID_PROPERTY)
 		.field(SupplierProduct.PRODUCT_NAME_PROPERTY)
 		.field(SupplierProduct.PRODUCT_DESCRIPTION_PROPERTY)
@@ -6307,6 +6811,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProductSupplyDurationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProductSupplyDuration.ID_PROPERTY)
 		.field(ProductSupplyDuration.QUANTITY_PROPERTY)
 		.field(ProductSupplyDuration.DURATION_PROPERTY)
@@ -6319,6 +6824,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrder.ID_PROPERTY)
 		.field(SupplyOrder.BUYER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(SupplyOrder.SELLER_PROPERTY, getGoodsSupplierSummaryScope())
@@ -6343,6 +6849,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderConfirmationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderConfirmation.ID_PROPERTY)
 		.field(SupplyOrderConfirmation.WHO_PROPERTY)
 		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -6355,6 +6862,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderApprovalBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderApproval.ID_PROPERTY)
 		.field(SupplyOrderApproval.WHO_PROPERTY)
 		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
@@ -6367,6 +6875,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderProcessingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderProcessing.ID_PROPERTY)
 		.field(SupplyOrderProcessing.WHO_PROPERTY)
 		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -6379,6 +6888,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPickingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPicking.ID_PROPERTY)
 		.field(SupplyOrderPicking.WHO_PROPERTY)
 		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
@@ -6390,6 +6900,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShipmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShipment.ID_PROPERTY)
 		.field(SupplyOrderShipment.WHO_PROPERTY)
 		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
@@ -6402,6 +6913,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderDeliveryBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderDelivery.ID_PROPERTY)
 		.field(SupplyOrderDelivery.WHO_PROPERTY)
 		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -6414,6 +6926,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderLineItemBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderLineItem.ID_PROPERTY)
 		.field(SupplyOrderLineItem.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
 		.field(SupplyOrderLineItem.SKU_ID_PROPERTY)
@@ -6428,6 +6941,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderShippingGroupBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderShippingGroup.ID_PROPERTY)
 		.field(SupplyOrderShippingGroup.NAME_PROPERTY)
 		.field(SupplyOrderShippingGroup.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
@@ -6439,6 +6953,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplyOrderPaymentGroupBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderPaymentGroup.ID_PROPERTY)
 		.field(SupplyOrderPaymentGroup.NAME_PROPERTY)
 		.field(SupplyOrderPaymentGroup.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
@@ -6450,6 +6965,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrder.ID_PROPERTY)
 		.field(RetailStoreOrder.BUYER_PROPERTY, getRetailStoreSummaryScope())
 		.field(RetailStoreOrder.SELLER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -6474,6 +6990,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderConfirmationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
 		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
 		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
@@ -6485,6 +7002,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderApprovalBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderApproval.ID_PROPERTY)
 		.field(RetailStoreOrderApproval.WHO_PROPERTY)
 		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
@@ -6496,6 +7014,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderProcessingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderProcessing.ID_PROPERTY)
 		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
 		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
@@ -6507,6 +7026,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPickingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPicking.ID_PROPERTY)
 		.field(RetailStoreOrderPicking.WHO_PROPERTY)
 		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
@@ -6518,6 +7038,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShipmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShipment.ID_PROPERTY)
 		.field(RetailStoreOrderShipment.WHO_PROPERTY)
 		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
@@ -6529,6 +7050,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderDeliveryBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderDelivery.ID_PROPERTY)
 		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
 		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
@@ -6540,6 +7062,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderLineItem.ID_PROPERTY)
 		.field(RetailStoreOrderLineItem.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
 		.field(RetailStoreOrderLineItem.SKU_ID_PROPERTY)
@@ -6554,6 +7077,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderShippingGroupBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderShippingGroup.ID_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderShippingGroup.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
@@ -6565,6 +7089,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope RetailStoreOrderPaymentGroupBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(RetailStoreOrderPaymentGroup.ID_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.NAME_PROPERTY)
 		.field(RetailStoreOrderPaymentGroup.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
@@ -6576,6 +7101,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Warehouse.ID_PROPERTY)
 		.field(Warehouse.LOCATION_PROPERTY)
 		.field(Warehouse.CONTACT_NUMBER_PROPERTY)
@@ -6598,6 +7124,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StorageSpaceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StorageSpace.ID_PROPERTY)
 		.field(StorageSpace.LOCATION_PROPERTY)
 		.field(StorageSpace.CONTACT_NUMBER_PROPERTY)
@@ -6614,6 +7141,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SmartPalletBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SmartPallet.ID_PROPERTY)
 		.field(SmartPallet.LOCATION_PROPERTY)
 		.field(SmartPallet.CONTACT_NUMBER_PROPERTY)
@@ -6630,6 +7158,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelf.ID_PROPERTY)
 		.field(GoodsShelf.LOCATION_PROPERTY)
 		.field(GoodsShelf.STORAGE_SPACE_PROPERTY, getStorageSpaceSummaryScope())
@@ -6645,6 +7174,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsShelfStockCountBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsShelfStockCount.ID_PROPERTY)
 		.field(GoodsShelfStockCount.TITLE_PROPERTY)
 		.field(GoodsShelfStockCount.COUNT_TIME_PROPERTY)
@@ -6658,6 +7188,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope StockCountIssueTrackBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(StockCountIssueTrack.ID_PROPERTY)
 		.field(StockCountIssueTrack.TITLE_PROPERTY)
 		.field(StockCountIssueTrack.COUNT_TIME_PROPERTY)
@@ -6670,6 +7201,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsAllocationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsAllocation.ID_PROPERTY)
 		.field(GoodsAllocation.LOCATION_PROPERTY)
 		.field(GoodsAllocation.LATITUDE_PROPERTY)
@@ -6683,6 +7215,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Goods.ID_PROPERTY)
 		.field(Goods.NAME_PROPERTY)
 		.field(Goods.RFID_PROPERTY)
@@ -6708,6 +7241,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsPackagingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsPackaging.ID_PROPERTY)
 		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
 		.field(GoodsPackaging.RFID_PROPERTY)
@@ -6721,6 +7255,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GoodsMovementBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GoodsMovement.ID_PROPERTY)
 		.field(GoodsMovement.MOVE_TIME_PROPERTY)
 		.field(GoodsMovement.FACILITY_PROPERTY)
@@ -6738,6 +7273,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SupplierSpaceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplierSpace.ID_PROPERTY)
 		.field(SupplierSpace.LOCATION_PROPERTY)
 		.field(SupplierSpace.CONTACT_NUMBER_PROPERTY)
@@ -6754,6 +7290,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ReceivingSpaceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ReceivingSpace.ID_PROPERTY)
 		.field(ReceivingSpace.LOCATION_PROPERTY)
 		.field(ReceivingSpace.CONTACT_NUMBER_PROPERTY)
@@ -6771,6 +7308,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ShippingSpaceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ShippingSpace.ID_PROPERTY)
 		.field(ShippingSpace.LOCATION_PROPERTY)
 		.field(ShippingSpace.CONTACT_NUMBER_PROPERTY)
@@ -6788,6 +7326,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope DamageSpaceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(DamageSpace.ID_PROPERTY)
 		.field(DamageSpace.LOCATION_PROPERTY)
 		.field(DamageSpace.CONTACT_NUMBER_PROPERTY)
@@ -6804,6 +7343,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope WarehouseAssetBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(WarehouseAsset.ID_PROPERTY)
 		.field(WarehouseAsset.NAME_PROPERTY)
 		.field(WarehouseAsset.POSITION_PROPERTY)
@@ -6816,6 +7356,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportFleetBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportFleet.ID_PROPERTY)
 		.field(TransportFleet.NAME_PROPERTY)
 		.field(TransportFleet.CONTACT_NUMBER_PROPERTY)
@@ -6831,6 +7372,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTruckBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTruck.ID_PROPERTY)
 		.field(TransportTruck.NAME_PROPERTY)
 		.field(TransportTruck.PLATE_NUMBER_PROPERTY)
@@ -6849,6 +7391,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TruckDriverBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TruckDriver.ID_PROPERTY)
 		.field(TruckDriver.NAME_PROPERTY)
 		.field(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY)
@@ -6862,6 +7405,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTask.ID_PROPERTY)
 		.field(TransportTask.NAME_PROPERTY)
 		.field(TransportTask.START_PROPERTY)
@@ -6881,6 +7425,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TransportTaskTrackBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TransportTaskTrack.ID_PROPERTY)
 		.field(TransportTaskTrack.TRACK_TIME_PROPERTY)
 		.field(TransportTaskTrack.LATITUDE_PROPERTY)
@@ -6893,6 +7438,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountSetBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountSet.ID_PROPERTY)
 		.field(AccountSet.NAME_PROPERTY)
 		.field(AccountSet.YEAR_SET_PROPERTY)
@@ -6916,6 +7462,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingSubjectBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingSubject.ID_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_CODE_PROPERTY)
 		.field(AccountingSubject.ACCOUNTING_SUBJECT_NAME_PROPERTY)
@@ -6930,6 +7477,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingPeriodBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingPeriod.ID_PROPERTY)
 		.field(AccountingPeriod.NAME_PROPERTY)
 		.field(AccountingPeriod.START_DATE_PROPERTY)
@@ -6943,6 +7491,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentType.ID_PROPERTY)
 		.field(AccountingDocumentType.NAME_PROPERTY)
 		.field(AccountingDocumentType.DESCRIPTION_PROPERTY)
@@ -6955,6 +7504,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocument.ID_PROPERTY)
 		.field(AccountingDocument.NAME_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
@@ -6974,6 +7524,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentCreationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentCreation.ID_PROPERTY)
 		.field(AccountingDocumentCreation.WHO_PROPERTY)
 		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
@@ -6986,6 +7537,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentConfirmationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentConfirmation.ID_PROPERTY)
 		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
 		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
@@ -6998,6 +7550,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentAuditingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentAuditing.ID_PROPERTY)
 		.field(AccountingDocumentAuditing.WHO_PROPERTY)
 		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
@@ -7010,6 +7563,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentPostingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentPosting.ID_PROPERTY)
 		.field(AccountingDocumentPosting.WHO_PROPERTY)
 		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
@@ -7022,6 +7576,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucher.ID_PROPERTY)
 		.field(OriginalVoucher.TITLE_PROPERTY)
 		.field(OriginalVoucher.MADE_BY_PROPERTY)
@@ -7040,6 +7595,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherCreationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherCreation.ID_PROPERTY)
 		.field(OriginalVoucherCreation.WHO_PROPERTY)
 		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
@@ -7052,6 +7608,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherConfirmationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherConfirmation.ID_PROPERTY)
 		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
 		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
@@ -7064,6 +7621,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OriginalVoucherAuditingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucherAuditing.ID_PROPERTY)
 		.field(OriginalVoucherAuditing.WHO_PROPERTY)
 		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
@@ -7076,6 +7634,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(AccountingDocumentLine.ID_PROPERTY)
 		.field(AccountingDocumentLine.NAME_PROPERTY)
 		.field(AccountingDocumentLine.CODE_PROPERTY)
@@ -7090,6 +7649,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelOneDepartmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.BELONGS_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(LevelOneDepartment.NAME_PROPERTY)
@@ -7104,6 +7664,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelTwoDepartmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelTwoDepartment.ID_PROPERTY)
 		.field(LevelTwoDepartment.BELONGS_TO_PROPERTY, getLevelOneDepartmentSummaryScope())
 		.field(LevelTwoDepartment.NAME_PROPERTY)
@@ -7117,6 +7678,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LevelThreeDepartmentBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LevelThreeDepartment.ID_PROPERTY)
 		.field(LevelThreeDepartment.BELONGS_TO_PROPERTY, getLevelTwoDepartmentSummaryScope())
 		.field(LevelThreeDepartment.NAME_PROPERTY)
@@ -7130,6 +7692,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SkillTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SkillType.ID_PROPERTY)
 		.field(SkillType.CODE_PROPERTY)
 		.field(SkillType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7142,6 +7705,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ResponsibilityTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ResponsibilityType.ID_PROPERTY)
 		.field(ResponsibilityType.CODE_PROPERTY)
 		.field(ResponsibilityType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7155,6 +7719,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationReasonBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationReason.ID_PROPERTY)
 		.field(TerminationReason.CODE_PROPERTY)
 		.field(TerminationReason.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7167,6 +7732,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TerminationType.ID_PROPERTY)
 		.field(TerminationType.CODE_PROPERTY)
 		.field(TerminationType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7180,6 +7746,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OccupationTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OccupationType.ID_PROPERTY)
 		.field(OccupationType.CODE_PROPERTY)
 		.field(OccupationType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7193,6 +7760,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LeaveTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LeaveType.ID_PROPERTY)
 		.field(LeaveType.CODE_PROPERTY)
 		.field(LeaveType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7206,6 +7774,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SalaryGradeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SalaryGrade.ID_PROPERTY)
 		.field(SalaryGrade.CODE_PROPERTY)
 		.field(SalaryGrade.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7220,6 +7789,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InterviewTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(InterviewType.ID_PROPERTY)
 		.field(InterviewType.CODE_PROPERTY)
 		.field(InterviewType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7233,6 +7803,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TrainingCourseTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(TrainingCourseType.ID_PROPERTY)
 		.field(TrainingCourseType.CODE_PROPERTY)
 		.field(TrainingCourseType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7246,6 +7817,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PublicHolidayBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PublicHoliday.ID_PROPERTY)
 		.field(PublicHoliday.CODE_PROPERTY)
 		.field(PublicHoliday.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7258,6 +7830,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope TerminationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Termination.ID_PROPERTY)
 		.field(Termination.REASON_PROPERTY, getTerminationReasonSummaryScope())
 		.field(Termination.TYPE_PROPERTY, getTerminationTypeSummaryScope())
@@ -7270,6 +7843,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ViewBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(View.ID_PROPERTY)
 		.field(View.WHO_PROPERTY)
 		.field(View.ASSESSMENT_PROPERTY)
@@ -7281,6 +7855,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Employee.ID_PROPERTY)
 		.field(Employee.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(Employee.TITLE_PROPERTY)
@@ -7323,6 +7898,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope JobApplicationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(JobApplication.ID_PROPERTY)
 		.field(JobApplication.APPLICATION_TIME_PROPERTY)
 		.field(JobApplication.WHO_PROPERTY)
@@ -7335,6 +7911,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ProfessionInterviewBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ProfessionInterview.ID_PROPERTY)
 		.field(ProfessionInterview.WHO_PROPERTY)
 		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
@@ -7347,6 +7924,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope HrInterviewBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(HrInterview.ID_PROPERTY)
 		.field(HrInterview.WHO_PROPERTY)
 		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
@@ -7359,6 +7937,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferApprovalBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferApproval.ID_PROPERTY)
 		.field(OfferApproval.WHO_PROPERTY)
 		.field(OfferApproval.APPROVE_TIME_PROPERTY)
@@ -7371,6 +7950,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope OfferAcceptanceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OfferAcceptance.ID_PROPERTY)
 		.field(OfferAcceptance.WHO_PROPERTY)
 		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
@@ -7383,6 +7963,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeBoardingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeBoarding.ID_PROPERTY)
 		.field(EmployeeBoarding.WHO_PROPERTY)
 		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
@@ -7395,6 +7976,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope InstructorBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Instructor.ID_PROPERTY)
 		.field(Instructor.TITLE_PROPERTY)
 		.field(Instructor.FAMILY_NAME_PROPERTY)
@@ -7412,6 +7994,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope CompanyTrainingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(CompanyTraining.ID_PROPERTY)
 		.field(CompanyTraining.TITLE_PROPERTY)
 		.field(CompanyTraining.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
@@ -7428,6 +8011,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ScoringBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Scoring.ID_PROPERTY)
 		.field(Scoring.SCORED_BY_PROPERTY)
 		.field(Scoring.SCORE_PROPERTY)
@@ -7440,6 +8024,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeCompanyTrainingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeCompanyTraining.ID_PROPERTY)
 		.field(EmployeeCompanyTraining.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeCompanyTraining.TRAINING_PROPERTY, getCompanyTrainingSummaryScope())
@@ -7452,6 +8037,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSkillBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSkill.ID_PROPERTY)
 		.field(EmployeeSkill.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeSkill.SKILL_TYPE_PROPERTY, getSkillTypeSummaryScope())
@@ -7463,6 +8049,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeePerformanceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeePerformance.ID_PROPERTY)
 		.field(EmployeePerformance.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeePerformance.PERFORMANCE_COMMENT_PROPERTY)
@@ -7473,6 +8060,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeWorkExperienceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeWorkExperience.ID_PROPERTY)
 		.field(EmployeeWorkExperience.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeWorkExperience.START_PROPERTY)
@@ -7486,6 +8074,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeLeaveBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeLeave.ID_PROPERTY)
 		.field(EmployeeLeave.WHO_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeLeave.TYPE_PROPERTY, getLeaveTypeSummaryScope())
@@ -7498,6 +8087,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeInterviewBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeInterview.ID_PROPERTY)
 		.field(EmployeeInterview.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeInterview.INTERVIEW_TYPE_PROPERTY, getInterviewTypeSummaryScope())
@@ -7509,6 +8099,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAttendanceBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAttendance.ID_PROPERTY)
 		.field(EmployeeAttendance.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeAttendance.ENTER_TIME_PROPERTY)
@@ -7522,6 +8113,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeQualifierBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeQualifier.ID_PROPERTY)
 		.field(EmployeeQualifier.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeQualifier.QUALIFIED_TIME_PROPERTY)
@@ -7535,6 +8127,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeEducationBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeEducation.ID_PROPERTY)
 		.field(EmployeeEducation.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeEducation.COMPLETE_TIME_PROPERTY)
@@ -7547,6 +8140,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeAwardBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeAward.ID_PROPERTY)
 		.field(EmployeeAward.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeAward.COMPLETE_TIME_PROPERTY)
@@ -7559,6 +8153,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope EmployeeSalarySheetBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeSalarySheet.ID_PROPERTY)
 		.field(EmployeeSalarySheet.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeSalarySheet.CURRENT_SALARY_GRADE_PROPERTY, getSalaryGradeSummaryScope())
@@ -7578,6 +8173,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope PayingOffBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(PayingOff.ID_PROPERTY)
 		.field(PayingOff.WHO_PROPERTY)
 		.field(PayingOff.PAID_FOR_PROPERTY, getEmployeeSummaryScope())
@@ -7591,6 +8187,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserDomainBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserDomain.ID_PROPERTY)
 		.field(UserDomain.NAME_PROPERTY)
 		.field(UserDomain.USER_WHITE_LIST_LIST, getUserWhiteListListItemScope())
@@ -7602,6 +8199,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserWhiteListBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserWhiteList.ID_PROPERTY)
 		.field(UserWhiteList.USER_IDENTITY_PROPERTY)
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
@@ -7613,11 +8211,15 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUser.ID_PROPERTY)
 		.field(SecUser.LOGIN_PROPERTY)
 		.field(SecUser.MOBILE_PROPERTY)
 		.field(SecUser.EMAIL_PROPERTY)
 		.field(SecUser.PWD_PROPERTY)
+		.field(SecUser.WEIXIN_OPENID_PROPERTY)
+		.field(SecUser.WEIXIN_APPID_PROPERTY)
+		.field(SecUser.ACCESS_TOKEN_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
@@ -7633,6 +8235,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope SecUserBlockingBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SecUserBlocking.ID_PROPERTY)
 		.field(SecUserBlocking.WHO_PROPERTY)
 		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
@@ -7645,6 +8248,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope UserAppBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(UserApp.ID_PROPERTY)
 		.field(UserApp.TITLE_PROPERTY)
 		.field(UserApp.SEC_USER_PROPERTY, getSecUserSummaryScope())
@@ -7663,6 +8267,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ListAccessBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ListAccess.ID_PROPERTY)
 		.field(ListAccess.NAME_PROPERTY)
 		.field(ListAccess.INTERNAL_NAME_PROPERTY)
@@ -7679,6 +8284,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope ObjectAccessBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ObjectAccess.ID_PROPERTY)
 		.field(ObjectAccess.NAME_PROPERTY)
 		.field(ObjectAccess.OBJECT_TYPE_PROPERTY)
@@ -7699,6 +8305,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope LoginHistoryBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(LoginHistory.ID_PROPERTY)
 		.field(LoginHistory.LOGIN_TIME_PROPERTY)
 		.field(LoginHistory.FROM_IP_PROPERTY)
@@ -7711,6 +8318,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope GenericFormBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(GenericForm.ID_PROPERTY)
 		.field(GenericForm.TITLE_PROPERTY)
 		.field(GenericForm.DESCRIPTION_PROPERTY)
@@ -7725,6 +8333,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormMessageBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormMessage.ID_PROPERTY)
 		.field(FormMessage.TITLE_PROPERTY)
 		.field(FormMessage.FORM_PROPERTY, getGenericFormSummaryScope())
@@ -7736,6 +8345,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldMessageBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormFieldMessage.ID_PROPERTY)
 		.field(FormFieldMessage.TITLE_PROPERTY)
 		.field(FormFieldMessage.PARAMETER_NAME_PROPERTY)
@@ -7748,6 +8358,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormFieldBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormField.ID_PROPERTY)
 		.field(FormField.LABEL_PROPERTY)
 		.field(FormField.LOCALE_KEY_PROPERTY)
@@ -7772,6 +8383,7 @@ public class RetailscmBaseViewScope {
 	}
 
 	protected static SerializeScope FormActionBaseDetailScope = SerializeScope.INCLUDE()
+		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(FormAction.ID_PROPERTY)
 		.field(FormAction.LABEL_PROPERTY)
 		.field(FormAction.LOCALE_KEY_PROPERTY)
@@ -7788,9 +8400,6 @@ public class RetailscmBaseViewScope {
 	
 
 }
-
-
-
 
 
 

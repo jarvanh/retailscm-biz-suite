@@ -32,7 +32,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TransportFleetDAO{
  
@@ -115,7 +118,7 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public TransportFleet load(String id,Map<String,Object> options) throws Exception{
@@ -846,9 +849,9 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return transportFleet;
 		}
 		
-		for(TransportTruck transportTruck: externalTransportTruckList){
+		for(TransportTruck transportTruckItem: externalTransportTruckList){
 
-			transportTruck.clearFromAll();
+			transportTruckItem.clearFromAll();
 		}
 		
 		
@@ -874,9 +877,9 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return transportFleet;
 		}
 		
-		for(TruckDriver truckDriver: externalTruckDriverList){
+		for(TruckDriver truckDriverItem: externalTruckDriverList){
 
-			truckDriver.clearFromAll();
+			truckDriverItem.clearFromAll();
 		}
 		
 		
@@ -902,9 +905,9 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return transportFleet;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
+		for(TransportTask transportTaskItem: externalTransportTaskList){
 
-			transportTask.clearFromAll();
+			transportTaskItem.clearFromAll();
 		}
 		
 		
@@ -934,9 +937,9 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return transportFleet;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearEnd();
-			transportTask.clearBelongsTo();
+		for(TransportTask transportTaskItem: externalTransportTaskList){
+			transportTaskItem.clearEnd();
+			transportTaskItem.clearBelongsTo();
 			
 		}
 		
@@ -978,9 +981,9 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return transportFleet;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearDriver();
-			transportTask.clearBelongsTo();
+		for(TransportTask transportTaskItem: externalTransportTaskList){
+			transportTaskItem.clearDriver();
+			transportTaskItem.clearBelongsTo();
 			
 		}
 		
@@ -1022,9 +1025,9 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return transportFleet;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearTruck();
-			transportTask.clearBelongsTo();
+		for(TransportTask transportTaskItem: externalTransportTaskList){
+			transportTaskItem.clearTruck();
+			transportTaskItem.clearBelongsTo();
 			
 		}
 		
@@ -1452,6 +1455,9 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 	public SmartList<TransportFleet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTransportFleetMapper());
 	}
+	
+	
+
 }
 
 

@@ -445,6 +445,27 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ConsumerOrderLineItem){
+		
+			
+			ConsumerOrderLineItem dest =(ConsumerOrderLineItem)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeSkuId(getSkuId());
+			dest.mergeSkuName(getSkuName());
+			dest.mergePrice(getPrice());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeAmount(getAmount());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

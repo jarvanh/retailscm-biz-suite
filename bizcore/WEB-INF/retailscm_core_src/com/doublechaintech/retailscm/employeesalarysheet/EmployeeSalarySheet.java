@@ -561,6 +561,29 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeSalarySheet){
+		
+			
+			EmployeeSalarySheet dest =(EmployeeSalarySheet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeBaseSalary(getBaseSalary());
+			dest.mergeBonus(getBonus());
+			dest.mergeReward(getReward());
+			dest.mergePersonalTax(getPersonalTax());
+			dest.mergeSocialSecurity(getSocialSecurity());
+			dest.mergeHousingFound(getHousingFound());
+			dest.mergeJobInsurance(getJobInsurance());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

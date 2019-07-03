@@ -629,8 +629,8 @@ public class ProfessionInterviewManagerImpl extends CustomRetailscmCheckerManage
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfProfessionInterview(professionInterviewId);
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
+		for(String employeeIdItem: employeeIds){
+			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ProfessionInterviewManagerException.class);

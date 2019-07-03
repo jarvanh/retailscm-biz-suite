@@ -625,8 +625,8 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			String supplierProductIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-		for(String supplierProductId: supplierProductIds){
-			userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
+		for(String supplierProductIdItem: supplierProductIds){
+			userContext.getChecker().checkIdOfSupplierProduct(supplierProductIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
@@ -879,8 +879,8 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-		for(String supplyOrderId: supplyOrderIds){
-			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
+		for(String supplyOrderIdItem: supplyOrderIds){
+			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
@@ -1367,8 +1367,8 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			String accountSetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-		for(String accountSetId: accountSetIds){
-			userContext.getChecker().checkIdOfAccountSet(accountSetId);
+		for(String accountSetIdItem: accountSetIds){
+			userContext.getChecker().checkIdOfAccountSet(accountSetIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsSupplierManagerException.class);

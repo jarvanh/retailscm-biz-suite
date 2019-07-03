@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class PublicHolidayJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PublicHolidayDAO{
  
@@ -52,7 +55,7 @@ public class PublicHolidayJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public PublicHoliday load(String id,Map<String,Object> options) throws Exception{
@@ -551,6 +554,9 @@ public class PublicHolidayJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<PublicHoliday> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPublicHolidayMapper());
 	}
+	
+	
+
 }
 
 

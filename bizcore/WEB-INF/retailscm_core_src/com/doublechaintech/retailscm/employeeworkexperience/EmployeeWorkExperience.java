@@ -360,6 +360,25 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeWorkExperience){
+		
+			
+			EmployeeWorkExperience dest =(EmployeeWorkExperience)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeStart(getStart());
+			dest.mergeEnd(getEnd());
+			dest.mergeCompany(getCompany());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

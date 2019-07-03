@@ -330,6 +330,22 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreInvestmentInvitation){
+		
+			
+			RetailStoreInvestmentInvitation dest =(RetailStoreInvestmentInvitation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -595,8 +595,8 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		for(String goodsShelfId: goodsShelfIds){
-			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
+		for(String goodsShelfIdItem: goodsShelfIds){
+			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);

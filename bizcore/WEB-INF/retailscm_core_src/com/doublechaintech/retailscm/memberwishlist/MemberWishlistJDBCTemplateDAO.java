@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class MemberWishlistJDBCTemplateDAO extends RetailscmNamingServiceDAO implements MemberWishlistDAO{
  
@@ -73,7 +76,7 @@ public class MemberWishlistJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public MemberWishlist load(String id,Map<String,Object> options) throws Exception{
@@ -612,9 +615,9 @@ public class MemberWishlistJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return memberWishlist;
 		}
 		
-		for(MemberWishlistProduct memberWishlistProduct: externalMemberWishlistProductList){
+		for(MemberWishlistProduct memberWishlistProductItem: externalMemberWishlistProductList){
 
-			memberWishlistProduct.clearFromAll();
+			memberWishlistProductItem.clearFromAll();
 		}
 		
 		
@@ -798,6 +801,9 @@ public class MemberWishlistJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 	public SmartList<MemberWishlist> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getMemberWishlistMapper());
 	}
+	
+	
+
 }
 
 

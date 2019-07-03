@@ -50,7 +50,10 @@ import com.doublechaintech.retailscm.retailstorefranchising.RetailStoreFranchisi
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreDAO{
  
@@ -234,7 +237,7 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStore load(String id,Map<String,Object> options) throws Exception{
@@ -1975,9 +1978,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
 
-			consumerOrder.clearFromAll();
+			consumerOrderItem.clearFromAll();
 		}
 		
 		
@@ -2007,9 +2010,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
-			consumerOrder.clearConsumer();
-			consumerOrder.clearStore();
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearConsumer();
+			consumerOrderItem.clearStore();
 			
 		}
 		
@@ -2047,9 +2050,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
 
-			retailStoreOrder.clearFromAll();
+			retailStoreOrderItem.clearFromAll();
 		}
 		
 		
@@ -2079,9 +2082,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
-			retailStoreOrder.clearSeller();
-			retailStoreOrder.clearBuyer();
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearSeller();
+			retailStoreOrderItem.clearBuyer();
 			
 		}
 		
@@ -2119,9 +2122,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
+		for(Goods goodsItem: externalGoodsList){
 
-			goods.clearFromAll();
+			goodsItem.clearFromAll();
 		}
 		
 		
@@ -2151,9 +2154,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2195,9 +2198,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearReceivingSpace();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2239,9 +2242,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearGoodsAllocation();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2283,9 +2286,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSmartPallet();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2327,9 +2330,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearShippingSpace();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearShippingSpace();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2371,9 +2374,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2415,9 +2418,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearBizOrder();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2459,9 +2462,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearRetailStore();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStoreOrder();
+			goodsItem.clearRetailStore();
 			
 		}
 		
@@ -2499,9 +2502,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
+		for(TransportTask transportTaskItem: externalTransportTaskList){
 
-			transportTask.clearFromAll();
+			transportTaskItem.clearFromAll();
 		}
 		
 		
@@ -2531,9 +2534,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearDriver();
-			transportTask.clearEnd();
+		for(TransportTask transportTaskItem: externalTransportTaskList){
+			transportTaskItem.clearDriver();
+			transportTaskItem.clearEnd();
 			
 		}
 		
@@ -2575,9 +2578,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearTruck();
-			transportTask.clearEnd();
+		for(TransportTask transportTaskItem: externalTransportTaskList){
+			transportTaskItem.clearTruck();
+			transportTaskItem.clearEnd();
 			
 		}
 		
@@ -2619,9 +2622,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearBelongsTo();
-			transportTask.clearEnd();
+		for(TransportTask transportTaskItem: externalTransportTaskList){
+			transportTaskItem.clearBelongsTo();
+			transportTaskItem.clearEnd();
 			
 		}
 		
@@ -2659,9 +2662,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
+		for(AccountSet accountSetItem: externalAccountSetList){
 
-			accountSet.clearFromAll();
+			accountSetItem.clearFromAll();
 		}
 		
 		
@@ -2691,9 +2694,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearCountryCenter();
-			accountSet.clearRetailStore();
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearCountryCenter();
+			accountSetItem.clearRetailStore();
 			
 		}
 		
@@ -2735,9 +2738,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return retailStore;
 		}
 		
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearGoodsSupplier();
-			accountSet.clearRetailStore();
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearGoodsSupplier();
+			accountSetItem.clearRetailStore();
 			
 		}
 		
@@ -3397,6 +3400,9 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<RetailStore> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMapper());
 	}
+	
+	
+
 }
 
 

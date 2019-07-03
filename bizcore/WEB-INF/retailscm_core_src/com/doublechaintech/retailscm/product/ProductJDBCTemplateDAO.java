@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.sku.SkuDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ProductDAO{
  
@@ -73,7 +76,7 @@ public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public Product load(String id,Map<String,Object> options) throws Exception{
@@ -638,9 +641,9 @@ public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 			return product;
 		}
 		
-		for(Sku sku: externalSkuList){
+		for(Sku skuItem: externalSkuList){
 
-			sku.clearFromAll();
+			skuItem.clearFromAll();
 		}
 		
 		
@@ -824,6 +827,9 @@ public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	public SmartList<Product> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getProductMapper());
 	}
+	
+	
+
 }
 
 

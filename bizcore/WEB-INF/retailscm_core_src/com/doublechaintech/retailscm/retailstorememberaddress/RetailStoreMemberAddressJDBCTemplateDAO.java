@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreMemberAddressJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberAddressDAO{
  
@@ -52,7 +55,7 @@ public class RetailStoreMemberAddressJDBCTemplateDAO extends RetailscmNamingServ
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreMemberAddress load(String id,Map<String,Object> options) throws Exception{
@@ -551,6 +554,9 @@ public class RetailStoreMemberAddressJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<RetailStoreMemberAddress> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberAddressMapper());
 	}
+	
+	
+
 }
 
 

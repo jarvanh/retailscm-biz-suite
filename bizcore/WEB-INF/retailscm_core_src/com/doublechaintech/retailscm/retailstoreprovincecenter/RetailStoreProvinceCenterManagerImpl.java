@@ -572,8 +572,8 @@ public class RetailStoreProvinceCenterManagerImpl extends CustomRetailscmChecker
 			String provinceCenterDepartmentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterId);
-		for(String provinceCenterDepartmentId: provinceCenterDepartmentIds){
-			userContext.getChecker().checkIdOfProvinceCenterDepartment(provinceCenterDepartmentId);
+		for(String provinceCenterDepartmentIdItem: provinceCenterDepartmentIds){
+			userContext.getChecker().checkIdOfProvinceCenterDepartment(provinceCenterDepartmentIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreProvinceCenterManagerException.class);
@@ -834,8 +834,8 @@ public class RetailStoreProvinceCenterManagerImpl extends CustomRetailscmChecker
 			String provinceCenterEmployeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterId);
-		for(String provinceCenterEmployeeId: provinceCenterEmployeeIds){
-			userContext.getChecker().checkIdOfProvinceCenterEmployee(provinceCenterEmployeeId);
+		for(String provinceCenterEmployeeIdItem: provinceCenterEmployeeIds){
+			userContext.getChecker().checkIdOfProvinceCenterEmployee(provinceCenterEmployeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreProvinceCenterManagerException.class);
@@ -1086,8 +1086,8 @@ public class RetailStoreProvinceCenterManagerImpl extends CustomRetailscmChecker
 			String retailStoreCityServiceCenterIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterId);
-		for(String retailStoreCityServiceCenterId: retailStoreCityServiceCenterIds){
-			userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
+		for(String retailStoreCityServiceCenterIdItem: retailStoreCityServiceCenterIds){
+			userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreProvinceCenterManagerException.class);

@@ -701,8 +701,8 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
+		for(String employeeIdItem: employeeIds){
+			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
@@ -1237,8 +1237,8 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		for(String employeeSalarySheetId: employeeSalarySheetIds){
-			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
+			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);

@@ -523,8 +523,8 @@ public class AccountingDocumentAuditingManagerImpl extends CustomRetailscmChecke
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocumentAuditing(accountingDocumentAuditingId);
-		for(String accountingDocumentId: accountingDocumentIds){
-			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
+		for(String accountingDocumentIdItem: accountingDocumentIds){
+			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentAuditingManagerException.class);

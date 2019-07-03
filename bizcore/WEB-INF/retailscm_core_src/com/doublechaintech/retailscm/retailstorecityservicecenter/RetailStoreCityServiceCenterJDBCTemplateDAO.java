@@ -34,7 +34,10 @@ import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreCityServiceCenterDAO{
  
@@ -136,7 +139,7 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreCityServiceCenter load(String id,Map<String,Object> options) throws Exception{
@@ -953,9 +956,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 			return retailStoreCityServiceCenter;
 		}
 		
-		for(CityPartner cityPartner: externalCityPartnerList){
+		for(CityPartner cityPartnerItem: externalCityPartnerList){
 
-			cityPartner.clearFromAll();
+			cityPartnerItem.clearFromAll();
 		}
 		
 		
@@ -981,9 +984,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 			return retailStoreCityServiceCenter;
 		}
 		
-		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
+		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
 
-			potentialCustomer.clearFromAll();
+			potentialCustomerItem.clearFromAll();
 		}
 		
 		
@@ -1013,9 +1016,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 			return retailStoreCityServiceCenter;
 		}
 		
-		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
-			potentialCustomer.clearCityPartner();
-			potentialCustomer.clearCityServiceCenter();
+		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
+			potentialCustomerItem.clearCityPartner();
+			potentialCustomerItem.clearCityServiceCenter();
 			
 		}
 		
@@ -1053,9 +1056,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 			return retailStoreCityServiceCenter;
 		}
 		
-		for(CityEvent cityEvent: externalCityEventList){
+		for(CityEvent cityEventItem: externalCityEventList){
 
-			cityEvent.clearFromAll();
+			cityEventItem.clearFromAll();
 		}
 		
 		
@@ -1081,9 +1084,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 			return retailStoreCityServiceCenter;
 		}
 		
-		for(RetailStore retailStore: externalRetailStoreList){
+		for(RetailStore retailStoreItem: externalRetailStoreList){
 
-			retailStore.clearFromAll();
+			retailStoreItem.clearFromAll();
 		}
 		
 		
@@ -1113,9 +1116,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 			return retailStoreCityServiceCenter;
 		}
 		
-		for(RetailStore retailStore: externalRetailStoreList){
-			retailStore.clearRetailStoreCountryCenter();
-			retailStore.clearCityServiceCenter();
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearRetailStoreCountryCenter();
+			retailStoreItem.clearCityServiceCenter();
 			
 		}
 		
@@ -1659,6 +1662,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNaming
 	public SmartList<RetailStoreCityServiceCenter> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreCityServiceCenterMapper());
 	}
+	
+	
+
 }
 
 

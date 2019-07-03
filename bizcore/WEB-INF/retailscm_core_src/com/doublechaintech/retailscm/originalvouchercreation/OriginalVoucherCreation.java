@@ -410,6 +410,24 @@ public class OriginalVoucherCreation extends BaseEntity implements  java.io.Seri
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof OriginalVoucherCreation){
+		
+			
+			OriginalVoucherCreation dest =(OriginalVoucherCreation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeComments(getComments());
+			dest.mergeMakeDate(getMakeDate());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

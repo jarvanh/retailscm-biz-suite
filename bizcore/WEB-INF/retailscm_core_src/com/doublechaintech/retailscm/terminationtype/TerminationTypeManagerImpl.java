@@ -559,8 +559,8 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 			String terminationIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTerminationType(terminationTypeId);
-		for(String terminationId: terminationIds){
-			userContext.getChecker().checkIdOfTermination(terminationId);
+		for(String terminationIdItem: terminationIds){
+			userContext.getChecker().checkIdOfTermination(terminationIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TerminationTypeManagerException.class);

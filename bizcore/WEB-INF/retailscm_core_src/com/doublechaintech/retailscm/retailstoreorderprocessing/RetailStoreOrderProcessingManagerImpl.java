@@ -521,8 +521,8 @@ public class RetailStoreOrderProcessingManagerImpl extends CustomRetailscmChecke
 			String retailStoreOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreOrderProcessing(retailStoreOrderProcessingId);
-		for(String retailStoreOrderId: retailStoreOrderIds){
-			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
+		for(String retailStoreOrderIdItem: retailStoreOrderIds){
+			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderProcessingManagerException.class);

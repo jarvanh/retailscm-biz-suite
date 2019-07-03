@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements DamageSpaceDAO{
  
@@ -73,7 +76,7 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public DamageSpace load(String id,Map<String,Object> options) throws Exception{
@@ -638,9 +641,9 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return damageSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 
-			goodsShelf.clearFromAll();
+			goodsShelfItem.clearFromAll();
 		}
 		
 		
@@ -670,9 +673,9 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return damageSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearStorageSpace();
-			goodsShelf.clearDamageSpace();
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearStorageSpace();
+			goodsShelfItem.clearDamageSpace();
 			
 		}
 		
@@ -714,9 +717,9 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return damageSpace;
 		}
 		
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearSupplierSpace();
-			goodsShelf.clearDamageSpace();
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearSupplierSpace();
+			goodsShelfItem.clearDamageSpace();
 			
 		}
 		
@@ -912,6 +915,9 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<DamageSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getDamageSpaceMapper());
 	}
+	
+	
+
 }
 
 

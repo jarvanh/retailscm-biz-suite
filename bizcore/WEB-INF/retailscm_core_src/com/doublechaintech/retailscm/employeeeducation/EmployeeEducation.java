@@ -320,6 +320,24 @@ public class EmployeeEducation extends BaseEntity implements  java.io.Serializab
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeEducation){
+		
+			
+			EmployeeEducation dest =(EmployeeEducation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCompleteTime(getCompleteTime());
+			dest.mergeType(getType());
+			dest.mergeRemark(getRemark());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

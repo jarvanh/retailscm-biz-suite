@@ -541,8 +541,8 @@ public class RetailStoreDecorationManagerImpl extends CustomRetailscmCheckerMana
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreDecoration(retailStoreDecorationId);
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
+		for(String retailStoreIdItem: retailStoreIds){
+			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreDecorationManagerException.class);

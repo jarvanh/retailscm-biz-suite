@@ -559,8 +559,8 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 			String employeeInterviewIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-		for(String employeeInterviewId: employeeInterviewIds){
-			userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewId);
+		for(String employeeInterviewIdItem: employeeInterviewIds){
+			userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);

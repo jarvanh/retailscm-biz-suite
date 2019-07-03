@@ -480,6 +480,25 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingSubject){
+		
+			
+			AccountingSubject dest =(AccountingSubject)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeAccountingSubjectCode(getAccountingSubjectCode());
+			dest.mergeAccountingSubjectName(getAccountingSubjectName());
+			dest.mergeAccountingSubjectClassCode(getAccountingSubjectClassCode());
+			dest.mergeAccountingSubjectClassName(getAccountingSubjectClassName());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

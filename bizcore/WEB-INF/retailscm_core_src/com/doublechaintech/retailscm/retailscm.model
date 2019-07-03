@@ -81,7 +81,7 @@
 		package_type="包装类型"
 		net_content="包装数量等信息,包装数量等信息,包装数量等信息"
 		price="$1323.33"
-		picture="this is a loooooooooooooooog.jpg"
+		picture="coco.jpg"
 		
 	/>	
 	<!-- barcode varchar(72),  条码
@@ -789,7 +789,8 @@ ATM取款：ATM withdrawal
 		domestic_currency_name="人民币|美元"
 		opening_bank="招商银行|工商银行"
 		account_number="33265805054885"
-		country_center="$(retail_store_country_center)" _vg4country_center="财务管理"
+		country_center="$(retail_store_country_center)" 
+		_vg4country_center="财务管理"
 		retail_store="$(retail_store)"
 		goods_supplier="$(goods_supplier)"
 		last_update_time="updateTime()"
@@ -1206,9 +1207,6 @@ ATM取款：ATM withdrawal
    
  
 </root>
-
-
-
 
 
 

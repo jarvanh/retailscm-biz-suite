@@ -34,7 +34,10 @@ import com.doublechaintech.retailscm.storagespace.StorageSpaceDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsShelfDAO{
  
@@ -116,7 +119,7 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public GoodsShelf load(String id,Map<String,Object> options) throws Exception{
@@ -995,9 +998,9 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return goodsShelf;
 		}
 		
-		for(GoodsShelfStockCount goodsShelfStockCount: externalGoodsShelfStockCountList){
+		for(GoodsShelfStockCount goodsShelfStockCountItem: externalGoodsShelfStockCountList){
 
-			goodsShelfStockCount.clearFromAll();
+			goodsShelfStockCountItem.clearFromAll();
 		}
 		
 		
@@ -1023,9 +1026,9 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 			return goodsShelf;
 		}
 		
-		for(GoodsAllocation goodsAllocation: externalGoodsAllocationList){
+		for(GoodsAllocation goodsAllocationItem: externalGoodsAllocationList){
 
-			goodsAllocation.clearFromAll();
+			goodsAllocationItem.clearFromAll();
 		}
 		
 		
@@ -1325,6 +1328,9 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 	public SmartList<GoodsShelf> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsShelfMapper());
 	}
+	
+	
+
 }
 
 

@@ -30,7 +30,10 @@ import com.doublechaintech.retailscm.potentialcustomercontactperson.PotentialCus
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PotentialCustomerContactDAO{
  
@@ -74,7 +77,7 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmNamingServ
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public PotentialCustomerContact load(String id,Map<String,Object> options) throws Exception{
@@ -829,6 +832,9 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<PotentialCustomerContact> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPotentialCustomerContactMapper());
 	}
+	
+	
+
 }
 
 

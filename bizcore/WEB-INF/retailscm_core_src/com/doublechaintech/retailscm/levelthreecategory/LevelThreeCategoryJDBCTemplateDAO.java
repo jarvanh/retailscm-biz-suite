@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.product.ProductDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LevelThreeCategoryDAO{
  
@@ -73,7 +76,7 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public LevelThreeCategory load(String id,Map<String,Object> options) throws Exception{
@@ -612,9 +615,9 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return levelThreeCategory;
 		}
 		
-		for(Product product: externalProductList){
+		for(Product productItem: externalProductList){
 
-			product.clearFromAll();
+			productItem.clearFromAll();
 		}
 		
 		
@@ -798,6 +801,9 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<LevelThreeCategory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelThreeCategoryMapper());
 	}
+	
+	
+
 }
 
 

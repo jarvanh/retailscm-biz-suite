@@ -280,6 +280,23 @@ public class SupplyOrderShippingGroup extends BaseEntity implements  java.io.Ser
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderShippingGroup){
+		
+			
+			SupplyOrderShippingGroup dest =(SupplyOrderShippingGroup)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeAmount(getAmount());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

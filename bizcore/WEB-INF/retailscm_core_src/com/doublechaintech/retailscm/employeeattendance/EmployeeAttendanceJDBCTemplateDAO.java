@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class EmployeeAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeAttendanceDAO{
  
@@ -52,7 +55,7 @@ public class EmployeeAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public EmployeeAttendance load(String id,Map<String,Object> options) throws Exception{
@@ -553,6 +556,9 @@ public class EmployeeAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<EmployeeAttendance> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeAttendanceMapper());
 	}
+	
+	
+
 }
 
 

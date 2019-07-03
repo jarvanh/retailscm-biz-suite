@@ -363,13 +363,13 @@ public class Sku extends BaseEntity implements  java.io.Serializable{
 	
 	
 	public void setPicture(String picture){
-		this.mPicture = trimString(picture);;
+		this.mPicture = trimString(encodeUrl(picture));;
 	}
 	public String getPicture(){
 		return this.mPicture;
 	}
 	public Sku updatePicture(String picture){
-		this.mPicture = trimString(picture);;
+		this.mPicture = trimString(encodeUrl(picture));;
 		this.changed = true;
 		return this;
 	}
@@ -597,6 +597,28 @@ public class Sku extends BaseEntity implements  java.io.Serializable{
 
 		}
 		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Sku){
+		
+			
+			Sku dest =(Sku)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeSize(getSize());
+			dest.mergeBarcode(getBarcode());
+			dest.mergePackageType(getPackageType());
+			dest.mergeNetContent(getNetContent());
+			dest.mergePrice(getPrice());
+			dest.mergePicture(getPicture());
+			dest.mergeVersion(getVersion());
+
+		}
 		return baseDest;
 	}
 	

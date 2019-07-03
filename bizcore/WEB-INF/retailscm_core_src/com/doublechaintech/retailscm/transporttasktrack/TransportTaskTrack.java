@@ -320,6 +320,24 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TransportTaskTrack){
+		
+			
+			TransportTaskTrack dest =(TransportTaskTrack)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTrackTime(getTrackTime());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

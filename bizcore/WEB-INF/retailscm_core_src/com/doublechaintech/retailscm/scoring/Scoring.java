@@ -410,6 +410,24 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Scoring){
+		
+			
+			Scoring dest =(Scoring)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeScoredBy(getScoredBy());
+			dest.mergeScore(getScore());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

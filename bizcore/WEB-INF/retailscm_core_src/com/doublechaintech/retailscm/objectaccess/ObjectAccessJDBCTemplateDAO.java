@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.userapp.UserAppDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class ObjectAccessJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ObjectAccessDAO{
  
@@ -52,7 +55,7 @@ public class ObjectAccessJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public ObjectAccess load(String id,Map<String,Object> options) throws Exception{
@@ -567,6 +570,9 @@ public class ObjectAccessJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	public SmartList<ObjectAccess> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getObjectAccessMapper());
 	}
+	
+	
+
 }
 
 

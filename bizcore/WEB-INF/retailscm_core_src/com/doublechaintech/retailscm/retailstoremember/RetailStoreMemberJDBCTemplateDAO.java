@@ -40,7 +40,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberDAO{
  
@@ -199,7 +202,7 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreMember load(String id,Map<String,Object> options) throws Exception{
@@ -1256,9 +1259,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
 
-			consumerOrder.clearFromAll();
+			consumerOrderItem.clearFromAll();
 		}
 		
 		
@@ -1288,9 +1291,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
-			consumerOrder.clearStore();
-			consumerOrder.clearConsumer();
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearStore();
+			consumerOrderItem.clearConsumer();
 			
 		}
 		
@@ -1328,9 +1331,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(RetailStoreMemberCoupon retailStoreMemberCoupon: externalRetailStoreMemberCouponList){
+		for(RetailStoreMemberCoupon retailStoreMemberCouponItem: externalRetailStoreMemberCouponList){
 
-			retailStoreMemberCoupon.clearFromAll();
+			retailStoreMemberCouponItem.clearFromAll();
 		}
 		
 		
@@ -1356,9 +1359,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(MemberWishlist memberWishlist: externalMemberWishlistList){
+		for(MemberWishlist memberWishlistItem: externalMemberWishlistList){
 
-			memberWishlist.clearFromAll();
+			memberWishlistItem.clearFromAll();
 		}
 		
 		
@@ -1384,9 +1387,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(MemberRewardPoint memberRewardPoint: externalMemberRewardPointList){
+		for(MemberRewardPoint memberRewardPointItem: externalMemberRewardPointList){
 
-			memberRewardPoint.clearFromAll();
+			memberRewardPointItem.clearFromAll();
 		}
 		
 		
@@ -1412,9 +1415,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(MemberRewardPointRedemption memberRewardPointRedemption: externalMemberRewardPointRedemptionList){
+		for(MemberRewardPointRedemption memberRewardPointRedemptionItem: externalMemberRewardPointRedemptionList){
 
-			memberRewardPointRedemption.clearFromAll();
+			memberRewardPointRedemptionItem.clearFromAll();
 		}
 		
 		
@@ -1440,9 +1443,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(RetailStoreMemberAddress retailStoreMemberAddress: externalRetailStoreMemberAddressList){
+		for(RetailStoreMemberAddress retailStoreMemberAddressItem: externalRetailStoreMemberAddressList){
 
-			retailStoreMemberAddress.clearFromAll();
+			retailStoreMemberAddressItem.clearFromAll();
 		}
 		
 		
@@ -1468,9 +1471,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
-		for(RetailStoreMemberGiftCard retailStoreMemberGiftCard: externalRetailStoreMemberGiftCardList){
+		for(RetailStoreMemberGiftCard retailStoreMemberGiftCardItem: externalRetailStoreMemberGiftCardList){
 
-			retailStoreMemberGiftCard.clearFromAll();
+			retailStoreMemberGiftCardItem.clearFromAll();
 		}
 		
 		
@@ -2350,6 +2353,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public SmartList<RetailStoreMember> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberMapper());
 	}
+	
+	
+
 }
 
 

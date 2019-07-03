@@ -30,7 +30,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SalaryGradeDAO{
  
@@ -94,7 +97,7 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SalaryGrade load(String id,Map<String,Object> options) throws Exception{
@@ -723,9 +726,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return salaryGrade;
 		}
 		
-		for(Employee employee: externalEmployeeList){
+		for(Employee employeeItem: externalEmployeeList){
 
-			employee.clearFromAll();
+			employeeItem.clearFromAll();
 		}
 		
 		
@@ -755,9 +758,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return salaryGrade;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCompany();
-			employee.clearCurrentSalaryGrade();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCompany();
+			employeeItem.clearCurrentSalaryGrade();
 			
 		}
 		
@@ -799,9 +802,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return salaryGrade;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearCurrentSalaryGrade();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearDepartment();
+			employeeItem.clearCurrentSalaryGrade();
 			
 		}
 		
@@ -843,9 +846,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return salaryGrade;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearCurrentSalaryGrade();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOccupation();
+			employeeItem.clearCurrentSalaryGrade();
 			
 		}
 		
@@ -887,9 +890,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return salaryGrade;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearResponsibleFor();
-			employee.clearCurrentSalaryGrade();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearResponsibleFor();
+			employeeItem.clearCurrentSalaryGrade();
 			
 		}
 		
@@ -927,9 +930,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return salaryGrade;
 		}
 		
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
 
-			employeeSalarySheet.clearFromAll();
+			employeeSalarySheetItem.clearFromAll();
 		}
 		
 		
@@ -959,9 +962,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return salaryGrade;
 		}
 		
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
-			employeeSalarySheet.clearEmployee();
-			employeeSalarySheet.clearCurrentSalaryGrade();
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearEmployee();
+			employeeSalarySheetItem.clearCurrentSalaryGrade();
 			
 		}
 		
@@ -1273,6 +1276,9 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<SalaryGrade> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSalaryGradeMapper());
 	}
+	
+	
+
 }
 
 

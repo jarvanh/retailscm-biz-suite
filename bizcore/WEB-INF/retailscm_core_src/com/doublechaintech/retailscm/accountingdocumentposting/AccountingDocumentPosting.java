@@ -410,6 +410,24 @@ public class AccountingDocumentPosting extends BaseEntity implements  java.io.Se
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingDocumentPosting){
+		
+			
+			AccountingDocumentPosting dest =(AccountingDocumentPosting)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeComments(getComments());
+			dest.mergeMakeDate(getMakeDate());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

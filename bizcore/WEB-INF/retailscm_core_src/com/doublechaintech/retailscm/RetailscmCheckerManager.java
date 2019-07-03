@@ -65,12 +65,21 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	
 	protected void cacheVerifyCode(RetailscmUserContext ctx, String mobile, String verifyCode) {
 		String cacheKey = "verifyCode:"+mobile;
-		ctx.putToCache(cacheKey, verifyCode, RetailscmBaseConstants.DEFAULT_CACHE_TIME_FOR_USER);
+		ctx.putToCache(cacheKey, verifyCode, RetailscmBaseConstants.DEFAULT_CACHE_TIME_FOR_VCODE);
 	}
 
 	protected String getVerifyCodeFromCache(RetailscmUserContext ctx, String mobile) {
 		String cacheKey = "verifyCode:"+mobile;
 		return (String) ctx.getCachedObject(cacheKey, String.class);
+	}
+	protected void checkVerifyCode(RetailscmUserContext ctx, String inputVerifyCode, String mobile) throws Exception {
+		String cachedVerifyCode = getVerifyCodeFromCache(ctx, mobile);
+		if (cachedVerifyCode == null) {
+			throw new Exception("请先获取验证码");
+		}
+		if (!cachedVerifyCode.equals(inputVerifyCode)) {
+			throw new Exception("验证码不正确");
+		}
 	}
 	/*
 	
@@ -6763,6 +6772,30 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 		
 	}	 			
 	
+	public static final String  WEIXIN_OPENID_OF_SEC_USER ="sec_user.weixin_openid";
+	protected void checkWeixinOpenidOfSecUser(RetailscmUserContext userContext, String weixinOpenid, List<Message> messageList)
+	{
+		
+	 	checkStringLengthRange(weixinOpenid,0, 128,WEIXIN_OPENID_OF_SEC_USER, messageList); 		
+		
+	}	 			
+	
+	public static final String  WEIXIN_APPID_OF_SEC_USER ="sec_user.weixin_appid";
+	protected void checkWeixinAppidOfSecUser(RetailscmUserContext userContext, String weixinAppid, List<Message> messageList)
+	{
+		
+	 	checkStringLengthRange(weixinAppid,0, 128,WEIXIN_APPID_OF_SEC_USER, messageList); 		
+		
+	}	 			
+	
+	public static final String  ACCESS_TOKEN_OF_SEC_USER ="sec_user.access_token";
+	protected void checkAccessTokenOfSecUser(RetailscmUserContext userContext, String accessToken, List<Message> messageList)
+	{
+		
+	 	checkStringLengthRange(accessToken,0, 128,ACCESS_TOKEN_OF_SEC_USER, messageList); 		
+		
+	}	 			
+	
 	public static final String  VERIFICATION_CODE_OF_SEC_USER ="sec_user.verification_code";
 	protected void checkVerificationCodeOfSecUser(RetailscmUserContext userContext, int verificationCode, List<Message> messageList)
 	{
@@ -7561,9 +7594,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	}
     
 }
-
-
-
 
 
 

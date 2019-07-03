@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SmartPalletDAO{
  
@@ -73,7 +76,7 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SmartPallet load(String id,Map<String,Object> options) throws Exception{
@@ -638,9 +641,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
+		for(Goods goodsItem: externalGoodsList){
 
-			goods.clearFromAll();
+			goodsItem.clearFromAll();
 		}
 		
 		
@@ -670,9 +673,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -714,9 +717,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearReceivingSpace();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -758,9 +761,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearGoodsAllocation();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -802,9 +805,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearShippingSpace();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearShippingSpace();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -846,9 +849,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -890,9 +893,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStore();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -934,9 +937,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearBizOrder();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -978,9 +981,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return smartPallet;
 		}
 		
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearSmartPallet();
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStoreOrder();
+			goodsItem.clearSmartPallet();
 			
 		}
 		
@@ -1176,6 +1179,9 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<SmartPallet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSmartPalletMapper());
 	}
+	
+	
+
 }
 
 

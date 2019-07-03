@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.employeeinterview.EmployeeInterviewDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements InterviewTypeDAO{
  
@@ -73,7 +76,7 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public InterviewType load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return interviewType;
 		}
 		
-		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
+		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
 
-			employeeInterview.clearFromAll();
+			employeeInterviewItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return interviewType;
 		}
 		
-		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
-			employeeInterview.clearEmployee();
-			employeeInterview.clearInterviewType();
+		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
+			employeeInterviewItem.clearEmployee();
+			employeeInterviewItem.clearInterviewType();
 			
 		}
 		
@@ -846,6 +849,9 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<InterviewType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getInterviewTypeMapper());
 	}
+	
+	
+
 }
 
 

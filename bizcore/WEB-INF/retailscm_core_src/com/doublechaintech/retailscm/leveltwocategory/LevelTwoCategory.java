@@ -360,6 +360,22 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof LevelTwoCategory){
+		
+			
+			LevelTwoCategory dest =(LevelTwoCategory)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

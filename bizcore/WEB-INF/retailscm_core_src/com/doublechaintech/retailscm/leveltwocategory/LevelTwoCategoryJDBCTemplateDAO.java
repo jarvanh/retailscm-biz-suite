@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.levelonecategory.LevelOneCategoryDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LevelTwoCategoryDAO{
  
@@ -73,7 +76,7 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public LevelTwoCategory load(String id,Map<String,Object> options) throws Exception{
@@ -612,9 +615,9 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return levelTwoCategory;
 		}
 		
-		for(LevelThreeCategory levelThreeCategory: externalLevelThreeCategoryList){
+		for(LevelThreeCategory levelThreeCategoryItem: externalLevelThreeCategoryList){
 
-			levelThreeCategory.clearFromAll();
+			levelThreeCategoryItem.clearFromAll();
 		}
 		
 		
@@ -798,6 +801,9 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	public SmartList<LevelTwoCategory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelTwoCategoryMapper());
 	}
+	
+	
+
 }
 
 

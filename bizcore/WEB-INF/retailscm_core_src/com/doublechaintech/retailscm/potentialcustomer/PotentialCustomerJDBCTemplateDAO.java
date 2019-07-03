@@ -34,7 +34,10 @@ import com.doublechaintech.retailscm.potentialcustomercontactperson.PotentialCus
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PotentialCustomerDAO{
  
@@ -126,7 +129,7 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public PotentialCustomer load(String id,Map<String,Object> options) throws Exception{
@@ -977,9 +980,9 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return potentialCustomer;
 		}
 		
-		for(PotentialCustomerContactPerson potentialCustomerContactPerson: externalPotentialCustomerContactPersonList){
+		for(PotentialCustomerContactPerson potentialCustomerContactPersonItem: externalPotentialCustomerContactPersonList){
 
-			potentialCustomerContactPerson.clearFromAll();
+			potentialCustomerContactPersonItem.clearFromAll();
 		}
 		
 		
@@ -1005,9 +1008,9 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return potentialCustomer;
 		}
 		
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
 
-			potentialCustomerContact.clearFromAll();
+			potentialCustomerContactItem.clearFromAll();
 		}
 		
 		
@@ -1037,9 +1040,9 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return potentialCustomer;
 		}
 		
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
-			potentialCustomerContact.clearCityPartner();
-			potentialCustomerContact.clearPotentialCustomer();
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
+			potentialCustomerContactItem.clearCityPartner();
+			potentialCustomerContactItem.clearPotentialCustomer();
 			
 		}
 		
@@ -1081,9 +1084,9 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return potentialCustomer;
 		}
 		
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
-			potentialCustomerContact.clearContactTo();
-			potentialCustomerContact.clearPotentialCustomer();
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
+			potentialCustomerContactItem.clearContactTo();
+			potentialCustomerContactItem.clearPotentialCustomer();
 			
 		}
 		
@@ -1121,9 +1124,9 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return potentialCustomer;
 		}
 		
-		for(EventAttendance eventAttendance: externalEventAttendanceList){
+		for(EventAttendance eventAttendanceItem: externalEventAttendanceList){
 
-			eventAttendance.clearFromAll();
+			eventAttendanceItem.clearFromAll();
 		}
 		
 		
@@ -1153,9 +1156,9 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return potentialCustomer;
 		}
 		
-		for(EventAttendance eventAttendance: externalEventAttendanceList){
-			eventAttendance.clearCityEvent();
-			eventAttendance.clearPotentialCustomer();
+		for(EventAttendance eventAttendanceItem: externalEventAttendanceList){
+			eventAttendanceItem.clearCityEvent();
+			eventAttendanceItem.clearPotentialCustomer();
 			
 		}
 		
@@ -1583,6 +1586,9 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public SmartList<PotentialCustomer> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPotentialCustomerMapper());
 	}
+	
+	
+
 }
 
 

@@ -13,13 +13,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.terapico.caf.form.ImageInfo;
+import com.terapico.utils.TextUtil;
 
 
 public class RetailscmBaseUtils {
 	protected static final Map<String, Object> emptyOptions = new HashMap<>();
+	protected static final Map<String, Object> EO = new HashMap<>();
+
+	public static String getOssUploadFolderName(String tokenType, String token, boolean isProdEnv) {
+		String folderName;
+		folderName = String.format("upload%s/%s/%s", isProdEnv ? "" : "/test", tokenType, token);
+		return folderName;
+	}
 	
 	public static String hashWithSHA256(String valueToHash, String salt) {
 		try {
@@ -34,6 +44,27 @@ public class RetailscmBaseUtils {
 		} catch (NoSuchAlgorithmException e) {
 			throw new IllegalStateException(e);
 		}
+	}
+	
+	private static final Pattern ptnChnMobile = Pattern.compile("1[3-9]\\d{9}");
+	public static String formatChinaMobile(String mobile) {
+		String num = TextUtil.onlyNumber(mobile);
+		if (num.startsWith("86") || num.startsWith("086") || num.startsWith("0086")) {
+			int pos = num.indexOf("86");
+			num = num.substring(pos+2);
+		}
+		Matcher m = ptnChnMobile.matcher(num);
+		if (m.matches()) {
+			return num;
+		}
+		return null;
+	}
+	public static String checkChinaMobile(String mobile) throws Exception {
+		String cleanMobile = formatChinaMobile(mobile);
+		if (cleanMobile == null) {
+			throw new Exception("您输入的"+mobile+"不是有效的中国大陆手机号");
+		}
+		return cleanMobile;
 	}
 	
 	public static String getCacheAccessKey(RetailscmUserContext ctx) {
@@ -163,6 +194,12 @@ public class RetailscmBaseUtils {
 	public static int getAppBuildVersion(RetailscmUserContext ctx) {
 		return getBuildVersion(getRequestAppVersion(ctx));
 	}
+	protected static boolean startFromVersion(RetailscmUserContext ctx, int version) {
+		if (!ctx.isProductEnvironment()) {
+			return true;
+		}
+		return getAppBuildVersion(ctx) >= version;
+	}
 	/*
 	 * "x-app-device" : "EML-AL00",
   	 * "x-app-type" : "CommunityUser",
@@ -182,9 +219,6 @@ public class RetailscmBaseUtils {
 	}
 
 }
-
-
-
 
 
 

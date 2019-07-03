@@ -397,6 +397,25 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ProvinceCenterEmployee){
+		
+			
+			ProvinceCenterEmployee dest =(ProvinceCenterEmployee)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeMobile(getMobile());
+			dest.mergeEmail(getEmail());
+			dest.mergeFounded(getFounded());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

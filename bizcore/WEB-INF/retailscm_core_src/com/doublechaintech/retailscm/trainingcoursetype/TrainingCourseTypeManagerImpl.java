@@ -594,8 +594,8 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 			String companyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTrainingCourseType(trainingCourseTypeId);
-		for(String companyTrainingId: companyTrainingIds){
-			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingId);
+		for(String companyTrainingIdItem: companyTrainingIds){
+			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);

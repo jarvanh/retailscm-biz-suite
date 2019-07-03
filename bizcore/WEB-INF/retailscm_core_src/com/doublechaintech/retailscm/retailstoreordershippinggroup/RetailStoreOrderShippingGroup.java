@@ -280,6 +280,23 @@ public class RetailStoreOrderShippingGroup extends BaseEntity implements  java.i
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderShippingGroup){
+		
+			
+			RetailStoreOrderShippingGroup dest =(RetailStoreOrderShippingGroup)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeAmount(getAmount());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

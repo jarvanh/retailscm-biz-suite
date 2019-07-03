@@ -490,6 +490,23 @@ public class SupplyOrderConfirmation extends BaseEntity implements  java.io.Seri
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderConfirmation){
+		
+			
+			SupplyOrderConfirmation dest =(SupplyOrderConfirmation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeConfirmTime(getConfirmTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

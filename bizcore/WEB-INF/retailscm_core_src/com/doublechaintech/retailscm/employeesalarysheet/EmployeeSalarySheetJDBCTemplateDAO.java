@@ -30,7 +30,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeSalarySheetDAO{
  
@@ -74,7 +77,7 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmNamingServiceDA
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public EmployeeSalarySheet load(String id,Map<String,Object> options) throws Exception{
@@ -814,6 +817,9 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmNamingServiceDA
 	public SmartList<EmployeeSalarySheet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeSalarySheetMapper());
 	}
+	
+	
+
 }
 
 

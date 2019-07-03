@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.secuser.SecUserDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class LoginHistoryJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LoginHistoryDAO{
  
@@ -52,7 +55,7 @@ public class LoginHistoryJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public LoginHistory load(String id,Map<String,Object> options) throws Exception{
@@ -567,6 +570,9 @@ public class LoginHistoryJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	public SmartList<LoginHistory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLoginHistoryMapper());
 	}
+	
+	
+
 }
 
 

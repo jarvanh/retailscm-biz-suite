@@ -545,8 +545,8 @@ public class GoodsShelfStockCountManagerImpl extends CustomRetailscmCheckerManag
 			String stockCountIssueTrackIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
-		for(String stockCountIssueTrackId: stockCountIssueTrackIds){
-			userContext.getChecker().checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
+		for(String stockCountIssueTrackIdItem: stockCountIssueTrackIds){
+			userContext.getChecker().checkIdOfStockCountIssueTrack(stockCountIssueTrackIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfStockCountManagerException.class);

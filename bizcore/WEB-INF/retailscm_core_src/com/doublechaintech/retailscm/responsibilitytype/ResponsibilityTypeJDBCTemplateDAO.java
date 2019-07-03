@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ResponsibilityTypeDAO{
  
@@ -73,7 +76,7 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public ResponsibilityType load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return responsibilityType;
 		}
 		
-		for(Employee employee: externalEmployeeList){
+		for(Employee employeeItem: externalEmployeeList){
 
-			employee.clearFromAll();
+			employeeItem.clearFromAll();
 		}
 		
 		
@@ -648,9 +651,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return responsibilityType;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCompany();
-			employee.clearResponsibleFor();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCompany();
+			employeeItem.clearResponsibleFor();
 			
 		}
 		
@@ -692,9 +695,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return responsibilityType;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearResponsibleFor();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearDepartment();
+			employeeItem.clearResponsibleFor();
 			
 		}
 		
@@ -736,9 +739,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return responsibilityType;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearResponsibleFor();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOccupation();
+			employeeItem.clearResponsibleFor();
 			
 		}
 		
@@ -780,9 +783,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return responsibilityType;
 		}
 		
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearResponsibleFor();
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCurrentSalaryGrade();
+			employeeItem.clearResponsibleFor();
 			
 		}
 		
@@ -978,6 +981,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<ResponsibilityType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getResponsibilityTypeMapper());
 	}
+	
+	
+
 }
 
 

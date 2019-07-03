@@ -726,8 +726,8 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			String accountingSubjectIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		for(String accountingSubjectId: accountingSubjectIds){
-			userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectId);
+		for(String accountingSubjectIdItem: accountingSubjectIds){
+			userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
@@ -982,8 +982,8 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			String accountingPeriodIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		for(String accountingPeriodId: accountingPeriodIds){
-			userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
+		for(String accountingPeriodIdItem: accountingPeriodIds){
+			userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
@@ -1229,8 +1229,8 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			String accountingDocumentTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		for(String accountingDocumentTypeId: accountingDocumentTypeIds){
-			userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeId);
+		for(String accountingDocumentTypeIdItem: accountingDocumentTypeIds){
+			userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);

@@ -579,8 +579,8 @@ public class AccountingSubjectManagerImpl extends CustomRetailscmCheckerManager 
 			String accountingDocumentLineIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectId);
-		for(String accountingDocumentLineId: accountingDocumentLineIds){
-			userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+		for(String accountingDocumentLineIdItem: accountingDocumentLineIds){
+			userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingSubjectManagerException.class);

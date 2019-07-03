@@ -360,6 +360,25 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeQualifier){
+		
+			
+			EmployeeQualifier dest =(EmployeeQualifier)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeQualifiedTime(getQualifiedTime());
+			dest.mergeType(getType());
+			dest.mergeLevel(getLevel());
+			dest.mergeRemark(getRemark());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

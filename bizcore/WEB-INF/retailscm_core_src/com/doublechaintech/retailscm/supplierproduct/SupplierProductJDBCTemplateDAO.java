@@ -28,7 +28,10 @@ import com.doublechaintech.retailscm.goodssupplier.GoodsSupplierDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class SupplierProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplierProductDAO{
  
@@ -73,7 +76,7 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public SupplierProduct load(String id,Map<String,Object> options) throws Exception{
@@ -616,9 +619,9 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return supplierProduct;
 		}
 		
-		for(ProductSupplyDuration productSupplyDuration: externalProductSupplyDurationList){
+		for(ProductSupplyDuration productSupplyDurationItem: externalProductSupplyDurationList){
 
-			productSupplyDuration.clearFromAll();
+			productSupplyDurationItem.clearFromAll();
 		}
 		
 		
@@ -802,6 +805,9 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public SmartList<SupplierProduct> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplierProductMapper());
 	}
+	
+	
+
 }
 
 

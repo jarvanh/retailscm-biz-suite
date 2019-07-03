@@ -26,7 +26,10 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
 
 public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreOrderLineItemDAO{
  
@@ -52,7 +55,7 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmNamingServ
 	
 	protected String getIdFormat()
 	{
-		return getShortName(this.getName())+"%06d";
+		return getShortName(this.getName())+"%08d";
 	}
 	
 	public RetailStoreOrderLineItem load(String id,Map<String,Object> options) throws Exception{
@@ -555,6 +558,9 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<RetailStoreOrderLineItem> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreOrderLineItemMapper());
 	}
+	
+	
+
 }
 
 

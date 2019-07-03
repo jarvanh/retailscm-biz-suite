@@ -440,6 +440,24 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplierProduct){
+		
+			
+			SupplierProduct dest =(SupplierProduct)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeProductName(getProductName());
+			dest.mergeProductDescription(getProductDescription());
+			dest.mergeProductUnit(getProductUnit());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

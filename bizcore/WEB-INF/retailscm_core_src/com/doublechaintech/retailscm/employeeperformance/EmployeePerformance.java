@@ -240,6 +240,22 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeePerformance){
+		
+			
+			EmployeePerformance dest =(EmployeePerformance)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergePerformanceComment(getPerformanceComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

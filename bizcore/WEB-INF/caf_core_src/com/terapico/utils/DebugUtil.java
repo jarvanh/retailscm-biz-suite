@@ -51,7 +51,9 @@ public class DebugUtil {
     }
     
     public static Map<String, Object> toMap(Object data, String className) throws IOException {
-    	ObjectMapper mapper = getObjectMapper();
+    	ObjectMapper mapper = new ObjectMapper();
+    	mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+    	mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     	String jsonStr = mapper.writeValueAsString(data);
     	if (className != null && className.endsWith("Form")) {
     		if (data instanceof Map && ((Map) data).containsKey("form")) {
@@ -83,7 +85,7 @@ public class DebugUtil {
     		// String key = ent.getKey();
     		Object value = map.get(key);
     		
-    		if (value instanceof Map && key.toLowerCase().endsWith("form")) {
+    		if (value instanceof Map && (key.toLowerCase().endsWith("form") && !key.toLowerCase().endsWith("platform"))) {
     			Map<String, Object> form = (Map<String, Object>) value;
     			template = "<div class=\"form-container\">";
     			out.write(String.format(template));

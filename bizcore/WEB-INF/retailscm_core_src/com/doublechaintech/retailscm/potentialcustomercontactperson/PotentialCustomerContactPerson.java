@@ -447,6 +447,24 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		return baseDest;
 	}
 	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof PotentialCustomerContactPerson){
+		
+			
+			PotentialCustomerContactPerson dest =(PotentialCustomerContactPerson)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeMobile(getMobile());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
