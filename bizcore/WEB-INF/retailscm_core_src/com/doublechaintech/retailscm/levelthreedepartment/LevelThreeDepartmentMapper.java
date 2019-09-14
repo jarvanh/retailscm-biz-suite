@@ -46,10 +46,10 @@ public class LevelThreeDepartmentMapper extends BaseRowMapper<LevelThreeDepartme
  		if( levelTwoDepartmentId.isEmpty()){
  			return;
  		}
- 		LevelTwoDepartment llevelTwoDepartment = levelThreeDepartment.getBelongsTo();
- 		if( llevelTwoDepartment != null ){
+ 		LevelTwoDepartment levelTwoDepartment = levelThreeDepartment.getBelongsTo();
+ 		if( levelTwoDepartment != null ){
  			//if the root object 'levelThreeDepartment' already have the property, just set the id for it;
- 			llevelTwoDepartment.setId(levelTwoDepartmentId);
+ 			levelTwoDepartment.setId(levelTwoDepartmentId);
  			
  			return;
  		}

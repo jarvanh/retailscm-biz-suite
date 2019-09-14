@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SmartPalletDAO{
+public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SmartPalletDAO{
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -382,7 +382,7 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SmartPallet.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Smart Pallet");
+		lastUpdateTimeStatsItem.setDisplayName("智能托盘");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SmartPallet.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SmartPallet.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

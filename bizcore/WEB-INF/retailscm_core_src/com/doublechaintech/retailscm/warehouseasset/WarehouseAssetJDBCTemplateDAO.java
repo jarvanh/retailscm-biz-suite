@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -31,7 +31,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class WarehouseAssetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements WarehouseAssetDAO{
+public class WarehouseAssetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements WarehouseAssetDAO{
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -282,7 +282,7 @@ public class WarehouseAssetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//WarehouseAsset.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Warehouse Asset");
+		lastUpdateTimeStatsItem.setDisplayName("仓库资产");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(WarehouseAsset.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(WarehouseAsset.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

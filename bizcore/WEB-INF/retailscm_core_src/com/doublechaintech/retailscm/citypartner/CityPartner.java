@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.citypartner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -65,6 +66,16 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 	public 	CityPartner(){
 		// lazy load for all the properties
 	}
+	public 	static CityPartner withId(String id){
+		CityPartner cityPartner = new CityPartner();
+		cityPartner.setId(id);
+		// cityPartner.setVersion(Integer.MAX_VALUE);
+		return cityPartner;
+	}
+	public 	static CityPartner refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCityServiceCenter( null );
@@ -165,6 +176,40 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(MOBILE_PROPERTY.equals(property)){
+			return getMobile();
+		}
+		if(CITY_SERVICE_CENTER_PROPERTY.equals(property)){
+			return getCityServiceCenter();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(POTENTIAL_CUSTOMER_LIST.equals(property)){
+			List<BaseEntity> list = getPotentialCustomerList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(POTENTIAL_CUSTOMER_CONTACT_LIST.equals(property)){
+			List<BaseEntity> list = getPotentialCustomerContactList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

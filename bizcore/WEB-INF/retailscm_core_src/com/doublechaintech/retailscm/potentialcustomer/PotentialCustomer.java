@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.potentialcustomer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -71,6 +72,16 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 	public 	PotentialCustomer(){
 		// lazy load for all the properties
 	}
+	public 	static PotentialCustomer withId(String id){
+		PotentialCustomer potentialCustomer = new PotentialCustomer();
+		potentialCustomer.setId(id);
+		// potentialCustomer.setVersion(Integer.MAX_VALUE);
+		return potentialCustomer;
+	}
+	public 	static PotentialCustomer refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCityServiceCenter( null );
@@ -174,6 +185,47 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(MOBILE_PROPERTY.equals(property)){
+			return getMobile();
+		}
+		if(CITY_SERVICE_CENTER_PROPERTY.equals(property)){
+			return getCityServiceCenter();
+		}
+		if(CITY_PARTNER_PROPERTY.equals(property)){
+			return getCityPartner();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(POTENTIAL_CUSTOMER_CONTACT_PERSON_LIST.equals(property)){
+			List<BaseEntity> list = getPotentialCustomerContactPersonList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(POTENTIAL_CUSTOMER_CONTACT_LIST.equals(property)){
+			List<BaseEntity> list = getPotentialCustomerContactList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EVENT_ATTENDANCE_LIST.equals(property)){
+			List<BaseEntity> list = getEventAttendanceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

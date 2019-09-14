@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,16 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class EmployeeInterviewJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeInterviewDAO{
- 
- 	
- 	private  InterviewTypeDAO  interviewTypeDAO;
- 	public void setInterviewTypeDAO(InterviewTypeDAO interviewTypeDAO){
-	 	this.interviewTypeDAO = interviewTypeDAO;
- 	}
- 	public InterviewTypeDAO getInterviewTypeDAO(){
-	 	return this.interviewTypeDAO;
- 	}
+public class EmployeeInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeInterviewDAO{
  
  	
  	private  EmployeeDAO  employeeDAO;
@@ -51,6 +42,15 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmNamingServiceDAO 
  	}
  	public EmployeeDAO getEmployeeDAO(){
 	 	return this.employeeDAO;
+ 	}
+ 
+ 	
+ 	private  InterviewTypeDAO  interviewTypeDAO;
+ 	public void setInterviewTypeDAO(InterviewTypeDAO interviewTypeDAO){
+	 	this.interviewTypeDAO = interviewTypeDAO;
+ 	}
+ 	public InterviewTypeDAO getInterviewTypeDAO(){
+	 	return this.interviewTypeDAO;
  	}
 
 

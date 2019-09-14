@@ -499,6 +499,16 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  //--------------------------------------------------------------
 	
 	 	
+ 	protected SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String newSupplierSpaceId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getSupplierSpaceDAO().load(newSupplierSpaceId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
  	protected DamageSpace loadDamageSpace(RetailscmUserContext userContext, String newDamageSpaceId, Map<String,Object> options) throws Exception
  	{
 		
@@ -513,16 +523,6 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	{
 		
  		return userContext.getDAOGroup().getStorageSpaceDAO().load(newStorageSpaceId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String newSupplierSpaceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplierSpaceDAO().load(newSupplierSpaceId, options);
  	}
  	
  	

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.retailstoreclosing;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -53,6 +54,16 @@ public class RetailStoreClosing extends BaseEntity implements  java.io.Serializa
 	public 	RetailStoreClosing(){
 		// lazy load for all the properties
 	}
+	public 	static RetailStoreClosing withId(String id){
+		RetailStoreClosing retailStoreClosing = new RetailStoreClosing();
+		retailStoreClosing.setId(id);
+		// retailStoreClosing.setVersion(Integer.MAX_VALUE);
+		return retailStoreClosing;
+	}
+	public 	static RetailStoreClosing refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -93,6 +104,24 @@ public class RetailStoreClosing extends BaseEntity implements  java.io.Serializa
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(COMMENT_PROPERTY.equals(property)){
+			return getComment();
+		}
+		if(RETAIL_STORE_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

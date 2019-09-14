@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,16 +37,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CompanyTrainingDAO{
- 
- 	
- 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
- 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
-	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
- 	}
- 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
-	 	return this.retailStoreCountryCenterDAO;
- 	}
+public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements CompanyTrainingDAO{
  
  	
  	private  InstructorDAO  instructorDAO;
@@ -55,6 +46,15 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
  	}
  	public InstructorDAO getInstructorDAO(){
 	 	return this.instructorDAO;
+ 	}
+ 
+ 	
+ 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
+ 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
+	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
+ 	}
+ 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
+	 	return this.retailStoreCountryCenterDAO;
  	}
  
  	
@@ -480,7 +480,7 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//CompanyTraining.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Company Training");
+		lastUpdateTimeStatsItem.setDisplayName("公司培训");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(CompanyTraining.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(CompanyTraining.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -530,7 +530,7 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//CompanyTraining.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Company Training");
+		lastUpdateTimeStatsItem.setDisplayName("公司培训");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(CompanyTraining.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(CompanyTraining.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -580,7 +580,7 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//CompanyTraining.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Company Training");
+		lastUpdateTimeStatsItem.setDisplayName("公司培训");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(CompanyTraining.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(CompanyTraining.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

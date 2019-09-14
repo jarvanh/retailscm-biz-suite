@@ -109,10 +109,10 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
  		if( warehouseId.isEmpty()){
  			return;
  		}
- 		Warehouse lwarehouse = smartPallet.getWarehouse();
- 		if( lwarehouse != null ){
+ 		Warehouse warehouse = smartPallet.getWarehouse();
+ 		if( warehouse != null ){
  			//if the root object 'smartPallet' already have the property, just set the id for it;
- 			lwarehouse.setId(warehouseId);
+ 			warehouse.setId(warehouseId);
  			
  			return;
  		}

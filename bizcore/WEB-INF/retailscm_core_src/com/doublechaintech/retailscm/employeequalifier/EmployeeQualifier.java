@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employeequalifier;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -59,6 +60,16 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 	public 	EmployeeQualifier(){
 		// lazy load for all the properties
 	}
+	public 	static EmployeeQualifier withId(String id){
+		EmployeeQualifier employeeQualifier = new EmployeeQualifier();
+		employeeQualifier.setId(id);
+		// employeeQualifier.setVersion(Integer.MAX_VALUE);
+		return employeeQualifier;
+	}
+	public 	static EmployeeQualifier refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setEmployee( null );
@@ -157,6 +168,32 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(QUALIFIED_TIME_PROPERTY.equals(property)){
+			return getQualifiedTime();
+		}
+		if(TYPE_PROPERTY.equals(property)){
+			return getType();
+		}
+		if(LEVEL_PROPERTY.equals(property)){
+			return getLevel();
+		}
+		if(REMARK_PROPERTY.equals(property)){
+			return getRemark();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

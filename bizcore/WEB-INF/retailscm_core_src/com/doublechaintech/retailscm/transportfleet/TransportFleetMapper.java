@@ -70,10 +70,10 @@ public class TransportFleetMapper extends BaseRowMapper<TransportFleet>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = transportFleet.getOwner();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = transportFleet.getOwner();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'transportFleet' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}

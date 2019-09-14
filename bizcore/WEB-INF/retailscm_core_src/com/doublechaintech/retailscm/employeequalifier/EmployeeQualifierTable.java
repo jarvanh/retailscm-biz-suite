@@ -16,7 +16,7 @@ public class EmployeeQualifierTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="employee_qualifier_data";
+	public static final String TABLE_NAME="employee_qualifier_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_EMPLOYEE = "employee";
 	static final String COLUMN_QUALIFIED_TIME = "qualified_time";
@@ -25,10 +25,10 @@ public class EmployeeQualifierTable{
 	static final String COLUMN_REMARK = "remark";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_EMPLOYEE, COLUMN_QUALIFIED_TIME, COLUMN_TYPE, COLUMN_LEVEL, COLUMN_REMARK, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_EMPLOYEE, COLUMN_QUALIFIED_TIME, COLUMN_TYPE, COLUMN_LEVEL, COLUMN_REMARK
 		};
 	

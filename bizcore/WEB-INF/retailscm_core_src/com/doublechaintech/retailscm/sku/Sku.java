@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.sku;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -68,6 +69,16 @@ public class Sku extends BaseEntity implements  java.io.Serializable{
 	public 	Sku(){
 		// lazy load for all the properties
 	}
+	public 	static Sku withId(String id){
+		Sku sku = new Sku();
+		sku.setId(id);
+		// sku.setVersion(Integer.MAX_VALUE);
+		return sku;
+	}
+	public 	static Sku refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setProduct( null );
@@ -224,6 +235,45 @@ public class Sku extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(SIZE_PROPERTY.equals(property)){
+			return getSize();
+		}
+		if(PRODUCT_PROPERTY.equals(property)){
+			return getProduct();
+		}
+		if(BARCODE_PROPERTY.equals(property)){
+			return getBarcode();
+		}
+		if(PACKAGE_TYPE_PROPERTY.equals(property)){
+			return getPackageType();
+		}
+		if(NET_CONTENT_PROPERTY.equals(property)){
+			return getNetContent();
+		}
+		if(PRICE_PROPERTY.equals(property)){
+			return getPrice();
+		}
+		if(PICTURE_PROPERTY.equals(property)){
+			return getPicture();
+		}
+		if(GOODS_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.companytraining;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -68,6 +69,16 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 	public 	CompanyTraining(){
 		// lazy load for all the properties
 	}
+	public 	static CompanyTraining withId(String id){
+		CompanyTraining companyTraining = new CompanyTraining();
+		companyTraining.setId(id);
+		// companyTraining.setVersion(Integer.MAX_VALUE);
+		return companyTraining;
+	}
+	public 	static CompanyTraining refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCompany( null );
@@ -171,6 +182,42 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(INSTRUCTOR_PROPERTY.equals(property)){
+			return getInstructor();
+		}
+		if(TRAINING_COURSE_TYPE_PROPERTY.equals(property)){
+			return getTrainingCourseType();
+		}
+		if(TIME_START_PROPERTY.equals(property)){
+			return getTimeStart();
+		}
+		if(DURATION_HOURS_PROPERTY.equals(property)){
+			return getDurationHours();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(EMPLOYEE_COMPANY_TRAINING_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeCompanyTrainingList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -82,10 +82,10 @@ public class TruckDriverMapper extends BaseRowMapper<TruckDriver>{
  		if( transportFleetId.isEmpty()){
  			return;
  		}
- 		TransportFleet ltransportFleet = truckDriver.getBelongsTo();
- 		if( ltransportFleet != null ){
+ 		TransportFleet transportFleet = truckDriver.getBelongsTo();
+ 		if( transportFleet != null ){
  			//if the root object 'truckDriver' already have the property, just set the id for it;
- 			ltransportFleet.setId(transportFleetId);
+ 			transportFleet.setId(transportFleetId);
  			
  			return;
  		}

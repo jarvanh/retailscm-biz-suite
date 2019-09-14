@@ -82,10 +82,10 @@ public class AccountingPeriodMapper extends BaseRowMapper<AccountingPeriod>{
  		if( accountSetId.isEmpty()){
  			return;
  		}
- 		AccountSet laccountSet = accountingPeriod.getAccountSet();
- 		if( laccountSet != null ){
+ 		AccountSet accountSet = accountingPeriod.getAccountSet();
+ 		if( accountSet != null ){
  			//if the root object 'accountingPeriod' already have the property, just set the id for it;
- 			laccountSet.setId(accountSetId);
+ 			accountSet.setId(accountSetId);
  			
  			return;
  		}

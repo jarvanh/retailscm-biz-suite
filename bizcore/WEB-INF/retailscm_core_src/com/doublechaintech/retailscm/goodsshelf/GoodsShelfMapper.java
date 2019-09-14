@@ -61,10 +61,10 @@ public class GoodsShelfMapper extends BaseRowMapper<GoodsShelf>{
  		if( storageSpaceId.isEmpty()){
  			return;
  		}
- 		StorageSpace lstorageSpace = goodsShelf.getStorageSpace();
- 		if( lstorageSpace != null ){
+ 		StorageSpace storageSpace = goodsShelf.getStorageSpace();
+ 		if( storageSpace != null ){
  			//if the root object 'goodsShelf' already have the property, just set the id for it;
- 			lstorageSpace.setId(storageSpaceId);
+ 			storageSpace.setId(storageSpaceId);
  			
  			return;
  		}
@@ -79,10 +79,10 @@ public class GoodsShelfMapper extends BaseRowMapper<GoodsShelf>{
  		if( supplierSpaceId.isEmpty()){
  			return;
  		}
- 		SupplierSpace lsupplierSpace = goodsShelf.getSupplierSpace();
- 		if( lsupplierSpace != null ){
+ 		SupplierSpace supplierSpace = goodsShelf.getSupplierSpace();
+ 		if( supplierSpace != null ){
  			//if the root object 'goodsShelf' already have the property, just set the id for it;
- 			lsupplierSpace.setId(supplierSpaceId);
+ 			supplierSpace.setId(supplierSpaceId);
  			
  			return;
  		}
@@ -97,10 +97,10 @@ public class GoodsShelfMapper extends BaseRowMapper<GoodsShelf>{
  		if( damageSpaceId.isEmpty()){
  			return;
  		}
- 		DamageSpace ldamageSpace = goodsShelf.getDamageSpace();
- 		if( ldamageSpace != null ){
+ 		DamageSpace damageSpace = goodsShelf.getDamageSpace();
+ 		if( damageSpace != null ){
  			//if the root object 'goodsShelf' already have the property, just set the id for it;
- 			ldamageSpace.setId(damageSpaceId);
+ 			damageSpace.setId(damageSpaceId);
  			
  			return;
  		}

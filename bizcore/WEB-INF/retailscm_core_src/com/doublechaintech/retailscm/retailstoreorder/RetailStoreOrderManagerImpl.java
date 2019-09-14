@@ -1336,6 +1336,36 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 //--------------------------------------------------------------
 	
 	 	
+ 	protected RetailStoreOrderProcessing loadRetailStoreOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderProcessingDAO().load(newProcessingId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected RetailStoreOrderShipment loadRetailStoreOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderShipmentDAO().load(newShipmentId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newBuyerId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreDAO().load(newBuyerId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
  	protected RetailStoreOrderApproval loadRetailStoreOrderApproval(RetailscmUserContext userContext, String newApprovalId, Map<String,Object> options) throws Exception
  	{
 		
@@ -1356,30 +1386,10 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
  	
 	
 	 	
- 	protected RetailStoreOrderDelivery loadRetailStoreOrderDelivery(RetailscmUserContext userContext, String newDeliveryId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderDeliveryDAO().load(newDeliveryId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
  	protected RetailStoreOrderPicking loadRetailStoreOrderPicking(RetailscmUserContext userContext, String newPickingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreOrderPickingDAO().load(newPickingId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreOrderShipment loadRetailStoreOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderShipmentDAO().load(newShipmentId, options);
  	}
  	
  	
@@ -1396,20 +1406,10 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
  	
 	
 	 	
- 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newBuyerId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreOrderDelivery loadRetailStoreOrderDelivery(RetailscmUserContext userContext, String newDeliveryId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newBuyerId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreOrderProcessing loadRetailStoreOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderProcessingDAO().load(newProcessingId, options);
+ 		return userContext.getDAOGroup().getRetailStoreOrderDeliveryDAO().load(newDeliveryId, options);
  	}
  	
  	

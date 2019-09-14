@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.transporttruck;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -70,6 +71,16 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 	public 	TransportTruck(){
 		// lazy load for all the properties
 	}
+	public 	static TransportTruck withId(String id){
+		TransportTruck transportTruck = new TransportTruck();
+		transportTruck.setId(id);
+		// transportTruck.setVersion(Integer.MAX_VALUE);
+		return transportTruck;
+	}
+	public 	static TransportTruck refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -245,6 +256,48 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(PLATE_NUMBER_PROPERTY.equals(property)){
+			return getPlateNumber();
+		}
+		if(CONTACT_NUMBER_PROPERTY.equals(property)){
+			return getContactNumber();
+		}
+		if(VEHICLE_LICENSE_NUMBER_PROPERTY.equals(property)){
+			return getVehicleLicenseNumber();
+		}
+		if(ENGINE_NUMBER_PROPERTY.equals(property)){
+			return getEngineNumber();
+		}
+		if(MAKE_DATE_PROPERTY.equals(property)){
+			return getMakeDate();
+		}
+		if(MILEAGE_PROPERTY.equals(property)){
+			return getMileage();
+		}
+		if(BODY_COLOR_PROPERTY.equals(property)){
+			return getBodyColor();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(TRANSPORT_TASK_LIST.equals(property)){
+			List<BaseEntity> list = getTransportTaskList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.supplyorderpaymentgroup;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,6 +56,16 @@ public class SupplyOrderPaymentGroup extends BaseEntity implements  java.io.Seri
 	public 	SupplyOrderPaymentGroup(){
 		// lazy load for all the properties
 	}
+	public 	static SupplyOrderPaymentGroup withId(String id){
+		SupplyOrderPaymentGroup supplyOrderPaymentGroup = new SupplyOrderPaymentGroup();
+		supplyOrderPaymentGroup.setId(id);
+		// supplyOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
+		return supplyOrderPaymentGroup;
+	}
+	public 	static SupplyOrderPaymentGroup refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBizOrder( null );
@@ -115,6 +126,26 @@ public class SupplyOrderPaymentGroup extends BaseEntity implements  java.io.Seri
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(CARD_NUMBER_PROPERTY.equals(property)){
+			return getCardNumber();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

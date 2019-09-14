@@ -72,10 +72,10 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = goodsSupplier.getBelongTo();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = goodsSupplier.getBelongTo();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'goodsSupplier' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}

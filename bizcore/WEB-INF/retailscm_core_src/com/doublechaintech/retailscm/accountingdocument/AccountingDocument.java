@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.accountingdocument;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -78,6 +79,16 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	public 	AccountingDocument(){
 		// lazy load for all the properties
 	}
+	public 	static AccountingDocument withId(String id){
+		AccountingDocument accountingDocument = new AccountingDocument();
+		accountingDocument.setId(id);
+		// accountingDocument.setVersion(Integer.MAX_VALUE);
+		return accountingDocument;
+	}
+	public 	static AccountingDocument refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setAccountingPeriod( null );
@@ -147,6 +158,52 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(ACCOUNTING_DOCUMENT_DATE_PROPERTY.equals(property)){
+			return getAccountingDocumentDate();
+		}
+		if(ACCOUNTING_PERIOD_PROPERTY.equals(property)){
+			return getAccountingPeriod();
+		}
+		if(DOCUMENT_TYPE_PROPERTY.equals(property)){
+			return getDocumentType();
+		}
+		if(CREATION_PROPERTY.equals(property)){
+			return getCreation();
+		}
+		if(CONFIRMATION_PROPERTY.equals(property)){
+			return getConfirmation();
+		}
+		if(AUDITING_PROPERTY.equals(property)){
+			return getAuditing();
+		}
+		if(POSTING_PROPERTY.equals(property)){
+			return getPosting();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+		if(ORIGINAL_VOUCHER_LIST.equals(property)){
+			List<BaseEntity> list = getOriginalVoucherList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNTING_DOCUMENT_LINE_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingDocumentLineList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

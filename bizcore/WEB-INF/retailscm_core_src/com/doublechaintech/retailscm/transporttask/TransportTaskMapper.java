@@ -90,10 +90,10 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
  		if( retailStoreId.isEmpty()){
  			return;
  		}
- 		RetailStore lretailStore = transportTask.getEnd();
- 		if( lretailStore != null ){
+ 		RetailStore retailStore = transportTask.getEnd();
+ 		if( retailStore != null ){
  			//if the root object 'transportTask' already have the property, just set the id for it;
- 			lretailStore.setId(retailStoreId);
+ 			retailStore.setId(retailStoreId);
  			
  			return;
  		}
@@ -108,10 +108,10 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
  		if( truckDriverId.isEmpty()){
  			return;
  		}
- 		TruckDriver ltruckDriver = transportTask.getDriver();
- 		if( ltruckDriver != null ){
+ 		TruckDriver truckDriver = transportTask.getDriver();
+ 		if( truckDriver != null ){
  			//if the root object 'transportTask' already have the property, just set the id for it;
- 			ltruckDriver.setId(truckDriverId);
+ 			truckDriver.setId(truckDriverId);
  			
  			return;
  		}
@@ -126,10 +126,10 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
  		if( transportTruckId.isEmpty()){
  			return;
  		}
- 		TransportTruck ltransportTruck = transportTask.getTruck();
- 		if( ltransportTruck != null ){
+ 		TransportTruck transportTruck = transportTask.getTruck();
+ 		if( transportTruck != null ){
  			//if the root object 'transportTask' already have the property, just set the id for it;
- 			ltransportTruck.setId(transportTruckId);
+ 			transportTruck.setId(transportTruckId);
  			
  			return;
  		}
@@ -144,10 +144,10 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
  		if( transportFleetId.isEmpty()){
  			return;
  		}
- 		TransportFleet ltransportFleet = transportTask.getBelongsTo();
- 		if( ltransportFleet != null ){
+ 		TransportFleet transportFleet = transportTask.getBelongsTo();
+ 		if( transportFleet != null ){
  			//if the root object 'transportTask' already have the property, just set the id for it;
- 			ltransportFleet.setId(transportFleetId);
+ 			transportFleet.setId(transportFleetId);
  			
  			return;
  		}

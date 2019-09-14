@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplierSpaceDAO{
+public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplierSpaceDAO{
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -382,7 +382,7 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplierSpace.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supplier Space");
+		lastUpdateTimeStatsItem.setDisplayName("供应商的空间");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplierSpace.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplierSpace.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

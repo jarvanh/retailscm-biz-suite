@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -31,7 +31,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class FormActionJDBCTemplateDAO extends RetailscmNamingServiceDAO implements FormActionDAO{
+public class FormActionJDBCTemplateDAO extends RetailscmBaseDAOImpl implements FormActionDAO{
  
  	
  	private  GenericFormDAO  genericFormDAO;
@@ -562,14 +562,5 @@ public class FormActionJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
 	
 
 }
-
-
-
-
-
-
-
-
-
 
 

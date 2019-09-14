@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.memberrewardpoint;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,6 +56,16 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 	public 	MemberRewardPoint(){
 		// lazy load for all the properties
 	}
+	public 	static MemberRewardPoint withId(String id){
+		MemberRewardPoint memberRewardPoint = new MemberRewardPoint();
+		memberRewardPoint.setId(id);
+		// memberRewardPoint.setVersion(Integer.MAX_VALUE);
+		return memberRewardPoint;
+	}
+	public 	static MemberRewardPoint refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -115,6 +126,26 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(POINT_PROPERTY.equals(property)){
+			return getPoint();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

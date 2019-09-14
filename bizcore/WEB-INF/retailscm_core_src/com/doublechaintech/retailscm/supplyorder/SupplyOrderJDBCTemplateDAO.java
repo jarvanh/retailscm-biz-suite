@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -53,7 +53,16 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderDAO{
+public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderDAO{
+ 
+ 	
+ 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
+ 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
+	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
+ 	}
+ 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
+	 	return this.supplyOrderProcessingDAO;
+ 	}
  
  	
  	private  SupplyOrderApprovalDAO  supplyOrderApprovalDAO;
@@ -62,15 +71,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  	public SupplyOrderApprovalDAO getSupplyOrderApprovalDAO(){
 	 	return this.supplyOrderApprovalDAO;
- 	}
- 
- 	
- 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
- 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
-	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
- 	}
- 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
-	 	return this.retailStoreCountryCenterDAO;
  	}
  
  	
@@ -83,12 +83,12 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
- 	private  GoodsSupplierDAO  goodsSupplierDAO;
- 	public void setGoodsSupplierDAO(GoodsSupplierDAO goodsSupplierDAO){
-	 	this.goodsSupplierDAO = goodsSupplierDAO;
+ 	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
+ 	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
+	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
  	}
- 	public GoodsSupplierDAO getGoodsSupplierDAO(){
-	 	return this.goodsSupplierDAO;
+ 	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
+	 	return this.supplyOrderConfirmationDAO;
  	}
  
  	
@@ -101,6 +101,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
+ 	private  GoodsSupplierDAO  goodsSupplierDAO;
+ 	public void setGoodsSupplierDAO(GoodsSupplierDAO goodsSupplierDAO){
+	 	this.goodsSupplierDAO = goodsSupplierDAO;
+ 	}
+ 	public GoodsSupplierDAO getGoodsSupplierDAO(){
+	 	return this.goodsSupplierDAO;
+ 	}
+ 
+ 	
  	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
  	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
 	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
@@ -110,21 +119,12 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
- 	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
- 	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
-	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
+ 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
+ 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
+	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
  	}
- 	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
-	 	return this.supplyOrderConfirmationDAO;
- 	}
- 
- 	
- 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
- 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
-	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
- 	}
- 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
-	 	return this.supplyOrderProcessingDAO;
+ 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
+	 	return this.retailStoreCountryCenterDAO;
  	}
 
 
@@ -1025,7 +1025,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1075,7 +1075,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1125,7 +1125,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1175,7 +1175,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1225,7 +1225,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1275,7 +1275,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1325,7 +1325,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1375,7 +1375,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Supply Order");
+		lastUpdateTimeStatsItem.setDisplayName("供应订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

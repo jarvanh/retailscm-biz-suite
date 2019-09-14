@@ -58,10 +58,10 @@ public class PublicHolidayMapper extends BaseRowMapper<PublicHoliday>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = publicHoliday.getCompany();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = publicHoliday.getCompany();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'publicHoliday' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}

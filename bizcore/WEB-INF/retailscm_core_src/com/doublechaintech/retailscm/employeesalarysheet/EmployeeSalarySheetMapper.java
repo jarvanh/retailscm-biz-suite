@@ -55,10 +55,10 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
  		if( employeeId.isEmpty()){
  			return;
  		}
- 		Employee lemployee = employeeSalarySheet.getEmployee();
- 		if( lemployee != null ){
+ 		Employee employee = employeeSalarySheet.getEmployee();
+ 		if( employee != null ){
  			//if the root object 'employeeSalarySheet' already have the property, just set the id for it;
- 			lemployee.setId(employeeId);
+ 			employee.setId(employeeId);
  			
  			return;
  		}
@@ -73,10 +73,10 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
  		if( salaryGradeId.isEmpty()){
  			return;
  		}
- 		SalaryGrade lsalaryGrade = employeeSalarySheet.getCurrentSalaryGrade();
- 		if( lsalaryGrade != null ){
+ 		SalaryGrade salaryGrade = employeeSalarySheet.getCurrentSalaryGrade();
+ 		if( salaryGrade != null ){
  			//if the root object 'employeeSalarySheet' already have the property, just set the id for it;
- 			lsalaryGrade.setId(salaryGradeId);
+ 			salaryGrade.setId(salaryGradeId);
  			
  			return;
  		}
@@ -175,10 +175,10 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
  		if( payingOffId.isEmpty()){
  			return;
  		}
- 		PayingOff lpayingOff = employeeSalarySheet.getPayingOff();
- 		if( lpayingOff != null ){
+ 		PayingOff payingOff = employeeSalarySheet.getPayingOff();
+ 		if( payingOff != null ){
  			//if the root object 'employeeSalarySheet' already have the property, just set the id for it;
- 			lpayingOff.setId(payingOffId);
+ 			payingOff.setId(payingOffId);
  			
  			return;
  		}

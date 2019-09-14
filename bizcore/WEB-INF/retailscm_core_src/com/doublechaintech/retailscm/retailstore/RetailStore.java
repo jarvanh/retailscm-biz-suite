@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.retailstore;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -105,6 +106,16 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	public 	RetailStore(){
 		// lazy load for all the properties
 	}
+	public 	static RetailStore withId(String id){
+		RetailStore retailStore = new RetailStore();
+		retailStore.setId(id);
+		// retailStore.setVersion(Integer.MAX_VALUE);
+		return retailStore;
+	}
+	public 	static RetailStore refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setRetailStoreCountryCenter( null );
@@ -293,6 +304,88 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(TELEPHONE_PROPERTY.equals(property)){
+			return getTelephone();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(RETAIL_STORE_COUNTRY_CENTER_PROPERTY.equals(property)){
+			return getRetailStoreCountryCenter();
+		}
+		if(CITY_SERVICE_CENTER_PROPERTY.equals(property)){
+			return getCityServiceCenter();
+		}
+		if(CREATION_PROPERTY.equals(property)){
+			return getCreation();
+		}
+		if(INVESTMENT_INVITATION_PROPERTY.equals(property)){
+			return getInvestmentInvitation();
+		}
+		if(FRANCHISING_PROPERTY.equals(property)){
+			return getFranchising();
+		}
+		if(DECORATION_PROPERTY.equals(property)){
+			return getDecoration();
+		}
+		if(OPENING_PROPERTY.equals(property)){
+			return getOpening();
+		}
+		if(CLOSING_PROPERTY.equals(property)){
+			return getClosing();
+		}
+		if(FOUNDED_PROPERTY.equals(property)){
+			return getFounded();
+		}
+		if(LATITUDE_PROPERTY.equals(property)){
+			return getLatitude();
+		}
+		if(LONGITUDE_PROPERTY.equals(property)){
+			return getLongitude();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+		if(CONSUMER_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getConsumerOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(GOODS_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TRANSPORT_TASK_LIST.equals(property)){
+			List<BaseEntity> list = getTransportTaskList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNT_SET_LIST.equals(property)){
+			List<BaseEntity> list = getAccountSetList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

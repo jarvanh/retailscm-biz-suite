@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.goods;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -93,6 +94,16 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 	public 	Goods(){
 		// lazy load for all the properties
 	}
+	public 	static Goods withId(String id){
+		Goods goods = new Goods();
+		goods.setId(id);
+		// goods.setVersion(Integer.MAX_VALUE);
+		return goods;
+	}
+	public 	static Goods refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setSku( null );
@@ -229,6 +240,69 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(RFID_PROPERTY.equals(property)){
+			return getRfid();
+		}
+		if(UOM_PROPERTY.equals(property)){
+			return getUom();
+		}
+		if(MAX_PACKAGE_PROPERTY.equals(property)){
+			return getMaxPackage();
+		}
+		if(EXPIRE_TIME_PROPERTY.equals(property)){
+			return getExpireTime();
+		}
+		if(SKU_PROPERTY.equals(property)){
+			return getSku();
+		}
+		if(RECEIVING_SPACE_PROPERTY.equals(property)){
+			return getReceivingSpace();
+		}
+		if(GOODS_ALLOCATION_PROPERTY.equals(property)){
+			return getGoodsAllocation();
+		}
+		if(SMART_PALLET_PROPERTY.equals(property)){
+			return getSmartPallet();
+		}
+		if(SHIPPING_SPACE_PROPERTY.equals(property)){
+			return getShippingSpace();
+		}
+		if(TRANSPORT_TASK_PROPERTY.equals(property)){
+			return getTransportTask();
+		}
+		if(RETAIL_STORE_PROPERTY.equals(property)){
+			return getRetailStore();
+		}
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(RETAIL_STORE_ORDER_PROPERTY.equals(property)){
+			return getRetailStoreOrder();
+		}
+		if(PACKAGING_PROPERTY.equals(property)){
+			return getPackaging();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+		if(GOODS_MOVEMENT_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsMovementList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

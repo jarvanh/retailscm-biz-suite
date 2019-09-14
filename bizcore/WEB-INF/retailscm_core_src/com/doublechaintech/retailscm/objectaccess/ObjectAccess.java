@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.objectaccess;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -73,6 +74,16 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 	public 	ObjectAccess(){
 		// lazy load for all the properties
 	}
+	public 	static ObjectAccess withId(String id){
+		ObjectAccess objectAccess = new ObjectAccess();
+		objectAccess.setId(id);
+		// objectAccess.setVersion(Integer.MAX_VALUE);
+		return objectAccess;
+	}
+	public 	static ObjectAccess refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setApp( null );
@@ -304,6 +315,53 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(OBJECT_TYPE_PROPERTY.equals(property)){
+			return getObjectType();
+		}
+		if(LIST1_PROPERTY.equals(property)){
+			return getList1();
+		}
+		if(LIST2_PROPERTY.equals(property)){
+			return getList2();
+		}
+		if(LIST3_PROPERTY.equals(property)){
+			return getList3();
+		}
+		if(LIST4_PROPERTY.equals(property)){
+			return getList4();
+		}
+		if(LIST5_PROPERTY.equals(property)){
+			return getList5();
+		}
+		if(LIST6_PROPERTY.equals(property)){
+			return getList6();
+		}
+		if(LIST7_PROPERTY.equals(property)){
+			return getList7();
+		}
+		if(LIST8_PROPERTY.equals(property)){
+			return getList8();
+		}
+		if(LIST9_PROPERTY.equals(property)){
+			return getList9();
+		}
+		if(APP_PROPERTY.equals(property)){
+			return getApp();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

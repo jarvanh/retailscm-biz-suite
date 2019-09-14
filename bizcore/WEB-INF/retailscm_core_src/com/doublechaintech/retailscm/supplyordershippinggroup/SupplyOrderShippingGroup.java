@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.supplyordershippinggroup;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,6 +56,16 @@ public class SupplyOrderShippingGroup extends BaseEntity implements  java.io.Ser
 	public 	SupplyOrderShippingGroup(){
 		// lazy load for all the properties
 	}
+	public 	static SupplyOrderShippingGroup withId(String id){
+		SupplyOrderShippingGroup supplyOrderShippingGroup = new SupplyOrderShippingGroup();
+		supplyOrderShippingGroup.setId(id);
+		// supplyOrderShippingGroup.setVersion(Integer.MAX_VALUE);
+		return supplyOrderShippingGroup;
+	}
+	public 	static SupplyOrderShippingGroup refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBizOrder( null );
@@ -115,6 +126,26 @@ public class SupplyOrderShippingGroup extends BaseEntity implements  java.io.Ser
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

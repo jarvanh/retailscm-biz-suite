@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -45,16 +45,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentDAO{
- 
- 	
- 	private  AccountingDocumentTypeDAO  accountingDocumentTypeDAO;
- 	public void setAccountingDocumentTypeDAO(AccountingDocumentTypeDAO accountingDocumentTypeDAO){
-	 	this.accountingDocumentTypeDAO = accountingDocumentTypeDAO;
- 	}
- 	public AccountingDocumentTypeDAO getAccountingDocumentTypeDAO(){
-	 	return this.accountingDocumentTypeDAO;
- 	}
+public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingDocumentDAO{
  
  	
  	private  AccountingDocumentPostingDAO  accountingDocumentPostingDAO;
@@ -66,21 +57,12 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO
  	}
  
  	
- 	private  AccountingDocumentCreationDAO  accountingDocumentCreationDAO;
- 	public void setAccountingDocumentCreationDAO(AccountingDocumentCreationDAO accountingDocumentCreationDAO){
-	 	this.accountingDocumentCreationDAO = accountingDocumentCreationDAO;
+ 	private  AccountingDocumentConfirmationDAO  accountingDocumentConfirmationDAO;
+ 	public void setAccountingDocumentConfirmationDAO(AccountingDocumentConfirmationDAO accountingDocumentConfirmationDAO){
+	 	this.accountingDocumentConfirmationDAO = accountingDocumentConfirmationDAO;
  	}
- 	public AccountingDocumentCreationDAO getAccountingDocumentCreationDAO(){
-	 	return this.accountingDocumentCreationDAO;
- 	}
- 
- 	
- 	private  AccountingPeriodDAO  accountingPeriodDAO;
- 	public void setAccountingPeriodDAO(AccountingPeriodDAO accountingPeriodDAO){
-	 	this.accountingPeriodDAO = accountingPeriodDAO;
- 	}
- 	public AccountingPeriodDAO getAccountingPeriodDAO(){
-	 	return this.accountingPeriodDAO;
+ 	public AccountingDocumentConfirmationDAO getAccountingDocumentConfirmationDAO(){
+	 	return this.accountingDocumentConfirmationDAO;
  	}
  
  	
@@ -93,12 +75,30 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO
  	}
  
  	
- 	private  AccountingDocumentConfirmationDAO  accountingDocumentConfirmationDAO;
- 	public void setAccountingDocumentConfirmationDAO(AccountingDocumentConfirmationDAO accountingDocumentConfirmationDAO){
-	 	this.accountingDocumentConfirmationDAO = accountingDocumentConfirmationDAO;
+ 	private  AccountingPeriodDAO  accountingPeriodDAO;
+ 	public void setAccountingPeriodDAO(AccountingPeriodDAO accountingPeriodDAO){
+	 	this.accountingPeriodDAO = accountingPeriodDAO;
  	}
- 	public AccountingDocumentConfirmationDAO getAccountingDocumentConfirmationDAO(){
-	 	return this.accountingDocumentConfirmationDAO;
+ 	public AccountingPeriodDAO getAccountingPeriodDAO(){
+	 	return this.accountingPeriodDAO;
+ 	}
+ 
+ 	
+ 	private  AccountingDocumentTypeDAO  accountingDocumentTypeDAO;
+ 	public void setAccountingDocumentTypeDAO(AccountingDocumentTypeDAO accountingDocumentTypeDAO){
+	 	this.accountingDocumentTypeDAO = accountingDocumentTypeDAO;
+ 	}
+ 	public AccountingDocumentTypeDAO getAccountingDocumentTypeDAO(){
+	 	return this.accountingDocumentTypeDAO;
+ 	}
+ 
+ 	
+ 	private  AccountingDocumentCreationDAO  accountingDocumentCreationDAO;
+ 	public void setAccountingDocumentCreationDAO(AccountingDocumentCreationDAO accountingDocumentCreationDAO){
+	 	this.accountingDocumentCreationDAO = accountingDocumentCreationDAO;
+ 	}
+ 	public AccountingDocumentCreationDAO getAccountingDocumentCreationDAO(){
+	 	return this.accountingDocumentCreationDAO;
  	}
 
 

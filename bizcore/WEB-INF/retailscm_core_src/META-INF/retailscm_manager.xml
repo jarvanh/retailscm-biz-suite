@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<bean id="checker" class="com.doublechaintech.retailscm.RetailscmChecker" scope="prototype"></bean>
+	<bean id="checker" class="com.doublechaintech.retailscm.RetailscmObjectChecker" scope="prototype"></bean>
 
 	<bean id="retailStoreCountryCenterManagerBase" class="com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterManagerImpl"/>
 	<bean id="retailStoreCountryCenterManager" class="com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterCustomManagerImpl" parent="retailStoreCountryCenterManagerBase" ></bean>
@@ -434,6 +434,9 @@
 	<bean id="userAppManagerBase" class="com.doublechaintech.retailscm.userapp.UserAppManagerImpl"/>
 	<bean id="userAppManager" class="com.doublechaintech.retailscm.userapp.UserAppCustomManagerImpl" parent="userAppManagerBase" ></bean>
 	
+	<bean id="quickLinkManagerBase" class="com.doublechaintech.retailscm.quicklink.QuickLinkManagerImpl"/>
+	<bean id="quickLinkManager" class="com.doublechaintech.retailscm.quicklink.QuickLinkManagerImpl" parent="quickLinkManagerBase" ></bean>
+	
 	<bean id="listAccessManagerBase" class="com.doublechaintech.retailscm.listaccess.ListAccessManagerImpl"/>
 	<bean id="listAccessManager" class="com.doublechaintech.retailscm.listaccess.ListAccessManagerImpl" parent="listAccessManagerBase" ></bean>
 	
@@ -457,6 +460,12 @@
 	
 	<bean id="formActionManagerBase" class="com.doublechaintech.retailscm.formaction.FormActionManagerImpl"/>
 	<bean id="formActionManager" class="com.doublechaintech.retailscm.formaction.FormActionManagerImpl" parent="formActionManagerBase" ></bean>
+	
+	<bean id="candidateContainerManagerBase" class="com.doublechaintech.retailscm.candidatecontainer.CandidateContainerManagerImpl"/>
+	<bean id="candidateContainerManager" class="com.doublechaintech.retailscm.candidatecontainer.CandidateContainerCustomManagerImpl" parent="candidateContainerManagerBase" ></bean>
+	
+	<bean id="candidateElementManagerBase" class="com.doublechaintech.retailscm.candidateelement.CandidateElementManagerImpl"/>
+	<bean id="candidateElementManager" class="com.doublechaintech.retailscm.candidateelement.CandidateElementManagerImpl" parent="candidateElementManagerBase" ></bean>
 	
 
 	<bean id="managerGroupBase" class="com.doublechaintech.retailscm.ManagerGroup">
@@ -602,6 +611,7 @@
 		<property name="secUserManager" ref="secUserManager"/>
 		<property name="secUserBlockingManager" ref="secUserBlockingManager"/>
 		<property name="userAppManager" ref="userAppManager"/>
+		<property name="quickLinkManager" ref="quickLinkManager"/>
 		<property name="listAccessManager" ref="listAccessManager"/>
 		<property name="objectAccessManager" ref="objectAccessManager"/>
 		<property name="loginHistoryManager" ref="loginHistoryManager"/>
@@ -610,6 +620,8 @@
 		<property name="formFieldMessageManager" ref="formFieldMessageManager"/>
 		<property name="formFieldManager" ref="formFieldManager"/>
 		<property name="formActionManager" ref="formActionManager"/>
+		<property name="candidateContainerManager" ref="candidateContainerManager"/>
+		<property name="candidateElementManager" ref="candidateElementManager"/>
 	</bean>
 	<bean id="managerGroup" parent="managerGroupBase"></bean>
 	

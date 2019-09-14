@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.cityevent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,6 +63,16 @@ public class CityEvent extends BaseEntity implements  java.io.Serializable{
 	public 	CityEvent(){
 		// lazy load for all the properties
 	}
+	public 	static CityEvent withId(String id){
+		CityEvent cityEvent = new CityEvent();
+		cityEvent.setId(id);
+		// cityEvent.setVersion(Integer.MAX_VALUE);
+		return cityEvent;
+	}
+	public 	static CityEvent refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCityServiceCenter( null );
@@ -161,6 +172,36 @@ public class CityEvent extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(MOBILE_PROPERTY.equals(property)){
+			return getMobile();
+		}
+		if(CITY_SERVICE_CENTER_PROPERTY.equals(property)){
+			return getCityServiceCenter();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(EVENT_ATTENDANCE_LIST.equals(property)){
+			List<BaseEntity> list = getEventAttendanceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

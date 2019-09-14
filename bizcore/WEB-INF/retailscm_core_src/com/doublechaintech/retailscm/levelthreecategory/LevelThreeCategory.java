@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.levelthreecategory;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -56,6 +57,16 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 	public 	LevelThreeCategory(){
 		// lazy load for all the properties
 	}
+	public 	static LevelThreeCategory withId(String id){
+		LevelThreeCategory levelThreeCategory = new LevelThreeCategory();
+		levelThreeCategory.setId(id);
+		// levelThreeCategory.setVersion(Integer.MAX_VALUE);
+		return levelThreeCategory;
+	}
+	public 	static LevelThreeCategory refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setParentCategory( null );
@@ -98,6 +109,27 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(PARENT_CATEGORY_PROPERTY.equals(property)){
+			return getParentCategory();
+		}
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(PRODUCT_LIST.equals(property)){
+			List<BaseEntity> list = getProductList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

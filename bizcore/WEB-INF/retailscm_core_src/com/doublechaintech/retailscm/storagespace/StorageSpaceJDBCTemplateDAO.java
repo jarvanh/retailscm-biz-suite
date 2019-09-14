@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements StorageSpaceDAO{
+public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements StorageSpaceDAO{
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -382,7 +382,7 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//StorageSpace.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Storage Space");
+		lastUpdateTimeStatsItem.setDisplayName("存货区");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(StorageSpace.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(StorageSpace.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

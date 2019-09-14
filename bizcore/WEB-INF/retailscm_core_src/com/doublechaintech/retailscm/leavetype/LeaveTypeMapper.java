@@ -58,10 +58,10 @@ public class LeaveTypeMapper extends BaseRowMapper<LeaveType>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = leaveType.getCompany();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = leaveType.getCompany();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'leaveType' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}

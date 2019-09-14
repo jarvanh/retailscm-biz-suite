@@ -627,20 +627,20 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 //--------------------------------------------------------------
 	
 	 	
- 	protected SecUserBlocking loadSecUserBlocking(RetailscmUserContext userContext, String newBlockingId, Map<String,Object> options) throws Exception
+ 	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSecUserBlockingDAO().load(newBlockingId, options);
+ 		return userContext.getDAOGroup().getUserDomainDAO().load(newDomainId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
+ 	protected SecUserBlocking loadSecUserBlocking(RetailscmUserContext userContext, String newBlockingId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getUserDomainDAO().load(newDomainId, options);
+ 		return userContext.getDAOGroup().getSecUserBlockingDAO().load(newBlockingId, options);
  	}
  	
  	

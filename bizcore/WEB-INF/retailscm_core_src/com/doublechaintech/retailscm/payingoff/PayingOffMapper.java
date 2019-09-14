@@ -58,10 +58,10 @@ public class PayingOffMapper extends BaseRowMapper<PayingOff>{
  		if( employeeId.isEmpty()){
  			return;
  		}
- 		Employee lemployee = payingOff.getPaidFor();
- 		if( lemployee != null ){
+ 		Employee employee = payingOff.getPaidFor();
+ 		if( employee != null ){
  			//if the root object 'payingOff' already have the property, just set the id for it;
- 			lemployee.setId(employeeId);
+ 			employee.setId(employeeId);
  			
  			return;
  		}

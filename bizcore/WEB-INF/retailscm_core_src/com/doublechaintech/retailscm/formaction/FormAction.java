@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.formaction;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -61,6 +62,16 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 	public 	FormAction(){
 		// lazy load for all the properties
 	}
+	public 	static FormAction withId(String id){
+		FormAction formAction = new FormAction();
+		formAction.setId(id);
+		// formAction.setVersion(Integer.MAX_VALUE);
+		return formAction;
+	}
+	public 	static FormAction refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setForm( null );
@@ -178,6 +189,35 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(LABEL_PROPERTY.equals(property)){
+			return getLabel();
+		}
+		if(LOCALE_KEY_PROPERTY.equals(property)){
+			return getLocaleKey();
+		}
+		if(ACTION_KEY_PROPERTY.equals(property)){
+			return getActionKey();
+		}
+		if(LEVEL_PROPERTY.equals(property)){
+			return getLevel();
+		}
+		if(URL_PROPERTY.equals(property)){
+			return getUrl();
+		}
+		if(FORM_PROPERTY.equals(property)){
+			return getForm();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	
@@ -443,9 +483,4 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 	
 
 }
-
-
-
-
-
 

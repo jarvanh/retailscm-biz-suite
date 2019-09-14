@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,7 +37,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreProvinceCenterDAO{
+public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreProvinceCenterDAO{
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -582,7 +582,7 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmNamingSer
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//RetailStoreProvinceCenter.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Retail Store Province Center");
+		lastUpdateTimeStatsItem.setDisplayName("双链小超省中心");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreProvinceCenter.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreProvinceCenter.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

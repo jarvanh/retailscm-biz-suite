@@ -16,7 +16,7 @@ public class GoodsTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="goods_data";
+	public static final String TABLE_NAME="goods_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_NAME = "name";
 	static final String COLUMN_RFID = "rfid";
@@ -36,10 +36,10 @@ public class GoodsTable{
 	static final String COLUMN_CURRENT_STATUS = "current_status";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_NAME, COLUMN_RFID, COLUMN_UOM, COLUMN_MAX_PACKAGE, COLUMN_EXPIRE_TIME, COLUMN_SKU, COLUMN_RECEIVING_SPACE, COLUMN_GOODS_ALLOCATION, COLUMN_SMART_PALLET, COLUMN_SHIPPING_SPACE, COLUMN_TRANSPORT_TASK, COLUMN_RETAIL_STORE, COLUMN_BIZ_ORDER, COLUMN_RETAIL_STORE_ORDER, COLUMN_PACKAGING, COLUMN_CURRENT_STATUS, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_NAME, COLUMN_RFID, COLUMN_UOM, COLUMN_MAX_PACKAGE, COLUMN_EXPIRE_TIME, COLUMN_SKU, COLUMN_RECEIVING_SPACE, COLUMN_GOODS_ALLOCATION, COLUMN_SMART_PALLET, COLUMN_SHIPPING_SPACE, COLUMN_TRANSPORT_TASK, COLUMN_RETAIL_STORE, COLUMN_BIZ_ORDER, COLUMN_RETAIL_STORE_ORDER, COLUMN_PACKAGING, COLUMN_CURRENT_STATUS
 		};
 	

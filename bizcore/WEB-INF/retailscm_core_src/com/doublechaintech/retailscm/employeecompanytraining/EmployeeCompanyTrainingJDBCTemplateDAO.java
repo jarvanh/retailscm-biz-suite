@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,15 +35,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeCompanyTrainingDAO{
+public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeCompanyTrainingDAO{
  
  	
- 	private  CompanyTrainingDAO  companyTrainingDAO;
- 	public void setCompanyTrainingDAO(CompanyTrainingDAO companyTrainingDAO){
-	 	this.companyTrainingDAO = companyTrainingDAO;
+ 	private  EmployeeDAO  employeeDAO;
+ 	public void setEmployeeDAO(EmployeeDAO employeeDAO){
+	 	this.employeeDAO = employeeDAO;
  	}
- 	public CompanyTrainingDAO getCompanyTrainingDAO(){
-	 	return this.companyTrainingDAO;
+ 	public EmployeeDAO getEmployeeDAO(){
+	 	return this.employeeDAO;
  	}
  
  	
@@ -56,12 +56,12 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmNamingServi
  	}
  
  	
- 	private  EmployeeDAO  employeeDAO;
- 	public void setEmployeeDAO(EmployeeDAO employeeDAO){
-	 	this.employeeDAO = employeeDAO;
+ 	private  CompanyTrainingDAO  companyTrainingDAO;
+ 	public void setCompanyTrainingDAO(CompanyTrainingDAO companyTrainingDAO){
+	 	this.companyTrainingDAO = companyTrainingDAO;
  	}
- 	public EmployeeDAO getEmployeeDAO(){
-	 	return this.employeeDAO;
+ 	public CompanyTrainingDAO getCompanyTrainingDAO(){
+	 	return this.companyTrainingDAO;
  	}
 
 

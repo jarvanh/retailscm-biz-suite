@@ -644,6 +644,16 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 //--------------------------------------------------------------
 	
 	 	
+ 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
  	protected SalaryGrade loadSalaryGrade(RetailscmUserContext userContext, String newCurrentSalaryGradeId, Map<String,Object> options) throws Exception
  	{
 		
@@ -658,16 +668,6 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	{
 		
  		return userContext.getDAOGroup().getPayingOffDAO().load(newPayingOffId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
  	}
  	
  	

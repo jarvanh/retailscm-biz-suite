@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO implements InstructorDAO{
+public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements InstructorDAO{
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -382,7 +382,7 @@ public class InstructorJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Instructor.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Instructor");
+		lastUpdateTimeStatsItem.setDisplayName("讲师");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Instructor.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Instructor.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

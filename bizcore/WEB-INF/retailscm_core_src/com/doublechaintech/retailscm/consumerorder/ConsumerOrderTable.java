@@ -16,7 +16,7 @@ public class ConsumerOrderTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="consumer_order_data";
+	public static final String TABLE_NAME="consumer_order_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_TITLE = "title";
 	static final String COLUMN_CONSUMER = "consumer";
@@ -30,10 +30,10 @@ public class ConsumerOrderTable{
 	static final String COLUMN_CURRENT_STATUS = "current_status";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_TITLE, COLUMN_CONSUMER, COLUMN_CONFIRMATION, COLUMN_APPROVAL, COLUMN_PROCESSING, COLUMN_SHIPMENT, COLUMN_DELIVERY, COLUMN_STORE, COLUMN_LAST_UPDATE_TIME, COLUMN_CURRENT_STATUS, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_TITLE, COLUMN_CONSUMER, COLUMN_CONFIRMATION, COLUMN_APPROVAL, COLUMN_PROCESSING, COLUMN_SHIPMENT, COLUMN_DELIVERY, COLUMN_STORE, COLUMN_LAST_UPDATE_TIME, COLUMN_CURRENT_STATUS
 		};
 	

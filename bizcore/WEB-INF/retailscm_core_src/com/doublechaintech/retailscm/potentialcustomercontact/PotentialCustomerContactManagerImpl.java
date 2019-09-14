@@ -501,20 +501,20 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  //--------------------------------------------------------------
 	
 	 	
- 	protected CityPartner loadCityPartner(RetailscmUserContext userContext, String newCityPartnerId, Map<String,Object> options) throws Exception
+ 	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getCityPartnerDAO().load(newCityPartnerId, options);
+ 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
+ 	protected CityPartner loadCityPartner(RetailscmUserContext userContext, String newCityPartnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
+ 		return userContext.getDAOGroup().getCityPartnerDAO().load(newCityPartnerId, options);
  	}
  	
  	

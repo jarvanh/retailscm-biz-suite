@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -39,7 +39,16 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsShelfDAO{
+public class GoodsShelfJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsShelfDAO{
+ 
+ 	
+ 	private  SupplierSpaceDAO  supplierSpaceDAO;
+ 	public void setSupplierSpaceDAO(SupplierSpaceDAO supplierSpaceDAO){
+	 	this.supplierSpaceDAO = supplierSpaceDAO;
+ 	}
+ 	public SupplierSpaceDAO getSupplierSpaceDAO(){
+	 	return this.supplierSpaceDAO;
+ 	}
  
  	
  	private  DamageSpaceDAO  damageSpaceDAO;
@@ -57,15 +66,6 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  	}
  	public StorageSpaceDAO getStorageSpaceDAO(){
 	 	return this.storageSpaceDAO;
- 	}
- 
- 	
- 	private  SupplierSpaceDAO  supplierSpaceDAO;
- 	public void setSupplierSpaceDAO(SupplierSpaceDAO supplierSpaceDAO){
-	 	this.supplierSpaceDAO = supplierSpaceDAO;
- 	}
- 	public SupplierSpaceDAO getSupplierSpaceDAO(){
-	 	return this.supplierSpaceDAO;
  	}
 
 
@@ -580,7 +580,7 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//GoodsShelf.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Goods Shelf");
+		lastUpdateTimeStatsItem.setDisplayName("货架");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(GoodsShelf.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(GoodsShelf.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -630,7 +630,7 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//GoodsShelf.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Goods Shelf");
+		lastUpdateTimeStatsItem.setDisplayName("货架");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(GoodsShelf.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(GoodsShelf.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -680,7 +680,7 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//GoodsShelf.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Goods Shelf");
+		lastUpdateTimeStatsItem.setDisplayName("货架");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(GoodsShelf.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(GoodsShelf.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

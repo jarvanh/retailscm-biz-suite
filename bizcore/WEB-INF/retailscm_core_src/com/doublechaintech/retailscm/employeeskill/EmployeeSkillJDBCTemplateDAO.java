@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,16 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class EmployeeSkillJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeSkillDAO{
- 
- 	
- 	private  SkillTypeDAO  skillTypeDAO;
- 	public void setSkillTypeDAO(SkillTypeDAO skillTypeDAO){
-	 	this.skillTypeDAO = skillTypeDAO;
- 	}
- 	public SkillTypeDAO getSkillTypeDAO(){
-	 	return this.skillTypeDAO;
- 	}
+public class EmployeeSkillJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeSkillDAO{
  
  	
  	private  EmployeeDAO  employeeDAO;
@@ -51,6 +42,15 @@ public class EmployeeSkillJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  	public EmployeeDAO getEmployeeDAO(){
 	 	return this.employeeDAO;
+ 	}
+ 
+ 	
+ 	private  SkillTypeDAO  skillTypeDAO;
+ 	public void setSkillTypeDAO(SkillTypeDAO skillTypeDAO){
+	 	this.skillTypeDAO = skillTypeDAO;
+ 	}
+ 	public SkillTypeDAO getSkillTypeDAO(){
+	 	return this.skillTypeDAO;
  	}
 
 

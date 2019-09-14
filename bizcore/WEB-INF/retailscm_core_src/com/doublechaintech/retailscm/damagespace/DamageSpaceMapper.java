@@ -109,10 +109,10 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
  		if( warehouseId.isEmpty()){
  			return;
  		}
- 		Warehouse lwarehouse = damageSpace.getWarehouse();
- 		if( lwarehouse != null ){
+ 		Warehouse warehouse = damageSpace.getWarehouse();
+ 		if( warehouse != null ){
  			//if the root object 'damageSpace' already have the property, just set the id for it;
- 			lwarehouse.setId(warehouseId);
+ 			warehouse.setId(warehouseId);
  			
  			return;
  		}

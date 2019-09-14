@@ -6,6 +6,9 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.function.Consumer;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -217,6 +220,34 @@ public class RetailscmBaseUtils {
 	public static String getRequestAppType(RetailscmUserContext userContext) {
 		return userContext.getRequestHeader("x-app-type");
 	}
+	private static final NumberFormat cashFormat = new DecimalFormat("#,##0.00");
+	private static final NumberFormat exRateFormat = new DecimalFormat("#,##0.00#");
+	public static String formatCash(BigDecimal amount) {
+		return cashFormat.format(amount)+"元";
+	}
+	public static String formatExchangeRate(BigDecimal amount) {
+		return exRateFormat.format(amount);
+	}
+
+	public static <T> T loadBaseEntityById(RetailscmUserContext ctx, String type, String id) throws Exception {
+		return loadBaseEntityById(ctx, type, id, null);
+	}
+	public static <T> T loadBaseEntityById(RetailscmUserContext ctx, String type, String id, Consumer<T> enhancer) throws Exception {
+		String key = type+":"+id;
+		BaseEntity cachedValue = (BaseEntity) ctx.getFromContextLocalStorage(key);
+		if (cachedValue != null){
+			if (cachedValue.getInternalType().equals(type) && cachedValue.getId().equals(id)) {
+				return (T) cachedValue;
+			}
+		}
+		T enObj = (T) ctx.getDAOGroup().loadBasicData(type, id);
+		if (enhancer != null) {
+			enhancer.accept(enObj);
+		}
+		ctx.putIntoContextLocalStorage(key, enObj);
+		return enObj;
+	}
+	
 
 }
 

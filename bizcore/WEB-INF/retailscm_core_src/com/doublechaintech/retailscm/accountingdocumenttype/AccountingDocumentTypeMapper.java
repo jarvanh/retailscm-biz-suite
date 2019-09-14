@@ -69,10 +69,10 @@ public class AccountingDocumentTypeMapper extends BaseRowMapper<AccountingDocume
  		if( accountSetId.isEmpty()){
  			return;
  		}
- 		AccountSet laccountSet = accountingDocumentType.getAccountingPeriod();
- 		if( laccountSet != null ){
+ 		AccountSet accountSet = accountingDocumentType.getAccountingPeriod();
+ 		if( accountSet != null ){
  			//if the root object 'accountingDocumentType' already have the property, just set the id for it;
- 			laccountSet.setId(accountSetId);
+ 			accountSet.setId(accountSetId);
  			
  			return;
  		}

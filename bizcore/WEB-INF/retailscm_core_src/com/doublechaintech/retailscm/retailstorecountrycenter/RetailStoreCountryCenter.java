@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.retailstorecountrycenter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -136,6 +137,16 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 	public 	RetailStoreCountryCenter(){
 		// lazy load for all the properties
 	}
+	public 	static RetailStoreCountryCenter withId(String id){
+		RetailStoreCountryCenter retailStoreCountryCenter = new RetailStoreCountryCenter();
+		retailStoreCountryCenter.setId(id);
+		// retailStoreCountryCenter.setVersion(Integer.MAX_VALUE);
+		return retailStoreCountryCenter;
+	}
+	public 	static RetailStoreCountryCenter refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -332,6 +343,137 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(SERVICE_NUMBER_PROPERTY.equals(property)){
+			return getServiceNumber();
+		}
+		if(FOUNDED_PROPERTY.equals(property)){
+			return getFounded();
+		}
+		if(WEB_SITE_PROPERTY.equals(property)){
+			return getWebSite();
+		}
+		if(ADDRESS_PROPERTY.equals(property)){
+			return getAddress();
+		}
+		if(OPERATED_BY_PROPERTY.equals(property)){
+			return getOperatedBy();
+		}
+		if(LEGAL_REPRESENTATIVE_PROPERTY.equals(property)){
+			return getLegalRepresentative();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(CATALOG_LIST.equals(property)){
+			List<BaseEntity> list = getCatalogList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_PROVINCE_CENTER_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreProvinceCenterList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_MEMBER_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(GOODS_SUPPLIER_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsSupplierList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SUPPLY_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getSupplyOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(WAREHOUSE_LIST.equals(property)){
+			List<BaseEntity> list = getWarehouseList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TRANSPORT_FLEET_LIST.equals(property)){
+			List<BaseEntity> list = getTransportFleetList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNT_SET_LIST.equals(property)){
+			List<BaseEntity> list = getAccountSetList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(LEVEL_ONE_DEPARTMENT_LIST.equals(property)){
+			List<BaseEntity> list = getLevelOneDepartmentList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SKILL_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getSkillTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RESPONSIBILITY_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getResponsibilityTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TERMINATION_REASON_LIST.equals(property)){
+			List<BaseEntity> list = getTerminationReasonList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TERMINATION_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getTerminationTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(OCCUPATION_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getOccupationTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(LEAVE_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getLeaveTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SALARY_GRADE_LIST.equals(property)){
+			List<BaseEntity> list = getSalaryGradeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(INTERVIEW_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getInterviewTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TRAINING_COURSE_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getTrainingCourseTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(PUBLIC_HOLIDAY_LIST.equals(property)){
+			List<BaseEntity> list = getPublicHolidayList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(INSTRUCTOR_LIST.equals(property)){
+			List<BaseEntity> list = getInstructorList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(COMPANY_TRAINING_LIST.equals(property)){
+			List<BaseEntity> list = getCompanyTrainingList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

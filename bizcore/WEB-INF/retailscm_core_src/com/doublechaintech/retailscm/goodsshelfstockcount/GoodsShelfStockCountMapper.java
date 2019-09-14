@@ -82,10 +82,10 @@ public class GoodsShelfStockCountMapper extends BaseRowMapper<GoodsShelfStockCou
  		if( goodsShelfId.isEmpty()){
  			return;
  		}
- 		GoodsShelf lgoodsShelf = goodsShelfStockCount.getShelf();
- 		if( lgoodsShelf != null ){
+ 		GoodsShelf goodsShelf = goodsShelfStockCount.getShelf();
+ 		if( goodsShelf != null ){
  			//if the root object 'goodsShelfStockCount' already have the property, just set the id for it;
- 			lgoodsShelf.setId(goodsShelfId);
+ 			goodsShelf.setId(goodsShelfId);
  			
  			return;
  		}

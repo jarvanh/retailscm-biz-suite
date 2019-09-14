@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.accountingdocumentauditing;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class AccountingDocumentAuditing extends BaseEntity implements  java.io.S
 	public 	AccountingDocumentAuditing(){
 		// lazy load for all the properties
 	}
+	public 	static AccountingDocumentAuditing withId(String id){
+		AccountingDocumentAuditing accountingDocumentAuditing = new AccountingDocumentAuditing();
+		accountingDocumentAuditing.setId(id);
+		// accountingDocumentAuditing.setVersion(Integer.MAX_VALUE);
+		return accountingDocumentAuditing;
+	}
+	public 	static AccountingDocumentAuditing refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -135,6 +146,30 @@ public class AccountingDocumentAuditing extends BaseEntity implements  java.io.S
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(COMMENTS_PROPERTY.equals(property)){
+			return getComments();
+		}
+		if(MAKE_DATE_PROPERTY.equals(property)){
+			return getMakeDate();
+		}
+		if(ACCOUNTING_DOCUMENT_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingDocumentList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderConfirmationDAO{
+public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderConfirmationDAO{
 
 
 			

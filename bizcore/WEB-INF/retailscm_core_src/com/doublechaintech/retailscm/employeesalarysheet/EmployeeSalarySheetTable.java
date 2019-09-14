@@ -16,7 +16,7 @@ public class EmployeeSalarySheetTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="employee_salary_sheet_data";
+	public static final String TABLE_NAME="employee_salary_sheet_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_EMPLOYEE = "employee";
 	static final String COLUMN_CURRENT_SALARY_GRADE = "current_salary_grade";
@@ -31,10 +31,10 @@ public class EmployeeSalarySheetTable{
 	static final String COLUMN_CURRENT_STATUS = "current_status";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_EMPLOYEE, COLUMN_CURRENT_SALARY_GRADE, COLUMN_BASE_SALARY, COLUMN_BONUS, COLUMN_REWARD, COLUMN_PERSONAL_TAX, COLUMN_SOCIAL_SECURITY, COLUMN_HOUSING_FOUND, COLUMN_JOB_INSURANCE, COLUMN_PAYING_OFF, COLUMN_CURRENT_STATUS, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_EMPLOYEE, COLUMN_CURRENT_SALARY_GRADE, COLUMN_BASE_SALARY, COLUMN_BONUS, COLUMN_REWARD, COLUMN_PERSONAL_TAX, COLUMN_SOCIAL_SECURITY, COLUMN_HOUSING_FOUND, COLUMN_JOB_INSURANCE, COLUMN_PAYING_OFF, COLUMN_CURRENT_STATUS
 		};
 	

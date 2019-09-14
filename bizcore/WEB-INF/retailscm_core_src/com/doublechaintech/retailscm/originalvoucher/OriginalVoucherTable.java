@@ -16,7 +16,7 @@ public class OriginalVoucherTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="original_voucher_data";
+	public static final String TABLE_NAME="original_voucher_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_TITLE = "title";
 	static final String COLUMN_MADE_BY = "made_by";
@@ -30,10 +30,10 @@ public class OriginalVoucherTable{
 	static final String COLUMN_CURRENT_STATUS = "current_status";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_TITLE, COLUMN_MADE_BY, COLUMN_RECEIVED_BY, COLUMN_VOUCHER_TYPE, COLUMN_VOUCHER_IMAGE, COLUMN_BELONGS_TO, COLUMN_CREATION, COLUMN_CONFIRMATION, COLUMN_AUDITING, COLUMN_CURRENT_STATUS, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_TITLE, COLUMN_MADE_BY, COLUMN_RECEIVED_BY, COLUMN_VOUCHER_TYPE, COLUMN_VOUCHER_IMAGE, COLUMN_BELONGS_TO, COLUMN_CREATION, COLUMN_CONFIRMATION, COLUMN_AUDITING, COLUMN_CURRENT_STATUS
 		};
 	

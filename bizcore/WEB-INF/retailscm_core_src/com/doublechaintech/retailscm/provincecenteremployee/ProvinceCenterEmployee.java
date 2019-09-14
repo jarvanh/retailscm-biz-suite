@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.provincecenteremployee;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,6 +63,16 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 	public 	ProvinceCenterEmployee(){
 		// lazy load for all the properties
 	}
+	public 	static ProvinceCenterEmployee withId(String id){
+		ProvinceCenterEmployee provinceCenterEmployee = new ProvinceCenterEmployee();
+		provinceCenterEmployee.setId(id);
+		// provinceCenterEmployee.setVersion(Integer.MAX_VALUE);
+		return provinceCenterEmployee;
+	}
+	public 	static ProvinceCenterEmployee refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setDepartment( null );
@@ -162,6 +173,35 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(MOBILE_PROPERTY.equals(property)){
+			return getMobile();
+		}
+		if(EMAIL_PROPERTY.equals(property)){
+			return getEmail();
+		}
+		if(FOUNDED_PROPERTY.equals(property)){
+			return getFounded();
+		}
+		if(DEPARTMENT_PROPERTY.equals(property)){
+			return getDepartment();
+		}
+		if(PROVINCE_CENTER_PROPERTY.equals(property)){
+			return getProvinceCenter();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

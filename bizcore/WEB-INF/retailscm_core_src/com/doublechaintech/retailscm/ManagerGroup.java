@@ -285,6 +285,8 @@ import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingManager;
 
 import com.doublechaintech.retailscm.userapp.UserAppManager;
 
+import com.doublechaintech.retailscm.quicklink.QuickLinkManager;
+
 import com.doublechaintech.retailscm.listaccess.ListAccessManager;
 
 import com.doublechaintech.retailscm.objectaccess.ObjectAccessManager;
@@ -300,6 +302,10 @@ import com.doublechaintech.retailscm.formfieldmessage.FormFieldMessageManager;
 import com.doublechaintech.retailscm.formfield.FormFieldManager;
 
 import com.doublechaintech.retailscm.formaction.FormActionManager;
+
+import com.doublechaintech.retailscm.candidatecontainer.CandidateContainerManager;
+
+import com.doublechaintech.retailscm.candidateelement.CandidateElementManager;
 
 
 public class ManagerGroup {
@@ -588,6 +594,8 @@ public class ManagerGroup {
 
 	protected UserAppManager userAppManager;
 
+	protected QuickLinkManager quickLinkManager;
+
 	protected ListAccessManager listAccessManager;
 
 	protected ObjectAccessManager objectAccessManager;
@@ -603,6 +611,10 @@ public class ManagerGroup {
 	protected FormFieldManager formFieldManager;
 
 	protected FormActionManager formActionManager;
+
+	protected CandidateContainerManager candidateContainerManager;
+
+	protected CandidateElementManager candidateElementManager;
 
 	
 
@@ -1742,6 +1754,14 @@ public class ManagerGroup {
 	}
 
 
+	public QuickLinkManager getQuickLinkManager(){
+		return this.quickLinkManager;
+	}
+	public void setQuickLinkManager(QuickLinkManager manager){
+		this.quickLinkManager = manager;
+	}
+
+
 	public ListAccessManager getListAccessManager(){
 		return this.listAccessManager;
 	}
@@ -1803,6 +1823,22 @@ public class ManagerGroup {
 	}
 	public void setFormActionManager(FormActionManager manager){
 		this.formActionManager = manager;
+	}
+
+
+	public CandidateContainerManager getCandidateContainerManager(){
+		return this.candidateContainerManager;
+	}
+	public void setCandidateContainerManager(CandidateContainerManager manager){
+		this.candidateContainerManager = manager;
+	}
+
+
+	public CandidateElementManager getCandidateElementManager(){
+		return this.candidateElementManager;
+	}
+	public void setCandidateElementManager(CandidateElementManager manager){
+		this.candidateElementManager = manager;
 	}
 
 

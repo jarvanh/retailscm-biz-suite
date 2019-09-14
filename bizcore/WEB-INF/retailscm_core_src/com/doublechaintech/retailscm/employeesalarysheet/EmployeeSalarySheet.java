@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employeesalarysheet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -73,6 +74,16 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	public 	EmployeeSalarySheet(){
 		// lazy load for all the properties
 	}
+	public 	static EmployeeSalarySheet withId(String id){
+		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
+		employeeSalarySheet.setId(id);
+		// employeeSalarySheet.setVersion(Integer.MAX_VALUE);
+		return employeeSalarySheet;
+	}
+	public 	static EmployeeSalarySheet refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setEmployee( null );
@@ -232,6 +243,50 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(CURRENT_SALARY_GRADE_PROPERTY.equals(property)){
+			return getCurrentSalaryGrade();
+		}
+		if(BASE_SALARY_PROPERTY.equals(property)){
+			return getBaseSalary();
+		}
+		if(BONUS_PROPERTY.equals(property)){
+			return getBonus();
+		}
+		if(REWARD_PROPERTY.equals(property)){
+			return getReward();
+		}
+		if(PERSONAL_TAX_PROPERTY.equals(property)){
+			return getPersonalTax();
+		}
+		if(SOCIAL_SECURITY_PROPERTY.equals(property)){
+			return getSocialSecurity();
+		}
+		if(HOUSING_FOUND_PROPERTY.equals(property)){
+			return getHousingFound();
+		}
+		if(JOB_INSURANCE_PROPERTY.equals(property)){
+			return getJobInsurance();
+		}
+		if(PAYING_OFF_PROPERTY.equals(property)){
+			return getPayingOff();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

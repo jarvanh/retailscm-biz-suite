@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -31,7 +31,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberCouponDAO{
+public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreMemberCouponDAO{
  
  	
  	private  RetailStoreMemberDAO  retailStoreMemberDAO;
@@ -282,7 +282,7 @@ public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmNamingServi
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//RetailStoreMemberCoupon.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Retail Store Member Coupon");
+		lastUpdateTimeStatsItem.setDisplayName("生超会员优惠券");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreMemberCoupon.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreMemberCoupon.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

@@ -1336,20 +1336,20 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
 //--------------------------------------------------------------
 	
 	 	
- 	protected SupplyOrderApproval loadSupplyOrderApproval(RetailscmUserContext userContext, String newApprovalId, Map<String,Object> options) throws Exception
+ 	protected SupplyOrderProcessing loadSupplyOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSupplyOrderApprovalDAO().load(newApprovalId, options);
+ 		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().load(newProcessingId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newBuyerId, Map<String,Object> options) throws Exception
+ 	protected SupplyOrderApproval loadSupplyOrderApproval(RetailscmUserContext userContext, String newApprovalId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newBuyerId, options);
+ 		return userContext.getDAOGroup().getSupplyOrderApprovalDAO().load(newApprovalId, options);
  	}
  	
  	
@@ -1366,10 +1366,10 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
  	
 	
 	 	
- 	protected GoodsSupplier loadGoodsSupplier(RetailscmUserContext userContext, String newSellerId, Map<String,Object> options) throws Exception
+ 	protected SupplyOrderConfirmation loadSupplyOrderConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getGoodsSupplierDAO().load(newSellerId, options);
+ 		return userContext.getDAOGroup().getSupplyOrderConfirmationDAO().load(newConfirmationId, options);
  	}
  	
  	
@@ -1386,6 +1386,16 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
  	
 	
 	 	
+ 	protected GoodsSupplier loadGoodsSupplier(RetailscmUserContext userContext, String newSellerId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getGoodsSupplierDAO().load(newSellerId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
  	protected SupplyOrderShipment loadSupplyOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
  	{
 		
@@ -1396,20 +1406,10 @@ public class SupplyOrderManagerImpl extends CustomRetailscmCheckerManager implem
  	
 	
 	 	
- 	protected SupplyOrderConfirmation loadSupplyOrderConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newBuyerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSupplyOrderConfirmationDAO().load(newConfirmationId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected SupplyOrderProcessing loadSupplyOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().load(newProcessingId, options);
+ 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newBuyerId, options);
  	}
  	
  	

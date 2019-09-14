@@ -56,10 +56,10 @@ public class MemberWishlistMapper extends BaseRowMapper<MemberWishlist>{
  		if( retailStoreMemberId.isEmpty()){
  			return;
  		}
- 		RetailStoreMember lretailStoreMember = memberWishlist.getOwner();
- 		if( lretailStoreMember != null ){
+ 		RetailStoreMember retailStoreMember = memberWishlist.getOwner();
+ 		if( retailStoreMember != null ){
  			//if the root object 'memberWishlist' already have the property, just set the id for it;
- 			lretailStoreMember.setId(retailStoreMemberId);
+ 			retailStoreMember.setId(retailStoreMemberId);
  			
  			return;
  		}

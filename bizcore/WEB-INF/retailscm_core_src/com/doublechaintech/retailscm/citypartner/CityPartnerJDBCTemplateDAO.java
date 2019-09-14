@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,7 +35,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CityPartnerDAO{
+public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements CityPartnerDAO{
  
  	
  	private  RetailStoreCityServiceCenterDAO  retailStoreCityServiceCenterDAO;
@@ -482,7 +482,7 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//CityPartner.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("City Partner");
+		lastUpdateTimeStatsItem.setDisplayName("城市合伙人");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(CityPartner.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(CityPartner.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

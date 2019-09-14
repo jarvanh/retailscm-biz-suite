@@ -48,10 +48,10 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
  		if( retailStoreOrderId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrder lretailStoreOrder = retailStoreOrderLineItem.getBizOrder();
- 		if( lretailStoreOrder != null ){
+ 		RetailStoreOrder retailStoreOrder = retailStoreOrderLineItem.getBizOrder();
+ 		if( retailStoreOrder != null ){
  			//if the root object 'retailStoreOrderLineItem' already have the property, just set the id for it;
- 			lretailStoreOrder.setId(retailStoreOrderId);
+ 			retailStoreOrder.setId(retailStoreOrderId);
  			
  			return;
  		}

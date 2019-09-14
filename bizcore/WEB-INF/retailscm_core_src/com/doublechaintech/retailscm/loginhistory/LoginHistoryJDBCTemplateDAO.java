@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -31,7 +31,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class LoginHistoryJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LoginHistoryDAO{
+public class LoginHistoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implements LoginHistoryDAO{
  
  	
  	private  SecUserDAO  secUserDAO;
@@ -282,7 +282,7 @@ public class LoginHistoryJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
  
 		StatsItem loginTimeStatsItem = new StatsItem();
 		//LoginHistory.LOGIN_TIME_PROPERTY
-		loginTimeStatsItem.setDisplayName("Login History");
+		loginTimeStatsItem.setDisplayName("登录历史");
 		loginTimeStatsItem.setInternalName(formatKeyForDateLine(LoginHistory.LOGIN_TIME_PROPERTY));
 		loginTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(LoginHistory.LOGIN_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(loginTimeStatsItem);

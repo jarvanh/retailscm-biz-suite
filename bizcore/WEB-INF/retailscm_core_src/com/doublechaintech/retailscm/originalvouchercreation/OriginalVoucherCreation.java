@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.originalvouchercreation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class OriginalVoucherCreation extends BaseEntity implements  java.io.Seri
 	public 	OriginalVoucherCreation(){
 		// lazy load for all the properties
 	}
+	public 	static OriginalVoucherCreation withId(String id){
+		OriginalVoucherCreation originalVoucherCreation = new OriginalVoucherCreation();
+		originalVoucherCreation.setId(id);
+		// originalVoucherCreation.setVersion(Integer.MAX_VALUE);
+		return originalVoucherCreation;
+	}
+	public 	static OriginalVoucherCreation refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -135,6 +146,30 @@ public class OriginalVoucherCreation extends BaseEntity implements  java.io.Seri
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(COMMENTS_PROPERTY.equals(property)){
+			return getComments();
+		}
+		if(MAKE_DATE_PROPERTY.equals(property)){
+			return getMakeDate();
+		}
+		if(ORIGINAL_VOUCHER_LIST.equals(property)){
+			List<BaseEntity> list = getOriginalVoucherList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

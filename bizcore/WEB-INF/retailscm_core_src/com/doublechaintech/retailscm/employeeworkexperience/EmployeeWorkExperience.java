@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employeeworkexperience;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -59,6 +60,16 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 	public 	EmployeeWorkExperience(){
 		// lazy load for all the properties
 	}
+	public 	static EmployeeWorkExperience withId(String id){
+		EmployeeWorkExperience employeeWorkExperience = new EmployeeWorkExperience();
+		employeeWorkExperience.setId(id);
+		// employeeWorkExperience.setVersion(Integer.MAX_VALUE);
+		return employeeWorkExperience;
+	}
+	public 	static EmployeeWorkExperience refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setEmployee( null );
@@ -157,6 +168,32 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(START_PROPERTY.equals(property)){
+			return getStart();
+		}
+		if(END_PROPERTY.equals(property)){
+			return getEnd();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

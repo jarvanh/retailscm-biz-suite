@@ -604,10 +604,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 //--------------------------------------------------------------
 	
 	 	
- 	protected CompanyTraining loadCompanyTraining(RetailscmUserContext userContext, String newTrainingId, Map<String,Object> options) throws Exception
+ 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getCompanyTrainingDAO().load(newTrainingId, options);
+ 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
  	}
  	
  	
@@ -624,10 +624,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	
 	
 	 	
- 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
+ 	protected CompanyTraining loadCompanyTraining(RetailscmUserContext userContext, String newTrainingId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return userContext.getDAOGroup().getCompanyTrainingDAO().load(newTrainingId, options);
  	}
  	
  	

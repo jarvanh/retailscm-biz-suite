@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.product;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -66,6 +67,16 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 	public 	Product(){
 		// lazy load for all the properties
 	}
+	public 	static Product withId(String id){
+		Product product = new Product();
+		product.setId(id);
+		// product.setVersion(Integer.MAX_VALUE);
+		return product;
+	}
+	public 	static Product refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setParentCategory( null );
@@ -203,6 +214,42 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(PARENT_CATEGORY_PROPERTY.equals(property)){
+			return getParentCategory();
+		}
+		if(ORIGIN_PROPERTY.equals(property)){
+			return getOrigin();
+		}
+		if(REMARK_PROPERTY.equals(property)){
+			return getRemark();
+		}
+		if(BRAND_PROPERTY.equals(property)){
+			return getBrand();
+		}
+		if(PICTURE_PROPERTY.equals(property)){
+			return getPicture();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(SKU_LIST.equals(property)){
+			List<BaseEntity> list = getSkuList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

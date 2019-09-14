@@ -505,20 +505,20 @@ public class CompanyTrainingManagerImpl extends CustomRetailscmCheckerManager im
  //--------------------------------------------------------------
 	
 	 	
- 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
+ 	protected Instructor loadInstructor(RetailscmUserContext userContext, String newInstructorId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return userContext.getDAOGroup().getInstructorDAO().load(newInstructorId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected Instructor loadInstructor(RetailscmUserContext userContext, String newInstructorId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getInstructorDAO().load(newInstructorId, options);
+ 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
  	}
  	
  	

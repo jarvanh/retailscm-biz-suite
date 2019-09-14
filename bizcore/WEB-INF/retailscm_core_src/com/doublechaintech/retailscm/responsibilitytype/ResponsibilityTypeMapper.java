@@ -58,10 +58,10 @@ public class ResponsibilityTypeMapper extends BaseRowMapper<ResponsibilityType>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = responsibilityType.getCompany();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = responsibilityType.getCompany();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'responsibilityType' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}

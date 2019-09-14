@@ -1156,7 +1156,7 @@ public class SupplyOrderForm extends BaseForm {
  	
  	public SupplyOrderForm  confirmAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Confirmation");
+		action.setLabel("确认");
 		action.setLocaleKey("supply_order.confirm");
 		action.setUrl("supplyOrderManager/confirm/supplyOrderId/who/confirmTime/");
 		this.addFormAction(action);
@@ -1164,7 +1164,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  approveAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Approval");
+		action.setLabel("验收");
 		action.setLocaleKey("supply_order.approve");
 		action.setUrl("supplyOrderManager/approve/supplyOrderId/who/approveTime/");
 		this.addFormAction(action);
@@ -1172,7 +1172,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  processAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Processing");
+		action.setLabel("处理");
 		action.setLocaleKey("supply_order.process");
 		action.setUrl("supplyOrderManager/process/supplyOrderId/who/processTime/");
 		this.addFormAction(action);
@@ -1180,7 +1180,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  pickAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Picking");
+		action.setLabel("捡货");
 		action.setLocaleKey("supply_order.pick");
 		action.setUrl("supplyOrderManager/pick/supplyOrderId/who/processTime/");
 		this.addFormAction(action);
@@ -1188,7 +1188,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  shipAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Shipment");
+		action.setLabel("装运");
 		action.setLocaleKey("supply_order.ship");
 		action.setUrl("supplyOrderManager/ship/supplyOrderId/who/shipTime/");
 		this.addFormAction(action);
@@ -1196,7 +1196,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  deliverAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Delivery");
+		action.setLabel("送货");
 		action.setLocaleKey("supply_order.deliver");
 		action.setUrl("supplyOrderManager/deliver/supplyOrderId/who/deliveryTime/");
 		this.addFormAction(action);

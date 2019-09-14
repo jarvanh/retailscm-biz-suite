@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employee;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -140,6 +141,16 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	public 	Employee(){
 		// lazy load for all the properties
 	}
+	public 	static Employee withId(String id){
+		Employee employee = new Employee();
+		employee.setId(id);
+		// employee.setVersion(Integer.MAX_VALUE);
+		return employee;
+	}
+	public 	static Employee refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCompany( null );
@@ -361,6 +372,131 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(DEPARTMENT_PROPERTY.equals(property)){
+			return getDepartment();
+		}
+		if(FAMILY_NAME_PROPERTY.equals(property)){
+			return getFamilyName();
+		}
+		if(GIVEN_NAME_PROPERTY.equals(property)){
+			return getGivenName();
+		}
+		if(EMAIL_PROPERTY.equals(property)){
+			return getEmail();
+		}
+		if(CITY_PROPERTY.equals(property)){
+			return getCity();
+		}
+		if(ADDRESS_PROPERTY.equals(property)){
+			return getAddress();
+		}
+		if(CELL_PHONE_PROPERTY.equals(property)){
+			return getCellPhone();
+		}
+		if(OCCUPATION_PROPERTY.equals(property)){
+			return getOccupation();
+		}
+		if(RESPONSIBLE_FOR_PROPERTY.equals(property)){
+			return getResponsibleFor();
+		}
+		if(CURRENT_SALARY_GRADE_PROPERTY.equals(property)){
+			return getCurrentSalaryGrade();
+		}
+		if(SALARY_ACCOUNT_PROPERTY.equals(property)){
+			return getSalaryAccount();
+		}
+		if(JOB_APPLICATION_PROPERTY.equals(property)){
+			return getJobApplication();
+		}
+		if(PROFESSION_INTERVIEW_PROPERTY.equals(property)){
+			return getProfessionInterview();
+		}
+		if(HR_INTERVIEW_PROPERTY.equals(property)){
+			return getHrInterview();
+		}
+		if(OFFER_APPROVAL_PROPERTY.equals(property)){
+			return getOfferApproval();
+		}
+		if(OFFER_ACCEPTANCE_PROPERTY.equals(property)){
+			return getOfferAcceptance();
+		}
+		if(EMPLOYEE_BOARDING_PROPERTY.equals(property)){
+			return getEmployeeBoarding();
+		}
+		if(TERMINATION_PROPERTY.equals(property)){
+			return getTermination();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+		if(EMPLOYEE_COMPANY_TRAINING_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeCompanyTrainingList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_SKILL_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeSkillList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_PERFORMANCE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeePerformanceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_WORK_EXPERIENCE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeWorkExperienceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_LEAVE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeLeaveList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_INTERVIEW_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeInterviewList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_ATTENDANCE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeAttendanceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_QUALIFIER_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeQualifierList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_EDUCATION_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeEducationList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_AWARD_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeAwardList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_SALARY_SHEET_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeSalarySheetList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(PAYING_OFF_LIST.equals(property)){
+			List<BaseEntity> list = getPayingOffList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

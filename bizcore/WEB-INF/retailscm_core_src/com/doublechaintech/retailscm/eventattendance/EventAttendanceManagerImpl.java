@@ -431,20 +431,20 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
  //--------------------------------------------------------------
 	
 	 	
- 	protected CityEvent loadCityEvent(RetailscmUserContext userContext, String newCityEventId, Map<String,Object> options) throws Exception
+ 	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getCityEventDAO().load(newCityEventId, options);
+ 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
+ 	protected CityEvent loadCityEvent(RetailscmUserContext userContext, String newCityEventId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
+ 		return userContext.getDAOGroup().getCityEventDAO().load(newCityEventId, options);
  	}
  	
  	

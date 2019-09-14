@@ -75,10 +75,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = employee.getCompany();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = employee.getCompany();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}
@@ -105,10 +105,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( levelThreeDepartmentId.isEmpty()){
  			return;
  		}
- 		LevelThreeDepartment llevelThreeDepartment = employee.getDepartment();
- 		if( llevelThreeDepartment != null ){
+ 		LevelThreeDepartment levelThreeDepartment = employee.getDepartment();
+ 		if( levelThreeDepartment != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			llevelThreeDepartment.setId(levelThreeDepartmentId);
+ 			levelThreeDepartment.setId(levelThreeDepartmentId);
  			
  			return;
  		}
@@ -195,10 +195,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( occupationTypeId.isEmpty()){
  			return;
  		}
- 		OccupationType loccupationType = employee.getOccupation();
- 		if( loccupationType != null ){
+ 		OccupationType occupationType = employee.getOccupation();
+ 		if( occupationType != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			loccupationType.setId(occupationTypeId);
+ 			occupationType.setId(occupationTypeId);
  			
  			return;
  		}
@@ -213,10 +213,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( responsibilityTypeId.isEmpty()){
  			return;
  		}
- 		ResponsibilityType lresponsibilityType = employee.getResponsibleFor();
- 		if( lresponsibilityType != null ){
+ 		ResponsibilityType responsibilityType = employee.getResponsibleFor();
+ 		if( responsibilityType != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lresponsibilityType.setId(responsibilityTypeId);
+ 			responsibilityType.setId(responsibilityTypeId);
  			
  			return;
  		}
@@ -231,10 +231,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( salaryGradeId.isEmpty()){
  			return;
  		}
- 		SalaryGrade lsalaryGrade = employee.getCurrentSalaryGrade();
- 		if( lsalaryGrade != null ){
+ 		SalaryGrade salaryGrade = employee.getCurrentSalaryGrade();
+ 		if( salaryGrade != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lsalaryGrade.setId(salaryGradeId);
+ 			salaryGrade.setId(salaryGradeId);
  			
  			return;
  		}
@@ -261,10 +261,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( jobApplicationId.isEmpty()){
  			return;
  		}
- 		JobApplication ljobApplication = employee.getJobApplication();
- 		if( ljobApplication != null ){
+ 		JobApplication jobApplication = employee.getJobApplication();
+ 		if( jobApplication != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			ljobApplication.setId(jobApplicationId);
+ 			jobApplication.setId(jobApplicationId);
  			
  			return;
  		}
@@ -279,10 +279,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( professionInterviewId.isEmpty()){
  			return;
  		}
- 		ProfessionInterview lprofessionInterview = employee.getProfessionInterview();
- 		if( lprofessionInterview != null ){
+ 		ProfessionInterview professionInterview = employee.getProfessionInterview();
+ 		if( professionInterview != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lprofessionInterview.setId(professionInterviewId);
+ 			professionInterview.setId(professionInterviewId);
  			
  			return;
  		}
@@ -297,10 +297,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( hrInterviewId.isEmpty()){
  			return;
  		}
- 		HrInterview lhrInterview = employee.getHrInterview();
- 		if( lhrInterview != null ){
+ 		HrInterview hrInterview = employee.getHrInterview();
+ 		if( hrInterview != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lhrInterview.setId(hrInterviewId);
+ 			hrInterview.setId(hrInterviewId);
  			
  			return;
  		}
@@ -315,10 +315,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( offerApprovalId.isEmpty()){
  			return;
  		}
- 		OfferApproval lofferApproval = employee.getOfferApproval();
- 		if( lofferApproval != null ){
+ 		OfferApproval offerApproval = employee.getOfferApproval();
+ 		if( offerApproval != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lofferApproval.setId(offerApprovalId);
+ 			offerApproval.setId(offerApprovalId);
  			
  			return;
  		}
@@ -333,10 +333,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( offerAcceptanceId.isEmpty()){
  			return;
  		}
- 		OfferAcceptance lofferAcceptance = employee.getOfferAcceptance();
- 		if( lofferAcceptance != null ){
+ 		OfferAcceptance offerAcceptance = employee.getOfferAcceptance();
+ 		if( offerAcceptance != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lofferAcceptance.setId(offerAcceptanceId);
+ 			offerAcceptance.setId(offerAcceptanceId);
  			
  			return;
  		}
@@ -351,10 +351,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( employeeBoardingId.isEmpty()){
  			return;
  		}
- 		EmployeeBoarding lemployeeBoarding = employee.getEmployeeBoarding();
- 		if( lemployeeBoarding != null ){
+ 		EmployeeBoarding employeeBoarding = employee.getEmployeeBoarding();
+ 		if( employeeBoarding != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			lemployeeBoarding.setId(employeeBoardingId);
+ 			employeeBoarding.setId(employeeBoardingId);
  			
  			return;
  		}
@@ -369,10 +369,10 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		if( terminationId.isEmpty()){
  			return;
  		}
- 		Termination ltermination = employee.getTermination();
- 		if( ltermination != null ){
+ 		Termination termination = employee.getTermination();
+ 		if( termination != null ){
  			//if the root object 'employee' already have the property, just set the id for it;
- 			ltermination.setId(terminationId);
+ 			termination.setId(terminationId);
  			
  			return;
  		}

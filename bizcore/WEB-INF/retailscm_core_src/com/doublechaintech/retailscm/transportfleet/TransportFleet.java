@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.transportfleet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -66,6 +67,16 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 	public 	TransportFleet(){
 		// lazy load for all the properties
 	}
+	public 	static TransportFleet withId(String id){
+		TransportFleet transportFleet = new TransportFleet();
+		transportFleet.setId(id);
+		// transportFleet.setVersion(Integer.MAX_VALUE);
+		return transportFleet;
+	}
+	public 	static TransportFleet refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -148,6 +159,41 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(CONTACT_NUMBER_PROPERTY.equals(property)){
+			return getContactNumber();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(TRANSPORT_TRUCK_LIST.equals(property)){
+			List<BaseEntity> list = getTransportTruckList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TRUCK_DRIVER_LIST.equals(property)){
+			List<BaseEntity> list = getTruckDriverList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TRANSPORT_TASK_LIST.equals(property)){
+			List<BaseEntity> list = getTransportTaskList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -44,10 +44,10 @@ public class LevelOneCategoryMapper extends BaseRowMapper<LevelOneCategory>{
  		if( catalogId.isEmpty()){
  			return;
  		}
- 		Catalog lcatalog = levelOneCategory.getCatalog();
- 		if( lcatalog != null ){
+ 		Catalog catalog = levelOneCategory.getCatalog();
+ 		if( catalog != null ){
  			//if the root object 'levelOneCategory' already have the property, just set the id for it;
- 			lcatalog.setId(catalogId);
+ 			catalog.setId(catalogId);
  			
  			return;
  		}

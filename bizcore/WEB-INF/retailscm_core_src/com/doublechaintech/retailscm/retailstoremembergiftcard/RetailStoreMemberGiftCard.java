@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.retailstoremembergiftcard;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -60,6 +61,16 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 	public 	RetailStoreMemberGiftCard(){
 		// lazy load for all the properties
 	}
+	public 	static RetailStoreMemberGiftCard withId(String id){
+		RetailStoreMemberGiftCard retailStoreMemberGiftCard = new RetailStoreMemberGiftCard();
+		retailStoreMemberGiftCard.setId(id);
+		// retailStoreMemberGiftCard.setVersion(Integer.MAX_VALUE);
+		return retailStoreMemberGiftCard;
+	}
+	public 	static RetailStoreMemberGiftCard refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -140,6 +151,33 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(NUMBER_PROPERTY.equals(property)){
+			return getNumber();
+		}
+		if(REMAIN_PROPERTY.equals(property)){
+			return getRemain();
+		}
+		if(RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberGiftCardConsumeRecordList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	
