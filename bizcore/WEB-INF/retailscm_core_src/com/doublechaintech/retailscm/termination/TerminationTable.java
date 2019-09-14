@@ -16,17 +16,17 @@ public class TerminationTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="termination_data";
+	public static final String TABLE_NAME="termination_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_REASON = "reason";
 	static final String COLUMN_TYPE = "type";
 	static final String COLUMN_COMMENT = "comment";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_REASON, COLUMN_TYPE, COLUMN_COMMENT, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_REASON, COLUMN_TYPE, COLUMN_COMMENT
 		};
 	

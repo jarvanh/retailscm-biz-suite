@@ -16,7 +16,7 @@ public class TransportTruckTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="transport_truck_data";
+	public static final String TABLE_NAME="transport_truck_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_NAME = "name";
 	static final String COLUMN_PLATE_NUMBER = "plate_number";
@@ -29,10 +29,10 @@ public class TransportTruckTable{
 	static final String COLUMN_OWNER = "owner";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_NAME, COLUMN_PLATE_NUMBER, COLUMN_CONTACT_NUMBER, COLUMN_VEHICLE_LICENSE_NUMBER, COLUMN_ENGINE_NUMBER, COLUMN_MAKE_DATE, COLUMN_MILEAGE, COLUMN_BODY_COLOR, COLUMN_OWNER, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_NAME, COLUMN_PLATE_NUMBER, COLUMN_CONTACT_NUMBER, COLUMN_VEHICLE_LICENSE_NUMBER, COLUMN_ENGINE_NUMBER, COLUMN_MAKE_DATE, COLUMN_MILEAGE, COLUMN_BODY_COLOR, COLUMN_OWNER
 		};
 	

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.accountingsubject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,6 +63,16 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 	public 	AccountingSubject(){
 		// lazy load for all the properties
 	}
+	public 	static AccountingSubject withId(String id){
+		AccountingSubject accountingSubject = new AccountingSubject();
+		accountingSubject.setId(id);
+		// accountingSubject.setVersion(Integer.MAX_VALUE);
+		return accountingSubject;
+	}
+	public 	static AccountingSubject refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setAccountSet( null );
@@ -161,6 +172,36 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(ACCOUNTING_SUBJECT_CODE_PROPERTY.equals(property)){
+			return getAccountingSubjectCode();
+		}
+		if(ACCOUNTING_SUBJECT_NAME_PROPERTY.equals(property)){
+			return getAccountingSubjectName();
+		}
+		if(ACCOUNTING_SUBJECT_CLASS_CODE_PROPERTY.equals(property)){
+			return getAccountingSubjectClassCode();
+		}
+		if(ACCOUNTING_SUBJECT_CLASS_NAME_PROPERTY.equals(property)){
+			return getAccountingSubjectClassName();
+		}
+		if(ACCOUNT_SET_PROPERTY.equals(property)){
+			return getAccountSet();
+		}
+		if(ACCOUNTING_DOCUMENT_LINE_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingDocumentLineList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

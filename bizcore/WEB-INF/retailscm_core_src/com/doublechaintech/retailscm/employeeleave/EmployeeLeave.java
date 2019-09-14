@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employeeleave;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,6 +59,16 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 	public 	EmployeeLeave(){
 		// lazy load for all the properties
 	}
+	public 	static EmployeeLeave withId(String id){
+		EmployeeLeave employeeLeave = new EmployeeLeave();
+		employeeLeave.setId(id);
+		// employeeLeave.setVersion(Integer.MAX_VALUE);
+		return employeeLeave;
+	}
+	public 	static EmployeeLeave refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setWho( null );
@@ -120,6 +131,29 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(TYPE_PROPERTY.equals(property)){
+			return getType();
+		}
+		if(LEAVE_DURATION_HOUR_PROPERTY.equals(property)){
+			return getLeaveDurationHour();
+		}
+		if(REMARK_PROPERTY.equals(property)){
+			return getRemark();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

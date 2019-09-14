@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.formmessage;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,6 +56,16 @@ public class FormMessage extends BaseEntity implements  java.io.Serializable{
 	public 	FormMessage(){
 		// lazy load for all the properties
 	}
+	public 	static FormMessage withId(String id){
+		FormMessage formMessage = new FormMessage();
+		formMessage.setId(id);
+		// formMessage.setVersion(Integer.MAX_VALUE);
+		return formMessage;
+	}
+	public 	static FormMessage refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setForm( null );
@@ -115,6 +126,26 @@ public class FormMessage extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(FORM_PROPERTY.equals(property)){
+			return getForm();
+		}
+		if(LEVEL_PROPERTY.equals(property)){
+			return getLevel();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

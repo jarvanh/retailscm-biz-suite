@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.consumerorderlineitem;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -63,6 +64,16 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 	public 	ConsumerOrderLineItem(){
 		// lazy load for all the properties
 	}
+	public 	static ConsumerOrderLineItem withId(String id){
+		ConsumerOrderLineItem consumerOrderLineItem = new ConsumerOrderLineItem();
+		consumerOrderLineItem.setId(id);
+		// consumerOrderLineItem.setVersion(Integer.MAX_VALUE);
+		return consumerOrderLineItem;
+	}
+	public 	static ConsumerOrderLineItem refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBizOrder( null );
@@ -199,6 +210,38 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(SKU_ID_PROPERTY.equals(property)){
+			return getSkuId();
+		}
+		if(SKU_NAME_PROPERTY.equals(property)){
+			return getSkuName();
+		}
+		if(PRICE_PROPERTY.equals(property)){
+			return getPrice();
+		}
+		if(QUANTITY_PROPERTY.equals(property)){
+			return getQuantity();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

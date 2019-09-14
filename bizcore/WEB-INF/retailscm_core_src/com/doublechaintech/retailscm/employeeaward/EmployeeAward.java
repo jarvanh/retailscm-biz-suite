@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employeeaward;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 	public 	EmployeeAward(){
 		// lazy load for all the properties
 	}
+	public 	static EmployeeAward withId(String id){
+		EmployeeAward employeeAward = new EmployeeAward();
+		employeeAward.setId(id);
+		// employeeAward.setVersion(Integer.MAX_VALUE);
+		return employeeAward;
+	}
+	public 	static EmployeeAward refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setEmployee( null );
@@ -136,6 +147,29 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(COMPLETE_TIME_PROPERTY.equals(property)){
+			return getCompleteTime();
+		}
+		if(TYPE_PROPERTY.equals(property)){
+			return getType();
+		}
+		if(REMARK_PROPERTY.equals(property)){
+			return getRemark();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -1752,20 +1752,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 //--------------------------------------------------------------
 	
 	 	
- 	protected Termination loadTermination(RetailscmUserContext userContext, String newTerminationId, Map<String,Object> options) throws Exception
+ 	protected ProfessionInterview loadProfessionInterview(RetailscmUserContext userContext, String newProfessionInterviewId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTerminationDAO().load(newTerminationId, options);
+ 		return userContext.getDAOGroup().getProfessionInterviewDAO().load(newProfessionInterviewId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
+ 	protected OccupationType loadOccupationType(RetailscmUserContext userContext, String newOccupationId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return userContext.getDAOGroup().getOccupationTypeDAO().load(newOccupationId, options);
  	}
  	
  	
@@ -1782,16 +1782,6 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
  	
 	
 	 	
- 	protected OfferApproval loadOfferApproval(RetailscmUserContext userContext, String newOfferApprovalId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getOfferApprovalDAO().load(newOfferApprovalId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
  	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
  	{
 		
@@ -1802,10 +1792,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
  	
 	
 	 	
- 	protected HrInterview loadHrInterview(RetailscmUserContext userContext, String newHrInterviewId, Map<String,Object> options) throws Exception
+ 	protected JobApplication loadJobApplication(RetailscmUserContext userContext, String newJobApplicationId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getHrInterviewDAO().load(newHrInterviewId, options);
+ 		return userContext.getDAOGroup().getJobApplicationDAO().load(newJobApplicationId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected EmployeeBoarding loadEmployeeBoarding(RetailscmUserContext userContext, String newEmployeeBoardingId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getEmployeeBoardingDAO().load(newEmployeeBoardingId, options);
  	}
  	
  	
@@ -1832,16 +1832,6 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
  	
 	
 	 	
- 	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
  	protected LevelThreeDepartment loadLevelThreeDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
  	{
 		
@@ -1852,40 +1842,50 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
  	
 	
 	 	
- 	protected OccupationType loadOccupationType(RetailscmUserContext userContext, String newOccupationId, Map<String,Object> options) throws Exception
+ 	protected HrInterview loadHrInterview(RetailscmUserContext userContext, String newHrInterviewId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getOccupationTypeDAO().load(newOccupationId, options);
+ 		return userContext.getDAOGroup().getHrInterviewDAO().load(newHrInterviewId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected JobApplication loadJobApplication(RetailscmUserContext userContext, String newJobApplicationId, Map<String,Object> options) throws Exception
+ 	protected OfferApproval loadOfferApproval(RetailscmUserContext userContext, String newOfferApprovalId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getJobApplicationDAO().load(newJobApplicationId, options);
+ 		return userContext.getDAOGroup().getOfferApprovalDAO().load(newOfferApprovalId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected ProfessionInterview loadProfessionInterview(RetailscmUserContext userContext, String newProfessionInterviewId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getProfessionInterviewDAO().load(newProfessionInterviewId, options);
+ 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected EmployeeBoarding loadEmployeeBoarding(RetailscmUserContext userContext, String newEmployeeBoardingId, Map<String,Object> options) throws Exception
+ 	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeBoardingDAO().load(newEmployeeBoardingId, options);
+ 		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected Termination loadTermination(RetailscmUserContext userContext, String newTerminationId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getTerminationDAO().load(newTerminationId, options);
  	}
  	
  	

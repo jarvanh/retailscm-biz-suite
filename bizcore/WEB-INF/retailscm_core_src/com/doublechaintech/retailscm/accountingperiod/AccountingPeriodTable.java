@@ -16,7 +16,7 @@ public class AccountingPeriodTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="accounting_period_data";
+	public static final String TABLE_NAME="accounting_period_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_NAME = "name";
 	static final String COLUMN_START_DATE = "start_date";
@@ -24,10 +24,10 @@ public class AccountingPeriodTable{
 	static final String COLUMN_ACCOUNT_SET = "account_set";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_NAME, COLUMN_START_DATE, COLUMN_END_DATE, COLUMN_ACCOUNT_SET, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_NAME, COLUMN_START_DATE, COLUMN_END_DATE, COLUMN_ACCOUNT_SET
 		};
 	

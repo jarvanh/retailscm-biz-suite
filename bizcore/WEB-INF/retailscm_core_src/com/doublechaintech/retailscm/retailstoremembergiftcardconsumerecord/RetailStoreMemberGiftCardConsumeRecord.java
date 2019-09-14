@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -60,6 +61,16 @@ public class RetailStoreMemberGiftCardConsumeRecord extends BaseEntity implement
 	public 	RetailStoreMemberGiftCardConsumeRecord(){
 		// lazy load for all the properties
 	}
+	public 	static RetailStoreMemberGiftCardConsumeRecord withId(String id){
+		RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord = new RetailStoreMemberGiftCardConsumeRecord();
+		retailStoreMemberGiftCardConsumeRecord.setId(id);
+		// retailStoreMemberGiftCardConsumeRecord.setVersion(Integer.MAX_VALUE);
+		return retailStoreMemberGiftCardConsumeRecord;
+	}
+	public 	static RetailStoreMemberGiftCardConsumeRecord refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -141,6 +152,32 @@ public class RetailStoreMemberGiftCardConsumeRecord extends BaseEntity implement
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(OCCURE_TIME_PROPERTY.equals(property)){
+			return getOccureTime();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(NUMBER_PROPERTY.equals(property)){
+			return getNumber();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

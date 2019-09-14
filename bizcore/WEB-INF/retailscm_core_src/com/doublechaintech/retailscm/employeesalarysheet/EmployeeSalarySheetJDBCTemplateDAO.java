@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,7 +35,16 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeSalarySheetDAO{
+public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeSalarySheetDAO{
+ 
+ 	
+ 	private  EmployeeDAO  employeeDAO;
+ 	public void setEmployeeDAO(EmployeeDAO employeeDAO){
+	 	this.employeeDAO = employeeDAO;
+ 	}
+ 	public EmployeeDAO getEmployeeDAO(){
+	 	return this.employeeDAO;
+ 	}
  
  	
  	private  SalaryGradeDAO  salaryGradeDAO;
@@ -53,15 +62,6 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmNamingServiceDA
  	}
  	public PayingOffDAO getPayingOffDAO(){
 	 	return this.payingOffDAO;
- 	}
- 
- 	
- 	private  EmployeeDAO  employeeDAO;
- 	public void setEmployeeDAO(EmployeeDAO employeeDAO){
-	 	this.employeeDAO = employeeDAO;
- 	}
- 	public EmployeeDAO getEmployeeDAO(){
-	 	return this.employeeDAO;
  	}
 
 

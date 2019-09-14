@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -77,33 +77,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeDAO{
+public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeDAO{
  
  	
- 	private  TerminationDAO  terminationDAO;
- 	public void setTerminationDAO(TerminationDAO terminationDAO){
-	 	this.terminationDAO = terminationDAO;
+ 	private  ProfessionInterviewDAO  professionInterviewDAO;
+ 	public void setProfessionInterviewDAO(ProfessionInterviewDAO professionInterviewDAO){
+	 	this.professionInterviewDAO = professionInterviewDAO;
  	}
- 	public TerminationDAO getTerminationDAO(){
-	 	return this.terminationDAO;
- 	}
- 
- 	
- 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
- 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
-	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
- 	}
- 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
-	 	return this.retailStoreCountryCenterDAO;
- 	}
- 
- 	
- 	private  ResponsibilityTypeDAO  responsibilityTypeDAO;
- 	public void setResponsibilityTypeDAO(ResponsibilityTypeDAO responsibilityTypeDAO){
-	 	this.responsibilityTypeDAO = responsibilityTypeDAO;
- 	}
- 	public ResponsibilityTypeDAO getResponsibilityTypeDAO(){
-	 	return this.responsibilityTypeDAO;
+ 	public ProfessionInterviewDAO getProfessionInterviewDAO(){
+	 	return this.professionInterviewDAO;
  	}
  
  	
@@ -134,39 +116,12 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  	}
  
  	
- 	private  JobApplicationDAO  jobApplicationDAO;
- 	public void setJobApplicationDAO(JobApplicationDAO jobApplicationDAO){
-	 	this.jobApplicationDAO = jobApplicationDAO;
- 	}
- 	public JobApplicationDAO getJobApplicationDAO(){
-	 	return this.jobApplicationDAO;
- 	}
- 
- 	
  	private  OfferAcceptanceDAO  offerAcceptanceDAO;
  	public void setOfferAcceptanceDAO(OfferAcceptanceDAO offerAcceptanceDAO){
 	 	this.offerAcceptanceDAO = offerAcceptanceDAO;
  	}
  	public OfferAcceptanceDAO getOfferAcceptanceDAO(){
 	 	return this.offerAcceptanceDAO;
- 	}
- 
- 	
- 	private  OfferApprovalDAO  offerApprovalDAO;
- 	public void setOfferApprovalDAO(OfferApprovalDAO offerApprovalDAO){
-	 	this.offerApprovalDAO = offerApprovalDAO;
- 	}
- 	public OfferApprovalDAO getOfferApprovalDAO(){
-	 	return this.offerApprovalDAO;
- 	}
- 
- 	
- 	private  ProfessionInterviewDAO  professionInterviewDAO;
- 	public void setProfessionInterviewDAO(ProfessionInterviewDAO professionInterviewDAO){
-	 	this.professionInterviewDAO = professionInterviewDAO;
- 	}
- 	public ProfessionInterviewDAO getProfessionInterviewDAO(){
-	 	return this.professionInterviewDAO;
  	}
  
  	
@@ -179,12 +134,57 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  	}
  
  	
+ 	private  JobApplicationDAO  jobApplicationDAO;
+ 	public void setJobApplicationDAO(JobApplicationDAO jobApplicationDAO){
+	 	this.jobApplicationDAO = jobApplicationDAO;
+ 	}
+ 	public JobApplicationDAO getJobApplicationDAO(){
+	 	return this.jobApplicationDAO;
+ 	}
+ 
+ 	
  	private  EmployeeBoardingDAO  employeeBoardingDAO;
  	public void setEmployeeBoardingDAO(EmployeeBoardingDAO employeeBoardingDAO){
 	 	this.employeeBoardingDAO = employeeBoardingDAO;
  	}
  	public EmployeeBoardingDAO getEmployeeBoardingDAO(){
 	 	return this.employeeBoardingDAO;
+ 	}
+ 
+ 	
+ 	private  OfferApprovalDAO  offerApprovalDAO;
+ 	public void setOfferApprovalDAO(OfferApprovalDAO offerApprovalDAO){
+	 	this.offerApprovalDAO = offerApprovalDAO;
+ 	}
+ 	public OfferApprovalDAO getOfferApprovalDAO(){
+	 	return this.offerApprovalDAO;
+ 	}
+ 
+ 	
+ 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
+ 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
+	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
+ 	}
+ 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
+	 	return this.retailStoreCountryCenterDAO;
+ 	}
+ 
+ 	
+ 	private  ResponsibilityTypeDAO  responsibilityTypeDAO;
+ 	public void setResponsibilityTypeDAO(ResponsibilityTypeDAO responsibilityTypeDAO){
+	 	this.responsibilityTypeDAO = responsibilityTypeDAO;
+ 	}
+ 	public ResponsibilityTypeDAO getResponsibilityTypeDAO(){
+	 	return this.responsibilityTypeDAO;
+ 	}
+ 
+ 	
+ 	private  TerminationDAO  terminationDAO;
+ 	public void setTerminationDAO(TerminationDAO terminationDAO){
+	 	this.terminationDAO = terminationDAO;
+ 	}
+ 	public TerminationDAO getTerminationDAO(){
+	 	return this.terminationDAO;
  	}
 
 
@@ -2021,7 +2021,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2071,7 +2071,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2121,7 +2121,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2171,7 +2171,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2221,7 +2221,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2271,7 +2271,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2321,7 +2321,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2371,7 +2371,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2421,7 +2421,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2471,7 +2471,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2521,7 +2521,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -2571,7 +2571,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implement
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Employee");
+		lastUpdateTimeStatsItem.setDisplayName("员工");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

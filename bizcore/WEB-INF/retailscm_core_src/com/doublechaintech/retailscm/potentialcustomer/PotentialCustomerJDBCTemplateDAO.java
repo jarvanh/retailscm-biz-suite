@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -39,7 +39,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PotentialCustomerDAO{
+public class PotentialCustomerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements PotentialCustomerDAO{
  
  	
  	private  CityPartnerDAO  cityPartnerDAO;
@@ -631,7 +631,7 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//PotentialCustomer.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Potential Customer");
+		lastUpdateTimeStatsItem.setDisplayName("潜在的客户");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(PotentialCustomer.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(PotentialCustomer.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -681,7 +681,7 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmNamingServiceDAO 
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//PotentialCustomer.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Potential Customer");
+		lastUpdateTimeStatsItem.setDisplayName("潜在的客户");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(PotentialCustomer.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(PotentialCustomer.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

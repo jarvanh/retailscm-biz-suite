@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.goodssupplier;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -70,6 +71,16 @@ public class GoodsSupplier extends BaseEntity implements  java.io.Serializable{
 	public 	GoodsSupplier(){
 		// lazy load for all the properties
 	}
+	public 	static GoodsSupplier withId(String id){
+		GoodsSupplier goodsSupplier = new GoodsSupplier();
+		goodsSupplier.setId(id);
+		// goodsSupplier.setVersion(Integer.MAX_VALUE);
+		return goodsSupplier;
+	}
+	public 	static GoodsSupplier refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBelongTo( null );
@@ -190,6 +201,47 @@ public class GoodsSupplier extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(SUPPLY_PRODUCT_PROPERTY.equals(property)){
+			return getSupplyProduct();
+		}
+		if(BELONG_TO_PROPERTY.equals(property)){
+			return getBelongTo();
+		}
+		if(CONTACT_NUMBER_PROPERTY.equals(property)){
+			return getContactNumber();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(SUPPLIER_PRODUCT_LIST.equals(property)){
+			List<BaseEntity> list = getSupplierProductList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SUPPLY_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getSupplyOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNT_SET_LIST.equals(property)){
+			List<BaseEntity> list = getAccountSetList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

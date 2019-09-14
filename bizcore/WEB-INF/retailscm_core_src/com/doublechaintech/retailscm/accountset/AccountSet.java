@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.accountset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -84,6 +85,16 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	public 	AccountSet(){
 		// lazy load for all the properties
 	}
+	public 	static AccountSet withId(String id){
+		AccountSet accountSet = new AccountSet();
+		accountSet.setId(id);
+		// accountSet.setVersion(Integer.MAX_VALUE);
+		return accountSet;
+	}
+	public 	static AccountSet refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCountryCenter( null );
@@ -284,6 +295,65 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(YEAR_SET_PROPERTY.equals(property)){
+			return getYearSet();
+		}
+		if(EFFECTIVE_DATE_PROPERTY.equals(property)){
+			return getEffectiveDate();
+		}
+		if(ACCOUNTING_SYSTEM_PROPERTY.equals(property)){
+			return getAccountingSystem();
+		}
+		if(DOMESTIC_CURRENCY_CODE_PROPERTY.equals(property)){
+			return getDomesticCurrencyCode();
+		}
+		if(DOMESTIC_CURRENCY_NAME_PROPERTY.equals(property)){
+			return getDomesticCurrencyName();
+		}
+		if(OPENING_BANK_PROPERTY.equals(property)){
+			return getOpeningBank();
+		}
+		if(ACCOUNT_NUMBER_PROPERTY.equals(property)){
+			return getAccountNumber();
+		}
+		if(COUNTRY_CENTER_PROPERTY.equals(property)){
+			return getCountryCenter();
+		}
+		if(RETAIL_STORE_PROPERTY.equals(property)){
+			return getRetailStore();
+		}
+		if(GOODS_SUPPLIER_PROPERTY.equals(property)){
+			return getGoodsSupplier();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(ACCOUNTING_SUBJECT_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingSubjectList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNTING_PERIOD_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingPeriodList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNTING_DOCUMENT_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingDocumentTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

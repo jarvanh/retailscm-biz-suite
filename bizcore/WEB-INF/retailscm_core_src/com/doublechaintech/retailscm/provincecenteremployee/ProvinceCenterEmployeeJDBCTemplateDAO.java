@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,16 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class ProvinceCenterEmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ProvinceCenterEmployeeDAO{
- 
- 	
- 	private  RetailStoreProvinceCenterDAO  retailStoreProvinceCenterDAO;
- 	public void setRetailStoreProvinceCenterDAO(RetailStoreProvinceCenterDAO retailStoreProvinceCenterDAO){
-	 	this.retailStoreProvinceCenterDAO = retailStoreProvinceCenterDAO;
- 	}
- 	public RetailStoreProvinceCenterDAO getRetailStoreProvinceCenterDAO(){
-	 	return this.retailStoreProvinceCenterDAO;
- 	}
+public class ProvinceCenterEmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ProvinceCenterEmployeeDAO{
  
  	
  	private  ProvinceCenterDepartmentDAO  provinceCenterDepartmentDAO;
@@ -51,6 +42,15 @@ public class ProvinceCenterEmployeeJDBCTemplateDAO extends RetailscmNamingServic
  	}
  	public ProvinceCenterDepartmentDAO getProvinceCenterDepartmentDAO(){
 	 	return this.provinceCenterDepartmentDAO;
+ 	}
+ 
+ 	
+ 	private  RetailStoreProvinceCenterDAO  retailStoreProvinceCenterDAO;
+ 	public void setRetailStoreProvinceCenterDAO(RetailStoreProvinceCenterDAO retailStoreProvinceCenterDAO){
+	 	this.retailStoreProvinceCenterDAO = retailStoreProvinceCenterDAO;
+ 	}
+ 	public RetailStoreProvinceCenterDAO getRetailStoreProvinceCenterDAO(){
+	 	return this.retailStoreProvinceCenterDAO;
  	}
 
 

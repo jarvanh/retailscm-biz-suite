@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.potentialcustomercontact;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -67,6 +68,16 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 	public 	PotentialCustomerContact(){
 		// lazy load for all the properties
 	}
+	public 	static PotentialCustomerContact withId(String id){
+		PotentialCustomerContact potentialCustomerContact = new PotentialCustomerContact();
+		potentialCustomerContact.setId(id);
+		// potentialCustomerContact.setVersion(Integer.MAX_VALUE);
+		return potentialCustomerContact;
+	}
+	public 	static PotentialCustomerContact refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setPotentialCustomer( null );
@@ -188,6 +199,41 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(CONTACT_DATE_PROPERTY.equals(property)){
+			return getContactDate();
+		}
+		if(CONTACT_METHOD_PROPERTY.equals(property)){
+			return getContactMethod();
+		}
+		if(POTENTIAL_CUSTOMER_PROPERTY.equals(property)){
+			return getPotentialCustomer();
+		}
+		if(CITY_PARTNER_PROPERTY.equals(property)){
+			return getCityPartner();
+		}
+		if(CONTACT_TO_PROPERTY.equals(property)){
+			return getContactTo();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

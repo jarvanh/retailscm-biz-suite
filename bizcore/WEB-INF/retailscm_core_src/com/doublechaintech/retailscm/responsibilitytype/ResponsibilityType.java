@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.responsibilitytype;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -60,6 +61,16 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 	public 	ResponsibilityType(){
 		// lazy load for all the properties
 	}
+	public 	static ResponsibilityType withId(String id){
+		ResponsibilityType responsibilityType = new ResponsibilityType();
+		responsibilityType.setId(id);
+		// responsibilityType.setVersion(Integer.MAX_VALUE);
+		return responsibilityType;
+	}
+	public 	static ResponsibilityType refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCompany( null );
@@ -140,6 +151,33 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(CODE_PROPERTY.equals(property)){
+			return getCode();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(BASE_DESCRIPTION_PROPERTY.equals(property)){
+			return getBaseDescription();
+		}
+		if(DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+			return getDetailDescription();
+		}
+		if(EMPLOYEE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -56,10 +56,10 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = catalog.getOwner();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = catalog.getOwner();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'catalog' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}

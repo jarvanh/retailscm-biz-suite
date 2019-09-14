@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.consumerorderpriceadjustment;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 	public 	ConsumerOrderPriceAdjustment(){
 		// lazy load for all the properties
 	}
+	public 	static ConsumerOrderPriceAdjustment withId(String id){
+		ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment = new ConsumerOrderPriceAdjustment();
+		consumerOrderPriceAdjustment.setId(id);
+		// consumerOrderPriceAdjustment.setVersion(Integer.MAX_VALUE);
+		return consumerOrderPriceAdjustment;
+	}
+	public 	static ConsumerOrderPriceAdjustment refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBizOrder( null );
@@ -136,6 +147,29 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+		if(PROVIDER_PROPERTY.equals(property)){
+			return getProvider();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

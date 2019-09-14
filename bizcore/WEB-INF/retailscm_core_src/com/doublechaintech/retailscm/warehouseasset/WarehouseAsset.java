@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.warehouseasset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class WarehouseAsset extends BaseEntity implements  java.io.Serializable{
 	public 	WarehouseAsset(){
 		// lazy load for all the properties
 	}
+	public 	static WarehouseAsset withId(String id){
+		WarehouseAsset warehouseAsset = new WarehouseAsset();
+		warehouseAsset.setId(id);
+		// warehouseAsset.setVersion(Integer.MAX_VALUE);
+		return warehouseAsset;
+	}
+	public 	static WarehouseAsset refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -136,6 +147,29 @@ public class WarehouseAsset extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(POSITION_PROPERTY.equals(property)){
+			return getPosition();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.goodsmovement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -67,6 +68,16 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 	public 	GoodsMovement(){
 		// lazy load for all the properties
 	}
+	public 	static GoodsMovement withId(String id){
+		GoodsMovement goodsMovement = new GoodsMovement();
+		goodsMovement.setId(id);
+		// goodsMovement.setVersion(Integer.MAX_VALUE);
+		return goodsMovement;
+	}
+	public 	static GoodsMovement refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setGoods( null );
@@ -241,6 +252,44 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(MOVE_TIME_PROPERTY.equals(property)){
+			return getMoveTime();
+		}
+		if(FACILITY_PROPERTY.equals(property)){
+			return getFacility();
+		}
+		if(FACILITY_ID_PROPERTY.equals(property)){
+			return getFacilityId();
+		}
+		if(FROM_IP_PROPERTY.equals(property)){
+			return getFromIp();
+		}
+		if(USER_AGENT_PROPERTY.equals(property)){
+			return getUserAgent();
+		}
+		if(SESSION_ID_PROPERTY.equals(property)){
+			return getSessionId();
+		}
+		if(LATITUDE_PROPERTY.equals(property)){
+			return getLatitude();
+		}
+		if(LONGITUDE_PROPERTY.equals(property)){
+			return getLongitude();
+		}
+		if(GOODS_PROPERTY.equals(property)){
+			return getGoods();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

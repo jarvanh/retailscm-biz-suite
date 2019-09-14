@@ -46,10 +46,10 @@ public class EmployeeSkillMapper extends BaseRowMapper<EmployeeSkill>{
  		if( employeeId.isEmpty()){
  			return;
  		}
- 		Employee lemployee = employeeSkill.getEmployee();
- 		if( lemployee != null ){
+ 		Employee employee = employeeSkill.getEmployee();
+ 		if( employee != null ){
  			//if the root object 'employeeSkill' already have the property, just set the id for it;
- 			lemployee.setId(employeeId);
+ 			employee.setId(employeeId);
  			
  			return;
  		}
@@ -64,10 +64,10 @@ public class EmployeeSkillMapper extends BaseRowMapper<EmployeeSkill>{
  		if( skillTypeId.isEmpty()){
  			return;
  		}
- 		SkillType lskillType = employeeSkill.getSkillType();
- 		if( lskillType != null ){
+ 		SkillType skillType = employeeSkill.getSkillType();
+ 		if( skillType != null ){
  			//if the root object 'employeeSkill' already have the property, just set the id for it;
- 			lskillType.setId(skillTypeId);
+ 			skillType.setId(skillTypeId);
  			
  			return;
  		}

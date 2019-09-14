@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.genericform;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -64,6 +65,16 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 	public 	GenericForm(){
 		// lazy load for all the properties
 	}
+	public 	static GenericForm withId(String id){
+		GenericForm genericForm = new GenericForm();
+		genericForm.setId(id);
+		// genericForm.setVersion(Integer.MAX_VALUE);
+		return genericForm;
+	}
+	public 	static GenericForm refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -126,6 +137,39 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(FORM_MESSAGE_LIST.equals(property)){
+			List<BaseEntity> list = getFormMessageList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(FORM_FIELD_MESSAGE_LIST.equals(property)){
+			List<BaseEntity> list = getFormFieldMessageList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(FORM_FIELD_LIST.equals(property)){
+			List<BaseEntity> list = getFormFieldList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(FORM_ACTION_LIST.equals(property)){
+			List<BaseEntity> list = getFormActionList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

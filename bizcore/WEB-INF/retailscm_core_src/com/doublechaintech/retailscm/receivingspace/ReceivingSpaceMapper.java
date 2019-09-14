@@ -98,10 +98,10 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
  		if( warehouseId.isEmpty()){
  			return;
  		}
- 		Warehouse lwarehouse = receivingSpace.getWarehouse();
- 		if( lwarehouse != null ){
+ 		Warehouse warehouse = receivingSpace.getWarehouse();
+ 		if( warehouse != null ){
  			//if the root object 'receivingSpace' already have the property, just set the id for it;
- 			lwarehouse.setId(warehouseId);
+ 			warehouse.setId(warehouseId);
  			
  			return;
  		}

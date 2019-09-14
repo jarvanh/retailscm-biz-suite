@@ -444,20 +444,20 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  //--------------------------------------------------------------
 	
 	 	
- 	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
+ 	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
+ 		return userContext.getDAOGroup().getTerminationReasonDAO().load(newReasonId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
+ 	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTerminationReasonDAO().load(newReasonId, options);
+ 		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
  	}
  	
  	

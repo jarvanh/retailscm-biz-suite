@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.productsupplyduration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 	public 	ProductSupplyDuration(){
 		// lazy load for all the properties
 	}
+	public 	static ProductSupplyDuration withId(String id){
+		ProductSupplyDuration productSupplyDuration = new ProductSupplyDuration();
+		productSupplyDuration.setId(id);
+		// productSupplyDuration.setVersion(Integer.MAX_VALUE);
+		return productSupplyDuration;
+	}
+	public 	static ProductSupplyDuration refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setProduct( null );
@@ -136,6 +147,29 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(QUANTITY_PROPERTY.equals(property)){
+			return getQuantity();
+		}
+		if(DURATION_PROPERTY.equals(property)){
+			return getDuration();
+		}
+		if(PRICE_PROPERTY.equals(property)){
+			return getPrice();
+		}
+		if(PRODUCT_PROPERTY.equals(property)){
+			return getProduct();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

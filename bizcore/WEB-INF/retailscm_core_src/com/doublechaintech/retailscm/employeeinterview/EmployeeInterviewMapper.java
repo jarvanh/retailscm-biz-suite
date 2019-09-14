@@ -46,10 +46,10 @@ public class EmployeeInterviewMapper extends BaseRowMapper<EmployeeInterview>{
  		if( employeeId.isEmpty()){
  			return;
  		}
- 		Employee lemployee = employeeInterview.getEmployee();
- 		if( lemployee != null ){
+ 		Employee employee = employeeInterview.getEmployee();
+ 		if( employee != null ){
  			//if the root object 'employeeInterview' already have the property, just set the id for it;
- 			lemployee.setId(employeeId);
+ 			employee.setId(employeeId);
  			
  			return;
  		}
@@ -64,10 +64,10 @@ public class EmployeeInterviewMapper extends BaseRowMapper<EmployeeInterview>{
  		if( interviewTypeId.isEmpty()){
  			return;
  		}
- 		InterviewType linterviewType = employeeInterview.getInterviewType();
- 		if( linterviewType != null ){
+ 		InterviewType interviewType = employeeInterview.getInterviewType();
+ 		if( interviewType != null ){
  			//if the root object 'employeeInterview' already have the property, just set the id for it;
- 			linterviewType.setId(interviewTypeId);
+ 			interviewType.setId(interviewTypeId);
  			
  			return;
  		}

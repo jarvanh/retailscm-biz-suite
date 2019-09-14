@@ -16,7 +16,7 @@ public class PayingOffTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="paying_off_data";
+	public static final String TABLE_NAME="paying_off_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_WHO = "who";
 	static final String COLUMN_PAID_FOR = "paid_for";
@@ -24,10 +24,10 @@ public class PayingOffTable{
 	static final String COLUMN_AMOUNT = "amount";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_WHO, COLUMN_PAID_FOR, COLUMN_PAID_TIME, COLUMN_AMOUNT, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_WHO, COLUMN_PAID_FOR, COLUMN_PAID_TIME, COLUMN_AMOUNT
 		};
 	

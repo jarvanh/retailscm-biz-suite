@@ -16,7 +16,7 @@ public class GoodsShelfStockCountTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="goods_shelf_stock_count_data";
+	public static final String TABLE_NAME="goods_shelf_stock_count_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_TITLE = "title";
 	static final String COLUMN_COUNT_TIME = "count_time";
@@ -24,10 +24,10 @@ public class GoodsShelfStockCountTable{
 	static final String COLUMN_SHELF = "shelf";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_TITLE, COLUMN_COUNT_TIME, COLUMN_SUMMARY, COLUMN_SHELF, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_TITLE, COLUMN_COUNT_TIME, COLUMN_SUMMARY, COLUMN_SHELF
 		};
 	

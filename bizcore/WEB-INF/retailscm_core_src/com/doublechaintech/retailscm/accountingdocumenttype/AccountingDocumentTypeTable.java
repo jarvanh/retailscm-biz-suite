@@ -16,17 +16,17 @@ public class AccountingDocumentTypeTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="accounting_document_type_data";
+	public static final String TABLE_NAME="accounting_document_type_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_NAME = "name";
 	static final String COLUMN_DESCRIPTION = "description";
 	static final String COLUMN_ACCOUNTING_PERIOD = "accounting_period";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_NAME, COLUMN_DESCRIPTION, COLUMN_ACCOUNTING_PERIOD, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_NAME, COLUMN_DESCRIPTION, COLUMN_ACCOUNTING_PERIOD
 		};
 	

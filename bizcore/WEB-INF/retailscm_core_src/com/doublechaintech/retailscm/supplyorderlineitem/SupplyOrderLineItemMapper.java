@@ -48,10 +48,10 @@ public class SupplyOrderLineItemMapper extends BaseRowMapper<SupplyOrderLineItem
  		if( supplyOrderId.isEmpty()){
  			return;
  		}
- 		SupplyOrder lsupplyOrder = supplyOrderLineItem.getBizOrder();
- 		if( lsupplyOrder != null ){
+ 		SupplyOrder supplyOrder = supplyOrderLineItem.getBizOrder();
+ 		if( supplyOrder != null ){
  			//if the root object 'supplyOrderLineItem' already have the property, just set the id for it;
- 			lsupplyOrder.setId(supplyOrderId);
+ 			supplyOrder.setId(supplyOrderId);
  			
  			return;
  		}

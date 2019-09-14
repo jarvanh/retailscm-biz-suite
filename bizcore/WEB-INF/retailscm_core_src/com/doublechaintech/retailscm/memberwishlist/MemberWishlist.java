@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.memberwishlist;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -56,6 +57,16 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 	public 	MemberWishlist(){
 		// lazy load for all the properties
 	}
+	public 	static MemberWishlist withId(String id){
+		MemberWishlist memberWishlist = new MemberWishlist();
+		memberWishlist.setId(id);
+		// memberWishlist.setVersion(Integer.MAX_VALUE);
+		return memberWishlist;
+	}
+	public 	static MemberWishlist refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -98,6 +109,27 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(MEMBER_WISHLIST_PRODUCT_LIST.equals(property)){
+			List<BaseEntity> list = getMemberWishlistProductList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

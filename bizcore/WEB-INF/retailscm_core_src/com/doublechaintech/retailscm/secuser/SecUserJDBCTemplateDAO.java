@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,16 +37,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class SecUserJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SecUserDAO{
- 
- 	
- 	private  SecUserBlockingDAO  secUserBlockingDAO;
- 	public void setSecUserBlockingDAO(SecUserBlockingDAO secUserBlockingDAO){
-	 	this.secUserBlockingDAO = secUserBlockingDAO;
- 	}
- 	public SecUserBlockingDAO getSecUserBlockingDAO(){
-	 	return this.secUserBlockingDAO;
- 	}
+public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecUserDAO{
  
  	
  	private  UserDomainDAO  userDomainDAO;
@@ -55,6 +46,15 @@ public class SecUserJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  	}
  	public UserDomainDAO getUserDomainDAO(){
 	 	return this.userDomainDAO;
+ 	}
+ 
+ 	
+ 	private  SecUserBlockingDAO  secUserBlockingDAO;
+ 	public void setSecUserBlockingDAO(SecUserBlockingDAO secUserBlockingDAO){
+	 	this.secUserBlockingDAO = secUserBlockingDAO;
+ 	}
+ 	public SecUserBlockingDAO getSecUserBlockingDAO(){
+	 	return this.secUserBlockingDAO;
  	}
 
 
@@ -561,7 +561,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  
 		StatsItem verificationCodeExpireStatsItem = new StatsItem();
 		//SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY
-		verificationCodeExpireStatsItem.setDisplayName("Sec User");
+		verificationCodeExpireStatsItem.setDisplayName("安全用户");
 		verificationCodeExpireStatsItem.setInternalName(formatKeyForDateLine(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY));
 		verificationCodeExpireStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY),filterKey,emptyOptions));
 		info.addItem(verificationCodeExpireStatsItem);
@@ -611,7 +611,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  
 		StatsItem verificationCodeExpireStatsItem = new StatsItem();
 		//SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY
-		verificationCodeExpireStatsItem.setDisplayName("Sec User");
+		verificationCodeExpireStatsItem.setDisplayName("安全用户");
 		verificationCodeExpireStatsItem.setInternalName(formatKeyForDateLine(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY));
 		verificationCodeExpireStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY),filterKey,emptyOptions));
 		info.addItem(verificationCodeExpireStatsItem);

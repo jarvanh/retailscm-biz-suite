@@ -195,14 +195,14 @@ public class RetailscmUserContextImpl extends UserContextImpl implements Retails
 		return apps.get(0);
 	}
 	
-	private RetailscmChecker checker;
-	public void setChecker(RetailscmChecker checker) {
+	private RetailscmObjectChecker checker;
+	public void setChecker(RetailscmObjectChecker checker) {
 		this.checker = checker;
 		
 	}
 
 	@Override
-	public RetailscmChecker getChecker() {
+	public RetailscmObjectChecker getChecker() {
 		
 		if(this.checker==null) {
 			throw new IllegalStateException("每个实例必须配置Checker，请检查相关Spring的XML配置文件中 checker的配置");

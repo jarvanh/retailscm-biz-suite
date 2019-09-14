@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,16 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberGiftCardConsumeRecordDAO{
- 
- 	
- 	private  ConsumerOrderDAO  consumerOrderDAO;
- 	public void setConsumerOrderDAO(ConsumerOrderDAO consumerOrderDAO){
-	 	this.consumerOrderDAO = consumerOrderDAO;
- 	}
- 	public ConsumerOrderDAO getConsumerOrderDAO(){
-	 	return this.consumerOrderDAO;
- 	}
+public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreMemberGiftCardConsumeRecordDAO{
  
  	
  	private  RetailStoreMemberGiftCardDAO  retailStoreMemberGiftCardDAO;
@@ -51,6 +42,15 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
  	}
  	public RetailStoreMemberGiftCardDAO getRetailStoreMemberGiftCardDAO(){
 	 	return this.retailStoreMemberGiftCardDAO;
+ 	}
+ 
+ 	
+ 	private  ConsumerOrderDAO  consumerOrderDAO;
+ 	public void setConsumerOrderDAO(ConsumerOrderDAO consumerOrderDAO){
+	 	this.consumerOrderDAO = consumerOrderDAO;
+ 	}
+ 	public ConsumerOrderDAO getConsumerOrderDAO(){
+	 	return this.consumerOrderDAO;
  	}
 
 

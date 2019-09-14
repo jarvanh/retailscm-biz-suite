@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.userwhitelist;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,6 +56,16 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 	public 	UserWhiteList(){
 		// lazy load for all the properties
 	}
+	public 	static UserWhiteList withId(String id){
+		UserWhiteList userWhiteList = new UserWhiteList();
+		userWhiteList.setId(id);
+		// userWhiteList.setVersion(Integer.MAX_VALUE);
+		return userWhiteList;
+	}
+	public 	static UserWhiteList refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setDomain( null );
@@ -115,6 +126,26 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(USER_IDENTITY_PROPERTY.equals(property)){
+			return getUserIdentity();
+		}
+		if(USER_SPECIAL_FUNCTIONS_PROPERTY.equals(property)){
+			return getUserSpecialFunctions();
+		}
+		if(DOMAIN_PROPERTY.equals(property)){
+			return getDomain();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

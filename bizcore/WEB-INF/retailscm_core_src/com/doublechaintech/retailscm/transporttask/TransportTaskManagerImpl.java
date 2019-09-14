@@ -586,16 +586,6 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
  //--------------------------------------------------------------
 	
 	 	
- 	protected TruckDriver loadTruckDriver(RetailscmUserContext userContext, String newDriverId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTruckDriverDAO().load(newDriverId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
  	protected TransportFleet loadTransportFleet(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
@@ -606,10 +596,10 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
  	
 	
 	 	
- 	protected TransportTruck loadTransportTruck(RetailscmUserContext userContext, String newTruckId, Map<String,Object> options) throws Exception
+ 	protected TruckDriver loadTruckDriver(RetailscmUserContext userContext, String newDriverId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTransportTruckDAO().load(newTruckId, options);
+ 		return userContext.getDAOGroup().getTruckDriverDAO().load(newDriverId, options);
  	}
  	
  	
@@ -620,6 +610,16 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreDAO().load(newEndId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected TransportTruck loadTransportTruck(RetailscmUserContext userContext, String newTruckId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getTransportTruckDAO().load(newTruckId, options);
  	}
  	
  	

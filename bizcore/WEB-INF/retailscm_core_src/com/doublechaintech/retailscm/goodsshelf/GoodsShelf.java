@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.goodsshelf;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -67,6 +68,16 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 	public 	GoodsShelf(){
 		// lazy load for all the properties
 	}
+	public 	static GoodsShelf withId(String id){
+		GoodsShelf goodsShelf = new GoodsShelf();
+		goodsShelf.setId(id);
+		// goodsShelf.setVersion(Integer.MAX_VALUE);
+		return goodsShelf;
+	}
+	public 	static GoodsShelf refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setStorageSpace( null );
@@ -133,6 +144,40 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(LOCATION_PROPERTY.equals(property)){
+			return getLocation();
+		}
+		if(STORAGE_SPACE_PROPERTY.equals(property)){
+			return getStorageSpace();
+		}
+		if(SUPPLIER_SPACE_PROPERTY.equals(property)){
+			return getSupplierSpace();
+		}
+		if(DAMAGE_SPACE_PROPERTY.equals(property)){
+			return getDamageSpace();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(GOODS_SHELF_STOCK_COUNT_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsShelfStockCountList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(GOODS_ALLOCATION_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsAllocationList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

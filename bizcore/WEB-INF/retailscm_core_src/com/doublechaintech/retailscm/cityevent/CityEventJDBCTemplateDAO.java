@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CityEventDAO{
+public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements CityEventDAO{
  
  	
  	private  RetailStoreCityServiceCenterDAO  retailStoreCityServiceCenterDAO;
@@ -382,7 +382,7 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//CityEvent.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("City Event");
+		lastUpdateTimeStatsItem.setDisplayName("城市活动");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(CityEvent.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(CityEvent.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

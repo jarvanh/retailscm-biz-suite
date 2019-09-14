@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.publicholiday;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class PublicHoliday extends BaseEntity implements  java.io.Serializable{
 	public 	PublicHoliday(){
 		// lazy load for all the properties
 	}
+	public 	static PublicHoliday withId(String id){
+		PublicHoliday publicHoliday = new PublicHoliday();
+		publicHoliday.setId(id);
+		// publicHoliday.setVersion(Integer.MAX_VALUE);
+		return publicHoliday;
+	}
+	public 	static PublicHoliday refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setCompany( null );
@@ -136,6 +147,29 @@ public class PublicHoliday extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(CODE_PROPERTY.equals(property)){
+			return getCode();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

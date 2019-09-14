@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,16 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class EventAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EventAttendanceDAO{
- 
- 	
- 	private  CityEventDAO  cityEventDAO;
- 	public void setCityEventDAO(CityEventDAO cityEventDAO){
-	 	this.cityEventDAO = cityEventDAO;
- 	}
- 	public CityEventDAO getCityEventDAO(){
-	 	return this.cityEventDAO;
- 	}
+public class EventAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EventAttendanceDAO{
  
  	
  	private  PotentialCustomerDAO  potentialCustomerDAO;
@@ -51,6 +42,15 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO im
  	}
  	public PotentialCustomerDAO getPotentialCustomerDAO(){
 	 	return this.potentialCustomerDAO;
+ 	}
+ 
+ 	
+ 	private  CityEventDAO  cityEventDAO;
+ 	public void setCityEventDAO(CityEventDAO cityEventDAO){
+	 	this.cityEventDAO = cityEventDAO;
+ 	}
+ 	public CityEventDAO getCityEventDAO(){
+	 	return this.cityEventDAO;
  	}
 
 

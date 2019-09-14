@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.stockcountissuetrack;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 	public 	StockCountIssueTrack(){
 		// lazy load for all the properties
 	}
+	public 	static StockCountIssueTrack withId(String id){
+		StockCountIssueTrack stockCountIssueTrack = new StockCountIssueTrack();
+		stockCountIssueTrack.setId(id);
+		// stockCountIssueTrack.setVersion(Integer.MAX_VALUE);
+		return stockCountIssueTrack;
+	}
+	public 	static StockCountIssueTrack refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setStockCount( null );
@@ -136,6 +147,29 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(COUNT_TIME_PROPERTY.equals(property)){
+			return getCountTime();
+		}
+		if(SUMMARY_PROPERTY.equals(property)){
+			return getSummary();
+		}
+		if(STOCK_COUNT_PROPERTY.equals(property)){
+			return getStockCount();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

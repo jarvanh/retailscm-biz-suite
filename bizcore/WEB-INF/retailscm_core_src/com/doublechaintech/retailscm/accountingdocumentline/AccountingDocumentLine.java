@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.accountingdocumentline;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,6 +63,16 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 	public 	AccountingDocumentLine(){
 		// lazy load for all the properties
 	}
+	public 	static AccountingDocumentLine withId(String id){
+		AccountingDocumentLine accountingDocumentLine = new AccountingDocumentLine();
+		accountingDocumentLine.setId(id);
+		// accountingDocumentLine.setVersion(Integer.MAX_VALUE);
+		return accountingDocumentLine;
+	}
+	public 	static AccountingDocumentLine refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBelongsTo( null );
@@ -162,6 +173,35 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(CODE_PROPERTY.equals(property)){
+			return getCode();
+		}
+		if(DIRECT_PROPERTY.equals(property)){
+			return getDirect();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+		if(BELONGS_TO_PROPERTY.equals(property)){
+			return getBelongsTo();
+		}
+		if(ACCOUNTING_SUBJECT_PROPERTY.equals(property)){
+			return getAccountingSubject();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

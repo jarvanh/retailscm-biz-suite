@@ -152,10 +152,10 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = accountSet.getCountryCenter();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = accountSet.getCountryCenter();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'accountSet' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}
@@ -170,10 +170,10 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
  		if( retailStoreId.isEmpty()){
  			return;
  		}
- 		RetailStore lretailStore = accountSet.getRetailStore();
- 		if( lretailStore != null ){
+ 		RetailStore retailStore = accountSet.getRetailStore();
+ 		if( retailStore != null ){
  			//if the root object 'accountSet' already have the property, just set the id for it;
- 			lretailStore.setId(retailStoreId);
+ 			retailStore.setId(retailStoreId);
  			
  			return;
  		}
@@ -188,10 +188,10 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
  		if( goodsSupplierId.isEmpty()){
  			return;
  		}
- 		GoodsSupplier lgoodsSupplier = accountSet.getGoodsSupplier();
- 		if( lgoodsSupplier != null ){
+ 		GoodsSupplier goodsSupplier = accountSet.getGoodsSupplier();
+ 		if( goodsSupplier != null ){
  			//if the root object 'accountSet' already have the property, just set the id for it;
- 			lgoodsSupplier.setId(goodsSupplierId);
+ 			goodsSupplier.setId(goodsSupplierId);
  			
  			return;
  		}

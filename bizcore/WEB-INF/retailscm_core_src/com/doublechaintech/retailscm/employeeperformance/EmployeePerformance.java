@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employeeperformance;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -53,6 +54,16 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 	public 	EmployeePerformance(){
 		// lazy load for all the properties
 	}
+	public 	static EmployeePerformance withId(String id){
+		EmployeePerformance employeePerformance = new EmployeePerformance();
+		employeePerformance.setId(id);
+		// employeePerformance.setVersion(Integer.MAX_VALUE);
+		return employeePerformance;
+	}
+	public 	static EmployeePerformance refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setEmployee( null );
@@ -94,6 +105,23 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(PERFORMANCE_COMMENT_PROPERTY.equals(property)){
+			return getPerformanceComment();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.secuserblocking;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 	public 	SecUserBlocking(){
 		// lazy load for all the properties
 	}
+	public 	static SecUserBlocking withId(String id){
+		SecUserBlocking secUserBlocking = new SecUserBlocking();
+		secUserBlocking.setId(id);
+		// secUserBlocking.setVersion(Integer.MAX_VALUE);
+		return secUserBlocking;
+	}
+	public 	static SecUserBlocking refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -135,6 +146,30 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(BLOCK_TIME_PROPERTY.equals(property)){
+			return getBlockTime();
+		}
+		if(COMMENTS_PROPERTY.equals(property)){
+			return getComments();
+		}
+		if(SEC_USER_LIST.equals(property)){
+			List<BaseEntity> list = getSecUserList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

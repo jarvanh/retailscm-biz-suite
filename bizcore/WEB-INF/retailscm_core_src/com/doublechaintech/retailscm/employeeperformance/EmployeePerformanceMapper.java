@@ -44,10 +44,10 @@ public class EmployeePerformanceMapper extends BaseRowMapper<EmployeePerformance
  		if( employeeId.isEmpty()){
  			return;
  		}
- 		Employee lemployee = employeePerformance.getEmployee();
- 		if( lemployee != null ){
+ 		Employee employee = employeePerformance.getEmployee();
+ 		if( employee != null ){
  			//if the root object 'employeePerformance' already have the property, just set the id for it;
- 			lemployee.setId(employeeId);
+ 			employee.setId(employeeId);
  			
  			return;
  		}

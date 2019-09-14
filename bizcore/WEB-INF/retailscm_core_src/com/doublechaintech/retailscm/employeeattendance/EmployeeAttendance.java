@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.employeeattendance;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -59,6 +60,16 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 	public 	EmployeeAttendance(){
 		// lazy load for all the properties
 	}
+	public 	static EmployeeAttendance withId(String id){
+		EmployeeAttendance employeeAttendance = new EmployeeAttendance();
+		employeeAttendance.setId(id);
+		// employeeAttendance.setVersion(Integer.MAX_VALUE);
+		return employeeAttendance;
+	}
+	public 	static EmployeeAttendance refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setEmployee( null );
@@ -157,6 +168,32 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(ENTER_TIME_PROPERTY.equals(property)){
+			return getEnterTime();
+		}
+		if(LEAVE_TIME_PROPERTY.equals(property)){
+			return getLeaveTime();
+		}
+		if(DURATION_HOURS_PROPERTY.equals(property)){
+			return getDurationHours();
+		}
+		if(REMARK_PROPERTY.equals(property)){
+			return getRemark();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

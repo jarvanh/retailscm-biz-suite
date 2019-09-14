@@ -1054,16 +1054,6 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 //--------------------------------------------------------------
 	
 	 	
- 	protected AccountingDocumentType loadAccountingDocumentType(RetailscmUserContext userContext, String newDocumentTypeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getAccountingDocumentTypeDAO().load(newDocumentTypeId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
  	protected AccountingDocumentPosting loadAccountingDocumentPosting(RetailscmUserContext userContext, String newPostingId, Map<String,Object> options) throws Exception
  	{
 		
@@ -1074,20 +1064,10 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
  	
 	
 	 	
- 	protected AccountingDocumentCreation loadAccountingDocumentCreation(RetailscmUserContext userContext, String newCreationId, Map<String,Object> options) throws Exception
+ 	protected AccountingDocumentConfirmation loadAccountingDocumentConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountingDocumentCreationDAO().load(newCreationId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected AccountingPeriod loadAccountingPeriod(RetailscmUserContext userContext, String newAccountingPeriodId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getAccountingPeriodDAO().load(newAccountingPeriodId, options);
+ 		return userContext.getDAOGroup().getAccountingDocumentConfirmationDAO().load(newConfirmationId, options);
  	}
  	
  	
@@ -1104,10 +1084,30 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
  	
 	
 	 	
- 	protected AccountingDocumentConfirmation loadAccountingDocumentConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
+ 	protected AccountingPeriod loadAccountingPeriod(RetailscmUserContext userContext, String newAccountingPeriodId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountingDocumentConfirmationDAO().load(newConfirmationId, options);
+ 		return userContext.getDAOGroup().getAccountingPeriodDAO().load(newAccountingPeriodId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected AccountingDocumentType loadAccountingDocumentType(RetailscmUserContext userContext, String newDocumentTypeId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentTypeDAO().load(newDocumentTypeId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected AccountingDocumentCreation loadAccountingDocumentCreation(RetailscmUserContext userContext, String newCreationId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentCreationDAO().load(newCreationId, options);
  	}
  	
  	

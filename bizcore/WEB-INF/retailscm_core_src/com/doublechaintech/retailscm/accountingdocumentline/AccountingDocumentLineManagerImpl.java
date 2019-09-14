@@ -441,20 +441,20 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  //--------------------------------------------------------------
 	
 	 	
- 	protected AccountingSubject loadAccountingSubject(RetailscmUserContext userContext, String newAccountingSubjectId, Map<String,Object> options) throws Exception
+ 	protected AccountingDocument loadAccountingDocument(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountingSubjectDAO().load(newAccountingSubjectId, options);
+ 		return userContext.getDAOGroup().getAccountingDocumentDAO().load(newBelongsToId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected AccountingDocument loadAccountingDocument(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
+ 	protected AccountingSubject loadAccountingSubject(RetailscmUserContext userContext, String newAccountingSubjectId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountingDocumentDAO().load(newBelongsToId, options);
+ 		return userContext.getDAOGroup().getAccountingSubjectDAO().load(newAccountingSubjectId, options);
  	}
  	
  	

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.supplyorderapproval;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,6 +59,16 @@ public class SupplyOrderApproval extends BaseEntity implements  java.io.Serializ
 	public 	SupplyOrderApproval(){
 		// lazy load for all the properties
 	}
+	public 	static SupplyOrderApproval withId(String id){
+		SupplyOrderApproval supplyOrderApproval = new SupplyOrderApproval();
+		supplyOrderApproval.setId(id);
+		// supplyOrderApproval.setVersion(Integer.MAX_VALUE);
+		return supplyOrderApproval;
+	}
+	public 	static SupplyOrderApproval refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -118,6 +129,31 @@ public class SupplyOrderApproval extends BaseEntity implements  java.io.Serializ
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(APPROVE_TIME_PROPERTY.equals(property)){
+			return getApproveTime();
+		}
+		if(CONSUMER_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getConsumerOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SUPPLY_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getSupplyOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

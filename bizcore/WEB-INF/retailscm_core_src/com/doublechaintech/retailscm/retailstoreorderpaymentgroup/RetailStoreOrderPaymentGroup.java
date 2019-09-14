@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.retailstoreorderpaymentgroup;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,6 +56,16 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 	public 	RetailStoreOrderPaymentGroup(){
 		// lazy load for all the properties
 	}
+	public 	static RetailStoreOrderPaymentGroup withId(String id){
+		RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroup = new RetailStoreOrderPaymentGroup();
+		retailStoreOrderPaymentGroup.setId(id);
+		// retailStoreOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
+		return retailStoreOrderPaymentGroup;
+	}
+	public 	static RetailStoreOrderPaymentGroup refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBizOrder( null );
@@ -115,6 +126,26 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(CARD_NUMBER_PROPERTY.equals(property)){
+			return getCardNumber();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

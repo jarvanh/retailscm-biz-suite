@@ -49,10 +49,10 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
  		if( consumerOrderId.isEmpty()){
  			return;
  		}
- 		ConsumerOrder lconsumerOrder = consumerOrderLineItem.getBizOrder();
- 		if( lconsumerOrder != null ){
+ 		ConsumerOrder consumerOrder = consumerOrderLineItem.getBizOrder();
+ 		if( consumerOrder != null ){
  			//if the root object 'consumerOrderLineItem' already have the property, just set the id for it;
- 			lconsumerOrder.setId(consumerOrderId);
+ 			consumerOrder.setId(consumerOrderId);
  			
  			return;
  		}

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.transporttasktrack;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 	public 	TransportTaskTrack(){
 		// lazy load for all the properties
 	}
+	public 	static TransportTaskTrack withId(String id){
+		TransportTaskTrack transportTaskTrack = new TransportTaskTrack();
+		transportTaskTrack.setId(id);
+		// transportTaskTrack.setVersion(Integer.MAX_VALUE);
+		return transportTaskTrack;
+	}
+	public 	static TransportTaskTrack refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setMovement( null );
@@ -136,6 +147,29 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(TRACK_TIME_PROPERTY.equals(property)){
+			return getTrackTime();
+		}
+		if(LATITUDE_PROPERTY.equals(property)){
+			return getLatitude();
+		}
+		if(LONGITUDE_PROPERTY.equals(property)){
+			return getLongitude();
+		}
+		if(MOVEMENT_PROPERTY.equals(property)){
+			return getMovement();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

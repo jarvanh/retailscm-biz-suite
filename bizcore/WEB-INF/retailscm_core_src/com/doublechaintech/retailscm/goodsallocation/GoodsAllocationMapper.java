@@ -82,10 +82,10 @@ public class GoodsAllocationMapper extends BaseRowMapper<GoodsAllocation>{
  		if( goodsShelfId.isEmpty()){
  			return;
  		}
- 		GoodsShelf lgoodsShelf = goodsAllocation.getGoodsShelf();
- 		if( lgoodsShelf != null ){
+ 		GoodsShelf goodsShelf = goodsAllocation.getGoodsShelf();
+ 		if( goodsShelf != null ){
  			//if the root object 'goodsAllocation' already have the property, just set the id for it;
- 			lgoodsShelf.setId(goodsShelfId);
+ 			goodsShelf.setId(goodsShelfId);
  			
  			return;
  		}

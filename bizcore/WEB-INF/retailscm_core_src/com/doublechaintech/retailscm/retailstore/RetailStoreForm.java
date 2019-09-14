@@ -1562,7 +1562,7 @@ public class RetailStoreForm extends BaseForm {
  	
  	public RetailStoreForm  createAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Creation");
+		action.setLabel("创建");
 		action.setLocaleKey("retail_store.create");
 		action.setUrl("retailStoreManager/create/retailStoreId/comment/");
 		this.addFormAction(action);
@@ -1570,7 +1570,7 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  inviteInvestmentAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Investment Invitation");
+		action.setLabel("招商");
 		action.setLocaleKey("retail_store.inviteInvestment");
 		action.setUrl("retailStoreManager/inviteInvestment/retailStoreId/comment/");
 		this.addFormAction(action);
@@ -1578,7 +1578,7 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  franchiseAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Franchising");
+		action.setLabel("加盟");
 		action.setLocaleKey("retail_store.franchise");
 		action.setUrl("retailStoreManager/franchise/retailStoreId/comment/");
 		this.addFormAction(action);
@@ -1586,7 +1586,7 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  decorateAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Decoration");
+		action.setLabel("装修");
 		action.setLocaleKey("retail_store.decorate");
 		action.setUrl("retailStoreManager/decorate/retailStoreId/comment/");
 		this.addFormAction(action);
@@ -1594,7 +1594,7 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  openAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Opening");
+		action.setLabel("开业");
 		action.setLocaleKey("retail_store.open");
 		action.setUrl("retailStoreManager/open/retailStoreId/comment/");
 		this.addFormAction(action);
@@ -1602,7 +1602,7 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  closeAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Closing");
+		action.setLabel("关闭");
 		action.setLocaleKey("retail_store.close");
 		action.setUrl("retailStoreManager/close/retailStoreId/comment/");
 		this.addFormAction(action);

@@ -144,6 +144,7 @@ import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
 import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.quicklink.QuickLink;
 import com.doublechaintech.retailscm.listaccess.ListAccess;
 import com.doublechaintech.retailscm.objectaccess.ObjectAccess;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
@@ -152,6 +153,8 @@ import com.doublechaintech.retailscm.formmessage.FormMessage;
 import com.doublechaintech.retailscm.formfieldmessage.FormFieldMessage;
 import com.doublechaintech.retailscm.formfield.FormField;
 import com.doublechaintech.retailscm.formaction.FormAction;
+import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
+import com.doublechaintech.retailscm.candidateelement.CandidateElement;
 
 public class BeanFactoryImpl{
 
@@ -866,6 +869,11 @@ public class BeanFactoryImpl{
 	}
 
 
+	public QuickLink createQuickLink(Map<String,Object> options){
+		return new QuickLink();
+	}
+
+
 	public ListAccess createListAccess(Map<String,Object> options){
 		return new ListAccess();
 	}
@@ -903,6 +911,16 @@ public class BeanFactoryImpl{
 
 	public FormAction createFormAction(Map<String,Object> options){
 		return new FormAction();
+	}
+
+
+	public CandidateContainer createCandidateContainer(Map<String,Object> options){
+		return new CandidateContainer();
+	}
+
+
+	public CandidateElement createCandidateElement(Map<String,Object> options){
+		return new CandidateElement();
 	}
 
 

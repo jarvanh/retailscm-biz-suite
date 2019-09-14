@@ -47,10 +47,10 @@ public class EmployeeLeaveMapper extends BaseRowMapper<EmployeeLeave>{
  		if( employeeId.isEmpty()){
  			return;
  		}
- 		Employee lemployee = employeeLeave.getWho();
- 		if( lemployee != null ){
+ 		Employee employee = employeeLeave.getWho();
+ 		if( employee != null ){
  			//if the root object 'employeeLeave' already have the property, just set the id for it;
- 			lemployee.setId(employeeId);
+ 			employee.setId(employeeId);
  			
  			return;
  		}
@@ -65,10 +65,10 @@ public class EmployeeLeaveMapper extends BaseRowMapper<EmployeeLeave>{
  		if( leaveTypeId.isEmpty()){
  			return;
  		}
- 		LeaveType lleaveType = employeeLeave.getType();
- 		if( lleaveType != null ){
+ 		LeaveType leaveType = employeeLeave.getType();
+ 		if( leaveType != null ){
  			//if the root object 'employeeLeave' already have the property, just set the id for it;
- 			lleaveType.setId(leaveTypeId);
+ 			leaveType.setId(leaveTypeId);
  			
  			return;
  		}

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.formfieldmessage;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,6 +58,16 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 	public 	FormFieldMessage(){
 		// lazy load for all the properties
 	}
+	public 	static FormFieldMessage withId(String id){
+		FormFieldMessage formFieldMessage = new FormFieldMessage();
+		formFieldMessage.setId(id);
+		// formFieldMessage.setVersion(Integer.MAX_VALUE);
+		return formFieldMessage;
+	}
+	public 	static FormFieldMessage refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setForm( null );
@@ -136,6 +147,29 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(PARAMETER_NAME_PROPERTY.equals(property)){
+			return getParameterName();
+		}
+		if(FORM_PROPERTY.equals(property)){
+			return getForm();
+		}
+		if(LEVEL_PROPERTY.equals(property)){
+			return getLevel();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

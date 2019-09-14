@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -41,7 +41,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountSetDAO{
+public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountSetDAO{
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -680,7 +680,7 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//AccountSet.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Account Set");
+		lastUpdateTimeStatsItem.setDisplayName("账套");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(AccountSet.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(AccountSet.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -730,7 +730,7 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//AccountSet.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Account Set");
+		lastUpdateTimeStatsItem.setDisplayName("账套");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(AccountSet.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(AccountSet.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -780,7 +780,7 @@ public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO impleme
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//AccountSet.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Account Set");
+		lastUpdateTimeStatsItem.setDisplayName("账套");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(AccountSet.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(AccountSet.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

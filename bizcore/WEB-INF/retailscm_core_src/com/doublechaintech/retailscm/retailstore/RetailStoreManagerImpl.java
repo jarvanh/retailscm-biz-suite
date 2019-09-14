@@ -1366,6 +1366,16 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 //--------------------------------------------------------------
 	
 	 	
+ 	protected RetailStoreOpening loadRetailStoreOpening(RetailscmUserContext userContext, String newOpeningId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOpeningDAO().load(newOpeningId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newRetailStoreCountryCenterId, Map<String,Object> options) throws Exception
  	{
 		
@@ -1376,20 +1386,10 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
  	
 	
 	 	
- 	protected RetailStoreFranchising loadRetailStoreFranchising(RetailscmUserContext userContext, String newFranchisingId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String newCityServiceCenterId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreFranchisingDAO().load(newFranchisingId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreDecoration loadRetailStoreDecoration(RetailscmUserContext userContext, String newDecorationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreDecorationDAO().load(newDecorationId, options);
+ 		return userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().load(newCityServiceCenterId, options);
  	}
  	
  	
@@ -1416,10 +1416,20 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
  	
 	
 	 	
- 	protected RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String newCityServiceCenterId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreFranchising loadRetailStoreFranchising(RetailscmUserContext userContext, String newFranchisingId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().load(newCityServiceCenterId, options);
+ 		return userContext.getDAOGroup().getRetailStoreFranchisingDAO().load(newFranchisingId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected RetailStoreDecoration loadRetailStoreDecoration(RetailscmUserContext userContext, String newDecorationId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreDecorationDAO().load(newDecorationId, options);
  	}
  	
  	
@@ -1430,16 +1440,6 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().load(newInvestmentInvitationId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreOpening loadRetailStoreOpening(RetailscmUserContext userContext, String newOpeningId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOpeningDAO().load(newOpeningId, options);
  	}
  	
  	

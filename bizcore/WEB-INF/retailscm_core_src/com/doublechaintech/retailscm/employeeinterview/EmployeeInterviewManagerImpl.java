@@ -426,20 +426,20 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
  //--------------------------------------------------------------
 	
 	 	
- 	protected InterviewType loadInterviewType(RetailscmUserContext userContext, String newInterviewTypeId, Map<String,Object> options) throws Exception
+ 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getInterviewTypeDAO().load(newInterviewTypeId, options);
+ 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
+ 	protected InterviewType loadInterviewType(RetailscmUserContext userContext, String newInterviewTypeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return userContext.getDAOGroup().getInterviewTypeDAO().load(newInterviewTypeId, options);
  	}
  	
  	

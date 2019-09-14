@@ -1052,60 +1052,20 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 //--------------------------------------------------------------
 	
 	 	
+ 	protected ReceivingSpace loadReceivingSpace(RetailscmUserContext userContext, String newReceivingSpaceId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getReceivingSpaceDAO().load(newReceivingSpaceId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
  	protected GoodsAllocation loadGoodsAllocation(RetailscmUserContext userContext, String newGoodsAllocationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getGoodsAllocationDAO().load(newGoodsAllocationId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected ShippingSpace loadShippingSpace(RetailscmUserContext userContext, String newShippingSpaceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getShippingSpaceDAO().load(newShippingSpaceId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String newPackagingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getGoodsPackagingDAO().load(newPackagingId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newRetailStoreId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newRetailStoreId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected Sku loadSku(RetailscmUserContext userContext, String newSkuId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSkuDAO().load(newSkuId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected TransportTask loadTransportTask(RetailscmUserContext userContext, String newTransportTaskId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTransportTaskDAO().load(newTransportTaskId, options);
  	}
  	
  	
@@ -1132,10 +1092,40 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
  	
 	
 	 	
- 	protected ReceivingSpace loadReceivingSpace(RetailscmUserContext userContext, String newReceivingSpaceId, Map<String,Object> options) throws Exception
+ 	protected GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String newPackagingId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getReceivingSpaceDAO().load(newReceivingSpaceId, options);
+ 		return userContext.getDAOGroup().getGoodsPackagingDAO().load(newPackagingId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected TransportTask loadTransportTask(RetailscmUserContext userContext, String newTransportTaskId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getTransportTaskDAO().load(newTransportTaskId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected ShippingSpace loadShippingSpace(RetailscmUserContext userContext, String newShippingSpaceId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getShippingSpaceDAO().load(newShippingSpaceId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected Sku loadSku(RetailscmUserContext userContext, String newSkuId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getSkuDAO().load(newSkuId, options);
  	}
  	
  	
@@ -1146,6 +1136,16 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreOrderDAO().load(newRetailStoreOrderId, options);
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+ 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newRetailStoreId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreDAO().load(newRetailStoreId, options);
  	}
  	
  	

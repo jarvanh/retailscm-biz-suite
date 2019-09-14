@@ -47,10 +47,10 @@ public class EmployeeQualifierMapper extends BaseRowMapper<EmployeeQualifier>{
  		if( employeeId.isEmpty()){
  			return;
  		}
- 		Employee lemployee = employeeQualifier.getEmployee();
- 		if( lemployee != null ){
+ 		Employee employee = employeeQualifier.getEmployee();
+ 		if( employee != null ){
  			//if the root object 'employeeQualifier' already have the property, just set the id for it;
- 			lemployee.setId(employeeId);
+ 			employee.setId(employeeId);
  			
  			return;
  		}

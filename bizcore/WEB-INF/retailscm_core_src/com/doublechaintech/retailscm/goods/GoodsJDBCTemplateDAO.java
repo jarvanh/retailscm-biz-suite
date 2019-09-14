@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -51,7 +51,16 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsDAO{
+public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsDAO{
+ 
+ 	
+ 	private  ReceivingSpaceDAO  receivingSpaceDAO;
+ 	public void setReceivingSpaceDAO(ReceivingSpaceDAO receivingSpaceDAO){
+	 	this.receivingSpaceDAO = receivingSpaceDAO;
+ 	}
+ 	public ReceivingSpaceDAO getReceivingSpaceDAO(){
+	 	return this.receivingSpaceDAO;
+ 	}
  
  	
  	private  GoodsAllocationDAO  goodsAllocationDAO;
@@ -60,51 +69,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
  	}
  	public GoodsAllocationDAO getGoodsAllocationDAO(){
 	 	return this.goodsAllocationDAO;
- 	}
- 
- 	
- 	private  ShippingSpaceDAO  shippingSpaceDAO;
- 	public void setShippingSpaceDAO(ShippingSpaceDAO shippingSpaceDAO){
-	 	this.shippingSpaceDAO = shippingSpaceDAO;
- 	}
- 	public ShippingSpaceDAO getShippingSpaceDAO(){
-	 	return this.shippingSpaceDAO;
- 	}
- 
- 	
- 	private  GoodsPackagingDAO  goodsPackagingDAO;
- 	public void setGoodsPackagingDAO(GoodsPackagingDAO goodsPackagingDAO){
-	 	this.goodsPackagingDAO = goodsPackagingDAO;
- 	}
- 	public GoodsPackagingDAO getGoodsPackagingDAO(){
-	 	return this.goodsPackagingDAO;
- 	}
- 
- 	
- 	private  RetailStoreDAO  retailStoreDAO;
- 	public void setRetailStoreDAO(RetailStoreDAO retailStoreDAO){
-	 	this.retailStoreDAO = retailStoreDAO;
- 	}
- 	public RetailStoreDAO getRetailStoreDAO(){
-	 	return this.retailStoreDAO;
- 	}
- 
- 	
- 	private  SkuDAO  skuDAO;
- 	public void setSkuDAO(SkuDAO skuDAO){
-	 	this.skuDAO = skuDAO;
- 	}
- 	public SkuDAO getSkuDAO(){
-	 	return this.skuDAO;
- 	}
- 
- 	
- 	private  TransportTaskDAO  transportTaskDAO;
- 	public void setTransportTaskDAO(TransportTaskDAO transportTaskDAO){
-	 	this.transportTaskDAO = transportTaskDAO;
- 	}
- 	public TransportTaskDAO getTransportTaskDAO(){
-	 	return this.transportTaskDAO;
  	}
  
  	
@@ -126,12 +90,39 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
  	}
  
  	
- 	private  ReceivingSpaceDAO  receivingSpaceDAO;
- 	public void setReceivingSpaceDAO(ReceivingSpaceDAO receivingSpaceDAO){
-	 	this.receivingSpaceDAO = receivingSpaceDAO;
+ 	private  GoodsPackagingDAO  goodsPackagingDAO;
+ 	public void setGoodsPackagingDAO(GoodsPackagingDAO goodsPackagingDAO){
+	 	this.goodsPackagingDAO = goodsPackagingDAO;
  	}
- 	public ReceivingSpaceDAO getReceivingSpaceDAO(){
-	 	return this.receivingSpaceDAO;
+ 	public GoodsPackagingDAO getGoodsPackagingDAO(){
+	 	return this.goodsPackagingDAO;
+ 	}
+ 
+ 	
+ 	private  TransportTaskDAO  transportTaskDAO;
+ 	public void setTransportTaskDAO(TransportTaskDAO transportTaskDAO){
+	 	this.transportTaskDAO = transportTaskDAO;
+ 	}
+ 	public TransportTaskDAO getTransportTaskDAO(){
+	 	return this.transportTaskDAO;
+ 	}
+ 
+ 	
+ 	private  ShippingSpaceDAO  shippingSpaceDAO;
+ 	public void setShippingSpaceDAO(ShippingSpaceDAO shippingSpaceDAO){
+	 	this.shippingSpaceDAO = shippingSpaceDAO;
+ 	}
+ 	public ShippingSpaceDAO getShippingSpaceDAO(){
+	 	return this.shippingSpaceDAO;
+ 	}
+ 
+ 	
+ 	private  SkuDAO  skuDAO;
+ 	public void setSkuDAO(SkuDAO skuDAO){
+	 	this.skuDAO = skuDAO;
+ 	}
+ 	public SkuDAO getSkuDAO(){
+	 	return this.skuDAO;
  	}
  
  	
@@ -141,6 +132,15 @@ public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements G
  	}
  	public RetailStoreOrderDAO getRetailStoreOrderDAO(){
 	 	return this.retailStoreOrderDAO;
+ 	}
+ 
+ 	
+ 	private  RetailStoreDAO  retailStoreDAO;
+ 	public void setRetailStoreDAO(RetailStoreDAO retailStoreDAO){
+	 	this.retailStoreDAO = retailStoreDAO;
+ 	}
+ 	public RetailStoreDAO getRetailStoreDAO(){
+	 	return this.retailStoreDAO;
  	}
 
 

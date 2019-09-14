@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,7 +37,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TransportFleetDAO{
+public class TransportFleetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements TransportFleetDAO{
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -582,7 +582,7 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//TransportFleet.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Transport Fleet");
+		lastUpdateTimeStatsItem.setDisplayName("运输车队");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(TransportFleet.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(TransportFleet.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

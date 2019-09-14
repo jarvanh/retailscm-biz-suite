@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.listaccess;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -65,6 +66,16 @@ public class ListAccess extends BaseEntity implements  java.io.Serializable{
 	public 	ListAccess(){
 		// lazy load for all the properties
 	}
+	public 	static ListAccess withId(String id){
+		ListAccess listAccess = new ListAccess();
+		listAccess.setId(id);
+		// listAccess.setVersion(Integer.MAX_VALUE);
+		return listAccess;
+	}
+	public 	static ListAccess refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setApp( null );
@@ -220,6 +231,41 @@ public class ListAccess extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(INTERNAL_NAME_PROPERTY.equals(property)){
+			return getInternalName();
+		}
+		if(READ_PERMISSION_PROPERTY.equals(property)){
+			return getReadPermission();
+		}
+		if(CREATE_PERMISSION_PROPERTY.equals(property)){
+			return getCreatePermission();
+		}
+		if(DELETE_PERMISSION_PROPERTY.equals(property)){
+			return getDeletePermission();
+		}
+		if(UPDATE_PERMISSION_PROPERTY.equals(property)){
+			return getUpdatePermission();
+		}
+		if(EXECUTION_PERMISSION_PROPERTY.equals(property)){
+			return getExecutionPermission();
+		}
+		if(APP_PROPERTY.equals(property)){
+			return getApp();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

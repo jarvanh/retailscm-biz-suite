@@ -426,20 +426,20 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
  //--------------------------------------------------------------
 	
 	 	
- 	protected SkillType loadSkillType(RetailscmUserContext userContext, String newSkillTypeId, Map<String,Object> options) throws Exception
+ 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSkillTypeDAO().load(newSkillTypeId, options);
+ 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
+ 	protected SkillType loadSkillType(RetailscmUserContext userContext, String newSkillTypeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return userContext.getDAOGroup().getSkillTypeDAO().load(newSkillTypeId, options);
  	}
  	
  	

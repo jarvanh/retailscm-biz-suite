@@ -61,10 +61,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreId.isEmpty()){
  			return;
  		}
- 		RetailStore lretailStore = retailStoreOrder.getBuyer();
- 		if( lretailStore != null ){
+ 		RetailStore retailStore = retailStoreOrder.getBuyer();
+ 		if( retailStore != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStore.setId(retailStoreId);
+ 			retailStore.setId(retailStoreId);
  			
  			return;
  		}
@@ -79,10 +79,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreCountryCenterId.isEmpty()){
  			return;
  		}
- 		RetailStoreCountryCenter lretailStoreCountryCenter = retailStoreOrder.getSeller();
- 		if( lretailStoreCountryCenter != null ){
+ 		RetailStoreCountryCenter retailStoreCountryCenter = retailStoreOrder.getSeller();
+ 		if( retailStoreCountryCenter != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStoreCountryCenter.setId(retailStoreCountryCenterId);
+ 			retailStoreCountryCenter.setId(retailStoreCountryCenterId);
  			
  			return;
  		}
@@ -121,10 +121,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreOrderConfirmationId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrderConfirmation lretailStoreOrderConfirmation = retailStoreOrder.getConfirmation();
- 		if( lretailStoreOrderConfirmation != null ){
+ 		RetailStoreOrderConfirmation retailStoreOrderConfirmation = retailStoreOrder.getConfirmation();
+ 		if( retailStoreOrderConfirmation != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStoreOrderConfirmation.setId(retailStoreOrderConfirmationId);
+ 			retailStoreOrderConfirmation.setId(retailStoreOrderConfirmationId);
  			
  			return;
  		}
@@ -139,10 +139,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreOrderApprovalId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrderApproval lretailStoreOrderApproval = retailStoreOrder.getApproval();
- 		if( lretailStoreOrderApproval != null ){
+ 		RetailStoreOrderApproval retailStoreOrderApproval = retailStoreOrder.getApproval();
+ 		if( retailStoreOrderApproval != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStoreOrderApproval.setId(retailStoreOrderApprovalId);
+ 			retailStoreOrderApproval.setId(retailStoreOrderApprovalId);
  			
  			return;
  		}
@@ -157,10 +157,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreOrderProcessingId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrderProcessing lretailStoreOrderProcessing = retailStoreOrder.getProcessing();
- 		if( lretailStoreOrderProcessing != null ){
+ 		RetailStoreOrderProcessing retailStoreOrderProcessing = retailStoreOrder.getProcessing();
+ 		if( retailStoreOrderProcessing != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStoreOrderProcessing.setId(retailStoreOrderProcessingId);
+ 			retailStoreOrderProcessing.setId(retailStoreOrderProcessingId);
  			
  			return;
  		}
@@ -175,10 +175,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreOrderPickingId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrderPicking lretailStoreOrderPicking = retailStoreOrder.getPicking();
- 		if( lretailStoreOrderPicking != null ){
+ 		RetailStoreOrderPicking retailStoreOrderPicking = retailStoreOrder.getPicking();
+ 		if( retailStoreOrderPicking != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStoreOrderPicking.setId(retailStoreOrderPickingId);
+ 			retailStoreOrderPicking.setId(retailStoreOrderPickingId);
  			
  			return;
  		}
@@ -193,10 +193,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreOrderShipmentId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrderShipment lretailStoreOrderShipment = retailStoreOrder.getShipment();
- 		if( lretailStoreOrderShipment != null ){
+ 		RetailStoreOrderShipment retailStoreOrderShipment = retailStoreOrder.getShipment();
+ 		if( retailStoreOrderShipment != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStoreOrderShipment.setId(retailStoreOrderShipmentId);
+ 			retailStoreOrderShipment.setId(retailStoreOrderShipmentId);
  			
  			return;
  		}
@@ -211,10 +211,10 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
  		if( retailStoreOrderDeliveryId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrderDelivery lretailStoreOrderDelivery = retailStoreOrder.getDelivery();
- 		if( lretailStoreOrderDelivery != null ){
+ 		RetailStoreOrderDelivery retailStoreOrderDelivery = retailStoreOrder.getDelivery();
+ 		if( retailStoreOrderDelivery != null ){
  			//if the root object 'retailStoreOrder' already have the property, just set the id for it;
- 			lretailStoreOrderDelivery.setId(retailStoreOrderDeliveryId);
+ 			retailStoreOrderDelivery.setId(retailStoreOrderDeliveryId);
  			
  			return;
  		}

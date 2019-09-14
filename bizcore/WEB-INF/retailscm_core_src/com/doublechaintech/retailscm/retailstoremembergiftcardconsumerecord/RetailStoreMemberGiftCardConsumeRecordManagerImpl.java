@@ -436,20 +436,20 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  //--------------------------------------------------------------
 	
 	 	
- 	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreMemberGiftCard loadRetailStoreMemberGiftCard(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getConsumerOrderDAO().load(newBizOrderId, options);
+ 		return userContext.getDAOGroup().getRetailStoreMemberGiftCardDAO().load(newOwnerId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected RetailStoreMemberGiftCard loadRetailStoreMemberGiftCard(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
+ 	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreMemberGiftCardDAO().load(newOwnerId, options);
+ 		return userContext.getDAOGroup().getConsumerOrderDAO().load(newBizOrderId, options);
  	}
  	
  	

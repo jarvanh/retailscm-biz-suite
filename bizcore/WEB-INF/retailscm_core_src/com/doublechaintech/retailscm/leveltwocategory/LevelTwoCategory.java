@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.leveltwocategory;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -56,6 +57,16 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
 	public 	LevelTwoCategory(){
 		// lazy load for all the properties
 	}
+	public 	static LevelTwoCategory withId(String id){
+		LevelTwoCategory levelTwoCategory = new LevelTwoCategory();
+		levelTwoCategory.setId(id);
+		// levelTwoCategory.setVersion(Integer.MAX_VALUE);
+		return levelTwoCategory;
+	}
+	public 	static LevelTwoCategory refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setParentCategory( null );
@@ -98,6 +109,27 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(PARENT_CATEGORY_PROPERTY.equals(property)){
+			return getParentCategory();
+		}
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(LEVEL_THREE_CATEGORY_LIST.equals(property)){
+			List<BaseEntity> list = getLevelThreeCategoryList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

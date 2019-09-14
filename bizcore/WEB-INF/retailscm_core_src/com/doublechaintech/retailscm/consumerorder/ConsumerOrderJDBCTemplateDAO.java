@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -53,43 +53,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ConsumerOrderDAO{
- 
- 	
- 	private  SupplyOrderApprovalDAO  supplyOrderApprovalDAO;
- 	public void setSupplyOrderApprovalDAO(SupplyOrderApprovalDAO supplyOrderApprovalDAO){
-	 	this.supplyOrderApprovalDAO = supplyOrderApprovalDAO;
- 	}
- 	public SupplyOrderApprovalDAO getSupplyOrderApprovalDAO(){
-	 	return this.supplyOrderApprovalDAO;
- 	}
- 
- 	
- 	private  SupplyOrderDeliveryDAO  supplyOrderDeliveryDAO;
- 	public void setSupplyOrderDeliveryDAO(SupplyOrderDeliveryDAO supplyOrderDeliveryDAO){
-	 	this.supplyOrderDeliveryDAO = supplyOrderDeliveryDAO;
- 	}
- 	public SupplyOrderDeliveryDAO getSupplyOrderDeliveryDAO(){
-	 	return this.supplyOrderDeliveryDAO;
- 	}
- 
- 	
- 	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
- 	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
-	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
- 	}
- 	public SupplyOrderShipmentDAO getSupplyOrderShipmentDAO(){
-	 	return this.supplyOrderShipmentDAO;
- 	}
- 
- 	
- 	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
- 	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
-	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
- 	}
- 	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
-	 	return this.supplyOrderConfirmationDAO;
- 	}
+public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ConsumerOrderDAO{
  
  	
  	private  RetailStoreMemberDAO  retailStoreMemberDAO;
@@ -98,6 +62,24 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  	public RetailStoreMemberDAO getRetailStoreMemberDAO(){
 	 	return this.retailStoreMemberDAO;
+ 	}
+ 
+ 	
+ 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
+ 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
+	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
+ 	}
+ 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
+	 	return this.supplyOrderProcessingDAO;
+ 	}
+ 
+ 	
+ 	private  SupplyOrderApprovalDAO  supplyOrderApprovalDAO;
+ 	public void setSupplyOrderApprovalDAO(SupplyOrderApprovalDAO supplyOrderApprovalDAO){
+	 	this.supplyOrderApprovalDAO = supplyOrderApprovalDAO;
+ 	}
+ 	public SupplyOrderApprovalDAO getSupplyOrderApprovalDAO(){
+	 	return this.supplyOrderApprovalDAO;
  	}
  
  	
@@ -110,12 +92,30 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  
  	
- 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
- 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
-	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
+ 	private  SupplyOrderDeliveryDAO  supplyOrderDeliveryDAO;
+ 	public void setSupplyOrderDeliveryDAO(SupplyOrderDeliveryDAO supplyOrderDeliveryDAO){
+	 	this.supplyOrderDeliveryDAO = supplyOrderDeliveryDAO;
  	}
- 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
-	 	return this.supplyOrderProcessingDAO;
+ 	public SupplyOrderDeliveryDAO getSupplyOrderDeliveryDAO(){
+	 	return this.supplyOrderDeliveryDAO;
+ 	}
+ 
+ 	
+ 	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
+ 	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
+	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
+ 	}
+ 	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
+	 	return this.supplyOrderConfirmationDAO;
+ 	}
+ 
+ 	
+ 	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
+ 	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
+	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
+ 	}
+ 	public SupplyOrderShipmentDAO getSupplyOrderShipmentDAO(){
+	 	return this.supplyOrderShipmentDAO;
  	}
 
 
@@ -1076,7 +1076,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1126,7 +1126,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1176,7 +1176,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1226,7 +1226,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1276,7 +1276,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1326,7 +1326,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);
@@ -1376,7 +1376,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.goodspackaging;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -59,6 +60,16 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 	public 	GoodsPackaging(){
 		// lazy load for all the properties
 	}
+	public 	static GoodsPackaging withId(String id){
+		GoodsPackaging goodsPackaging = new GoodsPackaging();
+		goodsPackaging.setId(id);
+		// goodsPackaging.setVersion(Integer.MAX_VALUE);
+		return goodsPackaging;
+	}
+	public 	static GoodsPackaging refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
@@ -156,6 +167,33 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(PACKAGE_NAME_PROPERTY.equals(property)){
+			return getPackageName();
+		}
+		if(RFID_PROPERTY.equals(property)){
+			return getRfid();
+		}
+		if(PACKAGE_TIME_PROPERTY.equals(property)){
+			return getPackageTime();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(GOODS_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

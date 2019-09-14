@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.retailstoremember;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -76,6 +77,16 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 	public 	RetailStoreMember(){
 		// lazy load for all the properties
 	}
+	public 	static RetailStoreMember withId(String id){
+		RetailStoreMember retailStoreMember = new RetailStoreMember();
+		retailStoreMember.setId(id);
+		// retailStoreMember.setVersion(Integer.MAX_VALUE);
+		return retailStoreMember;
+	}
+	public 	static RetailStoreMember refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setOwner( null );
@@ -143,6 +154,54 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(MOBILE_PHONE_PROPERTY.equals(property)){
+			return getMobilePhone();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(CONSUMER_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getConsumerOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_MEMBER_COUPON_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberCouponList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(MEMBER_WISHLIST_LIST.equals(property)){
+			List<BaseEntity> list = getMemberWishlistList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(MEMBER_REWARD_POINT_LIST.equals(property)){
+			List<BaseEntity> list = getMemberRewardPointList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(MEMBER_REWARD_POINT_REDEMPTION_LIST.equals(property)){
+			List<BaseEntity> list = getMemberRewardPointRedemptionList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_MEMBER_ADDRESS_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberAddressList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_MEMBER_GIFT_CARD_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberGiftCardList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

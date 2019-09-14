@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.formfield;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -81,6 +82,16 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 	public 	FormField(){
 		// lazy load for all the properties
 	}
+	public 	static FormField withId(String id){
+		FormField formField = new FormField();
+		formField.setId(id);
+		// formField.setVersion(Integer.MAX_VALUE);
+		return formField;
+	}
+	public 	static FormField refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setForm( null );
@@ -388,6 +399,65 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(LABEL_PROPERTY.equals(property)){
+			return getLabel();
+		}
+		if(LOCALE_KEY_PROPERTY.equals(property)){
+			return getLocaleKey();
+		}
+		if(PARAMETER_NAME_PROPERTY.equals(property)){
+			return getParameterName();
+		}
+		if(TYPE_PROPERTY.equals(property)){
+			return getType();
+		}
+		if(FORM_PROPERTY.equals(property)){
+			return getForm();
+		}
+		if(PLACEHOLDER_PROPERTY.equals(property)){
+			return getPlaceholder();
+		}
+		if(DEFAULT_VALUE_PROPERTY.equals(property)){
+			return getDefaultValue();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(FIELD_GROUP_PROPERTY.equals(property)){
+			return getFieldGroup();
+		}
+		if(MINIMUM_VALUE_PROPERTY.equals(property)){
+			return getMinimumValue();
+		}
+		if(MAXIMUM_VALUE_PROPERTY.equals(property)){
+			return getMaximumValue();
+		}
+		if(REQUIRED_PROPERTY.equals(property)){
+			return getRequired();
+		}
+		if(DISABLED_PROPERTY.equals(property)){
+			return getDisabled();
+		}
+		if(CUSTOM_RENDERING_PROPERTY.equals(property)){
+			return getCustomRendering();
+		}
+		if(CANDIDATE_VALUES_PROPERTY.equals(property)){
+			return getCandidateValues();
+		}
+		if(SUGGEST_VALUES_PROPERTY.equals(property)){
+			return getSuggestValues();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

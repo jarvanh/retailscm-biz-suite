@@ -1,0 +1,44 @@
+
+package com.doublechaintech.retailscm.candidateelement;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Map;
+import com.terapico.caf.DateTime;
+import com.doublechaintech.retailscm.RetailscmUserContext;
+import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.SmartList;
+
+public interface CandidateElementManager{
+
+		
+
+	public CandidateElement createCandidateElement(RetailscmUserContext userContext, String name, String type, String image, String containerId) throws Exception;	
+	public CandidateElement updateCandidateElement(RetailscmUserContext userContext,String candidateElementId, int candidateElementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
+	public CandidateElement loadCandidateElement(RetailscmUserContext userContext, String candidateElementId, String [] tokensExpr) throws Exception;
+	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement) throws Exception;
+	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement,Map<String,Object>option) throws Exception;
+	
+	public CandidateElement transferToAnotherContainer(RetailscmUserContext userContext, String candidateElementId, String anotherContainerId)  throws Exception;
+ 
+
+	public void delete(RetailscmUserContext userContext, String candidateElementId, int version) throws Exception;
+	public int deleteAll(RetailscmUserContext userContext, String secureCode ) throws Exception;
+	public void onNewInstanceCreated(RetailscmUserContext userContext, CandidateElement newCreated)throws Exception;
+
+	/*======================================================DATA MAINTENANCE===========================================================*/
+	
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+

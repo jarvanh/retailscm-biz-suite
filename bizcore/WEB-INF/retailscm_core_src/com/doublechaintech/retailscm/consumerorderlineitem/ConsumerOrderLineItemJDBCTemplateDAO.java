@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -31,7 +31,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class ConsumerOrderLineItemJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ConsumerOrderLineItemDAO{
+public class ConsumerOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ConsumerOrderLineItemDAO{
  
  	
  	private  ConsumerOrderDAO  consumerOrderDAO;
@@ -282,7 +282,7 @@ public class ConsumerOrderLineItemJDBCTemplateDAO extends RetailscmNamingService
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//ConsumerOrderLineItem.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Consumer Order Line Item");
+		lastUpdateTimeStatsItem.setDisplayName("消费者订单行项目");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrderLineItem.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrderLineItem.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

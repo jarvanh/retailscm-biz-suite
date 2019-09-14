@@ -16,7 +16,7 @@ public class InstructorTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="instructor_data";
+	public static final String TABLE_NAME="instructor_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_TITLE = "title";
 	static final String COLUMN_FAMILY_NAME = "family_name";
@@ -28,10 +28,10 @@ public class InstructorTable{
 	static final String COLUMN_LAST_UPDATE_TIME = "last_update_time";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_TITLE, COLUMN_FAMILY_NAME, COLUMN_GIVEN_NAME, COLUMN_CELL_PHONE, COLUMN_EMAIL, COLUMN_COMPANY, COLUMN_INTRODUCTION, COLUMN_LAST_UPDATE_TIME, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_TITLE, COLUMN_FAMILY_NAME, COLUMN_GIVEN_NAME, COLUMN_CELL_PHONE, COLUMN_EMAIL, COLUMN_COMPANY, COLUMN_INTRODUCTION, COLUMN_LAST_UPDATE_TIME
 		};
 	

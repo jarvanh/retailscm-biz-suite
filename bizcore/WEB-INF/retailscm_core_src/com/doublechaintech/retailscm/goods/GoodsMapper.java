@@ -127,10 +127,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( skuId.isEmpty()){
  			return;
  		}
- 		Sku lsku = goods.getSku();
- 		if( lsku != null ){
+ 		Sku sku = goods.getSku();
+ 		if( sku != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lsku.setId(skuId);
+ 			sku.setId(skuId);
  			
  			return;
  		}
@@ -145,10 +145,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( receivingSpaceId.isEmpty()){
  			return;
  		}
- 		ReceivingSpace lreceivingSpace = goods.getReceivingSpace();
- 		if( lreceivingSpace != null ){
+ 		ReceivingSpace receivingSpace = goods.getReceivingSpace();
+ 		if( receivingSpace != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lreceivingSpace.setId(receivingSpaceId);
+ 			receivingSpace.setId(receivingSpaceId);
  			
  			return;
  		}
@@ -163,10 +163,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( goodsAllocationId.isEmpty()){
  			return;
  		}
- 		GoodsAllocation lgoodsAllocation = goods.getGoodsAllocation();
- 		if( lgoodsAllocation != null ){
+ 		GoodsAllocation goodsAllocation = goods.getGoodsAllocation();
+ 		if( goodsAllocation != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lgoodsAllocation.setId(goodsAllocationId);
+ 			goodsAllocation.setId(goodsAllocationId);
  			
  			return;
  		}
@@ -181,10 +181,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( smartPalletId.isEmpty()){
  			return;
  		}
- 		SmartPallet lsmartPallet = goods.getSmartPallet();
- 		if( lsmartPallet != null ){
+ 		SmartPallet smartPallet = goods.getSmartPallet();
+ 		if( smartPallet != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lsmartPallet.setId(smartPalletId);
+ 			smartPallet.setId(smartPalletId);
  			
  			return;
  		}
@@ -199,10 +199,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( shippingSpaceId.isEmpty()){
  			return;
  		}
- 		ShippingSpace lshippingSpace = goods.getShippingSpace();
- 		if( lshippingSpace != null ){
+ 		ShippingSpace shippingSpace = goods.getShippingSpace();
+ 		if( shippingSpace != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lshippingSpace.setId(shippingSpaceId);
+ 			shippingSpace.setId(shippingSpaceId);
  			
  			return;
  		}
@@ -217,10 +217,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( transportTaskId.isEmpty()){
  			return;
  		}
- 		TransportTask ltransportTask = goods.getTransportTask();
- 		if( ltransportTask != null ){
+ 		TransportTask transportTask = goods.getTransportTask();
+ 		if( transportTask != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			ltransportTask.setId(transportTaskId);
+ 			transportTask.setId(transportTaskId);
  			
  			return;
  		}
@@ -235,10 +235,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( retailStoreId.isEmpty()){
  			return;
  		}
- 		RetailStore lretailStore = goods.getRetailStore();
- 		if( lretailStore != null ){
+ 		RetailStore retailStore = goods.getRetailStore();
+ 		if( retailStore != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lretailStore.setId(retailStoreId);
+ 			retailStore.setId(retailStoreId);
  			
  			return;
  		}
@@ -253,10 +253,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( supplyOrderId.isEmpty()){
  			return;
  		}
- 		SupplyOrder lsupplyOrder = goods.getBizOrder();
- 		if( lsupplyOrder != null ){
+ 		SupplyOrder supplyOrder = goods.getBizOrder();
+ 		if( supplyOrder != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lsupplyOrder.setId(supplyOrderId);
+ 			supplyOrder.setId(supplyOrderId);
  			
  			return;
  		}
@@ -271,10 +271,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( retailStoreOrderId.isEmpty()){
  			return;
  		}
- 		RetailStoreOrder lretailStoreOrder = goods.getRetailStoreOrder();
- 		if( lretailStoreOrder != null ){
+ 		RetailStoreOrder retailStoreOrder = goods.getRetailStoreOrder();
+ 		if( retailStoreOrder != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lretailStoreOrder.setId(retailStoreOrderId);
+ 			retailStoreOrder.setId(retailStoreOrderId);
  			
  			return;
  		}
@@ -289,10 +289,10 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		if( goodsPackagingId.isEmpty()){
  			return;
  		}
- 		GoodsPackaging lgoodsPackaging = goods.getPackaging();
- 		if( lgoodsPackaging != null ){
+ 		GoodsPackaging goodsPackaging = goods.getPackaging();
+ 		if( goodsPackaging != null ){
  			//if the root object 'goods' already have the property, just set the id for it;
- 			lgoodsPackaging.setId(goodsPackagingId);
+ 			goodsPackaging.setId(goodsPackagingId);
  			
  			return;
  		}

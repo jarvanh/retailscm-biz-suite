@@ -16,7 +16,7 @@ public class TransportTaskTrackTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-	static final String TABLE_NAME="transport_task_track_data";
+	public static final String TABLE_NAME="transport_task_track_data";
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_TRACK_TIME = "track_time";
 	static final String COLUMN_LATITUDE = "latitude";
@@ -24,10 +24,10 @@ public class TransportTaskTrackTable{
 	static final String COLUMN_MOVEMENT = "movement";
 	static final String COLUMN_VERSION = "version";
  
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
+	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_TRACK_TIME, COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_MOVEMENT, 
 		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
+	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_TRACK_TIME, COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_MOVEMENT
 		};
 	

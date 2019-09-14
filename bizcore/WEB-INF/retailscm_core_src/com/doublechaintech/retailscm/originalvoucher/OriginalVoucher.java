@@ -4,6 +4,7 @@ package com.doublechaintech.retailscm.originalvoucher;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -72,6 +73,16 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	public 	OriginalVoucher(){
 		// lazy load for all the properties
 	}
+	public 	static OriginalVoucher withId(String id){
+		OriginalVoucher originalVoucher = new OriginalVoucher();
+		originalVoucher.setId(id);
+		// originalVoucher.setVersion(Integer.MAX_VALUE);
+		return originalVoucher;
+	}
+	public 	static OriginalVoucher refById(String id){
+		return withId(id);
+	}
+	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBelongsTo( null );
@@ -193,6 +204,47 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 			
 			
 			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(MADE_BY_PROPERTY.equals(property)){
+			return getMadeBy();
+		}
+		if(RECEIVED_BY_PROPERTY.equals(property)){
+			return getReceivedBy();
+		}
+		if(VOUCHER_TYPE_PROPERTY.equals(property)){
+			return getVoucherType();
+		}
+		if(VOUCHER_IMAGE_PROPERTY.equals(property)){
+			return getVoucherImage();
+		}
+		if(BELONGS_TO_PROPERTY.equals(property)){
+			return getBelongsTo();
+		}
+		if(CREATION_PROPERTY.equals(property)){
+			return getCreation();
+		}
+		if(CONFIRMATION_PROPERTY.equals(property)){
+			return getConfirmation();
+		}
+		if(AUDITING_PROPERTY.equals(property)){
+			return getAuditing();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	

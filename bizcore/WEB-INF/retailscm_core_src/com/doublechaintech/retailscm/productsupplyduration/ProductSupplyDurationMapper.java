@@ -82,10 +82,10 @@ public class ProductSupplyDurationMapper extends BaseRowMapper<ProductSupplyDura
  		if( supplierProductId.isEmpty()){
  			return;
  		}
- 		SupplierProduct lsupplierProduct = productSupplyDuration.getProduct();
- 		if( lsupplierProduct != null ){
+ 		SupplierProduct supplierProduct = productSupplyDuration.getProduct();
+ 		if( supplierProduct != null ){
  			//if the root object 'productSupplyDuration' already have the property, just set the id for it;
- 			lsupplierProduct.setId(supplierProductId);
+ 			supplierProduct.setId(supplierProductId);
  			
  			return;
  		}

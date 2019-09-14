@@ -59,10 +59,10 @@ public class EventAttendanceMapper extends BaseRowMapper<EventAttendance>{
  		if( potentialCustomerId.isEmpty()){
  			return;
  		}
- 		PotentialCustomer lpotentialCustomer = eventAttendance.getPotentialCustomer();
- 		if( lpotentialCustomer != null ){
+ 		PotentialCustomer potentialCustomer = eventAttendance.getPotentialCustomer();
+ 		if( potentialCustomer != null ){
  			//if the root object 'eventAttendance' already have the property, just set the id for it;
- 			lpotentialCustomer.setId(potentialCustomerId);
+ 			potentialCustomer.setId(potentialCustomerId);
  			
  			return;
  		}
@@ -77,10 +77,10 @@ public class EventAttendanceMapper extends BaseRowMapper<EventAttendance>{
  		if( cityEventId.isEmpty()){
  			return;
  		}
- 		CityEvent lcityEvent = eventAttendance.getCityEvent();
- 		if( lcityEvent != null ){
+ 		CityEvent cityEvent = eventAttendance.getCityEvent();
+ 		if( cityEvent != null ){
  			//if the root object 'eventAttendance' already have the property, just set the id for it;
- 			lcityEvent.setId(cityEventId);
+ 			cityEvent.setId(cityEventId);
  			
  			return;
  		}

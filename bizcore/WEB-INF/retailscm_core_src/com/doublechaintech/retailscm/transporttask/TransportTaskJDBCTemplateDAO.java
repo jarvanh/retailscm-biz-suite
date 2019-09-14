@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -41,16 +41,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class TransportTaskJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TransportTaskDAO{
- 
- 	
- 	private  TruckDriverDAO  truckDriverDAO;
- 	public void setTruckDriverDAO(TruckDriverDAO truckDriverDAO){
-	 	this.truckDriverDAO = truckDriverDAO;
- 	}
- 	public TruckDriverDAO getTruckDriverDAO(){
-	 	return this.truckDriverDAO;
- 	}
+public class TransportTaskJDBCTemplateDAO extends RetailscmBaseDAOImpl implements TransportTaskDAO{
  
  	
  	private  TransportFleetDAO  transportFleetDAO;
@@ -62,12 +53,12 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  
  	
- 	private  TransportTruckDAO  transportTruckDAO;
- 	public void setTransportTruckDAO(TransportTruckDAO transportTruckDAO){
-	 	this.transportTruckDAO = transportTruckDAO;
+ 	private  TruckDriverDAO  truckDriverDAO;
+ 	public void setTruckDriverDAO(TruckDriverDAO truckDriverDAO){
+	 	this.truckDriverDAO = truckDriverDAO;
  	}
- 	public TransportTruckDAO getTransportTruckDAO(){
-	 	return this.transportTruckDAO;
+ 	public TruckDriverDAO getTruckDriverDAO(){
+	 	return this.truckDriverDAO;
  	}
  
  	
@@ -77,6 +68,15 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  	public RetailStoreDAO getRetailStoreDAO(){
 	 	return this.retailStoreDAO;
+ 	}
+ 
+ 	
+ 	private  TransportTruckDAO  transportTruckDAO;
+ 	public void setTransportTruckDAO(TransportTruckDAO transportTruckDAO){
+	 	this.transportTruckDAO = transportTruckDAO;
+ 	}
+ 	public TransportTruckDAO getTransportTruckDAO(){
+	 	return this.transportTruckDAO;
  	}
 
 

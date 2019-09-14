@@ -80,10 +80,10 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		if( accountingPeriodId.isEmpty()){
  			return;
  		}
- 		AccountingPeriod laccountingPeriod = accountingDocument.getAccountingPeriod();
- 		if( laccountingPeriod != null ){
+ 		AccountingPeriod accountingPeriod = accountingDocument.getAccountingPeriod();
+ 		if( accountingPeriod != null ){
  			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			laccountingPeriod.setId(accountingPeriodId);
+ 			accountingPeriod.setId(accountingPeriodId);
  			
  			return;
  		}
@@ -98,10 +98,10 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		if( accountingDocumentTypeId.isEmpty()){
  			return;
  		}
- 		AccountingDocumentType laccountingDocumentType = accountingDocument.getDocumentType();
- 		if( laccountingDocumentType != null ){
+ 		AccountingDocumentType accountingDocumentType = accountingDocument.getDocumentType();
+ 		if( accountingDocumentType != null ){
  			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			laccountingDocumentType.setId(accountingDocumentTypeId);
+ 			accountingDocumentType.setId(accountingDocumentTypeId);
  			
  			return;
  		}
@@ -116,10 +116,10 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		if( accountingDocumentCreationId.isEmpty()){
  			return;
  		}
- 		AccountingDocumentCreation laccountingDocumentCreation = accountingDocument.getCreation();
- 		if( laccountingDocumentCreation != null ){
+ 		AccountingDocumentCreation accountingDocumentCreation = accountingDocument.getCreation();
+ 		if( accountingDocumentCreation != null ){
  			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			laccountingDocumentCreation.setId(accountingDocumentCreationId);
+ 			accountingDocumentCreation.setId(accountingDocumentCreationId);
  			
  			return;
  		}
@@ -134,10 +134,10 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		if( accountingDocumentConfirmationId.isEmpty()){
  			return;
  		}
- 		AccountingDocumentConfirmation laccountingDocumentConfirmation = accountingDocument.getConfirmation();
- 		if( laccountingDocumentConfirmation != null ){
+ 		AccountingDocumentConfirmation accountingDocumentConfirmation = accountingDocument.getConfirmation();
+ 		if( accountingDocumentConfirmation != null ){
  			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			laccountingDocumentConfirmation.setId(accountingDocumentConfirmationId);
+ 			accountingDocumentConfirmation.setId(accountingDocumentConfirmationId);
  			
  			return;
  		}
@@ -152,10 +152,10 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		if( accountingDocumentAuditingId.isEmpty()){
  			return;
  		}
- 		AccountingDocumentAuditing laccountingDocumentAuditing = accountingDocument.getAuditing();
- 		if( laccountingDocumentAuditing != null ){
+ 		AccountingDocumentAuditing accountingDocumentAuditing = accountingDocument.getAuditing();
+ 		if( accountingDocumentAuditing != null ){
  			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			laccountingDocumentAuditing.setId(accountingDocumentAuditingId);
+ 			accountingDocumentAuditing.setId(accountingDocumentAuditingId);
  			
  			return;
  		}
@@ -170,10 +170,10 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		if( accountingDocumentPostingId.isEmpty()){
  			return;
  		}
- 		AccountingDocumentPosting laccountingDocumentPosting = accountingDocument.getPosting();
- 		if( laccountingDocumentPosting != null ){
+ 		AccountingDocumentPosting accountingDocumentPosting = accountingDocument.getPosting();
+ 		if( accountingDocumentPosting != null ){
  			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			laccountingDocumentPosting.setId(accountingDocumentPostingId);
+ 			accountingDocumentPosting.setId(accountingDocumentPostingId);
  			
  			return;
  		}

@@ -2,15 +2,14 @@
 package com.doublechaintech.retailscm.secuser;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Enumeration;
 import java.util.HashMap;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import com.skynet.infrastructure.CacheService;
 import com.skynet.infrastructure.ESClient;
+import com.skynet.infrastructure.StorageService;
 import com.skynet.infrastructure.EventService;
 import com.skynet.infrastructure.GraphService;
 import com.skynet.infrastructure.SMTPService;
@@ -30,7 +29,7 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.userapp.*;
 import com.doublechaintech.retailscm.listaccess.*;
 import com.doublechaintech.retailscm.objectaccess.*;
-import com.doublechaintech.retailscm.RetailscmChecker;
+import com.doublechaintech.retailscm.RetailscmObjectChecker;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 import com.doublechaintech.retailscm.Message;
 
@@ -39,6 +38,7 @@ import com.doublechaintech.retailscm.Message;
 import com.terapico.uccaf.BaseUserContext;
 import com.terapico.uccaf.UserContextProvider;
 import com.terapico.caf.BeanFactory;
+import com.terapico.caf.Password;
 import com.terapico.utils.TextUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -48,12 +48,21 @@ import java.lang.reflect.InvocationTargetException;
 
 public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         UserContextProvider {
-       protected String environmentName;
+    protected StorageService storageService;
+    protected String environmentName;
     protected Boolean productEnvironment;
     protected DAOGroup daoGroup;
     protected ManagerGroup managerGroup;
     protected EventService eventService;
     protected String checkerBeanName = "checker";
+    
+    public StorageService getStorageService() {
+        return storageService;
+    }
+
+    public void setStorageService(StorageService pStorageService) {
+        storageService = pStorageService;
+    }
     public String getCheckerBeanName() {
 		return checkerBeanName;
 	}
@@ -120,7 +129,8 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
             String hasedPassword = this.hashStringWithSHA256(newPassword, user.getId());
             user.setPwd(hasedPassword);
             this.saveSecUser(userContext, user, SecUserTokens.withoutLists());
-            return this.loginWithMobile(userContext, mobile, newPassword);
+            Password pwd = new Password(newPassword);
+            return this.loginWithMobile(userContext, mobile, pwd);
             
             
         } catch (Exception e) {
@@ -349,13 +359,13 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
     }
 
     public Object loginWithEmail(RetailscmUserContext userContext, String email,
-            String password) {
+            Password password) {
 
         return loginInternal(userContext,"email",email, password);
     
     }
     public Object login(RetailscmUserContext userContext, String email,
-            String password) {
+            Password password) {
 		if (email.matches("1[3-9]\\d{9}")) {
     		return loginWithMobile(userContext, email, password);
     	}
@@ -363,13 +373,13 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
     
     }
     public Object loginWithLogin(RetailscmUserContext userContext, String email,
-            String password) {
+            Password password) {
 
         return loginInternal(userContext,"login",email, password);
     
     }
     public Object loginWithMobile(RetailscmUserContext userContext, String email,
-            String password) {
+            Password password) {
         return loginInternal(userContext,"mobile",email, password);
     
     }
@@ -387,12 +397,12 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
     }
     // return a form or a user
     protected Object loginInternal(RetailscmUserContext userContext, String type, String userId,
-            String password) {
+            Password password) {
 
         try {
             SecUser user = this.loadUserWith(userContext, type, userId);
             
-            String hashedPassed = this.hashStringWithSHA256(password, user.getId());
+            String hashedPassed = this.hashStringWithSHA256(password.getClearTextPassword(), user.getId());
             log("hashed pass: "+ hashedPassed);
             log("stored pass: "+user.getPwd());
             
@@ -524,12 +534,12 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         this.publicMediaServicePrefix = publicMediaServicePrefix;
     }
     
-    protected RetailscmChecker checker;
-    public RetailscmChecker getChecker(){
+    protected RetailscmObjectChecker checker;
+    public RetailscmObjectChecker getChecker(){
         return checker;
     }
     
-    public void setChecker(RetailscmChecker checker){
+    public void setChecker(RetailscmObjectChecker checker){
         this.checker = checker;
     }
     
@@ -541,7 +551,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         userContext.setBeanFactory(beanFactory);
         userContext.setRemoteIP(getRemoteIP(request));
         userContext.setCacheService(cacheService);
-        userContext.setChecker((RetailscmChecker)beanFactory.getBean(getCheckerBeanName()));
+        userContext.setChecker((RetailscmObjectChecker)beanFactory.getBean(getCheckerBeanName()));
         userContext.setEsClient(esClient);
         userContext.setSmtpService(smtpService);
         userContext.setGraphService(graphService);
@@ -553,7 +563,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         	while(headerNames.hasMoreElements()) {
         		String name = headerNames.nextElement();
         		String value = request.getHeader(name);
-        		userContext.putHeader(name, value);
+        		userContext.putHeader(name.toLowerCase(), value);
         	}
         }
         userContext.setPublicMediaServicePrefix(getPublicMediaServicePrefix());
@@ -677,8 +687,8 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         if(methodName.startsWith("verificationCodeForm")){
             return accessOK();
         }
-
-		String managementAccessMethods[] = new String[] { "updateAppPermission","updateListAccess" ,"loadUserAppWithUser" ,"updateListAccess" };
+	
+		String managementAccessMethods[] = new String[] { "updateAppPermission","updateListAccess" ,"loadUserAppWithUser" ,"updateListAccess","testIfHasManagementAccess" };
 
 		if(this.isOneOf(methodName, managementAccessMethods)) {
 			
@@ -693,15 +703,15 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 
 	protected boolean isMe(UserApp app, String objectType, String objectId) {
 
-		if (!app.getObjectType().equals(objectType)) {
+		if (!app.getObjectType().equalsIgnoreCase(objectType)) {
 			return false;
 		}
-		if (app.getObjectId().equals(objectId)) {
+		if (!app.getObjectId().equals(objectId)) {
 			return false;
 		}
 		return true;
 	}
-
+	
 	protected void checkUserHasManagementAccess(RetailscmUserContext userContext, String objectType, String objectId)
 			throws SecUserManagerException {
 
@@ -905,6 +915,20 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 		
 	}
     
+    
+    public Map<String, Object> testoss(RetailscmUserContext userContext) throws SecUserManagerException {
+
+		String key = this.getCurrentAppKey(userContext);
+		UserApp userApp = (UserApp) userContext.getCachedObject(key, UserApp.class);
+		if (userApp == null) {
+			throwExceptionWithMessage("用户要访问此功能，至少需要登录，并且选择了一个确定的App");
+		}
+		String folderName = String.format("upload/%s/%s", userApp.getObjectType(), userApp.getObjectId());
+		Map<String, Object> ossToken = storageService.genToken(folderName);
+		System.out.println("ossToken=" + ossToken);
+		return ossToken;
+
+	}
 
 }
 

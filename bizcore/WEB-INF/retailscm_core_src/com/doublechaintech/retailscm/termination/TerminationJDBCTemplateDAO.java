@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,16 +35,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TerminationDAO{
- 
- 	
- 	private  TerminationTypeDAO  terminationTypeDAO;
- 	public void setTerminationTypeDAO(TerminationTypeDAO terminationTypeDAO){
-	 	this.terminationTypeDAO = terminationTypeDAO;
- 	}
- 	public TerminationTypeDAO getTerminationTypeDAO(){
-	 	return this.terminationTypeDAO;
- 	}
+public class TerminationJDBCTemplateDAO extends RetailscmBaseDAOImpl implements TerminationDAO{
  
  	
  	private  TerminationReasonDAO  terminationReasonDAO;
@@ -53,6 +44,15 @@ public class TerminationJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  	public TerminationReasonDAO getTerminationReasonDAO(){
 	 	return this.terminationReasonDAO;
+ 	}
+ 
+ 	
+ 	private  TerminationTypeDAO  terminationTypeDAO;
+ 	public void setTerminationTypeDAO(TerminationTypeDAO terminationTypeDAO){
+	 	this.terminationTypeDAO = terminationTypeDAO;
+ 	}
+ 	public TerminationTypeDAO getTerminationTypeDAO(){
+	 	return this.terminationTypeDAO;
  	}
 
 

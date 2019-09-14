@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
-public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements DamageSpaceDAO{
+public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements DamageSpaceDAO{
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -382,7 +382,7 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  
 		StatsItem lastUpdateTimeStatsItem = new StatsItem();
 		//DamageSpace.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("Damage Space");
+		lastUpdateTimeStatsItem.setDisplayName("残次货物存放区");
 		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(DamageSpace.LAST_UPDATE_TIME_PROPERTY));
 		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(DamageSpace.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(lastUpdateTimeStatsItem);

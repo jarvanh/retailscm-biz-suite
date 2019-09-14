@@ -88,10 +88,10 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
  		if( potentialCustomerId.isEmpty()){
  			return;
  		}
- 		PotentialCustomer lpotentialCustomer = potentialCustomerContact.getPotentialCustomer();
- 		if( lpotentialCustomer != null ){
+ 		PotentialCustomer potentialCustomer = potentialCustomerContact.getPotentialCustomer();
+ 		if( potentialCustomer != null ){
  			//if the root object 'potentialCustomerContact' already have the property, just set the id for it;
- 			lpotentialCustomer.setId(potentialCustomerId);
+ 			potentialCustomer.setId(potentialCustomerId);
  			
  			return;
  		}
@@ -106,10 +106,10 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
  		if( cityPartnerId.isEmpty()){
  			return;
  		}
- 		CityPartner lcityPartner = potentialCustomerContact.getCityPartner();
- 		if( lcityPartner != null ){
+ 		CityPartner cityPartner = potentialCustomerContact.getCityPartner();
+ 		if( cityPartner != null ){
  			//if the root object 'potentialCustomerContact' already have the property, just set the id for it;
- 			lcityPartner.setId(cityPartnerId);
+ 			cityPartner.setId(cityPartnerId);
  			
  			return;
  		}
@@ -124,10 +124,10 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
  		if( potentialCustomerContactPersonId.isEmpty()){
  			return;
  		}
- 		PotentialCustomerContactPerson lpotentialCustomerContactPerson = potentialCustomerContact.getContactTo();
- 		if( lpotentialCustomerContactPerson != null ){
+ 		PotentialCustomerContactPerson potentialCustomerContactPerson = potentialCustomerContact.getContactTo();
+ 		if( potentialCustomerContactPerson != null ){
  			//if the root object 'potentialCustomerContact' already have the property, just set the id for it;
- 			lpotentialCustomerContactPerson.setId(potentialCustomerContactPersonId);
+ 			potentialCustomerContactPerson.setId(potentialCustomerContactPersonId);
  			
  			return;
  		}

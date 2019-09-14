@@ -441,20 +441,20 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
  //--------------------------------------------------------------
 	
 	 	
- 	protected RetailStoreProvinceCenter loadRetailStoreProvinceCenter(RetailscmUserContext userContext, String newProvinceCenterId, Map<String,Object> options) throws Exception
+ 	protected ProvinceCenterDepartment loadProvinceCenterDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreProvinceCenterDAO().load(newProvinceCenterId, options);
+ 		return userContext.getDAOGroup().getProvinceCenterDepartmentDAO().load(newDepartmentId, options);
  	}
  	
  	
  	
 	
 	 	
- 	protected ProvinceCenterDepartment loadProvinceCenterDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
+ 	protected RetailStoreProvinceCenter loadRetailStoreProvinceCenter(RetailscmUserContext userContext, String newProvinceCenterId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getProvinceCenterDepartmentDAO().load(newDepartmentId, options);
+ 		return userContext.getDAOGroup().getRetailStoreProvinceCenterDAO().load(newProvinceCenterId, options);
  	}
  	
  	
