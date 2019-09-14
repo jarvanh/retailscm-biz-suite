@@ -31,10 +31,10 @@ sourceSets {
         java.outputDir = file('WEB-INF/classes')
         
         java {
-            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/<%=name%>_core_src', 'WEB-INF/<%=name%>_custom_src']
+            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/retailscm_core_src', 'WEB-INF/retailscm_custom_src']
         }
         resources {
-            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/<%=name%>_core_src', 'WEB-INF/<%=name%>_custom_src']
+            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/retailscm_core_src', 'WEB-INF/retailscm_custom_src']
         }
     }
     test {
@@ -70,7 +70,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework:spring-jdbc")
     compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
-	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
