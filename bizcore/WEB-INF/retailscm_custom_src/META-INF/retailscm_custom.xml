@@ -21,17 +21,27 @@
 	
 	<bean id="secUserManager" class="com.doublechaintech.retailscm.secuser.SecUserCustomManagerImpl">
 	 	<property name="cacheService" ref="cacheService" />
+	 	<property name="storageService" ref="storageService"/>
 	 	<property name="esClient" ref="elasticsearchClient" />
 	 	<property name="smtpService" ref="smtpService" />
 	 	
 	 	<!--
+	 	
+	 	默认情况下不开图服务和kafka消息服务
+	 	
 	 	<property name="graphService" ref="graphService" />
 	 	<property name="eventService" ref="kafkaMessageEventService" />
+	 	
 	 	<property name="graphService" ref="dummygraphService" />
 	 	<property name="eventService" ref="dummyEventService" />
+	 	
+	 	
+	 	
 	 	-->
+	 	
+	 	
 	 	<property name="graphService" ref="dummygraphService" />
-	 	<property name="eventService" ref="kafkaMessageEventService" />
+	 	<property name="eventService" ref="dummyEventService" />
 	 	
 	 	<property name="messageService" ref="messageService" />
 	 	<property name="daoGroup" ref="DAOGroup" />

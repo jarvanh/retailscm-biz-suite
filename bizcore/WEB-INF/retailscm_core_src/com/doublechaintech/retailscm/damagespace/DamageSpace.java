@@ -70,7 +70,7 @@ public class DamageSpace extends BaseEntity implements  java.io.Serializable{
 	public 	static DamageSpace withId(String id){
 		DamageSpace damageSpace = new DamageSpace();
 		damageSpace.setId(id);
-		// damageSpace.setVersion(Integer.MAX_VALUE);
+		damageSpace.setVersion(Integer.MAX_VALUE);
 		return damageSpace;
 	}
 	public 	static DamageSpace refById(String id){

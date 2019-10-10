@@ -61,7 +61,7 @@ public class OriginalVoucherAuditing extends BaseEntity implements  java.io.Seri
 	public 	static OriginalVoucherAuditing withId(String id){
 		OriginalVoucherAuditing originalVoucherAuditing = new OriginalVoucherAuditing();
 		originalVoucherAuditing.setId(id);
-		// originalVoucherAuditing.setVersion(Integer.MAX_VALUE);
+		originalVoucherAuditing.setVersion(Integer.MAX_VALUE);
 		return originalVoucherAuditing;
 	}
 	public 	static OriginalVoucherAuditing refById(String id){

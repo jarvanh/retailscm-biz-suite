@@ -75,7 +75,7 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 	public 	static PotentialCustomer withId(String id){
 		PotentialCustomer potentialCustomer = new PotentialCustomer();
 		potentialCustomer.setId(id);
-		// potentialCustomer.setVersion(Integer.MAX_VALUE);
+		potentialCustomer.setVersion(Integer.MAX_VALUE);
 		return potentialCustomer;
 	}
 	public 	static PotentialCustomer refById(String id){

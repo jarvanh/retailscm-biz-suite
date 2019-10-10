@@ -65,7 +65,7 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 	public 	static SupplyOrderLineItem withId(String id){
 		SupplyOrderLineItem supplyOrderLineItem = new SupplyOrderLineItem();
 		supplyOrderLineItem.setId(id);
-		// supplyOrderLineItem.setVersion(Integer.MAX_VALUE);
+		supplyOrderLineItem.setVersion(Integer.MAX_VALUE);
 		return supplyOrderLineItem;
 	}
 	public 	static SupplyOrderLineItem refById(String id){

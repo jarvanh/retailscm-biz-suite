@@ -37,6 +37,11 @@ public class RestUtil {
 		String content = EntityUtils.toString(entity, StandardCharsets.UTF_8);
 		return content;
 	}
+	
+	private static byte[] getResponseAsByteArray(CloseableHttpResponse response) throws IOException {
+		HttpEntity entity = response.getEntity();
+		return EntityUtils.toByteArray(entity);
+	}
 
 	public static Object remoteGetObject(String sessionId, String url, Class<?> clazz)
 			throws ClientProtocolException, IOException {
@@ -73,6 +78,18 @@ public class RestUtil {
 		}
 		httpclient = HttpClients.createDefault();
 		return httpclient;
+	}
+
+	public static Map<String, Object> getAsByteArray(URI uri) throws URISyntaxException, IOException {
+		CloseableHttpClient client = getHttpClient();
+		HttpGet httpget = new HttpGet(uri);
+
+		CloseableHttpResponse response = client.execute(httpget);
+		StatusLine resLine = response.getStatusLine();
+		byte[] content = getResponseAsByteArray(response);
+		System.out.println(new Date() + " http-get got: " + content.length + " bytes");
+		return MapUtil.put("code", resLine.getStatusCode()).put("reason", resLine.getReasonPhrase())
+				.put("body", content).into_map();
 	}
 
 	public static Map<String, Object> getForJson(URI uri) throws URISyntaxException, IOException {
@@ -159,4 +176,24 @@ public class RestUtil {
 
 		return body;
 	}
+	
+	public static Map<String, Object> getForJsonWithHeader(URI uri, Map<String, String> headers) throws URISyntaxException, IOException {
+    	CloseableHttpClient client = getHttpClient();
+    	HttpGet httpget = new HttpGet(uri);
+    	if (headers != null && !headers.isEmpty()) {
+    		for(Entry<String, String> entry : headers.entrySet()) {
+    			httpget.addHeader(entry.getKey(), entry.getValue());
+    		}
+    	}
+    	CloseableHttpResponse response = client.execute(httpget);
+    	StatusLine resLine = response.getStatusLine();
+    	String content = getResponseAsString(response);
+    	System.out.println(new Date() + " http-get got: " + content);
+    	ObjectMapper mapper = new ObjectMapper();
+    	Map<String, Object> responseObj = mapper.readValue(content, Map.class);
+    	responseObj.put("__response", MapUtil.newMap(MapUtil.$("code", resLine.getStatusCode()),
+    		MapUtil.$("reason", resLine.getReasonPhrase())));
+    	return responseObj;
+        }
+    
 }

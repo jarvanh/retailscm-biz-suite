@@ -61,7 +61,7 @@ public class HrInterview extends BaseEntity implements  java.io.Serializable{
 	public 	static HrInterview withId(String id){
 		HrInterview hrInterview = new HrInterview();
 		hrInterview.setId(id);
-		// hrInterview.setVersion(Integer.MAX_VALUE);
+		hrInterview.setVersion(Integer.MAX_VALUE);
 		return hrInterview;
 	}
 	public 	static HrInterview refById(String id){

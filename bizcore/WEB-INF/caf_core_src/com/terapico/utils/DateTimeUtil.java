@@ -1,16 +1,12 @@
 package com.terapico.utils;
 
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-
-import com.terapico.caf.DateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DateTimeUtil {
 	public static long SECOND_IN_MS = 1000L;
@@ -24,9 +20,38 @@ public class DateTimeUtil {
 	public static final DateTimeFormatter DAY_TIME_MINUTE_FORMAT_S = DateTimeFormatter.ofPattern("yyyy-M-dd'T'H:m");
 	public static final DateTimeFormatter DAY_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-M-d H:m:s");
 	public static final DateTimeFormatter DAY_TIME_FORMAT_S = DateTimeFormatter.ofPattern("yyyy-M-d'T'H:m:s");
+	public static final DateTimeFormatter DAY_TIME_FORMAT_SS = DateTimeFormatter.ofPattern("yyyy-M-d'T'H:m:s.SSS'Z'");
 	private static final DateTimeFormatter[] allFormats = new DateTimeFormatter[] { DAY_FORMAT, DAY_TIME_FORMAT,
-			DAY_TIME_FORMAT_S, DAY_TIME_MINUTE_FORMAT, DAY_TIME_MINUTE_FORMAT_S };
+			DAY_TIME_FORMAT_S, DAY_TIME_MINUTE_FORMAT, DAY_TIME_MINUTE_FORMAT_S, DAY_TIME_FORMAT_SS};
 
+	private static final Map<String, Boolean> ChinaHolidayPatch = new HashMap<>();
+	static {
+		// 2019 年
+		ChinaHolidayPatch.put("2019-01-01", true); // 元旦
+		ChinaHolidayPatch.put("2019-02-02", false); 
+		ChinaHolidayPatch.put("2019-02-03", false); 
+		ChinaHolidayPatch.put("2019-02-04", true); // 春节
+		ChinaHolidayPatch.put("2019-02-05", true); 
+		ChinaHolidayPatch.put("2019-02-06", true); 
+		ChinaHolidayPatch.put("2019-02-07", true); 
+		ChinaHolidayPatch.put("2019-02-08", true); 
+		ChinaHolidayPatch.put("2019-04-05", true); // 清明
+		ChinaHolidayPatch.put("2019-04-28", false);
+		ChinaHolidayPatch.put("2019-05-01", true); // 5.1
+		ChinaHolidayPatch.put("2019-05-02", true);
+		ChinaHolidayPatch.put("2019-05-03", true);
+		ChinaHolidayPatch.put("2019-05-05", false);
+		ChinaHolidayPatch.put("2019-06-07", true);	// 端午
+		ChinaHolidayPatch.put("2019-09-13", true);	// 中秋
+		ChinaHolidayPatch.put("2019-09-29", false);
+		ChinaHolidayPatch.put("2019-10-01", true); // 国庆
+		ChinaHolidayPatch.put("2019-10-02", true);
+		ChinaHolidayPatch.put("2019-10-03", true);
+		ChinaHolidayPatch.put("2019-10-04", true);
+		ChinaHolidayPatch.put("2019-10-07", true);
+		ChinaHolidayPatch.put("2019-10-12", false);
+	}
+	
 	public static String toStringAsDay(Date date) {
 		if (date == null) {
 			return null;
@@ -35,6 +60,16 @@ public class DateTimeUtil {
 	}
 
 	public static Date parseInputDateTime(String valueOf) {
+		if (valueOf == null) {
+			return null;
+		}
+		if (valueOf.matches("\\d+")) {
+			try {
+				long tsInMs = Long.parseLong(valueOf);
+				return new Date(tsInMs);
+			} catch (Exception e) {
+			}
+		}
 		for (DateTimeFormatter fmt : allFormats) {
 			try {
 				LocalDateTime temp = LocalDateTime.parse(valueOf, fmt);
@@ -238,5 +273,25 @@ public class DateTimeUtil {
 	public static Date getDateBefore(long timeInMS) {
 		Date result = toDate(LocalDateTime.now().minusSeconds(timeInMS/1000));
 		return result;
+	}
+
+	public static Date getFirstDayOfThisMonth() {
+		return toStartOfMonth(new Date());
+	}
+	
+	public static boolean isChineseHoliday(Date date) {
+		return isHoliday(ChinaHolidayPatch, date);
+	}
+
+	private static boolean isHoliday(Map<String, Boolean> holidayInfo, Date date) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		String dayStr = String.format("%04d-%02d-%02d", c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+		Boolean b = holidayInfo.get(dayStr);
+		if (b!=null) {
+			return b;
+		}
+		int d = c.get(Calendar.DAY_OF_WEEK);
+		return d == Calendar.SATURDAY || d == Calendar.SUNDAY;
 	}
 }

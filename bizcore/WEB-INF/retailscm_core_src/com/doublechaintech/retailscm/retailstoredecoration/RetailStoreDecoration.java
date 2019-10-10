@@ -57,7 +57,7 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 	public 	static RetailStoreDecoration withId(String id){
 		RetailStoreDecoration retailStoreDecoration = new RetailStoreDecoration();
 		retailStoreDecoration.setId(id);
-		// retailStoreDecoration.setVersion(Integer.MAX_VALUE);
+		retailStoreDecoration.setVersion(Integer.MAX_VALUE);
 		return retailStoreDecoration;
 	}
 	public 	static RetailStoreDecoration refById(String id){

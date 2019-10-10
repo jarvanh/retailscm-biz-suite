@@ -64,7 +64,7 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
 	public 	static AccountingPeriod withId(String id){
 		AccountingPeriod accountingPeriod = new AccountingPeriod();
 		accountingPeriod.setId(id);
-		// accountingPeriod.setVersion(Integer.MAX_VALUE);
+		accountingPeriod.setVersion(Integer.MAX_VALUE);
 		return accountingPeriod;
 	}
 	public 	static AccountingPeriod refById(String id){

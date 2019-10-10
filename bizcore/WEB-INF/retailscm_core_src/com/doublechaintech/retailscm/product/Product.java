@@ -70,7 +70,7 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 	public 	static Product withId(String id){
 		Product product = new Product();
 		product.setId(id);
-		// product.setVersion(Integer.MAX_VALUE);
+		product.setVersion(Integer.MAX_VALUE);
 		return product;
 	}
 	public 	static Product refById(String id){

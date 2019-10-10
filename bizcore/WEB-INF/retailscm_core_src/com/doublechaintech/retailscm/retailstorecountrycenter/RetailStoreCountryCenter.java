@@ -140,7 +140,7 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 	public 	static RetailStoreCountryCenter withId(String id){
 		RetailStoreCountryCenter retailStoreCountryCenter = new RetailStoreCountryCenter();
 		retailStoreCountryCenter.setId(id);
-		// retailStoreCountryCenter.setVersion(Integer.MAX_VALUE);
+		retailStoreCountryCenter.setVersion(Integer.MAX_VALUE);
 		return retailStoreCountryCenter;
 	}
 	public 	static RetailStoreCountryCenter refById(String id){

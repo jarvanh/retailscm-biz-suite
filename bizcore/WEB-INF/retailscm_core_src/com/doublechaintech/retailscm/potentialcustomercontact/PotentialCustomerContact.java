@@ -71,7 +71,7 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 	public 	static PotentialCustomerContact withId(String id){
 		PotentialCustomerContact potentialCustomerContact = new PotentialCustomerContact();
 		potentialCustomerContact.setId(id);
-		// potentialCustomerContact.setVersion(Integer.MAX_VALUE);
+		potentialCustomerContact.setVersion(Integer.MAX_VALUE);
 		return potentialCustomerContact;
 	}
 	public 	static PotentialCustomerContact refById(String id){

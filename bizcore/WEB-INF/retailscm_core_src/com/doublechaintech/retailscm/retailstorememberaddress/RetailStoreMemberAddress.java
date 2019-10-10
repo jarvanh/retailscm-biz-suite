@@ -61,7 +61,7 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 	public 	static RetailStoreMemberAddress withId(String id){
 		RetailStoreMemberAddress retailStoreMemberAddress = new RetailStoreMemberAddress();
 		retailStoreMemberAddress.setId(id);
-		// retailStoreMemberAddress.setVersion(Integer.MAX_VALUE);
+		retailStoreMemberAddress.setVersion(Integer.MAX_VALUE);
 		return retailStoreMemberAddress;
 	}
 	public 	static RetailStoreMemberAddress refById(String id){

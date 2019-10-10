@@ -66,7 +66,7 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 	public 	static ProvinceCenterEmployee withId(String id){
 		ProvinceCenterEmployee provinceCenterEmployee = new ProvinceCenterEmployee();
 		provinceCenterEmployee.setId(id);
-		// provinceCenterEmployee.setVersion(Integer.MAX_VALUE);
+		provinceCenterEmployee.setVersion(Integer.MAX_VALUE);
 		return provinceCenterEmployee;
 	}
 	public 	static ProvinceCenterEmployee refById(String id){

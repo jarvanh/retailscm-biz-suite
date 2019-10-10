@@ -64,7 +64,7 @@ public class TrainingCourseType extends BaseEntity implements  java.io.Serializa
 	public 	static TrainingCourseType withId(String id){
 		TrainingCourseType trainingCourseType = new TrainingCourseType();
 		trainingCourseType.setId(id);
-		// trainingCourseType.setVersion(Integer.MAX_VALUE);
+		trainingCourseType.setVersion(Integer.MAX_VALUE);
 		return trainingCourseType;
 	}
 	public 	static TrainingCourseType refById(String id){

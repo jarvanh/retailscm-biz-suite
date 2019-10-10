@@ -61,7 +61,7 @@ public class EmployeeEducation extends BaseEntity implements  java.io.Serializab
 	public 	static EmployeeEducation withId(String id){
 		EmployeeEducation employeeEducation = new EmployeeEducation();
 		employeeEducation.setId(id);
-		// employeeEducation.setVersion(Integer.MAX_VALUE);
+		employeeEducation.setVersion(Integer.MAX_VALUE);
 		return employeeEducation;
 	}
 	public 	static EmployeeEducation refById(String id){

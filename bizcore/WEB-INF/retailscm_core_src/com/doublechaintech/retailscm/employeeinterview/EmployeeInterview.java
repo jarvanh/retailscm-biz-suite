@@ -60,7 +60,7 @@ public class EmployeeInterview extends BaseEntity implements  java.io.Serializab
 	public 	static EmployeeInterview withId(String id){
 		EmployeeInterview employeeInterview = new EmployeeInterview();
 		employeeInterview.setId(id);
-		// employeeInterview.setVersion(Integer.MAX_VALUE);
+		employeeInterview.setVersion(Integer.MAX_VALUE);
 		return employeeInterview;
 	}
 	public 	static EmployeeInterview refById(String id){

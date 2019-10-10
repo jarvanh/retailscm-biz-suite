@@ -96,7 +96,7 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	public 	static SupplyOrder withId(String id){
 		SupplyOrder supplyOrder = new SupplyOrder();
 		supplyOrder.setId(id);
-		// supplyOrder.setVersion(Integer.MAX_VALUE);
+		supplyOrder.setVersion(Integer.MAX_VALUE);
 		return supplyOrder;
 	}
 	public 	static SupplyOrder refById(String id){

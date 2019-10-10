@@ -67,7 +67,7 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 	public 	static ConsumerOrderLineItem withId(String id){
 		ConsumerOrderLineItem consumerOrderLineItem = new ConsumerOrderLineItem();
 		consumerOrderLineItem.setId(id);
-		// consumerOrderLineItem.setVersion(Integer.MAX_VALUE);
+		consumerOrderLineItem.setVersion(Integer.MAX_VALUE);
 		return consumerOrderLineItem;
 	}
 	public 	static ConsumerOrderLineItem refById(String id){

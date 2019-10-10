@@ -61,7 +61,7 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 	public 	static TransportTaskTrack withId(String id){
 		TransportTaskTrack transportTaskTrack = new TransportTaskTrack();
 		transportTaskTrack.setId(id);
-		// transportTaskTrack.setVersion(Integer.MAX_VALUE);
+		transportTaskTrack.setVersion(Integer.MAX_VALUE);
 		return transportTaskTrack;
 	}
 	public 	static TransportTaskTrack refById(String id){

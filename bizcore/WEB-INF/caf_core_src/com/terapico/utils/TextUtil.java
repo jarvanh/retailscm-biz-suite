@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
+import java.util.Collection;
 import java.util.List;
 
 public class TextUtil {
@@ -26,7 +27,7 @@ public class TextUtil {
         return bookIsbn.replaceAll("[^\\d]", "");
     }
 
-    public static String join(List<String> inputArray, String seperator) {
+    public static String join(Collection<String> inputArray, String seperator) {
         if (CollectionUtils.isEmpty(inputArray)) {
             return "";
         }
@@ -244,6 +245,9 @@ public class TextUtil {
     }
 
     public static String formatNumber(Number number, String format) {
+    	if (number == null) {
+    		number = new Integer(0);
+    	}
         return new DecimalFormat(format).format(number.doubleValue());
     }
 
@@ -371,4 +375,25 @@ public class TextUtil {
 		String str = onlyNumber(inStr);
 		return str;
 	}
+
+	public static String nullIfBlank(String input) {
+		if (isBlank(input)) {
+			return null;
+		}
+		return input.trim();
+	}
+
+	public static String firstNotBlank(String ...strings ) {
+		if (strings == null || strings.length == 0) {
+			return null;
+		}
+		for(String str : strings) {
+			if(!isBlank(str)) {
+				return str;
+			}
+		}
+		return null;
+	}
+
+	
 }

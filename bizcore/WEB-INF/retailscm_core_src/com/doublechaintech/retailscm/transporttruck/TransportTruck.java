@@ -74,7 +74,7 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 	public 	static TransportTruck withId(String id){
 		TransportTruck transportTruck = new TransportTruck();
 		transportTruck.setId(id);
-		// transportTruck.setVersion(Integer.MAX_VALUE);
+		transportTruck.setVersion(Integer.MAX_VALUE);
 		return transportTruck;
 	}
 	public 	static TransportTruck refById(String id){

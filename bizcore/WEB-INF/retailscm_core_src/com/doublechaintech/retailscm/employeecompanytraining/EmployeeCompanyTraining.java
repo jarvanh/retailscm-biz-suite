@@ -63,7 +63,7 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 	public 	static EmployeeCompanyTraining withId(String id){
 		EmployeeCompanyTraining employeeCompanyTraining = new EmployeeCompanyTraining();
 		employeeCompanyTraining.setId(id);
-		// employeeCompanyTraining.setVersion(Integer.MAX_VALUE);
+		employeeCompanyTraining.setVersion(Integer.MAX_VALUE);
 		return employeeCompanyTraining;
 	}
 	public 	static EmployeeCompanyTraining refById(String id){

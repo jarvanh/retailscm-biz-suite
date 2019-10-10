@@ -62,7 +62,7 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 	public 	static EmployeeLeave withId(String id){
 		EmployeeLeave employeeLeave = new EmployeeLeave();
 		employeeLeave.setId(id);
-		// employeeLeave.setVersion(Integer.MAX_VALUE);
+		employeeLeave.setVersion(Integer.MAX_VALUE);
 		return employeeLeave;
 	}
 	public 	static EmployeeLeave refById(String id){

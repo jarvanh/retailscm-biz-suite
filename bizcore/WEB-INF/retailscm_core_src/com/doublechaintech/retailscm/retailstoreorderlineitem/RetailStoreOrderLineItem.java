@@ -65,7 +65,7 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 	public 	static RetailStoreOrderLineItem withId(String id){
 		RetailStoreOrderLineItem retailStoreOrderLineItem = new RetailStoreOrderLineItem();
 		retailStoreOrderLineItem.setId(id);
-		// retailStoreOrderLineItem.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderLineItem.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderLineItem;
 	}
 	public 	static RetailStoreOrderLineItem refById(String id){

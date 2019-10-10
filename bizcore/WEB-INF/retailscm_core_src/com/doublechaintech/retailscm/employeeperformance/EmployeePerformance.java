@@ -57,7 +57,7 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 	public 	static EmployeePerformance withId(String id){
 		EmployeePerformance employeePerformance = new EmployeePerformance();
 		employeePerformance.setId(id);
-		// employeePerformance.setVersion(Integer.MAX_VALUE);
+		employeePerformance.setVersion(Integer.MAX_VALUE);
 		return employeePerformance;
 	}
 	public 	static EmployeePerformance refById(String id){

@@ -59,7 +59,7 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 	public 	static RetailStoreOrderPaymentGroup withId(String id){
 		RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroup = new RetailStoreOrderPaymentGroup();
 		retailStoreOrderPaymentGroup.setId(id);
-		// retailStoreOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderPaymentGroup;
 	}
 	public 	static RetailStoreOrderPaymentGroup refById(String id){

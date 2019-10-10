@@ -58,7 +58,7 @@ public class View extends BaseEntity implements  java.io.Serializable{
 	public 	static View withId(String id){
 		View view = new View();
 		view.setId(id);
-		// view.setVersion(Integer.MAX_VALUE);
+		view.setVersion(Integer.MAX_VALUE);
 		return view;
 	}
 	public 	static View refById(String id){

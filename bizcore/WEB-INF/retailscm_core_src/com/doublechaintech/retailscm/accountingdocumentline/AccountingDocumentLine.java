@@ -66,7 +66,7 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 	public 	static AccountingDocumentLine withId(String id){
 		AccountingDocumentLine accountingDocumentLine = new AccountingDocumentLine();
 		accountingDocumentLine.setId(id);
-		// accountingDocumentLine.setVersion(Integer.MAX_VALUE);
+		accountingDocumentLine.setVersion(Integer.MAX_VALUE);
 		return accountingDocumentLine;
 	}
 	public 	static AccountingDocumentLine refById(String id){

@@ -64,7 +64,7 @@ public class InterviewType extends BaseEntity implements  java.io.Serializable{
 	public 	static InterviewType withId(String id){
 		InterviewType interviewType = new InterviewType();
 		interviewType.setId(id);
-		// interviewType.setVersion(Integer.MAX_VALUE);
+		interviewType.setVersion(Integer.MAX_VALUE);
 		return interviewType;
 	}
 	public 	static InterviewType refById(String id){

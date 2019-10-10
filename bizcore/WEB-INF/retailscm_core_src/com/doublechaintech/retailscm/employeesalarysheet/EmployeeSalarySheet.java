@@ -77,7 +77,7 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	public 	static EmployeeSalarySheet withId(String id){
 		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
 		employeeSalarySheet.setId(id);
-		// employeeSalarySheet.setVersion(Integer.MAX_VALUE);
+		employeeSalarySheet.setVersion(Integer.MAX_VALUE);
 		return employeeSalarySheet;
 	}
 	public 	static EmployeeSalarySheet refById(String id){

@@ -64,7 +64,7 @@ public class RetailStoreMemberGiftCardConsumeRecord extends BaseEntity implement
 	public 	static RetailStoreMemberGiftCardConsumeRecord withId(String id){
 		RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord = new RetailStoreMemberGiftCardConsumeRecord();
 		retailStoreMemberGiftCardConsumeRecord.setId(id);
-		// retailStoreMemberGiftCardConsumeRecord.setVersion(Integer.MAX_VALUE);
+		retailStoreMemberGiftCardConsumeRecord.setVersion(Integer.MAX_VALUE);
 		return retailStoreMemberGiftCardConsumeRecord;
 	}
 	public 	static RetailStoreMemberGiftCardConsumeRecord refById(String id){

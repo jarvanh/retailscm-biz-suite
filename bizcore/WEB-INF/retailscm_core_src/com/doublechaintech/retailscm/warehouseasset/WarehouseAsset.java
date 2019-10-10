@@ -61,7 +61,7 @@ public class WarehouseAsset extends BaseEntity implements  java.io.Serializable{
 	public 	static WarehouseAsset withId(String id){
 		WarehouseAsset warehouseAsset = new WarehouseAsset();
 		warehouseAsset.setId(id);
-		// warehouseAsset.setVersion(Integer.MAX_VALUE);
+		warehouseAsset.setVersion(Integer.MAX_VALUE);
 		return warehouseAsset;
 	}
 	public 	static WarehouseAsset refById(String id){

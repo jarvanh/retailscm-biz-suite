@@ -57,7 +57,7 @@ public class RetailStoreCreation extends BaseEntity implements  java.io.Serializ
 	public 	static RetailStoreCreation withId(String id){
 		RetailStoreCreation retailStoreCreation = new RetailStoreCreation();
 		retailStoreCreation.setId(id);
-		// retailStoreCreation.setVersion(Integer.MAX_VALUE);
+		retailStoreCreation.setVersion(Integer.MAX_VALUE);
 		return retailStoreCreation;
 	}
 	public 	static RetailStoreCreation refById(String id){

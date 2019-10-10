@@ -66,7 +66,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	public 	static LevelOneDepartment withId(String id){
 		LevelOneDepartment levelOneDepartment = new LevelOneDepartment();
 		levelOneDepartment.setId(id);
-		// levelOneDepartment.setVersion(Integer.MAX_VALUE);
+		levelOneDepartment.setVersion(Integer.MAX_VALUE);
 		return levelOneDepartment;
 	}
 	public 	static LevelOneDepartment refById(String id){

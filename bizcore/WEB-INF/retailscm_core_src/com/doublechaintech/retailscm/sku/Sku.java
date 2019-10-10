@@ -72,7 +72,7 @@ public class Sku extends BaseEntity implements  java.io.Serializable{
 	public 	static Sku withId(String id){
 		Sku sku = new Sku();
 		sku.setId(id);
-		// sku.setVersion(Integer.MAX_VALUE);
+		sku.setVersion(Integer.MAX_VALUE);
 		return sku;
 	}
 	public 	static Sku refById(String id){

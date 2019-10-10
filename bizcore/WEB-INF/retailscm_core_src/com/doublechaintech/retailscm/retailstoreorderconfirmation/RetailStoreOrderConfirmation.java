@@ -59,7 +59,7 @@ public class RetailStoreOrderConfirmation extends BaseEntity implements  java.io
 	public 	static RetailStoreOrderConfirmation withId(String id){
 		RetailStoreOrderConfirmation retailStoreOrderConfirmation = new RetailStoreOrderConfirmation();
 		retailStoreOrderConfirmation.setId(id);
-		// retailStoreOrderConfirmation.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderConfirmation.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderConfirmation;
 	}
 	public 	static RetailStoreOrderConfirmation refById(String id){

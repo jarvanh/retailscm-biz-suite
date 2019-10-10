@@ -71,7 +71,7 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 	public 	static GoodsMovement withId(String id){
 		GoodsMovement goodsMovement = new GoodsMovement();
 		goodsMovement.setId(id);
-		// goodsMovement.setVersion(Integer.MAX_VALUE);
+		goodsMovement.setVersion(Integer.MAX_VALUE);
 		return goodsMovement;
 	}
 	public 	static GoodsMovement refById(String id){

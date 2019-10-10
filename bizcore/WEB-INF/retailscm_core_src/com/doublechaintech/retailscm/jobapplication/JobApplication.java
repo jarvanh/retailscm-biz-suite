@@ -61,7 +61,7 @@ public class JobApplication extends BaseEntity implements  java.io.Serializable{
 	public 	static JobApplication withId(String id){
 		JobApplication jobApplication = new JobApplication();
 		jobApplication.setId(id);
-		// jobApplication.setVersion(Integer.MAX_VALUE);
+		jobApplication.setVersion(Integer.MAX_VALUE);
 		return jobApplication;
 	}
 	public 	static JobApplication refById(String id){

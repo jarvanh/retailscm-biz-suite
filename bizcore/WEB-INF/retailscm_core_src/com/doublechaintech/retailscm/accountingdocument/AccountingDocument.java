@@ -82,7 +82,7 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	public 	static AccountingDocument withId(String id){
 		AccountingDocument accountingDocument = new AccountingDocument();
 		accountingDocument.setId(id);
-		// accountingDocument.setVersion(Integer.MAX_VALUE);
+		accountingDocument.setVersion(Integer.MAX_VALUE);
 		return accountingDocument;
 	}
 	public 	static AccountingDocument refById(String id){

@@ -71,7 +71,7 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 	public 	static GoodsShelf withId(String id){
 		GoodsShelf goodsShelf = new GoodsShelf();
 		goodsShelf.setId(id);
-		// goodsShelf.setVersion(Integer.MAX_VALUE);
+		goodsShelf.setVersion(Integer.MAX_VALUE);
 		return goodsShelf;
 	}
 	public 	static GoodsShelf refById(String id){

@@ -109,7 +109,7 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	public 	static RetailStore withId(String id){
 		RetailStore retailStore = new RetailStore();
 		retailStore.setId(id);
-		// retailStore.setVersion(Integer.MAX_VALUE);
+		retailStore.setVersion(Integer.MAX_VALUE);
 		return retailStore;
 	}
 	public 	static RetailStore refById(String id){

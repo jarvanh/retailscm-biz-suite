@@ -62,7 +62,7 @@ public class SupplyOrderApproval extends BaseEntity implements  java.io.Serializ
 	public 	static SupplyOrderApproval withId(String id){
 		SupplyOrderApproval supplyOrderApproval = new SupplyOrderApproval();
 		supplyOrderApproval.setId(id);
-		// supplyOrderApproval.setVersion(Integer.MAX_VALUE);
+		supplyOrderApproval.setVersion(Integer.MAX_VALUE);
 		return supplyOrderApproval;
 	}
 	public 	static SupplyOrderApproval refById(String id){

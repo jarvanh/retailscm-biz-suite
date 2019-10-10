@@ -57,7 +57,7 @@ public class RetailStoreFranchising extends BaseEntity implements  java.io.Seria
 	public 	static RetailStoreFranchising withId(String id){
 		RetailStoreFranchising retailStoreFranchising = new RetailStoreFranchising();
 		retailStoreFranchising.setId(id);
-		// retailStoreFranchising.setVersion(Integer.MAX_VALUE);
+		retailStoreFranchising.setVersion(Integer.MAX_VALUE);
 		return retailStoreFranchising;
 	}
 	public 	static RetailStoreFranchising refById(String id){

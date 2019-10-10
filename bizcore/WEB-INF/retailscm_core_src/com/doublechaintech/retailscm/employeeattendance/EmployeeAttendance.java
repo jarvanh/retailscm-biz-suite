@@ -63,7 +63,7 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 	public 	static EmployeeAttendance withId(String id){
 		EmployeeAttendance employeeAttendance = new EmployeeAttendance();
 		employeeAttendance.setId(id);
-		// employeeAttendance.setVersion(Integer.MAX_VALUE);
+		employeeAttendance.setVersion(Integer.MAX_VALUE);
 		return employeeAttendance;
 	}
 	public 	static EmployeeAttendance refById(String id){

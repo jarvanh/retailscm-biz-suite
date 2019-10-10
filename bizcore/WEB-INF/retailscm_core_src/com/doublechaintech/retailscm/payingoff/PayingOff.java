@@ -64,7 +64,7 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 	public 	static PayingOff withId(String id){
 		PayingOff payingOff = new PayingOff();
 		payingOff.setId(id);
-		// payingOff.setVersion(Integer.MAX_VALUE);
+		payingOff.setVersion(Integer.MAX_VALUE);
 		return payingOff;
 	}
 	public 	static PayingOff refById(String id){

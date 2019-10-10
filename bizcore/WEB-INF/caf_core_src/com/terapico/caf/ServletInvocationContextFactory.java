@@ -295,7 +295,7 @@ public class ServletInvocationContextFactory extends ReflectionTool implements I
 		// 如果是基本类型，不是array，就直接调用上层
 		String stringParameter = parameterName.toString();
 		Class typeClazz = (Class) type;
-		if (this.isPrimaryType(typeClazz)) {
+		if (this.isPrimaryTypeOrOneStringConstructor(typeClazz)) {
 			return convertExprToObject(type, request.getParameter(stringParameter));
 		}
 		// 如果是数组。不能使用父类提供的方法，而是要request.getParameterValues来转
@@ -316,8 +316,8 @@ public class ServletInvocationContextFactory extends ReflectionTool implements I
 		}
 
 		throw new IllegalArgumentException(
-				"The  type '" + type + "' for prameter '" + parameterName + "'is not supported yet!");
-
+				"The  type '" + type + "' for parameter '" + parameterName + "'is not supported yet!");
+		
 	}
 
 	protected boolean isGetRequest(HttpServletRequest request) {
@@ -405,7 +405,7 @@ public class ServletInvocationContextFactory extends ReflectionTool implements I
 			}
 			try {
 				String val = URLDecoder.decode(array[i], "UTF-8").trim();
-				System.out.println("array[" + i + "]:" + val);
+				// System.out.println("array[" + i + "]:" + val);
 				parameters.add(val);
 			} catch (UnsupportedEncodingException e) {
 				throw new InvocationException("Encoding UTF-8 is not supported");
@@ -438,8 +438,8 @@ public class ServletInvocationContextFactory extends ReflectionTool implements I
 
 			try {
 				String name = URLDecoder.decode(array[i], "UTF-8").trim();
-				System.out
-						.println("array[" + i + "]:" + name + " = " + joinArray(",", request.getParameterValues(name)));
+//				System.out
+//						.println("array[" + i + "]:" + name + " = " + joinArray(",", request.getParameterValues(name)));
 				parameters.add(name);
 			} catch (UnsupportedEncodingException e) {
 				throw new InvocationException("Encoding UTF-8 is not supported");
@@ -479,7 +479,7 @@ public class ServletInvocationContextFactory extends ReflectionTool implements I
 
 			try {
 				String val = URLDecoder.decode(array[i], "UTF-8").trim();
-				System.out.println("array[" + i + "]:" + val);
+				// System.out.println("array[" + i + "]:" + val);
 				parameters.add(val);
 			} catch (UnsupportedEncodingException e) {
 				throw new InvocationException("Encoding UTF-8 is not supported");

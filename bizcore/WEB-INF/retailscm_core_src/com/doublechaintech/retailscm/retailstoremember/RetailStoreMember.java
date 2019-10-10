@@ -80,7 +80,7 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 	public 	static RetailStoreMember withId(String id){
 		RetailStoreMember retailStoreMember = new RetailStoreMember();
 		retailStoreMember.setId(id);
-		// retailStoreMember.setVersion(Integer.MAX_VALUE);
+		retailStoreMember.setVersion(Integer.MAX_VALUE);
 		return retailStoreMember;
 	}
 	public 	static RetailStoreMember refById(String id){

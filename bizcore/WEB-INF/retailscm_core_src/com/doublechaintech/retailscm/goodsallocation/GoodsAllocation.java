@@ -64,7 +64,7 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 	public 	static GoodsAllocation withId(String id){
 		GoodsAllocation goodsAllocation = new GoodsAllocation();
 		goodsAllocation.setId(id);
-		// goodsAllocation.setVersion(Integer.MAX_VALUE);
+		goodsAllocation.setVersion(Integer.MAX_VALUE);
 		return goodsAllocation;
 	}
 	public 	static GoodsAllocation refById(String id){

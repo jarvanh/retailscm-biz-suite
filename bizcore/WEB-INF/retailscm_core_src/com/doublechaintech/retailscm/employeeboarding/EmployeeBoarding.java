@@ -61,7 +61,7 @@ public class EmployeeBoarding extends BaseEntity implements  java.io.Serializabl
 	public 	static EmployeeBoarding withId(String id){
 		EmployeeBoarding employeeBoarding = new EmployeeBoarding();
 		employeeBoarding.setId(id);
-		// employeeBoarding.setVersion(Integer.MAX_VALUE);
+		employeeBoarding.setVersion(Integer.MAX_VALUE);
 		return employeeBoarding;
 	}
 	public 	static EmployeeBoarding refById(String id){

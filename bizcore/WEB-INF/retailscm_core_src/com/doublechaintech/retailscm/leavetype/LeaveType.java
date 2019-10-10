@@ -64,7 +64,7 @@ public class LeaveType extends BaseEntity implements  java.io.Serializable{
 	public 	static LeaveType withId(String id){
 		LeaveType leaveType = new LeaveType();
 		leaveType.setId(id);
-		// leaveType.setVersion(Integer.MAX_VALUE);
+		leaveType.setVersion(Integer.MAX_VALUE);
 		return leaveType;
 	}
 	public 	static LeaveType refById(String id){

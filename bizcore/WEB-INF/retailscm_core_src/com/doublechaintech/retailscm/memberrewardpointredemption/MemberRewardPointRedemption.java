@@ -59,7 +59,7 @@ public class MemberRewardPointRedemption extends BaseEntity implements  java.io.
 	public 	static MemberRewardPointRedemption withId(String id){
 		MemberRewardPointRedemption memberRewardPointRedemption = new MemberRewardPointRedemption();
 		memberRewardPointRedemption.setId(id);
-		// memberRewardPointRedemption.setVersion(Integer.MAX_VALUE);
+		memberRewardPointRedemption.setVersion(Integer.MAX_VALUE);
 		return memberRewardPointRedemption;
 	}
 	public 	static MemberRewardPointRedemption refById(String id){

@@ -59,7 +59,7 @@ public class ConsumerOrderShippingGroup extends BaseEntity implements  java.io.S
 	public 	static ConsumerOrderShippingGroup withId(String id){
 		ConsumerOrderShippingGroup consumerOrderShippingGroup = new ConsumerOrderShippingGroup();
 		consumerOrderShippingGroup.setId(id);
-		// consumerOrderShippingGroup.setVersion(Integer.MAX_VALUE);
+		consumerOrderShippingGroup.setVersion(Integer.MAX_VALUE);
 		return consumerOrderShippingGroup;
 	}
 	public 	static ConsumerOrderShippingGroup refById(String id){

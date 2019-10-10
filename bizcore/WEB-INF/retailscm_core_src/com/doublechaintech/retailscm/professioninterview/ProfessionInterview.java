@@ -61,7 +61,7 @@ public class ProfessionInterview extends BaseEntity implements  java.io.Serializ
 	public 	static ProfessionInterview withId(String id){
 		ProfessionInterview professionInterview = new ProfessionInterview();
 		professionInterview.setId(id);
-		// professionInterview.setVersion(Integer.MAX_VALUE);
+		professionInterview.setVersion(Integer.MAX_VALUE);
 		return professionInterview;
 	}
 	public 	static ProfessionInterview refById(String id){

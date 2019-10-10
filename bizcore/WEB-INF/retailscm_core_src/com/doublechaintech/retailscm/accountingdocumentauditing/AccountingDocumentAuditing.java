@@ -61,7 +61,7 @@ public class AccountingDocumentAuditing extends BaseEntity implements  java.io.S
 	public 	static AccountingDocumentAuditing withId(String id){
 		AccountingDocumentAuditing accountingDocumentAuditing = new AccountingDocumentAuditing();
 		accountingDocumentAuditing.setId(id);
-		// accountingDocumentAuditing.setVersion(Integer.MAX_VALUE);
+		accountingDocumentAuditing.setVersion(Integer.MAX_VALUE);
 		return accountingDocumentAuditing;
 	}
 	public 	static AccountingDocumentAuditing refById(String id){

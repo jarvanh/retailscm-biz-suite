@@ -61,7 +61,7 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 	public 	static RetailStoreMemberCoupon withId(String id){
 		RetailStoreMemberCoupon retailStoreMemberCoupon = new RetailStoreMemberCoupon();
 		retailStoreMemberCoupon.setId(id);
-		// retailStoreMemberCoupon.setVersion(Integer.MAX_VALUE);
+		retailStoreMemberCoupon.setVersion(Integer.MAX_VALUE);
 		return retailStoreMemberCoupon;
 	}
 	public 	static RetailStoreMemberCoupon refById(String id){

@@ -76,7 +76,7 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	public 	static OriginalVoucher withId(String id){
 		OriginalVoucher originalVoucher = new OriginalVoucher();
 		originalVoucher.setId(id);
-		// originalVoucher.setVersion(Integer.MAX_VALUE);
+		originalVoucher.setVersion(Integer.MAX_VALUE);
 		return originalVoucher;
 	}
 	public 	static OriginalVoucher refById(String id){

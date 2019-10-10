@@ -144,7 +144,7 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	public 	static Employee withId(String id){
 		Employee employee = new Employee();
 		employee.setId(id);
-		// employee.setVersion(Integer.MAX_VALUE);
+		employee.setVersion(Integer.MAX_VALUE);
 		return employee;
 	}
 	public 	static Employee refById(String id){

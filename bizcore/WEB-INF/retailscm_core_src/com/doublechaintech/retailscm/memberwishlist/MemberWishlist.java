@@ -60,7 +60,7 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 	public 	static MemberWishlist withId(String id){
 		MemberWishlist memberWishlist = new MemberWishlist();
 		memberWishlist.setId(id);
-		// memberWishlist.setVersion(Integer.MAX_VALUE);
+		memberWishlist.setVersion(Integer.MAX_VALUE);
 		return memberWishlist;
 	}
 	public 	static MemberWishlist refById(String id){

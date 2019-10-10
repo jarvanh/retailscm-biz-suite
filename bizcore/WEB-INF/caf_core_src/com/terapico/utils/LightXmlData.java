@@ -207,6 +207,9 @@ public class LightXmlData {
 		}
 
 		public LightXmlData fromXmlString(String xmlStr) throws Exception {
+			if (xmlStr == null || xmlStr.isEmpty()) {
+				return new LightXmlData();
+			}
 			stack.clear();
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();

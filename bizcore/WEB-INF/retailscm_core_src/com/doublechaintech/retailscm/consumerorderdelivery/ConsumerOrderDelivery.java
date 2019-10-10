@@ -56,7 +56,7 @@ public class ConsumerOrderDelivery extends BaseEntity implements  java.io.Serial
 	public 	static ConsumerOrderDelivery withId(String id){
 		ConsumerOrderDelivery consumerOrderDelivery = new ConsumerOrderDelivery();
 		consumerOrderDelivery.setId(id);
-		// consumerOrderDelivery.setVersion(Integer.MAX_VALUE);
+		consumerOrderDelivery.setVersion(Integer.MAX_VALUE);
 		return consumerOrderDelivery;
 	}
 	public 	static ConsumerOrderDelivery refById(String id){

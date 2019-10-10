@@ -63,7 +63,7 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 	public 	static EmployeeQualifier withId(String id){
 		EmployeeQualifier employeeQualifier = new EmployeeQualifier();
 		employeeQualifier.setId(id);
-		// employeeQualifier.setVersion(Integer.MAX_VALUE);
+		employeeQualifier.setVersion(Integer.MAX_VALUE);
 		return employeeQualifier;
 	}
 	public 	static EmployeeQualifier refById(String id){

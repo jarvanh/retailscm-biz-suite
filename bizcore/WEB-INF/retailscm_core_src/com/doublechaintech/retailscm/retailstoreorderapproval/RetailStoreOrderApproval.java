@@ -59,7 +59,7 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 	public 	static RetailStoreOrderApproval withId(String id){
 		RetailStoreOrderApproval retailStoreOrderApproval = new RetailStoreOrderApproval();
 		retailStoreOrderApproval.setId(id);
-		// retailStoreOrderApproval.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderApproval.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderApproval;
 	}
 	public 	static RetailStoreOrderApproval refById(String id){

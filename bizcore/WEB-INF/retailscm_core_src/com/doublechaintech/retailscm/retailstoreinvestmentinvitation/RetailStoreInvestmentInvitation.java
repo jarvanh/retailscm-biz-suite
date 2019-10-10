@@ -57,7 +57,7 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
 	public 	static RetailStoreInvestmentInvitation withId(String id){
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = new RetailStoreInvestmentInvitation();
 		retailStoreInvestmentInvitation.setId(id);
-		// retailStoreInvestmentInvitation.setVersion(Integer.MAX_VALUE);
+		retailStoreInvestmentInvitation.setVersion(Integer.MAX_VALUE);
 		return retailStoreInvestmentInvitation;
 	}
 	public 	static RetailStoreInvestmentInvitation refById(String id){

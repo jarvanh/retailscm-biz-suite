@@ -73,7 +73,7 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 	public 	static RetailStoreCityServiceCenter withId(String id){
 		RetailStoreCityServiceCenter retailStoreCityServiceCenter = new RetailStoreCityServiceCenter();
 		retailStoreCityServiceCenter.setId(id);
-		// retailStoreCityServiceCenter.setVersion(Integer.MAX_VALUE);
+		retailStoreCityServiceCenter.setVersion(Integer.MAX_VALUE);
 		return retailStoreCityServiceCenter;
 	}
 	public 	static RetailStoreCityServiceCenter refById(String id){

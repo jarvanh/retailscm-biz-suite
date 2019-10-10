@@ -80,7 +80,7 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 	public 	static TransportTask withId(String id){
 		TransportTask transportTask = new TransportTask();
 		transportTask.setId(id);
-		// transportTask.setVersion(Integer.MAX_VALUE);
+		transportTask.setVersion(Integer.MAX_VALUE);
 		return transportTask;
 	}
 	public 	static TransportTask refById(String id){

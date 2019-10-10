@@ -59,7 +59,7 @@ public class RetailStoreOrderShippingGroup extends BaseEntity implements  java.i
 	public 	static RetailStoreOrderShippingGroup withId(String id){
 		RetailStoreOrderShippingGroup retailStoreOrderShippingGroup = new RetailStoreOrderShippingGroup();
 		retailStoreOrderShippingGroup.setId(id);
-		// retailStoreOrderShippingGroup.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderShippingGroup.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderShippingGroup;
 	}
 	public 	static RetailStoreOrderShippingGroup refById(String id){

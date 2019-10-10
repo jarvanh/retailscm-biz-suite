@@ -64,7 +64,7 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 	public 	static LevelThreeDepartment withId(String id){
 		LevelThreeDepartment levelThreeDepartment = new LevelThreeDepartment();
 		levelThreeDepartment.setId(id);
-		// levelThreeDepartment.setVersion(Integer.MAX_VALUE);
+		levelThreeDepartment.setVersion(Integer.MAX_VALUE);
 		return levelThreeDepartment;
 	}
 	public 	static LevelThreeDepartment refById(String id){

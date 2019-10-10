@@ -59,7 +59,7 @@ public class RetailStoreOrderProcessing extends BaseEntity implements  java.io.S
 	public 	static RetailStoreOrderProcessing withId(String id){
 		RetailStoreOrderProcessing retailStoreOrderProcessing = new RetailStoreOrderProcessing();
 		retailStoreOrderProcessing.setId(id);
-		// retailStoreOrderProcessing.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderProcessing.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderProcessing;
 	}
 	public 	static RetailStoreOrderProcessing refById(String id){

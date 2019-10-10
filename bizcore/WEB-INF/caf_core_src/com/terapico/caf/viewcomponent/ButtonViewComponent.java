@@ -106,10 +106,14 @@ public class ButtonViewComponent extends BaseViewComponent {
     }
 
     public ButtonViewComponent(String content, String classes, String tag) {
+    	this(content, classes, tag, null);
+    }
+    public ButtonViewComponent(String content, String classes, String tag, String linkToUrl) {
         this.setContent(content);
         this.setClasses(classes);
         this.setTag(tag);
         this.setComponentType("button");
+        this.setLinkToUrl(linkToUrl);
     }
 
 	@Override
