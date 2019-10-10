@@ -62,7 +62,7 @@ public class SupplyOrderShipment extends BaseEntity implements  java.io.Serializ
 	public 	static SupplyOrderShipment withId(String id){
 		SupplyOrderShipment supplyOrderShipment = new SupplyOrderShipment();
 		supplyOrderShipment.setId(id);
-		// supplyOrderShipment.setVersion(Integer.MAX_VALUE);
+		supplyOrderShipment.setVersion(Integer.MAX_VALUE);
 		return supplyOrderShipment;
 	}
 	public 	static SupplyOrderShipment refById(String id){

@@ -70,7 +70,7 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 	public 	static RetailStoreProvinceCenter withId(String id){
 		RetailStoreProvinceCenter retailStoreProvinceCenter = new RetailStoreProvinceCenter();
 		retailStoreProvinceCenter.setId(id);
-		// retailStoreProvinceCenter.setVersion(Integer.MAX_VALUE);
+		retailStoreProvinceCenter.setVersion(Integer.MAX_VALUE);
 		return retailStoreProvinceCenter;
 	}
 	public 	static RetailStoreProvinceCenter refById(String id){

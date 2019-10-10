@@ -57,7 +57,7 @@ public class RetailStoreOpening extends BaseEntity implements  java.io.Serializa
 	public 	static RetailStoreOpening withId(String id){
 		RetailStoreOpening retailStoreOpening = new RetailStoreOpening();
 		retailStoreOpening.setId(id);
-		// retailStoreOpening.setVersion(Integer.MAX_VALUE);
+		retailStoreOpening.setVersion(Integer.MAX_VALUE);
 		return retailStoreOpening;
 	}
 	public 	static RetailStoreOpening refById(String id){

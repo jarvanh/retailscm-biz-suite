@@ -56,7 +56,7 @@ public class ConsumerOrderApproval extends BaseEntity implements  java.io.Serial
 	public 	static ConsumerOrderApproval withId(String id){
 		ConsumerOrderApproval consumerOrderApproval = new ConsumerOrderApproval();
 		consumerOrderApproval.setId(id);
-		// consumerOrderApproval.setVersion(Integer.MAX_VALUE);
+		consumerOrderApproval.setVersion(Integer.MAX_VALUE);
 		return consumerOrderApproval;
 	}
 	public 	static ConsumerOrderApproval refById(String id){

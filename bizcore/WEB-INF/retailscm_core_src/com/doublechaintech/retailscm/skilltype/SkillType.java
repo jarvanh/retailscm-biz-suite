@@ -62,7 +62,7 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 	public 	static SkillType withId(String id){
 		SkillType skillType = new SkillType();
 		skillType.setId(id);
-		// skillType.setVersion(Integer.MAX_VALUE);
+		skillType.setVersion(Integer.MAX_VALUE);
 		return skillType;
 	}
 	public 	static SkillType refById(String id){

@@ -59,7 +59,7 @@ public class SupplyOrderPaymentGroup extends BaseEntity implements  java.io.Seri
 	public 	static SupplyOrderPaymentGroup withId(String id){
 		SupplyOrderPaymentGroup supplyOrderPaymentGroup = new SupplyOrderPaymentGroup();
 		supplyOrderPaymentGroup.setId(id);
-		// supplyOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
+		supplyOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
 		return supplyOrderPaymentGroup;
 	}
 	public 	static SupplyOrderPaymentGroup refById(String id){

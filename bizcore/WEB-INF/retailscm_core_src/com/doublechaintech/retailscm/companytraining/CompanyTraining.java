@@ -72,7 +72,7 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 	public 	static CompanyTraining withId(String id){
 		CompanyTraining companyTraining = new CompanyTraining();
 		companyTraining.setId(id);
-		// companyTraining.setVersion(Integer.MAX_VALUE);
+		companyTraining.setVersion(Integer.MAX_VALUE);
 		return companyTraining;
 	}
 	public 	static CompanyTraining refById(String id){

@@ -59,7 +59,7 @@ public class SupplyOrderPicking extends BaseEntity implements  java.io.Serializa
 	public 	static SupplyOrderPicking withId(String id){
 		SupplyOrderPicking supplyOrderPicking = new SupplyOrderPicking();
 		supplyOrderPicking.setId(id);
-		// supplyOrderPicking.setVersion(Integer.MAX_VALUE);
+		supplyOrderPicking.setVersion(Integer.MAX_VALUE);
 		return supplyOrderPicking;
 	}
 	public 	static SupplyOrderPicking refById(String id){

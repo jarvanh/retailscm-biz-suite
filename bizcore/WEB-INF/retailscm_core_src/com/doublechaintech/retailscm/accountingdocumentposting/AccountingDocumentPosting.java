@@ -61,7 +61,7 @@ public class AccountingDocumentPosting extends BaseEntity implements  java.io.Se
 	public 	static AccountingDocumentPosting withId(String id){
 		AccountingDocumentPosting accountingDocumentPosting = new AccountingDocumentPosting();
 		accountingDocumentPosting.setId(id);
-		// accountingDocumentPosting.setVersion(Integer.MAX_VALUE);
+		accountingDocumentPosting.setVersion(Integer.MAX_VALUE);
 		return accountingDocumentPosting;
 	}
 	public 	static AccountingDocumentPosting refById(String id){

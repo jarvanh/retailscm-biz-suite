@@ -67,7 +67,7 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
 	public 	static SalaryGrade withId(String id){
 		SalaryGrade salaryGrade = new SalaryGrade();
 		salaryGrade.setId(id);
-		// salaryGrade.setVersion(Integer.MAX_VALUE);
+		salaryGrade.setVersion(Integer.MAX_VALUE);
 		return salaryGrade;
 	}
 	public 	static SalaryGrade refById(String id){

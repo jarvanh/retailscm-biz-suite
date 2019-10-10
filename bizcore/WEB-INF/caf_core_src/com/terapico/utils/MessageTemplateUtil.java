@@ -41,7 +41,7 @@ public class MessageTemplateUtil {
 	protected static Map<String, MessageTemplate> templates;
 	protected static Date loadedTime;
 	
-	public static String getMessage(String templateName, Locale language, Map<String, Object> params) {
+	public static String getMessage(String templateName, Locale language, Map<String, ? extends Object> params) {
 		ensureTemplates();
 		MessageTemplate tmpl = templates.get(templateName);
 		if (tmpl == null) {
@@ -52,12 +52,18 @@ public class MessageTemplateUtil {
 		return MessageFormat.format(templateStr, arguments.toArray());
 	}
 
-	private static List<Object> convertParams(MessageTemplate tmpl, Map<String, Object> params) {
+	private static List<Object> convertParams(MessageTemplate tmpl, Map<String, ? extends Object> params) {
 		ArrayList<Object> list =new ArrayList<>();
 		if (tmpl.getDeclaration() == null || params == null) {
 			return list;
 		}
 		params.forEach((key,val)->{
+			if(tmpl.getDeclaration() == null || tmpl.getDeclaration().isEmpty()) {
+				return;
+			}
+			if (!tmpl.getDeclaration().containsKey(key)) {
+				return;
+			}
 			int idx = tmpl.getDeclaration().get(key);
 			CollectionUtils.addItem(list, idx, val);
 		});

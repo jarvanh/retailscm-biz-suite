@@ -61,7 +61,7 @@ public class OfferApproval extends BaseEntity implements  java.io.Serializable{
 	public 	static OfferApproval withId(String id){
 		OfferApproval offerApproval = new OfferApproval();
 		offerApproval.setId(id);
-		// offerApproval.setVersion(Integer.MAX_VALUE);
+		offerApproval.setVersion(Integer.MAX_VALUE);
 		return offerApproval;
 	}
 	public 	static OfferApproval refById(String id){

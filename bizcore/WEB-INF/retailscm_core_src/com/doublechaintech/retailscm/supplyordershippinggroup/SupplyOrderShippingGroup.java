@@ -59,7 +59,7 @@ public class SupplyOrderShippingGroup extends BaseEntity implements  java.io.Ser
 	public 	static SupplyOrderShippingGroup withId(String id){
 		SupplyOrderShippingGroup supplyOrderShippingGroup = new SupplyOrderShippingGroup();
 		supplyOrderShippingGroup.setId(id);
-		// supplyOrderShippingGroup.setVersion(Integer.MAX_VALUE);
+		supplyOrderShippingGroup.setVersion(Integer.MAX_VALUE);
 		return supplyOrderShippingGroup;
 	}
 	public 	static SupplyOrderShippingGroup refById(String id){

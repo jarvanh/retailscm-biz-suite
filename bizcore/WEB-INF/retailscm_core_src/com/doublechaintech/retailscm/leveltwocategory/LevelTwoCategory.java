@@ -60,7 +60,7 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
 	public 	static LevelTwoCategory withId(String id){
 		LevelTwoCategory levelTwoCategory = new LevelTwoCategory();
 		levelTwoCategory.setId(id);
-		// levelTwoCategory.setVersion(Integer.MAX_VALUE);
+		levelTwoCategory.setVersion(Integer.MAX_VALUE);
 		return levelTwoCategory;
 	}
 	public 	static LevelTwoCategory refById(String id){

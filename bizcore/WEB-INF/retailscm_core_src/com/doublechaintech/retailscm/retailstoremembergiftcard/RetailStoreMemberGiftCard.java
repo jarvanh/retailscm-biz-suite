@@ -64,7 +64,7 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 	public 	static RetailStoreMemberGiftCard withId(String id){
 		RetailStoreMemberGiftCard retailStoreMemberGiftCard = new RetailStoreMemberGiftCard();
 		retailStoreMemberGiftCard.setId(id);
-		// retailStoreMemberGiftCard.setVersion(Integer.MAX_VALUE);
+		retailStoreMemberGiftCard.setVersion(Integer.MAX_VALUE);
 		return retailStoreMemberGiftCard;
 	}
 	public 	static RetailStoreMemberGiftCard refById(String id){

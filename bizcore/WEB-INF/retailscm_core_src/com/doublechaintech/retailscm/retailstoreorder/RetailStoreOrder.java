@@ -96,7 +96,7 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	public 	static RetailStoreOrder withId(String id){
 		RetailStoreOrder retailStoreOrder = new RetailStoreOrder();
 		retailStoreOrder.setId(id);
-		// retailStoreOrder.setVersion(Integer.MAX_VALUE);
+		retailStoreOrder.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrder;
 	}
 	public 	static RetailStoreOrder refById(String id){

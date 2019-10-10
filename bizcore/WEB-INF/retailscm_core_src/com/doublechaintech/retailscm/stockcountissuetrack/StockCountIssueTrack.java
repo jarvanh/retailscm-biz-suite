@@ -61,7 +61,7 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 	public 	static StockCountIssueTrack withId(String id){
 		StockCountIssueTrack stockCountIssueTrack = new StockCountIssueTrack();
 		stockCountIssueTrack.setId(id);
-		// stockCountIssueTrack.setVersion(Integer.MAX_VALUE);
+		stockCountIssueTrack.setVersion(Integer.MAX_VALUE);
 		return stockCountIssueTrack;
 	}
 	public 	static StockCountIssueTrack refById(String id){

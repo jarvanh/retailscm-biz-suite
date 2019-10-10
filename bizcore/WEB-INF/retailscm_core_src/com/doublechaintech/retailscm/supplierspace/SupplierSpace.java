@@ -70,7 +70,7 @@ public class SupplierSpace extends BaseEntity implements  java.io.Serializable{
 	public 	static SupplierSpace withId(String id){
 		SupplierSpace supplierSpace = new SupplierSpace();
 		supplierSpace.setId(id);
-		// supplierSpace.setVersion(Integer.MAX_VALUE);
+		supplierSpace.setVersion(Integer.MAX_VALUE);
 		return supplierSpace;
 	}
 	public 	static SupplierSpace refById(String id){

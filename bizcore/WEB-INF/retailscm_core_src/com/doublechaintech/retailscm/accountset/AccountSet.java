@@ -88,7 +88,7 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	public 	static AccountSet withId(String id){
 		AccountSet accountSet = new AccountSet();
 		accountSet.setId(id);
-		// accountSet.setVersion(Integer.MAX_VALUE);
+		accountSet.setVersion(Integer.MAX_VALUE);
 		return accountSet;
 	}
 	public 	static AccountSet refById(String id){

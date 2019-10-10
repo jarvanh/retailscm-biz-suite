@@ -72,7 +72,7 @@ public class ShippingSpace extends BaseEntity implements  java.io.Serializable{
 	public 	static ShippingSpace withId(String id){
 		ShippingSpace shippingSpace = new ShippingSpace();
 		shippingSpace.setId(id);
-		// shippingSpace.setVersion(Integer.MAX_VALUE);
+		shippingSpace.setVersion(Integer.MAX_VALUE);
 		return shippingSpace;
 	}
 	public 	static ShippingSpace refById(String id){

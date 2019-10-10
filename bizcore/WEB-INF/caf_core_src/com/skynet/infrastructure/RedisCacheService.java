@@ -2,10 +2,13 @@ package com.skynet.infrastructure;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.Jedis;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RedisCacheService implements CacheService {
@@ -38,12 +41,10 @@ public class RedisCacheService implements CacheService {
         return jedis;
     }
 
-    ObjectMapper mapper;
 
     protected ObjectMapper getMapper() {
-        if (mapper == null) {
-            mapper = new ObjectMapper();
-        }
+        ObjectMapper mapper;
+        mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper;
     }
@@ -59,7 +60,7 @@ public class RedisCacheService implements CacheService {
         Jedis jedis = null;
         try {
             jedis = getJedis();
-
+            log("class" + jedis.getClass());
             // ticker.tick("init getJedis();");
 
             List<String> values = jedis.mget(keys);
@@ -81,12 +82,9 @@ public class RedisCacheService implements CacheService {
             return result;
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             return null;
         } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
+            closeConnection(jedis);
         }
 
     }
@@ -94,14 +92,14 @@ public class RedisCacheService implements CacheService {
     public Object get(String key, Class<?> clazz) {
         // Ticker ticker = new Ticker();
 
-        log("getting " + clazz + " with key: " + key);
+        // log("getting " + clazz + " with key: " + key);
         Jedis jedis = null;
         try {
             jedis = getJedis();
             // ticker.tick("init getJedis();");
             String value = jedis.get(key);
             if (value == null) {
-                log("getting " + clazz + " with key: " + key + " fail (null)");
+                // log("getting " + clazz + " with key: " + key + " fail (null)");
                 return null;
             }
             // ticker.tick("jedis.get(key);");
@@ -113,19 +111,14 @@ public class RedisCacheService implements CacheService {
 
         } catch (Exception e) {
             log("getting " + clazz + " with key: " + key + " with an exception" + e.getMessage());
-            //e.printStackTrace();
-            // TODO Auto-generated catch block
             return null;
         } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
+            closeConnection(jedis);
         }
 
     }
 
     private void log(String string) {
-        // TODO Auto-generated method stub
         System.out.println(string);
     }
 
@@ -150,11 +143,17 @@ public class RedisCacheService implements CacheService {
         } catch (JsonProcessingException e) {
             // is fine
         } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
+            closeConnection(jedis);
         }
 
+    }
+
+    protected void closeConnection(Jedis jedis) {
+
+        if (jedis == null) {
+            return;
+        }
+        jedis.close();
     }
 
     public void remove(String key) {
@@ -164,10 +163,116 @@ public class RedisCacheService implements CacheService {
             jedis = getJedis();
             jedis.del(key);
         } finally {
-            if (jedis != null) {
-                jedis.close();
+            closeConnection(jedis);
+        }
+    }
+
+    @Override
+    public void lpush(String key, Object value, int ttlInSeconds) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            try {
+                ObjectMapper mapper = getMapper();
+                String json = mapper.writeValueAsString(value);
+                jedis.lpush(key, json);
+
+                if (ttlInSeconds >= 0) {
+                    jedis.expire(key, ttlInSeconds);
+                }
+            } catch (JsonProcessingException pE) {
+                jedis.lpush(key, String.valueOf(value));
+                if (ttlInSeconds >= 0) {
+                    jedis.expire(key, ttlInSeconds);
+                }
+            }
+        } finally {
+            closeConnection(jedis);
+        }
+    }
+
+
+    @Override
+    public void rpush(String key, Object value, int ttlInSeconds) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            try {
+                ObjectMapper mapper = getMapper();
+                String json = mapper.writeValueAsString(value);
+                jedis.rpush(key, json);
+
+                if (ttlInSeconds >= 0) {
+                    jedis.expire(key, ttlInSeconds);
+                }
+            } catch (JsonProcessingException pE) {
+                jedis.rpush(key, String.valueOf(value));
+            }
+        } finally {
+            closeConnection(jedis);
+        }
+    }
+
+    @Override
+    public void ltrime(String key, int start, int end) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            jedis.ltrim(key, start, end);
+        } finally {
+            closeConnection(jedis);
+        }
+    }
+
+    @Override
+    public <T> List<T> lget(String key, Class<T> clazz) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+
+            String type = jedis.type(key);
+            switch (type) {
+                case "string":
+                    return convertStringToList(jedis.get(key), clazz);
+                case "list":
+                    return convertListStringToList(jedis.lrange(key, 0, jedis.llen(key)), clazz);
+                default:
+                    return null;
+            }
+        } finally {
+            closeConnection(jedis);
+        }
+    }
+
+    private <T> List<T> convertListStringToList(List<String> pListString, Class<T> pClazz) {
+
+        if (pListString == null) {
+            return null;
+        }
+
+        List<T> list = new ArrayList<>();
+        for (String s : pListString) {
+            if (s == null) {
+                continue;
+            }
+            ObjectMapper mapper = getMapper();
+            try {
+                T v = mapper.readValue(s, pClazz);
+                list.add(v);
+            } catch (IOException pE) {
             }
         }
+        return list;
+    }
+
+    private <T> List<T> convertStringToList(String pS, Class<T> pClazz) {
+        ObjectMapper mapper = getMapper();
+        JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, pClazz);
+        try {
+            return (List<T>) mapper.readValue(pS, javaType);
+        } catch (IOException pE) {
+        }
+        return null;
     }
 
 

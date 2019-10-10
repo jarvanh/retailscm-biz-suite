@@ -56,7 +56,7 @@ public class ConsumerOrderShipment extends BaseEntity implements  java.io.Serial
 	public 	static ConsumerOrderShipment withId(String id){
 		ConsumerOrderShipment consumerOrderShipment = new ConsumerOrderShipment();
 		consumerOrderShipment.setId(id);
-		// consumerOrderShipment.setVersion(Integer.MAX_VALUE);
+		consumerOrderShipment.setVersion(Integer.MAX_VALUE);
 		return consumerOrderShipment;
 	}
 	public 	static ConsumerOrderShipment refById(String id){

@@ -61,7 +61,7 @@ public class AccountingDocumentCreation extends BaseEntity implements  java.io.S
 	public 	static AccountingDocumentCreation withId(String id){
 		AccountingDocumentCreation accountingDocumentCreation = new AccountingDocumentCreation();
 		accountingDocumentCreation.setId(id);
-		// accountingDocumentCreation.setVersion(Integer.MAX_VALUE);
+		accountingDocumentCreation.setVersion(Integer.MAX_VALUE);
 		return accountingDocumentCreation;
 	}
 	public 	static AccountingDocumentCreation refById(String id){

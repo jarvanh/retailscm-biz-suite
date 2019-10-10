@@ -60,7 +60,7 @@ public class EmployeeSkill extends BaseEntity implements  java.io.Serializable{
 	public 	static EmployeeSkill withId(String id){
 		EmployeeSkill employeeSkill = new EmployeeSkill();
 		employeeSkill.setId(id);
-		// employeeSkill.setVersion(Integer.MAX_VALUE);
+		employeeSkill.setVersion(Integer.MAX_VALUE);
 		return employeeSkill;
 	}
 	public 	static EmployeeSkill refById(String id){

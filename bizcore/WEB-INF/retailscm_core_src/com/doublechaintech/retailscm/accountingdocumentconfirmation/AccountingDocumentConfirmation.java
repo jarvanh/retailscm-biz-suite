@@ -61,7 +61,7 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 	public 	static AccountingDocumentConfirmation withId(String id){
 		AccountingDocumentConfirmation accountingDocumentConfirmation = new AccountingDocumentConfirmation();
 		accountingDocumentConfirmation.setId(id);
-		// accountingDocumentConfirmation.setVersion(Integer.MAX_VALUE);
+		accountingDocumentConfirmation.setVersion(Integer.MAX_VALUE);
 		return accountingDocumentConfirmation;
 	}
 	public 	static AccountingDocumentConfirmation refById(String id){

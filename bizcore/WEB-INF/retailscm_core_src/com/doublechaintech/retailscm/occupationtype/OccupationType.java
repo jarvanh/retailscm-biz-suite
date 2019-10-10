@@ -64,7 +64,7 @@ public class OccupationType extends BaseEntity implements  java.io.Serializable{
 	public 	static OccupationType withId(String id){
 		OccupationType occupationType = new OccupationType();
 		occupationType.setId(id);
-		// occupationType.setVersion(Integer.MAX_VALUE);
+		occupationType.setVersion(Integer.MAX_VALUE);
 		return occupationType;
 	}
 	public 	static OccupationType refById(String id){

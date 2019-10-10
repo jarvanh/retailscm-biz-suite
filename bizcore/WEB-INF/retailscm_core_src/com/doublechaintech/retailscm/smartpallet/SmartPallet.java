@@ -70,7 +70,7 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 	public 	static SmartPallet withId(String id){
 		SmartPallet smartPallet = new SmartPallet();
 		smartPallet.setId(id);
-		// smartPallet.setVersion(Integer.MAX_VALUE);
+		smartPallet.setVersion(Integer.MAX_VALUE);
 		return smartPallet;
 	}
 	public 	static SmartPallet refById(String id){

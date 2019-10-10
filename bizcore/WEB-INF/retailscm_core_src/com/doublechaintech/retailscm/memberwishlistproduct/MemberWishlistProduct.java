@@ -57,7 +57,7 @@ public class MemberWishlistProduct extends BaseEntity implements  java.io.Serial
 	public 	static MemberWishlistProduct withId(String id){
 		MemberWishlistProduct memberWishlistProduct = new MemberWishlistProduct();
 		memberWishlistProduct.setId(id);
-		// memberWishlistProduct.setVersion(Integer.MAX_VALUE);
+		memberWishlistProduct.setVersion(Integer.MAX_VALUE);
 		return memberWishlistProduct;
 	}
 	public 	static MemberWishlistProduct refById(String id){

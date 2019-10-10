@@ -59,7 +59,7 @@ public class RetailStoreOrderPicking extends BaseEntity implements  java.io.Seri
 	public 	static RetailStoreOrderPicking withId(String id){
 		RetailStoreOrderPicking retailStoreOrderPicking = new RetailStoreOrderPicking();
 		retailStoreOrderPicking.setId(id);
-		// retailStoreOrderPicking.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderPicking.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderPicking;
 	}
 	public 	static RetailStoreOrderPicking refById(String id){

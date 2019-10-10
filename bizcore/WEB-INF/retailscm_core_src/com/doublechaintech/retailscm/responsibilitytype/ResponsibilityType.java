@@ -64,7 +64,7 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 	public 	static ResponsibilityType withId(String id){
 		ResponsibilityType responsibilityType = new ResponsibilityType();
 		responsibilityType.setId(id);
-		// responsibilityType.setVersion(Integer.MAX_VALUE);
+		responsibilityType.setVersion(Integer.MAX_VALUE);
 		return responsibilityType;
 	}
 	public 	static ResponsibilityType refById(String id){

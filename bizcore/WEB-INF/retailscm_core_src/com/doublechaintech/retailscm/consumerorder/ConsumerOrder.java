@@ -94,7 +94,7 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	public 	static ConsumerOrder withId(String id){
 		ConsumerOrder consumerOrder = new ConsumerOrder();
 		consumerOrder.setId(id);
-		// consumerOrder.setVersion(Integer.MAX_VALUE);
+		consumerOrder.setVersion(Integer.MAX_VALUE);
 		return consumerOrder;
 	}
 	public 	static ConsumerOrder refById(String id){

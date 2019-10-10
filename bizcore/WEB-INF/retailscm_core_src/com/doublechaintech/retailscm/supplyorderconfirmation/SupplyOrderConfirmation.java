@@ -62,7 +62,7 @@ public class SupplyOrderConfirmation extends BaseEntity implements  java.io.Seri
 	public 	static SupplyOrderConfirmation withId(String id){
 		SupplyOrderConfirmation supplyOrderConfirmation = new SupplyOrderConfirmation();
 		supplyOrderConfirmation.setId(id);
-		// supplyOrderConfirmation.setVersion(Integer.MAX_VALUE);
+		supplyOrderConfirmation.setVersion(Integer.MAX_VALUE);
 		return supplyOrderConfirmation;
 	}
 	public 	static SupplyOrderConfirmation refById(String id){

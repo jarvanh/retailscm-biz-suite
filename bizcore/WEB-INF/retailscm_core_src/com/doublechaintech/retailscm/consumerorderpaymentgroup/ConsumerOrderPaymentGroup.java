@@ -59,7 +59,7 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 	public 	static ConsumerOrderPaymentGroup withId(String id){
 		ConsumerOrderPaymentGroup consumerOrderPaymentGroup = new ConsumerOrderPaymentGroup();
 		consumerOrderPaymentGroup.setId(id);
-		// consumerOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
+		consumerOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
 		return consumerOrderPaymentGroup;
 	}
 	public 	static ConsumerOrderPaymentGroup refById(String id){

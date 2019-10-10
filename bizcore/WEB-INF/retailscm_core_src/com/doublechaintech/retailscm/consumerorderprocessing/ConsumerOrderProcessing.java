@@ -56,7 +56,7 @@ public class ConsumerOrderProcessing extends BaseEntity implements  java.io.Seri
 	public 	static ConsumerOrderProcessing withId(String id){
 		ConsumerOrderProcessing consumerOrderProcessing = new ConsumerOrderProcessing();
 		consumerOrderProcessing.setId(id);
-		// consumerOrderProcessing.setVersion(Integer.MAX_VALUE);
+		consumerOrderProcessing.setVersion(Integer.MAX_VALUE);
 		return consumerOrderProcessing;
 	}
 	public 	static ConsumerOrderProcessing refById(String id){

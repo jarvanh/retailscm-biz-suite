@@ -150,7 +150,7 @@ public class ReflectionTool {
 		 
 		
 		try {
-			Object responseObj = mapper.readValue(value, (Class)firstParameterType);
+			Object responseObj = mapper.copy().readValue(value, (Class)firstParameterType);
 			return responseObj;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,6 +158,21 @@ public class ReflectionTool {
 		} 
 
 	}
+	
+	
+	protected boolean isPrimaryTypeOrOneStringConstructor(Class clazz) {
+		if(isPrimaryType(clazz)) {
+			return true;
+		}
+		Constructor constructor = getOneStringConstructor(clazz);
+		if(constructor != null) {
+			return true;
+		}
+		return false;
+		
+	}
+	
+	
 	protected Constructor getOneStringConstructor(Class clazz) {
 		Constructor constructors[] = clazz.getDeclaredConstructors();
 
@@ -176,7 +191,7 @@ public class ReflectionTool {
 
 	}
 
-	protected boolean isPrimaryType(Class clazz) {
+	public static boolean isPrimaryType(Class clazz) {
 
 		if (clazz.isPrimitive()) {
 			return true;

@@ -61,7 +61,7 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 	public 	static ConsumerOrderPriceAdjustment withId(String id){
 		ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment = new ConsumerOrderPriceAdjustment();
 		consumerOrderPriceAdjustment.setId(id);
-		// consumerOrderPriceAdjustment.setVersion(Integer.MAX_VALUE);
+		consumerOrderPriceAdjustment.setVersion(Integer.MAX_VALUE);
 		return consumerOrderPriceAdjustment;
 	}
 	public 	static ConsumerOrderPriceAdjustment refById(String id){

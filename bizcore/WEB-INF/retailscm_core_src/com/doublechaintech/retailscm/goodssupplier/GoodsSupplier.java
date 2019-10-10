@@ -74,7 +74,7 @@ public class GoodsSupplier extends BaseEntity implements  java.io.Serializable{
 	public 	static GoodsSupplier withId(String id){
 		GoodsSupplier goodsSupplier = new GoodsSupplier();
 		goodsSupplier.setId(id);
-		// goodsSupplier.setVersion(Integer.MAX_VALUE);
+		goodsSupplier.setVersion(Integer.MAX_VALUE);
 		return goodsSupplier;
 	}
 	public 	static GoodsSupplier refById(String id){

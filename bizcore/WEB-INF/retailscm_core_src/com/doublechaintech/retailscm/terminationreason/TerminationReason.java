@@ -62,7 +62,7 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 	public 	static TerminationReason withId(String id){
 		TerminationReason terminationReason = new TerminationReason();
 		terminationReason.setId(id);
-		// terminationReason.setVersion(Integer.MAX_VALUE);
+		terminationReason.setVersion(Integer.MAX_VALUE);
 		return terminationReason;
 	}
 	public 	static TerminationReason refById(String id){

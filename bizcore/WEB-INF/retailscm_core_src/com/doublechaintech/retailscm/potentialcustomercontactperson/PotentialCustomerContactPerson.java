@@ -64,7 +64,7 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 	public 	static PotentialCustomerContactPerson withId(String id){
 		PotentialCustomerContactPerson potentialCustomerContactPerson = new PotentialCustomerContactPerson();
 		potentialCustomerContactPerson.setId(id);
-		// potentialCustomerContactPerson.setVersion(Integer.MAX_VALUE);
+		potentialCustomerContactPerson.setVersion(Integer.MAX_VALUE);
 		return potentialCustomerContactPerson;
 	}
 	public 	static PotentialCustomerContactPerson refById(String id){

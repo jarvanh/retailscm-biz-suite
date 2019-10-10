@@ -61,7 +61,7 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 	public 	static Scoring withId(String id){
 		Scoring scoring = new Scoring();
 		scoring.setId(id);
-		// scoring.setVersion(Integer.MAX_VALUE);
+		scoring.setVersion(Integer.MAX_VALUE);
 		return scoring;
 	}
 	public 	static Scoring refById(String id){

@@ -70,7 +70,7 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 	public 	static TransportFleet withId(String id){
 		TransportFleet transportFleet = new TransportFleet();
 		transportFleet.setId(id);
-		// transportFleet.setVersion(Integer.MAX_VALUE);
+		transportFleet.setVersion(Integer.MAX_VALUE);
 		return transportFleet;
 	}
 	public 	static TransportFleet refById(String id){

@@ -60,7 +60,7 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 	public 	static LevelOneCategory withId(String id){
 		LevelOneCategory levelOneCategory = new LevelOneCategory();
 		levelOneCategory.setId(id);
-		// levelOneCategory.setVersion(Integer.MAX_VALUE);
+		levelOneCategory.setVersion(Integer.MAX_VALUE);
 		return levelOneCategory;
 	}
 	public 	static LevelOneCategory refById(String id){

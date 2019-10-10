@@ -64,7 +64,7 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 	public 	static ProvinceCenterDepartment withId(String id){
 		ProvinceCenterDepartment provinceCenterDepartment = new ProvinceCenterDepartment();
 		provinceCenterDepartment.setId(id);
-		// provinceCenterDepartment.setVersion(Integer.MAX_VALUE);
+		provinceCenterDepartment.setVersion(Integer.MAX_VALUE);
 		return provinceCenterDepartment;
 	}
 	public 	static ProvinceCenterDepartment refById(String id){

@@ -61,7 +61,7 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 	public 	static EmployeeAward withId(String id){
 		EmployeeAward employeeAward = new EmployeeAward();
 		employeeAward.setId(id);
-		// employeeAward.setVersion(Integer.MAX_VALUE);
+		employeeAward.setVersion(Integer.MAX_VALUE);
 		return employeeAward;
 	}
 	public 	static EmployeeAward refById(String id){

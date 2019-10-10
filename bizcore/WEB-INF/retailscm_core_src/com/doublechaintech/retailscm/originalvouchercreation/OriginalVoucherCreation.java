@@ -61,7 +61,7 @@ public class OriginalVoucherCreation extends BaseEntity implements  java.io.Seri
 	public 	static OriginalVoucherCreation withId(String id){
 		OriginalVoucherCreation originalVoucherCreation = new OriginalVoucherCreation();
 		originalVoucherCreation.setId(id);
-		// originalVoucherCreation.setVersion(Integer.MAX_VALUE);
+		originalVoucherCreation.setVersion(Integer.MAX_VALUE);
 		return originalVoucherCreation;
 	}
 	public 	static OriginalVoucherCreation refById(String id){

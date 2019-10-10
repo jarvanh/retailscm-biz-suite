@@ -61,7 +61,7 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 	public 	static ProductSupplyDuration withId(String id){
 		ProductSupplyDuration productSupplyDuration = new ProductSupplyDuration();
 		productSupplyDuration.setId(id);
-		// productSupplyDuration.setVersion(Integer.MAX_VALUE);
+		productSupplyDuration.setVersion(Integer.MAX_VALUE);
 		return productSupplyDuration;
 	}
 	public 	static ProductSupplyDuration refById(String id){

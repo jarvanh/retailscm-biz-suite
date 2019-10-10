@@ -66,7 +66,7 @@ public class CityEvent extends BaseEntity implements  java.io.Serializable{
 	public 	static CityEvent withId(String id){
 		CityEvent cityEvent = new CityEvent();
 		cityEvent.setId(id);
-		// cityEvent.setVersion(Integer.MAX_VALUE);
+		cityEvent.setVersion(Integer.MAX_VALUE);
 		return cityEvent;
 	}
 	public 	static CityEvent refById(String id){

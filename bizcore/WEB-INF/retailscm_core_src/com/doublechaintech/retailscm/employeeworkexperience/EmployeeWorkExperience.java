@@ -63,7 +63,7 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 	public 	static EmployeeWorkExperience withId(String id){
 		EmployeeWorkExperience employeeWorkExperience = new EmployeeWorkExperience();
 		employeeWorkExperience.setId(id);
-		// employeeWorkExperience.setVersion(Integer.MAX_VALUE);
+		employeeWorkExperience.setVersion(Integer.MAX_VALUE);
 		return employeeWorkExperience;
 	}
 	public 	static EmployeeWorkExperience refById(String id){

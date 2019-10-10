@@ -1,6 +1,7 @@
 package com.doublechaintech.retailscm;
 
-public class CustomRetailscmChecker extends RetailscmChecker {
+public class CustomRetailscmChecker extends RetailscmObjectChecker {
 	
 	
 }
+

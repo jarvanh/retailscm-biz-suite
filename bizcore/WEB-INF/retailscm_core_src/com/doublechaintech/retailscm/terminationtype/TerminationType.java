@@ -64,7 +64,7 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 	public 	static TerminationType withId(String id){
 		TerminationType terminationType = new TerminationType();
 		terminationType.setId(id);
-		// terminationType.setVersion(Integer.MAX_VALUE);
+		terminationType.setVersion(Integer.MAX_VALUE);
 		return terminationType;
 	}
 	public 	static TerminationType refById(String id){

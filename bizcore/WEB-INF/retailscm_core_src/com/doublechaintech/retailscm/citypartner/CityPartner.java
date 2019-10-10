@@ -69,7 +69,7 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 	public 	static CityPartner withId(String id){
 		CityPartner cityPartner = new CityPartner();
 		cityPartner.setId(id);
-		// cityPartner.setVersion(Integer.MAX_VALUE);
+		cityPartner.setVersion(Integer.MAX_VALUE);
 		return cityPartner;
 	}
 	public 	static CityPartner refById(String id){

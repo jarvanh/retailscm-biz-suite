@@ -64,7 +64,7 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 	public 	static TruckDriver withId(String id){
 		TruckDriver truckDriver = new TruckDriver();
 		truckDriver.setId(id);
-		// truckDriver.setVersion(Integer.MAX_VALUE);
+		truckDriver.setVersion(Integer.MAX_VALUE);
 		return truckDriver;
 	}
 	public 	static TruckDriver refById(String id){

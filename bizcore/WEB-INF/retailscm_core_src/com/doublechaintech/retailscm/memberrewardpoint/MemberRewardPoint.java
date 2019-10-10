@@ -59,7 +59,7 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 	public 	static MemberRewardPoint withId(String id){
 		MemberRewardPoint memberRewardPoint = new MemberRewardPoint();
 		memberRewardPoint.setId(id);
-		// memberRewardPoint.setVersion(Integer.MAX_VALUE);
+		memberRewardPoint.setVersion(Integer.MAX_VALUE);
 		return memberRewardPoint;
 	}
 	public 	static MemberRewardPoint refById(String id){

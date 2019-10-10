@@ -56,7 +56,7 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 	public 	static ConsumerOrderConfirmation withId(String id){
 		ConsumerOrderConfirmation consumerOrderConfirmation = new ConsumerOrderConfirmation();
 		consumerOrderConfirmation.setId(id);
-		// consumerOrderConfirmation.setVersion(Integer.MAX_VALUE);
+		consumerOrderConfirmation.setVersion(Integer.MAX_VALUE);
 		return consumerOrderConfirmation;
 	}
 	public 	static ConsumerOrderConfirmation refById(String id){

@@ -62,7 +62,7 @@ public class EventAttendance extends BaseEntity implements  java.io.Serializable
 	public 	static EventAttendance withId(String id){
 		EventAttendance eventAttendance = new EventAttendance();
 		eventAttendance.setId(id);
-		// eventAttendance.setVersion(Integer.MAX_VALUE);
+		eventAttendance.setVersion(Integer.MAX_VALUE);
 		return eventAttendance;
 	}
 	public 	static EventAttendance refById(String id){

@@ -62,7 +62,7 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 	public 	static AccountingDocumentType withId(String id){
 		AccountingDocumentType accountingDocumentType = new AccountingDocumentType();
 		accountingDocumentType.setId(id);
-		// accountingDocumentType.setVersion(Integer.MAX_VALUE);
+		accountingDocumentType.setVersion(Integer.MAX_VALUE);
 		return accountingDocumentType;
 	}
 	public 	static AccountingDocumentType refById(String id){

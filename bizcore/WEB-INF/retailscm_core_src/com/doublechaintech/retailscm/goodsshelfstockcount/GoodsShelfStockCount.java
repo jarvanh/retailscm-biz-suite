@@ -64,7 +64,7 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 	public 	static GoodsShelfStockCount withId(String id){
 		GoodsShelfStockCount goodsShelfStockCount = new GoodsShelfStockCount();
 		goodsShelfStockCount.setId(id);
-		// goodsShelfStockCount.setVersion(Integer.MAX_VALUE);
+		goodsShelfStockCount.setVersion(Integer.MAX_VALUE);
 		return goodsShelfStockCount;
 	}
 	public 	static GoodsShelfStockCount refById(String id){

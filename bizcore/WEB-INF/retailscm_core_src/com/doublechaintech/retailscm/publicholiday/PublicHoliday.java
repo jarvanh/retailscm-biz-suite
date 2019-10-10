@@ -61,7 +61,7 @@ public class PublicHoliday extends BaseEntity implements  java.io.Serializable{
 	public 	static PublicHoliday withId(String id){
 		PublicHoliday publicHoliday = new PublicHoliday();
 		publicHoliday.setId(id);
-		// publicHoliday.setVersion(Integer.MAX_VALUE);
+		publicHoliday.setVersion(Integer.MAX_VALUE);
 		return publicHoliday;
 	}
 	public 	static PublicHoliday refById(String id){

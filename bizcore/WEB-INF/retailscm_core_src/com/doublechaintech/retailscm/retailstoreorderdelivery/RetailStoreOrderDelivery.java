@@ -59,7 +59,7 @@ public class RetailStoreOrderDelivery extends BaseEntity implements  java.io.Ser
 	public 	static RetailStoreOrderDelivery withId(String id){
 		RetailStoreOrderDelivery retailStoreOrderDelivery = new RetailStoreOrderDelivery();
 		retailStoreOrderDelivery.setId(id);
-		// retailStoreOrderDelivery.setVersion(Integer.MAX_VALUE);
+		retailStoreOrderDelivery.setVersion(Integer.MAX_VALUE);
 		return retailStoreOrderDelivery;
 	}
 	public 	static RetailStoreOrderDelivery refById(String id){

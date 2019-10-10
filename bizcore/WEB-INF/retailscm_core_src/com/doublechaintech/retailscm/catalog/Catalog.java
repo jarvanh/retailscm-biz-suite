@@ -60,7 +60,7 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 	public 	static Catalog withId(String id){
 		Catalog catalog = new Catalog();
 		catalog.setId(id);
-		// catalog.setVersion(Integer.MAX_VALUE);
+		catalog.setVersion(Integer.MAX_VALUE);
 		return catalog;
 	}
 	public 	static Catalog refById(String id){

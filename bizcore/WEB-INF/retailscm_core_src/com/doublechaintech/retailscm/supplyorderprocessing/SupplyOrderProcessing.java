@@ -62,7 +62,7 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 	public 	static SupplyOrderProcessing withId(String id){
 		SupplyOrderProcessing supplyOrderProcessing = new SupplyOrderProcessing();
 		supplyOrderProcessing.setId(id);
-		// supplyOrderProcessing.setVersion(Integer.MAX_VALUE);
+		supplyOrderProcessing.setVersion(Integer.MAX_VALUE);
 		return supplyOrderProcessing;
 	}
 	public 	static SupplyOrderProcessing refById(String id){

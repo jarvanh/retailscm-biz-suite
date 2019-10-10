@@ -72,7 +72,7 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 	public 	static Instructor withId(String id){
 		Instructor instructor = new Instructor();
 		instructor.setId(id);
-		// instructor.setVersion(Integer.MAX_VALUE);
+		instructor.setVersion(Integer.MAX_VALUE);
 		return instructor;
 	}
 	public 	static Instructor refById(String id){

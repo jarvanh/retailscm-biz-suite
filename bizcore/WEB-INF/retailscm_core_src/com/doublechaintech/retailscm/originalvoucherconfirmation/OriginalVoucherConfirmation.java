@@ -61,7 +61,7 @@ public class OriginalVoucherConfirmation extends BaseEntity implements  java.io.
 	public 	static OriginalVoucherConfirmation withId(String id){
 		OriginalVoucherConfirmation originalVoucherConfirmation = new OriginalVoucherConfirmation();
 		originalVoucherConfirmation.setId(id);
-		// originalVoucherConfirmation.setVersion(Integer.MAX_VALUE);
+		originalVoucherConfirmation.setVersion(Integer.MAX_VALUE);
 		return originalVoucherConfirmation;
 	}
 	public 	static OriginalVoucherConfirmation refById(String id){

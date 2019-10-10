@@ -64,7 +64,7 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 	public 	static SupplierProduct withId(String id){
 		SupplierProduct supplierProduct = new SupplierProduct();
 		supplierProduct.setId(id);
-		// supplierProduct.setVersion(Integer.MAX_VALUE);
+		supplierProduct.setVersion(Integer.MAX_VALUE);
 		return supplierProduct;
 	}
 	public 	static SupplierProduct refById(String id){

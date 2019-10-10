@@ -64,7 +64,7 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 	public 	static LevelTwoDepartment withId(String id){
 		LevelTwoDepartment levelTwoDepartment = new LevelTwoDepartment();
 		levelTwoDepartment.setId(id);
-		// levelTwoDepartment.setVersion(Integer.MAX_VALUE);
+		levelTwoDepartment.setVersion(Integer.MAX_VALUE);
 		return levelTwoDepartment;
 	}
 	public 	static LevelTwoDepartment refById(String id){

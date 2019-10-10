@@ -70,7 +70,7 @@ public class StorageSpace extends BaseEntity implements  java.io.Serializable{
 	public 	static StorageSpace withId(String id){
 		StorageSpace storageSpace = new StorageSpace();
 		storageSpace.setId(id);
-		// storageSpace.setVersion(Integer.MAX_VALUE);
+		storageSpace.setVersion(Integer.MAX_VALUE);
 		return storageSpace;
 	}
 	public 	static StorageSpace refById(String id){

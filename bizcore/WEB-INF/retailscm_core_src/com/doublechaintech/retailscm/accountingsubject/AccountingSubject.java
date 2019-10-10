@@ -66,7 +66,7 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 	public 	static AccountingSubject withId(String id){
 		AccountingSubject accountingSubject = new AccountingSubject();
 		accountingSubject.setId(id);
-		// accountingSubject.setVersion(Integer.MAX_VALUE);
+		accountingSubject.setVersion(Integer.MAX_VALUE);
 		return accountingSubject;
 	}
 	public 	static AccountingSubject refById(String id){

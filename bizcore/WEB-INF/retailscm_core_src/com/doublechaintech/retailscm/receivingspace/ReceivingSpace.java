@@ -72,7 +72,7 @@ public class ReceivingSpace extends BaseEntity implements  java.io.Serializable{
 	public 	static ReceivingSpace withId(String id){
 		ReceivingSpace receivingSpace = new ReceivingSpace();
 		receivingSpace.setId(id);
-		// receivingSpace.setVersion(Integer.MAX_VALUE);
+		receivingSpace.setVersion(Integer.MAX_VALUE);
 		return receivingSpace;
 	}
 	public 	static ReceivingSpace refById(String id){
