@@ -42,7 +42,8 @@ public class CollectionUtils {
 		set.addAll(Arrays.asList(objs));
 		return set;
 	}
-	
+	@SafeVarargs
+    	@SuppressWarnings("varargs")
 	public static <T> List<T> toList(T... objs) {
 		if (objs == null || objs.length == 0) {
 			return new ArrayList<>();
@@ -51,6 +52,7 @@ public class CollectionUtils {
 		list.addAll(Arrays.asList(objs));
 		return list;
 	}
+
 
 	public static <T> void addItem(ArrayList<T> list, int idx, T value) {
 		while(list.size() <= idx) {

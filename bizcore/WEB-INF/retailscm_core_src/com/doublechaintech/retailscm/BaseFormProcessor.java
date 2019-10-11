@@ -327,7 +327,7 @@ public class BaseFormProcessor {
 		}
 		if (value instanceof String) {
 			String strVal = (String) value;
-			String[] strVals = strVal.trim().split("\\s*,\\s*");
+			Object[] strVals = strVal.trim().split("\\s*,\\s*");
 			return CollectionUtils.toList(strVals);
 		}
 		List<Object> rst = new ArrayList<>();
