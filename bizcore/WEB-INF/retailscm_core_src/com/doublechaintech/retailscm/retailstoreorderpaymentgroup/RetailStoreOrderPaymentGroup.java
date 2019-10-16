@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.retailstoreorderpaymentgroup;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -53,9 +57,25 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 	
 		
 	public 	RetailStoreOrderPaymentGroup(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static RetailStoreOrderPaymentGroup withId(String id){
+		RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroup = new RetailStoreOrderPaymentGroup();
+		retailStoreOrderPaymentGroup.setId(id);
+		retailStoreOrderPaymentGroup.setVersion(Integer.MAX_VALUE);
+		return retailStoreOrderPaymentGroup;
+	}
+	public 	static RetailStoreOrderPaymentGroup refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBizOrder( null );
 
@@ -118,6 +138,29 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(CARD_NUMBER_PROPERTY.equals(property)){
+			return getCardNumber();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -131,6 +174,12 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -144,6 +193,12 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBizOrder(RetailStoreOrder bizOrder){
@@ -157,6 +212,12 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBizOrder(RetailStoreOrder bizOrder){
+		if(bizOrder != null) { setBizOrder(bizOrder);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBizOrder(){
@@ -175,6 +236,12 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCardNumber(String cardNumber){
+		if(cardNumber != null) { setCardNumber(cardNumber);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -188,6 +255,12 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -246,6 +319,44 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderPaymentGroup){
+		
+			
+			RetailStoreOrderPaymentGroup dest =(RetailStoreOrderPaymentGroup)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeBizOrder(getBizOrder());
+			dest.mergeCardNumber(getCardNumber());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderPaymentGroup){
+		
+			
+			RetailStoreOrderPaymentGroup dest =(RetailStoreOrderPaymentGroup)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeCardNumber(getCardNumber());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

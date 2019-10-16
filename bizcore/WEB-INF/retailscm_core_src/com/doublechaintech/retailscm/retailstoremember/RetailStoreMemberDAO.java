@@ -7,6 +7,19 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.memberrewardpoint.MemberRewardPoint;
+import com.doublechaintech.retailscm.memberrewardpointredemption.MemberRewardPointRedemption;
+import com.doublechaintech.retailscm.retailstoremembercoupon.RetailStoreMemberCoupon;
+import com.doublechaintech.retailscm.memberwishlist.MemberWishlist;
+import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
+import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
+import com.doublechaintech.retailscm.retailstorememberaddress.RetailStoreMemberAddress;
+import com.doublechaintech.retailscm.retailstoremembergiftcard.RetailStoreMemberGiftCard;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO;
 import com.doublechaintech.retailscm.memberwishlist.MemberWishlistDAO;
 import com.doublechaintech.retailscm.memberrewardpointredemption.MemberRewardPointRedemptionDAO;
@@ -110,6 +123,32 @@ public interface RetailStoreMemberDAO{
  	public void analyzeRetailStoreMemberByOwner(SmartList<RetailStoreMember> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:ConsumerOrder的consumer的ConsumerOrderList
+	public SmartList<ConsumerOrder> loadOurConsumerOrderList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberCoupon的owner的RetailStoreMemberCouponList
+	public SmartList<RetailStoreMemberCoupon> loadOurRetailStoreMemberCouponList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:MemberWishlist的owner的MemberWishlistList
+	public SmartList<MemberWishlist> loadOurMemberWishlistList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:MemberRewardPoint的owner的MemberRewardPointList
+	public SmartList<MemberRewardPoint> loadOurMemberRewardPointList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:MemberRewardPointRedemption的owner的MemberRewardPointRedemptionList
+	public SmartList<MemberRewardPointRedemption> loadOurMemberRewardPointRedemptionList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberAddress的owner的RetailStoreMemberAddressList
+	public SmartList<RetailStoreMemberAddress> loadOurRetailStoreMemberAddressList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberGiftCard的owner的RetailStoreMemberGiftCardList
+	public SmartList<RetailStoreMemberGiftCard> loadOurRetailStoreMemberGiftCardList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

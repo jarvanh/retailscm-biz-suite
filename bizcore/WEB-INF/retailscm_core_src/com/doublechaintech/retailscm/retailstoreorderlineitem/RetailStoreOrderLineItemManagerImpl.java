@@ -257,8 +257,14 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 			//will be good when the retailStoreOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreOrderLineItem.
+<<<<<<< HEAD
 			
 			
+=======
+			if (retailStoreOrderLineItem.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreOrderLineItem = saveRetailStoreOrderLineItem(userContext, retailStoreOrderLineItem, options);
 			return retailStoreOrderLineItem;
 			
@@ -327,7 +333,11 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

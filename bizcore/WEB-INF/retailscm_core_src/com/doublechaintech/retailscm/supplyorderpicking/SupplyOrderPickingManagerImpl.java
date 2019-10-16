@@ -245,8 +245,14 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 			//will be good when the supplyOrderPicking loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderPicking.
+<<<<<<< HEAD
 			
 			
+=======
+			if (supplyOrderPicking.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, options);
 			return supplyOrderPicking;
 			
@@ -316,7 +322,11 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortSupplyOrderListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -520,8 +530,13 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+<<<<<<< HEAD
 		for(String supplyOrderId: supplyOrderIds){
 			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
+=======
+		for(String supplyOrderIdItem: supplyOrderIds){
+			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);

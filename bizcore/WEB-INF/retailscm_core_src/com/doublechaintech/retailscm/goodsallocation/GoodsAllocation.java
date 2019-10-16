@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.goodsallocation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,9 +62,25 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 	
 		
 	public 	GoodsAllocation(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static GoodsAllocation withId(String id){
+		GoodsAllocation goodsAllocation = new GoodsAllocation();
+		goodsAllocation.setId(id);
+		goodsAllocation.setVersion(Integer.MAX_VALUE);
+		return goodsAllocation;
+	}
+	public 	static GoodsAllocation refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setGoodsShelf( null );
 
@@ -143,6 +163,36 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(LOCATION_PROPERTY.equals(property)){
+			return getLocation();
+		}
+		if(LATITUDE_PROPERTY.equals(property)){
+			return getLatitude();
+		}
+		if(LONGITUDE_PROPERTY.equals(property)){
+			return getLongitude();
+		}
+		if(GOODS_SHELF_PROPERTY.equals(property)){
+			return getGoodsShelf();
+		}
+		if(GOODS_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -156,6 +206,12 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLocation(String location){
@@ -169,6 +225,12 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLocation(String location){
+		if(location != null) { setLocation(location);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLatitude(BigDecimal latitude){
@@ -182,6 +244,12 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLatitude(BigDecimal latitude){
+		setLatitude(latitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLongitude(BigDecimal longitude){
@@ -195,6 +263,12 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLongitude(BigDecimal longitude){
+		setLongitude(longitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setGoodsShelf(GoodsShelf goodsShelf){
@@ -208,6 +282,12 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeGoodsShelf(GoodsShelf goodsShelf){
+		if(goodsShelf != null) { setGoodsShelf(goodsShelf);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearGoodsShelf(){
@@ -226,6 +306,12 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -258,7 +344,20 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		}
 		getGoodsList().addAll(goodsList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeGoodsList(SmartList<Goods> goodsList){
+		if(goodsList==null){
+			return;
+		}
+		if(goodsList.isEmpty()){
+			return;
+		}
+		addGoodsList( goodsList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Goods removeGoods(Goods goodsIndex){
 		
 		int index = getGoodsList().indexOf(goodsIndex);
@@ -392,6 +491,47 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsAllocation){
+		
+			
+			GoodsAllocation dest =(GoodsAllocation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeLocation(getLocation());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeGoodsShelf(getGoodsShelf());
+			dest.mergeVersion(getVersion());
+			dest.mergeGoodsList(getGoodsList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsAllocation){
+		
+			
+			GoodsAllocation dest =(GoodsAllocation)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeLocation(getLocation());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

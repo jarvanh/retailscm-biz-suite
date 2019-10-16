@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.retailstoremember;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -74,9 +78,25 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 	
 		
 	public 	RetailStoreMember(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static RetailStoreMember withId(String id){
+		RetailStoreMember retailStoreMember = new RetailStoreMember();
+		retailStoreMember.setId(id);
+		retailStoreMember.setVersion(Integer.MAX_VALUE);
+		return retailStoreMember;
+	}
+	public 	static RetailStoreMember refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -146,6 +166,57 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(MOBILE_PHONE_PROPERTY.equals(property)){
+			return getMobilePhone();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(CONSUMER_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getConsumerOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_MEMBER_COUPON_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberCouponList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(MEMBER_WISHLIST_LIST.equals(property)){
+			List<BaseEntity> list = getMemberWishlistList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(MEMBER_REWARD_POINT_LIST.equals(property)){
+			List<BaseEntity> list = getMemberRewardPointList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(MEMBER_REWARD_POINT_REDEMPTION_LIST.equals(property)){
+			List<BaseEntity> list = getMemberRewardPointRedemptionList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_MEMBER_ADDRESS_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberAddressList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_MEMBER_GIFT_CARD_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreMemberGiftCardList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -159,6 +230,12 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -172,6 +249,12 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMobilePhone(String mobilePhone){
@@ -185,6 +268,12 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeMobilePhone(String mobilePhone){
+		if(mobilePhone != null) { setMobilePhone(mobilePhone);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -205,6 +294,12 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOwner(RetailStoreCountryCenter owner){
+		if(owner != null) { setOwner(owner);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -223,6 +318,12 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -255,7 +356,20 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getConsumerOrderList().addAll(consumerOrderList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeConsumerOrderList(SmartList<ConsumerOrder> consumerOrderList){
+		if(consumerOrderList==null){
+			return;
+		}
+		if(consumerOrderList.isEmpty()){
+			return;
+		}
+		addConsumerOrderList( consumerOrderList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ConsumerOrder removeConsumerOrder(ConsumerOrder consumerOrderIndex){
 		
 		int index = getConsumerOrderList().indexOf(consumerOrderIndex);
@@ -353,7 +467,20 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getRetailStoreMemberCouponList().addAll(retailStoreMemberCouponList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeRetailStoreMemberCouponList(SmartList<RetailStoreMemberCoupon> retailStoreMemberCouponList){
+		if(retailStoreMemberCouponList==null){
+			return;
+		}
+		if(retailStoreMemberCouponList.isEmpty()){
+			return;
+		}
+		addRetailStoreMemberCouponList( retailStoreMemberCouponList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMemberCoupon removeRetailStoreMemberCoupon(RetailStoreMemberCoupon retailStoreMemberCouponIndex){
 		
 		int index = getRetailStoreMemberCouponList().indexOf(retailStoreMemberCouponIndex);
@@ -451,7 +578,20 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getMemberWishlistList().addAll(memberWishlistList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeMemberWishlistList(SmartList<MemberWishlist> memberWishlistList){
+		if(memberWishlistList==null){
+			return;
+		}
+		if(memberWishlistList.isEmpty()){
+			return;
+		}
+		addMemberWishlistList( memberWishlistList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  MemberWishlist removeMemberWishlist(MemberWishlist memberWishlistIndex){
 		
 		int index = getMemberWishlistList().indexOf(memberWishlistIndex);
@@ -549,7 +689,20 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getMemberRewardPointList().addAll(memberRewardPointList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeMemberRewardPointList(SmartList<MemberRewardPoint> memberRewardPointList){
+		if(memberRewardPointList==null){
+			return;
+		}
+		if(memberRewardPointList.isEmpty()){
+			return;
+		}
+		addMemberRewardPointList( memberRewardPointList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  MemberRewardPoint removeMemberRewardPoint(MemberRewardPoint memberRewardPointIndex){
 		
 		int index = getMemberRewardPointList().indexOf(memberRewardPointIndex);
@@ -647,7 +800,20 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getMemberRewardPointRedemptionList().addAll(memberRewardPointRedemptionList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeMemberRewardPointRedemptionList(SmartList<MemberRewardPointRedemption> memberRewardPointRedemptionList){
+		if(memberRewardPointRedemptionList==null){
+			return;
+		}
+		if(memberRewardPointRedemptionList.isEmpty()){
+			return;
+		}
+		addMemberRewardPointRedemptionList( memberRewardPointRedemptionList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  MemberRewardPointRedemption removeMemberRewardPointRedemption(MemberRewardPointRedemption memberRewardPointRedemptionIndex){
 		
 		int index = getMemberRewardPointRedemptionList().indexOf(memberRewardPointRedemptionIndex);
@@ -745,7 +911,20 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getRetailStoreMemberAddressList().addAll(retailStoreMemberAddressList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeRetailStoreMemberAddressList(SmartList<RetailStoreMemberAddress> retailStoreMemberAddressList){
+		if(retailStoreMemberAddressList==null){
+			return;
+		}
+		if(retailStoreMemberAddressList.isEmpty()){
+			return;
+		}
+		addRetailStoreMemberAddressList( retailStoreMemberAddressList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMemberAddress removeRetailStoreMemberAddress(RetailStoreMemberAddress retailStoreMemberAddressIndex){
 		
 		int index = getRetailStoreMemberAddressList().indexOf(retailStoreMemberAddressIndex);
@@ -843,7 +1022,20 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getRetailStoreMemberGiftCardList().addAll(retailStoreMemberGiftCardList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeRetailStoreMemberGiftCardList(SmartList<RetailStoreMemberGiftCard> retailStoreMemberGiftCardList){
+		if(retailStoreMemberGiftCardList==null){
+			return;
+		}
+		if(retailStoreMemberGiftCardList.isEmpty()){
+			return;
+		}
+		addRetailStoreMemberGiftCardList( retailStoreMemberGiftCardList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMemberGiftCard removeRetailStoreMemberGiftCard(RetailStoreMemberGiftCard retailStoreMemberGiftCardIndex){
 		
 		int index = getRetailStoreMemberGiftCardList().indexOf(retailStoreMemberGiftCardIndex);
@@ -1023,6 +1215,51 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreMember){
+		
+			
+			RetailStoreMember dest =(RetailStoreMember)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeMobilePhone(getMobilePhone());
+			dest.mergeOwner(getOwner());
+			dest.mergeVersion(getVersion());
+			dest.mergeConsumerOrderList(getConsumerOrderList());
+			dest.mergeRetailStoreMemberCouponList(getRetailStoreMemberCouponList());
+			dest.mergeMemberWishlistList(getMemberWishlistList());
+			dest.mergeMemberRewardPointList(getMemberRewardPointList());
+			dest.mergeMemberRewardPointRedemptionList(getMemberRewardPointRedemptionList());
+			dest.mergeRetailStoreMemberAddressList(getRetailStoreMemberAddressList());
+			dest.mergeRetailStoreMemberGiftCardList(getRetailStoreMemberGiftCardList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreMember){
+		
+			
+			RetailStoreMember dest =(RetailStoreMember)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeMobilePhone(getMobilePhone());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

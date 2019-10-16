@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.supplyorderapproval;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderApprovalDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderApprovalDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -224,9 +242,14 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 	protected boolean isExtractConsumerOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderApprovalTokens.CONSUMER_ORDER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,SupplyOrderApprovalTokens.CONSUMER_ORDER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		 		
+ 		return SupplyOrderApprovalTokens.of(options).analyzeConsumerOrderListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderListEnabled(Map<String,Object> options){
@@ -239,9 +262,14 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 	protected boolean isExtractSupplyOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderApprovalTokens.SUPPLY_ORDER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,SupplyOrderApprovalTokens.SUPPLY_ORDER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		 		
+ 		return SupplyOrderApprovalTokens.of(options).analyzeSupplyOrderListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderListEnabled(Map<String,Object> options){
@@ -608,9 +636,15 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 			return supplyOrderApproval;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
 
 			consumerOrder.clearFromAll();
+=======
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+
+			consumerOrderItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -640,9 +674,15 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 			return supplyOrderApproval;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
 			consumerOrder.clearConsumer();
 			consumerOrder.clearApproval();
+=======
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearConsumer();
+			consumerOrderItem.clearApproval();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -684,9 +724,15 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 			return supplyOrderApproval;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
 			consumerOrder.clearStore();
 			consumerOrder.clearApproval();
+=======
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearStore();
+			consumerOrderItem.clearApproval();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -724,9 +770,15 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 			return supplyOrderApproval;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrder supplyOrder: externalSupplyOrderList){
 
 			supplyOrder.clearFromAll();
+=======
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+
+			supplyOrderItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -756,9 +808,15 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 			return supplyOrderApproval;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrder supplyOrder: externalSupplyOrderList){
 			supplyOrder.clearBuyer();
 			supplyOrder.clearApproval();
+=======
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearBuyer();
+			supplyOrderItem.clearApproval();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -800,9 +858,15 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 			return supplyOrderApproval;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrder supplyOrder: externalSupplyOrderList){
 			supplyOrder.clearSeller();
 			supplyOrder.clearApproval();
+=======
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearSeller();
+			supplyOrderItem.clearApproval();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1033,6 +1097,58 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 	public void enhanceList(List<SupplyOrderApproval> supplyOrderApprovalList) {		
 		this.enhanceListInternal(supplyOrderApprovalList, this.getSupplyOrderApprovalMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:ConsumerOrder的approval的ConsumerOrderList
+	public SmartList<ConsumerOrder> loadOurConsumerOrderList(RetailscmUserContext userContext, List<SupplyOrderApproval> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.APPROVAL_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ConsumerOrder> loadedObjs = userContext.getDAOGroup().getConsumerOrderDAO().findConsumerOrderWithKey(key, options);
+		Map<String, List<ConsumerOrder>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getApproval().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ConsumerOrder> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ConsumerOrder> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setConsumerOrderList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplyOrder的approval的SupplyOrderList
+	public SmartList<SupplyOrder> loadOurSupplyOrderList(RetailscmUserContext userContext, List<SupplyOrderApproval> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.APPROVAL_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplyOrder> loadedObjs = userContext.getDAOGroup().getSupplyOrderDAO().findSupplyOrderWithKey(key, options);
+		Map<String, List<SupplyOrder>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getApproval().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplyOrder> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplyOrder> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplyOrderList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SupplyOrderApproval> supplyOrderApprovalList = ownerEntity.collectRefsWithType(SupplyOrderApproval.INTERNAL_TYPE);
@@ -1065,6 +1181,92 @@ public class SupplyOrderApprovalJDBCTemplateDAO extends RetailscmNamingServiceDA
 	public SmartList<SupplyOrderApproval> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderApprovalMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+    
+	public Map<String, Integer> countBySql(String sql, Object[] params) {
+		if (params == null || params.length == 0) {
+			return new HashMap<>();
+		}
+		List<Map<String, Object>> result = this.getJdbcTemplateObject().queryForList(sql, params);
+		if (result == null || result.isEmpty()) {
+			return new HashMap<>();
+		}
+		Map<String, Integer> cntMap = new HashMap<>();
+		for (Map<String, Object> data : result) {
+			String key = (String) data.get("id");
+			Number value = (Number) data.get("count");
+			cntMap.put(key, value.intValue());
+		}
+		this.logSQLAndParameters("countBySql", sql, params, cntMap.size() + " Counts");
+		return cntMap;
+	}
+
+	public Integer singleCountBySql(String sql, Object[] params) {
+		Integer cnt = this.getJdbcTemplateObject().queryForObject(sql, params, Integer.class);
+		logSQLAndParameters("singleCountBySql", sql, params, cnt + "");
+		return cnt;
+	}
+
+	public BigDecimal summaryBySql(String sql, Object[] params) {
+		BigDecimal cnt = this.getJdbcTemplateObject().queryForObject(sql, params, BigDecimal.class);
+		logSQLAndParameters("summaryBySql", sql, params, cnt + "");
+		return cnt == null ? BigDecimal.ZERO : cnt;
+	}
+
+	public <T> List<T> queryForList(String sql, Object[] params, Class<T> claxx) {
+		List<T> result = this.getJdbcTemplateObject().queryForList(sql, params, claxx);
+		logSQLAndParameters("queryForList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public Map<String, Object> queryForMap(String sql, Object[] params) throws DataAccessException {
+		Map<String, Object> result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForMap(sql, params);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public <T> T queryForObject(String sql, Object[] params, Class<T> claxx) throws DataAccessException {
+		T result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForObject(sql, params, claxx);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public List<Map<String, Object>> queryAsMapList(String sql, Object[] params) {
+		List<Map<String, Object>> result = getJdbcTemplateObject().queryForList(sql, params);
+		logSQLAndParameters("queryAsMapList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public synchronized int updateBySql(String sql, Object[] params) {
+		int result = getJdbcTemplateObject().update(sql, params);
+		logSQLAndParameters("updateBySql", sql, params, result + " items");
+		return result;
+	}
+
+	public void execSqlWithRowCallback(String sql, Object[] args, RowCallbackHandler callback) {
+		getJdbcTemplateObject().query(sql, args, callback);
+	}
+
+	public void executeSql(String sql) {
+		logSQLAndParameters("executeSql", sql, new Object[] {}, "");
+		getJdbcTemplateObject().execute(sql);
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

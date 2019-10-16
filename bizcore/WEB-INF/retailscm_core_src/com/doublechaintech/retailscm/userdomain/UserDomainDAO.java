@@ -7,6 +7,13 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
+import com.doublechaintech.retailscm.secuser.SecUser;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.secuser.SecUserDAO;
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteListDAO;
 
@@ -57,6 +64,16 @@ public interface UserDomainDAO{
 
 	
 	public SmartList<UserDomain> queryList(String sql, Object ... parmeters);
+<<<<<<< HEAD
+=======
+
+	// 需要一个加载引用我的对象的enhance方法:UserWhiteList的domain的UserWhiteListList
+	public SmartList<UserWhiteList> loadOurUserWhiteListList(RetailscmUserContext userContext, List<UserDomain> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:SecUser的domain的SecUserList
+	public SmartList<SecUser> loadOurSecUserList(RetailscmUserContext userContext, List<UserDomain> us, Map<String,Object> options) throws Exception;
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.retailstoremembergiftcard;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberGiftCardDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreMemberGiftCardDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreMemberDAO  retailStoreMemberDAO;
@@ -221,9 +239,14 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 	protected boolean isExtractRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberGiftCardTokens.RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberGiftCardTokens.RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberGiftCardTokens.of(options).analyzeRetailStoreMemberGiftCardConsumeRecordListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){
@@ -615,9 +638,15 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreMemberGiftCard;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
 
 			retailStoreMemberGiftCardConsumeRecord.clearFromAll();
+=======
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
+
+			retailStoreMemberGiftCardConsumeRecordItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -647,9 +676,15 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 			return retailStoreMemberGiftCard;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
 			retailStoreMemberGiftCardConsumeRecord.clearBizOrder();
 			retailStoreMemberGiftCardConsumeRecord.clearOwner();
+=======
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
+			retailStoreMemberGiftCardConsumeRecordItem.clearBizOrder();
+			retailStoreMemberGiftCardConsumeRecordItem.clearOwner();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -787,6 +822,35 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 	public void enhanceList(List<RetailStoreMemberGiftCard> retailStoreMemberGiftCardList) {		
 		this.enhanceListInternal(retailStoreMemberGiftCardList, this.getRetailStoreMemberGiftCardMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberGiftCardConsumeRecord的owner的RetailStoreMemberGiftCardConsumeRecordList
+	public SmartList<RetailStoreMemberGiftCardConsumeRecord> loadOurRetailStoreMemberGiftCardConsumeRecordList(RetailscmUserContext userContext, List<RetailStoreMemberGiftCard> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreMemberGiftCardConsumeRecord.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreMemberGiftCardConsumeRecord> loadedObjs = userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().findRetailStoreMemberGiftCardConsumeRecordWithKey(key, options);
+		Map<String, List<RetailStoreMemberGiftCardConsumeRecord>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreMemberGiftCardConsumeRecord> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreMemberGiftCardConsumeRecord> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreMemberGiftCardConsumeRecordList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreMemberGiftCard> retailStoreMemberGiftCardList = ownerEntity.collectRefsWithType(RetailStoreMemberGiftCard.INTERNAL_TYPE);
@@ -819,6 +883,12 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmNamingSer
 	public SmartList<RetailStoreMemberGiftCard> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberGiftCardMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

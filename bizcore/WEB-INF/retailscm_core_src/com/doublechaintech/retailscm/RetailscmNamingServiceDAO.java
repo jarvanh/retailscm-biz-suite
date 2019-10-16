@@ -161,6 +161,10 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("SecUser", new String[]{"sec_user_data","login"});
 		namingTableMap.put("SecUserBlocking", new String[]{"sec_user_blocking_data","who"});
 		namingTableMap.put("UserApp", new String[]{"user_app_data","title"});
+<<<<<<< HEAD
+=======
+		namingTableMap.put("QuickLink", new String[]{"quick_link_data","name"});
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		namingTableMap.put("ListAccess", new String[]{"list_access_data","name"});
 		namingTableMap.put("ObjectAccess", new String[]{"object_access_data","name"});
 		namingTableMap.put("LoginHistory", new String[]{"login_history_data","from_ip"});
@@ -169,6 +173,11 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("FormFieldMessage", new String[]{"form_field_message_data","title"});
 		namingTableMap.put("FormField", new String[]{"form_field_data","label"});
 		namingTableMap.put("FormAction", new String[]{"form_action_data","label"});
+<<<<<<< HEAD
+=======
+		namingTableMap.put("CandidateContainer", new String[]{"candidate_container_data","name"});
+		namingTableMap.put("CandidateElement", new String[]{"candidate_element_data","name"});
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 
 		
@@ -265,6 +274,19 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		return resultMap.get(key);
 	}
 
+<<<<<<< HEAD
+=======
+	protected String trimString(String valueToTrim) {
+		if(valueToTrim==null) {
+			return null;
+		}
+		if(valueToTrim.isEmpty()) {
+			return "";
+		}
+		return valueToTrim.trim();
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected Map<String, String> getResultMap(String unionedSQL,
 			Object[] parameters) {
 		
@@ -280,10 +302,18 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 				
 				Map<String,String> internalMap = new HashMap<String,String>();
 				while(resultSet.next()){ 
+<<<<<<< HEAD
 					String key = resultSet.getString(1)+":"+resultSet.getString(2);
 					String value = resultSet.getString(3);
 					
 					//System.out.printf("%s: %s\r\n",key, value);
+=======
+					String key = trimString(resultSet.getString(1))+":"+trimString(resultSet.getString(2));
+					// Fixed the issue for Informix and Gbase 8t/s data base, it appends values for the class column
+					String value = resultSet.getString(3);
+					
+					// System.out.printf("%s = %s\r\n",key, value);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 					
 					internalMap.put(key, value);
 					
@@ -430,6 +460,9 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

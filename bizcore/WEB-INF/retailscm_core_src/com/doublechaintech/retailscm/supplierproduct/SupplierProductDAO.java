@@ -7,6 +7,13 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
+import com.doublechaintech.retailscm.productsupplyduration.ProductSupplyDuration;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.productsupplyduration.ProductSupplyDurationDAO;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplierDAO;
 
@@ -58,6 +65,14 @@ public interface SupplierProductDAO{
  	public void analyzeSupplierProductBySupplier(SmartList<SupplierProduct> resultList, String goodsSupplierId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:ProductSupplyDuration的product的ProductSupplyDurationList
+	public SmartList<ProductSupplyDuration> loadOurProductSupplyDurationList(RetailscmUserContext userContext, List<SupplierProduct> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

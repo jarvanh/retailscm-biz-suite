@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.goodssupplier;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -30,9 +39,18 @@ import com.doublechaintech.retailscm.accountset.AccountSetDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsSupplierDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class GoodsSupplierJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsSupplierDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -277,9 +295,14 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractSupplierProductListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GoodsSupplierTokens.SUPPLIER_PRODUCT_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplierProductListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,GoodsSupplierTokens.SUPPLIER_PRODUCT_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplierProductListEnabled(Map<String,Object> options){		 		
+ 		return GoodsSupplierTokens.of(options).analyzeSupplierProductListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplierProductListEnabled(Map<String,Object> options){
@@ -292,9 +315,14 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractSupplyOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GoodsSupplierTokens.SUPPLY_ORDER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,GoodsSupplierTokens.SUPPLY_ORDER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		 		
+ 		return GoodsSupplierTokens.of(options).analyzeSupplyOrderListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderListEnabled(Map<String,Object> options){
@@ -307,9 +335,14 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractAccountSetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GoodsSupplierTokens.ACCOUNT_SET_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeAccountSetListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,GoodsSupplierTokens.ACCOUNT_SET_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeAccountSetListEnabled(Map<String,Object> options){		 		
+ 		return GoodsSupplierTokens.of(options).analyzeAccountSetListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountSetListEnabled(Map<String,Object> options){
@@ -851,9 +884,15 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
+<<<<<<< HEAD
 		for(SupplierProduct supplierProduct: externalSupplierProductList){
 
 			supplierProduct.clearFromAll();
+=======
+		for(SupplierProduct supplierProductItem: externalSupplierProductList){
+
+			supplierProductItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -879,9 +918,15 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrder supplyOrder: externalSupplyOrderList){
 
 			supplyOrder.clearFromAll();
+=======
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+
+			supplyOrderItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -911,9 +956,15 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrder supplyOrder: externalSupplyOrderList){
 			supplyOrder.clearBuyer();
 			supplyOrder.clearSeller();
+=======
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearBuyer();
+			supplyOrderItem.clearSeller();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -951,9 +1002,15 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
+<<<<<<< HEAD
 		for(AccountSet accountSet: externalAccountSetList){
 
 			accountSet.clearFromAll();
+=======
+		for(AccountSet accountSetItem: externalAccountSetList){
+
+			accountSetItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -983,9 +1040,15 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
+<<<<<<< HEAD
 		for(AccountSet accountSet: externalAccountSetList){
 			accountSet.clearCountryCenter();
 			accountSet.clearGoodsSupplier();
+=======
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearCountryCenter();
+			accountSetItem.clearGoodsSupplier();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1027,9 +1090,15 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return goodsSupplier;
 		}
 		
+<<<<<<< HEAD
 		for(AccountSet accountSet: externalAccountSetList){
 			accountSet.clearRetailStore();
 			accountSet.clearGoodsSupplier();
+=======
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearRetailStore();
+			accountSetItem.clearGoodsSupplier();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1353,6 +1422,81 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public void enhanceList(List<GoodsSupplier> goodsSupplierList) {		
 		this.enhanceListInternal(goodsSupplierList, this.getGoodsSupplierMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplierProduct的supplier的SupplierProductList
+	public SmartList<SupplierProduct> loadOurSupplierProductList(RetailscmUserContext userContext, List<GoodsSupplier> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplierProduct.SUPPLIER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplierProduct> loadedObjs = userContext.getDAOGroup().getSupplierProductDAO().findSupplierProductWithKey(key, options);
+		Map<String, List<SupplierProduct>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getSupplier().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplierProduct> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplierProduct> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplierProductList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplyOrder的seller的SupplyOrderList
+	public SmartList<SupplyOrder> loadOurSupplyOrderList(RetailscmUserContext userContext, List<GoodsSupplier> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SELLER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplyOrder> loadedObjs = userContext.getDAOGroup().getSupplyOrderDAO().findSupplyOrderWithKey(key, options);
+		Map<String, List<SupplyOrder>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getSeller().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplyOrder> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplyOrder> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplyOrderList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:AccountSet的goodsSupplier的AccountSetList
+	public SmartList<AccountSet> loadOurAccountSetList(RetailscmUserContext userContext, List<GoodsSupplier> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountSet.GOODS_SUPPLIER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<AccountSet> loadedObjs = userContext.getDAOGroup().getAccountSetDAO().findAccountSetWithKey(key, options);
+		Map<String, List<AccountSet>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getGoodsSupplier().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<AccountSet> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<AccountSet> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setAccountSetList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<GoodsSupplier> goodsSupplierList = ownerEntity.collectRefsWithType(GoodsSupplier.INTERNAL_TYPE);
@@ -1385,6 +1529,12 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<GoodsSupplier> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsSupplierMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

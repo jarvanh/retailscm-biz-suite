@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.accountset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -82,9 +86,25 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	AccountSet(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static AccountSet withId(String id){
+		AccountSet accountSet = new AccountSet();
+		accountSet.setId(id);
+		accountSet.setVersion(Integer.MAX_VALUE);
+		return accountSet;
+	}
+	public 	static AccountSet refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCountryCenter( null );
 		setRetailStore( null );
@@ -287,6 +307,68 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(YEAR_SET_PROPERTY.equals(property)){
+			return getYearSet();
+		}
+		if(EFFECTIVE_DATE_PROPERTY.equals(property)){
+			return getEffectiveDate();
+		}
+		if(ACCOUNTING_SYSTEM_PROPERTY.equals(property)){
+			return getAccountingSystem();
+		}
+		if(DOMESTIC_CURRENCY_CODE_PROPERTY.equals(property)){
+			return getDomesticCurrencyCode();
+		}
+		if(DOMESTIC_CURRENCY_NAME_PROPERTY.equals(property)){
+			return getDomesticCurrencyName();
+		}
+		if(OPENING_BANK_PROPERTY.equals(property)){
+			return getOpeningBank();
+		}
+		if(ACCOUNT_NUMBER_PROPERTY.equals(property)){
+			return getAccountNumber();
+		}
+		if(COUNTRY_CENTER_PROPERTY.equals(property)){
+			return getCountryCenter();
+		}
+		if(RETAIL_STORE_PROPERTY.equals(property)){
+			return getRetailStore();
+		}
+		if(GOODS_SUPPLIER_PROPERTY.equals(property)){
+			return getGoodsSupplier();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(ACCOUNTING_SUBJECT_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingSubjectList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNTING_PERIOD_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingPeriodList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(ACCOUNTING_DOCUMENT_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingDocumentTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -300,6 +382,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -313,6 +401,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setYearSet(String yearSet){
@@ -326,6 +420,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeYearSet(String yearSet){
+		if(yearSet != null) { setYearSet(yearSet);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEffectiveDate(Date effectiveDate){
@@ -339,6 +439,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEffectiveDate(Date effectiveDate){
+		setEffectiveDate(effectiveDate);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingSystem(String accountingSystem){
@@ -352,6 +458,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeAccountingSystem(String accountingSystem){
+		if(accountingSystem != null) { setAccountingSystem(accountingSystem);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDomesticCurrencyCode(String domesticCurrencyCode){
@@ -365,6 +477,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDomesticCurrencyCode(String domesticCurrencyCode){
+		if(domesticCurrencyCode != null) { setDomesticCurrencyCode(domesticCurrencyCode);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDomesticCurrencyName(String domesticCurrencyName){
@@ -378,6 +496,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDomesticCurrencyName(String domesticCurrencyName){
+		if(domesticCurrencyName != null) { setDomesticCurrencyName(domesticCurrencyName);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOpeningBank(String openingBank){
@@ -391,6 +515,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOpeningBank(String openingBank){
+		if(openingBank != null) { setOpeningBank(openingBank);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountNumber(String accountNumber){
@@ -404,6 +534,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeAccountNumber(String accountNumber){
+		if(accountNumber != null) { setAccountNumber(accountNumber);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCountryCenter(RetailStoreCountryCenter countryCenter){
@@ -417,6 +553,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCountryCenter(RetailStoreCountryCenter countryCenter){
+		if(countryCenter != null) { setCountryCenter(countryCenter);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCountryCenter(){
@@ -435,6 +577,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeRetailStore(RetailStore retailStore){
+		if(retailStore != null) { setRetailStore(retailStore);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearRetailStore(){
@@ -453,6 +601,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeGoodsSupplier(GoodsSupplier goodsSupplier){
+		if(goodsSupplier != null) { setGoodsSupplier(goodsSupplier);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearGoodsSupplier(){
@@ -471,6 +625,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastUpdateTime(DateTime lastUpdateTime){
+		setLastUpdateTime(lastUpdateTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -484,6 +644,12 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -516,7 +682,20 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		}
 		getAccountingSubjectList().addAll(accountingSubjectList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeAccountingSubjectList(SmartList<AccountingSubject> accountingSubjectList){
+		if(accountingSubjectList==null){
+			return;
+		}
+		if(accountingSubjectList.isEmpty()){
+			return;
+		}
+		addAccountingSubjectList( accountingSubjectList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingSubject removeAccountingSubject(AccountingSubject accountingSubjectIndex){
 		
 		int index = getAccountingSubjectList().indexOf(accountingSubjectIndex);
@@ -614,7 +793,20 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		}
 		getAccountingPeriodList().addAll(accountingPeriodList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeAccountingPeriodList(SmartList<AccountingPeriod> accountingPeriodList){
+		if(accountingPeriodList==null){
+			return;
+		}
+		if(accountingPeriodList.isEmpty()){
+			return;
+		}
+		addAccountingPeriodList( accountingPeriodList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingPeriod removeAccountingPeriod(AccountingPeriod accountingPeriodIndex){
 		
 		int index = getAccountingPeriodList().indexOf(accountingPeriodIndex);
@@ -712,7 +904,20 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		}
 		getAccountingDocumentTypeList().addAll(accountingDocumentTypeList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeAccountingDocumentTypeList(SmartList<AccountingDocumentType> accountingDocumentTypeList){
+		if(accountingDocumentTypeList==null){
+			return;
+		}
+		if(accountingDocumentTypeList.isEmpty()){
+			return;
+		}
+		addAccountingDocumentTypeList( accountingDocumentTypeList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingDocumentType removeAccountingDocumentType(AccountingDocumentType accountingDocumentTypeIndex){
 		
 		int index = getAccountingDocumentTypeList().indexOf(accountingDocumentTypeIndex);
@@ -880,6 +1085,63 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountSet){
+		
+			
+			AccountSet dest =(AccountSet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeYearSet(getYearSet());
+			dest.mergeEffectiveDate(getEffectiveDate());
+			dest.mergeAccountingSystem(getAccountingSystem());
+			dest.mergeDomesticCurrencyCode(getDomesticCurrencyCode());
+			dest.mergeDomesticCurrencyName(getDomesticCurrencyName());
+			dest.mergeOpeningBank(getOpeningBank());
+			dest.mergeAccountNumber(getAccountNumber());
+			dest.mergeCountryCenter(getCountryCenter());
+			dest.mergeRetailStore(getRetailStore());
+			dest.mergeGoodsSupplier(getGoodsSupplier());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+			dest.mergeAccountingSubjectList(getAccountingSubjectList());
+			dest.mergeAccountingPeriodList(getAccountingPeriodList());
+			dest.mergeAccountingDocumentTypeList(getAccountingDocumentTypeList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountSet){
+		
+			
+			AccountSet dest =(AccountSet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeYearSet(getYearSet());
+			dest.mergeEffectiveDate(getEffectiveDate());
+			dest.mergeAccountingSystem(getAccountingSystem());
+			dest.mergeDomesticCurrencyCode(getDomesticCurrencyCode());
+			dest.mergeDomesticCurrencyName(getDomesticCurrencyName());
+			dest.mergeOpeningBank(getOpeningBank());
+			dest.mergeAccountNumber(getAccountNumber());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -144,6 +144,10 @@ import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
 import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userapp.UserApp;
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.quicklink.QuickLink;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.listaccess.ListAccess;
 import com.doublechaintech.retailscm.objectaccess.ObjectAccess;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
@@ -152,6 +156,11 @@ import com.doublechaintech.retailscm.formmessage.FormMessage;
 import com.doublechaintech.retailscm.formfieldmessage.FormFieldMessage;
 import com.doublechaintech.retailscm.formfield.FormField;
 import com.doublechaintech.retailscm.formaction.FormAction;
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
+import com.doublechaintech.retailscm.candidateelement.CandidateElement;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 public class BeanFactoryImpl{
 
@@ -866,6 +875,14 @@ public class BeanFactoryImpl{
 	}
 
 
+<<<<<<< HEAD
+=======
+	public QuickLink createQuickLink(Map<String,Object> options){
+		return new QuickLink();
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public ListAccess createListAccess(Map<String,Object> options){
 		return new ListAccess();
 	}
@@ -906,6 +923,7 @@ public class BeanFactoryImpl{
 	}
 
 
+<<<<<<< HEAD
 
 
 
@@ -913,6 +931,22 @@ public class BeanFactoryImpl{
 
 
 
+=======
+	public CandidateContainer createCandidateContainer(Map<String,Object> options){
+		return new CandidateContainer();
+	}
+
+
+	public CandidateElement createCandidateElement(Map<String,Object> options){
+		return new CandidateElement();
+	}
+
+
+
+
+
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 

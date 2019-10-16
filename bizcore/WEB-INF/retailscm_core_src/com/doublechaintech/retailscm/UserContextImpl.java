@@ -197,9 +197,15 @@ public class UserContextImpl implements UserContext{
 		smtpService.sendWithAttachment(to, subject, content, attachments);
 	}
 	
+<<<<<<< HEAD
 	public Object getCachedObject(String key,Class<?> clazz){
 		ensureCacheService();
 		return cacheService.get(key,clazz);
+=======
+	public <T> T getCachedObject(String key,Class<T> clazz){
+		ensureCacheService();
+		return (T)cacheService.get(key,clazz);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	protected void ensureCacheService(){
 		if(cacheService ==  null){
@@ -437,7 +443,11 @@ public class UserContextImpl implements UserContext{
 		setResponseHeader("X-Class", clazzName);
 	}
 	
+<<<<<<< HEAD
 	public void setChecker(RetailscmChecker checker) {
+=======
+	public void setChecker(RetailscmObjectChecker checker) {
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		//Let Retailscm do the job :)
 		
 	}

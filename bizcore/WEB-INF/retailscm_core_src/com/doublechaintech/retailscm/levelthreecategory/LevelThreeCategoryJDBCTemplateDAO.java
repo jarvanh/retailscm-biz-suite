@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.levelthreecategory;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.product.ProductDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LevelThreeCategoryDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implements LevelThreeCategoryDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  LevelTwoCategoryDAO  levelTwoCategoryDAO;
@@ -221,9 +239,14 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	protected boolean isExtractProductListEnabled(Map<String,Object> options){		
  		return checkOptions(options,LevelThreeCategoryTokens.PRODUCT_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeProductListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,LevelThreeCategoryTokens.PRODUCT_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeProductListEnabled(Map<String,Object> options){		 		
+ 		return LevelThreeCategoryTokens.of(options).analyzeProductListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveProductListEnabled(Map<String,Object> options){
@@ -611,9 +634,15 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO
 			return levelThreeCategory;
 		}
 		
+<<<<<<< HEAD
 		for(Product product: externalProductList){
 
 			product.clearFromAll();
+=======
+		for(Product productItem: externalProductList){
+
+			productItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -739,6 +768,35 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public void enhanceList(List<LevelThreeCategory> levelThreeCategoryList) {		
 		this.enhanceListInternal(levelThreeCategoryList, this.getLevelThreeCategoryMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:Product的parentCategory的ProductList
+	public SmartList<Product> loadOurProductList(RetailscmUserContext userContext, List<LevelThreeCategory> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Product.PARENT_CATEGORY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Product> loadedObjs = userContext.getDAOGroup().getProductDAO().findProductWithKey(key, options);
+		Map<String, List<Product>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getParentCategory().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Product> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Product> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setProductList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<LevelThreeCategory> levelThreeCategoryList = ownerEntity.collectRefsWithType(LevelThreeCategory.INTERNAL_TYPE);
@@ -771,6 +829,12 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<LevelThreeCategory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelThreeCategoryMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

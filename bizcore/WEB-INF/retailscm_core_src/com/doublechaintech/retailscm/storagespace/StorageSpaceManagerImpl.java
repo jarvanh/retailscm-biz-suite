@@ -266,8 +266,14 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 			//will be good when the storageSpace loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to StorageSpace.
+<<<<<<< HEAD
 			
 			
+=======
+			if (storageSpace.isChanged()){
+			storageSpace.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			storageSpace = saveStorageSpace(userContext, storageSpace, options);
 			return storageSpace;
 			
@@ -337,7 +343,11 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsShelfListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -594,8 +604,13 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
+<<<<<<< HEAD
 		for(String goodsShelfId: goodsShelfIds){
 			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
+=======
+		for(String goodsShelfIdItem: goodsShelfIds){
+			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);

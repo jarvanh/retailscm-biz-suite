@@ -409,6 +409,12 @@ public class BaseRelation{
 		String [] userAppRelatedObjectNames = {"sec_user:SecUser"};
 		addRelationIndex("UserApp",userAppRelatedObjectNames);
 
+<<<<<<< HEAD
+=======
+		String [] quickLinkRelatedObjectNames = {"app:UserApp"};
+		addRelationIndex("QuickLink",quickLinkRelatedObjectNames);
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		String [] listAccessRelatedObjectNames = {"app:UserApp"};
 		addRelationIndex("ListAccess",listAccessRelatedObjectNames);
 
@@ -430,6 +436,12 @@ public class BaseRelation{
 		String [] formActionRelatedObjectNames = {"form:GenericForm"};
 		addRelationIndex("FormAction",formActionRelatedObjectNames);
 
+<<<<<<< HEAD
+=======
+		String [] candidateElementRelatedObjectNames = {"container:CandidateContainer"};
+		addRelationIndex("CandidateElement",candidateElementRelatedObjectNames);
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	}
@@ -589,6 +601,10 @@ public class BaseRelation{
 		addGenericRelation("UserWhiteList"                         ,TRUST_CHAIN_READ,"domain");
 		addGenericRelation("SecUser"                               ,TRUST_CHAIN_READ,"domain");
 		addGenericRelation("UserApp"                               ,TRUST_CHAIN_READ,"secUser");
+<<<<<<< HEAD
+=======
+		addGenericRelation("QuickLink"                             ,TRUST_CHAIN_READ,"app");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		addGenericRelation("ListAccess"                            ,TRUST_CHAIN_READ,"app");
 		addGenericRelation("ObjectAccess"                          ,TRUST_CHAIN_READ,"app");
 		addGenericRelation("LoginHistory"                          ,TRUST_CHAIN_READ,"secUser");
@@ -596,6 +612,10 @@ public class BaseRelation{
 		addGenericRelation("FormFieldMessage"                      ,TRUST_CHAIN_READ,"form");
 		addGenericRelation("FormField"                             ,TRUST_CHAIN_READ,"form");
 		addGenericRelation("FormAction"                            ,TRUST_CHAIN_READ,"form");
+<<<<<<< HEAD
+=======
+		addGenericRelation("CandidateElement"                      ,TRUST_CHAIN_READ,"container");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	}
 

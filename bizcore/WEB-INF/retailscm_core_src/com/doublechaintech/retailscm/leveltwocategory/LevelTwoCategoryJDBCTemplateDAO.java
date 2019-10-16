@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.leveltwocategory;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.levelonecategory.LevelOneCategoryDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LevelTwoCategoryDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implements LevelTwoCategoryDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  LevelOneCategoryDAO  levelOneCategoryDAO;
@@ -221,9 +239,14 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	protected boolean isExtractLevelThreeCategoryListEnabled(Map<String,Object> options){		
  		return checkOptions(options,LevelTwoCategoryTokens.LEVEL_THREE_CATEGORY_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeLevelThreeCategoryListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,LevelTwoCategoryTokens.LEVEL_THREE_CATEGORY_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeLevelThreeCategoryListEnabled(Map<String,Object> options){		 		
+ 		return LevelTwoCategoryTokens.of(options).analyzeLevelThreeCategoryListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLevelThreeCategoryListEnabled(Map<String,Object> options){
@@ -611,9 +634,15 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 			return levelTwoCategory;
 		}
 		
+<<<<<<< HEAD
 		for(LevelThreeCategory levelThreeCategory: externalLevelThreeCategoryList){
 
 			levelThreeCategory.clearFromAll();
+=======
+		for(LevelThreeCategory levelThreeCategoryItem: externalLevelThreeCategoryList){
+
+			levelThreeCategoryItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -739,6 +768,35 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	public void enhanceList(List<LevelTwoCategory> levelTwoCategoryList) {		
 		this.enhanceListInternal(levelTwoCategoryList, this.getLevelTwoCategoryMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:LevelThreeCategory的parentCategory的LevelThreeCategoryList
+	public SmartList<LevelThreeCategory> loadOurLevelThreeCategoryList(RetailscmUserContext userContext, List<LevelTwoCategory> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(LevelThreeCategory.PARENT_CATEGORY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<LevelThreeCategory> loadedObjs = userContext.getDAOGroup().getLevelThreeCategoryDAO().findLevelThreeCategoryWithKey(key, options);
+		Map<String, List<LevelThreeCategory>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getParentCategory().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<LevelThreeCategory> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<LevelThreeCategory> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setLevelThreeCategoryList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<LevelTwoCategory> levelTwoCategoryList = ownerEntity.collectRefsWithType(LevelTwoCategory.INTERNAL_TYPE);
@@ -771,6 +829,12 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO i
 	public SmartList<LevelTwoCategory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelTwoCategoryMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

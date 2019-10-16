@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.levelonecategory;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -54,9 +58,25 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 	
 		
 	public 	LevelOneCategory(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static LevelOneCategory withId(String id){
+		LevelOneCategory levelOneCategory = new LevelOneCategory();
+		levelOneCategory.setId(id);
+		levelOneCategory.setVersion(Integer.MAX_VALUE);
+		return levelOneCategory;
+	}
+	public 	static LevelOneCategory refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCatalog( null );
 
@@ -101,6 +121,30 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(CATALOG_PROPERTY.equals(property)){
+			return getCatalog();
+		}
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(LEVEL_TWO_CATEGORY_LIST.equals(property)){
+			List<BaseEntity> list = getLevelTwoCategoryList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -114,6 +158,12 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCatalog(Catalog catalog){
@@ -127,6 +177,12 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCatalog(Catalog catalog){
+		if(catalog != null) { setCatalog(catalog);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCatalog(){
@@ -145,6 +201,12 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -158,6 +220,12 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -190,7 +258,20 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		}
 		getLevelTwoCategoryList().addAll(levelTwoCategoryList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeLevelTwoCategoryList(SmartList<LevelTwoCategory> levelTwoCategoryList){
+		if(levelTwoCategoryList==null){
+			return;
+		}
+		if(levelTwoCategoryList.isEmpty()){
+			return;
+		}
+		addLevelTwoCategoryList( levelTwoCategoryList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  LevelTwoCategory removeLevelTwoCategory(LevelTwoCategory levelTwoCategoryIndex){
 		
 		int index = getLevelTwoCategoryList().indexOf(levelTwoCategoryIndex);
@@ -320,6 +401,43 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof LevelOneCategory){
+		
+			
+			LevelOneCategory dest =(LevelOneCategory)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCatalog(getCatalog());
+			dest.mergeName(getName());
+			dest.mergeVersion(getVersion());
+			dest.mergeLevelTwoCategoryList(getLevelTwoCategoryList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof LevelOneCategory){
+		
+			
+			LevelOneCategory dest =(LevelOneCategory)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

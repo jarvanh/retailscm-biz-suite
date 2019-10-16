@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.receivingspace;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ReceivingSpaceDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class ReceivingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ReceivingSpaceDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -221,9 +239,14 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 	protected boolean isExtractGoodsListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ReceivingSpaceTokens.GOODS_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ReceivingSpaceTokens.GOODS_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		 		
+ 		return ReceivingSpaceTokens.of(options).analyzeGoodsListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsListEnabled(Map<String,Object> options){
@@ -639,9 +662,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 
 			goods.clearFromAll();
+=======
+		for(Goods goodsItem: externalGoodsList){
+
+			goodsItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -671,9 +700,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearSku();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -715,9 +750,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearGoodsAllocation();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearGoodsAllocation();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -759,9 +800,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearSmartPallet();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSmartPallet();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -803,9 +850,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearShippingSpace();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearShippingSpace();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -847,9 +900,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearTransportTask();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -891,9 +950,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearRetailStore();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStore();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -935,9 +1000,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearBizOrder();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearBizOrder();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -979,9 +1050,15 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 			return receivingSpace;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearRetailStoreOrder();
 			goods.clearReceivingSpace();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStoreOrder();
+			goodsItem.clearReceivingSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1119,6 +1196,35 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 	public void enhanceList(List<ReceivingSpace> receivingSpaceList) {		
 		this.enhanceListInternal(receivingSpaceList, this.getReceivingSpaceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:Goods的receivingSpace的GoodsList
+	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<ReceivingSpace> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.RECEIVING_SPACE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Goods> loadedObjs = userContext.getDAOGroup().getGoodsDAO().findGoodsWithKey(key, options);
+		Map<String, List<Goods>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getReceivingSpace().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Goods> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Goods> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setGoodsList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<ReceivingSpace> receivingSpaceList = ownerEntity.collectRefsWithType(ReceivingSpace.INTERNAL_TYPE);
@@ -1151,6 +1257,12 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imp
 	public SmartList<ReceivingSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getReceivingSpaceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

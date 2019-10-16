@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.formfield;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.genericform.GenericFormDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class FormFieldJDBCTemplateDAO extends RetailscmNamingServiceDAO implements FormFieldDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class FormFieldJDBCTemplateDAO extends RetailscmBaseDAOImpl implements FormFieldDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  GenericFormDAO  genericFormDAO;
@@ -538,6 +556,12 @@ public class FormFieldJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public void enhanceList(List<FormField> formFieldList) {		
 		this.enhanceListInternal(formFieldList, this.getFormFieldMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<FormField> formFieldList = ownerEntity.collectRefsWithType(FormField.INTERNAL_TYPE);
@@ -570,6 +594,12 @@ public class FormFieldJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<FormField> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getFormFieldMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

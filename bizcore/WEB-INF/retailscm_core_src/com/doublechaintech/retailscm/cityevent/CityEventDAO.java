@@ -7,6 +7,13 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.eventattendance.EventAttendance;
+import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenter;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenterDAO;
 import com.doublechaintech.retailscm.eventattendance.EventAttendanceDAO;
 
@@ -62,6 +69,14 @@ public interface CityEventDAO{
  	public void analyzeCityEventByCityServiceCenter(SmartList<CityEvent> resultList, String retailStoreCityServiceCenterId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:EventAttendance的cityEvent的EventAttendanceList
+	public SmartList<EventAttendance> loadOurEventAttendanceList(RetailscmUserContext userContext, List<CityEvent> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -242,8 +242,14 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 			//will be good when the consumerOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderPaymentGroup.
+<<<<<<< HEAD
 			
 			
+=======
+			if (consumerOrderPaymentGroup.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			consumerOrderPaymentGroup = saveConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroup, options);
 			return consumerOrderPaymentGroup;
 			
@@ -312,7 +318,11 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

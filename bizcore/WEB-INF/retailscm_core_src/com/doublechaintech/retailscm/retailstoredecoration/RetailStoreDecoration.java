@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.retailstoredecoration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -51,9 +55,25 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 	
 		
 	public 	RetailStoreDecoration(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static RetailStoreDecoration withId(String id){
+		RetailStoreDecoration retailStoreDecoration = new RetailStoreDecoration();
+		retailStoreDecoration.setId(id);
+		retailStoreDecoration.setVersion(Integer.MAX_VALUE);
+		return retailStoreDecoration;
+	}
+	public 	static RetailStoreDecoration refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -96,6 +116,27 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(COMMENT_PROPERTY.equals(property)){
+			return getComment();
+		}
+		if(RETAIL_STORE_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -109,6 +150,12 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setComment(String comment){
@@ -122,6 +169,12 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeComment(String comment){
+		if(comment != null) { setComment(comment);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -135,6 +188,12 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -167,7 +226,20 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 		}
 		getRetailStoreList().addAll(retailStoreList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeRetailStoreList(SmartList<RetailStore> retailStoreList){
+		if(retailStoreList==null){
+			return;
+		}
+		if(retailStoreList.isEmpty()){
+			return;
+		}
+		addRetailStoreList( retailStoreList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStore removeRetailStore(RetailStore retailStoreIndex){
 		
 		int index = getRetailStoreList().indexOf(retailStoreIndex);
@@ -294,6 +366,42 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreDecoration){
+		
+			
+			RetailStoreDecoration dest =(RetailStoreDecoration)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+			dest.mergeRetailStoreList(getRetailStoreList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreDecoration){
+		
+			
+			RetailStoreDecoration dest =(RetailStoreDecoration)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

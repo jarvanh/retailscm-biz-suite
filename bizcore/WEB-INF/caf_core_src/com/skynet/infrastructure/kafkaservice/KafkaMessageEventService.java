@@ -46,7 +46,11 @@ public class KafkaMessageEventService implements EventService, InitializingBean 
         String jsonResult;
         try {
             event.setTime(new Date());
+<<<<<<< HEAD
             jsonResult = objectMapper.writeValueAsString(event);
+=======
+            jsonResult = objectMapper.copy().writeValueAsString(event);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return;

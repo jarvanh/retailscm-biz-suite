@@ -254,8 +254,14 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			//will be good when the leaveType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LeaveType.
+<<<<<<< HEAD
 			
 			
+=======
+			if (leaveType.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			leaveType = saveLeaveType(userContext, leaveType, options);
 			return leaveType;
 			
@@ -325,7 +331,11 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeLeaveListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -563,8 +573,13 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
+<<<<<<< HEAD
 		for(String employeeLeaveId: employeeLeaveIds){
 			userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
+=======
+		for(String employeeLeaveIdItem: employeeLeaveIds){
+			userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);

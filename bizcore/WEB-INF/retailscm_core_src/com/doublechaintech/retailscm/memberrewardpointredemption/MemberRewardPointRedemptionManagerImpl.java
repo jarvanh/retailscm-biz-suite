@@ -242,8 +242,14 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 			//will be good when the memberRewardPointRedemption loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberRewardPointRedemption.
+<<<<<<< HEAD
 			
 			
+=======
+			if (memberRewardPointRedemption.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			memberRewardPointRedemption = saveMemberRewardPointRedemption(userContext, memberRewardPointRedemption, options);
 			return memberRewardPointRedemption;
 			
@@ -312,7 +318,11 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

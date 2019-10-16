@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.consumerorder;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -46,9 +55,36 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ConsumerOrderDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ConsumerOrderDAO{
+ 
+ 	
+ 	private  RetailStoreMemberDAO  retailStoreMemberDAO;
+ 	public void setRetailStoreMemberDAO(RetailStoreMemberDAO retailStoreMemberDAO){
+	 	this.retailStoreMemberDAO = retailStoreMemberDAO;
+ 	}
+ 	public RetailStoreMemberDAO getRetailStoreMemberDAO(){
+	 	return this.retailStoreMemberDAO;
+ 	}
+ 
+ 	
+ 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
+ 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
+	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
+ 	}
+ 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
+	 	return this.supplyOrderProcessingDAO;
+ 	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  SupplyOrderApprovalDAO  supplyOrderApprovalDAO;
@@ -60,6 +96,18 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  
  	
+<<<<<<< HEAD
+=======
+ 	private  RetailStoreDAO  retailStoreDAO;
+ 	public void setRetailStoreDAO(RetailStoreDAO retailStoreDAO){
+	 	this.retailStoreDAO = retailStoreDAO;
+ 	}
+ 	public RetailStoreDAO getRetailStoreDAO(){
+	 	return this.retailStoreDAO;
+ 	}
+ 
+ 	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	private  SupplyOrderDeliveryDAO  supplyOrderDeliveryDAO;
  	public void setSupplyOrderDeliveryDAO(SupplyOrderDeliveryDAO supplyOrderDeliveryDAO){
 	 	this.supplyOrderDeliveryDAO = supplyOrderDeliveryDAO;
@@ -69,6 +117,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  
  	
+<<<<<<< HEAD
  	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
  	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
 	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
@@ -78,6 +127,8 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  
  	
+=======
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
  	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
 	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
@@ -87,6 +138,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  
  	
+<<<<<<< HEAD
  	private  RetailStoreMemberDAO  retailStoreMemberDAO;
  	public void setRetailStoreMemberDAO(RetailStoreMemberDAO retailStoreMemberDAO){
 	 	this.retailStoreMemberDAO = retailStoreMemberDAO;
@@ -111,6 +163,14 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
  	}
  	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
 	 	return this.supplyOrderProcessingDAO;
+=======
+ 	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
+ 	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
+	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
+ 	}
+ 	public SupplyOrderShipmentDAO getSupplyOrderShipmentDAO(){
+	 	return this.supplyOrderShipmentDAO;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 
 
@@ -483,9 +543,14 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractConsumerOrderLineItemListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_LINE_ITEM_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeConsumerOrderLineItemListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_LINE_ITEM_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeConsumerOrderLineItemListEnabled(Map<String,Object> options){		 		
+ 		return ConsumerOrderTokens.of(options).analyzeConsumerOrderLineItemListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderLineItemListEnabled(Map<String,Object> options){
@@ -498,9 +563,14 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractConsumerOrderShippingGroupListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_SHIPPING_GROUP_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeConsumerOrderShippingGroupListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_SHIPPING_GROUP_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeConsumerOrderShippingGroupListEnabled(Map<String,Object> options){		 		
+ 		return ConsumerOrderTokens.of(options).analyzeConsumerOrderShippingGroupListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderShippingGroupListEnabled(Map<String,Object> options){
@@ -513,9 +583,14 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractConsumerOrderPaymentGroupListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_PAYMENT_GROUP_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeConsumerOrderPaymentGroupListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_PAYMENT_GROUP_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeConsumerOrderPaymentGroupListEnabled(Map<String,Object> options){		 		
+ 		return ConsumerOrderTokens.of(options).analyzeConsumerOrderPaymentGroupListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderPaymentGroupListEnabled(Map<String,Object> options){
@@ -528,9 +603,14 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractConsumerOrderPriceAdjustmentListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_PRICE_ADJUSTMENT_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeConsumerOrderPriceAdjustmentListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ConsumerOrderTokens.CONSUMER_ORDER_PRICE_ADJUSTMENT_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeConsumerOrderPriceAdjustmentListEnabled(Map<String,Object> options){		 		
+ 		return ConsumerOrderTokens.of(options).analyzeConsumerOrderPriceAdjustmentListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderPriceAdjustmentListEnabled(Map<String,Object> options){
@@ -543,9 +623,14 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ConsumerOrderTokens.RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ConsumerOrderTokens.RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){		 		
+ 		return ConsumerOrderTokens.of(options).analyzeRetailStoreMemberGiftCardConsumeRecordListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberGiftCardConsumeRecordListEnabled(Map<String,Object> options){
@@ -1837,9 +1922,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrderLineItem consumerOrderLineItem: externalConsumerOrderLineItemList){
 
 			consumerOrderLineItem.clearFromAll();
+=======
+		for(ConsumerOrderLineItem consumerOrderLineItemItem: externalConsumerOrderLineItemList){
+
+			consumerOrderLineItemItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1869,9 +1960,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrderLineItem consumerOrderLineItem: externalConsumerOrderLineItemList){
 			consumerOrderLineItem.clearSkuId();
 			consumerOrderLineItem.clearBizOrder();
+=======
+		for(ConsumerOrderLineItem consumerOrderLineItemItem: externalConsumerOrderLineItemList){
+			consumerOrderLineItemItem.clearSkuId();
+			consumerOrderLineItemItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1909,9 +2006,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrderShippingGroup consumerOrderShippingGroup: externalConsumerOrderShippingGroupList){
 
 			consumerOrderShippingGroup.clearFromAll();
+=======
+		for(ConsumerOrderShippingGroup consumerOrderShippingGroupItem: externalConsumerOrderShippingGroupList){
+
+			consumerOrderShippingGroupItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1937,9 +2040,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrderPaymentGroup consumerOrderPaymentGroup: externalConsumerOrderPaymentGroupList){
 
 			consumerOrderPaymentGroup.clearFromAll();
+=======
+		for(ConsumerOrderPaymentGroup consumerOrderPaymentGroupItem: externalConsumerOrderPaymentGroupList){
+
+			consumerOrderPaymentGroupItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1965,9 +2074,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment: externalConsumerOrderPriceAdjustmentList){
 
 			consumerOrderPriceAdjustment.clearFromAll();
+=======
+		for(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustmentItem: externalConsumerOrderPriceAdjustmentList){
+
+			consumerOrderPriceAdjustmentItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1993,9 +2108,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
 
 			retailStoreMemberGiftCardConsumeRecord.clearFromAll();
+=======
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
+
+			retailStoreMemberGiftCardConsumeRecordItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -2025,9 +2146,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return consumerOrder;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord: externalRetailStoreMemberGiftCardConsumeRecordList){
 			retailStoreMemberGiftCardConsumeRecord.clearOwner();
 			retailStoreMemberGiftCardConsumeRecord.clearBizOrder();
+=======
+		for(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordItem: externalRetailStoreMemberGiftCardConsumeRecordList){
+			retailStoreMemberGiftCardConsumeRecordItem.clearOwner();
+			retailStoreMemberGiftCardConsumeRecordItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2537,6 +2664,127 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public void enhanceList(List<ConsumerOrder> consumerOrderList) {		
 		this.enhanceListInternal(consumerOrderList, this.getConsumerOrderMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:ConsumerOrderLineItem的bizOrder的ConsumerOrderLineItemList
+	public SmartList<ConsumerOrderLineItem> loadOurConsumerOrderLineItemList(RetailscmUserContext userContext, List<ConsumerOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrderLineItem.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ConsumerOrderLineItem> loadedObjs = userContext.getDAOGroup().getConsumerOrderLineItemDAO().findConsumerOrderLineItemWithKey(key, options);
+		Map<String, List<ConsumerOrderLineItem>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ConsumerOrderLineItem> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ConsumerOrderLineItem> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setConsumerOrderLineItemList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ConsumerOrderShippingGroup的bizOrder的ConsumerOrderShippingGroupList
+	public SmartList<ConsumerOrderShippingGroup> loadOurConsumerOrderShippingGroupList(RetailscmUserContext userContext, List<ConsumerOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrderShippingGroup.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ConsumerOrderShippingGroup> loadedObjs = userContext.getDAOGroup().getConsumerOrderShippingGroupDAO().findConsumerOrderShippingGroupWithKey(key, options);
+		Map<String, List<ConsumerOrderShippingGroup>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ConsumerOrderShippingGroup> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ConsumerOrderShippingGroup> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setConsumerOrderShippingGroupList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ConsumerOrderPaymentGroup的bizOrder的ConsumerOrderPaymentGroupList
+	public SmartList<ConsumerOrderPaymentGroup> loadOurConsumerOrderPaymentGroupList(RetailscmUserContext userContext, List<ConsumerOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrderPaymentGroup.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ConsumerOrderPaymentGroup> loadedObjs = userContext.getDAOGroup().getConsumerOrderPaymentGroupDAO().findConsumerOrderPaymentGroupWithKey(key, options);
+		Map<String, List<ConsumerOrderPaymentGroup>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ConsumerOrderPaymentGroup> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ConsumerOrderPaymentGroup> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setConsumerOrderPaymentGroupList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ConsumerOrderPriceAdjustment的bizOrder的ConsumerOrderPriceAdjustmentList
+	public SmartList<ConsumerOrderPriceAdjustment> loadOurConsumerOrderPriceAdjustmentList(RetailscmUserContext userContext, List<ConsumerOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrderPriceAdjustment.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ConsumerOrderPriceAdjustment> loadedObjs = userContext.getDAOGroup().getConsumerOrderPriceAdjustmentDAO().findConsumerOrderPriceAdjustmentWithKey(key, options);
+		Map<String, List<ConsumerOrderPriceAdjustment>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ConsumerOrderPriceAdjustment> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ConsumerOrderPriceAdjustment> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setConsumerOrderPriceAdjustmentList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberGiftCardConsumeRecord的bizOrder的RetailStoreMemberGiftCardConsumeRecordList
+	public SmartList<RetailStoreMemberGiftCardConsumeRecord> loadOurRetailStoreMemberGiftCardConsumeRecordList(RetailscmUserContext userContext, List<ConsumerOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreMemberGiftCardConsumeRecord.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreMemberGiftCardConsumeRecord> loadedObjs = userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().findRetailStoreMemberGiftCardConsumeRecordWithKey(key, options);
+		Map<String, List<RetailStoreMemberGiftCardConsumeRecord>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreMemberGiftCardConsumeRecord> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreMemberGiftCardConsumeRecord> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreMemberGiftCardConsumeRecordList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<ConsumerOrder> consumerOrderList = ownerEntity.collectRefsWithType(ConsumerOrder.INTERNAL_TYPE);
@@ -2569,6 +2817,12 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<ConsumerOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getConsumerOrderMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

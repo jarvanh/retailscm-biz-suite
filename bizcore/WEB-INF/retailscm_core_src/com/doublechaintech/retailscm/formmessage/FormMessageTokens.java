@@ -38,6 +38,18 @@ public class FormMessageTokens extends CommonTokens{
 	protected FormMessageTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  FormMessageTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		FormMessageTokens tokens = new FormMessageTokens(options);
+		return tokens;
+		
+	}
+	protected FormMessageTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public FormMessageTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class FormMessageTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public FormMessageTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String FORM = "form";
 	public String getForm(){

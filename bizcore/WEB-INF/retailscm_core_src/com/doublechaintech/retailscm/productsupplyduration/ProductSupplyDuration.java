@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.productsupplyduration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,9 +59,25 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 	
 		
 	public 	ProductSupplyDuration(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static ProductSupplyDuration withId(String id){
+		ProductSupplyDuration productSupplyDuration = new ProductSupplyDuration();
+		productSupplyDuration.setId(id);
+		productSupplyDuration.setVersion(Integer.MAX_VALUE);
+		return productSupplyDuration;
+	}
+	public 	static ProductSupplyDuration refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setProduct( null );
 
@@ -139,6 +159,32 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(QUANTITY_PROPERTY.equals(property)){
+			return getQuantity();
+		}
+		if(DURATION_PROPERTY.equals(property)){
+			return getDuration();
+		}
+		if(PRICE_PROPERTY.equals(property)){
+			return getPrice();
+		}
+		if(PRODUCT_PROPERTY.equals(property)){
+			return getProduct();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -152,6 +198,12 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setQuantity(int quantity){
@@ -165,6 +217,12 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeQuantity(int quantity){
+		setQuantity(quantity);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDuration(String duration){
@@ -178,6 +236,12 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDuration(String duration){
+		if(duration != null) { setDuration(duration);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPrice(BigDecimal price){
@@ -191,6 +255,12 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePrice(BigDecimal price){
+		setPrice(price);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setProduct(SupplierProduct product){
@@ -204,6 +274,12 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeProduct(SupplierProduct product){
+		if(product != null) { setProduct(product);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearProduct(){
@@ -222,6 +298,12 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -282,6 +364,46 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ProductSupplyDuration){
+		
+			
+			ProductSupplyDuration dest =(ProductSupplyDuration)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeDuration(getDuration());
+			dest.mergePrice(getPrice());
+			dest.mergeProduct(getProduct());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ProductSupplyDuration){
+		
+			
+			ProductSupplyDuration dest =(ProductSupplyDuration)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeDuration(getDuration());
+			dest.mergePrice(getPrice());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

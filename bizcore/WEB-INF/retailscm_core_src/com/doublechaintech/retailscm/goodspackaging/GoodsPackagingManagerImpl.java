@@ -257,8 +257,14 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 			//will be good when the goodsPackaging loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsPackaging.
+<<<<<<< HEAD
 			
 			
+=======
+			if (goodsPackaging.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, options);
 			return goodsPackaging;
 			
@@ -328,7 +334,11 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -707,8 +717,13 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
+<<<<<<< HEAD
 		for(String goodsId: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsId);
+=======
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);

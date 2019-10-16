@@ -262,8 +262,14 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 			//will be good when the transportFleet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TransportFleet.
+<<<<<<< HEAD
 			
 			
+=======
+			if (transportFleet.isChanged()){
+			transportFleet.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			transportFleet = saveTransportFleet(userContext, transportFleet, options);
 			return transportFleet;
 			
@@ -335,7 +341,11 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 		.sortTransportTruckListWith("id","desc")
 		.sortTruckDriverListWith("id","desc")
 		.sortTransportTaskListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -634,8 +644,13 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 			String transportTruckIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTransportFleet(transportFleetId);
+<<<<<<< HEAD
 		for(String transportTruckId: transportTruckIds){
 			userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
+=======
+		for(String transportTruckIdItem: transportTruckIds){
+			userContext.getChecker().checkIdOfTransportTruck(transportTruckIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TransportFleetManagerException.class);
@@ -906,8 +921,13 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 			String truckDriverIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTransportFleet(transportFleetId);
+<<<<<<< HEAD
 		for(String truckDriverId: truckDriverIds){
 			userContext.getChecker().checkIdOfTruckDriver(truckDriverId);
+=======
+		for(String truckDriverIdItem: truckDriverIds){
+			userContext.getChecker().checkIdOfTruckDriver(truckDriverIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TransportFleetManagerException.class);
@@ -1183,8 +1203,13 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 			String transportTaskIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTransportFleet(transportFleetId);
+<<<<<<< HEAD
 		for(String transportTaskId: transportTaskIds){
 			userContext.getChecker().checkIdOfTransportTask(transportTaskId);
+=======
+		for(String transportTaskIdItem: transportTaskIds){
+			userContext.getChecker().checkIdOfTransportTask(transportTaskIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TransportFleetManagerException.class);

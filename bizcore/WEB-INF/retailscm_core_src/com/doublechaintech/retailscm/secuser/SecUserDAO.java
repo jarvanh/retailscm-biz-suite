@@ -7,6 +7,15 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
+import com.doublechaintech.retailscm.userdomain.UserDomain;
+import com.doublechaintech.retailscm.loginhistory.LoginHistory;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
 import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingDAO;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
@@ -97,6 +106,17 @@ public interface SecUserDAO{
  	public void analyzeSecUserByBlocking(SmartList<SecUser> resultList, String secUserBlockingId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:UserApp的secUser的UserAppList
+	public SmartList<UserApp> loadOurUserAppList(RetailscmUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:LoginHistory的secUser的LoginHistoryList
+	public SmartList<LoginHistory> loadOurLoginHistoryList(RetailscmUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

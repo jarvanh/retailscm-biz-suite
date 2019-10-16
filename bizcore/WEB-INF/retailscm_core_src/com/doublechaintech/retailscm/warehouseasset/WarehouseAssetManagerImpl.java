@@ -243,8 +243,14 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 			//will be good when the warehouseAsset loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to WarehouseAsset.
+<<<<<<< HEAD
 			
 			
+=======
+			if (warehouseAsset.isChanged()){
+			warehouseAsset.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			warehouseAsset = saveWarehouseAsset(userContext, warehouseAsset, options);
 			return warehouseAsset;
 			
@@ -313,7 +319,11 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

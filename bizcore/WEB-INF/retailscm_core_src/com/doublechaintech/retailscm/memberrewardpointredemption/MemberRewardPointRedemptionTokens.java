@@ -38,6 +38,18 @@ public class MemberRewardPointRedemptionTokens extends CommonTokens{
 	protected MemberRewardPointRedemptionTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  MemberRewardPointRedemptionTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		MemberRewardPointRedemptionTokens tokens = new MemberRewardPointRedemptionTokens(options);
+		return tokens;
+		
+	}
+	protected MemberRewardPointRedemptionTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public MemberRewardPointRedemptionTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class MemberRewardPointRedemptionTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public MemberRewardPointRedemptionTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String OWNER = "owner";
 	public String getOwner(){

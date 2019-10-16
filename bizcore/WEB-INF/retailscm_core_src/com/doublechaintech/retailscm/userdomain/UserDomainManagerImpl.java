@@ -239,8 +239,14 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 			//will be good when the userDomain loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserDomain.
+<<<<<<< HEAD
 			
 			
+=======
+			if (userDomain.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			userDomain = saveUserDomain(userContext, userDomain, options);
 			return userDomain;
 			
@@ -311,7 +317,11 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		return tokens().allTokens()
 		.sortUserWhiteListListWith("id","desc")
 		.sortSecUserListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -467,8 +477,13 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 			String userWhiteListIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfUserDomain(userDomainId);
+<<<<<<< HEAD
 		for(String userWhiteListId: userWhiteListIds){
 			userContext.getChecker().checkIdOfUserWhiteList(userWhiteListId);
+=======
+		for(String userWhiteListIdItem: userWhiteListIds){
+			userContext.getChecker().checkIdOfUserWhiteList(userWhiteListIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(UserDomainManagerException.class);
@@ -608,7 +623,11 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 
 
 
+<<<<<<< HEAD
 	protected void checkParamsForAddingSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime,String [] tokensExpr) throws Exception{
+=======
+	protected void checkParamsForAddingSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime,String [] tokensExpr) throws Exception{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 		
 
@@ -625,6 +644,15 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 		userContext.getChecker().checkPwdOfSecUser(pwd);
 		
+<<<<<<< HEAD
+=======
+		userContext.getChecker().checkWeixinOpenidOfSecUser(weixinOpenid);
+		
+		userContext.getChecker().checkWeixinAppidOfSecUser(weixinAppid);
+		
+		userContext.getChecker().checkAccessTokenOfSecUser(accessToken);
+		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		userContext.getChecker().checkVerificationCodeOfSecUser(verificationCode);
 		
 		userContext.getChecker().checkVerificationCodeExpireOfSecUser(verificationCodeExpire);
@@ -635,12 +663,21 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 
 	
 	}
+<<<<<<< HEAD
 	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String [] tokensExpr) throws Exception
 	{	
 		
 		checkParamsForAddingSecUser(userContext,userDomainId,login, mobile, email, pwd, verificationCode, verificationCodeExpire, lastLoginTime,tokensExpr);
 		
 		SecUser secUser = createSecUser(userContext,login, mobile, email, pwd, verificationCode, verificationCodeExpire, lastLoginTime);
+=======
+	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String [] tokensExpr) throws Exception
+	{	
+		
+		checkParamsForAddingSecUser(userContext,userDomainId,login, mobile, email, pwd, weixinOpenid, weixinAppid, accessToken, verificationCode, verificationCodeExpire, lastLoginTime,tokensExpr);
+		
+		SecUser secUser = createSecUser(userContext,login, mobile, email, pwd, weixinOpenid, weixinAppid, accessToken, verificationCode, verificationCodeExpire, lastLoginTime);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
 		synchronized(userDomain){ 
@@ -653,7 +690,11 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 			return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 		}
 	}
+<<<<<<< HEAD
 	protected void checkParamsForUpdatingSecUserProperties(RetailscmUserContext userContext, String userDomainId,String id,String login,String mobile,String email,String pwd,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String [] tokensExpr) throws Exception {
+=======
+	protected void checkParamsForUpdatingSecUserProperties(RetailscmUserContext userContext, String userDomainId,String id,String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String [] tokensExpr) throws Exception {
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 		userContext.getChecker().checkIdOfUserDomain(userDomainId);
 		userContext.getChecker().checkIdOfSecUser(id);
@@ -662,6 +703,12 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		userContext.getChecker().checkMobileOfSecUser( mobile);
 		userContext.getChecker().checkEmailOfSecUser( email);
 		userContext.getChecker().checkPwdOfSecUser( pwd);
+<<<<<<< HEAD
+=======
+		userContext.getChecker().checkWeixinOpenidOfSecUser( weixinOpenid);
+		userContext.getChecker().checkWeixinAppidOfSecUser( weixinAppid);
+		userContext.getChecker().checkAccessTokenOfSecUser( accessToken);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		userContext.getChecker().checkVerificationCodeOfSecUser( verificationCode);
 		userContext.getChecker().checkVerificationCodeExpireOfSecUser( verificationCodeExpire);
 		userContext.getChecker().checkLastLoginTimeOfSecUser( lastLoginTime);
@@ -669,9 +716,15 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		userContext.getChecker().throwExceptionIfHasErrors(UserDomainManagerException.class);
 		
 	}
+<<<<<<< HEAD
 	public  UserDomain updateSecUserProperties(RetailscmUserContext userContext, String userDomainId, String id,String login,String mobile,String email,String pwd,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingSecUserProperties(userContext,userDomainId,id,login,mobile,email,pwd,verificationCode,verificationCodeExpire,lastLoginTime,tokensExpr);
+=======
+	public  UserDomain updateSecUserProperties(RetailscmUserContext userContext, String userDomainId, String id,String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime, String [] tokensExpr) throws Exception
+	{	
+		checkParamsForUpdatingSecUserProperties(userContext,userDomainId,id,login,mobile,email,pwd,weixinOpenid,weixinAppid,accessToken,verificationCode,verificationCodeExpire,lastLoginTime,tokensExpr);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 		Map<String, Object> options = tokens()
 				.allTokens()
@@ -690,6 +743,12 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		item.updateMobile( mobile );
 		item.updateEmail( email );
 		item.updatePwd( pwd );
+<<<<<<< HEAD
+=======
+		item.updateWeixinOpenid( weixinOpenid );
+		item.updateWeixinAppid( weixinAppid );
+		item.updateAccessToken( accessToken );
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		item.updateVerificationCode( verificationCode );
 		item.updateVerificationCodeExpire( verificationCodeExpire );
 		item.updateLastLoginTime( lastLoginTime );
@@ -703,7 +762,11 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	}
 	
 	
+<<<<<<< HEAD
 	protected SecUser createSecUser(RetailscmUserContext userContext, String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime) throws Exception{
+=======
+	protected SecUser createSecUser(RetailscmUserContext userContext, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime) throws Exception{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 		SecUser secUser = new SecUser();
 		
@@ -712,6 +775,12 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		secUser.setMobile(mobile);		
 		secUser.setEmail(email);		
 		secUser.setClearTextOfPwd(pwd);		
+<<<<<<< HEAD
+=======
+		secUser.setWeixinOpenid(weixinOpenid);		
+		secUser.setWeixinAppid(weixinAppid);		
+		secUser.setAccessToken(accessToken);		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		secUser.setVerificationCode(verificationCode);		
 		secUser.setVerificationCodeExpire(verificationCodeExpire);		
 		secUser.setLastLoginTime(lastLoginTime);		
@@ -736,8 +805,13 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 			String secUserIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfUserDomain(userDomainId);
+<<<<<<< HEAD
 		for(String secUserId: secUserIds){
 			userContext.getChecker().checkIdOfSecUser(secUserId);
+=======
+		for(String secUserIdItem: secUserIds){
+			userContext.getChecker().checkIdOfSecUser(secUserIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(UserDomainManagerException.class);
@@ -843,6 +917,21 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 			userContext.getChecker().checkPwdOfSecUser(parseString(newValueExpr));
 		}
 		
+<<<<<<< HEAD
+=======
+		if(SecUser.WEIXIN_OPENID_PROPERTY.equals(property)){
+			userContext.getChecker().checkWeixinOpenidOfSecUser(parseString(newValueExpr));
+		}
+		
+		if(SecUser.WEIXIN_APPID_PROPERTY.equals(property)){
+			userContext.getChecker().checkWeixinAppidOfSecUser(parseString(newValueExpr));
+		}
+		
+		if(SecUser.ACCESS_TOKEN_PROPERTY.equals(property)){
+			userContext.getChecker().checkAccessTokenOfSecUser(parseString(newValueExpr));
+		}
+		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if(SecUser.VERIFICATION_CODE_PROPERTY.equals(property)){
 			userContext.getChecker().checkVerificationCodeOfSecUser(parseInt(newValueExpr));
 		}

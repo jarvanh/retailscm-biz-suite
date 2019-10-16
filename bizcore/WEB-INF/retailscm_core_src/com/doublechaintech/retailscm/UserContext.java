@@ -14,7 +14,11 @@ public interface UserContext extends BaseUserContext{
 	public void putToCache(String key, Object value, int timeToLiveInSeconds);	
 	public void cacheUser(Object value);
 	public Object userOf(Class<?> clazz);
+<<<<<<< HEAD
 	public Object getCachedObject(String key,Class<?> clazz);
+=======
+	public <T> T getCachedObject(String key,Class<T> clazz);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public void removeFromCache(String key);
 	public void sendEmail(String to, String subject, String content) throws Exception;
 	public String tokenId();

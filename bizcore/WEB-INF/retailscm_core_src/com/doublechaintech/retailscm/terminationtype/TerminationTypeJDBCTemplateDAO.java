@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.terminationtype;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class TerminationTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TerminationTypeDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class TerminationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements TerminationTypeDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -221,9 +239,14 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	protected boolean isExtractTerminationListEnabled(Map<String,Object> options){		
  		return checkOptions(options,TerminationTypeTokens.TERMINATION_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeTerminationListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,TerminationTypeTokens.TERMINATION_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeTerminationListEnabled(Map<String,Object> options){		 		
+ 		return TerminationTypeTokens.of(options).analyzeTerminationListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTerminationListEnabled(Map<String,Object> options){
@@ -615,9 +638,15 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return terminationType;
 		}
 		
+<<<<<<< HEAD
 		for(Termination termination: externalTerminationList){
 
 			termination.clearFromAll();
+=======
+		for(Termination terminationItem: externalTerminationList){
+
+			terminationItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -647,9 +676,15 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return terminationType;
 		}
 		
+<<<<<<< HEAD
 		for(Termination termination: externalTerminationList){
 			termination.clearReason();
 			termination.clearType();
+=======
+		for(Termination terminationItem: externalTerminationList){
+			terminationItem.clearReason();
+			terminationItem.clearType();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -787,6 +822,35 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public void enhanceList(List<TerminationType> terminationTypeList) {		
 		this.enhanceListInternal(terminationTypeList, this.getTerminationTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:Termination的type的TerminationList
+	public SmartList<Termination> loadOurTerminationList(RetailscmUserContext userContext, List<TerminationType> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Termination.TYPE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Termination> loadedObjs = userContext.getDAOGroup().getTerminationDAO().findTerminationWithKey(key, options);
+		Map<String, List<Termination>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getType().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Termination> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Termination> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setTerminationList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<TerminationType> terminationTypeList = ownerEntity.collectRefsWithType(TerminationType.INTERNAL_TYPE);
@@ -819,6 +883,12 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public SmartList<TerminationType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTerminationTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -302,8 +302,14 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 			//will be good when the retailStoreOrder loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreOrder.
+<<<<<<< HEAD
 			
 			
+=======
+			if (retailStoreOrder.isChanged()){
+			retailStoreOrder.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreOrder = saveRetailStoreOrder(userContext, retailStoreOrder, options);
 			return retailStoreOrder;
 			
@@ -376,7 +382,11 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 		.sortRetailStoreOrderShippingGroupListWith("id","desc")
 		.sortRetailStoreOrderPaymentGroupListWith("id","desc")
 		.sortGoodsListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -1335,80 +1345,136 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 //--------------------------------------------------------------
 	
 	 	
+<<<<<<< HEAD
  	protected RetailStoreOrderApproval loadRetailStoreOrderApproval(RetailscmUserContext userContext, String newApprovalId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreOrderApprovalDAO().load(newApprovalId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newSellerId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newSellerId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreOrderDelivery loadRetailStoreOrderDelivery(RetailscmUserContext userContext, String newDeliveryId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderDeliveryDAO().load(newDeliveryId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreOrderPicking loadRetailStoreOrderPicking(RetailscmUserContext userContext, String newPickingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderPickingDAO().load(newPickingId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreOrderShipment loadRetailStoreOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderShipmentDAO().load(newShipmentId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStoreOrderConfirmation loadRetailStoreOrderConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().load(newConfirmationId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newBuyerId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newBuyerId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
+=======
  	protected RetailStoreOrderProcessing loadRetailStoreOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreOrderProcessingDAO().load(newProcessingId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
+ 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newSellerId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newSellerId, options);
+=======
+ 	protected RetailStoreOrderShipment loadRetailStoreOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderShipmentDAO().load(newShipmentId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
+ 	protected RetailStoreOrderDelivery loadRetailStoreOrderDelivery(RetailscmUserContext userContext, String newDeliveryId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderDeliveryDAO().load(newDeliveryId, options);
+=======
+ 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newBuyerId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreDAO().load(newBuyerId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
+ 	protected RetailStoreOrderPicking loadRetailStoreOrderPicking(RetailscmUserContext userContext, String newPickingId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderPickingDAO().load(newPickingId, options);
+=======
+ 	protected RetailStoreOrderApproval loadRetailStoreOrderApproval(RetailscmUserContext userContext, String newApprovalId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderApprovalDAO().load(newApprovalId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
+ 	protected RetailStoreOrderShipment loadRetailStoreOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderShipmentDAO().load(newShipmentId, options);
+=======
+ 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newSellerId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newSellerId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
+ 	protected RetailStoreOrderConfirmation loadRetailStoreOrderConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().load(newConfirmationId, options);
+=======
+ 	protected RetailStoreOrderPicking loadRetailStoreOrderPicking(RetailscmUserContext userContext, String newPickingId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderPickingDAO().load(newPickingId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
+ 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newBuyerId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreDAO().load(newBuyerId, options);
+=======
+ 	protected RetailStoreOrderConfirmation loadRetailStoreOrderConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().load(newConfirmationId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
+ 	protected RetailStoreOrderProcessing loadRetailStoreOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderProcessingDAO().load(newProcessingId, options);
+=======
+ 	protected RetailStoreOrderDelivery loadRetailStoreOrderDelivery(RetailscmUserContext userContext, String newDeliveryId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreOrderDeliveryDAO().load(newDeliveryId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1738,8 +1804,13 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 			String retailStoreOrderLineItemIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
+<<<<<<< HEAD
 		for(String retailStoreOrderLineItemId: retailStoreOrderLineItemIds){
 			userContext.getChecker().checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
+=======
+		for(String retailStoreOrderLineItemIdItem: retailStoreOrderLineItemIds){
+			userContext.getChecker().checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderManagerException.class);
@@ -1993,8 +2064,13 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 			String retailStoreOrderShippingGroupIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
+<<<<<<< HEAD
 		for(String retailStoreOrderShippingGroupId: retailStoreOrderShippingGroupIds){
 			userContext.getChecker().checkIdOfRetailStoreOrderShippingGroup(retailStoreOrderShippingGroupId);
+=======
+		for(String retailStoreOrderShippingGroupIdItem: retailStoreOrderShippingGroupIds){
+			userContext.getChecker().checkIdOfRetailStoreOrderShippingGroup(retailStoreOrderShippingGroupIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderManagerException.class);
@@ -2236,8 +2312,13 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 			String retailStoreOrderPaymentGroupIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
+<<<<<<< HEAD
 		for(String retailStoreOrderPaymentGroupId: retailStoreOrderPaymentGroupIds){
 			userContext.getChecker().checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
+=======
+		for(String retailStoreOrderPaymentGroupIdItem: retailStoreOrderPaymentGroupIds){
+			userContext.getChecker().checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderManagerException.class);
@@ -2535,8 +2616,13 @@ public class RetailStoreOrderManagerImpl extends CustomRetailscmCheckerManager i
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
+<<<<<<< HEAD
 		for(String goodsId: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsId);
+=======
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderManagerException.class);

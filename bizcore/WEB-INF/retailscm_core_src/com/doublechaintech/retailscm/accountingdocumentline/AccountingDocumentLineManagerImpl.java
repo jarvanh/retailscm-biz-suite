@@ -262,8 +262,14 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 			//will be good when the accountingDocumentLine loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountingDocumentLine.
+<<<<<<< HEAD
 			
 			
+=======
+			if (accountingDocumentLine.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			accountingDocumentLine = saveAccountingDocumentLine(userContext, accountingDocumentLine, options);
 			return accountingDocumentLine;
 			
@@ -332,7 +338,11 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -440,20 +450,34 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  //--------------------------------------------------------------
 	
 	 	
+<<<<<<< HEAD
  	protected AccountingSubject loadAccountingSubject(RetailscmUserContext userContext, String newAccountingSubjectId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getAccountingSubjectDAO().load(newAccountingSubjectId, options);
+=======
+ 	protected AccountingDocument loadAccountingDocument(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentDAO().load(newBelongsToId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
+<<<<<<< HEAD
  	protected AccountingDocument loadAccountingDocument(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getAccountingDocumentDAO().load(newBelongsToId, options);
+=======
+ 	protected AccountingSubject loadAccountingSubject(RetailscmUserContext userContext, String newAccountingSubjectId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingSubjectDAO().load(newAccountingSubjectId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	

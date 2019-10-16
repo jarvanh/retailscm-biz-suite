@@ -38,6 +38,18 @@ public class PotentialCustomerContactTokens extends CommonTokens{
 	protected PotentialCustomerContactTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  PotentialCustomerContactTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		PotentialCustomerContactTokens tokens = new PotentialCustomerContactTokens(options);
+		return tokens;
+		
+	}
+	protected PotentialCustomerContactTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public PotentialCustomerContactTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -86,6 +98,14 @@ public class PotentialCustomerContactTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public PotentialCustomerContactTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String POTENTIALCUSTOMER = "potentialCustomer";
 	public String getPotentialCustomer(){

@@ -7,6 +7,13 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.levelonedepartment.LevelOneDepartment;
+import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.levelonedepartment.LevelOneDepartmentDAO;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartmentDAO;
 
@@ -58,6 +65,14 @@ public interface LevelTwoDepartmentDAO{
  	public void analyzeLevelTwoDepartmentByBelongsTo(SmartList<LevelTwoDepartment> resultList, String levelOneDepartmentId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:LevelThreeDepartment的belongsTo的LevelThreeDepartmentList
+	public SmartList<LevelThreeDepartment> loadOurLevelThreeDepartmentList(RetailscmUserContext userContext, List<LevelTwoDepartment> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

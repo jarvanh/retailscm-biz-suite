@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.scoring;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,9 +59,25 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Scoring(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static Scoring withId(String id){
+		Scoring scoring = new Scoring();
+		scoring.setId(id);
+		scoring.setVersion(Integer.MAX_VALUE);
+		return scoring;
+	}
+	public 	static Scoring refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -138,6 +158,33 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(SCORED_BY_PROPERTY.equals(property)){
+			return getScoredBy();
+		}
+		if(SCORE_PROPERTY.equals(property)){
+			return getScore();
+		}
+		if(COMMENT_PROPERTY.equals(property)){
+			return getComment();
+		}
+		if(EMPLOYEE_COMPANY_TRAINING_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeCompanyTrainingList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -151,6 +198,12 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setScoredBy(String scoredBy){
@@ -164,6 +217,12 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeScoredBy(String scoredBy){
+		if(scoredBy != null) { setScoredBy(scoredBy);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setScore(int score){
@@ -177,6 +236,12 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeScore(int score){
+		setScore(score);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setComment(String comment){
@@ -190,6 +255,12 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeComment(String comment){
+		if(comment != null) { setComment(comment);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -203,6 +274,12 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -235,7 +312,20 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeCompanyTrainingList().addAll(employeeCompanyTrainingList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeCompanyTrainingList(SmartList<EmployeeCompanyTraining> employeeCompanyTrainingList){
+		if(employeeCompanyTrainingList==null){
+			return;
+		}
+		if(employeeCompanyTrainingList.isEmpty()){
+			return;
+		}
+		addEmployeeCompanyTrainingList( employeeCompanyTrainingList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeCompanyTraining removeEmployeeCompanyTraining(EmployeeCompanyTraining employeeCompanyTrainingIndex){
 		
 		int index = getEmployeeCompanyTrainingList().indexOf(employeeCompanyTrainingIndex);
@@ -366,6 +456,46 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Scoring){
+		
+			
+			Scoring dest =(Scoring)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeScoredBy(getScoredBy());
+			dest.mergeScore(getScore());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+			dest.mergeEmployeeCompanyTrainingList(getEmployeeCompanyTrainingList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Scoring){
+		
+			
+			Scoring dest =(Scoring)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeScoredBy(getScoredBy());
+			dest.mergeScore(getScore());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

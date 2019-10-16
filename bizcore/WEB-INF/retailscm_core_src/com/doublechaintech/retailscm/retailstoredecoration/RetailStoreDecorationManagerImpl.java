@@ -240,8 +240,14 @@ public class RetailStoreDecorationManagerImpl extends CustomRetailscmCheckerMana
 			//will be good when the retailStoreDecoration loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreDecoration.
+<<<<<<< HEAD
 			
 			
+=======
+			if (retailStoreDecoration.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreDecoration = saveRetailStoreDecoration(userContext, retailStoreDecoration, options);
 			return retailStoreDecoration;
 			
@@ -311,7 +317,11 @@ public class RetailStoreDecorationManagerImpl extends CustomRetailscmCheckerMana
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortRetailStoreListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -540,8 +550,13 @@ public class RetailStoreDecorationManagerImpl extends CustomRetailscmCheckerMana
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreDecoration(retailStoreDecorationId);
+<<<<<<< HEAD
 		for(String retailStoreId: retailStoreIds){
 			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
+=======
+		for(String retailStoreIdItem: retailStoreIds){
+			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreDecorationManagerException.class);

@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.interviewtype;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.employeeinterview.EmployeeInterviewDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements InterviewTypeDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class InterviewTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements InterviewTypeDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -221,9 +239,14 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	protected boolean isExtractEmployeeInterviewListEnabled(Map<String,Object> options){		
  		return checkOptions(options,InterviewTypeTokens.EMPLOYEE_INTERVIEW_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeEmployeeInterviewListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,InterviewTypeTokens.EMPLOYEE_INTERVIEW_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeEmployeeInterviewListEnabled(Map<String,Object> options){		 		
+ 		return InterviewTypeTokens.of(options).analyzeEmployeeInterviewListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeInterviewListEnabled(Map<String,Object> options){
@@ -615,9 +638,15 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return interviewType;
 		}
 		
+<<<<<<< HEAD
 		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
 
 			employeeInterview.clearFromAll();
+=======
+		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
+
+			employeeInterviewItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -647,9 +676,15 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 			return interviewType;
 		}
 		
+<<<<<<< HEAD
 		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
 			employeeInterview.clearEmployee();
 			employeeInterview.clearInterviewType();
+=======
+		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
+			employeeInterviewItem.clearEmployee();
+			employeeInterviewItem.clearInterviewType();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -787,6 +822,35 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public void enhanceList(List<InterviewType> interviewTypeList) {		
 		this.enhanceListInternal(interviewTypeList, this.getInterviewTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:EmployeeInterview的interviewType的EmployeeInterviewList
+	public SmartList<EmployeeInterview> loadOurEmployeeInterviewList(RetailscmUserContext userContext, List<InterviewType> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeInterview.INTERVIEW_TYPE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<EmployeeInterview> loadedObjs = userContext.getDAOGroup().getEmployeeInterviewDAO().findEmployeeInterviewWithKey(key, options);
+		Map<String, List<EmployeeInterview>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getInterviewType().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<EmployeeInterview> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<EmployeeInterview> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setEmployeeInterviewList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<InterviewType> interviewTypeList = ownerEntity.collectRefsWithType(InterviewType.INTERNAL_TYPE);
@@ -819,6 +883,12 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO impl
 	public SmartList<InterviewType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getInterviewTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

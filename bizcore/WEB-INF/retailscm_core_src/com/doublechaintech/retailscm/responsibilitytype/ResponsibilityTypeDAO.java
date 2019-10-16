@@ -7,6 +7,13 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
+import com.doublechaintech.retailscm.employee.Employee;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
@@ -74,6 +81,14 @@ public interface ResponsibilityTypeDAO{
  	public void analyzeResponsibilityTypeByCompany(SmartList<ResponsibilityType> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:Employee的responsibleFor的EmployeeList
+	public SmartList<Employee> loadOurEmployeeList(RetailscmUserContext userContext, List<ResponsibilityType> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

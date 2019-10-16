@@ -38,6 +38,18 @@ public class TransportTaskTrackTokens extends CommonTokens{
 	protected TransportTaskTrackTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  TransportTaskTrackTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		TransportTaskTrackTokens tokens = new TransportTaskTrackTokens(options);
+		return tokens;
+		
+	}
+	protected TransportTaskTrackTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public TransportTaskTrackTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class TransportTaskTrackTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public TransportTaskTrackTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String MOVEMENT = "movement";
 	public String getMovement(){

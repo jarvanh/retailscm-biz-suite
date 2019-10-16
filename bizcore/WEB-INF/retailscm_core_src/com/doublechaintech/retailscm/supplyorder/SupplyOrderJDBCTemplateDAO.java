@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.supplyorder;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -46,9 +55,27 @@ import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderDAO{
+ 
+ 	
+ 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
+ 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
+	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
+ 	}
+ 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
+	 	return this.supplyOrderProcessingDAO;
+ 	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  SupplyOrderApprovalDAO  supplyOrderApprovalDAO;
@@ -60,6 +87,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
+<<<<<<< HEAD
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
  	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
 	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
@@ -69,6 +97,8 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
+=======
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	private  SupplyOrderDeliveryDAO  supplyOrderDeliveryDAO;
  	public void setSupplyOrderDeliveryDAO(SupplyOrderDeliveryDAO supplyOrderDeliveryDAO){
 	 	this.supplyOrderDeliveryDAO = supplyOrderDeliveryDAO;
@@ -78,12 +108,21 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
+<<<<<<< HEAD
  	private  GoodsSupplierDAO  goodsSupplierDAO;
  	public void setGoodsSupplierDAO(GoodsSupplierDAO goodsSupplierDAO){
 	 	this.goodsSupplierDAO = goodsSupplierDAO;
  	}
  	public GoodsSupplierDAO getGoodsSupplierDAO(){
 	 	return this.goodsSupplierDAO;
+=======
+ 	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
+ 	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
+	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
+ 	}
+ 	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
+	 	return this.supplyOrderConfirmationDAO;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  
  	
@@ -96,6 +135,18 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
+<<<<<<< HEAD
+=======
+ 	private  GoodsSupplierDAO  goodsSupplierDAO;
+ 	public void setGoodsSupplierDAO(GoodsSupplierDAO goodsSupplierDAO){
+	 	this.goodsSupplierDAO = goodsSupplierDAO;
+ 	}
+ 	public GoodsSupplierDAO getGoodsSupplierDAO(){
+	 	return this.goodsSupplierDAO;
+ 	}
+ 
+ 	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
  	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
 	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
@@ -105,6 +156,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  
  	
+<<<<<<< HEAD
  	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
  	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
 	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
@@ -120,6 +172,14 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
  	}
  	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
 	 	return this.supplyOrderProcessingDAO;
+=======
+ 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
+ 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
+	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
+ 	}
+ 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
+	 	return this.retailStoreCountryCenterDAO;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 
 
@@ -480,9 +540,14 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractSupplyOrderLineItemListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderTokens.SUPPLY_ORDER_LINE_ITEM_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplyOrderLineItemListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,SupplyOrderTokens.SUPPLY_ORDER_LINE_ITEM_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplyOrderLineItemListEnabled(Map<String,Object> options){		 		
+ 		return SupplyOrderTokens.of(options).analyzeSupplyOrderLineItemListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderLineItemListEnabled(Map<String,Object> options){
@@ -495,9 +560,14 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractSupplyOrderShippingGroupListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderTokens.SUPPLY_ORDER_SHIPPING_GROUP_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplyOrderShippingGroupListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,SupplyOrderTokens.SUPPLY_ORDER_SHIPPING_GROUP_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplyOrderShippingGroupListEnabled(Map<String,Object> options){		 		
+ 		return SupplyOrderTokens.of(options).analyzeSupplyOrderShippingGroupListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderShippingGroupListEnabled(Map<String,Object> options){
@@ -510,9 +580,14 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractSupplyOrderPaymentGroupListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderTokens.SUPPLY_ORDER_PAYMENT_GROUP_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplyOrderPaymentGroupListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,SupplyOrderTokens.SUPPLY_ORDER_PAYMENT_GROUP_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplyOrderPaymentGroupListEnabled(Map<String,Object> options){		 		
+ 		return SupplyOrderTokens.of(options).analyzeSupplyOrderPaymentGroupListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderPaymentGroupListEnabled(Map<String,Object> options){
@@ -525,9 +600,14 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractGoodsListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderTokens.GOODS_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,SupplyOrderTokens.GOODS_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		 		
+ 		return SupplyOrderTokens.of(options).analyzeGoodsListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsListEnabled(Map<String,Object> options){
@@ -1860,9 +1940,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrderLineItem supplyOrderLineItem: externalSupplyOrderLineItemList){
 
 			supplyOrderLineItem.clearFromAll();
+=======
+		for(SupplyOrderLineItem supplyOrderLineItemItem: externalSupplyOrderLineItemList){
+
+			supplyOrderLineItemItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1892,9 +1978,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrderLineItem supplyOrderLineItem: externalSupplyOrderLineItemList){
 			supplyOrderLineItem.clearSkuId();
 			supplyOrderLineItem.clearBizOrder();
+=======
+		for(SupplyOrderLineItem supplyOrderLineItemItem: externalSupplyOrderLineItemList){
+			supplyOrderLineItemItem.clearSkuId();
+			supplyOrderLineItemItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1932,9 +2024,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrderShippingGroup supplyOrderShippingGroup: externalSupplyOrderShippingGroupList){
 
 			supplyOrderShippingGroup.clearFromAll();
+=======
+		for(SupplyOrderShippingGroup supplyOrderShippingGroupItem: externalSupplyOrderShippingGroupList){
+
+			supplyOrderShippingGroupItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1960,9 +2058,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrderPaymentGroup supplyOrderPaymentGroup: externalSupplyOrderPaymentGroupList){
 
 			supplyOrderPaymentGroup.clearFromAll();
+=======
+		for(SupplyOrderPaymentGroup supplyOrderPaymentGroupItem: externalSupplyOrderPaymentGroupList){
+
+			supplyOrderPaymentGroupItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1988,9 +2092,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 
 			goods.clearFromAll();
+=======
+		for(Goods goodsItem: externalGoodsList){
+
+			goodsItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -2020,9 +2130,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearSku();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSku();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2064,9 +2180,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearReceivingSpace();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearReceivingSpace();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2108,9 +2230,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearGoodsAllocation();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearGoodsAllocation();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2152,9 +2280,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearSmartPallet();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearSmartPallet();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2196,9 +2330,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearShippingSpace();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearShippingSpace();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2240,9 +2380,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearTransportTask();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearTransportTask();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2284,9 +2430,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearRetailStore();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStore();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2328,9 +2480,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return supplyOrder;
 		}
 		
+<<<<<<< HEAD
 		for(Goods goods: externalGoodsList){
 			goods.clearRetailStoreOrder();
 			goods.clearBizOrder();
+=======
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearRetailStoreOrder();
+			goodsItem.clearBizOrder();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2747,6 +2905,104 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public void enhanceList(List<SupplyOrder> supplyOrderList) {		
 		this.enhanceListInternal(supplyOrderList, this.getSupplyOrderMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplyOrderLineItem的bizOrder的SupplyOrderLineItemList
+	public SmartList<SupplyOrderLineItem> loadOurSupplyOrderLineItemList(RetailscmUserContext userContext, List<SupplyOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrderLineItem.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplyOrderLineItem> loadedObjs = userContext.getDAOGroup().getSupplyOrderLineItemDAO().findSupplyOrderLineItemWithKey(key, options);
+		Map<String, List<SupplyOrderLineItem>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplyOrderLineItem> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplyOrderLineItem> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplyOrderLineItemList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplyOrderShippingGroup的bizOrder的SupplyOrderShippingGroupList
+	public SmartList<SupplyOrderShippingGroup> loadOurSupplyOrderShippingGroupList(RetailscmUserContext userContext, List<SupplyOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrderShippingGroup.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplyOrderShippingGroup> loadedObjs = userContext.getDAOGroup().getSupplyOrderShippingGroupDAO().findSupplyOrderShippingGroupWithKey(key, options);
+		Map<String, List<SupplyOrderShippingGroup>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplyOrderShippingGroup> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplyOrderShippingGroup> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplyOrderShippingGroupList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplyOrderPaymentGroup的bizOrder的SupplyOrderPaymentGroupList
+	public SmartList<SupplyOrderPaymentGroup> loadOurSupplyOrderPaymentGroupList(RetailscmUserContext userContext, List<SupplyOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrderPaymentGroup.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplyOrderPaymentGroup> loadedObjs = userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().findSupplyOrderPaymentGroupWithKey(key, options);
+		Map<String, List<SupplyOrderPaymentGroup>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplyOrderPaymentGroup> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplyOrderPaymentGroup> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplyOrderPaymentGroupList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:Goods的bizOrder的GoodsList
+	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<SupplyOrder> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.BIZ_ORDER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Goods> loadedObjs = userContext.getDAOGroup().getGoodsDAO().findGoodsWithKey(key, options);
+		Map<String, List<Goods>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBizOrder().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Goods> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Goods> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setGoodsList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SupplyOrder> supplyOrderList = ownerEntity.collectRefsWithType(SupplyOrder.INTERNAL_TYPE);
@@ -2779,6 +3035,12 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<SupplyOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

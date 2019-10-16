@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.userwhitelist;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -53,9 +57,25 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	UserWhiteList(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static UserWhiteList withId(String id){
+		UserWhiteList userWhiteList = new UserWhiteList();
+		userWhiteList.setId(id);
+		userWhiteList.setVersion(Integer.MAX_VALUE);
+		return userWhiteList;
+	}
+	public 	static UserWhiteList refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setDomain( null );
 
@@ -118,6 +138,29 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(USER_IDENTITY_PROPERTY.equals(property)){
+			return getUserIdentity();
+		}
+		if(USER_SPECIAL_FUNCTIONS_PROPERTY.equals(property)){
+			return getUserSpecialFunctions();
+		}
+		if(DOMAIN_PROPERTY.equals(property)){
+			return getDomain();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -131,6 +174,12 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setUserIdentity(String userIdentity){
@@ -144,6 +193,12 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeUserIdentity(String userIdentity){
+		if(userIdentity != null) { setUserIdentity(userIdentity);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setUserSpecialFunctions(String userSpecialFunctions){
@@ -157,6 +212,12 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeUserSpecialFunctions(String userSpecialFunctions){
+		if(userSpecialFunctions != null) { setUserSpecialFunctions(userSpecialFunctions);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDomain(UserDomain domain){
@@ -170,6 +231,12 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDomain(UserDomain domain){
+		if(domain != null) { setDomain(domain);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDomain(){
@@ -188,6 +255,12 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -246,6 +319,44 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof UserWhiteList){
+		
+			
+			UserWhiteList dest =(UserWhiteList)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeUserIdentity(getUserIdentity());
+			dest.mergeUserSpecialFunctions(getUserSpecialFunctions());
+			dest.mergeDomain(getDomain());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof UserWhiteList){
+		
+			
+			UserWhiteList dest =(UserWhiteList)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeUserIdentity(getUserIdentity());
+			dest.mergeUserSpecialFunctions(getUserSpecialFunctions());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -255,8 +255,14 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 			//will be good when the trainingCourseType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TrainingCourseType.
+<<<<<<< HEAD
 			
 			
+=======
+			if (trainingCourseType.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, options);
 			return trainingCourseType;
 			
@@ -326,7 +332,11 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortCompanyTrainingListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -593,8 +603,13 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 			String companyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTrainingCourseType(trainingCourseTypeId);
+<<<<<<< HEAD
 		for(String companyTrainingId: companyTrainingIds){
 			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingId);
+=======
+		for(String companyTrainingIdItem: companyTrainingIds){
+			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);

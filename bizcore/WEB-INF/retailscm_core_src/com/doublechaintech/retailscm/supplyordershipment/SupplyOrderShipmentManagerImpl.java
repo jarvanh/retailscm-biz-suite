@@ -252,8 +252,14 @@ public class SupplyOrderShipmentManagerImpl extends CustomRetailscmCheckerManage
 			//will be good when the supplyOrderShipment loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderShipment.
+<<<<<<< HEAD
 			
 			
+=======
+			if (supplyOrderShipment.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			supplyOrderShipment = saveSupplyOrderShipment(userContext, supplyOrderShipment, options);
 			return supplyOrderShipment;
 			
@@ -324,7 +330,11 @@ public class SupplyOrderShipmentManagerImpl extends CustomRetailscmCheckerManage
 		return tokens().allTokens()
 		.sortConsumerOrderListWith("id","desc")
 		.sortSupplyOrderListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -559,8 +569,13 @@ public class SupplyOrderShipmentManagerImpl extends CustomRetailscmCheckerManage
 			String consumerOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrderShipment(supplyOrderShipmentId);
+<<<<<<< HEAD
 		for(String consumerOrderId: consumerOrderIds){
 			userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
+=======
+		for(String consumerOrderIdItem: consumerOrderIds){
+			userContext.getChecker().checkIdOfConsumerOrder(consumerOrderIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderShipmentManagerException.class);
@@ -946,8 +961,13 @@ public class SupplyOrderShipmentManagerImpl extends CustomRetailscmCheckerManage
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplyOrderShipment(supplyOrderShipmentId);
+<<<<<<< HEAD
 		for(String supplyOrderId: supplyOrderIds){
 			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
+=======
+		for(String supplyOrderIdItem: supplyOrderIds){
+			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderShipmentManagerException.class);

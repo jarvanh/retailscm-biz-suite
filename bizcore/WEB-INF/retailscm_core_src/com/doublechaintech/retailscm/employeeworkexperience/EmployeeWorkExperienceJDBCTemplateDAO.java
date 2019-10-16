@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.employeeworkexperience;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class EmployeeWorkExperienceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeWorkExperienceDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class EmployeeWorkExperienceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeWorkExperienceDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  EmployeeDAO  employeeDAO;
@@ -516,6 +534,12 @@ public class EmployeeWorkExperienceJDBCTemplateDAO extends RetailscmNamingServic
 	public void enhanceList(List<EmployeeWorkExperience> employeeWorkExperienceList) {		
 		this.enhanceListInternal(employeeWorkExperienceList, this.getEmployeeWorkExperienceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<EmployeeWorkExperience> employeeWorkExperienceList = ownerEntity.collectRefsWithType(EmployeeWorkExperience.INTERNAL_TYPE);
@@ -548,6 +572,12 @@ public class EmployeeWorkExperienceJDBCTemplateDAO extends RetailscmNamingServic
 	public SmartList<EmployeeWorkExperience> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeWorkExperienceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

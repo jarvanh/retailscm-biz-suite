@@ -14,6 +14,7 @@ public class RetailscmException extends Exception implements MessageContainer {
     	if(this.getErrorMessageList().size()<=0) {
     		return pMessage;
     	}
+<<<<<<< HEAD
     	if(this.getErrorMessageList().size()==1) {
     		if (pMessage == null) {
     			return getErrorMessageList().get(0).getBody();
@@ -21,6 +22,9 @@ public class RetailscmException extends Exception implements MessageContainer {
     			return pMessage+"\n"+getErrorMessageList().get(0).getBody();
     		}
     	}
+=======
+    	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
     	
 		StringBuilder stringBuilder=new StringBuilder();
 		if (pMessage != null) {

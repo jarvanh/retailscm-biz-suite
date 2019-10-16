@@ -2,6 +2,10 @@ package com.doublechaintech.retailscm;
 
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
@@ -429,6 +433,12 @@ import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingTokens;
 import com.doublechaintech.retailscm.userapp.UserApp;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 import com.doublechaintech.retailscm.userapp.UserAppTokens;
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.quicklink.QuickLink;
+import com.doublechaintech.retailscm.quicklink.QuickLinkDAO;
+import com.doublechaintech.retailscm.quicklink.QuickLinkTokens;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.listaccess.ListAccess;
 import com.doublechaintech.retailscm.listaccess.ListAccessDAO;
 import com.doublechaintech.retailscm.listaccess.ListAccessTokens;
@@ -453,6 +463,15 @@ import com.doublechaintech.retailscm.formfield.FormFieldTokens;
 import com.doublechaintech.retailscm.formaction.FormAction;
 import com.doublechaintech.retailscm.formaction.FormActionDAO;
 import com.doublechaintech.retailscm.formaction.FormActionTokens;
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
+import com.doublechaintech.retailscm.candidatecontainer.CandidateContainerDAO;
+import com.doublechaintech.retailscm.candidatecontainer.CandidateContainerTokens;
+import com.doublechaintech.retailscm.candidateelement.CandidateElement;
+import com.doublechaintech.retailscm.candidateelement.CandidateElementDAO;
+import com.doublechaintech.retailscm.candidateelement.CandidateElementTokens;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 public class DAOGroup {
 
@@ -740,6 +759,11 @@ public class DAOGroup {
 
 	protected UserAppDAO userAppDAO;
 
+<<<<<<< HEAD
+=======
+	protected QuickLinkDAO quickLinkDAO;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected ListAccessDAO listAccessDAO;
 
 	protected ObjectAccessDAO objectAccessDAO;
@@ -756,6 +780,13 @@ public class DAOGroup {
 
 	protected FormActionDAO formActionDAO;
 
+<<<<<<< HEAD
+=======
+	protected CandidateContainerDAO candidateContainerDAO;
+
+	protected CandidateElementDAO candidateElementDAO;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 
 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
@@ -1894,6 +1925,17 @@ public class DAOGroup {
 	}
 
 
+<<<<<<< HEAD
+=======
+	public QuickLinkDAO getQuickLinkDAO(){
+		return this.quickLinkDAO;
+	}
+	public void setQuickLinkDAO(QuickLinkDAO dao){
+		this.quickLinkDAO = dao;
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public ListAccessDAO getListAccessDAO(){
 		return this.listAccessDAO;
 	}
@@ -1958,8 +2000,30 @@ public class DAOGroup {
 	}
 
 
+<<<<<<< HEAD
 	private interface BasicLoader{
 	    BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception;
+=======
+	public CandidateContainerDAO getCandidateContainerDAO(){
+		return this.candidateContainerDAO;
+	}
+	public void setCandidateContainerDAO(CandidateContainerDAO dao){
+		this.candidateContainerDAO = dao;
+	}
+
+
+	public CandidateElementDAO getCandidateElementDAO(){
+		return this.candidateElementDAO;
+	}
+	public void setCandidateElementDAO(CandidateElementDAO dao){
+		this.candidateElementDAO = dao;
+	}
+
+
+	private interface BasicLoader{
+	    BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception;
+	    void enhanceList(DAOGroup daoGoup, List list) throws Exception;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	    BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception;
 	    BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception;
 	}
@@ -1973,6 +2037,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreCountryCenterDAO().load(id, RetailStoreCountryCenterTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreCountryCenterDAO().enhanceList((List<RetailStoreCountryCenter>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreCountryCenterDAO().load(id, tokens);
 			}
@@ -1988,6 +2059,13 @@ public class DAOGroup {
 				return daoGoup.getCatalogDAO().load(id, CatalogTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCatalogDAO().enhanceList((List<Catalog>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCatalogDAO().load(id, tokens);
 			}
@@ -2003,6 +2081,13 @@ public class DAOGroup {
 				return daoGoup.getLevelOneCategoryDAO().load(id, LevelOneCategoryTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLevelOneCategoryDAO().enhanceList((List<LevelOneCategory>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelOneCategoryDAO().load(id, tokens);
 			}
@@ -2018,6 +2103,13 @@ public class DAOGroup {
 				return daoGoup.getLevelTwoCategoryDAO().load(id, LevelTwoCategoryTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLevelTwoCategoryDAO().enhanceList((List<LevelTwoCategory>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelTwoCategoryDAO().load(id, tokens);
 			}
@@ -2033,6 +2125,13 @@ public class DAOGroup {
 				return daoGoup.getLevelThreeCategoryDAO().load(id, LevelThreeCategoryTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLevelThreeCategoryDAO().enhanceList((List<LevelThreeCategory>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelThreeCategoryDAO().load(id, tokens);
 			}
@@ -2048,6 +2147,13 @@ public class DAOGroup {
 				return daoGoup.getProductDAO().load(id, ProductTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getProductDAO().enhanceList((List<Product>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProductDAO().load(id, tokens);
 			}
@@ -2063,6 +2169,13 @@ public class DAOGroup {
 				return daoGoup.getSkuDAO().load(id, SkuTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSkuDAO().enhanceList((List<Sku>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSkuDAO().load(id, tokens);
 			}
@@ -2078,6 +2191,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreProvinceCenterDAO().load(id, RetailStoreProvinceCenterTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreProvinceCenterDAO().enhanceList((List<RetailStoreProvinceCenter>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreProvinceCenterDAO().load(id, tokens);
 			}
@@ -2093,6 +2213,13 @@ public class DAOGroup {
 				return daoGoup.getProvinceCenterDepartmentDAO().load(id, ProvinceCenterDepartmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getProvinceCenterDepartmentDAO().enhanceList((List<ProvinceCenterDepartment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProvinceCenterDepartmentDAO().load(id, tokens);
 			}
@@ -2108,6 +2235,13 @@ public class DAOGroup {
 				return daoGoup.getProvinceCenterEmployeeDAO().load(id, ProvinceCenterEmployeeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getProvinceCenterEmployeeDAO().enhanceList((List<ProvinceCenterEmployee>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProvinceCenterEmployeeDAO().load(id, tokens);
 			}
@@ -2123,6 +2257,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreCityServiceCenterDAO().load(id, RetailStoreCityServiceCenterTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreCityServiceCenterDAO().enhanceList((List<RetailStoreCityServiceCenter>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreCityServiceCenterDAO().load(id, tokens);
 			}
@@ -2138,6 +2279,13 @@ public class DAOGroup {
 				return daoGoup.getCityPartnerDAO().load(id, CityPartnerTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCityPartnerDAO().enhanceList((List<CityPartner>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCityPartnerDAO().load(id, tokens);
 			}
@@ -2153,6 +2301,13 @@ public class DAOGroup {
 				return daoGoup.getPotentialCustomerDAO().load(id, PotentialCustomerTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getPotentialCustomerDAO().enhanceList((List<PotentialCustomer>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPotentialCustomerDAO().load(id, tokens);
 			}
@@ -2168,6 +2323,13 @@ public class DAOGroup {
 				return daoGoup.getPotentialCustomerContactPersonDAO().load(id, PotentialCustomerContactPersonTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getPotentialCustomerContactPersonDAO().enhanceList((List<PotentialCustomerContactPerson>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPotentialCustomerContactPersonDAO().load(id, tokens);
 			}
@@ -2183,6 +2345,13 @@ public class DAOGroup {
 				return daoGoup.getPotentialCustomerContactDAO().load(id, PotentialCustomerContactTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getPotentialCustomerContactDAO().enhanceList((List<PotentialCustomerContact>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPotentialCustomerContactDAO().load(id, tokens);
 			}
@@ -2198,6 +2367,13 @@ public class DAOGroup {
 				return daoGoup.getCityEventDAO().load(id, CityEventTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCityEventDAO().enhanceList((List<CityEvent>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCityEventDAO().load(id, tokens);
 			}
@@ -2213,6 +2389,13 @@ public class DAOGroup {
 				return daoGoup.getEventAttendanceDAO().load(id, EventAttendanceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEventAttendanceDAO().enhanceList((List<EventAttendance>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEventAttendanceDAO().load(id, tokens);
 			}
@@ -2228,6 +2411,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreDAO().load(id, RetailStoreTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreDAO().enhanceList((List<RetailStore>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreDAO().load(id, tokens);
 			}
@@ -2243,6 +2433,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreCreationDAO().load(id, RetailStoreCreationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreCreationDAO().enhanceList((List<RetailStoreCreation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreCreationDAO().load(id, tokens);
 			}
@@ -2258,6 +2455,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreInvestmentInvitationDAO().load(id, RetailStoreInvestmentInvitationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreInvestmentInvitationDAO().enhanceList((List<RetailStoreInvestmentInvitation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreInvestmentInvitationDAO().load(id, tokens);
 			}
@@ -2273,6 +2477,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreFranchisingDAO().load(id, RetailStoreFranchisingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreFranchisingDAO().enhanceList((List<RetailStoreFranchising>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreFranchisingDAO().load(id, tokens);
 			}
@@ -2288,6 +2499,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreDecorationDAO().load(id, RetailStoreDecorationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreDecorationDAO().enhanceList((List<RetailStoreDecoration>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreDecorationDAO().load(id, tokens);
 			}
@@ -2303,6 +2521,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOpeningDAO().load(id, RetailStoreOpeningTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOpeningDAO().enhanceList((List<RetailStoreOpening>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOpeningDAO().load(id, tokens);
 			}
@@ -2318,6 +2543,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreClosingDAO().load(id, RetailStoreClosingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreClosingDAO().enhanceList((List<RetailStoreClosing>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreClosingDAO().load(id, tokens);
 			}
@@ -2333,6 +2565,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreMemberDAO().load(id, RetailStoreMemberTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreMemberDAO().enhanceList((List<RetailStoreMember>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberDAO().load(id, tokens);
 			}
@@ -2348,6 +2587,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderDAO().load(id, ConsumerOrderTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderDAO().enhanceList((List<ConsumerOrder>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderDAO().load(id, tokens);
 			}
@@ -2363,6 +2609,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderConfirmationDAO().load(id, ConsumerOrderConfirmationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderConfirmationDAO().enhanceList((List<ConsumerOrderConfirmation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderConfirmationDAO().load(id, tokens);
 			}
@@ -2378,6 +2631,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderApprovalDAO().load(id, ConsumerOrderApprovalTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderApprovalDAO().enhanceList((List<ConsumerOrderApproval>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderApprovalDAO().load(id, tokens);
 			}
@@ -2393,6 +2653,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderProcessingDAO().load(id, ConsumerOrderProcessingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderProcessingDAO().enhanceList((List<ConsumerOrderProcessing>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderProcessingDAO().load(id, tokens);
 			}
@@ -2408,6 +2675,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderShipmentDAO().load(id, ConsumerOrderShipmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderShipmentDAO().enhanceList((List<ConsumerOrderShipment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderShipmentDAO().load(id, tokens);
 			}
@@ -2423,6 +2697,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderDeliveryDAO().load(id, ConsumerOrderDeliveryTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderDeliveryDAO().enhanceList((List<ConsumerOrderDelivery>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderDeliveryDAO().load(id, tokens);
 			}
@@ -2438,6 +2719,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderLineItemDAO().load(id, ConsumerOrderLineItemTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderLineItemDAO().enhanceList((List<ConsumerOrderLineItem>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderLineItemDAO().load(id, tokens);
 			}
@@ -2453,6 +2741,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderShippingGroupDAO().load(id, ConsumerOrderShippingGroupTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderShippingGroupDAO().enhanceList((List<ConsumerOrderShippingGroup>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderShippingGroupDAO().load(id, tokens);
 			}
@@ -2468,6 +2763,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderPaymentGroupDAO().load(id, ConsumerOrderPaymentGroupTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderPaymentGroupDAO().enhanceList((List<ConsumerOrderPaymentGroup>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderPaymentGroupDAO().load(id, tokens);
 			}
@@ -2483,6 +2785,13 @@ public class DAOGroup {
 				return daoGoup.getConsumerOrderPriceAdjustmentDAO().load(id, ConsumerOrderPriceAdjustmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getConsumerOrderPriceAdjustmentDAO().enhanceList((List<ConsumerOrderPriceAdjustment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderPriceAdjustmentDAO().load(id, tokens);
 			}
@@ -2498,6 +2807,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreMemberCouponDAO().load(id, RetailStoreMemberCouponTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreMemberCouponDAO().enhanceList((List<RetailStoreMemberCoupon>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberCouponDAO().load(id, tokens);
 			}
@@ -2513,6 +2829,13 @@ public class DAOGroup {
 				return daoGoup.getMemberWishlistDAO().load(id, MemberWishlistTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getMemberWishlistDAO().enhanceList((List<MemberWishlist>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberWishlistDAO().load(id, tokens);
 			}
@@ -2528,6 +2851,13 @@ public class DAOGroup {
 				return daoGoup.getMemberRewardPointDAO().load(id, MemberRewardPointTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getMemberRewardPointDAO().enhanceList((List<MemberRewardPoint>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberRewardPointDAO().load(id, tokens);
 			}
@@ -2543,6 +2873,13 @@ public class DAOGroup {
 				return daoGoup.getMemberRewardPointRedemptionDAO().load(id, MemberRewardPointRedemptionTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getMemberRewardPointRedemptionDAO().enhanceList((List<MemberRewardPointRedemption>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberRewardPointRedemptionDAO().load(id, tokens);
 			}
@@ -2558,6 +2895,13 @@ public class DAOGroup {
 				return daoGoup.getMemberWishlistProductDAO().load(id, MemberWishlistProductTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getMemberWishlistProductDAO().enhanceList((List<MemberWishlistProduct>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberWishlistProductDAO().load(id, tokens);
 			}
@@ -2573,6 +2917,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreMemberAddressDAO().load(id, RetailStoreMemberAddressTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreMemberAddressDAO().enhanceList((List<RetailStoreMemberAddress>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberAddressDAO().load(id, tokens);
 			}
@@ -2588,6 +2939,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreMemberGiftCardDAO().load(id, RetailStoreMemberGiftCardTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreMemberGiftCardDAO().enhanceList((List<RetailStoreMemberGiftCard>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberGiftCardDAO().load(id, tokens);
 			}
@@ -2603,6 +2961,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreMemberGiftCardConsumeRecordDAO().load(id, RetailStoreMemberGiftCardConsumeRecordTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreMemberGiftCardConsumeRecordDAO().enhanceList((List<RetailStoreMemberGiftCardConsumeRecord>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberGiftCardConsumeRecordDAO().load(id, tokens);
 			}
@@ -2618,6 +2983,13 @@ public class DAOGroup {
 				return daoGoup.getGoodsSupplierDAO().load(id, GoodsSupplierTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGoodsSupplierDAO().enhanceList((List<GoodsSupplier>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsSupplierDAO().load(id, tokens);
 			}
@@ -2633,6 +3005,13 @@ public class DAOGroup {
 				return daoGoup.getSupplierProductDAO().load(id, SupplierProductTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplierProductDAO().enhanceList((List<SupplierProduct>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplierProductDAO().load(id, tokens);
 			}
@@ -2648,6 +3027,13 @@ public class DAOGroup {
 				return daoGoup.getProductSupplyDurationDAO().load(id, ProductSupplyDurationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getProductSupplyDurationDAO().enhanceList((List<ProductSupplyDuration>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProductSupplyDurationDAO().load(id, tokens);
 			}
@@ -2663,6 +3049,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderDAO().load(id, SupplyOrderTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderDAO().enhanceList((List<SupplyOrder>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderDAO().load(id, tokens);
 			}
@@ -2678,6 +3071,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderConfirmationDAO().load(id, SupplyOrderConfirmationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderConfirmationDAO().enhanceList((List<SupplyOrderConfirmation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderConfirmationDAO().load(id, tokens);
 			}
@@ -2693,6 +3093,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderApprovalDAO().load(id, SupplyOrderApprovalTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderApprovalDAO().enhanceList((List<SupplyOrderApproval>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderApprovalDAO().load(id, tokens);
 			}
@@ -2708,6 +3115,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderProcessingDAO().load(id, SupplyOrderProcessingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderProcessingDAO().enhanceList((List<SupplyOrderProcessing>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderProcessingDAO().load(id, tokens);
 			}
@@ -2723,6 +3137,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderPickingDAO().load(id, SupplyOrderPickingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderPickingDAO().enhanceList((List<SupplyOrderPicking>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderPickingDAO().load(id, tokens);
 			}
@@ -2738,6 +3159,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderShipmentDAO().load(id, SupplyOrderShipmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderShipmentDAO().enhanceList((List<SupplyOrderShipment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderShipmentDAO().load(id, tokens);
 			}
@@ -2753,6 +3181,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderDeliveryDAO().load(id, SupplyOrderDeliveryTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderDeliveryDAO().enhanceList((List<SupplyOrderDelivery>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderDeliveryDAO().load(id, tokens);
 			}
@@ -2768,6 +3203,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderLineItemDAO().load(id, SupplyOrderLineItemTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderLineItemDAO().enhanceList((List<SupplyOrderLineItem>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderLineItemDAO().load(id, tokens);
 			}
@@ -2783,6 +3225,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderShippingGroupDAO().load(id, SupplyOrderShippingGroupTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderShippingGroupDAO().enhanceList((List<SupplyOrderShippingGroup>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderShippingGroupDAO().load(id, tokens);
 			}
@@ -2798,6 +3247,13 @@ public class DAOGroup {
 				return daoGoup.getSupplyOrderPaymentGroupDAO().load(id, SupplyOrderPaymentGroupTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplyOrderPaymentGroupDAO().enhanceList((List<SupplyOrderPaymentGroup>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderPaymentGroupDAO().load(id, tokens);
 			}
@@ -2813,6 +3269,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderDAO().load(id, RetailStoreOrderTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderDAO().enhanceList((List<RetailStoreOrder>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderDAO().load(id, tokens);
 			}
@@ -2828,6 +3291,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderConfirmationDAO().load(id, RetailStoreOrderConfirmationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderConfirmationDAO().enhanceList((List<RetailStoreOrderConfirmation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderConfirmationDAO().load(id, tokens);
 			}
@@ -2843,6 +3313,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderApprovalDAO().load(id, RetailStoreOrderApprovalTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderApprovalDAO().enhanceList((List<RetailStoreOrderApproval>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderApprovalDAO().load(id, tokens);
 			}
@@ -2858,6 +3335,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderProcessingDAO().load(id, RetailStoreOrderProcessingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderProcessingDAO().enhanceList((List<RetailStoreOrderProcessing>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderProcessingDAO().load(id, tokens);
 			}
@@ -2873,6 +3357,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderPickingDAO().load(id, RetailStoreOrderPickingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderPickingDAO().enhanceList((List<RetailStoreOrderPicking>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderPickingDAO().load(id, tokens);
 			}
@@ -2888,6 +3379,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderShipmentDAO().load(id, RetailStoreOrderShipmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderShipmentDAO().enhanceList((List<RetailStoreOrderShipment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderShipmentDAO().load(id, tokens);
 			}
@@ -2903,6 +3401,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderDeliveryDAO().load(id, RetailStoreOrderDeliveryTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderDeliveryDAO().enhanceList((List<RetailStoreOrderDelivery>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderDeliveryDAO().load(id, tokens);
 			}
@@ -2918,6 +3423,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderLineItemDAO().load(id, RetailStoreOrderLineItemTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderLineItemDAO().enhanceList((List<RetailStoreOrderLineItem>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderLineItemDAO().load(id, tokens);
 			}
@@ -2933,6 +3445,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderShippingGroupDAO().load(id, RetailStoreOrderShippingGroupTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderShippingGroupDAO().enhanceList((List<RetailStoreOrderShippingGroup>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderShippingGroupDAO().load(id, tokens);
 			}
@@ -2948,6 +3467,13 @@ public class DAOGroup {
 				return daoGoup.getRetailStoreOrderPaymentGroupDAO().load(id, RetailStoreOrderPaymentGroupTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getRetailStoreOrderPaymentGroupDAO().enhanceList((List<RetailStoreOrderPaymentGroup>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderPaymentGroupDAO().load(id, tokens);
 			}
@@ -2963,6 +3489,13 @@ public class DAOGroup {
 				return daoGoup.getWarehouseDAO().load(id, WarehouseTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getWarehouseDAO().enhanceList((List<Warehouse>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getWarehouseDAO().load(id, tokens);
 			}
@@ -2978,6 +3511,13 @@ public class DAOGroup {
 				return daoGoup.getStorageSpaceDAO().load(id, StorageSpaceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getStorageSpaceDAO().enhanceList((List<StorageSpace>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getStorageSpaceDAO().load(id, tokens);
 			}
@@ -2993,6 +3533,13 @@ public class DAOGroup {
 				return daoGoup.getSmartPalletDAO().load(id, SmartPalletTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSmartPalletDAO().enhanceList((List<SmartPallet>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSmartPalletDAO().load(id, tokens);
 			}
@@ -3008,6 +3555,13 @@ public class DAOGroup {
 				return daoGoup.getGoodsShelfDAO().load(id, GoodsShelfTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGoodsShelfDAO().enhanceList((List<GoodsShelf>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsShelfDAO().load(id, tokens);
 			}
@@ -3023,6 +3577,13 @@ public class DAOGroup {
 				return daoGoup.getGoodsShelfStockCountDAO().load(id, GoodsShelfStockCountTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGoodsShelfStockCountDAO().enhanceList((List<GoodsShelfStockCount>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsShelfStockCountDAO().load(id, tokens);
 			}
@@ -3038,6 +3599,13 @@ public class DAOGroup {
 				return daoGoup.getStockCountIssueTrackDAO().load(id, StockCountIssueTrackTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getStockCountIssueTrackDAO().enhanceList((List<StockCountIssueTrack>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getStockCountIssueTrackDAO().load(id, tokens);
 			}
@@ -3053,6 +3621,13 @@ public class DAOGroup {
 				return daoGoup.getGoodsAllocationDAO().load(id, GoodsAllocationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGoodsAllocationDAO().enhanceList((List<GoodsAllocation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsAllocationDAO().load(id, tokens);
 			}
@@ -3068,6 +3643,13 @@ public class DAOGroup {
 				return daoGoup.getGoodsDAO().load(id, GoodsTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGoodsDAO().enhanceList((List<Goods>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsDAO().load(id, tokens);
 			}
@@ -3083,6 +3665,13 @@ public class DAOGroup {
 				return daoGoup.getGoodsPackagingDAO().load(id, GoodsPackagingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGoodsPackagingDAO().enhanceList((List<GoodsPackaging>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsPackagingDAO().load(id, tokens);
 			}
@@ -3098,6 +3687,13 @@ public class DAOGroup {
 				return daoGoup.getGoodsMovementDAO().load(id, GoodsMovementTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGoodsMovementDAO().enhanceList((List<GoodsMovement>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsMovementDAO().load(id, tokens);
 			}
@@ -3113,6 +3709,13 @@ public class DAOGroup {
 				return daoGoup.getSupplierSpaceDAO().load(id, SupplierSpaceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSupplierSpaceDAO().enhanceList((List<SupplierSpace>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplierSpaceDAO().load(id, tokens);
 			}
@@ -3128,6 +3731,13 @@ public class DAOGroup {
 				return daoGoup.getReceivingSpaceDAO().load(id, ReceivingSpaceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getReceivingSpaceDAO().enhanceList((List<ReceivingSpace>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getReceivingSpaceDAO().load(id, tokens);
 			}
@@ -3143,6 +3753,13 @@ public class DAOGroup {
 				return daoGoup.getShippingSpaceDAO().load(id, ShippingSpaceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getShippingSpaceDAO().enhanceList((List<ShippingSpace>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getShippingSpaceDAO().load(id, tokens);
 			}
@@ -3158,6 +3775,13 @@ public class DAOGroup {
 				return daoGoup.getDamageSpaceDAO().load(id, DamageSpaceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getDamageSpaceDAO().enhanceList((List<DamageSpace>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getDamageSpaceDAO().load(id, tokens);
 			}
@@ -3173,6 +3797,13 @@ public class DAOGroup {
 				return daoGoup.getWarehouseAssetDAO().load(id, WarehouseAssetTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getWarehouseAssetDAO().enhanceList((List<WarehouseAsset>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getWarehouseAssetDAO().load(id, tokens);
 			}
@@ -3188,6 +3819,13 @@ public class DAOGroup {
 				return daoGoup.getTransportFleetDAO().load(id, TransportFleetTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTransportFleetDAO().enhanceList((List<TransportFleet>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportFleetDAO().load(id, tokens);
 			}
@@ -3203,6 +3841,13 @@ public class DAOGroup {
 				return daoGoup.getTransportTruckDAO().load(id, TransportTruckTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTransportTruckDAO().enhanceList((List<TransportTruck>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportTruckDAO().load(id, tokens);
 			}
@@ -3218,6 +3863,13 @@ public class DAOGroup {
 				return daoGoup.getTruckDriverDAO().load(id, TruckDriverTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTruckDriverDAO().enhanceList((List<TruckDriver>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTruckDriverDAO().load(id, tokens);
 			}
@@ -3233,6 +3885,13 @@ public class DAOGroup {
 				return daoGoup.getTransportTaskDAO().load(id, TransportTaskTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTransportTaskDAO().enhanceList((List<TransportTask>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportTaskDAO().load(id, tokens);
 			}
@@ -3248,6 +3907,13 @@ public class DAOGroup {
 				return daoGoup.getTransportTaskTrackDAO().load(id, TransportTaskTrackTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTransportTaskTrackDAO().enhanceList((List<TransportTaskTrack>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportTaskTrackDAO().load(id, tokens);
 			}
@@ -3263,6 +3929,13 @@ public class DAOGroup {
 				return daoGoup.getAccountSetDAO().load(id, AccountSetTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountSetDAO().enhanceList((List<AccountSet>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountSetDAO().load(id, tokens);
 			}
@@ -3278,6 +3951,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingSubjectDAO().load(id, AccountingSubjectTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingSubjectDAO().enhanceList((List<AccountingSubject>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingSubjectDAO().load(id, tokens);
 			}
@@ -3293,6 +3973,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingPeriodDAO().load(id, AccountingPeriodTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingPeriodDAO().enhanceList((List<AccountingPeriod>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingPeriodDAO().load(id, tokens);
 			}
@@ -3308,6 +3995,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingDocumentTypeDAO().load(id, AccountingDocumentTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingDocumentTypeDAO().enhanceList((List<AccountingDocumentType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentTypeDAO().load(id, tokens);
 			}
@@ -3323,6 +4017,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingDocumentDAO().load(id, AccountingDocumentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingDocumentDAO().enhanceList((List<AccountingDocument>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentDAO().load(id, tokens);
 			}
@@ -3338,6 +4039,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingDocumentCreationDAO().load(id, AccountingDocumentCreationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingDocumentCreationDAO().enhanceList((List<AccountingDocumentCreation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentCreationDAO().load(id, tokens);
 			}
@@ -3353,6 +4061,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingDocumentConfirmationDAO().load(id, AccountingDocumentConfirmationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingDocumentConfirmationDAO().enhanceList((List<AccountingDocumentConfirmation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentConfirmationDAO().load(id, tokens);
 			}
@@ -3368,6 +4083,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingDocumentAuditingDAO().load(id, AccountingDocumentAuditingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingDocumentAuditingDAO().enhanceList((List<AccountingDocumentAuditing>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentAuditingDAO().load(id, tokens);
 			}
@@ -3383,6 +4105,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingDocumentPostingDAO().load(id, AccountingDocumentPostingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingDocumentPostingDAO().enhanceList((List<AccountingDocumentPosting>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentPostingDAO().load(id, tokens);
 			}
@@ -3398,6 +4127,13 @@ public class DAOGroup {
 				return daoGoup.getOriginalVoucherDAO().load(id, OriginalVoucherTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getOriginalVoucherDAO().enhanceList((List<OriginalVoucher>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOriginalVoucherDAO().load(id, tokens);
 			}
@@ -3413,6 +4149,13 @@ public class DAOGroup {
 				return daoGoup.getOriginalVoucherCreationDAO().load(id, OriginalVoucherCreationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getOriginalVoucherCreationDAO().enhanceList((List<OriginalVoucherCreation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOriginalVoucherCreationDAO().load(id, tokens);
 			}
@@ -3428,6 +4171,13 @@ public class DAOGroup {
 				return daoGoup.getOriginalVoucherConfirmationDAO().load(id, OriginalVoucherConfirmationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getOriginalVoucherConfirmationDAO().enhanceList((List<OriginalVoucherConfirmation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOriginalVoucherConfirmationDAO().load(id, tokens);
 			}
@@ -3443,6 +4193,13 @@ public class DAOGroup {
 				return daoGoup.getOriginalVoucherAuditingDAO().load(id, OriginalVoucherAuditingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getOriginalVoucherAuditingDAO().enhanceList((List<OriginalVoucherAuditing>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOriginalVoucherAuditingDAO().load(id, tokens);
 			}
@@ -3458,6 +4215,13 @@ public class DAOGroup {
 				return daoGoup.getAccountingDocumentLineDAO().load(id, AccountingDocumentLineTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getAccountingDocumentLineDAO().enhanceList((List<AccountingDocumentLine>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentLineDAO().load(id, tokens);
 			}
@@ -3473,6 +4237,13 @@ public class DAOGroup {
 				return daoGoup.getLevelOneDepartmentDAO().load(id, LevelOneDepartmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLevelOneDepartmentDAO().enhanceList((List<LevelOneDepartment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelOneDepartmentDAO().load(id, tokens);
 			}
@@ -3488,6 +4259,13 @@ public class DAOGroup {
 				return daoGoup.getLevelTwoDepartmentDAO().load(id, LevelTwoDepartmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLevelTwoDepartmentDAO().enhanceList((List<LevelTwoDepartment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelTwoDepartmentDAO().load(id, tokens);
 			}
@@ -3503,6 +4281,13 @@ public class DAOGroup {
 				return daoGoup.getLevelThreeDepartmentDAO().load(id, LevelThreeDepartmentTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLevelThreeDepartmentDAO().enhanceList((List<LevelThreeDepartment>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelThreeDepartmentDAO().load(id, tokens);
 			}
@@ -3518,6 +4303,13 @@ public class DAOGroup {
 				return daoGoup.getSkillTypeDAO().load(id, SkillTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSkillTypeDAO().enhanceList((List<SkillType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSkillTypeDAO().load(id, tokens);
 			}
@@ -3533,6 +4325,13 @@ public class DAOGroup {
 				return daoGoup.getResponsibilityTypeDAO().load(id, ResponsibilityTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getResponsibilityTypeDAO().enhanceList((List<ResponsibilityType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getResponsibilityTypeDAO().load(id, tokens);
 			}
@@ -3548,6 +4347,13 @@ public class DAOGroup {
 				return daoGoup.getTerminationReasonDAO().load(id, TerminationReasonTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTerminationReasonDAO().enhanceList((List<TerminationReason>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTerminationReasonDAO().load(id, tokens);
 			}
@@ -3563,6 +4369,13 @@ public class DAOGroup {
 				return daoGoup.getTerminationTypeDAO().load(id, TerminationTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTerminationTypeDAO().enhanceList((List<TerminationType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTerminationTypeDAO().load(id, tokens);
 			}
@@ -3578,6 +4391,13 @@ public class DAOGroup {
 				return daoGoup.getOccupationTypeDAO().load(id, OccupationTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getOccupationTypeDAO().enhanceList((List<OccupationType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOccupationTypeDAO().load(id, tokens);
 			}
@@ -3593,6 +4413,13 @@ public class DAOGroup {
 				return daoGoup.getLeaveTypeDAO().load(id, LeaveTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLeaveTypeDAO().enhanceList((List<LeaveType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLeaveTypeDAO().load(id, tokens);
 			}
@@ -3608,6 +4435,13 @@ public class DAOGroup {
 				return daoGoup.getSalaryGradeDAO().load(id, SalaryGradeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSalaryGradeDAO().enhanceList((List<SalaryGrade>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSalaryGradeDAO().load(id, tokens);
 			}
@@ -3623,6 +4457,13 @@ public class DAOGroup {
 				return daoGoup.getInterviewTypeDAO().load(id, InterviewTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getInterviewTypeDAO().enhanceList((List<InterviewType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getInterviewTypeDAO().load(id, tokens);
 			}
@@ -3638,6 +4479,13 @@ public class DAOGroup {
 				return daoGoup.getTrainingCourseTypeDAO().load(id, TrainingCourseTypeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTrainingCourseTypeDAO().enhanceList((List<TrainingCourseType>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTrainingCourseTypeDAO().load(id, tokens);
 			}
@@ -3653,6 +4501,13 @@ public class DAOGroup {
 				return daoGoup.getPublicHolidayDAO().load(id, PublicHolidayTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getPublicHolidayDAO().enhanceList((List<PublicHoliday>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPublicHolidayDAO().load(id, tokens);
 			}
@@ -3668,6 +4523,13 @@ public class DAOGroup {
 				return daoGoup.getTerminationDAO().load(id, TerminationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTerminationDAO().enhanceList((List<Termination>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTerminationDAO().load(id, tokens);
 			}
@@ -3683,6 +4545,13 @@ public class DAOGroup {
 				return daoGoup.getViewDAO().load(id, ViewTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getViewDAO().enhanceList((List<View>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getViewDAO().load(id, tokens);
 			}
@@ -3698,6 +4567,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeDAO().load(id, EmployeeTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeDAO().enhanceList((List<Employee>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeDAO().load(id, tokens);
 			}
@@ -3713,6 +4589,13 @@ public class DAOGroup {
 				return daoGoup.getJobApplicationDAO().load(id, JobApplicationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getJobApplicationDAO().enhanceList((List<JobApplication>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getJobApplicationDAO().load(id, tokens);
 			}
@@ -3728,6 +4611,13 @@ public class DAOGroup {
 				return daoGoup.getProfessionInterviewDAO().load(id, ProfessionInterviewTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getProfessionInterviewDAO().enhanceList((List<ProfessionInterview>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProfessionInterviewDAO().load(id, tokens);
 			}
@@ -3743,6 +4633,13 @@ public class DAOGroup {
 				return daoGoup.getHrInterviewDAO().load(id, HrInterviewTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getHrInterviewDAO().enhanceList((List<HrInterview>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getHrInterviewDAO().load(id, tokens);
 			}
@@ -3758,6 +4655,13 @@ public class DAOGroup {
 				return daoGoup.getOfferApprovalDAO().load(id, OfferApprovalTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getOfferApprovalDAO().enhanceList((List<OfferApproval>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOfferApprovalDAO().load(id, tokens);
 			}
@@ -3773,6 +4677,13 @@ public class DAOGroup {
 				return daoGoup.getOfferAcceptanceDAO().load(id, OfferAcceptanceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getOfferAcceptanceDAO().enhanceList((List<OfferAcceptance>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOfferAcceptanceDAO().load(id, tokens);
 			}
@@ -3788,6 +4699,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeBoardingDAO().load(id, EmployeeBoardingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeBoardingDAO().enhanceList((List<EmployeeBoarding>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeBoardingDAO().load(id, tokens);
 			}
@@ -3803,6 +4721,13 @@ public class DAOGroup {
 				return daoGoup.getInstructorDAO().load(id, InstructorTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getInstructorDAO().enhanceList((List<Instructor>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getInstructorDAO().load(id, tokens);
 			}
@@ -3818,6 +4743,13 @@ public class DAOGroup {
 				return daoGoup.getCompanyTrainingDAO().load(id, CompanyTrainingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCompanyTrainingDAO().enhanceList((List<CompanyTraining>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCompanyTrainingDAO().load(id, tokens);
 			}
@@ -3833,6 +4765,13 @@ public class DAOGroup {
 				return daoGoup.getScoringDAO().load(id, ScoringTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getScoringDAO().enhanceList((List<Scoring>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getScoringDAO().load(id, tokens);
 			}
@@ -3848,6 +4787,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeCompanyTrainingDAO().load(id, EmployeeCompanyTrainingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeCompanyTrainingDAO().enhanceList((List<EmployeeCompanyTraining>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeCompanyTrainingDAO().load(id, tokens);
 			}
@@ -3863,6 +4809,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeSkillDAO().load(id, EmployeeSkillTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeSkillDAO().enhanceList((List<EmployeeSkill>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeSkillDAO().load(id, tokens);
 			}
@@ -3878,6 +4831,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeePerformanceDAO().load(id, EmployeePerformanceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeePerformanceDAO().enhanceList((List<EmployeePerformance>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeePerformanceDAO().load(id, tokens);
 			}
@@ -3893,6 +4853,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeWorkExperienceDAO().load(id, EmployeeWorkExperienceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeWorkExperienceDAO().enhanceList((List<EmployeeWorkExperience>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeWorkExperienceDAO().load(id, tokens);
 			}
@@ -3908,6 +4875,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeLeaveDAO().load(id, EmployeeLeaveTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeLeaveDAO().enhanceList((List<EmployeeLeave>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeLeaveDAO().load(id, tokens);
 			}
@@ -3923,6 +4897,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeInterviewDAO().load(id, EmployeeInterviewTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeInterviewDAO().enhanceList((List<EmployeeInterview>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeInterviewDAO().load(id, tokens);
 			}
@@ -3938,6 +4919,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeAttendanceDAO().load(id, EmployeeAttendanceTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeAttendanceDAO().enhanceList((List<EmployeeAttendance>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeAttendanceDAO().load(id, tokens);
 			}
@@ -3953,6 +4941,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeQualifierDAO().load(id, EmployeeQualifierTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeQualifierDAO().enhanceList((List<EmployeeQualifier>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeQualifierDAO().load(id, tokens);
 			}
@@ -3968,6 +4963,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeEducationDAO().load(id, EmployeeEducationTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeEducationDAO().enhanceList((List<EmployeeEducation>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeEducationDAO().load(id, tokens);
 			}
@@ -3983,6 +4985,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeAwardDAO().load(id, EmployeeAwardTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeAwardDAO().enhanceList((List<EmployeeAward>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeAwardDAO().load(id, tokens);
 			}
@@ -3998,6 +5007,13 @@ public class DAOGroup {
 				return daoGoup.getEmployeeSalarySheetDAO().load(id, EmployeeSalarySheetTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getEmployeeSalarySheetDAO().enhanceList((List<EmployeeSalarySheet>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeSalarySheetDAO().load(id, tokens);
 			}
@@ -4013,6 +5029,13 @@ public class DAOGroup {
 				return daoGoup.getPayingOffDAO().load(id, PayingOffTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getPayingOffDAO().enhanceList((List<PayingOff>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPayingOffDAO().load(id, tokens);
 			}
@@ -4028,6 +5051,13 @@ public class DAOGroup {
 				return daoGoup.getUserDomainDAO().load(id, UserDomainTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getUserDomainDAO().enhanceList((List<UserDomain>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getUserDomainDAO().load(id, tokens);
 			}
@@ -4043,6 +5073,13 @@ public class DAOGroup {
 				return daoGoup.getUserWhiteListDAO().load(id, UserWhiteListTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getUserWhiteListDAO().enhanceList((List<UserWhiteList>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getUserWhiteListDAO().load(id, tokens);
 			}
@@ -4058,6 +5095,13 @@ public class DAOGroup {
 				return daoGoup.getSecUserDAO().load(id, SecUserTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSecUserDAO().enhanceList((List<SecUser>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSecUserDAO().load(id, tokens);
 			}
@@ -4073,6 +5117,13 @@ public class DAOGroup {
 				return daoGoup.getSecUserBlockingDAO().load(id, SecUserBlockingTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSecUserBlockingDAO().enhanceList((List<SecUserBlocking>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSecUserBlockingDAO().load(id, tokens);
 			}
@@ -4088,6 +5139,13 @@ public class DAOGroup {
 				return daoGoup.getUserAppDAO().load(id, UserAppTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getUserAppDAO().enhanceList((List<UserApp>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getUserAppDAO().load(id, tokens);
 			}
@@ -4097,12 +5155,41 @@ public class DAOGroup {
 			}
 		});
 
+<<<<<<< HEAD
+=======
+		internalLoaderMap.put("QuickLink", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getQuickLinkDAO().load(id, QuickLinkTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getQuickLinkDAO().enhanceList((List<QuickLink>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getQuickLinkDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getQuickLinkDAO().present((QuickLink)data, tokens);
+			}
+		});
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		internalLoaderMap.put("ListAccess", new BasicLoader() {
 			@Override
 			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
 				return daoGoup.getListAccessDAO().load(id, ListAccessTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getListAccessDAO().enhanceList((List<ListAccess>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getListAccessDAO().load(id, tokens);
 			}
@@ -4118,6 +5205,13 @@ public class DAOGroup {
 				return daoGoup.getObjectAccessDAO().load(id, ObjectAccessTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getObjectAccessDAO().enhanceList((List<ObjectAccess>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getObjectAccessDAO().load(id, tokens);
 			}
@@ -4133,6 +5227,13 @@ public class DAOGroup {
 				return daoGoup.getLoginHistoryDAO().load(id, LoginHistoryTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getLoginHistoryDAO().enhanceList((List<LoginHistory>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLoginHistoryDAO().load(id, tokens);
 			}
@@ -4148,6 +5249,13 @@ public class DAOGroup {
 				return daoGoup.getGenericFormDAO().load(id, GenericFormTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getGenericFormDAO().enhanceList((List<GenericForm>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGenericFormDAO().load(id, tokens);
 			}
@@ -4163,6 +5271,13 @@ public class DAOGroup {
 				return daoGoup.getFormMessageDAO().load(id, FormMessageTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getFormMessageDAO().enhanceList((List<FormMessage>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormMessageDAO().load(id, tokens);
 			}
@@ -4178,6 +5293,13 @@ public class DAOGroup {
 				return daoGoup.getFormFieldMessageDAO().load(id, FormFieldMessageTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getFormFieldMessageDAO().enhanceList((List<FormFieldMessage>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormFieldMessageDAO().load(id, tokens);
 			}
@@ -4193,6 +5315,13 @@ public class DAOGroup {
 				return daoGoup.getFormFieldDAO().load(id, FormFieldTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getFormFieldDAO().enhanceList((List<FormField>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormFieldDAO().load(id, tokens);
 			}
@@ -4208,6 +5337,13 @@ public class DAOGroup {
 				return daoGoup.getFormActionDAO().load(id, FormActionTokens.withoutLists());
 			}
 			@Override
+<<<<<<< HEAD
+=======
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getFormActionDAO().enhanceList((List<FormAction>)list);
+			}
+			@Override
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormActionDAO().load(id, tokens);
 			}
@@ -4217,6 +5353,47 @@ public class DAOGroup {
 			}
 		});
 
+<<<<<<< HEAD
+=======
+		internalLoaderMap.put("CandidateContainer", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getCandidateContainerDAO().load(id, CandidateContainerTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCandidateContainerDAO().enhanceList((List<CandidateContainer>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateContainerDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateContainerDAO().present((CandidateContainer)data, tokens);
+			}
+		});
+
+		internalLoaderMap.put("CandidateElement", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getCandidateElementDAO().load(id, CandidateElementTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCandidateElementDAO().enhanceList((List<CandidateElement>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateElementDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateElementDAO().present((CandidateElement)data, tokens);
+			}
+		});
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public BaseEntity loadBasicData(String type, String id){
 	    BasicLoader loader = internalLoaderMap.get(type);
@@ -4254,5 +5431,16 @@ public class DAOGroup {
 	    	return null;
 	    }
 	}
+<<<<<<< HEAD
+=======
+	public <T> void enhanceList(List list, Class<T> clazz) throws Exception{
+	    BasicLoader loader = internalLoaderMap.get(clazz.getName());
+	    if (loader == null) {
+	    	return ;
+	    }
+
+	    loader.enhanceList(this, list);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 

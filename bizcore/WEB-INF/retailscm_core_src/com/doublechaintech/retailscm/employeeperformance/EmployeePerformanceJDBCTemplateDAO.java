@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.employeeperformance;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class EmployeePerformanceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeePerformanceDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class EmployeePerformanceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeePerformanceDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  EmployeeDAO  employeeDAO;
@@ -510,6 +528,12 @@ public class EmployeePerformanceJDBCTemplateDAO extends RetailscmNamingServiceDA
 	public void enhanceList(List<EmployeePerformance> employeePerformanceList) {		
 		this.enhanceListInternal(employeePerformanceList, this.getEmployeePerformanceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<EmployeePerformance> employeePerformanceList = ownerEntity.collectRefsWithType(EmployeePerformance.INTERNAL_TYPE);
@@ -542,6 +566,12 @@ public class EmployeePerformanceJDBCTemplateDAO extends RetailscmNamingServiceDA
 	public SmartList<EmployeePerformance> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeePerformanceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

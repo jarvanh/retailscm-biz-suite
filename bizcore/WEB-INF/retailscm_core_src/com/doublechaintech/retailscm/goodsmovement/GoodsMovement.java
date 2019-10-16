@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.goodsmovement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -65,9 +69,25 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	GoodsMovement(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static GoodsMovement withId(String id){
+		GoodsMovement goodsMovement = new GoodsMovement();
+		goodsMovement.setId(id);
+		goodsMovement.setVersion(Integer.MAX_VALUE);
+		return goodsMovement;
+	}
+	public 	static GoodsMovement refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setGoods( null );
 
@@ -244,6 +264,47 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(MOVE_TIME_PROPERTY.equals(property)){
+			return getMoveTime();
+		}
+		if(FACILITY_PROPERTY.equals(property)){
+			return getFacility();
+		}
+		if(FACILITY_ID_PROPERTY.equals(property)){
+			return getFacilityId();
+		}
+		if(FROM_IP_PROPERTY.equals(property)){
+			return getFromIp();
+		}
+		if(USER_AGENT_PROPERTY.equals(property)){
+			return getUserAgent();
+		}
+		if(SESSION_ID_PROPERTY.equals(property)){
+			return getSessionId();
+		}
+		if(LATITUDE_PROPERTY.equals(property)){
+			return getLatitude();
+		}
+		if(LONGITUDE_PROPERTY.equals(property)){
+			return getLongitude();
+		}
+		if(GOODS_PROPERTY.equals(property)){
+			return getGoods();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -257,6 +318,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMoveTime(DateTime moveTime){
@@ -270,6 +337,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeMoveTime(DateTime moveTime){
+		setMoveTime(moveTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFacility(String facility){
@@ -283,6 +356,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeFacility(String facility){
+		if(facility != null) { setFacility(facility);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFacilityId(String facilityId){
@@ -296,6 +375,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeFacilityId(String facilityId){
+		if(facilityId != null) { setFacilityId(facilityId);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearFacilityId(){
@@ -314,6 +399,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeFromIp(String fromIp){
+		if(fromIp != null) { setFromIp(fromIp);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setUserAgent(String userAgent){
@@ -327,6 +418,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeUserAgent(String userAgent){
+		if(userAgent != null) { setUserAgent(userAgent);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSessionId(String sessionId){
@@ -340,6 +437,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSessionId(String sessionId){
+		if(sessionId != null) { setSessionId(sessionId);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearSessionId(){
@@ -358,6 +461,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLatitude(BigDecimal latitude){
+		setLatitude(latitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLongitude(BigDecimal longitude){
@@ -371,6 +480,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLongitude(BigDecimal longitude){
+		setLongitude(longitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setGoods(Goods goods){
@@ -384,6 +499,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeGoods(Goods goods){
+		if(goods != null) { setGoods(goods);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearGoods(){
@@ -402,6 +523,12 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -472,6 +599,56 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsMovement){
+		
+			
+			GoodsMovement dest =(GoodsMovement)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeMoveTime(getMoveTime());
+			dest.mergeFacility(getFacility());
+			dest.mergeFacilityId(getFacilityId());
+			dest.mergeFromIp(getFromIp());
+			dest.mergeUserAgent(getUserAgent());
+			dest.mergeSessionId(getSessionId());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeGoods(getGoods());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsMovement){
+		
+			
+			GoodsMovement dest =(GoodsMovement)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeMoveTime(getMoveTime());
+			dest.mergeFacility(getFacility());
+			dest.mergeFacilityId(getFacilityId());
+			dest.mergeFromIp(getFromIp());
+			dest.mergeUserAgent(getUserAgent());
+			dest.mergeSessionId(getSessionId());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

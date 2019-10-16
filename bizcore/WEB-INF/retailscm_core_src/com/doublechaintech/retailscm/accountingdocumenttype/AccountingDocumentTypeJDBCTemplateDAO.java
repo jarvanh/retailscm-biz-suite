@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.accountingdocumenttype;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentTypeDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingDocumentTypeDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  AccountSetDAO  accountSetDAO;
@@ -221,9 +239,14 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmNamingServic
 	protected boolean isExtractAccountingDocumentListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountingDocumentTypeTokens.ACCOUNTING_DOCUMENT_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeAccountingDocumentListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,AccountingDocumentTypeTokens.ACCOUNTING_DOCUMENT_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeAccountingDocumentListEnabled(Map<String,Object> options){		 		
+ 		return AccountingDocumentTypeTokens.of(options).analyzeAccountingDocumentListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingDocumentListEnabled(Map<String,Object> options){
@@ -613,9 +636,15 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmNamingServic
 			return accountingDocumentType;
 		}
 		
+<<<<<<< HEAD
 		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
 
 			accountingDocument.clearFromAll();
+=======
+		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
+
+			accountingDocumentItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -645,9 +674,15 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmNamingServic
 			return accountingDocumentType;
 		}
 		
+<<<<<<< HEAD
 		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
 			accountingDocument.clearAccountingPeriod();
 			accountingDocument.clearDocumentType();
+=======
+		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
+			accountingDocumentItem.clearAccountingPeriod();
+			accountingDocumentItem.clearDocumentType();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -785,6 +820,35 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmNamingServic
 	public void enhanceList(List<AccountingDocumentType> accountingDocumentTypeList) {		
 		this.enhanceListInternal(accountingDocumentTypeList, this.getAccountingDocumentTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:AccountingDocument的documentType的AccountingDocumentList
+	public SmartList<AccountingDocument> loadOurAccountingDocumentList(RetailscmUserContext userContext, List<AccountingDocumentType> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountingDocument.DOCUMENT_TYPE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<AccountingDocument> loadedObjs = userContext.getDAOGroup().getAccountingDocumentDAO().findAccountingDocumentWithKey(key, options);
+		Map<String, List<AccountingDocument>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getDocumentType().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<AccountingDocument> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<AccountingDocument> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setAccountingDocumentList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<AccountingDocumentType> accountingDocumentTypeList = ownerEntity.collectRefsWithType(AccountingDocumentType.INTERNAL_TYPE);
@@ -817,6 +881,12 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmNamingServic
 	public SmartList<AccountingDocumentType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

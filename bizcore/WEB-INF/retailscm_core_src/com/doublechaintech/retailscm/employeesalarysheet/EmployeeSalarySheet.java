@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.employeesalarysheet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -71,9 +75,25 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	
 		
 	public 	EmployeeSalarySheet(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static EmployeeSalarySheet withId(String id){
+		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
+		employeeSalarySheet.setId(id);
+		employeeSalarySheet.setVersion(Integer.MAX_VALUE);
+		return employeeSalarySheet;
+	}
+	public 	static EmployeeSalarySheet refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setEmployee( null );
 		setCurrentSalaryGrade( null );
@@ -235,6 +255,53 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(CURRENT_SALARY_GRADE_PROPERTY.equals(property)){
+			return getCurrentSalaryGrade();
+		}
+		if(BASE_SALARY_PROPERTY.equals(property)){
+			return getBaseSalary();
+		}
+		if(BONUS_PROPERTY.equals(property)){
+			return getBonus();
+		}
+		if(REWARD_PROPERTY.equals(property)){
+			return getReward();
+		}
+		if(PERSONAL_TAX_PROPERTY.equals(property)){
+			return getPersonalTax();
+		}
+		if(SOCIAL_SECURITY_PROPERTY.equals(property)){
+			return getSocialSecurity();
+		}
+		if(HOUSING_FOUND_PROPERTY.equals(property)){
+			return getHousingFound();
+		}
+		if(JOB_INSURANCE_PROPERTY.equals(property)){
+			return getJobInsurance();
+		}
+		if(PAYING_OFF_PROPERTY.equals(property)){
+			return getPayingOff();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -248,6 +315,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmployee(Employee employee){
@@ -261,6 +334,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmployee(Employee employee){
+		if(employee != null) { setEmployee(employee);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployee(){
@@ -279,6 +358,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCurrentSalaryGrade(SalaryGrade currentSalaryGrade){
+		if(currentSalaryGrade != null) { setCurrentSalaryGrade(currentSalaryGrade);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCurrentSalaryGrade(){
@@ -297,6 +382,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBaseSalary(BigDecimal baseSalary){
+		setBaseSalary(baseSalary);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBonus(BigDecimal bonus){
@@ -310,6 +401,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBonus(BigDecimal bonus){
+		setBonus(bonus);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setReward(BigDecimal reward){
@@ -323,6 +420,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeReward(BigDecimal reward){
+		setReward(reward);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPersonalTax(BigDecimal personalTax){
@@ -336,6 +439,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePersonalTax(BigDecimal personalTax){
+		setPersonalTax(personalTax);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSocialSecurity(BigDecimal socialSecurity){
@@ -349,6 +458,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSocialSecurity(BigDecimal socialSecurity){
+		setSocialSecurity(socialSecurity);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setHousingFound(BigDecimal housingFound){
@@ -362,6 +477,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeHousingFound(BigDecimal housingFound){
+		setHousingFound(housingFound);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setJobInsurance(BigDecimal jobInsurance){
@@ -375,6 +496,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeJobInsurance(BigDecimal jobInsurance){
+		setJobInsurance(jobInsurance);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPayingOff(PayingOff payingOff){
@@ -388,6 +515,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePayingOff(PayingOff payingOff){
+		if(payingOff != null) { setPayingOff(payingOff);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPayingOff(){
@@ -406,6 +539,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCurrentStatus(String currentStatus){
+		if(currentStatus != null) { setCurrentStatus(currentStatus);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -419,6 +558,12 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -495,6 +640,58 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeSalarySheet){
+		
+			
+			EmployeeSalarySheet dest =(EmployeeSalarySheet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeEmployee(getEmployee());
+			dest.mergeCurrentSalaryGrade(getCurrentSalaryGrade());
+			dest.mergeBaseSalary(getBaseSalary());
+			dest.mergeBonus(getBonus());
+			dest.mergeReward(getReward());
+			dest.mergePersonalTax(getPersonalTax());
+			dest.mergeSocialSecurity(getSocialSecurity());
+			dest.mergeHousingFound(getHousingFound());
+			dest.mergeJobInsurance(getJobInsurance());
+			dest.mergePayingOff(getPayingOff());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeSalarySheet){
+		
+			
+			EmployeeSalarySheet dest =(EmployeeSalarySheet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeBaseSalary(getBaseSalary());
+			dest.mergeBonus(getBonus());
+			dest.mergeReward(getReward());
+			dest.mergePersonalTax(getPersonalTax());
+			dest.mergeSocialSecurity(getSocialSecurity());
+			dest.mergeHousingFound(getHousingFound());
+			dest.mergeJobInsurance(getJobInsurance());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

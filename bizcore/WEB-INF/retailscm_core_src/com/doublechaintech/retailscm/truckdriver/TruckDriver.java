@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.truckdriver;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,9 +62,25 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	TruckDriver(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static TruckDriver withId(String id){
+		TruckDriver truckDriver = new TruckDriver();
+		truckDriver.setId(id);
+		truckDriver.setVersion(Integer.MAX_VALUE);
+		return truckDriver;
+	}
+	public 	static TruckDriver refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBelongsTo( null );
 
@@ -143,6 +163,36 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(DRIVER_LICENSE_NUMBER_PROPERTY.equals(property)){
+			return getDriverLicenseNumber();
+		}
+		if(CONTACT_NUMBER_PROPERTY.equals(property)){
+			return getContactNumber();
+		}
+		if(BELONGS_TO_PROPERTY.equals(property)){
+			return getBelongsTo();
+		}
+		if(TRANSPORT_TASK_LIST.equals(property)){
+			List<BaseEntity> list = getTransportTaskList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -156,6 +206,12 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -169,6 +225,12 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDriverLicenseNumber(String driverLicenseNumber){
@@ -182,6 +244,12 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDriverLicenseNumber(String driverLicenseNumber){
+		if(driverLicenseNumber != null) { setDriverLicenseNumber(driverLicenseNumber);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setContactNumber(String contactNumber){
@@ -195,6 +263,12 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeContactNumber(String contactNumber){
+		if(contactNumber != null) { setContactNumber(contactNumber);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -215,6 +289,12 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBelongsTo(TransportFleet belongsTo){
+		if(belongsTo != null) { setBelongsTo(belongsTo);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBelongsTo(){
@@ -233,6 +313,12 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -265,7 +351,20 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		}
 		getTransportTaskList().addAll(transportTaskList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeTransportTaskList(SmartList<TransportTask> transportTaskList){
+		if(transportTaskList==null){
+			return;
+		}
+		if(transportTaskList.isEmpty()){
+			return;
+		}
+		addTransportTaskList( transportTaskList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TransportTask removeTransportTask(TransportTask transportTaskIndex){
 		
 		int index = getTransportTaskList().indexOf(transportTaskIndex);
@@ -399,6 +498,47 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TruckDriver){
+		
+			
+			TruckDriver dest =(TruckDriver)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeDriverLicenseNumber(getDriverLicenseNumber());
+			dest.mergeContactNumber(getContactNumber());
+			dest.mergeBelongsTo(getBelongsTo());
+			dest.mergeVersion(getVersion());
+			dest.mergeTransportTaskList(getTransportTaskList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TruckDriver){
+		
+			
+			TruckDriver dest =(TruckDriver)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeDriverLicenseNumber(getDriverLicenseNumber());
+			dest.mergeContactNumber(getContactNumber());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

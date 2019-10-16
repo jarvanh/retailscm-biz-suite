@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.accountingdocumenttype;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -56,9 +60,25 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 	
 		
 	public 	AccountingDocumentType(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static AccountingDocumentType withId(String id){
+		AccountingDocumentType accountingDocumentType = new AccountingDocumentType();
+		accountingDocumentType.setId(id);
+		accountingDocumentType.setVersion(Integer.MAX_VALUE);
+		return accountingDocumentType;
+	}
+	public 	static AccountingDocumentType refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setAccountingPeriod( null );
 
@@ -122,6 +142,33 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(ACCOUNTING_PERIOD_PROPERTY.equals(property)){
+			return getAccountingPeriod();
+		}
+		if(ACCOUNTING_DOCUMENT_LIST.equals(property)){
+			List<BaseEntity> list = getAccountingDocumentList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -135,6 +182,12 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -148,6 +201,12 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -161,6 +220,12 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDescription(String description){
+		if(description != null) { setDescription(description);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingPeriod(AccountSet accountingPeriod){
@@ -174,6 +239,12 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeAccountingPeriod(AccountSet accountingPeriod){
+		if(accountingPeriod != null) { setAccountingPeriod(accountingPeriod);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearAccountingPeriod(){
@@ -192,6 +263,12 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -224,7 +301,20 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		}
 		getAccountingDocumentList().addAll(accountingDocumentList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeAccountingDocumentList(SmartList<AccountingDocument> accountingDocumentList){
+		if(accountingDocumentList==null){
+			return;
+		}
+		if(accountingDocumentList.isEmpty()){
+			return;
+		}
+		addAccountingDocumentList( accountingDocumentList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingDocument removeAccountingDocument(AccountingDocument accountingDocumentIndex){
 		
 		int index = getAccountingDocumentList().indexOf(accountingDocumentIndex);
@@ -356,6 +446,45 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingDocumentType){
+		
+			
+			AccountingDocumentType dest =(AccountingDocumentType)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeDescription(getDescription());
+			dest.mergeAccountingPeriod(getAccountingPeriod());
+			dest.mergeVersion(getVersion());
+			dest.mergeAccountingDocumentList(getAccountingDocumentList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingDocumentType){
+		
+			
+			AccountingDocumentType dest =(AccountingDocumentType)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

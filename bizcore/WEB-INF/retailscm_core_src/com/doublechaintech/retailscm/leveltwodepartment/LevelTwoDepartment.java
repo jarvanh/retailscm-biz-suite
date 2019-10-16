@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.leveltwodepartment;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,9 +62,25 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 	
 		
 	public 	LevelTwoDepartment(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static LevelTwoDepartment withId(String id){
+		LevelTwoDepartment levelTwoDepartment = new LevelTwoDepartment();
+		levelTwoDepartment.setId(id);
+		levelTwoDepartment.setVersion(Integer.MAX_VALUE);
+		return levelTwoDepartment;
+	}
+	public 	static LevelTwoDepartment refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBelongsTo( null );
 
@@ -143,6 +163,36 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(BELONGS_TO_PROPERTY.equals(property)){
+			return getBelongsTo();
+		}
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(FOUNDED_PROPERTY.equals(property)){
+			return getFounded();
+		}
+		if(LEVEL_THREE_DEPARTMENT_LIST.equals(property)){
+			List<BaseEntity> list = getLevelThreeDepartmentList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -156,6 +206,12 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBelongsTo(LevelOneDepartment belongsTo){
@@ -169,6 +225,12 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBelongsTo(LevelOneDepartment belongsTo){
+		if(belongsTo != null) { setBelongsTo(belongsTo);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBelongsTo(){
@@ -187,6 +249,12 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -200,6 +268,12 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDescription(String description){
+		if(description != null) { setDescription(description);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFounded(Date founded){
@@ -213,6 +287,12 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeFounded(Date founded){
+		setFounded(founded);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -226,6 +306,12 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -258,7 +344,20 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		}
 		getLevelThreeDepartmentList().addAll(levelThreeDepartmentList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeLevelThreeDepartmentList(SmartList<LevelThreeDepartment> levelThreeDepartmentList){
+		if(levelThreeDepartmentList==null){
+			return;
+		}
+		if(levelThreeDepartmentList.isEmpty()){
+			return;
+		}
+		addLevelThreeDepartmentList( levelThreeDepartmentList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  LevelThreeDepartment removeLevelThreeDepartment(LevelThreeDepartment levelThreeDepartmentIndex){
 		
 		int index = getLevelThreeDepartmentList().indexOf(levelThreeDepartmentIndex);
@@ -392,6 +491,47 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof LevelTwoDepartment){
+		
+			
+			LevelTwoDepartment dest =(LevelTwoDepartment)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeBelongsTo(getBelongsTo());
+			dest.mergeName(getName());
+			dest.mergeDescription(getDescription());
+			dest.mergeFounded(getFounded());
+			dest.mergeVersion(getVersion());
+			dest.mergeLevelThreeDepartmentList(getLevelThreeDepartmentList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof LevelTwoDepartment){
+		
+			
+			LevelTwoDepartment dest =(LevelTwoDepartment)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeDescription(getDescription());
+			dest.mergeFounded(getFounded());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

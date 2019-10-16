@@ -38,6 +38,18 @@ public class TransportFleetTokens extends CommonTokens{
 	protected TransportFleetTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  TransportFleetTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		TransportFleetTokens tokens = new TransportFleetTokens(options);
+		return tokens;
+		
+	}
+	protected TransportFleetTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public TransportFleetTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -85,6 +97,14 @@ public class TransportFleetTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public TransportFleetTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String OWNER = "owner";
 	public String getOwner(){
@@ -110,7 +130,15 @@ public class TransportFleetTokens extends CommonTokens{
 	}
 	public boolean analyzeTransportTruckListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), TRANSPORT_TRUCK_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), TRANSPORT_TRUCK_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public TransportFleetTokens extractMoreFromTransportTruckList(String idsSeperatedWithComma){		
 		addSimpleOptions(TRANSPORT_TRUCK_LIST+".extractIds", idsSeperatedWithComma);
@@ -172,7 +200,15 @@ public class TransportFleetTokens extends CommonTokens{
 	}
 	public boolean analyzeTruckDriverListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), TRUCK_DRIVER_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), TRUCK_DRIVER_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public TransportFleetTokens extractMoreFromTruckDriverList(String idsSeperatedWithComma){		
 		addSimpleOptions(TRUCK_DRIVER_LIST+".extractIds", idsSeperatedWithComma);
@@ -234,7 +270,15 @@ public class TransportFleetTokens extends CommonTokens{
 	}
 	public boolean analyzeTransportTaskListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), TRANSPORT_TASK_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), TRANSPORT_TASK_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public TransportFleetTokens extractMoreFromTransportTaskList(String idsSeperatedWithComma){		
 		addSimpleOptions(TRANSPORT_TASK_LIST+".extractIds", idsSeperatedWithComma);

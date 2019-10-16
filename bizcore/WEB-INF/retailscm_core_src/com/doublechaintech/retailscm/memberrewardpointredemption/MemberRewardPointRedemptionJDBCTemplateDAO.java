@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.memberrewardpointredemption;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmNamingServiceDAO implements MemberRewardPointRedemptionDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmBaseDAOImpl implements MemberRewardPointRedemptionDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreMemberDAO  retailStoreMemberDAO;
@@ -512,6 +530,12 @@ public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmNamingS
 	public void enhanceList(List<MemberRewardPointRedemption> memberRewardPointRedemptionList) {		
 		this.enhanceListInternal(memberRewardPointRedemptionList, this.getMemberRewardPointRedemptionMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<MemberRewardPointRedemption> memberRewardPointRedemptionList = ownerEntity.collectRefsWithType(MemberRewardPointRedemption.INTERNAL_TYPE);
@@ -544,6 +568,12 @@ public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmNamingS
 	public SmartList<MemberRewardPointRedemption> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getMemberRewardPointRedemptionMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

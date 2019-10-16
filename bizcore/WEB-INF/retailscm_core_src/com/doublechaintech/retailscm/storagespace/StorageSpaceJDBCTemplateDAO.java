@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.storagespace;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements StorageSpaceDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements StorageSpaceDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -221,9 +239,14 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	protected boolean isExtractGoodsShelfListEnabled(Map<String,Object> options){		
  		return checkOptions(options,StorageSpaceTokens.GOODS_SHELF_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeGoodsShelfListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,StorageSpaceTokens.GOODS_SHELF_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeGoodsShelfListEnabled(Map<String,Object> options){		 		
+ 		return StorageSpaceTokens.of(options).analyzeGoodsShelfListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsShelfListEnabled(Map<String,Object> options){
@@ -637,9 +660,15 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 			return storageSpace;
 		}
 		
+<<<<<<< HEAD
 		for(GoodsShelf goodsShelf: externalGoodsShelfList){
 
 			goodsShelf.clearFromAll();
+=======
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+
+			goodsShelfItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -669,9 +698,15 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 			return storageSpace;
 		}
 		
+<<<<<<< HEAD
 		for(GoodsShelf goodsShelf: externalGoodsShelfList){
 			goodsShelf.clearSupplierSpace();
 			goodsShelf.clearStorageSpace();
+=======
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearSupplierSpace();
+			goodsShelfItem.clearStorageSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -713,9 +748,15 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 			return storageSpace;
 		}
 		
+<<<<<<< HEAD
 		for(GoodsShelf goodsShelf: externalGoodsShelfList){
 			goodsShelf.clearDamageSpace();
 			goodsShelf.clearStorageSpace();
+=======
+		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
+			goodsShelfItem.clearDamageSpace();
+			goodsShelfItem.clearStorageSpace();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -853,6 +894,35 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	public void enhanceList(List<StorageSpace> storageSpaceList) {		
 		this.enhanceListInternal(storageSpaceList, this.getStorageSpaceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:GoodsShelf的storageSpace的GoodsShelfList
+	public SmartList<GoodsShelf> loadOurGoodsShelfList(RetailscmUserContext userContext, List<StorageSpace> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(GoodsShelf.STORAGE_SPACE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<GoodsShelf> loadedObjs = userContext.getDAOGroup().getGoodsShelfDAO().findGoodsShelfWithKey(key, options);
+		Map<String, List<GoodsShelf>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getStorageSpace().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<GoodsShelf> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<GoodsShelf> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setGoodsShelfList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<StorageSpace> storageSpaceList = ownerEntity.collectRefsWithType(StorageSpace.INTERNAL_TYPE);
@@ -885,6 +955,12 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	public SmartList<StorageSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getStorageSpaceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

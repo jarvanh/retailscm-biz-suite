@@ -7,6 +7,12 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTraining;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTrainingDAO;
 
 
@@ -57,6 +63,13 @@ public interface ScoringDAO{
 	
 	
 	public SmartList<Scoring> queryList(String sql, Object ... parmeters);
+<<<<<<< HEAD
+=======
+
+	// 需要一个加载引用我的对象的enhance方法:EmployeeCompanyTraining的scoring的EmployeeCompanyTrainingList
+	public SmartList<EmployeeCompanyTraining> loadOurEmployeeCompanyTrainingList(RetailscmUserContext userContext, List<Scoring> us, Map<String,Object> options) throws Exception;
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

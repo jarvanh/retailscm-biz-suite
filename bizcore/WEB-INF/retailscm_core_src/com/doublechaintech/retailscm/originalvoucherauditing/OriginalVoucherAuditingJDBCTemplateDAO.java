@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.originalvoucherauditing;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements OriginalVoucherAuditingDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements OriginalVoucherAuditingDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -196,9 +214,14 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmNamingServi
 	protected boolean isExtractOriginalVoucherListEnabled(Map<String,Object> options){		
  		return checkOptions(options,OriginalVoucherAuditingTokens.ORIGINAL_VOUCHER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,OriginalVoucherAuditingTokens.ORIGINAL_VOUCHER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		 		
+ 		return OriginalVoucherAuditingTokens.of(options).analyzeOriginalVoucherListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveOriginalVoucherListEnabled(Map<String,Object> options){
@@ -502,9 +525,15 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmNamingServi
 			return originalVoucherAuditing;
 		}
 		
+<<<<<<< HEAD
 		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
 
 			originalVoucher.clearFromAll();
+=======
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
+
+			originalVoucherItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -534,9 +563,15 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmNamingServi
 			return originalVoucherAuditing;
 		}
 		
+<<<<<<< HEAD
 		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
 			originalVoucher.clearBelongsTo();
 			originalVoucher.clearAuditing();
+=======
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
+			originalVoucherItem.clearBelongsTo();
+			originalVoucherItem.clearAuditing();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -674,6 +709,35 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmNamingServi
 	public void enhanceList(List<OriginalVoucherAuditing> originalVoucherAuditingList) {		
 		this.enhanceListInternal(originalVoucherAuditingList, this.getOriginalVoucherAuditingMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:OriginalVoucher的auditing的OriginalVoucherList
+	public SmartList<OriginalVoucher> loadOurOriginalVoucherList(RetailscmUserContext userContext, List<OriginalVoucherAuditing> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.AUDITING_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<OriginalVoucher> loadedObjs = userContext.getDAOGroup().getOriginalVoucherDAO().findOriginalVoucherWithKey(key, options);
+		Map<String, List<OriginalVoucher>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getAuditing().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<OriginalVoucher> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<OriginalVoucher> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setOriginalVoucherList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<OriginalVoucherAuditing> originalVoucherAuditingList = ownerEntity.collectRefsWithType(OriginalVoucherAuditing.INTERNAL_TYPE);
@@ -706,6 +770,92 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmNamingServi
 	public SmartList<OriginalVoucherAuditing> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getOriginalVoucherAuditingMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+    
+	public Map<String, Integer> countBySql(String sql, Object[] params) {
+		if (params == null || params.length == 0) {
+			return new HashMap<>();
+		}
+		List<Map<String, Object>> result = this.getJdbcTemplateObject().queryForList(sql, params);
+		if (result == null || result.isEmpty()) {
+			return new HashMap<>();
+		}
+		Map<String, Integer> cntMap = new HashMap<>();
+		for (Map<String, Object> data : result) {
+			String key = (String) data.get("id");
+			Number value = (Number) data.get("count");
+			cntMap.put(key, value.intValue());
+		}
+		this.logSQLAndParameters("countBySql", sql, params, cntMap.size() + " Counts");
+		return cntMap;
+	}
+
+	public Integer singleCountBySql(String sql, Object[] params) {
+		Integer cnt = this.getJdbcTemplateObject().queryForObject(sql, params, Integer.class);
+		logSQLAndParameters("singleCountBySql", sql, params, cnt + "");
+		return cnt;
+	}
+
+	public BigDecimal summaryBySql(String sql, Object[] params) {
+		BigDecimal cnt = this.getJdbcTemplateObject().queryForObject(sql, params, BigDecimal.class);
+		logSQLAndParameters("summaryBySql", sql, params, cnt + "");
+		return cnt == null ? BigDecimal.ZERO : cnt;
+	}
+
+	public <T> List<T> queryForList(String sql, Object[] params, Class<T> claxx) {
+		List<T> result = this.getJdbcTemplateObject().queryForList(sql, params, claxx);
+		logSQLAndParameters("queryForList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public Map<String, Object> queryForMap(String sql, Object[] params) throws DataAccessException {
+		Map<String, Object> result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForMap(sql, params);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public <T> T queryForObject(String sql, Object[] params, Class<T> claxx) throws DataAccessException {
+		T result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForObject(sql, params, claxx);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public List<Map<String, Object>> queryAsMapList(String sql, Object[] params) {
+		List<Map<String, Object>> result = getJdbcTemplateObject().queryForList(sql, params);
+		logSQLAndParameters("queryAsMapList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public synchronized int updateBySql(String sql, Object[] params) {
+		int result = getJdbcTemplateObject().update(sql, params);
+		logSQLAndParameters("updateBySql", sql, params, result + " items");
+		return result;
+	}
+
+	public void execSqlWithRowCallback(String sql, Object[] args, RowCallbackHandler callback) {
+		getJdbcTemplateObject().query(sql, args, callback);
+	}
+
+	public void executeSql(String sql) {
+		logSQLAndParameters("executeSql", sql, new Object[] {}, "");
+		getJdbcTemplateObject().execute(sql);
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

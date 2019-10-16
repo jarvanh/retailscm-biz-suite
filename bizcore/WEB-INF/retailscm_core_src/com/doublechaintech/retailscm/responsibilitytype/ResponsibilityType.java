@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.responsibilitytype;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,9 +62,25 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 	
 		
 	public 	ResponsibilityType(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static ResponsibilityType withId(String id){
+		ResponsibilityType responsibilityType = new ResponsibilityType();
+		responsibilityType.setId(id);
+		responsibilityType.setVersion(Integer.MAX_VALUE);
+		return responsibilityType;
+	}
+	public 	static ResponsibilityType refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCompany( null );
 
@@ -143,6 +163,36 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(CODE_PROPERTY.equals(property)){
+			return getCode();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(BASE_DESCRIPTION_PROPERTY.equals(property)){
+			return getBaseDescription();
+		}
+		if(DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+			return getDetailDescription();
+		}
+		if(EMPLOYEE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -156,6 +206,12 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCode(String code){
@@ -169,6 +225,12 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCode(String code){
+		if(code != null) { setCode(code);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(RetailStoreCountryCenter company){
@@ -182,6 +244,12 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCompany(RetailStoreCountryCenter company){
+		if(company != null) { setCompany(company);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCompany(){
@@ -200,6 +268,12 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBaseDescription(String baseDescription){
+		if(baseDescription != null) { setBaseDescription(baseDescription);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDetailDescription(String detailDescription){
@@ -213,6 +287,12 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDetailDescription(String detailDescription){
+		if(detailDescription != null) { setDetailDescription(detailDescription);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -226,6 +306,12 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -258,7 +344,20 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		}
 		getEmployeeList().addAll(employeeList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeList(SmartList<Employee> employeeList){
+		if(employeeList==null){
+			return;
+		}
+		if(employeeList.isEmpty()){
+			return;
+		}
+		addEmployeeList( employeeList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Employee removeEmployee(Employee employeeIndex){
 		
 		int index = getEmployeeList().indexOf(employeeIndex);
@@ -392,6 +491,47 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ResponsibilityType){
+		
+			
+			ResponsibilityType dest =(ResponsibilityType)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCode(getCode());
+			dest.mergeCompany(getCompany());
+			dest.mergeBaseDescription(getBaseDescription());
+			dest.mergeDetailDescription(getDetailDescription());
+			dest.mergeVersion(getVersion());
+			dest.mergeEmployeeList(getEmployeeList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof ResponsibilityType){
+		
+			
+			ResponsibilityType dest =(ResponsibilityType)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCode(getCode());
+			dest.mergeBaseDescription(getBaseDescription());
+			dest.mergeDetailDescription(getDetailDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

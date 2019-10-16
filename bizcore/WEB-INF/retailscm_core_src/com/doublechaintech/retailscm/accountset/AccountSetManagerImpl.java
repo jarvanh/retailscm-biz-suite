@@ -309,8 +309,14 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			//will be good when the accountSet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountSet.
+<<<<<<< HEAD
 			
 			
+=======
+			if (accountSet.isChanged()){
+			accountSet.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			accountSet = saveAccountSet(userContext, accountSet, options);
 			return accountSet;
 			
@@ -382,7 +388,11 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		.sortAccountingSubjectListWith("id","desc")
 		.sortAccountingPeriodListWith("id","desc")
 		.sortAccountingDocumentTypeListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -725,8 +735,13 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			String accountingSubjectIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
+<<<<<<< HEAD
 		for(String accountingSubjectId: accountingSubjectIds){
 			userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectId);
+=======
+		for(String accountingSubjectIdItem: accountingSubjectIds){
+			userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
@@ -981,8 +996,13 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			String accountingPeriodIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
+<<<<<<< HEAD
 		for(String accountingPeriodId: accountingPeriodIds){
 			userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
+=======
+		for(String accountingPeriodIdItem: accountingPeriodIds){
+			userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
@@ -1228,8 +1248,13 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			String accountingDocumentTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
+<<<<<<< HEAD
 		for(String accountingDocumentTypeId: accountingDocumentTypeIds){
 			userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeId);
+=======
+		for(String accountingDocumentTypeIdItem: accountingDocumentTypeIds){
+			userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);

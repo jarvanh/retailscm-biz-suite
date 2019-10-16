@@ -7,6 +7,15 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
+import com.doublechaintech.retailscm.transporttruck.TransportTruck;
+import com.doublechaintech.retailscm.truckdriver.TruckDriver;
+import com.doublechaintech.retailscm.transporttask.TransportTask;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.transporttruck.TransportTruckDAO;
 import com.doublechaintech.retailscm.truckdriver.TruckDriverDAO;
 import com.doublechaintech.retailscm.transporttask.TransportTaskDAO;
@@ -86,6 +95,20 @@ public interface TransportFleetDAO{
  	public void analyzeTransportFleetByOwner(SmartList<TransportFleet> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:TransportTruck的owner的TransportTruckList
+	public SmartList<TransportTruck> loadOurTransportTruckList(RetailscmUserContext userContext, List<TransportFleet> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:TruckDriver的belongsTo的TruckDriverList
+	public SmartList<TruckDriver> loadOurTruckDriverList(RetailscmUserContext userContext, List<TransportFleet> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:TransportTask的belongsTo的TransportTaskList
+	public SmartList<TransportTask> loadOurTransportTaskList(RetailscmUserContext userContext, List<TransportFleet> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

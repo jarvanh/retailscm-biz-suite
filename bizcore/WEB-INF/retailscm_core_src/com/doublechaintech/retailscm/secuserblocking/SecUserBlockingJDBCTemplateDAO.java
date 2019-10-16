@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.secuserblocking;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.secuser.SecUserDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class SecUserBlockingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SecUserBlockingDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class SecUserBlockingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecUserBlockingDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -196,9 +214,14 @@ public class SecUserBlockingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	protected boolean isExtractSecUserListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SecUserBlockingTokens.SEC_USER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSecUserListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,SecUserBlockingTokens.SEC_USER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSecUserListEnabled(Map<String,Object> options){		 		
+ 		return SecUserBlockingTokens.of(options).analyzeSecUserListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSecUserListEnabled(Map<String,Object> options){
@@ -502,9 +525,15 @@ public class SecUserBlockingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return secUserBlocking;
 		}
 		
+<<<<<<< HEAD
 		for(SecUser secUser: externalSecUserList){
 
 			secUser.clearFromAll();
+=======
+		for(SecUser secUserItem: externalSecUserList){
+
+			secUserItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -534,9 +563,15 @@ public class SecUserBlockingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 			return secUserBlocking;
 		}
 		
+<<<<<<< HEAD
 		for(SecUser secUser: externalSecUserList){
 			secUser.clearDomain();
 			secUser.clearBlocking();
+=======
+		for(SecUser secUserItem: externalSecUserList){
+			secUserItem.clearDomain();
+			secUserItem.clearBlocking();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -674,6 +709,35 @@ public class SecUserBlockingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public void enhanceList(List<SecUserBlocking> secUserBlockingList) {		
 		this.enhanceListInternal(secUserBlockingList, this.getSecUserBlockingMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:SecUser的blocking的SecUserList
+	public SmartList<SecUser> loadOurSecUserList(RetailscmUserContext userContext, List<SecUserBlocking> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SecUser.BLOCKING_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SecUser> loadedObjs = userContext.getDAOGroup().getSecUserDAO().findSecUserWithKey(key, options);
+		Map<String, List<SecUser>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBlocking().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SecUser> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SecUser> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSecUserList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SecUserBlocking> secUserBlockingList = ownerEntity.collectRefsWithType(SecUserBlocking.INTERNAL_TYPE);
@@ -706,6 +770,12 @@ public class SecUserBlockingJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public SmartList<SecUserBlocking> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSecUserBlockingMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

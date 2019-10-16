@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.stockcountissuetrack;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,9 +59,25 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 	
 		
 	public 	StockCountIssueTrack(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static StockCountIssueTrack withId(String id){
+		StockCountIssueTrack stockCountIssueTrack = new StockCountIssueTrack();
+		stockCountIssueTrack.setId(id);
+		stockCountIssueTrack.setVersion(Integer.MAX_VALUE);
+		return stockCountIssueTrack;
+	}
+	public 	static StockCountIssueTrack refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setStockCount( null );
 
@@ -139,6 +159,32 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(COUNT_TIME_PROPERTY.equals(property)){
+			return getCountTime();
+		}
+		if(SUMMARY_PROPERTY.equals(property)){
+			return getSummary();
+		}
+		if(STOCK_COUNT_PROPERTY.equals(property)){
+			return getStockCount();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -152,6 +198,12 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTitle(String title){
@@ -165,6 +217,12 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTitle(String title){
+		if(title != null) { setTitle(title);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCountTime(Date countTime){
@@ -178,6 +236,12 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCountTime(Date countTime){
+		setCountTime(countTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSummary(String summary){
@@ -191,6 +255,12 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSummary(String summary){
+		if(summary != null) { setSummary(summary);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setStockCount(GoodsShelfStockCount stockCount){
@@ -204,6 +274,12 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeStockCount(GoodsShelfStockCount stockCount){
+		if(stockCount != null) { setStockCount(stockCount);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearStockCount(){
@@ -222,6 +298,12 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -282,6 +364,46 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof StockCountIssueTrack){
+		
+			
+			StockCountIssueTrack dest =(StockCountIssueTrack)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeCountTime(getCountTime());
+			dest.mergeSummary(getSummary());
+			dest.mergeStockCount(getStockCount());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof StockCountIssueTrack){
+		
+			
+			StockCountIssueTrack dest =(StockCountIssueTrack)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeCountTime(getCountTime());
+			dest.mergeSummary(getSummary());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.citypartner;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -28,9 +37,18 @@ import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerC
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CityPartnerDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements CityPartnerDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCityServiceCenterDAO  retailStoreCityServiceCenterDAO;
@@ -249,9 +267,14 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractPotentialCustomerListEnabled(Map<String,Object> options){		
  		return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzePotentialCustomerListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzePotentialCustomerListEnabled(Map<String,Object> options){		 		
+ 		return CityPartnerTokens.of(options).analyzePotentialCustomerListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePotentialCustomerListEnabled(Map<String,Object> options){
@@ -264,9 +287,14 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractPotentialCustomerContactListEnabled(Map<String,Object> options){		
  		return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_CONTACT_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzePotentialCustomerContactListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_CONTACT_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzePotentialCustomerContactListEnabled(Map<String,Object> options){		 		
+ 		return CityPartnerTokens.of(options).analyzePotentialCustomerContactListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePotentialCustomerContactListEnabled(Map<String,Object> options){
@@ -741,9 +769,15 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return cityPartner;
 		}
 		
+<<<<<<< HEAD
 		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
 
 			potentialCustomer.clearFromAll();
+=======
+		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
+
+			potentialCustomerItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -773,9 +807,15 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return cityPartner;
 		}
 		
+<<<<<<< HEAD
 		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
 			potentialCustomer.clearCityServiceCenter();
 			potentialCustomer.clearCityPartner();
+=======
+		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
+			potentialCustomerItem.clearCityServiceCenter();
+			potentialCustomerItem.clearCityPartner();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -813,9 +853,15 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return cityPartner;
 		}
 		
+<<<<<<< HEAD
 		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
 
 			potentialCustomerContact.clearFromAll();
+=======
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
+
+			potentialCustomerContactItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -845,9 +891,15 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return cityPartner;
 		}
 		
+<<<<<<< HEAD
 		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
 			potentialCustomerContact.clearPotentialCustomer();
 			potentialCustomerContact.clearCityPartner();
+=======
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
+			potentialCustomerContactItem.clearPotentialCustomer();
+			potentialCustomerContactItem.clearCityPartner();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -889,9 +941,15 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return cityPartner;
 		}
 		
+<<<<<<< HEAD
 		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
 			potentialCustomerContact.clearContactTo();
 			potentialCustomerContact.clearCityPartner();
+=======
+		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
+			potentialCustomerContactItem.clearContactTo();
+			potentialCustomerContactItem.clearCityPartner();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1122,6 +1180,58 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public void enhanceList(List<CityPartner> cityPartnerList) {		
 		this.enhanceListInternal(cityPartnerList, this.getCityPartnerMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:PotentialCustomer的cityPartner的PotentialCustomerList
+	public SmartList<PotentialCustomer> loadOurPotentialCustomerList(RetailscmUserContext userContext, List<CityPartner> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(PotentialCustomer.CITY_PARTNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<PotentialCustomer> loadedObjs = userContext.getDAOGroup().getPotentialCustomerDAO().findPotentialCustomerWithKey(key, options);
+		Map<String, List<PotentialCustomer>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCityPartner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<PotentialCustomer> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<PotentialCustomer> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setPotentialCustomerList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:PotentialCustomerContact的cityPartner的PotentialCustomerContactList
+	public SmartList<PotentialCustomerContact> loadOurPotentialCustomerContactList(RetailscmUserContext userContext, List<CityPartner> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(PotentialCustomerContact.CITY_PARTNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<PotentialCustomerContact> loadedObjs = userContext.getDAOGroup().getPotentialCustomerContactDAO().findPotentialCustomerContactWithKey(key, options);
+		Map<String, List<PotentialCustomerContact>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCityPartner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<PotentialCustomerContact> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<PotentialCustomerContact> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setPotentialCustomerContactList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<CityPartner> cityPartnerList = ownerEntity.collectRefsWithType(CityPartner.INTERNAL_TYPE);
@@ -1154,6 +1264,12 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<CityPartner> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCityPartnerMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

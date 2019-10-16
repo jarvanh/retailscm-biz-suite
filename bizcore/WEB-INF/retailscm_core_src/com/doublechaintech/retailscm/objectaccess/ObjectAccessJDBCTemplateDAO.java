@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.objectaccess;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.userapp.UserAppDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class ObjectAccessJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ObjectAccessDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class ObjectAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ObjectAccessDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  UserAppDAO  userAppDAO;
@@ -530,6 +548,12 @@ public class ObjectAccessJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	public void enhanceList(List<ObjectAccess> objectAccessList) {		
 		this.enhanceListInternal(objectAccessList, this.getObjectAccessMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<ObjectAccess> objectAccessList = ownerEntity.collectRefsWithType(ObjectAccess.INTERNAL_TYPE);
@@ -562,6 +586,12 @@ public class ObjectAccessJDBCTemplateDAO extends RetailscmNamingServiceDAO imple
 	public SmartList<ObjectAccess> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getObjectAccessMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -243,8 +243,14 @@ public class LevelTwoCategoryManagerImpl extends CustomRetailscmCheckerManager i
 			//will be good when the levelTwoCategory loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LevelTwoCategory.
+<<<<<<< HEAD
 			
 			
+=======
+			if (levelTwoCategory.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			levelTwoCategory = saveLevelTwoCategory(userContext, levelTwoCategory, options);
 			return levelTwoCategory;
 			
@@ -314,7 +320,11 @@ public class LevelTwoCategoryManagerImpl extends CustomRetailscmCheckerManager i
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortLevelThreeCategoryListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -524,8 +534,13 @@ public class LevelTwoCategoryManagerImpl extends CustomRetailscmCheckerManager i
 			String levelThreeCategoryIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfLevelTwoCategory(levelTwoCategoryId);
+<<<<<<< HEAD
 		for(String levelThreeCategoryId: levelThreeCategoryIds){
 			userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
+=======
+		for(String levelThreeCategoryIdItem: levelThreeCategoryIds){
+			userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoCategoryManagerException.class);

@@ -7,7 +7,14 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class CommonTokens {
+<<<<<<< HEAD
 	Map <String,Object> options;
+=======
+
+	protected static final String ALL_LISTS_ANALYZE = "allSubLists.analyze";
+	
+	protected Map <String,Object> options;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public Map <String,Object> done()
 	{
 		return this.options();
@@ -184,6 +191,9 @@ public class CommonTokens {
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

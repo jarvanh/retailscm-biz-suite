@@ -38,6 +38,18 @@ public class ListAccessTokens extends CommonTokens{
 	protected ListAccessTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  ListAccessTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		ListAccessTokens tokens = new ListAccessTokens(options);
+		return tokens;
+		
+	}
+	protected ListAccessTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public ListAccessTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class ListAccessTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public ListAccessTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String APP = "app";
 	public String getApp(){

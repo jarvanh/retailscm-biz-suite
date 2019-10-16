@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.payingoff;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PayingOffDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class PayingOffJDBCTemplateDAO extends RetailscmBaseDAOImpl implements PayingOffDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  EmployeeDAO  employeeDAO;
@@ -221,9 +239,14 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractEmployeeSalarySheetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,PayingOffTokens.EMPLOYEE_SALARY_SHEET_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeEmployeeSalarySheetListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,PayingOffTokens.EMPLOYEE_SALARY_SHEET_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeEmployeeSalarySheetListEnabled(Map<String,Object> options){		 		
+ 		return PayingOffTokens.of(options).analyzeEmployeeSalarySheetListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeSalarySheetListEnabled(Map<String,Object> options){
@@ -615,9 +638,15 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return payingOff;
 		}
 		
+<<<<<<< HEAD
 		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
 
 			employeeSalarySheet.clearFromAll();
+=======
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+
+			employeeSalarySheetItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -647,9 +676,15 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return payingOff;
 		}
 		
+<<<<<<< HEAD
 		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
 			employeeSalarySheet.clearEmployee();
 			employeeSalarySheet.clearPayingOff();
+=======
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearEmployee();
+			employeeSalarySheetItem.clearPayingOff();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -691,9 +726,15 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return payingOff;
 		}
 		
+<<<<<<< HEAD
 		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
 			employeeSalarySheet.clearCurrentSalaryGrade();
 			employeeSalarySheet.clearPayingOff();
+=======
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearCurrentSalaryGrade();
+			employeeSalarySheetItem.clearPayingOff();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -831,6 +872,35 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public void enhanceList(List<PayingOff> payingOffList) {		
 		this.enhanceListInternal(payingOffList, this.getPayingOffMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:EmployeeSalarySheet的payingOff的EmployeeSalarySheetList
+	public SmartList<EmployeeSalarySheet> loadOurEmployeeSalarySheetList(RetailscmUserContext userContext, List<PayingOff> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeSalarySheet.PAYING_OFF_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<EmployeeSalarySheet> loadedObjs = userContext.getDAOGroup().getEmployeeSalarySheetDAO().findEmployeeSalarySheetWithKey(key, options);
+		Map<String, List<EmployeeSalarySheet>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getPayingOff().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<EmployeeSalarySheet> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<EmployeeSalarySheet> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setEmployeeSalarySheetList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<PayingOff> payingOffList = ownerEntity.collectRefsWithType(PayingOff.INTERNAL_TYPE);
@@ -863,6 +933,12 @@ public class PayingOffJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<PayingOff> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPayingOffMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

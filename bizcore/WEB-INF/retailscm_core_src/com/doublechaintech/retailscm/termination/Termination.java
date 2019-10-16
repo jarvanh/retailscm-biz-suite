@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.termination;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,9 +61,25 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Termination(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static Termination withId(String id){
+		Termination termination = new Termination();
+		termination.setId(id);
+		termination.setVersion(Integer.MAX_VALUE);
+		return termination;
+	}
+	public 	static Termination refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setReason( null );
 		setType( null );
@@ -106,6 +126,33 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(REASON_PROPERTY.equals(property)){
+			return getReason();
+		}
+		if(TYPE_PROPERTY.equals(property)){
+			return getType();
+		}
+		if(COMMENT_PROPERTY.equals(property)){
+			return getComment();
+		}
+		if(EMPLOYEE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -119,6 +166,12 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setReason(TerminationReason reason){
@@ -132,6 +185,12 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeReason(TerminationReason reason){
+		if(reason != null) { setReason(reason);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearReason(){
@@ -150,6 +209,12 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeType(TerminationType type){
+		if(type != null) { setType(type);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearType(){
@@ -168,6 +233,12 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeComment(String comment){
+		if(comment != null) { setComment(comment);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -181,6 +252,12 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -213,7 +290,20 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeList().addAll(employeeList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeList(SmartList<Employee> employeeList){
+		if(employeeList==null){
+			return;
+		}
+		if(employeeList.isEmpty()){
+			return;
+		}
+		addEmployeeList( employeeList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Employee removeEmployee(Employee employeeIndex){
 		
 		int index = getEmployeeList().indexOf(employeeIndex);
@@ -346,6 +436,44 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Termination){
+		
+			
+			Termination dest =(Termination)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeReason(getReason());
+			dest.mergeType(getType());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+			dest.mergeEmployeeList(getEmployeeList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Termination){
+		
+			
+			Termination dest =(Termination)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeComment(getComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -245,8 +245,14 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 			//will be good when the retailStoreOrderConfirmation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreOrderConfirmation.
+<<<<<<< HEAD
 			
 			
+=======
+			if (retailStoreOrderConfirmation.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, options);
 			return retailStoreOrderConfirmation;
 			
@@ -316,7 +322,11 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortRetailStoreOrderListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -520,8 +530,13 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 			String retailStoreOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+<<<<<<< HEAD
 		for(String retailStoreOrderId: retailStoreOrderIds){
 			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
+=======
+		for(String retailStoreOrderIdItem: retailStoreOrderIds){
+			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);

@@ -273,8 +273,14 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 			//will be good when the smartPallet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SmartPallet.
+<<<<<<< HEAD
 			
 			
+=======
+			if (smartPallet.isChanged()){
+			smartPallet.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			smartPallet = saveSmartPallet(userContext, smartPallet, options);
 			return smartPallet;
 			
@@ -344,7 +350,11 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -759,8 +769,13 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSmartPallet(smartPalletId);
+<<<<<<< HEAD
 		for(String goodsId: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsId);
+=======
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SmartPalletManagerException.class);

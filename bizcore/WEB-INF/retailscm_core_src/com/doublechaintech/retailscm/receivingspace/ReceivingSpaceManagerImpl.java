@@ -278,8 +278,14 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 			//will be good when the receivingSpace loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ReceivingSpace.
+<<<<<<< HEAD
 			
 			
+=======
+			if (receivingSpace.isChanged()){
+			receivingSpace.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			receivingSpace = saveReceivingSpace(userContext, receivingSpace, options);
 			return receivingSpace;
 			
@@ -349,7 +355,11 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -764,8 +774,13 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceId);
+<<<<<<< HEAD
 		for(String goodsId: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsId);
+=======
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);

@@ -7,6 +7,16 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.supplierspace.SupplierSpace;
+import com.doublechaintech.retailscm.damagespace.DamageSpace;
+import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
+import com.doublechaintech.retailscm.goodsshelfstockcount.GoodsShelfStockCount;
+import com.doublechaintech.retailscm.storagespace.StorageSpace;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.damagespace.DamageSpaceDAO;
 import com.doublechaintech.retailscm.supplierspace.SupplierSpaceDAO;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocationDAO;
@@ -84,6 +94,17 @@ public interface GoodsShelfDAO{
  	public void analyzeGoodsShelfByDamageSpace(SmartList<GoodsShelf> resultList, String damageSpaceId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:GoodsShelfStockCount的shelf的GoodsShelfStockCountList
+	public SmartList<GoodsShelfStockCount> loadOurGoodsShelfStockCountList(RetailscmUserContext userContext, List<GoodsShelf> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:GoodsAllocation的goodsShelf的GoodsAllocationList
+	public SmartList<GoodsAllocation> loadOurGoodsAllocationList(RetailscmUserContext userContext, List<GoodsShelf> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -38,6 +38,18 @@ public class AccountingDocumentCreationTokens extends CommonTokens{
 	protected AccountingDocumentCreationTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  AccountingDocumentCreationTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		AccountingDocumentCreationTokens tokens = new AccountingDocumentCreationTokens(options);
+		return tokens;
+		
+	}
+	protected AccountingDocumentCreationTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public AccountingDocumentCreationTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -81,6 +93,14 @@ public class AccountingDocumentCreationTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public AccountingDocumentCreationTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String ACCOUNTING_DOCUMENT_LIST = "accountingDocumentList";
 	public String getAccountingDocumentList(){
@@ -96,7 +116,15 @@ public class AccountingDocumentCreationTokens extends CommonTokens{
 	}
 	public boolean analyzeAccountingDocumentListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), ACCOUNTING_DOCUMENT_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), ACCOUNTING_DOCUMENT_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public AccountingDocumentCreationTokens extractMoreFromAccountingDocumentList(String idsSeperatedWithComma){		
 		addSimpleOptions(ACCOUNTING_DOCUMENT_LIST+".extractIds", idsSeperatedWithComma);

@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.goodsshelfstockcount;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,9 +62,25 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 	
 		
 	public 	GoodsShelfStockCount(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static GoodsShelfStockCount withId(String id){
+		GoodsShelfStockCount goodsShelfStockCount = new GoodsShelfStockCount();
+		goodsShelfStockCount.setId(id);
+		goodsShelfStockCount.setVersion(Integer.MAX_VALUE);
+		return goodsShelfStockCount;
+	}
+	public 	static GoodsShelfStockCount refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setShelf( null );
 
@@ -143,6 +163,36 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(COUNT_TIME_PROPERTY.equals(property)){
+			return getCountTime();
+		}
+		if(SUMMARY_PROPERTY.equals(property)){
+			return getSummary();
+		}
+		if(SHELF_PROPERTY.equals(property)){
+			return getShelf();
+		}
+		if(STOCK_COUNT_ISSUE_TRACK_LIST.equals(property)){
+			List<BaseEntity> list = getStockCountIssueTrackList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -156,6 +206,12 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTitle(String title){
@@ -169,6 +225,12 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTitle(String title){
+		if(title != null) { setTitle(title);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCountTime(Date countTime){
@@ -182,6 +244,12 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCountTime(Date countTime){
+		setCountTime(countTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSummary(String summary){
@@ -195,6 +263,12 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSummary(String summary){
+		if(summary != null) { setSummary(summary);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setShelf(GoodsShelf shelf){
@@ -208,6 +282,12 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeShelf(GoodsShelf shelf){
+		if(shelf != null) { setShelf(shelf);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearShelf(){
@@ -226,6 +306,12 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -258,7 +344,20 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		}
 		getStockCountIssueTrackList().addAll(stockCountIssueTrackList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeStockCountIssueTrackList(SmartList<StockCountIssueTrack> stockCountIssueTrackList){
+		if(stockCountIssueTrackList==null){
+			return;
+		}
+		if(stockCountIssueTrackList.isEmpty()){
+			return;
+		}
+		addStockCountIssueTrackList( stockCountIssueTrackList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  StockCountIssueTrack removeStockCountIssueTrack(StockCountIssueTrack stockCountIssueTrackIndex){
 		
 		int index = getStockCountIssueTrackList().indexOf(stockCountIssueTrackIndex);
@@ -392,6 +491,47 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsShelfStockCount){
+		
+			
+			GoodsShelfStockCount dest =(GoodsShelfStockCount)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeCountTime(getCountTime());
+			dest.mergeSummary(getSummary());
+			dest.mergeShelf(getShelf());
+			dest.mergeVersion(getVersion());
+			dest.mergeStockCountIssueTrackList(getStockCountIssueTrackList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsShelfStockCount){
+		
+			
+			GoodsShelfStockCount dest =(GoodsShelfStockCount)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeCountTime(getCountTime());
+			dest.mergeSummary(getSummary());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

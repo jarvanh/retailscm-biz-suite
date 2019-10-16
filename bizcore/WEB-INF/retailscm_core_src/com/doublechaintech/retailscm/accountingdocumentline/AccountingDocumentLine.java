@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.accountingdocumentline;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -60,9 +64,25 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 	
 		
 	public 	AccountingDocumentLine(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static AccountingDocumentLine withId(String id){
+		AccountingDocumentLine accountingDocumentLine = new AccountingDocumentLine();
+		accountingDocumentLine.setId(id);
+		accountingDocumentLine.setVersion(Integer.MAX_VALUE);
+		return accountingDocumentLine;
+	}
+	public 	static AccountingDocumentLine refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBelongsTo( null );
 		setAccountingSubject( null );
@@ -165,6 +185,38 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(CODE_PROPERTY.equals(property)){
+			return getCode();
+		}
+		if(DIRECT_PROPERTY.equals(property)){
+			return getDirect();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+		if(BELONGS_TO_PROPERTY.equals(property)){
+			return getBelongsTo();
+		}
+		if(ACCOUNTING_SUBJECT_PROPERTY.equals(property)){
+			return getAccountingSubject();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -178,6 +230,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -191,6 +249,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCode(String code){
@@ -204,6 +268,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCode(String code){
+		if(code != null) { setCode(code);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDirect(String direct){
@@ -217,6 +287,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDirect(String direct){
+		if(direct != null) { setDirect(direct);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAmount(BigDecimal amount){
@@ -230,6 +306,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeAmount(BigDecimal amount){
+		setAmount(amount);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBelongsTo(AccountingDocument belongsTo){
@@ -243,6 +325,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBelongsTo(AccountingDocument belongsTo){
+		if(belongsTo != null) { setBelongsTo(belongsTo);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBelongsTo(){
@@ -261,6 +349,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeAccountingSubject(AccountingSubject accountingSubject){
+		if(accountingSubject != null) { setAccountingSubject(accountingSubject);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearAccountingSubject(){
@@ -279,6 +373,12 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -344,6 +444,49 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingDocumentLine){
+		
+			
+			AccountingDocumentLine dest =(AccountingDocumentLine)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeCode(getCode());
+			dest.mergeDirect(getDirect());
+			dest.mergeAmount(getAmount());
+			dest.mergeBelongsTo(getBelongsTo());
+			dest.mergeAccountingSubject(getAccountingSubject());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof AccountingDocumentLine){
+		
+			
+			AccountingDocumentLine dest =(AccountingDocumentLine)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeCode(getCode());
+			dest.mergeDirect(getDirect());
+			dest.mergeAmount(getAmount());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.warehouse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -82,9 +86,25 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Warehouse(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static Warehouse withId(String id){
+		Warehouse warehouse = new Warehouse();
+		warehouse.setId(id);
+		warehouse.setVersion(Integer.MAX_VALUE);
+		return warehouse;
+	}
+	public 	static Warehouse refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -230,6 +250,69 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(LOCATION_PROPERTY.equals(property)){
+			return getLocation();
+		}
+		if(CONTACT_NUMBER_PROPERTY.equals(property)){
+			return getContactNumber();
+		}
+		if(TOTAL_AREA_PROPERTY.equals(property)){
+			return getTotalArea();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(LATITUDE_PROPERTY.equals(property)){
+			return getLatitude();
+		}
+		if(LONGITUDE_PROPERTY.equals(property)){
+			return getLongitude();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(STORAGE_SPACE_LIST.equals(property)){
+			List<BaseEntity> list = getStorageSpaceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SMART_PALLET_LIST.equals(property)){
+			List<BaseEntity> list = getSmartPalletList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SUPPLIER_SPACE_LIST.equals(property)){
+			List<BaseEntity> list = getSupplierSpaceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RECEIVING_SPACE_LIST.equals(property)){
+			List<BaseEntity> list = getReceivingSpaceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SHIPPING_SPACE_LIST.equals(property)){
+			List<BaseEntity> list = getShippingSpaceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(DAMAGE_SPACE_LIST.equals(property)){
+			List<BaseEntity> list = getDamageSpaceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(WAREHOUSE_ASSET_LIST.equals(property)){
+			List<BaseEntity> list = getWarehouseAssetList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -243,6 +326,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLocation(String location){
@@ -256,6 +345,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLocation(String location){
+		if(location != null) { setLocation(location);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setContactNumber(String contactNumber){
@@ -269,6 +364,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeContactNumber(String contactNumber){
+		if(contactNumber != null) { setContactNumber(contactNumber);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTotalArea(String totalArea){
@@ -282,6 +383,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTotalArea(String totalArea){
+		if(totalArea != null) { setTotalArea(totalArea);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOwner(RetailStoreCountryCenter owner){
@@ -295,6 +402,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOwner(RetailStoreCountryCenter owner){
+		if(owner != null) { setOwner(owner);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -313,6 +426,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLatitude(BigDecimal latitude){
+		setLatitude(latitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLongitude(BigDecimal longitude){
@@ -326,6 +445,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLongitude(BigDecimal longitude){
+		setLongitude(longitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -339,6 +464,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastUpdateTime(DateTime lastUpdateTime){
+		setLastUpdateTime(lastUpdateTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -352,6 +483,12 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -384,7 +521,20 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		}
 		getStorageSpaceList().addAll(storageSpaceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeStorageSpaceList(SmartList<StorageSpace> storageSpaceList){
+		if(storageSpaceList==null){
+			return;
+		}
+		if(storageSpaceList.isEmpty()){
+			return;
+		}
+		addStorageSpaceList( storageSpaceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  StorageSpace removeStorageSpace(StorageSpace storageSpaceIndex){
 		
 		int index = getStorageSpaceList().indexOf(storageSpaceIndex);
@@ -482,7 +632,20 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		}
 		getSmartPalletList().addAll(smartPalletList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSmartPalletList(SmartList<SmartPallet> smartPalletList){
+		if(smartPalletList==null){
+			return;
+		}
+		if(smartPalletList.isEmpty()){
+			return;
+		}
+		addSmartPalletList( smartPalletList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SmartPallet removeSmartPallet(SmartPallet smartPalletIndex){
 		
 		int index = getSmartPalletList().indexOf(smartPalletIndex);
@@ -580,7 +743,20 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		}
 		getSupplierSpaceList().addAll(supplierSpaceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSupplierSpaceList(SmartList<SupplierSpace> supplierSpaceList){
+		if(supplierSpaceList==null){
+			return;
+		}
+		if(supplierSpaceList.isEmpty()){
+			return;
+		}
+		addSupplierSpaceList( supplierSpaceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SupplierSpace removeSupplierSpace(SupplierSpace supplierSpaceIndex){
 		
 		int index = getSupplierSpaceList().indexOf(supplierSpaceIndex);
@@ -678,7 +854,20 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		}
 		getReceivingSpaceList().addAll(receivingSpaceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeReceivingSpaceList(SmartList<ReceivingSpace> receivingSpaceList){
+		if(receivingSpaceList==null){
+			return;
+		}
+		if(receivingSpaceList.isEmpty()){
+			return;
+		}
+		addReceivingSpaceList( receivingSpaceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ReceivingSpace removeReceivingSpace(ReceivingSpace receivingSpaceIndex){
 		
 		int index = getReceivingSpaceList().indexOf(receivingSpaceIndex);
@@ -776,7 +965,20 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		}
 		getShippingSpaceList().addAll(shippingSpaceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeShippingSpaceList(SmartList<ShippingSpace> shippingSpaceList){
+		if(shippingSpaceList==null){
+			return;
+		}
+		if(shippingSpaceList.isEmpty()){
+			return;
+		}
+		addShippingSpaceList( shippingSpaceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ShippingSpace removeShippingSpace(ShippingSpace shippingSpaceIndex){
 		
 		int index = getShippingSpaceList().indexOf(shippingSpaceIndex);
@@ -874,7 +1076,20 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		}
 		getDamageSpaceList().addAll(damageSpaceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeDamageSpaceList(SmartList<DamageSpace> damageSpaceList){
+		if(damageSpaceList==null){
+			return;
+		}
+		if(damageSpaceList.isEmpty()){
+			return;
+		}
+		addDamageSpaceList( damageSpaceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  DamageSpace removeDamageSpace(DamageSpace damageSpaceIndex){
 		
 		int index = getDamageSpaceList().indexOf(damageSpaceIndex);
@@ -972,7 +1187,20 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		}
 		getWarehouseAssetList().addAll(warehouseAssetList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeWarehouseAssetList(SmartList<WarehouseAsset> warehouseAssetList){
+		if(warehouseAssetList==null){
+			return;
+		}
+		if(warehouseAssetList.isEmpty()){
+			return;
+		}
+		addWarehouseAssetList( warehouseAssetList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  WarehouseAsset removeWarehouseAsset(WarehouseAsset warehouseAssetIndex){
 		
 		int index = getWarehouseAssetList().indexOf(warehouseAssetIndex);
@@ -1160,6 +1388,59 @@ public class Warehouse extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Warehouse){
+		
+			
+			Warehouse dest =(Warehouse)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeLocation(getLocation());
+			dest.mergeContactNumber(getContactNumber());
+			dest.mergeTotalArea(getTotalArea());
+			dest.mergeOwner(getOwner());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+			dest.mergeStorageSpaceList(getStorageSpaceList());
+			dest.mergeSmartPalletList(getSmartPalletList());
+			dest.mergeSupplierSpaceList(getSupplierSpaceList());
+			dest.mergeReceivingSpaceList(getReceivingSpaceList());
+			dest.mergeShippingSpaceList(getShippingSpaceList());
+			dest.mergeDamageSpaceList(getDamageSpaceList());
+			dest.mergeWarehouseAssetList(getWarehouseAssetList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Warehouse){
+		
+			
+			Warehouse dest =(Warehouse)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeLocation(getLocation());
+			dest.mergeContactNumber(getContactNumber());
+			dest.mergeTotalArea(getTotalArea());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.memberrewardpoint;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class MemberRewardPointJDBCTemplateDAO extends RetailscmNamingServiceDAO implements MemberRewardPointDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class MemberRewardPointJDBCTemplateDAO extends RetailscmBaseDAOImpl implements MemberRewardPointDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreMemberDAO  retailStoreMemberDAO;
@@ -512,6 +530,12 @@ public class MemberRewardPointJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public void enhanceList(List<MemberRewardPoint> memberRewardPointList) {		
 		this.enhanceListInternal(memberRewardPointList, this.getMemberRewardPointMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<MemberRewardPoint> memberRewardPointList = ownerEntity.collectRefsWithType(MemberRewardPoint.INTERNAL_TYPE);
@@ -544,6 +568,12 @@ public class MemberRewardPointJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public SmartList<MemberRewardPoint> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getMemberRewardPointMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

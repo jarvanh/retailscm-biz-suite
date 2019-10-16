@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.cityevent;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.eventattendance.EventAttendanceDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CityEventDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements CityEventDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCityServiceCenterDAO  retailStoreCityServiceCenterDAO;
@@ -221,9 +239,14 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractEventAttendanceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,CityEventTokens.EVENT_ATTENDANCE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeEventAttendanceListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,CityEventTokens.EVENT_ATTENDANCE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeEventAttendanceListEnabled(Map<String,Object> options){		 		
+ 		return CityEventTokens.of(options).analyzeEventAttendanceListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEventAttendanceListEnabled(Map<String,Object> options){
@@ -633,9 +656,15 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return cityEvent;
 		}
 		
+<<<<<<< HEAD
 		for(EventAttendance eventAttendance: externalEventAttendanceList){
 
 			eventAttendance.clearFromAll();
+=======
+		for(EventAttendance eventAttendanceItem: externalEventAttendanceList){
+
+			eventAttendanceItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -665,9 +694,15 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return cityEvent;
 		}
 		
+<<<<<<< HEAD
 		for(EventAttendance eventAttendance: externalEventAttendanceList){
 			eventAttendance.clearPotentialCustomer();
 			eventAttendance.clearCityEvent();
+=======
+		for(EventAttendance eventAttendanceItem: externalEventAttendanceList){
+			eventAttendanceItem.clearPotentialCustomer();
+			eventAttendanceItem.clearCityEvent();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -805,6 +840,35 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public void enhanceList(List<CityEvent> cityEventList) {		
 		this.enhanceListInternal(cityEventList, this.getCityEventMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:EventAttendance的cityEvent的EventAttendanceList
+	public SmartList<EventAttendance> loadOurEventAttendanceList(RetailscmUserContext userContext, List<CityEvent> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EventAttendance.CITY_EVENT_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<EventAttendance> loadedObjs = userContext.getDAOGroup().getEventAttendanceDAO().findEventAttendanceWithKey(key, options);
+		Map<String, List<EventAttendance>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCityEvent().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<EventAttendance> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<EventAttendance> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setEventAttendanceList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<CityEvent> cityEventList = ownerEntity.collectRefsWithType(CityEvent.INTERNAL_TYPE);
@@ -837,6 +901,12 @@ public class CityEventJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<CityEvent> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCityEventMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

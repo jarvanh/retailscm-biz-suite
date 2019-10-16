@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.warehouse;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -38,9 +47,18 @@ import com.doublechaintech.retailscm.receivingspace.ReceivingSpaceDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implements WarehouseDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements WarehouseDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -389,9 +407,14 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractStorageSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.STORAGE_SPACE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeStorageSpaceListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,WarehouseTokens.STORAGE_SPACE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeStorageSpaceListEnabled(Map<String,Object> options){		 		
+ 		return WarehouseTokens.of(options).analyzeStorageSpaceListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveStorageSpaceListEnabled(Map<String,Object> options){
@@ -404,9 +427,14 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractSmartPalletListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.SMART_PALLET_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSmartPalletListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,WarehouseTokens.SMART_PALLET_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSmartPalletListEnabled(Map<String,Object> options){		 		
+ 		return WarehouseTokens.of(options).analyzeSmartPalletListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSmartPalletListEnabled(Map<String,Object> options){
@@ -419,9 +447,14 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractSupplierSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.SUPPLIER_SPACE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplierSpaceListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,WarehouseTokens.SUPPLIER_SPACE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplierSpaceListEnabled(Map<String,Object> options){		 		
+ 		return WarehouseTokens.of(options).analyzeSupplierSpaceListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplierSpaceListEnabled(Map<String,Object> options){
@@ -434,9 +467,14 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractReceivingSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.RECEIVING_SPACE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeReceivingSpaceListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,WarehouseTokens.RECEIVING_SPACE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeReceivingSpaceListEnabled(Map<String,Object> options){		 		
+ 		return WarehouseTokens.of(options).analyzeReceivingSpaceListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveReceivingSpaceListEnabled(Map<String,Object> options){
@@ -449,9 +487,14 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractShippingSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.SHIPPING_SPACE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeShippingSpaceListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,WarehouseTokens.SHIPPING_SPACE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeShippingSpaceListEnabled(Map<String,Object> options){		 		
+ 		return WarehouseTokens.of(options).analyzeShippingSpaceListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveShippingSpaceListEnabled(Map<String,Object> options){
@@ -464,9 +507,14 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractDamageSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.DAMAGE_SPACE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeDamageSpaceListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,WarehouseTokens.DAMAGE_SPACE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeDamageSpaceListEnabled(Map<String,Object> options){		 		
+ 		return WarehouseTokens.of(options).analyzeDamageSpaceListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveDamageSpaceListEnabled(Map<String,Object> options){
@@ -479,9 +527,14 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractWarehouseAssetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.WAREHOUSE_ASSET_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeWarehouseAssetListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,WarehouseTokens.WAREHOUSE_ASSET_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeWarehouseAssetListEnabled(Map<String,Object> options){		 		
+ 		return WarehouseTokens.of(options).analyzeWarehouseAssetListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveWarehouseAssetListEnabled(Map<String,Object> options){
@@ -1285,9 +1338,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
+<<<<<<< HEAD
 		for(StorageSpace storageSpace: externalStorageSpaceList){
 
 			storageSpace.clearFromAll();
+=======
+		for(StorageSpace storageSpaceItem: externalStorageSpaceList){
+
+			storageSpaceItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1313,9 +1372,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
+<<<<<<< HEAD
 		for(SmartPallet smartPallet: externalSmartPalletList){
 
 			smartPallet.clearFromAll();
+=======
+		for(SmartPallet smartPalletItem: externalSmartPalletList){
+
+			smartPalletItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1341,9 +1406,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
+<<<<<<< HEAD
 		for(SupplierSpace supplierSpace: externalSupplierSpaceList){
 
 			supplierSpace.clearFromAll();
+=======
+		for(SupplierSpace supplierSpaceItem: externalSupplierSpaceList){
+
+			supplierSpaceItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1369,9 +1440,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
+<<<<<<< HEAD
 		for(ReceivingSpace receivingSpace: externalReceivingSpaceList){
 
 			receivingSpace.clearFromAll();
+=======
+		for(ReceivingSpace receivingSpaceItem: externalReceivingSpaceList){
+
+			receivingSpaceItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1397,9 +1474,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
+<<<<<<< HEAD
 		for(ShippingSpace shippingSpace: externalShippingSpaceList){
 
 			shippingSpace.clearFromAll();
+=======
+		for(ShippingSpace shippingSpaceItem: externalShippingSpaceList){
+
+			shippingSpaceItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1425,9 +1508,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
+<<<<<<< HEAD
 		for(DamageSpace damageSpace: externalDamageSpaceList){
 
 			damageSpace.clearFromAll();
+=======
+		for(DamageSpace damageSpaceItem: externalDamageSpaceList){
+
+			damageSpaceItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1453,9 +1542,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return warehouse;
 		}
 		
+<<<<<<< HEAD
 		for(WarehouseAsset warehouseAsset: externalWarehouseAssetList){
 
 			warehouseAsset.clearFromAll();
+=======
+		for(WarehouseAsset warehouseAssetItem: externalWarehouseAssetList){
+
+			warehouseAssetItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -2139,6 +2234,173 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public void enhanceList(List<Warehouse> warehouseList) {		
 		this.enhanceListInternal(warehouseList, this.getWarehouseMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:StorageSpace的warehouse的StorageSpaceList
+	public SmartList<StorageSpace> loadOurStorageSpaceList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(StorageSpace.WAREHOUSE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<StorageSpace> loadedObjs = userContext.getDAOGroup().getStorageSpaceDAO().findStorageSpaceWithKey(key, options);
+		Map<String, List<StorageSpace>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getWarehouse().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<StorageSpace> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<StorageSpace> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setStorageSpaceList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SmartPallet的warehouse的SmartPalletList
+	public SmartList<SmartPallet> loadOurSmartPalletList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SmartPallet.WAREHOUSE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SmartPallet> loadedObjs = userContext.getDAOGroup().getSmartPalletDAO().findSmartPalletWithKey(key, options);
+		Map<String, List<SmartPallet>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getWarehouse().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SmartPallet> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SmartPallet> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSmartPalletList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplierSpace的warehouse的SupplierSpaceList
+	public SmartList<SupplierSpace> loadOurSupplierSpaceList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplierSpace.WAREHOUSE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplierSpace> loadedObjs = userContext.getDAOGroup().getSupplierSpaceDAO().findSupplierSpaceWithKey(key, options);
+		Map<String, List<SupplierSpace>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getWarehouse().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplierSpace> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplierSpace> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplierSpaceList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ReceivingSpace的warehouse的ReceivingSpaceList
+	public SmartList<ReceivingSpace> loadOurReceivingSpaceList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ReceivingSpace.WAREHOUSE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ReceivingSpace> loadedObjs = userContext.getDAOGroup().getReceivingSpaceDAO().findReceivingSpaceWithKey(key, options);
+		Map<String, List<ReceivingSpace>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getWarehouse().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ReceivingSpace> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ReceivingSpace> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setReceivingSpaceList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ShippingSpace的warehouse的ShippingSpaceList
+	public SmartList<ShippingSpace> loadOurShippingSpaceList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ShippingSpace.WAREHOUSE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ShippingSpace> loadedObjs = userContext.getDAOGroup().getShippingSpaceDAO().findShippingSpaceWithKey(key, options);
+		Map<String, List<ShippingSpace>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getWarehouse().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ShippingSpace> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ShippingSpace> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setShippingSpaceList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:DamageSpace的warehouse的DamageSpaceList
+	public SmartList<DamageSpace> loadOurDamageSpaceList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(DamageSpace.WAREHOUSE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<DamageSpace> loadedObjs = userContext.getDAOGroup().getDamageSpaceDAO().findDamageSpaceWithKey(key, options);
+		Map<String, List<DamageSpace>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getWarehouse().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<DamageSpace> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<DamageSpace> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setDamageSpaceList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:WarehouseAsset的owner的WarehouseAssetList
+	public SmartList<WarehouseAsset> loadOurWarehouseAssetList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WarehouseAsset.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<WarehouseAsset> loadedObjs = userContext.getDAOGroup().getWarehouseAssetDAO().findWarehouseAssetWithKey(key, options);
+		Map<String, List<WarehouseAsset>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<WarehouseAsset> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<WarehouseAsset> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setWarehouseAssetList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<Warehouse> warehouseList = ownerEntity.collectRefsWithType(Warehouse.INTERNAL_TYPE);
@@ -2171,6 +2433,12 @@ public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<Warehouse> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getWarehouseMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -38,6 +38,18 @@ public class PotentialCustomerContactPersonTokens extends CommonTokens{
 	protected PotentialCustomerContactPersonTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  PotentialCustomerContactPersonTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		PotentialCustomerContactPersonTokens tokens = new PotentialCustomerContactPersonTokens(options);
+		return tokens;
+		
+	}
+	protected PotentialCustomerContactPersonTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public PotentialCustomerContactPersonTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -83,6 +95,14 @@ public class PotentialCustomerContactPersonTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public PotentialCustomerContactPersonTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String POTENTIALCUSTOMER = "potentialCustomer";
 	public String getPotentialCustomer(){
@@ -108,7 +128,15 @@ public class PotentialCustomerContactPersonTokens extends CommonTokens{
 	}
 	public boolean analyzePotentialCustomerContactListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), POTENTIAL_CUSTOMER_CONTACT_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), POTENTIAL_CUSTOMER_CONTACT_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public PotentialCustomerContactPersonTokens extractMoreFromPotentialCustomerContactList(String idsSeperatedWithComma){		
 		addSimpleOptions(POTENTIAL_CUSTOMER_CONTACT_LIST+".extractIds", idsSeperatedWithComma);

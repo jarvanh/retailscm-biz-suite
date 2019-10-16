@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.provincecenterdepartment;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.provincecenteremployee.ProvinceCenterEmploy
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ProvinceCenterDepartmentDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ProvinceCenterDepartmentDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreProvinceCenterDAO  retailStoreProvinceCenterDAO;
@@ -221,9 +239,14 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractProvinceCenterEmployeeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ProvinceCenterDepartmentTokens.PROVINCE_CENTER_EMPLOYEE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeProvinceCenterEmployeeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ProvinceCenterDepartmentTokens.PROVINCE_CENTER_EMPLOYEE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeProvinceCenterEmployeeListEnabled(Map<String,Object> options){		 		
+ 		return ProvinceCenterDepartmentTokens.of(options).analyzeProvinceCenterEmployeeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveProvinceCenterEmployeeListEnabled(Map<String,Object> options){
@@ -615,9 +638,15 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 			return provinceCenterDepartment;
 		}
 		
+<<<<<<< HEAD
 		for(ProvinceCenterEmployee provinceCenterEmployee: externalProvinceCenterEmployeeList){
 
 			provinceCenterEmployee.clearFromAll();
+=======
+		for(ProvinceCenterEmployee provinceCenterEmployeeItem: externalProvinceCenterEmployeeList){
+
+			provinceCenterEmployeeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -647,9 +676,15 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 			return provinceCenterDepartment;
 		}
 		
+<<<<<<< HEAD
 		for(ProvinceCenterEmployee provinceCenterEmployee: externalProvinceCenterEmployeeList){
 			provinceCenterEmployee.clearProvinceCenter();
 			provinceCenterEmployee.clearDepartment();
+=======
+		for(ProvinceCenterEmployee provinceCenterEmployeeItem: externalProvinceCenterEmployeeList){
+			provinceCenterEmployeeItem.clearProvinceCenter();
+			provinceCenterEmployeeItem.clearDepartment();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -787,6 +822,35 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 	public void enhanceList(List<ProvinceCenterDepartment> provinceCenterDepartmentList) {		
 		this.enhanceListInternal(provinceCenterDepartmentList, this.getProvinceCenterDepartmentMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:ProvinceCenterEmployee的department的ProvinceCenterEmployeeList
+	public SmartList<ProvinceCenterEmployee> loadOurProvinceCenterEmployeeList(RetailscmUserContext userContext, List<ProvinceCenterDepartment> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ProvinceCenterEmployee.DEPARTMENT_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ProvinceCenterEmployee> loadedObjs = userContext.getDAOGroup().getProvinceCenterEmployeeDAO().findProvinceCenterEmployeeWithKey(key, options);
+		Map<String, List<ProvinceCenterEmployee>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getDepartment().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ProvinceCenterEmployee> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ProvinceCenterEmployee> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setProvinceCenterEmployeeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<ProvinceCenterDepartment> provinceCenterDepartmentList = ownerEntity.collectRefsWithType(ProvinceCenterDepartment.INTERNAL_TYPE);
@@ -819,6 +883,12 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<ProvinceCenterDepartment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getProvinceCenterDepartmentMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

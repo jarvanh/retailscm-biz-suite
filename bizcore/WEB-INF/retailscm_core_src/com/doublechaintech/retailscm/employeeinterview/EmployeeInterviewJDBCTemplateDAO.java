@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.employeeinterview;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,6 +35,7 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class EmployeeInterviewJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeInterviewDAO{
@@ -38,6 +48,14 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmNamingServiceDAO 
  	public InterviewTypeDAO getInterviewTypeDAO(){
 	 	return this.interviewTypeDAO;
  	}
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class EmployeeInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeInterviewDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  EmployeeDAO  employeeDAO;
@@ -47,6 +65,18 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmNamingServiceDAO 
  	public EmployeeDAO getEmployeeDAO(){
 	 	return this.employeeDAO;
  	}
+<<<<<<< HEAD
+=======
+ 
+ 	
+ 	private  InterviewTypeDAO  interviewTypeDAO;
+ 	public void setInterviewTypeDAO(InterviewTypeDAO interviewTypeDAO){
+	 	this.interviewTypeDAO = interviewTypeDAO;
+ 	}
+ 	public InterviewTypeDAO getInterviewTypeDAO(){
+	 	return this.interviewTypeDAO;
+ 	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -641,6 +671,12 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public void enhanceList(List<EmployeeInterview> employeeInterviewList) {		
 		this.enhanceListInternal(employeeInterviewList, this.getEmployeeInterviewMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<EmployeeInterview> employeeInterviewList = ownerEntity.collectRefsWithType(EmployeeInterview.INTERNAL_TYPE);
@@ -673,6 +709,12 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public SmartList<EmployeeInterview> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeInterviewMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

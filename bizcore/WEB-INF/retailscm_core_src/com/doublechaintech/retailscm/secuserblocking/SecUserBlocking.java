@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.secuserblocking;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,9 +59,25 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 	
 		
 	public 	SecUserBlocking(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static SecUserBlocking withId(String id){
+		SecUserBlocking secUserBlocking = new SecUserBlocking();
+		secUserBlocking.setId(id);
+		secUserBlocking.setVersion(Integer.MAX_VALUE);
+		return secUserBlocking;
+	}
+	public 	static SecUserBlocking refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -138,6 +158,33 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(BLOCK_TIME_PROPERTY.equals(property)){
+			return getBlockTime();
+		}
+		if(COMMENTS_PROPERTY.equals(property)){
+			return getComments();
+		}
+		if(SEC_USER_LIST.equals(property)){
+			List<BaseEntity> list = getSecUserList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -151,6 +198,12 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(String who){
@@ -164,6 +217,12 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeWho(String who){
+		if(who != null) { setWho(who);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBlockTime(DateTime blockTime){
@@ -177,6 +236,12 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBlockTime(DateTime blockTime){
+		setBlockTime(blockTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setComments(String comments){
@@ -190,6 +255,12 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeComments(String comments){
+		if(comments != null) { setComments(comments);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -203,6 +274,12 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -235,7 +312,20 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		}
 		getSecUserList().addAll(secUserList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSecUserList(SmartList<SecUser> secUserList){
+		if(secUserList==null){
+			return;
+		}
+		if(secUserList.isEmpty()){
+			return;
+		}
+		addSecUserList( secUserList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SecUser removeSecUser(SecUser secUserIndex){
 		
 		int index = getSecUserList().indexOf(secUserIndex);
@@ -366,6 +456,46 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SecUserBlocking){
+		
+			
+			SecUserBlocking dest =(SecUserBlocking)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeBlockTime(getBlockTime());
+			dest.mergeComments(getComments());
+			dest.mergeVersion(getVersion());
+			dest.mergeSecUserList(getSecUserList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SecUserBlocking){
+		
+			
+			SecUserBlocking dest =(SecUserBlocking)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeBlockTime(getBlockTime());
+			dest.mergeComments(getComments());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

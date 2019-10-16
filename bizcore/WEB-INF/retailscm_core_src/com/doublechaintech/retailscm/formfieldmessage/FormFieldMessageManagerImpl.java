@@ -247,8 +247,14 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 			//will be good when the formFieldMessage loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to FormFieldMessage.
+<<<<<<< HEAD
 			
 			
+=======
+			if (formFieldMessage.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			formFieldMessage = saveFormFieldMessage(userContext, formFieldMessage, options);
 			return formFieldMessage;
 			
@@ -317,7 +323,11 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

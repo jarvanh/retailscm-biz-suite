@@ -257,8 +257,14 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 			//will be good when the supplyOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderLineItem.
+<<<<<<< HEAD
 			
 			
+=======
+			if (supplyOrderLineItem.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			supplyOrderLineItem = saveSupplyOrderLineItem(userContext, supplyOrderLineItem, options);
 			return supplyOrderLineItem;
 			
@@ -327,7 +333,11 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

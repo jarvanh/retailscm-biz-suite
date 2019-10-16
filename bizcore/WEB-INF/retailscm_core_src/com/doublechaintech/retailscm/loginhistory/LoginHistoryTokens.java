@@ -38,6 +38,18 @@ public class LoginHistoryTokens extends CommonTokens{
 	protected LoginHistoryTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  LoginHistoryTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		LoginHistoryTokens tokens = new LoginHistoryTokens(options);
+		return tokens;
+		
+	}
+	protected LoginHistoryTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public LoginHistoryTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class LoginHistoryTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public LoginHistoryTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String SECUSER = "secUser";
 	public String getSecUser(){

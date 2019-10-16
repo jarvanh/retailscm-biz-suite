@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.employeeworkexperience;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,9 +61,25 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 	
 		
 	public 	EmployeeWorkExperience(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static EmployeeWorkExperience withId(String id){
+		EmployeeWorkExperience employeeWorkExperience = new EmployeeWorkExperience();
+		employeeWorkExperience.setId(id);
+		employeeWorkExperience.setVersion(Integer.MAX_VALUE);
+		return employeeWorkExperience;
+	}
+	public 	static EmployeeWorkExperience refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setEmployee( null );
 
@@ -160,6 +180,35 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(START_PROPERTY.equals(property)){
+			return getStart();
+		}
+		if(END_PROPERTY.equals(property)){
+			return getEnd();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -173,6 +222,12 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmployee(Employee employee){
@@ -186,6 +241,12 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmployee(Employee employee){
+		if(employee != null) { setEmployee(employee);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployee(){
@@ -204,6 +265,12 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeStart(Date start){
+		setStart(start);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEnd(Date end){
@@ -217,6 +284,12 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEnd(Date end){
+		setEnd(end);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(String company){
@@ -230,6 +303,12 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCompany(String company){
+		if(company != null) { setCompany(company);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -243,6 +322,12 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDescription(String description){
+		if(description != null) { setDescription(description);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -256,6 +341,12 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -318,6 +409,48 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeWorkExperience){
+		
+			
+			EmployeeWorkExperience dest =(EmployeeWorkExperience)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeEmployee(getEmployee());
+			dest.mergeStart(getStart());
+			dest.mergeEnd(getEnd());
+			dest.mergeCompany(getCompany());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeWorkExperience){
+		
+			
+			EmployeeWorkExperience dest =(EmployeeWorkExperience)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeStart(getStart());
+			dest.mergeEnd(getEnd());
+			dest.mergeCompany(getCompany());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

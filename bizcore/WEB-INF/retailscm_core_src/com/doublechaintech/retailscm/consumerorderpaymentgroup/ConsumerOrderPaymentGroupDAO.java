@@ -7,6 +7,12 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO;
 
 
@@ -50,6 +56,11 @@ public interface ConsumerOrderPaymentGroupDAO{
  	public void analyzeConsumerOrderPaymentGroupByBizOrder(SmartList<ConsumerOrderPaymentGroup> resultList, String consumerOrderId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -257,8 +257,14 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 			//will be good when the retailStoreMemberGiftCardConsumeRecord loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberGiftCardConsumeRecord.
+<<<<<<< HEAD
 			
 			
+=======
+			if (retailStoreMemberGiftCardConsumeRecord.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreMemberGiftCardConsumeRecord = saveRetailStoreMemberGiftCardConsumeRecord(userContext, retailStoreMemberGiftCardConsumeRecord, options);
 			return retailStoreMemberGiftCardConsumeRecord;
 			
@@ -327,7 +333,11 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -435,20 +445,34 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  //--------------------------------------------------------------
 	
 	 	
+<<<<<<< HEAD
  	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getConsumerOrderDAO().load(newBizOrderId, options);
+=======
+ 	protected RetailStoreMemberGiftCard loadRetailStoreMemberGiftCard(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreMemberGiftCardDAO().load(newOwnerId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
+<<<<<<< HEAD
  	protected RetailStoreMemberGiftCard loadRetailStoreMemberGiftCard(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreMemberGiftCardDAO().load(newOwnerId, options);
+=======
+ 	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getConsumerOrderDAO().load(newBizOrderId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	

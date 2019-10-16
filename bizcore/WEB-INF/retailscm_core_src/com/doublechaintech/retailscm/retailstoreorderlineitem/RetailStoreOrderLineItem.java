@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.retailstoreorderlineitem;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -59,9 +63,25 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 	
 		
 	public 	RetailStoreOrderLineItem(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static RetailStoreOrderLineItem withId(String id){
+		RetailStoreOrderLineItem retailStoreOrderLineItem = new RetailStoreOrderLineItem();
+		retailStoreOrderLineItem.setId(id);
+		retailStoreOrderLineItem.setVersion(Integer.MAX_VALUE);
+		return retailStoreOrderLineItem;
+	}
+	public 	static RetailStoreOrderLineItem refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBizOrder( null );
 
@@ -181,6 +201,38 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(BIZ_ORDER_PROPERTY.equals(property)){
+			return getBizOrder();
+		}
+		if(SKU_ID_PROPERTY.equals(property)){
+			return getSkuId();
+		}
+		if(SKU_NAME_PROPERTY.equals(property)){
+			return getSkuName();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+		if(QUANTITY_PROPERTY.equals(property)){
+			return getQuantity();
+		}
+		if(UNIT_OF_MEASUREMENT_PROPERTY.equals(property)){
+			return getUnitOfMeasurement();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -194,6 +246,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBizOrder(RetailStoreOrder bizOrder){
@@ -207,6 +265,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBizOrder(RetailStoreOrder bizOrder){
+		if(bizOrder != null) { setBizOrder(bizOrder);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBizOrder(){
@@ -225,6 +289,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSkuId(String skuId){
+		if(skuId != null) { setSkuId(skuId);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearSkuId(){
@@ -243,6 +313,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSkuName(String skuName){
+		if(skuName != null) { setSkuName(skuName);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAmount(BigDecimal amount){
@@ -256,6 +332,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeAmount(BigDecimal amount){
+		setAmount(amount);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setQuantity(int quantity){
@@ -269,6 +351,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeQuantity(int quantity){
+		setQuantity(quantity);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setUnitOfMeasurement(String unitOfMeasurement){
@@ -282,6 +370,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeUnitOfMeasurement(String unitOfMeasurement){
+		if(unitOfMeasurement != null) { setUnitOfMeasurement(unitOfMeasurement);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -295,6 +389,12 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -359,6 +459,50 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderLineItem){
+		
+			
+			RetailStoreOrderLineItem dest =(RetailStoreOrderLineItem)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeBizOrder(getBizOrder());
+			dest.mergeSkuId(getSkuId());
+			dest.mergeSkuName(getSkuName());
+			dest.mergeAmount(getAmount());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeUnitOfMeasurement(getUnitOfMeasurement());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderLineItem){
+		
+			
+			RetailStoreOrderLineItem dest =(RetailStoreOrderLineItem)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeSkuId(getSkuId());
+			dest.mergeSkuName(getSkuName());
+			dest.mergeAmount(getAmount());
+			dest.mergeQuantity(getQuantity());
+			dest.mergeUnitOfMeasurement(getUnitOfMeasurement());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

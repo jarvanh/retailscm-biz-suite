@@ -20,17 +20,39 @@
 	<bean id="checker" class="com.doublechaintech.retailscm.CustomRetailscmChecker" scope="prototype"></bean>
 	
 	<bean id="secUserManager" class="com.doublechaintech.retailscm.secuser.SecUserCustomManagerImpl">
+<<<<<<< HEAD
 		
 	 	<property name="cacheService" ref="cacheService" />
+=======
+	 	<property name="cacheService" ref="cacheService" />
+	 	<property name="storageService" ref="storageService"/>
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	 	<property name="esClient" ref="elasticsearchClient" />
 	 	<property name="smtpService" ref="smtpService" />
 	 	
 	 	<!--
+<<<<<<< HEAD
 	 	<property name="graphService" ref="graphService" />
 	 	<property name="eventService" ref="kafkaMessageEventService" />
 	 	<property name="graphService" ref="dummygraphService" />
 	 	<property name="eventService" ref="dummyEventService" />
 	 	-->
+=======
+	 	
+	 	默认情况下不开图服务和kafka消息服务
+	 	
+	 	<property name="graphService" ref="graphService" />
+	 	<property name="eventService" ref="kafkaMessageEventService" />
+	 	
+	 	<property name="graphService" ref="dummygraphService" />
+	 	<property name="eventService" ref="dummyEventService" />
+	 	
+	 	
+	 	
+	 	-->
+	 	
+	 	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	 	<property name="graphService" ref="dummygraphService" />
 	 	<property name="eventService" ref="dummyEventService" />
 	 	

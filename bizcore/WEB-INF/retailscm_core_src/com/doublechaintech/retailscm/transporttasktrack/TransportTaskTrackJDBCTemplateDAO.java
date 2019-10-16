@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.transporttasktrack;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -24,9 +33,18 @@ import com.doublechaintech.retailscm.transporttask.TransportTaskDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class TransportTaskTrackJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TransportTaskTrackDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class TransportTaskTrackJDBCTemplateDAO extends RetailscmBaseDAOImpl implements TransportTaskTrackDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  TransportTaskDAO  transportTaskDAO;
@@ -514,6 +532,12 @@ public class TransportTaskTrackJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public void enhanceList(List<TransportTaskTrack> transportTaskTrackList) {		
 		this.enhanceListInternal(transportTaskTrackList, this.getTransportTaskTrackMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<TransportTaskTrack> transportTaskTrackList = ownerEntity.collectRefsWithType(TransportTaskTrack.INTERNAL_TYPE);
@@ -546,6 +570,12 @@ public class TransportTaskTrackJDBCTemplateDAO extends RetailscmNamingServiceDAO
 	public SmartList<TransportTaskTrack> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTransportTaskTrackMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

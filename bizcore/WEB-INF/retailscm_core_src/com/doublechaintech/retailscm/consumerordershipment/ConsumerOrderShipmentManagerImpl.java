@@ -232,8 +232,14 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 			//will be good when the consumerOrderShipment loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderShipment.
+<<<<<<< HEAD
 			
 			
+=======
+			if (consumerOrderShipment.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			consumerOrderShipment = saveConsumerOrderShipment(userContext, consumerOrderShipment, options);
 			return consumerOrderShipment;
 			
@@ -302,7 +308,11 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

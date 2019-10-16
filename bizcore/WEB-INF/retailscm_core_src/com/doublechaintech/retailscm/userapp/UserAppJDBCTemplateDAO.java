@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.userapp;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -18,19 +27,36 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.quicklink.QuickLink;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.objectaccess.ObjectAccess;
 import com.doublechaintech.retailscm.listaccess.ListAccess;
 import com.doublechaintech.retailscm.secuser.SecUser;
 
 import com.doublechaintech.retailscm.secuser.SecUserDAO;
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.quicklink.QuickLinkDAO;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.listaccess.ListAccessDAO;
 import com.doublechaintech.retailscm.objectaccess.ObjectAccessDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements UserAppDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements UserAppDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  SecUserDAO  secUserDAO;
@@ -45,6 +71,28 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 			
 		
 	
+<<<<<<< HEAD
+=======
+  	private  QuickLinkDAO  quickLinkDAO;
+ 	public void setQuickLinkDAO(QuickLinkDAO pQuickLinkDAO){
+ 	
+ 		if(pQuickLinkDAO == null){
+ 			throw new IllegalStateException("Do not try to set quickLinkDAO to null.");
+ 		}
+	 	this.quickLinkDAO = pQuickLinkDAO;
+ 	}
+ 	public QuickLinkDAO getQuickLinkDAO(){
+ 		if(this.quickLinkDAO == null){
+ 			throw new IllegalStateException("The quickLinkDAO is not configured yet, please config it some where.");
+ 		}
+ 		
+	 	return this.quickLinkDAO;
+ 	}	
+ 	
+			
+		
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
   	private  ListAccessDAO  listAccessDAO;
  	public void setListAccessDAO(ListAccessDAO pListAccessDAO){
  	
@@ -127,6 +175,16 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 		
 		
  		
+<<<<<<< HEAD
+=======
+ 		if(isSaveQuickLinkListEnabled(options)){
+ 			for(QuickLink item: newUserApp.getQuickLinkList()){
+ 				item.setVersion(0);
+ 			}
+ 		}
+		
+ 		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  		if(isSaveListAccessListEnabled(options)){
  			for(ListAccess item: newUserApp.getListAccessList()){
  				item.setVersion(0);
@@ -246,12 +304,34 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  
 		
 	
+<<<<<<< HEAD
 	protected boolean isExtractListAccessListEnabled(Map<String,Object> options){		
  		return checkOptions(options,UserAppTokens.LIST_ACCESS_LIST);
  	}
  	protected boolean isAnalyzeListAccessListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,UserAppTokens.LIST_ACCESS_LIST+".analyze");
+=======
+	protected boolean isExtractQuickLinkListEnabled(Map<String,Object> options){		
+ 		return checkOptions(options,UserAppTokens.QUICK_LINK_LIST);
+ 	}
+ 	protected boolean isAnalyzeQuickLinkListEnabled(Map<String,Object> options){		 		
+ 		return UserAppTokens.of(options).analyzeQuickLinkListEnabled();
+ 	}
+	
+	protected boolean isSaveQuickLinkListEnabled(Map<String,Object> options){
+		return checkOptions(options, UserAppTokens.QUICK_LINK_LIST);
+		
+ 	}
+ 	
+		
+	
+	protected boolean isExtractListAccessListEnabled(Map<String,Object> options){		
+ 		return checkOptions(options,UserAppTokens.LIST_ACCESS_LIST);
+ 	}
+ 	protected boolean isAnalyzeListAccessListEnabled(Map<String,Object> options){		 		
+ 		return UserAppTokens.of(options).analyzeListAccessListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveListAccessListEnabled(Map<String,Object> options){
@@ -264,9 +344,14 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	protected boolean isExtractObjectAccessListEnabled(Map<String,Object> options){		
  		return checkOptions(options,UserAppTokens.OBJECT_ACCESS_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeObjectAccessListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,UserAppTokens.OBJECT_ACCESS_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeObjectAccessListEnabled(Map<String,Object> options){		 		
+ 		return UserAppTokens.of(options).analyzeObjectAccessListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveObjectAccessListEnabled(Map<String,Object> options){
@@ -306,6 +391,17 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  		}
  
 		
+<<<<<<< HEAD
+=======
+		if(isExtractQuickLinkListEnabled(loadOptions)){
+	 		extractQuickLinkList(userApp, loadOptions);
+ 		}	
+ 		if(isAnalyzeQuickLinkListEnabled(loadOptions)){
+	 		analyzeQuickLinkList(userApp, loadOptions);
+ 		}
+ 		
+		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if(isExtractListAccessListEnabled(loadOptions)){
 	 		extractListAccessList(userApp, loadOptions);
  		}	
@@ -348,6 +444,59 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  		
  
 		
+<<<<<<< HEAD
+=======
+	protected void enhanceQuickLinkList(SmartList<QuickLink> quickLinkList,Map<String,Object> options){
+		//extract multiple list from difference sources
+		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
+	}
+	
+	protected UserApp extractQuickLinkList(UserApp userApp, Map<String,Object> options){
+		
+		
+		if(userApp == null){
+			return null;
+		}
+		if(userApp.getId() == null){
+			return userApp;
+		}
+
+		
+		
+		SmartList<QuickLink> quickLinkList = getQuickLinkDAO().findQuickLinkByApp(userApp.getId(),options);
+		if(quickLinkList != null){
+			enhanceQuickLinkList(quickLinkList,options);
+			userApp.setQuickLinkList(quickLinkList);
+		}
+		
+		return userApp;
+	
+	}	
+	
+	protected UserApp analyzeQuickLinkList(UserApp userApp, Map<String,Object> options){
+		
+		
+		if(userApp == null){
+			return null;
+		}
+		if(userApp.getId() == null){
+			return userApp;
+		}
+
+		
+		
+		SmartList<QuickLink> quickLinkList = userApp.getQuickLinkList();
+		if(quickLinkList != null){
+			getQuickLinkDAO().analyzeQuickLinkByApp(quickLinkList, userApp.getId(), options);
+			
+		}
+		
+		return userApp;
+	
+	}	
+	
+		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected void enhanceListAccessList(SmartList<ListAccess> listAccessList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -675,6 +824,16 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  		}
  
 		
+<<<<<<< HEAD
+=======
+		if(isSaveQuickLinkListEnabled(options)){
+	 		saveQuickLinkList(userApp, options);
+	 		//removeQuickLinkList(userApp, options);
+	 		//Not delete the record
+	 		
+ 		}		
+		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if(isSaveListAccessListEnabled(options)){
 	 		saveListAccessList(userApp, options);
 	 		//removeListAccessList(userApp, options);
@@ -716,6 +875,37 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
  
 
 	
+<<<<<<< HEAD
+=======
+	public UserApp planToRemoveQuickLinkList(UserApp userApp, String quickLinkIds[], Map<String,Object> options)throws Exception{
+	
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(QuickLink.APP_PROPERTY, userApp.getId());
+		key.put(QuickLink.ID_PROPERTY, quickLinkIds);
+		
+		SmartList<QuickLink> externalQuickLinkList = getQuickLinkDAO().
+				findQuickLinkWithKey(key, options);
+		if(externalQuickLinkList == null){
+			return userApp;
+		}
+		if(externalQuickLinkList.isEmpty()){
+			return userApp;
+		}
+		
+		for(QuickLink quickLinkItem: externalQuickLinkList){
+
+			quickLinkItem.clearFromAll();
+		}
+		
+		
+		SmartList<QuickLink> quickLinkList = userApp.getQuickLinkList();		
+		quickLinkList.addAllToRemoveList(externalQuickLinkList);
+		return userApp;	
+	
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public UserApp planToRemoveListAccessList(UserApp userApp, String listAccessIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();
@@ -731,9 +921,15 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 			return userApp;
 		}
 		
+<<<<<<< HEAD
 		for(ListAccess listAccess: externalListAccessList){
 
 			listAccess.clearFromAll();
+=======
+		for(ListAccess listAccessItem: externalListAccessList){
+
+			listAccessItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -759,9 +955,15 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 			return userApp;
 		}
 		
+<<<<<<< HEAD
 		for(ObjectAccess objectAccess: externalObjectAccessList){
 
 			objectAccess.clearFromAll();
+=======
+		for(ObjectAccess objectAccessItem: externalObjectAccessList){
+
+			objectAccessItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -774,6 +976,75 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 
 
 		
+<<<<<<< HEAD
+=======
+	protected UserApp saveQuickLinkList(UserApp userApp, Map<String,Object> options){
+		
+		
+		
+		
+		SmartList<QuickLink> quickLinkList = userApp.getQuickLinkList();
+		if(quickLinkList == null){
+			//null list means nothing
+			return userApp;
+		}
+		SmartList<QuickLink> mergedUpdateQuickLinkList = new SmartList<QuickLink>();
+		
+		
+		mergedUpdateQuickLinkList.addAll(quickLinkList); 
+		if(quickLinkList.getToRemoveList() != null){
+			//ensures the toRemoveList is not null
+			mergedUpdateQuickLinkList.addAll(quickLinkList.getToRemoveList());
+			quickLinkList.removeAll(quickLinkList.getToRemoveList());
+			//OK for now, need fix later
+		}
+
+		//adding new size can improve performance
+	
+		getQuickLinkDAO().saveQuickLinkList(mergedUpdateQuickLinkList,options);
+		
+		if(quickLinkList.getToRemoveList() != null){
+			quickLinkList.removeAll(quickLinkList.getToRemoveList());
+		}
+		
+		
+		return userApp;
+	
+	}
+	
+	protected UserApp removeQuickLinkList(UserApp userApp, Map<String,Object> options){
+	
+	
+		SmartList<QuickLink> quickLinkList = userApp.getQuickLinkList();
+		if(quickLinkList == null){
+			return userApp;
+		}	
+	
+		SmartList<QuickLink> toRemoveQuickLinkList = quickLinkList.getToRemoveList();
+		
+		if(toRemoveQuickLinkList == null){
+			return userApp;
+		}
+		if(toRemoveQuickLinkList.isEmpty()){
+			return userApp;// Does this mean delete all from the parent object?
+		}
+		//Call DAO to remove the list
+		
+		getQuickLinkDAO().removeQuickLinkList(toRemoveQuickLinkList,options);
+		
+		return userApp;
+	
+	}
+	
+	
+
+ 	
+ 	
+	
+	
+	
+		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected UserApp saveListAccessList(UserApp userApp, Map<String,Object> options){
 		
 		
@@ -909,6 +1180,10 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 
 	public UserApp present(UserApp userApp,Map<String, Object> options){
 	
+<<<<<<< HEAD
+=======
+		presentQuickLinkList(userApp,options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		presentListAccessList(userApp,options);
 		presentObjectAccessList(userApp,options);
 
@@ -917,6 +1192,29 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	}
 		
 	//Using java8 feature to reduce the code significantly
+<<<<<<< HEAD
+=======
+ 	protected UserApp presentQuickLinkList(
+			UserApp userApp,
+			Map<String, Object> options) {
+
+		SmartList<QuickLink> quickLinkList = userApp.getQuickLinkList();		
+				SmartList<QuickLink> newList= presentSubList(userApp.getId(),
+				quickLinkList,
+				options,
+				getQuickLinkDAO()::countQuickLinkByApp,
+				getQuickLinkDAO()::findQuickLinkByApp
+				);
+
+		
+		userApp.setQuickLinkList(newList);
+		
+
+		return userApp;
+	}			
+		
+	//Using java8 feature to reduce the code significantly
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	protected UserApp presentListAccessList(
 			UserApp userApp,
 			Map<String, Object> options) {
@@ -958,6 +1256,15 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 		
 
 	
+<<<<<<< HEAD
+=======
+    public SmartList<UserApp> requestCandidateUserAppForQuickLink(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
+        // NOTE: by default, ignore owner info, just return all by filter key.
+		// You need override this method if you have different candidate-logic
+		return findAllCandidateByFilter(UserAppTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getUserAppMapper());
+    }
+		
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
     public SmartList<UserApp> requestCandidateUserAppForListAccess(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
@@ -980,6 +1287,81 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	public void enhanceList(List<UserApp> userAppList) {		
 		this.enhanceListInternal(userAppList, this.getUserAppMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:QuickLink的app的QuickLinkList
+	public SmartList<QuickLink> loadOurQuickLinkList(RetailscmUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(QuickLink.APP_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<QuickLink> loadedObjs = userContext.getDAOGroup().getQuickLinkDAO().findQuickLinkWithKey(key, options);
+		Map<String, List<QuickLink>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getApp().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<QuickLink> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<QuickLink> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setQuickLinkList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ListAccess的app的ListAccessList
+	public SmartList<ListAccess> loadOurListAccessList(RetailscmUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ListAccess.APP_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ListAccess> loadedObjs = userContext.getDAOGroup().getListAccessDAO().findListAccessWithKey(key, options);
+		Map<String, List<ListAccess>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getApp().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ListAccess> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ListAccess> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setListAccessList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ObjectAccess的app的ObjectAccessList
+	public SmartList<ObjectAccess> loadOurObjectAccessList(RetailscmUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ObjectAccess.APP_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ObjectAccess> loadedObjs = userContext.getDAOGroup().getObjectAccessDAO().findObjectAccessWithKey(key, options);
+		Map<String, List<ObjectAccess>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getApp().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ObjectAccess> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ObjectAccess> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setObjectAccessList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<UserApp> userAppList = ownerEntity.collectRefsWithType(UserApp.INTERNAL_TYPE);
@@ -1012,6 +1394,12 @@ public class UserAppJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	public SmartList<UserApp> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getUserAppMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

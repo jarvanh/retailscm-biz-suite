@@ -262,8 +262,14 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 			//will be good when the cityPartner loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to CityPartner.
+<<<<<<< HEAD
 			
 			
+=======
+			if (cityPartner.isChanged()){
+			cityPartner.updateLastUpdateTime(userContext.now());
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			cityPartner = saveCityPartner(userContext, cityPartner, options);
 			return cityPartner;
 			
@@ -334,7 +340,11 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 		return tokens().allTokens()
 		.sortPotentialCustomerListWith("id","desc")
 		.sortPotentialCustomerContactListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -614,8 +624,13 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 			String potentialCustomerIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
+<<<<<<< HEAD
 		for(String potentialCustomerId: potentialCustomerIds){
 			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
+=======
+		for(String potentialCustomerIdItem: potentialCustomerIds){
+			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
@@ -882,8 +897,13 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
+<<<<<<< HEAD
 		for(String potentialCustomerContactId: potentialCustomerContactIds){
 			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+=======
+		for(String potentialCustomerContactIdItem: potentialCustomerContactIds){
+			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);

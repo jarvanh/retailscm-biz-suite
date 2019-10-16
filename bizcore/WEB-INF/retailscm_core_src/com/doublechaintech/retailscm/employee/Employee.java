@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.employee;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -138,9 +142,25 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Employee(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static Employee withId(String id){
+		Employee employee = new Employee();
+		employee.setId(id);
+		employee.setVersion(Integer.MAX_VALUE);
+		return employee;
+	}
+	public 	static Employee refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCompany( null );
 		setDepartment( null );
@@ -364,6 +384,134 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(DEPARTMENT_PROPERTY.equals(property)){
+			return getDepartment();
+		}
+		if(FAMILY_NAME_PROPERTY.equals(property)){
+			return getFamilyName();
+		}
+		if(GIVEN_NAME_PROPERTY.equals(property)){
+			return getGivenName();
+		}
+		if(EMAIL_PROPERTY.equals(property)){
+			return getEmail();
+		}
+		if(CITY_PROPERTY.equals(property)){
+			return getCity();
+		}
+		if(ADDRESS_PROPERTY.equals(property)){
+			return getAddress();
+		}
+		if(CELL_PHONE_PROPERTY.equals(property)){
+			return getCellPhone();
+		}
+		if(OCCUPATION_PROPERTY.equals(property)){
+			return getOccupation();
+		}
+		if(RESPONSIBLE_FOR_PROPERTY.equals(property)){
+			return getResponsibleFor();
+		}
+		if(CURRENT_SALARY_GRADE_PROPERTY.equals(property)){
+			return getCurrentSalaryGrade();
+		}
+		if(SALARY_ACCOUNT_PROPERTY.equals(property)){
+			return getSalaryAccount();
+		}
+		if(JOB_APPLICATION_PROPERTY.equals(property)){
+			return getJobApplication();
+		}
+		if(PROFESSION_INTERVIEW_PROPERTY.equals(property)){
+			return getProfessionInterview();
+		}
+		if(HR_INTERVIEW_PROPERTY.equals(property)){
+			return getHrInterview();
+		}
+		if(OFFER_APPROVAL_PROPERTY.equals(property)){
+			return getOfferApproval();
+		}
+		if(OFFER_ACCEPTANCE_PROPERTY.equals(property)){
+			return getOfferAcceptance();
+		}
+		if(EMPLOYEE_BOARDING_PROPERTY.equals(property)){
+			return getEmployeeBoarding();
+		}
+		if(TERMINATION_PROPERTY.equals(property)){
+			return getTermination();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+		if(EMPLOYEE_COMPANY_TRAINING_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeCompanyTrainingList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_SKILL_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeSkillList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_PERFORMANCE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeePerformanceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_WORK_EXPERIENCE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeWorkExperienceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_LEAVE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeLeaveList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_INTERVIEW_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeInterviewList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_ATTENDANCE_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeAttendanceList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_QUALIFIER_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeQualifierList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_EDUCATION_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeEducationList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_AWARD_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeAwardList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(EMPLOYEE_SALARY_SHEET_LIST.equals(property)){
+			List<BaseEntity> list = getEmployeeSalarySheetList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(PAYING_OFF_LIST.equals(property)){
+			List<BaseEntity> list = getPayingOffList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -377,6 +525,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(RetailStoreCountryCenter company){
@@ -390,6 +544,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCompany(RetailStoreCountryCenter company){
+		if(company != null) { setCompany(company);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCompany(){
@@ -408,6 +568,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTitle(String title){
+		if(title != null) { setTitle(title);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDepartment(LevelThreeDepartment department){
@@ -421,6 +587,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDepartment(LevelThreeDepartment department){
+		if(department != null) { setDepartment(department);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDepartment(){
@@ -439,6 +611,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeFamilyName(String familyName){
+		if(familyName != null) { setFamilyName(familyName);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setGivenName(String givenName){
@@ -452,6 +630,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeGivenName(String givenName){
+		if(givenName != null) { setGivenName(givenName);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmail(String email){
@@ -465,6 +649,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmail(String email){
+		if(email != null) { setEmail(email);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCity(String city){
@@ -478,6 +668,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCity(String city){
+		if(city != null) { setCity(city);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAddress(String address){
@@ -491,6 +687,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeAddress(String address){
+		if(address != null) { setAddress(address);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCellPhone(String cellPhone){
@@ -504,6 +706,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCellPhone(String cellPhone){
+		if(cellPhone != null) { setCellPhone(cellPhone);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -524,6 +732,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOccupation(OccupationType occupation){
+		if(occupation != null) { setOccupation(occupation);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOccupation(){
@@ -542,6 +756,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeResponsibleFor(ResponsibilityType responsibleFor){
+		if(responsibleFor != null) { setResponsibleFor(responsibleFor);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearResponsibleFor(){
@@ -560,6 +780,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCurrentSalaryGrade(SalaryGrade currentSalaryGrade){
+		if(currentSalaryGrade != null) { setCurrentSalaryGrade(currentSalaryGrade);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCurrentSalaryGrade(){
@@ -578,6 +804,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSalaryAccount(String salaryAccount){
+		if(salaryAccount != null) { setSalaryAccount(salaryAccount);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setJobApplication(JobApplication jobApplication){
@@ -591,6 +823,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeJobApplication(JobApplication jobApplication){
+		if(jobApplication != null) { setJobApplication(jobApplication);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearJobApplication(){
@@ -609,6 +847,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeProfessionInterview(ProfessionInterview professionInterview){
+		if(professionInterview != null) { setProfessionInterview(professionInterview);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearProfessionInterview(){
@@ -627,6 +871,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeHrInterview(HrInterview hrInterview){
+		if(hrInterview != null) { setHrInterview(hrInterview);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearHrInterview(){
@@ -645,6 +895,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOfferApproval(OfferApproval offerApproval){
+		if(offerApproval != null) { setOfferApproval(offerApproval);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOfferApproval(){
@@ -663,6 +919,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOfferAcceptance(OfferAcceptance offerAcceptance){
+		if(offerAcceptance != null) { setOfferAcceptance(offerAcceptance);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOfferAcceptance(){
@@ -681,6 +943,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmployeeBoarding(EmployeeBoarding employeeBoarding){
+		if(employeeBoarding != null) { setEmployeeBoarding(employeeBoarding);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployeeBoarding(){
@@ -699,6 +967,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTermination(Termination termination){
+		if(termination != null) { setTermination(termination);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearTermination(){
@@ -717,6 +991,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastUpdateTime(DateTime lastUpdateTime){
+		setLastUpdateTime(lastUpdateTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCurrentStatus(String currentStatus){
@@ -730,6 +1010,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCurrentStatus(String currentStatus){
+		if(currentStatus != null) { setCurrentStatus(currentStatus);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -743,6 +1029,12 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -775,7 +1067,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeCompanyTrainingList().addAll(employeeCompanyTrainingList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeCompanyTrainingList(SmartList<EmployeeCompanyTraining> employeeCompanyTrainingList){
+		if(employeeCompanyTrainingList==null){
+			return;
+		}
+		if(employeeCompanyTrainingList.isEmpty()){
+			return;
+		}
+		addEmployeeCompanyTrainingList( employeeCompanyTrainingList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeCompanyTraining removeEmployeeCompanyTraining(EmployeeCompanyTraining employeeCompanyTrainingIndex){
 		
 		int index = getEmployeeCompanyTrainingList().indexOf(employeeCompanyTrainingIndex);
@@ -873,7 +1178,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeSkillList().addAll(employeeSkillList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeSkillList(SmartList<EmployeeSkill> employeeSkillList){
+		if(employeeSkillList==null){
+			return;
+		}
+		if(employeeSkillList.isEmpty()){
+			return;
+		}
+		addEmployeeSkillList( employeeSkillList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeSkill removeEmployeeSkill(EmployeeSkill employeeSkillIndex){
 		
 		int index = getEmployeeSkillList().indexOf(employeeSkillIndex);
@@ -971,7 +1289,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeePerformanceList().addAll(employeePerformanceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeePerformanceList(SmartList<EmployeePerformance> employeePerformanceList){
+		if(employeePerformanceList==null){
+			return;
+		}
+		if(employeePerformanceList.isEmpty()){
+			return;
+		}
+		addEmployeePerformanceList( employeePerformanceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeePerformance removeEmployeePerformance(EmployeePerformance employeePerformanceIndex){
 		
 		int index = getEmployeePerformanceList().indexOf(employeePerformanceIndex);
@@ -1069,7 +1400,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeWorkExperienceList().addAll(employeeWorkExperienceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeWorkExperienceList(SmartList<EmployeeWorkExperience> employeeWorkExperienceList){
+		if(employeeWorkExperienceList==null){
+			return;
+		}
+		if(employeeWorkExperienceList.isEmpty()){
+			return;
+		}
+		addEmployeeWorkExperienceList( employeeWorkExperienceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeWorkExperience removeEmployeeWorkExperience(EmployeeWorkExperience employeeWorkExperienceIndex){
 		
 		int index = getEmployeeWorkExperienceList().indexOf(employeeWorkExperienceIndex);
@@ -1167,7 +1511,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeLeaveList().addAll(employeeLeaveList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeLeaveList(SmartList<EmployeeLeave> employeeLeaveList){
+		if(employeeLeaveList==null){
+			return;
+		}
+		if(employeeLeaveList.isEmpty()){
+			return;
+		}
+		addEmployeeLeaveList( employeeLeaveList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeLeave removeEmployeeLeave(EmployeeLeave employeeLeaveIndex){
 		
 		int index = getEmployeeLeaveList().indexOf(employeeLeaveIndex);
@@ -1265,7 +1622,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeInterviewList().addAll(employeeInterviewList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeInterviewList(SmartList<EmployeeInterview> employeeInterviewList){
+		if(employeeInterviewList==null){
+			return;
+		}
+		if(employeeInterviewList.isEmpty()){
+			return;
+		}
+		addEmployeeInterviewList( employeeInterviewList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeInterview removeEmployeeInterview(EmployeeInterview employeeInterviewIndex){
 		
 		int index = getEmployeeInterviewList().indexOf(employeeInterviewIndex);
@@ -1363,7 +1733,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeAttendanceList().addAll(employeeAttendanceList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeAttendanceList(SmartList<EmployeeAttendance> employeeAttendanceList){
+		if(employeeAttendanceList==null){
+			return;
+		}
+		if(employeeAttendanceList.isEmpty()){
+			return;
+		}
+		addEmployeeAttendanceList( employeeAttendanceList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeAttendance removeEmployeeAttendance(EmployeeAttendance employeeAttendanceIndex){
 		
 		int index = getEmployeeAttendanceList().indexOf(employeeAttendanceIndex);
@@ -1461,7 +1844,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeQualifierList().addAll(employeeQualifierList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeQualifierList(SmartList<EmployeeQualifier> employeeQualifierList){
+		if(employeeQualifierList==null){
+			return;
+		}
+		if(employeeQualifierList.isEmpty()){
+			return;
+		}
+		addEmployeeQualifierList( employeeQualifierList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeQualifier removeEmployeeQualifier(EmployeeQualifier employeeQualifierIndex){
 		
 		int index = getEmployeeQualifierList().indexOf(employeeQualifierIndex);
@@ -1559,7 +1955,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeEducationList().addAll(employeeEducationList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeEducationList(SmartList<EmployeeEducation> employeeEducationList){
+		if(employeeEducationList==null){
+			return;
+		}
+		if(employeeEducationList.isEmpty()){
+			return;
+		}
+		addEmployeeEducationList( employeeEducationList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeEducation removeEmployeeEducation(EmployeeEducation employeeEducationIndex){
 		
 		int index = getEmployeeEducationList().indexOf(employeeEducationIndex);
@@ -1657,7 +2066,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeAwardList().addAll(employeeAwardList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeAwardList(SmartList<EmployeeAward> employeeAwardList){
+		if(employeeAwardList==null){
+			return;
+		}
+		if(employeeAwardList.isEmpty()){
+			return;
+		}
+		addEmployeeAwardList( employeeAwardList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeAward removeEmployeeAward(EmployeeAward employeeAwardIndex){
 		
 		int index = getEmployeeAwardList().indexOf(employeeAwardIndex);
@@ -1755,7 +2177,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeSalarySheetList().addAll(employeeSalarySheetList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeEmployeeSalarySheetList(SmartList<EmployeeSalarySheet> employeeSalarySheetList){
+		if(employeeSalarySheetList==null){
+			return;
+		}
+		if(employeeSalarySheetList.isEmpty()){
+			return;
+		}
+		addEmployeeSalarySheetList( employeeSalarySheetList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeSalarySheet removeEmployeeSalarySheet(EmployeeSalarySheet employeeSalarySheetIndex){
 		
 		int index = getEmployeeSalarySheetList().indexOf(employeeSalarySheetIndex);
@@ -1853,7 +2288,20 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getPayingOffList().addAll(payingOffList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergePayingOffList(SmartList<PayingOff> payingOffList){
+		if(payingOffList==null){
+			return;
+		}
+		if(payingOffList.isEmpty()){
+			return;
+		}
+		addPayingOffList( payingOffList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PayingOff removePayingOff(PayingOff payingOffIndex){
 		
 		int index = getPayingOffList().indexOf(payingOffIndex);
@@ -2122,6 +2570,83 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Employee){
+		
+			
+			Employee dest =(Employee)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCompany(getCompany());
+			dest.mergeTitle(getTitle());
+			dest.mergeDepartment(getDepartment());
+			dest.mergeFamilyName(getFamilyName());
+			dest.mergeGivenName(getGivenName());
+			dest.mergeEmail(getEmail());
+			dest.mergeCity(getCity());
+			dest.mergeAddress(getAddress());
+			dest.mergeCellPhone(getCellPhone());
+			dest.mergeOccupation(getOccupation());
+			dest.mergeResponsibleFor(getResponsibleFor());
+			dest.mergeCurrentSalaryGrade(getCurrentSalaryGrade());
+			dest.mergeSalaryAccount(getSalaryAccount());
+			dest.mergeJobApplication(getJobApplication());
+			dest.mergeProfessionInterview(getProfessionInterview());
+			dest.mergeHrInterview(getHrInterview());
+			dest.mergeOfferApproval(getOfferApproval());
+			dest.mergeOfferAcceptance(getOfferAcceptance());
+			dest.mergeEmployeeBoarding(getEmployeeBoarding());
+			dest.mergeTermination(getTermination());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+			dest.mergeEmployeeCompanyTrainingList(getEmployeeCompanyTrainingList());
+			dest.mergeEmployeeSkillList(getEmployeeSkillList());
+			dest.mergeEmployeePerformanceList(getEmployeePerformanceList());
+			dest.mergeEmployeeWorkExperienceList(getEmployeeWorkExperienceList());
+			dest.mergeEmployeeLeaveList(getEmployeeLeaveList());
+			dest.mergeEmployeeInterviewList(getEmployeeInterviewList());
+			dest.mergeEmployeeAttendanceList(getEmployeeAttendanceList());
+			dest.mergeEmployeeQualifierList(getEmployeeQualifierList());
+			dest.mergeEmployeeEducationList(getEmployeeEducationList());
+			dest.mergeEmployeeAwardList(getEmployeeAwardList());
+			dest.mergeEmployeeSalarySheetList(getEmployeeSalarySheetList());
+			dest.mergePayingOffList(getPayingOffList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Employee){
+		
+			
+			Employee dest =(Employee)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeFamilyName(getFamilyName());
+			dest.mergeGivenName(getGivenName());
+			dest.mergeEmail(getEmail());
+			dest.mergeCity(getCity());
+			dest.mergeAddress(getAddress());
+			dest.mergeCellPhone(getCellPhone());
+			dest.mergeSalaryAccount(getSalaryAccount());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

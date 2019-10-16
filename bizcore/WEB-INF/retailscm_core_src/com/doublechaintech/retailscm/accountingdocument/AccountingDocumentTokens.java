@@ -38,6 +38,18 @@ public class AccountingDocumentTokens extends CommonTokens{
 	protected AccountingDocumentTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  AccountingDocumentTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		AccountingDocumentTokens tokens = new AccountingDocumentTokens(options);
+		return tokens;
+		
+	}
+	protected AccountingDocumentTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public AccountingDocumentTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -94,6 +106,14 @@ public class AccountingDocumentTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public AccountingDocumentTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String ACCOUNTINGPERIOD = "accountingPeriod";
 	public String getAccountingPeriod(){
@@ -169,7 +189,15 @@ public class AccountingDocumentTokens extends CommonTokens{
 	}
 	public boolean analyzeOriginalVoucherListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), ORIGINAL_VOUCHER_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), ORIGINAL_VOUCHER_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public AccountingDocumentTokens extractMoreFromOriginalVoucherList(String idsSeperatedWithComma){		
 		addSimpleOptions(ORIGINAL_VOUCHER_LIST+".extractIds", idsSeperatedWithComma);
@@ -231,7 +259,15 @@ public class AccountingDocumentTokens extends CommonTokens{
 	}
 	public boolean analyzeAccountingDocumentLineListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), ACCOUNTING_DOCUMENT_LINE_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), ACCOUNTING_DOCUMENT_LINE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public AccountingDocumentTokens extractMoreFromAccountingDocumentLineList(String idsSeperatedWithComma){		
 		addSimpleOptions(ACCOUNTING_DOCUMENT_LINE_LIST+".extractIds", idsSeperatedWithComma);

@@ -38,6 +38,18 @@ public class ViewTokens extends CommonTokens{
 	protected ViewTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  ViewTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		ViewTokens tokens = new ViewTokens(options);
+		return tokens;
+		
+	}
+	protected ViewTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public ViewTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -80,6 +92,14 @@ public class ViewTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public ViewTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	
 	public  ViewTokens searchEntireObjectText(String verb, String value){

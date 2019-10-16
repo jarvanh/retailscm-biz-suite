@@ -256,8 +256,14 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 			//will be good when the truckDriver loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TruckDriver.
+<<<<<<< HEAD
 			
 			
+=======
+			if (truckDriver.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			truckDriver = saveTruckDriver(userContext, truckDriver, options);
 			return truckDriver;
 			
@@ -327,7 +333,11 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortTransportTaskListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -626,8 +636,13 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 			String transportTaskIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTruckDriver(truckDriverId);
+<<<<<<< HEAD
 		for(String transportTaskId: transportTaskIds){
 			userContext.getChecker().checkIdOfTransportTask(transportTaskId);
+=======
+		for(String transportTaskIdItem: transportTaskIds){
+			userContext.getChecker().checkIdOfTransportTask(transportTaskIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TruckDriverManagerException.class);

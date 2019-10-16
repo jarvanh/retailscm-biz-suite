@@ -282,8 +282,14 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 			//will be good when the sku loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Sku.
+<<<<<<< HEAD
 			
 			
+=======
+			if (sku.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			sku = saveSku(userContext, sku, options);
 			return sku;
 			
@@ -353,7 +359,11 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -768,8 +778,13 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSku(skuId);
+<<<<<<< HEAD
 		for(String goodsId: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsId);
+=======
+		for(String goodsIdItem: goodsIds){
+			userContext.getChecker().checkIdOfGoods(goodsIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);

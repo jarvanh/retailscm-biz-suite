@@ -38,6 +38,18 @@ public class EmployeeAttendanceTokens extends CommonTokens{
 	protected EmployeeAttendanceTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  EmployeeAttendanceTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		EmployeeAttendanceTokens tokens = new EmployeeAttendanceTokens(options);
+		return tokens;
+		
+	}
+	protected EmployeeAttendanceTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public EmployeeAttendanceTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class EmployeeAttendanceTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public EmployeeAttendanceTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String EMPLOYEE = "employee";
 	public String getEmployee(){

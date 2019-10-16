@@ -243,8 +243,14 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 			//will be good when the catalog loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Catalog.
+<<<<<<< HEAD
 			
 			
+=======
+			if (catalog.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			catalog = saveCatalog(userContext, catalog, options);
 			return catalog;
 			
@@ -314,7 +320,11 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortLevelOneCategoryListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -524,8 +534,13 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 			String levelOneCategoryIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCatalog(catalogId);
+<<<<<<< HEAD
 		for(String levelOneCategoryId: levelOneCategoryIds){
 			userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryId);
+=======
+		for(String levelOneCategoryIdItem: levelOneCategoryIds){
+			userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);

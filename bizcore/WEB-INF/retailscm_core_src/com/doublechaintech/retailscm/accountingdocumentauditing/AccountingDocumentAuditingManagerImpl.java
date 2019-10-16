@@ -248,8 +248,14 @@ public class AccountingDocumentAuditingManagerImpl extends CustomRetailscmChecke
 			//will be good when the accountingDocumentAuditing loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountingDocumentAuditing.
+<<<<<<< HEAD
 			
 			
+=======
+			if (accountingDocumentAuditing.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			accountingDocumentAuditing = saveAccountingDocumentAuditing(userContext, accountingDocumentAuditing, options);
 			return accountingDocumentAuditing;
 			
@@ -319,7 +325,11 @@ public class AccountingDocumentAuditingManagerImpl extends CustomRetailscmChecke
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortAccountingDocumentListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -522,8 +532,13 @@ public class AccountingDocumentAuditingManagerImpl extends CustomRetailscmChecke
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocumentAuditing(accountingDocumentAuditingId);
+<<<<<<< HEAD
 		for(String accountingDocumentId: accountingDocumentIds){
 			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
+=======
+		for(String accountingDocumentIdItem: accountingDocumentIds){
+			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentAuditingManagerException.class);

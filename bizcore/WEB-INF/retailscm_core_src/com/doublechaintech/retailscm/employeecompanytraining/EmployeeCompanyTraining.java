@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.employeecompanytraining;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,9 +61,25 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 	
 		
 	public 	EmployeeCompanyTraining(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static EmployeeCompanyTraining withId(String id){
+		EmployeeCompanyTraining employeeCompanyTraining = new EmployeeCompanyTraining();
+		employeeCompanyTraining.setId(id);
+		employeeCompanyTraining.setVersion(Integer.MAX_VALUE);
+		return employeeCompanyTraining;
+	}
+	public 	static EmployeeCompanyTraining refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setEmployee( null );
 		setTraining( null );
@@ -88,6 +108,32 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(TRAINING_PROPERTY.equals(property)){
+			return getTraining();
+		}
+		if(SCORING_PROPERTY.equals(property)){
+			return getScoring();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -101,6 +147,12 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmployee(Employee employee){
@@ -114,6 +166,12 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmployee(Employee employee){
+		if(employee != null) { setEmployee(employee);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployee(){
@@ -132,6 +190,12 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTraining(CompanyTraining training){
+		if(training != null) { setTraining(training);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearTraining(){
@@ -150,6 +214,12 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeScoring(Scoring scoring){
+		if(scoring != null) { setScoring(scoring);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearScoring(){
@@ -168,6 +238,12 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCurrentStatus(String currentStatus){
+		if(currentStatus != null) { setCurrentStatus(currentStatus);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -181,6 +257,12 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -243,6 +325,44 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeCompanyTraining){
+		
+			
+			EmployeeCompanyTraining dest =(EmployeeCompanyTraining)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeEmployee(getEmployee());
+			dest.mergeTraining(getTraining());
+			dest.mergeScoring(getScoring());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeCompanyTraining){
+		
+			
+			EmployeeCompanyTraining dest =(EmployeeCompanyTraining)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

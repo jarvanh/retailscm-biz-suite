@@ -38,6 +38,18 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	protected RetailStoreOrderTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  RetailStoreOrderTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		RetailStoreOrderTokens tokens = new RetailStoreOrderTokens(options);
+		return tokens;
+		
+	}
+	protected RetailStoreOrderTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public RetailStoreOrderTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -100,6 +112,14 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public RetailStoreOrderTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String BUYER = "buyer";
 	public String getBuyer(){
@@ -195,7 +215,15 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	public boolean analyzeRetailStoreOrderLineItemListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), RETAIL_STORE_ORDER_LINE_ITEM_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), RETAIL_STORE_ORDER_LINE_ITEM_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreOrderTokens extractMoreFromRetailStoreOrderLineItemList(String idsSeperatedWithComma){		
 		addSimpleOptions(RETAIL_STORE_ORDER_LINE_ITEM_LIST+".extractIds", idsSeperatedWithComma);
@@ -257,7 +285,15 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	public boolean analyzeRetailStoreOrderShippingGroupListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreOrderTokens extractMoreFromRetailStoreOrderShippingGroupList(String idsSeperatedWithComma){		
 		addSimpleOptions(RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST+".extractIds", idsSeperatedWithComma);
@@ -319,7 +355,15 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	public boolean analyzeRetailStoreOrderPaymentGroupListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), RETAIL_STORE_ORDER_PAYMENT_GROUP_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), RETAIL_STORE_ORDER_PAYMENT_GROUP_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreOrderTokens extractMoreFromRetailStoreOrderPaymentGroupList(String idsSeperatedWithComma){		
 		addSimpleOptions(RETAIL_STORE_ORDER_PAYMENT_GROUP_LIST+".extractIds", idsSeperatedWithComma);
@@ -381,7 +425,15 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	public boolean analyzeGoodsListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), GOODS_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), GOODS_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreOrderTokens extractMoreFromGoodsList(String idsSeperatedWithComma){		
 		addSimpleOptions(GOODS_LIST+".extractIds", idsSeperatedWithComma);

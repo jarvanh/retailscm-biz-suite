@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.secuser;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -25,6 +29,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	public static final String MOBILE_PROPERTY                = "mobile"            ;
 	public static final String EMAIL_PROPERTY                 = "email"             ;
 	public static final String PWD_PROPERTY                   = "pwd"               ;
+<<<<<<< HEAD
+=======
+	public static final String WEIXIN_OPENID_PROPERTY         = "weixinOpenid"      ;
+	public static final String WEIXIN_APPID_PROPERTY          = "weixinAppid"       ;
+	public static final String ACCESS_TOKEN_PROPERTY          = "accessToken"       ;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public static final String VERIFICATION_CODE_PROPERTY     = "verificationCode"  ;
 	public static final String VERIFICATION_CODE_EXPIRE_PROPERTY = "verificationCodeExpire";
 	public static final String LAST_LOGIN_TIME_PROPERTY       = "lastLoginTime"     ;
@@ -60,6 +70,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	protected		String              	mMobile             ;
 	protected		String              	mEmail              ;
 	protected		String              	mPwd                ;
+<<<<<<< HEAD
+=======
+	protected		String              	mWeixinOpenid       ;
+	protected		String              	mWeixinAppid        ;
+	protected		String              	mAccessToken        ;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected		int                 	mVerificationCode   ;
 	protected		DateTime            	mVerificationCodeExpire;
 	protected		DateTime            	mLastLoginTime      ;
@@ -74,9 +90,25 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	SecUser(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static SecUser withId(String id){
+		SecUser secUser = new SecUser();
+		secUser.setId(id);
+		secUser.setVersion(Integer.MAX_VALUE);
+		return secUser;
+	}
+	public 	static SecUser refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setDomain( null );
 		setBlocking( null );
@@ -84,12 +116,22 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
+<<<<<<< HEAD
 	public 	SecUser(String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, UserDomain domain, String currentStatus)
+=======
+	public 	SecUser(String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, UserDomain domain, String currentStatus)
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	{
 		setLogin(login);
 		setMobile(mobile);
 		setEmail(email);
 		setPwd(pwd);
+<<<<<<< HEAD
+=======
+		setWeixinOpenid(weixinOpenid);
+		setWeixinAppid(weixinAppid);
+		setAccessToken(accessToken);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		setVerificationCode(verificationCode);
 		setVerificationCodeExpire(verificationCodeExpire);
 		setLastLoginTime(lastLoginTime);
@@ -116,6 +158,18 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		if(PWD_PROPERTY.equals(property)){
 			changePwdProperty(newValueExpr);
 		}
+<<<<<<< HEAD
+=======
+		if(WEIXIN_OPENID_PROPERTY.equals(property)){
+			changeWeixinOpenidProperty(newValueExpr);
+		}
+		if(WEIXIN_APPID_PROPERTY.equals(property)){
+			changeWeixinAppidProperty(newValueExpr);
+		}
+		if(ACCESS_TOKEN_PROPERTY.equals(property)){
+			changeAccessTokenProperty(newValueExpr);
+		}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if(VERIFICATION_CODE_PROPERTY.equals(property)){
 			changeVerificationCodeProperty(newValueExpr);
 		}
@@ -190,6 +244,54 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+<<<<<<< HEAD
+=======
+	protected void changeWeixinOpenidProperty(String newValueExpr){
+		String oldValue = getWeixinOpenid();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateWeixinOpenid(newValue);
+		this.onChangeProperty(WEIXIN_OPENID_PROPERTY, oldValue, newValue);
+		return;
+  
+	}
+			
+			
+			
+	protected void changeWeixinAppidProperty(String newValueExpr){
+		String oldValue = getWeixinAppid();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateWeixinAppid(newValue);
+		this.onChangeProperty(WEIXIN_APPID_PROPERTY, oldValue, newValue);
+		return;
+  
+	}
+			
+			
+			
+	protected void changeAccessTokenProperty(String newValueExpr){
+		String oldValue = getAccessToken();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateAccessToken(newValue);
+		this.onChangeProperty(ACCESS_TOKEN_PROPERTY, oldValue, newValue);
+		return;
+  
+	}
+			
+			
+			
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected void changeVerificationCodeProperty(String newValueExpr){
 		int oldValue = getVerificationCode();
 		int newValue = parseInt(newValueExpr);
@@ -238,6 +340,67 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(LOGIN_PROPERTY.equals(property)){
+			return getLogin();
+		}
+		if(MOBILE_PROPERTY.equals(property)){
+			return getMobile();
+		}
+		if(EMAIL_PROPERTY.equals(property)){
+			return getEmail();
+		}
+		if(PWD_PROPERTY.equals(property)){
+			return getPwd();
+		}
+		if(WEIXIN_OPENID_PROPERTY.equals(property)){
+			return getWeixinOpenid();
+		}
+		if(WEIXIN_APPID_PROPERTY.equals(property)){
+			return getWeixinAppid();
+		}
+		if(ACCESS_TOKEN_PROPERTY.equals(property)){
+			return getAccessToken();
+		}
+		if(VERIFICATION_CODE_PROPERTY.equals(property)){
+			return getVerificationCode();
+		}
+		if(VERIFICATION_CODE_EXPIRE_PROPERTY.equals(property)){
+			return getVerificationCodeExpire();
+		}
+		if(LAST_LOGIN_TIME_PROPERTY.equals(property)){
+			return getLastLoginTime();
+		}
+		if(DOMAIN_PROPERTY.equals(property)){
+			return getDomain();
+		}
+		if(BLOCKING_PROPERTY.equals(property)){
+			return getBlocking();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+		if(USER_APP_LIST.equals(property)){
+			List<BaseEntity> list = getUserAppList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(LOGIN_HISTORY_LIST.equals(property)){
+			List<BaseEntity> list = getLoginHistoryList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -251,6 +414,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLogin(String login){
@@ -264,6 +433,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLogin(String login){
+		if(login != null) { setLogin(login);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMobile(String mobile){
@@ -277,6 +452,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeMobile(String mobile){
+		if(mobile != null) { setMobile(mobile);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -297,6 +478,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmail(String email){
+		if(email != null) { setEmail(email);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPwd(String pwd){
@@ -310,6 +497,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePwd(String pwd){
+		if(pwd != null) { setPwd(pwd);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setClearTextOfPwd(String clearTextOfPwd){
@@ -325,6 +518,57 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	}
 	
 		
+<<<<<<< HEAD
+=======
+	public void setWeixinOpenid(String weixinOpenid){
+		this.mWeixinOpenid = trimString(weixinOpenid);;
+	}
+	public String getWeixinOpenid(){
+		return this.mWeixinOpenid;
+	}
+	public SecUser updateWeixinOpenid(String weixinOpenid){
+		this.mWeixinOpenid = trimString(weixinOpenid);;
+		this.changed = true;
+		return this;
+	}
+	public void mergeWeixinOpenid(String weixinOpenid){
+		if(weixinOpenid != null) { setWeixinOpenid(weixinOpenid);}
+	}
+	
+	
+	public void setWeixinAppid(String weixinAppid){
+		this.mWeixinAppid = trimString(weixinAppid);;
+	}
+	public String getWeixinAppid(){
+		return this.mWeixinAppid;
+	}
+	public SecUser updateWeixinAppid(String weixinAppid){
+		this.mWeixinAppid = trimString(weixinAppid);;
+		this.changed = true;
+		return this;
+	}
+	public void mergeWeixinAppid(String weixinAppid){
+		if(weixinAppid != null) { setWeixinAppid(weixinAppid);}
+	}
+	
+	
+	public void setAccessToken(String accessToken){
+		this.mAccessToken = trimString(accessToken);;
+	}
+	public String getAccessToken(){
+		return this.mAccessToken;
+	}
+	public SecUser updateAccessToken(String accessToken){
+		this.mAccessToken = trimString(accessToken);;
+		this.changed = true;
+		return this;
+	}
+	public void mergeAccessToken(String accessToken){
+		if(accessToken != null) { setAccessToken(accessToken);}
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public void setVerificationCode(int verificationCode){
 		this.mVerificationCode = verificationCode;;
 	}
@@ -336,6 +580,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVerificationCode(int verificationCode){
+		setVerificationCode(verificationCode);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVerificationCodeExpire(DateTime verificationCodeExpire){
@@ -349,6 +599,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVerificationCodeExpire(DateTime verificationCodeExpire){
+		setVerificationCodeExpire(verificationCodeExpire);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastLoginTime(DateTime lastLoginTime){
@@ -362,6 +618,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastLoginTime(DateTime lastLoginTime){
+		setLastLoginTime(lastLoginTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDomain(UserDomain domain){
@@ -375,6 +637,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDomain(UserDomain domain){
+		if(domain != null) { setDomain(domain);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDomain(){
@@ -393,6 +661,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBlocking(SecUserBlocking blocking){
+		if(blocking != null) { setBlocking(blocking);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBlocking(){
@@ -411,6 +685,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCurrentStatus(String currentStatus){
+		if(currentStatus != null) { setCurrentStatus(currentStatus);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -424,6 +704,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -456,7 +742,20 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		}
 		getUserAppList().addAll(userAppList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeUserAppList(SmartList<UserApp> userAppList){
+		if(userAppList==null){
+			return;
+		}
+		if(userAppList.isEmpty()){
+			return;
+		}
+		addUserAppList( userAppList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  UserApp removeUserApp(UserApp userAppIndex){
 		
 		int index = getUserAppList().indexOf(userAppIndex);
@@ -554,7 +853,20 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		}
 		getLoginHistoryList().addAll(loginHistoryList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeLoginHistoryList(SmartList<LoginHistory> loginHistoryList){
+		if(loginHistoryList==null){
+			return;
+		}
+		if(loginHistoryList.isEmpty()){
+			return;
+		}
+		addLoginHistoryList( loginHistoryList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  LoginHistory removeLoginHistory(LoginHistory loginHistoryIndex){
 		
 		int index = getLoginHistoryList().indexOf(loginHistoryIndex);
@@ -659,6 +971,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, MOBILE_PROPERTY, getMaskedMobile());
 		appendKeyValuePair(result, EMAIL_PROPERTY, getEmail());
 		appendKeyValuePair(result, PWD_PROPERTY, getMaskedPwd());
+<<<<<<< HEAD
+=======
+		appendKeyValuePair(result, WEIXIN_OPENID_PROPERTY, getWeixinOpenid());
+		appendKeyValuePair(result, WEIXIN_APPID_PROPERTY, getWeixinAppid());
+		appendKeyValuePair(result, ACCESS_TOKEN_PROPERTY, getAccessToken());
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		appendKeyValuePair(result, VERIFICATION_CODE_PROPERTY, getVerificationCode());
 		appendKeyValuePair(result, VERIFICATION_CODE_EXPIRE_PROPERTY, getVerificationCodeExpire());
 		appendKeyValuePair(result, LAST_LOGIN_TIME_PROPERTY, getLastLoginTime());
@@ -695,6 +1013,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 			dest.setMobile(getMobile());
 			dest.setEmail(getEmail());
 			dest.setPwd(getPwd());
+<<<<<<< HEAD
+=======
+			dest.setWeixinOpenid(getWeixinOpenid());
+			dest.setWeixinAppid(getWeixinAppid());
+			dest.setAccessToken(getAccessToken());
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			dest.setVerificationCode(getVerificationCode());
 			dest.setVerificationCodeExpire(getVerificationCodeExpire());
 			dest.setLastLoginTime(getLastLoginTime());
@@ -709,6 +1033,65 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SecUser){
+		
+			
+			SecUser dest =(SecUser)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeLogin(getLogin());
+			dest.mergeMobile(getMobile());
+			dest.mergeEmail(getEmail());
+			dest.mergePwd(getPwd());
+			dest.mergeWeixinOpenid(getWeixinOpenid());
+			dest.mergeWeixinAppid(getWeixinAppid());
+			dest.mergeAccessToken(getAccessToken());
+			dest.mergeVerificationCode(getVerificationCode());
+			dest.mergeVerificationCodeExpire(getVerificationCodeExpire());
+			dest.mergeLastLoginTime(getLastLoginTime());
+			dest.mergeDomain(getDomain());
+			dest.mergeBlocking(getBlocking());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+			dest.mergeUserAppList(getUserAppList());
+			dest.mergeLoginHistoryList(getLoginHistoryList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SecUser){
+		
+			
+			SecUser dest =(SecUser)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeLogin(getLogin());
+			dest.mergeMobile(getMobile());
+			dest.mergeEmail(getEmail());
+			dest.mergePwd(getPwd());
+			dest.mergeWeixinOpenid(getWeixinOpenid());
+			dest.mergeWeixinAppid(getWeixinAppid());
+			dest.mergeAccessToken(getAccessToken());
+			dest.mergeVerificationCode(getVerificationCode());
+			dest.mergeVerificationCodeExpire(getVerificationCodeExpire());
+			dest.mergeLastLoginTime(getLastLoginTime());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
@@ -719,6 +1102,12 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		stringBuilder.append("\tmobile='"+getMobile()+"';");
 		stringBuilder.append("\temail='"+getEmail()+"';");
 		stringBuilder.append("\tpwd='"+getPwd()+"';");
+<<<<<<< HEAD
+=======
+		stringBuilder.append("\tweixinOpenid='"+getWeixinOpenid()+"';");
+		stringBuilder.append("\tweixinAppid='"+getWeixinAppid()+"';");
+		stringBuilder.append("\taccessToken='"+getAccessToken()+"';");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		stringBuilder.append("\tverificationCode='"+getVerificationCode()+"';");
 		stringBuilder.append("\tverificationCodeExpire='"+getVerificationCodeExpire()+"';");
 		stringBuilder.append("\tlastLoginTime='"+getLastLoginTime()+"';");

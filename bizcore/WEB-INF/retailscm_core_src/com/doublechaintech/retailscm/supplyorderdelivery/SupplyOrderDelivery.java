@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.supplyorderdelivery;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -56,9 +60,25 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 	
 		
 	public 	SupplyOrderDelivery(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static SupplyOrderDelivery withId(String id){
+		SupplyOrderDelivery supplyOrderDelivery = new SupplyOrderDelivery();
+		supplyOrderDelivery.setId(id);
+		supplyOrderDelivery.setVersion(Integer.MAX_VALUE);
+		return supplyOrderDelivery;
+	}
+	public 	static SupplyOrderDelivery refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -121,6 +141,34 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(DELIVERY_TIME_PROPERTY.equals(property)){
+			return getDeliveryTime();
+		}
+		if(CONSUMER_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getConsumerOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SUPPLY_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getSupplyOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -134,6 +182,12 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(String who){
@@ -147,6 +201,12 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeWho(String who){
+		if(who != null) { setWho(who);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDeliveryTime(Date deliveryTime){
@@ -160,6 +220,12 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDeliveryTime(Date deliveryTime){
+		setDeliveryTime(deliveryTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -173,6 +239,12 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -205,7 +277,20 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		}
 		getConsumerOrderList().addAll(consumerOrderList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeConsumerOrderList(SmartList<ConsumerOrder> consumerOrderList){
+		if(consumerOrderList==null){
+			return;
+		}
+		if(consumerOrderList.isEmpty()){
+			return;
+		}
+		addConsumerOrderList( consumerOrderList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ConsumerOrder removeConsumerOrder(ConsumerOrder consumerOrderIndex){
 		
 		int index = getConsumerOrderList().indexOf(consumerOrderIndex);
@@ -303,7 +388,20 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		}
 		getSupplyOrderList().addAll(supplyOrderList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSupplyOrderList(SmartList<SupplyOrder> supplyOrderList){
+		if(supplyOrderList==null){
+			return;
+		}
+		if(supplyOrderList.isEmpty()){
+			return;
+		}
+		addSupplyOrderList( supplyOrderList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SupplyOrder removeSupplyOrder(SupplyOrder supplyOrderIndex){
 		
 		int index = getSupplyOrderList().indexOf(supplyOrderIndex);
@@ -440,6 +538,45 @@ public class SupplyOrderDelivery extends BaseEntity implements  java.io.Serializ
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderDelivery){
+		
+			
+			SupplyOrderDelivery dest =(SupplyOrderDelivery)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeDeliveryTime(getDeliveryTime());
+			dest.mergeVersion(getVersion());
+			dest.mergeConsumerOrderList(getConsumerOrderList());
+			dest.mergeSupplyOrderList(getSupplyOrderList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrderDelivery){
+		
+			
+			SupplyOrderDelivery dest =(SupplyOrderDelivery)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeDeliveryTime(getDeliveryTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

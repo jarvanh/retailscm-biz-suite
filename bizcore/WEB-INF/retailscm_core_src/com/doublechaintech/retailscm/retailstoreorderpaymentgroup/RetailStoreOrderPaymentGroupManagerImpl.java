@@ -242,8 +242,14 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 			//will be good when the retailStoreOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreOrderPaymentGroup.
+<<<<<<< HEAD
 			
 			
+=======
+			if (retailStoreOrderPaymentGroup.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreOrderPaymentGroup = saveRetailStoreOrderPaymentGroup(userContext, retailStoreOrderPaymentGroup, options);
 			return retailStoreOrderPaymentGroup;
 			
@@ -312,7 +318,11 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

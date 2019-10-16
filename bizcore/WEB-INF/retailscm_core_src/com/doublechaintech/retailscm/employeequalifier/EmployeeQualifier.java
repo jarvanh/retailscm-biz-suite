@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.employeequalifier;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,9 +61,25 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 	
 		
 	public 	EmployeeQualifier(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static EmployeeQualifier withId(String id){
+		EmployeeQualifier employeeQualifier = new EmployeeQualifier();
+		employeeQualifier.setId(id);
+		employeeQualifier.setVersion(Integer.MAX_VALUE);
+		return employeeQualifier;
+	}
+	public 	static EmployeeQualifier refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setEmployee( null );
 
@@ -160,6 +180,35 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(QUALIFIED_TIME_PROPERTY.equals(property)){
+			return getQualifiedTime();
+		}
+		if(TYPE_PROPERTY.equals(property)){
+			return getType();
+		}
+		if(LEVEL_PROPERTY.equals(property)){
+			return getLevel();
+		}
+		if(REMARK_PROPERTY.equals(property)){
+			return getRemark();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -173,6 +222,12 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmployee(Employee employee){
@@ -186,6 +241,12 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmployee(Employee employee){
+		if(employee != null) { setEmployee(employee);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployee(){
@@ -204,6 +265,12 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeQualifiedTime(Date qualifiedTime){
+		setQualifiedTime(qualifiedTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setType(String type){
@@ -217,6 +284,12 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeType(String type){
+		if(type != null) { setType(type);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLevel(String level){
@@ -230,6 +303,12 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLevel(String level){
+		if(level != null) { setLevel(level);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setRemark(String remark){
@@ -243,6 +322,12 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeRemark(String remark){
+		if(remark != null) { setRemark(remark);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -256,6 +341,12 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -318,6 +409,48 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeQualifier){
+		
+			
+			EmployeeQualifier dest =(EmployeeQualifier)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeEmployee(getEmployee());
+			dest.mergeQualifiedTime(getQualifiedTime());
+			dest.mergeType(getType());
+			dest.mergeLevel(getLevel());
+			dest.mergeRemark(getRemark());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeeQualifier){
+		
+			
+			EmployeeQualifier dest =(EmployeeQualifier)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeQualifiedTime(getQualifiedTime());
+			dest.mergeType(getType());
+			dest.mergeLevel(getLevel());
+			dest.mergeRemark(getRemark());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

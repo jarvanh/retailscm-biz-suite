@@ -280,8 +280,14 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 			//will be good when the accountingDocument loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountingDocument.
+<<<<<<< HEAD
 			
 			
+=======
+			if (accountingDocument.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			accountingDocument = saveAccountingDocument(userContext, accountingDocument, options);
 			return accountingDocument;
 			
@@ -352,7 +358,11 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 		return tokens().allTokens()
 		.sortOriginalVoucherListWith("id","desc")
 		.sortAccountingDocumentLineListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -1053,30 +1063,51 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 //--------------------------------------------------------------
 	
 	 	
+<<<<<<< HEAD
  	protected AccountingDocumentType loadAccountingDocumentType(RetailscmUserContext userContext, String newDocumentTypeId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getAccountingDocumentTypeDAO().load(newDocumentTypeId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
+=======
  	protected AccountingDocumentPosting loadAccountingDocumentPosting(RetailscmUserContext userContext, String newPostingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getAccountingDocumentPostingDAO().load(newPostingId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
+<<<<<<< HEAD
+ 	protected AccountingDocumentPosting loadAccountingDocumentPosting(RetailscmUserContext userContext, String newPostingId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentPostingDAO().load(newPostingId, options);
+=======
+ 	protected AccountingDocumentConfirmation loadAccountingDocumentConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentConfirmationDAO().load(newConfirmationId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+ 	}
+ 	
+ 	
+ 	
+	
+	 	
+<<<<<<< HEAD
  	protected AccountingDocumentCreation loadAccountingDocumentCreation(RetailscmUserContext userContext, String newCreationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getAccountingDocumentCreationDAO().load(newCreationId, options);
+=======
+ 	protected AccountingDocumentAuditing loadAccountingDocumentAuditing(RetailscmUserContext userContext, String newAuditingId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentAuditingDAO().load(newAuditingId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1093,20 +1124,34 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
  	
 	
 	 	
+<<<<<<< HEAD
  	protected AccountingDocumentAuditing loadAccountingDocumentAuditing(RetailscmUserContext userContext, String newAuditingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getAccountingDocumentAuditingDAO().load(newAuditingId, options);
+=======
+ 	protected AccountingDocumentType loadAccountingDocumentType(RetailscmUserContext userContext, String newDocumentTypeId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentTypeDAO().load(newDocumentTypeId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
+<<<<<<< HEAD
  	protected AccountingDocumentConfirmation loadAccountingDocumentConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getAccountingDocumentConfirmationDAO().load(newConfirmationId, options);
+=======
+ 	protected AccountingDocumentCreation loadAccountingDocumentCreation(RetailscmUserContext userContext, String newCreationId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getAccountingDocumentCreationDAO().load(newCreationId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1293,8 +1338,13 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 			String originalVoucherIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
+<<<<<<< HEAD
 		for(String originalVoucherId: originalVoucherIds){
 			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
+=======
+		for(String originalVoucherIdItem: originalVoucherIds){
+			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentManagerException.class);
@@ -1665,8 +1715,13 @@ public class AccountingDocumentManagerImpl extends CustomRetailscmCheckerManager
 			String accountingDocumentLineIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
+<<<<<<< HEAD
 		for(String accountingDocumentLineId: accountingDocumentLineIds){
 			userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+=======
+		for(String accountingDocumentLineIdItem: accountingDocumentLineIds){
+			userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentManagerException.class);

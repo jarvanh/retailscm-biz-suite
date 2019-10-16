@@ -253,8 +253,14 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 			//will be good when the supplierProduct loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplierProduct.
+<<<<<<< HEAD
 			
 			
+=======
+			if (supplierProduct.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			supplierProduct = saveSupplierProduct(userContext, supplierProduct, options);
 			return supplierProduct;
 			
@@ -324,7 +330,11 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortProductSupplyDurationListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -544,8 +554,13 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 			String productSupplyDurationIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
+<<<<<<< HEAD
 		for(String productSupplyDurationId: productSupplyDurationIds){
 			userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationId);
+=======
+		for(String productSupplyDurationIdItem: productSupplyDurationIds){
+			userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);

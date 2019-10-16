@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.product;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.sku.SkuDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ProductDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class ProductJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ProductDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  LevelThreeCategoryDAO  levelThreeCategoryDAO;
@@ -221,9 +239,14 @@ public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	protected boolean isExtractSkuListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ProductTokens.SKU_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSkuListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,ProductTokens.SKU_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSkuListEnabled(Map<String,Object> options){		 		
+ 		return ProductTokens.of(options).analyzeSkuListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSkuListEnabled(Map<String,Object> options){
@@ -637,9 +660,15 @@ public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 			return product;
 		}
 		
+<<<<<<< HEAD
 		for(Sku sku: externalSkuList){
 
 			sku.clearFromAll();
+=======
+		for(Sku skuItem: externalSkuList){
+
+			skuItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -765,6 +794,35 @@ public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	public void enhanceList(List<Product> productList) {		
 		this.enhanceListInternal(productList, this.getProductMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:Sku的product的SkuList
+	public SmartList<Sku> loadOurSkuList(RetailscmUserContext userContext, List<Product> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Sku.PRODUCT_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Sku> loadedObjs = userContext.getDAOGroup().getSkuDAO().findSkuWithKey(key, options);
+		Map<String, List<Sku>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getProduct().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Sku> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Sku> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSkuList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<Product> productList = ownerEntity.collectRefsWithType(Product.INTERNAL_TYPE);
@@ -797,6 +855,12 @@ public class ProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	public SmartList<Product> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getProductMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

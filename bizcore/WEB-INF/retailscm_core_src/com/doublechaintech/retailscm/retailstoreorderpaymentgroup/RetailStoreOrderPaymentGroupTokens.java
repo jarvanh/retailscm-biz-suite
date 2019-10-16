@@ -38,6 +38,18 @@ public class RetailStoreOrderPaymentGroupTokens extends CommonTokens{
 	protected RetailStoreOrderPaymentGroupTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  RetailStoreOrderPaymentGroupTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		RetailStoreOrderPaymentGroupTokens tokens = new RetailStoreOrderPaymentGroupTokens(options);
+		return tokens;
+		
+	}
+	protected RetailStoreOrderPaymentGroupTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public RetailStoreOrderPaymentGroupTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class RetailStoreOrderPaymentGroupTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public RetailStoreOrderPaymentGroupTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String BIZORDER = "bizOrder";
 	public String getBizOrder(){

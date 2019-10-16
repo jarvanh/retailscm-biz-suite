@@ -38,6 +38,18 @@ public class RetailStoreMemberGiftCardTokens extends CommonTokens{
 	protected RetailStoreMemberGiftCardTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  RetailStoreMemberGiftCardTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		RetailStoreMemberGiftCardTokens tokens = new RetailStoreMemberGiftCardTokens(options);
+		return tokens;
+		
+	}
+	protected RetailStoreMemberGiftCardTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public RetailStoreMemberGiftCardTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -83,6 +95,14 @@ public class RetailStoreMemberGiftCardTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public RetailStoreMemberGiftCardTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String OWNER = "owner";
 	public String getOwner(){
@@ -108,7 +128,15 @@ public class RetailStoreMemberGiftCardTokens extends CommonTokens{
 	}
 	public boolean analyzeRetailStoreMemberGiftCardConsumeRecordListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreMemberGiftCardTokens extractMoreFromRetailStoreMemberGiftCardConsumeRecordList(String idsSeperatedWithComma){		
 		addSimpleOptions(RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST+".extractIds", idsSeperatedWithComma);

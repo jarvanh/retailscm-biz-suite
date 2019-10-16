@@ -219,6 +219,51 @@ public class UserAppForm extends BaseForm {
 	}
 
 
+<<<<<<< HEAD
+=======
+	public UserAppForm weixinOpenidFieldOfSecUser(String parameterName, String initValue){
+		FormField field =  weixinOpenidFromSecUser(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public UserAppForm weixinOpenidFieldOfSecUser(String initValue){
+		return weixinOpenidFieldOfSecUser("weixinOpenid",initValue);
+	}
+	public UserAppForm weixinOpenidFieldOfSecUser(){
+		return weixinOpenidFieldOfSecUser("weixinOpenid","");
+	}
+
+
+	public UserAppForm weixinAppidFieldOfSecUser(String parameterName, String initValue){
+		FormField field =  weixinAppidFromSecUser(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public UserAppForm weixinAppidFieldOfSecUser(String initValue){
+		return weixinAppidFieldOfSecUser("weixinAppid",initValue);
+	}
+	public UserAppForm weixinAppidFieldOfSecUser(){
+		return weixinAppidFieldOfSecUser("weixinAppid","");
+	}
+
+
+	public UserAppForm accessTokenFieldOfSecUser(String parameterName, String initValue){
+		FormField field =  accessTokenFromSecUser(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public UserAppForm accessTokenFieldOfSecUser(String initValue){
+		return accessTokenFieldOfSecUser("accessToken",initValue);
+	}
+	public UserAppForm accessTokenFieldOfSecUser(){
+		return accessTokenFieldOfSecUser("accessToken","");
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public UserAppForm verificationCodeFieldOfSecUser(String parameterName, String initValue){
 		FormField field =  verificationCodeFromSecUser(parameterName, initValue);
 		this.addFormField(field);	
@@ -306,6 +351,107 @@ public class UserAppForm extends BaseForm {
 
 
 
+<<<<<<< HEAD
+=======
+	public UserAppForm quickLinkIdFieldForQuickLink(String parameterName, String initValue){
+		FormField field =  idFromQuickLink(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public UserAppForm quickLinkIdFieldForQuickLink(String initValue){
+		return quickLinkIdFieldForQuickLink("quickLinkId",initValue);
+	}
+	public UserAppForm quickLinkIdFieldForQuickLink(){
+		return quickLinkIdFieldForQuickLink("quickLinkId","");
+	}
+
+
+	public UserAppForm nameFieldForQuickLink(String parameterName, String initValue){
+		FormField field =  nameFromQuickLink(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public UserAppForm nameFieldForQuickLink(String initValue){
+		return nameFieldForQuickLink("name",initValue);
+	}
+	public UserAppForm nameFieldForQuickLink(){
+		return nameFieldForQuickLink("name","");
+	}
+
+
+	public UserAppForm iconFieldForQuickLink(String parameterName, String initValue){
+		FormField field =  iconFromQuickLink(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public UserAppForm iconFieldForQuickLink(String initValue){
+		return iconFieldForQuickLink("icon",initValue);
+	}
+	public UserAppForm iconFieldForQuickLink(){
+		return iconFieldForQuickLink("icon","");
+	}
+
+
+	public UserAppForm imagePathFieldForQuickLink(String parameterName, String initValue){
+		FormField field =  imagePathFromQuickLink(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public UserAppForm imagePathFieldForQuickLink(String initValue){
+		return imagePathFieldForQuickLink("imagePath",initValue);
+	}
+	public UserAppForm imagePathFieldForQuickLink(){
+		return imagePathFieldForQuickLink("imagePath","");
+	}
+
+
+	public UserAppForm linkTargetFieldForQuickLink(String parameterName, String initValue){
+		FormField field =  linkTargetFromQuickLink(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public UserAppForm linkTargetFieldForQuickLink(String initValue){
+		return linkTargetFieldForQuickLink("linkTarget",initValue);
+	}
+	public UserAppForm linkTargetFieldForQuickLink(){
+		return linkTargetFieldForQuickLink("linkTarget","");
+	}
+
+
+	public UserAppForm createTimeFieldForQuickLink(String parameterName, String initValue){
+		FormField field =  createTimeFromQuickLink(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public UserAppForm createTimeFieldForQuickLink(String initValue){
+		return createTimeFieldForQuickLink("createTime",initValue);
+	}
+	public UserAppForm createTimeFieldForQuickLink(){
+		return createTimeFieldForQuickLink("createTime","");
+	}
+
+
+	public UserAppForm appIdFieldForQuickLink(String parameterName, String initValue){
+		FormField field =  appIdFromQuickLink(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public UserAppForm appIdFieldForQuickLink(String initValue){
+		return appIdFieldForQuickLink("appId",initValue);
+	}
+	public UserAppForm appIdFieldForQuickLink(){
+		return appIdFieldForQuickLink("appId","");
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public UserAppForm listAccessIdFieldForListAccess(String parameterName, String initValue){
 		FormField field =  idFromListAccess(parameterName, initValue);		
 		this.addFormField(field);

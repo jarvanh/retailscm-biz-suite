@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.memberwishlist;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -54,9 +58,25 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	MemberWishlist(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static MemberWishlist withId(String id){
+		MemberWishlist memberWishlist = new MemberWishlist();
+		memberWishlist.setId(id);
+		memberWishlist.setVersion(Integer.MAX_VALUE);
+		return memberWishlist;
+	}
+	public 	static MemberWishlist refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -101,6 +121,30 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(MEMBER_WISHLIST_PRODUCT_LIST.equals(property)){
+			List<BaseEntity> list = getMemberWishlistProductList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -114,6 +158,12 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -127,6 +177,12 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOwner(RetailStoreMember owner){
@@ -140,6 +196,12 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOwner(RetailStoreMember owner){
+		if(owner != null) { setOwner(owner);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -158,6 +220,12 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -190,7 +258,20 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 		}
 		getMemberWishlistProductList().addAll(memberWishlistProductList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeMemberWishlistProductList(SmartList<MemberWishlistProduct> memberWishlistProductList){
+		if(memberWishlistProductList==null){
+			return;
+		}
+		if(memberWishlistProductList.isEmpty()){
+			return;
+		}
+		addMemberWishlistProductList( memberWishlistProductList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  MemberWishlistProduct removeMemberWishlistProduct(MemberWishlistProduct memberWishlistProductIndex){
 		
 		int index = getMemberWishlistProductList().indexOf(memberWishlistProductIndex);
@@ -320,6 +401,43 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof MemberWishlist){
+		
+			
+			MemberWishlist dest =(MemberWishlist)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeOwner(getOwner());
+			dest.mergeVersion(getVersion());
+			dest.mergeMemberWishlistProductList(getMemberWishlistProductList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof MemberWishlist){
+		
+			
+			MemberWishlist dest =(MemberWishlist)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

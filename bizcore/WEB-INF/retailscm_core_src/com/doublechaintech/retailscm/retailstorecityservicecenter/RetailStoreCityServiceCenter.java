@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.retailstorecityservicecenter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -67,9 +71,25 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 	
 		
 	public 	RetailStoreCityServiceCenter(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static RetailStoreCityServiceCenter withId(String id){
+		RetailStoreCityServiceCenter retailStoreCityServiceCenter = new RetailStoreCityServiceCenter();
+		retailStoreCityServiceCenter.setId(id);
+		retailStoreCityServiceCenter.setVersion(Integer.MAX_VALUE);
+		return retailStoreCityServiceCenter;
+	}
+	public 	static RetailStoreCityServiceCenter refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBelongsTo( null );
 
@@ -155,6 +175,48 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(FOUNDED_PROPERTY.equals(property)){
+			return getFounded();
+		}
+		if(BELONGS_TO_PROPERTY.equals(property)){
+			return getBelongsTo();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(CITY_PARTNER_LIST.equals(property)){
+			List<BaseEntity> list = getCityPartnerList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(POTENTIAL_CUSTOMER_LIST.equals(property)){
+			List<BaseEntity> list = getPotentialCustomerList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(CITY_EVENT_LIST.equals(property)){
+			List<BaseEntity> list = getCityEventList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(RETAIL_STORE_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -168,6 +230,12 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -181,6 +249,12 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFounded(Date founded){
@@ -194,6 +268,12 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeFounded(Date founded){
+		setFounded(founded);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBelongsTo(RetailStoreProvinceCenter belongsTo){
@@ -207,6 +287,12 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBelongsTo(RetailStoreProvinceCenter belongsTo){
+		if(belongsTo != null) { setBelongsTo(belongsTo);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBelongsTo(){
@@ -225,6 +311,12 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastUpdateTime(DateTime lastUpdateTime){
+		setLastUpdateTime(lastUpdateTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -238,6 +330,12 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -270,7 +368,20 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getCityPartnerList().addAll(cityPartnerList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeCityPartnerList(SmartList<CityPartner> cityPartnerList){
+		if(cityPartnerList==null){
+			return;
+		}
+		if(cityPartnerList.isEmpty()){
+			return;
+		}
+		addCityPartnerList( cityPartnerList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  CityPartner removeCityPartner(CityPartner cityPartnerIndex){
 		
 		int index = getCityPartnerList().indexOf(cityPartnerIndex);
@@ -368,7 +479,20 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getPotentialCustomerList().addAll(potentialCustomerList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergePotentialCustomerList(SmartList<PotentialCustomer> potentialCustomerList){
+		if(potentialCustomerList==null){
+			return;
+		}
+		if(potentialCustomerList.isEmpty()){
+			return;
+		}
+		addPotentialCustomerList( potentialCustomerList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PotentialCustomer removePotentialCustomer(PotentialCustomer potentialCustomerIndex){
 		
 		int index = getPotentialCustomerList().indexOf(potentialCustomerIndex);
@@ -466,7 +590,20 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getCityEventList().addAll(cityEventList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeCityEventList(SmartList<CityEvent> cityEventList){
+		if(cityEventList==null){
+			return;
+		}
+		if(cityEventList.isEmpty()){
+			return;
+		}
+		addCityEventList( cityEventList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  CityEvent removeCityEvent(CityEvent cityEventIndex){
 		
 		int index = getCityEventList().indexOf(cityEventIndex);
@@ -564,7 +701,20 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getRetailStoreList().addAll(retailStoreList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeRetailStoreList(SmartList<RetailStore> retailStoreList){
+		if(retailStoreList==null){
+			return;
+		}
+		if(retailStoreList.isEmpty()){
+			return;
+		}
+		addRetailStoreList( retailStoreList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStore removeRetailStore(RetailStore retailStoreIndex){
 		
 		int index = getRetailStoreList().indexOf(retailStoreIndex);
@@ -722,6 +872,50 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreCityServiceCenter){
+		
+			
+			RetailStoreCityServiceCenter dest =(RetailStoreCityServiceCenter)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeFounded(getFounded());
+			dest.mergeBelongsTo(getBelongsTo());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+			dest.mergeCityPartnerList(getCityPartnerList());
+			dest.mergePotentialCustomerList(getPotentialCustomerList());
+			dest.mergeCityEventList(getCityEventList());
+			dest.mergeRetailStoreList(getRetailStoreList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreCityServiceCenter){
+		
+			
+			RetailStoreCityServiceCenter dest =(RetailStoreCityServiceCenter)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeFounded(getFounded());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

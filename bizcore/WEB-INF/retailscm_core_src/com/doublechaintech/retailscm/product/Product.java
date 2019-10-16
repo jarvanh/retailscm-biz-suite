@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.product;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -64,9 +68,25 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Product(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static Product withId(String id){
+		Product product = new Product();
+		product.setId(id);
+		product.setVersion(Integer.MAX_VALUE);
+		return product;
+	}
+	public 	static Product refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setParentCategory( null );
 
@@ -206,6 +226,45 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(PARENT_CATEGORY_PROPERTY.equals(property)){
+			return getParentCategory();
+		}
+		if(ORIGIN_PROPERTY.equals(property)){
+			return getOrigin();
+		}
+		if(REMARK_PROPERTY.equals(property)){
+			return getRemark();
+		}
+		if(BRAND_PROPERTY.equals(property)){
+			return getBrand();
+		}
+		if(PICTURE_PROPERTY.equals(property)){
+			return getPicture();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(SKU_LIST.equals(property)){
+			List<BaseEntity> list = getSkuList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -219,6 +278,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -232,6 +297,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setParentCategory(LevelThreeCategory parentCategory){
@@ -245,6 +316,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeParentCategory(LevelThreeCategory parentCategory){
+		if(parentCategory != null) { setParentCategory(parentCategory);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearParentCategory(){
@@ -263,6 +340,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOrigin(String origin){
+		if(origin != null) { setOrigin(origin);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setRemark(String remark){
@@ -276,6 +359,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeRemark(String remark){
+		if(remark != null) { setRemark(remark);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBrand(String brand){
@@ -289,6 +378,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBrand(String brand){
+		if(brand != null) { setBrand(brand);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPicture(String picture){
@@ -302,6 +397,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePicture(String picture){
+		if(picture != null) { setPicture(picture);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -315,6 +416,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastUpdateTime(DateTime lastUpdateTime){
+		setLastUpdateTime(lastUpdateTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -328,6 +435,12 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -360,7 +473,20 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		}
 		getSkuList().addAll(skuList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSkuList(SmartList<Sku> skuList){
+		if(skuList==null){
+			return;
+		}
+		if(skuList.isEmpty()){
+			return;
+		}
+		addSkuList( skuList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Sku removeSku(Sku skuIndex){
 		
 		int index = getSkuList().indexOf(skuIndex);
@@ -500,6 +626,53 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Product){
+		
+			
+			Product dest =(Product)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeParentCategory(getParentCategory());
+			dest.mergeOrigin(getOrigin());
+			dest.mergeRemark(getRemark());
+			dest.mergeBrand(getBrand());
+			dest.mergePicture(getPicture());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+			dest.mergeSkuList(getSkuList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof Product){
+		
+			
+			Product dest =(Product)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeOrigin(getOrigin());
+			dest.mergeRemark(getRemark());
+			dest.mergeBrand(getBrand());
+			dest.mergePicture(getPicture());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

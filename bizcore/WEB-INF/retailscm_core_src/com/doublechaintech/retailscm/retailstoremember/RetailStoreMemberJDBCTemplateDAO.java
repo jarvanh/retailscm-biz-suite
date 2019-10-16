@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.retailstoremember;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -38,9 +47,18 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreMemberDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -389,9 +407,14 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	protected boolean isExtractConsumerOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.CONSUMER_ORDER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberTokens.CONSUMER_ORDER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberTokens.of(options).analyzeConsumerOrderListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderListEnabled(Map<String,Object> options){
@@ -404,9 +427,14 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	protected boolean isExtractRetailStoreMemberCouponListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_COUPON_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreMemberCouponListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_COUPON_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreMemberCouponListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberTokens.of(options).analyzeRetailStoreMemberCouponListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberCouponListEnabled(Map<String,Object> options){
@@ -419,9 +447,14 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	protected boolean isExtractMemberWishlistListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.MEMBER_WISHLIST_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeMemberWishlistListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberTokens.MEMBER_WISHLIST_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeMemberWishlistListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberTokens.of(options).analyzeMemberWishlistListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveMemberWishlistListEnabled(Map<String,Object> options){
@@ -434,9 +467,14 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	protected boolean isExtractMemberRewardPointListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeMemberRewardPointListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeMemberRewardPointListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberTokens.of(options).analyzeMemberRewardPointListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveMemberRewardPointListEnabled(Map<String,Object> options){
@@ -449,9 +487,14 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	protected boolean isExtractMemberRewardPointRedemptionListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_REDEMPTION_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeMemberRewardPointRedemptionListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_REDEMPTION_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeMemberRewardPointRedemptionListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberTokens.of(options).analyzeMemberRewardPointRedemptionListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveMemberRewardPointRedemptionListEnabled(Map<String,Object> options){
@@ -464,9 +507,14 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	protected boolean isExtractRetailStoreMemberAddressListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_ADDRESS_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreMemberAddressListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_ADDRESS_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreMemberAddressListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberTokens.of(options).analyzeRetailStoreMemberAddressListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberAddressListEnabled(Map<String,Object> options){
@@ -479,9 +527,14 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	protected boolean isExtractRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_GIFT_CARD_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_GIFT_CARD_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreMemberTokens.of(options).analyzeRetailStoreMemberGiftCardListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){
@@ -1261,9 +1314,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
 
 			consumerOrder.clearFromAll();
+=======
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+
+			consumerOrderItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1293,9 +1352,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
 			consumerOrder.clearStore();
 			consumerOrder.clearConsumer();
+=======
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearStore();
+			consumerOrderItem.clearConsumer();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1333,9 +1398,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMemberCoupon retailStoreMemberCoupon: externalRetailStoreMemberCouponList){
 
 			retailStoreMemberCoupon.clearFromAll();
+=======
+		for(RetailStoreMemberCoupon retailStoreMemberCouponItem: externalRetailStoreMemberCouponList){
+
+			retailStoreMemberCouponItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1361,9 +1432,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(MemberWishlist memberWishlist: externalMemberWishlistList){
 
 			memberWishlist.clearFromAll();
+=======
+		for(MemberWishlist memberWishlistItem: externalMemberWishlistList){
+
+			memberWishlistItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1389,9 +1466,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(MemberRewardPoint memberRewardPoint: externalMemberRewardPointList){
 
 			memberRewardPoint.clearFromAll();
+=======
+		for(MemberRewardPoint memberRewardPointItem: externalMemberRewardPointList){
+
+			memberRewardPointItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1417,9 +1500,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(MemberRewardPointRedemption memberRewardPointRedemption: externalMemberRewardPointRedemptionList){
 
 			memberRewardPointRedemption.clearFromAll();
+=======
+		for(MemberRewardPointRedemption memberRewardPointRedemptionItem: externalMemberRewardPointRedemptionList){
+
+			memberRewardPointRedemptionItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1445,9 +1534,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMemberAddress retailStoreMemberAddress: externalRetailStoreMemberAddressList){
 
 			retailStoreMemberAddress.clearFromAll();
+=======
+		for(RetailStoreMemberAddress retailStoreMemberAddressItem: externalRetailStoreMemberAddressList){
+
+			retailStoreMemberAddressItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1473,9 +1568,15 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 			return retailStoreMember;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMemberGiftCard retailStoreMemberGiftCard: externalRetailStoreMemberGiftCardList){
 
 			retailStoreMemberGiftCard.clearFromAll();
+=======
+		for(RetailStoreMemberGiftCard retailStoreMemberGiftCardItem: externalRetailStoreMemberGiftCardList){
+
+			retailStoreMemberGiftCardItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -2159,6 +2260,173 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public void enhanceList(List<RetailStoreMember> retailStoreMemberList) {		
 		this.enhanceListInternal(retailStoreMemberList, this.getRetailStoreMemberMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:ConsumerOrder的consumer的ConsumerOrderList
+	public SmartList<ConsumerOrder> loadOurConsumerOrderList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ConsumerOrder> loadedObjs = userContext.getDAOGroup().getConsumerOrderDAO().findConsumerOrderWithKey(key, options);
+		Map<String, List<ConsumerOrder>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getConsumer().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ConsumerOrder> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ConsumerOrder> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setConsumerOrderList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberCoupon的owner的RetailStoreMemberCouponList
+	public SmartList<RetailStoreMemberCoupon> loadOurRetailStoreMemberCouponList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreMemberCoupon.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreMemberCoupon> loadedObjs = userContext.getDAOGroup().getRetailStoreMemberCouponDAO().findRetailStoreMemberCouponWithKey(key, options);
+		Map<String, List<RetailStoreMemberCoupon>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreMemberCoupon> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreMemberCoupon> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreMemberCouponList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:MemberWishlist的owner的MemberWishlistList
+	public SmartList<MemberWishlist> loadOurMemberWishlistList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(MemberWishlist.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<MemberWishlist> loadedObjs = userContext.getDAOGroup().getMemberWishlistDAO().findMemberWishlistWithKey(key, options);
+		Map<String, List<MemberWishlist>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<MemberWishlist> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<MemberWishlist> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setMemberWishlistList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:MemberRewardPoint的owner的MemberRewardPointList
+	public SmartList<MemberRewardPoint> loadOurMemberRewardPointList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(MemberRewardPoint.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<MemberRewardPoint> loadedObjs = userContext.getDAOGroup().getMemberRewardPointDAO().findMemberRewardPointWithKey(key, options);
+		Map<String, List<MemberRewardPoint>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<MemberRewardPoint> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<MemberRewardPoint> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setMemberRewardPointList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:MemberRewardPointRedemption的owner的MemberRewardPointRedemptionList
+	public SmartList<MemberRewardPointRedemption> loadOurMemberRewardPointRedemptionList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(MemberRewardPointRedemption.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<MemberRewardPointRedemption> loadedObjs = userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().findMemberRewardPointRedemptionWithKey(key, options);
+		Map<String, List<MemberRewardPointRedemption>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<MemberRewardPointRedemption> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<MemberRewardPointRedemption> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setMemberRewardPointRedemptionList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberAddress的owner的RetailStoreMemberAddressList
+	public SmartList<RetailStoreMemberAddress> loadOurRetailStoreMemberAddressList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreMemberAddress.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreMemberAddress> loadedObjs = userContext.getDAOGroup().getRetailStoreMemberAddressDAO().findRetailStoreMemberAddressWithKey(key, options);
+		Map<String, List<RetailStoreMemberAddress>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreMemberAddress> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreMemberAddress> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreMemberAddressList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberGiftCard的owner的RetailStoreMemberGiftCardList
+	public SmartList<RetailStoreMemberGiftCard> loadOurRetailStoreMemberGiftCardList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreMemberGiftCard.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreMemberGiftCard> loadedObjs = userContext.getDAOGroup().getRetailStoreMemberGiftCardDAO().findRetailStoreMemberGiftCardWithKey(key, options);
+		Map<String, List<RetailStoreMemberGiftCard>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreMemberGiftCard> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreMemberGiftCard> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreMemberGiftCardList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreMember> retailStoreMemberList = ownerEntity.collectRefsWithType(RetailStoreMember.INTERNAL_TYPE);
@@ -2191,6 +2459,12 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO 
 	public SmartList<RetailStoreMember> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -816,7 +816,11 @@ public class AccountingDocumentForm extends BaseForm {
 	}	
  	public AccountingDocumentForm  postAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("帖子");
+=======
+		action.setLabel("过账");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("accounting_document.post");
 		action.setUrl("accountingDocumentManager/post/accountingDocumentId/who/comments/makeDate/");
 		this.addFormAction(action);

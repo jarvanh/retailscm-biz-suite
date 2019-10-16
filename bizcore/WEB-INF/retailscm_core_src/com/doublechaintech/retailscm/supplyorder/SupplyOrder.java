@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.supplyorder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -90,9 +94,25 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	SupplyOrder(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static SupplyOrder withId(String id){
+		SupplyOrder supplyOrder = new SupplyOrder();
+		supplyOrder.setId(id);
+		supplyOrder.setVersion(Integer.MAX_VALUE);
+		return supplyOrder;
+	}
+	public 	static SupplyOrder refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBuyer( null );
 		setSeller( null );
@@ -187,6 +207,72 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(BUYER_PROPERTY.equals(property)){
+			return getBuyer();
+		}
+		if(SELLER_PROPERTY.equals(property)){
+			return getSeller();
+		}
+		if(TITLE_PROPERTY.equals(property)){
+			return getTitle();
+		}
+		if(TOTAL_AMOUNT_PROPERTY.equals(property)){
+			return getTotalAmount();
+		}
+		if(CONFIRMATION_PROPERTY.equals(property)){
+			return getConfirmation();
+		}
+		if(APPROVAL_PROPERTY.equals(property)){
+			return getApproval();
+		}
+		if(PROCESSING_PROPERTY.equals(property)){
+			return getProcessing();
+		}
+		if(PICKING_PROPERTY.equals(property)){
+			return getPicking();
+		}
+		if(SHIPMENT_PROPERTY.equals(property)){
+			return getShipment();
+		}
+		if(DELIVERY_PROPERTY.equals(property)){
+			return getDelivery();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(CURRENT_STATUS_PROPERTY.equals(property)){
+			return getCurrentStatus();
+		}
+		if(SUPPLY_ORDER_LINE_ITEM_LIST.equals(property)){
+			List<BaseEntity> list = getSupplyOrderLineItemList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SUPPLY_ORDER_SHIPPING_GROUP_LIST.equals(property)){
+			List<BaseEntity> list = getSupplyOrderShippingGroupList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(SUPPLY_ORDER_PAYMENT_GROUP_LIST.equals(property)){
+			List<BaseEntity> list = getSupplyOrderPaymentGroupList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(GOODS_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -200,6 +286,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBuyer(RetailStoreCountryCenter buyer){
@@ -213,6 +305,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBuyer(RetailStoreCountryCenter buyer){
+		if(buyer != null) { setBuyer(buyer);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBuyer(){
@@ -231,6 +329,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeSeller(GoodsSupplier seller){
+		if(seller != null) { setSeller(seller);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearSeller(){
@@ -249,6 +353,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTitle(String title){
+		if(title != null) { setTitle(title);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTotalAmount(BigDecimal totalAmount){
@@ -262,6 +372,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTotalAmount(BigDecimal totalAmount){
+		setTotalAmount(totalAmount);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setConfirmation(SupplyOrderConfirmation confirmation){
@@ -275,6 +391,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeConfirmation(SupplyOrderConfirmation confirmation){
+		if(confirmation != null) { setConfirmation(confirmation);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearConfirmation(){
@@ -293,6 +415,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeApproval(SupplyOrderApproval approval){
+		if(approval != null) { setApproval(approval);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearApproval(){
@@ -311,6 +439,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeProcessing(SupplyOrderProcessing processing){
+		if(processing != null) { setProcessing(processing);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearProcessing(){
@@ -329,6 +463,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePicking(SupplyOrderPicking picking){
+		if(picking != null) { setPicking(picking);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPicking(){
@@ -347,6 +487,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeShipment(SupplyOrderShipment shipment){
+		if(shipment != null) { setShipment(shipment);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearShipment(){
@@ -365,6 +511,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDelivery(SupplyOrderDelivery delivery){
+		if(delivery != null) { setDelivery(delivery);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDelivery(){
@@ -383,6 +535,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastUpdateTime(DateTime lastUpdateTime){
+		setLastUpdateTime(lastUpdateTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCurrentStatus(String currentStatus){
@@ -396,6 +554,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCurrentStatus(String currentStatus){
+		if(currentStatus != null) { setCurrentStatus(currentStatus);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -409,6 +573,12 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -441,7 +611,20 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		getSupplyOrderLineItemList().addAll(supplyOrderLineItemList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSupplyOrderLineItemList(SmartList<SupplyOrderLineItem> supplyOrderLineItemList){
+		if(supplyOrderLineItemList==null){
+			return;
+		}
+		if(supplyOrderLineItemList.isEmpty()){
+			return;
+		}
+		addSupplyOrderLineItemList( supplyOrderLineItemList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SupplyOrderLineItem removeSupplyOrderLineItem(SupplyOrderLineItem supplyOrderLineItemIndex){
 		
 		int index = getSupplyOrderLineItemList().indexOf(supplyOrderLineItemIndex);
@@ -539,7 +722,20 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		getSupplyOrderShippingGroupList().addAll(supplyOrderShippingGroupList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSupplyOrderShippingGroupList(SmartList<SupplyOrderShippingGroup> supplyOrderShippingGroupList){
+		if(supplyOrderShippingGroupList==null){
+			return;
+		}
+		if(supplyOrderShippingGroupList.isEmpty()){
+			return;
+		}
+		addSupplyOrderShippingGroupList( supplyOrderShippingGroupList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SupplyOrderShippingGroup removeSupplyOrderShippingGroup(SupplyOrderShippingGroup supplyOrderShippingGroupIndex){
 		
 		int index = getSupplyOrderShippingGroupList().indexOf(supplyOrderShippingGroupIndex);
@@ -637,7 +833,20 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		getSupplyOrderPaymentGroupList().addAll(supplyOrderPaymentGroupList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeSupplyOrderPaymentGroupList(SmartList<SupplyOrderPaymentGroup> supplyOrderPaymentGroupList){
+		if(supplyOrderPaymentGroupList==null){
+			return;
+		}
+		if(supplyOrderPaymentGroupList.isEmpty()){
+			return;
+		}
+		addSupplyOrderPaymentGroupList( supplyOrderPaymentGroupList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SupplyOrderPaymentGroup removeSupplyOrderPaymentGroup(SupplyOrderPaymentGroup supplyOrderPaymentGroupIndex){
 		
 		int index = getSupplyOrderPaymentGroupList().indexOf(supplyOrderPaymentGroupIndex);
@@ -735,7 +944,20 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		getGoodsList().addAll(goodsList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeGoodsList(SmartList<Goods> goodsList){
+		if(goodsList==null){
+			return;
+		}
+		if(goodsList.isEmpty()){
+			return;
+		}
+		addGoodsList( goodsList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Goods removeGoods(Goods goodsIndex){
 		
 		int index = getGoodsList().indexOf(goodsIndex);
@@ -916,6 +1138,59 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrder){
+		
+			
+			SupplyOrder dest =(SupplyOrder)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeBuyer(getBuyer());
+			dest.mergeSeller(getSeller());
+			dest.mergeTitle(getTitle());
+			dest.mergeTotalAmount(getTotalAmount());
+			dest.mergeConfirmation(getConfirmation());
+			dest.mergeApproval(getApproval());
+			dest.mergeProcessing(getProcessing());
+			dest.mergePicking(getPicking());
+			dest.mergeShipment(getShipment());
+			dest.mergeDelivery(getDelivery());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+			dest.mergeSupplyOrderLineItemList(getSupplyOrderLineItemList());
+			dest.mergeSupplyOrderShippingGroupList(getSupplyOrderShippingGroupList());
+			dest.mergeSupplyOrderPaymentGroupList(getSupplyOrderPaymentGroupList());
+			dest.mergeGoodsList(getGoodsList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof SupplyOrder){
+		
+			
+			SupplyOrder dest =(SupplyOrder)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTitle(getTitle());
+			dest.mergeTotalAmount(getTotalAmount());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeCurrentStatus(getCurrentStatus());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

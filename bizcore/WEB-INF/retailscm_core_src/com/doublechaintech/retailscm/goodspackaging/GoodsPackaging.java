@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.goodspackaging;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,9 +61,25 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	GoodsPackaging(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static GoodsPackaging withId(String id){
+		GoodsPackaging goodsPackaging = new GoodsPackaging();
+		goodsPackaging.setId(id);
+		goodsPackaging.setVersion(Integer.MAX_VALUE);
+		return goodsPackaging;
+	}
+	public 	static GoodsPackaging refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -159,6 +179,36 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(PACKAGE_NAME_PROPERTY.equals(property)){
+			return getPackageName();
+		}
+		if(RFID_PROPERTY.equals(property)){
+			return getRfid();
+		}
+		if(PACKAGE_TIME_PROPERTY.equals(property)){
+			return getPackageTime();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(GOODS_LIST.equals(property)){
+			List<BaseEntity> list = getGoodsList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -172,6 +222,12 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPackageName(String packageName){
@@ -185,6 +241,12 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePackageName(String packageName){
+		if(packageName != null) { setPackageName(packageName);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setRfid(String rfid){
@@ -198,6 +260,12 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeRfid(String rfid){
+		if(rfid != null) { setRfid(rfid);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPackageTime(Date packageTime){
@@ -211,6 +279,12 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePackageTime(Date packageTime){
+		setPackageTime(packageTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -224,6 +298,12 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDescription(String description){
+		if(description != null) { setDescription(description);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -237,6 +317,12 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -269,7 +355,20 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		}
 		getGoodsList().addAll(goodsList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeGoodsList(SmartList<Goods> goodsList){
+		if(goodsList==null){
+			return;
+		}
+		if(goodsList.isEmpty()){
+			return;
+		}
+		addGoodsList( goodsList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Goods removeGoods(Goods goodsIndex){
 		
 		int index = getGoodsList().indexOf(goodsIndex);
@@ -402,6 +501,48 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsPackaging){
+		
+			
+			GoodsPackaging dest =(GoodsPackaging)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergePackageName(getPackageName());
+			dest.mergeRfid(getRfid());
+			dest.mergePackageTime(getPackageTime());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+			dest.mergeGoodsList(getGoodsList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof GoodsPackaging){
+		
+			
+			GoodsPackaging dest =(GoodsPackaging)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergePackageName(getPackageName());
+			dest.mergeRfid(getRfid());
+			dest.mergePackageTime(getPackageTime());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

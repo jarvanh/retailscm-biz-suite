@@ -38,6 +38,18 @@ public class LevelThreeDepartmentTokens extends CommonTokens{
 	protected LevelThreeDepartmentTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  LevelThreeDepartmentTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		LevelThreeDepartmentTokens tokens = new LevelThreeDepartmentTokens(options);
+		return tokens;
+		
+	}
+	protected LevelThreeDepartmentTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public LevelThreeDepartmentTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -83,6 +95,14 @@ public class LevelThreeDepartmentTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public LevelThreeDepartmentTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String BELONGSTO = "belongsTo";
 	public String getBelongsTo(){
@@ -108,7 +128,15 @@ public class LevelThreeDepartmentTokens extends CommonTokens{
 	}
 	public boolean analyzeEmployeeListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), EMPLOYEE_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), EMPLOYEE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public LevelThreeDepartmentTokens extractMoreFromEmployeeList(String idsSeperatedWithComma){		
 		addSimpleOptions(EMPLOYEE_LIST+".extractIds", idsSeperatedWithComma);

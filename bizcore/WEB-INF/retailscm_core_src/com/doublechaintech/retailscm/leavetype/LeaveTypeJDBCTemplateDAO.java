@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.leavetype;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LeaveTypeDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class LeaveTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements LeaveTypeDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -221,9 +239,14 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	protected boolean isExtractEmployeeLeaveListEnabled(Map<String,Object> options){		
  		return checkOptions(options,LeaveTypeTokens.EMPLOYEE_LEAVE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeEmployeeLeaveListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,LeaveTypeTokens.EMPLOYEE_LEAVE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeEmployeeLeaveListEnabled(Map<String,Object> options){		 		
+ 		return LeaveTypeTokens.of(options).analyzeEmployeeLeaveListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeLeaveListEnabled(Map<String,Object> options){
@@ -615,9 +638,15 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return leaveType;
 		}
 		
+<<<<<<< HEAD
 		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
 
 			employeeLeave.clearFromAll();
+=======
+		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
+
+			employeeLeaveItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -647,9 +676,15 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 			return leaveType;
 		}
 		
+<<<<<<< HEAD
 		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
 			employeeLeave.clearWho();
 			employeeLeave.clearType();
+=======
+		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
+			employeeLeaveItem.clearWho();
+			employeeLeaveItem.clearType();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -787,6 +822,35 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public void enhanceList(List<LeaveType> leaveTypeList) {		
 		this.enhanceListInternal(leaveTypeList, this.getLeaveTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:EmployeeLeave的type的EmployeeLeaveList
+	public SmartList<EmployeeLeave> loadOurEmployeeLeaveList(RetailscmUserContext userContext, List<LeaveType> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeLeave.TYPE_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<EmployeeLeave> loadedObjs = userContext.getDAOGroup().getEmployeeLeaveDAO().findEmployeeLeaveWithKey(key, options);
+		Map<String, List<EmployeeLeave>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getType().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<EmployeeLeave> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<EmployeeLeave> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setEmployeeLeaveList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<LeaveType> leaveTypeList = ownerEntity.collectRefsWithType(LeaveType.INTERNAL_TYPE);
@@ -819,6 +883,12 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implemen
 	public SmartList<LeaveType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLeaveTypeMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

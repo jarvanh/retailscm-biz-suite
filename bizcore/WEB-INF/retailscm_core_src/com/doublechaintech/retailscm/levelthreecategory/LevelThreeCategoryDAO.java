@@ -7,6 +7,13 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.leveltwocategory.LevelTwoCategory;
+import com.doublechaintech.retailscm.product.Product;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.leveltwocategory.LevelTwoCategoryDAO;
 import com.doublechaintech.retailscm.product.ProductDAO;
 
@@ -58,6 +65,14 @@ public interface LevelThreeCategoryDAO{
  	public void analyzeLevelThreeCategoryByParentCategory(SmartList<LevelThreeCategory> resultList, String levelTwoCategoryId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:Product的parentCategory的ProductList
+	public SmartList<Product> loadOurProductList(RetailscmUserContext userContext, List<LevelThreeCategory> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

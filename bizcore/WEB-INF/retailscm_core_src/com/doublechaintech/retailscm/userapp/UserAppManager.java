@@ -28,6 +28,19 @@ public interface UserAppManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
+<<<<<<< HEAD
+=======
+	//public  QuickLinkManager getQuickLinkManager(RetailscmUserContext userContext, String userAppId, String name, String icon, String imagePath, String linkTarget ,String [] tokensExpr)  throws Exception;
+	
+	public  UserApp addQuickLink(RetailscmUserContext userContext, String userAppId, String name, String icon, String imagePath, String linkTarget , String [] tokensExpr)  throws Exception;
+	public  UserApp removeQuickLink(RetailscmUserContext userContext, String userAppId, String quickLinkId, int quickLinkVersion,String [] tokensExpr)  throws Exception;
+	public  UserApp updateQuickLink(RetailscmUserContext userContext, String userAppId, String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
+
+	/*
+
+	*/
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	//public  ListAccessManager getListAccessManager(RetailscmUserContext userContext, String userAppId, String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission ,String [] tokensExpr)  throws Exception;
 	
 	public  UserApp addListAccess(RetailscmUserContext userContext, String userAppId, String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission , String [] tokensExpr)  throws Exception;

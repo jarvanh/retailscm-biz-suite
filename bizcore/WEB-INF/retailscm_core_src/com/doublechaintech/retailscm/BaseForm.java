@@ -354,14 +354,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromProduct(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("product.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10013,14 +10021,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromUserDomain(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("user_domain.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10039,14 +10055,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromUserWhiteList(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("user_white_list.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10091,14 +10115,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromSecUser(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("sec_user.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10117,14 +10149,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField mobileFromSecUser(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("手机");
+=======
+		field.setLabel("手机号码");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("sec_user.mobile");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("mobile");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写手机");
+=======
+		field.setPlaceholder("请填写手机号码");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10143,14 +10183,61 @@ public class BaseForm extends GenericForm{
 
 	protected FormField pwdFromSecUser(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("PWD");
+=======
+		field.setLabel("密码");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("sec_user.pwd");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("password");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写PWD");
+=======
+		field.setPlaceholder("请填写密码");
+		return field;
+	}
+
+	protected FormField weixinOpenidFromSecUser(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("微信openid");
+		field.setLocaleKey("sec_user.weixin_openid");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写微信openid");
+		return field;
+	}
+
+	protected FormField weixinAppidFromSecUser(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("微信Appid");
+		field.setLocaleKey("sec_user.weixin_appid");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写微信Appid");
+		return field;
+	}
+
+	protected FormField accessTokenFromSecUser(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("访问令牌");
+		field.setLocaleKey("sec_user.access_token");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写访问令牌");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10234,14 +10321,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromSecUserBlocking(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("sec_user_blocking.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10286,40 +10381,64 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("user_app.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField titleFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("头衔");
+=======
+		field.setLabel("标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("user_app.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写头衔");
+=======
+		field.setPlaceholder("请填写标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField secUserIdFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("SEC的用户");
+=======
+		field.setLabel("安全用户");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("user_app.sec_user");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("SecUser");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写SEC的用户");
+=======
+		field.setPlaceholder("请填写安全用户");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10364,14 +10483,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField objectTypeFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("对象类型");
+=======
+		field.setLabel("访问对象类型");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("user_app.object_type");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写对象类型");
+=======
+		field.setPlaceholder("请填写访问对象类型");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10401,16 +10528,117 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
+<<<<<<< HEAD
 	protected FormField idFromListAccess(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
+=======
+	protected FormField idFromQuickLink(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("ID");
+		field.setLocaleKey("quick_link.id");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写ID");
+		return field;
+	}
+
+	protected FormField nameFromQuickLink(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("名称");
+		field.setLocaleKey("quick_link.name");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写名称");
+		return field;
+	}
+
+	protected FormField iconFromQuickLink(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("图标");
+		field.setLocaleKey("quick_link.icon");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写图标");
+		return field;
+	}
+
+	protected FormField imagePathFromQuickLink(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("图片路径");
+		field.setLocaleKey("quick_link.image_path");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("image");
+		field.setRequired(true);
+		field.setPlaceholder("请填写图片路径");
+		return field;
+	}
+
+	protected FormField linkTargetFromQuickLink(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("链接的目标");
+		field.setLocaleKey("quick_link.link_target");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写链接的目标");
+		return field;
+	}
+
+	protected FormField createTimeFromQuickLink(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("创建时间");
+		field.setLocaleKey("quick_link.create_time");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("date_time");
+		field.setRequired(true);
+		field.setPlaceholder("请填写创建时间");
+		return field;
+	}
+
+	protected FormField appIdFromQuickLink(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("应用程序");
+		field.setLocaleKey("quick_link.app");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("UserApp");
+		field.setRequired(true);
+		field.setPlaceholder("请填写应用程序");
+		return field;
+	}
+
+	protected FormField idFromListAccess(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("list_access.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10481,14 +10709,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField updatePermissionFromListAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("更新许可");
+=======
+		field.setLabel("更新权限");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("list_access.update_permission");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("switch");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写更新许可");
+=======
+		field.setPlaceholder("请填写更新权限");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10520,14 +10756,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10546,131 +10790,211 @@ public class BaseForm extends GenericForm{
 
 	protected FormField objectTypeFromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("对象类型");
+=======
+		field.setLabel("访问对象类型");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.object_type");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写对象类型");
+=======
+		field.setPlaceholder("请填写访问对象类型");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list1FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("表");
+=======
+		field.setLabel("列表1");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list1");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写表");
+=======
+		field.setPlaceholder("请填写列表1");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list2FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("清单");
+=======
+		field.setLabel("列表2");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list2");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写清单");
+=======
+		field.setPlaceholder("请填写列表2");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list3FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("目录3");
+=======
+		field.setLabel("列表3");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list3");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写目录3");
+=======
+		field.setPlaceholder("请填写列表3");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list4FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("清单");
+=======
+		field.setLabel("列表4");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list4");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写清单");
+=======
+		field.setPlaceholder("请填写列表4");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list5FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("列表6");
+=======
+		field.setLabel("列表5");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list5");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写列表6");
+=======
+		field.setPlaceholder("请填写列表5");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list6FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("list6");
+=======
+		field.setLabel("列表6");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list6");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写list6");
+=======
+		field.setPlaceholder("请填写列表6");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list7FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("list7");
+=======
+		field.setLabel("列表7");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list7");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写list7");
+=======
+		field.setPlaceholder("请填写列表7");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list8FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("list8");
+=======
+		field.setLabel("列表8");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list8");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写list8");
+=======
+		field.setPlaceholder("请填写列表8");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField list9FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("list9");
+=======
+		field.setLabel("列表9");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("object_access.list9");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写list9");
+=======
+		field.setPlaceholder("请填写列表9");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10689,14 +11013,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromLoginHistory(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("login_history.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10715,14 +11047,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField fromIpFromLoginHistory(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("从IP");
+=======
+		field.setLabel("来自IP");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("login_history.from_ip");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写从IP");
+=======
+		field.setPlaceholder("请填写来自IP");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10741,40 +11081,64 @@ public class BaseForm extends GenericForm{
 
 	protected FormField secUserIdFromLoginHistory(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("SEC的用户");
+=======
+		field.setLabel("安全用户");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("login_history.sec_user");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("SecUser");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写SEC的用户");
+=======
+		field.setPlaceholder("请填写安全用户");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField idFromGenericForm(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("generic_form.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField titleFromGenericForm(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("头衔");
+=======
+		field.setLabel("标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("generic_form.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写头衔");
+=======
+		field.setPlaceholder("请填写标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10793,27 +11157,43 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormMessage(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("form_message.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField titleFromFormMessage(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("头衔");
+=======
+		field.setLabel("标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("form_message.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写头衔");
+=======
+		field.setPlaceholder("请填写标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10845,27 +11225,43 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormFieldMessage(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("form_field_message.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
 	protected FormField titleFromFormFieldMessage(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("头衔");
+=======
+		field.setLabel("标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("form_field_message.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写头衔");
+=======
+		field.setPlaceholder("请填写标题");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -10910,14 +11306,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormField(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("form_field.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -11131,14 +11535,22 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormAction(String parameterName, String initValue){
 		FormField field = new FormField();
+<<<<<<< HEAD
 		field.setLabel("序号");
+=======
+		field.setLabel("ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		field.setLocaleKey("form_action.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
+<<<<<<< HEAD
 		field.setPlaceholder("请填写序号");
+=======
+		field.setPlaceholder("请填写ID");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return field;
 	}
 
@@ -11220,6 +11632,100 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
+<<<<<<< HEAD
+=======
+	protected FormField idFromCandidateContainer(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("ID");
+		field.setLocaleKey("candidate_container.id");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写ID");
+		return field;
+	}
+
+	protected FormField nameFromCandidateContainer(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("名称");
+		field.setLocaleKey("candidate_container.name");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写名称");
+		return field;
+	}
+
+	protected FormField idFromCandidateElement(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("ID");
+		field.setLocaleKey("candidate_element.id");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写ID");
+		return field;
+	}
+
+	protected FormField nameFromCandidateElement(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("名称");
+		field.setLocaleKey("candidate_element.name");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写名称");
+		return field;
+	}
+
+	protected FormField typeFromCandidateElement(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("类型");
+		field.setLocaleKey("candidate_element.type");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写类型");
+		return field;
+	}
+
+	protected FormField imageFromCandidateElement(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("图片");
+		field.setLocaleKey("candidate_element.image");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("image");
+		field.setRequired(true);
+		field.setPlaceholder("请填写图片");
+		return field;
+	}
+
+	protected FormField containerIdFromCandidateElement(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("容器");
+		field.setLocaleKey("candidate_element.container");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("CandidateContainer");
+		field.setRequired(true);
+		field.setPlaceholder("请填写容器");
+		return field;
+	}
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.transportfleet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -64,9 +68,25 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	TransportFleet(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static TransportFleet withId(String id){
+		TransportFleet transportFleet = new TransportFleet();
+		transportFleet.setId(id);
+		transportFleet.setVersion(Integer.MAX_VALUE);
+		return transportFleet;
+	}
+	public 	static TransportFleet refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -151,6 +171,44 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(CONTACT_NUMBER_PROPERTY.equals(property)){
+			return getContactNumber();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
+			return getLastUpdateTime();
+		}
+		if(TRANSPORT_TRUCK_LIST.equals(property)){
+			List<BaseEntity> list = getTransportTruckList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TRUCK_DRIVER_LIST.equals(property)){
+			List<BaseEntity> list = getTruckDriverList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+		if(TRANSPORT_TASK_LIST.equals(property)){
+			List<BaseEntity> list = getTransportTaskList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -164,6 +222,12 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -177,6 +241,12 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeName(String name){
+		if(name != null) { setName(name);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setContactNumber(String contactNumber){
@@ -190,6 +260,12 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeContactNumber(String contactNumber){
+		if(contactNumber != null) { setContactNumber(contactNumber);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOwner(RetailStoreCountryCenter owner){
@@ -203,6 +279,12 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeOwner(RetailStoreCountryCenter owner){
+		if(owner != null) { setOwner(owner);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -221,6 +303,12 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLastUpdateTime(DateTime lastUpdateTime){
+		setLastUpdateTime(lastUpdateTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -234,6 +322,12 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -266,7 +360,20 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		}
 		getTransportTruckList().addAll(transportTruckList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeTransportTruckList(SmartList<TransportTruck> transportTruckList){
+		if(transportTruckList==null){
+			return;
+		}
+		if(transportTruckList.isEmpty()){
+			return;
+		}
+		addTransportTruckList( transportTruckList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TransportTruck removeTransportTruck(TransportTruck transportTruckIndex){
 		
 		int index = getTransportTruckList().indexOf(transportTruckIndex);
@@ -364,7 +471,20 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		}
 		getTruckDriverList().addAll(truckDriverList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeTruckDriverList(SmartList<TruckDriver> truckDriverList){
+		if(truckDriverList==null){
+			return;
+		}
+		if(truckDriverList.isEmpty()){
+			return;
+		}
+		addTruckDriverList( truckDriverList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TruckDriver removeTruckDriver(TruckDriver truckDriverIndex){
 		
 		int index = getTruckDriverList().indexOf(truckDriverIndex);
@@ -462,7 +582,20 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		}
 		getTransportTaskList().addAll(transportTaskList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeTransportTaskList(SmartList<TransportTask> transportTaskList){
+		if(transportTaskList==null){
+			return;
+		}
+		if(transportTaskList.isEmpty()){
+			return;
+		}
+		addTransportTaskList( transportTaskList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TransportTask removeTransportTask(TransportTask transportTaskIndex){
 		
 		int index = getTransportTaskList().indexOf(transportTaskIndex);
@@ -612,6 +745,49 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TransportFleet){
+		
+			
+			TransportFleet dest =(TransportFleet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeContactNumber(getContactNumber());
+			dest.mergeOwner(getOwner());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+			dest.mergeTransportTruckList(getTransportTruckList());
+			dest.mergeTruckDriverList(getTruckDriverList());
+			dest.mergeTransportTaskList(getTransportTaskList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TransportFleet){
+		
+			
+			TransportFleet dest =(TransportFleet)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeName(getName());
+			dest.mergeContactNumber(getContactNumber());
+			dest.mergeLastUpdateTime(getLastUpdateTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

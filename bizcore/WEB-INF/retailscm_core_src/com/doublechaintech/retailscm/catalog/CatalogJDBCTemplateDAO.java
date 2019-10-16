@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.catalog;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,9 +35,18 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class CatalogJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CatalogDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class CatalogJDBCTemplateDAO extends RetailscmBaseDAOImpl implements CatalogDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -221,9 +239,14 @@ public class CatalogJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	protected boolean isExtractLevelOneCategoryListEnabled(Map<String,Object> options){		
  		return checkOptions(options,CatalogTokens.LEVEL_ONE_CATEGORY_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeLevelOneCategoryListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,CatalogTokens.LEVEL_ONE_CATEGORY_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeLevelOneCategoryListEnabled(Map<String,Object> options){		 		
+ 		return CatalogTokens.of(options).analyzeLevelOneCategoryListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLevelOneCategoryListEnabled(Map<String,Object> options){
@@ -611,9 +634,15 @@ public class CatalogJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 			return catalog;
 		}
 		
+<<<<<<< HEAD
 		for(LevelOneCategory levelOneCategory: externalLevelOneCategoryList){
 
 			levelOneCategory.clearFromAll();
+=======
+		for(LevelOneCategory levelOneCategoryItem: externalLevelOneCategoryList){
+
+			levelOneCategoryItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -739,6 +768,35 @@ public class CatalogJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	public void enhanceList(List<Catalog> catalogList) {		
 		this.enhanceListInternal(catalogList, this.getCatalogMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:LevelOneCategory的catalog的LevelOneCategoryList
+	public SmartList<LevelOneCategory> loadOurLevelOneCategoryList(RetailscmUserContext userContext, List<Catalog> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(LevelOneCategory.CATALOG_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<LevelOneCategory> loadedObjs = userContext.getDAOGroup().getLevelOneCategoryDAO().findLevelOneCategoryWithKey(key, options);
+		Map<String, List<LevelOneCategory>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCatalog().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<LevelOneCategory> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<LevelOneCategory> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setLevelOneCategoryList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<Catalog> catalogList = ownerEntity.collectRefsWithType(Catalog.INTERNAL_TYPE);
@@ -771,6 +829,12 @@ public class CatalogJDBCTemplateDAO extends RetailscmNamingServiceDAO implements
 	public SmartList<Catalog> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCatalogMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

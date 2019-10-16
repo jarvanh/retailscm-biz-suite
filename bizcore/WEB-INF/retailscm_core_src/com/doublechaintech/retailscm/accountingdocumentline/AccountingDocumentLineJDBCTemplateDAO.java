@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.accountingdocumentline;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,6 +35,7 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentLineDAO{
@@ -38,6 +48,14 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServic
  	public AccountingSubjectDAO getAccountingSubjectDAO(){
 	 	return this.accountingSubjectDAO;
  	}
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingDocumentLineDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  AccountingDocumentDAO  accountingDocumentDAO;
@@ -47,6 +65,18 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServic
  	public AccountingDocumentDAO getAccountingDocumentDAO(){
 	 	return this.accountingDocumentDAO;
  	}
+<<<<<<< HEAD
+=======
+ 
+ 	
+ 	private  AccountingSubjectDAO  accountingSubjectDAO;
+ 	public void setAccountingSubjectDAO(AccountingSubjectDAO accountingSubjectDAO){
+	 	this.accountingSubjectDAO = accountingSubjectDAO;
+ 	}
+ 	public AccountingSubjectDAO getAccountingSubjectDAO(){
+	 	return this.accountingSubjectDAO;
+ 	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -647,6 +677,12 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServic
 	public void enhanceList(List<AccountingDocumentLine> accountingDocumentLineList) {		
 		this.enhanceListInternal(accountingDocumentLineList, this.getAccountingDocumentLineMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<AccountingDocumentLine> accountingDocumentLineList = ownerEntity.collectRefsWithType(AccountingDocumentLine.INTERNAL_TYPE);
@@ -679,6 +715,12 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmNamingServic
 	public SmartList<AccountingDocumentLine> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentLineMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

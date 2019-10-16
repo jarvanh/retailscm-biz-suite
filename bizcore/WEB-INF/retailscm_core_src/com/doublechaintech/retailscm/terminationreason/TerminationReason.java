@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.terminationreason;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -56,9 +60,25 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 	
 		
 	public 	TerminationReason(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static TerminationReason withId(String id){
+		TerminationReason terminationReason = new TerminationReason();
+		terminationReason.setId(id);
+		terminationReason.setVersion(Integer.MAX_VALUE);
+		return terminationReason;
+	}
+	public 	static TerminationReason refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCompany( null );
 
@@ -122,6 +142,33 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(CODE_PROPERTY.equals(property)){
+			return getCode();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(DESCRIPTION_PROPERTY.equals(property)){
+			return getDescription();
+		}
+		if(TERMINATION_LIST.equals(property)){
+			List<BaseEntity> list = getTerminationList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -135,6 +182,12 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCode(String code){
@@ -148,6 +201,12 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCode(String code){
+		if(code != null) { setCode(code);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(RetailStoreCountryCenter company){
@@ -161,6 +220,12 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCompany(RetailStoreCountryCenter company){
+		if(company != null) { setCompany(company);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCompany(){
@@ -179,6 +244,12 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDescription(String description){
+		if(description != null) { setDescription(description);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -192,6 +263,12 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -224,7 +301,20 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		}
 		getTerminationList().addAll(terminationList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeTerminationList(SmartList<Termination> terminationList){
+		if(terminationList==null){
+			return;
+		}
+		if(terminationList.isEmpty()){
+			return;
+		}
+		addTerminationList( terminationList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Termination removeTermination(Termination terminationIndex){
 		
 		int index = getTerminationList().indexOf(terminationIndex);
@@ -356,6 +446,45 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TerminationReason){
+		
+			
+			TerminationReason dest =(TerminationReason)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCode(getCode());
+			dest.mergeCompany(getCompany());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+			dest.mergeTerminationList(getTerminationList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TerminationReason){
+		
+			
+			TerminationReason dest =(TerminationReason)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCode(getCode());
+			dest.mergeDescription(getDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -1098,7 +1098,11 @@ public class ConsumerOrderForm extends BaseForm {
 	}	
  	public ConsumerOrderForm  approveAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("批准");
+=======
+		action.setLabel("验收");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("consumer_order.approve");
 		action.setUrl("consumerOrderManager/approve/consumerOrderId/who/approveTime/");
 		this.addFormAction(action);
@@ -1106,7 +1110,11 @@ public class ConsumerOrderForm extends BaseForm {
 	}	
  	public ConsumerOrderForm  processAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("过程");
+=======
+		action.setLabel("处理");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("consumer_order.process");
 		action.setUrl("consumerOrderManager/process/consumerOrderId/who/processTime/");
 		this.addFormAction(action);
@@ -1114,7 +1122,11 @@ public class ConsumerOrderForm extends BaseForm {
 	}	
  	public ConsumerOrderForm  shipAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("船");
+=======
+		action.setLabel("装运");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("consumer_order.ship");
 		action.setUrl("consumerOrderManager/ship/consumerOrderId/who/shipTime/");
 		this.addFormAction(action);
@@ -1122,7 +1134,11 @@ public class ConsumerOrderForm extends BaseForm {
 	}	
  	public ConsumerOrderForm  deliverAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("交付");
+=======
+		action.setLabel("送货");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("consumer_order.deliver");
 		action.setUrl("consumerOrderManager/deliver/consumerOrderId/who/deliveryTime/");
 		this.addFormAction(action);

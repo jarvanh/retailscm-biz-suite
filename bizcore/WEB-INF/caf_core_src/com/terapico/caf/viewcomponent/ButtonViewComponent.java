@@ -42,7 +42,17 @@ public class ButtonViewComponent extends BaseViewComponent {
      */
     protected String callbackUrl;
 
-    public String getShareTitle() {
+    protected String shareRouter;
+    
+    public String getShareRouter() {
+		return shareRouter;
+	}
+
+	public void setShareRouter(String shareRouter) {
+		this.shareRouter = shareRouter;
+	}
+
+	public String getShareTitle() {
         return shareTitle;
     }
 
@@ -96,10 +106,14 @@ public class ButtonViewComponent extends BaseViewComponent {
     }
 
     public ButtonViewComponent(String content, String classes, String tag) {
+    	this(content, classes, tag, null);
+    }
+    public ButtonViewComponent(String content, String classes, String tag, String linkToUrl) {
         this.setContent(content);
         this.setClasses(classes);
         this.setTag(tag);
         this.setComponentType("button");
+        this.setLinkToUrl(linkToUrl);
     }
 
 	@Override

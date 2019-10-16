@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.transporttasktrack;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -55,9 +59,25 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 	
 		
 	public 	TransportTaskTrack(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static TransportTaskTrack withId(String id){
+		TransportTaskTrack transportTaskTrack = new TransportTaskTrack();
+		transportTaskTrack.setId(id);
+		transportTaskTrack.setVersion(Integer.MAX_VALUE);
+		return transportTaskTrack;
+	}
+	public 	static TransportTaskTrack refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setMovement( null );
 
@@ -139,6 +159,32 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(TRACK_TIME_PROPERTY.equals(property)){
+			return getTrackTime();
+		}
+		if(LATITUDE_PROPERTY.equals(property)){
+			return getLatitude();
+		}
+		if(LONGITUDE_PROPERTY.equals(property)){
+			return getLongitude();
+		}
+		if(MOVEMENT_PROPERTY.equals(property)){
+			return getMovement();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -152,6 +198,12 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTrackTime(Date trackTime){
@@ -165,6 +217,12 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeTrackTime(Date trackTime){
+		setTrackTime(trackTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLatitude(BigDecimal latitude){
@@ -178,6 +236,12 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLatitude(BigDecimal latitude){
+		setLatitude(latitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLongitude(BigDecimal longitude){
@@ -191,6 +255,12 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeLongitude(BigDecimal longitude){
+		setLongitude(longitude);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMovement(TransportTask movement){
@@ -204,6 +274,12 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeMovement(TransportTask movement){
+		if(movement != null) { setMovement(movement);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearMovement(){
@@ -222,6 +298,12 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -282,6 +364,46 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TransportTaskTrack){
+		
+			
+			TransportTaskTrack dest =(TransportTaskTrack)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTrackTime(getTrackTime());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeMovement(getMovement());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TransportTaskTrack){
+		
+			
+			TransportTaskTrack dest =(TransportTaskTrack)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeTrackTime(getTrackTime());
+			dest.mergeLatitude(getLatitude());
+			dest.mergeLongitude(getLongitude());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

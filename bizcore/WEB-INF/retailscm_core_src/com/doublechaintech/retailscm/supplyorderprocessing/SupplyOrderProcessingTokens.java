@@ -38,6 +38,18 @@ public class SupplyOrderProcessingTokens extends CommonTokens{
 	protected SupplyOrderProcessingTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  SupplyOrderProcessingTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		SupplyOrderProcessingTokens tokens = new SupplyOrderProcessingTokens(options);
+		return tokens;
+		
+	}
+	protected SupplyOrderProcessingTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public SupplyOrderProcessingTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -82,6 +94,14 @@ public class SupplyOrderProcessingTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public SupplyOrderProcessingTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String CONSUMER_ORDER_LIST = "consumerOrderList";
 	public String getConsumerOrderList(){
@@ -97,7 +117,15 @@ public class SupplyOrderProcessingTokens extends CommonTokens{
 	}
 	public boolean analyzeConsumerOrderListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), CONSUMER_ORDER_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), CONSUMER_ORDER_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public SupplyOrderProcessingTokens extractMoreFromConsumerOrderList(String idsSeperatedWithComma){		
 		addSimpleOptions(CONSUMER_ORDER_LIST+".extractIds", idsSeperatedWithComma);
@@ -159,7 +187,15 @@ public class SupplyOrderProcessingTokens extends CommonTokens{
 	}
 	public boolean analyzeSupplyOrderListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), SUPPLY_ORDER_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), SUPPLY_ORDER_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public SupplyOrderProcessingTokens extractMoreFromSupplyOrderList(String idsSeperatedWithComma){		
 		addSimpleOptions(SUPPLY_ORDER_LIST+".extractIds", idsSeperatedWithComma);

@@ -254,8 +254,14 @@ public class ProvinceCenterDepartmentManagerImpl extends CustomRetailscmCheckerM
 			//will be good when the provinceCenterDepartment loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProvinceCenterDepartment.
+<<<<<<< HEAD
 			
 			
+=======
+			if (provinceCenterDepartment.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			provinceCenterDepartment = saveProvinceCenterDepartment(userContext, provinceCenterDepartment, options);
 			return provinceCenterDepartment;
 			
@@ -325,7 +331,11 @@ public class ProvinceCenterDepartmentManagerImpl extends CustomRetailscmCheckerM
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortProvinceCenterEmployeeListWith("id","desc")
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -573,8 +583,13 @@ public class ProvinceCenterDepartmentManagerImpl extends CustomRetailscmCheckerM
 			String provinceCenterEmployeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfProvinceCenterDepartment(provinceCenterDepartmentId);
+<<<<<<< HEAD
 		for(String provinceCenterEmployeeId: provinceCenterEmployeeIds){
 			userContext.getChecker().checkIdOfProvinceCenterEmployee(provinceCenterEmployeeId);
+=======
+		for(String provinceCenterEmployeeIdItem: provinceCenterEmployeeIds){
+			userContext.getChecker().checkIdOfProvinceCenterEmployee(provinceCenterEmployeeIdItem);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ProvinceCenterDepartmentManagerException.class);

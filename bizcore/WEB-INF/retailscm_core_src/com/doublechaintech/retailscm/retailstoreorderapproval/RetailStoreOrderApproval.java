@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.retailstoreorderapproval;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -53,9 +57,25 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 	
 		
 	public 	RetailStoreOrderApproval(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static RetailStoreOrderApproval withId(String id){
+		RetailStoreOrderApproval retailStoreOrderApproval = new RetailStoreOrderApproval();
+		retailStoreOrderApproval.setId(id);
+		retailStoreOrderApproval.setVersion(Integer.MAX_VALUE);
+		return retailStoreOrderApproval;
+	}
+	public 	static RetailStoreOrderApproval refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -117,6 +137,30 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(WHO_PROPERTY.equals(property)){
+			return getWho();
+		}
+		if(APPROVE_TIME_PROPERTY.equals(property)){
+			return getApproveTime();
+		}
+		if(RETAIL_STORE_ORDER_LIST.equals(property)){
+			List<BaseEntity> list = getRetailStoreOrderList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -130,6 +174,12 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(String who){
@@ -143,6 +193,12 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeWho(String who){
+		if(who != null) { setWho(who);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setApproveTime(Date approveTime){
@@ -156,6 +212,12 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeApproveTime(Date approveTime){
+		setApproveTime(approveTime);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -169,6 +231,12 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -201,7 +269,20 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 		}
 		getRetailStoreOrderList().addAll(retailStoreOrderList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeRetailStoreOrderList(SmartList<RetailStoreOrder> retailStoreOrderList){
+		if(retailStoreOrderList==null){
+			return;
+		}
+		if(retailStoreOrderList.isEmpty()){
+			return;
+		}
+		addRetailStoreOrderList( retailStoreOrderList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreOrder removeRetailStoreOrder(RetailStoreOrder retailStoreOrderIndex){
 		
 		int index = getRetailStoreOrderList().indexOf(retailStoreOrderIndex);
@@ -330,6 +411,44 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderApproval){
+		
+			
+			RetailStoreOrderApproval dest =(RetailStoreOrderApproval)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeApproveTime(getApproveTime());
+			dest.mergeVersion(getVersion());
+			dest.mergeRetailStoreOrderList(getRetailStoreOrderList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof RetailStoreOrderApproval){
+		
+			
+			RetailStoreOrderApproval dest =(RetailStoreOrderApproval)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeWho(getWho());
+			dest.mergeApproveTime(getApproveTime());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

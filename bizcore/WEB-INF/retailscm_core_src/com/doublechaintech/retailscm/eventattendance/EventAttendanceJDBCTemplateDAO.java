@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.eventattendance;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,6 +35,7 @@ import com.doublechaintech.retailscm.cityevent.CityEventDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class EventAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EventAttendanceDAO{
@@ -38,6 +48,14 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO im
  	public CityEventDAO getCityEventDAO(){
 	 	return this.cityEventDAO;
  	}
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class EventAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EventAttendanceDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  PotentialCustomerDAO  potentialCustomerDAO;
@@ -47,6 +65,18 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO im
  	public PotentialCustomerDAO getPotentialCustomerDAO(){
 	 	return this.potentialCustomerDAO;
  	}
+<<<<<<< HEAD
+=======
+ 
+ 	
+ 	private  CityEventDAO  cityEventDAO;
+ 	public void setCityEventDAO(CityEventDAO cityEventDAO){
+	 	this.cityEventDAO = cityEventDAO;
+ 	}
+ 	public CityEventDAO getCityEventDAO(){
+	 	return this.cityEventDAO;
+ 	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -643,6 +673,12 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public void enhanceList(List<EventAttendance> eventAttendanceList) {		
 		this.enhanceListInternal(eventAttendanceList, this.getEventAttendanceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<EventAttendance> eventAttendanceList = ownerEntity.collectRefsWithType(EventAttendance.INTERNAL_TYPE);
@@ -675,6 +711,12 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmNamingServiceDAO im
 	public SmartList<EventAttendance> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEventAttendanceMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

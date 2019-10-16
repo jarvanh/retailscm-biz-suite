@@ -7,6 +7,13 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
+<<<<<<< HEAD
+=======
+
+import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
+import com.doublechaintech.retailscm.employeeskill.EmployeeSkill;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkillDAO;
 
@@ -62,6 +69,14 @@ public interface SkillTypeDAO{
  	public void analyzeSkillTypeByCompany(SmartList<SkillType> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
+<<<<<<< HEAD
  }
+=======
+ 
+	// 需要一个加载引用我的对象的enhance方法:EmployeeSkill的skillType的EmployeeSkillList
+	public SmartList<EmployeeSkill> loadOurEmployeeSkillList(RetailscmUserContext userContext, List<SkillType> us, Map<String,Object> options) throws Exception;
+	
+}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -247,8 +247,14 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 			//will be good when the productSupplyDuration loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProductSupplyDuration.
+<<<<<<< HEAD
 			
 			
+=======
+			if (productSupplyDuration.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			productSupplyDuration = saveProductSupplyDuration(userContext, productSupplyDuration, options);
 			return productSupplyDuration;
 			
@@ -317,7 +323,11 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

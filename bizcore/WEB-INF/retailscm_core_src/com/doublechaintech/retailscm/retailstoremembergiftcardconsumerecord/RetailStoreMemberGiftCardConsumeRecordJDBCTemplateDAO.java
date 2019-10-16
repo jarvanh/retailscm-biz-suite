@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -26,6 +35,7 @@ import com.doublechaintech.retailscm.retailstoremembergiftcard.RetailStoreMember
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberGiftCardConsumeRecordDAO{
@@ -38,6 +48,14 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
  	public ConsumerOrderDAO getConsumerOrderDAO(){
 	 	return this.consumerOrderDAO;
  	}
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreMemberGiftCardConsumeRecordDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreMemberGiftCardDAO  retailStoreMemberGiftCardDAO;
@@ -47,6 +65,18 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
  	public RetailStoreMemberGiftCardDAO getRetailStoreMemberGiftCardDAO(){
 	 	return this.retailStoreMemberGiftCardDAO;
  	}
+<<<<<<< HEAD
+=======
+ 
+ 	
+ 	private  ConsumerOrderDAO  consumerOrderDAO;
+ 	public void setConsumerOrderDAO(ConsumerOrderDAO consumerOrderDAO){
+	 	this.consumerOrderDAO = consumerOrderDAO;
+ 	}
+ 	public ConsumerOrderDAO getConsumerOrderDAO(){
+	 	return this.consumerOrderDAO;
+ 	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -645,6 +675,12 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
 	public void enhanceList(List<RetailStoreMemberGiftCardConsumeRecord> retailStoreMemberGiftCardConsumeRecordList) {		
 		this.enhanceListInternal(retailStoreMemberGiftCardConsumeRecordList, this.getRetailStoreMemberGiftCardConsumeRecordMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreMemberGiftCardConsumeRecord> retailStoreMemberGiftCardConsumeRecordList = ownerEntity.collectRefsWithType(RetailStoreMemberGiftCardConsumeRecord.INTERNAL_TYPE);
@@ -677,6 +713,12 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
 	public SmartList<RetailStoreMemberGiftCardConsumeRecord> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberGiftCardConsumeRecordMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -38,6 +38,18 @@ public class EmployeeSkillTokens extends CommonTokens{
 	protected EmployeeSkillTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  EmployeeSkillTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		EmployeeSkillTokens tokens = new EmployeeSkillTokens(options);
+		return tokens;
+		
+	}
+	protected EmployeeSkillTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public EmployeeSkillTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -84,6 +96,14 @@ public class EmployeeSkillTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public EmployeeSkillTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String EMPLOYEE = "employee";
 	public String getEmployee(){

@@ -285,6 +285,11 @@ import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingManager;
 
 import com.doublechaintech.retailscm.userapp.UserAppManager;
 
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.quicklink.QuickLinkManager;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.listaccess.ListAccessManager;
 
 import com.doublechaintech.retailscm.objectaccess.ObjectAccessManager;
@@ -301,6 +306,13 @@ import com.doublechaintech.retailscm.formfield.FormFieldManager;
 
 import com.doublechaintech.retailscm.formaction.FormActionManager;
 
+<<<<<<< HEAD
+=======
+import com.doublechaintech.retailscm.candidatecontainer.CandidateContainerManager;
+
+import com.doublechaintech.retailscm.candidateelement.CandidateElementManager;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 public class ManagerGroup {
 
@@ -588,6 +600,11 @@ public class ManagerGroup {
 
 	protected UserAppManager userAppManager;
 
+<<<<<<< HEAD
+=======
+	protected QuickLinkManager quickLinkManager;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected ListAccessManager listAccessManager;
 
 	protected ObjectAccessManager objectAccessManager;
@@ -604,6 +621,13 @@ public class ManagerGroup {
 
 	protected FormActionManager formActionManager;
 
+<<<<<<< HEAD
+=======
+	protected CandidateContainerManager candidateContainerManager;
+
+	protected CandidateElementManager candidateElementManager;
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 
 	public RetailStoreCountryCenterManager getRetailStoreCountryCenterManager(){
@@ -1742,6 +1766,17 @@ public class ManagerGroup {
 	}
 
 
+<<<<<<< HEAD
+=======
+	public QuickLinkManager getQuickLinkManager(){
+		return this.quickLinkManager;
+	}
+	public void setQuickLinkManager(QuickLinkManager manager){
+		this.quickLinkManager = manager;
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public ListAccessManager getListAccessManager(){
 		return this.listAccessManager;
 	}
@@ -1806,11 +1841,32 @@ public class ManagerGroup {
 	}
 
 
+<<<<<<< HEAD
 }
 
 
 
 
+=======
+	public CandidateContainerManager getCandidateContainerManager(){
+		return this.candidateContainerManager;
+	}
+	public void setCandidateContainerManager(CandidateContainerManager manager){
+		this.candidateContainerManager = manager;
+	}
+
+
+	public CandidateElementManager getCandidateElementManager(){
+		return this.candidateElementManager;
+	}
+	public void setCandidateElementManager(CandidateElementManager manager){
+		this.candidateElementManager = manager;
+	}
+
+
+}
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 

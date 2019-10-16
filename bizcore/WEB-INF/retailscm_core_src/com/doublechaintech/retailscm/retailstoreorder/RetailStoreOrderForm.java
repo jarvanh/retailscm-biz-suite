@@ -1318,7 +1318,11 @@ public class RetailStoreOrderForm extends BaseForm {
 	}	
  	public RetailStoreOrderForm  approveAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("批准");
+=======
+		action.setLabel("验收");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store_order.approve");
 		action.setUrl("retailStoreOrderManager/approve/retailStoreOrderId/who/approveTime/");
 		this.addFormAction(action);
@@ -1326,7 +1330,11 @@ public class RetailStoreOrderForm extends BaseForm {
 	}	
  	public RetailStoreOrderForm  processAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("过程");
+=======
+		action.setLabel("处理");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store_order.process");
 		action.setUrl("retailStoreOrderManager/process/retailStoreOrderId/who/processTime/");
 		this.addFormAction(action);
@@ -1334,7 +1342,11 @@ public class RetailStoreOrderForm extends BaseForm {
 	}	
  	public RetailStoreOrderForm  pickAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("选择");
+=======
+		action.setLabel("捡货");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store_order.pick");
 		action.setUrl("retailStoreOrderManager/pick/retailStoreOrderId/who/processTime/");
 		this.addFormAction(action);
@@ -1342,7 +1354,11 @@ public class RetailStoreOrderForm extends BaseForm {
 	}	
  	public RetailStoreOrderForm  shipAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("船");
+=======
+		action.setLabel("装运");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store_order.ship");
 		action.setUrl("retailStoreOrderManager/ship/retailStoreOrderId/who/shipTime/");
 		this.addFormAction(action);
@@ -1350,7 +1366,11 @@ public class RetailStoreOrderForm extends BaseForm {
 	}	
  	public RetailStoreOrderForm  deliverAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("交付");
+=======
+		action.setLabel("送货");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store_order.deliver");
 		action.setUrl("retailStoreOrderManager/deliver/retailStoreOrderId/who/deliveryTime/");
 		this.addFormAction(action);

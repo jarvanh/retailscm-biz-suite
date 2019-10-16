@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.genericform;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -30,9 +39,18 @@ import com.doublechaintech.retailscm.formmessage.FormMessageDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GenericFormDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GenericFormDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -280,9 +298,14 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractFormMessageListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GenericFormTokens.FORM_MESSAGE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeFormMessageListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,GenericFormTokens.FORM_MESSAGE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeFormMessageListEnabled(Map<String,Object> options){		 		
+ 		return GenericFormTokens.of(options).analyzeFormMessageListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveFormMessageListEnabled(Map<String,Object> options){
@@ -295,9 +318,14 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractFormFieldMessageListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GenericFormTokens.FORM_FIELD_MESSAGE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeFormFieldMessageListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,GenericFormTokens.FORM_FIELD_MESSAGE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeFormFieldMessageListEnabled(Map<String,Object> options){		 		
+ 		return GenericFormTokens.of(options).analyzeFormFieldMessageListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveFormFieldMessageListEnabled(Map<String,Object> options){
@@ -310,9 +338,14 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractFormFieldListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GenericFormTokens.FORM_FIELD_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeFormFieldListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,GenericFormTokens.FORM_FIELD_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeFormFieldListEnabled(Map<String,Object> options){		 		
+ 		return GenericFormTokens.of(options).analyzeFormFieldListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveFormFieldListEnabled(Map<String,Object> options){
@@ -325,9 +358,14 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	protected boolean isExtractFormActionListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GenericFormTokens.FORM_ACTION_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeFormActionListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,GenericFormTokens.FORM_ACTION_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeFormActionListEnabled(Map<String,Object> options){		 		
+ 		return GenericFormTokens.of(options).analyzeFormActionListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveFormActionListEnabled(Map<String,Object> options){
@@ -824,9 +862,15 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return genericForm;
 		}
 		
+<<<<<<< HEAD
 		for(FormMessage formMessage: externalFormMessageList){
 
 			formMessage.clearFromAll();
+=======
+		for(FormMessage formMessageItem: externalFormMessageList){
+
+			formMessageItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -852,9 +896,15 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return genericForm;
 		}
 		
+<<<<<<< HEAD
 		for(FormFieldMessage formFieldMessage: externalFormFieldMessageList){
 
 			formFieldMessage.clearFromAll();
+=======
+		for(FormFieldMessage formFieldMessageItem: externalFormFieldMessageList){
+
+			formFieldMessageItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -880,9 +930,15 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return genericForm;
 		}
 		
+<<<<<<< HEAD
 		for(FormField formField: externalFormFieldList){
 
 			formField.clearFromAll();
+=======
+		for(FormField formFieldItem: externalFormFieldList){
+
+			formFieldItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -908,9 +964,15 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 			return genericForm;
 		}
 		
+<<<<<<< HEAD
 		for(FormAction formAction: externalFormActionList){
 
 			formAction.clearFromAll();
+=======
+		for(FormAction formActionItem: externalFormActionList){
+
+			formActionItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1315,6 +1377,104 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public void enhanceList(List<GenericForm> genericFormList) {		
 		this.enhanceListInternal(genericFormList, this.getGenericFormMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:FormMessage的form的FormMessageList
+	public SmartList<FormMessage> loadOurFormMessageList(RetailscmUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(FormMessage.FORM_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<FormMessage> loadedObjs = userContext.getDAOGroup().getFormMessageDAO().findFormMessageWithKey(key, options);
+		Map<String, List<FormMessage>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getForm().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<FormMessage> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<FormMessage> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setFormMessageList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:FormFieldMessage的form的FormFieldMessageList
+	public SmartList<FormFieldMessage> loadOurFormFieldMessageList(RetailscmUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(FormFieldMessage.FORM_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<FormFieldMessage> loadedObjs = userContext.getDAOGroup().getFormFieldMessageDAO().findFormFieldMessageWithKey(key, options);
+		Map<String, List<FormFieldMessage>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getForm().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<FormFieldMessage> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<FormFieldMessage> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setFormFieldMessageList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:FormField的form的FormFieldList
+	public SmartList<FormField> loadOurFormFieldList(RetailscmUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(FormField.FORM_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<FormField> loadedObjs = userContext.getDAOGroup().getFormFieldDAO().findFormFieldWithKey(key, options);
+		Map<String, List<FormField>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getForm().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<FormField> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<FormField> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setFormFieldList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:FormAction的form的FormActionList
+	public SmartList<FormAction> loadOurFormActionList(RetailscmUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(FormAction.FORM_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<FormAction> loadedObjs = userContext.getDAOGroup().getFormActionDAO().findFormActionWithKey(key, options);
+		Map<String, List<FormAction>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getForm().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<FormAction> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<FormAction> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setFormActionList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<GenericForm> genericFormList = ownerEntity.collectRefsWithType(GenericForm.INTERNAL_TYPE);
@@ -1347,6 +1507,12 @@ public class GenericFormJDBCTemplateDAO extends RetailscmNamingServiceDAO implem
 	public SmartList<GenericForm> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGenericFormMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

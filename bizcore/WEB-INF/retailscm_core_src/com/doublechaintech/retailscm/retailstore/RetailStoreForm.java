@@ -1570,7 +1570,11 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  inviteInvestmentAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("邀请投资");
+=======
+		action.setLabel("招商");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store.inviteInvestment");
 		action.setUrl("retailStoreManager/inviteInvestment/retailStoreId/comment/");
 		this.addFormAction(action);
@@ -1578,7 +1582,11 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  franchiseAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("特许经营");
+=======
+		action.setLabel("加盟");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store.franchise");
 		action.setUrl("retailStoreManager/franchise/retailStoreId/comment/");
 		this.addFormAction(action);
@@ -1594,7 +1602,11 @@ public class RetailStoreForm extends BaseForm {
 	}	
  	public RetailStoreForm  openAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("开放");
+=======
+		action.setLabel("开业");
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("retail_store.open");
 		action.setUrl("retailStoreManager/open/retailStoreId/comment/");
 		this.addFormAction(action);

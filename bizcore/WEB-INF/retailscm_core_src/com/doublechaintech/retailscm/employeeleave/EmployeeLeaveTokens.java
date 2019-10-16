@@ -38,6 +38,18 @@ public class EmployeeLeaveTokens extends CommonTokens{
 	protected EmployeeLeaveTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  EmployeeLeaveTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		EmployeeLeaveTokens tokens = new EmployeeLeaveTokens(options);
+		return tokens;
+		
+	}
+	protected EmployeeLeaveTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public EmployeeLeaveTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -84,6 +96,14 @@ public class EmployeeLeaveTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public EmployeeLeaveTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String WHO = "who";
 	public String getWho(){

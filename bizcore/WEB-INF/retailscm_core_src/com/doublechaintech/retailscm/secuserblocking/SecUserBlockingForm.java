@@ -152,6 +152,51 @@ public class SecUserBlockingForm extends BaseForm {
 	}
 
 
+<<<<<<< HEAD
+=======
+	public SecUserBlockingForm weixinOpenidFieldForSecUser(String parameterName, String initValue){
+		FormField field =  weixinOpenidFromSecUser(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public SecUserBlockingForm weixinOpenidFieldForSecUser(String initValue){
+		return weixinOpenidFieldForSecUser("weixinOpenid",initValue);
+	}
+	public SecUserBlockingForm weixinOpenidFieldForSecUser(){
+		return weixinOpenidFieldForSecUser("weixinOpenid","");
+	}
+
+
+	public SecUserBlockingForm weixinAppidFieldForSecUser(String parameterName, String initValue){
+		FormField field =  weixinAppidFromSecUser(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public SecUserBlockingForm weixinAppidFieldForSecUser(String initValue){
+		return weixinAppidFieldForSecUser("weixinAppid",initValue);
+	}
+	public SecUserBlockingForm weixinAppidFieldForSecUser(){
+		return weixinAppidFieldForSecUser("weixinAppid","");
+	}
+
+
+	public SecUserBlockingForm accessTokenFieldForSecUser(String parameterName, String initValue){
+		FormField field =  accessTokenFromSecUser(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public SecUserBlockingForm accessTokenFieldForSecUser(String initValue){
+		return accessTokenFieldForSecUser("accessToken",initValue);
+	}
+	public SecUserBlockingForm accessTokenFieldForSecUser(){
+		return accessTokenFieldForSecUser("accessToken","");
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public SecUserBlockingForm verificationCodeFieldForSecUser(String parameterName, String initValue){
 		FormField field =  verificationCodeFromSecUser(parameterName, initValue);		
 		this.addFormField(field);

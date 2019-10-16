@@ -38,6 +38,18 @@ public class GoodsShelfTokens extends CommonTokens{
 	protected GoodsShelfTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  GoodsShelfTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		GoodsShelfTokens tokens = new GoodsShelfTokens(options);
+		return tokens;
+		
+	}
+	protected GoodsShelfTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public GoodsShelfTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -88,6 +100,14 @@ public class GoodsShelfTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public GoodsShelfTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String STORAGESPACE = "storageSpace";
 	public String getStorageSpace(){
@@ -133,7 +153,15 @@ public class GoodsShelfTokens extends CommonTokens{
 	}
 	public boolean analyzeGoodsShelfStockCountListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), GOODS_SHELF_STOCK_COUNT_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), GOODS_SHELF_STOCK_COUNT_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GoodsShelfTokens extractMoreFromGoodsShelfStockCountList(String idsSeperatedWithComma){		
 		addSimpleOptions(GOODS_SHELF_STOCK_COUNT_LIST+".extractIds", idsSeperatedWithComma);
@@ -195,7 +223,15 @@ public class GoodsShelfTokens extends CommonTokens{
 	}
 	public boolean analyzeGoodsAllocationListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), GOODS_ALLOCATION_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), GOODS_ALLOCATION_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GoodsShelfTokens extractMoreFromGoodsAllocationList(String idsSeperatedWithComma){		
 		addSimpleOptions(GOODS_ALLOCATION_LIST+".extractIds", idsSeperatedWithComma);

@@ -38,6 +38,18 @@ public class WarehouseTokens extends CommonTokens{
 	protected WarehouseTokens(){
 		//ensure not initialized outside the class
 	}
+<<<<<<< HEAD
+=======
+	public  static  WarehouseTokens of(Map<String,Object> options){
+		//ensure not initialized outside the class
+		WarehouseTokens tokens = new WarehouseTokens(options);
+		return tokens;
+		
+	}
+	protected WarehouseTokens(Map<String,Object> options){
+		this.options = options;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public WarehouseTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -89,6 +101,14 @@ public class WarehouseTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
+<<<<<<< HEAD
+=======
+	
+	public WarehouseTokens analyzeAllLists(){		
+		addSimpleOptions(ALL_LISTS_ANALYZE);
+		return this;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String OWNER = "owner";
 	public String getOwner(){
@@ -114,7 +134,15 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	public boolean analyzeStorageSpaceListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), STORAGE_SPACE_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), STORAGE_SPACE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public WarehouseTokens extractMoreFromStorageSpaceList(String idsSeperatedWithComma){		
 		addSimpleOptions(STORAGE_SPACE_LIST+".extractIds", idsSeperatedWithComma);
@@ -176,7 +204,15 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	public boolean analyzeSmartPalletListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), SMART_PALLET_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), SMART_PALLET_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public WarehouseTokens extractMoreFromSmartPalletList(String idsSeperatedWithComma){		
 		addSimpleOptions(SMART_PALLET_LIST+".extractIds", idsSeperatedWithComma);
@@ -238,7 +274,15 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	public boolean analyzeSupplierSpaceListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), SUPPLIER_SPACE_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), SUPPLIER_SPACE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public WarehouseTokens extractMoreFromSupplierSpaceList(String idsSeperatedWithComma){		
 		addSimpleOptions(SUPPLIER_SPACE_LIST+".extractIds", idsSeperatedWithComma);
@@ -300,7 +344,15 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	public boolean analyzeReceivingSpaceListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), RECEIVING_SPACE_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), RECEIVING_SPACE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public WarehouseTokens extractMoreFromReceivingSpaceList(String idsSeperatedWithComma){		
 		addSimpleOptions(RECEIVING_SPACE_LIST+".extractIds", idsSeperatedWithComma);
@@ -362,7 +414,15 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	public boolean analyzeShippingSpaceListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), SHIPPING_SPACE_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), SHIPPING_SPACE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public WarehouseTokens extractMoreFromShippingSpaceList(String idsSeperatedWithComma){		
 		addSimpleOptions(SHIPPING_SPACE_LIST+".extractIds", idsSeperatedWithComma);
@@ -424,7 +484,15 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	public boolean analyzeDamageSpaceListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), DAMAGE_SPACE_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), DAMAGE_SPACE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public WarehouseTokens extractMoreFromDamageSpaceList(String idsSeperatedWithComma){		
 		addSimpleOptions(DAMAGE_SPACE_LIST+".extractIds", idsSeperatedWithComma);
@@ -486,7 +554,15 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	public boolean analyzeWarehouseAssetListEnabled(){		
 		
+<<<<<<< HEAD
 		return checkOptions(this.options(), WAREHOUSE_ASSET_LIST+".anaylze");
+=======
+		if(checkOptions(this.options(), WAREHOUSE_ASSET_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public WarehouseTokens extractMoreFromWarehouseAssetList(String idsSeperatedWithComma){		
 		addSimpleOptions(WAREHOUSE_ASSET_LIST+".extractIds", idsSeperatedWithComma);

@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.terminationtype;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,9 +62,25 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 	
 		
 	public 	TerminationType(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static TerminationType withId(String id){
+		TerminationType terminationType = new TerminationType();
+		terminationType.setId(id);
+		terminationType.setVersion(Integer.MAX_VALUE);
+		return terminationType;
+	}
+	public 	static TerminationType refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCompany( null );
 
@@ -143,6 +163,36 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(CODE_PROPERTY.equals(property)){
+			return getCode();
+		}
+		if(COMPANY_PROPERTY.equals(property)){
+			return getCompany();
+		}
+		if(BASE_DESCRIPTION_PROPERTY.equals(property)){
+			return getBaseDescription();
+		}
+		if(DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+			return getDetailDescription();
+		}
+		if(TERMINATION_LIST.equals(property)){
+			List<BaseEntity> list = getTerminationList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -156,6 +206,12 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCode(String code){
@@ -169,6 +225,12 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCode(String code){
+		if(code != null) { setCode(code);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(RetailStoreCountryCenter company){
@@ -182,6 +244,12 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeCompany(RetailStoreCountryCenter company){
+		if(company != null) { setCompany(company);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCompany(){
@@ -200,6 +268,12 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeBaseDescription(String baseDescription){
+		if(baseDescription != null) { setBaseDescription(baseDescription);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDetailDescription(String detailDescription){
@@ -213,6 +287,12 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeDetailDescription(String detailDescription){
+		if(detailDescription != null) { setDetailDescription(detailDescription);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -226,6 +306,12 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -258,7 +344,20 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		}
 		getTerminationList().addAll(terminationList);
 	}
+<<<<<<< HEAD
 	
+=======
+	public  void mergeTerminationList(SmartList<Termination> terminationList){
+		if(terminationList==null){
+			return;
+		}
+		if(terminationList.isEmpty()){
+			return;
+		}
+		addTerminationList( terminationList );
+		
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Termination removeTermination(Termination terminationIndex){
 		
 		int index = getTerminationList().indexOf(terminationIndex);
@@ -392,6 +491,47 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TerminationType){
+		
+			
+			TerminationType dest =(TerminationType)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCode(getCode());
+			dest.mergeCompany(getCompany());
+			dest.mergeBaseDescription(getBaseDescription());
+			dest.mergeDetailDescription(getDetailDescription());
+			dest.mergeVersion(getVersion());
+			dest.mergeTerminationList(getTerminationList());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof TerminationType){
+		
+			
+			TerminationType dest =(TerminationType)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeCode(getCode());
+			dest.mergeBaseDescription(getBaseDescription());
+			dest.mergeDetailDescription(getDetailDescription());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

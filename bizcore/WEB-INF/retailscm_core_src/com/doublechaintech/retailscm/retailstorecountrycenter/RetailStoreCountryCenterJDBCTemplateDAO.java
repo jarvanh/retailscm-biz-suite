@@ -3,10 +3,19 @@ package com.doublechaintech.retailscm.retailstorecountrycenter;
 
 import java.util.List;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
+=======
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.math.BigDecimal;
+import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -70,9 +79,18 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
+<<<<<<< HEAD
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreCountryCenterDAO{
+=======
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowCallbackHandler;
+
+
+public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreCountryCenterDAO{
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -840,9 +858,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractCatalogListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.CATALOG_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeCatalogListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.CATALOG_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeCatalogListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeCatalogListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveCatalogListEnabled(Map<String,Object> options){
@@ -855,9 +878,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractRetailStoreProvinceCenterListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_PROVINCE_CENTER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreProvinceCenterListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_PROVINCE_CENTER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreProvinceCenterListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreProvinceCenterListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreProvinceCenterListEnabled(Map<String,Object> options){
@@ -870,9 +898,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractRetailStoreListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreListEnabled(Map<String,Object> options){
@@ -885,9 +918,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractRetailStoreMemberListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_MEMBER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreMemberListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_MEMBER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreMemberListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreMemberListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberListEnabled(Map<String,Object> options){
@@ -900,9 +938,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractGoodsSupplierListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.GOODS_SUPPLIER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeGoodsSupplierListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.GOODS_SUPPLIER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeGoodsSupplierListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeGoodsSupplierListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsSupplierListEnabled(Map<String,Object> options){
@@ -915,9 +958,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractSupplyOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.SUPPLY_ORDER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.SUPPLY_ORDER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeSupplyOrderListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderListEnabled(Map<String,Object> options){
@@ -930,9 +978,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractRetailStoreOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_ORDER_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeRetailStoreOrderListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_ORDER_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeRetailStoreOrderListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreOrderListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreOrderListEnabled(Map<String,Object> options){
@@ -945,9 +998,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractWarehouseListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.WAREHOUSE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeWarehouseListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.WAREHOUSE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeWarehouseListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeWarehouseListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveWarehouseListEnabled(Map<String,Object> options){
@@ -960,9 +1018,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractTransportFleetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TRANSPORT_FLEET_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeTransportFleetListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.TRANSPORT_FLEET_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeTransportFleetListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeTransportFleetListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTransportFleetListEnabled(Map<String,Object> options){
@@ -975,9 +1038,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractAccountSetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.ACCOUNT_SET_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeAccountSetListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.ACCOUNT_SET_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeAccountSetListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeAccountSetListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountSetListEnabled(Map<String,Object> options){
@@ -990,9 +1058,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractLevelOneDepartmentListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.LEVEL_ONE_DEPARTMENT_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeLevelOneDepartmentListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.LEVEL_ONE_DEPARTMENT_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeLevelOneDepartmentListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeLevelOneDepartmentListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLevelOneDepartmentListEnabled(Map<String,Object> options){
@@ -1005,9 +1078,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractSkillTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.SKILL_TYPE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSkillTypeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.SKILL_TYPE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSkillTypeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeSkillTypeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSkillTypeListEnabled(Map<String,Object> options){
@@ -1020,9 +1098,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractResponsibilityTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RESPONSIBILITY_TYPE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeResponsibilityTypeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.RESPONSIBILITY_TYPE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeResponsibilityTypeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeResponsibilityTypeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveResponsibilityTypeListEnabled(Map<String,Object> options){
@@ -1035,9 +1118,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractTerminationReasonListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_REASON_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeTerminationReasonListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_REASON_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeTerminationReasonListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeTerminationReasonListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTerminationReasonListEnabled(Map<String,Object> options){
@@ -1050,9 +1138,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractTerminationTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_TYPE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeTerminationTypeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_TYPE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeTerminationTypeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeTerminationTypeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTerminationTypeListEnabled(Map<String,Object> options){
@@ -1065,9 +1158,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractOccupationTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.OCCUPATION_TYPE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeOccupationTypeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.OCCUPATION_TYPE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeOccupationTypeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeOccupationTypeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveOccupationTypeListEnabled(Map<String,Object> options){
@@ -1080,9 +1178,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractLeaveTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.LEAVE_TYPE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeLeaveTypeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.LEAVE_TYPE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeLeaveTypeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeLeaveTypeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLeaveTypeListEnabled(Map<String,Object> options){
@@ -1095,9 +1198,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractSalaryGradeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.SALARY_GRADE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeSalaryGradeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.SALARY_GRADE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeSalaryGradeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeSalaryGradeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSalaryGradeListEnabled(Map<String,Object> options){
@@ -1110,9 +1218,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractInterviewTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.INTERVIEW_TYPE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeInterviewTypeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.INTERVIEW_TYPE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeInterviewTypeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeInterviewTypeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveInterviewTypeListEnabled(Map<String,Object> options){
@@ -1125,9 +1238,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractTrainingCourseTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TRAINING_COURSE_TYPE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeTrainingCourseTypeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.TRAINING_COURSE_TYPE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeTrainingCourseTypeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeTrainingCourseTypeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTrainingCourseTypeListEnabled(Map<String,Object> options){
@@ -1140,9 +1258,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractPublicHolidayListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.PUBLIC_HOLIDAY_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzePublicHolidayListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.PUBLIC_HOLIDAY_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzePublicHolidayListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzePublicHolidayListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePublicHolidayListEnabled(Map<String,Object> options){
@@ -1155,9 +1278,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractEmployeeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.EMPLOYEE_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.EMPLOYEE_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeEmployeeListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeListEnabled(Map<String,Object> options){
@@ -1170,9 +1298,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractInstructorListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.INSTRUCTOR_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeInstructorListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.INSTRUCTOR_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeInstructorListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeInstructorListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveInstructorListEnabled(Map<String,Object> options){
@@ -1185,9 +1318,14 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	protected boolean isExtractCompanyTrainingListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.COMPANY_TRAINING_LIST);
  	}
+<<<<<<< HEAD
  	protected boolean isAnalyzeCompanyTrainingListEnabled(Map<String,Object> options){		
  		return true;
  		//return checkOptions(options,RetailStoreCountryCenterTokens.COMPANY_TRAINING_LIST+".analyze");
+=======
+ 	protected boolean isAnalyzeCompanyTrainingListEnabled(Map<String,Object> options){		 		
+ 		return RetailStoreCountryCenterTokens.of(options).analyzeCompanyTrainingListEnabled();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveCompanyTrainingListEnabled(Map<String,Object> options){
@@ -2996,9 +3134,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Catalog catalog: externalCatalogList){
 
 			catalog.clearFromAll();
+=======
+		for(Catalog catalogItem: externalCatalogList){
+
+			catalogItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3024,9 +3168,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreProvinceCenter retailStoreProvinceCenter: externalRetailStoreProvinceCenterList){
 
 			retailStoreProvinceCenter.clearFromAll();
+=======
+		for(RetailStoreProvinceCenter retailStoreProvinceCenterItem: externalRetailStoreProvinceCenterList){
+
+			retailStoreProvinceCenterItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3052,9 +3202,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStore retailStore: externalRetailStoreList){
 
 			retailStore.clearFromAll();
+=======
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+
+			retailStoreItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3084,9 +3240,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStore retailStore: externalRetailStoreList){
 			retailStore.clearCityServiceCenter();
 			retailStore.clearRetailStoreCountryCenter();
+=======
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearCityServiceCenter();
+			retailStoreItem.clearRetailStoreCountryCenter();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3124,9 +3286,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreMember retailStoreMember: externalRetailStoreMemberList){
 
 			retailStoreMember.clearFromAll();
+=======
+		for(RetailStoreMember retailStoreMemberItem: externalRetailStoreMemberList){
+
+			retailStoreMemberItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3152,9 +3320,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(GoodsSupplier goodsSupplier: externalGoodsSupplierList){
 
 			goodsSupplier.clearFromAll();
+=======
+		for(GoodsSupplier goodsSupplierItem: externalGoodsSupplierList){
+
+			goodsSupplierItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3180,9 +3354,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrder supplyOrder: externalSupplyOrderList){
 
 			supplyOrder.clearFromAll();
+=======
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+
+			supplyOrderItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3212,9 +3392,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(SupplyOrder supplyOrder: externalSupplyOrderList){
 			supplyOrder.clearSeller();
 			supplyOrder.clearBuyer();
+=======
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearSeller();
+			supplyOrderItem.clearBuyer();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3252,9 +3438,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
 
 			retailStoreOrder.clearFromAll();
+=======
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+
+			retailStoreOrderItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3284,9 +3476,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
 			retailStoreOrder.clearBuyer();
 			retailStoreOrder.clearSeller();
+=======
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearBuyer();
+			retailStoreOrderItem.clearSeller();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3324,9 +3522,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Warehouse warehouse: externalWarehouseList){
 
 			warehouse.clearFromAll();
+=======
+		for(Warehouse warehouseItem: externalWarehouseList){
+
+			warehouseItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3352,9 +3556,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(TransportFleet transportFleet: externalTransportFleetList){
 
 			transportFleet.clearFromAll();
+=======
+		for(TransportFleet transportFleetItem: externalTransportFleetList){
+
+			transportFleetItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3380,9 +3590,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(AccountSet accountSet: externalAccountSetList){
 
 			accountSet.clearFromAll();
+=======
+		for(AccountSet accountSetItem: externalAccountSetList){
+
+			accountSetItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3412,9 +3628,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(AccountSet accountSet: externalAccountSetList){
 			accountSet.clearRetailStore();
 			accountSet.clearCountryCenter();
+=======
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearRetailStore();
+			accountSetItem.clearCountryCenter();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3456,9 +3678,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(AccountSet accountSet: externalAccountSetList){
 			accountSet.clearGoodsSupplier();
 			accountSet.clearCountryCenter();
+=======
+		for(AccountSet accountSetItem: externalAccountSetList){
+			accountSetItem.clearGoodsSupplier();
+			accountSetItem.clearCountryCenter();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3496,9 +3724,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(LevelOneDepartment levelOneDepartment: externalLevelOneDepartmentList){
 
 			levelOneDepartment.clearFromAll();
+=======
+		for(LevelOneDepartment levelOneDepartmentItem: externalLevelOneDepartmentList){
+
+			levelOneDepartmentItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3524,9 +3758,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(SkillType skillType: externalSkillTypeList){
 
 			skillType.clearFromAll();
+=======
+		for(SkillType skillTypeItem: externalSkillTypeList){
+
+			skillTypeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3552,9 +3792,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(ResponsibilityType responsibilityType: externalResponsibilityTypeList){
 
 			responsibilityType.clearFromAll();
+=======
+		for(ResponsibilityType responsibilityTypeItem: externalResponsibilityTypeList){
+
+			responsibilityTypeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3580,9 +3826,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(TerminationReason terminationReason: externalTerminationReasonList){
 
 			terminationReason.clearFromAll();
+=======
+		for(TerminationReason terminationReasonItem: externalTerminationReasonList){
+
+			terminationReasonItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3608,9 +3860,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(TerminationType terminationType: externalTerminationTypeList){
 
 			terminationType.clearFromAll();
+=======
+		for(TerminationType terminationTypeItem: externalTerminationTypeList){
+
+			terminationTypeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3636,9 +3894,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(OccupationType occupationType: externalOccupationTypeList){
 
 			occupationType.clearFromAll();
+=======
+		for(OccupationType occupationTypeItem: externalOccupationTypeList){
+
+			occupationTypeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3664,9 +3928,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(LeaveType leaveType: externalLeaveTypeList){
 
 			leaveType.clearFromAll();
+=======
+		for(LeaveType leaveTypeItem: externalLeaveTypeList){
+
+			leaveTypeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3692,9 +3962,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(SalaryGrade salaryGrade: externalSalaryGradeList){
 
 			salaryGrade.clearFromAll();
+=======
+		for(SalaryGrade salaryGradeItem: externalSalaryGradeList){
+
+			salaryGradeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3720,9 +3996,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(InterviewType interviewType: externalInterviewTypeList){
 
 			interviewType.clearFromAll();
+=======
+		for(InterviewType interviewTypeItem: externalInterviewTypeList){
+
+			interviewTypeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3748,9 +4030,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(TrainingCourseType trainingCourseType: externalTrainingCourseTypeList){
 
 			trainingCourseType.clearFromAll();
+=======
+		for(TrainingCourseType trainingCourseTypeItem: externalTrainingCourseTypeList){
+
+			trainingCourseTypeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3776,9 +4064,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(PublicHoliday publicHoliday: externalPublicHolidayList){
 
 			publicHoliday.clearFromAll();
+=======
+		for(PublicHoliday publicHolidayItem: externalPublicHolidayList){
+
+			publicHolidayItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3804,9 +4098,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Employee employee: externalEmployeeList){
 
 			employee.clearFromAll();
+=======
+		for(Employee employeeItem: externalEmployeeList){
+
+			employeeItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3836,9 +4136,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Employee employee: externalEmployeeList){
 			employee.clearDepartment();
 			employee.clearCompany();
+=======
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearDepartment();
+			employeeItem.clearCompany();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3880,9 +4186,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Employee employee: externalEmployeeList){
 			employee.clearOccupation();
 			employee.clearCompany();
+=======
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOccupation();
+			employeeItem.clearCompany();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3924,9 +4236,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Employee employee: externalEmployeeList){
 			employee.clearResponsibleFor();
 			employee.clearCompany();
+=======
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearResponsibleFor();
+			employeeItem.clearCompany();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3968,9 +4286,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Employee employee: externalEmployeeList){
 			employee.clearCurrentSalaryGrade();
 			employee.clearCompany();
+=======
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearCurrentSalaryGrade();
+			employeeItem.clearCompany();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4008,9 +4332,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(Instructor instructor: externalInstructorList){
 
 			instructor.clearFromAll();
+=======
+		for(Instructor instructorItem: externalInstructorList){
+
+			instructorItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4036,9 +4366,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(CompanyTraining companyTraining: externalCompanyTrainingList){
 
 			companyTraining.clearFromAll();
+=======
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+
+			companyTrainingItem.clearFromAll();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4068,9 +4404,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(CompanyTraining companyTraining: externalCompanyTrainingList){
 			companyTraining.clearInstructor();
 			companyTraining.clearCompany();
+=======
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearInstructor();
+			companyTrainingItem.clearCompany();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4112,9 +4454,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 			return retailStoreCountryCenter;
 		}
 		
+<<<<<<< HEAD
 		for(CompanyTraining companyTraining: externalCompanyTrainingList){
 			companyTraining.clearTrainingCourseType();
 			companyTraining.clearCompany();
+=======
+		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
+			companyTrainingItem.clearTrainingCourseType();
+			companyTrainingItem.clearCompany();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -6391,6 +6739,564 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	public void enhanceList(List<RetailStoreCountryCenter> retailStoreCountryCenterList) {		
 		this.enhanceListInternal(retailStoreCountryCenterList, this.getRetailStoreCountryCenterMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	// 需要一个加载引用我的对象的enhance方法:Catalog的owner的CatalogList
+	public SmartList<Catalog> loadOurCatalogList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Catalog.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Catalog> loadedObjs = userContext.getDAOGroup().getCatalogDAO().findCatalogWithKey(key, options);
+		Map<String, List<Catalog>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Catalog> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Catalog> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setCatalogList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreProvinceCenter的country的RetailStoreProvinceCenterList
+	public SmartList<RetailStoreProvinceCenter> loadOurRetailStoreProvinceCenterList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreProvinceCenter.COUNTRY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreProvinceCenter> loadedObjs = userContext.getDAOGroup().getRetailStoreProvinceCenterDAO().findRetailStoreProvinceCenterWithKey(key, options);
+		Map<String, List<RetailStoreProvinceCenter>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCountry().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreProvinceCenter> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreProvinceCenter> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreProvinceCenterList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStore的retailStoreCountryCenter的RetailStoreList
+	public SmartList<RetailStore> loadOurRetailStoreList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStore> loadedObjs = userContext.getDAOGroup().getRetailStoreDAO().findRetailStoreWithKey(key, options);
+		Map<String, List<RetailStore>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getRetailStoreCountryCenter().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStore> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStore> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreMember的owner的RetailStoreMemberList
+	public SmartList<RetailStoreMember> loadOurRetailStoreMemberList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreMember.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreMember> loadedObjs = userContext.getDAOGroup().getRetailStoreMemberDAO().findRetailStoreMemberWithKey(key, options);
+		Map<String, List<RetailStoreMember>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreMember> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreMember> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreMemberList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:GoodsSupplier的belongTo的GoodsSupplierList
+	public SmartList<GoodsSupplier> loadOurGoodsSupplierList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(GoodsSupplier.BELONG_TO_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<GoodsSupplier> loadedObjs = userContext.getDAOGroup().getGoodsSupplierDAO().findGoodsSupplierWithKey(key, options);
+		Map<String, List<GoodsSupplier>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBelongTo().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<GoodsSupplier> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<GoodsSupplier> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setGoodsSupplierList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SupplyOrder的buyer的SupplyOrderList
+	public SmartList<SupplyOrder> loadOurSupplyOrderList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SupplyOrder> loadedObjs = userContext.getDAOGroup().getSupplyOrderDAO().findSupplyOrderWithKey(key, options);
+		Map<String, List<SupplyOrder>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBuyer().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SupplyOrder> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SupplyOrder> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSupplyOrderList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:RetailStoreOrder的seller的RetailStoreOrderList
+	public SmartList<RetailStoreOrder> loadOurRetailStoreOrderList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<RetailStoreOrder> loadedObjs = userContext.getDAOGroup().getRetailStoreOrderDAO().findRetailStoreOrderWithKey(key, options);
+		Map<String, List<RetailStoreOrder>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getSeller().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<RetailStoreOrder> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<RetailStoreOrder> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setRetailStoreOrderList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:Warehouse的owner的WarehouseList
+	public SmartList<Warehouse> loadOurWarehouseList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Warehouse.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Warehouse> loadedObjs = userContext.getDAOGroup().getWarehouseDAO().findWarehouseWithKey(key, options);
+		Map<String, List<Warehouse>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Warehouse> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Warehouse> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setWarehouseList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:TransportFleet的owner的TransportFleetList
+	public SmartList<TransportFleet> loadOurTransportFleetList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(TransportFleet.OWNER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<TransportFleet> loadedObjs = userContext.getDAOGroup().getTransportFleetDAO().findTransportFleetWithKey(key, options);
+		Map<String, List<TransportFleet>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getOwner().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<TransportFleet> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<TransportFleet> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setTransportFleetList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:AccountSet的countryCenter的AccountSetList
+	public SmartList<AccountSet> loadOurAccountSetList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountSet.COUNTRY_CENTER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<AccountSet> loadedObjs = userContext.getDAOGroup().getAccountSetDAO().findAccountSetWithKey(key, options);
+		Map<String, List<AccountSet>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCountryCenter().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<AccountSet> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<AccountSet> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setAccountSetList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:LevelOneDepartment的belongsTo的LevelOneDepartmentList
+	public SmartList<LevelOneDepartment> loadOurLevelOneDepartmentList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(LevelOneDepartment.BELONGS_TO_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<LevelOneDepartment> loadedObjs = userContext.getDAOGroup().getLevelOneDepartmentDAO().findLevelOneDepartmentWithKey(key, options);
+		Map<String, List<LevelOneDepartment>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getBelongsTo().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<LevelOneDepartment> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<LevelOneDepartment> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setLevelOneDepartmentList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SkillType的company的SkillTypeList
+	public SmartList<SkillType> loadOurSkillTypeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SkillType.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SkillType> loadedObjs = userContext.getDAOGroup().getSkillTypeDAO().findSkillTypeWithKey(key, options);
+		Map<String, List<SkillType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SkillType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SkillType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSkillTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:ResponsibilityType的company的ResponsibilityTypeList
+	public SmartList<ResponsibilityType> loadOurResponsibilityTypeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ResponsibilityType.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ResponsibilityType> loadedObjs = userContext.getDAOGroup().getResponsibilityTypeDAO().findResponsibilityTypeWithKey(key, options);
+		Map<String, List<ResponsibilityType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ResponsibilityType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ResponsibilityType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setResponsibilityTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:TerminationReason的company的TerminationReasonList
+	public SmartList<TerminationReason> loadOurTerminationReasonList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(TerminationReason.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<TerminationReason> loadedObjs = userContext.getDAOGroup().getTerminationReasonDAO().findTerminationReasonWithKey(key, options);
+		Map<String, List<TerminationReason>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<TerminationReason> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<TerminationReason> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setTerminationReasonList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:TerminationType的company的TerminationTypeList
+	public SmartList<TerminationType> loadOurTerminationTypeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(TerminationType.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<TerminationType> loadedObjs = userContext.getDAOGroup().getTerminationTypeDAO().findTerminationTypeWithKey(key, options);
+		Map<String, List<TerminationType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<TerminationType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<TerminationType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setTerminationTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:OccupationType的company的OccupationTypeList
+	public SmartList<OccupationType> loadOurOccupationTypeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OccupationType.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<OccupationType> loadedObjs = userContext.getDAOGroup().getOccupationTypeDAO().findOccupationTypeWithKey(key, options);
+		Map<String, List<OccupationType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<OccupationType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<OccupationType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setOccupationTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:LeaveType的company的LeaveTypeList
+	public SmartList<LeaveType> loadOurLeaveTypeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(LeaveType.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<LeaveType> loadedObjs = userContext.getDAOGroup().getLeaveTypeDAO().findLeaveTypeWithKey(key, options);
+		Map<String, List<LeaveType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<LeaveType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<LeaveType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setLeaveTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:SalaryGrade的company的SalaryGradeList
+	public SmartList<SalaryGrade> loadOurSalaryGradeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SalaryGrade.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<SalaryGrade> loadedObjs = userContext.getDAOGroup().getSalaryGradeDAO().findSalaryGradeWithKey(key, options);
+		Map<String, List<SalaryGrade>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<SalaryGrade> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<SalaryGrade> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setSalaryGradeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:InterviewType的company的InterviewTypeList
+	public SmartList<InterviewType> loadOurInterviewTypeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(InterviewType.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<InterviewType> loadedObjs = userContext.getDAOGroup().getInterviewTypeDAO().findInterviewTypeWithKey(key, options);
+		Map<String, List<InterviewType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<InterviewType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<InterviewType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setInterviewTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:TrainingCourseType的company的TrainingCourseTypeList
+	public SmartList<TrainingCourseType> loadOurTrainingCourseTypeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(TrainingCourseType.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<TrainingCourseType> loadedObjs = userContext.getDAOGroup().getTrainingCourseTypeDAO().findTrainingCourseTypeWithKey(key, options);
+		Map<String, List<TrainingCourseType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<TrainingCourseType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<TrainingCourseType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setTrainingCourseTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:PublicHoliday的company的PublicHolidayList
+	public SmartList<PublicHoliday> loadOurPublicHolidayList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(PublicHoliday.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<PublicHoliday> loadedObjs = userContext.getDAOGroup().getPublicHolidayDAO().findPublicHolidayWithKey(key, options);
+		Map<String, List<PublicHoliday>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<PublicHoliday> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<PublicHoliday> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setPublicHolidayList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:Employee的company的EmployeeList
+	public SmartList<Employee> loadOurEmployeeList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Employee> loadedObjs = userContext.getDAOGroup().getEmployeeDAO().findEmployeeWithKey(key, options);
+		Map<String, List<Employee>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Employee> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Employee> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setEmployeeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:Instructor的company的InstructorList
+	public SmartList<Instructor> loadOurInstructorList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Instructor.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<Instructor> loadedObjs = userContext.getDAOGroup().getInstructorDAO().findInstructorWithKey(key, options);
+		Map<String, List<Instructor>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<Instructor> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<Instructor> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setInstructorList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:CompanyTraining的company的CompanyTrainingList
+	public SmartList<CompanyTraining> loadOurCompanyTrainingList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(CompanyTraining.COMPANY_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<CompanyTraining> loadedObjs = userContext.getDAOGroup().getCompanyTrainingDAO().findCompanyTrainingWithKey(key, options);
+		Map<String, List<CompanyTraining>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getCompany().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<CompanyTraining> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<CompanyTraining> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setCompanyTrainingList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreCountryCenter> retailStoreCountryCenterList = ownerEntity.collectRefsWithType(RetailStoreCountryCenter.INTERNAL_TYPE);
@@ -6423,6 +7329,92 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServ
 	public SmartList<RetailStoreCountryCenter> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreCountryCenterMapper());
 	}
+<<<<<<< HEAD
+=======
+	
+	
+    
+	public Map<String, Integer> countBySql(String sql, Object[] params) {
+		if (params == null || params.length == 0) {
+			return new HashMap<>();
+		}
+		List<Map<String, Object>> result = this.getJdbcTemplateObject().queryForList(sql, params);
+		if (result == null || result.isEmpty()) {
+			return new HashMap<>();
+		}
+		Map<String, Integer> cntMap = new HashMap<>();
+		for (Map<String, Object> data : result) {
+			String key = (String) data.get("id");
+			Number value = (Number) data.get("count");
+			cntMap.put(key, value.intValue());
+		}
+		this.logSQLAndParameters("countBySql", sql, params, cntMap.size() + " Counts");
+		return cntMap;
+	}
+
+	public Integer singleCountBySql(String sql, Object[] params) {
+		Integer cnt = this.getJdbcTemplateObject().queryForObject(sql, params, Integer.class);
+		logSQLAndParameters("singleCountBySql", sql, params, cnt + "");
+		return cnt;
+	}
+
+	public BigDecimal summaryBySql(String sql, Object[] params) {
+		BigDecimal cnt = this.getJdbcTemplateObject().queryForObject(sql, params, BigDecimal.class);
+		logSQLAndParameters("summaryBySql", sql, params, cnt + "");
+		return cnt == null ? BigDecimal.ZERO : cnt;
+	}
+
+	public <T> List<T> queryForList(String sql, Object[] params, Class<T> claxx) {
+		List<T> result = this.getJdbcTemplateObject().queryForList(sql, params, claxx);
+		logSQLAndParameters("queryForList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public Map<String, Object> queryForMap(String sql, Object[] params) throws DataAccessException {
+		Map<String, Object> result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForMap(sql, params);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public <T> T queryForObject(String sql, Object[] params, Class<T> claxx) throws DataAccessException {
+		T result = null;
+		try {
+			result = this.getJdbcTemplateObject().queryForObject(sql, params, claxx);
+		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			// 空结果，返回null
+		}
+		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
+		return result;
+	}
+
+	public List<Map<String, Object>> queryAsMapList(String sql, Object[] params) {
+		List<Map<String, Object>> result = getJdbcTemplateObject().queryForList(sql, params);
+		logSQLAndParameters("queryAsMapList", sql, params, result.size() + " items");
+		return result;
+	}
+
+	public synchronized int updateBySql(String sql, Object[] params) {
+		int result = getJdbcTemplateObject().update(sql, params);
+		logSQLAndParameters("updateBySql", sql, params, result + " items");
+		return result;
+	}
+
+	public void execSqlWithRowCallback(String sql, Object[] args, RowCallbackHandler callback) {
+		getJdbcTemplateObject().query(sql, args, callback);
+	}
+
+	public void executeSql(String sql) {
+		logSQLAndParameters("executeSql", sql, new Object[] {}, "");
+		getJdbcTemplateObject().execute(sql);
+	}
+
+
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

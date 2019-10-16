@@ -4,6 +4,10 @@ package com.doublechaintech.retailscm.employeeperformance;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -51,9 +55,25 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 	
 		
 	public 	EmployeePerformance(){
+<<<<<<< HEAD
 		//lazy load for all the properties
 	}
 	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+=======
+		// lazy load for all the properties
+	}
+	public 	static EmployeePerformance withId(String id){
+		EmployeePerformance employeePerformance = new EmployeePerformance();
+		employeePerformance.setId(id);
+		employeePerformance.setVersion(Integer.MAX_VALUE);
+		return employeePerformance;
+	}
+	public 	static EmployeePerformance refById(String id){
+		return withId(id);
+	}
+	
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setEmployee( null );
 
@@ -97,6 +117,26 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 
 
 	
+<<<<<<< HEAD
+=======
+	public Object propertyOf(String property) {
+     	
+		if(EMPLOYEE_PROPERTY.equals(property)){
+			return getEmployee();
+		}
+		if(PERFORMANCE_COMMENT_PROPERTY.equals(property)){
+			return getPerformanceComment();
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
+
+
+	
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -110,6 +150,12 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeId(String id){
+		if(id != null) { setId(id);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmployee(Employee employee){
@@ -123,6 +169,12 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeEmployee(Employee employee){
+		if(employee != null) { setEmployee(employee);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployee(){
@@ -141,6 +193,12 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergePerformanceComment(String performanceComment){
+		if(performanceComment != null) { setPerformanceComment(performanceComment);}
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -154,6 +212,12 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
+=======
+	public void mergeVersion(int version){
+		setVersion(version);
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -210,6 +274,42 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		super.copyTo(baseDest);
 		return baseDest;
 	}
+<<<<<<< HEAD
+=======
+	public BaseEntity mergeDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeePerformance){
+		
+			
+			EmployeePerformance dest =(EmployeePerformance)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergeEmployee(getEmployee());
+			dest.mergePerformanceComment(getPerformanceComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		super.copyTo(baseDest);
+		return baseDest;
+	}
+	
+	public BaseEntity mergePrimitiveDataTo(BaseEntity baseDest){
+		
+		
+		if(baseDest instanceof EmployeePerformance){
+		
+			
+			EmployeePerformance dest =(EmployeePerformance)baseDest;
+		
+			dest.mergeId(getId());
+			dest.mergePerformanceComment(getPerformanceComment());
+			dest.mergeVersion(getVersion());
+
+		}
+		return baseDest;
+	}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

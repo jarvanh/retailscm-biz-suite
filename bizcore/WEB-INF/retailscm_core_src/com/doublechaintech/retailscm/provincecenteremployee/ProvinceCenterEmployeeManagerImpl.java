@@ -262,8 +262,14 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 			//will be good when the provinceCenterEmployee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProvinceCenterEmployee.
+<<<<<<< HEAD
 			
 			
+=======
+			if (provinceCenterEmployee.isChanged()){
+			
+			}
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			provinceCenterEmployee = saveProvinceCenterEmployee(userContext, provinceCenterEmployee, options);
 			return provinceCenterEmployee;
 			
@@ -332,7 +338,11 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+<<<<<<< HEAD
 		.done();
+=======
+		.analyzeAllLists().done();
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -440,20 +450,34 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
  //--------------------------------------------------------------
 	
 	 	
+<<<<<<< HEAD
  	protected RetailStoreProvinceCenter loadRetailStoreProvinceCenter(RetailscmUserContext userContext, String newProvinceCenterId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreProvinceCenterDAO().load(newProvinceCenterId, options);
+=======
+ 	protected ProvinceCenterDepartment loadProvinceCenterDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getProvinceCenterDepartmentDAO().load(newDepartmentId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
+<<<<<<< HEAD
  	protected ProvinceCenterDepartment loadProvinceCenterDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getProvinceCenterDepartmentDAO().load(newDepartmentId, options);
+=======
+ 	protected RetailStoreProvinceCenter loadRetailStoreProvinceCenter(RetailscmUserContext userContext, String newProvinceCenterId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getRetailStoreProvinceCenterDAO().load(newProvinceCenterId, options);
+>>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
