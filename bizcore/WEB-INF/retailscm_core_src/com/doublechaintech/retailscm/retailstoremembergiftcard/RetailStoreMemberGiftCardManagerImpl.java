@@ -254,14 +254,9 @@ public class RetailStoreMemberGiftCardManagerImpl extends CustomRetailscmChecker
 			//will be good when the retailStoreMemberGiftCard loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberGiftCard.
-<<<<<<< HEAD
-			
-			
-=======
 			if (retailStoreMemberGiftCard.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreMemberGiftCard = saveRetailStoreMemberGiftCard(userContext, retailStoreMemberGiftCard, options);
 			return retailStoreMemberGiftCard;
 			
@@ -331,11 +326,7 @@ public class RetailStoreMemberGiftCardManagerImpl extends CustomRetailscmChecker
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortRetailStoreMemberGiftCardConsumeRecordListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -578,13 +569,8 @@ public class RetailStoreMemberGiftCardManagerImpl extends CustomRetailscmChecker
 			String retailStoreMemberGiftCardConsumeRecordIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreMemberGiftCard(retailStoreMemberGiftCardId);
-<<<<<<< HEAD
-		for(String retailStoreMemberGiftCardConsumeRecordId: retailStoreMemberGiftCardConsumeRecordIds){
-			userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
-=======
 		for(String retailStoreMemberGiftCardConsumeRecordIdItem: retailStoreMemberGiftCardConsumeRecordIds){
 			userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberGiftCardManagerException.class);

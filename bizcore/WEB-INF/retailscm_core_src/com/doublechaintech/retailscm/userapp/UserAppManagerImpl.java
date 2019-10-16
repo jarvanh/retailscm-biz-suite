@@ -20,10 +20,7 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.RetailscmCheckerManager;
 import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
 
-<<<<<<< HEAD
-=======
 import com.doublechaintech.retailscm.quicklink.QuickLink;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.objectaccess.ObjectAccess;
 import com.doublechaintech.retailscm.listaccess.ListAccess;
 import com.doublechaintech.retailscm.secuser.SecUser;
@@ -156,13 +153,10 @@ public class UserAppManagerImpl extends CustomRetailscmCheckerManager implements
 		addAction(userContext, userApp, tokens,"@copy","cloneUserApp","cloneUserApp/"+userApp.getId()+"/","main","primary");
 		
 		addAction(userContext, userApp, tokens,"user_app.transfer_to_sec_user","transferToAnotherSecUser","transferToAnotherSecUser/"+userApp.getId()+"/","main","primary");
-<<<<<<< HEAD
-=======
 		addAction(userContext, userApp, tokens,"user_app.addQuickLink","addQuickLink","addQuickLink/"+userApp.getId()+"/","quickLinkList","primary");
 		addAction(userContext, userApp, tokens,"user_app.removeQuickLink","removeQuickLink","removeQuickLink/"+userApp.getId()+"/","quickLinkList","primary");
 		addAction(userContext, userApp, tokens,"user_app.updateQuickLink","updateQuickLink","updateQuickLink/"+userApp.getId()+"/","quickLinkList","primary");
 		addAction(userContext, userApp, tokens,"user_app.copyQuickLinkFrom","copyQuickLinkFrom","copyQuickLinkFrom/"+userApp.getId()+"/","quickLinkList","primary");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		addAction(userContext, userApp, tokens,"user_app.addListAccess","addListAccess","addListAccess/"+userApp.getId()+"/","listAccessList","primary");
 		addAction(userContext, userApp, tokens,"user_app.removeListAccess","removeListAccess","removeListAccess/"+userApp.getId()+"/","listAccessList","primary");
 		addAction(userContext, userApp, tokens,"user_app.updateListAccess","updateListAccess","updateListAccess/"+userApp.getId()+"/","listAccessList","primary");
@@ -289,14 +283,9 @@ public class UserAppManagerImpl extends CustomRetailscmCheckerManager implements
 			//will be good when the userApp loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserApp.
-<<<<<<< HEAD
-			
-			
-=======
 			if (userApp.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			userApp = saveUserApp(userContext, userApp, options);
 			return userApp;
 			
@@ -365,16 +354,10 @@ public class UserAppManagerImpl extends CustomRetailscmCheckerManager implements
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.sortListAccessListWith("id","desc")
-		.sortObjectAccessListWith("id","desc")
-		.done();
-=======
 		.sortQuickLinkListWith("id","desc")
 		.sortListAccessListWith("id","desc")
 		.sortObjectAccessListWith("id","desc")
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -589,8 +572,6 @@ public class UserAppManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	
 
-<<<<<<< HEAD
-=======
 	protected void checkParamsForAddingQuickLink(RetailscmUserContext userContext, String userAppId, String name, String icon, String imagePath, String linkTarget,String [] tokensExpr) throws Exception{
 		
 		
@@ -853,7 +834,6 @@ public class UserAppManagerImpl extends CustomRetailscmCheckerManager implements
 
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected void checkParamsForAddingListAccess(RetailscmUserContext userContext, String userAppId, String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission,String [] tokensExpr) throws Exception{
 		
 		
@@ -981,13 +961,8 @@ public class UserAppManagerImpl extends CustomRetailscmCheckerManager implements
 			String listAccessIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfUserApp(userAppId);
-<<<<<<< HEAD
-		for(String listAccessId: listAccessIds){
-			userContext.getChecker().checkIdOfListAccess(listAccessId);
-=======
 		for(String listAccessIdItem: listAccessIds){
 			userContext.getChecker().checkIdOfListAccess(listAccessIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(UserAppManagerException.class);
@@ -1294,13 +1269,8 @@ public class UserAppManagerImpl extends CustomRetailscmCheckerManager implements
 			String objectAccessIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfUserApp(userAppId);
-<<<<<<< HEAD
-		for(String objectAccessId: objectAccessIds){
-			userContext.getChecker().checkIdOfObjectAccess(objectAccessId);
-=======
 		for(String objectAccessIdItem: objectAccessIds){
 			userContext.getChecker().checkIdOfObjectAccess(objectAccessIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(UserAppManagerException.class);

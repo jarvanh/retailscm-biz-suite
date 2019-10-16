@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.warehouse.Warehouse;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.warehouse.WarehouseDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 
@@ -89,6 +86,7 @@ public interface ShippingSpaceDAO{
 	
 	
 	public SmartList<ShippingSpace> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ShippingSpace> findShippingSpaceByWarehouse(String warehouseId, Map<String,Object> options);
  	public int countShippingSpaceByWarehouse(String warehouseId, Map<String,Object> options);
@@ -97,14 +95,10 @@ public interface ShippingSpaceDAO{
  	public void analyzeShippingSpaceByWarehouse(SmartList<ShippingSpace> resultList, String warehouseId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:Goods的shippingSpace的GoodsList
 	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<ShippingSpace> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

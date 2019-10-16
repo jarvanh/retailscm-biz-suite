@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.userdomain;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.userwhitelist.UserWhiteListDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class UserDomainJDBCTemplateDAO extends RetailscmNamingServiceDAO implements UserDomainDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements UserDomainDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -242,14 +229,8 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	protected boolean isExtractUserWhiteListListEnabled(Map<String,Object> options){		
  		return checkOptions(options,UserDomainTokens.USER_WHITE_LIST_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeUserWhiteListListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,UserDomainTokens.USER_WHITE_LIST_LIST+".analyze");
-=======
  	protected boolean isAnalyzeUserWhiteListListEnabled(Map<String,Object> options){		 		
  		return UserDomainTokens.of(options).analyzeUserWhiteListListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveUserWhiteListListEnabled(Map<String,Object> options){
@@ -262,14 +243,8 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	protected boolean isExtractSecUserListEnabled(Map<String,Object> options){		
  		return checkOptions(options,UserDomainTokens.SEC_USER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSecUserListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,UserDomainTokens.SEC_USER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSecUserListEnabled(Map<String,Object> options){		 		
  		return UserDomainTokens.of(options).analyzeSecUserListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSecUserListEnabled(Map<String,Object> options){
@@ -634,15 +609,9 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 			return userDomain;
 		}
 		
-<<<<<<< HEAD
-		for(UserWhiteList userWhiteList: externalUserWhiteListList){
-
-			userWhiteList.clearFromAll();
-=======
 		for(UserWhiteList userWhiteListItem: externalUserWhiteListList){
 
 			userWhiteListItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -668,15 +637,9 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 			return userDomain;
 		}
 		
-<<<<<<< HEAD
-		for(SecUser secUser: externalSecUserList){
-
-			secUser.clearFromAll();
-=======
 		for(SecUser secUserItem: externalSecUserList){
 
 			secUserItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -895,8 +858,6 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	public void enhanceList(List<UserDomain> userDomainList) {		
 		this.enhanceListInternal(userDomainList, this.getUserDomainMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:UserWhiteList的domain的UserWhiteListList
@@ -946,7 +907,6 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<UserDomain> userDomainList = ownerEntity.collectRefsWithType(UserDomain.INTERNAL_TYPE);
@@ -979,8 +939,10 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	public SmartList<UserDomain> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getUserDomainMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -1064,7 +1026,6 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

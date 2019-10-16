@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerContact;
 import com.doublechaintech.retailscm.potentialcustomer.PotentialCustomer;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.potentialcustomer.PotentialCustomerDAO;
 import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerContactDAO;
 
@@ -65,6 +62,7 @@ public interface PotentialCustomerContactPersonDAO{
 	
 	
 	public SmartList<PotentialCustomerContactPerson> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<PotentialCustomerContactPerson> findPotentialCustomerContactPersonByPotentialCustomer(String potentialCustomerId, Map<String,Object> options);
  	public int countPotentialCustomerContactPersonByPotentialCustomer(String potentialCustomerId, Map<String,Object> options);
@@ -73,14 +71,10 @@ public interface PotentialCustomerContactPersonDAO{
  	public void analyzePotentialCustomerContactPersonByPotentialCustomer(SmartList<PotentialCustomerContactPerson> resultList, String potentialCustomerId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:PotentialCustomerContact的contactTo的PotentialCustomerContactList
 	public SmartList<PotentialCustomerContact> loadOurPotentialCustomerContactList(RetailscmUserContext userContext, List<PotentialCustomerContactPerson> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

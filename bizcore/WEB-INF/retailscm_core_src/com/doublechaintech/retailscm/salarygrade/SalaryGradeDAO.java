@@ -7,14 +7,11 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheetDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
@@ -86,6 +83,7 @@ public interface SalaryGradeDAO{
 	
 	
 	public SmartList<SalaryGrade> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<SalaryGrade> findSalaryGradeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countSalaryGradeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -94,9 +92,6 @@ public interface SalaryGradeDAO{
  	public void analyzeSalaryGradeByCompany(SmartList<SalaryGrade> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:Employee的currentSalaryGrade的EmployeeList
 	public SmartList<Employee> loadOurEmployeeList(RetailscmUserContext userContext, List<SalaryGrade> us, Map<String,Object> options) throws Exception;
@@ -105,6 +100,5 @@ public interface SalaryGradeDAO{
 	public SmartList<EmployeeSalarySheet> loadOurEmployeeSalarySheetList(RetailscmUserContext userContext, List<SalaryGrade> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

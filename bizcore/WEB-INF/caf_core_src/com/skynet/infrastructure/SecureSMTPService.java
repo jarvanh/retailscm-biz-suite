@@ -30,10 +30,7 @@ import javax.mail.internet.MimeUtility;
 import javax.mail.util.ByteArrayDataSource;
 
 import com.terapico.caf.BlobObject;
-<<<<<<< HEAD
-=======
 import com.terapico.utils.TextUtil;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 public class SecureSMTPService extends DefaultSMTPService {
 
@@ -91,15 +88,6 @@ public class SecureSMTPService extends DefaultSMTPService {
 	}
 	
 	
-<<<<<<< HEAD
-    protected String getPassword(){
-    	return System.getenv("SMTP_PASSWORD");
-    }
-    protected String getUsername(){
-    	return System.getenv("SMTP_USERNAME");
-    }
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
     public void sendWithAttachment(String toExpr, String subject, String content, List<BlobObject> attachments)
 			throws Exception {
     	sendEmailInternal(toExpr, subject, content, attachments);
@@ -121,17 +109,10 @@ public class SecureSMTPService extends DefaultSMTPService {
 		// Replase the value assigned to smtpHostName String with your
 		// smtphost name
 		// eg : String smtpHostName="121.34.56.78";
-<<<<<<< HEAD
-		String fromAddress = "report@bettbio.com";
-		String smtpHost="smtp.bettbio.com";
-		props.put("mail.smtp.from", "report@bettbio.com");
-		props.put("mail.smtp.host", "42.120.219.29");
-=======
 		String fromAddress = this.getSmtpSenderAddress();
 		String smtpHost=getSmtpHost();
 		props.put("mail.smtp.from", this.getSmtpSenderName());
 		props.put("mail.smtp.host", this.getSmtpHost());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		props.put("mail.smtp.port", 465);
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable","true");
@@ -141,11 +122,7 @@ public class SecureSMTPService extends DefaultSMTPService {
 		//SMTPAuthenticator auth = new SMTPAuthenticator();
 		Session session = Session.getInstance(props,  null);
 		Transport transport = session.getTransport("smtps");
-<<<<<<< HEAD
-		transport.connect(smtpHost, 465, getUsername(), getPassword());
-=======
 		transport.connect(smtpHost, 465, getSmtpUserName(), getSmtpPassword());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 		
 		
@@ -191,15 +168,8 @@ public class SecureSMTPService extends DefaultSMTPService {
 		// Replase the value assigned to smtpHostName String with your
 		// smtphost name
 		// eg : String smtpHostName="121.34.56.78";
-<<<<<<< HEAD
-		String fromAddress = "report@bettbio.com";
-		String smtpHost="smtp.bettbio.com";
-		props.put("mail.smtp.from", "report@bettbio.com");
-		props.put("mail.smtp.host", "42.120.219.29");
-=======
 		props.put("mail.smtp.from", getSmtpSenderName());
 		props.put("mail.smtp.host", getSmtpHost());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		props.put("mail.smtp.port", 465);
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable","true");
@@ -209,11 +179,7 @@ public class SecureSMTPService extends DefaultSMTPService {
 		//SMTPAuthenticator auth = new SMTPAuthenticator();
 		Session session = Session.getInstance(props,  null);
 		Transport transport = session.getTransport("smtps");
-<<<<<<< HEAD
-		transport.connect(smtpHost, 465, getUsername(), getPassword());
-=======
 		transport.connect(getSmtpHost(), 465, getSmtpUserName(), getSmtpPassword());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		Message msg = new MimeMessage(session);
 		msg.setFrom(new InternetAddress("report@bettbio.com"));
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));

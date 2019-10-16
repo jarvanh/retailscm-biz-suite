@@ -38,8 +38,6 @@ public class GoodsPackagingTokens extends CommonTokens{
 	protected GoodsPackagingTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  GoodsPackagingTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		GoodsPackagingTokens tokens = new GoodsPackagingTokens(options);
@@ -49,7 +47,6 @@ public class GoodsPackagingTokens extends CommonTokens{
 	protected GoodsPackagingTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public GoodsPackagingTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -93,14 +90,11 @@ public class GoodsPackagingTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public GoodsPackagingTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String GOODS_LIST = "goodsList";
 	public String getGoodsList(){
@@ -116,15 +110,11 @@ public class GoodsPackagingTokens extends CommonTokens{
 	}
 	public boolean analyzeGoodsListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), GOODS_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), GOODS_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GoodsPackagingTokens extractMoreFromGoodsList(String idsSeperatedWithComma){		
 		addSimpleOptions(GOODS_LIST+".extractIds", idsSeperatedWithComma);

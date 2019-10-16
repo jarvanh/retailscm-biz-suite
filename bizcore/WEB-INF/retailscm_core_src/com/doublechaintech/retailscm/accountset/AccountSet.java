@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.accountset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -86,11 +83,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	AccountSet(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static AccountSet withId(String id){
@@ -104,7 +96,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCountryCenter( null );
 		setRetailStore( null );
@@ -307,8 +298,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -368,7 +357,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -382,12 +370,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -401,12 +386,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setYearSet(String yearSet){
@@ -420,12 +402,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeYearSet(String yearSet){
 		if(yearSet != null) { setYearSet(yearSet);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEffectiveDate(Date effectiveDate){
@@ -439,12 +418,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeEffectiveDate(Date effectiveDate){
 		setEffectiveDate(effectiveDate);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingSystem(String accountingSystem){
@@ -458,12 +434,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountingSystem(String accountingSystem){
 		if(accountingSystem != null) { setAccountingSystem(accountingSystem);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDomesticCurrencyCode(String domesticCurrencyCode){
@@ -477,12 +450,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDomesticCurrencyCode(String domesticCurrencyCode){
 		if(domesticCurrencyCode != null) { setDomesticCurrencyCode(domesticCurrencyCode);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDomesticCurrencyName(String domesticCurrencyName){
@@ -496,12 +466,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDomesticCurrencyName(String domesticCurrencyName){
 		if(domesticCurrencyName != null) { setDomesticCurrencyName(domesticCurrencyName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOpeningBank(String openingBank){
@@ -515,12 +482,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOpeningBank(String openingBank){
 		if(openingBank != null) { setOpeningBank(openingBank);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountNumber(String accountNumber){
@@ -534,12 +498,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountNumber(String accountNumber){
 		if(accountNumber != null) { setAccountNumber(accountNumber);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCountryCenter(RetailStoreCountryCenter countryCenter){
@@ -553,12 +514,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCountryCenter(RetailStoreCountryCenter countryCenter){
 		if(countryCenter != null) { setCountryCenter(countryCenter);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCountryCenter(){
@@ -577,12 +535,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeRetailStore(RetailStore retailStore){
 		if(retailStore != null) { setRetailStore(retailStore);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearRetailStore(){
@@ -601,12 +556,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeGoodsSupplier(GoodsSupplier goodsSupplier){
 		if(goodsSupplier != null) { setGoodsSupplier(goodsSupplier);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearGoodsSupplier(){
@@ -625,12 +577,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -644,12 +593,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -682,9 +628,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		}
 		getAccountingSubjectList().addAll(accountingSubjectList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountingSubjectList(SmartList<AccountingSubject> accountingSubjectList){
 		if(accountingSubjectList==null){
 			return;
@@ -695,7 +638,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		addAccountingSubjectList( accountingSubjectList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingSubject removeAccountingSubject(AccountingSubject accountingSubjectIndex){
 		
 		int index = getAccountingSubjectList().indexOf(accountingSubjectIndex);
@@ -793,9 +735,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		}
 		getAccountingPeriodList().addAll(accountingPeriodList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountingPeriodList(SmartList<AccountingPeriod> accountingPeriodList){
 		if(accountingPeriodList==null){
 			return;
@@ -806,7 +745,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		addAccountingPeriodList( accountingPeriodList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingPeriod removeAccountingPeriod(AccountingPeriod accountingPeriodIndex){
 		
 		int index = getAccountingPeriodList().indexOf(accountingPeriodIndex);
@@ -904,9 +842,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		}
 		getAccountingDocumentTypeList().addAll(accountingDocumentTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountingDocumentTypeList(SmartList<AccountingDocumentType> accountingDocumentTypeList){
 		if(accountingDocumentTypeList==null){
 			return;
@@ -917,7 +852,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		addAccountingDocumentTypeList( accountingDocumentTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingDocumentType removeAccountingDocumentType(AccountingDocumentType accountingDocumentTypeIndex){
 		
 		int index = getAccountingDocumentTypeList().indexOf(accountingDocumentTypeIndex);
@@ -1085,8 +1019,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -1141,7 +1073,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

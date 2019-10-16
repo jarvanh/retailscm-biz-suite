@@ -258,14 +258,9 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 			//will be good when the consumerOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderLineItem.
-<<<<<<< HEAD
-			
-			
-=======
 			if (consumerOrderLineItem.isChanged()){
 			consumerOrderLineItem.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			consumerOrderLineItem = saveConsumerOrderLineItem(userContext, consumerOrderLineItem, options);
 			return consumerOrderLineItem;
 			
@@ -334,11 +329,7 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

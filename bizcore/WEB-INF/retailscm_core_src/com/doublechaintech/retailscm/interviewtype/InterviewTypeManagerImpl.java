@@ -254,14 +254,9 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 			//will be good when the interviewType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to InterviewType.
-<<<<<<< HEAD
-			
-			
-=======
 			if (interviewType.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			interviewType = saveInterviewType(userContext, interviewType, options);
 			return interviewType;
 			
@@ -331,11 +326,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeInterviewListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -568,13 +559,8 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 			String employeeInterviewIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-<<<<<<< HEAD
-		for(String employeeInterviewId: employeeInterviewIds){
-			userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewId);
-=======
 		for(String employeeInterviewIdItem: employeeInterviewIds){
 			userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);

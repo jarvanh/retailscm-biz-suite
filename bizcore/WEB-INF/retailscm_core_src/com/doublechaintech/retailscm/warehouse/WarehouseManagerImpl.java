@@ -294,14 +294,9 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			//will be good when the warehouse loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Warehouse.
-<<<<<<< HEAD
-			
-			
-=======
 			if (warehouse.isChanged()){
 			warehouse.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			warehouse = saveWarehouse(userContext, warehouse, options);
 			return warehouse;
 			
@@ -377,11 +372,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		.sortShippingSpaceListWith("id","desc")
 		.sortDamageSpaceListWith("id","desc")
 		.sortWarehouseAssetListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -612,13 +603,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String storageSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-<<<<<<< HEAD
-		for(String storageSpaceId: storageSpaceIds){
-			userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-=======
 		for(String storageSpaceIdItem: storageSpaceIds){
 			userContext.getChecker().checkIdOfStorageSpace(storageSpaceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -888,13 +874,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String smartPalletIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-<<<<<<< HEAD
-		for(String smartPalletId: smartPalletIds){
-			userContext.getChecker().checkIdOfSmartPallet(smartPalletId);
-=======
 		for(String smartPalletIdItem: smartPalletIds){
 			userContext.getChecker().checkIdOfSmartPallet(smartPalletIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -1164,13 +1145,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String supplierSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-<<<<<<< HEAD
-		for(String supplierSpaceId: supplierSpaceIds){
-			userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-=======
 		for(String supplierSpaceIdItem: supplierSpaceIds){
 			userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -1445,13 +1421,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String receivingSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-<<<<<<< HEAD
-		for(String receivingSpaceId: receivingSpaceIds){
-			userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceId);
-=======
 		for(String receivingSpaceIdItem: receivingSpaceIds){
 			userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -1730,13 +1701,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String shippingSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-<<<<<<< HEAD
-		for(String shippingSpaceId: shippingSpaceIds){
-			userContext.getChecker().checkIdOfShippingSpace(shippingSpaceId);
-=======
 		for(String shippingSpaceIdItem: shippingSpaceIds){
 			userContext.getChecker().checkIdOfShippingSpace(shippingSpaceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -2010,13 +1976,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String damageSpaceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-<<<<<<< HEAD
-		for(String damageSpaceId: damageSpaceIds){
-			userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-=======
 		for(String damageSpaceIdItem: damageSpaceIds){
 			userContext.getChecker().checkIdOfDamageSpace(damageSpaceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -2271,13 +2232,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			String warehouseAssetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-<<<<<<< HEAD
-		for(String warehouseAssetId: warehouseAssetIds){
-			userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetId);
-=======
 		for(String warehouseAssetIdItem: warehouseAssetIds){
 			userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);

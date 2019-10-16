@@ -16,11 +16,7 @@ public class SupplyOrderTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-<<<<<<< HEAD
-	static final String TABLE_NAME="supply_order_data";
-=======
 	public static final String TABLE_NAME="supply_order_data";
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_BUYER = "buyer";
 	static final String COLUMN_SELLER = "seller";
@@ -36,17 +32,10 @@ public class SupplyOrderTable{
 	static final String COLUMN_CURRENT_STATUS = "current_status";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_BUYER, COLUMN_SELLER, COLUMN_TITLE, COLUMN_TOTAL_AMOUNT, COLUMN_CONFIRMATION, COLUMN_APPROVAL, COLUMN_PROCESSING, COLUMN_PICKING, COLUMN_SHIPMENT, COLUMN_DELIVERY, COLUMN_LAST_UPDATE_TIME, COLUMN_CURRENT_STATUS, 
-		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_BUYER, COLUMN_SELLER, COLUMN_TITLE, COLUMN_TOTAL_AMOUNT, COLUMN_CONFIRMATION, COLUMN_APPROVAL, COLUMN_PROCESSING, COLUMN_PICKING, COLUMN_SHIPMENT, COLUMN_DELIVERY, COLUMN_LAST_UPDATE_TIME, COLUMN_CURRENT_STATUS, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		COLUMN_BUYER, COLUMN_SELLER, COLUMN_TITLE, COLUMN_TOTAL_AMOUNT, COLUMN_CONFIRMATION, COLUMN_APPROVAL, COLUMN_PROCESSING, COLUMN_PICKING, COLUMN_SHIPMENT, COLUMN_DELIVERY, COLUMN_LAST_UPDATE_TIME, COLUMN_CURRENT_STATUS
 		};
 	

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.retailstoremembergiftcard;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,11 +59,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 	
 		
 	public 	RetailStoreMemberGiftCard(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static RetailStoreMemberGiftCard withId(String id){
@@ -80,7 +72,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -163,8 +154,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -192,7 +181,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -206,12 +194,9 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -225,12 +210,9 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOwner(RetailStoreMember owner){
@@ -244,12 +226,9 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOwner(RetailStoreMember owner){
 		if(owner != null) { setOwner(owner);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -268,12 +247,9 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeNumber(String number){
 		if(number != null) { setNumber(number);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setRemain(BigDecimal remain){
@@ -287,12 +263,9 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeRemain(BigDecimal remain){
 		setRemain(remain);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -306,12 +279,9 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -344,9 +314,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		}
 		getRetailStoreMemberGiftCardConsumeRecordList().addAll(retailStoreMemberGiftCardConsumeRecordList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreMemberGiftCardConsumeRecordList(SmartList<RetailStoreMemberGiftCardConsumeRecord> retailStoreMemberGiftCardConsumeRecordList){
 		if(retailStoreMemberGiftCardConsumeRecordList==null){
 			return;
@@ -357,7 +324,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		addRetailStoreMemberGiftCardConsumeRecordList( retailStoreMemberGiftCardConsumeRecordList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMemberGiftCardConsumeRecord removeRetailStoreMemberGiftCardConsumeRecord(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecordIndex){
 		
 		int index = getRetailStoreMemberGiftCardConsumeRecordList().indexOf(retailStoreMemberGiftCardConsumeRecordIndex);
@@ -491,8 +457,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -531,7 +495,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

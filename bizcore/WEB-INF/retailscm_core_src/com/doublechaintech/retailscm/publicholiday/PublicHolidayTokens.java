@@ -38,8 +38,6 @@ public class PublicHolidayTokens extends CommonTokens{
 	protected PublicHolidayTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  PublicHolidayTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		PublicHolidayTokens tokens = new PublicHolidayTokens(options);
@@ -49,7 +47,6 @@ public class PublicHolidayTokens extends CommonTokens{
 	protected PublicHolidayTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public PublicHolidayTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -94,14 +91,11 @@ public class PublicHolidayTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public PublicHolidayTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String COMPANY = "company";
 	public String getCompany(){

@@ -307,14 +307,9 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
 			//will be good when the transportTask loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TransportTask.
-<<<<<<< HEAD
-			
-			
-=======
 			if (transportTask.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			transportTask = saveTransportTask(userContext, transportTask, options);
 			return transportTask;
 			
@@ -385,11 +380,7 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
 		return tokens().allTokens()
 		.sortGoodsListWith("id","desc")
 		.sortTransportTaskTrackListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -595,68 +586,40 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected TruckDriver loadTruckDriver(RetailscmUserContext userContext, String newDriverId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTruckDriverDAO().load(newDriverId, options);
-=======
  	protected TransportFleet loadTransportFleet(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTransportFleetDAO().load(newBelongsToId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected TransportFleet loadTransportFleet(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTransportFleetDAO().load(newBelongsToId, options);
-=======
  	protected TruckDriver loadTruckDriver(RetailscmUserContext userContext, String newDriverId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTruckDriverDAO().load(newDriverId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected TransportTruck loadTransportTruck(RetailscmUserContext userContext, String newTruckId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTransportTruckDAO().load(newTruckId, options);
-=======
  	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newEndId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreDAO().load(newEndId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newEndId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newEndId, options);
-=======
  	protected TransportTruck loadTransportTruck(RetailscmUserContext userContext, String newTruckId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTransportTruckDAO().load(newTruckId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1009,13 +972,8 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTransportTask(transportTaskId);
-<<<<<<< HEAD
-		for(String goodsId: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsId);
-=======
 		for(String goodsIdItem: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TransportTaskManagerException.class);
@@ -1308,13 +1266,8 @@ public class TransportTaskManagerImpl extends CustomRetailscmCheckerManager impl
 			String transportTaskTrackIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTransportTask(transportTaskId);
-<<<<<<< HEAD
-		for(String transportTaskTrackId: transportTaskTrackIds){
-			userContext.getChecker().checkIdOfTransportTaskTrack(transportTaskTrackId);
-=======
 		for(String transportTaskTrackIdItem: transportTaskTrackIds){
 			userContext.getChecker().checkIdOfTransportTaskTrack(transportTaskTrackIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TransportTaskManagerException.class);

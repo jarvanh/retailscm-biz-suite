@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
@@ -22,7 +20,6 @@ import com.doublechaintech.retailscm.shippingspace.ShippingSpace;
 import com.doublechaintech.retailscm.transporttask.TransportTask;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.smartpallet.SmartPalletDAO;
 import com.doublechaintech.retailscm.goodspackaging.GoodsPackagingDAO;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocationDAO;
@@ -83,6 +80,7 @@ public interface GoodsDAO{
 	
 	
 	public SmartList<Goods> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Goods> findGoodsBySku(String skuId, Map<String,Object> options);
  	public int countGoodsBySku(String skuId, Map<String,Object> options);
@@ -163,14 +161,10 @@ public interface GoodsDAO{
  	public void analyzeGoodsByPackaging(SmartList<Goods> resultList, String goodsPackagingId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:GoodsMovement的goods的GoodsMovementList
 	public SmartList<GoodsMovement> loadOurGoodsMovementList(RetailscmUserContext userContext, List<Goods> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

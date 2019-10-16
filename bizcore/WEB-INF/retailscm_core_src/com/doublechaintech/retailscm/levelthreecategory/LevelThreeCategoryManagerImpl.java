@@ -243,14 +243,9 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 			//will be good when the levelThreeCategory loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LevelThreeCategory.
-<<<<<<< HEAD
-			
-			
-=======
 			if (levelThreeCategory.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			levelThreeCategory = saveLevelThreeCategory(userContext, levelThreeCategory, options);
 			return levelThreeCategory;
 			
@@ -320,11 +315,7 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortProductListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -555,13 +546,8 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 			String productIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-<<<<<<< HEAD
-		for(String productId: productIds){
-			userContext.getChecker().checkIdOfProduct(productId);
-=======
 		for(String productIdItem: productIds){
 			userContext.getChecker().checkIdOfProduct(productIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);

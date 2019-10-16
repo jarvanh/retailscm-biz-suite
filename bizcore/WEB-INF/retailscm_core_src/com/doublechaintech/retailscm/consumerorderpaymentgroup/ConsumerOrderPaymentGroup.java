@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.consumerorderpaymentgroup;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,11 +54,6 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 	
 		
 	public 	ConsumerOrderPaymentGroup(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static ConsumerOrderPaymentGroup withId(String id){
@@ -75,7 +67,6 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBizOrder( null );
 
@@ -138,8 +129,6 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -160,7 +149,6 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -174,12 +162,9 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -193,12 +178,9 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBizOrder(ConsumerOrder bizOrder){
@@ -212,12 +194,9 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBizOrder(ConsumerOrder bizOrder){
 		if(bizOrder != null) { setBizOrder(bizOrder);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBizOrder(){
@@ -236,12 +215,9 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCardNumber(String cardNumber){
 		if(cardNumber != null) { setCardNumber(cardNumber);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -255,12 +231,9 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -319,8 +292,6 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -356,7 +327,6 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

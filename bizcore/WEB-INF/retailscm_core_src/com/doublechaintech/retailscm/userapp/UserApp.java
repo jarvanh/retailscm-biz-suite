@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.userapp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -15,10 +12,7 @@ import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-<<<<<<< HEAD
-=======
 import com.doublechaintech.retailscm.quicklink.QuickLink;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.objectaccess.ObjectAccess;
 import com.doublechaintech.retailscm.listaccess.ListAccess;
 import com.doublechaintech.retailscm.secuser.SecUser;
@@ -38,10 +32,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	public static final String LOCATION_PROPERTY              = "location"          ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
-<<<<<<< HEAD
-=======
 	public static final String QUICK_LINK_LIST                          = "quickLinkList"     ;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public static final String LIST_ACCESS_LIST                         = "listAccessList"    ;
 	public static final String OBJECT_ACCESS_LIST                       = "objectAccessList"  ;
 
@@ -76,20 +67,12 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
-<<<<<<< HEAD
-=======
 	protected		SmartList<QuickLink>	mQuickLinkList      ;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected		SmartList<ListAccess>	mListAccessList     ;
 	protected		SmartList<ObjectAccess>	mObjectAccessList   ;
 	
 		
 	public 	UserApp(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static UserApp withId(String id){
@@ -103,7 +86,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setSecUser( null );
 
@@ -121,10 +103,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		setObjectId(objectId);
 		setLocation(location);
 
-<<<<<<< HEAD
-=======
 		this.mQuickLinkList = new SmartList<QuickLink>();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		this.mListAccessList = new SmartList<ListAccess>();
 		this.mObjectAccessList = new SmartList<ObjectAccess>();	
 	}
@@ -267,8 +246,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(TITLE_PROPERTY.equals(property)){
@@ -316,7 +293,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -330,12 +306,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTitle(String title){
@@ -349,12 +322,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTitle(String title){
 		if(title != null) { setTitle(title);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSecUser(SecUser secUser){
@@ -368,12 +338,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSecUser(SecUser secUser){
 		if(secUser != null) { setSecUser(secUser);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearSecUser(){
@@ -392,12 +359,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAppIcon(String appIcon){
 		if(appIcon != null) { setAppIcon(appIcon);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFullAccess(boolean fullAccess){
@@ -411,12 +375,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFullAccess(boolean fullAccess){
 		setFullAccess(fullAccess);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPermission(String permission){
@@ -430,12 +391,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePermission(String permission){
 		if(permission != null) { setPermission(permission);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setObjectType(String objectType){
@@ -449,12 +407,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeObjectType(String objectType){
 		if(objectType != null) { setObjectType(objectType);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setObjectId(String objectId){
@@ -468,12 +423,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeObjectId(String objectId){
 		if(objectId != null) { setObjectId(objectId);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearObjectId(){
@@ -492,12 +444,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLocation(String location){
 		if(location != null) { setLocation(location);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -511,11 +460,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-	
-	
-
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
@@ -629,7 +573,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SmartList<ListAccess> getListAccessList(){
 		if(this.mListAccessList == null){
 			this.mListAccessList = new SmartList<ListAccess>();
@@ -659,9 +602,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		}
 		getListAccessList().addAll(listAccessList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeListAccessList(SmartList<ListAccess> listAccessList){
 		if(listAccessList==null){
 			return;
@@ -672,7 +612,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		addListAccessList( listAccessList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ListAccess removeListAccess(ListAccess listAccessIndex){
 		
 		int index = getListAccessList().indexOf(listAccessIndex);
@@ -770,9 +709,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		}
 		getObjectAccessList().addAll(objectAccessList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeObjectAccessList(SmartList<ObjectAccess> objectAccessList){
 		if(objectAccessList==null){
 			return;
@@ -783,7 +719,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		addObjectAccessList( objectAccessList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ObjectAccess removeObjectAccess(ObjectAccess objectAccessIndex){
 		
 		int index = getObjectAccessList().indexOf(objectAccessIndex);
@@ -862,10 +797,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	public List<BaseEntity>  collectRefercencesFromLists(String internalType){
 		
 		List<BaseEntity> entityList = new ArrayList<BaseEntity>();
-<<<<<<< HEAD
-=======
 		collectFromList(this, entityList, getQuickLinkList(), internalType);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		collectFromList(this, entityList, getListAccessList(), internalType);
 		collectFromList(this, entityList, getObjectAccessList(), internalType);
 
@@ -875,10 +807,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	public  List<SmartList<?>> getAllRelatedLists() {
 		List<SmartList<?>> listOfList = new ArrayList<SmartList<?>>();
 		
-<<<<<<< HEAD
-=======
 		listOfList.add( getQuickLinkList());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		listOfList.add( getListAccessList());
 		listOfList.add( getObjectAccessList());
 			
@@ -900,14 +829,11 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, OBJECT_ID_PROPERTY, getObjectId());
 		appendKeyValuePair(result, LOCATION_PROPERTY, getLocation());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
-<<<<<<< HEAD
-=======
 		appendKeyValuePair(result, QUICK_LINK_LIST, getQuickLinkList());
 		if(!getQuickLinkList().isEmpty()){
 			appendKeyValuePair(result, "quickLinkCount", getQuickLinkList().getTotalCount());
 			appendKeyValuePair(result, "quickLinkCurrentPageNumber", getQuickLinkList().getCurrentPageNumber());
 		}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		appendKeyValuePair(result, LIST_ACCESS_LIST, getListAccessList());
 		if(!getListAccessList().isEmpty()){
 			appendKeyValuePair(result, "listAccessCount", getListAccessList().getTotalCount());
@@ -942,10 +868,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 			dest.setObjectId(getObjectId());
 			dest.setLocation(getLocation());
 			dest.setVersion(getVersion());
-<<<<<<< HEAD
-=======
 			dest.setQuickLinkList(getQuickLinkList());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			dest.setListAccessList(getListAccessList());
 			dest.setObjectAccessList(getObjectAccessList());
 
@@ -953,8 +876,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -1003,7 +924,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

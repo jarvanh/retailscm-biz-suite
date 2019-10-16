@@ -16,11 +16,7 @@ public class LoginHistoryTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-<<<<<<< HEAD
-	static final String TABLE_NAME="login_history_data";
-=======
 	public static final String TABLE_NAME="login_history_data";
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_LOGIN_TIME = "login_time";
 	static final String COLUMN_FROM_IP = "from_ip";
@@ -28,17 +24,10 @@ public class LoginHistoryTable{
 	static final String COLUMN_SEC_USER = "sec_user";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_LOGIN_TIME, COLUMN_FROM_IP, COLUMN_DESCRIPTION, COLUMN_SEC_USER, 
-		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_LOGIN_TIME, COLUMN_FROM_IP, COLUMN_DESCRIPTION, COLUMN_SEC_USER, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		COLUMN_LOGIN_TIME, COLUMN_FROM_IP, COLUMN_DESCRIPTION, COLUMN_SEC_USER
 		};
 	

@@ -38,8 +38,6 @@ public class SupplierProductTokens extends CommonTokens{
 	protected SupplierProductTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  SupplierProductTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		SupplierProductTokens tokens = new SupplierProductTokens(options);
@@ -49,7 +47,6 @@ public class SupplierProductTokens extends CommonTokens{
 	protected SupplierProductTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public SupplierProductTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -95,14 +92,11 @@ public class SupplierProductTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public SupplierProductTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String SUPPLIER = "supplier";
 	public String getSupplier(){
@@ -128,15 +122,11 @@ public class SupplierProductTokens extends CommonTokens{
 	}
 	public boolean analyzeProductSupplyDurationListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), PRODUCT_SUPPLY_DURATION_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), PRODUCT_SUPPLY_DURATION_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public SupplierProductTokens extractMoreFromProductSupplyDurationList(String idsSeperatedWithComma){		
 		addSimpleOptions(PRODUCT_SUPPLY_DURATION_LIST+".extractIds", idsSeperatedWithComma);

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.formaction;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -63,11 +60,6 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	FormAction(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static FormAction withId(String id){
@@ -81,7 +73,6 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setForm( null );
 
@@ -201,8 +192,6 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(LABEL_PROPERTY.equals(property)){
@@ -232,7 +221,6 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -246,12 +234,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLabel(String label){
@@ -265,12 +250,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLabel(String label){
 		if(label != null) { setLabel(label);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLocaleKey(String localeKey){
@@ -284,12 +266,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLocaleKey(String localeKey){
 		if(localeKey != null) { setLocaleKey(localeKey);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setActionKey(String actionKey){
@@ -303,12 +282,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeActionKey(String actionKey){
 		if(actionKey != null) { setActionKey(actionKey);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLevel(String level){
@@ -322,12 +298,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLevel(String level){
 		if(level != null) { setLevel(level);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setUrl(String url){
@@ -341,12 +314,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeUrl(String url){
 		if(url != null) { setUrl(url);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setForm(GenericForm form){
@@ -360,12 +330,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeForm(GenericForm form){
 		if(form != null) { setForm(form);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearForm(){
@@ -384,12 +351,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -454,8 +418,6 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -497,7 +459,6 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
@@ -523,14 +484,3 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 
 }
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

@@ -38,8 +38,6 @@ public class GoodsSupplierTokens extends CommonTokens{
 	protected GoodsSupplierTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  GoodsSupplierTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		GoodsSupplierTokens tokens = new GoodsSupplierTokens(options);
@@ -49,7 +47,6 @@ public class GoodsSupplierTokens extends CommonTokens{
 	protected GoodsSupplierTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public GoodsSupplierTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -97,14 +94,11 @@ public class GoodsSupplierTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public GoodsSupplierTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String BELONGTO = "belongTo";
 	public String getBelongTo(){
@@ -130,15 +124,11 @@ public class GoodsSupplierTokens extends CommonTokens{
 	}
 	public boolean analyzeSupplierProductListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), SUPPLIER_PRODUCT_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), SUPPLIER_PRODUCT_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GoodsSupplierTokens extractMoreFromSupplierProductList(String idsSeperatedWithComma){		
 		addSimpleOptions(SUPPLIER_PRODUCT_LIST+".extractIds", idsSeperatedWithComma);
@@ -200,15 +190,11 @@ public class GoodsSupplierTokens extends CommonTokens{
 	}
 	public boolean analyzeSupplyOrderListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), SUPPLY_ORDER_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), SUPPLY_ORDER_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GoodsSupplierTokens extractMoreFromSupplyOrderList(String idsSeperatedWithComma){		
 		addSimpleOptions(SUPPLY_ORDER_LIST+".extractIds", idsSeperatedWithComma);
@@ -270,15 +256,11 @@ public class GoodsSupplierTokens extends CommonTokens{
 	}
 	public boolean analyzeAccountSetListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), ACCOUNT_SET_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), ACCOUNT_SET_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GoodsSupplierTokens extractMoreFromAccountSetList(String idsSeperatedWithComma){		
 		addSimpleOptions(ACCOUNT_SET_LIST+".extractIds", idsSeperatedWithComma);

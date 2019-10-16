@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.accountingdocumentconfirmation;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentConfirmationDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingDocumentConfirmationDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 	protected boolean isExtractAccountingDocumentListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountingDocumentConfirmationTokens.ACCOUNTING_DOCUMENT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountingDocumentListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountingDocumentConfirmationTokens.ACCOUNTING_DOCUMENT_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountingDocumentListEnabled(Map<String,Object> options){		 		
  		return AccountingDocumentConfirmationTokens.of(options).analyzeAccountingDocumentListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingDocumentListEnabled(Map<String,Object> options){
@@ -525,15 +506,9 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 			return accountingDocumentConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
-
-			accountingDocument.clearFromAll();
-=======
 		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
 
 			accountingDocumentItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -563,15 +538,9 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 			return accountingDocumentConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
-			accountingDocument.clearAccountingPeriod();
-			accountingDocument.clearConfirmation();
-=======
 		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
 			accountingDocumentItem.clearAccountingPeriod();
 			accountingDocumentItem.clearConfirmation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -613,15 +582,9 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 			return accountingDocumentConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
-			accountingDocument.clearDocumentType();
-			accountingDocument.clearConfirmation();
-=======
 		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
 			accountingDocumentItem.clearDocumentType();
 			accountingDocumentItem.clearConfirmation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -759,8 +722,6 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 	public void enhanceList(List<AccountingDocumentConfirmation> accountingDocumentConfirmationList) {		
 		this.enhanceListInternal(accountingDocumentConfirmationList, this.getAccountingDocumentConfirmationMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:AccountingDocument的confirmation的AccountingDocumentList
@@ -787,7 +748,6 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<AccountingDocumentConfirmation> accountingDocumentConfirmationList = ownerEntity.collectRefsWithType(AccountingDocumentConfirmation.INTERNAL_TYPE);
@@ -820,8 +780,10 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 	public SmartList<AccountingDocumentConfirmation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentConfirmationMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -905,7 +867,6 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

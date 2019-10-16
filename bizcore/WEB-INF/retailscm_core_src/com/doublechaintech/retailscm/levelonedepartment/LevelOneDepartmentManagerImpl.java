@@ -258,14 +258,9 @@ public class LevelOneDepartmentManagerImpl extends CustomRetailscmCheckerManager
 			//will be good when the levelOneDepartment loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LevelOneDepartment.
-<<<<<<< HEAD
-			
-			
-=======
 			if (levelOneDepartment.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			levelOneDepartment = saveLevelOneDepartment(userContext, levelOneDepartment, options);
 			return levelOneDepartment;
 			
@@ -335,11 +330,7 @@ public class LevelOneDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortLevelTwoDepartmentListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -559,13 +550,8 @@ public class LevelOneDepartmentManagerImpl extends CustomRetailscmCheckerManager
 			String levelTwoDepartmentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfLevelOneDepartment(levelOneDepartmentId);
-<<<<<<< HEAD
-		for(String levelTwoDepartmentId: levelTwoDepartmentIds){
-			userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-=======
 		for(String levelTwoDepartmentIdItem: levelTwoDepartmentIds){
 			userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(LevelOneDepartmentManagerException.class);

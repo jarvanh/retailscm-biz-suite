@@ -1,23 +1,11 @@
 package com.skynet.infrastructure.graphservice;
 
-<<<<<<< HEAD
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.client.ClientProtocolException;
-=======
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skynet.infrastructure.ConversionService;
 import com.skynet.infrastructure.GraphService;
 import com.terapico.utils.DateTimeUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -25,11 +13,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-<<<<<<< HEAD
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skynet.infrastructure.GraphService;
-=======
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.core.convert.support.DefaultConversionService;
@@ -40,7 +23,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.*;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 public class GraphServiceImpl implements GraphService{
@@ -52,11 +34,7 @@ public class GraphServiceImpl implements GraphService{
 	private String protocol = "http";
 	private int port = 8480;
 	private String host = "localhost";
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public int getPort() {
 		return port;
 	}
@@ -77,11 +55,8 @@ public class GraphServiceImpl implements GraphService{
 		this.protocol = protocol;
 	}
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  boolean addNode(String projectName, String nodeType, String nodeKey) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		CloseableHttpResponse httpResponse = null;
@@ -108,11 +83,8 @@ public class GraphServiceImpl implements GraphService{
 		}
 	}
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  boolean deleteNode(String projectName, String nodeType, String nodeKey) {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		CloseableHttpResponse httpResponse = null;
@@ -143,11 +115,7 @@ public class GraphServiceImpl implements GraphService{
 		}
 	}
 
-<<<<<<< HEAD
-	public  boolean addEdge(String projectName, String edgeType, String fromType, String toType, String from, String to) {
-=======
 	public  boolean addEdge0(String projectName, String edgeType, String fromType, String toType, String from, String to) {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		CloseableHttpResponse httpResponse = null;
 		try {
@@ -172,11 +140,7 @@ public class GraphServiceImpl implements GraphService{
 			close(httpClient, httpResponse);
 		}
 	}
-<<<<<<< HEAD
-	public  boolean deleteEdge(String projectName, String edgeType, String from, String to) {
-=======
 	public  boolean deleteEdge0(String projectName, String edgeType, String from, String to) {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		CloseableHttpResponse httpResponse = null;
 		try {
@@ -204,11 +168,7 @@ public class GraphServiceImpl implements GraphService{
 			close(httpClient, httpResponse);
 		}
 	}
-<<<<<<< HEAD
-	public  boolean batchInsertNode(String projectName, Map<String, List<String>> batchData) {
-=======
 	public  boolean batchInsertNode0(String projectName, Map<String, List<String>> batchData) {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		CloseableHttpResponse httpResponse = null;
 		try {
@@ -242,11 +202,7 @@ public class GraphServiceImpl implements GraphService{
 			close(httpClient, httpResponse);
 		}
 	}
-<<<<<<< HEAD
-	public  boolean batchInsertEdge(String projectName, Map<String, List<EdgeValueInstance>> batchEdgeData) {
-=======
 	public  boolean batchInsertEdge0(String projectName, Map<String, List<EdgeValueInstance>> batchEdgeData) {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		CloseableHttpResponse httpResponse = null;
 		try {
@@ -280,41 +236,6 @@ public class GraphServiceImpl implements GraphService{
 			close(httpClient, httpResponse);
 		}
 	}
-<<<<<<< HEAD
-	public static void main(String[] args)
-			throws ClientProtocolException, IOException {
-		//test batch node
-//		Map<String, List<String>> batchData = new HashMap<String, List<String>>();
-//		List<String> list1 = new ArrayList<String>();
-//		List<String> list2 = new ArrayList<String>();
-//		list1.add("0000001");
-//		list1.add("0000002");
-//		list1.add("0000003");
-//		list1.add("0000004");
-//		list2.add("0000005");
-//		list2.add("0000006");
-//		batchData.put("AccountingDocument", list1);
-//		batchData.put("AccountingDocumentAuditing", list2);
-		//test batchEdge
-//		Map<String, List<EdgeValueInstance>> batchEdgeData = new HashMap<String, List<EdgeValueInstance>>();
-//		List<EdgeValueInstance> list1 = new ArrayList<EdgeValueInstance>();
-//		List<EdgeValueInstance> list2 = new ArrayList<EdgeValueInstance>();
-//		EdgeValueInstance e1 = new EdgeValueInstance("AD000163", "ADT000009");
-//		EdgeValueInstance e2 = new EdgeValueInstance("AD000358", "ADT000018");
-//		EdgeValueInstance e3 = new EdgeValueInstance("AD000281", "ADT000015");
-//		list1.add(e1);list1.add(e2);list1.add(e3);
-//		batchEdgeData.put("AccountingDocument_AccountingDocumentType", list1);
-//		EdgeValueInstance e4 = new EdgeValueInstance("AD000110", "AP000006");
-//		EdgeValueInstance e5 = new EdgeValueInstance("AD000118", "AP000006");
-//		EdgeValueInstance e6 = new EdgeValueInstance("AD000163", "AP000016");
-//		list2.add(e4);list2.add(e5);list2.add(e6);
-//		batchEdgeData.put("AccountingDocument_AccountingPeriod", list2);
-//		System.out.println(batchInsertEdge(batchEdgeData));
-		//relationsOf1("PotentialCustomerContactPerson","111c","CityPartner", "CP000001");
-		//System.out.println(relationsOf1("ServiceVehicleMovementM2m","SVMM000073","City","C000003"));
-	}
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	private  void close(CloseableHttpClient httpClient,
 			CloseableHttpResponse httpResponse) {
@@ -422,8 +343,6 @@ public class GraphServiceImpl implements GraphService{
 		
 		return projectName;
 	}
-<<<<<<< HEAD
-=======
 
 
 	@Override
@@ -612,5 +531,4 @@ public class GraphServiceImpl implements GraphService{
 		return allData;
 	}
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }

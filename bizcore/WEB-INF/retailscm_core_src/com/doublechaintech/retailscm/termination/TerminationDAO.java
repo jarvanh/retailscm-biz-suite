@@ -7,14 +7,11 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.terminationtype.TerminationType;
 import com.doublechaintech.retailscm.terminationreason.TerminationReason;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.terminationtype.TerminationTypeDAO;
 import com.doublechaintech.retailscm.terminationreason.TerminationReasonDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
@@ -79,6 +76,7 @@ public interface TerminationDAO{
 	
 	
 	public SmartList<Termination> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Termination> findTerminationByReason(String terminationReasonId, Map<String,Object> options);
  	public int countTerminationByReason(String terminationReasonId, Map<String,Object> options);
@@ -95,14 +93,10 @@ public interface TerminationDAO{
  	public void analyzeTerminationByType(SmartList<Termination> resultList, String terminationTypeId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:Employee的termination的EmployeeList
 	public SmartList<Employee> loadOurEmployeeList(RetailscmUserContext userContext, List<Termination> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

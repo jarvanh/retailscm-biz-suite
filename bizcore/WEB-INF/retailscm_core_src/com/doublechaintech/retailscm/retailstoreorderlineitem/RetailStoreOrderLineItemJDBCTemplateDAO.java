@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.retailstoreorderlineitem;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreOrderLineItemDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreOrderLineItemDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreOrderDAO  retailStoreOrderDAO;
@@ -536,12 +523,9 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImp
 	public void enhanceList(List<RetailStoreOrderLineItem> retailStoreOrderLineItemList) {		
 		this.enhanceListInternal(retailStoreOrderLineItemList, this.getRetailStoreOrderLineItemMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreOrderLineItem> retailStoreOrderLineItemList = ownerEntity.collectRefsWithType(RetailStoreOrderLineItem.INTERNAL_TYPE);
@@ -574,12 +558,13 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImp
 	public SmartList<RetailStoreOrderLineItem> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreOrderLineItemMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

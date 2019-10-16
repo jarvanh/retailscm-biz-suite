@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.retailstorecountrycenter;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -79,18 +72,12 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreCountryCenterDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreCountryCenterDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -858,14 +845,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractCatalogListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.CATALOG_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeCatalogListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.CATALOG_LIST+".analyze");
-=======
  	protected boolean isAnalyzeCatalogListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeCatalogListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveCatalogListEnabled(Map<String,Object> options){
@@ -878,14 +859,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractRetailStoreProvinceCenterListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_PROVINCE_CENTER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreProvinceCenterListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_PROVINCE_CENTER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreProvinceCenterListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreProvinceCenterListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreProvinceCenterListEnabled(Map<String,Object> options){
@@ -898,14 +873,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractRetailStoreListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreListEnabled(Map<String,Object> options){
@@ -918,14 +887,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractRetailStoreMemberListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_MEMBER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreMemberListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_MEMBER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreMemberListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreMemberListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberListEnabled(Map<String,Object> options){
@@ -938,14 +901,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractGoodsSupplierListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.GOODS_SUPPLIER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeGoodsSupplierListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.GOODS_SUPPLIER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeGoodsSupplierListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeGoodsSupplierListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsSupplierListEnabled(Map<String,Object> options){
@@ -958,14 +915,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractSupplyOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.SUPPLY_ORDER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.SUPPLY_ORDER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeSupplyOrderListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderListEnabled(Map<String,Object> options){
@@ -978,14 +929,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractRetailStoreOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_ORDER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreOrderListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.RETAIL_STORE_ORDER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreOrderListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeRetailStoreOrderListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreOrderListEnabled(Map<String,Object> options){
@@ -998,14 +943,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractWarehouseListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.WAREHOUSE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeWarehouseListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.WAREHOUSE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeWarehouseListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeWarehouseListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveWarehouseListEnabled(Map<String,Object> options){
@@ -1018,14 +957,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractTransportFleetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TRANSPORT_FLEET_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeTransportFleetListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.TRANSPORT_FLEET_LIST+".analyze");
-=======
  	protected boolean isAnalyzeTransportFleetListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeTransportFleetListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTransportFleetListEnabled(Map<String,Object> options){
@@ -1038,14 +971,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractAccountSetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.ACCOUNT_SET_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountSetListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.ACCOUNT_SET_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountSetListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeAccountSetListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountSetListEnabled(Map<String,Object> options){
@@ -1058,14 +985,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractLevelOneDepartmentListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.LEVEL_ONE_DEPARTMENT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeLevelOneDepartmentListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.LEVEL_ONE_DEPARTMENT_LIST+".analyze");
-=======
  	protected boolean isAnalyzeLevelOneDepartmentListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeLevelOneDepartmentListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLevelOneDepartmentListEnabled(Map<String,Object> options){
@@ -1078,14 +999,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractSkillTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.SKILL_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSkillTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.SKILL_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSkillTypeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeSkillTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSkillTypeListEnabled(Map<String,Object> options){
@@ -1098,14 +1013,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractResponsibilityTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.RESPONSIBILITY_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeResponsibilityTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.RESPONSIBILITY_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeResponsibilityTypeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeResponsibilityTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveResponsibilityTypeListEnabled(Map<String,Object> options){
@@ -1118,14 +1027,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractTerminationReasonListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_REASON_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeTerminationReasonListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_REASON_LIST+".analyze");
-=======
  	protected boolean isAnalyzeTerminationReasonListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeTerminationReasonListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTerminationReasonListEnabled(Map<String,Object> options){
@@ -1138,14 +1041,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractTerminationTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeTerminationTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.TERMINATION_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeTerminationTypeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeTerminationTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTerminationTypeListEnabled(Map<String,Object> options){
@@ -1158,14 +1055,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractOccupationTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.OCCUPATION_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeOccupationTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.OCCUPATION_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeOccupationTypeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeOccupationTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveOccupationTypeListEnabled(Map<String,Object> options){
@@ -1178,14 +1069,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractLeaveTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.LEAVE_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeLeaveTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.LEAVE_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeLeaveTypeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeLeaveTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLeaveTypeListEnabled(Map<String,Object> options){
@@ -1198,14 +1083,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractSalaryGradeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.SALARY_GRADE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSalaryGradeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.SALARY_GRADE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSalaryGradeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeSalaryGradeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSalaryGradeListEnabled(Map<String,Object> options){
@@ -1218,14 +1097,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractInterviewTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.INTERVIEW_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeInterviewTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.INTERVIEW_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeInterviewTypeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeInterviewTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveInterviewTypeListEnabled(Map<String,Object> options){
@@ -1238,14 +1111,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractTrainingCourseTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.TRAINING_COURSE_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeTrainingCourseTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.TRAINING_COURSE_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeTrainingCourseTypeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeTrainingCourseTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTrainingCourseTypeListEnabled(Map<String,Object> options){
@@ -1258,14 +1125,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractPublicHolidayListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.PUBLIC_HOLIDAY_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzePublicHolidayListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.PUBLIC_HOLIDAY_LIST+".analyze");
-=======
  	protected boolean isAnalyzePublicHolidayListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzePublicHolidayListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePublicHolidayListEnabled(Map<String,Object> options){
@@ -1278,14 +1139,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractEmployeeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.EMPLOYEE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.EMPLOYEE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeEmployeeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeListEnabled(Map<String,Object> options){
@@ -1298,14 +1153,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractInstructorListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.INSTRUCTOR_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeInstructorListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.INSTRUCTOR_LIST+".analyze");
-=======
  	protected boolean isAnalyzeInstructorListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeInstructorListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveInstructorListEnabled(Map<String,Object> options){
@@ -1318,14 +1167,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	protected boolean isExtractCompanyTrainingListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCountryCenterTokens.COMPANY_TRAINING_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeCompanyTrainingListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCountryCenterTokens.COMPANY_TRAINING_LIST+".analyze");
-=======
  	protected boolean isAnalyzeCompanyTrainingListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCountryCenterTokens.of(options).analyzeCompanyTrainingListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveCompanyTrainingListEnabled(Map<String,Object> options){
@@ -3134,15 +2977,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Catalog catalog: externalCatalogList){
-
-			catalog.clearFromAll();
-=======
 		for(Catalog catalogItem: externalCatalogList){
 
 			catalogItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3168,15 +3005,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStoreProvinceCenter retailStoreProvinceCenter: externalRetailStoreProvinceCenterList){
-
-			retailStoreProvinceCenter.clearFromAll();
-=======
 		for(RetailStoreProvinceCenter retailStoreProvinceCenterItem: externalRetailStoreProvinceCenterList){
 
 			retailStoreProvinceCenterItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3202,15 +3033,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStore retailStore: externalRetailStoreList){
-
-			retailStore.clearFromAll();
-=======
 		for(RetailStore retailStoreItem: externalRetailStoreList){
 
 			retailStoreItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3240,15 +3065,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStore retailStore: externalRetailStoreList){
-			retailStore.clearCityServiceCenter();
-			retailStore.clearRetailStoreCountryCenter();
-=======
 		for(RetailStore retailStoreItem: externalRetailStoreList){
 			retailStoreItem.clearCityServiceCenter();
 			retailStoreItem.clearRetailStoreCountryCenter();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3286,15 +3105,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStoreMember retailStoreMember: externalRetailStoreMemberList){
-
-			retailStoreMember.clearFromAll();
-=======
 		for(RetailStoreMember retailStoreMemberItem: externalRetailStoreMemberList){
 
 			retailStoreMemberItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3320,15 +3133,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsSupplier goodsSupplier: externalGoodsSupplierList){
-
-			goodsSupplier.clearFromAll();
-=======
 		for(GoodsSupplier goodsSupplierItem: externalGoodsSupplierList){
 
 			goodsSupplierItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3354,15 +3161,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-
-			supplyOrder.clearFromAll();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 
 			supplyOrderItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3392,15 +3193,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-			supplyOrder.clearSeller();
-			supplyOrder.clearBuyer();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 			supplyOrderItem.clearSeller();
 			supplyOrderItem.clearBuyer();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3438,15 +3233,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
-
-			retailStoreOrder.clearFromAll();
-=======
 		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
 
 			retailStoreOrderItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3476,15 +3265,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStoreOrder retailStoreOrder: externalRetailStoreOrderList){
-			retailStoreOrder.clearBuyer();
-			retailStoreOrder.clearSeller();
-=======
 		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
 			retailStoreOrderItem.clearBuyer();
 			retailStoreOrderItem.clearSeller();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3522,15 +3305,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Warehouse warehouse: externalWarehouseList){
-
-			warehouse.clearFromAll();
-=======
 		for(Warehouse warehouseItem: externalWarehouseList){
 
 			warehouseItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3556,15 +3333,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(TransportFleet transportFleet: externalTransportFleetList){
-
-			transportFleet.clearFromAll();
-=======
 		for(TransportFleet transportFleetItem: externalTransportFleetList){
 
 			transportFleetItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3590,15 +3361,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(AccountSet accountSet: externalAccountSetList){
-
-			accountSet.clearFromAll();
-=======
 		for(AccountSet accountSetItem: externalAccountSetList){
 
 			accountSetItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3628,15 +3393,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearRetailStore();
-			accountSet.clearCountryCenter();
-=======
 		for(AccountSet accountSetItem: externalAccountSetList){
 			accountSetItem.clearRetailStore();
 			accountSetItem.clearCountryCenter();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3678,15 +3437,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(AccountSet accountSet: externalAccountSetList){
-			accountSet.clearGoodsSupplier();
-			accountSet.clearCountryCenter();
-=======
 		for(AccountSet accountSetItem: externalAccountSetList){
 			accountSetItem.clearGoodsSupplier();
 			accountSetItem.clearCountryCenter();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3724,15 +3477,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(LevelOneDepartment levelOneDepartment: externalLevelOneDepartmentList){
-
-			levelOneDepartment.clearFromAll();
-=======
 		for(LevelOneDepartment levelOneDepartmentItem: externalLevelOneDepartmentList){
 
 			levelOneDepartmentItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3758,15 +3505,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(SkillType skillType: externalSkillTypeList){
-
-			skillType.clearFromAll();
-=======
 		for(SkillType skillTypeItem: externalSkillTypeList){
 
 			skillTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3792,15 +3533,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(ResponsibilityType responsibilityType: externalResponsibilityTypeList){
-
-			responsibilityType.clearFromAll();
-=======
 		for(ResponsibilityType responsibilityTypeItem: externalResponsibilityTypeList){
 
 			responsibilityTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3826,15 +3561,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(TerminationReason terminationReason: externalTerminationReasonList){
-
-			terminationReason.clearFromAll();
-=======
 		for(TerminationReason terminationReasonItem: externalTerminationReasonList){
 
 			terminationReasonItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3860,15 +3589,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(TerminationType terminationType: externalTerminationTypeList){
-
-			terminationType.clearFromAll();
-=======
 		for(TerminationType terminationTypeItem: externalTerminationTypeList){
 
 			terminationTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3894,15 +3617,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(OccupationType occupationType: externalOccupationTypeList){
-
-			occupationType.clearFromAll();
-=======
 		for(OccupationType occupationTypeItem: externalOccupationTypeList){
 
 			occupationTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3928,15 +3645,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(LeaveType leaveType: externalLeaveTypeList){
-
-			leaveType.clearFromAll();
-=======
 		for(LeaveType leaveTypeItem: externalLeaveTypeList){
 
 			leaveTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3962,15 +3673,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(SalaryGrade salaryGrade: externalSalaryGradeList){
-
-			salaryGrade.clearFromAll();
-=======
 		for(SalaryGrade salaryGradeItem: externalSalaryGradeList){
 
 			salaryGradeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3996,15 +3701,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(InterviewType interviewType: externalInterviewTypeList){
-
-			interviewType.clearFromAll();
-=======
 		for(InterviewType interviewTypeItem: externalInterviewTypeList){
 
 			interviewTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4030,15 +3729,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(TrainingCourseType trainingCourseType: externalTrainingCourseTypeList){
-
-			trainingCourseType.clearFromAll();
-=======
 		for(TrainingCourseType trainingCourseTypeItem: externalTrainingCourseTypeList){
 
 			trainingCourseTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4064,15 +3757,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(PublicHoliday publicHoliday: externalPublicHolidayList){
-
-			publicHoliday.clearFromAll();
-=======
 		for(PublicHoliday publicHolidayItem: externalPublicHolidayList){
 
 			publicHolidayItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4098,15 +3785,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-
-			employee.clearFromAll();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 
 			employeeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4136,15 +3817,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearCompany();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearDepartment();
 			employeeItem.clearCompany();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4186,15 +3861,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearCompany();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearOccupation();
 			employeeItem.clearCompany();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4236,15 +3905,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearResponsibleFor();
-			employee.clearCompany();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearResponsibleFor();
 			employeeItem.clearCompany();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4286,15 +3949,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearCompany();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearCurrentSalaryGrade();
 			employeeItem.clearCompany();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4332,15 +3989,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(Instructor instructor: externalInstructorList){
-
-			instructor.clearFromAll();
-=======
 		for(Instructor instructorItem: externalInstructorList){
 
 			instructorItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4366,15 +4017,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-
-			companyTraining.clearFromAll();
-=======
 		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 
 			companyTrainingItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -4404,15 +4049,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearInstructor();
-			companyTraining.clearCompany();
-=======
 		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 			companyTrainingItem.clearInstructor();
 			companyTrainingItem.clearCompany();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4454,15 +4093,9 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 		
-<<<<<<< HEAD
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearTrainingCourseType();
-			companyTraining.clearCompany();
-=======
 		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 			companyTrainingItem.clearTrainingCourseType();
 			companyTrainingItem.clearCompany();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -6739,8 +6372,6 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	public void enhanceList(List<RetailStoreCountryCenter> retailStoreCountryCenterList) {		
 		this.enhanceListInternal(retailStoreCountryCenterList, this.getRetailStoreCountryCenterMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:Catalog的owner的CatalogList
@@ -7296,7 +6927,6 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreCountryCenter> retailStoreCountryCenterList = ownerEntity.collectRefsWithType(RetailStoreCountryCenter.INTERNAL_TYPE);
@@ -7329,8 +6959,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	public SmartList<RetailStoreCountryCenter> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreCountryCenterMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -7414,7 +7046,6 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

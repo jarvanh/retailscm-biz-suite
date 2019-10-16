@@ -38,8 +38,6 @@ public class ProductSupplyDurationTokens extends CommonTokens{
 	protected ProductSupplyDurationTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  ProductSupplyDurationTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		ProductSupplyDurationTokens tokens = new ProductSupplyDurationTokens(options);
@@ -49,7 +47,6 @@ public class ProductSupplyDurationTokens extends CommonTokens{
 	protected ProductSupplyDurationTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public ProductSupplyDurationTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -94,14 +91,11 @@ public class ProductSupplyDurationTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public ProductSupplyDurationTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String PRODUCT = "product";
 	public String getProduct(){

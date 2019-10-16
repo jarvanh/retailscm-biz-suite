@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
@@ -48,6 +45,7 @@ public interface SupplyOrderShippingGroupDAO{
 	
 	
 	public SmartList<SupplyOrderShippingGroup> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<SupplyOrderShippingGroup> findSupplyOrderShippingGroupByBizOrder(String supplyOrderId, Map<String,Object> options);
  	public int countSupplyOrderShippingGroupByBizOrder(String supplyOrderId, Map<String,Object> options);
@@ -56,11 +54,7 @@ public interface SupplyOrderShippingGroupDAO{
  	public void analyzeSupplyOrderShippingGroupByBizOrder(SmartList<SupplyOrderShippingGroup> resultList, String supplyOrderId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -255,14 +255,9 @@ public class PotentialCustomerContactPersonManagerImpl extends CustomRetailscmCh
 			//will be good when the potentialCustomerContactPerson loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PotentialCustomerContactPerson.
-<<<<<<< HEAD
-			
-			
-=======
 			if (potentialCustomerContactPerson.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			potentialCustomerContactPerson = savePotentialCustomerContactPerson(userContext, potentialCustomerContactPerson, options);
 			return potentialCustomerContactPerson;
 			
@@ -332,11 +327,7 @@ public class PotentialCustomerContactPersonManagerImpl extends CustomRetailscmCh
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortPotentialCustomerContactListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -608,13 +599,8 @@ public class PotentialCustomerContactPersonManagerImpl extends CustomRetailscmCh
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfPotentialCustomerContactPerson(potentialCustomerContactPersonId);
-<<<<<<< HEAD
-		for(String potentialCustomerContactId: potentialCustomerContactIds){
-			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-=======
 		for(String potentialCustomerContactIdItem: potentialCustomerContactIds){
 			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerContactPersonManagerException.class);

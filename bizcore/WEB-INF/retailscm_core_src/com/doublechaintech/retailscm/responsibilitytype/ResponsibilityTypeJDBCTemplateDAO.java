@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.responsibilitytype;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ResponsibilityTypeDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ResponsibilityTypeDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -239,14 +226,8 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	protected boolean isExtractEmployeeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ResponsibilityTypeTokens.EMPLOYEE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,ResponsibilityTypeTokens.EMPLOYEE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		 		
  		return ResponsibilityTypeTokens.of(options).analyzeEmployeeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeListEnabled(Map<String,Object> options){
@@ -638,15 +619,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return responsibilityType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-
-			employee.clearFromAll();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 
 			employeeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -676,15 +651,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return responsibilityType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearCompany();
-			employee.clearResponsibleFor();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearCompany();
 			employeeItem.clearResponsibleFor();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -726,15 +695,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return responsibilityType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearResponsibleFor();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearDepartment();
 			employeeItem.clearResponsibleFor();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -776,15 +739,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return responsibilityType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearResponsibleFor();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearOccupation();
 			employeeItem.clearResponsibleFor();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -826,15 +783,9 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return responsibilityType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearResponsibleFor();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearCurrentSalaryGrade();
 			employeeItem.clearResponsibleFor();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -972,8 +923,6 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public void enhanceList(List<ResponsibilityType> responsibilityTypeList) {		
 		this.enhanceListInternal(responsibilityTypeList, this.getResponsibilityTypeMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:Employee的responsibleFor的EmployeeList
@@ -1000,7 +949,6 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<ResponsibilityType> responsibilityTypeList = ownerEntity.collectRefsWithType(ResponsibilityType.INTERNAL_TYPE);
@@ -1033,12 +981,13 @@ public class ResponsibilityTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public SmartList<ResponsibilityType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getResponsibilityTypeMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

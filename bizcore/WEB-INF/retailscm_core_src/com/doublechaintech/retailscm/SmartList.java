@@ -7,11 +7,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.HashMap;
-<<<<<<< HEAD
-=======
 import java.util.stream.Stream;
 import java.util.function.Consumer;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 /*
  * 
@@ -31,15 +28,11 @@ facetList，动态过滤器列表
  * */
 public class SmartList<E  extends BaseEntity> extends BaseEntity implements List<E> {
 
-<<<<<<< HEAD
-
-=======
 	public void forEach(Consumer<? super E> action) {
 		ensureSmartList();
 		smartList.forEach(action);
 	}
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public StatsInfo getStatsInfo() {
 		return statsInfo;
 	}
@@ -141,14 +134,10 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 		ensureSmartList();
 		return smartList.size();
 	}
-<<<<<<< HEAD
-
-=======
 	public Stream<E> stream() {
 		ensureSmartList();
 		return smartList.stream();
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public boolean isEmpty() {
 		ensureSmartList();
 		return smartList.isEmpty();
@@ -477,7 +466,3 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

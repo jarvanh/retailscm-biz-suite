@@ -38,8 +38,6 @@ public class CityEventTokens extends CommonTokens{
 	protected CityEventTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  CityEventTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		CityEventTokens tokens = new CityEventTokens(options);
@@ -49,7 +47,6 @@ public class CityEventTokens extends CommonTokens{
 	protected CityEventTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public CityEventTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -95,14 +92,11 @@ public class CityEventTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public CityEventTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String CITYSERVICECENTER = "cityServiceCenter";
 	public String getCityServiceCenter(){
@@ -128,15 +122,11 @@ public class CityEventTokens extends CommonTokens{
 	}
 	public boolean analyzeEventAttendanceListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), EVENT_ATTENDANCE_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), EVENT_ATTENDANCE_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public CityEventTokens extractMoreFromEventAttendanceList(String idsSeperatedWithComma){		
 		addSimpleOptions(EVENT_ATTENDANCE_LIST+".extractIds", idsSeperatedWithComma);

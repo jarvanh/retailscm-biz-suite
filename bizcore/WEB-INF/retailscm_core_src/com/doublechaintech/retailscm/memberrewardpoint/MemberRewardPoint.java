@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.memberrewardpoint;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -57,11 +54,6 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 	
 		
 	public 	MemberRewardPoint(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static MemberRewardPoint withId(String id){
@@ -75,7 +67,6 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -138,8 +129,6 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -160,7 +149,6 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -174,12 +162,9 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -193,12 +178,9 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPoint(int point){
@@ -212,12 +194,9 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePoint(int point){
 		setPoint(point);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOwner(RetailStoreMember owner){
@@ -231,12 +210,9 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOwner(RetailStoreMember owner){
 		if(owner != null) { setOwner(owner);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -255,12 +231,9 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -319,8 +292,6 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -356,7 +327,6 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

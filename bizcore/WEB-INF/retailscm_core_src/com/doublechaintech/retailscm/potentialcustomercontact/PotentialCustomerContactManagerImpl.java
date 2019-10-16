@@ -273,14 +273,9 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 			//will be good when the potentialCustomerContact loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PotentialCustomerContact.
-<<<<<<< HEAD
-			
-			
-=======
 			if (potentialCustomerContact.isChanged()){
 			potentialCustomerContact.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			potentialCustomerContact = savePotentialCustomerContact(userContext, potentialCustomerContact, options);
 			return potentialCustomerContact;
 			
@@ -349,11 +344,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -510,34 +501,20 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected CityPartner loadCityPartner(RetailscmUserContext userContext, String newCityPartnerId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getCityPartnerDAO().load(newCityPartnerId, options);
-=======
  	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
-=======
  	protected CityPartner loadCityPartner(RetailscmUserContext userContext, String newCityPartnerId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getCityPartnerDAO().load(newCityPartnerId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	

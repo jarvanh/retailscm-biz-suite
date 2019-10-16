@@ -90,8 +90,6 @@ public class SecUserForm extends BaseForm {
 	}
 
 
-<<<<<<< HEAD
-=======
 	public SecUserForm weixinOpenidField(String parameterName, String initValue){
 		FormField field = weixinOpenidFromSecUser(parameterName, initValue);		
 		this.addFormField(field);
@@ -134,7 +132,6 @@ public class SecUserForm extends BaseForm {
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public SecUserForm verificationCodeField(String parameterName, String initValue){
 		FormField field = verificationCodeFromSecUser(parameterName, initValue);		
 		this.addFormField(field);

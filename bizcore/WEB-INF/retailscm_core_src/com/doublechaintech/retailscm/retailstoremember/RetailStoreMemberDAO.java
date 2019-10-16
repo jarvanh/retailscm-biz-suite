@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.memberrewardpoint.MemberRewardPoint;
 import com.doublechaintech.retailscm.memberrewardpointredemption.MemberRewardPointRedemption;
@@ -19,7 +17,6 @@ import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
 import com.doublechaintech.retailscm.retailstorememberaddress.RetailStoreMemberAddress;
 import com.doublechaintech.retailscm.retailstoremembergiftcard.RetailStoreMemberGiftCard;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO;
 import com.doublechaintech.retailscm.memberwishlist.MemberWishlistDAO;
 import com.doublechaintech.retailscm.memberrewardpointredemption.MemberRewardPointRedemptionDAO;
@@ -115,6 +112,7 @@ public interface RetailStoreMemberDAO{
 
 	
 	public SmartList<RetailStoreMember> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreMember> findRetailStoreMemberByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countRetailStoreMemberByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -123,9 +121,6 @@ public interface RetailStoreMemberDAO{
  	public void analyzeRetailStoreMemberByOwner(SmartList<RetailStoreMember> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:ConsumerOrder的consumer的ConsumerOrderList
 	public SmartList<ConsumerOrder> loadOurConsumerOrderList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
@@ -149,6 +144,5 @@ public interface RetailStoreMemberDAO{
 	public SmartList<RetailStoreMemberGiftCard> loadOurRetailStoreMemberGiftCardList(RetailscmUserContext userContext, List<RetailStoreMember> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

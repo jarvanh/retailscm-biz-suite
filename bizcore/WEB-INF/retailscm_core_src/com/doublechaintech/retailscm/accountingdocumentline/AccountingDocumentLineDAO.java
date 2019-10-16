@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
 import com.doublechaintech.retailscm.accountingsubject.AccountingSubject;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.accountingsubject.AccountingSubjectDAO;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
@@ -50,6 +47,7 @@ public interface AccountingDocumentLineDAO{
 	
 	
 	public SmartList<AccountingDocumentLine> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<AccountingDocumentLine> findAccountingDocumentLineByBelongsTo(String accountingDocumentId, Map<String,Object> options);
  	public int countAccountingDocumentLineByBelongsTo(String accountingDocumentId, Map<String,Object> options);
@@ -66,11 +64,7 @@ public interface AccountingDocumentLineDAO{
  	public void analyzeAccountingDocumentLineByAccountingSubject(SmartList<AccountingDocumentLine> resultList, String accountingSubjectId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

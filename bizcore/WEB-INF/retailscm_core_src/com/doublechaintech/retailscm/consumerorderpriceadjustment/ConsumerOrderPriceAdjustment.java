@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.consumerorderpriceadjustment;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -59,11 +56,6 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 	
 		
 	public 	ConsumerOrderPriceAdjustment(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static ConsumerOrderPriceAdjustment withId(String id){
@@ -77,7 +69,6 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBizOrder( null );
 
@@ -159,8 +150,6 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -184,7 +173,6 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -198,12 +186,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -217,12 +202,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBizOrder(ConsumerOrder bizOrder){
@@ -236,12 +218,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBizOrder(ConsumerOrder bizOrder){
 		if(bizOrder != null) { setBizOrder(bizOrder);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBizOrder(){
@@ -260,12 +239,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAmount(BigDecimal amount){
 		setAmount(amount);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setProvider(String provider){
@@ -279,12 +255,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeProvider(String provider){
 		if(provider != null) { setProvider(provider);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -298,12 +271,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -364,8 +334,6 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -403,7 +371,6 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

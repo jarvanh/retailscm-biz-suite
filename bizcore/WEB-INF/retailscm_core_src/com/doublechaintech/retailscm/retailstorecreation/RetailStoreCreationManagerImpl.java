@@ -240,14 +240,9 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 			//will be good when the retailStoreCreation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCreation.
-<<<<<<< HEAD
-			
-			
-=======
 			if (retailStoreCreation.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, options);
 			return retailStoreCreation;
 			
@@ -317,11 +312,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortRetailStoreListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -550,13 +541,8 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-<<<<<<< HEAD
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-=======
 		for(String retailStoreIdItem: retailStoreIds){
 			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);

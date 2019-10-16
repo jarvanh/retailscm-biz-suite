@@ -16,11 +16,7 @@ public class GoodsMovementTable{
 	
 
 	//only this package can use this, so the scope is default, not public, not private either nor protected
-<<<<<<< HEAD
-	static final String TABLE_NAME="goods_movement_data";
-=======
 	public static final String TABLE_NAME="goods_movement_data";
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_MOVE_TIME = "move_time";
 	static final String COLUMN_FACILITY = "facility";
@@ -33,17 +29,10 @@ public class GoodsMovementTable{
 	static final String COLUMN_GOODS = "goods";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_MOVE_TIME, COLUMN_FACILITY, COLUMN_FACILITY_ID, COLUMN_FROM_IP, COLUMN_USER_AGENT, COLUMN_SESSION_ID, COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_GOODS, 
-		COLUMN_VERSION};
-	static final String []NORMAL_CLOUMNS = {
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_MOVE_TIME, COLUMN_FACILITY, COLUMN_FACILITY_ID, COLUMN_FROM_IP, COLUMN_USER_AGENT, COLUMN_SESSION_ID, COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_GOODS, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		COLUMN_MOVE_TIME, COLUMN_FACILITY, COLUMN_FACILITY_ID, COLUMN_FROM_IP, COLUMN_USER_AGENT, COLUMN_SESSION_ID, COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_GOODS
 		};
 	

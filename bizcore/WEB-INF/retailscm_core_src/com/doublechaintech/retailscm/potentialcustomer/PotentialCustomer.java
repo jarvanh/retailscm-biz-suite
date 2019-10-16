@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.potentialcustomer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -73,11 +70,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 	
 		
 	public 	PotentialCustomer(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static PotentialCustomer withId(String id){
@@ -91,7 +83,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCityServiceCenter( null );
 		setCityPartner( null );
@@ -197,8 +188,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -240,7 +229,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -254,12 +242,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -273,12 +258,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMobile(String mobile){
@@ -292,12 +274,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMobile(String mobile){
 		if(mobile != null) { setMobile(mobile);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -318,12 +297,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCityServiceCenter(RetailStoreCityServiceCenter cityServiceCenter){
 		if(cityServiceCenter != null) { setCityServiceCenter(cityServiceCenter);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCityServiceCenter(){
@@ -342,12 +318,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCityPartner(CityPartner cityPartner){
 		if(cityPartner != null) { setCityPartner(cityPartner);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCityPartner(){
@@ -366,12 +339,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -385,12 +355,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -404,12 +371,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -442,9 +406,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		}
 		getPotentialCustomerContactPersonList().addAll(potentialCustomerContactPersonList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePotentialCustomerContactPersonList(SmartList<PotentialCustomerContactPerson> potentialCustomerContactPersonList){
 		if(potentialCustomerContactPersonList==null){
 			return;
@@ -455,7 +416,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		addPotentialCustomerContactPersonList( potentialCustomerContactPersonList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PotentialCustomerContactPerson removePotentialCustomerContactPerson(PotentialCustomerContactPerson potentialCustomerContactPersonIndex){
 		
 		int index = getPotentialCustomerContactPersonList().indexOf(potentialCustomerContactPersonIndex);
@@ -553,9 +513,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		}
 		getPotentialCustomerContactList().addAll(potentialCustomerContactList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePotentialCustomerContactList(SmartList<PotentialCustomerContact> potentialCustomerContactList){
 		if(potentialCustomerContactList==null){
 			return;
@@ -566,7 +523,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		addPotentialCustomerContactList( potentialCustomerContactList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PotentialCustomerContact removePotentialCustomerContact(PotentialCustomerContact potentialCustomerContactIndex){
 		
 		int index = getPotentialCustomerContactList().indexOf(potentialCustomerContactIndex);
@@ -664,9 +620,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		}
 		getEventAttendanceList().addAll(eventAttendanceList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEventAttendanceList(SmartList<EventAttendance> eventAttendanceList){
 		if(eventAttendanceList==null){
 			return;
@@ -677,7 +630,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		addEventAttendanceList( eventAttendanceList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EventAttendance removeEventAttendance(EventAttendance eventAttendanceIndex){
 		
 		int index = getEventAttendanceList().indexOf(eventAttendanceIndex);
@@ -832,8 +784,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -877,7 +827,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

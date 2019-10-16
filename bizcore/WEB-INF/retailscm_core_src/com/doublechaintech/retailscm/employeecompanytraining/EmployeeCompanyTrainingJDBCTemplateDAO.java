@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.employeecompanytraining;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,19 +30,6 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeCompanyTrainingDAO{
- 
- 	
- 	private  CompanyTrainingDAO  companyTrainingDAO;
- 	public void setCompanyTrainingDAO(CompanyTrainingDAO companyTrainingDAO){
-	 	this.companyTrainingDAO = companyTrainingDAO;
- 	}
- 	public CompanyTrainingDAO getCompanyTrainingDAO(){
-	 	return this.companyTrainingDAO;
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -64,7 +44,6 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
  	}
  	public EmployeeDAO getEmployeeDAO(){
 	 	return this.employeeDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  
  	
@@ -77,21 +56,12 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
  	}
  
  	
-<<<<<<< HEAD
- 	private  EmployeeDAO  employeeDAO;
- 	public void setEmployeeDAO(EmployeeDAO employeeDAO){
-	 	this.employeeDAO = employeeDAO;
- 	}
- 	public EmployeeDAO getEmployeeDAO(){
-	 	return this.employeeDAO;
-=======
  	private  CompanyTrainingDAO  companyTrainingDAO;
  	public void setCompanyTrainingDAO(CompanyTrainingDAO companyTrainingDAO){
 	 	this.companyTrainingDAO = companyTrainingDAO;
  	}
  	public CompanyTrainingDAO getCompanyTrainingDAO(){
 	 	return this.companyTrainingDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 
 
@@ -798,12 +768,9 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public void enhanceList(List<EmployeeCompanyTraining> employeeCompanyTrainingList) {		
 		this.enhanceListInternal(employeeCompanyTrainingList, this.getEmployeeCompanyTrainingMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<EmployeeCompanyTraining> employeeCompanyTrainingList = ownerEntity.collectRefsWithType(EmployeeCompanyTraining.INTERNAL_TYPE);
@@ -836,12 +803,13 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public SmartList<EmployeeCompanyTraining> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeCompanyTrainingMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

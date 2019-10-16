@@ -254,14 +254,9 @@ public class OfferApprovalManagerImpl extends CustomRetailscmCheckerManager impl
 			//will be good when the offerApproval loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to OfferApproval.
-<<<<<<< HEAD
-			
-			
-=======
 			if (offerApproval.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			offerApproval = saveOfferApproval(userContext, offerApproval, options);
 			return offerApproval;
 			
@@ -331,11 +326,7 @@ public class OfferApprovalManagerImpl extends CustomRetailscmCheckerManager impl
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -638,13 +629,8 @@ public class OfferApprovalManagerImpl extends CustomRetailscmCheckerManager impl
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfOfferApproval(offerApprovalId);
-<<<<<<< HEAD
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
-=======
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(OfferApprovalManagerException.class);

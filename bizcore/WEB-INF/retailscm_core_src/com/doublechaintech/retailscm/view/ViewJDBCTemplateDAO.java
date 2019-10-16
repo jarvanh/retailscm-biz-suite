@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.view;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -31,18 +24,12 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class ViewJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ViewDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class ViewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ViewDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -419,12 +406,9 @@ public class ViewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ViewDAO
 	public void enhanceList(List<View> viewList) {		
 		this.enhanceListInternal(viewList, this.getViewMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<View> viewList = ownerEntity.collectRefsWithType(View.INTERNAL_TYPE);
@@ -457,8 +441,10 @@ public class ViewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ViewDAO
 	public SmartList<View> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getViewMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -542,7 +528,6 @@ public class ViewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ViewDAO
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

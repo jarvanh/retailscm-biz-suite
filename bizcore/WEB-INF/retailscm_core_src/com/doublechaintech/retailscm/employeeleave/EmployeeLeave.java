@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.employeeleave;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -60,11 +57,6 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	EmployeeLeave(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static EmployeeLeave withId(String id){
@@ -78,7 +70,6 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setWho( null );
 		setType( null );
@@ -143,8 +134,6 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(WHO_PROPERTY.equals(property)){
@@ -168,7 +157,6 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -182,12 +170,9 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(Employee who){
@@ -201,12 +186,9 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeWho(Employee who){
 		if(who != null) { setWho(who);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearWho(){
@@ -225,12 +207,9 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeType(LeaveType type){
 		if(type != null) { setType(type);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearType(){
@@ -249,12 +228,9 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLeaveDurationHour(int leaveDurationHour){
 		setLeaveDurationHour(leaveDurationHour);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setRemark(String remark){
@@ -268,12 +244,9 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeRemark(String remark){
 		if(remark != null) { setRemark(remark);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -287,12 +260,9 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -354,8 +324,6 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -392,7 +360,6 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

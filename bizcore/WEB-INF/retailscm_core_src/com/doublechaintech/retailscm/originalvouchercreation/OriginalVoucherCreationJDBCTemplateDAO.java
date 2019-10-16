@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.originalvouchercreation;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmNamingServiceDAO implements OriginalVoucherCreationDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl implements OriginalVoucherCreationDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	protected boolean isExtractOriginalVoucherListEnabled(Map<String,Object> options){		
  		return checkOptions(options,OriginalVoucherCreationTokens.ORIGINAL_VOUCHER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,OriginalVoucherCreationTokens.ORIGINAL_VOUCHER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		 		
  		return OriginalVoucherCreationTokens.of(options).analyzeOriginalVoucherListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveOriginalVoucherListEnabled(Map<String,Object> options){
@@ -525,15 +506,9 @@ public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return originalVoucherCreation;
 		}
 		
-<<<<<<< HEAD
-		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
-
-			originalVoucher.clearFromAll();
-=======
 		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
 
 			originalVoucherItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -563,15 +538,9 @@ public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return originalVoucherCreation;
 		}
 		
-<<<<<<< HEAD
-		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
-			originalVoucher.clearBelongsTo();
-			originalVoucher.clearCreation();
-=======
 		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
 			originalVoucherItem.clearBelongsTo();
 			originalVoucherItem.clearCreation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -709,8 +678,6 @@ public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public void enhanceList(List<OriginalVoucherCreation> originalVoucherCreationList) {		
 		this.enhanceListInternal(originalVoucherCreationList, this.getOriginalVoucherCreationMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:OriginalVoucher的creation的OriginalVoucherList
@@ -737,7 +704,6 @@ public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<OriginalVoucherCreation> originalVoucherCreationList = ownerEntity.collectRefsWithType(OriginalVoucherCreation.INTERNAL_TYPE);
@@ -770,8 +736,10 @@ public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public SmartList<OriginalVoucherCreation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getOriginalVoucherCreationMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -855,7 +823,6 @@ public class OriginalVoucherCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

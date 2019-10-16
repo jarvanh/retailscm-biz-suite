@@ -2,11 +2,6 @@ package com.doublechaintech.retailscm;
 
 
 
-<<<<<<< HEAD
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-=======
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,18 +9,14 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.MissingResourceException;
 
-<<<<<<< HEAD
-=======
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.secuser.SecUserCustomManagerImpl;
 import com.doublechaintech.retailscm.userapp.UserApp;
@@ -93,13 +84,9 @@ public class RetailscmUserContextImpl extends UserContextImpl implements Retails
 	public Map<String,String> getLocaleMap(){
 		
 		init();
-<<<<<<< HEAD
-		return englishMap;
-=======
 
 		return chineseMap;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 	}
 	
@@ -208,23 +195,14 @@ public class RetailscmUserContextImpl extends UserContextImpl implements Retails
 		return apps.get(0);
 	}
 	
-<<<<<<< HEAD
-	private RetailscmChecker checker;
-	public void setChecker(RetailscmChecker checker) {
-=======
 	private RetailscmObjectChecker checker;
 	public void setChecker(RetailscmObjectChecker checker) {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		this.checker = checker;
 		
 	}
 
 	@Override
-<<<<<<< HEAD
-	public RetailscmChecker getChecker() {
-=======
 	public RetailscmObjectChecker getChecker() {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 		if(this.checker==null) {
 			throw new IllegalStateException("每个实例必须配置Checker，请检查相关Spring的XML配置文件中 checker的配置");
@@ -233,22 +211,6 @@ public class RetailscmUserContextImpl extends UserContextImpl implements Retails
 		return checker;
 	}
 	
-<<<<<<< HEAD
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 	protected static final String ACCESS_PARAMETERS_KEY = "$access_parameters";
 	protected static final String ACCESS_METHOD_NAME_KEY = "$access_method_name";
 	protected static final String ACCESS_BEAN_NAME_KEY = "$access_bean_name";
@@ -412,5 +374,4 @@ public class RetailscmUserContextImpl extends UserContextImpl implements Retails
 	}
 
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.termination;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -61,11 +58,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Termination(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static Termination withId(String id){
@@ -79,7 +71,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setReason( null );
 		setType( null );
@@ -126,8 +117,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(REASON_PROPERTY.equals(property)){
@@ -152,7 +141,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -166,12 +154,9 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setReason(TerminationReason reason){
@@ -185,12 +170,9 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeReason(TerminationReason reason){
 		if(reason != null) { setReason(reason);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearReason(){
@@ -209,12 +191,9 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeType(TerminationType type){
 		if(type != null) { setType(type);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearType(){
@@ -233,12 +212,9 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeComment(String comment){
 		if(comment != null) { setComment(comment);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -252,12 +228,9 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -290,9 +263,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeList().addAll(employeeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeList(SmartList<Employee> employeeList){
 		if(employeeList==null){
 			return;
@@ -303,7 +273,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		addEmployeeList( employeeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Employee removeEmployee(Employee employeeIndex){
 		
 		int index = getEmployeeList().indexOf(employeeIndex);
@@ -436,8 +405,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -473,7 +440,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -38,8 +38,6 @@ public class GoodsShelfStockCountTokens extends CommonTokens{
 	protected GoodsShelfStockCountTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  GoodsShelfStockCountTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		GoodsShelfStockCountTokens tokens = new GoodsShelfStockCountTokens(options);
@@ -49,7 +47,6 @@ public class GoodsShelfStockCountTokens extends CommonTokens{
 	protected GoodsShelfStockCountTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public GoodsShelfStockCountTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -95,14 +92,11 @@ public class GoodsShelfStockCountTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public GoodsShelfStockCountTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String SHELF = "shelf";
 	public String getShelf(){
@@ -128,15 +122,11 @@ public class GoodsShelfStockCountTokens extends CommonTokens{
 	}
 	public boolean analyzeStockCountIssueTrackListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), STOCK_COUNT_ISSUE_TRACK_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), STOCK_COUNT_ISSUE_TRACK_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GoodsShelfStockCountTokens extractMoreFromStockCountIssueTrackList(String idsSeperatedWithComma){		
 		addSimpleOptions(STOCK_COUNT_ISSUE_TRACK_LIST+".extractIds", idsSeperatedWithComma);

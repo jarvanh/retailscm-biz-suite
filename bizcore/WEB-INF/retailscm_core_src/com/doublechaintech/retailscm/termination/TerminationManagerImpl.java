@@ -264,14 +264,9 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 			//will be good when the termination loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Termination.
-<<<<<<< HEAD
-			
-			
-=======
 			if (termination.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			termination = saveTermination(userContext, termination, options);
 			return termination;
 			
@@ -341,11 +336,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -453,34 +444,20 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
-=======
  	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTerminationReasonDAO().load(newReasonId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTerminationReasonDAO().load(newReasonId, options);
-=======
  	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -780,13 +757,8 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfTermination(terminationId);
-<<<<<<< HEAD
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
-=======
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);

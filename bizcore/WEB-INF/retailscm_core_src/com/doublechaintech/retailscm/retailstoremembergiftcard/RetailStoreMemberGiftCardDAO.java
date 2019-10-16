@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 import com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord.RetailStoreMemberGiftCardConsumeRecord;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord.RetailStoreMemberGiftCardConsumeRecordDAO;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
@@ -61,6 +58,7 @@ public interface RetailStoreMemberGiftCardDAO{
 	
 	
 	public SmartList<RetailStoreMemberGiftCard> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreMemberGiftCard> findRetailStoreMemberGiftCardByOwner(String retailStoreMemberId, Map<String,Object> options);
  	public int countRetailStoreMemberGiftCardByOwner(String retailStoreMemberId, Map<String,Object> options);
@@ -69,14 +67,10 @@ public interface RetailStoreMemberGiftCardDAO{
  	public void analyzeRetailStoreMemberGiftCardByOwner(SmartList<RetailStoreMemberGiftCard> resultList, String retailStoreMemberId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:RetailStoreMemberGiftCardConsumeRecord的owner的RetailStoreMemberGiftCardConsumeRecordList
 	public SmartList<RetailStoreMemberGiftCardConsumeRecord> loadOurRetailStoreMemberGiftCardConsumeRecordList(RetailscmUserContext userContext, List<RetailStoreMemberGiftCard> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

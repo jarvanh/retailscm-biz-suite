@@ -38,8 +38,6 @@ public class RetailStoreMemberCouponTokens extends CommonTokens{
 	protected RetailStoreMemberCouponTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  RetailStoreMemberCouponTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		RetailStoreMemberCouponTokens tokens = new RetailStoreMemberCouponTokens(options);
@@ -49,7 +47,6 @@ public class RetailStoreMemberCouponTokens extends CommonTokens{
 	protected RetailStoreMemberCouponTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public RetailStoreMemberCouponTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -94,14 +91,11 @@ public class RetailStoreMemberCouponTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public RetailStoreMemberCouponTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String OWNER = "owner";
 	public String getOwner(){

@@ -38,8 +38,6 @@ public class UserWhiteListTokens extends CommonTokens{
 	protected UserWhiteListTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  UserWhiteListTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		UserWhiteListTokens tokens = new UserWhiteListTokens(options);
@@ -49,7 +47,6 @@ public class UserWhiteListTokens extends CommonTokens{
 	protected UserWhiteListTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public UserWhiteListTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -94,14 +91,11 @@ public class UserWhiteListTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public UserWhiteListTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String DOMAIN = "domain";
 	public String getDomain(){

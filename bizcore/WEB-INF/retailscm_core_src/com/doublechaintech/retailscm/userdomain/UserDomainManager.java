@@ -37,15 +37,9 @@ public interface UserDomainManager{
 
 	*/
 
-<<<<<<< HEAD
-	//public  SecUserManager getSecUserManager(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime ,String [] tokensExpr)  throws Exception;
-	
-	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime , String [] tokensExpr)  throws Exception;
-=======
 	//public  SecUserManager getSecUserManager(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime ,String [] tokensExpr)  throws Exception;
 	
 	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime , String [] tokensExpr)  throws Exception;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  UserDomain removeSecUser(RetailscmUserContext userContext, String userDomainId, String secUserId, int secUserVersion,String [] tokensExpr)  throws Exception;
 	public  UserDomain updateSecUser(RetailscmUserContext userContext, String userDomainId, String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

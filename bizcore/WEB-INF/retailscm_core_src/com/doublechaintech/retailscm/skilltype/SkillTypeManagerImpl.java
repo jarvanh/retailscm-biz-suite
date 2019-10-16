@@ -249,14 +249,9 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			//will be good when the skillType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SkillType.
-<<<<<<< HEAD
-			
-			
-=======
 			if (skillType.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			skillType = saveSkillType(userContext, skillType, options);
 			return skillType;
 			
@@ -326,11 +321,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeSkillListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -563,13 +554,8 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			String employeeSkillIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-<<<<<<< HEAD
-		for(String employeeSkillId: employeeSkillIds){
-			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-=======
 		for(String employeeSkillIdItem: employeeSkillIds){
 			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);

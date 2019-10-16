@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.occupationtype;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class OccupationTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements OccupationTypeDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements OccupationTypeDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -239,14 +226,8 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	protected boolean isExtractEmployeeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,OccupationTypeTokens.EMPLOYEE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,OccupationTypeTokens.EMPLOYEE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		 		
  		return OccupationTypeTokens.of(options).analyzeEmployeeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeListEnabled(Map<String,Object> options){
@@ -638,15 +619,9 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return occupationType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-
-			employee.clearFromAll();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 
 			employeeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -676,15 +651,9 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return occupationType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearCompany();
-			employee.clearOccupation();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearCompany();
 			employeeItem.clearOccupation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -726,15 +695,9 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return occupationType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearOccupation();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearDepartment();
 			employeeItem.clearOccupation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -776,15 +739,9 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return occupationType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearResponsibleFor();
-			employee.clearOccupation();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearResponsibleFor();
 			employeeItem.clearOccupation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -826,15 +783,9 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return occupationType;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearOccupation();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearCurrentSalaryGrade();
 			employeeItem.clearOccupation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -972,8 +923,6 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	public void enhanceList(List<OccupationType> occupationTypeList) {		
 		this.enhanceListInternal(occupationTypeList, this.getOccupationTypeMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:Employee的occupation的EmployeeList
@@ -1000,7 +949,6 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<OccupationType> occupationTypeList = ownerEntity.collectRefsWithType(OccupationType.INTERNAL_TYPE);
@@ -1033,12 +981,13 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	public SmartList<OccupationType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getOccupationTypeMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

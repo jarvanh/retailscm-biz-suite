@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.goods.Goods;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
@@ -48,6 +45,7 @@ public interface GoodsMovementDAO{
 	
 	
 	public SmartList<GoodsMovement> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<GoodsMovement> findGoodsMovementByGoods(String goodsId, Map<String,Object> options);
  	public int countGoodsMovementByGoods(String goodsId, Map<String,Object> options);
@@ -56,11 +54,7 @@ public interface GoodsMovementDAO{
  	public void analyzeGoodsMovementByGoods(SmartList<GoodsMovement> resultList, String goodsId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -247,14 +247,9 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 			//will be good when the stockCountIssueTrack loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to StockCountIssueTrack.
-<<<<<<< HEAD
-			
-			
-=======
 			if (stockCountIssueTrack.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			stockCountIssueTrack = saveStockCountIssueTrack(userContext, stockCountIssueTrack, options);
 			return stockCountIssueTrack;
 			
@@ -323,11 +318,7 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

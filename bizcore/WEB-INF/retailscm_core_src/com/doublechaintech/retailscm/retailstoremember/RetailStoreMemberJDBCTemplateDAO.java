@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.retailstoremember;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -47,18 +40,12 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class RetailStoreMemberJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreMemberDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -407,14 +394,8 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractConsumerOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.CONSUMER_ORDER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreMemberTokens.CONSUMER_ORDER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		 		
  		return RetailStoreMemberTokens.of(options).analyzeConsumerOrderListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderListEnabled(Map<String,Object> options){
@@ -427,14 +408,8 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractRetailStoreMemberCouponListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_COUPON_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreMemberCouponListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_COUPON_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreMemberCouponListEnabled(Map<String,Object> options){		 		
  		return RetailStoreMemberTokens.of(options).analyzeRetailStoreMemberCouponListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberCouponListEnabled(Map<String,Object> options){
@@ -447,14 +422,8 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractMemberWishlistListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.MEMBER_WISHLIST_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeMemberWishlistListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreMemberTokens.MEMBER_WISHLIST_LIST+".analyze");
-=======
  	protected boolean isAnalyzeMemberWishlistListEnabled(Map<String,Object> options){		 		
  		return RetailStoreMemberTokens.of(options).analyzeMemberWishlistListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveMemberWishlistListEnabled(Map<String,Object> options){
@@ -467,14 +436,8 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractMemberRewardPointListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeMemberRewardPointListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_LIST+".analyze");
-=======
  	protected boolean isAnalyzeMemberRewardPointListEnabled(Map<String,Object> options){		 		
  		return RetailStoreMemberTokens.of(options).analyzeMemberRewardPointListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveMemberRewardPointListEnabled(Map<String,Object> options){
@@ -487,14 +450,8 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractMemberRewardPointRedemptionListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_REDEMPTION_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeMemberRewardPointRedemptionListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreMemberTokens.MEMBER_REWARD_POINT_REDEMPTION_LIST+".analyze");
-=======
  	protected boolean isAnalyzeMemberRewardPointRedemptionListEnabled(Map<String,Object> options){		 		
  		return RetailStoreMemberTokens.of(options).analyzeMemberRewardPointRedemptionListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveMemberRewardPointRedemptionListEnabled(Map<String,Object> options){
@@ -507,14 +464,8 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractRetailStoreMemberAddressListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_ADDRESS_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreMemberAddressListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_ADDRESS_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreMemberAddressListEnabled(Map<String,Object> options){		 		
  		return RetailStoreMemberTokens.of(options).analyzeRetailStoreMemberAddressListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberAddressListEnabled(Map<String,Object> options){
@@ -527,14 +478,8 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_GIFT_CARD_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreMemberTokens.RETAIL_STORE_MEMBER_GIFT_CARD_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){		 		
  		return RetailStoreMemberTokens.of(options).analyzeRetailStoreMemberGiftCardListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreMemberGiftCardListEnabled(Map<String,Object> options){
@@ -1314,15 +1259,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
-
-			consumerOrder.clearFromAll();
-=======
 		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
 
 			consumerOrderItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1352,15 +1291,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
-			consumerOrder.clearStore();
-			consumerOrder.clearConsumer();
-=======
 		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
 			consumerOrderItem.clearStore();
 			consumerOrderItem.clearConsumer();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1398,15 +1331,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStoreMemberCoupon retailStoreMemberCoupon: externalRetailStoreMemberCouponList){
-
-			retailStoreMemberCoupon.clearFromAll();
-=======
 		for(RetailStoreMemberCoupon retailStoreMemberCouponItem: externalRetailStoreMemberCouponList){
 
 			retailStoreMemberCouponItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1432,15 +1359,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(MemberWishlist memberWishlist: externalMemberWishlistList){
-
-			memberWishlist.clearFromAll();
-=======
 		for(MemberWishlist memberWishlistItem: externalMemberWishlistList){
 
 			memberWishlistItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1466,15 +1387,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(MemberRewardPoint memberRewardPoint: externalMemberRewardPointList){
-
-			memberRewardPoint.clearFromAll();
-=======
 		for(MemberRewardPoint memberRewardPointItem: externalMemberRewardPointList){
 
 			memberRewardPointItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1500,15 +1415,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(MemberRewardPointRedemption memberRewardPointRedemption: externalMemberRewardPointRedemptionList){
-
-			memberRewardPointRedemption.clearFromAll();
-=======
 		for(MemberRewardPointRedemption memberRewardPointRedemptionItem: externalMemberRewardPointRedemptionList){
 
 			memberRewardPointRedemptionItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1534,15 +1443,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStoreMemberAddress retailStoreMemberAddress: externalRetailStoreMemberAddressList){
-
-			retailStoreMemberAddress.clearFromAll();
-=======
 		for(RetailStoreMemberAddress retailStoreMemberAddressItem: externalRetailStoreMemberAddressList){
 
 			retailStoreMemberAddressItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1568,15 +1471,9 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStoreMemberGiftCard retailStoreMemberGiftCard: externalRetailStoreMemberGiftCardList){
-
-			retailStoreMemberGiftCard.clearFromAll();
-=======
 		for(RetailStoreMemberGiftCard retailStoreMemberGiftCardItem: externalRetailStoreMemberGiftCardList){
 
 			retailStoreMemberGiftCardItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -2260,8 +2157,6 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	public void enhanceList(List<RetailStoreMember> retailStoreMemberList) {		
 		this.enhanceListInternal(retailStoreMemberList, this.getRetailStoreMemberMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:ConsumerOrder的consumer的ConsumerOrderList
@@ -2426,7 +2321,6 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreMember> retailStoreMemberList = ownerEntity.collectRefsWithType(RetailStoreMember.INTERNAL_TYPE);
@@ -2459,12 +2353,13 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	public SmartList<RetailStoreMember> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

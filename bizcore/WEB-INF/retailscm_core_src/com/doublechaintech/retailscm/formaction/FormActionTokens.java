@@ -38,8 +38,6 @@ public class FormActionTokens extends CommonTokens{
 	protected FormActionTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  FormActionTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		FormActionTokens tokens = new FormActionTokens(options);
@@ -49,7 +47,6 @@ public class FormActionTokens extends CommonTokens{
 	protected FormActionTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public FormActionTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -94,14 +91,11 @@ public class FormActionTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public FormActionTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String FORM = "form";
 	public String getForm(){
@@ -120,16 +114,3 @@ public class FormActionTokens extends CommonTokens{
 	}
 }
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

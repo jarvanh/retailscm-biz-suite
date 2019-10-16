@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.accountingdocument;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -47,27 +40,12 @@ import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentTy
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class AccountingDocumentJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentDAO{
- 
- 	
- 	private  AccountingDocumentTypeDAO  accountingDocumentTypeDAO;
- 	public void setAccountingDocumentTypeDAO(AccountingDocumentTypeDAO accountingDocumentTypeDAO){
-	 	this.accountingDocumentTypeDAO = accountingDocumentTypeDAO;
- 	}
- 	public AccountingDocumentTypeDAO getAccountingDocumentTypeDAO(){
-	 	return this.accountingDocumentTypeDAO;
- 	}
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingDocumentDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  AccountingDocumentPostingDAO  accountingDocumentPostingDAO;
@@ -79,14 +57,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	}
  
  	
-<<<<<<< HEAD
- 	private  AccountingDocumentCreationDAO  accountingDocumentCreationDAO;
- 	public void setAccountingDocumentCreationDAO(AccountingDocumentCreationDAO accountingDocumentCreationDAO){
-	 	this.accountingDocumentCreationDAO = accountingDocumentCreationDAO;
- 	}
- 	public AccountingDocumentCreationDAO getAccountingDocumentCreationDAO(){
-	 	return this.accountingDocumentCreationDAO;
-=======
  	private  AccountingDocumentConfirmationDAO  accountingDocumentConfirmationDAO;
  	public void setAccountingDocumentConfirmationDAO(AccountingDocumentConfirmationDAO accountingDocumentConfirmationDAO){
 	 	this.accountingDocumentConfirmationDAO = accountingDocumentConfirmationDAO;
@@ -102,7 +72,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	}
  	public AccountingDocumentAuditingDAO getAccountingDocumentAuditingDAO(){
 	 	return this.accountingDocumentAuditingDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  
  	
@@ -115,23 +84,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	}
  
  	
-<<<<<<< HEAD
- 	private  AccountingDocumentAuditingDAO  accountingDocumentAuditingDAO;
- 	public void setAccountingDocumentAuditingDAO(AccountingDocumentAuditingDAO accountingDocumentAuditingDAO){
-	 	this.accountingDocumentAuditingDAO = accountingDocumentAuditingDAO;
- 	}
- 	public AccountingDocumentAuditingDAO getAccountingDocumentAuditingDAO(){
-	 	return this.accountingDocumentAuditingDAO;
- 	}
- 
- 	
- 	private  AccountingDocumentConfirmationDAO  accountingDocumentConfirmationDAO;
- 	public void setAccountingDocumentConfirmationDAO(AccountingDocumentConfirmationDAO accountingDocumentConfirmationDAO){
-	 	this.accountingDocumentConfirmationDAO = accountingDocumentConfirmationDAO;
- 	}
- 	public AccountingDocumentConfirmationDAO getAccountingDocumentConfirmationDAO(){
-	 	return this.accountingDocumentConfirmationDAO;
-=======
  	private  AccountingDocumentTypeDAO  accountingDocumentTypeDAO;
  	public void setAccountingDocumentTypeDAO(AccountingDocumentTypeDAO accountingDocumentTypeDAO){
 	 	this.accountingDocumentTypeDAO = accountingDocumentTypeDAO;
@@ -147,7 +99,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	}
  	public AccountingDocumentCreationDAO getAccountingDocumentCreationDAO(){
 	 	return this.accountingDocumentCreationDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 
 
@@ -428,14 +379,8 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	protected boolean isExtractOriginalVoucherListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountingDocumentTokens.ORIGINAL_VOUCHER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountingDocumentTokens.ORIGINAL_VOUCHER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		 		
  		return AccountingDocumentTokens.of(options).analyzeOriginalVoucherListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveOriginalVoucherListEnabled(Map<String,Object> options){
@@ -448,14 +393,8 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	protected boolean isExtractAccountingDocumentLineListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountingDocumentTokens.ACCOUNTING_DOCUMENT_LINE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountingDocumentLineListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountingDocumentTokens.ACCOUNTING_DOCUMENT_LINE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountingDocumentLineListEnabled(Map<String,Object> options){		 		
  		return AccountingDocumentTokens.of(options).analyzeAccountingDocumentLineListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingDocumentLineListEnabled(Map<String,Object> options){
@@ -1406,15 +1345,9 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return accountingDocument;
 		}
 		
-<<<<<<< HEAD
-		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
-
-			originalVoucher.clearFromAll();
-=======
 		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
 
 			originalVoucherItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1440,15 +1373,9 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return accountingDocument;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
-
-			accountingDocumentLine.clearFromAll();
-=======
 		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
 
 			accountingDocumentLineItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1478,15 +1405,9 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return accountingDocument;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
-			accountingDocumentLine.clearAccountingSubject();
-			accountingDocumentLine.clearBelongsTo();
-=======
 		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
 			accountingDocumentLineItem.clearAccountingSubject();
 			accountingDocumentLineItem.clearBelongsTo();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1717,8 +1638,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public void enhanceList(List<AccountingDocument> accountingDocumentList) {		
 		this.enhanceListInternal(accountingDocumentList, this.getAccountingDocumentMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:OriginalVoucher的belongsTo的OriginalVoucherList
@@ -1768,7 +1687,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<AccountingDocument> accountingDocumentList = ownerEntity.collectRefsWithType(AccountingDocument.INTERNAL_TYPE);
@@ -1801,12 +1719,13 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public SmartList<AccountingDocument> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

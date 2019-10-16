@@ -38,8 +38,6 @@ public class UserDomainTokens extends CommonTokens{
 	protected UserDomainTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  UserDomainTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		UserDomainTokens tokens = new UserDomainTokens(options);
@@ -49,7 +47,6 @@ public class UserDomainTokens extends CommonTokens{
 	protected UserDomainTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public UserDomainTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -94,14 +91,11 @@ public class UserDomainTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public UserDomainTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String USER_WHITE_LIST_LIST = "userWhiteListList";
 	public String getUserWhiteListList(){
@@ -117,15 +111,11 @@ public class UserDomainTokens extends CommonTokens{
 	}
 	public boolean analyzeUserWhiteListListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), USER_WHITE_LIST_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), USER_WHITE_LIST_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public UserDomainTokens extractMoreFromUserWhiteListList(String idsSeperatedWithComma){		
 		addSimpleOptions(USER_WHITE_LIST_LIST+".extractIds", idsSeperatedWithComma);
@@ -187,15 +177,11 @@ public class UserDomainTokens extends CommonTokens{
 	}
 	public boolean analyzeSecUserListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), SEC_USER_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), SEC_USER_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public UserDomainTokens extractMoreFromSecUserList(String idsSeperatedWithComma){		
 		addSimpleOptions(SEC_USER_LIST+".extractIds", idsSeperatedWithComma);
@@ -217,11 +203,7 @@ public class UserDomainTokens extends CommonTokens{
 	}
 	
 	public UserDomainTokens searchAllTextOfSecUserList(String verb, String value){	
-<<<<<<< HEAD
-		String field = "id|login|mobile|email|pwd|currentStatus";
-=======
 		String field = "id|login|mobile|email|pwd|weixinOpenid|weixinAppid|accessToken|currentStatus";
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		addSearchMoreOptions(SEC_USER_LIST,secUserListSearchCounter++, field, verb, value);
 		return this;
 	}

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.payingoff;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,11 +59,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	PayingOff(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static PayingOff withId(String id){
@@ -80,7 +72,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setPaidFor( null );
 
@@ -163,8 +154,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(WHO_PROPERTY.equals(property)){
@@ -192,7 +181,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -206,12 +194,9 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(String who){
@@ -225,12 +210,9 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeWho(String who){
 		if(who != null) { setWho(who);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPaidFor(Employee paidFor){
@@ -244,12 +226,9 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePaidFor(Employee paidFor){
 		if(paidFor != null) { setPaidFor(paidFor);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPaidFor(){
@@ -268,12 +247,9 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePaidTime(Date paidTime){
 		setPaidTime(paidTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAmount(BigDecimal amount){
@@ -287,12 +263,9 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAmount(BigDecimal amount){
 		setAmount(amount);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -306,12 +279,9 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -344,9 +314,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeSalarySheetList().addAll(employeeSalarySheetList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeSalarySheetList(SmartList<EmployeeSalarySheet> employeeSalarySheetList){
 		if(employeeSalarySheetList==null){
 			return;
@@ -357,7 +324,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		addEmployeeSalarySheetList( employeeSalarySheetList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeSalarySheet removeEmployeeSalarySheet(EmployeeSalarySheet employeeSalarySheetIndex){
 		
 		int index = getEmployeeSalarySheetList().indexOf(employeeSalarySheetIndex);
@@ -491,8 +457,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -531,7 +495,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

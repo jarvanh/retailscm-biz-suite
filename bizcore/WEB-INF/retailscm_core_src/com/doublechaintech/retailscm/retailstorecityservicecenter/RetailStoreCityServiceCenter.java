@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.retailstorecityservicecenter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -71,11 +68,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 	
 		
 	public 	RetailStoreCityServiceCenter(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static RetailStoreCityServiceCenter withId(String id){
@@ -89,7 +81,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBelongsTo( null );
 
@@ -175,8 +166,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -216,7 +205,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -230,12 +218,9 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -249,12 +234,9 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFounded(Date founded){
@@ -268,12 +250,9 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFounded(Date founded){
 		setFounded(founded);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBelongsTo(RetailStoreProvinceCenter belongsTo){
@@ -287,12 +266,9 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBelongsTo(RetailStoreProvinceCenter belongsTo){
 		if(belongsTo != null) { setBelongsTo(belongsTo);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBelongsTo(){
@@ -311,12 +287,9 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -330,12 +303,9 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -368,9 +338,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getCityPartnerList().addAll(cityPartnerList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeCityPartnerList(SmartList<CityPartner> cityPartnerList){
 		if(cityPartnerList==null){
 			return;
@@ -381,7 +348,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		addCityPartnerList( cityPartnerList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  CityPartner removeCityPartner(CityPartner cityPartnerIndex){
 		
 		int index = getCityPartnerList().indexOf(cityPartnerIndex);
@@ -479,9 +445,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getPotentialCustomerList().addAll(potentialCustomerList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePotentialCustomerList(SmartList<PotentialCustomer> potentialCustomerList){
 		if(potentialCustomerList==null){
 			return;
@@ -492,7 +455,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		addPotentialCustomerList( potentialCustomerList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PotentialCustomer removePotentialCustomer(PotentialCustomer potentialCustomerIndex){
 		
 		int index = getPotentialCustomerList().indexOf(potentialCustomerIndex);
@@ -590,9 +552,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getCityEventList().addAll(cityEventList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeCityEventList(SmartList<CityEvent> cityEventList){
 		if(cityEventList==null){
 			return;
@@ -603,7 +562,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		addCityEventList( cityEventList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  CityEvent removeCityEvent(CityEvent cityEventIndex){
 		
 		int index = getCityEventList().indexOf(cityEventIndex);
@@ -701,9 +659,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		getRetailStoreList().addAll(retailStoreList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreList(SmartList<RetailStore> retailStoreList){
 		if(retailStoreList==null){
 			return;
@@ -714,7 +669,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		addRetailStoreList( retailStoreList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStore removeRetailStore(RetailStore retailStoreIndex){
 		
 		int index = getRetailStoreList().indexOf(retailStoreIndex);
@@ -872,8 +826,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -915,7 +867,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

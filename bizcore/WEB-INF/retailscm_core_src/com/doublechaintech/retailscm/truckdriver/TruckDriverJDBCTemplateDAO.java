@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.truckdriver;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.transporttask.TransportTaskDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class TruckDriverJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TruckDriverDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements TruckDriverDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  TransportFleetDAO  transportFleetDAO;
@@ -239,14 +226,8 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	protected boolean isExtractTransportTaskListEnabled(Map<String,Object> options){		
  		return checkOptions(options,TruckDriverTokens.TRANSPORT_TASK_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeTransportTaskListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,TruckDriverTokens.TRANSPORT_TASK_LIST+".analyze");
-=======
  	protected boolean isAnalyzeTransportTaskListEnabled(Map<String,Object> options){		 		
  		return TruckDriverTokens.of(options).analyzeTransportTaskListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveTransportTaskListEnabled(Map<String,Object> options){
@@ -638,15 +619,9 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return truckDriver;
 		}
 		
-<<<<<<< HEAD
-		for(TransportTask transportTask: externalTransportTaskList){
-
-			transportTask.clearFromAll();
-=======
 		for(TransportTask transportTaskItem: externalTransportTaskList){
 
 			transportTaskItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -676,15 +651,9 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return truckDriver;
 		}
 		
-<<<<<<< HEAD
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearEnd();
-			transportTask.clearDriver();
-=======
 		for(TransportTask transportTaskItem: externalTransportTaskList){
 			transportTaskItem.clearEnd();
 			transportTaskItem.clearDriver();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -726,15 +695,9 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return truckDriver;
 		}
 		
-<<<<<<< HEAD
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearTruck();
-			transportTask.clearDriver();
-=======
 		for(TransportTask transportTaskItem: externalTransportTaskList){
 			transportTaskItem.clearTruck();
 			transportTaskItem.clearDriver();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -776,15 +739,9 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return truckDriver;
 		}
 		
-<<<<<<< HEAD
-		for(TransportTask transportTask: externalTransportTaskList){
-			transportTask.clearBelongsTo();
-			transportTask.clearDriver();
-=======
 		for(TransportTask transportTaskItem: externalTransportTaskList){
 			transportTaskItem.clearBelongsTo();
 			transportTaskItem.clearDriver();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -922,8 +879,6 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	public void enhanceList(List<TruckDriver> truckDriverList) {		
 		this.enhanceListInternal(truckDriverList, this.getTruckDriverMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:TransportTask的driver的TransportTaskList
@@ -950,7 +905,6 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<TruckDriver> truckDriverList = ownerEntity.collectRefsWithType(TruckDriver.INTERNAL_TYPE);
@@ -983,12 +937,13 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	public SmartList<TruckDriver> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTruckDriverMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

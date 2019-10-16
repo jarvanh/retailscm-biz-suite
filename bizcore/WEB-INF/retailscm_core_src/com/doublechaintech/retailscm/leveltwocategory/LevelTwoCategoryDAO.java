@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.levelthreecategory.LevelThreeCategory;
 import com.doublechaintech.retailscm.levelonecategory.LevelOneCategory;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.levelthreecategory.LevelThreeCategoryDAO;
 import com.doublechaintech.retailscm.levelonecategory.LevelOneCategoryDAO;
 
@@ -57,6 +54,7 @@ public interface LevelTwoCategoryDAO{
 
 	
 	public SmartList<LevelTwoCategory> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<LevelTwoCategory> findLevelTwoCategoryByParentCategory(String levelOneCategoryId, Map<String,Object> options);
  	public int countLevelTwoCategoryByParentCategory(String levelOneCategoryId, Map<String,Object> options);
@@ -65,14 +63,10 @@ public interface LevelTwoCategoryDAO{
  	public void analyzeLevelTwoCategoryByParentCategory(SmartList<LevelTwoCategory> resultList, String levelOneCategoryId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:LevelThreeCategory的parentCategory的LevelThreeCategoryList
 	public SmartList<LevelThreeCategory> loadOurLevelThreeCategoryList(RetailscmUserContext userContext, List<LevelTwoCategory> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

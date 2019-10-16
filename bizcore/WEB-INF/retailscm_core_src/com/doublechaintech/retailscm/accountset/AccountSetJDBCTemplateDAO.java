@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.accountset;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -43,18 +36,12 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class AccountSetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountSetDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountSetDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -345,14 +332,8 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	protected boolean isExtractAccountingSubjectListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountSetTokens.ACCOUNTING_SUBJECT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountingSubjectListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountSetTokens.ACCOUNTING_SUBJECT_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountingSubjectListEnabled(Map<String,Object> options){		 		
  		return AccountSetTokens.of(options).analyzeAccountingSubjectListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingSubjectListEnabled(Map<String,Object> options){
@@ -365,14 +346,8 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	protected boolean isExtractAccountingPeriodListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountSetTokens.ACCOUNTING_PERIOD_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountingPeriodListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountSetTokens.ACCOUNTING_PERIOD_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountingPeriodListEnabled(Map<String,Object> options){		 		
  		return AccountSetTokens.of(options).analyzeAccountingPeriodListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingPeriodListEnabled(Map<String,Object> options){
@@ -385,14 +360,8 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	protected boolean isExtractAccountingDocumentTypeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountSetTokens.ACCOUNTING_DOCUMENT_TYPE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountingDocumentTypeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountSetTokens.ACCOUNTING_DOCUMENT_TYPE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountingDocumentTypeListEnabled(Map<String,Object> options){		 		
  		return AccountSetTokens.of(options).analyzeAccountingDocumentTypeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingDocumentTypeListEnabled(Map<String,Object> options){
@@ -1150,15 +1119,9 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 			return accountSet;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingSubject accountingSubject: externalAccountingSubjectList){
-
-			accountingSubject.clearFromAll();
-=======
 		for(AccountingSubject accountingSubjectItem: externalAccountingSubjectList){
 
 			accountingSubjectItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1184,15 +1147,9 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 			return accountSet;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingPeriod accountingPeriod: externalAccountingPeriodList){
-
-			accountingPeriod.clearFromAll();
-=======
 		for(AccountingPeriod accountingPeriodItem: externalAccountingPeriodList){
 
 			accountingPeriodItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1218,15 +1175,9 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 			return accountSet;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocumentType accountingDocumentType: externalAccountingDocumentTypeList){
-
-			accountingDocumentType.clearFromAll();
-=======
 		for(AccountingDocumentType accountingDocumentTypeItem: externalAccountingDocumentTypeList){
 
 			accountingDocumentTypeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1538,8 +1489,6 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	public void enhanceList(List<AccountSet> accountSetList) {		
 		this.enhanceListInternal(accountSetList, this.getAccountSetMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:AccountingSubject的accountSet的AccountingSubjectList
@@ -1612,7 +1561,6 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<AccountSet> accountSetList = ownerEntity.collectRefsWithType(AccountSet.INTERNAL_TYPE);
@@ -1645,12 +1593,13 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	public SmartList<AccountSet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountSetMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

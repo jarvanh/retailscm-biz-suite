@@ -266,14 +266,9 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 			//will be good when the supplierSpace loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplierSpace.
-<<<<<<< HEAD
-			
-			
-=======
 			if (supplierSpace.isChanged()){
 			supplierSpace.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			supplierSpace = saveSupplierSpace(userContext, supplierSpace, options);
 			return supplierSpace;
 			
@@ -343,11 +338,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsShelfListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -604,13 +595,8 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-<<<<<<< HEAD
-		for(String goodsShelfId: goodsShelfIds){
-			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-=======
 		for(String goodsShelfIdItem: goodsShelfIds){
 			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);

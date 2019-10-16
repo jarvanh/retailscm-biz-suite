@@ -264,14 +264,9 @@ public class OccupationTypeManagerImpl extends CustomRetailscmCheckerManager imp
 			//will be good when the occupationType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to OccupationType.
-<<<<<<< HEAD
-			
-			
-=======
 			if (occupationType.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			occupationType = saveOccupationType(userContext, occupationType, options);
 			return occupationType;
 			
@@ -341,11 +336,7 @@ public class OccupationTypeManagerImpl extends CustomRetailscmCheckerManager imp
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -684,13 +675,8 @@ public class OccupationTypeManagerImpl extends CustomRetailscmCheckerManager imp
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfOccupationType(occupationTypeId);
-<<<<<<< HEAD
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
-=======
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(OccupationTypeManagerException.class);

@@ -38,8 +38,6 @@ public class PayingOffTokens extends CommonTokens{
 	protected PayingOffTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  PayingOffTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		PayingOffTokens tokens = new PayingOffTokens(options);
@@ -49,7 +47,6 @@ public class PayingOffTokens extends CommonTokens{
 	protected PayingOffTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public PayingOffTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -95,14 +92,11 @@ public class PayingOffTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public PayingOffTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String PAIDFOR = "paidFor";
 	public String getPaidFor(){
@@ -128,15 +122,11 @@ public class PayingOffTokens extends CommonTokens{
 	}
 	public boolean analyzeEmployeeSalarySheetListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), EMPLOYEE_SALARY_SHEET_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), EMPLOYEE_SALARY_SHEET_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public PayingOffTokens extractMoreFromEmployeeSalarySheetList(String idsSeperatedWithComma){		
 		addSimpleOptions(EMPLOYEE_SALARY_SHEET_LIST+".extractIds", idsSeperatedWithComma);

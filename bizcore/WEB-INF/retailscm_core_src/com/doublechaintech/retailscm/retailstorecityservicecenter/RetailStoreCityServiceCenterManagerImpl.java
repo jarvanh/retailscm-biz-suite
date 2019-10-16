@@ -272,14 +272,9 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			//will be good when the retailStoreCityServiceCenter loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCityServiceCenter.
-<<<<<<< HEAD
-			
-			
-=======
 			if (retailStoreCityServiceCenter.isChanged()){
 			retailStoreCityServiceCenter.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreCityServiceCenter = saveRetailStoreCityServiceCenter(userContext, retailStoreCityServiceCenter, options);
 			return retailStoreCityServiceCenter;
 			
@@ -352,11 +347,7 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 		.sortPotentialCustomerListWith("id","desc")
 		.sortCityEventListWith("id","desc")
 		.sortRetailStoreListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -613,13 +604,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String cityPartnerIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-<<<<<<< HEAD
-		for(String cityPartnerId: cityPartnerIds){
-			userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-=======
 		for(String cityPartnerIdItem: cityPartnerIds){
 			userContext.getChecker().checkIdOfCityPartner(cityPartnerIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);
@@ -876,13 +862,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String potentialCustomerIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-<<<<<<< HEAD
-		for(String potentialCustomerId: potentialCustomerIds){
-			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
-=======
 		for(String potentialCustomerIdItem: potentialCustomerIds){
 			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);
@@ -1134,13 +1115,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String cityEventIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-<<<<<<< HEAD
-		for(String cityEventId: cityEventIds){
-			userContext.getChecker().checkIdOfCityEvent(cityEventId);
-=======
 		for(String cityEventIdItem: cityEventIds){
 			userContext.getChecker().checkIdOfCityEvent(cityEventIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);
@@ -1418,13 +1394,8 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(retailStoreCityServiceCenterId);
-<<<<<<< HEAD
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-=======
 		for(String retailStoreIdItem: retailStoreIds){
 			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCityServiceCenterManagerException.class);

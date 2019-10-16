@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.consumerorderlineitem;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -65,11 +62,6 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 	
 		
 	public 	ConsumerOrderLineItem(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static ConsumerOrderLineItem withId(String id){
@@ -83,7 +75,6 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBizOrder( null );
 
@@ -222,8 +213,6 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(BIZ_ORDER_PROPERTY.equals(property)){
@@ -256,7 +245,6 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -270,12 +258,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBizOrder(ConsumerOrder bizOrder){
@@ -289,12 +274,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBizOrder(ConsumerOrder bizOrder){
 		if(bizOrder != null) { setBizOrder(bizOrder);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBizOrder(){
@@ -313,12 +295,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSkuId(String skuId){
 		if(skuId != null) { setSkuId(skuId);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearSkuId(){
@@ -337,12 +316,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSkuName(String skuName){
 		if(skuName != null) { setSkuName(skuName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPrice(BigDecimal price){
@@ -356,12 +332,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePrice(BigDecimal price){
 		setPrice(price);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setQuantity(BigDecimal quantity){
@@ -375,12 +348,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeQuantity(BigDecimal quantity){
 		setQuantity(quantity);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAmount(BigDecimal amount){
@@ -394,12 +364,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAmount(BigDecimal amount){
 		setAmount(amount);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -413,12 +380,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -432,12 +396,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -504,8 +465,6 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -549,7 +508,6 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

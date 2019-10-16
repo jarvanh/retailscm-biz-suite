@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
@@ -48,6 +45,7 @@ public interface RetailStoreMemberCouponDAO{
 	
 	
 	public SmartList<RetailStoreMemberCoupon> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreMemberCoupon> findRetailStoreMemberCouponByOwner(String retailStoreMemberId, Map<String,Object> options);
  	public int countRetailStoreMemberCouponByOwner(String retailStoreMemberId, Map<String,Object> options);
@@ -56,11 +54,7 @@ public interface RetailStoreMemberCouponDAO{
  	public void analyzeRetailStoreMemberCouponByOwner(SmartList<RetailStoreMemberCoupon> resultList, String retailStoreMemberId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

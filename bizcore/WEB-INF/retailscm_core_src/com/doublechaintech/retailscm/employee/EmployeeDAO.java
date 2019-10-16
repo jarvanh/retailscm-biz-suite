@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.hrinterview.HrInterview;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
@@ -35,7 +33,6 @@ import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 import com.doublechaintech.retailscm.employeeworkexperience.EmployeeWorkExperience;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAward;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.offerapproval.OfferApprovalDAO;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheetDAO;
 import com.doublechaintech.retailscm.salarygrade.SalaryGradeDAO;
@@ -198,6 +195,7 @@ public interface EmployeeDAO{
 
 	
 	public SmartList<Employee> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Employee> findEmployeeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countEmployeeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -294,9 +292,6 @@ public interface EmployeeDAO{
  	public void analyzeEmployeeByTermination(SmartList<Employee> resultList, String terminationId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:EmployeeCompanyTraining的employee的EmployeeCompanyTrainingList
 	public SmartList<EmployeeCompanyTraining> loadOurEmployeeCompanyTrainingList(RetailscmUserContext userContext, List<Employee> us, Map<String,Object> options) throws Exception;
@@ -335,6 +330,5 @@ public interface EmployeeDAO{
 	public SmartList<PayingOff> loadOurPayingOffList(RetailscmUserContext userContext, List<Employee> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

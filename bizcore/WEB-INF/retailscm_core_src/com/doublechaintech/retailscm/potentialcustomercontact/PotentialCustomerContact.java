@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.potentialcustomercontact;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -69,11 +66,6 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 	
 		
 	public 	PotentialCustomerContact(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static PotentialCustomerContact withId(String id){
@@ -87,7 +79,6 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setPotentialCustomer( null );
 		setCityPartner( null );
@@ -211,8 +202,6 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -248,7 +237,6 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -262,12 +250,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -281,12 +266,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setContactDate(Date contactDate){
@@ -300,12 +282,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeContactDate(Date contactDate){
 		setContactDate(contactDate);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setContactMethod(String contactMethod){
@@ -319,12 +298,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeContactMethod(String contactMethod){
 		if(contactMethod != null) { setContactMethod(contactMethod);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPotentialCustomer(PotentialCustomer potentialCustomer){
@@ -338,12 +314,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePotentialCustomer(PotentialCustomer potentialCustomer){
 		if(potentialCustomer != null) { setPotentialCustomer(potentialCustomer);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPotentialCustomer(){
@@ -362,12 +335,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCityPartner(CityPartner cityPartner){
 		if(cityPartner != null) { setCityPartner(cityPartner);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCityPartner(){
@@ -386,12 +356,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeContactTo(PotentialCustomerContactPerson contactTo){
 		if(contactTo != null) { setContactTo(contactTo);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearContactTo(){
@@ -410,12 +377,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -429,12 +393,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -448,12 +409,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -524,8 +482,6 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -569,7 +525,6 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

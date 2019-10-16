@@ -7,15 +7,12 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.supplierproduct.SupplierProduct;
 import com.doublechaintech.retailscm.accountset.AccountSet;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.supplierproduct.SupplierProductDAO;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
@@ -87,6 +84,7 @@ public interface GoodsSupplierDAO{
 	
 	
 	public SmartList<GoodsSupplier> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<GoodsSupplier> findGoodsSupplierByBelongTo(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countGoodsSupplierByBelongTo(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -95,9 +93,6 @@ public interface GoodsSupplierDAO{
  	public void analyzeGoodsSupplierByBelongTo(SmartList<GoodsSupplier> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:SupplierProduct的supplier的SupplierProductList
 	public SmartList<SupplierProduct> loadOurSupplierProductList(RetailscmUserContext userContext, List<GoodsSupplier> us, Map<String,Object> options) throws Exception;
@@ -109,6 +104,5 @@ public interface GoodsSupplierDAO{
 	public SmartList<AccountSet> loadOurAccountSetList(RetailscmUserContext userContext, List<GoodsSupplier> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

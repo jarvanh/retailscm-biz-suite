@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.supplierspace;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class SupplierSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplierSpaceDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplierSpaceDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -239,14 +226,8 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	protected boolean isExtractGoodsShelfListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplierSpaceTokens.GOODS_SHELF_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeGoodsShelfListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,SupplierSpaceTokens.GOODS_SHELF_LIST+".analyze");
-=======
  	protected boolean isAnalyzeGoodsShelfListEnabled(Map<String,Object> options){		 		
  		return SupplierSpaceTokens.of(options).analyzeGoodsShelfListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsShelfListEnabled(Map<String,Object> options){
@@ -660,15 +641,9 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return supplierSpace;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-
-			goodsShelf.clearFromAll();
-=======
 		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 
 			goodsShelfItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -698,15 +673,9 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return supplierSpace;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearStorageSpace();
-			goodsShelf.clearSupplierSpace();
-=======
 		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 			goodsShelfItem.clearStorageSpace();
 			goodsShelfItem.clearSupplierSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -748,15 +717,9 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return supplierSpace;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearDamageSpace();
-			goodsShelf.clearSupplierSpace();
-=======
 		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 			goodsShelfItem.clearDamageSpace();
 			goodsShelfItem.clearSupplierSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -894,8 +857,6 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	public void enhanceList(List<SupplierSpace> supplierSpaceList) {		
 		this.enhanceListInternal(supplierSpaceList, this.getSupplierSpaceMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:GoodsShelf的supplierSpace的GoodsShelfList
@@ -922,7 +883,6 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SupplierSpace> supplierSpaceList = ownerEntity.collectRefsWithType(SupplierSpace.INTERNAL_TYPE);
@@ -955,12 +915,13 @@ public class SupplierSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	public SmartList<SupplierSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplierSpaceMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

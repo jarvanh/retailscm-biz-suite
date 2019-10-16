@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.employeesalarysheet;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,11 +30,6 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeSalarySheetDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -57,7 +45,6 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  	public EmployeeDAO getEmployeeDAO(){
 	 	return this.employeeDAO;
  	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  SalaryGradeDAO  salaryGradeDAO;
@@ -76,18 +63,6 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  	public PayingOffDAO getPayingOffDAO(){
 	 	return this.payingOffDAO;
  	}
-<<<<<<< HEAD
- 
- 	
- 	private  EmployeeDAO  employeeDAO;
- 	public void setEmployeeDAO(EmployeeDAO employeeDAO){
-	 	this.employeeDAO = employeeDAO;
- 	}
- 	public EmployeeDAO getEmployeeDAO(){
-	 	return this.employeeDAO;
- 	}
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -807,12 +782,9 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	public void enhanceList(List<EmployeeSalarySheet> employeeSalarySheetList) {		
 		this.enhanceListInternal(employeeSalarySheetList, this.getEmployeeSalarySheetMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<EmployeeSalarySheet> employeeSalarySheetList = ownerEntity.collectRefsWithType(EmployeeSalarySheet.INTERNAL_TYPE);
@@ -845,12 +817,13 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	public SmartList<EmployeeSalarySheet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeSalarySheetMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

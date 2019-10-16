@@ -258,14 +258,9 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 			//will be good when the accountingPeriod loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountingPeriod.
-<<<<<<< HEAD
-			
-			
-=======
 			if (accountingPeriod.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			accountingPeriod = saveAccountingPeriod(userContext, accountingPeriod, options);
 			return accountingPeriod;
 			
@@ -335,11 +330,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortAccountingDocumentListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -578,13 +569,8 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-<<<<<<< HEAD
-		for(String accountingDocumentId: accountingDocumentIds){
-			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-=======
 		for(String accountingDocumentIdItem: accountingDocumentIds){
 			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);

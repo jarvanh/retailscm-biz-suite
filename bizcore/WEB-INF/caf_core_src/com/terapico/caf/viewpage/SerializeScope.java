@@ -1,11 +1,5 @@
 package com.terapico.caf.viewpage;
 
-<<<<<<< HEAD
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,16 +9,12 @@ import java.util.Map.Entry;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.terapico.utils.TextUtil;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 @JsonIgnoreType
 public class SerializeScope {
 	public static final int NODE_SIMPLE = 0;
 	public static final int NODE_OBJECT = 1;
-<<<<<<< HEAD
-=======
 	protected static final String ANY_FIELD_NAME = "__any_field__";
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	protected Map<String, SerializeScope> fields;
 	protected boolean excludeMode = false;
@@ -33,10 +23,6 @@ public class SerializeScope {
 	protected String aliasName;
 	protected String forceWhenEmpty;
 	protected boolean noListMeta = false;
-<<<<<<< HEAD
-	
-	
-=======
 	protected boolean revers = false;
 	protected boolean showWhenNotEmpty = false;
 	protected boolean putInDataContainer = false;
@@ -73,7 +59,6 @@ public class SerializeScope {
 		this.revers = revers;
 	}
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected SerializeScope curNode = null;
 	
 	private SerializeScope() {
@@ -95,15 +80,11 @@ public class SerializeScope {
 		if (fields == null) {
 			return null;
 		}
-<<<<<<< HEAD
-		return fields.get(fieldName);
-=======
 		SerializeScope rst = fields.get(fieldName);
 		if (rst == null) {
 			return fields.get(ANY_FIELD_NAME);
 		}
 		return rst;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	
 	public static SerializeScope INCLUDE() {
@@ -116,26 +97,17 @@ public class SerializeScope {
 		ensureFields();
 		SerializeScope node = new SerializeScope();
 		node.nodeType = NODE_SIMPLE;
-<<<<<<< HEAD
-=======
 		node.excludeMode = this.excludeMode;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		fields.put(fieldName, node);
 		curNode = node;
 		return this;
 	}
 	public SerializeScope field(String fieldName, SerializeScope node) {
 		ensureFields();
-<<<<<<< HEAD
-		node.nodeType = NODE_OBJECT;
-		fields.put(fieldName, node);
-		curNode = node;
-=======
 		SerializeScope newNode = node;
 		newNode.nodeType = NODE_OBJECT;
 		fields.put(fieldName, newNode);
 		curNode = newNode;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return this;
 	}
 
@@ -144,11 +116,7 @@ public class SerializeScope {
 		if (node == null) {
 			return excludeMode?true:false;
 		}
-<<<<<<< HEAD
-		if (NODE_OBJECT == this.nodeType) {
-=======
 		if (NODE_OBJECT == node.nodeType) {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			return true;
 		}
 		return excludeMode?false:true;
@@ -175,9 +143,6 @@ public class SerializeScope {
 		curNode.setAliasName(alias);
 		return this;
 	}
-<<<<<<< HEAD
-
-=======
 	public SerializeScope not_empty() {
 		if (curNode == null) {
 			throw new RuntimeException("method 'not_zero()' must be invoked only after method 'field(xxx)'");
@@ -186,7 +151,6 @@ public class SerializeScope {
 		return this;
 	}
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public String getAliasName() {
 		return aliasName;
 	}
@@ -198,22 +162,14 @@ public class SerializeScope {
 	
 	public SerializeScope forceList() {
 		if (curNode == null) {
-<<<<<<< HEAD
-			throw new RuntimeException("method 'forceList(String)' must be invoked only after method 'field(xxx)'");
-=======
 			throw new RuntimeException("method 'forceList()' must be invoked only after method 'field(xxx)'");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		curNode.setForceWhenEmpty("list");
 		return this;
 	}
 	public SerializeScope forceObject() {
 		if (curNode == null) {
-<<<<<<< HEAD
-			throw new RuntimeException("method 'forceObject(String)' must be invoked only after method 'field(xxx)'");
-=======
 			throw new RuntimeException("method 'forceObject()' must be invoked only after method 'field(xxx)'");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		curNode.setForceWhenEmpty("object");
 		return this;
@@ -229,18 +185,11 @@ public class SerializeScope {
 
 	public SerializeScope noListMeta() {
 		if (curNode == null) {
-<<<<<<< HEAD
-			throw new RuntimeException("method 'noListMeta(String)' must be invoked only after method 'field(xxx)'");
-=======
 			throw new RuntimeException("method 'noListMeta()' must be invoked only after method 'field(xxx)'");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		curNode.setNoListMeta(true);
 		return this;
 	}
-<<<<<<< HEAD
-
-=======
 	public SerializeScope in_data_container() {
 		if (curNode == null) {
 			throw new RuntimeException("method 'in_data_container()' must be invoked only after method 'field(xxx)'");
@@ -256,7 +205,6 @@ public class SerializeScope {
 		curNode.setRevers(true);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public boolean isNoListMeta() {
 		return noListMeta;
 	}
@@ -265,8 +213,6 @@ public class SerializeScope {
 		this.noListMeta = noListMeta;
 	}
 	
-<<<<<<< HEAD
-=======
 	public SerializeScope clone() {
 		SerializeScope newScope = new SerializeScope();
 		newScope.setAliasName(this.getAliasName());
@@ -354,5 +300,4 @@ public class SerializeScope {
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }

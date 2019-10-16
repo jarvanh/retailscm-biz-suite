@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.goodspackaging;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class GoodsPackagingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsPackagingDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsPackagingDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	protected boolean isExtractGoodsListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GoodsPackagingTokens.GOODS_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,GoodsPackagingTokens.GOODS_LIST+".analyze");
-=======
  	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		 		
  		return GoodsPackagingTokens.of(options).analyzeGoodsListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsListEnabled(Map<String,Object> options){
@@ -527,15 +508,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-
-			goods.clearFromAll();
-=======
 		for(Goods goodsItem: externalGoodsList){
 
 			goodsItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -565,15 +540,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearSku();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -615,15 +584,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearReceivingSpace();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -665,15 +628,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearGoodsAllocation();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -715,15 +672,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearSmartPallet();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -765,15 +716,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearShippingSpace();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearShippingSpace();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -815,15 +760,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearTransportTask();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -865,15 +804,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearRetailStore();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -915,15 +848,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearBizOrder();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -965,15 +892,9 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return goodsPackaging;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearPackaging();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearRetailStoreOrder();
 			goodsItem.clearPackaging();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1111,8 +1032,6 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	public void enhanceList(List<GoodsPackaging> goodsPackagingList) {		
 		this.enhanceListInternal(goodsPackagingList, this.getGoodsPackagingMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:Goods的packaging的GoodsList
@@ -1139,7 +1058,6 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<GoodsPackaging> goodsPackagingList = ownerEntity.collectRefsWithType(GoodsPackaging.INTERNAL_TYPE);
@@ -1172,8 +1090,10 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	public SmartList<GoodsPackaging> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsPackagingMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -1257,7 +1177,6 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

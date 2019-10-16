@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.supplierproduct.SupplierProduct;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.supplierproduct.SupplierProductDAO;
 
 
@@ -48,6 +45,7 @@ public interface ProductSupplyDurationDAO{
 	
 	
 	public SmartList<ProductSupplyDuration> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ProductSupplyDuration> findProductSupplyDurationByProduct(String supplierProductId, Map<String,Object> options);
  	public int countProductSupplyDurationByProduct(String supplierProductId, Map<String,Object> options);
@@ -56,11 +54,7 @@ public interface ProductSupplyDurationDAO{
  	public void analyzeProductSupplyDurationByProduct(SmartList<ProductSupplyDuration> resultList, String supplierProductId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

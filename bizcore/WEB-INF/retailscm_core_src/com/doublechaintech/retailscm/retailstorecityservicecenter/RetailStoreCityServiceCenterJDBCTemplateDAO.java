@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.retailstorecityservicecenter;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -41,18 +34,12 @@ import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreCityServiceCenterDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreCityServiceCenterDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreProvinceCenterDAO  retailStoreProvinceCenterDAO;
@@ -323,14 +310,8 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 	protected boolean isExtractCityPartnerListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCityServiceCenterTokens.CITY_PARTNER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeCityPartnerListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCityServiceCenterTokens.CITY_PARTNER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeCityPartnerListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCityServiceCenterTokens.of(options).analyzeCityPartnerListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveCityPartnerListEnabled(Map<String,Object> options){
@@ -343,14 +324,8 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 	protected boolean isExtractPotentialCustomerListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCityServiceCenterTokens.POTENTIAL_CUSTOMER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzePotentialCustomerListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCityServiceCenterTokens.POTENTIAL_CUSTOMER_LIST+".analyze");
-=======
  	protected boolean isAnalyzePotentialCustomerListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCityServiceCenterTokens.of(options).analyzePotentialCustomerListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePotentialCustomerListEnabled(Map<String,Object> options){
@@ -363,14 +338,8 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 	protected boolean isExtractCityEventListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCityServiceCenterTokens.CITY_EVENT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeCityEventListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCityServiceCenterTokens.CITY_EVENT_LIST+".analyze");
-=======
  	protected boolean isAnalyzeCityEventListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCityServiceCenterTokens.of(options).analyzeCityEventListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveCityEventListEnabled(Map<String,Object> options){
@@ -383,14 +352,8 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 	protected boolean isExtractRetailStoreListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreCityServiceCenterTokens.RETAIL_STORE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreCityServiceCenterTokens.RETAIL_STORE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		 		
  		return RetailStoreCityServiceCenterTokens.of(options).analyzeRetailStoreListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreListEnabled(Map<String,Object> options){
@@ -993,15 +956,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 			return retailStoreCityServiceCenter;
 		}
 		
-<<<<<<< HEAD
-		for(CityPartner cityPartner: externalCityPartnerList){
-
-			cityPartner.clearFromAll();
-=======
 		for(CityPartner cityPartnerItem: externalCityPartnerList){
 
 			cityPartnerItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1027,15 +984,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 			return retailStoreCityServiceCenter;
 		}
 		
-<<<<<<< HEAD
-		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
-
-			potentialCustomer.clearFromAll();
-=======
 		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
 
 			potentialCustomerItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1065,15 +1016,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 			return retailStoreCityServiceCenter;
 		}
 		
-<<<<<<< HEAD
-		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
-			potentialCustomer.clearCityPartner();
-			potentialCustomer.clearCityServiceCenter();
-=======
 		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
 			potentialCustomerItem.clearCityPartner();
 			potentialCustomerItem.clearCityServiceCenter();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1111,15 +1056,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 			return retailStoreCityServiceCenter;
 		}
 		
-<<<<<<< HEAD
-		for(CityEvent cityEvent: externalCityEventList){
-
-			cityEvent.clearFromAll();
-=======
 		for(CityEvent cityEventItem: externalCityEventList){
 
 			cityEventItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1145,15 +1084,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 			return retailStoreCityServiceCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStore retailStore: externalRetailStoreList){
-
-			retailStore.clearFromAll();
-=======
 		for(RetailStore retailStoreItem: externalRetailStoreList){
 
 			retailStoreItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1183,15 +1116,9 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 			return retailStoreCityServiceCenter;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStore retailStore: externalRetailStoreList){
-			retailStore.clearRetailStoreCountryCenter();
-			retailStore.clearCityServiceCenter();
-=======
 		for(RetailStore retailStoreItem: externalRetailStoreList){
 			retailStoreItem.clearRetailStoreCountryCenter();
 			retailStoreItem.clearCityServiceCenter();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1608,8 +1535,6 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 	public void enhanceList(List<RetailStoreCityServiceCenter> retailStoreCityServiceCenterList) {		
 		this.enhanceListInternal(retailStoreCityServiceCenterList, this.getRetailStoreCityServiceCenterMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:CityPartner的cityServiceCenter的CityPartnerList
@@ -1705,7 +1630,6 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreCityServiceCenter> retailStoreCityServiceCenterList = ownerEntity.collectRefsWithType(RetailStoreCityServiceCenter.INTERNAL_TYPE);
@@ -1738,12 +1662,13 @@ public class RetailStoreCityServiceCenterJDBCTemplateDAO extends RetailscmBaseDA
 	public SmartList<RetailStoreCityServiceCenter> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreCityServiceCenterMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

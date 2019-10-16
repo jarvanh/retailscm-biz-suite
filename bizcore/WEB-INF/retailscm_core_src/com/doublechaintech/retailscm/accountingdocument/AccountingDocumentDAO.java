@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLine;
 import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPosting;
@@ -19,7 +17,6 @@ import com.doublechaintech.retailscm.originalvoucher.OriginalVoucher;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentType;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationDAO;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriodDAO;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO;
@@ -80,6 +77,7 @@ public interface AccountingDocumentDAO{
 	
 	
 	public SmartList<AccountingDocument> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<AccountingDocument> findAccountingDocumentByAccountingPeriod(String accountingPeriodId, Map<String,Object> options);
  	public int countAccountingDocumentByAccountingPeriod(String accountingPeriodId, Map<String,Object> options);
@@ -128,9 +126,6 @@ public interface AccountingDocumentDAO{
  	public void analyzeAccountingDocumentByPosting(SmartList<AccountingDocument> resultList, String accountingDocumentPostingId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:OriginalVoucher的belongsTo的OriginalVoucherList
 	public SmartList<OriginalVoucher> loadOurOriginalVoucherList(RetailscmUserContext userContext, List<AccountingDocument> us, Map<String,Object> options) throws Exception;
@@ -139,6 +134,5 @@ public interface AccountingDocumentDAO{
 	public SmartList<AccountingDocumentLine> loadOurAccountingDocumentLineList(RetailscmUserContext userContext, List<AccountingDocument> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheetDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
@@ -65,6 +62,7 @@ public interface PayingOffDAO{
 	
 	
 	public SmartList<PayingOff> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<PayingOff> findPayingOffByPaidFor(String employeeId, Map<String,Object> options);
  	public int countPayingOffByPaidFor(String employeeId, Map<String,Object> options);
@@ -73,14 +71,10 @@ public interface PayingOffDAO{
  	public void analyzePayingOffByPaidFor(SmartList<PayingOff> resultList, String employeeId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:EmployeeSalarySheet的payingOff的EmployeeSalarySheetList
 	public SmartList<EmployeeSalarySheet> loadOurEmployeeSalarySheetList(RetailscmUserContext userContext, List<PayingOff> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

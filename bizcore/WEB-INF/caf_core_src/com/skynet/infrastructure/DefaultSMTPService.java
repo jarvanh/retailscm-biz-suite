@@ -24,11 +24,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.terapico.caf.BlobObject;
-<<<<<<< HEAD
-
-public class DefaultSMTPService extends InfraBaseService implements SMTPService {
-
-=======
 import com.terapico.utils.TextUtil;
 
 public class DefaultSMTPService extends InfraBaseService implements SMTPService {
@@ -76,7 +71,6 @@ public class DefaultSMTPService extends InfraBaseService implements SMTPService 
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public DefaultSMTPService() {
 		// TODO Auto-generated constructor stub
 	}
@@ -107,13 +101,8 @@ public class DefaultSMTPService extends InfraBaseService implements SMTPService 
 	protected boolean sendEmail(String to, String subject, String content) throws URISyntaxException, Exception {
 
 		Properties mailProps = new Properties();
-<<<<<<< HEAD
-        mailProps.put("mail.smtp.from", "report@bettbio.com");
-        mailProps.put("mail.smtp.host", "smtp.bettbio.com");
-=======
         mailProps.put("mail.smtp.from", getSmtpSenderName());
         mailProps.put("mail.smtp.host", getSmtpHost());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
         mailProps.put("mail.smtp.port", 25);
         mailProps.put("mail.smtp.auth", "true");
         //mailProps.put("mail.smtp.socketFactory.port", port);
@@ -124,11 +113,7 @@ public class DefaultSMTPService extends InfraBaseService implements SMTPService 
 		Session session = Session.getInstance(mailProps,  auth);
 		session.setDebug(true);
 		Message msg = new MimeMessage(session);
-<<<<<<< HEAD
-		msg.setFrom(new InternetAddress("report@bettbio.com"));
-=======
 		msg.setFrom(new InternetAddress(getSmtpSenderAddress()));
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 		//String content = value + "! product price has been changed ";
 		msg.setSubject(subject);
@@ -150,13 +135,8 @@ public class DefaultSMTPService extends InfraBaseService implements SMTPService 
 	}
 	protected boolean sendHtmlEmail(String to, String subject, String content) throws Exception {
 		Properties mailProps = new Properties();
-<<<<<<< HEAD
-        mailProps.put("mail.smtp.from", "report@bettbio.com");
-        mailProps.put("mail.smtp.host", "smtp.bettbio.com");
-=======
         mailProps.put("mail.smtp.from", getSmtpSenderName());
         mailProps.put("mail.smtp.host", getSmtpHost());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
         mailProps.put("mail.smtp.port", 25);
         mailProps.put("mail.smtp.auth", "true");
         //mailProps.put("mail.smtp.socketFactory.port", port);
@@ -167,11 +147,7 @@ public class DefaultSMTPService extends InfraBaseService implements SMTPService 
 		Session session = Session.getInstance(mailProps,  auth);
 		session.setDebug(true);
 		Message msg = new MimeMessage(session);
-<<<<<<< HEAD
-		msg.setFrom(new InternetAddress("report@bettbio.com"));
-=======
 		msg.setFrom(new InternetAddress(getSmtpSenderAddress()));
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 		//String content = value + "! product price has been changed ";
 		msg.setSubject(subject);

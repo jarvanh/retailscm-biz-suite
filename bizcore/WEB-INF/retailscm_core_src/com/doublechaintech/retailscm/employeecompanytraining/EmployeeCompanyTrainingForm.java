@@ -610,11 +610,7 @@ public class EmployeeCompanyTrainingForm extends BaseForm {
  	
  	public EmployeeCompanyTrainingForm  scoreAction(){
 		FormAction action = new FormAction();
-<<<<<<< HEAD
-		action.setLabel("分数");
-=======
 		action.setLabel("评分");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("employee_company_training.score");
 		action.setUrl("employeeCompanyTrainingManager/score/employeeCompanyTrainingId/scoredBy/score/comment/");
 		this.addFormAction(action);

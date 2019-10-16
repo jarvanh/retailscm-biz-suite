@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.goodsshelfstockcount;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,11 +59,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 	
 		
 	public 	GoodsShelfStockCount(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static GoodsShelfStockCount withId(String id){
@@ -80,7 +72,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setShelf( null );
 
@@ -163,8 +154,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(TITLE_PROPERTY.equals(property)){
@@ -192,7 +181,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -206,12 +194,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTitle(String title){
@@ -225,12 +210,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTitle(String title){
 		if(title != null) { setTitle(title);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCountTime(Date countTime){
@@ -244,12 +226,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCountTime(Date countTime){
 		setCountTime(countTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSummary(String summary){
@@ -263,12 +242,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSummary(String summary){
 		if(summary != null) { setSummary(summary);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setShelf(GoodsShelf shelf){
@@ -282,12 +258,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeShelf(GoodsShelf shelf){
 		if(shelf != null) { setShelf(shelf);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearShelf(){
@@ -306,12 +279,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -344,9 +314,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		}
 		getStockCountIssueTrackList().addAll(stockCountIssueTrackList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeStockCountIssueTrackList(SmartList<StockCountIssueTrack> stockCountIssueTrackList){
 		if(stockCountIssueTrackList==null){
 			return;
@@ -357,7 +324,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		addStockCountIssueTrackList( stockCountIssueTrackList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  StockCountIssueTrack removeStockCountIssueTrack(StockCountIssueTrack stockCountIssueTrackIndex){
 		
 		int index = getStockCountIssueTrackList().indexOf(stockCountIssueTrackIndex);
@@ -491,8 +457,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -531,7 +495,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

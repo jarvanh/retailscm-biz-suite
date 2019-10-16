@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.damagespace;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class DamageSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements DamageSpaceDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements DamageSpaceDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -239,14 +226,8 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	protected boolean isExtractGoodsShelfListEnabled(Map<String,Object> options){		
  		return checkOptions(options,DamageSpaceTokens.GOODS_SHELF_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeGoodsShelfListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,DamageSpaceTokens.GOODS_SHELF_LIST+".analyze");
-=======
  	protected boolean isAnalyzeGoodsShelfListEnabled(Map<String,Object> options){		 		
  		return DamageSpaceTokens.of(options).analyzeGoodsShelfListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsShelfListEnabled(Map<String,Object> options){
@@ -660,15 +641,9 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return damageSpace;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-
-			goodsShelf.clearFromAll();
-=======
 		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 
 			goodsShelfItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -698,15 +673,9 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return damageSpace;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearStorageSpace();
-			goodsShelf.clearDamageSpace();
-=======
 		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 			goodsShelfItem.clearStorageSpace();
 			goodsShelfItem.clearDamageSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -748,15 +717,9 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return damageSpace;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsShelf goodsShelf: externalGoodsShelfList){
-			goodsShelf.clearSupplierSpace();
-			goodsShelf.clearDamageSpace();
-=======
 		for(GoodsShelf goodsShelfItem: externalGoodsShelfList){
 			goodsShelfItem.clearSupplierSpace();
 			goodsShelfItem.clearDamageSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -894,8 +857,6 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	public void enhanceList(List<DamageSpace> damageSpaceList) {		
 		this.enhanceListInternal(damageSpaceList, this.getDamageSpaceMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:GoodsShelf的damageSpace的GoodsShelfList
@@ -922,7 +883,6 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<DamageSpace> damageSpaceList = ownerEntity.collectRefsWithType(DamageSpace.INTERNAL_TYPE);
@@ -955,12 +915,13 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	public SmartList<DamageSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getDamageSpaceMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

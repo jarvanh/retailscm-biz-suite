@@ -45,6 +45,7 @@ public interface QuickLinkDAO{
 	
 	
 	public SmartList<QuickLink> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<QuickLink> findQuickLinkByApp(String userAppId, Map<String,Object> options);
  	public int countQuickLinkByApp(String userAppId, Map<String,Object> options);

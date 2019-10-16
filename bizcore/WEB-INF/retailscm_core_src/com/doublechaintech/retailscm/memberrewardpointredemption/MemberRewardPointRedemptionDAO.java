@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
@@ -48,6 +45,7 @@ public interface MemberRewardPointRedemptionDAO{
 	
 	
 	public SmartList<MemberRewardPointRedemption> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<MemberRewardPointRedemption> findMemberRewardPointRedemptionByOwner(String retailStoreMemberId, Map<String,Object> options);
  	public int countMemberRewardPointRedemptionByOwner(String retailStoreMemberId, Map<String,Object> options);
@@ -56,11 +54,7 @@ public interface MemberRewardPointRedemptionDAO{
  	public void analyzeMemberRewardPointRedemptionByOwner(SmartList<MemberRewardPointRedemption> resultList, String retailStoreMemberId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

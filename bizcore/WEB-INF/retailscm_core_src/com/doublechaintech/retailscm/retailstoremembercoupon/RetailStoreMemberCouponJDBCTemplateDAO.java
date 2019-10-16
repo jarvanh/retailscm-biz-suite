@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.retailstoremembercoupon;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreMemberCouponDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreMemberCouponDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreMemberDAO  retailStoreMemberDAO;
@@ -548,12 +535,9 @@ public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public void enhanceList(List<RetailStoreMemberCoupon> retailStoreMemberCouponList) {		
 		this.enhanceListInternal(retailStoreMemberCouponList, this.getRetailStoreMemberCouponMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreMemberCoupon> retailStoreMemberCouponList = ownerEntity.collectRefsWithType(RetailStoreMemberCoupon.INTERNAL_TYPE);
@@ -586,12 +570,13 @@ public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public SmartList<RetailStoreMemberCoupon> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberCouponMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

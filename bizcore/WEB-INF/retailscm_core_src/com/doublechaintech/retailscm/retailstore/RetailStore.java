@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.retailstore;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -107,11 +104,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	RetailStore(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static RetailStore withId(String id){
@@ -125,7 +117,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setRetailStoreCountryCenter( null );
 		setCityServiceCenter( null );
@@ -316,8 +307,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -400,7 +389,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -414,12 +402,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -433,12 +418,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTelephone(String telephone){
@@ -452,12 +434,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTelephone(String telephone){
 		if(telephone != null) { setTelephone(telephone);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOwner(String owner){
@@ -471,12 +450,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOwner(String owner){
 		if(owner != null) { setOwner(owner);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setRetailStoreCountryCenter(RetailStoreCountryCenter retailStoreCountryCenter){
@@ -490,12 +466,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeRetailStoreCountryCenter(RetailStoreCountryCenter retailStoreCountryCenter){
 		if(retailStoreCountryCenter != null) { setRetailStoreCountryCenter(retailStoreCountryCenter);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearRetailStoreCountryCenter(){
@@ -514,12 +487,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCityServiceCenter(RetailStoreCityServiceCenter cityServiceCenter){
 		if(cityServiceCenter != null) { setCityServiceCenter(cityServiceCenter);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCityServiceCenter(){
@@ -538,12 +508,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCreation(RetailStoreCreation creation){
 		if(creation != null) { setCreation(creation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCreation(){
@@ -562,12 +529,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeInvestmentInvitation(RetailStoreInvestmentInvitation investmentInvitation){
 		if(investmentInvitation != null) { setInvestmentInvitation(investmentInvitation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearInvestmentInvitation(){
@@ -586,12 +550,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFranchising(RetailStoreFranchising franchising){
 		if(franchising != null) { setFranchising(franchising);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearFranchising(){
@@ -610,12 +571,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDecoration(RetailStoreDecoration decoration){
 		if(decoration != null) { setDecoration(decoration);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDecoration(){
@@ -634,12 +592,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOpening(RetailStoreOpening opening){
 		if(opening != null) { setOpening(opening);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOpening(){
@@ -658,12 +613,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeClosing(RetailStoreClosing closing){
 		if(closing != null) { setClosing(closing);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearClosing(){
@@ -682,12 +634,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFounded(Date founded){
 		setFounded(founded);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLatitude(BigDecimal latitude){
@@ -701,12 +650,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLatitude(BigDecimal latitude){
 		setLatitude(latitude);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLongitude(BigDecimal longitude){
@@ -720,12 +666,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLongitude(BigDecimal longitude){
 		setLongitude(longitude);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -739,12 +682,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -758,12 +698,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCurrentStatus(String currentStatus){
@@ -777,12 +714,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentStatus(String currentStatus){
 		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -796,12 +730,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -834,9 +765,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		}
 		getConsumerOrderList().addAll(consumerOrderList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeConsumerOrderList(SmartList<ConsumerOrder> consumerOrderList){
 		if(consumerOrderList==null){
 			return;
@@ -847,7 +775,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		addConsumerOrderList( consumerOrderList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ConsumerOrder removeConsumerOrder(ConsumerOrder consumerOrderIndex){
 		
 		int index = getConsumerOrderList().indexOf(consumerOrderIndex);
@@ -945,9 +872,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		}
 		getRetailStoreOrderList().addAll(retailStoreOrderList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreOrderList(SmartList<RetailStoreOrder> retailStoreOrderList){
 		if(retailStoreOrderList==null){
 			return;
@@ -958,7 +882,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		addRetailStoreOrderList( retailStoreOrderList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreOrder removeRetailStoreOrder(RetailStoreOrder retailStoreOrderIndex){
 		
 		int index = getRetailStoreOrderList().indexOf(retailStoreOrderIndex);
@@ -1056,9 +979,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		}
 		getGoodsList().addAll(goodsList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeGoodsList(SmartList<Goods> goodsList){
 		if(goodsList==null){
 			return;
@@ -1069,7 +989,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		addGoodsList( goodsList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Goods removeGoods(Goods goodsIndex){
 		
 		int index = getGoodsList().indexOf(goodsIndex);
@@ -1167,9 +1086,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		}
 		getTransportTaskList().addAll(transportTaskList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeTransportTaskList(SmartList<TransportTask> transportTaskList){
 		if(transportTaskList==null){
 			return;
@@ -1180,7 +1096,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		addTransportTaskList( transportTaskList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TransportTask removeTransportTask(TransportTask transportTaskIndex){
 		
 		int index = getTransportTaskList().indexOf(transportTaskIndex);
@@ -1278,9 +1193,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		}
 		getAccountSetList().addAll(accountSetList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountSetList(SmartList<AccountSet> accountSetList){
 		if(accountSetList==null){
 			return;
@@ -1291,7 +1203,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		addAccountSetList( accountSetList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountSet removeAccountSet(AccountSet accountSetIndex){
 		
 		int index = getAccountSetList().indexOf(accountSetIndex);
@@ -1490,8 +1401,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -1553,7 +1462,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.retailstorecountrycenter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -138,11 +135,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 	
 		
 	public 	RetailStoreCountryCenter(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static RetailStoreCountryCenter withId(String id){
@@ -156,7 +148,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -355,8 +346,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -488,7 +477,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -502,12 +490,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -521,12 +506,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setServiceNumber(String serviceNumber){
@@ -540,12 +522,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeServiceNumber(String serviceNumber){
 		if(serviceNumber != null) { setServiceNumber(serviceNumber);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFounded(Date founded){
@@ -559,12 +538,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFounded(Date founded){
 		setFounded(founded);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWebSite(String webSite){
@@ -578,12 +554,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeWebSite(String webSite){
 		if(webSite != null) { setWebSite(webSite);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAddress(String address){
@@ -597,12 +570,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAddress(String address){
 		if(address != null) { setAddress(address);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOperatedBy(String operatedBy){
@@ -616,12 +586,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOperatedBy(String operatedBy){
 		if(operatedBy != null) { setOperatedBy(operatedBy);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLegalRepresentative(String legalRepresentative){
@@ -635,12 +602,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLegalRepresentative(String legalRepresentative){
 		if(legalRepresentative != null) { setLegalRepresentative(legalRepresentative);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -654,12 +618,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -673,12 +634,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -711,9 +669,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getCatalogList().addAll(catalogList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeCatalogList(SmartList<Catalog> catalogList){
 		if(catalogList==null){
 			return;
@@ -724,7 +679,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addCatalogList( catalogList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Catalog removeCatalog(Catalog catalogIndex){
 		
 		int index = getCatalogList().indexOf(catalogIndex);
@@ -822,9 +776,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getRetailStoreProvinceCenterList().addAll(retailStoreProvinceCenterList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreProvinceCenterList(SmartList<RetailStoreProvinceCenter> retailStoreProvinceCenterList){
 		if(retailStoreProvinceCenterList==null){
 			return;
@@ -835,7 +786,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addRetailStoreProvinceCenterList( retailStoreProvinceCenterList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreProvinceCenter removeRetailStoreProvinceCenter(RetailStoreProvinceCenter retailStoreProvinceCenterIndex){
 		
 		int index = getRetailStoreProvinceCenterList().indexOf(retailStoreProvinceCenterIndex);
@@ -933,9 +883,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getRetailStoreList().addAll(retailStoreList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreList(SmartList<RetailStore> retailStoreList){
 		if(retailStoreList==null){
 			return;
@@ -946,7 +893,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addRetailStoreList( retailStoreList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStore removeRetailStore(RetailStore retailStoreIndex){
 		
 		int index = getRetailStoreList().indexOf(retailStoreIndex);
@@ -1044,9 +990,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getRetailStoreMemberList().addAll(retailStoreMemberList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreMemberList(SmartList<RetailStoreMember> retailStoreMemberList){
 		if(retailStoreMemberList==null){
 			return;
@@ -1057,7 +1000,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addRetailStoreMemberList( retailStoreMemberList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMember removeRetailStoreMember(RetailStoreMember retailStoreMemberIndex){
 		
 		int index = getRetailStoreMemberList().indexOf(retailStoreMemberIndex);
@@ -1155,9 +1097,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getGoodsSupplierList().addAll(goodsSupplierList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeGoodsSupplierList(SmartList<GoodsSupplier> goodsSupplierList){
 		if(goodsSupplierList==null){
 			return;
@@ -1168,7 +1107,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addGoodsSupplierList( goodsSupplierList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  GoodsSupplier removeGoodsSupplier(GoodsSupplier goodsSupplierIndex){
 		
 		int index = getGoodsSupplierList().indexOf(goodsSupplierIndex);
@@ -1266,9 +1204,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getSupplyOrderList().addAll(supplyOrderList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeSupplyOrderList(SmartList<SupplyOrder> supplyOrderList){
 		if(supplyOrderList==null){
 			return;
@@ -1279,7 +1214,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addSupplyOrderList( supplyOrderList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SupplyOrder removeSupplyOrder(SupplyOrder supplyOrderIndex){
 		
 		int index = getSupplyOrderList().indexOf(supplyOrderIndex);
@@ -1377,9 +1311,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getRetailStoreOrderList().addAll(retailStoreOrderList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreOrderList(SmartList<RetailStoreOrder> retailStoreOrderList){
 		if(retailStoreOrderList==null){
 			return;
@@ -1390,7 +1321,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addRetailStoreOrderList( retailStoreOrderList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreOrder removeRetailStoreOrder(RetailStoreOrder retailStoreOrderIndex){
 		
 		int index = getRetailStoreOrderList().indexOf(retailStoreOrderIndex);
@@ -1488,9 +1418,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getWarehouseList().addAll(warehouseList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeWarehouseList(SmartList<Warehouse> warehouseList){
 		if(warehouseList==null){
 			return;
@@ -1501,7 +1428,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addWarehouseList( warehouseList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Warehouse removeWarehouse(Warehouse warehouseIndex){
 		
 		int index = getWarehouseList().indexOf(warehouseIndex);
@@ -1599,9 +1525,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getTransportFleetList().addAll(transportFleetList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeTransportFleetList(SmartList<TransportFleet> transportFleetList){
 		if(transportFleetList==null){
 			return;
@@ -1612,7 +1535,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addTransportFleetList( transportFleetList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TransportFleet removeTransportFleet(TransportFleet transportFleetIndex){
 		
 		int index = getTransportFleetList().indexOf(transportFleetIndex);
@@ -1710,9 +1632,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getAccountSetList().addAll(accountSetList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountSetList(SmartList<AccountSet> accountSetList){
 		if(accountSetList==null){
 			return;
@@ -1723,7 +1642,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addAccountSetList( accountSetList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountSet removeAccountSet(AccountSet accountSetIndex){
 		
 		int index = getAccountSetList().indexOf(accountSetIndex);
@@ -1821,9 +1739,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getLevelOneDepartmentList().addAll(levelOneDepartmentList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeLevelOneDepartmentList(SmartList<LevelOneDepartment> levelOneDepartmentList){
 		if(levelOneDepartmentList==null){
 			return;
@@ -1834,7 +1749,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addLevelOneDepartmentList( levelOneDepartmentList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  LevelOneDepartment removeLevelOneDepartment(LevelOneDepartment levelOneDepartmentIndex){
 		
 		int index = getLevelOneDepartmentList().indexOf(levelOneDepartmentIndex);
@@ -1932,9 +1846,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getSkillTypeList().addAll(skillTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeSkillTypeList(SmartList<SkillType> skillTypeList){
 		if(skillTypeList==null){
 			return;
@@ -1945,7 +1856,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addSkillTypeList( skillTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SkillType removeSkillType(SkillType skillTypeIndex){
 		
 		int index = getSkillTypeList().indexOf(skillTypeIndex);
@@ -2043,9 +1953,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getResponsibilityTypeList().addAll(responsibilityTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeResponsibilityTypeList(SmartList<ResponsibilityType> responsibilityTypeList){
 		if(responsibilityTypeList==null){
 			return;
@@ -2056,7 +1963,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addResponsibilityTypeList( responsibilityTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ResponsibilityType removeResponsibilityType(ResponsibilityType responsibilityTypeIndex){
 		
 		int index = getResponsibilityTypeList().indexOf(responsibilityTypeIndex);
@@ -2154,9 +2060,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getTerminationReasonList().addAll(terminationReasonList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeTerminationReasonList(SmartList<TerminationReason> terminationReasonList){
 		if(terminationReasonList==null){
 			return;
@@ -2167,7 +2070,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addTerminationReasonList( terminationReasonList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TerminationReason removeTerminationReason(TerminationReason terminationReasonIndex){
 		
 		int index = getTerminationReasonList().indexOf(terminationReasonIndex);
@@ -2265,9 +2167,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getTerminationTypeList().addAll(terminationTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeTerminationTypeList(SmartList<TerminationType> terminationTypeList){
 		if(terminationTypeList==null){
 			return;
@@ -2278,7 +2177,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addTerminationTypeList( terminationTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TerminationType removeTerminationType(TerminationType terminationTypeIndex){
 		
 		int index = getTerminationTypeList().indexOf(terminationTypeIndex);
@@ -2376,9 +2274,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getOccupationTypeList().addAll(occupationTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeOccupationTypeList(SmartList<OccupationType> occupationTypeList){
 		if(occupationTypeList==null){
 			return;
@@ -2389,7 +2284,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addOccupationTypeList( occupationTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  OccupationType removeOccupationType(OccupationType occupationTypeIndex){
 		
 		int index = getOccupationTypeList().indexOf(occupationTypeIndex);
@@ -2487,9 +2381,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getLeaveTypeList().addAll(leaveTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeLeaveTypeList(SmartList<LeaveType> leaveTypeList){
 		if(leaveTypeList==null){
 			return;
@@ -2500,7 +2391,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addLeaveTypeList( leaveTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  LeaveType removeLeaveType(LeaveType leaveTypeIndex){
 		
 		int index = getLeaveTypeList().indexOf(leaveTypeIndex);
@@ -2598,9 +2488,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getSalaryGradeList().addAll(salaryGradeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeSalaryGradeList(SmartList<SalaryGrade> salaryGradeList){
 		if(salaryGradeList==null){
 			return;
@@ -2611,7 +2498,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addSalaryGradeList( salaryGradeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SalaryGrade removeSalaryGrade(SalaryGrade salaryGradeIndex){
 		
 		int index = getSalaryGradeList().indexOf(salaryGradeIndex);
@@ -2709,9 +2595,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getInterviewTypeList().addAll(interviewTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeInterviewTypeList(SmartList<InterviewType> interviewTypeList){
 		if(interviewTypeList==null){
 			return;
@@ -2722,7 +2605,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addInterviewTypeList( interviewTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  InterviewType removeInterviewType(InterviewType interviewTypeIndex){
 		
 		int index = getInterviewTypeList().indexOf(interviewTypeIndex);
@@ -2820,9 +2702,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getTrainingCourseTypeList().addAll(trainingCourseTypeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeTrainingCourseTypeList(SmartList<TrainingCourseType> trainingCourseTypeList){
 		if(trainingCourseTypeList==null){
 			return;
@@ -2833,7 +2712,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addTrainingCourseTypeList( trainingCourseTypeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TrainingCourseType removeTrainingCourseType(TrainingCourseType trainingCourseTypeIndex){
 		
 		int index = getTrainingCourseTypeList().indexOf(trainingCourseTypeIndex);
@@ -2931,9 +2809,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getPublicHolidayList().addAll(publicHolidayList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePublicHolidayList(SmartList<PublicHoliday> publicHolidayList){
 		if(publicHolidayList==null){
 			return;
@@ -2944,7 +2819,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addPublicHolidayList( publicHolidayList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PublicHoliday removePublicHoliday(PublicHoliday publicHolidayIndex){
 		
 		int index = getPublicHolidayList().indexOf(publicHolidayIndex);
@@ -3042,9 +2916,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getEmployeeList().addAll(employeeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeList(SmartList<Employee> employeeList){
 		if(employeeList==null){
 			return;
@@ -3055,7 +2926,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addEmployeeList( employeeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Employee removeEmployee(Employee employeeIndex){
 		
 		int index = getEmployeeList().indexOf(employeeIndex);
@@ -3153,9 +3023,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getInstructorList().addAll(instructorList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeInstructorList(SmartList<Instructor> instructorList){
 		if(instructorList==null){
 			return;
@@ -3166,7 +3033,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addInstructorList( instructorList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Instructor removeInstructor(Instructor instructorIndex){
 		
 		int index = getInstructorList().indexOf(instructorIndex);
@@ -3264,9 +3130,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		getCompanyTrainingList().addAll(companyTrainingList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeCompanyTrainingList(SmartList<CompanyTraining> companyTrainingList){
 		if(companyTrainingList==null){
 			return;
@@ -3277,7 +3140,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		addCompanyTrainingList( companyTrainingList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  CompanyTraining removeCompanyTraining(CompanyTraining companyTrainingIndex){
 		
 		int index = getCompanyTrainingList().indexOf(companyTrainingIndex);
@@ -3602,8 +3464,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -3674,7 +3534,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

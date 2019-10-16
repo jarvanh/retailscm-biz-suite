@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.retailstoreclosing.RetailStoreClosing;
@@ -24,7 +22,6 @@ import com.doublechaintech.retailscm.retailstoreopening.RetailStoreOpening;
 import com.doublechaintech.retailscm.accountset.AccountSet;
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenter;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstoreclosing.RetailStoreClosingDAO;
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenterDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
@@ -167,6 +164,7 @@ public interface RetailStoreDAO{
 	
 	
 	public SmartList<RetailStore> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStore> findRetailStoreByRetailStoreCountryCenter(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countRetailStoreByRetailStoreCountryCenter(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -231,9 +229,6 @@ public interface RetailStoreDAO{
  	public void analyzeRetailStoreByClosing(SmartList<RetailStore> resultList, String retailStoreClosingId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:ConsumerOrder的store的ConsumerOrderList
 	public SmartList<ConsumerOrder> loadOurConsumerOrderList(RetailscmUserContext userContext, List<RetailStore> us, Map<String,Object> options) throws Exception;
@@ -251,6 +246,5 @@ public interface RetailStoreDAO{
 	public SmartList<AccountSet> loadOurAccountSetList(RetailscmUserContext userContext, List<RetailStore> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

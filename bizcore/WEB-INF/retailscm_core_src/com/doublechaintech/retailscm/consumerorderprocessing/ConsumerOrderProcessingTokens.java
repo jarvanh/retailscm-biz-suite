@@ -38,8 +38,6 @@ public class ConsumerOrderProcessingTokens extends CommonTokens{
 	protected ConsumerOrderProcessingTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  ConsumerOrderProcessingTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		ConsumerOrderProcessingTokens tokens = new ConsumerOrderProcessingTokens(options);
@@ -49,7 +47,6 @@ public class ConsumerOrderProcessingTokens extends CommonTokens{
 	protected ConsumerOrderProcessingTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public ConsumerOrderProcessingTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -92,14 +89,11 @@ public class ConsumerOrderProcessingTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public ConsumerOrderProcessingTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	
 	public  ConsumerOrderProcessingTokens searchEntireObjectText(String verb, String value){

@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.offeracceptance;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class OfferAcceptanceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements OfferAcceptanceDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements OfferAcceptanceDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	protected boolean isExtractEmployeeListEnabled(Map<String,Object> options){		
  		return checkOptions(options,OfferAcceptanceTokens.EMPLOYEE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,OfferAcceptanceTokens.EMPLOYEE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeListEnabled(Map<String,Object> options){		 		
  		return OfferAcceptanceTokens.of(options).analyzeEmployeeListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeListEnabled(Map<String,Object> options){
@@ -525,15 +506,9 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 			return offerAcceptance;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-
-			employee.clearFromAll();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 
 			employeeItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -563,15 +538,9 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 			return offerAcceptance;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearCompany();
-			employee.clearOfferAcceptance();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearCompany();
 			employeeItem.clearOfferAcceptance();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -613,15 +582,9 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 			return offerAcceptance;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearDepartment();
-			employee.clearOfferAcceptance();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearDepartment();
 			employeeItem.clearOfferAcceptance();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -663,15 +626,9 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 			return offerAcceptance;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearOccupation();
-			employee.clearOfferAcceptance();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearOccupation();
 			employeeItem.clearOfferAcceptance();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -713,15 +670,9 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 			return offerAcceptance;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearResponsibleFor();
-			employee.clearOfferAcceptance();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearResponsibleFor();
 			employeeItem.clearOfferAcceptance();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -763,15 +714,9 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 			return offerAcceptance;
 		}
 		
-<<<<<<< HEAD
-		for(Employee employee: externalEmployeeList){
-			employee.clearCurrentSalaryGrade();
-			employee.clearOfferAcceptance();
-=======
 		for(Employee employeeItem: externalEmployeeList){
 			employeeItem.clearCurrentSalaryGrade();
 			employeeItem.clearOfferAcceptance();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -909,8 +854,6 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	public void enhanceList(List<OfferAcceptance> offerAcceptanceList) {		
 		this.enhanceListInternal(offerAcceptanceList, this.getOfferAcceptanceMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:Employee的offerAcceptance的EmployeeList
@@ -937,7 +880,6 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<OfferAcceptance> offerAcceptanceList = ownerEntity.collectRefsWithType(OfferAcceptance.INTERNAL_TYPE);
@@ -970,8 +912,10 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	public SmartList<OfferAcceptance> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getOfferAcceptanceMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -1055,7 +999,6 @@ public class OfferAcceptanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

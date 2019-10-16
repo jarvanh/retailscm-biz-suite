@@ -349,14 +349,9 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 			//will be good when the retailStore loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStore.
-<<<<<<< HEAD
-			
-			
-=======
 			if (retailStore.isChanged()){
 			retailStore.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStore = saveRetailStore(userContext, retailStore, options);
 			return retailStore;
 			
@@ -430,11 +425,7 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 		.sortGoodsListWith("id","desc")
 		.sortTransportTaskListWith("id","desc")
 		.sortAccountSetListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -1375,51 +1366,30 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newRetailStoreCountryCenterId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newRetailStoreCountryCenterId, options);
-=======
  	protected RetailStoreOpening loadRetailStoreOpening(RetailscmUserContext userContext, String newOpeningId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreOpeningDAO().load(newOpeningId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreFranchising loadRetailStoreFranchising(RetailscmUserContext userContext, String newFranchisingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreFranchisingDAO().load(newFranchisingId, options);
-=======
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newRetailStoreCountryCenterId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newRetailStoreCountryCenterId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreDecoration loadRetailStoreDecoration(RetailscmUserContext userContext, String newDecorationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreDecorationDAO().load(newDecorationId, options);
-=======
  	protected RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String newCityServiceCenterId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().load(newCityServiceCenterId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1446,51 +1416,30 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String newCityServiceCenterId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().load(newCityServiceCenterId, options);
-=======
  	protected RetailStoreFranchising loadRetailStoreFranchising(RetailscmUserContext userContext, String newFranchisingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreFranchisingDAO().load(newFranchisingId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreInvestmentInvitation loadRetailStoreInvestmentInvitation(RetailscmUserContext userContext, String newInvestmentInvitationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().load(newInvestmentInvitationId, options);
-=======
  	protected RetailStoreDecoration loadRetailStoreDecoration(RetailscmUserContext userContext, String newDecorationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreDecorationDAO().load(newDecorationId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreOpening loadRetailStoreOpening(RetailscmUserContext userContext, String newOpeningId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOpeningDAO().load(newOpeningId, options);
-=======
  	protected RetailStoreInvestmentInvitation loadRetailStoreInvestmentInvitation(RetailscmUserContext userContext, String newInvestmentInvitationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().load(newInvestmentInvitationId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1915,13 +1864,8 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 			String consumerOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-<<<<<<< HEAD
-		for(String consumerOrderId: consumerOrderIds){
-			userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-=======
 		for(String consumerOrderIdItem: consumerOrderIds){
 			userContext.getChecker().checkIdOfConsumerOrder(consumerOrderIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreManagerException.class);
@@ -2336,13 +2280,8 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 			String retailStoreOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-<<<<<<< HEAD
-		for(String retailStoreOrderId: retailStoreOrderIds){
-			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
-=======
 		for(String retailStoreOrderIdItem: retailStoreOrderIds){
 			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreManagerException.class);
@@ -2844,13 +2783,8 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-<<<<<<< HEAD
-		for(String goodsId: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsId);
-=======
 		for(String goodsIdItem: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreManagerException.class);
@@ -3168,13 +3102,8 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 			String transportTaskIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-<<<<<<< HEAD
-		for(String transportTaskId: transportTaskIds){
-			userContext.getChecker().checkIdOfTransportTask(transportTaskId);
-=======
 		for(String transportTaskIdItem: transportTaskIds){
 			userContext.getChecker().checkIdOfTransportTask(transportTaskIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreManagerException.class);
@@ -3469,13 +3398,8 @@ public class RetailStoreManagerImpl extends CustomRetailscmCheckerManager implem
 			String accountSetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-<<<<<<< HEAD
-		for(String accountSetId: accountSetIds){
-			userContext.getChecker().checkIdOfAccountSet(accountSetId);
-=======
 		for(String accountSetIdItem: accountSetIds){
 			userContext.getChecker().checkIdOfAccountSet(accountSetIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreManagerException.class);

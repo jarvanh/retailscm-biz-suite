@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.goods;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -53,11 +46,6 @@ import com.doublechaintech.retailscm.receivingspace.ReceivingSpaceDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class GoodsJDBCTemplateDAO extends RetailscmNamingServiceDAO implements GoodsDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -73,7 +61,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	public ReceivingSpaceDAO getReceivingSpaceDAO(){
 	 	return this.receivingSpaceDAO;
  	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  GoodsAllocationDAO  goodsAllocationDAO;
@@ -85,14 +72,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	}
  
  	
-<<<<<<< HEAD
- 	private  ShippingSpaceDAO  shippingSpaceDAO;
- 	public void setShippingSpaceDAO(ShippingSpaceDAO shippingSpaceDAO){
-	 	this.shippingSpaceDAO = shippingSpaceDAO;
- 	}
- 	public ShippingSpaceDAO getShippingSpaceDAO(){
-	 	return this.shippingSpaceDAO;
-=======
  	private  SmartPalletDAO  smartPalletDAO;
  	public void setSmartPalletDAO(SmartPalletDAO smartPalletDAO){
 	 	this.smartPalletDAO = smartPalletDAO;
@@ -108,7 +87,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	}
  	public SupplyOrderDAO getSupplyOrderDAO(){
 	 	return this.supplyOrderDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  
  	
@@ -121,27 +99,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	}
  
  	
-<<<<<<< HEAD
- 	private  RetailStoreDAO  retailStoreDAO;
- 	public void setRetailStoreDAO(RetailStoreDAO retailStoreDAO){
-	 	this.retailStoreDAO = retailStoreDAO;
- 	}
- 	public RetailStoreDAO getRetailStoreDAO(){
-	 	return this.retailStoreDAO;
- 	}
- 
- 	
- 	private  SkuDAO  skuDAO;
- 	public void setSkuDAO(SkuDAO skuDAO){
-	 	this.skuDAO = skuDAO;
- 	}
- 	public SkuDAO getSkuDAO(){
-	 	return this.skuDAO;
- 	}
- 
- 	
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	private  TransportTaskDAO  transportTaskDAO;
  	public void setTransportTaskDAO(TransportTaskDAO transportTaskDAO){
 	 	this.transportTaskDAO = transportTaskDAO;
@@ -151,32 +108,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	}
  
  	
-<<<<<<< HEAD
- 	private  SmartPalletDAO  smartPalletDAO;
- 	public void setSmartPalletDAO(SmartPalletDAO smartPalletDAO){
-	 	this.smartPalletDAO = smartPalletDAO;
- 	}
- 	public SmartPalletDAO getSmartPalletDAO(){
-	 	return this.smartPalletDAO;
- 	}
- 
- 	
- 	private  SupplyOrderDAO  supplyOrderDAO;
- 	public void setSupplyOrderDAO(SupplyOrderDAO supplyOrderDAO){
-	 	this.supplyOrderDAO = supplyOrderDAO;
- 	}
- 	public SupplyOrderDAO getSupplyOrderDAO(){
-	 	return this.supplyOrderDAO;
- 	}
- 
- 	
- 	private  ReceivingSpaceDAO  receivingSpaceDAO;
- 	public void setReceivingSpaceDAO(ReceivingSpaceDAO receivingSpaceDAO){
-	 	this.receivingSpaceDAO = receivingSpaceDAO;
- 	}
- 	public ReceivingSpaceDAO getReceivingSpaceDAO(){
-	 	return this.receivingSpaceDAO;
-=======
  	private  ShippingSpaceDAO  shippingSpaceDAO;
  	public void setShippingSpaceDAO(ShippingSpaceDAO shippingSpaceDAO){
 	 	this.shippingSpaceDAO = shippingSpaceDAO;
@@ -192,7 +123,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	}
  	public SkuDAO getSkuDAO(){
 	 	return this.skuDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  
  	
@@ -203,8 +133,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	public RetailStoreOrderDAO getRetailStoreOrderDAO(){
 	 	return this.retailStoreOrderDAO;
  	}
-<<<<<<< HEAD
-=======
  
  	
  	private  RetailStoreDAO  retailStoreDAO;
@@ -214,7 +142,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	public RetailStoreDAO getRetailStoreDAO(){
 	 	return this.retailStoreDAO;
  	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -524,14 +451,8 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 	protected boolean isExtractGoodsMovementListEnabled(Map<String,Object> options){		
  		return checkOptions(options,GoodsTokens.GOODS_MOVEMENT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeGoodsMovementListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,GoodsTokens.GOODS_MOVEMENT_LIST+".analyze");
-=======
  	protected boolean isAnalyzeGoodsMovementListEnabled(Map<String,Object> options){		 		
  		return GoodsTokens.of(options).analyzeGoodsMovementListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsMovementListEnabled(Map<String,Object> options){
@@ -1811,15 +1732,9 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 			return goods;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsMovement goodsMovement: externalGoodsMovementList){
-
-			goodsMovement.clearFromAll();
-=======
 		for(GoodsMovement goodsMovementItem: externalGoodsMovementList){
 
 			goodsMovementItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1849,15 +1764,9 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 			return goods;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsMovement goodsMovement: externalGoodsMovementList){
-			goodsMovement.clearFacilityId();
-			goodsMovement.clearGoods();
-=======
 		for(GoodsMovement goodsMovementItem: externalGoodsMovementList){
 			goodsMovementItem.clearFacilityId();
 			goodsMovementItem.clearGoods();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1899,15 +1808,9 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 			return goods;
 		}
 		
-<<<<<<< HEAD
-		for(GoodsMovement goodsMovement: externalGoodsMovementList){
-			goodsMovement.clearSessionId();
-			goodsMovement.clearGoods();
-=======
 		for(GoodsMovement goodsMovementItem: externalGoodsMovementList){
 			goodsMovementItem.clearSessionId();
 			goodsMovementItem.clearGoods();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -2045,8 +1948,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 	public void enhanceList(List<Goods> goodsList) {		
 		this.enhanceListInternal(goodsList, this.getGoodsMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:GoodsMovement的goods的GoodsMovementList
@@ -2073,7 +1974,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<Goods> goodsList = ownerEntity.collectRefsWithType(Goods.INTERNAL_TYPE);
@@ -2106,12 +2006,13 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 	public SmartList<Goods> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

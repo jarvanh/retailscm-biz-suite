@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.potentialcustomercontactperson;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,11 +59,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 	
 		
 	public 	PotentialCustomerContactPerson(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static PotentialCustomerContactPerson withId(String id){
@@ -80,7 +72,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setPotentialCustomer( null );
 
@@ -163,8 +154,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -192,7 +181,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -206,12 +194,9 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -225,12 +210,9 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMobile(String mobile){
@@ -244,12 +226,9 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMobile(String mobile){
 		if(mobile != null) { setMobile(mobile);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -270,12 +249,9 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePotentialCustomer(PotentialCustomer potentialCustomer){
 		if(potentialCustomer != null) { setPotentialCustomer(potentialCustomer);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPotentialCustomer(){
@@ -294,12 +270,9 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -313,12 +286,9 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -351,9 +321,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		}
 		getPotentialCustomerContactList().addAll(potentialCustomerContactList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePotentialCustomerContactList(SmartList<PotentialCustomerContact> potentialCustomerContactList){
 		if(potentialCustomerContactList==null){
 			return;
@@ -364,7 +331,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		addPotentialCustomerContactList( potentialCustomerContactList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PotentialCustomerContact removePotentialCustomerContact(PotentialCustomerContact potentialCustomerContactIndex){
 		
 		int index = getPotentialCustomerContactList().indexOf(potentialCustomerContactIndex);
@@ -498,8 +464,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -538,7 +502,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

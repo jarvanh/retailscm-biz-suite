@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.userwhitelist;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class UserWhiteListJDBCTemplateDAO extends RetailscmNamingServiceDAO implements UserWhiteListDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class UserWhiteListJDBCTemplateDAO extends RetailscmBaseDAOImpl implements UserWhiteListDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  UserDomainDAO  userDomainDAO;
@@ -530,12 +517,9 @@ public class UserWhiteListJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	public void enhanceList(List<UserWhiteList> userWhiteListList) {		
 		this.enhanceListInternal(userWhiteListList, this.getUserWhiteListMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<UserWhiteList> userWhiteListList = ownerEntity.collectRefsWithType(UserWhiteList.INTERNAL_TYPE);
@@ -568,12 +552,13 @@ public class UserWhiteListJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	public SmartList<UserWhiteList> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getUserWhiteListMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

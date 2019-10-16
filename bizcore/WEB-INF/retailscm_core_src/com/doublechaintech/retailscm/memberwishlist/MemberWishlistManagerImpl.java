@@ -243,14 +243,9 @@ public class MemberWishlistManagerImpl extends CustomRetailscmCheckerManager imp
 			//will be good when the memberWishlist loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberWishlist.
-<<<<<<< HEAD
-			
-			
-=======
 			if (memberWishlist.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			memberWishlist = saveMemberWishlist(userContext, memberWishlist, options);
 			return memberWishlist;
 			
@@ -320,11 +315,7 @@ public class MemberWishlistManagerImpl extends CustomRetailscmCheckerManager imp
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortMemberWishlistProductListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -534,13 +525,8 @@ public class MemberWishlistManagerImpl extends CustomRetailscmCheckerManager imp
 			String memberWishlistProductIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfMemberWishlist(memberWishlistId);
-<<<<<<< HEAD
-		for(String memberWishlistProductId: memberWishlistProductIds){
-			userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductId);
-=======
 		for(String memberWishlistProductIdItem: memberWishlistProductIds){
 			userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(MemberWishlistManagerException.class);

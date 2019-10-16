@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLine;
 import com.doublechaintech.retailscm.accountset.AccountSet;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineDAO;
 import com.doublechaintech.retailscm.accountset.AccountSetDAO;
 
@@ -61,6 +58,7 @@ public interface AccountingSubjectDAO{
 	
 	
 	public SmartList<AccountingSubject> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<AccountingSubject> findAccountingSubjectByAccountSet(String accountSetId, Map<String,Object> options);
  	public int countAccountingSubjectByAccountSet(String accountSetId, Map<String,Object> options);
@@ -69,14 +67,10 @@ public interface AccountingSubjectDAO{
  	public void analyzeAccountingSubjectByAccountSet(SmartList<AccountingSubject> resultList, String accountSetId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:AccountingDocumentLine的accountingSubject的AccountingDocumentLineList
 	public SmartList<AccountingDocumentLine> loadOurAccountingDocumentLineList(RetailscmUserContext userContext, List<AccountingSubject> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

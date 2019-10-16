@@ -38,8 +38,6 @@ public class OccupationTypeTokens extends CommonTokens{
 	protected OccupationTypeTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  OccupationTypeTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		OccupationTypeTokens tokens = new OccupationTypeTokens(options);
@@ -49,7 +47,6 @@ public class OccupationTypeTokens extends CommonTokens{
 	protected OccupationTypeTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public OccupationTypeTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -95,14 +92,11 @@ public class OccupationTypeTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public OccupationTypeTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String COMPANY = "company";
 	public String getCompany(){
@@ -128,15 +122,11 @@ public class OccupationTypeTokens extends CommonTokens{
 	}
 	public boolean analyzeEmployeeListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), EMPLOYEE_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), EMPLOYEE_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public OccupationTypeTokens extractMoreFromEmployeeList(String idsSeperatedWithComma){		
 		addSimpleOptions(EMPLOYEE_LIST+".extractIds", idsSeperatedWithComma);

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.employeesalarysheet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -75,11 +72,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	
 		
 	public 	EmployeeSalarySheet(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static EmployeeSalarySheet withId(String id){
@@ -93,7 +85,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setEmployee( null );
 		setCurrentSalaryGrade( null );
@@ -255,8 +246,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(EMPLOYEE_PROPERTY.equals(property)){
@@ -301,7 +290,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -315,12 +303,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmployee(Employee employee){
@@ -334,12 +319,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeEmployee(Employee employee){
 		if(employee != null) { setEmployee(employee);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployee(){
@@ -358,12 +340,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentSalaryGrade(SalaryGrade currentSalaryGrade){
 		if(currentSalaryGrade != null) { setCurrentSalaryGrade(currentSalaryGrade);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCurrentSalaryGrade(){
@@ -382,12 +361,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBaseSalary(BigDecimal baseSalary){
 		setBaseSalary(baseSalary);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBonus(BigDecimal bonus){
@@ -401,12 +377,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBonus(BigDecimal bonus){
 		setBonus(bonus);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setReward(BigDecimal reward){
@@ -420,12 +393,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeReward(BigDecimal reward){
 		setReward(reward);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPersonalTax(BigDecimal personalTax){
@@ -439,12 +409,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePersonalTax(BigDecimal personalTax){
 		setPersonalTax(personalTax);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSocialSecurity(BigDecimal socialSecurity){
@@ -458,12 +425,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSocialSecurity(BigDecimal socialSecurity){
 		setSocialSecurity(socialSecurity);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setHousingFound(BigDecimal housingFound){
@@ -477,12 +441,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeHousingFound(BigDecimal housingFound){
 		setHousingFound(housingFound);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setJobInsurance(BigDecimal jobInsurance){
@@ -496,12 +457,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeJobInsurance(BigDecimal jobInsurance){
 		setJobInsurance(jobInsurance);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPayingOff(PayingOff payingOff){
@@ -515,12 +473,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePayingOff(PayingOff payingOff){
 		if(payingOff != null) { setPayingOff(payingOff);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPayingOff(){
@@ -539,12 +494,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentStatus(String currentStatus){
 		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -558,12 +510,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -640,8 +589,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -691,7 +638,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

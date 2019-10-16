@@ -291,14 +291,9 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
 			//will be good when the consumerOrder loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrder.
-<<<<<<< HEAD
-			
-			
-=======
 			if (consumerOrder.isChanged()){
 			consumerOrder.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			consumerOrder = saveConsumerOrder(userContext, consumerOrder, options);
 			return consumerOrder;
 			
@@ -372,11 +367,7 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
 		.sortConsumerOrderPaymentGroupListWith("id","desc")
 		.sortConsumerOrderPriceAdjustmentListWith("id","desc")
 		.sortRetailStoreMemberGiftCardConsumeRecordListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -1200,119 +1191,70 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected SupplyOrderApproval loadSupplyOrderApproval(RetailscmUserContext userContext, String newApprovalId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplyOrderApprovalDAO().load(newApprovalId, options);
-=======
  	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newConsumerId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreMemberDAO().load(newConsumerId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected SupplyOrderDelivery loadSupplyOrderDelivery(RetailscmUserContext userContext, String newDeliveryId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplyOrderDeliveryDAO().load(newDeliveryId, options);
-=======
  	protected SupplyOrderProcessing loadSupplyOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().load(newProcessingId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected SupplyOrderShipment loadSupplyOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplyOrderShipmentDAO().load(newShipmentId, options);
-=======
  	protected SupplyOrderApproval loadSupplyOrderApproval(RetailscmUserContext userContext, String newApprovalId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSupplyOrderApprovalDAO().load(newApprovalId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected SupplyOrderConfirmation loadSupplyOrderConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplyOrderConfirmationDAO().load(newConfirmationId, options);
-=======
  	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newStoreId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreDAO().load(newStoreId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newConsumerId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreMemberDAO().load(newConsumerId, options);
-=======
  	protected SupplyOrderDelivery loadSupplyOrderDelivery(RetailscmUserContext userContext, String newDeliveryId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSupplyOrderDeliveryDAO().load(newDeliveryId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newStoreId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newStoreId, options);
-=======
  	protected SupplyOrderConfirmation loadSupplyOrderConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSupplyOrderConfirmationDAO().load(newConfirmationId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected SupplyOrderProcessing loadSupplyOrderProcessing(RetailscmUserContext userContext, String newProcessingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().load(newProcessingId, options);
-=======
  	protected SupplyOrderShipment loadSupplyOrderShipment(RetailscmUserContext userContext, String newShipmentId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSupplyOrderShipmentDAO().load(newShipmentId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1517,13 +1459,8 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
 			String consumerOrderLineItemIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-<<<<<<< HEAD
-		for(String consumerOrderLineItemId: consumerOrderLineItemIds){
-			userContext.getChecker().checkIdOfConsumerOrderLineItem(consumerOrderLineItemId);
-=======
 		for(String consumerOrderLineItemIdItem: consumerOrderLineItemIds){
 			userContext.getChecker().checkIdOfConsumerOrderLineItem(consumerOrderLineItemIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderManagerException.class);
@@ -1777,13 +1714,8 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
 			String consumerOrderShippingGroupIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-<<<<<<< HEAD
-		for(String consumerOrderShippingGroupId: consumerOrderShippingGroupIds){
-			userContext.getChecker().checkIdOfConsumerOrderShippingGroup(consumerOrderShippingGroupId);
-=======
 		for(String consumerOrderShippingGroupIdItem: consumerOrderShippingGroupIds){
 			userContext.getChecker().checkIdOfConsumerOrderShippingGroup(consumerOrderShippingGroupIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderManagerException.class);
@@ -2025,13 +1957,8 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
 			String consumerOrderPaymentGroupIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-<<<<<<< HEAD
-		for(String consumerOrderPaymentGroupId: consumerOrderPaymentGroupIds){
-			userContext.getChecker().checkIdOfConsumerOrderPaymentGroup(consumerOrderPaymentGroupId);
-=======
 		for(String consumerOrderPaymentGroupIdItem: consumerOrderPaymentGroupIds){
 			userContext.getChecker().checkIdOfConsumerOrderPaymentGroup(consumerOrderPaymentGroupIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderManagerException.class);
@@ -2278,13 +2205,8 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
 			String consumerOrderPriceAdjustmentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-<<<<<<< HEAD
-		for(String consumerOrderPriceAdjustmentId: consumerOrderPriceAdjustmentIds){
-			userContext.getChecker().checkIdOfConsumerOrderPriceAdjustment(consumerOrderPriceAdjustmentId);
-=======
 		for(String consumerOrderPriceAdjustmentIdItem: consumerOrderPriceAdjustmentIds){
 			userContext.getChecker().checkIdOfConsumerOrderPriceAdjustment(consumerOrderPriceAdjustmentIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderManagerException.class);
@@ -2540,13 +2462,8 @@ public class ConsumerOrderManagerImpl extends CustomRetailscmCheckerManager impl
 			String retailStoreMemberGiftCardConsumeRecordIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-<<<<<<< HEAD
-		for(String retailStoreMemberGiftCardConsumeRecordId: retailStoreMemberGiftCardConsumeRecordIds){
-			userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
-=======
 		for(String retailStoreMemberGiftCardConsumeRecordIdItem: retailStoreMemberGiftCardConsumeRecordIds){
 			userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderManagerException.class);

@@ -405,14 +405,9 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			//will be good when the employee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Employee.
-<<<<<<< HEAD
-			
-			
-=======
 			if (employee.isChanged()){
 			employee.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			employee = saveEmployee(userContext, employee, options);
 			return employee;
 			
@@ -493,11 +488,7 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		.sortEmployeeAwardListWith("id","desc")
 		.sortEmployeeSalarySheetListWith("id","desc")
 		.sortPayingOffListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -1761,34 +1752,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected Termination loadTermination(RetailscmUserContext userContext, String newTerminationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTerminationDAO().load(newTerminationId, options);
-=======
  	protected ProfessionInterview loadProfessionInterview(RetailscmUserContext userContext, String newProfessionInterviewId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getProfessionInterviewDAO().load(newProfessionInterviewId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
-=======
  	protected OccupationType loadOccupationType(RetailscmUserContext userContext, String newOccupationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getOccupationTypeDAO().load(newOccupationId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1805,51 +1782,30 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected OfferApproval loadOfferApproval(RetailscmUserContext userContext, String newOfferApprovalId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getOfferApprovalDAO().load(newOfferApprovalId, options);
-=======
  	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTerminationReasonDAO().load(newReasonId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTerminationReasonDAO().load(newReasonId, options);
-=======
  	protected JobApplication loadJobApplication(RetailscmUserContext userContext, String newJobApplicationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getJobApplicationDAO().load(newJobApplicationId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected HrInterview loadHrInterview(RetailscmUserContext userContext, String newHrInterviewId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getHrInterviewDAO().load(newHrInterviewId, options);
-=======
  	protected EmployeeBoarding loadEmployeeBoarding(RetailscmUserContext userContext, String newEmployeeBoardingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getEmployeeBoardingDAO().load(newEmployeeBoardingId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1876,102 +1832,60 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
-=======
  	protected LevelThreeDepartment loadLevelThreeDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getLevelThreeDepartmentDAO().load(newDepartmentId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected LevelThreeDepartment loadLevelThreeDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getLevelThreeDepartmentDAO().load(newDepartmentId, options);
-=======
  	protected HrInterview loadHrInterview(RetailscmUserContext userContext, String newHrInterviewId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getHrInterviewDAO().load(newHrInterviewId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected OccupationType loadOccupationType(RetailscmUserContext userContext, String newOccupationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getOccupationTypeDAO().load(newOccupationId, options);
-=======
  	protected OfferApproval loadOfferApproval(RetailscmUserContext userContext, String newOfferApprovalId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getOfferApprovalDAO().load(newOfferApprovalId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected JobApplication loadJobApplication(RetailscmUserContext userContext, String newJobApplicationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getJobApplicationDAO().load(newJobApplicationId, options);
-=======
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected ProfessionInterview loadProfessionInterview(RetailscmUserContext userContext, String newProfessionInterviewId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getProfessionInterviewDAO().load(newProfessionInterviewId, options);
-=======
  	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected EmployeeBoarding loadEmployeeBoarding(RetailscmUserContext userContext, String newEmployeeBoardingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getEmployeeBoardingDAO().load(newEmployeeBoardingId, options);
-=======
  	protected Termination loadTermination(RetailscmUserContext userContext, String newTerminationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getTerminationDAO().load(newTerminationId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -2210,13 +2124,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeCompanyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeCompanyTrainingId: employeeCompanyTrainingIds){
-			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-=======
 		for(String employeeCompanyTrainingIdItem: employeeCompanyTrainingIds){
 			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -2484,13 +2393,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeSkillIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeSkillId: employeeSkillIds){
-			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-=======
 		for(String employeeSkillIdItem: employeeSkillIds){
 			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -2723,13 +2627,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeePerformanceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeePerformanceId: employeePerformanceIds){
-			userContext.getChecker().checkIdOfEmployeePerformance(employeePerformanceId);
-=======
 		for(String employeePerformanceIdItem: employeePerformanceIds){
 			userContext.getChecker().checkIdOfEmployeePerformance(employeePerformanceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -2977,13 +2876,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeWorkExperienceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeWorkExperienceId: employeeWorkExperienceIds){
-			userContext.getChecker().checkIdOfEmployeeWorkExperience(employeeWorkExperienceId);
-=======
 		for(String employeeWorkExperienceIdItem: employeeWorkExperienceIds){
 			userContext.getChecker().checkIdOfEmployeeWorkExperience(employeeWorkExperienceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -3238,13 +3132,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeLeaveId: employeeLeaveIds){
-			userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-=======
 		for(String employeeLeaveIdItem: employeeLeaveIds){
 			userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -3486,13 +3375,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeInterviewIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeInterviewId: employeeInterviewIds){
-			userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewId);
-=======
 		for(String employeeInterviewIdItem: employeeInterviewIds){
 			userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -3740,13 +3624,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeAttendanceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeAttendanceId: employeeAttendanceIds){
-			userContext.getChecker().checkIdOfEmployeeAttendance(employeeAttendanceId);
-=======
 		for(String employeeAttendanceIdItem: employeeAttendanceIds){
 			userContext.getChecker().checkIdOfEmployeeAttendance(employeeAttendanceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -4006,13 +3885,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeQualifierIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeQualifierId: employeeQualifierIds){
-			userContext.getChecker().checkIdOfEmployeeQualifier(employeeQualifierId);
-=======
 		for(String employeeQualifierIdItem: employeeQualifierIds){
 			userContext.getChecker().checkIdOfEmployeeQualifier(employeeQualifierIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -4267,13 +4141,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeEducationIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeEducationId: employeeEducationIds){
-			userContext.getChecker().checkIdOfEmployeeEducation(employeeEducationId);
-=======
 		for(String employeeEducationIdItem: employeeEducationIds){
 			userContext.getChecker().checkIdOfEmployeeEducation(employeeEducationIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -4524,13 +4393,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeAwardIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeAwardId: employeeAwardIds){
-			userContext.getChecker().checkIdOfEmployeeAward(employeeAwardId);
-=======
 		for(String employeeAwardIdItem: employeeAwardIds){
 			userContext.getChecker().checkIdOfEmployeeAward(employeeAwardIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -4807,13 +4671,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String employeeSalarySheetId: employeeSalarySheetIds){
-			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-=======
 		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
 			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);
@@ -5114,13 +4973,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			String payingOffIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfEmployee(employeeId);
-<<<<<<< HEAD
-		for(String payingOffId: payingOffIds){
-			userContext.getChecker().checkIdOfPayingOff(payingOffId);
-=======
 		for(String payingOffIdItem: payingOffIds){
 			userContext.getChecker().checkIdOfPayingOff(payingOffIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeManagerException.class);

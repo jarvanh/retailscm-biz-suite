@@ -38,8 +38,6 @@ public class UserAppTokens extends CommonTokens{
 	protected UserAppTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  UserAppTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		UserAppTokens tokens = new UserAppTokens(options);
@@ -49,7 +47,6 @@ public class UserAppTokens extends CommonTokens{
 	protected UserAppTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public UserAppTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -76,10 +73,7 @@ public class UserAppTokens extends CommonTokens{
 		
 		return start()
 			.withSecUser()
-<<<<<<< HEAD
-=======
 			.withQuickLinkList()
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			.withListAccessList()
 			.withObjectAccessList();
 	
@@ -100,14 +94,11 @@ public class UserAppTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public UserAppTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String SECUSER = "secUser";
 	public String getSecUser(){
@@ -119,8 +110,6 @@ public class UserAppTokens extends CommonTokens{
 	}
 	
 	
-<<<<<<< HEAD
-=======
 	protected static final String QUICK_LINK_LIST = "quickLinkList";
 	public String getQuickLinkList(){
 		return QUICK_LINK_LIST;
@@ -187,7 +176,6 @@ public class UserAppTokens extends CommonTokens{
 	
 	
 		
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected static final String LIST_ACCESS_LIST = "listAccessList";
 	public String getListAccessList(){
 		return LIST_ACCESS_LIST;
@@ -202,15 +190,11 @@ public class UserAppTokens extends CommonTokens{
 	}
 	public boolean analyzeListAccessListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), LIST_ACCESS_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), LIST_ACCESS_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public UserAppTokens extractMoreFromListAccessList(String idsSeperatedWithComma){		
 		addSimpleOptions(LIST_ACCESS_LIST+".extractIds", idsSeperatedWithComma);
@@ -272,15 +256,11 @@ public class UserAppTokens extends CommonTokens{
 	}
 	public boolean analyzeObjectAccessListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), OBJECT_ACCESS_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), OBJECT_ACCESS_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public UserAppTokens extractMoreFromObjectAccessList(String idsSeperatedWithComma){		
 		addSimpleOptions(OBJECT_ACCESS_LIST+".extractIds", idsSeperatedWithComma);
@@ -331,10 +311,7 @@ public class UserAppTokens extends CommonTokens{
 	
 	public  UserAppTokens searchEntireObjectText(String verb, String value){
 		
-<<<<<<< HEAD
-=======
 		searchAllTextOfQuickLinkList(verb, value);	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		searchAllTextOfListAccessList(verb, value);	
 		searchAllTextOfObjectAccessList(verb, value);	
 		return this;

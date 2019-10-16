@@ -247,14 +247,9 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 			//will be good when the publicHoliday loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PublicHoliday.
-<<<<<<< HEAD
-			
-			
-=======
 			if (publicHoliday.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			publicHoliday = savePublicHoliday(userContext, publicHoliday, options);
 			return publicHoliday;
 			
@@ -323,11 +318,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){

@@ -4,21 +4,13 @@ package  com.doublechaintech.retailscm;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.Format;
-<<<<<<< HEAD
-=======
 import java.text.MessageFormat;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-<<<<<<< HEAD
-
-import com.terapico.caf.DateTime;
-
-=======
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -26,7 +18,6 @@ import java.util.stream.Collectors;
 import com.terapico.caf.DateTime;
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 public class BaseChecker {
 	protected RetailscmUserContext userContext;
 	protected List<Message> messageList;
@@ -34,8 +25,6 @@ public class BaseChecker {
 	public RetailscmUserContext getUserContext() {
 		return userContext;
 	}
-<<<<<<< HEAD
-=======
 	Stack<String>positonsStack;
 	
 	protected void pushPosition(String value) {
@@ -77,7 +66,6 @@ public class BaseChecker {
 		
 	}
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public void setUserContext(RetailscmUserContext ctx){
 		this.userContext = ctx;
 	}
@@ -169,13 +157,9 @@ public class BaseChecker {
  		errorMsg.setParameters(parameters);
  		errorMsg.setBody(defaultMessage);
  		errorMsg.setPropertyKey(propertykey);
-<<<<<<< HEAD
- 		messageList.add(errorMsg);
-=======
     errorMsg.setSourcePosition(this.currentPosition());
  		messageList.add(errorMsg);
     
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return;
 	}
 	
@@ -187,8 +171,6 @@ public class BaseChecker {
 			String propertyKey) {
 		checkStringLengthRange(value, 15, 15, propertyKey);
 	}
-<<<<<<< HEAD
-=======
 	
 	protected void checkBaseEntityReference(BaseEntity value, boolean isRequired,String propertyKey) {
 		if(!isRequired) {
@@ -204,7 +186,6 @@ public class BaseChecker {
 		
 	}
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected void checkStringLengthRange(String value, int minLength, int maxLength,
 			String propertyKey) {
 	
@@ -305,11 +286,7 @@ public class BaseChecker {
 	 		
 			return;
 		}
-<<<<<<< HEAD
-		String prefixes[]= {"13","14","15","17","18","166","199"};
-=======
 		String prefixes[]= {"13","15","16","17","18","19"};
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 		
 		
@@ -354,16 +331,11 @@ public class BaseChecker {
 	
 	protected void checkDateTime(Date value, Date minDate, Date maxDate, String propertyKey) {
 		this.checkDateRange(value, minDate, maxDate, propertyKey);
-<<<<<<< HEAD
-		
-	}
-=======
 	}
 	protected void checkDateFuture(Date value, Date minDate, Date maxDate, String propertyKey) {
 		this.checkDateRange(value, minDate, maxDate, propertyKey);
 	}
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected void checkDateRange(Date value, Date minDate,
 			Date maxDate, String propertyKey) {
 		if(value == null){
@@ -521,13 +493,6 @@ public class BaseChecker {
 	protected void checkCountryCode(String countryCode, int min, int max, String propertyKey) {
 		checkStringLengthRange(countryCode, min, max, propertyKey);
 	}
-<<<<<<< HEAD
-	
-}
-
-
-
-=======
 	protected void checkLongRange(long value, long min, long max, String propertyKey) {
 		if (value > max) {
 			packMessage(messageList, "LONG_GREATER_THAN_MAX", propertyKey,
@@ -581,7 +546,6 @@ public class BaseChecker {
 	
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 

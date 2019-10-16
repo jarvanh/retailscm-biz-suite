@@ -245,14 +245,9 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 			//will be good when the scoring loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Scoring.
-<<<<<<< HEAD
-			
-			
-=======
 			if (scoring.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			scoring = saveScoring(userContext, scoring, options);
 			return scoring;
 			
@@ -322,11 +317,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeCompanyTrainingListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -519,13 +510,8 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 			String employeeCompanyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfScoring(scoringId);
-<<<<<<< HEAD
-		for(String employeeCompanyTrainingId: employeeCompanyTrainingIds){
-			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-=======
 		for(String employeeCompanyTrainingIdItem: employeeCompanyTrainingIds){
 			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);

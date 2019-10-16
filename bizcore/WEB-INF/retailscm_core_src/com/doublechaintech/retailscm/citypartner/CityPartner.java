@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.citypartner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -67,11 +64,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	CityPartner(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static CityPartner withId(String id){
@@ -85,7 +77,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCityServiceCenter( null );
 
@@ -188,8 +179,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -224,7 +213,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -238,12 +226,9 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -257,12 +242,9 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMobile(String mobile){
@@ -276,12 +258,9 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMobile(String mobile){
 		if(mobile != null) { setMobile(mobile);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -302,12 +281,9 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCityServiceCenter(RetailStoreCityServiceCenter cityServiceCenter){
 		if(cityServiceCenter != null) { setCityServiceCenter(cityServiceCenter);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCityServiceCenter(){
@@ -326,12 +302,9 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -345,12 +318,9 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -364,12 +334,9 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -402,9 +369,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		}
 		getPotentialCustomerList().addAll(potentialCustomerList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePotentialCustomerList(SmartList<PotentialCustomer> potentialCustomerList){
 		if(potentialCustomerList==null){
 			return;
@@ -415,7 +379,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		addPotentialCustomerList( potentialCustomerList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PotentialCustomer removePotentialCustomer(PotentialCustomer potentialCustomerIndex){
 		
 		int index = getPotentialCustomerList().indexOf(potentialCustomerIndex);
@@ -513,9 +476,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		}
 		getPotentialCustomerContactList().addAll(potentialCustomerContactList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePotentialCustomerContactList(SmartList<PotentialCustomerContact> potentialCustomerContactList){
 		if(potentialCustomerContactList==null){
 			return;
@@ -526,7 +486,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		addPotentialCustomerContactList( potentialCustomerContactList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PotentialCustomerContact removePotentialCustomerContact(PotentialCustomerContact potentialCustomerContactIndex){
 		
 		int index = getPotentialCustomerContactList().indexOf(potentialCustomerContactIndex);
@@ -670,8 +629,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -713,7 +670,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

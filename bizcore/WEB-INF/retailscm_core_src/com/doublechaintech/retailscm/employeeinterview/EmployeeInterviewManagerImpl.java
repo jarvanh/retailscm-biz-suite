@@ -247,14 +247,9 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 			//will be good when the employeeInterview loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeInterview.
-<<<<<<< HEAD
-			
-			
-=======
 			if (employeeInterview.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			employeeInterview = saveEmployeeInterview(userContext, employeeInterview, options);
 			return employeeInterview;
 			
@@ -323,11 +318,7 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -435,34 +426,20 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected InterviewType loadInterviewType(RetailscmUserContext userContext, String newInterviewTypeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getInterviewTypeDAO().load(newInterviewTypeId, options);
-=======
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
-=======
  	protected InterviewType loadInterviewType(RetailscmUserContext userContext, String newInterviewTypeId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getInterviewTypeDAO().load(newInterviewTypeId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	

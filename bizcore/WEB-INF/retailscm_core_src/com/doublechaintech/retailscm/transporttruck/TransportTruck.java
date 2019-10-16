@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.transporttruck;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -72,11 +69,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	TransportTruck(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static TransportTruck withId(String id){
@@ -90,7 +82,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -268,8 +259,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -312,7 +301,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -326,12 +314,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -345,12 +330,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setPlateNumber(String plateNumber){
@@ -364,12 +346,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePlateNumber(String plateNumber){
 		if(plateNumber != null) { setPlateNumber(plateNumber);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setContactNumber(String contactNumber){
@@ -383,12 +362,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeContactNumber(String contactNumber){
 		if(contactNumber != null) { setContactNumber(contactNumber);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVehicleLicenseNumber(String vehicleLicenseNumber){
@@ -402,12 +378,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVehicleLicenseNumber(String vehicleLicenseNumber){
 		if(vehicleLicenseNumber != null) { setVehicleLicenseNumber(vehicleLicenseNumber);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEngineNumber(String engineNumber){
@@ -421,12 +394,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeEngineNumber(String engineNumber){
 		if(engineNumber != null) { setEngineNumber(engineNumber);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMakeDate(Date makeDate){
@@ -440,12 +410,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMakeDate(Date makeDate){
 		setMakeDate(makeDate);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMileage(String mileage){
@@ -459,12 +426,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMileage(String mileage){
 		if(mileage != null) { setMileage(mileage);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBodyColor(String bodyColor){
@@ -478,12 +442,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBodyColor(String bodyColor){
 		if(bodyColor != null) { setBodyColor(bodyColor);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setOwner(TransportFleet owner){
@@ -497,12 +458,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOwner(TransportFleet owner){
 		if(owner != null) { setOwner(owner);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -521,12 +479,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -559,9 +514,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		}
 		getTransportTaskList().addAll(transportTaskList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeTransportTaskList(SmartList<TransportTask> transportTaskList){
 		if(transportTaskList==null){
 			return;
@@ -572,7 +524,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		addTransportTaskList( transportTaskList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  TransportTask removeTransportTask(TransportTask transportTaskIndex){
 		
 		int index = getTransportTaskList().indexOf(transportTaskIndex);
@@ -716,8 +667,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -766,7 +715,6 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.levelthreecategory;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -58,11 +55,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 	
 		
 	public 	LevelThreeCategory(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static LevelThreeCategory withId(String id){
@@ -76,7 +68,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setParentCategory( null );
 
@@ -121,8 +112,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(PARENT_CATEGORY_PROPERTY.equals(property)){
@@ -144,7 +133,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -158,12 +146,9 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setParentCategory(LevelTwoCategory parentCategory){
@@ -177,12 +162,9 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeParentCategory(LevelTwoCategory parentCategory){
 		if(parentCategory != null) { setParentCategory(parentCategory);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearParentCategory(){
@@ -201,12 +183,9 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -220,12 +199,9 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -258,9 +234,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		}
 		getProductList().addAll(productList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeProductList(SmartList<Product> productList){
 		if(productList==null){
 			return;
@@ -271,7 +244,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		addProductList( productList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Product removeProduct(Product productIndex){
 		
 		int index = getProductList().indexOf(productIndex);
@@ -401,8 +373,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -437,7 +407,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

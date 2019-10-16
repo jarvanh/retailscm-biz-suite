@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstoreprovincecenter.RetailStoreProvinceCenter;
 import com.doublechaintech.retailscm.provincecenteremployee.ProvinceCenterEmployee;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstoreprovincecenter.RetailStoreProvinceCenterDAO;
 import com.doublechaintech.retailscm.provincecenteremployee.ProvinceCenterEmployeeDAO;
 
@@ -61,6 +58,7 @@ public interface ProvinceCenterDepartmentDAO{
 	
 	
 	public SmartList<ProvinceCenterDepartment> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ProvinceCenterDepartment> findProvinceCenterDepartmentByProvinceCenter(String retailStoreProvinceCenterId, Map<String,Object> options);
  	public int countProvinceCenterDepartmentByProvinceCenter(String retailStoreProvinceCenterId, Map<String,Object> options);
@@ -69,14 +67,10 @@ public interface ProvinceCenterDepartmentDAO{
  	public void analyzeProvinceCenterDepartmentByProvinceCenter(SmartList<ProvinceCenterDepartment> resultList, String retailStoreProvinceCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:ProvinceCenterEmployee的department的ProvinceCenterEmployeeList
 	public SmartList<ProvinceCenterEmployee> loadOurProvinceCenterEmployeeList(RetailscmUserContext userContext, List<ProvinceCenterDepartment> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

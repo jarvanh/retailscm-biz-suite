@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.transportfleet.TransportFleet;
 import com.doublechaintech.retailscm.transporttask.TransportTask;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.transportfleet.TransportFleetDAO;
 import com.doublechaintech.retailscm.transporttask.TransportTaskDAO;
 
@@ -69,6 +66,7 @@ public interface TransportTruckDAO{
 	
 	
 	public SmartList<TransportTruck> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<TransportTruck> findTransportTruckByOwner(String transportFleetId, Map<String,Object> options);
  	public int countTransportTruckByOwner(String transportFleetId, Map<String,Object> options);
@@ -77,14 +75,10 @@ public interface TransportTruckDAO{
  	public void analyzeTransportTruckByOwner(SmartList<TransportTruck> resultList, String transportFleetId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:TransportTask的truck的TransportTaskList
 	public SmartList<TransportTask> loadOurTransportTaskList(RetailscmUserContext userContext, List<TransportTruck> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

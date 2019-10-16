@@ -7,15 +7,12 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.formaction.FormAction;
 import com.doublechaintech.retailscm.formmessage.FormMessage;
 import com.doublechaintech.retailscm.formfieldmessage.FormFieldMessage;
 import com.doublechaintech.retailscm.formfield.FormField;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.formfieldmessage.FormFieldMessageDAO;
 import com.doublechaintech.retailscm.formaction.FormActionDAO;
 import com.doublechaintech.retailscm.formfield.FormFieldDAO;
@@ -82,8 +79,7 @@ public interface GenericFormDAO{
 
 	
 	public SmartList<GenericForm> queryList(String sql, Object ... parmeters);
-<<<<<<< HEAD
-=======
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:FormMessage的form的FormMessageList
 	public SmartList<FormMessage> loadOurFormMessageList(RetailscmUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception;
@@ -97,7 +93,6 @@ public interface GenericFormDAO{
 	// 需要一个加载引用我的对象的enhance方法:FormAction的form的FormActionList
 	public SmartList<FormAction> loadOurFormActionList(RetailscmUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception;
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

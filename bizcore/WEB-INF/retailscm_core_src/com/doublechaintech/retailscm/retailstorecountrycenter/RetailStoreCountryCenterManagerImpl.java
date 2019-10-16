@@ -417,14 +417,9 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			//will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCountryCenter.
-<<<<<<< HEAD
-			
-			
-=======
 			if (retailStoreCountryCenter.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, options);
 			return retailStoreCountryCenter;
 			
@@ -517,11 +512,7 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		.sortEmployeeListWith("id","desc")
 		.sortInstructorListWith("id","desc")
 		.sortCompanyTrainingListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -870,13 +861,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String catalogIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String catalogId: catalogIds){
-			userContext.getChecker().checkIdOfCatalog(catalogId);
-=======
 		for(String catalogIdItem: catalogIds){
 			userContext.getChecker().checkIdOfCatalog(catalogIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -1115,13 +1101,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String retailStoreProvinceCenterIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String retailStoreProvinceCenterId: retailStoreProvinceCenterIds){
-			userContext.getChecker().checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterId);
-=======
 		for(String retailStoreProvinceCenterIdItem: retailStoreProvinceCenterIds){
 			userContext.getChecker().checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -1395,13 +1376,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-=======
 		for(String retailStoreIdItem: retailStoreIds){
 			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -1867,13 +1843,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String retailStoreMemberIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String retailStoreMemberId: retailStoreMemberIds){
-			userContext.getChecker().checkIdOfRetailStoreMember(retailStoreMemberId);
-=======
 		for(String retailStoreMemberIdItem: retailStoreMemberIds){
 			userContext.getChecker().checkIdOfRetailStoreMember(retailStoreMemberIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -2126,13 +2097,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String goodsSupplierIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String goodsSupplierId: goodsSupplierIds){
-			userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-=======
 		for(String goodsSupplierIdItem: goodsSupplierIds){
 			userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -2389,13 +2355,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String supplyOrderId: supplyOrderIds){
-			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-=======
 		for(String supplyOrderIdItem: supplyOrderIds){
 			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -2848,13 +2809,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String retailStoreOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String retailStoreOrderId: retailStoreOrderIds){
-			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
-=======
 		for(String retailStoreOrderIdItem: retailStoreOrderIds){
 			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -3316,13 +3272,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String warehouseIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String warehouseId: warehouseIds){
-			userContext.getChecker().checkIdOfWarehouse(warehouseId);
-=======
 		for(String warehouseIdItem: warehouseIds){
 			userContext.getChecker().checkIdOfWarehouse(warehouseIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -3577,13 +3528,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String transportFleetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String transportFleetId: transportFleetIds){
-			userContext.getChecker().checkIdOfTransportFleet(transportFleetId);
-=======
 		for(String transportFleetIdItem: transportFleetIds){
 			userContext.getChecker().checkIdOfTransportFleet(transportFleetIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -3866,13 +3812,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String accountSetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String accountSetId: accountSetIds){
-			userContext.getChecker().checkIdOfAccountSet(accountSetId);
-=======
 		for(String accountSetIdItem: accountSetIds){
 			userContext.getChecker().checkIdOfAccountSet(accountSetIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -4148,13 +4089,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String levelOneDepartmentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String levelOneDepartmentId: levelOneDepartmentIds){
-			userContext.getChecker().checkIdOfLevelOneDepartment(levelOneDepartmentId);
-=======
 		for(String levelOneDepartmentIdItem: levelOneDepartmentIds){
 			userContext.getChecker().checkIdOfLevelOneDepartment(levelOneDepartmentIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -4404,13 +4340,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String skillTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String skillTypeId: skillTypeIds){
-			userContext.getChecker().checkIdOfSkillType(skillTypeId);
-=======
 		for(String skillTypeIdItem: skillTypeIds){
 			userContext.getChecker().checkIdOfSkillType(skillTypeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -4657,13 +4588,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String responsibilityTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String responsibilityTypeId: responsibilityTypeIds){
-			userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-=======
 		for(String responsibilityTypeIdItem: responsibilityTypeIds){
 			userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -4909,13 +4835,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String terminationReasonIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String terminationReasonId: terminationReasonIds){
-			userContext.getChecker().checkIdOfTerminationReason(terminationReasonId);
-=======
 		for(String terminationReasonIdItem: terminationReasonIds){
 			userContext.getChecker().checkIdOfTerminationReason(terminationReasonIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -5162,13 +5083,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String terminationTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String terminationTypeId: terminationTypeIds){
-			userContext.getChecker().checkIdOfTerminationType(terminationTypeId);
-=======
 		for(String terminationTypeIdItem: terminationTypeIds){
 			userContext.getChecker().checkIdOfTerminationType(terminationTypeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -5419,13 +5335,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String occupationTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String occupationTypeId: occupationTypeIds){
-			userContext.getChecker().checkIdOfOccupationType(occupationTypeId);
-=======
 		for(String occupationTypeIdItem: occupationTypeIds){
 			userContext.getChecker().checkIdOfOccupationType(occupationTypeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -5676,13 +5587,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String leaveTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String leaveTypeId: leaveTypeIds){
-			userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-=======
 		for(String leaveTypeIdItem: leaveTypeIds){
 			userContext.getChecker().checkIdOfLeaveType(leaveTypeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -5933,13 +5839,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String salaryGradeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String salaryGradeId: salaryGradeIds){
-			userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-=======
 		for(String salaryGradeIdItem: salaryGradeIds){
 			userContext.getChecker().checkIdOfSalaryGrade(salaryGradeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -6190,13 +6091,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String interviewTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String interviewTypeId: interviewTypeIds){
-			userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-=======
 		for(String interviewTypeIdItem: interviewTypeIds){
 			userContext.getChecker().checkIdOfInterviewType(interviewTypeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -6447,13 +6343,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String trainingCourseTypeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String trainingCourseTypeId: trainingCourseTypeIds){
-			userContext.getChecker().checkIdOfTrainingCourseType(trainingCourseTypeId);
-=======
 		for(String trainingCourseTypeIdItem: trainingCourseTypeIds){
 			userContext.getChecker().checkIdOfTrainingCourseType(trainingCourseTypeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -6704,13 +6595,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String publicHolidayIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String publicHolidayId: publicHolidayIds){
-			userContext.getChecker().checkIdOfPublicHoliday(publicHolidayId);
-=======
 		for(String publicHolidayIdItem: publicHolidayIds){
 			userContext.getChecker().checkIdOfPublicHoliday(publicHolidayIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -7008,13 +6894,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String employeeId: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeId);
-=======
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -7539,13 +7420,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String instructorIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String instructorId: instructorIds){
-			userContext.getChecker().checkIdOfInstructor(instructorId);
-=======
 		for(String instructorIdItem: instructorIds){
 			userContext.getChecker().checkIdOfInstructor(instructorIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -7819,13 +7695,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			String companyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-<<<<<<< HEAD
-		for(String companyTrainingId: companyTrainingIds){
-			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingId);
-=======
 		for(String companyTrainingIdItem: companyTrainingIds){
 			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);

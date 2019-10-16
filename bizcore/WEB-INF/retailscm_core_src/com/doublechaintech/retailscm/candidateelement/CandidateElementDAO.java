@@ -45,6 +45,7 @@ public interface CandidateElementDAO{
 	
 	
 	public SmartList<CandidateElement> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<CandidateElement> findCandidateElementByContainer(String candidateContainerId, Map<String,Object> options);
  	public int countCandidateElementByContainer(String candidateContainerId, Map<String,Object> options);

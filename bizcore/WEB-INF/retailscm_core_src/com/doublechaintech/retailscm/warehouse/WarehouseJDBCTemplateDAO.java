@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.warehouse;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -47,18 +40,12 @@ import com.doublechaintech.retailscm.receivingspace.ReceivingSpaceDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class WarehouseJDBCTemplateDAO extends RetailscmNamingServiceDAO implements WarehouseDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements WarehouseDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -407,14 +394,8 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	protected boolean isExtractStorageSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.STORAGE_SPACE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeStorageSpaceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,WarehouseTokens.STORAGE_SPACE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeStorageSpaceListEnabled(Map<String,Object> options){		 		
  		return WarehouseTokens.of(options).analyzeStorageSpaceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveStorageSpaceListEnabled(Map<String,Object> options){
@@ -427,14 +408,8 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	protected boolean isExtractSmartPalletListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.SMART_PALLET_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSmartPalletListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,WarehouseTokens.SMART_PALLET_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSmartPalletListEnabled(Map<String,Object> options){		 		
  		return WarehouseTokens.of(options).analyzeSmartPalletListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSmartPalletListEnabled(Map<String,Object> options){
@@ -447,14 +422,8 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	protected boolean isExtractSupplierSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.SUPPLIER_SPACE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSupplierSpaceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,WarehouseTokens.SUPPLIER_SPACE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSupplierSpaceListEnabled(Map<String,Object> options){		 		
  		return WarehouseTokens.of(options).analyzeSupplierSpaceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplierSpaceListEnabled(Map<String,Object> options){
@@ -467,14 +436,8 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	protected boolean isExtractReceivingSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.RECEIVING_SPACE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeReceivingSpaceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,WarehouseTokens.RECEIVING_SPACE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeReceivingSpaceListEnabled(Map<String,Object> options){		 		
  		return WarehouseTokens.of(options).analyzeReceivingSpaceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveReceivingSpaceListEnabled(Map<String,Object> options){
@@ -487,14 +450,8 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	protected boolean isExtractShippingSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.SHIPPING_SPACE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeShippingSpaceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,WarehouseTokens.SHIPPING_SPACE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeShippingSpaceListEnabled(Map<String,Object> options){		 		
  		return WarehouseTokens.of(options).analyzeShippingSpaceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveShippingSpaceListEnabled(Map<String,Object> options){
@@ -507,14 +464,8 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	protected boolean isExtractDamageSpaceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.DAMAGE_SPACE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeDamageSpaceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,WarehouseTokens.DAMAGE_SPACE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeDamageSpaceListEnabled(Map<String,Object> options){		 		
  		return WarehouseTokens.of(options).analyzeDamageSpaceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveDamageSpaceListEnabled(Map<String,Object> options){
@@ -527,14 +478,8 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	protected boolean isExtractWarehouseAssetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,WarehouseTokens.WAREHOUSE_ASSET_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeWarehouseAssetListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,WarehouseTokens.WAREHOUSE_ASSET_LIST+".analyze");
-=======
  	protected boolean isAnalyzeWarehouseAssetListEnabled(Map<String,Object> options){		 		
  		return WarehouseTokens.of(options).analyzeWarehouseAssetListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveWarehouseAssetListEnabled(Map<String,Object> options){
@@ -1338,15 +1283,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 		
-<<<<<<< HEAD
-		for(StorageSpace storageSpace: externalStorageSpaceList){
-
-			storageSpace.clearFromAll();
-=======
 		for(StorageSpace storageSpaceItem: externalStorageSpaceList){
 
 			storageSpaceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1372,15 +1311,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 		
-<<<<<<< HEAD
-		for(SmartPallet smartPallet: externalSmartPalletList){
-
-			smartPallet.clearFromAll();
-=======
 		for(SmartPallet smartPalletItem: externalSmartPalletList){
 
 			smartPalletItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1406,15 +1339,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 		
-<<<<<<< HEAD
-		for(SupplierSpace supplierSpace: externalSupplierSpaceList){
-
-			supplierSpace.clearFromAll();
-=======
 		for(SupplierSpace supplierSpaceItem: externalSupplierSpaceList){
 
 			supplierSpaceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1440,15 +1367,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 		
-<<<<<<< HEAD
-		for(ReceivingSpace receivingSpace: externalReceivingSpaceList){
-
-			receivingSpace.clearFromAll();
-=======
 		for(ReceivingSpace receivingSpaceItem: externalReceivingSpaceList){
 
 			receivingSpaceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1474,15 +1395,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 		
-<<<<<<< HEAD
-		for(ShippingSpace shippingSpace: externalShippingSpaceList){
-
-			shippingSpace.clearFromAll();
-=======
 		for(ShippingSpace shippingSpaceItem: externalShippingSpaceList){
 
 			shippingSpaceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1508,15 +1423,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 		
-<<<<<<< HEAD
-		for(DamageSpace damageSpace: externalDamageSpaceList){
-
-			damageSpace.clearFromAll();
-=======
 		for(DamageSpace damageSpaceItem: externalDamageSpaceList){
 
 			damageSpaceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1542,15 +1451,9 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 		
-<<<<<<< HEAD
-		for(WarehouseAsset warehouseAsset: externalWarehouseAssetList){
-
-			warehouseAsset.clearFromAll();
-=======
 		for(WarehouseAsset warehouseAssetItem: externalWarehouseAssetList){
 
 			warehouseAssetItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -2234,8 +2137,6 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	public void enhanceList(List<Warehouse> warehouseList) {		
 		this.enhanceListInternal(warehouseList, this.getWarehouseMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:StorageSpace的warehouse的StorageSpaceList
@@ -2400,7 +2301,6 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<Warehouse> warehouseList = ownerEntity.collectRefsWithType(Warehouse.INTERNAL_TYPE);
@@ -2433,12 +2333,13 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	public SmartList<Warehouse> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getWarehouseMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

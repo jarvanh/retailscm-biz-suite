@@ -38,8 +38,6 @@ public class GenericFormTokens extends CommonTokens{
 	protected GenericFormTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  GenericFormTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		GenericFormTokens tokens = new GenericFormTokens(options);
@@ -49,7 +47,6 @@ public class GenericFormTokens extends CommonTokens{
 	protected GenericFormTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public GenericFormTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -96,14 +93,11 @@ public class GenericFormTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public GenericFormTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String FORM_MESSAGE_LIST = "formMessageList";
 	public String getFormMessageList(){
@@ -119,15 +113,11 @@ public class GenericFormTokens extends CommonTokens{
 	}
 	public boolean analyzeFormMessageListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), FORM_MESSAGE_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), FORM_MESSAGE_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GenericFormTokens extractMoreFromFormMessageList(String idsSeperatedWithComma){		
 		addSimpleOptions(FORM_MESSAGE_LIST+".extractIds", idsSeperatedWithComma);
@@ -189,15 +179,11 @@ public class GenericFormTokens extends CommonTokens{
 	}
 	public boolean analyzeFormFieldMessageListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), FORM_FIELD_MESSAGE_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), FORM_FIELD_MESSAGE_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GenericFormTokens extractMoreFromFormFieldMessageList(String idsSeperatedWithComma){		
 		addSimpleOptions(FORM_FIELD_MESSAGE_LIST+".extractIds", idsSeperatedWithComma);
@@ -259,15 +245,11 @@ public class GenericFormTokens extends CommonTokens{
 	}
 	public boolean analyzeFormFieldListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), FORM_FIELD_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), FORM_FIELD_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GenericFormTokens extractMoreFromFormFieldList(String idsSeperatedWithComma){		
 		addSimpleOptions(FORM_FIELD_LIST+".extractIds", idsSeperatedWithComma);
@@ -329,15 +311,11 @@ public class GenericFormTokens extends CommonTokens{
 	}
 	public boolean analyzeFormActionListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), FORM_ACTION_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), FORM_ACTION_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public GenericFormTokens extractMoreFromFormActionList(String idsSeperatedWithComma){		
 		addSimpleOptions(FORM_ACTION_LIST+".extractIds", idsSeperatedWithComma);

@@ -246,14 +246,9 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 			//will be good when the employeeCompanyTraining loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeCompanyTraining.
-<<<<<<< HEAD
-			
-			
-=======
 			if (employeeCompanyTraining.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			employeeCompanyTraining = saveEmployeeCompanyTraining(userContext, employeeCompanyTraining, options);
 			return employeeCompanyTraining;
 			
@@ -322,11 +317,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -613,17 +604,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected CompanyTraining loadCompanyTraining(RetailscmUserContext userContext, String newTrainingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getCompanyTrainingDAO().load(newTrainingId, options);
-=======
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -640,17 +624,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
-=======
  	protected CompanyTraining loadCompanyTraining(RetailscmUserContext userContext, String newTrainingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getCompanyTrainingDAO().load(newTrainingId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	

@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.originalvoucherauditing;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements OriginalVoucherAuditingDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements OriginalVoucherAuditingDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	protected boolean isExtractOriginalVoucherListEnabled(Map<String,Object> options){		
  		return checkOptions(options,OriginalVoucherAuditingTokens.ORIGINAL_VOUCHER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,OriginalVoucherAuditingTokens.ORIGINAL_VOUCHER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeOriginalVoucherListEnabled(Map<String,Object> options){		 		
  		return OriginalVoucherAuditingTokens.of(options).analyzeOriginalVoucherListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveOriginalVoucherListEnabled(Map<String,Object> options){
@@ -525,15 +506,9 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return originalVoucherAuditing;
 		}
 		
-<<<<<<< HEAD
-		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
-
-			originalVoucher.clearFromAll();
-=======
 		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
 
 			originalVoucherItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -563,15 +538,9 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return originalVoucherAuditing;
 		}
 		
-<<<<<<< HEAD
-		for(OriginalVoucher originalVoucher: externalOriginalVoucherList){
-			originalVoucher.clearBelongsTo();
-			originalVoucher.clearAuditing();
-=======
 		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
 			originalVoucherItem.clearBelongsTo();
 			originalVoucherItem.clearAuditing();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -709,8 +678,6 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public void enhanceList(List<OriginalVoucherAuditing> originalVoucherAuditingList) {		
 		this.enhanceListInternal(originalVoucherAuditingList, this.getOriginalVoucherAuditingMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:OriginalVoucher的auditing的OriginalVoucherList
@@ -737,7 +704,6 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<OriginalVoucherAuditing> originalVoucherAuditingList = ownerEntity.collectRefsWithType(OriginalVoucherAuditing.INTERNAL_TYPE);
@@ -770,8 +736,10 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public SmartList<OriginalVoucherAuditing> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getOriginalVoucherAuditingMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -855,7 +823,6 @@ public class OriginalVoucherAuditingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

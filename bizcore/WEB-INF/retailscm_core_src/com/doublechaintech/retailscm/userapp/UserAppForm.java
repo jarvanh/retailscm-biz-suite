@@ -219,8 +219,6 @@ public class UserAppForm extends BaseForm {
 	}
 
 
-<<<<<<< HEAD
-=======
 	public UserAppForm weixinOpenidFieldOfSecUser(String parameterName, String initValue){
 		FormField field =  weixinOpenidFromSecUser(parameterName, initValue);
 		this.addFormField(field);	
@@ -263,7 +261,6 @@ public class UserAppForm extends BaseForm {
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public UserAppForm verificationCodeFieldOfSecUser(String parameterName, String initValue){
 		FormField field =  verificationCodeFromSecUser(parameterName, initValue);
 		this.addFormField(field);	
@@ -351,8 +348,6 @@ public class UserAppForm extends BaseForm {
 
 
 
-<<<<<<< HEAD
-=======
 	public UserAppForm quickLinkIdFieldForQuickLink(String parameterName, String initValue){
 		FormField field =  idFromQuickLink(parameterName, initValue);		
 		this.addFormField(field);
@@ -451,7 +446,6 @@ public class UserAppForm extends BaseForm {
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public UserAppForm listAccessIdFieldForListAccess(String parameterName, String initValue){
 		FormField field =  idFromListAccess(parameterName, initValue);		
 		this.addFormField(field);

@@ -276,14 +276,9 @@ public class CompanyTrainingManagerImpl extends CustomRetailscmCheckerManager im
 			//will be good when the companyTraining loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to CompanyTraining.
-<<<<<<< HEAD
-			
-			
-=======
 			if (companyTraining.isChanged()){
 			companyTraining.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			companyTraining = saveCompanyTraining(userContext, companyTraining, options);
 			return companyTraining;
 			
@@ -353,11 +348,7 @@ public class CompanyTrainingManagerImpl extends CustomRetailscmCheckerManager im
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEmployeeCompanyTrainingListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -514,34 +505,20 @@ public class CompanyTrainingManagerImpl extends CustomRetailscmCheckerManager im
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
-=======
  	protected Instructor loadInstructor(RetailscmUserContext userContext, String newInstructorId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getInstructorDAO().load(newInstructorId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected Instructor loadInstructor(RetailscmUserContext userContext, String newInstructorId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getInstructorDAO().load(newInstructorId, options);
-=======
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -718,13 +695,8 @@ public class CompanyTrainingManagerImpl extends CustomRetailscmCheckerManager im
 			String employeeCompanyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCompanyTraining(companyTrainingId);
-<<<<<<< HEAD
-		for(String employeeCompanyTrainingId: employeeCompanyTrainingIds){
-			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-=======
 		for(String employeeCompanyTrainingIdItem: employeeCompanyTrainingIds){
 			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CompanyTrainingManagerException.class);

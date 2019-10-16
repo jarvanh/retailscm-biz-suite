@@ -266,14 +266,9 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 			//will be good when the damageSpace loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to DamageSpace.
-<<<<<<< HEAD
-			
-			
-=======
 			if (damageSpace.isChanged()){
 			damageSpace.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			damageSpace = saveDamageSpace(userContext, damageSpace, options);
 			return damageSpace;
 			
@@ -343,11 +338,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsShelfListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -604,13 +595,8 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-<<<<<<< HEAD
-		for(String goodsShelfId: goodsShelfIds){
-			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-=======
 		for(String goodsShelfIdItem: goodsShelfIds){
 			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);

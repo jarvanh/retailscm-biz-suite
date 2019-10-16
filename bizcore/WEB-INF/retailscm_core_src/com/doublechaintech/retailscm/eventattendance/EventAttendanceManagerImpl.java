@@ -252,14 +252,9 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 			//will be good when the eventAttendance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EventAttendance.
-<<<<<<< HEAD
-			
-			
-=======
 			if (eventAttendance.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			eventAttendance = saveEventAttendance(userContext, eventAttendance, options);
 			return eventAttendance;
 			
@@ -328,11 +323,7 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -440,34 +431,20 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected CityEvent loadCityEvent(RetailscmUserContext userContext, String newCityEventId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getCityEventDAO().load(newCityEventId, options);
-=======
  	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
-=======
  	protected CityEvent loadCityEvent(RetailscmUserContext userContext, String newCityEventId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getCityEventDAO().load(newCityEventId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	

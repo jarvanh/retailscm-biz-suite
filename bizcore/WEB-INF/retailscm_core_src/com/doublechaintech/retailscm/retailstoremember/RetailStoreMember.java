@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.retailstoremember;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -78,11 +75,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 	
 		
 	public 	RetailStoreMember(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static RetailStoreMember withId(String id){
@@ -96,7 +88,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setOwner( null );
 
@@ -166,8 +157,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -216,7 +205,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -230,12 +218,9 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -249,12 +234,9 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMobilePhone(String mobilePhone){
@@ -268,12 +250,9 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMobilePhone(String mobilePhone){
 		if(mobilePhone != null) { setMobilePhone(mobilePhone);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -294,12 +273,9 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOwner(RetailStoreCountryCenter owner){
 		if(owner != null) { setOwner(owner);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOwner(){
@@ -318,12 +294,9 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -356,9 +329,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getConsumerOrderList().addAll(consumerOrderList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeConsumerOrderList(SmartList<ConsumerOrder> consumerOrderList){
 		if(consumerOrderList==null){
 			return;
@@ -369,7 +339,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		addConsumerOrderList( consumerOrderList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ConsumerOrder removeConsumerOrder(ConsumerOrder consumerOrderIndex){
 		
 		int index = getConsumerOrderList().indexOf(consumerOrderIndex);
@@ -467,9 +436,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getRetailStoreMemberCouponList().addAll(retailStoreMemberCouponList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreMemberCouponList(SmartList<RetailStoreMemberCoupon> retailStoreMemberCouponList){
 		if(retailStoreMemberCouponList==null){
 			return;
@@ -480,7 +446,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		addRetailStoreMemberCouponList( retailStoreMemberCouponList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMemberCoupon removeRetailStoreMemberCoupon(RetailStoreMemberCoupon retailStoreMemberCouponIndex){
 		
 		int index = getRetailStoreMemberCouponList().indexOf(retailStoreMemberCouponIndex);
@@ -578,9 +543,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getMemberWishlistList().addAll(memberWishlistList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeMemberWishlistList(SmartList<MemberWishlist> memberWishlistList){
 		if(memberWishlistList==null){
 			return;
@@ -591,7 +553,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		addMemberWishlistList( memberWishlistList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  MemberWishlist removeMemberWishlist(MemberWishlist memberWishlistIndex){
 		
 		int index = getMemberWishlistList().indexOf(memberWishlistIndex);
@@ -689,9 +650,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getMemberRewardPointList().addAll(memberRewardPointList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeMemberRewardPointList(SmartList<MemberRewardPoint> memberRewardPointList){
 		if(memberRewardPointList==null){
 			return;
@@ -702,7 +660,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		addMemberRewardPointList( memberRewardPointList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  MemberRewardPoint removeMemberRewardPoint(MemberRewardPoint memberRewardPointIndex){
 		
 		int index = getMemberRewardPointList().indexOf(memberRewardPointIndex);
@@ -800,9 +757,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getMemberRewardPointRedemptionList().addAll(memberRewardPointRedemptionList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeMemberRewardPointRedemptionList(SmartList<MemberRewardPointRedemption> memberRewardPointRedemptionList){
 		if(memberRewardPointRedemptionList==null){
 			return;
@@ -813,7 +767,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		addMemberRewardPointRedemptionList( memberRewardPointRedemptionList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  MemberRewardPointRedemption removeMemberRewardPointRedemption(MemberRewardPointRedemption memberRewardPointRedemptionIndex){
 		
 		int index = getMemberRewardPointRedemptionList().indexOf(memberRewardPointRedemptionIndex);
@@ -911,9 +864,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getRetailStoreMemberAddressList().addAll(retailStoreMemberAddressList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreMemberAddressList(SmartList<RetailStoreMemberAddress> retailStoreMemberAddressList){
 		if(retailStoreMemberAddressList==null){
 			return;
@@ -924,7 +874,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		addRetailStoreMemberAddressList( retailStoreMemberAddressList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMemberAddress removeRetailStoreMemberAddress(RetailStoreMemberAddress retailStoreMemberAddressIndex){
 		
 		int index = getRetailStoreMemberAddressList().indexOf(retailStoreMemberAddressIndex);
@@ -1022,9 +971,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		getRetailStoreMemberGiftCardList().addAll(retailStoreMemberGiftCardList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreMemberGiftCardList(SmartList<RetailStoreMemberGiftCard> retailStoreMemberGiftCardList){
 		if(retailStoreMemberGiftCardList==null){
 			return;
@@ -1035,7 +981,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		addRetailStoreMemberGiftCardList( retailStoreMemberGiftCardList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreMemberGiftCard removeRetailStoreMemberGiftCard(RetailStoreMemberGiftCard retailStoreMemberGiftCardIndex){
 		
 		int index = getRetailStoreMemberGiftCardList().indexOf(retailStoreMemberGiftCardIndex);
@@ -1215,8 +1160,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -1259,7 +1202,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

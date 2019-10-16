@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.accountingsubject;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.accountset.AccountSetDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class AccountingSubjectJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingSubjectDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingSubjectDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  AccountSetDAO  accountSetDAO;
@@ -239,14 +226,8 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	protected boolean isExtractAccountingDocumentLineListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountingSubjectTokens.ACCOUNTING_DOCUMENT_LINE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountingDocumentLineListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountingSubjectTokens.ACCOUNTING_DOCUMENT_LINE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountingDocumentLineListEnabled(Map<String,Object> options){		 		
  		return AccountingSubjectTokens.of(options).analyzeAccountingDocumentLineListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingDocumentLineListEnabled(Map<String,Object> options){
@@ -640,15 +621,9 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return accountingSubject;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
-
-			accountingDocumentLine.clearFromAll();
-=======
 		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
 
 			accountingDocumentLineItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -678,15 +653,9 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return accountingSubject;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocumentLine accountingDocumentLine: externalAccountingDocumentLineList){
-			accountingDocumentLine.clearBelongsTo();
-			accountingDocumentLine.clearAccountingSubject();
-=======
 		for(AccountingDocumentLine accountingDocumentLineItem: externalAccountingDocumentLineList){
 			accountingDocumentLineItem.clearBelongsTo();
 			accountingDocumentLineItem.clearAccountingSubject();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -824,8 +793,6 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	public void enhanceList(List<AccountingSubject> accountingSubjectList) {		
 		this.enhanceListInternal(accountingSubjectList, this.getAccountingSubjectMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:AccountingDocumentLine的accountingSubject的AccountingDocumentLineList
@@ -852,7 +819,6 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<AccountingSubject> accountingSubjectList = ownerEntity.collectRefsWithType(AccountingSubject.INTERNAL_TYPE);
@@ -885,12 +851,13 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	public SmartList<AccountingSubject> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingSubjectMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.trainingcoursetype;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements TrainingCourseTypeDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements TrainingCourseTypeDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
@@ -239,14 +226,8 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	protected boolean isExtractCompanyTrainingListEnabled(Map<String,Object> options){		
  		return checkOptions(options,TrainingCourseTypeTokens.COMPANY_TRAINING_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeCompanyTrainingListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,TrainingCourseTypeTokens.COMPANY_TRAINING_LIST+".analyze");
-=======
  	protected boolean isAnalyzeCompanyTrainingListEnabled(Map<String,Object> options){		 		
  		return TrainingCourseTypeTokens.of(options).analyzeCompanyTrainingListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveCompanyTrainingListEnabled(Map<String,Object> options){
@@ -638,15 +619,9 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return trainingCourseType;
 		}
 		
-<<<<<<< HEAD
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-
-			companyTraining.clearFromAll();
-=======
 		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 
 			companyTrainingItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -676,15 +651,9 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return trainingCourseType;
 		}
 		
-<<<<<<< HEAD
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearCompany();
-			companyTraining.clearTrainingCourseType();
-=======
 		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 			companyTrainingItem.clearCompany();
 			companyTrainingItem.clearTrainingCourseType();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -726,15 +695,9 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return trainingCourseType;
 		}
 		
-<<<<<<< HEAD
-		for(CompanyTraining companyTraining: externalCompanyTrainingList){
-			companyTraining.clearInstructor();
-			companyTraining.clearTrainingCourseType();
-=======
 		for(CompanyTraining companyTrainingItem: externalCompanyTrainingList){
 			companyTrainingItem.clearInstructor();
 			companyTrainingItem.clearTrainingCourseType();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -872,8 +835,6 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public void enhanceList(List<TrainingCourseType> trainingCourseTypeList) {		
 		this.enhanceListInternal(trainingCourseTypeList, this.getTrainingCourseTypeMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:CompanyTraining的trainingCourseType的CompanyTrainingList
@@ -900,7 +861,6 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<TrainingCourseType> trainingCourseTypeList = ownerEntity.collectRefsWithType(TrainingCourseType.INTERNAL_TYPE);
@@ -933,12 +893,13 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public SmartList<TrainingCourseType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTrainingCourseTypeMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

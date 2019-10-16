@@ -271,14 +271,9 @@ public class InstructorManagerImpl extends CustomRetailscmCheckerManager impleme
 			//will be good when the instructor loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Instructor.
-<<<<<<< HEAD
-			
-			
-=======
 			if (instructor.isChanged()){
 			instructor.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			instructor = saveInstructor(userContext, instructor, options);
 			return instructor;
 			
@@ -348,11 +343,7 @@ public class InstructorManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortCompanyTrainingListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -619,13 +610,8 @@ public class InstructorManagerImpl extends CustomRetailscmCheckerManager impleme
 			String companyTrainingIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfInstructor(instructorId);
-<<<<<<< HEAD
-		for(String companyTrainingId: companyTrainingIds){
-			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingId);
-=======
 		for(String companyTrainingIdItem: companyTrainingIds){
 			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(InstructorManagerException.class);

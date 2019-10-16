@@ -7,14 +7,11 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerContact;
 import com.doublechaintech.retailscm.potentialcustomer.PotentialCustomer;
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenter;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenterDAO;
 import com.doublechaintech.retailscm.potentialcustomer.PotentialCustomerDAO;
 import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerContactDAO;
@@ -78,6 +75,7 @@ public interface CityPartnerDAO{
 	
 	
 	public SmartList<CityPartner> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<CityPartner> findCityPartnerByCityServiceCenter(String retailStoreCityServiceCenterId, Map<String,Object> options);
  	public int countCityPartnerByCityServiceCenter(String retailStoreCityServiceCenterId, Map<String,Object> options);
@@ -86,9 +84,6 @@ public interface CityPartnerDAO{
  	public void analyzeCityPartnerByCityServiceCenter(SmartList<CityPartner> resultList, String retailStoreCityServiceCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:PotentialCustomer的cityPartner的PotentialCustomerList
 	public SmartList<PotentialCustomer> loadOurPotentialCustomerList(RetailscmUserContext userContext, List<CityPartner> us, Map<String,Object> options) throws Exception;
@@ -97,6 +92,5 @@ public interface CityPartnerDAO{
 	public SmartList<PotentialCustomerContact> loadOurPotentialCustomerContactList(RetailscmUserContext userContext, List<CityPartner> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

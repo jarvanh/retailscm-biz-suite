@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.formfieldmessage;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.genericform.GenericFormDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class FormFieldMessageJDBCTemplateDAO extends RetailscmNamingServiceDAO implements FormFieldMessageDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class FormFieldMessageJDBCTemplateDAO extends RetailscmBaseDAOImpl implements FormFieldMessageDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  GenericFormDAO  genericFormDAO;
@@ -532,12 +519,9 @@ public class FormFieldMessageJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	public void enhanceList(List<FormFieldMessage> formFieldMessageList) {		
 		this.enhanceListInternal(formFieldMessageList, this.getFormFieldMessageMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<FormFieldMessage> formFieldMessageList = ownerEntity.collectRefsWithType(FormFieldMessage.INTERNAL_TYPE);
@@ -570,12 +554,13 @@ public class FormFieldMessageJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	public SmartList<FormFieldMessage> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getFormFieldMessageMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

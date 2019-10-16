@@ -240,14 +240,9 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 			//will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreInvestmentInvitation.
-<<<<<<< HEAD
-			
-			
-=======
 			if (retailStoreInvestmentInvitation.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, options);
 			return retailStoreInvestmentInvitation;
 			
@@ -317,11 +312,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortRetailStoreListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -550,13 +541,8 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-<<<<<<< HEAD
-		for(String retailStoreId: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-=======
 		for(String retailStoreIdItem: retailStoreIds){
 			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);

@@ -38,8 +38,6 @@ public class LevelTwoCategoryTokens extends CommonTokens{
 	protected LevelTwoCategoryTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  LevelTwoCategoryTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		LevelTwoCategoryTokens tokens = new LevelTwoCategoryTokens(options);
@@ -49,7 +47,6 @@ public class LevelTwoCategoryTokens extends CommonTokens{
 	protected LevelTwoCategoryTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public LevelTwoCategoryTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -95,14 +92,11 @@ public class LevelTwoCategoryTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public LevelTwoCategoryTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String PARENTCATEGORY = "parentCategory";
 	public String getParentCategory(){
@@ -128,15 +122,11 @@ public class LevelTwoCategoryTokens extends CommonTokens{
 	}
 	public boolean analyzeLevelThreeCategoryListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), LEVEL_THREE_CATEGORY_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), LEVEL_THREE_CATEGORY_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public LevelTwoCategoryTokens extractMoreFromLevelThreeCategoryList(String idsSeperatedWithComma){		
 		addSimpleOptions(LEVEL_THREE_CATEGORY_LIST+".extractIds", idsSeperatedWithComma);

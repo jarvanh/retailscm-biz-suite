@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.supplyorderpicking;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderPickingDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderPickingDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	protected boolean isExtractSupplyOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderPickingTokens.SUPPLY_ORDER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,SupplyOrderPickingTokens.SUPPLY_ORDER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		 		
  		return SupplyOrderPickingTokens.of(options).analyzeSupplyOrderListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderListEnabled(Map<String,Object> options){
@@ -523,15 +504,9 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return supplyOrderPicking;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-
-			supplyOrder.clearFromAll();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 
 			supplyOrderItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -561,15 +536,9 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return supplyOrderPicking;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-			supplyOrder.clearBuyer();
-			supplyOrder.clearPicking();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 			supplyOrderItem.clearBuyer();
 			supplyOrderItem.clearPicking();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -611,15 +580,9 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			return supplyOrderPicking;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-			supplyOrder.clearSeller();
-			supplyOrder.clearPicking();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 			supplyOrderItem.clearSeller();
 			supplyOrderItem.clearPicking();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -757,8 +720,6 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public void enhanceList(List<SupplyOrderPicking> supplyOrderPickingList) {		
 		this.enhanceListInternal(supplyOrderPickingList, this.getSupplyOrderPickingMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:SupplyOrder的picking的SupplyOrderList
@@ -785,7 +746,6 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SupplyOrderPicking> supplyOrderPickingList = ownerEntity.collectRefsWithType(SupplyOrderPicking.INTERNAL_TYPE);
@@ -818,8 +778,10 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	public SmartList<SupplyOrderPicking> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderPickingMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -903,7 +865,6 @@ public class SupplyOrderPickingJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

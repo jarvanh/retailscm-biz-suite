@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.supplyorderprocessing;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -60,11 +57,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 	
 		
 	public 	SupplyOrderProcessing(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static SupplyOrderProcessing withId(String id){
@@ -78,7 +70,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -141,8 +132,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(WHO_PROPERTY.equals(property)){
@@ -168,7 +157,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -182,12 +170,9 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(String who){
@@ -201,12 +186,9 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeWho(String who){
 		if(who != null) { setWho(who);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setProcessTime(Date processTime){
@@ -220,12 +202,9 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeProcessTime(Date processTime){
 		setProcessTime(processTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -239,12 +218,9 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -277,9 +253,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		}
 		getConsumerOrderList().addAll(consumerOrderList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeConsumerOrderList(SmartList<ConsumerOrder> consumerOrderList){
 		if(consumerOrderList==null){
 			return;
@@ -290,7 +263,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		addConsumerOrderList( consumerOrderList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  ConsumerOrder removeConsumerOrder(ConsumerOrder consumerOrderIndex){
 		
 		int index = getConsumerOrderList().indexOf(consumerOrderIndex);
@@ -388,9 +360,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		}
 		getSupplyOrderList().addAll(supplyOrderList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeSupplyOrderList(SmartList<SupplyOrder> supplyOrderList){
 		if(supplyOrderList==null){
 			return;
@@ -401,7 +370,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		addSupplyOrderList( supplyOrderList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SupplyOrder removeSupplyOrder(SupplyOrder supplyOrderIndex){
 		
 		int index = getSupplyOrderList().indexOf(supplyOrderIndex);
@@ -538,8 +506,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -576,7 +542,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

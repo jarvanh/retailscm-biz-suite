@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.retailstoreorder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -94,11 +91,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	
 		
 	public 	RetailStoreOrder(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static RetailStoreOrder withId(String id){
@@ -112,7 +104,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBuyer( null );
 		setSeller( null );
@@ -207,8 +198,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(BUYER_PROPERTY.equals(property)){
@@ -272,7 +261,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -286,12 +274,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBuyer(RetailStore buyer){
@@ -305,12 +290,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBuyer(RetailStore buyer){
 		if(buyer != null) { setBuyer(buyer);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBuyer(){
@@ -329,12 +311,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSeller(RetailStoreCountryCenter seller){
 		if(seller != null) { setSeller(seller);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearSeller(){
@@ -353,12 +332,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTitle(String title){
 		if(title != null) { setTitle(title);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTotalAmount(BigDecimal totalAmount){
@@ -372,12 +348,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTotalAmount(BigDecimal totalAmount){
 		setTotalAmount(totalAmount);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setConfirmation(RetailStoreOrderConfirmation confirmation){
@@ -391,12 +364,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeConfirmation(RetailStoreOrderConfirmation confirmation){
 		if(confirmation != null) { setConfirmation(confirmation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearConfirmation(){
@@ -415,12 +385,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeApproval(RetailStoreOrderApproval approval){
 		if(approval != null) { setApproval(approval);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearApproval(){
@@ -439,12 +406,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeProcessing(RetailStoreOrderProcessing processing){
 		if(processing != null) { setProcessing(processing);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearProcessing(){
@@ -463,12 +427,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePicking(RetailStoreOrderPicking picking){
 		if(picking != null) { setPicking(picking);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPicking(){
@@ -487,12 +448,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeShipment(RetailStoreOrderShipment shipment){
 		if(shipment != null) { setShipment(shipment);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearShipment(){
@@ -511,12 +469,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDelivery(RetailStoreOrderDelivery delivery){
 		if(delivery != null) { setDelivery(delivery);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDelivery(){
@@ -535,12 +490,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCurrentStatus(String currentStatus){
@@ -554,12 +506,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentStatus(String currentStatus){
 		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -573,12 +522,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -611,9 +557,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		}
 		getRetailStoreOrderLineItemList().addAll(retailStoreOrderLineItemList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreOrderLineItemList(SmartList<RetailStoreOrderLineItem> retailStoreOrderLineItemList){
 		if(retailStoreOrderLineItemList==null){
 			return;
@@ -624,7 +567,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		addRetailStoreOrderLineItemList( retailStoreOrderLineItemList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreOrderLineItem removeRetailStoreOrderLineItem(RetailStoreOrderLineItem retailStoreOrderLineItemIndex){
 		
 		int index = getRetailStoreOrderLineItemList().indexOf(retailStoreOrderLineItemIndex);
@@ -722,9 +664,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		}
 		getRetailStoreOrderShippingGroupList().addAll(retailStoreOrderShippingGroupList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreOrderShippingGroupList(SmartList<RetailStoreOrderShippingGroup> retailStoreOrderShippingGroupList){
 		if(retailStoreOrderShippingGroupList==null){
 			return;
@@ -735,7 +674,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		addRetailStoreOrderShippingGroupList( retailStoreOrderShippingGroupList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreOrderShippingGroup removeRetailStoreOrderShippingGroup(RetailStoreOrderShippingGroup retailStoreOrderShippingGroupIndex){
 		
 		int index = getRetailStoreOrderShippingGroupList().indexOf(retailStoreOrderShippingGroupIndex);
@@ -833,9 +771,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		}
 		getRetailStoreOrderPaymentGroupList().addAll(retailStoreOrderPaymentGroupList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeRetailStoreOrderPaymentGroupList(SmartList<RetailStoreOrderPaymentGroup> retailStoreOrderPaymentGroupList){
 		if(retailStoreOrderPaymentGroupList==null){
 			return;
@@ -846,7 +781,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		addRetailStoreOrderPaymentGroupList( retailStoreOrderPaymentGroupList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  RetailStoreOrderPaymentGroup removeRetailStoreOrderPaymentGroup(RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroupIndex){
 		
 		int index = getRetailStoreOrderPaymentGroupList().indexOf(retailStoreOrderPaymentGroupIndex);
@@ -944,9 +878,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		}
 		getGoodsList().addAll(goodsList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeGoodsList(SmartList<Goods> goodsList){
 		if(goodsList==null){
 			return;
@@ -957,7 +888,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		addGoodsList( goodsList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Goods removeGoods(Goods goodsIndex){
 		
 		int index = getGoodsList().indexOf(goodsIndex);
@@ -1138,8 +1068,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -1190,7 +1118,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

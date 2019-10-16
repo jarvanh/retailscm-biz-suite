@@ -35,14 +35,10 @@ public class PooledRedisCacheService extends RedisCacheService implements CacheS
 
     public synchronized void ensurePool() {
         if (pool != null) {
-<<<<<<< HEAD
-            return;
-=======
         	if(!pool.isClosed()) {
         		return;
         	}
             
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
         }
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMinIdle(2);
@@ -50,12 +46,6 @@ public class PooledRedisCacheService extends RedisCacheService implements CacheS
         jedisPoolConfig.setMaxTotal(10);
         jedisPoolConfig.setBlockWhenExhausted(true);
         jedisPoolConfig.setMaxWaitMillis(1000);
-<<<<<<< HEAD
-        jedisPoolConfig.setSoftMinEvictableIdleTimeMillis(60000);
-        pool = new JedisPool(jedisPoolConfig, host, port, timeout, StringUtils.isEmpty(password) ? null : password, database);
-    }
-
-=======
         jedisPoolConfig.setSoftMinEvictableIdleTimeMillis(60);
         pool = new JedisPool(jedisPoolConfig, host, port, timeout, StringUtils.isEmpty(password) ? null : password, database);
     }
@@ -63,15 +53,12 @@ public class PooledRedisCacheService extends RedisCacheService implements CacheS
     	ensurePool();
     	pool.close();
     }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
     protected Jedis getJedis() {
 
 
         ensurePool();
         return pool.getResource();
     }
-<<<<<<< HEAD
-=======
     
     
     public void report() {
@@ -101,7 +88,6 @@ public class PooledRedisCacheService extends RedisCacheService implements CacheS
     	
     	
     }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 }

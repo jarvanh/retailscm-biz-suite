@@ -9,11 +9,8 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 public interface ConsumerOrderDeliveryDAO{
 
 	
@@ -46,10 +43,8 @@ public interface ConsumerOrderDeliveryDAO{
 	
 	
 	public SmartList<ConsumerOrderDelivery> queryList(String sql, Object ... parmeters);
-<<<<<<< HEAD
-=======
+	public int count(String sql, Object ... parmeters);
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

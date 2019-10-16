@@ -7,14 +7,11 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.scoring.Scoring;
 import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.companytraining.CompanyTraining;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.companytraining.CompanyTrainingDAO;
 import com.doublechaintech.retailscm.scoring.ScoringDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
@@ -52,6 +49,7 @@ public interface EmployeeCompanyTrainingDAO{
 	
 	
 	public SmartList<EmployeeCompanyTraining> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<EmployeeCompanyTraining> findEmployeeCompanyTrainingByEmployee(String employeeId, Map<String,Object> options);
  	public int countEmployeeCompanyTrainingByEmployee(String employeeId, Map<String,Object> options);
@@ -76,11 +74,7 @@ public interface EmployeeCompanyTrainingDAO{
  	public void analyzeEmployeeCompanyTrainingByScoring(SmartList<EmployeeCompanyTraining> resultList, String scoringId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

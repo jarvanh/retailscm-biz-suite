@@ -38,8 +38,6 @@ public class CityPartnerTokens extends CommonTokens{
 	protected CityPartnerTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  CityPartnerTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		CityPartnerTokens tokens = new CityPartnerTokens(options);
@@ -49,7 +47,6 @@ public class CityPartnerTokens extends CommonTokens{
 	protected CityPartnerTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public CityPartnerTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -96,14 +93,11 @@ public class CityPartnerTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public CityPartnerTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String CITYSERVICECENTER = "cityServiceCenter";
 	public String getCityServiceCenter(){
@@ -129,15 +123,11 @@ public class CityPartnerTokens extends CommonTokens{
 	}
 	public boolean analyzePotentialCustomerListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), POTENTIAL_CUSTOMER_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), POTENTIAL_CUSTOMER_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public CityPartnerTokens extractMoreFromPotentialCustomerList(String idsSeperatedWithComma){		
 		addSimpleOptions(POTENTIAL_CUSTOMER_LIST+".extractIds", idsSeperatedWithComma);
@@ -199,15 +189,11 @@ public class CityPartnerTokens extends CommonTokens{
 	}
 	public boolean analyzePotentialCustomerContactListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), POTENTIAL_CUSTOMER_CONTACT_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), POTENTIAL_CUSTOMER_CONTACT_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public CityPartnerTokens extractMoreFromPotentialCustomerContactList(String idsSeperatedWithComma){		
 		addSimpleOptions(POTENTIAL_CUSTOMER_CONTACT_LIST+".extractIds", idsSeperatedWithComma);

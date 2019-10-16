@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.supplyorderconfirmation;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderConfirmationDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderConfirmationDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -242,14 +229,8 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	protected boolean isExtractConsumerOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderConfirmationTokens.CONSUMER_ORDER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,SupplyOrderConfirmationTokens.CONSUMER_ORDER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeConsumerOrderListEnabled(Map<String,Object> options){		 		
  		return SupplyOrderConfirmationTokens.of(options).analyzeConsumerOrderListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveConsumerOrderListEnabled(Map<String,Object> options){
@@ -262,14 +243,8 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	protected boolean isExtractSupplyOrderListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SupplyOrderConfirmationTokens.SUPPLY_ORDER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,SupplyOrderConfirmationTokens.SUPPLY_ORDER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeSupplyOrderListEnabled(Map<String,Object> options){		 		
  		return SupplyOrderConfirmationTokens.of(options).analyzeSupplyOrderListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveSupplyOrderListEnabled(Map<String,Object> options){
@@ -636,15 +611,9 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return supplyOrderConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
-
-			consumerOrder.clearFromAll();
-=======
 		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
 
 			consumerOrderItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -674,15 +643,9 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return supplyOrderConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
-			consumerOrder.clearConsumer();
-			consumerOrder.clearConfirmation();
-=======
 		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
 			consumerOrderItem.clearConsumer();
 			consumerOrderItem.clearConfirmation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -724,15 +687,9 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return supplyOrderConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(ConsumerOrder consumerOrder: externalConsumerOrderList){
-			consumerOrder.clearStore();
-			consumerOrder.clearConfirmation();
-=======
 		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
 			consumerOrderItem.clearStore();
 			consumerOrderItem.clearConfirmation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -770,15 +727,9 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return supplyOrderConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-
-			supplyOrder.clearFromAll();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 
 			supplyOrderItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -808,15 +759,9 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return supplyOrderConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-			supplyOrder.clearBuyer();
-			supplyOrder.clearConfirmation();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 			supplyOrderItem.clearBuyer();
 			supplyOrderItem.clearConfirmation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -858,15 +803,9 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 			return supplyOrderConfirmation;
 		}
 		
-<<<<<<< HEAD
-		for(SupplyOrder supplyOrder: externalSupplyOrderList){
-			supplyOrder.clearSeller();
-			supplyOrder.clearConfirmation();
-=======
 		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
 			supplyOrderItem.clearSeller();
 			supplyOrderItem.clearConfirmation();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1097,8 +1036,6 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public void enhanceList(List<SupplyOrderConfirmation> supplyOrderConfirmationList) {		
 		this.enhanceListInternal(supplyOrderConfirmationList, this.getSupplyOrderConfirmationMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:ConsumerOrder的confirmation的ConsumerOrderList
@@ -1148,7 +1085,6 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SupplyOrderConfirmation> supplyOrderConfirmationList = ownerEntity.collectRefsWithType(SupplyOrderConfirmation.INTERNAL_TYPE);
@@ -1181,8 +1117,10 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	public SmartList<SupplyOrderConfirmation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderConfirmationMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -1266,7 +1204,6 @@ public class SupplyOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

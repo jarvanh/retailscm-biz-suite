@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.memberwishlist.MemberWishlist;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.memberwishlist.MemberWishlistDAO;
 
 
@@ -48,6 +45,7 @@ public interface MemberWishlistProductDAO{
 	
 	
 	public SmartList<MemberWishlistProduct> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<MemberWishlistProduct> findMemberWishlistProductByOwner(String memberWishlistId, Map<String,Object> options);
  	public int countMemberWishlistProductByOwner(String memberWishlistId, Map<String,Object> options);
@@ -56,11 +54,7 @@ public interface MemberWishlistProductDAO{
  	public void analyzeMemberWishlistProductByOwner(SmartList<MemberWishlistProduct> resultList, String memberWishlistId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

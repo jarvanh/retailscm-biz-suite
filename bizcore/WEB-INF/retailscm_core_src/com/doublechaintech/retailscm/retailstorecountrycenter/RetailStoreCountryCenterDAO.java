@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
 import com.doublechaintech.retailscm.warehouse.Warehouse;
@@ -35,7 +33,6 @@ import com.doublechaintech.retailscm.terminationreason.TerminationReason;
 import com.doublechaintech.retailscm.transportfleet.TransportFleet;
 import com.doublechaintech.retailscm.accountset.AccountSet;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.salarygrade.SalaryGradeDAO;
 import com.doublechaintech.retailscm.publicholiday.PublicHolidayDAO;
 import com.doublechaintech.retailscm.companytraining.CompanyTrainingDAO;
@@ -306,8 +303,7 @@ public interface RetailStoreCountryCenterDAO{
 	
 	
 	public SmartList<RetailStoreCountryCenter> queryList(String sql, Object ... parmeters);
-<<<<<<< HEAD
-=======
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:Catalog的owner的CatalogList
 	public SmartList<Catalog> loadOurCatalogList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception;
@@ -381,7 +377,6 @@ public interface RetailStoreCountryCenterDAO{
 	// 需要一个加载引用我的对象的enhance方法:CompanyTraining的company的CompanyTrainingList
 	public SmartList<CompanyTraining> loadOurCompanyTrainingList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception;
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.originalvoucher;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -74,11 +71,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	
 		
 	public 	OriginalVoucher(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static OriginalVoucher withId(String id){
@@ -92,7 +84,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBelongsTo( null );
 		setCreation( null );
@@ -216,8 +207,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(TITLE_PROPERTY.equals(property)){
@@ -259,7 +248,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -273,12 +261,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTitle(String title){
@@ -292,12 +277,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTitle(String title){
 		if(title != null) { setTitle(title);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMadeBy(String madeBy){
@@ -311,12 +293,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMadeBy(String madeBy){
 		if(madeBy != null) { setMadeBy(madeBy);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setReceivedBy(String receivedBy){
@@ -330,12 +309,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeReceivedBy(String receivedBy){
 		if(receivedBy != null) { setReceivedBy(receivedBy);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVoucherType(String voucherType){
@@ -349,12 +325,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVoucherType(String voucherType){
 		if(voucherType != null) { setVoucherType(voucherType);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVoucherImage(String voucherImage){
@@ -368,12 +341,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVoucherImage(String voucherImage){
 		if(voucherImage != null) { setVoucherImage(voucherImage);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBelongsTo(AccountingDocument belongsTo){
@@ -387,12 +357,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBelongsTo(AccountingDocument belongsTo){
 		if(belongsTo != null) { setBelongsTo(belongsTo);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBelongsTo(){
@@ -411,12 +378,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCreation(OriginalVoucherCreation creation){
 		if(creation != null) { setCreation(creation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCreation(){
@@ -435,12 +399,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeConfirmation(OriginalVoucherConfirmation confirmation){
 		if(confirmation != null) { setConfirmation(confirmation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearConfirmation(){
@@ -459,12 +420,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAuditing(OriginalVoucherAuditing auditing){
 		if(auditing != null) { setAuditing(auditing);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearAuditing(){
@@ -483,12 +441,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentStatus(String currentStatus){
 		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -502,12 +457,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -583,8 +535,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -631,7 +581,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

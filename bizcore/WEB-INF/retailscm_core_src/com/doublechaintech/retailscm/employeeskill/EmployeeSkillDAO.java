@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.skilltype.SkillType;
 import com.doublechaintech.retailscm.employee.Employee;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.skilltype.SkillTypeDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
@@ -50,6 +47,7 @@ public interface EmployeeSkillDAO{
 	
 	
 	public SmartList<EmployeeSkill> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<EmployeeSkill> findEmployeeSkillByEmployee(String employeeId, Map<String,Object> options);
  	public int countEmployeeSkillByEmployee(String employeeId, Map<String,Object> options);
@@ -66,11 +64,7 @@ public interface EmployeeSkillDAO{
  	public void analyzeEmployeeSkillBySkillType(SmartList<EmployeeSkill> resultList, String skillTypeId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

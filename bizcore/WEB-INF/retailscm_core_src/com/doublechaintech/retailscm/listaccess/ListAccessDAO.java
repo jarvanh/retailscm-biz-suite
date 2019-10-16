@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.userapp.UserApp;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 
 
@@ -48,6 +45,7 @@ public interface ListAccessDAO{
 	
 	
 	public SmartList<ListAccess> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ListAccess> findListAccessByApp(String userAppId, Map<String,Object> options);
  	public int countListAccessByApp(String userAppId, Map<String,Object> options);
@@ -56,11 +54,7 @@ public interface ListAccessDAO{
  	public void analyzeListAccessByApp(SmartList<ListAccess> resultList, String userAppId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

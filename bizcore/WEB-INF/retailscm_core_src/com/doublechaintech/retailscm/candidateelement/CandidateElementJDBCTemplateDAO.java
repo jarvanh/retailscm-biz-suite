@@ -554,6 +554,10 @@ public class CandidateElementJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	public SmartList<CandidateElement> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCandidateElementMapper());
 	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 

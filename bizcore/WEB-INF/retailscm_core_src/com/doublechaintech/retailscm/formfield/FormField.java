@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.formfield;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -83,11 +80,6 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	FormField(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static FormField withId(String id){
@@ -101,7 +93,6 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setForm( null );
 
@@ -411,8 +402,6 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(LABEL_PROPERTY.equals(property)){
@@ -472,7 +461,6 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -486,12 +474,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLabel(String label){
@@ -505,12 +490,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLabel(String label){
 		if(label != null) { setLabel(label);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLocaleKey(String localeKey){
@@ -524,12 +506,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLocaleKey(String localeKey){
 		if(localeKey != null) { setLocaleKey(localeKey);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setParameterName(String parameterName){
@@ -543,12 +522,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeParameterName(String parameterName){
 		if(parameterName != null) { setParameterName(parameterName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setType(String type){
@@ -562,12 +538,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeType(String type){
 		if(type != null) { setType(type);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setForm(GenericForm form){
@@ -581,12 +554,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeForm(GenericForm form){
 		if(form != null) { setForm(form);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearForm(){
@@ -605,12 +575,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePlaceholder(String placeholder){
 		if(placeholder != null) { setPlaceholder(placeholder);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDefaultValue(String defaultValue){
@@ -624,12 +591,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDefaultValue(String defaultValue){
 		if(defaultValue != null) { setDefaultValue(defaultValue);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -643,12 +607,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFieldGroup(String fieldGroup){
@@ -662,12 +623,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFieldGroup(String fieldGroup){
 		if(fieldGroup != null) { setFieldGroup(fieldGroup);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMinimumValue(String minimumValue){
@@ -681,12 +639,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMinimumValue(String minimumValue){
 		if(minimumValue != null) { setMinimumValue(minimumValue);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMaximumValue(String maximumValue){
@@ -700,12 +655,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMaximumValue(String maximumValue){
 		if(maximumValue != null) { setMaximumValue(maximumValue);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setRequired(boolean required){
@@ -719,12 +671,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeRequired(boolean required){
 		setRequired(required);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDisabled(boolean disabled){
@@ -738,12 +687,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDisabled(boolean disabled){
 		setDisabled(disabled);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCustomRendering(boolean customRendering){
@@ -757,12 +703,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCustomRendering(boolean customRendering){
 		setCustomRendering(customRendering);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCandidateValues(String candidateValues){
@@ -776,12 +719,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCandidateValues(String candidateValues){
 		if(candidateValues != null) { setCandidateValues(candidateValues);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setSuggestValues(String suggestValues){
@@ -795,12 +735,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSuggestValues(String suggestValues){
 		if(suggestValues != null) { setSuggestValues(suggestValues);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -814,12 +751,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -904,8 +838,6 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -967,7 +899,6 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

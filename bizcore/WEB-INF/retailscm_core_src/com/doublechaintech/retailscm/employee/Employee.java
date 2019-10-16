@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.employee;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -142,11 +139,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Employee(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static Employee withId(String id){
@@ -160,7 +152,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCompany( null );
 		setDepartment( null );
@@ -384,8 +375,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(COMPANY_PROPERTY.equals(property)){
@@ -511,7 +500,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -525,12 +513,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(RetailStoreCountryCenter company){
@@ -544,12 +529,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCompany(RetailStoreCountryCenter company){
 		if(company != null) { setCompany(company);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCompany(){
@@ -568,12 +550,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTitle(String title){
 		if(title != null) { setTitle(title);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDepartment(LevelThreeDepartment department){
@@ -587,12 +566,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDepartment(LevelThreeDepartment department){
 		if(department != null) { setDepartment(department);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDepartment(){
@@ -611,12 +587,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFamilyName(String familyName){
 		if(familyName != null) { setFamilyName(familyName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setGivenName(String givenName){
@@ -630,12 +603,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeGivenName(String givenName){
 		if(givenName != null) { setGivenName(givenName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setEmail(String email){
@@ -649,12 +619,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeEmail(String email){
 		if(email != null) { setEmail(email);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCity(String city){
@@ -668,12 +635,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCity(String city){
 		if(city != null) { setCity(city);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAddress(String address){
@@ -687,12 +651,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAddress(String address){
 		if(address != null) { setAddress(address);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCellPhone(String cellPhone){
@@ -706,12 +667,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCellPhone(String cellPhone){
 		if(cellPhone != null) { setCellPhone(cellPhone);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -732,12 +690,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOccupation(OccupationType occupation){
 		if(occupation != null) { setOccupation(occupation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOccupation(){
@@ -756,12 +711,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeResponsibleFor(ResponsibilityType responsibleFor){
 		if(responsibleFor != null) { setResponsibleFor(responsibleFor);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearResponsibleFor(){
@@ -780,12 +732,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentSalaryGrade(SalaryGrade currentSalaryGrade){
 		if(currentSalaryGrade != null) { setCurrentSalaryGrade(currentSalaryGrade);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCurrentSalaryGrade(){
@@ -804,12 +753,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSalaryAccount(String salaryAccount){
 		if(salaryAccount != null) { setSalaryAccount(salaryAccount);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setJobApplication(JobApplication jobApplication){
@@ -823,12 +769,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeJobApplication(JobApplication jobApplication){
 		if(jobApplication != null) { setJobApplication(jobApplication);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearJobApplication(){
@@ -847,12 +790,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeProfessionInterview(ProfessionInterview professionInterview){
 		if(professionInterview != null) { setProfessionInterview(professionInterview);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearProfessionInterview(){
@@ -871,12 +811,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeHrInterview(HrInterview hrInterview){
 		if(hrInterview != null) { setHrInterview(hrInterview);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearHrInterview(){
@@ -895,12 +832,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOfferApproval(OfferApproval offerApproval){
 		if(offerApproval != null) { setOfferApproval(offerApproval);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOfferApproval(){
@@ -919,12 +853,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeOfferAcceptance(OfferAcceptance offerAcceptance){
 		if(offerAcceptance != null) { setOfferAcceptance(offerAcceptance);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearOfferAcceptance(){
@@ -943,12 +874,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeEmployeeBoarding(EmployeeBoarding employeeBoarding){
 		if(employeeBoarding != null) { setEmployeeBoarding(employeeBoarding);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearEmployeeBoarding(){
@@ -967,12 +895,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTermination(Termination termination){
 		if(termination != null) { setTermination(termination);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearTermination(){
@@ -991,12 +916,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCurrentStatus(String currentStatus){
@@ -1010,12 +932,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentStatus(String currentStatus){
 		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -1029,12 +948,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -1067,9 +983,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeCompanyTrainingList().addAll(employeeCompanyTrainingList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeCompanyTrainingList(SmartList<EmployeeCompanyTraining> employeeCompanyTrainingList){
 		if(employeeCompanyTrainingList==null){
 			return;
@@ -1080,7 +993,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeCompanyTrainingList( employeeCompanyTrainingList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeCompanyTraining removeEmployeeCompanyTraining(EmployeeCompanyTraining employeeCompanyTrainingIndex){
 		
 		int index = getEmployeeCompanyTrainingList().indexOf(employeeCompanyTrainingIndex);
@@ -1178,9 +1090,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeSkillList().addAll(employeeSkillList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeSkillList(SmartList<EmployeeSkill> employeeSkillList){
 		if(employeeSkillList==null){
 			return;
@@ -1191,7 +1100,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeSkillList( employeeSkillList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeSkill removeEmployeeSkill(EmployeeSkill employeeSkillIndex){
 		
 		int index = getEmployeeSkillList().indexOf(employeeSkillIndex);
@@ -1289,9 +1197,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeePerformanceList().addAll(employeePerformanceList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeePerformanceList(SmartList<EmployeePerformance> employeePerformanceList){
 		if(employeePerformanceList==null){
 			return;
@@ -1302,7 +1207,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeePerformanceList( employeePerformanceList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeePerformance removeEmployeePerformance(EmployeePerformance employeePerformanceIndex){
 		
 		int index = getEmployeePerformanceList().indexOf(employeePerformanceIndex);
@@ -1400,9 +1304,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeWorkExperienceList().addAll(employeeWorkExperienceList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeWorkExperienceList(SmartList<EmployeeWorkExperience> employeeWorkExperienceList){
 		if(employeeWorkExperienceList==null){
 			return;
@@ -1413,7 +1314,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeWorkExperienceList( employeeWorkExperienceList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeWorkExperience removeEmployeeWorkExperience(EmployeeWorkExperience employeeWorkExperienceIndex){
 		
 		int index = getEmployeeWorkExperienceList().indexOf(employeeWorkExperienceIndex);
@@ -1511,9 +1411,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeLeaveList().addAll(employeeLeaveList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeLeaveList(SmartList<EmployeeLeave> employeeLeaveList){
 		if(employeeLeaveList==null){
 			return;
@@ -1524,7 +1421,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeLeaveList( employeeLeaveList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeLeave removeEmployeeLeave(EmployeeLeave employeeLeaveIndex){
 		
 		int index = getEmployeeLeaveList().indexOf(employeeLeaveIndex);
@@ -1622,9 +1518,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeInterviewList().addAll(employeeInterviewList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeInterviewList(SmartList<EmployeeInterview> employeeInterviewList){
 		if(employeeInterviewList==null){
 			return;
@@ -1635,7 +1528,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeInterviewList( employeeInterviewList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeInterview removeEmployeeInterview(EmployeeInterview employeeInterviewIndex){
 		
 		int index = getEmployeeInterviewList().indexOf(employeeInterviewIndex);
@@ -1733,9 +1625,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeAttendanceList().addAll(employeeAttendanceList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeAttendanceList(SmartList<EmployeeAttendance> employeeAttendanceList){
 		if(employeeAttendanceList==null){
 			return;
@@ -1746,7 +1635,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeAttendanceList( employeeAttendanceList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeAttendance removeEmployeeAttendance(EmployeeAttendance employeeAttendanceIndex){
 		
 		int index = getEmployeeAttendanceList().indexOf(employeeAttendanceIndex);
@@ -1844,9 +1732,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeQualifierList().addAll(employeeQualifierList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeQualifierList(SmartList<EmployeeQualifier> employeeQualifierList){
 		if(employeeQualifierList==null){
 			return;
@@ -1857,7 +1742,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeQualifierList( employeeQualifierList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeQualifier removeEmployeeQualifier(EmployeeQualifier employeeQualifierIndex){
 		
 		int index = getEmployeeQualifierList().indexOf(employeeQualifierIndex);
@@ -1955,9 +1839,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeEducationList().addAll(employeeEducationList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeEducationList(SmartList<EmployeeEducation> employeeEducationList){
 		if(employeeEducationList==null){
 			return;
@@ -1968,7 +1849,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeEducationList( employeeEducationList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeEducation removeEmployeeEducation(EmployeeEducation employeeEducationIndex){
 		
 		int index = getEmployeeEducationList().indexOf(employeeEducationIndex);
@@ -2066,9 +1946,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeAwardList().addAll(employeeAwardList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeAwardList(SmartList<EmployeeAward> employeeAwardList){
 		if(employeeAwardList==null){
 			return;
@@ -2079,7 +1956,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeAwardList( employeeAwardList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeAward removeEmployeeAward(EmployeeAward employeeAwardIndex){
 		
 		int index = getEmployeeAwardList().indexOf(employeeAwardIndex);
@@ -2177,9 +2053,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeSalarySheetList().addAll(employeeSalarySheetList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeSalarySheetList(SmartList<EmployeeSalarySheet> employeeSalarySheetList){
 		if(employeeSalarySheetList==null){
 			return;
@@ -2190,7 +2063,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addEmployeeSalarySheetList( employeeSalarySheetList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeSalarySheet removeEmployeeSalarySheet(EmployeeSalarySheet employeeSalarySheetIndex){
 		
 		int index = getEmployeeSalarySheetList().indexOf(employeeSalarySheetIndex);
@@ -2288,9 +2160,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		getPayingOffList().addAll(payingOffList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergePayingOffList(SmartList<PayingOff> payingOffList){
 		if(payingOffList==null){
 			return;
@@ -2301,7 +2170,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addPayingOffList( payingOffList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  PayingOff removePayingOff(PayingOff payingOffIndex){
 		
 		int index = getPayingOffList().indexOf(payingOffIndex);
@@ -2570,8 +2438,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -2646,7 +2512,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

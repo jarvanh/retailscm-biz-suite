@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.citypartner;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,18 +30,12 @@ import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerC
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class CityPartnerJDBCTemplateDAO extends RetailscmNamingServiceDAO implements CityPartnerDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements CityPartnerDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  RetailStoreCityServiceCenterDAO  retailStoreCityServiceCenterDAO;
@@ -267,14 +254,8 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	protected boolean isExtractPotentialCustomerListEnabled(Map<String,Object> options){		
  		return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzePotentialCustomerListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_LIST+".analyze");
-=======
  	protected boolean isAnalyzePotentialCustomerListEnabled(Map<String,Object> options){		 		
  		return CityPartnerTokens.of(options).analyzePotentialCustomerListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePotentialCustomerListEnabled(Map<String,Object> options){
@@ -287,14 +268,8 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	protected boolean isExtractPotentialCustomerContactListEnabled(Map<String,Object> options){		
  		return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_CONTACT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzePotentialCustomerContactListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,CityPartnerTokens.POTENTIAL_CUSTOMER_CONTACT_LIST+".analyze");
-=======
  	protected boolean isAnalyzePotentialCustomerContactListEnabled(Map<String,Object> options){		 		
  		return CityPartnerTokens.of(options).analyzePotentialCustomerContactListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePotentialCustomerContactListEnabled(Map<String,Object> options){
@@ -769,15 +744,9 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return cityPartner;
 		}
 		
-<<<<<<< HEAD
-		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
-
-			potentialCustomer.clearFromAll();
-=======
 		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
 
 			potentialCustomerItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -807,15 +776,9 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return cityPartner;
 		}
 		
-<<<<<<< HEAD
-		for(PotentialCustomer potentialCustomer: externalPotentialCustomerList){
-			potentialCustomer.clearCityServiceCenter();
-			potentialCustomer.clearCityPartner();
-=======
 		for(PotentialCustomer potentialCustomerItem: externalPotentialCustomerList){
 			potentialCustomerItem.clearCityServiceCenter();
 			potentialCustomerItem.clearCityPartner();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -853,15 +816,9 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return cityPartner;
 		}
 		
-<<<<<<< HEAD
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
-
-			potentialCustomerContact.clearFromAll();
-=======
 		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
 
 			potentialCustomerContactItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -891,15 +848,9 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return cityPartner;
 		}
 		
-<<<<<<< HEAD
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
-			potentialCustomerContact.clearPotentialCustomer();
-			potentialCustomerContact.clearCityPartner();
-=======
 		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
 			potentialCustomerContactItem.clearPotentialCustomer();
 			potentialCustomerContactItem.clearCityPartner();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -941,15 +892,9 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return cityPartner;
 		}
 		
-<<<<<<< HEAD
-		for(PotentialCustomerContact potentialCustomerContact: externalPotentialCustomerContactList){
-			potentialCustomerContact.clearContactTo();
-			potentialCustomerContact.clearCityPartner();
-=======
 		for(PotentialCustomerContact potentialCustomerContactItem: externalPotentialCustomerContactList){
 			potentialCustomerContactItem.clearContactTo();
 			potentialCustomerContactItem.clearCityPartner();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1180,8 +1125,6 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	public void enhanceList(List<CityPartner> cityPartnerList) {		
 		this.enhanceListInternal(cityPartnerList, this.getCityPartnerMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:PotentialCustomer的cityPartner的PotentialCustomerList
@@ -1231,7 +1174,6 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<CityPartner> cityPartnerList = ownerEntity.collectRefsWithType(CityPartner.INTERNAL_TYPE);
@@ -1264,12 +1206,13 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	public SmartList<CityPartner> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCityPartnerMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

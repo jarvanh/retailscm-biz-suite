@@ -269,14 +269,9 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			//will be good when the goodsShelf loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsShelf.
-<<<<<<< HEAD
-			
-			
-=======
 			if (goodsShelf.isChanged()){
 			goodsShelf.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, options);
 			return goodsShelf;
 			
@@ -347,11 +342,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		return tokens().allTokens()
 		.sortGoodsShelfStockCountListWith("id","desc")
 		.sortGoodsAllocationListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -508,51 +499,30 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected DamageSpace loadDamageSpace(RetailscmUserContext userContext, String newDamageSpaceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getDamageSpaceDAO().load(newDamageSpaceId, options);
-=======
  	protected SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String newSupplierSpaceId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSupplierSpaceDAO().load(newSupplierSpaceId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected StorageSpace loadStorageSpace(RetailscmUserContext userContext, String newStorageSpaceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getStorageSpaceDAO().load(newStorageSpaceId, options);
-=======
  	protected DamageSpace loadDamageSpace(RetailscmUserContext userContext, String newDamageSpaceId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getDamageSpaceDAO().load(newDamageSpaceId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String newSupplierSpaceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplierSpaceDAO().load(newSupplierSpaceId, options);
-=======
  	protected StorageSpace loadStorageSpace(RetailscmUserContext userContext, String newStorageSpaceId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getStorageSpaceDAO().load(newStorageSpaceId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -710,13 +680,8 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			String goodsShelfStockCountIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-<<<<<<< HEAD
-		for(String goodsShelfStockCountId: goodsShelfStockCountIds){
-			userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
-=======
 		for(String goodsShelfStockCountIdItem: goodsShelfStockCountIds){
 			userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
@@ -967,13 +932,8 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			String goodsAllocationIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-<<<<<<< HEAD
-		for(String goodsAllocationId: goodsAllocationIds){
-			userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationId);
-=======
 		for(String goodsAllocationIdItem: goodsAllocationIds){
 			userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);

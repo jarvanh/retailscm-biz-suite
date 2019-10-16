@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.accountingsubject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -64,11 +61,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 	
 		
 	public 	AccountingSubject(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static AccountingSubject withId(String id){
@@ -82,7 +74,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setAccountSet( null );
 
@@ -184,8 +175,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(ACCOUNTING_SUBJECT_CODE_PROPERTY.equals(property)){
@@ -216,7 +205,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -230,12 +218,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingSubjectCode(String accountingSubjectCode){
@@ -249,12 +234,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountingSubjectCode(String accountingSubjectCode){
 		if(accountingSubjectCode != null) { setAccountingSubjectCode(accountingSubjectCode);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingSubjectName(String accountingSubjectName){
@@ -268,12 +250,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountingSubjectName(String accountingSubjectName){
 		if(accountingSubjectName != null) { setAccountingSubjectName(accountingSubjectName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingSubjectClassCode(int accountingSubjectClassCode){
@@ -287,12 +266,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountingSubjectClassCode(int accountingSubjectClassCode){
 		setAccountingSubjectClassCode(accountingSubjectClassCode);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingSubjectClassName(String accountingSubjectClassName){
@@ -306,12 +282,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountingSubjectClassName(String accountingSubjectClassName){
 		if(accountingSubjectClassName != null) { setAccountingSubjectClassName(accountingSubjectClassName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountSet(AccountSet accountSet){
@@ -325,12 +298,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountSet(AccountSet accountSet){
 		if(accountSet != null) { setAccountSet(accountSet);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearAccountSet(){
@@ -349,12 +319,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -387,9 +354,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		}
 		getAccountingDocumentLineList().addAll(accountingDocumentLineList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountingDocumentLineList(SmartList<AccountingDocumentLine> accountingDocumentLineList){
 		if(accountingDocumentLineList==null){
 			return;
@@ -400,7 +364,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		addAccountingDocumentLineList( accountingDocumentLineList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingDocumentLine removeAccountingDocumentLine(AccountingDocumentLine accountingDocumentLineIndex){
 		
 		int index = getAccountingDocumentLineList().indexOf(accountingDocumentLineIndex);
@@ -536,8 +499,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -578,7 +539,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

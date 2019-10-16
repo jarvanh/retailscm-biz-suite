@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.employee.Employee;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
@@ -75,13 +72,11 @@ public interface JobApplicationDAO{
 	
 	
 	public SmartList<JobApplication> queryList(String sql, Object ... parmeters);
-<<<<<<< HEAD
-=======
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:Employee的jobApplication的EmployeeList
 	public SmartList<Employee> loadOurEmployeeList(RetailscmUserContext userContext, List<JobApplication> us, Map<String,Object> options) throws Exception;
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

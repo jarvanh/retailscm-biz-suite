@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroup;
 import com.doublechaintech.retailscm.goods.Goods;
@@ -23,7 +21,6 @@ import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing
 import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
 import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroupDAO;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplierDAO;
 import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingDAO;
@@ -134,6 +131,7 @@ public interface SupplyOrderDAO{
 	
 	
 	public SmartList<SupplyOrder> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<SupplyOrder> findSupplyOrderByBuyer(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countSupplyOrderByBuyer(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -198,9 +196,6 @@ public interface SupplyOrderDAO{
  	public void analyzeSupplyOrderByDelivery(SmartList<SupplyOrder> resultList, String supplyOrderDeliveryId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:SupplyOrderLineItem的bizOrder的SupplyOrderLineItemList
 	public SmartList<SupplyOrderLineItem> loadOurSupplyOrderLineItemList(RetailscmUserContext userContext, List<SupplyOrder> us, Map<String,Object> options) throws Exception;
@@ -215,6 +210,5 @@ public interface SupplyOrderDAO{
 	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<SupplyOrder> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

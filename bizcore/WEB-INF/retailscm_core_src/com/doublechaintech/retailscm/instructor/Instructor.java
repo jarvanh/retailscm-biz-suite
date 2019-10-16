@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.instructor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -70,11 +67,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	Instructor(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static Instructor withId(String id){
@@ -88,7 +80,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCompany( null );
 
@@ -247,8 +238,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(TITLE_PROPERTY.equals(property)){
@@ -288,7 +277,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -302,12 +290,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTitle(String title){
@@ -321,12 +306,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTitle(String title){
 		if(title != null) { setTitle(title);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFamilyName(String familyName){
@@ -340,12 +322,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFamilyName(String familyName){
 		if(familyName != null) { setFamilyName(familyName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setGivenName(String givenName){
@@ -359,12 +338,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeGivenName(String givenName){
 		if(givenName != null) { setGivenName(givenName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCellPhone(String cellPhone){
@@ -378,12 +354,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCellPhone(String cellPhone){
 		if(cellPhone != null) { setCellPhone(cellPhone);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -404,12 +377,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeEmail(String email){
 		if(email != null) { setEmail(email);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(RetailStoreCountryCenter company){
@@ -423,12 +393,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCompany(RetailStoreCountryCenter company){
 		if(company != null) { setCompany(company);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCompany(){
@@ -447,12 +414,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeIntroduction(String introduction){
 		if(introduction != null) { setIntroduction(introduction);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
@@ -466,12 +430,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -485,12 +446,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -523,9 +481,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		}
 		getCompanyTrainingList().addAll(companyTrainingList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeCompanyTrainingList(SmartList<CompanyTraining> companyTrainingList){
 		if(companyTrainingList==null){
 			return;
@@ -536,7 +491,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		addCompanyTrainingList( companyTrainingList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  CompanyTraining removeCompanyTraining(CompanyTraining companyTrainingIndex){
 		
 		int index = getCompanyTrainingList().indexOf(companyTrainingIndex);
@@ -678,8 +632,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -726,7 +678,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

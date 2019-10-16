@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.accountingdocument;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -80,11 +77,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	
 		
 	public 	AccountingDocument(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static AccountingDocument withId(String id){
@@ -98,7 +90,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setAccountingPeriod( null );
 		setDocumentType( null );
@@ -170,8 +161,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(NAME_PROPERTY.equals(property)){
@@ -218,7 +207,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -232,12 +220,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setName(String name){
@@ -251,12 +236,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingDocumentDate(Date accountingDocumentDate){
@@ -270,12 +252,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountingDocumentDate(Date accountingDocumentDate){
 		setAccountingDocumentDate(accountingDocumentDate);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAccountingPeriod(AccountingPeriod accountingPeriod){
@@ -289,12 +268,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAccountingPeriod(AccountingPeriod accountingPeriod){
 		if(accountingPeriod != null) { setAccountingPeriod(accountingPeriod);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearAccountingPeriod(){
@@ -313,12 +289,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDocumentType(AccountingDocumentType documentType){
 		if(documentType != null) { setDocumentType(documentType);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearDocumentType(){
@@ -337,12 +310,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCreation(AccountingDocumentCreation creation){
 		if(creation != null) { setCreation(creation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCreation(){
@@ -361,12 +331,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeConfirmation(AccountingDocumentConfirmation confirmation){
 		if(confirmation != null) { setConfirmation(confirmation);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearConfirmation(){
@@ -385,12 +352,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAuditing(AccountingDocumentAuditing auditing){
 		if(auditing != null) { setAuditing(auditing);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearAuditing(){
@@ -409,12 +373,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergePosting(AccountingDocumentPosting posting){
 		if(posting != null) { setPosting(posting);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearPosting(){
@@ -433,12 +394,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCurrentStatus(String currentStatus){
 		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -452,12 +410,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -490,9 +445,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		}
 		getOriginalVoucherList().addAll(originalVoucherList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeOriginalVoucherList(SmartList<OriginalVoucher> originalVoucherList){
 		if(originalVoucherList==null){
 			return;
@@ -503,7 +455,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		addOriginalVoucherList( originalVoucherList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  OriginalVoucher removeOriginalVoucher(OriginalVoucher originalVoucherIndex){
 		
 		int index = getOriginalVoucherList().indexOf(originalVoucherIndex);
@@ -601,9 +552,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		}
 		getAccountingDocumentLineList().addAll(accountingDocumentLineList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountingDocumentLineList(SmartList<AccountingDocumentLine> accountingDocumentLineList){
 		if(accountingDocumentLineList==null){
 			return;
@@ -614,7 +562,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		addAccountingDocumentLineList( accountingDocumentLineList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingDocumentLine removeAccountingDocumentLine(AccountingDocumentLine accountingDocumentLineIndex){
 		
 		int index = getAccountingDocumentLineList().indexOf(accountingDocumentLineIndex);
@@ -771,8 +718,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -817,7 +762,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

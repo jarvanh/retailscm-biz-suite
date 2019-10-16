@@ -20,16 +20,10 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.terapico.caf.DateTime;
-<<<<<<< HEAD
-import com.terapico.utils.TextUtil;
-
-public class BaseEntity implements Serializable{
-=======
 import com.terapico.caf.RemoteInitiable;
 import com.terapico.utils.TextUtil;
 
 public class BaseEntity implements Serializable, RemoteInitiable{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  void ensureAccess(Map<String,Object> accessTokens) {
 		
 		List<SmartList<?>> allLists = this.getAllRelatedLists();
@@ -107,10 +101,7 @@ public class BaseEntity implements Serializable, RemoteInitiable{
    }
 	
 	public String maskChinaMobileNumber(String chinaMobileNumber){
-<<<<<<< HEAD
-=======
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if(chinaMobileNumber == null){
 			return null;
 		}
@@ -119,11 +110,7 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		}
 		
 		return chinaMobileNumber.substring(0,3)+"****"+chinaMobileNumber.substring(7);
-<<<<<<< HEAD
-        
-=======
     
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -142,16 +129,6 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		this.displayName = displayName;
 	}
 	
-<<<<<<< HEAD
-	public Object propertyOf(String propertyName) throws Exception{
-		String methodName="get"+propertyName.substring(0,1).toUpperCase()+propertyName.substring(1);
-		Method method = this.getClass().getDeclaredMethod(methodName, new Class[]{});
-		//field.setAccessible(true);
-		Object value = method.invoke(this, new Object[]{});
-		return value;
-		
-	}
-=======
 	public Object propertyOf(String propertyName) {
 		
 		String methodNames[]={"get", propertyName.substring(0,1).toUpperCase() ,propertyName.substring(1)};
@@ -167,7 +144,6 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		}
 	}
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public void setPropertyOf(String propertyName, Object value) throws Exception{
         String methodName="set"+propertyName.substring(0,1).toUpperCase()+propertyName.substring(1);
         Method method = this.getClass().getMethod(methodName, new Class[]{value.getClass()});
@@ -771,11 +747,7 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		return this.getId();
 	}
 	protected boolean equalsTimestamp(Date oldValue, Date newValue) {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-=======
 		
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return equalsDate(oldValue,newValue);
 	}
 
@@ -843,11 +815,7 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 	
 	protected void collectFromList(BaseEntity owner, List<BaseEntity> entityList,
 			SmartList<? extends BaseEntity> targetEntityList, String internalType) {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-=======
 		
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if(targetEntityList==null){
 			return;
 		}
@@ -913,9 +881,3 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 
 
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

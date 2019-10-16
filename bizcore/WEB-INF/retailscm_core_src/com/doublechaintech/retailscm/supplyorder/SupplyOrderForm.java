@@ -1164,11 +1164,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  approveAction(){
 		FormAction action = new FormAction();
-<<<<<<< HEAD
-		action.setLabel("批准");
-=======
 		action.setLabel("验收");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("supply_order.approve");
 		action.setUrl("supplyOrderManager/approve/supplyOrderId/who/approveTime/");
 		this.addFormAction(action);
@@ -1176,11 +1172,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  processAction(){
 		FormAction action = new FormAction();
-<<<<<<< HEAD
-		action.setLabel("过程");
-=======
 		action.setLabel("处理");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("supply_order.process");
 		action.setUrl("supplyOrderManager/process/supplyOrderId/who/processTime/");
 		this.addFormAction(action);
@@ -1188,11 +1180,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  pickAction(){
 		FormAction action = new FormAction();
-<<<<<<< HEAD
-		action.setLabel("选择");
-=======
 		action.setLabel("捡货");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("supply_order.pick");
 		action.setUrl("supplyOrderManager/pick/supplyOrderId/who/processTime/");
 		this.addFormAction(action);
@@ -1200,11 +1188,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  shipAction(){
 		FormAction action = new FormAction();
-<<<<<<< HEAD
-		action.setLabel("船");
-=======
 		action.setLabel("装运");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("supply_order.ship");
 		action.setUrl("supplyOrderManager/ship/supplyOrderId/who/shipTime/");
 		this.addFormAction(action);
@@ -1212,11 +1196,7 @@ public class SupplyOrderForm extends BaseForm {
 	}	
  	public SupplyOrderForm  deliverAction(){
 		FormAction action = new FormAction();
-<<<<<<< HEAD
-		action.setLabel("交付");
-=======
 		action.setLabel("送货");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		action.setLocaleKey("supply_order.deliver");
 		action.setUrl("supplyOrderManager/deliver/supplyOrderId/who/deliveryTime/");
 		this.addFormAction(action);

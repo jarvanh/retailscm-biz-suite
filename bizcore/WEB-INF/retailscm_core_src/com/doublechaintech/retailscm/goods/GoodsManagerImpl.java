@@ -347,14 +347,9 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 			//will be good when the goods loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Goods.
-<<<<<<< HEAD
-			
-			
-=======
 			if (goods.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			goods = saveGoods(userContext, goods, options);
 			return goods;
 			
@@ -424,11 +419,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortGoodsMovementListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -1061,85 +1052,50 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected GoodsAllocation loadGoodsAllocation(RetailscmUserContext userContext, String newGoodsAllocationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getGoodsAllocationDAO().load(newGoodsAllocationId, options);
-=======
  	protected ReceivingSpace loadReceivingSpace(RetailscmUserContext userContext, String newReceivingSpaceId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getReceivingSpaceDAO().load(newReceivingSpaceId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected ShippingSpace loadShippingSpace(RetailscmUserContext userContext, String newShippingSpaceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getShippingSpaceDAO().load(newShippingSpaceId, options);
-=======
  	protected GoodsAllocation loadGoodsAllocation(RetailscmUserContext userContext, String newGoodsAllocationId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getGoodsAllocationDAO().load(newGoodsAllocationId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String newPackagingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getGoodsPackagingDAO().load(newPackagingId, options);
-=======
  	protected SmartPallet loadSmartPallet(RetailscmUserContext userContext, String newSmartPalletId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSmartPalletDAO().load(newSmartPalletId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newRetailStoreId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newRetailStoreId, options);
-=======
  	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSupplyOrderDAO().load(newBizOrderId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected Sku loadSku(RetailscmUserContext userContext, String newSkuId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSkuDAO().load(newSkuId, options);
-=======
  	protected GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String newPackagingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getGoodsPackagingDAO().load(newPackagingId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1156,68 +1112,40 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected SmartPallet loadSmartPallet(RetailscmUserContext userContext, String newSmartPalletId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSmartPalletDAO().load(newSmartPalletId, options);
-=======
  	protected ShippingSpace loadShippingSpace(RetailscmUserContext userContext, String newShippingSpaceId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getShippingSpaceDAO().load(newShippingSpaceId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSupplyOrderDAO().load(newBizOrderId, options);
-=======
  	protected Sku loadSku(RetailscmUserContext userContext, String newSkuId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSkuDAO().load(newSkuId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected ReceivingSpace loadReceivingSpace(RetailscmUserContext userContext, String newReceivingSpaceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getReceivingSpaceDAO().load(newReceivingSpaceId, options);
-=======
  	protected RetailStoreOrder loadRetailStoreOrder(RetailscmUserContext userContext, String newRetailStoreOrderId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreOrderDAO().load(newRetailStoreOrderId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected RetailStoreOrder loadRetailStoreOrder(RetailscmUserContext userContext, String newRetailStoreOrderId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getRetailStoreOrderDAO().load(newRetailStoreOrderId, options);
-=======
  	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newRetailStoreId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getRetailStoreDAO().load(newRetailStoreId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -1436,13 +1364,8 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 			String goodsMovementIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoods(goodsId);
-<<<<<<< HEAD
-		for(String goodsMovementId: goodsMovementIds){
-			userContext.getChecker().checkIdOfGoodsMovement(goodsMovementId);
-=======
 		for(String goodsMovementIdItem: goodsMovementIds){
 			userContext.getChecker().checkIdOfGoodsMovement(goodsMovementIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsManagerException.class);

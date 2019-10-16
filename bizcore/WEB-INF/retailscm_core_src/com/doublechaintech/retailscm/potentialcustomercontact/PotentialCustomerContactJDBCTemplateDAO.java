@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.potentialcustomercontact;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -37,27 +30,12 @@ import com.doublechaintech.retailscm.potentialcustomercontactperson.PotentialCus
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmNamingServiceDAO implements PotentialCustomerContactDAO{
- 
- 	
- 	private  CityPartnerDAO  cityPartnerDAO;
- 	public void setCityPartnerDAO(CityPartnerDAO cityPartnerDAO){
-	 	this.cityPartnerDAO = cityPartnerDAO;
- 	}
- 	public CityPartnerDAO getCityPartnerDAO(){
-	 	return this.cityPartnerDAO;
- 	}
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImpl implements PotentialCustomerContactDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  PotentialCustomerDAO  potentialCustomerDAO;
@@ -69,8 +47,6 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
  	}
  
  	
-<<<<<<< HEAD
-=======
  	private  CityPartnerDAO  cityPartnerDAO;
  	public void setCityPartnerDAO(CityPartnerDAO cityPartnerDAO){
 	 	this.cityPartnerDAO = cityPartnerDAO;
@@ -80,7 +56,6 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
  	}
  
  	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	private  PotentialCustomerContactPersonDAO  potentialCustomerContactPersonDAO;
  	public void setPotentialCustomerContactPersonDAO(PotentialCustomerContactPersonDAO potentialCustomerContactPersonDAO){
 	 	this.potentialCustomerContactPersonDAO = potentialCustomerContactPersonDAO;
@@ -822,12 +797,9 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
 	public void enhanceList(List<PotentialCustomerContact> potentialCustomerContactList) {		
 		this.enhanceListInternal(potentialCustomerContactList, this.getPotentialCustomerContactMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<PotentialCustomerContact> potentialCustomerContactList = ownerEntity.collectRefsWithType(PotentialCustomerContact.INTERNAL_TYPE);
@@ -860,12 +832,13 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
 	public SmartList<PotentialCustomerContact> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPotentialCustomerContactMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

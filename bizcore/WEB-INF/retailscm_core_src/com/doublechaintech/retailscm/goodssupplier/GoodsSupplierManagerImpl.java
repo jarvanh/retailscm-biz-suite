@@ -277,14 +277,9 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			//will be good when the goodsSupplier loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsSupplier.
-<<<<<<< HEAD
-			
-			
-=======
 			if (goodsSupplier.isChanged()){
 			goodsSupplier.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, options);
 			return goodsSupplier;
 			
@@ -356,11 +351,7 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		.sortSupplierProductListWith("id","desc")
 		.sortSupplyOrderListWith("id","desc")
 		.sortAccountSetListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -634,13 +625,8 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			String supplierProductIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-<<<<<<< HEAD
-		for(String supplierProductId: supplierProductIds){
-			userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-=======
 		for(String supplierProductIdItem: supplierProductIds){
 			userContext.getChecker().checkIdOfSupplierProduct(supplierProductIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
@@ -893,13 +879,8 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-<<<<<<< HEAD
-		for(String supplyOrderId: supplyOrderIds){
-			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-=======
 		for(String supplyOrderIdItem: supplyOrderIds){
 			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
@@ -1386,13 +1367,8 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			String accountSetIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-<<<<<<< HEAD
-		for(String accountSetId: accountSetIds){
-			userContext.getChecker().checkIdOfAccountSet(accountSetId);
-=======
 		for(String accountSetIdItem: accountSetIds){
 			userContext.getChecker().checkIdOfAccountSet(accountSetIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(GoodsSupplierManagerException.class);

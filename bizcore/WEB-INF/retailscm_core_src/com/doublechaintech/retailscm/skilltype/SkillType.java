@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.skilltype;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -60,11 +57,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	SkillType(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static SkillType withId(String id){
@@ -78,7 +70,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setCompany( null );
 
@@ -142,8 +133,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(CODE_PROPERTY.equals(property)){
@@ -168,7 +157,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -182,12 +170,9 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCode(String code){
@@ -201,12 +186,9 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCode(String code){
 		if(code != null) { setCode(code);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setCompany(RetailStoreCountryCenter company){
@@ -220,12 +202,9 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeCompany(RetailStoreCountryCenter company){
 		if(company != null) { setCompany(company);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearCompany(){
@@ -244,12 +223,9 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -263,12 +239,9 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -301,9 +274,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		}
 		getEmployeeSkillList().addAll(employeeSkillList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeSkillList(SmartList<EmployeeSkill> employeeSkillList){
 		if(employeeSkillList==null){
 			return;
@@ -314,7 +284,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		addEmployeeSkillList( employeeSkillList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  EmployeeSkill removeEmployeeSkill(EmployeeSkill employeeSkillIndex){
 		
 		int index = getEmployeeSkillList().indexOf(employeeSkillIndex);
@@ -446,8 +415,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -484,7 +451,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

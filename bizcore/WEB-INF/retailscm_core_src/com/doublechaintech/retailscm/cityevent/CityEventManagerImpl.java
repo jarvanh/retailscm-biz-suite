@@ -255,14 +255,9 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 			//will be good when the cityEvent loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to CityEvent.
-<<<<<<< HEAD
-			
-			
-=======
 			if (cityEvent.isChanged()){
 			cityEvent.updateLastUpdateTime(userContext.now());
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			cityEvent = saveCityEvent(userContext, cityEvent, options);
 			return cityEvent;
 			
@@ -332,11 +327,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortEventAttendanceListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -574,13 +565,8 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 			String eventAttendanceIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-<<<<<<< HEAD
-		for(String eventAttendanceId: eventAttendanceIds){
-			userContext.getChecker().checkIdOfEventAttendance(eventAttendanceId);
-=======
 		for(String eventAttendanceIdItem: eventAttendanceIds){
 			userContext.getChecker().checkIdOfEventAttendance(eventAttendanceIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);

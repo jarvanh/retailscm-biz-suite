@@ -196,11 +196,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
  	
 
 
-<<<<<<< HEAD
-	public SecUser createSecUser(RetailscmUserContext userContext,String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId) throws Exception
-=======
 	public SecUser createSecUser(RetailscmUserContext userContext,String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId) throws Exception
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	{
 		
 		
@@ -211,12 +207,9 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		userContext.getChecker().checkMobileOfSecUser(mobile);
 		userContext.getChecker().checkEmailOfSecUser(email);
 		userContext.getChecker().checkPwdOfSecUser(pwd);
-<<<<<<< HEAD
-=======
 		userContext.getChecker().checkWeixinOpenidOfSecUser(weixinOpenid);
 		userContext.getChecker().checkWeixinAppidOfSecUser(weixinAppid);
 		userContext.getChecker().checkAccessTokenOfSecUser(accessToken);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		userContext.getChecker().checkVerificationCodeOfSecUser(verificationCode);
 		userContext.getChecker().checkVerificationCodeExpireOfSecUser(verificationCodeExpire);
 		userContext.getChecker().checkLastLoginTimeOfSecUser(lastLoginTime);
@@ -230,12 +223,9 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		secUser.setMobile(mobile);
 		secUser.setEmail(email);
 		secUser.setClearTextOfPwd(pwd);
-<<<<<<< HEAD
-=======
 		secUser.setWeixinOpenid(weixinOpenid);
 		secUser.setWeixinAppid(weixinAppid);
 		secUser.setAccessToken(accessToken);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		secUser.setVerificationCode(verificationCode);
 		secUser.setVerificationCodeExpire(verificationCodeExpire);
 		secUser.setLastLoginTime(lastLoginTime);
@@ -281,8 +271,6 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		if(SecUser.PWD_PROPERTY.equals(property)){
 			userContext.getChecker().checkPwdOfSecUser(parseString(newValueExpr));
 		}
-<<<<<<< HEAD
-=======
 		if(SecUser.WEIXIN_OPENID_PROPERTY.equals(property)){
 			userContext.getChecker().checkWeixinOpenidOfSecUser(parseString(newValueExpr));
 		}
@@ -292,7 +280,6 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		if(SecUser.ACCESS_TOKEN_PROPERTY.equals(property)){
 			userContext.getChecker().checkAccessTokenOfSecUser(parseString(newValueExpr));
 		}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if(SecUser.VERIFICATION_CODE_PROPERTY.equals(property)){
 			userContext.getChecker().checkVerificationCodeOfSecUser(parseInt(newValueExpr));
 		}
@@ -331,14 +318,9 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 			//will be good when the secUser loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SecUser.
-<<<<<<< HEAD
-			
-			
-=======
 			if (secUser.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			secUser = saveSecUser(userContext, secUser, options);
 			return secUser;
 			
@@ -409,11 +391,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		return tokens().allTokens()
 		.sortUserAppListWith("id","desc")
 		.sortLoginHistoryListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -649,34 +627,20 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 //--------------------------------------------------------------
 	
 	 	
-<<<<<<< HEAD
- 	protected SecUserBlocking loadSecUserBlocking(RetailscmUserContext userContext, String newBlockingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getSecUserBlockingDAO().load(newBlockingId, options);
-=======
  	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getUserDomainDAO().load(newDomainId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
  	
 	
 	 	
-<<<<<<< HEAD
- 	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return userContext.getDAOGroup().getUserDomainDAO().load(newDomainId, options);
-=======
  	protected SecUserBlocking loadSecUserBlocking(RetailscmUserContext userContext, String newBlockingId, Map<String,Object> options) throws Exception
  	{
 		
  		return userContext.getDAOGroup().getSecUserBlockingDAO().load(newBlockingId, options);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  	
  	
@@ -872,13 +836,8 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 			String userAppIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSecUser(secUserId);
-<<<<<<< HEAD
-		for(String userAppId: userAppIds){
-			userContext.getChecker().checkIdOfUserApp(userAppId);
-=======
 		for(String userAppIdItem: userAppIds){
 			userContext.getChecker().checkIdOfUserApp(userAppIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
@@ -1141,13 +1100,8 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 			String loginHistoryIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfSecUser(secUserId);
-<<<<<<< HEAD
-		for(String loginHistoryId: loginHistoryIds){
-			userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-=======
 		for(String loginHistoryIdItem: loginHistoryIds){
 			userContext.getChecker().checkIdOfLoginHistory(loginHistoryIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);

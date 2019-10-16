@@ -9,11 +9,6 @@ public class CustomRelation extends BaseRelation{
 	{
 		super.prepareRelation();
 		//Uncomment to make any change to the relation type
-<<<<<<< HEAD
-		//replaceGenericRelation("UserWhiteList"                         , BaseRelation.TRUST_CHAIN_ALL, "domain");
-		//replaceGenericRelation("SecUser"                               , BaseRelation.TRUST_CHAIN_ALL, "domain");
-		//replaceGenericRelation("UserApp"                               , BaseRelation.TRUST_CHAIN_ALL, "secUser");
-=======
 		//replaceGenericRelation("Catalog"                               , BaseRelation.TRUST_CHAIN_ALL, "owner");
 		//replaceGenericRelation("LevelOneCategory"                      , BaseRelation.TRUST_CHAIN_ALL, "catalog");
 		//replaceGenericRelation("LevelTwoCategory"                      , BaseRelation.TRUST_CHAIN_ALL, "parentCategory");
@@ -154,7 +149,6 @@ public class CustomRelation extends BaseRelation{
 		//replaceGenericRelation("SecUser"                               , BaseRelation.TRUST_CHAIN_ALL, "domain");
 		//replaceGenericRelation("UserApp"                               , BaseRelation.TRUST_CHAIN_ALL, "secUser");
 		//replaceGenericRelation("QuickLink"                             , BaseRelation.TRUST_CHAIN_ALL, "app");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		//replaceGenericRelation("ListAccess"                            , BaseRelation.TRUST_CHAIN_ALL, "app");
 		//replaceGenericRelation("ObjectAccess"                          , BaseRelation.TRUST_CHAIN_ALL, "app");
 		//replaceGenericRelation("LoginHistory"                          , BaseRelation.TRUST_CHAIN_ALL, "secUser");
@@ -162,10 +156,7 @@ public class CustomRelation extends BaseRelation{
 		//replaceGenericRelation("FormFieldMessage"                      , BaseRelation.TRUST_CHAIN_ALL, "form");
 		//replaceGenericRelation("FormField"                             , BaseRelation.TRUST_CHAIN_ALL, "form");
 		//replaceGenericRelation("FormAction"                            , BaseRelation.TRUST_CHAIN_ALL, "form");
-<<<<<<< HEAD
-=======
 		//replaceGenericRelation("CandidateElement"                      , BaseRelation.TRUST_CHAIN_ALL, "container");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	
@@ -178,8 +169,6 @@ public class CustomRelation extends BaseRelation{
 		Just uncomment the definition line and replaceRelationIndex line to replace existing one.
 		
 		*/
-<<<<<<< HEAD
-=======
 		//String [] catalogRelatedObjectNames = {"owner:RetailStoreCountryCenter"};
 		//replaceRelationIndex("Catalog",catalogRelatedObjectNames);
 
@@ -471,7 +460,6 @@ public class CustomRelation extends BaseRelation{
 		//String [] payingOffRelatedObjectNames = {"paid_for:Employee"};
 		//replaceRelationIndex("PayingOff",payingOffRelatedObjectNames);
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		//String [] userWhiteListRelatedObjectNames = {"domain:UserDomain"};
 		//replaceRelationIndex("UserWhiteList",userWhiteListRelatedObjectNames);
 
@@ -481,12 +469,9 @@ public class CustomRelation extends BaseRelation{
 		//String [] userAppRelatedObjectNames = {"sec_user:SecUser"};
 		//replaceRelationIndex("UserApp",userAppRelatedObjectNames);
 
-<<<<<<< HEAD
-=======
 		//String [] quickLinkRelatedObjectNames = {"app:UserApp"};
 		//replaceRelationIndex("QuickLink",quickLinkRelatedObjectNames);
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		//String [] listAccessRelatedObjectNames = {"app:UserApp"};
 		//replaceRelationIndex("ListAccess",listAccessRelatedObjectNames);
 
@@ -508,12 +493,9 @@ public class CustomRelation extends BaseRelation{
 		//String [] formActionRelatedObjectNames = {"form:GenericForm"};
 		//replaceRelationIndex("FormAction",formActionRelatedObjectNames);
 
-<<<<<<< HEAD
-=======
 		//String [] candidateElementRelatedObjectNames = {"container:CandidateContainer"};
 		//replaceRelationIndex("CandidateElement",candidateElementRelatedObjectNames);
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		
 		
 	
@@ -543,9 +525,3 @@ public class CustomRelation extends BaseRelation{
 
 
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

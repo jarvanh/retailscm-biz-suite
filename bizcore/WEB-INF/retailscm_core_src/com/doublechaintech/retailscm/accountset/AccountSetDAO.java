@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
@@ -17,7 +15,6 @@ import com.doublechaintech.retailscm.accountingsubject.AccountingSubject;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentType;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriodDAO;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplierDAO;
 import com.doublechaintech.retailscm.accountingsubject.AccountingSubjectDAO;
@@ -79,6 +76,7 @@ public interface AccountSetDAO{
 
 	
 	public SmartList<AccountSet> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<AccountSet> findAccountSetByCountryCenter(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countAccountSetByCountryCenter(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -103,9 +101,6 @@ public interface AccountSetDAO{
  	public void analyzeAccountSetByGoodsSupplier(SmartList<AccountSet> resultList, String goodsSupplierId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:AccountingSubject的accountSet的AccountingSubjectList
 	public SmartList<AccountingSubject> loadOurAccountingSubjectList(RetailscmUserContext userContext, List<AccountSet> us, Map<String,Object> options) throws Exception;
@@ -117,6 +112,5 @@ public interface AccountSetDAO{
 	public SmartList<AccountingDocumentType> loadOurAccountingDocumentTypeList(RetailscmUserContext userContext, List<AccountSet> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

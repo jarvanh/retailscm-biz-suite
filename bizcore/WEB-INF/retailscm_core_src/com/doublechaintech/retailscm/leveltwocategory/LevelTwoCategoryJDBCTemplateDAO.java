@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.leveltwocategory;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.levelonecategory.LevelOneCategoryDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmNamingServiceDAO implements LevelTwoCategoryDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implements LevelTwoCategoryDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  LevelOneCategoryDAO  levelOneCategoryDAO;
@@ -239,14 +226,8 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	protected boolean isExtractLevelThreeCategoryListEnabled(Map<String,Object> options){		
  		return checkOptions(options,LevelTwoCategoryTokens.LEVEL_THREE_CATEGORY_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeLevelThreeCategoryListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,LevelTwoCategoryTokens.LEVEL_THREE_CATEGORY_LIST+".analyze");
-=======
  	protected boolean isAnalyzeLevelThreeCategoryListEnabled(Map<String,Object> options){		 		
  		return LevelTwoCategoryTokens.of(options).analyzeLevelThreeCategoryListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLevelThreeCategoryListEnabled(Map<String,Object> options){
@@ -634,15 +615,9 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 			return levelTwoCategory;
 		}
 		
-<<<<<<< HEAD
-		for(LevelThreeCategory levelThreeCategory: externalLevelThreeCategoryList){
-
-			levelThreeCategory.clearFromAll();
-=======
 		for(LevelThreeCategory levelThreeCategoryItem: externalLevelThreeCategoryList){
 
 			levelThreeCategoryItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -768,8 +743,6 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	public void enhanceList(List<LevelTwoCategory> levelTwoCategoryList) {		
 		this.enhanceListInternal(levelTwoCategoryList, this.getLevelTwoCategoryMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:LevelThreeCategory的parentCategory的LevelThreeCategoryList
@@ -796,7 +769,6 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<LevelTwoCategory> levelTwoCategoryList = ownerEntity.collectRefsWithType(LevelTwoCategory.INTERNAL_TYPE);
@@ -829,12 +801,13 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	public SmartList<LevelTwoCategory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelTwoCategoryMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

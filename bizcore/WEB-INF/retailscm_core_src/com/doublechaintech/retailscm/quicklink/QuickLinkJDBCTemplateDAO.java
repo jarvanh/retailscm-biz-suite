@@ -574,6 +574,10 @@ public class QuickLinkJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Qu
 	public SmartList<QuickLink> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getQuickLinkMapper());
 	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 

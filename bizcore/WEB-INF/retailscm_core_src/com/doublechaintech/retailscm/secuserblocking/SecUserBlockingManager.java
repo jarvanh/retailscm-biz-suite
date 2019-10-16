@@ -27,15 +27,9 @@ public interface SecUserBlockingManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-<<<<<<< HEAD
-	//public  SecUserManager getSecUserManager(RetailscmUserContext userContext, String secUserBlockingId, String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId ,String [] tokensExpr)  throws Exception;
-	
-	public  SecUserBlocking addSecUser(RetailscmUserContext userContext, String secUserBlockingId, String login, String mobile, String email, String pwd, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId , String [] tokensExpr)  throws Exception;
-=======
 	//public  SecUserManager getSecUserManager(RetailscmUserContext userContext, String secUserBlockingId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId ,String [] tokensExpr)  throws Exception;
 	
 	public  SecUserBlocking addSecUser(RetailscmUserContext userContext, String secUserBlockingId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId , String [] tokensExpr)  throws Exception;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  SecUserBlocking removeSecUser(RetailscmUserContext userContext, String secUserBlockingId, String secUserId, int secUserVersion,String [] tokensExpr)  throws Exception;
 	public  SecUserBlocking updateSecUser(RetailscmUserContext userContext, String secUserBlockingId, String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

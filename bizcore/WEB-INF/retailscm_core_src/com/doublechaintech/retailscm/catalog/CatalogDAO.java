@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.levelonecategory.LevelOneCategory;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.levelonecategory.LevelOneCategoryDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
@@ -57,6 +54,7 @@ public interface CatalogDAO{
 
 	
 	public SmartList<Catalog> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Catalog> findCatalogByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countCatalogByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -65,14 +63,10 @@ public interface CatalogDAO{
  	public void analyzeCatalogByOwner(SmartList<Catalog> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:LevelOneCategory的catalog的LevelOneCategoryList
 	public SmartList<LevelOneCategory> loadOurLevelOneCategoryList(RetailscmUserContext userContext, List<Catalog> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

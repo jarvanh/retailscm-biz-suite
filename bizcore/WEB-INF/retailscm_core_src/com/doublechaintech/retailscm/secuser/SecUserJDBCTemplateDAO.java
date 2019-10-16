@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.secuser;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -39,27 +32,12 @@ import com.doublechaintech.retailscm.loginhistory.LoginHistoryDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class SecUserJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SecUserDAO{
- 
- 	
- 	private  SecUserBlockingDAO  secUserBlockingDAO;
- 	public void setSecUserBlockingDAO(SecUserBlockingDAO secUserBlockingDAO){
-	 	this.secUserBlockingDAO = secUserBlockingDAO;
- 	}
- 	public SecUserBlockingDAO getSecUserBlockingDAO(){
-	 	return this.secUserBlockingDAO;
- 	}
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecUserDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  UserDomainDAO  userDomainDAO;
@@ -69,8 +47,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  	public UserDomainDAO getUserDomainDAO(){
 	 	return this.userDomainDAO;
  	}
-<<<<<<< HEAD
-=======
  
  	
  	private  SecUserBlockingDAO  secUserBlockingDAO;
@@ -80,7 +56,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  	public SecUserBlockingDAO getSecUserBlockingDAO(){
 	 	return this.secUserBlockingDAO;
  	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -334,14 +309,8 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	protected boolean isExtractUserAppListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SecUserTokens.USER_APP_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeUserAppListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,SecUserTokens.USER_APP_LIST+".analyze");
-=======
  	protected boolean isAnalyzeUserAppListEnabled(Map<String,Object> options){		 		
  		return SecUserTokens.of(options).analyzeUserAppListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveUserAppListEnabled(Map<String,Object> options){
@@ -354,14 +323,8 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	protected boolean isExtractLoginHistoryListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SecUserTokens.LOGIN_HISTORY_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeLoginHistoryListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,SecUserTokens.LOGIN_HISTORY_LIST+".analyze");
-=======
  	protected boolean isAnalyzeLoginHistoryListEnabled(Map<String,Object> options){		 		
  		return SecUserTokens.of(options).analyzeLoginHistoryListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveLoginHistoryListEnabled(Map<String,Object> options){
@@ -598,11 +561,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  
 		StatsItem verificationCodeExpireStatsItem = new StatsItem();
 		//SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY
-<<<<<<< HEAD
-		verificationCodeExpireStatsItem.setDisplayName("SEC的用户");
-=======
 		verificationCodeExpireStatsItem.setDisplayName("安全用户");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		verificationCodeExpireStatsItem.setInternalName(formatKeyForDateLine(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY));
 		verificationCodeExpireStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY),filterKey,emptyOptions));
 		info.addItem(verificationCodeExpireStatsItem);
@@ -652,11 +611,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  
 		StatsItem verificationCodeExpireStatsItem = new StatsItem();
 		//SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY
-<<<<<<< HEAD
-		verificationCodeExpireStatsItem.setDisplayName("SEC的用户");
-=======
 		verificationCodeExpireStatsItem.setDisplayName("安全用户");
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		verificationCodeExpireStatsItem.setInternalName(formatKeyForDateLine(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY));
 		verificationCodeExpireStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY),filterKey,emptyOptions));
 		info.addItem(verificationCodeExpireStatsItem);
@@ -818,33 +773,12 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		return prepareSecUserCreateParameters(secUser);
  	}
  	protected Object[] prepareSecUserUpdateParameters(SecUser secUser){
-<<<<<<< HEAD
- 		Object[] parameters = new Object[13];
-=======
  		Object[] parameters = new Object[16];
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  		parameters[0] = secUser.getLogin();
  		parameters[1] = secUser.getMobile();
  		parameters[2] = secUser.getEmail();
  		parameters[3] = secUser.getPwd();
-<<<<<<< HEAD
- 		parameters[4] = secUser.getVerificationCode();
- 		parameters[5] = secUser.getVerificationCodeExpire();
- 		parameters[6] = secUser.getLastLoginTime(); 	
- 		if(secUser.getDomain() != null){
- 			parameters[7] = secUser.getDomain().getId();
- 		}
-  	
- 		if(secUser.getBlocking() != null){
- 			parameters[8] = secUser.getBlocking().getId();
- 		}
- 
- 		parameters[9] = secUser.getCurrentStatus();		
- 		parameters[10] = secUser.nextVersion();
- 		parameters[11] = secUser.getId();
- 		parameters[12] = secUser.getVersion();
-=======
  		parameters[4] = secUser.getWeixinOpenid();
  		parameters[5] = secUser.getWeixinAppid();
  		parameters[6] = secUser.getAccessToken();
@@ -863,16 +797,11 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		parameters[13] = secUser.nextVersion();
  		parameters[14] = secUser.getId();
  		parameters[15] = secUser.getVersion();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  				
  		return parameters;
  	}
  	protected Object[] prepareSecUserCreateParameters(SecUser secUser){
-<<<<<<< HEAD
-		Object[] parameters = new Object[11];
-=======
 		Object[] parameters = new Object[14];
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		String newSecUserId=getNextId();
 		secUser.setId(newSecUserId);
 		parameters[0] =  secUser.getId();
@@ -881,13 +810,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		parameters[2] = secUser.getMobile();
  		parameters[3] = secUser.getEmail();
  		parameters[4] = secUser.getPwd();
-<<<<<<< HEAD
- 		parameters[5] = secUser.getVerificationCode();
- 		parameters[6] = secUser.getVerificationCodeExpire();
- 		parameters[7] = secUser.getLastLoginTime(); 	
- 		if(secUser.getDomain() != null){
- 			parameters[8] = secUser.getDomain().getId();
-=======
  		parameters[5] = secUser.getWeixinOpenid();
  		parameters[6] = secUser.getWeixinAppid();
  		parameters[7] = secUser.getAccessToken();
@@ -896,24 +818,15 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		parameters[10] = secUser.getLastLoginTime(); 	
  		if(secUser.getDomain() != null){
  			parameters[11] = secUser.getDomain().getId();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  		
  		}
  		 	
  		if(secUser.getBlocking() != null){
-<<<<<<< HEAD
- 			parameters[9] = secUser.getBlocking().getId();
- 		
- 		}
- 		
- 		parameters[10] = secUser.getCurrentStatus();		
-=======
  			parameters[12] = secUser.getBlocking().getId();
  		
  		}
  		
  		parameters[13] = secUser.getCurrentStatus();		
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  				
  		return parameters;
  	}
@@ -1004,15 +917,9 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 			return secUser;
 		}
 		
-<<<<<<< HEAD
-		for(UserApp userApp: externalUserAppList){
-
-			userApp.clearFromAll();
-=======
 		for(UserApp userAppItem: externalUserAppList){
 
 			userAppItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1042,15 +949,9 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 			return secUser;
 		}
 		
-<<<<<<< HEAD
-		for(UserApp userApp: externalUserAppList){
-			userApp.clearObjectId();
-			userApp.clearSecUser();
-=======
 		for(UserApp userAppItem: externalUserAppList){
 			userAppItem.clearObjectId();
 			userAppItem.clearSecUser();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1088,15 +989,9 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 			return secUser;
 		}
 		
-<<<<<<< HEAD
-		for(LoginHistory loginHistory: externalLoginHistoryList){
-
-			loginHistory.clearFromAll();
-=======
 		for(LoginHistory loginHistoryItem: externalLoginHistoryList){
 
 			loginHistoryItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -1315,8 +1210,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	public void enhanceList(List<SecUser> secUserList) {		
 		this.enhanceListInternal(secUserList, this.getSecUserMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:UserApp的secUser的UserAppList
@@ -1366,7 +1259,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SecUser> secUserList = ownerEntity.collectRefsWithType(SecUser.INTERNAL_TYPE);
@@ -1399,12 +1291,13 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	public SmartList<SecUser> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSecUserMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

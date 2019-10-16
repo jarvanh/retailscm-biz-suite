@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.sku;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.product.ProductDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class SkuJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SkuDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  ProductDAO  productDAO;
@@ -239,14 +226,8 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 	protected boolean isExtractGoodsListEnabled(Map<String,Object> options){		
  		return checkOptions(options,SkuTokens.GOODS_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,SkuTokens.GOODS_LIST+".analyze");
-=======
  	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		 		
  		return SkuTokens.of(options).analyzeGoodsListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsListEnabled(Map<String,Object> options){
@@ -646,15 +627,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-
-			goods.clearFromAll();
-=======
 		for(Goods goodsItem: externalGoodsList){
 
 			goodsItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -684,15 +659,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearReceivingSpace();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -734,15 +703,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearGoodsAllocation();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -784,15 +747,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearSmartPallet();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -834,15 +791,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearShippingSpace();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearShippingSpace();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -884,15 +835,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearTransportTask();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -934,15 +879,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearRetailStore();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -984,15 +923,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearBizOrder();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1034,15 +967,9 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 			return sku;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearSku();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearRetailStoreOrder();
 			goodsItem.clearSku();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1180,8 +1107,6 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 	public void enhanceList(List<Sku> skuList) {		
 		this.enhanceListInternal(skuList, this.getSkuMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:Goods的sku的GoodsList
@@ -1208,7 +1133,6 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<Sku> skuList = ownerEntity.collectRefsWithType(Sku.INTERNAL_TYPE);
@@ -1241,12 +1165,13 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 	public SmartList<Sku> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSkuMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

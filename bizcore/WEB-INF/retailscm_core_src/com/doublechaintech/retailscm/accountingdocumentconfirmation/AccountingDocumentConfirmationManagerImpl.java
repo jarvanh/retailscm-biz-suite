@@ -248,14 +248,9 @@ public class AccountingDocumentConfirmationManagerImpl extends CustomRetailscmCh
 			//will be good when the accountingDocumentConfirmation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountingDocumentConfirmation.
-<<<<<<< HEAD
-			
-			
-=======
 			if (accountingDocumentConfirmation.isChanged()){
 			
 			}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			accountingDocumentConfirmation = saveAccountingDocumentConfirmation(userContext, accountingDocumentConfirmation, options);
 			return accountingDocumentConfirmation;
 			
@@ -325,11 +320,7 @@ public class AccountingDocumentConfirmationManagerImpl extends CustomRetailscmCh
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
 		.sortAccountingDocumentListWith("id","desc")
-<<<<<<< HEAD
-		.done();
-=======
 		.analyzeAllLists().done();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	}
 	protected Map<String,Object> mergedAllTokens(String []tokens){
@@ -532,13 +523,8 @@ public class AccountingDocumentConfirmationManagerImpl extends CustomRetailscmCh
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
 		userContext.getChecker().checkIdOfAccountingDocumentConfirmation(accountingDocumentConfirmationId);
-<<<<<<< HEAD
-		for(String accountingDocumentId: accountingDocumentIds){
-			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-=======
 		for(String accountingDocumentIdItem: accountingDocumentIds){
 			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentConfirmationManagerException.class);

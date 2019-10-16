@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.accountingdocumentposting;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements AccountingDocumentPostingDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingDocumentPostingDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 	protected boolean isExtractAccountingDocumentListEnabled(Map<String,Object> options){		
  		return checkOptions(options,AccountingDocumentPostingTokens.ACCOUNTING_DOCUMENT_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeAccountingDocumentListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,AccountingDocumentPostingTokens.ACCOUNTING_DOCUMENT_LIST+".analyze");
-=======
  	protected boolean isAnalyzeAccountingDocumentListEnabled(Map<String,Object> options){		 		
  		return AccountingDocumentPostingTokens.of(options).analyzeAccountingDocumentListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveAccountingDocumentListEnabled(Map<String,Object> options){
@@ -525,15 +506,9 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 			return accountingDocumentPosting;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
-
-			accountingDocument.clearFromAll();
-=======
 		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
 
 			accountingDocumentItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -563,15 +538,9 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 			return accountingDocumentPosting;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
-			accountingDocument.clearAccountingPeriod();
-			accountingDocument.clearPosting();
-=======
 		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
 			accountingDocumentItem.clearAccountingPeriod();
 			accountingDocumentItem.clearPosting();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -613,15 +582,9 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 			return accountingDocumentPosting;
 		}
 		
-<<<<<<< HEAD
-		for(AccountingDocument accountingDocument: externalAccountingDocumentList){
-			accountingDocument.clearDocumentType();
-			accountingDocument.clearPosting();
-=======
 		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
 			accountingDocumentItem.clearDocumentType();
 			accountingDocumentItem.clearPosting();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -759,8 +722,6 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 	public void enhanceList(List<AccountingDocumentPosting> accountingDocumentPostingList) {		
 		this.enhanceListInternal(accountingDocumentPostingList, this.getAccountingDocumentPostingMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:AccountingDocument的posting的AccountingDocumentList
@@ -787,7 +748,6 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<AccountingDocumentPosting> accountingDocumentPostingList = ownerEntity.collectRefsWithType(AccountingDocumentPosting.INTERNAL_TYPE);
@@ -820,8 +780,10 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 	public SmartList<AccountingDocumentPosting> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentPostingMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -905,7 +867,6 @@ public class AccountingDocumentPostingJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

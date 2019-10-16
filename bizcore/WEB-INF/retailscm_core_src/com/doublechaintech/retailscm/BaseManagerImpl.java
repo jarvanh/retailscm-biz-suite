@@ -72,19 +72,11 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		GraphService graphService = ((RetailscmUserContextImpl)userContext).getGraphService();
 		if (graphService instanceof GraphServiceImpl) {
 			((GraphServiceImpl) graphService).addNode(getSystemInternalName(), sourceEntity.getInternalType(), sourceEntity.getId());
-<<<<<<< HEAD
-			List<BaseEntity> entityList = new SmartList<BaseEntity>();
-			sourceEntity.collectRefercences(sourceEntity, entityList);
-			for (BaseEntity entity : entityList) {
-				((GraphServiceImpl) graphService).addEdge(getSystemInternalName(), sourceEntity.getInternalType() + "_" + entity.getInternalType(), sourceEntity.getInternalType(), entity.getInternalType(), sourceEntity.getId(), entity.getId());
-			}
-=======
 			//List<BaseEntity> entityList = new SmartList<BaseEntity>();
 			//sourceEntity.collectRefercences(sourceEntity, entityList);
 			//for (BaseEntity entity : entityList) {
 			//	((GraphServiceImpl) graphService).addEdge(getSystemInternalName(), sourceEntity.getInternalType() + "_" + entity.getInternalType(), sourceEntity.getInternalType(), entity.getInternalType(), sourceEntity.getId(), entity.getId());
 			//}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -166,15 +158,12 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		
 		UserContext userContext = (UserContext)baseUserContext;
 		logCall(userContext, methodName, parameters);
-<<<<<<< HEAD
-=======
 		
 		String xauth = userContext.getRequestHeader("X-Auth");
 		if(xauth!=null) {
 			return accessOK(); //for temporary use， security leak for demo only
 		}
 		
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		//如果来自本地IP，则放开访问
 		UserApp app =(UserApp) userContext.getCachedObject(this.getCurrentAppKey(userContext), UserApp.class);
 		
@@ -1116,13 +1105,9 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		
 	}
 	
-<<<<<<< HEAD
-	
-=======
 	protected long parseLong(String longExpr) {
 		return Long.valueOf(longExpr);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	
@@ -1138,9 +1123,3 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 
 
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

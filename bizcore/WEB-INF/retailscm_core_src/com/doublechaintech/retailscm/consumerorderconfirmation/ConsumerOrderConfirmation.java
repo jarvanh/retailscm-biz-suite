@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.consumerorderconfirmation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -54,11 +51,6 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 	
 		
 	public 	ConsumerOrderConfirmation(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static ConsumerOrderConfirmation withId(String id){
@@ -72,7 +64,6 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -133,8 +124,6 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(WHO_PROPERTY.equals(property)){
@@ -152,7 +141,6 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -166,12 +154,9 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(String who){
@@ -185,12 +170,9 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeWho(String who){
 		if(who != null) { setWho(who);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setConfirmTime(Date confirmTime){
@@ -204,12 +186,9 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeConfirmTime(Date confirmTime){
 		setConfirmTime(confirmTime);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -223,12 +202,9 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -284,8 +260,6 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -320,7 +294,6 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

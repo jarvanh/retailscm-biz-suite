@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.employee;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -79,37 +72,6 @@ import com.doublechaintech.retailscm.employeeeducation.EmployeeEducationDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class EmployeeJDBCTemplateDAO extends RetailscmNamingServiceDAO implements EmployeeDAO{
- 
- 	
- 	private  TerminationDAO  terminationDAO;
- 	public void setTerminationDAO(TerminationDAO terminationDAO){
-	 	this.terminationDAO = terminationDAO;
- 	}
- 	public TerminationDAO getTerminationDAO(){
-	 	return this.terminationDAO;
- 	}
- 
- 	
- 	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
- 	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
-	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
- 	}
- 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
-	 	return this.retailStoreCountryCenterDAO;
- 	}
- 
- 	
- 	private  ResponsibilityTypeDAO  responsibilityTypeDAO;
- 	public void setResponsibilityTypeDAO(ResponsibilityTypeDAO responsibilityTypeDAO){
-	 	this.responsibilityTypeDAO = responsibilityTypeDAO;
- 	}
- 	public ResponsibilityTypeDAO getResponsibilityTypeDAO(){
-	 	return this.responsibilityTypeDAO;
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -124,7 +86,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  	public ProfessionInterviewDAO getProfessionInterviewDAO(){
 	 	return this.professionInterviewDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  
  	
@@ -155,8 +116,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  
  	
-<<<<<<< HEAD
-=======
  	private  OfferAcceptanceDAO  offerAcceptanceDAO;
  	public void setOfferAcceptanceDAO(OfferAcceptanceDAO offerAcceptanceDAO){
 	 	this.offerAcceptanceDAO = offerAcceptanceDAO;
@@ -175,7 +134,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  
  	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	private  JobApplicationDAO  jobApplicationDAO;
  	public void setJobApplicationDAO(JobApplicationDAO jobApplicationDAO){
 	 	this.jobApplicationDAO = jobApplicationDAO;
@@ -185,21 +143,12 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  
  	
-<<<<<<< HEAD
- 	private  OfferAcceptanceDAO  offerAcceptanceDAO;
- 	public void setOfferAcceptanceDAO(OfferAcceptanceDAO offerAcceptanceDAO){
-	 	this.offerAcceptanceDAO = offerAcceptanceDAO;
- 	}
- 	public OfferAcceptanceDAO getOfferAcceptanceDAO(){
-	 	return this.offerAcceptanceDAO;
-=======
  	private  EmployeeBoardingDAO  employeeBoardingDAO;
  	public void setEmployeeBoardingDAO(EmployeeBoardingDAO employeeBoardingDAO){
 	 	this.employeeBoardingDAO = employeeBoardingDAO;
  	}
  	public EmployeeBoardingDAO getEmployeeBoardingDAO(){
 	 	return this.employeeBoardingDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
  
  	
@@ -212,32 +161,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  
  	
-<<<<<<< HEAD
- 	private  ProfessionInterviewDAO  professionInterviewDAO;
- 	public void setProfessionInterviewDAO(ProfessionInterviewDAO professionInterviewDAO){
-	 	this.professionInterviewDAO = professionInterviewDAO;
- 	}
- 	public ProfessionInterviewDAO getProfessionInterviewDAO(){
-	 	return this.professionInterviewDAO;
- 	}
- 
- 	
- 	private  HrInterviewDAO  hrInterviewDAO;
- 	public void setHrInterviewDAO(HrInterviewDAO hrInterviewDAO){
-	 	this.hrInterviewDAO = hrInterviewDAO;
- 	}
- 	public HrInterviewDAO getHrInterviewDAO(){
-	 	return this.hrInterviewDAO;
- 	}
- 
- 	
- 	private  EmployeeBoardingDAO  employeeBoardingDAO;
- 	public void setEmployeeBoardingDAO(EmployeeBoardingDAO employeeBoardingDAO){
-	 	this.employeeBoardingDAO = employeeBoardingDAO;
- 	}
- 	public EmployeeBoardingDAO getEmployeeBoardingDAO(){
-	 	return this.employeeBoardingDAO;
-=======
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
  	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
 	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
@@ -262,7 +185,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  	public TerminationDAO getTerminationDAO(){
 	 	return this.terminationDAO;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 
 
@@ -887,14 +809,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeCompanyTrainingListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_COMPANY_TRAINING_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeCompanyTrainingListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_COMPANY_TRAINING_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeCompanyTrainingListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeCompanyTrainingListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeCompanyTrainingListEnabled(Map<String,Object> options){
@@ -907,14 +823,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeSkillListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_SKILL_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeSkillListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_SKILL_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeSkillListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeSkillListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeSkillListEnabled(Map<String,Object> options){
@@ -927,14 +837,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeePerformanceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_PERFORMANCE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeePerformanceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_PERFORMANCE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeePerformanceListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeePerformanceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeePerformanceListEnabled(Map<String,Object> options){
@@ -947,14 +851,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeWorkExperienceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_WORK_EXPERIENCE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeWorkExperienceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_WORK_EXPERIENCE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeWorkExperienceListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeWorkExperienceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeWorkExperienceListEnabled(Map<String,Object> options){
@@ -967,14 +865,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeLeaveListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_LEAVE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeLeaveListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_LEAVE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeLeaveListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeLeaveListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeLeaveListEnabled(Map<String,Object> options){
@@ -987,14 +879,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeInterviewListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_INTERVIEW_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeInterviewListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_INTERVIEW_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeInterviewListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeInterviewListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeInterviewListEnabled(Map<String,Object> options){
@@ -1007,14 +893,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeAttendanceListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_ATTENDANCE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeAttendanceListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_ATTENDANCE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeAttendanceListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeAttendanceListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeAttendanceListEnabled(Map<String,Object> options){
@@ -1027,14 +907,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeQualifierListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_QUALIFIER_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeQualifierListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_QUALIFIER_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeQualifierListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeQualifierListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeQualifierListEnabled(Map<String,Object> options){
@@ -1047,14 +921,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeEducationListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_EDUCATION_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeEducationListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_EDUCATION_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeEducationListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeEducationListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeEducationListEnabled(Map<String,Object> options){
@@ -1067,14 +935,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeAwardListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_AWARD_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeAwardListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_AWARD_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeAwardListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeAwardListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeAwardListEnabled(Map<String,Object> options){
@@ -1087,14 +949,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractEmployeeSalarySheetListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.EMPLOYEE_SALARY_SHEET_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeEmployeeSalarySheetListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.EMPLOYEE_SALARY_SHEET_LIST+".analyze");
-=======
  	protected boolean isAnalyzeEmployeeSalarySheetListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzeEmployeeSalarySheetListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveEmployeeSalarySheetListEnabled(Map<String,Object> options){
@@ -1107,14 +963,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	protected boolean isExtractPayingOffListEnabled(Map<String,Object> options){		
  		return checkOptions(options,EmployeeTokens.PAYING_OFF_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzePayingOffListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,EmployeeTokens.PAYING_OFF_LIST+".analyze");
-=======
  	protected boolean isAnalyzePayingOffListEnabled(Map<String,Object> options){		 		
  		return EmployeeTokens.of(options).analyzePayingOffListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSavePayingOffListEnabled(Map<String,Object> options){
@@ -3395,15 +3245,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeCompanyTraining employeeCompanyTraining: externalEmployeeCompanyTrainingList){
-
-			employeeCompanyTraining.clearFromAll();
-=======
 		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
 
 			employeeCompanyTrainingItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3433,15 +3277,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeCompanyTraining employeeCompanyTraining: externalEmployeeCompanyTrainingList){
-			employeeCompanyTraining.clearTraining();
-			employeeCompanyTraining.clearEmployee();
-=======
 		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
 			employeeCompanyTrainingItem.clearTraining();
 			employeeCompanyTrainingItem.clearEmployee();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3479,15 +3317,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeSkill employeeSkill: externalEmployeeSkillList){
-
-			employeeSkill.clearFromAll();
-=======
 		for(EmployeeSkill employeeSkillItem: externalEmployeeSkillList){
 
 			employeeSkillItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3517,15 +3349,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeSkill employeeSkill: externalEmployeeSkillList){
-			employeeSkill.clearSkillType();
-			employeeSkill.clearEmployee();
-=======
 		for(EmployeeSkill employeeSkillItem: externalEmployeeSkillList){
 			employeeSkillItem.clearSkillType();
 			employeeSkillItem.clearEmployee();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3563,15 +3389,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeePerformance employeePerformance: externalEmployeePerformanceList){
-
-			employeePerformance.clearFromAll();
-=======
 		for(EmployeePerformance employeePerformanceItem: externalEmployeePerformanceList){
 
 			employeePerformanceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3597,15 +3417,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeWorkExperience employeeWorkExperience: externalEmployeeWorkExperienceList){
-
-			employeeWorkExperience.clearFromAll();
-=======
 		for(EmployeeWorkExperience employeeWorkExperienceItem: externalEmployeeWorkExperienceList){
 
 			employeeWorkExperienceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3631,15 +3445,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
-
-			employeeLeave.clearFromAll();
-=======
 		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
 
 			employeeLeaveItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3669,15 +3477,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeLeave employeeLeave: externalEmployeeLeaveList){
-			employeeLeave.clearType();
-			employeeLeave.clearWho();
-=======
 		for(EmployeeLeave employeeLeaveItem: externalEmployeeLeaveList){
 			employeeLeaveItem.clearType();
 			employeeLeaveItem.clearWho();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3715,15 +3517,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
-
-			employeeInterview.clearFromAll();
-=======
 		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
 
 			employeeInterviewItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3753,15 +3549,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeInterview employeeInterview: externalEmployeeInterviewList){
-			employeeInterview.clearInterviewType();
-			employeeInterview.clearEmployee();
-=======
 		for(EmployeeInterview employeeInterviewItem: externalEmployeeInterviewList){
 			employeeInterviewItem.clearInterviewType();
 			employeeInterviewItem.clearEmployee();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -3799,15 +3589,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeAttendance employeeAttendance: externalEmployeeAttendanceList){
-
-			employeeAttendance.clearFromAll();
-=======
 		for(EmployeeAttendance employeeAttendanceItem: externalEmployeeAttendanceList){
 
 			employeeAttendanceItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3833,15 +3617,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeQualifier employeeQualifier: externalEmployeeQualifierList){
-
-			employeeQualifier.clearFromAll();
-=======
 		for(EmployeeQualifier employeeQualifierItem: externalEmployeeQualifierList){
 
 			employeeQualifierItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3867,15 +3645,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeEducation employeeEducation: externalEmployeeEducationList){
-
-			employeeEducation.clearFromAll();
-=======
 		for(EmployeeEducation employeeEducationItem: externalEmployeeEducationList){
 
 			employeeEducationItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3901,15 +3673,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeAward employeeAward: externalEmployeeAwardList){
-
-			employeeAward.clearFromAll();
-=======
 		for(EmployeeAward employeeAwardItem: externalEmployeeAwardList){
 
 			employeeAwardItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3935,15 +3701,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
-
-			employeeSalarySheet.clearFromAll();
-=======
 		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
 
 			employeeSalarySheetItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -3973,15 +3733,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(EmployeeSalarySheet employeeSalarySheet: externalEmployeeSalarySheetList){
-			employeeSalarySheet.clearCurrentSalaryGrade();
-			employeeSalarySheet.clearEmployee();
-=======
 		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
 			employeeSalarySheetItem.clearCurrentSalaryGrade();
 			employeeSalarySheetItem.clearEmployee();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -4019,15 +3773,9 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 			return employee;
 		}
 		
-<<<<<<< HEAD
-		for(PayingOff payingOff: externalPayingOffList){
-
-			payingOff.clearFromAll();
-=======
 		for(PayingOff payingOffItem: externalPayingOffList){
 
 			payingOffItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -5176,8 +4924,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	public void enhanceList(List<Employee> employeeList) {		
 		this.enhanceListInternal(employeeList, this.getEmployeeMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:EmployeeCompanyTraining的employee的EmployeeCompanyTrainingList
@@ -5457,7 +5203,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<Employee> employeeList = ownerEntity.collectRefsWithType(Employee.INTERNAL_TYPE);
@@ -5490,12 +5235,13 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	public SmartList<Employee> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

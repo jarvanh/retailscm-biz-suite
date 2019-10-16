@@ -38,8 +38,6 @@ public class SecUserTokens extends CommonTokens{
 	protected SecUserTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  SecUserTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		SecUserTokens tokens = new SecUserTokens(options);
@@ -49,7 +47,6 @@ public class SecUserTokens extends CommonTokens{
 	protected SecUserTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public SecUserTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -98,14 +95,11 @@ public class SecUserTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public SecUserTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String DOMAIN = "domain";
 	public String getDomain(){
@@ -141,15 +135,11 @@ public class SecUserTokens extends CommonTokens{
 	}
 	public boolean analyzeUserAppListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), USER_APP_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), USER_APP_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public SecUserTokens extractMoreFromUserAppList(String idsSeperatedWithComma){		
 		addSimpleOptions(USER_APP_LIST+".extractIds", idsSeperatedWithComma);
@@ -211,15 +201,11 @@ public class SecUserTokens extends CommonTokens{
 	}
 	public boolean analyzeLoginHistoryListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), LOGIN_HISTORY_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), LOGIN_HISTORY_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public SecUserTokens extractMoreFromLoginHistoryList(String idsSeperatedWithComma){		
 		addSimpleOptions(LOGIN_HISTORY_LIST+".extractIds", idsSeperatedWithComma);

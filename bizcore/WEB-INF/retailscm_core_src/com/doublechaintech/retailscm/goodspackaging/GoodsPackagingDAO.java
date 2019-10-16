@@ -7,12 +7,9 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.goods.Goods;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
@@ -91,13 +88,11 @@ public interface GoodsPackagingDAO{
 	
 	
 	public SmartList<GoodsPackaging> queryList(String sql, Object ... parmeters);
-<<<<<<< HEAD
-=======
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:Goods的packaging的GoodsList
 	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<GoodsPackaging> us, Map<String,Object> options) throws Exception;
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

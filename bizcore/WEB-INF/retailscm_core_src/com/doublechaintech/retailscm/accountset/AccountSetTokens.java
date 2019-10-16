@@ -38,8 +38,6 @@ public class AccountSetTokens extends CommonTokens{
 	protected AccountSetTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  AccountSetTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		AccountSetTokens tokens = new AccountSetTokens(options);
@@ -49,7 +47,6 @@ public class AccountSetTokens extends CommonTokens{
 	protected AccountSetTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public AccountSetTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -101,14 +98,11 @@ public class AccountSetTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public AccountSetTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String COUNTRYCENTER = "countryCenter";
 	public String getCountryCenter(){
@@ -154,15 +148,11 @@ public class AccountSetTokens extends CommonTokens{
 	}
 	public boolean analyzeAccountingSubjectListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), ACCOUNTING_SUBJECT_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), ACCOUNTING_SUBJECT_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public AccountSetTokens extractMoreFromAccountingSubjectList(String idsSeperatedWithComma){		
 		addSimpleOptions(ACCOUNTING_SUBJECT_LIST+".extractIds", idsSeperatedWithComma);
@@ -224,15 +214,11 @@ public class AccountSetTokens extends CommonTokens{
 	}
 	public boolean analyzeAccountingPeriodListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), ACCOUNTING_PERIOD_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), ACCOUNTING_PERIOD_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public AccountSetTokens extractMoreFromAccountingPeriodList(String idsSeperatedWithComma){		
 		addSimpleOptions(ACCOUNTING_PERIOD_LIST+".extractIds", idsSeperatedWithComma);
@@ -294,15 +280,11 @@ public class AccountSetTokens extends CommonTokens{
 	}
 	public boolean analyzeAccountingDocumentTypeListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), ACCOUNTING_DOCUMENT_TYPE_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), ACCOUNTING_DOCUMENT_TYPE_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public AccountSetTokens extractMoreFromAccountingDocumentTypeList(String idsSeperatedWithComma){		
 		addSimpleOptions(ACCOUNTING_DOCUMENT_TYPE_LIST+".extractIds", idsSeperatedWithComma);

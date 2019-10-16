@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.genericform;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -66,11 +63,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 	
 		
 	public 	GenericForm(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static GenericForm withId(String id){
@@ -84,7 +76,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -149,8 +140,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(TITLE_PROPERTY.equals(property)){
@@ -184,7 +173,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -198,12 +186,9 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setTitle(String title){
@@ -217,12 +202,9 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeTitle(String title){
 		if(title != null) { setTitle(title);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -236,12 +218,9 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -255,12 +234,9 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -293,9 +269,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		}
 		getFormMessageList().addAll(formMessageList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeFormMessageList(SmartList<FormMessage> formMessageList){
 		if(formMessageList==null){
 			return;
@@ -306,7 +279,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		addFormMessageList( formMessageList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  FormMessage removeFormMessage(FormMessage formMessageIndex){
 		
 		int index = getFormMessageList().indexOf(formMessageIndex);
@@ -404,9 +376,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		}
 		getFormFieldMessageList().addAll(formFieldMessageList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeFormFieldMessageList(SmartList<FormFieldMessage> formFieldMessageList){
 		if(formFieldMessageList==null){
 			return;
@@ -417,7 +386,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		addFormFieldMessageList( formFieldMessageList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  FormFieldMessage removeFormFieldMessage(FormFieldMessage formFieldMessageIndex){
 		
 		int index = getFormFieldMessageList().indexOf(formFieldMessageIndex);
@@ -515,9 +483,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		}
 		getFormFieldList().addAll(formFieldList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeFormFieldList(SmartList<FormField> formFieldList){
 		if(formFieldList==null){
 			return;
@@ -528,7 +493,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		addFormFieldList( formFieldList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  FormField removeFormField(FormField formFieldIndex){
 		
 		int index = getFormFieldList().indexOf(formFieldIndex);
@@ -626,9 +590,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		}
 		getFormActionList().addAll(formActionList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeFormActionList(SmartList<FormAction> formActionList){
 		if(formActionList==null){
 			return;
@@ -639,7 +600,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		addFormActionList( formActionList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  FormAction removeFormAction(FormAction formActionIndex){
 		
 		int index = getFormActionList().indexOf(formActionIndex);
@@ -792,8 +752,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -832,7 +790,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

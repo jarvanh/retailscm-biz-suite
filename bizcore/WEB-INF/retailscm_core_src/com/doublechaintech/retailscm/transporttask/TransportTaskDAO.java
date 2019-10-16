@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
@@ -17,7 +15,6 @@ import com.doublechaintech.retailscm.transporttruck.TransportTruck;
 import com.doublechaintech.retailscm.truckdriver.TruckDriver;
 import com.doublechaintech.retailscm.transportfleet.TransportFleet;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.transporttruck.TransportTruckDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 import com.doublechaintech.retailscm.transporttasktrack.TransportTaskTrackDAO;
@@ -104,6 +101,7 @@ public interface TransportTaskDAO{
 
 	
 	public SmartList<TransportTask> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<TransportTask> findTransportTaskByEnd(String retailStoreId, Map<String,Object> options);
  	public int countTransportTaskByEnd(String retailStoreId, Map<String,Object> options);
@@ -136,9 +134,6 @@ public interface TransportTaskDAO{
  	public void analyzeTransportTaskByBelongsTo(SmartList<TransportTask> resultList, String transportFleetId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:Goods的transportTask的GoodsList
 	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<TransportTask> us, Map<String,Object> options) throws Exception;
@@ -147,6 +142,5 @@ public interface TransportTaskDAO{
 	public SmartList<TransportTaskTrack> loadOurTransportTaskTrackList(RetailscmUserContext userContext, List<TransportTask> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.supplierspace.SupplierSpace;
 import com.doublechaintech.retailscm.warehouseasset.WarehouseAsset;
@@ -19,7 +17,6 @@ import com.doublechaintech.retailscm.smartpallet.SmartPallet;
 import com.doublechaintech.retailscm.shippingspace.ShippingSpace;
 import com.doublechaintech.retailscm.storagespace.StorageSpace;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.damagespace.DamageSpaceDAO;
 import com.doublechaintech.retailscm.warehouseasset.WarehouseAssetDAO;
 import com.doublechaintech.retailscm.smartpallet.SmartPalletDAO;
@@ -111,6 +108,7 @@ public interface WarehouseDAO{
 
 	
 	public SmartList<Warehouse> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Warehouse> findWarehouseByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countWarehouseByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -119,9 +117,6 @@ public interface WarehouseDAO{
  	public void analyzeWarehouseByOwner(SmartList<Warehouse> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:StorageSpace的warehouse的StorageSpaceList
 	public SmartList<StorageSpace> loadOurStorageSpaceList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception;
@@ -145,6 +140,5 @@ public interface WarehouseDAO{
 	public SmartList<WarehouseAsset> loadOurWarehouseAssetList(RetailscmUserContext userContext, List<Warehouse> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

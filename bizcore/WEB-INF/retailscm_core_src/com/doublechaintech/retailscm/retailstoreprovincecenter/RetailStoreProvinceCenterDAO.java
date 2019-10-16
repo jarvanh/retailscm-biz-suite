@@ -7,15 +7,12 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.provincecenterdepartment.ProvinceCenterDepartment;
 import com.doublechaintech.retailscm.provincecenteremployee.ProvinceCenterEmployee;
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenter;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenterDAO;
 import com.doublechaintech.retailscm.provincecenterdepartment.ProvinceCenterDepartmentDAO;
 import com.doublechaintech.retailscm.provincecenteremployee.ProvinceCenterEmployeeDAO;
@@ -79,6 +76,7 @@ public interface RetailStoreProvinceCenterDAO{
 
 	
 	public SmartList<RetailStoreProvinceCenter> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreProvinceCenter> findRetailStoreProvinceCenterByCountry(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countRetailStoreProvinceCenterByCountry(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -87,9 +85,6 @@ public interface RetailStoreProvinceCenterDAO{
  	public void analyzeRetailStoreProvinceCenterByCountry(SmartList<RetailStoreProvinceCenter> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:ProvinceCenterDepartment的provinceCenter的ProvinceCenterDepartmentList
 	public SmartList<ProvinceCenterDepartment> loadOurProvinceCenterDepartmentList(RetailscmUserContext userContext, List<RetailStoreProvinceCenter> us, Map<String,Object> options) throws Exception;
@@ -101,6 +96,5 @@ public interface RetailStoreProvinceCenterDAO{
 	public SmartList<RetailStoreCityServiceCenter> loadOurRetailStoreCityServiceCenterList(RetailscmUserContext userContext, List<RetailStoreProvinceCenter> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

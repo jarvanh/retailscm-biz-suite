@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.levelthreedepartment;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -62,11 +59,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 	
 		
 	public 	LevelThreeDepartment(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static LevelThreeDepartment withId(String id){
@@ -80,7 +72,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBelongsTo( null );
 
@@ -163,8 +154,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(BELONGS_TO_PROPERTY.equals(property)){
@@ -192,7 +181,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -206,12 +194,9 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBelongsTo(LevelTwoDepartment belongsTo){
@@ -225,12 +210,9 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBelongsTo(LevelTwoDepartment belongsTo){
 		if(belongsTo != null) { setBelongsTo(belongsTo);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBelongsTo(){
@@ -249,12 +231,9 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeName(String name){
 		if(name != null) { setName(name);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setDescription(String description){
@@ -268,12 +247,9 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeDescription(String description){
 		if(description != null) { setDescription(description);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setFounded(Date founded){
@@ -287,12 +263,9 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeFounded(Date founded){
 		setFounded(founded);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -306,12 +279,9 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -344,9 +314,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		}
 		getEmployeeList().addAll(employeeList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeEmployeeList(SmartList<Employee> employeeList){
 		if(employeeList==null){
 			return;
@@ -357,7 +324,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		addEmployeeList( employeeList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  Employee removeEmployee(Employee employeeIndex){
 		
 		int index = getEmployeeList().indexOf(employeeIndex);
@@ -491,8 +457,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -531,7 +495,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.supplyorderlineitem;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -63,11 +60,6 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 	
 		
 	public 	SupplyOrderLineItem(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static SupplyOrderLineItem withId(String id){
@@ -81,7 +73,6 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 		setBizOrder( null );
 
@@ -201,8 +192,6 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(BIZ_ORDER_PROPERTY.equals(property)){
@@ -232,7 +221,6 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -246,12 +234,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setBizOrder(SupplyOrder bizOrder){
@@ -265,12 +250,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeBizOrder(SupplyOrder bizOrder){
 		if(bizOrder != null) { setBizOrder(bizOrder);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearBizOrder(){
@@ -289,12 +271,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSkuId(String skuId){
 		if(skuId != null) { setSkuId(skuId);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void clearSkuId(){
@@ -313,12 +292,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeSkuName(String skuName){
 		if(skuName != null) { setSkuName(skuName);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setAmount(BigDecimal amount){
@@ -332,12 +308,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeAmount(BigDecimal amount){
 		setAmount(amount);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setQuantity(int quantity){
@@ -351,12 +324,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeQuantity(int quantity){
 		setQuantity(quantity);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setUnitOfMeasurement(String unitOfMeasurement){
@@ -370,12 +340,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeUnitOfMeasurement(String unitOfMeasurement){
 		if(unitOfMeasurement != null) { setUnitOfMeasurement(unitOfMeasurement);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -389,12 +356,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -459,8 +423,6 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -502,7 +464,6 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

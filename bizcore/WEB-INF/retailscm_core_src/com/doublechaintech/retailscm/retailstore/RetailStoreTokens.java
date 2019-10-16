@@ -38,8 +38,6 @@ public class RetailStoreTokens extends CommonTokens{
 	protected RetailStoreTokens(){
 		//ensure not initialized outside the class
 	}
-<<<<<<< HEAD
-=======
 	public  static  RetailStoreTokens of(Map<String,Object> options){
 		//ensure not initialized outside the class
 		RetailStoreTokens tokens = new RetailStoreTokens(options);
@@ -49,7 +47,6 @@ public class RetailStoreTokens extends CommonTokens{
 	protected RetailStoreTokens(Map<String,Object> options){
 		this.options = options;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public RetailStoreTokens merge(String [] tokens){
 		this.parseTokens(tokens);
@@ -113,14 +110,11 @@ public class RetailStoreTokens extends CommonTokens{
 	public static Map <String,Object> empty(){
 		return start().done();
 	}
-<<<<<<< HEAD
-=======
 	
 	public RetailStoreTokens analyzeAllLists(){		
 		addSimpleOptions(ALL_LISTS_ANALYZE);
 		return this;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 	protected static final String RETAILSTORECOUNTRYCENTER = "retailStoreCountryCenter";
 	public String getRetailStoreCountryCenter(){
@@ -216,15 +210,11 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	public boolean analyzeConsumerOrderListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), CONSUMER_ORDER_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), CONSUMER_ORDER_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreTokens extractMoreFromConsumerOrderList(String idsSeperatedWithComma){		
 		addSimpleOptions(CONSUMER_ORDER_LIST+".extractIds", idsSeperatedWithComma);
@@ -286,15 +276,11 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	public boolean analyzeRetailStoreOrderListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), RETAIL_STORE_ORDER_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), RETAIL_STORE_ORDER_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreTokens extractMoreFromRetailStoreOrderList(String idsSeperatedWithComma){		
 		addSimpleOptions(RETAIL_STORE_ORDER_LIST+".extractIds", idsSeperatedWithComma);
@@ -356,15 +342,11 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	public boolean analyzeGoodsListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), GOODS_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), GOODS_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreTokens extractMoreFromGoodsList(String idsSeperatedWithComma){		
 		addSimpleOptions(GOODS_LIST+".extractIds", idsSeperatedWithComma);
@@ -426,15 +408,11 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	public boolean analyzeTransportTaskListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), TRANSPORT_TASK_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), TRANSPORT_TASK_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreTokens extractMoreFromTransportTaskList(String idsSeperatedWithComma){		
 		addSimpleOptions(TRANSPORT_TASK_LIST+".extractIds", idsSeperatedWithComma);
@@ -496,15 +474,11 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	public boolean analyzeAccountSetListEnabled(){		
 		
-<<<<<<< HEAD
-		return checkOptions(this.options(), ACCOUNT_SET_LIST+".anaylze");
-=======
 		if(checkOptions(this.options(), ACCOUNT_SET_LIST+".anaylze")){
 			return true; //most of the case, should call here
 		}
 		//if not true, then query for global setting
 		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 	public RetailStoreTokens extractMoreFromAccountSetList(String idsSeperatedWithComma){		
 		addSimpleOptions(ACCOUNT_SET_LIST+".extractIds", idsSeperatedWithComma);

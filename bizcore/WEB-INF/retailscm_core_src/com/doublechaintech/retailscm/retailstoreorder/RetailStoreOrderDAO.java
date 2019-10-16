@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
@@ -23,7 +21,6 @@ import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderSh
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroup;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItem;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentDAO;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemDAO;
 import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingDAO;
@@ -134,6 +131,7 @@ public interface RetailStoreOrderDAO{
 	
 	
 	public SmartList<RetailStoreOrder> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreOrder> findRetailStoreOrderByBuyer(String retailStoreId, Map<String,Object> options);
  	public int countRetailStoreOrderByBuyer(String retailStoreId, Map<String,Object> options);
@@ -198,9 +196,6 @@ public interface RetailStoreOrderDAO{
  	public void analyzeRetailStoreOrderByDelivery(SmartList<RetailStoreOrder> resultList, String retailStoreOrderDeliveryId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:RetailStoreOrderLineItem的bizOrder的RetailStoreOrderLineItemList
 	public SmartList<RetailStoreOrderLineItem> loadOurRetailStoreOrderLineItemList(RetailscmUserContext userContext, List<RetailStoreOrder> us, Map<String,Object> options) throws Exception;
@@ -215,6 +210,5 @@ public interface RetailStoreOrderDAO{
 	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<RetailStoreOrder> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

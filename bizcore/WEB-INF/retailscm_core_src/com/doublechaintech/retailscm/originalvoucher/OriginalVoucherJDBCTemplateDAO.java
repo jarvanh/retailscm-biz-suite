@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.originalvoucher;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -39,18 +32,12 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class OriginalVoucherJDBCTemplateDAO extends RetailscmNamingServiceDAO implements OriginalVoucherDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl implements OriginalVoucherDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  OriginalVoucherCreationDAO  originalVoucherCreationDAO;
@@ -913,12 +900,9 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	public void enhanceList(List<OriginalVoucher> originalVoucherList) {		
 		this.enhanceListInternal(originalVoucherList, this.getOriginalVoucherMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<OriginalVoucher> originalVoucherList = ownerEntity.collectRefsWithType(OriginalVoucher.INTERNAL_TYPE);
@@ -951,12 +935,13 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	public SmartList<OriginalVoucher> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getOriginalVoucherMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

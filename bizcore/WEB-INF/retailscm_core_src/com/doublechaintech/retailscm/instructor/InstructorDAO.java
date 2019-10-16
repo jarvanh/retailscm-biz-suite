@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.companytraining.CompanyTraining;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.companytraining.CompanyTrainingDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
@@ -65,6 +62,7 @@ public interface InstructorDAO{
 	
 	
 	public SmartList<Instructor> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Instructor> findInstructorByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countInstructorByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
@@ -73,14 +71,10 @@ public interface InstructorDAO{
  	public void analyzeInstructorByCompany(SmartList<Instructor> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:CompanyTraining的instructor的CompanyTrainingList
 	public SmartList<CompanyTraining> loadOurCompanyTrainingList(RetailscmUserContext userContext, List<Instructor> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

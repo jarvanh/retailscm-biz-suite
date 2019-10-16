@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.retailstorefranchising;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmNamingServiceDAO implements RetailStoreFranchisingDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreFranchisingDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
 			
@@ -214,14 +201,8 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	protected boolean isExtractRetailStoreListEnabled(Map<String,Object> options){		
  		return checkOptions(options,RetailStoreFranchisingTokens.RETAIL_STORE_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,RetailStoreFranchisingTokens.RETAIL_STORE_LIST+".analyze");
-=======
  	protected boolean isAnalyzeRetailStoreListEnabled(Map<String,Object> options){		 		
  		return RetailStoreFranchisingTokens.of(options).analyzeRetailStoreListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveRetailStoreListEnabled(Map<String,Object> options){
@@ -521,15 +502,9 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 			return retailStoreFranchising;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStore retailStore: externalRetailStoreList){
-
-			retailStore.clearFromAll();
-=======
 		for(RetailStore retailStoreItem: externalRetailStoreList){
 
 			retailStoreItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -559,15 +534,9 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 			return retailStoreFranchising;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStore retailStore: externalRetailStoreList){
-			retailStore.clearRetailStoreCountryCenter();
-			retailStore.clearFranchising();
-=======
 		for(RetailStore retailStoreItem: externalRetailStoreList){
 			retailStoreItem.clearRetailStoreCountryCenter();
 			retailStoreItem.clearFranchising();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -609,15 +578,9 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 			return retailStoreFranchising;
 		}
 		
-<<<<<<< HEAD
-		for(RetailStore retailStore: externalRetailStoreList){
-			retailStore.clearCityServiceCenter();
-			retailStore.clearFranchising();
-=======
 		for(RetailStore retailStoreItem: externalRetailStoreList){
 			retailStoreItem.clearCityServiceCenter();
 			retailStoreItem.clearFranchising();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -755,8 +718,6 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	public void enhanceList(List<RetailStoreFranchising> retailStoreFranchisingList) {		
 		this.enhanceListInternal(retailStoreFranchisingList, this.getRetailStoreFranchisingMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:RetailStore的franchising的RetailStoreList
@@ -783,7 +744,6 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<RetailStoreFranchising> retailStoreFranchisingList = ownerEntity.collectRefsWithType(RetailStoreFranchising.INTERNAL_TYPE);
@@ -816,8 +776,10 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	public SmartList<RetailStoreFranchising> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreFranchisingMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
     
@@ -901,7 +863,6 @@ public class RetailStoreFranchisingJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	}
 
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

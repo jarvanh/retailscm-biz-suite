@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.memberwishlistproduct;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.memberwishlist.MemberWishlistDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class MemberWishlistProductJDBCTemplateDAO extends RetailscmNamingServiceDAO implements MemberWishlistProductDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class MemberWishlistProductJDBCTemplateDAO extends RetailscmBaseDAOImpl implements MemberWishlistProductDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  MemberWishlistDAO  memberWishlistDAO;
@@ -528,12 +515,9 @@ public class MemberWishlistProductJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	public void enhanceList(List<MemberWishlistProduct> memberWishlistProductList) {		
 		this.enhanceListInternal(memberWishlistProductList, this.getMemberWishlistProductMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<MemberWishlistProduct> memberWishlistProductList = ownerEntity.collectRefsWithType(MemberWishlistProduct.INTERNAL_TYPE);
@@ -566,12 +550,13 @@ public class MemberWishlistProductJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	public SmartList<MemberWishlistProduct> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getMemberWishlistProductMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

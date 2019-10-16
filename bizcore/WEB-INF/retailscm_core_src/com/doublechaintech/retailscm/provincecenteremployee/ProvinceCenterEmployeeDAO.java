@@ -7,13 +7,10 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.provincecenterdepartment.ProvinceCenterDepartment;
 import com.doublechaintech.retailscm.retailstoreprovincecenter.RetailStoreProvinceCenter;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.provincecenterdepartment.ProvinceCenterDepartmentDAO;
 import com.doublechaintech.retailscm.retailstoreprovincecenter.RetailStoreProvinceCenterDAO;
 
@@ -50,6 +47,7 @@ public interface ProvinceCenterEmployeeDAO{
 	
 	
 	public SmartList<ProvinceCenterEmployee> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ProvinceCenterEmployee> findProvinceCenterEmployeeByDepartment(String provinceCenterDepartmentId, Map<String,Object> options);
  	public int countProvinceCenterEmployeeByDepartment(String provinceCenterDepartmentId, Map<String,Object> options);
@@ -66,11 +64,7 @@ public interface ProvinceCenterEmployeeDAO{
  	public void analyzeProvinceCenterEmployeeByProvinceCenter(SmartList<ProvinceCenterEmployee> resultList, String retailStoreProvinceCenterId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 

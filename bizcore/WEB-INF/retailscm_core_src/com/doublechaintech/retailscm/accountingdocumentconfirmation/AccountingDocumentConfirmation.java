@@ -4,10 +4,7 @@ package com.doublechaintech.retailscm.accountingdocumentconfirmation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.BaseEntity;
@@ -59,11 +56,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 	
 		
 	public 	AccountingDocumentConfirmation(){
-<<<<<<< HEAD
-		//lazy load for all the properties
-	}
-	//disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
-=======
 		// lazy load for all the properties
 	}
 	public 	static AccountingDocumentConfirmation withId(String id){
@@ -77,7 +69,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 	}
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -158,8 +149,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 
 
 	
-<<<<<<< HEAD
-=======
 	public Object propertyOf(String property) {
      	
 		if(WHO_PROPERTY.equals(property)){
@@ -184,7 +173,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 
 
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setId(String id){
@@ -198,12 +186,9 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeId(String id){
 		if(id != null) { setId(id);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setWho(String who){
@@ -217,12 +202,9 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeWho(String who){
 		if(who != null) { setWho(who);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setComments(String comments){
@@ -236,12 +218,9 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeComments(String comments){
 		if(comments != null) { setComments(comments);}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setMakeDate(Date makeDate){
@@ -255,12 +234,9 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeMakeDate(Date makeDate){
 		setMakeDate(makeDate);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 	public void setVersion(int version){
@@ -274,12 +250,9 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
-=======
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	
 
@@ -312,9 +285,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		}
 		getAccountingDocumentList().addAll(accountingDocumentList);
 	}
-<<<<<<< HEAD
-	
-=======
 	public  void mergeAccountingDocumentList(SmartList<AccountingDocument> accountingDocumentList){
 		if(accountingDocumentList==null){
 			return;
@@ -325,7 +295,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		addAccountingDocumentList( accountingDocumentList );
 		
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public  AccountingDocument removeAccountingDocument(AccountingDocument accountingDocumentIndex){
 		
 		int index = getAccountingDocumentList().indexOf(accountingDocumentIndex);
@@ -456,8 +425,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		super.copyTo(baseDest);
 		return baseDest;
 	}
-<<<<<<< HEAD
-=======
 	public BaseEntity mergeDataTo(BaseEntity baseDest){
 		
 		
@@ -495,7 +462,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		}
 		return baseDest;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);

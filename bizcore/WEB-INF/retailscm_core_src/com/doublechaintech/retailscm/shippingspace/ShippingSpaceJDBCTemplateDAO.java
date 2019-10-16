@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.shippingspace;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -35,18 +28,12 @@ import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class ShippingSpaceJDBCTemplateDAO extends RetailscmNamingServiceDAO implements ShippingSpaceDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ShippingSpaceDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  WarehouseDAO  warehouseDAO;
@@ -239,14 +226,8 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	protected boolean isExtractGoodsListEnabled(Map<String,Object> options){		
  		return checkOptions(options,ShippingSpaceTokens.GOODS_LIST);
  	}
-<<<<<<< HEAD
- 	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		
- 		return true;
- 		//return checkOptions(options,ShippingSpaceTokens.GOODS_LIST+".analyze");
-=======
  	protected boolean isAnalyzeGoodsListEnabled(Map<String,Object> options){		 		
  		return ShippingSpaceTokens.of(options).analyzeGoodsListEnabled();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  	}
 	
 	protected boolean isSaveGoodsListEnabled(Map<String,Object> options){
@@ -662,15 +643,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-
-			goods.clearFromAll();
-=======
 		for(Goods goodsItem: externalGoodsList){
 
 			goodsItem.clearFromAll();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		}
 		
 		
@@ -700,15 +675,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearSku();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearSku();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -750,15 +719,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearReceivingSpace();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearReceivingSpace();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -800,15 +763,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearGoodsAllocation();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearGoodsAllocation();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -850,15 +807,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearSmartPallet();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearSmartPallet();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -900,15 +851,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearTransportTask();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearTransportTask();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -950,15 +895,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStore();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearRetailStore();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1000,15 +939,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearBizOrder();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearBizOrder();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1050,15 +983,9 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return shippingSpace;
 		}
 		
-<<<<<<< HEAD
-		for(Goods goods: externalGoodsList){
-			goods.clearRetailStoreOrder();
-			goods.clearShippingSpace();
-=======
 		for(Goods goodsItem: externalGoodsList){
 			goodsItem.clearRetailStoreOrder();
 			goodsItem.clearShippingSpace();
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			
 		}
 		
@@ -1196,8 +1123,6 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	public void enhanceList(List<ShippingSpace> shippingSpaceList) {		
 		this.enhanceListInternal(shippingSpaceList, this.getShippingSpaceMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	// 需要一个加载引用我的对象的enhance方法:Goods的shippingSpace的GoodsList
@@ -1224,7 +1149,6 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<ShippingSpace> shippingSpaceList = ownerEntity.collectRefsWithType(ShippingSpace.INTERNAL_TYPE);
@@ -1257,12 +1181,13 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	public SmartList<ShippingSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getShippingSpaceMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

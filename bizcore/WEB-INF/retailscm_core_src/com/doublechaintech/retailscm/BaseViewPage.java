@@ -1,27 +1,17 @@
 
 package com.doublechaintech.retailscm;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-=======
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-<<<<<<< HEAD
-import com.terapico.caf.viewcomponent.FilterTabsViewComponent;
-import com.terapico.caf.viewpage.SerializeScope;
-=======
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -34,15 +24,11 @@ import com.terapico.caf.viewcomponent.PopupViewComponent;
 import com.terapico.caf.viewpage.SerializeScope;
 import com.terapico.utils.MapUtil;
 import com.terapico.utils.TextUtil;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public abstract class BaseViewPage extends HashMap<String, Object> {
 	public static final String X_EMPTY_MESSAGE = "emptyMessage";
 	public static final String X_NEXT_PAGE_URL = "nextPageUrl";
-<<<<<<< HEAD
-	
-=======
 	private static final boolean OBJECT_HASHCODE = false;
 	
 	public void addHashCode(Map<String, Object> resultMap) {
@@ -69,7 +55,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
         _mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         return _mapper;
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public interface CustomSerializer {
 		Object serialize(SerializeScope serializeScope, Object value, String path);
 	}
@@ -80,9 +65,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 	protected RetailscmUserContext userContext;
 	@JsonIgnore
 	protected HashMap<String, Object> dataPool;
-<<<<<<< HEAD
-
-=======
 	@JsonIgnore
 	protected String pageTitle;
 	@JsonIgnore
@@ -103,36 +85,21 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		this.pageTitle = pageTitle;
 	}
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	public void set(String name, Object value) {
 		ensureDataPool();
 		dataPool.put(name, value);
 	}
 
-<<<<<<< HEAD
-	public Object doRender(RetailscmUserContext userContext) {
-		this.userContext = userContext;
-		beforeDoRendering();
-		doRendering();
-=======
 	public Map<String, Object> doRender(RetailscmUserContext userContext) {
 		this.userContext = userContext;
 		beforeDoRendering();
 		doRendering();
 		this.userContext.forceResponseXClassHeader(this.getClass().getName());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		afterDoRendering();
 		return this;
 	}
 
 	protected void beforeDoRendering() {
-<<<<<<< HEAD
-		// By default, nothing to do
-	}
-
-	protected void afterDoRendering() {
-		// By default, nothing to do
-=======
 		userContext.setResponseHeader("x-actor-class", this.getClass().getName());
 		addFieldToOwner(this, null, "pageTitle", this.getPageTitle());
 		addFieldToOwner(this, null, "linkToUrl", this.getLinkToUrl());
@@ -140,7 +107,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 
 	protected void afterDoRendering() {
 		this.addHashCode(this);
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 
 	protected abstract SerializeScope getSerializeScope();
@@ -163,12 +129,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			if ("object".equals(scope.getForceWhenEmpty())) {
 				owner.put(fieldName, new HashMap<String, Object>());
 			}
-<<<<<<< HEAD
-			return;
-		}
-
-		owner.put(fieldName, fieldValue);
-=======
 			if ("string".equals(scope.getForceWhenEmpty())) {
 				owner.put(fieldName, "");
 			}
@@ -183,7 +143,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 	}
 	protected boolean shouldMoveUp(SerializeScope scope, Object fieldValue) {
 		return scope != null && scope.isMoveUp() && fieldValue instanceof Map;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 
 	protected boolean isEmptyValue(Object fieldValue) {
@@ -201,12 +160,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		}
 		return false;
 	}
-<<<<<<< HEAD
-
-	protected void doRendering() {
-		SerializeScope srlScope = getSerializeScope();
-		ensureDataPool();
-=======
 	protected boolean isZeroValue(Object value) {
 		if (value instanceof Boolean) {
 			return !((Boolean) value).booleanValue();
@@ -231,7 +184,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		SerializeScope srlScope = getSerializeScope();
 		ensureDataPool();
 		addFieldToOwner(this, null, "pageTitle", this.getPageTitle());
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		doRenderingMap(this, srlScope, dataPool, "/");
 	}
 
@@ -243,12 +195,9 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		dataMap.forEach((key, value) -> {
 			handleOneData(resultMap, srlScope, path, key, value);
 		});
-<<<<<<< HEAD
-=======
 		if (OBJECT_HASHCODE) {
 			addHashCode(resultMap);
 		}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	}
 
 	protected void handleOneData(Map<String, Object> resultMap, SerializeScope srlScope, String path, String key,
@@ -260,23 +209,16 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			return;
 		}
 
-<<<<<<< HEAD
-		String hashCode = value.hashCode() + "/";
-=======
 		String hashCode = "/"+value.hashCode() + "/";
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if (path.contains(hashCode)) {
 			return;
 		}
 		String newPath = path + hashCode;
 
 		SerializeScope fieldScope = srlScope.getFieldScope(key);
-<<<<<<< HEAD
-=======
 		if (fieldScope.isShowWhenNotEmpty() && (isEmptyValue(value) || isZeroValue(value))) {
 			return;
 		}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		String outputName = fieldScope.getAliasName() == null ? key : fieldScope.getAliasName();
 		CustomSerializer cSerializer = getCustomSerializerByObject(value);
 		// 如果有自定义的序列化方法，优先使用自定义的
@@ -311,13 +253,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		if (value instanceof BaseEntity) {
 			return doRenderingBaseEntity(fieldScope, (BaseEntity) value, path);
 		}
-<<<<<<< HEAD
-		// 最后了，没办法了
-		return value;
-	}
-
-	protected Object doRenderingBaseEntity(SerializeScope scope, BaseEntity value, String path) {
-=======
 		if (value instanceof BaseViewComponent) {
 			return ((BaseViewComponent) value).toMap();
 		}
@@ -347,7 +282,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 	}
 
 	protected Map<String, Object> doRenderingBaseEntity(SerializeScope scope, BaseEntity value, String path) {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		if (value == null) {
 			return null;
 		}
@@ -361,12 +295,9 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		}
 		// 再序列化附加字段
 		doRenderingMap(resultMap, scope, value.getValueMap(), path);
-<<<<<<< HEAD
-=======
 		if (OBJECT_HASHCODE) {
 			addHashCode(resultMap);
 		}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		return resultMap;
 	}
 
@@ -383,16 +314,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		}
 		List<Object> resultList = new ArrayList<>(asList.size());
 		for (Object item : asList) {
-<<<<<<< HEAD
-			Object convertResult = doRenderingObject(fieldScope, item, path, resultMap, key);
-			if (convertResult != null) {
-				resultList.add(convertResult);
-			}
-		}
-		return resultList;
-	}
-
-=======
 			if (item == null) {
 				continue;
 			}
@@ -441,7 +362,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			this.put("dataContainer", dataContainer);
 		}
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	protected Object doRenderingSmartList(SerializeScope fieldScope, SmartList<?> value, String path,
 			Map<String, Object> resultMap, String key) {
 		Object resultList = doRenderingList(fieldScope, (List) value, path, resultMap, key);
@@ -453,15 +373,12 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 				dataList.remove(dataList.size() - 1);
 				addFieldToOwner(metaData, fieldScope, X_NEXT_PAGE_URL,
 						dataList.valueByKey(X_NEXT_PAGE_URL));
-<<<<<<< HEAD
-=======
 				if (resultList instanceof List) {
 					Map skey = (Map) ((List) resultList).remove(((List) resultList).size() - 1);
 					if (fieldScope.isPutInDataContainer()) {
 						dataContainer.remove(skey.get("id"));
 					}
 				}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 			} else {
 				metaData.put("hasNextPage", false);
 			}
@@ -481,13 +398,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		if (object instanceof FilterTabsViewComponent) {
 			return new FilterTabsSerializer();
 		}
-<<<<<<< HEAD
-		return null;
-	}
-
-	protected class FilterTabsSerializer implements CustomSerializer {
-
-=======
 		if (object instanceof BaseRetailscmFormProcessor) {
 			return new FormProcessorSerializer();
 		}
@@ -507,7 +417,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 	}
 	
 	protected class FilterTabsSerializer implements CustomSerializer {
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 		@Override
 		public Object serialize(SerializeScope serializeScope, Object value, String path) {
 			FilterTabsViewComponent tabViewCmpt = (FilterTabsViewComponent) value;
@@ -523,11 +432,7 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			for (Map<String, Object> content : contentList) {
 				Map<String, Object> resultData = new HashMap<>();
 				addFieldToOwner(resultData, fieldScope, "title", content.get("text"));
-<<<<<<< HEAD
-				addFieldToOwner(resultData, fieldScope, "tips", content.get("tips"));
-=======
 				addFieldToOwner(resultData, fieldScope, "brief", content.get("tips"));
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 				addFieldToOwner(resultData, fieldScope, "code", content.get("code"));
 				addFieldToOwner(resultData, fieldScope, "summary", content.get("tips"));
 				addFieldToOwner(resultData, fieldScope, "linkToUrl", content.get("linkToUrl"));
@@ -536,11 +441,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			}
 			return result;
 		}
-<<<<<<< HEAD
-
-	}
-
-=======
 	}
 
 	protected class FormProcessorSerializer implements CustomSerializer {
@@ -637,7 +537,6 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 	protected void forceResponseAsListOfPage() {
 		userContext.forceResponseXClassHeader("com.terapico.appview.ListOfPage");
 	}
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 
@@ -645,9 +544,3 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 
 
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854

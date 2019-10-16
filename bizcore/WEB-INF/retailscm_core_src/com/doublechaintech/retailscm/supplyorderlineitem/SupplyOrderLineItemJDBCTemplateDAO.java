@@ -3,19 +3,12 @@ package com.doublechaintech.retailscm.supplyorderlineitem;
 
 import java.util.List;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.HashMap;
-import java.math.BigDecimal;
-import com.doublechaintech.retailscm.RetailscmNamingServiceDAO;
-=======
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.AccessKey;
@@ -33,18 +26,12 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
 
-<<<<<<< HEAD
-import org.springframework.dao.EmptyResultDataAccessException;
-
-public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmNamingServiceDAO implements SupplyOrderLineItemDAO{
-=======
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderLineItemDAO{
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
  
  	
  	private  SupplyOrderDAO  supplyOrderDAO;
@@ -536,12 +523,9 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	public void enhanceList(List<SupplyOrderLineItem> supplyOrderLineItemList) {		
 		this.enhanceListInternal(supplyOrderLineItemList, this.getSupplyOrderLineItemMapper());
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
 		List<SupplyOrderLineItem> supplyOrderLineItemList = ownerEntity.collectRefsWithType(SupplyOrderLineItem.INTERNAL_TYPE);
@@ -574,12 +558,13 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	public SmartList<SupplyOrderLineItem> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderLineItemMapper());
 	}
-<<<<<<< HEAD
-=======
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
+	}
 	
 	
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 }
 
 

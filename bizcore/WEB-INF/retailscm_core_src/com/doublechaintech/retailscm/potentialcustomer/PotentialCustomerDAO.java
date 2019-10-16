@@ -7,8 +7,6 @@ import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
-<<<<<<< HEAD
-=======
 
 import com.doublechaintech.retailscm.eventattendance.EventAttendance;
 import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerContact;
@@ -16,7 +14,6 @@ import com.doublechaintech.retailscm.citypartner.CityPartner;
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenter;
 import com.doublechaintech.retailscm.potentialcustomercontactperson.PotentialCustomerContactPerson;
 
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenterDAO;
 import com.doublechaintech.retailscm.eventattendance.EventAttendanceDAO;
 import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerContactDAO;
@@ -89,6 +86,7 @@ public interface PotentialCustomerDAO{
 	
 	
 	public SmartList<PotentialCustomer> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<PotentialCustomer> findPotentialCustomerByCityServiceCenter(String retailStoreCityServiceCenterId, Map<String,Object> options);
  	public int countPotentialCustomerByCityServiceCenter(String retailStoreCityServiceCenterId, Map<String,Object> options);
@@ -105,9 +103,6 @@ public interface PotentialCustomerDAO{
  	public void analyzePotentialCustomerByCityPartner(SmartList<PotentialCustomer> resultList, String cityPartnerId, Map<String,Object> options);
 
  
-<<<<<<< HEAD
- }
-=======
  
 	// 需要一个加载引用我的对象的enhance方法:PotentialCustomerContactPerson的potentialCustomer的PotentialCustomerContactPersonList
 	public SmartList<PotentialCustomerContactPerson> loadOurPotentialCustomerContactPersonList(RetailscmUserContext userContext, List<PotentialCustomer> us, Map<String,Object> options) throws Exception;
@@ -119,6 +114,5 @@ public interface PotentialCustomerDAO{
 	public SmartList<EventAttendance> loadOurEventAttendanceList(RetailscmUserContext userContext, List<PotentialCustomer> us, Map<String,Object> options) throws Exception;
 	
 }
->>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
 
 
