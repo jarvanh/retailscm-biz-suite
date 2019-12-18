@@ -75,14 +75,6 @@ public class PublicHoliday extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	PublicHoliday(String code, RetailStoreCountryCenter company, String name, String description)
-	{
-		setCode(code);
-		setCompany(company);
-		setName(name);
-		setDescription(description);
-	
-	}
 	
 	//Support for changing the property
 	

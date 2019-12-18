@@ -389,20 +389,6 @@ public class OfferAcceptanceForm extends BaseForm {
 		return lastUpdateTimeFieldForEmployee("lastUpdateTime","");
 	}
 
-
-	public OfferAcceptanceForm currentStatusFieldForEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public OfferAcceptanceForm currentStatusFieldForEmployee(String initValue){
-		return currentStatusFieldForEmployee("currentStatus",initValue);
-	}
-	public OfferAcceptanceForm currentStatusFieldForEmployee(){
-		return currentStatusFieldForEmployee("currentStatus","");
-	}
-
 	
 
 

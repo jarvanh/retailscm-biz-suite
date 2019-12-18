@@ -74,6 +74,11 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<SmartPallet> loadAll() {
+	    return this.loadAll(getSmartPalletMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1006,6 +1011,50 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		return count;
 	}
 	
+	//disconnect SmartPallet with packaging in Goods
+	public SmartPallet planToRemoveGoodsListWithPackaging(SmartPallet smartPallet, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.SMART_PALLET_PROPERTY, smartPallet.getId());
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		SmartList<Goods> externalGoodsList = getGoodsDAO().
+				findGoodsWithKey(key, options);
+		if(externalGoodsList == null){
+			return smartPallet;
+		}
+		if(externalGoodsList.isEmpty()){
+			return smartPallet;
+		}
+		
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearPackaging();
+			goodsItem.clearSmartPallet();
+			
+		}
+		
+		
+		SmartList<Goods> goodsList = smartPallet.getGoodsList();		
+		goodsList.addAllToRemoveList(externalGoodsList);
+		return smartPallet;
+	}
+	
+	public int countGoodsListWithPackaging(String smartPalletId, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.SMART_PALLET_PROPERTY, smartPalletId);
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		int count = getGoodsDAO().countGoodsWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected SmartPallet saveGoodsList(SmartPallet smartPallet, Map<String,Object> options){
@@ -1178,6 +1227,10 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public SmartList<SmartPallet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSmartPalletMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

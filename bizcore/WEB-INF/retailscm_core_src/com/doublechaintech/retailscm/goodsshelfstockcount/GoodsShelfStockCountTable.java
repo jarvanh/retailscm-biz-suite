@@ -24,12 +24,8 @@ public class GoodsShelfStockCountTable{
 	static final String COLUMN_SHELF = "shelf";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_TITLE, COLUMN_COUNT_TIME, COLUMN_SUMMARY, COLUMN_SHELF, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_TITLE, COLUMN_COUNT_TIME, COLUMN_SUMMARY, COLUMN_SHELF
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_TITLE,COLUMN_COUNT_TIME,COLUMN_SUMMARY,COLUMN_SHELF,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_TITLE,COLUMN_COUNT_TIME,COLUMN_SUMMARY,COLUMN_SHELF};
 	
 	
 }

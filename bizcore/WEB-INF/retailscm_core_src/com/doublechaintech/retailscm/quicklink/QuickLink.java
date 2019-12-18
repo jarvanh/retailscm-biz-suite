@@ -79,16 +79,6 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	QuickLink(String name, String icon, String imagePath, String linkTarget, DateTime createTime, UserApp app)
-	{
-		setName(name);
-		setIcon(icon);
-		setImagePath(imagePath);
-		setLinkTarget(linkTarget);
-		setCreateTime(createTime);
-		setApp(app);
-	
-	}
 	
 	//Support for changing the property
 	

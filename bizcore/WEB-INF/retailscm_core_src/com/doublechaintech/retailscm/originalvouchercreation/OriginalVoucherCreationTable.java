@@ -23,12 +23,8 @@ public class OriginalVoucherCreationTable{
 	static final String COLUMN_MAKE_DATE = "make_date";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_WHO, COLUMN_COMMENTS, COLUMN_MAKE_DATE, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_WHO, COLUMN_COMMENTS, COLUMN_MAKE_DATE
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_COMMENTS,COLUMN_MAKE_DATE,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_COMMENTS,COLUMN_MAKE_DATE};
 	
 	
 }

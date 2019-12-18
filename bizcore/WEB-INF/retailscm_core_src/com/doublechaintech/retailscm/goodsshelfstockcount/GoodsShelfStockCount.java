@@ -78,15 +78,6 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 	}
 	
-	public 	GoodsShelfStockCount(String title, Date countTime, String summary, GoodsShelf shelf)
-	{
-		setTitle(title);
-		setCountTime(countTime);
-		setSummary(summary);
-		setShelf(shelf);
-
-		this.mStockCountIssueTrackList = new SmartList<StockCountIssueTrack>();	
-	}
 	
 	//Support for changing the property
 	

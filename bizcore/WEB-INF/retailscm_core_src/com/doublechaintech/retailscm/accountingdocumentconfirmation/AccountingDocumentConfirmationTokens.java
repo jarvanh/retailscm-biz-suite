@@ -131,12 +131,16 @@ public class AccountingDocumentConfirmationTokens extends CommonTokens{
 	}
 	private int accountingDocumentListSearchCounter = 0;
 	public AccountingDocumentConfirmationTokens searchAccountingDocumentListWith(String field, String verb, String value){		
+		
+		withAccountingDocumentList();
 		addSearchMoreOptions(ACCOUNTING_DOCUMENT_LIST,accountingDocumentListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public AccountingDocumentConfirmationTokens searchAllTextOfAccountingDocumentList(String verb, String value){	
-		String field = "id|name|currentStatus";
+		String field = "id|name";
 		addSearchMoreOptions(ACCOUNTING_DOCUMENT_LIST,accountingDocumentListSearchCounter++, field, verb, value);
 		return this;
 	}

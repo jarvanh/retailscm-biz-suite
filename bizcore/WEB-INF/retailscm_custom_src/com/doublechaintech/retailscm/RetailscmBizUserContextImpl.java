@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 
 import com.terapico.caf.BlobObject;
+import com.terapico.caf.baseelement.LoginParam;
 import com.terapico.caf.viewcomponent.ButtonViewComponent;
 import com.terapico.caf.viewcomponent.FilterTabsViewComponent;
 import com.terapico.caf.viewcomponent.PopupViewComponent;
@@ -18,7 +19,6 @@ import com.terapico.utils.TextUtil;
 import com.doublechaintech.retailscm.secuser.SecUser;
 
 public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
-
 	protected static final String DEFAULT_ACTION_GROUP = "default";
 	protected Map<String, List<ButtonViewComponent>> actionGroups;
 	protected String accessUrl;
@@ -44,6 +44,9 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 	protected String assignmentId;
 	protected BaseRetailscmFormProcessor inputFormData;
 	protected BaseRetailscmFormProcessor outputFormData;
+	protected LoginParam loginParam;
+
+	
 
 	public void clearFormResubmitFlag() {
 		removeFromCache(getPostMd5Key(this));
@@ -262,6 +265,12 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 	}
 	public void setAssignmentId(String assignmentId) {
 		this.assignmentId = assignmentId;
+	}
+	public LoginParam getLoginParam() {
+		return loginParam;
+	}
+	public void setLoginParam(LoginParam loginParam) {
+		this.loginParam = loginParam;
 	}
 	@Override
 	public void sendEmail(String to, String subject, String content) throws Exception {

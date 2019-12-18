@@ -235,20 +235,6 @@ public class RetailStoreOrderPickingForm extends BaseForm {
 		return lastUpdateTimeFieldForRetailStoreOrder("lastUpdateTime","");
 	}
 
-
-	public RetailStoreOrderPickingForm currentStatusFieldForRetailStoreOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStoreOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreOrderPickingForm currentStatusFieldForRetailStoreOrder(String initValue){
-		return currentStatusFieldForRetailStoreOrder("currentStatus",initValue);
-	}
-	public RetailStoreOrderPickingForm currentStatusFieldForRetailStoreOrder(){
-		return currentStatusFieldForRetailStoreOrder("currentStatus","");
-	}
-
 	
 
 

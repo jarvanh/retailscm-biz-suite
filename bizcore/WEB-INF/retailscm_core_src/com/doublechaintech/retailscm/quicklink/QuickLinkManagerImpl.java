@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.userapp.CandidateUserApp;
 public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implements QuickLinkManager {
 	
 	private static final String SERVICE_TYPE = "QuickLink";
+	@Override
+	public QuickLinkDAO daoOf(RetailscmUserContext userContext) {
+		return quickLinkDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	public QuickLink loadQuickLink(RetailscmUserContext userContext, String quickLinkId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfQuickLink(quickLinkId);
-		userContext.getChecker().throwExceptionIfHasErrors( QuickLinkManagerException.class);
+ 		checkerOf(userContext).checkIdOfQuickLink(quickLinkId);
+		checkerOf(userContext).throwExceptionIfHasErrors( QuickLinkManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	 public QuickLink searchQuickLink(RetailscmUserContext userContext, String quickLinkId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfQuickLink(quickLinkId);
-		userContext.getChecker().throwExceptionIfHasErrors( QuickLinkManagerException.class);
+ 		checkerOf(userContext).checkIdOfQuickLink(quickLinkId);
+		checkerOf(userContext).throwExceptionIfHasErrors( QuickLinkManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		addActions(userContext,quickLink,tokens);
 		
 		
-		QuickLink  quickLinkToPresent = userContext.getDAOGroup().getQuickLinkDAO().present(quickLink, tokens);
+		QuickLink  quickLinkToPresent = quickLinkDaoOf(userContext).present(quickLink, tokens);
 		
 		List<BaseEntity> entityListToNaming = quickLinkToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getQuickLinkDAO().alias(entityListToNaming);
+		quickLinkDaoOf(userContext).alias(entityListToNaming);
 		
 		return  quickLinkToPresent;
 		
@@ -123,14 +127,14 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		
  	}
  	protected QuickLink saveQuickLink(RetailscmUserContext userContext, QuickLink quickLink, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getQuickLinkDAO().save(quickLink, tokens);
+ 		return quickLinkDaoOf(userContext).save(quickLink, tokens);
  	}
  	protected QuickLink loadQuickLink(RetailscmUserContext userContext, String quickLinkId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfQuickLink(quickLinkId);
-		userContext.getChecker().throwExceptionIfHasErrors( QuickLinkManagerException.class);
+		checkerOf(userContext).checkIdOfQuickLink(quickLinkId);
+		checkerOf(userContext).throwExceptionIfHasErrors( QuickLinkManagerException.class);
 
  
- 		return userContext.getDAOGroup().getQuickLinkDAO().load(quickLinkId, tokens);
+ 		return quickLinkDaoOf(userContext).load(quickLinkId, tokens);
  	}
 
 	
@@ -160,20 +164,20 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	
 
-
-	public QuickLink createQuickLink(RetailscmUserContext userContext,String name, String icon, String imagePath, String linkTarget, String appId) throws Exception
+	public QuickLink createQuickLink(RetailscmUserContext userContext, String name,String icon,String imagePath,String linkTarget,String appId) throws Exception
+	//public QuickLink createQuickLink(RetailscmUserContext userContext,String name, String icon, String imagePath, String linkTarget, String appId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfQuickLink(name);
-		userContext.getChecker().checkIconOfQuickLink(icon);
-		userContext.getChecker().checkImagePathOfQuickLink(imagePath);
-		userContext.getChecker().checkLinkTargetOfQuickLink(linkTarget);
+		checkerOf(userContext).checkNameOfQuickLink(name);
+		checkerOf(userContext).checkIconOfQuickLink(icon);
+		checkerOf(userContext).checkImagePathOfQuickLink(imagePath);
+		checkerOf(userContext).checkLinkTargetOfQuickLink(linkTarget);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(QuickLinkManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(QuickLinkManagerException.class);
 
 
 		QuickLink quickLink=createNewQuickLink();	
@@ -208,26 +212,26 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 
 		
 		
-		userContext.getChecker().checkIdOfQuickLink(quickLinkId);
-		userContext.getChecker().checkVersionOfQuickLink( quickLinkVersion);
+		checkerOf(userContext).checkIdOfQuickLink(quickLinkId);
+		checkerOf(userContext).checkVersionOfQuickLink( quickLinkVersion);
 		
 
 		if(QuickLink.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfQuickLink(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfQuickLink(parseString(newValueExpr));
 		}
 		if(QuickLink.ICON_PROPERTY.equals(property)){
-			userContext.getChecker().checkIconOfQuickLink(parseString(newValueExpr));
+			checkerOf(userContext).checkIconOfQuickLink(parseString(newValueExpr));
 		}
 		if(QuickLink.IMAGE_PATH_PROPERTY.equals(property)){
-			userContext.getChecker().checkImagePathOfQuickLink(parseString(newValueExpr));
+			checkerOf(userContext).checkImagePathOfQuickLink(parseString(newValueExpr));
 		}
 		if(QuickLink.LINK_TARGET_PROPERTY.equals(property)){
-			userContext.getChecker().checkLinkTargetOfQuickLink(parseString(newValueExpr));
+			checkerOf(userContext).checkLinkTargetOfQuickLink(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(QuickLinkManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(QuickLinkManagerException.class);
 	
 		
 	}
@@ -236,7 +240,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	public QuickLink clone(RetailscmUserContext userContext, String fromQuickLinkId) throws Exception{
 		
-		return userContext.getDAOGroup().getQuickLinkDAO().clone(fromQuickLinkId, this.allTokens());
+		return quickLinkDaoOf(userContext).clone(fromQuickLinkId, this.allTokens());
 	}
 	
 	public QuickLink internalSaveQuickLink(RetailscmUserContext userContext, QuickLink quickLink) throws Exception 
@@ -334,9 +338,9 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForTransferingAnotherApp(RetailscmUserContext userContext, String quickLinkId, String anotherAppId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfQuickLink(quickLinkId);
- 		userContext.getChecker().checkIdOfUserApp(anotherAppId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(QuickLinkManagerException.class);
+ 		checkerOf(userContext).checkIdOfQuickLink(quickLinkId);
+ 		checkerOf(userContext).checkIdOfUserApp(anotherAppId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(QuickLinkManagerException.class);
  		
  	}
  	public QuickLink transferToAnotherApp(RetailscmUserContext userContext, String quickLinkId, String anotherAppId) throws Exception
@@ -373,7 +377,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<UserApp> candidateList = userContext.getDAOGroup().getUserAppDAO().requestCandidateUserAppForQuickLink(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<UserApp> candidateList = userAppDaoOf(userContext).requestCandidateUserAppForQuickLink(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -386,7 +390,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
  	protected UserApp loadUserApp(RetailscmUserContext userContext, String newAppId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getUserAppDAO().load(newAppId, options);
+ 		return userAppDaoOf(userContext).load(newAppId, options);
  	}
  	
  	
@@ -400,7 +404,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String quickLinkId, int quickLinkVersion) throws Exception{
 			
-		userContext.getDAOGroup().getQuickLinkDAO().delete(quickLinkId, quickLinkVersion);
+		quickLinkDaoOf(userContext).delete(quickLinkId, quickLinkVersion);
 	}
 	
 	public QuickLink forgetByAll(RetailscmUserContext userContext, String quickLinkId, int quickLinkVersion) throws Exception {
@@ -409,8 +413,9 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected QuickLink forgetByAllInternal(RetailscmUserContext userContext,
 			String quickLinkId, int quickLinkVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getQuickLinkDAO().disconnectFromAll(quickLinkId, quickLinkVersion);
+		return quickLinkDaoOf(userContext).disconnectFromAll(quickLinkId, quickLinkVersion);
 	}
+	
 	
 
 	
@@ -427,7 +432,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getQuickLinkDAO().deleteAll();
+		return quickLinkDaoOf(userContext).deleteAll();
 	}
 
 

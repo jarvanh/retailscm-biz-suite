@@ -95,6 +95,11 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<CityPartner> loadAll() {
+	    return this.loadAll(getCityPartnerMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1205,6 +1210,10 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public SmartList<CityPartner> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCityPartnerMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

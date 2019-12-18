@@ -387,20 +387,6 @@ public class EmployeeInterviewForm extends BaseForm {
 	}
 
 
-	public EmployeeInterviewForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeInterviewForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeInterviewForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
-
 	public EmployeeInterviewForm interviewTypeIdFieldOfInterviewType(String parameterName, String initValue){
 		FormField field =  idFromInterviewType(parameterName, initValue);
 		this.addFormField(field);	

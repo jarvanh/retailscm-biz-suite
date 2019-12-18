@@ -441,5 +441,10 @@ public class UserContextImpl implements UserContext{
 		//Let Retailscm do the job :)
 		
 	}
+	@Override
+	public <T> List<T> getCachedObjectsWithOneType(List<String> keys, Class<T> clazz) {
+		ensureCacheService();
+		return (List<T>)cacheService.mget(keys, clazz);
+	}
 	
 }

@@ -157,9 +157,13 @@ public class PotentialCustomerTokens extends CommonTokens{
 	}
 	private int potentialCustomerContactPersonListSearchCounter = 0;
 	public PotentialCustomerTokens searchPotentialCustomerContactPersonListWith(String field, String verb, String value){		
+		
+		withPotentialCustomerContactPersonList();
 		addSearchMoreOptions(POTENTIAL_CUSTOMER_CONTACT_PERSON_LIST,potentialCustomerContactPersonListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public PotentialCustomerTokens searchAllTextOfPotentialCustomerContactPersonList(String verb, String value){	
 		String field = "id|name|mobile|description";
@@ -223,9 +227,13 @@ public class PotentialCustomerTokens extends CommonTokens{
 	}
 	private int potentialCustomerContactListSearchCounter = 0;
 	public PotentialCustomerTokens searchPotentialCustomerContactListWith(String field, String verb, String value){		
+		
+		withPotentialCustomerContactList();
 		addSearchMoreOptions(POTENTIAL_CUSTOMER_CONTACT_LIST,potentialCustomerContactListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public PotentialCustomerTokens searchAllTextOfPotentialCustomerContactList(String verb, String value){	
 		String field = "id|name|contactMethod|description";
@@ -289,9 +297,13 @@ public class PotentialCustomerTokens extends CommonTokens{
 	}
 	private int eventAttendanceListSearchCounter = 0;
 	public PotentialCustomerTokens searchEventAttendanceListWith(String field, String verb, String value){		
+		
+		withEventAttendanceList();
 		addSearchMoreOptions(EVENT_ATTENDANCE_LIST,eventAttendanceListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public PotentialCustomerTokens searchAllTextOfEventAttendanceList(String verb, String value){	
 		String field = "id|name|description";

@@ -9,6 +9,7 @@ import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RedisCacheService implements CacheService {
@@ -34,21 +35,25 @@ public class RedisCacheService implements CacheService {
     }
 
     protected Jedis getJedis() {
+    	
         Jedis jedis = new Jedis(host, port, timeout);
         if (StringUtils.isNotEmpty(password)) {
             jedis.auth(password);
         }
         return jedis;
     }
-
+    
 
     protected ObjectMapper getMapper() {
         ObjectMapper mapper;
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper;
+  
     }
-
+    protected Class<?> classAt(Class<?>[] clazzes, int index){
+    	return clazzes[index];
+    }
     public Object[] mget(String keys[], Class<?>[] clazzes) {
         if (keys == null) {
             return new Object[0];
@@ -62,9 +67,10 @@ public class RedisCacheService implements CacheService {
             jedis = getJedis();
             log("class" + jedis.getClass());
             // ticker.tick("init getJedis();");
-
+            
             List<String> values = jedis.mget(keys);
             if (values == null) {
+            	log("jedis.mget(keys) return null!!!");
                 return null;
             }
             // ticker.tick("jedis.get(key);");
@@ -85,8 +91,9 @@ public class RedisCacheService implements CacheService {
             return null;
         } finally {
             closeConnection(jedis);
-        }
 
+        }
+        
     }
 
     public Object get(String key, Class<?> clazz) {
@@ -113,7 +120,8 @@ public class RedisCacheService implements CacheService {
             log("getting " + clazz + " with key: " + key + " with an exception" + e.getMessage());
             return null;
         } finally {
-            closeConnection(jedis);
+
+        	closeConnection(jedis);
         }
 
     }
@@ -143,17 +151,19 @@ public class RedisCacheService implements CacheService {
         } catch (JsonProcessingException e) {
             // is fine
         } finally {
+
             closeConnection(jedis);
         }
 
     }
 
-    protected void closeConnection(Jedis jedis) {
 
-        if (jedis == null) {
+    protected void closeConnection(Jedis jedis) {
+    	
+    	if (jedis == null) {
             return;
         }
-        jedis.close();
+    	jedis.close();
     }
 
     public void remove(String key) {
@@ -163,6 +173,7 @@ public class RedisCacheService implements CacheService {
             jedis = getJedis();
             jedis.del(key);
         } finally {
+
             closeConnection(jedis);
         }
     }
@@ -271,9 +282,26 @@ public class RedisCacheService implements CacheService {
         try {
             return (List<T>) mapper.readValue(pS, javaType);
         } catch (IOException pE) {
+        	//closeConnection(jedis);
+
         }
         return null;
     }
+
+	@Override
+	public List<Object> mget(List<String> keys, Class<?> clazz) {
+		Class<?>[] clazzes = new Class<?>[keys.size()];
+		for(int i=0;i<clazzes.length;i++) {
+			clazzes[i] = clazz;
+		}
+		Object [] mObjects = this.mget(keys.toArray(new String[] {}), clazzes);
+		
+		if(mObjects==null) {
+			return new ArrayList<Object>();
+		}
+		
+		return Arrays.asList(mObjects);
+	}
 
 
 }

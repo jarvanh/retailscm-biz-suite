@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface SupplierProductManager{
+public interface SupplierProductManager extends BaseManager{
 
 		
 
-	public SupplierProduct createSupplierProduct(RetailscmUserContext userContext, String productName, String productDescription, String productUnit, String supplierId) throws Exception;	
+	public SupplierProduct createSupplierProduct(RetailscmUserContext userContext, String productName,String productDescription,String productUnit,String supplierId) throws Exception;	
 	public SupplierProduct updateSupplierProduct(RetailscmUserContext userContext,String supplierProductId, int supplierProductVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public SupplierProduct loadSupplierProduct(RetailscmUserContext userContext, String supplierProductId, String [] tokensExpr) throws Exception;
 	public SupplierProduct internalSaveSupplierProduct(RetailscmUserContext userContext, SupplierProduct supplierProduct) throws Exception;

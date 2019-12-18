@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employeecompanytraining;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -17,9 +18,9 @@ import com.doublechaintech.retailscm.scoring.ScoringDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface EmployeeCompanyTrainingDAO{
+public interface EmployeeCompanyTrainingDAO extends BaseDAO{
 
-	
+	public SmartList<EmployeeCompanyTraining> loadAll();
 	public EmployeeCompanyTraining load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<EmployeeCompanyTraining> employeeCompanyTrainingList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -49,6 +50,7 @@ public interface EmployeeCompanyTrainingDAO{
 	
 	
 	public SmartList<EmployeeCompanyTraining> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<EmployeeCompanyTraining> findEmployeeCompanyTrainingByEmployee(String employeeId, Map<String,Object> options);
  	public int countEmployeeCompanyTrainingByEmployee(String employeeId, Map<String,Object> options);

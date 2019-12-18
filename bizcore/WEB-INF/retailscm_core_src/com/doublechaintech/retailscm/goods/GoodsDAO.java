@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.goods;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -33,9 +34,9 @@ import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpaceDAO;
 
 
-public interface GoodsDAO{
+public interface GoodsDAO extends BaseDAO{
 
-	
+	public SmartList<Goods> loadAll();
 	public Goods load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<Goods> goodsList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -80,6 +81,7 @@ public interface GoodsDAO{
 	
 	
 	public SmartList<Goods> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Goods> findGoodsBySku(String skuId, Map<String,Object> options);
  	public int countGoodsBySku(String skuId, Map<String,Object> options);

@@ -74,6 +74,11 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<GoodsAllocation> loadAll() {
+	    return this.loadAll(getGoodsAllocationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -984,6 +989,50 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 		return count;
 	}
 	
+	//disconnect GoodsAllocation with packaging in Goods
+	public GoodsAllocation planToRemoveGoodsListWithPackaging(GoodsAllocation goodsAllocation, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.GOODS_ALLOCATION_PROPERTY, goodsAllocation.getId());
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		SmartList<Goods> externalGoodsList = getGoodsDAO().
+				findGoodsWithKey(key, options);
+		if(externalGoodsList == null){
+			return goodsAllocation;
+		}
+		if(externalGoodsList.isEmpty()){
+			return goodsAllocation;
+		}
+		
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearPackaging();
+			goodsItem.clearGoodsAllocation();
+			
+		}
+		
+		
+		SmartList<Goods> goodsList = goodsAllocation.getGoodsList();		
+		goodsList.addAllToRemoveList(externalGoodsList);
+		return goodsAllocation;
+	}
+	
+	public int countGoodsListWithPackaging(String goodsAllocationId, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.GOODS_ALLOCATION_PROPERTY, goodsAllocationId);
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		int count = getGoodsDAO().countGoodsWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected GoodsAllocation saveGoodsList(GoodsAllocation goodsAllocation, Map<String,Object> options){
@@ -1156,6 +1205,10 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public SmartList<GoodsAllocation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsAllocationMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

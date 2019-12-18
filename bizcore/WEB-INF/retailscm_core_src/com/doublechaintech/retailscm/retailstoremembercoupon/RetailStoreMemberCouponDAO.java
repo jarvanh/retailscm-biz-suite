@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoremembercoupon;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
-public interface RetailStoreMemberCouponDAO{
+public interface RetailStoreMemberCouponDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreMemberCoupon> loadAll();
 	public RetailStoreMemberCoupon load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreMemberCoupon> retailStoreMemberCouponList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface RetailStoreMemberCouponDAO{
 	
 	
 	public SmartList<RetailStoreMemberCoupon> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreMemberCoupon> findRetailStoreMemberCouponByOwner(String retailStoreMemberId, Map<String,Object> options);
  	public int countRetailStoreMemberCouponByOwner(String retailStoreMemberId, Map<String,Object> options);

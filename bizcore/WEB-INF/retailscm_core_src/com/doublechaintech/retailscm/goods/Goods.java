@@ -44,7 +44,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 	public static final String BIZ_ORDER_PROPERTY             = "bizOrder"          ;
 	public static final String RETAIL_STORE_ORDER_PROPERTY    = "retailStoreOrder"  ;
 	public static final String PACKAGING_PROPERTY             = "packaging"         ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String GOODS_MOVEMENT_LIST                      = "goodsMovementList" ;
@@ -84,7 +83,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 	protected		SupplyOrder         	mBizOrder           ;
 	protected		RetailStoreOrder    	mRetailStoreOrder   ;
 	protected		GoodsPackaging      	mPackaging          ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -120,26 +118,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Goods(String name, String rfid, String uom, int maxPackage, Date expireTime, Sku sku, ReceivingSpace receivingSpace, GoodsAllocation goodsAllocation, SmartPallet smartPallet, ShippingSpace shippingSpace, TransportTask transportTask, RetailStore retailStore, SupplyOrder bizOrder, RetailStoreOrder retailStoreOrder, String currentStatus)
-	{
-		setName(name);
-		setRfid(rfid);
-		setUom(uom);
-		setMaxPackage(maxPackage);
-		setExpireTime(expireTime);
-		setSku(sku);
-		setReceivingSpace(receivingSpace);
-		setGoodsAllocation(goodsAllocation);
-		setSmartPallet(smartPallet);
-		setShippingSpace(shippingSpace);
-		setTransportTask(transportTask);
-		setRetailStore(retailStore);
-		setBizOrder(bizOrder);
-		setRetailStoreOrder(retailStoreOrder);
-		setCurrentStatus(currentStatus);
-
-		this.mGoodsMovementList = new SmartList<GoodsMovement>();	
-	}
 	
 	//Support for changing the property
 	
@@ -289,9 +267,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		}
 		if(PACKAGING_PROPERTY.equals(property)){
 			return getPackaging();
-		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
 		}
 		if(GOODS_MOVEMENT_LIST.equals(property)){
 			List<BaseEntity> list = getGoodsMovementList().stream().map(item->item).collect(Collectors.toList());
@@ -614,22 +589,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public Goods updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
-	}
-	
-	
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -807,7 +766,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, BIZ_ORDER_PROPERTY, getBizOrder());
 		appendKeyValuePair(result, RETAIL_STORE_ORDER_PROPERTY, getRetailStoreOrder());
 		appendKeyValuePair(result, PACKAGING_PROPERTY, getPackaging());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, GOODS_MOVEMENT_LIST, getGoodsMovementList());
 		if(!getGoodsMovementList().isEmpty()){
@@ -844,7 +802,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 			dest.setBizOrder(getBizOrder());
 			dest.setRetailStoreOrder(getRetailStoreOrder());
 			dest.setPackaging(getPackaging());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 			dest.setGoodsMovementList(getGoodsMovementList());
 
@@ -876,7 +833,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 			dest.mergeBizOrder(getBizOrder());
 			dest.mergeRetailStoreOrder(getRetailStoreOrder());
 			dest.mergePackaging(getPackaging());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 			dest.mergeGoodsMovementList(getGoodsMovementList());
 
@@ -899,7 +855,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 			dest.mergeUom(getUom());
 			dest.mergeMaxPackage(getMaxPackage());
 			dest.mergeExpireTime(getExpireTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -946,7 +901,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		if(getPackaging() != null ){
  			stringBuilder.append("\tpackaging='GoodsPackaging("+getPackaging().getId()+")';");
  		}
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

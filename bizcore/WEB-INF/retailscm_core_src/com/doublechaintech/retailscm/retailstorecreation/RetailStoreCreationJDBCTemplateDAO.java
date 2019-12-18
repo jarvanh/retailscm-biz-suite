@@ -63,6 +63,11 @@ public class RetailStoreCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	}
 	*/
 	
+	public SmartList<RetailStoreCreation> loadAll() {
+	    return this.loadAll(getRetailStoreCreationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -603,6 +608,226 @@ public class RetailStoreCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 		return count;
 	}
 	
+	//disconnect RetailStoreCreation with investment_invitation in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithInvestmentInvitation(RetailStoreCreation retailStoreCreation, String investmentInvitationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreation.getId());
+		key.put(RetailStore.INVESTMENT_INVITATION_PROPERTY, investmentInvitationId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCreation;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCreation;
+		}
+		
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearInvestmentInvitation();
+			retailStoreItem.clearCreation();
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCreation.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCreation;
+	}
+	
+	public int countRetailStoreListWithInvestmentInvitation(String retailStoreCreationId, String investmentInvitationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreationId);
+		key.put(RetailStore.INVESTMENT_INVITATION_PROPERTY, investmentInvitationId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCreation with franchising in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithFranchising(RetailStoreCreation retailStoreCreation, String franchisingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreation.getId());
+		key.put(RetailStore.FRANCHISING_PROPERTY, franchisingId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCreation;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCreation;
+		}
+		
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearFranchising();
+			retailStoreItem.clearCreation();
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCreation.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCreation;
+	}
+	
+	public int countRetailStoreListWithFranchising(String retailStoreCreationId, String franchisingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreationId);
+		key.put(RetailStore.FRANCHISING_PROPERTY, franchisingId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCreation with decoration in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithDecoration(RetailStoreCreation retailStoreCreation, String decorationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreation.getId());
+		key.put(RetailStore.DECORATION_PROPERTY, decorationId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCreation;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCreation;
+		}
+		
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearDecoration();
+			retailStoreItem.clearCreation();
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCreation.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCreation;
+	}
+	
+	public int countRetailStoreListWithDecoration(String retailStoreCreationId, String decorationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreationId);
+		key.put(RetailStore.DECORATION_PROPERTY, decorationId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCreation with opening in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithOpening(RetailStoreCreation retailStoreCreation, String openingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreation.getId());
+		key.put(RetailStore.OPENING_PROPERTY, openingId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCreation;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCreation;
+		}
+		
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearOpening();
+			retailStoreItem.clearCreation();
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCreation.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCreation;
+	}
+	
+	public int countRetailStoreListWithOpening(String retailStoreCreationId, String openingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreationId);
+		key.put(RetailStore.OPENING_PROPERTY, openingId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCreation with closing in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithClosing(RetailStoreCreation retailStoreCreation, String closingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreation.getId());
+		key.put(RetailStore.CLOSING_PROPERTY, closingId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCreation;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCreation;
+		}
+		
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearClosing();
+			retailStoreItem.clearCreation();
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCreation.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCreation;
+	}
+	
+	public int countRetailStoreListWithClosing(String retailStoreCreationId, String closingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.CREATION_PROPERTY, retailStoreCreationId);
+		key.put(RetailStore.CLOSING_PROPERTY, closingId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected RetailStoreCreation saveRetailStoreList(RetailStoreCreation retailStoreCreation, Map<String,Object> options){
@@ -775,6 +1000,10 @@ public class RetailStoreCreationJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	@Override
 	public SmartList<RetailStoreCreation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreCreationMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -515,20 +515,6 @@ public class TerminationForm extends BaseForm {
 		return lastUpdateTimeFieldForEmployee("lastUpdateTime","");
 	}
 
-
-	public TerminationForm currentStatusFieldForEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public TerminationForm currentStatusFieldForEmployee(String initValue){
-		return currentStatusFieldForEmployee("currentStatus",initValue);
-	}
-	public TerminationForm currentStatusFieldForEmployee(){
-		return currentStatusFieldForEmployee("currentStatus","");
-	}
-
 	
 
 	

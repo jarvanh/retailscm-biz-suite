@@ -56,7 +56,7 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setContactNumber(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String contactNumber = rs.getString(WarehouseTable.COLUMN_CONTACT_NUMBER);
+		Long contactNumber = rs.getLong(WarehouseTable.COLUMN_CONTACT_NUMBER);
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;

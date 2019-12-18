@@ -31,7 +31,6 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
  		setShipment(supplyOrder, rs, rowNumber); 		
  		setDelivery(supplyOrder, rs, rowNumber); 		
  		setLastUpdateTime(supplyOrder, rs, rowNumber); 		
- 		setCurrentStatus(supplyOrder, rs, rowNumber); 		
  		setVersion(supplyOrder, rs, rowNumber);
 
 		return supplyOrder;
@@ -231,18 +230,6 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 		}
 		
 		supplyOrder.setLastUpdateTime(convertToDateTime(lastUpdateTime));
-	}
-		
-	protected void setCurrentStatus(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(SupplyOrderTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		supplyOrder.setCurrentStatus(currentStatus);
 	}
 		
 	protected void setVersion(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{

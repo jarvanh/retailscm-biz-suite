@@ -53,6 +53,11 @@ public class FormFieldJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Fo
 	}
 	*/
 	
+	public SmartList<FormField> loadAll() {
+	    return this.loadAll(getFormFieldMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -577,6 +582,10 @@ public class FormFieldJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Fo
 	@Override
 	public SmartList<FormField> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getFormFieldMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -31,7 +31,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	public static final String CREATION_PROPERTY              = "creation"          ;
 	public static final String CONFIRMATION_PROPERTY          = "confirmation"      ;
 	public static final String AUDITING_PROPERTY              = "auditing"          ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 
@@ -64,7 +63,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	protected		OriginalVoucherCreation	mCreation           ;
 	protected		OriginalVoucherConfirmation	mConfirmation       ;
 	protected		OriginalVoucherAuditing	mAuditing           ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -93,17 +91,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	OriginalVoucher(String title, String madeBy, String receivedBy, String voucherType, String voucherImage, AccountingDocument belongsTo, String currentStatus)
-	{
-		setTitle(title);
-		setMadeBy(madeBy);
-		setReceivedBy(receivedBy);
-		setVoucherType(voucherType);
-		setVoucherImage(voucherImage);
-		setBelongsTo(belongsTo);
-		setCurrentStatus(currentStatus);
-	
-	}
 	
 	//Support for changing the property
 	
@@ -235,9 +222,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		}
 		if(AUDITING_PROPERTY.equals(property)){
 			return getAuditing();
-		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
 		}
 
     		//other property not include here
@@ -430,22 +414,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public OriginalVoucher updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
-	}
-	
-	
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -502,7 +470,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		appendKeyValuePair(result, CREATION_PROPERTY, getCreation());
 		appendKeyValuePair(result, CONFIRMATION_PROPERTY, getConfirmation());
 		appendKeyValuePair(result, AUDITING_PROPERTY, getAuditing());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
 		
@@ -528,7 +495,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 			dest.setCreation(getCreation());
 			dest.setConfirmation(getConfirmation());
 			dest.setAuditing(getAuditing());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 
 		}
@@ -553,7 +519,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 			dest.mergeCreation(getCreation());
 			dest.mergeConfirmation(getConfirmation());
 			dest.mergeAuditing(getAuditing());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -575,7 +540,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 			dest.mergeReceivedBy(getReceivedBy());
 			dest.mergeVoucherType(getVoucherType());
 			dest.mergeVoucherImage(getVoucherImage());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -604,7 +568,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		if(getAuditing() != null ){
  			stringBuilder.append("\tauditing='OriginalVoucherAuditing("+getAuditing().getId()+")';");
  		}
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

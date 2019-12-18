@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager implements EmployeeSkillManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeSkill";
+	@Override
+	public EmployeeSkillDAO daoOf(RetailscmUserContext userContext) {
+		return employeeSkillDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	public EmployeeSkill loadEmployeeSkill(RetailscmUserContext userContext, String employeeSkillId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeSkillManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeSkillManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	 public EmployeeSkill searchEmployeeSkill(RetailscmUserContext userContext, String employeeSkillId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeSkillManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeSkillManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 		addActions(userContext,employeeSkill,tokens);
 		
 		
-		EmployeeSkill  employeeSkillToPresent = userContext.getDAOGroup().getEmployeeSkillDAO().present(employeeSkill, tokens);
+		EmployeeSkill  employeeSkillToPresent = employeeSkillDaoOf(userContext).present(employeeSkill, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeSkillToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeSkillDAO().alias(entityListToNaming);
+		employeeSkillDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeSkillToPresent;
 		
@@ -125,14 +129,14 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 		
  	}
  	protected EmployeeSkill saveEmployeeSkill(RetailscmUserContext userContext, EmployeeSkill employeeSkill, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeSkillDAO().save(employeeSkill, tokens);
+ 		return employeeSkillDaoOf(userContext).save(employeeSkill, tokens);
  	}
  	protected EmployeeSkill loadEmployeeSkill(RetailscmUserContext userContext, String employeeSkillId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeSkillManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeSkillManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeSkillDAO().load(employeeSkillId, tokens);
+ 		return employeeSkillDaoOf(userContext).load(employeeSkillId, tokens);
  	}
 
 	
@@ -163,17 +167,17 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	
 
-
-	public EmployeeSkill createEmployeeSkill(RetailscmUserContext userContext,String employeeId, String skillTypeId, String description) throws Exception
+	public EmployeeSkill createEmployeeSkill(RetailscmUserContext userContext, String employeeId,String skillTypeId,String description) throws Exception
+	//public EmployeeSkill createEmployeeSkill(RetailscmUserContext userContext,String employeeId, String skillTypeId, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkDescriptionOfEmployeeSkill(description);
+		checkerOf(userContext).checkDescriptionOfEmployeeSkill(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
 
 
 		EmployeeSkill employeeSkill=createNewEmployeeSkill();	
@@ -209,8 +213,8 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-		userContext.getChecker().checkVersionOfEmployeeSkill( employeeSkillVersion);
+		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+		checkerOf(userContext).checkVersionOfEmployeeSkill( employeeSkillVersion);
 		
 		
 
@@ -218,10 +222,10 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		if(EmployeeSkill.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfEmployeeSkill(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfEmployeeSkill(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	public EmployeeSkill clone(RetailscmUserContext userContext, String fromEmployeeSkillId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeSkillDAO().clone(fromEmployeeSkillId, this.allTokens());
+		return employeeSkillDaoOf(userContext).clone(fromEmployeeSkillId, this.allTokens());
 	}
 	
 	public EmployeeSkill internalSaveEmployeeSkill(RetailscmUserContext userContext, EmployeeSkill employeeSkill) throws Exception 
@@ -328,9 +332,9 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeSkillId, String anotherEmployeeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
- 		userContext.getChecker().checkIdOfEmployee(anotherEmployeeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
  		
  	}
  	public EmployeeSkill transferToAnotherEmployee(RetailscmUserContext userContext, String employeeSkillId, String anotherEmployeeId) throws Exception
@@ -367,7 +371,7 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeeSkill(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeeSkill(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -377,9 +381,9 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
  	protected void checkParamsForTransferingAnotherSkillType(RetailscmUserContext userContext, String employeeSkillId, String anotherSkillTypeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
- 		userContext.getChecker().checkIdOfSkillType(anotherSkillTypeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+ 		checkerOf(userContext).checkIdOfSkillType(anotherSkillTypeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSkillManagerException.class);
  		
  	}
  	public EmployeeSkill transferToAnotherSkillType(RetailscmUserContext userContext, String employeeSkillId, String anotherSkillTypeId) throws Exception
@@ -416,7 +420,7 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<SkillType> candidateList = userContext.getDAOGroup().getSkillTypeDAO().requestCandidateSkillTypeForEmployeeSkill(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<SkillType> candidateList = skillTypeDaoOf(userContext).requestCandidateSkillTypeForEmployeeSkill(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -429,7 +433,7 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
  	
@@ -439,7 +443,7 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
  	protected SkillType loadSkillType(RetailscmUserContext userContext, String newSkillTypeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSkillTypeDAO().load(newSkillTypeId, options);
+ 		return skillTypeDaoOf(userContext).load(newSkillTypeId, options);
  	}
  	
  	
@@ -453,7 +457,7 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeSkillId, int employeeSkillVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeSkillDAO().delete(employeeSkillId, employeeSkillVersion);
+		employeeSkillDaoOf(userContext).delete(employeeSkillId, employeeSkillVersion);
 	}
 	
 	public EmployeeSkill forgetByAll(RetailscmUserContext userContext, String employeeSkillId, int employeeSkillVersion) throws Exception {
@@ -462,8 +466,9 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 	protected EmployeeSkill forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeSkillId, int employeeSkillVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeSkillDAO().disconnectFromAll(employeeSkillId, employeeSkillVersion);
+		return employeeSkillDaoOf(userContext).disconnectFromAll(employeeSkillId, employeeSkillVersion);
 	}
+	
 	
 
 	
@@ -480,7 +485,7 @@ public class EmployeeSkillManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeSkillDAO().deleteAll();
+		return employeeSkillDaoOf(userContext).deleteAll();
 	}
 
 

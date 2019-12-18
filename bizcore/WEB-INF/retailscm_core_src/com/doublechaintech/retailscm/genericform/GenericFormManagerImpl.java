@@ -36,6 +36,10 @@ import com.doublechaintech.retailscm.genericform.GenericForm;
 public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implements GenericFormManager {
 	
 	private static final String SERVICE_TYPE = "GenericForm";
+	@Override
+	public GenericFormDAO daoOf(RetailscmUserContext userContext) {
+		return genericFormDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -69,8 +73,8 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	public GenericForm loadGenericForm(RetailscmUserContext userContext, String genericFormId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().throwExceptionIfHasErrors( GenericFormManagerException.class);
+ 		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GenericFormManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -83,8 +87,8 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	 public GenericForm searchGenericForm(RetailscmUserContext userContext, String genericFormId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().throwExceptionIfHasErrors( GenericFormManagerException.class);
+ 		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GenericFormManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -102,10 +106,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		addActions(userContext,genericForm,tokens);
 		
 		
-		GenericForm  genericFormToPresent = userContext.getDAOGroup().getGenericFormDAO().present(genericForm, tokens);
+		GenericForm  genericFormToPresent = genericFormDaoOf(userContext).present(genericForm, tokens);
 		
 		List<BaseEntity> entityListToNaming = genericFormToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getGenericFormDAO().alias(entityListToNaming);
+		genericFormDaoOf(userContext).alias(entityListToNaming);
 		
 		return  genericFormToPresent;
 		
@@ -126,14 +130,14 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
  	}
  	protected GenericForm saveGenericForm(RetailscmUserContext userContext, GenericForm genericForm, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getGenericFormDAO().save(genericForm, tokens);
+ 		return genericFormDaoOf(userContext).save(genericForm, tokens);
  	}
  	protected GenericForm loadGenericForm(RetailscmUserContext userContext, String genericFormId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().throwExceptionIfHasErrors( GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GenericFormManagerException.class);
 
  
- 		return userContext.getDAOGroup().getGenericFormDAO().load(genericFormId, tokens);
+ 		return genericFormDaoOf(userContext).load(genericFormId, tokens);
  	}
 
 	
@@ -178,18 +182,18 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-
-	public GenericForm createGenericForm(RetailscmUserContext userContext,String title, String description) throws Exception
+	public GenericForm createGenericForm(RetailscmUserContext userContext, String title,String description) throws Exception
+	//public GenericForm createGenericForm(RetailscmUserContext userContext,String title, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkTitleOfGenericForm(title);
-		userContext.getChecker().checkDescriptionOfGenericForm(description);
+		checkerOf(userContext).checkTitleOfGenericForm(title);
+		checkerOf(userContext).checkDescriptionOfGenericForm(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 
 
 		GenericForm genericForm=createNewGenericForm();	
@@ -216,18 +220,18 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 
 		
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkVersionOfGenericForm( genericFormVersion);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkVersionOfGenericForm( genericFormVersion);
 		
 
 		if(GenericForm.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfGenericForm(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfGenericForm(parseString(newValueExpr));
 		}
 		if(GenericForm.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfGenericForm(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfGenericForm(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 		
 	}
@@ -236,7 +240,7 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	public GenericForm clone(RetailscmUserContext userContext, String fromGenericFormId) throws Exception{
 		
-		return userContext.getDAOGroup().getGenericFormDAO().clone(fromGenericFormId, this.allTokens());
+		return genericFormDaoOf(userContext).clone(fromGenericFormId, this.allTokens());
 	}
 	
 	public GenericForm internalSaveGenericForm(RetailscmUserContext userContext, GenericForm genericForm) throws Exception 
@@ -345,7 +349,7 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String genericFormId, int genericFormVersion) throws Exception{
 			
-		userContext.getDAOGroup().getGenericFormDAO().delete(genericFormId, genericFormVersion);
+		genericFormDaoOf(userContext).delete(genericFormId, genericFormVersion);
 	}
 	
 	public GenericForm forgetByAll(RetailscmUserContext userContext, String genericFormId, int genericFormVersion) throws Exception {
@@ -354,8 +358,9 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected GenericForm forgetByAllInternal(RetailscmUserContext userContext,
 			String genericFormId, int genericFormVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getGenericFormDAO().disconnectFromAll(genericFormId, genericFormVersion);
+		return genericFormDaoOf(userContext).disconnectFromAll(genericFormId, genericFormVersion);
 	}
+	
 	
 
 	
@@ -372,7 +377,7 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getGenericFormDAO().deleteAll();
+		return genericFormDaoOf(userContext).deleteAll();
 	}
 
 
@@ -384,18 +389,14 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 
 	protected void checkParamsForAddingFormMessage(RetailscmUserContext userContext, String genericFormId, String title, String level,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 
 		
+		checkerOf(userContext).checkTitleOfFormMessage(title);
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-
-		
-		userContext.getChecker().checkTitleOfFormMessage(title);
-		
-		userContext.getChecker().checkLevelOfFormMessage(level);
+		checkerOf(userContext).checkLevelOfFormMessage(level);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 
 	
 	}
@@ -419,13 +420,13 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingFormMessageProperties(RetailscmUserContext userContext, String genericFormId,String id,String title,String level,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormMessage(id);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormMessage(id);
 		
-		userContext.getChecker().checkTitleOfFormMessage( title);
-		userContext.getChecker().checkLevelOfFormMessage( level);
+		checkerOf(userContext).checkTitleOfFormMessage( title);
+		checkerOf(userContext).checkLevelOfFormMessage( level);
 
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm updateFormMessageProperties(RetailscmUserContext userContext, String genericFormId, String id,String title,String level, String [] tokensExpr) throws Exception
@@ -483,12 +484,12 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormMessageList(RetailscmUserContext userContext, String genericFormId, 
 			String formMessageIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 		for(String formMessageIdItem: formMessageIds){
-			userContext.getChecker().checkIdOfFormMessage(formMessageIdItem);
+			checkerOf(userContext).checkIdOfFormMessage(formMessageIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm removeFormMessageList(RetailscmUserContext userContext, String genericFormId, 
@@ -501,7 +502,7 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(genericForm){ 
 				//Will be good when the genericForm loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getGenericFormDAO().planToRemoveFormMessageList(genericForm, formMessageIds, allTokens());
+				genericFormDaoOf(userContext).planToRemoveFormMessageList(genericForm, formMessageIds, allTokens());
 				genericForm = saveGenericForm(userContext, genericForm, tokens().withFormMessageList().done());
 				deleteRelationListInGraph(userContext, genericForm.getFormMessageList());
 				return present(userContext,genericForm, mergedAllTokens(tokensExpr));
@@ -511,10 +512,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormMessage(RetailscmUserContext userContext, String genericFormId, 
 		String formMessageId, int formMessageVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormMessage(formMessageId);
-		userContext.getChecker().checkVersionOfFormMessage(formMessageVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormMessage(formMessageId);
+		checkerOf(userContext).checkVersionOfFormMessage(formMessageVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm removeFormMessage(RetailscmUserContext userContext, String genericFormId, 
@@ -538,10 +539,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingFormMessage(RetailscmUserContext userContext, String genericFormId, 
 		String formMessageId, int formMessageVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormMessage(formMessageId);
-		userContext.getChecker().checkVersionOfFormMessage(formMessageVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormMessage(formMessageId);
+		checkerOf(userContext).checkVersionOfFormMessage(formMessageVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm copyFormMessageFrom(RetailscmUserContext userContext, String genericFormId, 
@@ -570,21 +571,21 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormMessage(formMessageId);
-		userContext.getChecker().checkVersionOfFormMessage(formMessageVersion);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormMessage(formMessageId);
+		checkerOf(userContext).checkVersionOfFormMessage(formMessageVersion);
 		
 
 		if(FormMessage.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfFormMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfFormMessage(parseString(newValueExpr));
 		}
 		
 		if(FormMessage.LEVEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLevelOfFormMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkLevelOfFormMessage(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	
@@ -627,20 +628,16 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 
 	protected void checkParamsForAddingFormFieldMessage(RetailscmUserContext userContext, String genericFormId, String title, String parameterName, String level,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 
 		
+		checkerOf(userContext).checkTitleOfFormFieldMessage(title);
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-
+		checkerOf(userContext).checkParameterNameOfFormFieldMessage(parameterName);
 		
-		userContext.getChecker().checkTitleOfFormFieldMessage(title);
-		
-		userContext.getChecker().checkParameterNameOfFormFieldMessage(parameterName);
-		
-		userContext.getChecker().checkLevelOfFormFieldMessage(level);
+		checkerOf(userContext).checkLevelOfFormFieldMessage(level);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 
 	
 	}
@@ -664,14 +661,14 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingFormFieldMessageProperties(RetailscmUserContext userContext, String genericFormId,String id,String title,String parameterName,String level,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormFieldMessage(id);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormFieldMessage(id);
 		
-		userContext.getChecker().checkTitleOfFormFieldMessage( title);
-		userContext.getChecker().checkParameterNameOfFormFieldMessage( parameterName);
-		userContext.getChecker().checkLevelOfFormFieldMessage( level);
+		checkerOf(userContext).checkTitleOfFormFieldMessage( title);
+		checkerOf(userContext).checkParameterNameOfFormFieldMessage( parameterName);
+		checkerOf(userContext).checkLevelOfFormFieldMessage( level);
 
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm updateFormFieldMessageProperties(RetailscmUserContext userContext, String genericFormId, String id,String title,String parameterName,String level, String [] tokensExpr) throws Exception
@@ -731,12 +728,12 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormFieldMessageList(RetailscmUserContext userContext, String genericFormId, 
 			String formFieldMessageIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 		for(String formFieldMessageIdItem: formFieldMessageIds){
-			userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageIdItem);
+			checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm removeFormFieldMessageList(RetailscmUserContext userContext, String genericFormId, 
@@ -749,7 +746,7 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(genericForm){ 
 				//Will be good when the genericForm loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getGenericFormDAO().planToRemoveFormFieldMessageList(genericForm, formFieldMessageIds, allTokens());
+				genericFormDaoOf(userContext).planToRemoveFormFieldMessageList(genericForm, formFieldMessageIds, allTokens());
 				genericForm = saveGenericForm(userContext, genericForm, tokens().withFormFieldMessageList().done());
 				deleteRelationListInGraph(userContext, genericForm.getFormFieldMessageList());
 				return present(userContext,genericForm, mergedAllTokens(tokensExpr));
@@ -759,10 +756,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormFieldMessage(RetailscmUserContext userContext, String genericFormId, 
 		String formFieldMessageId, int formFieldMessageVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
-		userContext.getChecker().checkVersionOfFormFieldMessage(formFieldMessageVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+		checkerOf(userContext).checkVersionOfFormFieldMessage(formFieldMessageVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm removeFormFieldMessage(RetailscmUserContext userContext, String genericFormId, 
@@ -786,10 +783,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingFormFieldMessage(RetailscmUserContext userContext, String genericFormId, 
 		String formFieldMessageId, int formFieldMessageVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
-		userContext.getChecker().checkVersionOfFormFieldMessage(formFieldMessageVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+		checkerOf(userContext).checkVersionOfFormFieldMessage(formFieldMessageVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm copyFormFieldMessageFrom(RetailscmUserContext userContext, String genericFormId, 
@@ -818,25 +815,25 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
-		userContext.getChecker().checkVersionOfFormFieldMessage(formFieldMessageVersion);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+		checkerOf(userContext).checkVersionOfFormFieldMessage(formFieldMessageVersion);
 		
 
 		if(FormFieldMessage.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfFormFieldMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfFormFieldMessage(parseString(newValueExpr));
 		}
 		
 		if(FormFieldMessage.PARAMETER_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkParameterNameOfFormFieldMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkParameterNameOfFormFieldMessage(parseString(newValueExpr));
 		}
 		
 		if(FormFieldMessage.LEVEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLevelOfFormFieldMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkLevelOfFormFieldMessage(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	
@@ -879,44 +876,40 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 
 	protected void checkParamsForAddingFormField(RetailscmUserContext userContext, String genericFormId, String label, String localeKey, String parameterName, String type, String placeholder, String defaultValue, String description, String fieldGroup, String minimumValue, String maximumValue, boolean required, boolean disabled, boolean customRendering, String candidateValues, String suggestValues,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 
 		
+		checkerOf(userContext).checkLabelOfFormField(label);
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-
+		checkerOf(userContext).checkLocaleKeyOfFormField(localeKey);
 		
-		userContext.getChecker().checkLabelOfFormField(label);
+		checkerOf(userContext).checkParameterNameOfFormField(parameterName);
 		
-		userContext.getChecker().checkLocaleKeyOfFormField(localeKey);
+		checkerOf(userContext).checkTypeOfFormField(type);
 		
-		userContext.getChecker().checkParameterNameOfFormField(parameterName);
+		checkerOf(userContext).checkPlaceholderOfFormField(placeholder);
 		
-		userContext.getChecker().checkTypeOfFormField(type);
+		checkerOf(userContext).checkDefaultValueOfFormField(defaultValue);
 		
-		userContext.getChecker().checkPlaceholderOfFormField(placeholder);
+		checkerOf(userContext).checkDescriptionOfFormField(description);
 		
-		userContext.getChecker().checkDefaultValueOfFormField(defaultValue);
+		checkerOf(userContext).checkFieldGroupOfFormField(fieldGroup);
 		
-		userContext.getChecker().checkDescriptionOfFormField(description);
+		checkerOf(userContext).checkMinimumValueOfFormField(minimumValue);
 		
-		userContext.getChecker().checkFieldGroupOfFormField(fieldGroup);
+		checkerOf(userContext).checkMaximumValueOfFormField(maximumValue);
 		
-		userContext.getChecker().checkMinimumValueOfFormField(minimumValue);
+		checkerOf(userContext).checkRequiredOfFormField(required);
 		
-		userContext.getChecker().checkMaximumValueOfFormField(maximumValue);
+		checkerOf(userContext).checkDisabledOfFormField(disabled);
 		
-		userContext.getChecker().checkRequiredOfFormField(required);
+		checkerOf(userContext).checkCustomRenderingOfFormField(customRendering);
 		
-		userContext.getChecker().checkDisabledOfFormField(disabled);
+		checkerOf(userContext).checkCandidateValuesOfFormField(candidateValues);
 		
-		userContext.getChecker().checkCustomRenderingOfFormField(customRendering);
-		
-		userContext.getChecker().checkCandidateValuesOfFormField(candidateValues);
-		
-		userContext.getChecker().checkSuggestValuesOfFormField(suggestValues);
+		checkerOf(userContext).checkSuggestValuesOfFormField(suggestValues);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 
 	
 	}
@@ -940,26 +933,26 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingFormFieldProperties(RetailscmUserContext userContext, String genericFormId,String id,String label,String localeKey,String parameterName,String type,String placeholder,String defaultValue,String description,String fieldGroup,String minimumValue,String maximumValue,boolean required,boolean disabled,boolean customRendering,String candidateValues,String suggestValues,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormField(id);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormField(id);
 		
-		userContext.getChecker().checkLabelOfFormField( label);
-		userContext.getChecker().checkLocaleKeyOfFormField( localeKey);
-		userContext.getChecker().checkParameterNameOfFormField( parameterName);
-		userContext.getChecker().checkTypeOfFormField( type);
-		userContext.getChecker().checkPlaceholderOfFormField( placeholder);
-		userContext.getChecker().checkDefaultValueOfFormField( defaultValue);
-		userContext.getChecker().checkDescriptionOfFormField( description);
-		userContext.getChecker().checkFieldGroupOfFormField( fieldGroup);
-		userContext.getChecker().checkMinimumValueOfFormField( minimumValue);
-		userContext.getChecker().checkMaximumValueOfFormField( maximumValue);
-		userContext.getChecker().checkRequiredOfFormField( required);
-		userContext.getChecker().checkDisabledOfFormField( disabled);
-		userContext.getChecker().checkCustomRenderingOfFormField( customRendering);
-		userContext.getChecker().checkCandidateValuesOfFormField( candidateValues);
-		userContext.getChecker().checkSuggestValuesOfFormField( suggestValues);
+		checkerOf(userContext).checkLabelOfFormField( label);
+		checkerOf(userContext).checkLocaleKeyOfFormField( localeKey);
+		checkerOf(userContext).checkParameterNameOfFormField( parameterName);
+		checkerOf(userContext).checkTypeOfFormField( type);
+		checkerOf(userContext).checkPlaceholderOfFormField( placeholder);
+		checkerOf(userContext).checkDefaultValueOfFormField( defaultValue);
+		checkerOf(userContext).checkDescriptionOfFormField( description);
+		checkerOf(userContext).checkFieldGroupOfFormField( fieldGroup);
+		checkerOf(userContext).checkMinimumValueOfFormField( minimumValue);
+		checkerOf(userContext).checkMaximumValueOfFormField( maximumValue);
+		checkerOf(userContext).checkRequiredOfFormField( required);
+		checkerOf(userContext).checkDisabledOfFormField( disabled);
+		checkerOf(userContext).checkCustomRenderingOfFormField( customRendering);
+		checkerOf(userContext).checkCandidateValuesOfFormField( candidateValues);
+		checkerOf(userContext).checkSuggestValuesOfFormField( suggestValues);
 
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm updateFormFieldProperties(RetailscmUserContext userContext, String genericFormId, String id,String label,String localeKey,String parameterName,String type,String placeholder,String defaultValue,String description,String fieldGroup,String minimumValue,String maximumValue,boolean required,boolean disabled,boolean customRendering,String candidateValues,String suggestValues, String [] tokensExpr) throws Exception
@@ -1043,12 +1036,12 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormFieldList(RetailscmUserContext userContext, String genericFormId, 
 			String formFieldIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 		for(String formFieldIdItem: formFieldIds){
-			userContext.getChecker().checkIdOfFormField(formFieldIdItem);
+			checkerOf(userContext).checkIdOfFormField(formFieldIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm removeFormFieldList(RetailscmUserContext userContext, String genericFormId, 
@@ -1061,7 +1054,7 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(genericForm){ 
 				//Will be good when the genericForm loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getGenericFormDAO().planToRemoveFormFieldList(genericForm, formFieldIds, allTokens());
+				genericFormDaoOf(userContext).planToRemoveFormFieldList(genericForm, formFieldIds, allTokens());
 				genericForm = saveGenericForm(userContext, genericForm, tokens().withFormFieldList().done());
 				deleteRelationListInGraph(userContext, genericForm.getFormFieldList());
 				return present(userContext,genericForm, mergedAllTokens(tokensExpr));
@@ -1071,10 +1064,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormField(RetailscmUserContext userContext, String genericFormId, 
 		String formFieldId, int formFieldVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormField(formFieldId);
-		userContext.getChecker().checkVersionOfFormField(formFieldVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormField(formFieldId);
+		checkerOf(userContext).checkVersionOfFormField(formFieldVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm removeFormField(RetailscmUserContext userContext, String genericFormId, 
@@ -1098,10 +1091,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingFormField(RetailscmUserContext userContext, String genericFormId, 
 		String formFieldId, int formFieldVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormField(formFieldId);
-		userContext.getChecker().checkVersionOfFormField(formFieldVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormField(formFieldId);
+		checkerOf(userContext).checkVersionOfFormField(formFieldVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm copyFormFieldFrom(RetailscmUserContext userContext, String genericFormId, 
@@ -1130,73 +1123,73 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormField(formFieldId);
-		userContext.getChecker().checkVersionOfFormField(formFieldVersion);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormField(formFieldId);
+		checkerOf(userContext).checkVersionOfFormField(formFieldVersion);
 		
 
 		if(FormField.LABEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLabelOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkLabelOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.LOCALE_KEY_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocaleKeyOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkLocaleKeyOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.PARAMETER_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkParameterNameOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkParameterNameOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTypeOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkTypeOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.PLACEHOLDER_PROPERTY.equals(property)){
-			userContext.getChecker().checkPlaceholderOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkPlaceholderOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.DEFAULT_VALUE_PROPERTY.equals(property)){
-			userContext.getChecker().checkDefaultValueOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkDefaultValueOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.FIELD_GROUP_PROPERTY.equals(property)){
-			userContext.getChecker().checkFieldGroupOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkFieldGroupOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.MINIMUM_VALUE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMinimumValueOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkMinimumValueOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.MAXIMUM_VALUE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMaximumValueOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkMaximumValueOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.REQUIRED_PROPERTY.equals(property)){
-			userContext.getChecker().checkRequiredOfFormField(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkRequiredOfFormField(parseBoolean(newValueExpr));
 		}
 		
 		if(FormField.DISABLED_PROPERTY.equals(property)){
-			userContext.getChecker().checkDisabledOfFormField(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkDisabledOfFormField(parseBoolean(newValueExpr));
 		}
 		
 		if(FormField.CUSTOM_RENDERING_PROPERTY.equals(property)){
-			userContext.getChecker().checkCustomRenderingOfFormField(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkCustomRenderingOfFormField(parseBoolean(newValueExpr));
 		}
 		
 		if(FormField.CANDIDATE_VALUES_PROPERTY.equals(property)){
-			userContext.getChecker().checkCandidateValuesOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkCandidateValuesOfFormField(parseString(newValueExpr));
 		}
 		
 		if(FormField.SUGGEST_VALUES_PROPERTY.equals(property)){
-			userContext.getChecker().checkSuggestValuesOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkSuggestValuesOfFormField(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	
@@ -1239,24 +1232,20 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 
 	protected void checkParamsForAddingFormAction(RetailscmUserContext userContext, String genericFormId, String label, String localeKey, String actionKey, String level, String url,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 
 		
+		checkerOf(userContext).checkLabelOfFormAction(label);
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-
+		checkerOf(userContext).checkLocaleKeyOfFormAction(localeKey);
 		
-		userContext.getChecker().checkLabelOfFormAction(label);
+		checkerOf(userContext).checkActionKeyOfFormAction(actionKey);
 		
-		userContext.getChecker().checkLocaleKeyOfFormAction(localeKey);
+		checkerOf(userContext).checkLevelOfFormAction(level);
 		
-		userContext.getChecker().checkActionKeyOfFormAction(actionKey);
-		
-		userContext.getChecker().checkLevelOfFormAction(level);
-		
-		userContext.getChecker().checkUrlOfFormAction(url);
+		checkerOf(userContext).checkUrlOfFormAction(url);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 
 	
 	}
@@ -1280,16 +1269,16 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingFormActionProperties(RetailscmUserContext userContext, String genericFormId,String id,String label,String localeKey,String actionKey,String level,String url,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormAction(id);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormAction(id);
 		
-		userContext.getChecker().checkLabelOfFormAction( label);
-		userContext.getChecker().checkLocaleKeyOfFormAction( localeKey);
-		userContext.getChecker().checkActionKeyOfFormAction( actionKey);
-		userContext.getChecker().checkLevelOfFormAction( level);
-		userContext.getChecker().checkUrlOfFormAction( url);
+		checkerOf(userContext).checkLabelOfFormAction( label);
+		checkerOf(userContext).checkLocaleKeyOfFormAction( localeKey);
+		checkerOf(userContext).checkActionKeyOfFormAction( actionKey);
+		checkerOf(userContext).checkLevelOfFormAction( level);
+		checkerOf(userContext).checkUrlOfFormAction( url);
 
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm updateFormActionProperties(RetailscmUserContext userContext, String genericFormId, String id,String label,String localeKey,String actionKey,String level,String url, String [] tokensExpr) throws Exception
@@ -1353,12 +1342,12 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormActionList(RetailscmUserContext userContext, String genericFormId, 
 			String formActionIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
 		for(String formActionIdItem: formActionIds){
-			userContext.getChecker().checkIdOfFormAction(formActionIdItem);
+			checkerOf(userContext).checkIdOfFormAction(formActionIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 		
 	}
 	public  GenericForm removeFormActionList(RetailscmUserContext userContext, String genericFormId, 
@@ -1371,7 +1360,7 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(genericForm){ 
 				//Will be good when the genericForm loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getGenericFormDAO().planToRemoveFormActionList(genericForm, formActionIds, allTokens());
+				genericFormDaoOf(userContext).planToRemoveFormActionList(genericForm, formActionIds, allTokens());
 				genericForm = saveGenericForm(userContext, genericForm, tokens().withFormActionList().done());
 				deleteRelationListInGraph(userContext, genericForm.getFormActionList());
 				return present(userContext,genericForm, mergedAllTokens(tokensExpr));
@@ -1381,10 +1370,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingFormAction(RetailscmUserContext userContext, String genericFormId, 
 		String formActionId, int formActionVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormAction(formActionId);
-		userContext.getChecker().checkVersionOfFormAction(formActionVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormAction(formActionId);
+		checkerOf(userContext).checkVersionOfFormAction(formActionVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm removeFormAction(RetailscmUserContext userContext, String genericFormId, 
@@ -1408,10 +1397,10 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingFormAction(RetailscmUserContext userContext, String genericFormId, 
 		String formActionId, int formActionVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGenericForm( genericFormId);
-		userContext.getChecker().checkIdOfFormAction(formActionId);
-		userContext.getChecker().checkVersionOfFormAction(formActionVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).checkIdOfGenericForm( genericFormId);
+		checkerOf(userContext).checkIdOfFormAction(formActionId);
+		checkerOf(userContext).checkVersionOfFormAction(formActionVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	public  GenericForm copyFormActionFrom(RetailscmUserContext userContext, String genericFormId, 
@@ -1440,33 +1429,33 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfGenericForm(genericFormId);
-		userContext.getChecker().checkIdOfFormAction(formActionId);
-		userContext.getChecker().checkVersionOfFormAction(formActionVersion);
+		checkerOf(userContext).checkIdOfGenericForm(genericFormId);
+		checkerOf(userContext).checkIdOfFormAction(formActionId);
+		checkerOf(userContext).checkVersionOfFormAction(formActionVersion);
 		
 
 		if(FormAction.LABEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLabelOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkLabelOfFormAction(parseString(newValueExpr));
 		}
 		
 		if(FormAction.LOCALE_KEY_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocaleKeyOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkLocaleKeyOfFormAction(parseString(newValueExpr));
 		}
 		
 		if(FormAction.ACTION_KEY_PROPERTY.equals(property)){
-			userContext.getChecker().checkActionKeyOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkActionKeyOfFormAction(parseString(newValueExpr));
 		}
 		
 		if(FormAction.LEVEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLevelOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkLevelOfFormAction(parseString(newValueExpr));
 		}
 		
 		if(FormAction.URL_PROPERTY.equals(property)){
-			userContext.getChecker().checkUrlOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkUrlOfFormAction(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GenericFormManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
 	
 	}
 	

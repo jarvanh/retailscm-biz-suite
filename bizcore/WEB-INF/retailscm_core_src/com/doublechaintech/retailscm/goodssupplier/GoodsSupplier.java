@@ -88,19 +88,6 @@ public class GoodsSupplier extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	GoodsSupplier(String name, String supplyProduct, RetailStoreCountryCenter belongTo, String contactNumber, String description, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setSupplyProduct(supplyProduct);
-		setBelongTo(belongTo);
-		setContactNumber(contactNumber);
-		setDescription(description);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mSupplierProductList = new SmartList<SupplierProduct>();
-		this.mSupplyOrderList = new SmartList<SupplyOrder>();
-		this.mAccountSetList = new SmartList<AccountSet>();	
-	}
 	
 	//Support for changing the property
 	

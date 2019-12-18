@@ -24,12 +24,8 @@ public class StockCountIssueTrackTable{
 	static final String COLUMN_STOCK_COUNT = "stock_count";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_TITLE, COLUMN_COUNT_TIME, COLUMN_SUMMARY, COLUMN_STOCK_COUNT, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_TITLE, COLUMN_COUNT_TIME, COLUMN_SUMMARY, COLUMN_STOCK_COUNT
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_TITLE,COLUMN_COUNT_TIME,COLUMN_SUMMARY,COLUMN_STOCK_COUNT,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_TITLE,COLUMN_COUNT_TIME,COLUMN_SUMMARY,COLUMN_STOCK_COUNT};
 	
 	
 }

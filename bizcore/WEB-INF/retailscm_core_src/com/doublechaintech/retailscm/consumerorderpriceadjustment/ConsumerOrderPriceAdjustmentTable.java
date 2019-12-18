@@ -24,12 +24,8 @@ public class ConsumerOrderPriceAdjustmentTable{
 	static final String COLUMN_PROVIDER = "provider";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_NAME, COLUMN_BIZ_ORDER, COLUMN_AMOUNT, COLUMN_PROVIDER, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_NAME, COLUMN_BIZ_ORDER, COLUMN_AMOUNT, COLUMN_PROVIDER
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_BIZ_ORDER,COLUMN_AMOUNT,COLUMN_PROVIDER,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_BIZ_ORDER,COLUMN_AMOUNT,COLUMN_PROVIDER};
 	
 	
 }

@@ -53,6 +53,11 @@ public class CandidateElementJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}
 	*/
 	
+	public SmartList<CandidateElement> loadAll() {
+	    return this.loadAll(getCandidateElementMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -553,6 +558,10 @@ public class CandidateElementJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	@Override
 	public SmartList<CandidateElement> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCandidateElementMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

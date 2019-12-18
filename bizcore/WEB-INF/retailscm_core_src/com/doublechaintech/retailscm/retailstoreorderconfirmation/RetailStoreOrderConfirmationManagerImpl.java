@@ -40,6 +40,10 @@ import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderSh
 public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreOrderConfirmationManager {
 	
 	private static final String SERVICE_TYPE = "RetailStoreOrderConfirmation";
+	@Override
+	public RetailStoreOrderConfirmationDAO daoOf(RetailscmUserContext userContext) {
+		return retailStoreOrderConfirmationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -73,8 +77,8 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
  	
  	public RetailStoreOrderConfirmation loadRetailStoreOrderConfirmation(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderConfirmationManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderConfirmationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -87,8 +91,8 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
  	
  	 public RetailStoreOrderConfirmation searchRetailStoreOrderConfirmation(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderConfirmationManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderConfirmationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -106,10 +110,10 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 		addActions(userContext,retailStoreOrderConfirmation,tokens);
 		
 		
-		RetailStoreOrderConfirmation  retailStoreOrderConfirmationToPresent = userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().present(retailStoreOrderConfirmation, tokens);
+		RetailStoreOrderConfirmation  retailStoreOrderConfirmationToPresent = retailStoreOrderConfirmationDaoOf(userContext).present(retailStoreOrderConfirmation, tokens);
 		
 		List<BaseEntity> entityListToNaming = retailStoreOrderConfirmationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().alias(entityListToNaming);
+		retailStoreOrderConfirmationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  retailStoreOrderConfirmationToPresent;
 		
@@ -130,14 +134,14 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 		
  	}
  	protected RetailStoreOrderConfirmation saveRetailStoreOrderConfirmation(RetailscmUserContext userContext, RetailStoreOrderConfirmation retailStoreOrderConfirmation, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().save(retailStoreOrderConfirmation, tokens);
+ 		return retailStoreOrderConfirmationDaoOf(userContext).save(retailStoreOrderConfirmation, tokens);
  	}
  	protected RetailStoreOrderConfirmation loadRetailStoreOrderConfirmation(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderConfirmationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().load(retailStoreOrderConfirmationId, tokens);
+ 		return retailStoreOrderConfirmationDaoOf(userContext).load(retailStoreOrderConfirmationId, tokens);
  	}
 
 	
@@ -170,18 +174,18 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
  	
  	
 
-
-	public RetailStoreOrderConfirmation createRetailStoreOrderConfirmation(RetailscmUserContext userContext,String who, Date confirmTime) throws Exception
+	public RetailStoreOrderConfirmation createRetailStoreOrderConfirmation(RetailscmUserContext userContext, String who,Date confirmTime) throws Exception
+	//public RetailStoreOrderConfirmation createRetailStoreOrderConfirmation(RetailscmUserContext userContext,String who, Date confirmTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfRetailStoreOrderConfirmation(who);
-		userContext.getChecker().checkConfirmTimeOfRetailStoreOrderConfirmation(confirmTime);
+		checkerOf(userContext).checkWhoOfRetailStoreOrderConfirmation(who);
+		checkerOf(userContext).checkConfirmTimeOfRetailStoreOrderConfirmation(confirmTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 
 
 		RetailStoreOrderConfirmation retailStoreOrderConfirmation=createNewRetailStoreOrderConfirmation();	
@@ -208,18 +212,18 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 
 		
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
-		userContext.getChecker().checkVersionOfRetailStoreOrderConfirmation( retailStoreOrderConfirmationVersion);
+		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+		checkerOf(userContext).checkVersionOfRetailStoreOrderConfirmation( retailStoreOrderConfirmationVersion);
 		
 
 		if(RetailStoreOrderConfirmation.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfRetailStoreOrderConfirmation(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfRetailStoreOrderConfirmation(parseString(newValueExpr));
 		}
 		if(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkConfirmTimeOfRetailStoreOrderConfirmation(parseDate(newValueExpr));
+			checkerOf(userContext).checkConfirmTimeOfRetailStoreOrderConfirmation(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 	
 		
 	}
@@ -228,7 +232,7 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	
 	public RetailStoreOrderConfirmation clone(RetailscmUserContext userContext, String fromRetailStoreOrderConfirmationId) throws Exception{
 		
-		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().clone(fromRetailStoreOrderConfirmationId, this.allTokens());
+		return retailStoreOrderConfirmationDaoOf(userContext).clone(fromRetailStoreOrderConfirmationId, this.allTokens());
 	}
 	
 	public RetailStoreOrderConfirmation internalSaveRetailStoreOrderConfirmation(RetailscmUserContext userContext, RetailStoreOrderConfirmation retailStoreOrderConfirmation) throws Exception 
@@ -334,7 +338,7 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreOrderConfirmationId, int retailStoreOrderConfirmationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().delete(retailStoreOrderConfirmationId, retailStoreOrderConfirmationVersion);
+		retailStoreOrderConfirmationDaoOf(userContext).delete(retailStoreOrderConfirmationId, retailStoreOrderConfirmationVersion);
 	}
 	
 	public RetailStoreOrderConfirmation forgetByAll(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, int retailStoreOrderConfirmationVersion) throws Exception {
@@ -343,8 +347,9 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	protected RetailStoreOrderConfirmation forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreOrderConfirmationId, int retailStoreOrderConfirmationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().disconnectFromAll(retailStoreOrderConfirmationId, retailStoreOrderConfirmationVersion);
+		return retailStoreOrderConfirmationDaoOf(userContext).disconnectFromAll(retailStoreOrderConfirmationId, retailStoreOrderConfirmationVersion);
 	}
+	
 	
 
 	
@@ -361,7 +366,7 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().deleteAll();
+		return retailStoreOrderConfirmationDaoOf(userContext).deleteAll();
 	}
 
 
@@ -377,7 +382,7 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().planToRemoveRetailStoreOrderListWithBuyer(retailStoreOrderConfirmation, buyerId, this.emptyOptions());
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderListWithBuyer(retailStoreOrderConfirmation, buyerId, this.emptyOptions());
 
 				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
 				return retailStoreOrderConfirmation;
@@ -395,7 +400,97 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().planToRemoveRetailStoreOrderListWithSeller(retailStoreOrderConfirmation, sellerId, this.emptyOptions());
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderListWithSeller(retailStoreOrderConfirmation, sellerId, this.emptyOptions());
+
+				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
+				return retailStoreOrderConfirmation;
+			}
+	}
+	//disconnect RetailStoreOrderConfirmation with approval in RetailStoreOrder
+	protected RetailStoreOrderConfirmation breakWithRetailStoreOrderByApproval(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String approvalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, allTokens());
+
+			synchronized(retailStoreOrderConfirmation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderListWithApproval(retailStoreOrderConfirmation, approvalId, this.emptyOptions());
+
+				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
+				return retailStoreOrderConfirmation;
+			}
+	}
+	//disconnect RetailStoreOrderConfirmation with processing in RetailStoreOrder
+	protected RetailStoreOrderConfirmation breakWithRetailStoreOrderByProcessing(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String processingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, allTokens());
+
+			synchronized(retailStoreOrderConfirmation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderListWithProcessing(retailStoreOrderConfirmation, processingId, this.emptyOptions());
+
+				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
+				return retailStoreOrderConfirmation;
+			}
+	}
+	//disconnect RetailStoreOrderConfirmation with picking in RetailStoreOrder
+	protected RetailStoreOrderConfirmation breakWithRetailStoreOrderByPicking(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String pickingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, allTokens());
+
+			synchronized(retailStoreOrderConfirmation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderListWithPicking(retailStoreOrderConfirmation, pickingId, this.emptyOptions());
+
+				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
+				return retailStoreOrderConfirmation;
+			}
+	}
+	//disconnect RetailStoreOrderConfirmation with shipment in RetailStoreOrder
+	protected RetailStoreOrderConfirmation breakWithRetailStoreOrderByShipment(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String shipmentId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, allTokens());
+
+			synchronized(retailStoreOrderConfirmation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderListWithShipment(retailStoreOrderConfirmation, shipmentId, this.emptyOptions());
+
+				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
+				return retailStoreOrderConfirmation;
+			}
+	}
+	//disconnect RetailStoreOrderConfirmation with delivery in RetailStoreOrder
+	protected RetailStoreOrderConfirmation breakWithRetailStoreOrderByDelivery(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String deliveryId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, allTokens());
+
+			synchronized(retailStoreOrderConfirmation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderListWithDelivery(retailStoreOrderConfirmation, deliveryId, this.emptyOptions());
 
 				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
 				return retailStoreOrderConfirmation;
@@ -407,33 +502,39 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	
 	
 
-	protected void checkParamsForAddingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String buyerId, String sellerId, String title, BigDecimal totalAmount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
 
 		
+		checkerOf(userContext).checkBuyerIdOfRetailStoreOrder(buyerId);
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
-
+		checkerOf(userContext).checkSellerIdOfRetailStoreOrder(sellerId);
 		
-		userContext.getChecker().checkBuyerIdOfRetailStoreOrder(buyerId);
+		checkerOf(userContext).checkTitleOfRetailStoreOrder(title);
 		
-		userContext.getChecker().checkSellerIdOfRetailStoreOrder(sellerId);
+		checkerOf(userContext).checkTotalAmountOfRetailStoreOrder(totalAmount);
 		
-		userContext.getChecker().checkTitleOfRetailStoreOrder(title);
+		checkerOf(userContext).checkApprovalIdOfRetailStoreOrder(approvalId);
 		
-		userContext.getChecker().checkTotalAmountOfRetailStoreOrder(totalAmount);
+		checkerOf(userContext).checkProcessingIdOfRetailStoreOrder(processingId);
+		
+		checkerOf(userContext).checkPickingIdOfRetailStoreOrder(pickingId);
+		
+		checkerOf(userContext).checkShipmentIdOfRetailStoreOrder(shipmentId);
+		
+		checkerOf(userContext).checkDeliveryIdOfRetailStoreOrder(deliveryId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 
 	
 	}
-	public  RetailStoreOrderConfirmation addRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String [] tokensExpr) throws Exception
+	public  RetailStoreOrderConfirmation addRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingRetailStoreOrder(userContext,retailStoreOrderConfirmationId,buyerId, sellerId, title, totalAmount,tokensExpr);
+		checkParamsForAddingRetailStoreOrder(userContext,retailStoreOrderConfirmationId,buyerId, sellerId, title, totalAmount, approvalId, processingId, pickingId, shipmentId, deliveryId,tokensExpr);
 		
-		RetailStoreOrder retailStoreOrder = createRetailStoreOrder(userContext,buyerId, sellerId, title, totalAmount);
+		RetailStoreOrder retailStoreOrder = createRetailStoreOrder(userContext,buyerId, sellerId, title, totalAmount, approvalId, processingId, pickingId, shipmentId, deliveryId);
 		
 		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, allTokens());
 		synchronized(retailStoreOrderConfirmation){ 
@@ -448,13 +549,13 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	}
 	protected void checkParamsForUpdatingRetailStoreOrderProperties(RetailscmUserContext userContext, String retailStoreOrderConfirmationId,String id,String title,BigDecimal totalAmount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
-		userContext.getChecker().checkIdOfRetailStoreOrder(id);
+		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+		checkerOf(userContext).checkIdOfRetailStoreOrder(id);
 		
-		userContext.getChecker().checkTitleOfRetailStoreOrder( title);
-		userContext.getChecker().checkTotalAmountOfRetailStoreOrder( totalAmount);
+		checkerOf(userContext).checkTitleOfRetailStoreOrder( title);
+		checkerOf(userContext).checkTotalAmountOfRetailStoreOrder( totalAmount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 		
 	}
 	public  RetailStoreOrderConfirmation updateRetailStoreOrderProperties(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String id,String title,BigDecimal totalAmount, String [] tokensExpr) throws Exception
@@ -486,7 +587,7 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	}
 	
 	
-	protected RetailStoreOrder createRetailStoreOrder(RetailscmUserContext userContext, String buyerId, String sellerId, String title, BigDecimal totalAmount) throws Exception{
+	protected RetailStoreOrder createRetailStoreOrder(RetailscmUserContext userContext, String buyerId, String sellerId, String title, BigDecimal totalAmount, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId) throws Exception{
 
 		RetailStoreOrder retailStoreOrder = new RetailStoreOrder();
 		
@@ -499,8 +600,22 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 		retailStoreOrder.setSeller(seller);		
 		retailStoreOrder.setTitle(title);		
 		retailStoreOrder.setTotalAmount(totalAmount);		
-		retailStoreOrder.setLastUpdateTime(userContext.now());		
-		retailStoreOrder.setCurrentStatus("INIT");
+		RetailStoreOrderApproval  approval = new RetailStoreOrderApproval();
+		approval.setId(approvalId);		
+		retailStoreOrder.setApproval(approval);		
+		RetailStoreOrderProcessing  processing = new RetailStoreOrderProcessing();
+		processing.setId(processingId);		
+		retailStoreOrder.setProcessing(processing);		
+		RetailStoreOrderPicking  picking = new RetailStoreOrderPicking();
+		picking.setId(pickingId);		
+		retailStoreOrder.setPicking(picking);		
+		RetailStoreOrderShipment  shipment = new RetailStoreOrderShipment();
+		shipment.setId(shipmentId);		
+		retailStoreOrder.setShipment(shipment);		
+		RetailStoreOrderDelivery  delivery = new RetailStoreOrderDelivery();
+		delivery.setId(deliveryId);		
+		retailStoreOrder.setDelivery(delivery);		
+		retailStoreOrder.setLastUpdateTime(userContext.now());
 	
 		
 		return retailStoreOrder;
@@ -520,12 +635,12 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	protected void checkParamsForRemovingRetailStoreOrderList(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, 
 			String retailStoreOrderIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
 		for(String retailStoreOrderIdItem: retailStoreOrderIds){
-			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
+			checkerOf(userContext).checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 		
 	}
 	public  RetailStoreOrderConfirmation removeRetailStoreOrderList(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, 
@@ -538,7 +653,7 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 			synchronized(retailStoreOrderConfirmation){ 
 				//Will be good when the retailStoreOrderConfirmation loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO().planToRemoveRetailStoreOrderList(retailStoreOrderConfirmation, retailStoreOrderIds, allTokens());
+				retailStoreOrderConfirmationDaoOf(userContext).planToRemoveRetailStoreOrderList(retailStoreOrderConfirmation, retailStoreOrderIds, allTokens());
 				retailStoreOrderConfirmation = saveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation, tokens().withRetailStoreOrderList().done());
 				deleteRelationListInGraph(userContext, retailStoreOrderConfirmation.getRetailStoreOrderList());
 				return present(userContext,retailStoreOrderConfirmation, mergedAllTokens(tokensExpr));
@@ -548,10 +663,10 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	protected void checkParamsForRemovingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, 
 		String retailStoreOrderId, int retailStoreOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation( retailStoreOrderConfirmationId);
-		userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
-		userContext.getChecker().checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation( retailStoreOrderConfirmationId);
+		checkerOf(userContext).checkIdOfRetailStoreOrder(retailStoreOrderId);
+		checkerOf(userContext).checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 	
 	}
 	public  RetailStoreOrderConfirmation removeRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, 
@@ -575,10 +690,10 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 	protected void checkParamsForCopyingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, 
 		String retailStoreOrderId, int retailStoreOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation( retailStoreOrderConfirmationId);
-		userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
-		userContext.getChecker().checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation( retailStoreOrderConfirmationId);
+		checkerOf(userContext).checkIdOfRetailStoreOrder(retailStoreOrderId);
+		checkerOf(userContext).checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 	
 	}
 	public  RetailStoreOrderConfirmation copyRetailStoreOrderFrom(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, 
@@ -607,21 +722,21 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 		
 
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
-		userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderId);
-		userContext.getChecker().checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
+		checkerOf(userContext).checkIdOfRetailStoreOrderConfirmation(retailStoreOrderConfirmationId);
+		checkerOf(userContext).checkIdOfRetailStoreOrder(retailStoreOrderId);
+		checkerOf(userContext).checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
 		
 
 		if(RetailStoreOrder.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfRetailStoreOrder(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfRetailStoreOrder(parseString(newValueExpr));
 		}
 		
 		if(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAmountOfRetailStoreOrder(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkTotalAmountOfRetailStoreOrder(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderConfirmationManagerException.class);
 	
 	}
 	
@@ -656,180 +771,10 @@ public class RetailStoreOrderConfirmationManagerImpl extends CustomRetailscmChec
 
 	}
 	/*
-	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToNewApproval(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String who, Date approveTime, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderApproval approval = userContext.getManagerGroup().getRetailStoreOrderApprovalManager().createRetailStoreOrderApproval(userContext,  who,  approveTime);
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateApproval(approval);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToNewProcessing(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderProcessing processing = userContext.getManagerGroup().getRetailStoreOrderProcessingManager().createRetailStoreOrderProcessing(userContext,  who,  processTime);
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateProcessing(processing);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToNewPicking(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderPicking picking = userContext.getManagerGroup().getRetailStoreOrderPickingManager().createRetailStoreOrderPicking(userContext,  who,  processTime);
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updatePicking(picking);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToNewShipment(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String who, Date shipTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderShipment shipment = userContext.getManagerGroup().getRetailStoreOrderShipmentManager().createRetailStoreOrderShipment(userContext,  who,  shipTime);
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateShipment(shipment);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToNewDelivery(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String who, Date deliveryTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderDelivery delivery = userContext.getManagerGroup().getRetailStoreOrderDeliveryManager().createRetailStoreOrderDelivery(userContext,  who,  deliveryTime);
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}
 	*/
 	
-	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToApproval(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String approvalId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderApproval approval = userContext.getManagerGroup().getRetailStoreOrderApprovalManager().loadRetailStoreOrderApproval(userContext,approvalId,new String[]{"none"} );
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateApproval(approval);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToProcessing(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String processingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderProcessing processing = userContext.getManagerGroup().getRetailStoreOrderProcessingManager().loadRetailStoreOrderProcessing(userContext,processingId,new String[]{"none"} );
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateProcessing(processing);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToPicking(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String pickingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderPicking picking = userContext.getManagerGroup().getRetailStoreOrderPickingManager().loadRetailStoreOrderPicking(userContext,pickingId,new String[]{"none"} );
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updatePicking(picking);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToShipment(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String shipmentId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderShipment shipment = userContext.getManagerGroup().getRetailStoreOrderShipmentManager().loadRetailStoreOrderShipment(userContext,shipmentId,new String[]{"none"} );
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateShipment(shipment);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}	public  RetailStoreOrderConfirmation associateRetailStoreOrderListToDelivery(RetailscmUserContext userContext, String retailStoreOrderConfirmationId, String  retailStoreOrderIds[], String deliveryId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreOrderIds)).done();
-		
-		RetailStoreOrderConfirmation retailStoreOrderConfirmation = loadRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmationId, options);
-		
-		RetailStoreOrderDelivery delivery = userContext.getManagerGroup().getRetailStoreOrderDeliveryManager().loadRetailStoreOrderDelivery(userContext,deliveryId,new String[]{"none"} );
-		
-		for(RetailStoreOrder retailStoreOrder: retailStoreOrderConfirmation.getRetailStoreOrderList()) {
-			//TODO: need to check if already associated
-			retailStoreOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveRetailStoreOrderConfirmation(userContext, retailStoreOrderConfirmation);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreOrderConfirmation newCreated) throws Exception{

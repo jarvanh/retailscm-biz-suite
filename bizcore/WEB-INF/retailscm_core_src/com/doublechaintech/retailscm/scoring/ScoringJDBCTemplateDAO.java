@@ -63,6 +63,11 @@ public class ScoringJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Scor
 	}
 	*/
 	
+	public SmartList<Scoring> loadAll() {
+	    return this.loadAll(getScoringMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -779,6 +784,10 @@ public class ScoringJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Scor
 	@Override
 	public SmartList<Scoring> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getScoringMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

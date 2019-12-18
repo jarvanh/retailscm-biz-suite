@@ -23,12 +23,8 @@ public class TerminationReasonTable{
 	static final String COLUMN_DESCRIPTION = "description";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_CODE, COLUMN_COMPANY, COLUMN_DESCRIPTION, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_CODE, COLUMN_COMPANY, COLUMN_DESCRIPTION
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_CODE,COLUMN_COMPANY,COLUMN_DESCRIPTION,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_CODE,COLUMN_COMPANY,COLUMN_DESCRIPTION};
 	
 	
 }

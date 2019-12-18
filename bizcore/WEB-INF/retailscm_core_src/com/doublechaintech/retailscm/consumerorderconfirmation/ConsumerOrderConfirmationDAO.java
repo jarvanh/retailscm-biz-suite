@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.consumerorderconfirmation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -11,9 +12,9 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
 
-public interface ConsumerOrderConfirmationDAO{
+public interface ConsumerOrderConfirmationDAO extends BaseDAO{
 
-	
+	public SmartList<ConsumerOrderConfirmation> loadAll();
 	public ConsumerOrderConfirmation load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ConsumerOrderConfirmation> consumerOrderConfirmationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -43,6 +44,7 @@ public interface ConsumerOrderConfirmationDAO{
 	
 	
 	public SmartList<ConsumerOrderConfirmation> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 }
 

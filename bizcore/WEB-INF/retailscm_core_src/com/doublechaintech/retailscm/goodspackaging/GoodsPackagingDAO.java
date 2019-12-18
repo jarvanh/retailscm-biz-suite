@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.goodspackaging;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
-public interface GoodsPackagingDAO{
+public interface GoodsPackagingDAO extends BaseDAO{
 
-	
+	public SmartList<GoodsPackaging> loadAll();
 	public GoodsPackaging load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<GoodsPackaging> goodsPackagingList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -88,6 +89,7 @@ public interface GoodsPackagingDAO{
 	
 	
 	public SmartList<GoodsPackaging> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:Goods的packaging的GoodsList
 	public SmartList<Goods> loadOurGoodsList(RetailscmUserContext userContext, List<GoodsPackaging> us, Map<String,Object> options) throws Exception;

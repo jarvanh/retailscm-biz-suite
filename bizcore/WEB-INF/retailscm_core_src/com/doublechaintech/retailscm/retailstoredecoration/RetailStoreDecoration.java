@@ -70,12 +70,6 @@ public class RetailStoreDecoration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
-	public 	RetailStoreDecoration(String comment)
-	{
-		setComment(comment);
-
-		this.mRetailStoreList = new SmartList<RetailStore>();	
-	}
 	
 	//Support for changing the property
 	

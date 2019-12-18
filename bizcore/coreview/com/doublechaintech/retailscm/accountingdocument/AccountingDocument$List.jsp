@@ -122,9 +122,6 @@
 <c:if test="${param.referName ne 'posting'}">
 	<th>${userContext.localeMap['accounting_document.posting']}</th>
 </c:if>
-<c:if test="${param.referName ne 'currentStatus'}">
-	<th>${userContext.localeMap['accounting_document.current_status']}</th>
-</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -247,8 +244,7 @@
 		</div>
 	</td>
 </c:if>
-<c:if test="${param.referName ne 'currentStatus'}">	<td contenteditable='true' class='edit-value'  propertyToChange='currentStatus' storedCellValue='${item.currentStatus}' prefix='${ownerBeanName}Manager/updateAccountingDocument/${result.id}/${item.id}/'>${item.currentStatus}</td>
-</c:if>
+
 				<td>
 
 				<a href='#${ownerBeanName}Manager/removeAccountingDocument/${result.id}/${item.id}/' class='delete-action btn btn-danger btn-xs'><i class="fa fa-trash-o fa-lg"></i> ${userContext.localeMap['@delete']}</a>

@@ -23,12 +23,8 @@ public class AccountingDocumentTypeTable{
 	static final String COLUMN_ACCOUNTING_PERIOD = "accounting_period";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_NAME, COLUMN_DESCRIPTION, COLUMN_ACCOUNTING_PERIOD, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_NAME, COLUMN_DESCRIPTION, COLUMN_ACCOUNTING_PERIOD
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_ACCOUNTING_PERIOD,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_ACCOUNTING_PERIOD};
 	
 	
 }

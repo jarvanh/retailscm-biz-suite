@@ -83,17 +83,6 @@ public class CityPartner extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	CityPartner(String name, String mobile, RetailStoreCityServiceCenter cityServiceCenter, String description, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setMobile(mobile);
-		setCityServiceCenter(cityServiceCenter);
-		setDescription(description);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mPotentialCustomerList = new SmartList<PotentialCustomer>();
-		this.mPotentialCustomerContactList = new SmartList<PotentialCustomerContact>();	
-	}
 	
 	//Support for changing the property
 	

@@ -78,15 +78,6 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	PayingOff(String who, Employee paidFor, Date paidTime, BigDecimal amount)
-	{
-		setWho(who);
-		setPaidFor(paidFor);
-		setPaidTime(paidTime);
-		setAmount(amount);
-
-		this.mEmployeeSalarySheetList = new SmartList<EmployeeSalarySheet>();	
-	}
 	
 	//Support for changing the property
 	

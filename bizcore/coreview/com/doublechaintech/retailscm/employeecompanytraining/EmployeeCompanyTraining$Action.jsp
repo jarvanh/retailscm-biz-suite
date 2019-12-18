@@ -18,7 +18,6 @@
 	
 	
 	<li><span>${userContext.localeMap['employee_company_training.id']}</span> ${employeeCompanyTraining.id}</li>
-<li><span>${userContext.localeMap['employee_company_training.current_status']}</span> ${employeeCompanyTraining.currentStatus}</li>
 
 	
 	</ul>

@@ -25,7 +25,6 @@
 <li><span>${userContext.localeMap['original_voucher.received_by']}</span> ${originalVoucher.receivedBy}</li>
 <li><span>${userContext.localeMap['original_voucher.voucher_type']}</span> ${originalVoucher.voucherType}</li>
 <li><span>${userContext.localeMap['original_voucher.voucher_image']}</span> ${originalVoucher.voucherImage}</li>
-<li><span>${userContext.localeMap['original_voucher.current_status']}</span> ${originalVoucher.currentStatus}</li>
 
 	
 	</ul>

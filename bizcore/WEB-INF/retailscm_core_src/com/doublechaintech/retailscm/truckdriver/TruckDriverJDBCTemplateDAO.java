@@ -74,6 +74,11 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<TruckDriver> loadAll() {
+	    return this.loadAll(getTruckDriverMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -936,6 +941,10 @@ public class TruckDriverJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public SmartList<TruckDriver> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTruckDriverMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

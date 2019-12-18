@@ -21,15 +21,10 @@ public class EmployeeCompanyTrainingTable{
 	static final String COLUMN_EMPLOYEE = "employee";
 	static final String COLUMN_TRAINING = "training";
 	static final String COLUMN_SCORING = "scoring";
-	static final String COLUMN_CURRENT_STATUS = "current_status";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_EMPLOYEE, COLUMN_TRAINING, COLUMN_SCORING, COLUMN_CURRENT_STATUS, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_EMPLOYEE, COLUMN_TRAINING, COLUMN_SCORING, COLUMN_CURRENT_STATUS
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_EMPLOYEE,COLUMN_TRAINING,COLUMN_SCORING,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_EMPLOYEE,COLUMN_TRAINING,COLUMN_SCORING};
 	
 	
 }

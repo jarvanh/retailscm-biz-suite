@@ -74,6 +74,11 @@ public class LevelOneCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}
 	*/
 	
+	public SmartList<LevelOneCategory> loadAll() {
+	    return this.loadAll(getLevelOneCategoryMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -800,6 +805,10 @@ public class LevelOneCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	@Override
 	public SmartList<LevelOneCategory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelOneCategoryMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

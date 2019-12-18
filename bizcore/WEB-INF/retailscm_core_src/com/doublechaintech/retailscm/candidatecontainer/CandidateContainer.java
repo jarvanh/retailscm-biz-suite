@@ -70,12 +70,6 @@ public class CandidateContainer extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	CandidateContainer(String name)
-	{
-		setName(name);
-
-		this.mCandidateElementList = new SmartList<CandidateElement>();	
-	}
 	
 	//Support for changing the property
 	

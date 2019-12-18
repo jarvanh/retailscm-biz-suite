@@ -257,20 +257,6 @@ public class RetailStoreForm extends BaseForm {
 		return lastUpdateTimeField("lastUpdateTime","");
 	}
 
-
-	public RetailStoreForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromRetailStore(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public RetailStoreForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -782,20 +768,6 @@ public class RetailStoreForm extends BaseForm {
 	}
 
 
-	public RetailStoreForm currentStatusFieldForConsumerOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromConsumerOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreForm currentStatusFieldForConsumerOrder(String initValue){
-		return currentStatusFieldForConsumerOrder("currentStatus",initValue);
-	}
-	public RetailStoreForm currentStatusFieldForConsumerOrder(){
-		return currentStatusFieldForConsumerOrder("currentStatus","");
-	}
-
-
 	public RetailStoreForm retailStoreOrderIdFieldForRetailStoreOrder(String parameterName, String initValue){
 		FormField field =  idFromRetailStoreOrder(parameterName, initValue);		
 		this.addFormField(field);
@@ -961,20 +933,6 @@ public class RetailStoreForm extends BaseForm {
 	}
 	public RetailStoreForm lastUpdateTimeFieldForRetailStoreOrder(){
 		return lastUpdateTimeFieldForRetailStoreOrder("lastUpdateTime","");
-	}
-
-
-	public RetailStoreForm currentStatusFieldForRetailStoreOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStoreOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreForm currentStatusFieldForRetailStoreOrder(String initValue){
-		return currentStatusFieldForRetailStoreOrder("currentStatus",initValue);
-	}
-	public RetailStoreForm currentStatusFieldForRetailStoreOrder(){
-		return currentStatusFieldForRetailStoreOrder("currentStatus","");
 	}
 
 
@@ -1199,20 +1157,6 @@ public class RetailStoreForm extends BaseForm {
 	}
 	public RetailStoreForm packagingIdFieldForGoods(){
 		return packagingIdFieldForGoods("packagingId","");
-	}
-
-
-	public RetailStoreForm currentStatusFieldForGoods(String parameterName, String initValue){
-		FormField field =  currentStatusFromGoods(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreForm currentStatusFieldForGoods(String initValue){
-		return currentStatusFieldForGoods("currentStatus",initValue);
-	}
-	public RetailStoreForm currentStatusFieldForGoods(){
-		return currentStatusFieldForGoods("currentStatus","");
 	}
 
 
@@ -1560,54 +1504,66 @@ public class RetailStoreForm extends BaseForm {
 	}
 
  	
- 	public RetailStoreForm  createAction(){
+ 	public RetailStoreForm transferToAnotherCreationAction(){
 		FormAction action = new FormAction();
-		action.setLabel("创建");
-		action.setLocaleKey("retail_store.create");
-		action.setUrl("retailStoreManager/create/retailStoreId/comment/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreForm  inviteInvestmentAction(){
-		FormAction action = new FormAction();
-		action.setLabel("招商");
-		action.setLocaleKey("retail_store.inviteInvestment");
-		action.setUrl("retailStoreManager/inviteInvestment/retailStoreId/comment/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreForm  franchiseAction(){
-		FormAction action = new FormAction();
-		action.setLabel("加盟");
-		action.setLocaleKey("retail_store.franchise");
-		action.setUrl("retailStoreManager/franchise/retailStoreId/comment/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreForm  decorateAction(){
-		FormAction action = new FormAction();
-		action.setLabel("装修");
-		action.setLocaleKey("retail_store.decorate");
-		action.setUrl("retailStoreManager/decorate/retailStoreId/comment/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreForm  openAction(){
-		FormAction action = new FormAction();
-		action.setLabel("开业");
-		action.setLocaleKey("retail_store.open");
-		action.setUrl("retailStoreManager/open/retailStoreId/comment/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreForm  closeAction(){
-		FormAction action = new FormAction();
-		action.setLabel("关闭");
-		action.setLocaleKey("retail_store.close");
-		action.setUrl("retailStoreManager/close/retailStoreId/comment/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherCreation/retailStoreId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 	
+ 	public RetailStoreForm transferToAnotherInvestmentInvitationAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherInvestmentInvitation/retailStoreId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreForm transferToAnotherFranchisingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherFranchising/retailStoreId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreForm transferToAnotherDecorationAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherDecoration/retailStoreId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreForm transferToAnotherOpeningAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherOpening/retailStoreId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreForm transferToAnotherClosingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherClosing/retailStoreId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 
 
 	public RetailStoreForm showAction(){
 		FormAction action = new FormAction();

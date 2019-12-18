@@ -53,6 +53,11 @@ public class EmployeeWorkExperienceJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	}
 	*/
 	
+	public SmartList<EmployeeWorkExperience> loadAll() {
+	    return this.loadAll(getEmployeeWorkExperienceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -555,6 +560,10 @@ public class EmployeeWorkExperienceJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	@Override
 	public SmartList<EmployeeWorkExperience> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeWorkExperienceMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

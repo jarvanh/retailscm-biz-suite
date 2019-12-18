@@ -53,6 +53,11 @@ public class UserWhiteListJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<UserWhiteList> loadAll() {
+	    return this.loadAll(getUserWhiteListMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -551,6 +556,10 @@ public class UserWhiteListJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<UserWhiteList> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getUserWhiteListMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

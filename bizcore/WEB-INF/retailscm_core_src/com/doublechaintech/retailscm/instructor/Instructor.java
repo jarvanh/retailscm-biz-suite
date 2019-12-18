@@ -86,19 +86,6 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Instructor(String title, String familyName, String givenName, String cellPhone, String email, RetailStoreCountryCenter company, String introduction, DateTime lastUpdateTime)
-	{
-		setTitle(title);
-		setFamilyName(familyName);
-		setGivenName(givenName);
-		setCellPhone(cellPhone);
-		setEmail(email);
-		setCompany(company);
-		setIntroduction(introduction);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mCompanyTrainingList = new SmartList<CompanyTraining>();	
-	}
 	
 	//Support for changing the property
 	

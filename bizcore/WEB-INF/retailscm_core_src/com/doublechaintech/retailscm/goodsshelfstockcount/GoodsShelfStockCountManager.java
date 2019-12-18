@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface GoodsShelfStockCountManager{
+public interface GoodsShelfStockCountManager extends BaseManager{
 
 		
 
-	public GoodsShelfStockCount createGoodsShelfStockCount(RetailscmUserContext userContext, String title, Date countTime, String summary, String shelfId) throws Exception;	
+	public GoodsShelfStockCount createGoodsShelfStockCount(RetailscmUserContext userContext, String title,Date countTime,String summary,String shelfId) throws Exception;	
 	public GoodsShelfStockCount updateGoodsShelfStockCount(RetailscmUserContext userContext,String goodsShelfStockCountId, int goodsShelfStockCountVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public GoodsShelfStockCount loadGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfStockCountId, String [] tokensExpr) throws Exception;
 	public GoodsShelfStockCount internalSaveGoodsShelfStockCount(RetailscmUserContext userContext, GoodsShelfStockCount goodsShelfStockCount) throws Exception;

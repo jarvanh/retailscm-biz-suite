@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoremember;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -27,9 +28,9 @@ import com.doublechaintech.retailscm.retailstoremembercoupon.RetailStoreMemberCo
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface RetailStoreMemberDAO{
+public interface RetailStoreMemberDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreMember> loadAll();
 	public RetailStoreMember load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreMember> retailStoreMemberList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -88,6 +89,26 @@ public interface RetailStoreMemberDAO{
 	public RetailStoreMember planToRemoveConsumerOrderList(RetailStoreMember retailStoreMember, String consumerOrderIds[], Map<String,Object> options)throws Exception;
 
 
+	//disconnect RetailStoreMember with confirmation in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithConfirmation(RetailStoreMember retailStoreMember, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithConfirmation(String retailStoreMemberId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreMember with approval in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithApproval(RetailStoreMember retailStoreMember, String approvalId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithApproval(String retailStoreMemberId, String approvalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreMember with processing in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithProcessing(RetailStoreMember retailStoreMember, String processingId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithProcessing(String retailStoreMemberId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreMember with shipment in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithShipment(RetailStoreMember retailStoreMember, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithShipment(String retailStoreMemberId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreMember with delivery in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithDelivery(RetailStoreMember retailStoreMember, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithDelivery(String retailStoreMemberId, String deliveryId, Map<String,Object> options)throws Exception;
+	
 	//disconnect RetailStoreMember with store in ConsumerOrder
 	public RetailStoreMember planToRemoveConsumerOrderListWithStore(RetailStoreMember retailStoreMember, String storeId, Map<String,Object> options)throws Exception;
 	public int countConsumerOrderListWithStore(String retailStoreMemberId, String storeId, Map<String,Object> options)throws Exception;
@@ -112,6 +133,7 @@ public interface RetailStoreMemberDAO{
 
 	
 	public SmartList<RetailStoreMember> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreMember> findRetailStoreMemberByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countRetailStoreMemberByOwner(String retailStoreCountryCenterId, Map<String,Object> options);

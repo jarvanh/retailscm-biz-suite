@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface TrainingCourseTypeManager{
+public interface TrainingCourseTypeManager extends BaseManager{
 
 		
 
-	public TrainingCourseType createTrainingCourseType(RetailscmUserContext userContext, String code, String companyId, String name, String description) throws Exception;	
+	public TrainingCourseType createTrainingCourseType(RetailscmUserContext userContext, String code,String companyId,String name,String description) throws Exception;	
 	public TrainingCourseType updateTrainingCourseType(RetailscmUserContext userContext,String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public TrainingCourseType loadTrainingCourseType(RetailscmUserContext userContext, String trainingCourseTypeId, String [] tokensExpr) throws Exception;
 	public TrainingCourseType internalSaveTrainingCourseType(RetailscmUserContext userContext, TrainingCourseType trainingCourseType) throws Exception;

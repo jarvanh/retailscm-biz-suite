@@ -97,21 +97,6 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	TransportTask(String name, String start, Date beginTime, RetailStore end, TruckDriver driver, TransportTruck truck, TransportFleet belongsTo, BigDecimal latitude, BigDecimal longitude)
-	{
-		setName(name);
-		setStart(start);
-		setBeginTime(beginTime);
-		setEnd(end);
-		setDriver(driver);
-		setTruck(truck);
-		setBelongsTo(belongsTo);
-		setLatitude(latitude);
-		setLongitude(longitude);
-
-		this.mGoodsList = new SmartList<Goods>();
-		this.mTransportTaskTrackList = new SmartList<TransportTaskTrack>();	
-	}
 	
 	//Support for changing the property
 	

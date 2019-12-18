@@ -53,6 +53,11 @@ public class ConsumerOrderPriceAdjustmentJDBCTemplateDAO extends RetailscmBaseDA
 	}
 	*/
 	
+	public SmartList<ConsumerOrderPriceAdjustment> loadAll() {
+	    return this.loadAll(getConsumerOrderPriceAdjustmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -553,6 +558,10 @@ public class ConsumerOrderPriceAdjustmentJDBCTemplateDAO extends RetailscmBaseDA
 	@Override
 	public SmartList<ConsumerOrderPriceAdjustment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getConsumerOrderPriceAdjustmentMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

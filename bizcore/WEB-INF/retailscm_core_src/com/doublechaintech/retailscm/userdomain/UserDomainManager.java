@@ -6,9 +6,10 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface UserDomainManager{
+public interface UserDomainManager extends BaseManager{
 
 		
 
@@ -37,15 +38,13 @@ public interface UserDomainManager{
 
 	*/
 
-	//public  SecUserManager getSecUserManager(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime ,String [] tokensExpr)  throws Exception;
+	//public  SecUserManager getSecUserManager(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String blockingId ,String [] tokensExpr)  throws Exception;
 	
-	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime , String [] tokensExpr)  throws Exception;
+	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String blockingId , String [] tokensExpr)  throws Exception;
 	public  UserDomain removeSecUser(RetailscmUserContext userContext, String userDomainId, String secUserId, int secUserVersion,String [] tokensExpr)  throws Exception;
 	public  UserDomain updateSecUser(RetailscmUserContext userContext, String userDomainId, String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  UserDomain associateSecUserListToNewBlocking(RetailscmUserContext userContext, String userDomainId, String  secUserIds[], String who, String comments, String [] tokensExpr) throws Exception ;
-	public  UserDomain associateSecUserListToBlocking(RetailscmUserContext userContext, String userDomainId, String  secUserIds[],String blockingId, String [] tokensExpr) throws Exception ;
 
 	*/
 

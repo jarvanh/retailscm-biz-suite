@@ -6,9 +6,10 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface RetailStoreInvestmentInvitationManager{
+public interface RetailStoreInvestmentInvitationManager extends BaseManager{
 
 		
 
@@ -27,23 +28,13 @@ public interface RetailStoreInvestmentInvitationManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  RetailStoreManager getRetailStoreManager(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description ,String [] tokensExpr)  throws Exception;
+	//public  RetailStoreManager getRetailStoreManager(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreInvestmentInvitation addRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description , String [] tokensExpr)  throws Exception;
+	public  RetailStoreInvestmentInvitation addRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description , String [] tokensExpr)  throws Exception;
 	public  RetailStoreInvestmentInvitation removeRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String retailStoreId, int retailStoreVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreInvestmentInvitation updateRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewCreation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToCreation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[],String creationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewFranchising(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToFranchising(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[],String franchisingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewDecoration(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToDecoration(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[],String decorationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewOpening(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToOpening(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[],String openingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewClosing(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToClosing(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[],String closingId, String [] tokensExpr) throws Exception ;
 
 	*/
 

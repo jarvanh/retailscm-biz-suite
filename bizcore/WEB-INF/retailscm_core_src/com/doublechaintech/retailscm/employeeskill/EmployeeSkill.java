@@ -75,13 +75,6 @@ public class EmployeeSkill extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	EmployeeSkill(Employee employee, SkillType skillType, String description)
-	{
-		setEmployee(employee);
-		setSkillType(skillType);
-		setDescription(description);
-	
-	}
 	
 	//Support for changing the property
 	

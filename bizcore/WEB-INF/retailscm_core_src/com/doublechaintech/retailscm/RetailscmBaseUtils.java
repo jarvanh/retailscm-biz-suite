@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.function.Consumer;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -21,6 +22,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.terapico.caf.form.ImageInfo;
+import com.terapico.caf.viewcomponent.ButtonViewComponent;
 import com.terapico.utils.TextUtil;
 
 
@@ -184,6 +186,7 @@ public class RetailscmBaseUtils {
 		return false;
 	}
 	
+	static Pattern ptnVersionSegment = Pattern.compile("\\d+");
 	public static int getBuildVersion(String appVersionStr) {
 		if (appVersionStr == null || appVersionStr.isEmpty()) {
 			return 0;
@@ -192,7 +195,9 @@ public class RetailscmBaseUtils {
 		if (pos < 0) {
 			return Integer.parseInt(appVersionStr);
 		}
-		return Integer.parseInt(appVersionStr.substring(pos+1));
+		//return Integer.parseInt(appVersionStr.substring(pos+1));
+		List<String> list = TextUtil.findAllMatched(appVersionStr, ptnVersionSegment);
+		return Integer.parseInt(list.get(0));
 	}
 	public static int getAppBuildVersion(RetailscmUserContext ctx) {
 		return getBuildVersion(getRequestAppVersion(ctx));
@@ -249,7 +254,44 @@ public class RetailscmBaseUtils {
 	}
 	
 
+	
+	public static <T extends BaseEntity> void appendLinkToUrl(RetailscmUserContext ctx, List<T> list,
+			Function<T, String> makeFunc) {
+		if (list == null || list.isEmpty()) {
+			return;
+		}
+		list.forEach(it -> {
+			it.addItemToValueMap(RetailscmBaseConstants.X_LINK_TO_URL, makeFunc.apply(it));
+		});
+	}
+
+	public static <T extends BaseEntity> void appendLinkToUrl(RetailscmUserContext ctx, T obj, String url) {
+		if (obj == null) {
+			return;
+		}
+		obj.addItemToValueMap(RetailscmBaseConstants.X_LINK_TO_URL, url);
+	}
+
+	public static ButtonViewComponent addAction(RetailscmUserContext ctx, BaseEntity obj, String title, String code,
+			String linkToUrl) {
+		ButtonViewComponent actionBtn = new ButtonViewComponent(title, null, code);
+		actionBtn.setLinkToUrl(linkToUrl);
+		List<ButtonViewComponent> actions = (List<ButtonViewComponent>) obj.valueByKey("actionList");
+		if (actions == null) {
+			actions = new ArrayList<>();
+			obj.addItemToValueMap("actionList", actions);
+		}
+		actions.add(actionBtn);
+		return actionBtn;
+	}
+
+	public static void setAction(RetailscmUserContext ctx, BaseEntity obj, String title, String code, String linkToUrl) {
+		ButtonViewComponent actionBtn = new ButtonViewComponent(title, null, code);
+		actionBtn.setLinkToUrl(linkToUrl);
+		obj.addItemToValueMap("action", actionBtn);
+	}
 }
+
 
 
 

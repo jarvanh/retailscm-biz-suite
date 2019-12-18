@@ -53,6 +53,11 @@ public class PublicHolidayJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<PublicHoliday> loadAll() {
+	    return this.loadAll(getPublicHolidayMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -553,6 +558,10 @@ public class PublicHolidayJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<PublicHoliday> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPublicHolidayMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

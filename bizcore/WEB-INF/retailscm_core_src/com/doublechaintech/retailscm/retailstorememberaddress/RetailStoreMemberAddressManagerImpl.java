@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.retailstoremember.CandidateRetailStoreMembe
 public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreMemberAddressManager {
 	
 	private static final String SERVICE_TYPE = "RetailStoreMemberAddress";
+	@Override
+	public RetailStoreMemberAddressDAO daoOf(RetailscmUserContext userContext) {
+		return retailStoreMemberAddressDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
  	
  	public RetailStoreMemberAddress loadRetailStoreMemberAddress(RetailscmUserContext userContext, String retailStoreMemberAddressId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreMemberAddressManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreMemberAddressManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
  	
  	 public RetailStoreMemberAddress searchRetailStoreMemberAddress(RetailscmUserContext userContext, String retailStoreMemberAddressId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreMemberAddressManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreMemberAddressManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		addActions(userContext,retailStoreMemberAddress,tokens);
 		
 		
-		RetailStoreMemberAddress  retailStoreMemberAddressToPresent = userContext.getDAOGroup().getRetailStoreMemberAddressDAO().present(retailStoreMemberAddress, tokens);
+		RetailStoreMemberAddress  retailStoreMemberAddressToPresent = retailStoreMemberAddressDaoOf(userContext).present(retailStoreMemberAddress, tokens);
 		
 		List<BaseEntity> entityListToNaming = retailStoreMemberAddressToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getRetailStoreMemberAddressDAO().alias(entityListToNaming);
+		retailStoreMemberAddressDaoOf(userContext).alias(entityListToNaming);
 		
 		return  retailStoreMemberAddressToPresent;
 		
@@ -123,14 +127,14 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		
  	}
  	protected RetailStoreMemberAddress saveRetailStoreMemberAddress(RetailscmUserContext userContext, RetailStoreMemberAddress retailStoreMemberAddress, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getRetailStoreMemberAddressDAO().save(retailStoreMemberAddress, tokens);
+ 		return retailStoreMemberAddressDaoOf(userContext).save(retailStoreMemberAddress, tokens);
  	}
  	protected RetailStoreMemberAddress loadRetailStoreMemberAddress(RetailscmUserContext userContext, String retailStoreMemberAddressId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreMemberAddressManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreMemberAddressManagerException.class);
 
  
- 		return userContext.getDAOGroup().getRetailStoreMemberAddressDAO().load(retailStoreMemberAddressId, tokens);
+ 		return retailStoreMemberAddressDaoOf(userContext).load(retailStoreMemberAddressId, tokens);
  	}
 
 	
@@ -160,19 +164,19 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
  	
  	
 
-
-	public RetailStoreMemberAddress createRetailStoreMemberAddress(RetailscmUserContext userContext,String name, String ownerId, String mobilePhone, String address) throws Exception
+	public RetailStoreMemberAddress createRetailStoreMemberAddress(RetailscmUserContext userContext, String name,String ownerId,String mobilePhone,String address) throws Exception
+	//public RetailStoreMemberAddress createRetailStoreMemberAddress(RetailscmUserContext userContext,String name, String ownerId, String mobilePhone, String address) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfRetailStoreMemberAddress(name);
-		userContext.getChecker().checkMobilePhoneOfRetailStoreMemberAddress(mobilePhone);
-		userContext.getChecker().checkAddressOfRetailStoreMemberAddress(address);
+		checkerOf(userContext).checkNameOfRetailStoreMemberAddress(name);
+		checkerOf(userContext).checkMobilePhoneOfRetailStoreMemberAddress(mobilePhone);
+		checkerOf(userContext).checkAddressOfRetailStoreMemberAddress(address);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
 
 
 		RetailStoreMemberAddress retailStoreMemberAddress=createNewRetailStoreMemberAddress();	
@@ -205,23 +209,23 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 
 		
 		
-		userContext.getChecker().checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
-		userContext.getChecker().checkVersionOfRetailStoreMemberAddress( retailStoreMemberAddressVersion);
+		checkerOf(userContext).checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
+		checkerOf(userContext).checkVersionOfRetailStoreMemberAddress( retailStoreMemberAddressVersion);
 		
 
 		if(RetailStoreMemberAddress.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfRetailStoreMemberAddress(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfRetailStoreMemberAddress(parseString(newValueExpr));
 		}		
 
 		
 		if(RetailStoreMemberAddress.MOBILE_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMobilePhoneOfRetailStoreMemberAddress(parseString(newValueExpr));
+			checkerOf(userContext).checkMobilePhoneOfRetailStoreMemberAddress(parseString(newValueExpr));
 		}
 		if(RetailStoreMemberAddress.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfRetailStoreMemberAddress(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfRetailStoreMemberAddress(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	
 	public RetailStoreMemberAddress clone(RetailscmUserContext userContext, String fromRetailStoreMemberAddressId) throws Exception{
 		
-		return userContext.getDAOGroup().getRetailStoreMemberAddressDAO().clone(fromRetailStoreMemberAddressId, this.allTokens());
+		return retailStoreMemberAddressDaoOf(userContext).clone(fromRetailStoreMemberAddressId, this.allTokens());
 	}
 	
 	public RetailStoreMemberAddress internalSaveRetailStoreMemberAddress(RetailscmUserContext userContext, RetailStoreMemberAddress retailStoreMemberAddress) throws Exception 
@@ -328,9 +332,9 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberAddressId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
- 		userContext.getChecker().checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
+ 		checkerOf(userContext).checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
  		
  	}
  	public RetailStoreMemberAddress transferToAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberAddressId, String anotherOwnerId) throws Exception
@@ -367,7 +371,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreMember> candidateList = userContext.getDAOGroup().getRetailStoreMemberDAO().requestCandidateRetailStoreMemberForRetailStoreMemberAddress(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreMember> candidateList = retailStoreMemberDaoOf(userContext).requestCandidateRetailStoreMemberForRetailStoreMemberAddress(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -380,7 +384,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
  	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreMemberDAO().load(newOwnerId, options);
+ 		return retailStoreMemberDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -394,7 +398,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreMemberAddressId, int retailStoreMemberAddressVersion) throws Exception{
 			
-		userContext.getDAOGroup().getRetailStoreMemberAddressDAO().delete(retailStoreMemberAddressId, retailStoreMemberAddressVersion);
+		retailStoreMemberAddressDaoOf(userContext).delete(retailStoreMemberAddressId, retailStoreMemberAddressVersion);
 	}
 	
 	public RetailStoreMemberAddress forgetByAll(RetailscmUserContext userContext, String retailStoreMemberAddressId, int retailStoreMemberAddressVersion) throws Exception {
@@ -403,8 +407,9 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	protected RetailStoreMemberAddress forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreMemberAddressId, int retailStoreMemberAddressVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getRetailStoreMemberAddressDAO().disconnectFromAll(retailStoreMemberAddressId, retailStoreMemberAddressVersion);
+		return retailStoreMemberAddressDaoOf(userContext).disconnectFromAll(retailStoreMemberAddressId, retailStoreMemberAddressVersion);
 	}
+	
 	
 
 	
@@ -421,7 +426,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getRetailStoreMemberAddressDAO().deleteAll();
+		return retailStoreMemberAddressDaoOf(userContext).deleteAll();
 	}
 
 

@@ -74,6 +74,11 @@ public class ProductJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Prod
 	}
 	*/
 	
+	public SmartList<Product> loadAll() {
+	    return this.loadAll(getProductMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -826,6 +831,10 @@ public class ProductJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Prod
 	@Override
 	public SmartList<Product> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getProductMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

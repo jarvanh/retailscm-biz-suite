@@ -78,15 +78,6 @@ public class OccupationType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	OccupationType(String code, RetailStoreCountryCenter company, String description, String detailDescription)
-	{
-		setCode(code);
-		setCompany(company);
-		setDescription(description);
-		setDetailDescription(detailDescription);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

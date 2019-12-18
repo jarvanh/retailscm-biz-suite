@@ -74,6 +74,11 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<TerminationReason> loadAll() {
+	    return this.loadAll(getTerminationReasonMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -846,6 +851,10 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public SmartList<TerminationReason> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTerminationReasonMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

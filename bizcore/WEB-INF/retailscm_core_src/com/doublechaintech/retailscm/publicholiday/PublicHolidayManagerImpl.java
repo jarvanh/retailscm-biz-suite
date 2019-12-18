@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.CandidateRetailSto
 public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager implements PublicHolidayManager {
 	
 	private static final String SERVICE_TYPE = "PublicHoliday";
+	@Override
+	public PublicHolidayDAO daoOf(RetailscmUserContext userContext) {
+		return publicHolidayDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	public PublicHoliday loadPublicHoliday(RetailscmUserContext userContext, String publicHolidayId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfPublicHoliday(publicHolidayId);
-		userContext.getChecker().throwExceptionIfHasErrors( PublicHolidayManagerException.class);
+ 		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
+		checkerOf(userContext).throwExceptionIfHasErrors( PublicHolidayManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	 public PublicHoliday searchPublicHoliday(RetailscmUserContext userContext, String publicHolidayId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfPublicHoliday(publicHolidayId);
-		userContext.getChecker().throwExceptionIfHasErrors( PublicHolidayManagerException.class);
+ 		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
+		checkerOf(userContext).throwExceptionIfHasErrors( PublicHolidayManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		addActions(userContext,publicHoliday,tokens);
 		
 		
-		PublicHoliday  publicHolidayToPresent = userContext.getDAOGroup().getPublicHolidayDAO().present(publicHoliday, tokens);
+		PublicHoliday  publicHolidayToPresent = publicHolidayDaoOf(userContext).present(publicHoliday, tokens);
 		
 		List<BaseEntity> entityListToNaming = publicHolidayToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getPublicHolidayDAO().alias(entityListToNaming);
+		publicHolidayDaoOf(userContext).alias(entityListToNaming);
 		
 		return  publicHolidayToPresent;
 		
@@ -123,14 +127,14 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		
  	}
  	protected PublicHoliday savePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getPublicHolidayDAO().save(publicHoliday, tokens);
+ 		return publicHolidayDaoOf(userContext).save(publicHoliday, tokens);
  	}
  	protected PublicHoliday loadPublicHoliday(RetailscmUserContext userContext, String publicHolidayId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfPublicHoliday(publicHolidayId);
-		userContext.getChecker().throwExceptionIfHasErrors( PublicHolidayManagerException.class);
+		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
+		checkerOf(userContext).throwExceptionIfHasErrors( PublicHolidayManagerException.class);
 
  
- 		return userContext.getDAOGroup().getPublicHolidayDAO().load(publicHolidayId, tokens);
+ 		return publicHolidayDaoOf(userContext).load(publicHolidayId, tokens);
  	}
 
 	
@@ -160,19 +164,19 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	
 
-
-	public PublicHoliday createPublicHoliday(RetailscmUserContext userContext,String code, String companyId, String name, String description) throws Exception
+	public PublicHoliday createPublicHoliday(RetailscmUserContext userContext, String code,String companyId,String name,String description) throws Exception
+	//public PublicHoliday createPublicHoliday(RetailscmUserContext userContext,String code, String companyId, String name, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCodeOfPublicHoliday(code);
-		userContext.getChecker().checkNameOfPublicHoliday(name);
-		userContext.getChecker().checkDescriptionOfPublicHoliday(description);
+		checkerOf(userContext).checkCodeOfPublicHoliday(code);
+		checkerOf(userContext).checkNameOfPublicHoliday(name);
+		checkerOf(userContext).checkDescriptionOfPublicHoliday(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(PublicHolidayManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(PublicHolidayManagerException.class);
 
 
 		PublicHoliday publicHoliday=createNewPublicHoliday();	
@@ -205,23 +209,23 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		
-		userContext.getChecker().checkIdOfPublicHoliday(publicHolidayId);
-		userContext.getChecker().checkVersionOfPublicHoliday( publicHolidayVersion);
+		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
+		checkerOf(userContext).checkVersionOfPublicHoliday( publicHolidayVersion);
 		
 
 		if(PublicHoliday.CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCodeOfPublicHoliday(parseString(newValueExpr));
+			checkerOf(userContext).checkCodeOfPublicHoliday(parseString(newValueExpr));
 		}		
 
 		
 		if(PublicHoliday.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfPublicHoliday(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfPublicHoliday(parseString(newValueExpr));
 		}
 		if(PublicHoliday.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfPublicHoliday(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfPublicHoliday(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(PublicHolidayManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(PublicHolidayManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	public PublicHoliday clone(RetailscmUserContext userContext, String fromPublicHolidayId) throws Exception{
 		
-		return userContext.getDAOGroup().getPublicHolidayDAO().clone(fromPublicHolidayId, this.allTokens());
+		return publicHolidayDaoOf(userContext).clone(fromPublicHolidayId, this.allTokens());
 	}
 	
 	public PublicHoliday internalSavePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday) throws Exception 
@@ -328,9 +332,9 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String publicHolidayId, String anotherCompanyId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfPublicHoliday(publicHolidayId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(PublicHolidayManagerException.class);
+ 		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(PublicHolidayManagerException.class);
  		
  	}
  	public PublicHoliday transferToAnotherCompany(RetailscmUserContext userContext, String publicHolidayId, String anotherCompanyId) throws Exception
@@ -367,7 +371,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForPublicHoliday(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForPublicHoliday(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -380,7 +384,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
  	
@@ -394,7 +398,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String publicHolidayId, int publicHolidayVersion) throws Exception{
 			
-		userContext.getDAOGroup().getPublicHolidayDAO().delete(publicHolidayId, publicHolidayVersion);
+		publicHolidayDaoOf(userContext).delete(publicHolidayId, publicHolidayVersion);
 	}
 	
 	public PublicHoliday forgetByAll(RetailscmUserContext userContext, String publicHolidayId, int publicHolidayVersion) throws Exception {
@@ -403,8 +407,9 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	protected PublicHoliday forgetByAllInternal(RetailscmUserContext userContext,
 			String publicHolidayId, int publicHolidayVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getPublicHolidayDAO().disconnectFromAll(publicHolidayId, publicHolidayVersion);
+		return publicHolidayDaoOf(userContext).disconnectFromAll(publicHolidayId, publicHolidayVersion);
 	}
+	
 	
 
 	
@@ -421,7 +426,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getPublicHolidayDAO().deleteAll();
+		return publicHolidayDaoOf(userContext).deleteAll();
 	}
 
 

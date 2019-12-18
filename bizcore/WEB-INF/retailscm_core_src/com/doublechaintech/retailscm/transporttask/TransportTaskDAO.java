@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.transporttask;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -23,9 +24,9 @@ import com.doublechaintech.retailscm.truckdriver.TruckDriverDAO;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 
 
-public interface TransportTaskDAO{
+public interface TransportTaskDAO extends BaseDAO{
 
-	
+	public SmartList<TransportTask> loadAll();
 	public TransportTask load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<TransportTask> transportTaskList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -96,11 +97,16 @@ public interface TransportTaskDAO{
 	public TransportTask planToRemoveGoodsListWithRetailStoreOrder(TransportTask transportTask, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String transportTaskId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
+	//disconnect TransportTask with packaging in Goods
+	public TransportTask planToRemoveGoodsListWithPackaging(TransportTask transportTask, String packagingId, Map<String,Object> options)throws Exception;
+	public int countGoodsListWithPackaging(String transportTaskId, String packagingId, Map<String,Object> options)throws Exception;
+	
 	public TransportTask planToRemoveTransportTaskTrackList(TransportTask transportTask, String transportTaskTrackIds[], Map<String,Object> options)throws Exception;
 
 
 	
 	public SmartList<TransportTask> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<TransportTask> findTransportTaskByEnd(String retailStoreId, Map<String,Object> options);
  	public int countTransportTaskByEnd(String retailStoreId, Map<String,Object> options);

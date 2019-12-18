@@ -77,15 +77,6 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	EmployeeAttendance(Employee employee, Date enterTime, Date leaveTime, int durationHours, String remark)
-	{
-		setEmployee(employee);
-		setEnterTime(enterTime);
-		setLeaveTime(leaveTime);
-		setDurationHours(durationHours);
-		setRemark(remark);
-	
-	}
 	
 	//Support for changing the property
 	

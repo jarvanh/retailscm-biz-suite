@@ -23,12 +23,8 @@ public class EmployeeInterviewTable{
 	static final String COLUMN_REMARK = "remark";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_EMPLOYEE, COLUMN_INTERVIEW_TYPE, COLUMN_REMARK, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_EMPLOYEE, COLUMN_INTERVIEW_TYPE, COLUMN_REMARK
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_EMPLOYEE,COLUMN_INTERVIEW_TYPE,COLUMN_REMARK,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_EMPLOYEE,COLUMN_INTERVIEW_TYPE,COLUMN_REMARK};
 	
 	
 }

@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface GenericFormManager{
+public interface GenericFormManager extends BaseManager{
 
 		
 
-	public GenericForm createGenericForm(RetailscmUserContext userContext, String title, String description) throws Exception;	
+	public GenericForm createGenericForm(RetailscmUserContext userContext, String title,String description) throws Exception;	
 	public GenericForm updateGenericForm(RetailscmUserContext userContext,String genericFormId, int genericFormVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public GenericForm loadGenericForm(RetailscmUserContext userContext, String genericFormId, String [] tokensExpr) throws Exception;
 	public GenericForm internalSaveGenericForm(RetailscmUserContext userContext, GenericForm genericForm) throws Exception;

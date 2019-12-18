@@ -81,16 +81,6 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 	}
 	
-	public 	ProvinceCenterEmployee(String name, String mobile, String email, Date founded, ProvinceCenterDepartment department, RetailStoreProvinceCenter provinceCenter)
-	{
-		setName(name);
-		setMobile(mobile);
-		setEmail(email);
-		setFounded(founded);
-		setDepartment(department);
-		setProvinceCenter(provinceCenter);
-	
-	}
 	
 	//Support for changing the property
 	

@@ -42,6 +42,11 @@ public class ConsumerOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	*/
 	
+	public SmartList<ConsumerOrderConfirmation> loadAll() {
+	    return this.loadAll(getConsumerOrderConfirmationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -438,6 +443,10 @@ public class ConsumerOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOIm
 	@Override
 	public SmartList<ConsumerOrderConfirmation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getConsumerOrderConfirmationMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

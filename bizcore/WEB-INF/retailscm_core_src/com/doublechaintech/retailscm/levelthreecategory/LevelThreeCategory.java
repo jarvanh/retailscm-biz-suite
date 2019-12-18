@@ -74,13 +74,6 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	LevelThreeCategory(LevelTwoCategory parentCategory, String name)
-	{
-		setParentCategory(parentCategory);
-		setName(name);
-
-		this.mProductList = new SmartList<Product>();	
-	}
 	
 	//Support for changing the property
 	

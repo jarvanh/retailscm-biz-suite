@@ -411,6 +411,9 @@ public class BaseChecker {
 	}
 	protected void checkEmail(String value, int min, int max,
 			String propertyKey) {
+		if (min == 0 && (value==null || value.isEmpty())) {
+			return;
+		}
 		checkStringLengthRange(value, 5, 256, propertyKey);
 		/*
 		 * The maximum length is specified in RFC 5321: "The maximum total length of 

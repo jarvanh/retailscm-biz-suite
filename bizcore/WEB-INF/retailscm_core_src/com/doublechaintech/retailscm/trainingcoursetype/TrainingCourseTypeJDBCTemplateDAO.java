@@ -74,6 +74,11 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<TrainingCourseType> loadAll() {
+	    return this.loadAll(getTrainingCourseTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -892,6 +897,10 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	@Override
 	public SmartList<TrainingCourseType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTrainingCourseTypeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

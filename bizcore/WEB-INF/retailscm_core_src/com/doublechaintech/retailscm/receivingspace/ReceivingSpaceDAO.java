@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.receivingspace;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.warehouse.WarehouseDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
-public interface ReceivingSpaceDAO{
+public interface ReceivingSpaceDAO extends BaseDAO{
 
-	
+	public SmartList<ReceivingSpace> loadAll();
 	public ReceivingSpace load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ReceivingSpace> receivingSpaceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -84,8 +85,13 @@ public interface ReceivingSpaceDAO{
 	public ReceivingSpace planToRemoveGoodsListWithRetailStoreOrder(ReceivingSpace receivingSpace, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String receivingSpaceId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
+	//disconnect ReceivingSpace with packaging in Goods
+	public ReceivingSpace planToRemoveGoodsListWithPackaging(ReceivingSpace receivingSpace, String packagingId, Map<String,Object> options)throws Exception;
+	public int countGoodsListWithPackaging(String receivingSpaceId, String packagingId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<ReceivingSpace> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ReceivingSpace> findReceivingSpaceByWarehouse(String warehouseId, Map<String,Object> options);
  	public int countReceivingSpaceByWarehouse(String warehouseId, Map<String,Object> options);

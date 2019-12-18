@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager implements EmployeeAwardManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeAward";
+	@Override
+	public EmployeeAwardDAO daoOf(RetailscmUserContext userContext) {
+		return employeeAwardDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	public EmployeeAward loadEmployeeAward(RetailscmUserContext userContext, String employeeAwardId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeAward(employeeAwardId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeAwardManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeAwardManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	 public EmployeeAward searchEmployeeAward(RetailscmUserContext userContext, String employeeAwardId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeAward(employeeAwardId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeAwardManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeAwardManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 		addActions(userContext,employeeAward,tokens);
 		
 		
-		EmployeeAward  employeeAwardToPresent = userContext.getDAOGroup().getEmployeeAwardDAO().present(employeeAward, tokens);
+		EmployeeAward  employeeAwardToPresent = employeeAwardDaoOf(userContext).present(employeeAward, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeAwardToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeAwardDAO().alias(entityListToNaming);
+		employeeAwardDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeAwardToPresent;
 		
@@ -123,14 +127,14 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 		
  	}
  	protected EmployeeAward saveEmployeeAward(RetailscmUserContext userContext, EmployeeAward employeeAward, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeAwardDAO().save(employeeAward, tokens);
+ 		return employeeAwardDaoOf(userContext).save(employeeAward, tokens);
  	}
  	protected EmployeeAward loadEmployeeAward(RetailscmUserContext userContext, String employeeAwardId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeAward(employeeAwardId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeAwardManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeAwardManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeAwardDAO().load(employeeAwardId, tokens);
+ 		return employeeAwardDaoOf(userContext).load(employeeAwardId, tokens);
  	}
 
 	
@@ -160,19 +164,19 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	
 
-
-	public EmployeeAward createEmployeeAward(RetailscmUserContext userContext,String employeeId, Date completeTime, String type, String remark) throws Exception
+	public EmployeeAward createEmployeeAward(RetailscmUserContext userContext, String employeeId,Date completeTime,String type,String remark) throws Exception
+	//public EmployeeAward createEmployeeAward(RetailscmUserContext userContext,String employeeId, Date completeTime, String type, String remark) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCompleteTimeOfEmployeeAward(completeTime);
-		userContext.getChecker().checkTypeOfEmployeeAward(type);
-		userContext.getChecker().checkRemarkOfEmployeeAward(remark);
+		checkerOf(userContext).checkCompleteTimeOfEmployeeAward(completeTime);
+		checkerOf(userContext).checkTypeOfEmployeeAward(type);
+		checkerOf(userContext).checkRemarkOfEmployeeAward(remark);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeAwardManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeAwardManagerException.class);
 
 
 		EmployeeAward employeeAward=createNewEmployeeAward();	
@@ -205,23 +209,23 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeAward(employeeAwardId);
-		userContext.getChecker().checkVersionOfEmployeeAward( employeeAwardVersion);
+		checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardId);
+		checkerOf(userContext).checkVersionOfEmployeeAward( employeeAwardVersion);
 		
 		
 
 		
 		if(EmployeeAward.COMPLETE_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkCompleteTimeOfEmployeeAward(parseDate(newValueExpr));
+			checkerOf(userContext).checkCompleteTimeOfEmployeeAward(parseDate(newValueExpr));
 		}
 		if(EmployeeAward.TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTypeOfEmployeeAward(parseString(newValueExpr));
+			checkerOf(userContext).checkTypeOfEmployeeAward(parseString(newValueExpr));
 		}
 		if(EmployeeAward.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfEmployeeAward(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfEmployeeAward(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeAwardManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeAwardManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	public EmployeeAward clone(RetailscmUserContext userContext, String fromEmployeeAwardId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeAwardDAO().clone(fromEmployeeAwardId, this.allTokens());
+		return employeeAwardDaoOf(userContext).clone(fromEmployeeAwardId, this.allTokens());
 	}
 	
 	public EmployeeAward internalSaveEmployeeAward(RetailscmUserContext userContext, EmployeeAward employeeAward) throws Exception 
@@ -328,9 +332,9 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeAwardId, String anotherEmployeeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeAward(employeeAwardId);
- 		userContext.getChecker().checkIdOfEmployee(anotherEmployeeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeAwardManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeAwardManagerException.class);
  		
  	}
  	public EmployeeAward transferToAnotherEmployee(RetailscmUserContext userContext, String employeeAwardId, String anotherEmployeeId) throws Exception
@@ -367,7 +371,7 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeeAward(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeeAward(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -380,7 +384,7 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
  	
@@ -394,7 +398,7 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeAwardId, int employeeAwardVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeAwardDAO().delete(employeeAwardId, employeeAwardVersion);
+		employeeAwardDaoOf(userContext).delete(employeeAwardId, employeeAwardVersion);
 	}
 	
 	public EmployeeAward forgetByAll(RetailscmUserContext userContext, String employeeAwardId, int employeeAwardVersion) throws Exception {
@@ -403,8 +407,9 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 	protected EmployeeAward forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeAwardId, int employeeAwardVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeAwardDAO().disconnectFromAll(employeeAwardId, employeeAwardVersion);
+		return employeeAwardDaoOf(userContext).disconnectFromAll(employeeAwardId, employeeAwardVersion);
 	}
+	
 	
 
 	
@@ -421,7 +426,7 @@ public class EmployeeAwardManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeAwardDAO().deleteAll();
+		return employeeAwardDaoOf(userContext).deleteAll();
 	}
 
 

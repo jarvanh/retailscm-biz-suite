@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountingdocumentauditing;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
-public interface AccountingDocumentAuditingDAO{
+public interface AccountingDocumentAuditingDAO extends BaseDAO{
 
-	
+	public SmartList<AccountingDocumentAuditing> loadAll();
 	public AccountingDocumentAuditing load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<AccountingDocumentAuditing> accountingDocumentAuditingList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -58,8 +59,21 @@ public interface AccountingDocumentAuditingDAO{
 	public AccountingDocumentAuditing planToRemoveAccountingDocumentListWithDocumentType(AccountingDocumentAuditing accountingDocumentAuditing, String documentTypeId, Map<String,Object> options)throws Exception;
 	public int countAccountingDocumentListWithDocumentType(String accountingDocumentAuditingId, String documentTypeId, Map<String,Object> options)throws Exception;
 	
+	//disconnect AccountingDocumentAuditing with creation in AccountingDocument
+	public AccountingDocumentAuditing planToRemoveAccountingDocumentListWithCreation(AccountingDocumentAuditing accountingDocumentAuditing, String creationId, Map<String,Object> options)throws Exception;
+	public int countAccountingDocumentListWithCreation(String accountingDocumentAuditingId, String creationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect AccountingDocumentAuditing with confirmation in AccountingDocument
+	public AccountingDocumentAuditing planToRemoveAccountingDocumentListWithConfirmation(AccountingDocumentAuditing accountingDocumentAuditing, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countAccountingDocumentListWithConfirmation(String accountingDocumentAuditingId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect AccountingDocumentAuditing with posting in AccountingDocument
+	public AccountingDocumentAuditing planToRemoveAccountingDocumentListWithPosting(AccountingDocumentAuditing accountingDocumentAuditing, String postingId, Map<String,Object> options)throws Exception;
+	public int countAccountingDocumentListWithPosting(String accountingDocumentAuditingId, String postingId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<AccountingDocumentAuditing> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:AccountingDocument的auditing的AccountingDocumentList
 	public SmartList<AccountingDocument> loadOurAccountingDocumentList(RetailscmUserContext userContext, List<AccountingDocumentAuditing> us, Map<String,Object> options) throws Exception;

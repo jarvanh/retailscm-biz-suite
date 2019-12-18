@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.companytraining;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -19,9 +20,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTrainingDAO;
 
 
-public interface CompanyTrainingDAO{
+public interface CompanyTrainingDAO extends BaseDAO{
 
-	
+	public SmartList<CompanyTraining> loadAll();
 	public CompanyTraining load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<CompanyTraining> companyTrainingList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -60,8 +61,13 @@ public interface CompanyTrainingDAO{
 	public CompanyTraining planToRemoveEmployeeCompanyTrainingListWithEmployee(CompanyTraining companyTraining, String employeeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeCompanyTrainingListWithEmployee(String companyTrainingId, String employeeId, Map<String,Object> options)throws Exception;
 	
+	//disconnect CompanyTraining with scoring in EmployeeCompanyTraining
+	public CompanyTraining planToRemoveEmployeeCompanyTrainingListWithScoring(CompanyTraining companyTraining, String scoringId, Map<String,Object> options)throws Exception;
+	public int countEmployeeCompanyTrainingListWithScoring(String companyTrainingId, String scoringId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<CompanyTraining> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<CompanyTraining> findCompanyTrainingByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countCompanyTrainingByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

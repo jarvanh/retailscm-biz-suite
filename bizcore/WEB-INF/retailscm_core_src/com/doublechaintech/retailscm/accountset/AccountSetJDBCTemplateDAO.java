@@ -138,6 +138,11 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	}
 	*/
 	
+	public SmartList<AccountSet> loadAll() {
+	    return this.loadAll(getAccountSetMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1592,6 +1597,10 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 	@Override
 	public SmartList<AccountSet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountSetMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

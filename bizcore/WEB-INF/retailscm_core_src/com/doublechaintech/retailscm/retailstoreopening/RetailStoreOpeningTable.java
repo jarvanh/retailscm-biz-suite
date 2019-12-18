@@ -21,12 +21,8 @@ public class RetailStoreOpeningTable{
 	static final String COLUMN_COMMENT = "comment";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_COMMENT, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_COMMENT
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_COMMENT,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_COMMENT};
 	
 	
 }

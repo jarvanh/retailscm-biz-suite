@@ -126,6 +126,11 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<GenericForm> loadAll() {
+	    return this.loadAll(getGenericFormMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1442,6 +1447,10 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public SmartList<GenericForm> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGenericFormMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

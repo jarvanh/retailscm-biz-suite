@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.userdomain.CandidateUserDomain;
 public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager implements UserWhiteListManager {
 	
 	private static final String SERVICE_TYPE = "UserWhiteList";
+	@Override
+	public UserWhiteListDAO daoOf(RetailscmUserContext userContext) {
+		return userWhiteListDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	public UserWhiteList loadUserWhiteList(RetailscmUserContext userContext, String userWhiteListId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfUserWhiteList(userWhiteListId);
-		userContext.getChecker().throwExceptionIfHasErrors( UserWhiteListManagerException.class);
+ 		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
+		checkerOf(userContext).throwExceptionIfHasErrors( UserWhiteListManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	 public UserWhiteList searchUserWhiteList(RetailscmUserContext userContext, String userWhiteListId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfUserWhiteList(userWhiteListId);
-		userContext.getChecker().throwExceptionIfHasErrors( UserWhiteListManagerException.class);
+ 		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
+		checkerOf(userContext).throwExceptionIfHasErrors( UserWhiteListManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		addActions(userContext,userWhiteList,tokens);
 		
 		
-		UserWhiteList  userWhiteListToPresent = userContext.getDAOGroup().getUserWhiteListDAO().present(userWhiteList, tokens);
+		UserWhiteList  userWhiteListToPresent = userWhiteListDaoOf(userContext).present(userWhiteList, tokens);
 		
 		List<BaseEntity> entityListToNaming = userWhiteListToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getUserWhiteListDAO().alias(entityListToNaming);
+		userWhiteListDaoOf(userContext).alias(entityListToNaming);
 		
 		return  userWhiteListToPresent;
 		
@@ -123,14 +127,14 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		
  	}
  	protected UserWhiteList saveUserWhiteList(RetailscmUserContext userContext, UserWhiteList userWhiteList, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getUserWhiteListDAO().save(userWhiteList, tokens);
+ 		return userWhiteListDaoOf(userContext).save(userWhiteList, tokens);
  	}
  	protected UserWhiteList loadUserWhiteList(RetailscmUserContext userContext, String userWhiteListId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfUserWhiteList(userWhiteListId);
-		userContext.getChecker().throwExceptionIfHasErrors( UserWhiteListManagerException.class);
+		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
+		checkerOf(userContext).throwExceptionIfHasErrors( UserWhiteListManagerException.class);
 
  
- 		return userContext.getDAOGroup().getUserWhiteListDAO().load(userWhiteListId, tokens);
+ 		return userWhiteListDaoOf(userContext).load(userWhiteListId, tokens);
  	}
 
 	
@@ -160,18 +164,18 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	
 
-
-	public UserWhiteList createUserWhiteList(RetailscmUserContext userContext,String userIdentity, String userSpecialFunctions, String domainId) throws Exception
+	public UserWhiteList createUserWhiteList(RetailscmUserContext userContext, String userIdentity,String userSpecialFunctions,String domainId) throws Exception
+	//public UserWhiteList createUserWhiteList(RetailscmUserContext userContext,String userIdentity, String userSpecialFunctions, String domainId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkUserIdentityOfUserWhiteList(userIdentity);
-		userContext.getChecker().checkUserSpecialFunctionsOfUserWhiteList(userSpecialFunctions);
+		checkerOf(userContext).checkUserIdentityOfUserWhiteList(userIdentity);
+		checkerOf(userContext).checkUserSpecialFunctionsOfUserWhiteList(userSpecialFunctions);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(UserWhiteListManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(UserWhiteListManagerException.class);
 
 
 		UserWhiteList userWhiteList=createNewUserWhiteList();	
@@ -203,20 +207,20 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		
-		userContext.getChecker().checkIdOfUserWhiteList(userWhiteListId);
-		userContext.getChecker().checkVersionOfUserWhiteList( userWhiteListVersion);
+		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
+		checkerOf(userContext).checkVersionOfUserWhiteList( userWhiteListVersion);
 		
 
 		if(UserWhiteList.USER_IDENTITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkUserIdentityOfUserWhiteList(parseString(newValueExpr));
+			checkerOf(userContext).checkUserIdentityOfUserWhiteList(parseString(newValueExpr));
 		}
 		if(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY.equals(property)){
-			userContext.getChecker().checkUserSpecialFunctionsOfUserWhiteList(parseString(newValueExpr));
+			checkerOf(userContext).checkUserSpecialFunctionsOfUserWhiteList(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(UserWhiteListManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(UserWhiteListManagerException.class);
 	
 		
 	}
@@ -225,7 +229,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	public UserWhiteList clone(RetailscmUserContext userContext, String fromUserWhiteListId) throws Exception{
 		
-		return userContext.getDAOGroup().getUserWhiteListDAO().clone(fromUserWhiteListId, this.allTokens());
+		return userWhiteListDaoOf(userContext).clone(fromUserWhiteListId, this.allTokens());
 	}
 	
 	public UserWhiteList internalSaveUserWhiteList(RetailscmUserContext userContext, UserWhiteList userWhiteList) throws Exception 
@@ -323,9 +327,9 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForTransferingAnotherDomain(RetailscmUserContext userContext, String userWhiteListId, String anotherDomainId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfUserWhiteList(userWhiteListId);
- 		userContext.getChecker().checkIdOfUserDomain(anotherDomainId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(UserWhiteListManagerException.class);
+ 		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
+ 		checkerOf(userContext).checkIdOfUserDomain(anotherDomainId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(UserWhiteListManagerException.class);
  		
  	}
  	public UserWhiteList transferToAnotherDomain(RetailscmUserContext userContext, String userWhiteListId, String anotherDomainId) throws Exception
@@ -362,7 +366,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<UserDomain> candidateList = userContext.getDAOGroup().getUserDomainDAO().requestCandidateUserDomainForUserWhiteList(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<UserDomain> candidateList = userDomainDaoOf(userContext).requestCandidateUserDomainForUserWhiteList(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -375,7 +379,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
  	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getUserDomainDAO().load(newDomainId, options);
+ 		return userDomainDaoOf(userContext).load(newDomainId, options);
  	}
  	
  	
@@ -389,7 +393,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String userWhiteListId, int userWhiteListVersion) throws Exception{
 			
-		userContext.getDAOGroup().getUserWhiteListDAO().delete(userWhiteListId, userWhiteListVersion);
+		userWhiteListDaoOf(userContext).delete(userWhiteListId, userWhiteListVersion);
 	}
 	
 	public UserWhiteList forgetByAll(RetailscmUserContext userContext, String userWhiteListId, int userWhiteListVersion) throws Exception {
@@ -398,8 +402,9 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	protected UserWhiteList forgetByAllInternal(RetailscmUserContext userContext,
 			String userWhiteListId, int userWhiteListVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getUserWhiteListDAO().disconnectFromAll(userWhiteListId, userWhiteListVersion);
+		return userWhiteListDaoOf(userContext).disconnectFromAll(userWhiteListId, userWhiteListVersion);
 	}
+	
 	
 
 	
@@ -416,7 +421,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getUserWhiteListDAO().deleteAll();
+		return userWhiteListDaoOf(userContext).deleteAll();
 	}
 
 

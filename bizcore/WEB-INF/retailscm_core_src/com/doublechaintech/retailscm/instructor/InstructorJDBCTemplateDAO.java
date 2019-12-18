@@ -74,6 +74,11 @@ public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements I
 	}
 	*/
 	
+	public SmartList<Instructor> loadAll() {
+	    return this.loadAll(getInstructorMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -916,6 +921,10 @@ public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements I
 	@Override
 	public SmartList<Instructor> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getInstructorMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -42,6 +42,8 @@ public interface UserContext extends BaseUserContext{
 	public void setResponseHeader(String name, String value);
 	public String getResponseHeadder(String name);
 	public void forceResponseXClassHeader(String clazzName);
+	public <T> List<T> getCachedObjectsWithOneType(List<String> keys, Class<T> clazz);
+	
 }
 
 

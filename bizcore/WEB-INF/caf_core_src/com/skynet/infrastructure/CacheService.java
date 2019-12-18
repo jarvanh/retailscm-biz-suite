@@ -5,6 +5,7 @@ import java.util.List;
 public interface CacheService {
 	public Object get(String key, Class<?> clazz) ;
 	public void put(String key, Object value, int ttlInSeconds) ;
+	public List<Object> mget(List<String> keys, Class<?> clazz) ;
 	public void remove(String key) ;
 
 	default void lpush(String key, Object value , int ttlInSeconds){};

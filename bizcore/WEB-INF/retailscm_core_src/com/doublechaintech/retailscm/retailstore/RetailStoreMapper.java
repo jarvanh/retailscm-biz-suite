@@ -36,7 +36,6 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
  		setLongitude(retailStore, rs, rowNumber); 		
  		setDescription(retailStore, rs, rowNumber); 		
  		setLastUpdateTime(retailStore, rs, rowNumber); 		
- 		setCurrentStatus(retailStore, rs, rowNumber); 		
  		setVersion(retailStore, rs, rowNumber);
 
 		return retailStore;
@@ -73,7 +72,7 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setTelephone(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String telephone = rs.getString(RetailStoreTable.COLUMN_TELEPHONE);
+		Long telephone = rs.getLong(RetailStoreTable.COLUMN_TELEPHONE);
 		if(telephone == null){
 			//do nothing when nothing found in database
 			return;
@@ -296,18 +295,6 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 		}
 		
 		retailStore.setLastUpdateTime(convertToDateTime(lastUpdateTime));
-	}
-		
-	protected void setCurrentStatus(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(RetailStoreTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		retailStore.setCurrentStatus(currentStatus);
 	}
 		
 	protected void setVersion(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{

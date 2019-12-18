@@ -143,9 +143,13 @@ public class SupplierProductTokens extends CommonTokens{
 	}
 	private int productSupplyDurationListSearchCounter = 0;
 	public SupplierProductTokens searchProductSupplyDurationListWith(String field, String verb, String value){		
+		
+		withProductSupplyDurationList();
 		addSearchMoreOptions(PRODUCT_SUPPLY_DURATION_LIST,productSupplyDurationListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SupplierProductTokens searchAllTextOfProductSupplyDurationList(String verb, String value){	
 		String field = "id|duration";

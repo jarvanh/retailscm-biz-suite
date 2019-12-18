@@ -400,20 +400,6 @@ public class PayingOffForm extends BaseForm {
 		return lastUpdateTimeFieldOfEmployee("lastUpdateTime","");
 	}
 
-
-	public PayingOffForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public PayingOffForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public PayingOffForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
 	
 
 
@@ -569,20 +555,6 @@ public class PayingOffForm extends BaseForm {
 	}
 	public PayingOffForm payingOffIdFieldForEmployeeSalarySheet(){
 		return payingOffIdFieldForEmployeeSalarySheet("payingOffId","");
-	}
-
-
-	public PayingOffForm currentStatusFieldForEmployeeSalarySheet(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployeeSalarySheet(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public PayingOffForm currentStatusFieldForEmployeeSalarySheet(String initValue){
-		return currentStatusFieldForEmployeeSalarySheet("currentStatus",initValue);
-	}
-	public PayingOffForm currentStatusFieldForEmployeeSalarySheet(){
-		return currentStatusFieldForEmployeeSalarySheet("currentStatus","");
 	}
 
 	

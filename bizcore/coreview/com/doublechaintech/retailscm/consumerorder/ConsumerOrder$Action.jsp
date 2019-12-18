@@ -20,7 +20,6 @@
 	<li><span>${userContext.localeMap['consumer_order.id']}</span> ${consumerOrder.id}</li>
 <li><span>${userContext.localeMap['consumer_order.title']}</span> ${consumerOrder.title}</li>
 <li><span>${userContext.localeMap['consumer_order.last_update_time']}</span> <fmt:formatDate pattern="yyyy-MM-dd" value="${consumerOrder.lastUpdateTime}" /></li>
-<li><span>${userContext.localeMap['consumer_order.current_status']}</span> ${consumerOrder.currentStatus}</li>
 
 	
 	</ul>

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoreorderpicking;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 
 
-public interface RetailStoreOrderPickingDAO{
+public interface RetailStoreOrderPickingDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreOrderPicking> loadAll();
 	public RetailStoreOrderPicking load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreOrderPicking> retailStoreOrderPickingList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -58,8 +59,29 @@ public interface RetailStoreOrderPickingDAO{
 	public RetailStoreOrderPicking planToRemoveRetailStoreOrderListWithSeller(RetailStoreOrderPicking retailStoreOrderPicking, String sellerId, Map<String,Object> options)throws Exception;
 	public int countRetailStoreOrderListWithSeller(String retailStoreOrderPickingId, String sellerId, Map<String,Object> options)throws Exception;
 	
+	//disconnect RetailStoreOrderPicking with confirmation in RetailStoreOrder
+	public RetailStoreOrderPicking planToRemoveRetailStoreOrderListWithConfirmation(RetailStoreOrderPicking retailStoreOrderPicking, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithConfirmation(String retailStoreOrderPickingId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderPicking with approval in RetailStoreOrder
+	public RetailStoreOrderPicking planToRemoveRetailStoreOrderListWithApproval(RetailStoreOrderPicking retailStoreOrderPicking, String approvalId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithApproval(String retailStoreOrderPickingId, String approvalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderPicking with processing in RetailStoreOrder
+	public RetailStoreOrderPicking planToRemoveRetailStoreOrderListWithProcessing(RetailStoreOrderPicking retailStoreOrderPicking, String processingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithProcessing(String retailStoreOrderPickingId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderPicking with shipment in RetailStoreOrder
+	public RetailStoreOrderPicking planToRemoveRetailStoreOrderListWithShipment(RetailStoreOrderPicking retailStoreOrderPicking, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithShipment(String retailStoreOrderPickingId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderPicking with delivery in RetailStoreOrder
+	public RetailStoreOrderPicking planToRemoveRetailStoreOrderListWithDelivery(RetailStoreOrderPicking retailStoreOrderPicking, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithDelivery(String retailStoreOrderPickingId, String deliveryId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<RetailStoreOrderPicking> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:RetailStoreOrder的picking的RetailStoreOrderList
 	public SmartList<RetailStoreOrder> loadOurRetailStoreOrderList(RetailscmUserContext userContext, List<RetailStoreOrderPicking> us, Map<String,Object> options) throws Exception;

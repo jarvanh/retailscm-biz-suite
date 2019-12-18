@@ -116,6 +116,11 @@ public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements User
 	}
 	*/
 	
+	public SmartList<UserApp> loadAll() {
+	    return this.loadAll(getUserAppMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1314,6 +1319,10 @@ public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements User
 	@Override
 	public SmartList<UserApp> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getUserAppMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

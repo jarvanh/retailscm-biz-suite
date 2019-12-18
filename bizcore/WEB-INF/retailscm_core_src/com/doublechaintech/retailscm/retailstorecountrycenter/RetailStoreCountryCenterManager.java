@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface RetailStoreCountryCenterManager{
+public interface RetailStoreCountryCenterManager extends BaseManager{
 
 		
 
-	public RetailStoreCountryCenter createRetailStoreCountryCenter(RetailscmUserContext userContext, String name, String serviceNumber, Date founded, String webSite, String address, String operatedBy, String legalRepresentative, String description) throws Exception;	
+	public RetailStoreCountryCenter createRetailStoreCountryCenter(RetailscmUserContext userContext, String name,String serviceNumber,Date founded,String webSite,String address,String operatedBy,String legalRepresentative,String description) throws Exception;	
 	public RetailStoreCountryCenter updateRetailStoreCountryCenter(RetailscmUserContext userContext,String retailStoreCountryCenterId, int retailStoreCountryCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, String [] tokensExpr) throws Exception;
 	public RetailStoreCountryCenter internalSaveRetailStoreCountryCenter(RetailscmUserContext userContext, RetailStoreCountryCenter retailStoreCountryCenter) throws Exception;
@@ -27,9 +28,9 @@ public interface RetailStoreCountryCenterManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  CatalogManager getCatalogManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name ,String [] tokensExpr)  throws Exception;
+	//public  CatalogManager getCatalogManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, int subCount, BigDecimal amount ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, int subCount, BigDecimal amount , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String catalogId, int catalogVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
@@ -47,25 +48,13 @@ public interface RetailStoreCountryCenterManager{
 
 	*/
 
-	//public  RetailStoreManager getRetailStoreManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String telephone, String owner, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description ,String [] tokensExpr)  throws Exception;
+	//public  RetailStoreManager getRetailStoreManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String telephone, String owner, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreId, int retailStoreVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  RetailStoreCountryCenter associateRetailStoreListToNewCreation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToCreation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[],String creationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToNewInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[],String investmentInvitationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToNewFranchising(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToFranchising(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[],String franchisingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToNewDecoration(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToDecoration(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[],String decorationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToNewOpening(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToOpening(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[],String openingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToNewClosing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreListToClosing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreIds[],String closingId, String [] tokensExpr) throws Exception ;
 
 	*/
 
@@ -89,53 +78,29 @@ public interface RetailStoreCountryCenterManager{
 
 	*/
 
-	//public  SupplyOrderManager getSupplyOrderManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount ,String [] tokensExpr)  throws Exception;
+	//public  SupplyOrderManager getSupplyOrderManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String supplyOrderId, int supplyOrderVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String supplyOrderId, int supplyOrderVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  RetailStoreCountryCenter associateSupplyOrderListToNewConfirmation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[], String who, Date confirmTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToConfirmation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[],String confirmationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToNewApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[], String who, Date approveTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[],String approvalId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToNewProcessing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToProcessing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[],String processingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToNewPicking(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToPicking(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[],String pickingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToNewShipment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[], String who, Date shipTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToShipment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[],String shipmentId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToNewDelivery(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[], String who, Date deliveryTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateSupplyOrderListToDelivery(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  supplyOrderIds[],String deliveryId, String [] tokensExpr) throws Exception ;
 
 	*/
 
-	//public  RetailStoreOrderManager getRetailStoreOrderManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount ,String [] tokensExpr)  throws Exception;
+	//public  RetailStoreOrderManager getRetailStoreOrderManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreOrderId, int retailStoreOrderVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreOrderId, int retailStoreOrderVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToNewConfirmation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[], String who, Date confirmTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToConfirmation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[],String confirmationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToNewApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[], String who, Date approveTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[],String approvalId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToNewProcessing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToProcessing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[],String processingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToNewPicking(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToPicking(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[],String pickingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToNewShipment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[], String who, Date shipTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToShipment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[],String shipmentId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToNewDelivery(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[], String who, Date deliveryTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateRetailStoreOrderListToDelivery(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  retailStoreOrderIds[],String deliveryId, String [] tokensExpr) throws Exception ;
 
 	*/
 
-	//public  WarehouseManager getWarehouseManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude ,String [] tokensExpr)  throws Exception;
+	//public  WarehouseManager getWarehouseManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String warehouseId, int warehouseVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String warehouseId, int warehouseVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
@@ -143,9 +108,9 @@ public interface RetailStoreCountryCenterManager{
 
 	*/
 
-	//public  TransportFleetManager getTransportFleetManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String contactNumber ,String [] tokensExpr)  throws Exception;
+	//public  TransportFleetManager getTransportFleetManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long contactNumber ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String contactNumber , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long contactNumber , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String transportFleetId, int transportFleetVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String transportFleetId, int transportFleetVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
@@ -153,9 +118,9 @@ public interface RetailStoreCountryCenterManager{
 
 	*/
 
-	//public  AccountSetManager getAccountSetManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String retailStoreId, String goodsSupplierId ,String [] tokensExpr)  throws Exception;
+	//public  AccountSetManager getAccountSetManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String retailStoreId, String goodsSupplierId ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String retailStoreId, String goodsSupplierId , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String retailStoreId, String goodsSupplierId , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String accountSetId, int accountSetVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
@@ -163,9 +128,9 @@ public interface RetailStoreCountryCenterManager{
 
 	*/
 
-	//public  LevelOneDepartmentManager getLevelOneDepartmentManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String manager, Date founded ,String [] tokensExpr)  throws Exception;
+	//public  LevelOneDepartmentManager getLevelOneDepartmentManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String managerName, Date founded ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String manager, Date founded , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String managerName, Date founded , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String levelOneDepartmentId, int levelOneDepartmentVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String levelOneDepartmentId, int levelOneDepartmentVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
@@ -273,27 +238,13 @@ public interface RetailStoreCountryCenterManager{
 
 	*/
 
-	//public  EmployeeManager getEmployeeManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount ,String [] tokensExpr)  throws Exception;
+	//public  EmployeeManager getEmployeeManager(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCountryCenter addEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCountryCenter addEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter removeEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String employeeId, int employeeVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCountryCenter updateEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  RetailStoreCountryCenter associateEmployeeListToNewJobApplication(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[], Date applicationTime, String who, String comments, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToJobApplication(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[],String jobApplicationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[],String professionInterviewId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToNewHrInterview(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToHrInterview(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[],String hrInterviewId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[],String offerApprovalId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[],String offerAcceptanceId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToNewEmployeeBoarding(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[], String who, Date employTime, String comments, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToEmployeeBoarding(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[],String employeeBoardingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToNewTermination(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[], String reasonId, String typeId, String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCountryCenter associateEmployeeListToTermination(RetailscmUserContext userContext, String retailStoreCountryCenterId, String  employeeIds[],String terminationId, String [] tokensExpr) throws Exception ;
 
 	*/
 

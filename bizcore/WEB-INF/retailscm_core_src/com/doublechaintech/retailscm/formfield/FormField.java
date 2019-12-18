@@ -99,26 +99,6 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	FormField(String label, String localeKey, String parameterName, String type, GenericForm form, String placeholder, String defaultValue, String description, String fieldGroup, String minimumValue, String maximumValue, boolean required, boolean disabled, boolean customRendering, String candidateValues, String suggestValues)
-	{
-		setLabel(label);
-		setLocaleKey(localeKey);
-		setParameterName(parameterName);
-		setType(type);
-		setForm(form);
-		setPlaceholder(placeholder);
-		setDefaultValue(defaultValue);
-		setDescription(description);
-		setFieldGroup(fieldGroup);
-		setMinimumValue(minimumValue);
-		setMaximumValue(maximumValue);
-		setRequired(required);
-		setDisabled(disabled);
-		setCustomRendering(customRendering);
-		setCandidateValues(candidateValues);
-		setSuggestValues(suggestValues);
-	
-	}
 	
 	//Support for changing the property
 	

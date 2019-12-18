@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.warehouseasset;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.warehouse.Warehouse;
 import com.doublechaintech.retailscm.warehouse.WarehouseDAO;
 
 
-public interface WarehouseAssetDAO{
+public interface WarehouseAssetDAO extends BaseDAO{
 
-	
+	public SmartList<WarehouseAsset> loadAll();
 	public WarehouseAsset load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<WarehouseAsset> warehouseAssetList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface WarehouseAssetDAO{
 	
 	
 	public SmartList<WarehouseAsset> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<WarehouseAsset> findWarehouseAssetByOwner(String warehouseId, Map<String,Object> options);
  	public int countWarehouseAssetByOwner(String warehouseId, Map<String,Object> options);

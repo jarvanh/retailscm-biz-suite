@@ -11,20 +11,15 @@
 */
 
 
-package com.doublechaintech.retailscm.candidatecontainer;
+package com.doublechaintech.retailscm.originalvouchercreation;
 import java.util.Date;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
-public class CandidateContainerCustomManagerImpl extends CandidateContainerManagerImpl{
+public class OriginalVoucherCreationCustomManagerImpl extends OriginalVoucherCreationManagerImpl{
 
 
 
 
 
 }
-
-
-
-
-
 

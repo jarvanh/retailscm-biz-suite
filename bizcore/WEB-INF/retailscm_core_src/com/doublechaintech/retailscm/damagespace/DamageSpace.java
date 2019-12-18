@@ -52,7 +52,7 @@ public class DamageSpace extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mLocation           ;
-	protected		String              	mContactNumber      ;
+	protected		long                	mContactNumber      ;
 	protected		String              	mTotalArea          ;
 	protected		BigDecimal          	mLatitude           ;
 	protected		BigDecimal          	mLongitude          ;
@@ -84,18 +84,6 @@ public class DamageSpace extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	DamageSpace(String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, Warehouse warehouse, DateTime lastUpdateTime)
-	{
-		setLocation(location);
-		setContactNumber(contactNumber);
-		setTotalArea(totalArea);
-		setLatitude(latitude);
-		setLongitude(longitude);
-		setWarehouse(warehouse);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mGoodsShelfList = new SmartList<GoodsShelf>();	
-	}
 	
 	//Support for changing the property
 	
@@ -140,9 +128,9 @@ public class DamageSpace extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
-		String oldValue = getContactNumber();
-		String newValue = parseString(newValueExpr);
-		if(equalsString(oldValue , newValue)){
+		long oldValue = getContactNumber();
+		long newValue = parseLong(newValueExpr);
+		if(equalsLong(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -287,19 +275,19 @@ public class DamageSpace extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setContactNumber(String contactNumber){
-		this.mContactNumber = trimString(contactNumber);;
+	public void setContactNumber(long contactNumber){
+		this.mContactNumber = contactNumber;;
 	}
-	public String getContactNumber(){
+	public long getContactNumber(){
 		return this.mContactNumber;
 	}
-	public DamageSpace updateContactNumber(String contactNumber){
-		this.mContactNumber = trimString(contactNumber);;
+	public DamageSpace updateContactNumber(long contactNumber){
+		this.mContactNumber = contactNumber;;
 		this.changed = true;
 		return this;
 	}
-	public void mergeContactNumber(String contactNumber){
-		if(contactNumber != null) { setContactNumber(contactNumber);}
+	public void mergeContactNumber(long contactNumber){
+		setContactNumber(contactNumber);
 	}
 	
 	
@@ -649,6 +637,13 @@ public class DamageSpace extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
+	
+	public void increaseContactNumber(long incContactNumber){
+		updateContactNumber(this.mContactNumber +  incContactNumber);
+	}
+	public void decreaseContactNumber(long decContactNumber){
+		updateContactNumber(this.mContactNumber - decContactNumber);
+	}
 	
 
 }

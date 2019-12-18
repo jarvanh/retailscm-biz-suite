@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.supplyorder;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -35,9 +36,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingDAO;
 
 
-public interface SupplyOrderDAO{
+public interface SupplyOrderDAO extends BaseDAO{
 
-	
+	public SmartList<SupplyOrder> loadAll();
 	public SupplyOrder load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SupplyOrder> supplyOrderList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -129,8 +130,13 @@ public interface SupplyOrderDAO{
 	public SupplyOrder planToRemoveGoodsListWithRetailStoreOrder(SupplyOrder supplyOrder, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String supplyOrderId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
+	//disconnect SupplyOrder with packaging in Goods
+	public SupplyOrder planToRemoveGoodsListWithPackaging(SupplyOrder supplyOrder, String packagingId, Map<String,Object> options)throws Exception;
+	public int countGoodsListWithPackaging(String supplyOrderId, String packagingId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<SupplyOrder> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<SupplyOrder> findSupplyOrderByBuyer(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countSupplyOrderByBuyer(String retailStoreCountryCenterId, Map<String,Object> options);

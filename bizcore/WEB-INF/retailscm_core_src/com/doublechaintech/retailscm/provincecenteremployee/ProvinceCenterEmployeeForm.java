@@ -177,17 +177,17 @@ public class ProvinceCenterEmployeeForm extends BaseForm {
 	}
 
 
-	public ProvinceCenterEmployeeForm managerFieldOfProvinceCenterDepartment(String parameterName, String initValue){
-		FormField field =  managerFromProvinceCenterDepartment(parameterName, initValue);
+	public ProvinceCenterEmployeeForm managerNameFieldOfProvinceCenterDepartment(String parameterName, String initValue){
+		FormField field =  managerNameFromProvinceCenterDepartment(parameterName, initValue);
 		this.addFormField(field);	
 		return this;
 	}
 	
-	public ProvinceCenterEmployeeForm managerFieldOfProvinceCenterDepartment(String initValue){
-		return managerFieldOfProvinceCenterDepartment("manager",initValue);
+	public ProvinceCenterEmployeeForm managerNameFieldOfProvinceCenterDepartment(String initValue){
+		return managerNameFieldOfProvinceCenterDepartment("managerName",initValue);
 	}
-	public ProvinceCenterEmployeeForm managerFieldOfProvinceCenterDepartment(){
-		return managerFieldOfProvinceCenterDepartment("manager","");
+	public ProvinceCenterEmployeeForm managerNameFieldOfProvinceCenterDepartment(){
+		return managerNameFieldOfProvinceCenterDepartment("managerName","");
 	}
 
 

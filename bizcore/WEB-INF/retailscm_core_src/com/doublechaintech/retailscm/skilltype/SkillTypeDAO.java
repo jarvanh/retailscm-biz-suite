@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.skilltype;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkillDAO;
 
 
-public interface SkillTypeDAO{
+public interface SkillTypeDAO extends BaseDAO{
 
-	
+	public SmartList<SkillType> loadAll();
 	public SkillType load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SkillType> skillTypeList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -58,6 +59,7 @@ public interface SkillTypeDAO{
 	
 	
 	public SmartList<SkillType> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<SkillType> findSkillTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countSkillTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

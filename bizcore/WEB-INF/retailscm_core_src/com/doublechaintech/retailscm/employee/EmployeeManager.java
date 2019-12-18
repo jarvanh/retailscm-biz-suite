@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface EmployeeManager{
+public interface EmployeeManager extends BaseManager{
 
 		
 
-	public Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception;	
+	public Employee createEmployee(RetailscmUserContext userContext, String companyId,String title,String departmentId,String familyName,String givenName,String email,String city,String address,String cellPhone,String occupationId,String responsibleForId,String currentSalaryGradeId,String salaryAccount,String jobApplicationId,String professionInterviewId,String hrInterviewId,String offerApprovalId,String offerAcceptanceId,String employeeBoardingId,String terminationId) throws Exception;	
 	public Employee updateEmployee(RetailscmUserContext userContext,String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public Employee loadEmployee(RetailscmUserContext userContext, String employeeId, String [] tokensExpr) throws Exception;
 	public Employee internalSaveEmployee(RetailscmUserContext userContext, Employee employee) throws Exception;
@@ -23,21 +24,14 @@ public interface EmployeeManager{
  	public Employee transferToAnotherOccupation(RetailscmUserContext userContext, String employeeId, String anotherOccupationId)  throws Exception;
  	public Employee transferToAnotherResponsibleFor(RetailscmUserContext userContext, String employeeId, String anotherResponsibleForId)  throws Exception;
  	public Employee transferToAnotherCurrentSalaryGrade(RetailscmUserContext userContext, String employeeId, String anotherCurrentSalaryGradeId)  throws Exception;
- 	public Employee applyJob(RetailscmUserContext userContext, String employeeId, Date applicationTime, String who, String comments
-)  throws Exception;
-	public Employee interviewWithProfession(RetailscmUserContext userContext, String employeeId, String who, Date interviewTime, String comments
-)  throws Exception;
-	public Employee interviewByHr(RetailscmUserContext userContext, String employeeId, String who, Date interviewTime, String comments
-)  throws Exception;
-	public Employee approveOffer(RetailscmUserContext userContext, String employeeId, String who, Date approveTime, String comments
-)  throws Exception;
-	public Employee acceptOffer(RetailscmUserContext userContext, String employeeId, String who, Date acceptTime, String comments
-)  throws Exception;
-	public Employee boardEmployee(RetailscmUserContext userContext, String employeeId, String who, Date employTime, String comments
-)  throws Exception;
-	public Employee terminate(RetailscmUserContext userContext, String employeeId, String reasonId, String typeId, String comment
-)  throws Exception;
-
+ 	public Employee transferToAnotherJobApplication(RetailscmUserContext userContext, String employeeId, String anotherJobApplicationId)  throws Exception;
+ 	public Employee transferToAnotherProfessionInterview(RetailscmUserContext userContext, String employeeId, String anotherProfessionInterviewId)  throws Exception;
+ 	public Employee transferToAnotherHrInterview(RetailscmUserContext userContext, String employeeId, String anotherHrInterviewId)  throws Exception;
+ 	public Employee transferToAnotherOfferApproval(RetailscmUserContext userContext, String employeeId, String anotherOfferApprovalId)  throws Exception;
+ 	public Employee transferToAnotherOfferAcceptance(RetailscmUserContext userContext, String employeeId, String anotherOfferAcceptanceId)  throws Exception;
+ 	public Employee transferToAnotherEmployeeBoarding(RetailscmUserContext userContext, String employeeId, String anotherEmployeeBoardingId)  throws Exception;
+ 	public Employee transferToAnotherTermination(RetailscmUserContext userContext, String employeeId, String anotherTerminationId)  throws Exception;
+ 
 
 	public void delete(RetailscmUserContext userContext, String employeeId, int version) throws Exception;
 	public int deleteAll(RetailscmUserContext userContext, String secureCode ) throws Exception;
@@ -46,15 +40,13 @@ public interface EmployeeManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  EmployeeCompanyTrainingManager getEmployeeCompanyTrainingManager(RetailscmUserContext userContext, String employeeId, String trainingId ,String [] tokensExpr)  throws Exception;
+	//public  EmployeeCompanyTrainingManager getEmployeeCompanyTrainingManager(RetailscmUserContext userContext, String employeeId, String trainingId, String scoringId ,String [] tokensExpr)  throws Exception;
 	
-	public  Employee addEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String trainingId , String [] tokensExpr)  throws Exception;
+	public  Employee addEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String trainingId, String scoringId , String [] tokensExpr)  throws Exception;
 	public  Employee removeEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String employeeCompanyTrainingId, int employeeCompanyTrainingVersion,String [] tokensExpr)  throws Exception;
 	public  Employee updateEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  Employee associateEmployeeCompanyTrainingListToNewScoring(RetailscmUserContext userContext, String employeeId, String  employeeCompanyTrainingIds[], String scoredBy, int score, String comment, String [] tokensExpr) throws Exception ;
-	public  Employee associateEmployeeCompanyTrainingListToScoring(RetailscmUserContext userContext, String employeeId, String  employeeCompanyTrainingIds[],String scoringId, String [] tokensExpr) throws Exception ;
 
 	*/
 
@@ -148,15 +140,13 @@ public interface EmployeeManager{
 
 	*/
 
-	//public  EmployeeSalarySheetManager getEmployeeSalarySheetManager(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance ,String [] tokensExpr)  throws Exception;
+	//public  EmployeeSalarySheetManager getEmployeeSalarySheetManager(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId ,String [] tokensExpr)  throws Exception;
 	
-	public  Employee addEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance , String [] tokensExpr)  throws Exception;
+	public  Employee addEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId , String [] tokensExpr)  throws Exception;
 	public  Employee removeEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr)  throws Exception;
 	public  Employee updateEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String employeeSalarySheetId, int employeeSalarySheetVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  Employee associateEmployeeSalarySheetListToNewPayingOff(RetailscmUserContext userContext, String employeeId, String  employeeSalarySheetIds[], String who, String paidForId, Date paidTime, BigDecimal amount, String [] tokensExpr) throws Exception ;
-	public  Employee associateEmployeeSalarySheetListToPayingOff(RetailscmUserContext userContext, String employeeId, String  employeeSalarySheetIds[],String payingOffId, String [] tokensExpr) throws Exception ;
 
 	*/
 

@@ -81,16 +81,6 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 	}
 	
-	public 	AccountingDocumentLine(String name, String code, String direct, BigDecimal amount, AccountingDocument belongsTo, AccountingSubject accountingSubject)
-	{
-		setName(name);
-		setCode(code);
-		setDirect(direct);
-		setAmount(amount);
-		setBelongsTo(belongsTo);
-		setAccountingSubject(accountingSubject);
-	
-	}
 	
 	//Support for changing the property
 	

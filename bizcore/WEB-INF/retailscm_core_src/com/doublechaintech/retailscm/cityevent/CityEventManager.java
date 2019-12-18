@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface CityEventManager{
+public interface CityEventManager extends BaseManager{
 
 		
 
-	public CityEvent createCityEvent(RetailscmUserContext userContext, String name, String mobile, String cityServiceCenterId, String description) throws Exception;	
+	public CityEvent createCityEvent(RetailscmUserContext userContext, String name,String mobile,String cityServiceCenterId,String description) throws Exception;	
 	public CityEvent updateCityEvent(RetailscmUserContext userContext,String cityEventId, int cityEventVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public CityEvent loadCityEvent(RetailscmUserContext userContext, String cityEventId, String [] tokensExpr) throws Exception;
 	public CityEvent internalSaveCityEvent(RetailscmUserContext userContext, CityEvent cityEvent) throws Exception;

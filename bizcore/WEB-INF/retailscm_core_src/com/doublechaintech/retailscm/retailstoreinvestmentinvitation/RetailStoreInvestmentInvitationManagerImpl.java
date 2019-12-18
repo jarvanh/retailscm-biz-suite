@@ -40,6 +40,10 @@ import com.doublechaintech.retailscm.retailstorefranchising.RetailStoreFranchisi
 public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreInvestmentInvitationManager {
 	
 	private static final String SERVICE_TYPE = "RetailStoreInvestmentInvitation";
+	@Override
+	public RetailStoreInvestmentInvitationDAO daoOf(RetailscmUserContext userContext) {
+		return retailStoreInvestmentInvitationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -73,8 +77,8 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
  	
  	public RetailStoreInvestmentInvitation loadRetailStoreInvestmentInvitation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreInvestmentInvitationManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreInvestmentInvitationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -87,8 +91,8 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
  	
  	 public RetailStoreInvestmentInvitation searchRetailStoreInvestmentInvitation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreInvestmentInvitationManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreInvestmentInvitationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -106,10 +110,10 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		addActions(userContext,retailStoreInvestmentInvitation,tokens);
 		
 		
-		RetailStoreInvestmentInvitation  retailStoreInvestmentInvitationToPresent = userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().present(retailStoreInvestmentInvitation, tokens);
+		RetailStoreInvestmentInvitation  retailStoreInvestmentInvitationToPresent = retailStoreInvestmentInvitationDaoOf(userContext).present(retailStoreInvestmentInvitation, tokens);
 		
 		List<BaseEntity> entityListToNaming = retailStoreInvestmentInvitationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().alias(entityListToNaming);
+		retailStoreInvestmentInvitationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  retailStoreInvestmentInvitationToPresent;
 		
@@ -130,14 +134,14 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		
  	}
  	protected RetailStoreInvestmentInvitation saveRetailStoreInvestmentInvitation(RetailscmUserContext userContext, RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().save(retailStoreInvestmentInvitation, tokens);
+ 		return retailStoreInvestmentInvitationDaoOf(userContext).save(retailStoreInvestmentInvitation, tokens);
  	}
  	protected RetailStoreInvestmentInvitation loadRetailStoreInvestmentInvitation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreInvestmentInvitationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().load(retailStoreInvestmentInvitationId, tokens);
+ 		return retailStoreInvestmentInvitationDaoOf(userContext).load(retailStoreInvestmentInvitationId, tokens);
  	}
 
 	
@@ -170,17 +174,17 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
  	
  	
 
-
-	public RetailStoreInvestmentInvitation createRetailStoreInvestmentInvitation(RetailscmUserContext userContext,String comment) throws Exception
+	public RetailStoreInvestmentInvitation createRetailStoreInvestmentInvitation(RetailscmUserContext userContext, String comment) throws Exception
+	//public RetailStoreInvestmentInvitation createRetailStoreInvestmentInvitation(RetailscmUserContext userContext,String comment) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCommentOfRetailStoreInvestmentInvitation(comment);
+		checkerOf(userContext).checkCommentOfRetailStoreInvestmentInvitation(comment);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 
 
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation=createNewRetailStoreInvestmentInvitation();	
@@ -206,15 +210,15 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 
 		
 		
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		userContext.getChecker().checkVersionOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationVersion);
+		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
+		checkerOf(userContext).checkVersionOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationVersion);
 		
 
 		if(RetailStoreInvestmentInvitation.COMMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentOfRetailStoreInvestmentInvitation(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentOfRetailStoreInvestmentInvitation(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 	
 		
 	}
@@ -223,7 +227,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	
 	public RetailStoreInvestmentInvitation clone(RetailscmUserContext userContext, String fromRetailStoreInvestmentInvitationId) throws Exception{
 		
-		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().clone(fromRetailStoreInvestmentInvitationId, this.allTokens());
+		return retailStoreInvestmentInvitationDaoOf(userContext).clone(fromRetailStoreInvestmentInvitationId, this.allTokens());
 	}
 	
 	public RetailStoreInvestmentInvitation internalSaveRetailStoreInvestmentInvitation(RetailscmUserContext userContext, RetailStoreInvestmentInvitation retailStoreInvestmentInvitation) throws Exception 
@@ -329,7 +333,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().delete(retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
+		retailStoreInvestmentInvitationDaoOf(userContext).delete(retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
 	}
 	
 	public RetailStoreInvestmentInvitation forgetByAll(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion) throws Exception {
@@ -338,8 +342,9 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	protected RetailStoreInvestmentInvitation forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().disconnectFromAll(retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
+		return retailStoreInvestmentInvitationDaoOf(userContext).disconnectFromAll(retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
 	}
+	
 	
 
 	
@@ -356,7 +361,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().deleteAll();
+		return retailStoreInvestmentInvitationDaoOf(userContext).deleteAll();
 	}
 
 
@@ -372,7 +377,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().planToRemoveRetailStoreListWithRetailStoreCountryCenter(retailStoreInvestmentInvitation, retailStoreCountryCenterId, this.emptyOptions());
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithRetailStoreCountryCenter(retailStoreInvestmentInvitation, retailStoreCountryCenterId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
 				return retailStoreInvestmentInvitation;
@@ -390,7 +395,97 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().planToRemoveRetailStoreListWithCityServiceCenter(retailStoreInvestmentInvitation, cityServiceCenterId, this.emptyOptions());
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithCityServiceCenter(retailStoreInvestmentInvitation, cityServiceCenterId, this.emptyOptions());
+
+				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
+				return retailStoreInvestmentInvitation;
+			}
+	}
+	//disconnect RetailStoreInvestmentInvitation with creation in RetailStore
+	protected RetailStoreInvestmentInvitation breakWithRetailStoreByCreation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String creationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
+
+			synchronized(retailStoreInvestmentInvitation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithCreation(retailStoreInvestmentInvitation, creationId, this.emptyOptions());
+
+				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
+				return retailStoreInvestmentInvitation;
+			}
+	}
+	//disconnect RetailStoreInvestmentInvitation with franchising in RetailStore
+	protected RetailStoreInvestmentInvitation breakWithRetailStoreByFranchising(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String franchisingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
+
+			synchronized(retailStoreInvestmentInvitation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithFranchising(retailStoreInvestmentInvitation, franchisingId, this.emptyOptions());
+
+				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
+				return retailStoreInvestmentInvitation;
+			}
+	}
+	//disconnect RetailStoreInvestmentInvitation with decoration in RetailStore
+	protected RetailStoreInvestmentInvitation breakWithRetailStoreByDecoration(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String decorationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
+
+			synchronized(retailStoreInvestmentInvitation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithDecoration(retailStoreInvestmentInvitation, decorationId, this.emptyOptions());
+
+				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
+				return retailStoreInvestmentInvitation;
+			}
+	}
+	//disconnect RetailStoreInvestmentInvitation with opening in RetailStore
+	protected RetailStoreInvestmentInvitation breakWithRetailStoreByOpening(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String openingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
+
+			synchronized(retailStoreInvestmentInvitation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithOpening(retailStoreInvestmentInvitation, openingId, this.emptyOptions());
+
+				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
+				return retailStoreInvestmentInvitation;
+			}
+	}
+	//disconnect RetailStoreInvestmentInvitation with closing in RetailStore
+	protected RetailStoreInvestmentInvitation breakWithRetailStoreByClosing(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String closingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
+
+			synchronized(retailStoreInvestmentInvitation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithClosing(retailStoreInvestmentInvitation, closingId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
 				return retailStoreInvestmentInvitation;
@@ -402,43 +497,49 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	
 	
 
-	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
 
 		
+		checkerOf(userContext).checkNameOfRetailStore(name);
 		
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-
+		checkerOf(userContext).checkTelephoneOfRetailStore(telephone);
 		
-		userContext.getChecker().checkNameOfRetailStore(name);
+		checkerOf(userContext).checkOwnerOfRetailStore(owner);
 		
-		userContext.getChecker().checkTelephoneOfRetailStore(telephone);
+		checkerOf(userContext).checkRetailStoreCountryCenterIdOfRetailStore(retailStoreCountryCenterId);
 		
-		userContext.getChecker().checkOwnerOfRetailStore(owner);
+		checkerOf(userContext).checkCityServiceCenterIdOfRetailStore(cityServiceCenterId);
 		
-		userContext.getChecker().checkRetailStoreCountryCenterIdOfRetailStore(retailStoreCountryCenterId);
+		checkerOf(userContext).checkCreationIdOfRetailStore(creationId);
 		
-		userContext.getChecker().checkCityServiceCenterIdOfRetailStore(cityServiceCenterId);
+		checkerOf(userContext).checkFranchisingIdOfRetailStore(franchisingId);
 		
-		userContext.getChecker().checkFoundedOfRetailStore(founded);
+		checkerOf(userContext).checkDecorationIdOfRetailStore(decorationId);
 		
-		userContext.getChecker().checkLatitudeOfRetailStore(latitude);
+		checkerOf(userContext).checkOpeningIdOfRetailStore(openingId);
 		
-		userContext.getChecker().checkLongitudeOfRetailStore(longitude);
+		checkerOf(userContext).checkClosingIdOfRetailStore(closingId);
 		
-		userContext.getChecker().checkDescriptionOfRetailStore(description);
+		checkerOf(userContext).checkFoundedOfRetailStore(founded);
+		
+		checkerOf(userContext).checkLatitudeOfRetailStore(latitude);
+		
+		checkerOf(userContext).checkLongitudeOfRetailStore(longitude);
+		
+		checkerOf(userContext).checkDescriptionOfRetailStore(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 
 	
 	}
-	public  RetailStoreInvestmentInvitation addRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
+	public  RetailStoreInvestmentInvitation addRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingRetailStore(userContext,retailStoreInvestmentInvitationId,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, founded, latitude, longitude, description,tokensExpr);
+		checkParamsForAddingRetailStore(userContext,retailStoreInvestmentInvitationId,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, creationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description,tokensExpr);
 		
-		RetailStore retailStore = createRetailStore(userContext,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, founded, latitude, longitude, description);
+		RetailStore retailStore = createRetailStore(userContext,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, creationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description);
 		
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 		synchronized(retailStoreInvestmentInvitation){ 
@@ -451,23 +552,23 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 			return present(userContext,retailStoreInvestmentInvitation, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		userContext.getChecker().checkIdOfRetailStore(id);
+		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
+		checkerOf(userContext).checkIdOfRetailStore(id);
 		
-		userContext.getChecker().checkNameOfRetailStore( name);
-		userContext.getChecker().checkTelephoneOfRetailStore( telephone);
-		userContext.getChecker().checkOwnerOfRetailStore( owner);
-		userContext.getChecker().checkFoundedOfRetailStore( founded);
-		userContext.getChecker().checkLatitudeOfRetailStore( latitude);
-		userContext.getChecker().checkLongitudeOfRetailStore( longitude);
-		userContext.getChecker().checkDescriptionOfRetailStore( description);
+		checkerOf(userContext).checkNameOfRetailStore( name);
+		checkerOf(userContext).checkTelephoneOfRetailStore( telephone);
+		checkerOf(userContext).checkOwnerOfRetailStore( owner);
+		checkerOf(userContext).checkFoundedOfRetailStore( founded);
+		checkerOf(userContext).checkLatitudeOfRetailStore( latitude);
+		checkerOf(userContext).checkLongitudeOfRetailStore( longitude);
+		checkerOf(userContext).checkDescriptionOfRetailStore( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 		
 	}
-	public  RetailStoreInvestmentInvitation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
+	public  RetailStoreInvestmentInvitation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingRetailStoreProperties(userContext,retailStoreInvestmentInvitationId,id,name,telephone,owner,founded,latitude,longitude,description,tokensExpr);
 
@@ -501,7 +602,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	}
 	
 	
-	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
+	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
 
 		RetailStore retailStore = new RetailStore();
 		
@@ -515,12 +616,26 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		RetailStoreCityServiceCenter  cityServiceCenter = new RetailStoreCityServiceCenter();
 		cityServiceCenter.setId(cityServiceCenterId);		
 		retailStore.setCityServiceCenter(cityServiceCenter);		
+		RetailStoreCreation  creation = new RetailStoreCreation();
+		creation.setId(creationId);		
+		retailStore.setCreation(creation);		
+		RetailStoreFranchising  franchising = new RetailStoreFranchising();
+		franchising.setId(franchisingId);		
+		retailStore.setFranchising(franchising);		
+		RetailStoreDecoration  decoration = new RetailStoreDecoration();
+		decoration.setId(decorationId);		
+		retailStore.setDecoration(decoration);		
+		RetailStoreOpening  opening = new RetailStoreOpening();
+		opening.setId(openingId);		
+		retailStore.setOpening(opening);		
+		RetailStoreClosing  closing = new RetailStoreClosing();
+		closing.setId(closingId);		
+		retailStore.setClosing(closing);		
 		retailStore.setFounded(founded);		
 		retailStore.setLatitude(latitude);		
 		retailStore.setLongitude(longitude);		
 		retailStore.setDescription(description);		
-		retailStore.setLastUpdateTime(userContext.now());		
-		retailStore.setCurrentStatus("INIT");
+		retailStore.setLastUpdateTime(userContext.now());
 	
 		
 		return retailStore;
@@ -540,12 +655,12 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
+		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
 		for(String retailStoreIdItem: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
+			checkerOf(userContext).checkIdOfRetailStore(retailStoreIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 		
 	}
 	public  RetailStoreInvestmentInvitation removeRetailStoreList(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
@@ -558,7 +673,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 			synchronized(retailStoreInvestmentInvitation){ 
 				//Will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getRetailStoreInvestmentInvitationDAO().planToRemoveRetailStoreList(retailStoreInvestmentInvitation, retailStoreIds, allTokens());
+				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreList(retailStoreInvestmentInvitation, retailStoreIds, allTokens());
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
 				deleteRelationListInGraph(userContext, retailStoreInvestmentInvitation.getRetailStoreList());
 				return present(userContext,retailStoreInvestmentInvitation, mergedAllTokens(tokensExpr));
@@ -568,10 +683,10 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationId);
-		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-		userContext.getChecker().checkVersionOfRetailStore(retailStoreVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationId);
+		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
+		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 	
 	}
 	public  RetailStoreInvestmentInvitation removeRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
@@ -595,10 +710,10 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationId);
-		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-		userContext.getChecker().checkVersionOfRetailStore(retailStoreVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationId);
+		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
+		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 	
 	}
 	public  RetailStoreInvestmentInvitation copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
@@ -627,41 +742,41 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		
 
 		
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-		userContext.getChecker().checkVersionOfRetailStore(retailStoreVersion);
+		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
+		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
+		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		
 
 		if(RetailStore.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfRetailStore(parseString(newValueExpr));
 		}
 		
 		if(RetailStore.TELEPHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTelephoneOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkTelephoneOfRetailStore(parseLong(newValueExpr));
 		}
 		
 		if(RetailStore.OWNER_PROPERTY.equals(property)){
-			userContext.getChecker().checkOwnerOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkOwnerOfRetailStore(parseString(newValueExpr));
 		}
 		
 		if(RetailStore.FOUNDED_PROPERTY.equals(property)){
-			userContext.getChecker().checkFoundedOfRetailStore(parseDate(newValueExpr));
+			checkerOf(userContext).checkFoundedOfRetailStore(parseDate(newValueExpr));
 		}
 		
 		if(RetailStore.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfRetailStore(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfRetailStore(parseBigDecimal(newValueExpr));
 		}
 		
 		if(RetailStore.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfRetailStore(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfRetailStore(parseBigDecimal(newValueExpr));
 		}
 		
 		if(RetailStore.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfRetailStore(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 	
 	}
 	
@@ -696,180 +811,10 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 
 	}
 	/*
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewCreation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreCreation creation = userContext.getManagerGroup().getRetailStoreCreationManager().createRetailStoreCreation(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateCreation(creation);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewFranchising(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreFranchising franchising = userContext.getManagerGroup().getRetailStoreFranchisingManager().createRetailStoreFranchising(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateFranchising(franchising);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewDecoration(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreDecoration decoration = userContext.getManagerGroup().getRetailStoreDecorationManager().createRetailStoreDecoration(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateDecoration(decoration);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewOpening(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreOpening opening = userContext.getManagerGroup().getRetailStoreOpeningManager().createRetailStoreOpening(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateOpening(opening);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToNewClosing(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreClosing closing = userContext.getManagerGroup().getRetailStoreClosingManager().createRetailStoreClosing(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateClosing(closing);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}
 	*/
 	
-	public  RetailStoreInvestmentInvitation associateRetailStoreListToCreation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String creationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreCreation creation = userContext.getManagerGroup().getRetailStoreCreationManager().loadRetailStoreCreation(userContext,creationId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateCreation(creation);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToFranchising(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String franchisingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreFranchising franchising = userContext.getManagerGroup().getRetailStoreFranchisingManager().loadRetailStoreFranchising(userContext,franchisingId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateFranchising(franchising);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToDecoration(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String decorationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreDecoration decoration = userContext.getManagerGroup().getRetailStoreDecorationManager().loadRetailStoreDecoration(userContext,decorationId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateDecoration(decoration);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToOpening(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String openingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreOpening opening = userContext.getManagerGroup().getRetailStoreOpeningManager().loadRetailStoreOpening(userContext,openingId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateOpening(opening);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}	public  RetailStoreInvestmentInvitation associateRetailStoreListToClosing(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String  retailStoreIds[], String closingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
-		RetailStoreClosing closing = userContext.getManagerGroup().getRetailStoreClosingManager().loadRetailStoreClosing(userContext,closingId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreInvestmentInvitation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateClosing(closing);
-		}
-		return this.internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreInvestmentInvitation newCreated) throws Exception{

@@ -64,6 +64,11 @@ public class EmployeeSkillJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<EmployeeSkill> loadAll() {
+	    return this.loadAll(getEmployeeSkillMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -680,6 +685,10 @@ public class EmployeeSkillJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<EmployeeSkill> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeSkillMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

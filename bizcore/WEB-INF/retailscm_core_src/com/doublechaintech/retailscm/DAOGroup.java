@@ -4953,7 +4953,7 @@ public class DAOGroup {
 	    }
 	}
 	public <T> void enhanceList(List list, Class<T> clazz) throws Exception{
-	    BasicLoader loader = internalLoaderMap.get(clazz.getName());
+	    BasicLoader loader = internalLoaderMap.get(clazz.getSimpleName());
 	    if (loader == null) {
 	    	return ;
 	    }

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountingdocumentline;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.accountingsubject.AccountingSubjectDAO;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
-public interface AccountingDocumentLineDAO{
+public interface AccountingDocumentLineDAO extends BaseDAO{
 
-	
+	public SmartList<AccountingDocumentLine> loadAll();
 	public AccountingDocumentLine load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<AccountingDocumentLine> accountingDocumentLineList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -47,6 +48,7 @@ public interface AccountingDocumentLineDAO{
 	
 	
 	public SmartList<AccountingDocumentLine> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<AccountingDocumentLine> findAccountingDocumentLineByBelongsTo(String accountingDocumentId, Map<String,Object> options);
  	public int countAccountingDocumentLineByBelongsTo(String accountingDocumentId, Map<String,Object> options);

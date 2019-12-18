@@ -75,14 +75,6 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	EmployeeAward(Employee employee, Date completeTime, String type, String remark)
-	{
-		setEmployee(employee);
-		setCompleteTime(completeTime);
-		setType(type);
-		setRemark(remark);
-	
-	}
 	
 	//Support for changing the property
 	

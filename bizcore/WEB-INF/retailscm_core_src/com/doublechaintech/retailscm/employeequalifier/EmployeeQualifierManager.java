@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface EmployeeQualifierManager{
+public interface EmployeeQualifierManager extends BaseManager{
 
 		
 
-	public EmployeeQualifier createEmployeeQualifier(RetailscmUserContext userContext, String employeeId, Date qualifiedTime, String type, String level, String remark) throws Exception;	
+	public EmployeeQualifier createEmployeeQualifier(RetailscmUserContext userContext, String employeeId,Date qualifiedTime,String type,String level,String remark) throws Exception;	
 	public EmployeeQualifier updateEmployeeQualifier(RetailscmUserContext userContext,String employeeQualifierId, int employeeQualifierVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public EmployeeQualifier loadEmployeeQualifier(RetailscmUserContext userContext, String employeeQualifierId, String [] tokensExpr) throws Exception;
 	public EmployeeQualifier internalSaveEmployeeQualifier(RetailscmUserContext userContext, EmployeeQualifier employeeQualifier) throws Exception;

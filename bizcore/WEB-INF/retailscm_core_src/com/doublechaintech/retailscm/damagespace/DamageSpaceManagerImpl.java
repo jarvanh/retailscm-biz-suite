@@ -37,6 +37,10 @@ import com.doublechaintech.retailscm.storagespace.StorageSpace;
 public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implements DamageSpaceManager {
 	
 	private static final String SERVICE_TYPE = "DamageSpace";
+	@Override
+	public DamageSpaceDAO daoOf(RetailscmUserContext userContext) {
+		return damageSpaceDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -70,8 +74,8 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	public DamageSpace loadDamageSpace(RetailscmUserContext userContext, String damageSpaceId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( DamageSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( DamageSpaceManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -84,8 +88,8 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	 public DamageSpace searchDamageSpace(RetailscmUserContext userContext, String damageSpaceId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( DamageSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( DamageSpaceManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -103,10 +107,10 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 		addActions(userContext,damageSpace,tokens);
 		
 		
-		DamageSpace  damageSpaceToPresent = userContext.getDAOGroup().getDamageSpaceDAO().present(damageSpace, tokens);
+		DamageSpace  damageSpaceToPresent = damageSpaceDaoOf(userContext).present(damageSpace, tokens);
 		
 		List<BaseEntity> entityListToNaming = damageSpaceToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getDamageSpaceDAO().alias(entityListToNaming);
+		damageSpaceDaoOf(userContext).alias(entityListToNaming);
 		
 		return  damageSpaceToPresent;
 		
@@ -127,14 +131,14 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 		
  	}
  	protected DamageSpace saveDamageSpace(RetailscmUserContext userContext, DamageSpace damageSpace, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getDamageSpaceDAO().save(damageSpace, tokens);
+ 		return damageSpaceDaoOf(userContext).save(damageSpace, tokens);
  	}
  	protected DamageSpace loadDamageSpace(RetailscmUserContext userContext, String damageSpaceId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( DamageSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( DamageSpaceManagerException.class);
 
  
- 		return userContext.getDAOGroup().getDamageSpaceDAO().load(damageSpaceId, tokens);
+ 		return damageSpaceDaoOf(userContext).load(damageSpaceId, tokens);
  	}
 
 	
@@ -168,21 +172,21 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-
-	public DamageSpace createDamageSpace(RetailscmUserContext userContext,String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String warehouseId) throws Exception
+	public DamageSpace createDamageSpace(RetailscmUserContext userContext, String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String warehouseId) throws Exception
+	//public DamageSpace createDamageSpace(RetailscmUserContext userContext,String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String warehouseId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLocationOfDamageSpace(location);
-		userContext.getChecker().checkContactNumberOfDamageSpace(contactNumber);
-		userContext.getChecker().checkTotalAreaOfDamageSpace(totalArea);
-		userContext.getChecker().checkLatitudeOfDamageSpace(latitude);
-		userContext.getChecker().checkLongitudeOfDamageSpace(longitude);
+		checkerOf(userContext).checkLocationOfDamageSpace(location);
+		checkerOf(userContext).checkContactNumberOfDamageSpace(contactNumber);
+		checkerOf(userContext).checkTotalAreaOfDamageSpace(totalArea);
+		checkerOf(userContext).checkLatitudeOfDamageSpace(latitude);
+		checkerOf(userContext).checkLongitudeOfDamageSpace(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 
 
 		DamageSpace damageSpace=createNewDamageSpace();	
@@ -218,29 +222,29 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 
 		
 		
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().checkVersionOfDamageSpace( damageSpaceVersion);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).checkVersionOfDamageSpace( damageSpaceVersion);
 		
 
 		if(DamageSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfDamageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfDamageSpace(parseString(newValueExpr));
 		}
 		if(DamageSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfDamageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfDamageSpace(parseLong(newValueExpr));
 		}
 		if(DamageSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfDamageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfDamageSpace(parseString(newValueExpr));
 		}
 		if(DamageSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfDamageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfDamageSpace(parseBigDecimal(newValueExpr));
 		}
 		if(DamageSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfDamageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfDamageSpace(parseBigDecimal(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 	
 		
 	}
@@ -249,7 +253,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	public DamageSpace clone(RetailscmUserContext userContext, String fromDamageSpaceId) throws Exception{
 		
-		return userContext.getDAOGroup().getDamageSpaceDAO().clone(fromDamageSpaceId, this.allTokens());
+		return damageSpaceDaoOf(userContext).clone(fromDamageSpaceId, this.allTokens());
 	}
 	
 	public DamageSpace internalSaveDamageSpace(RetailscmUserContext userContext, DamageSpace damageSpace) throws Exception 
@@ -348,9 +352,9 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForTransferingAnotherWarehouse(RetailscmUserContext userContext, String damageSpaceId, String anotherWarehouseId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
- 		userContext.getChecker().checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+ 		checkerOf(userContext).checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
  		
  	}
  	public DamageSpace transferToAnotherWarehouse(RetailscmUserContext userContext, String damageSpaceId, String anotherWarehouseId) throws Exception
@@ -387,7 +391,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Warehouse> candidateList = userContext.getDAOGroup().getWarehouseDAO().requestCandidateWarehouseForDamageSpace(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Warehouse> candidateList = warehouseDaoOf(userContext).requestCandidateWarehouseForDamageSpace(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -400,7 +404,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
  	protected Warehouse loadWarehouse(RetailscmUserContext userContext, String newWarehouseId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getWarehouseDAO().load(newWarehouseId, options);
+ 		return warehouseDaoOf(userContext).load(newWarehouseId, options);
  	}
  	
  	
@@ -414,7 +418,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String damageSpaceId, int damageSpaceVersion) throws Exception{
 			
-		userContext.getDAOGroup().getDamageSpaceDAO().delete(damageSpaceId, damageSpaceVersion);
+		damageSpaceDaoOf(userContext).delete(damageSpaceId, damageSpaceVersion);
 	}
 	
 	public DamageSpace forgetByAll(RetailscmUserContext userContext, String damageSpaceId, int damageSpaceVersion) throws Exception {
@@ -423,8 +427,9 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	protected DamageSpace forgetByAllInternal(RetailscmUserContext userContext,
 			String damageSpaceId, int damageSpaceVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getDamageSpaceDAO().disconnectFromAll(damageSpaceId, damageSpaceVersion);
+		return damageSpaceDaoOf(userContext).disconnectFromAll(damageSpaceId, damageSpaceVersion);
 	}
+	
 	
 
 	
@@ -441,7 +446,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getDamageSpaceDAO().deleteAll();
+		return damageSpaceDaoOf(userContext).deleteAll();
 	}
 
 
@@ -457,7 +462,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getDamageSpaceDAO().planToRemoveGoodsShelfListWithStorageSpace(damageSpace, storageSpaceId, this.emptyOptions());
+				damageSpaceDaoOf(userContext).planToRemoveGoodsShelfListWithStorageSpace(damageSpace, storageSpaceId, this.emptyOptions());
 
 				damageSpace = saveDamageSpace(userContext, damageSpace, tokens().withGoodsShelfList().done());
 				return damageSpace;
@@ -475,7 +480,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getDamageSpaceDAO().planToRemoveGoodsShelfListWithSupplierSpace(damageSpace, supplierSpaceId, this.emptyOptions());
+				damageSpaceDaoOf(userContext).planToRemoveGoodsShelfListWithSupplierSpace(damageSpace, supplierSpaceId, this.emptyOptions());
 
 				damageSpace = saveDamageSpace(userContext, damageSpace, tokens().withGoodsShelfList().done());
 				return damageSpace;
@@ -489,20 +494,16 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 
 	protected void checkParamsForAddingGoodsShelf(RetailscmUserContext userContext, String damageSpaceId, String location, String storageSpaceId, String supplierSpaceId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
 
 		
+		checkerOf(userContext).checkLocationOfGoodsShelf(location);
 		
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-
+		checkerOf(userContext).checkStorageSpaceIdOfGoodsShelf(storageSpaceId);
 		
-		userContext.getChecker().checkLocationOfGoodsShelf(location);
-		
-		userContext.getChecker().checkStorageSpaceIdOfGoodsShelf(storageSpaceId);
-		
-		userContext.getChecker().checkSupplierSpaceIdOfGoodsShelf(supplierSpaceId);
+		checkerOf(userContext).checkSupplierSpaceIdOfGoodsShelf(supplierSpaceId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 
 	
 	}
@@ -526,12 +527,12 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingGoodsShelfProperties(RetailscmUserContext userContext, String damageSpaceId,String id,String location,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(id);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(id);
 		
-		userContext.getChecker().checkLocationOfGoodsShelf( location);
+		checkerOf(userContext).checkLocationOfGoodsShelf( location);
 
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 		
 	}
 	public  DamageSpace updateGoodsShelfProperties(RetailscmUserContext userContext, String damageSpaceId, String id,String location, String [] tokensExpr) throws Exception
@@ -594,12 +595,12 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingGoodsShelfList(RetailscmUserContext userContext, String damageSpaceId, 
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
 		for(String goodsShelfIdItem: goodsShelfIds){
-			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
+			checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 		
 	}
 	public  DamageSpace removeGoodsShelfList(RetailscmUserContext userContext, String damageSpaceId, 
@@ -612,7 +613,7 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(damageSpace){ 
 				//Will be good when the damageSpace loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getDamageSpaceDAO().planToRemoveGoodsShelfList(damageSpace, goodsShelfIds, allTokens());
+				damageSpaceDaoOf(userContext).planToRemoveGoodsShelfList(damageSpace, goodsShelfIds, allTokens());
 				damageSpace = saveDamageSpace(userContext, damageSpace, tokens().withGoodsShelfList().done());
 				deleteRelationListInGraph(userContext, damageSpace.getGoodsShelfList());
 				return present(userContext,damageSpace, mergedAllTokens(tokensExpr));
@@ -622,10 +623,10 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingGoodsShelf(RetailscmUserContext userContext, String damageSpaceId, 
 		String goodsShelfId, int goodsShelfVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfDamageSpace( damageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfDamageSpace( damageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 	
 	}
 	public  DamageSpace removeGoodsShelf(RetailscmUserContext userContext, String damageSpaceId, 
@@ -649,10 +650,10 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingGoodsShelf(RetailscmUserContext userContext, String damageSpaceId, 
 		String goodsShelfId, int goodsShelfVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfDamageSpace( damageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfDamageSpace( damageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 	
 	}
 	public  DamageSpace copyGoodsShelfFrom(RetailscmUserContext userContext, String damageSpaceId, 
@@ -681,17 +682,17 @@ public class DamageSpaceManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
 		
 
 		if(GoodsShelf.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfGoodsShelf(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfGoodsShelf(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(DamageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(DamageSpaceManagerException.class);
 	
 	}
 	

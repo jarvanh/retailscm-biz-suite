@@ -87,17 +87,6 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	GoodsShelf(String location, StorageSpace storageSpace, SupplierSpace supplierSpace, DamageSpace damageSpace, DateTime lastUpdateTime)
-	{
-		setLocation(location);
-		setStorageSpace(storageSpace);
-		setSupplierSpace(supplierSpace);
-		setDamageSpace(damageSpace);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mGoodsShelfStockCountList = new SmartList<GoodsShelfStockCount>();
-		this.mGoodsAllocationList = new SmartList<GoodsAllocation>();	
-	}
 	
 	//Support for changing the property
 	

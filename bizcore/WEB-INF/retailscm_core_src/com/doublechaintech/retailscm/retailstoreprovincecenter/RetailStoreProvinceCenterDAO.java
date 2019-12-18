@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoreprovincecenter;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -19,9 +20,9 @@ import com.doublechaintech.retailscm.provincecenteremployee.ProvinceCenterEmploy
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface RetailStoreProvinceCenterDAO{
+public interface RetailStoreProvinceCenterDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreProvinceCenter> loadAll();
 	public RetailStoreProvinceCenter load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreProvinceCenter> retailStoreProvinceCenterList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -76,6 +77,7 @@ public interface RetailStoreProvinceCenterDAO{
 
 	
 	public SmartList<RetailStoreProvinceCenter> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreProvinceCenter> findRetailStoreProvinceCenterByCountry(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countRetailStoreProvinceCenterByCountry(String retailStoreCountryCenterId, Map<String,Object> options);

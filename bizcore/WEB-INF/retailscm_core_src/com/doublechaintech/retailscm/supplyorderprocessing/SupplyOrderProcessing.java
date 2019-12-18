@@ -75,14 +75,6 @@ public class SupplyOrderProcessing extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderProcessing(String who, Date processTime)
-	{
-		setWho(who);
-		setProcessTime(processTime);
-
-		this.mConsumerOrderList = new SmartList<ConsumerOrder>();
-		this.mSupplyOrderList = new SmartList<SupplyOrder>();	
-	}
 	
 	//Support for changing the property
 	

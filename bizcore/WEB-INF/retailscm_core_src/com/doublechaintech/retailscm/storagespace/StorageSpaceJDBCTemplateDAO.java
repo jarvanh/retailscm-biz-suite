@@ -74,6 +74,11 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	}
 	*/
 	
+	public SmartList<StorageSpace> loadAll() {
+	    return this.loadAll(getStorageSpaceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -914,6 +919,10 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	@Override
 	public SmartList<StorageSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getStorageSpaceMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

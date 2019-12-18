@@ -46,6 +46,10 @@ import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager implements ResponsibilityTypeManager {
 	
 	private static final String SERVICE_TYPE = "ResponsibilityType";
+	@Override
+	public ResponsibilityTypeDAO daoOf(RetailscmUserContext userContext) {
+		return responsibilityTypeDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -79,8 +83,8 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
  	
  	public ResponsibilityType loadResponsibilityType(RetailscmUserContext userContext, String responsibilityTypeId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( ResponsibilityTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ResponsibilityTypeManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -93,8 +97,8 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
  	
  	 public ResponsibilityType searchResponsibilityType(RetailscmUserContext userContext, String responsibilityTypeId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( ResponsibilityTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ResponsibilityTypeManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -112,10 +116,10 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		addActions(userContext,responsibilityType,tokens);
 		
 		
-		ResponsibilityType  responsibilityTypeToPresent = userContext.getDAOGroup().getResponsibilityTypeDAO().present(responsibilityType, tokens);
+		ResponsibilityType  responsibilityTypeToPresent = responsibilityTypeDaoOf(userContext).present(responsibilityType, tokens);
 		
 		List<BaseEntity> entityListToNaming = responsibilityTypeToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getResponsibilityTypeDAO().alias(entityListToNaming);
+		responsibilityTypeDaoOf(userContext).alias(entityListToNaming);
 		
 		return  responsibilityTypeToPresent;
 		
@@ -136,14 +140,14 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		
  	}
  	protected ResponsibilityType saveResponsibilityType(RetailscmUserContext userContext, ResponsibilityType responsibilityType, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getResponsibilityTypeDAO().save(responsibilityType, tokens);
+ 		return responsibilityTypeDaoOf(userContext).save(responsibilityType, tokens);
  	}
  	protected ResponsibilityType loadResponsibilityType(RetailscmUserContext userContext, String responsibilityTypeId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ResponsibilityTypeManagerException.class);
 
  
- 		return userContext.getDAOGroup().getResponsibilityTypeDAO().load(responsibilityTypeId, tokens);
+ 		return responsibilityTypeDaoOf(userContext).load(responsibilityTypeId, tokens);
  	}
 
 	
@@ -177,19 +181,19 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
  	
  	
 
-
-	public ResponsibilityType createResponsibilityType(RetailscmUserContext userContext,String code, String companyId, String baseDescription, String detailDescription) throws Exception
+	public ResponsibilityType createResponsibilityType(RetailscmUserContext userContext, String code,String companyId,String baseDescription,String detailDescription) throws Exception
+	//public ResponsibilityType createResponsibilityType(RetailscmUserContext userContext,String code, String companyId, String baseDescription, String detailDescription) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCodeOfResponsibilityType(code);
-		userContext.getChecker().checkBaseDescriptionOfResponsibilityType(baseDescription);
-		userContext.getChecker().checkDetailDescriptionOfResponsibilityType(detailDescription);
+		checkerOf(userContext).checkCodeOfResponsibilityType(code);
+		checkerOf(userContext).checkBaseDescriptionOfResponsibilityType(baseDescription);
+		checkerOf(userContext).checkDetailDescriptionOfResponsibilityType(detailDescription);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 
 
 		ResponsibilityType responsibilityType=createNewResponsibilityType();	
@@ -222,23 +226,23 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 
 		
 		
-		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-		userContext.getChecker().checkVersionOfResponsibilityType( responsibilityTypeVersion);
+		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
+		checkerOf(userContext).checkVersionOfResponsibilityType( responsibilityTypeVersion);
 		
 
 		if(ResponsibilityType.CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCodeOfResponsibilityType(parseString(newValueExpr));
+			checkerOf(userContext).checkCodeOfResponsibilityType(parseString(newValueExpr));
 		}		
 
 		
 		if(ResponsibilityType.BASE_DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkBaseDescriptionOfResponsibilityType(parseString(newValueExpr));
+			checkerOf(userContext).checkBaseDescriptionOfResponsibilityType(parseString(newValueExpr));
 		}
 		if(ResponsibilityType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDetailDescriptionOfResponsibilityType(parseString(newValueExpr));
+			checkerOf(userContext).checkDetailDescriptionOfResponsibilityType(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 	
 		
 	}
@@ -247,7 +251,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	
 	public ResponsibilityType clone(RetailscmUserContext userContext, String fromResponsibilityTypeId) throws Exception{
 		
-		return userContext.getDAOGroup().getResponsibilityTypeDAO().clone(fromResponsibilityTypeId, this.allTokens());
+		return responsibilityTypeDaoOf(userContext).clone(fromResponsibilityTypeId, this.allTokens());
 	}
 	
 	public ResponsibilityType internalSaveResponsibilityType(RetailscmUserContext userContext, ResponsibilityType responsibilityType) throws Exception 
@@ -346,9 +350,9 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String responsibilityTypeId, String anotherCompanyId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
  		
  	}
  	public ResponsibilityType transferToAnotherCompany(RetailscmUserContext userContext, String responsibilityTypeId, String anotherCompanyId) throws Exception
@@ -385,7 +389,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForResponsibilityType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForResponsibilityType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -398,7 +402,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
  	
@@ -412,7 +416,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String responsibilityTypeId, int responsibilityTypeVersion) throws Exception{
 			
-		userContext.getDAOGroup().getResponsibilityTypeDAO().delete(responsibilityTypeId, responsibilityTypeVersion);
+		responsibilityTypeDaoOf(userContext).delete(responsibilityTypeId, responsibilityTypeVersion);
 	}
 	
 	public ResponsibilityType forgetByAll(RetailscmUserContext userContext, String responsibilityTypeId, int responsibilityTypeVersion) throws Exception {
@@ -421,8 +425,9 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected ResponsibilityType forgetByAllInternal(RetailscmUserContext userContext,
 			String responsibilityTypeId, int responsibilityTypeVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getResponsibilityTypeDAO().disconnectFromAll(responsibilityTypeId, responsibilityTypeVersion);
+		return responsibilityTypeDaoOf(userContext).disconnectFromAll(responsibilityTypeId, responsibilityTypeVersion);
 	}
+	
 	
 
 	
@@ -439,7 +444,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getResponsibilityTypeDAO().deleteAll();
+		return responsibilityTypeDaoOf(userContext).deleteAll();
 	}
 
 
@@ -455,7 +460,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getResponsibilityTypeDAO().planToRemoveEmployeeListWithCompany(responsibilityType, companyId, this.emptyOptions());
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithCompany(responsibilityType, companyId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 				return responsibilityType;
@@ -473,7 +478,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getResponsibilityTypeDAO().planToRemoveEmployeeListWithDepartment(responsibilityType, departmentId, this.emptyOptions());
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithDepartment(responsibilityType, departmentId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 				return responsibilityType;
@@ -491,7 +496,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getResponsibilityTypeDAO().planToRemoveEmployeeListWithOccupation(responsibilityType, occupationId, this.emptyOptions());
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithOccupation(responsibilityType, occupationId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 				return responsibilityType;
@@ -509,7 +514,133 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getResponsibilityTypeDAO().planToRemoveEmployeeListWithCurrentSalaryGrade(responsibilityType, currentSalaryGradeId, this.emptyOptions());
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(responsibilityType, currentSalaryGradeId, this.emptyOptions());
+
+				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
+				return responsibilityType;
+			}
+	}
+	//disconnect ResponsibilityType with job_application in Employee
+	protected ResponsibilityType breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String responsibilityTypeId, String jobApplicationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+
+			synchronized(responsibilityType){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(responsibilityType, jobApplicationId, this.emptyOptions());
+
+				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
+				return responsibilityType;
+			}
+	}
+	//disconnect ResponsibilityType with profession_interview in Employee
+	protected ResponsibilityType breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String responsibilityTypeId, String professionInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+
+			synchronized(responsibilityType){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(responsibilityType, professionInterviewId, this.emptyOptions());
+
+				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
+				return responsibilityType;
+			}
+	}
+	//disconnect ResponsibilityType with hr_interview in Employee
+	protected ResponsibilityType breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String responsibilityTypeId, String hrInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+
+			synchronized(responsibilityType){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(responsibilityType, hrInterviewId, this.emptyOptions());
+
+				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
+				return responsibilityType;
+			}
+	}
+	//disconnect ResponsibilityType with offer_approval in Employee
+	protected ResponsibilityType breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String responsibilityTypeId, String offerApprovalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+
+			synchronized(responsibilityType){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(responsibilityType, offerApprovalId, this.emptyOptions());
+
+				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
+				return responsibilityType;
+			}
+	}
+	//disconnect ResponsibilityType with offer_acceptance in Employee
+	protected ResponsibilityType breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String responsibilityTypeId, String offerAcceptanceId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+
+			synchronized(responsibilityType){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(responsibilityType, offerAcceptanceId, this.emptyOptions());
+
+				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
+				return responsibilityType;
+			}
+	}
+	//disconnect ResponsibilityType with employee_boarding in Employee
+	protected ResponsibilityType breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String responsibilityTypeId, String employeeBoardingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+
+			synchronized(responsibilityType){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(responsibilityType, employeeBoardingId, this.emptyOptions());
+
+				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
+				return responsibilityType;
+			}
+	}
+	//disconnect ResponsibilityType with termination in Employee
+	protected ResponsibilityType breakWithEmployeeByTermination(RetailscmUserContext userContext, String responsibilityTypeId, String terminationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+
+			synchronized(responsibilityType){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithTermination(responsibilityType, terminationId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 				return responsibilityType;
@@ -521,49 +652,59 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
 
 		
+		checkerOf(userContext).checkCompanyIdOfEmployee(companyId);
 		
-		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-
+		checkerOf(userContext).checkTitleOfEmployee(title);
 		
-		userContext.getChecker().checkCompanyIdOfEmployee(companyId);
+		checkerOf(userContext).checkDepartmentIdOfEmployee(departmentId);
 		
-		userContext.getChecker().checkTitleOfEmployee(title);
+		checkerOf(userContext).checkFamilyNameOfEmployee(familyName);
 		
-		userContext.getChecker().checkDepartmentIdOfEmployee(departmentId);
+		checkerOf(userContext).checkGivenNameOfEmployee(givenName);
 		
-		userContext.getChecker().checkFamilyNameOfEmployee(familyName);
+		checkerOf(userContext).checkEmailOfEmployee(email);
 		
-		userContext.getChecker().checkGivenNameOfEmployee(givenName);
+		checkerOf(userContext).checkCityOfEmployee(city);
 		
-		userContext.getChecker().checkEmailOfEmployee(email);
+		checkerOf(userContext).checkAddressOfEmployee(address);
 		
-		userContext.getChecker().checkCityOfEmployee(city);
+		checkerOf(userContext).checkCellPhoneOfEmployee(cellPhone);
 		
-		userContext.getChecker().checkAddressOfEmployee(address);
+		checkerOf(userContext).checkOccupationIdOfEmployee(occupationId);
 		
-		userContext.getChecker().checkCellPhoneOfEmployee(cellPhone);
+		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
-		userContext.getChecker().checkOccupationIdOfEmployee(occupationId);
+		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
 		
-		userContext.getChecker().checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
+		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
 		
-		userContext.getChecker().checkSalaryAccountOfEmployee(salaryAccount);
+		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
+		
+		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
+		
+		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
+		
+		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
+		
+		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
+		
+		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 
 	
 	}
-	public  ResponsibilityType addEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	public  ResponsibilityType addEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployee(userContext,responsibilityTypeId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount,tokensExpr);
+		checkParamsForAddingEmployee(userContext,responsibilityTypeId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId,tokensExpr);
 		
-		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount);
+		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId);
 		
 		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 		synchronized(responsibilityType){ 
@@ -578,19 +719,19 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String responsibilityTypeId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-		userContext.getChecker().checkIdOfEmployee(id);
+		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
+		checkerOf(userContext).checkIdOfEmployee(id);
 		
-		userContext.getChecker().checkTitleOfEmployee( title);
-		userContext.getChecker().checkFamilyNameOfEmployee( familyName);
-		userContext.getChecker().checkGivenNameOfEmployee( givenName);
-		userContext.getChecker().checkEmailOfEmployee( email);
-		userContext.getChecker().checkCityOfEmployee( city);
-		userContext.getChecker().checkAddressOfEmployee( address);
-		userContext.getChecker().checkCellPhoneOfEmployee( cellPhone);
-		userContext.getChecker().checkSalaryAccountOfEmployee( salaryAccount);
+		checkerOf(userContext).checkTitleOfEmployee( title);
+		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
+		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
+		checkerOf(userContext).checkEmailOfEmployee( email);
+		checkerOf(userContext).checkCityOfEmployee( city);
+		checkerOf(userContext).checkAddressOfEmployee( address);
+		checkerOf(userContext).checkCellPhoneOfEmployee( cellPhone);
+		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 		
 	}
 	public  ResponsibilityType updateEmployeeProperties(RetailscmUserContext userContext, String responsibilityTypeId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
@@ -628,7 +769,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	}
 	
 	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount) throws Exception{
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -653,8 +794,28 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		employee.setLastUpdateTime(userContext.now());		
-		employee.setCurrentStatus("INIT");
+		JobApplication  jobApplication = new JobApplication();
+		jobApplication.setId(jobApplicationId);		
+		employee.setJobApplication(jobApplication);		
+		ProfessionInterview  professionInterview = new ProfessionInterview();
+		professionInterview.setId(professionInterviewId);		
+		employee.setProfessionInterview(professionInterview);		
+		HrInterview  hrInterview = new HrInterview();
+		hrInterview.setId(hrInterviewId);		
+		employee.setHrInterview(hrInterview);		
+		OfferApproval  offerApproval = new OfferApproval();
+		offerApproval.setId(offerApprovalId);		
+		employee.setOfferApproval(offerApproval);		
+		OfferAcceptance  offerAcceptance = new OfferAcceptance();
+		offerAcceptance.setId(offerAcceptanceId);		
+		employee.setOfferAcceptance(offerAcceptance);		
+		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
+		employeeBoarding.setId(employeeBoardingId);		
+		employee.setEmployeeBoarding(employeeBoarding);		
+		Termination  termination = new Termination();
+		termination.setId(terminationId);		
+		employee.setTermination(termination);		
+		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
@@ -674,12 +835,12 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String responsibilityTypeId, 
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
+		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
 		for(String employeeIdItem: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
+			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 		
 	}
 	public  ResponsibilityType removeEmployeeList(RetailscmUserContext userContext, String responsibilityTypeId, 
@@ -692,7 +853,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 			synchronized(responsibilityType){ 
 				//Will be good when the responsibilityType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getResponsibilityTypeDAO().planToRemoveEmployeeList(responsibilityType, employeeIds, allTokens());
+				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeList(responsibilityType, employeeIds, allTokens());
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 				deleteRelationListInGraph(userContext, responsibilityType.getEmployeeList());
 				return present(userContext,responsibilityType, mergedAllTokens(tokensExpr));
@@ -702,10 +863,10 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfResponsibilityType( responsibilityTypeId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).checkIdOfResponsibilityType( responsibilityTypeId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 	
 	}
 	public  ResponsibilityType removeEmployee(RetailscmUserContext userContext, String responsibilityTypeId, 
@@ -729,10 +890,10 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfResponsibilityType( responsibilityTypeId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).checkIdOfResponsibilityType( responsibilityTypeId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 	
 	}
 	public  ResponsibilityType copyEmployeeFrom(RetailscmUserContext userContext, String responsibilityTypeId, 
@@ -761,45 +922,45 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		
 
 		
-		userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkFamilyNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkGivenNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkCityOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCellPhoneOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkSalaryAccountOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 	
 	}
 	
@@ -834,248 +995,10 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 
 	}
 	/*
-	public  ResponsibilityType associateEmployeeListToNewJobApplication(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], Date applicationTime, String who, String comments, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().createJobApplication(userContext,  applicationTime,  who,  comments);
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().createProfessionInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToNewHrInterview(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().createHrInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().createOfferApproval(userContext,  who,  approveTime,  comments);
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().createOfferAcceptance(userContext,  who,  acceptTime,  comments);
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToNewEmployeeBoarding(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String who, Date employTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().createEmployeeBoarding(userContext,  who,  employTime,  comments);
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToNewTermination(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String reasonId, String typeId, String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().createTermination(userContext, reasonId, typeId,  comment);
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}
 	*/
 	
-	public  ResponsibilityType associateEmployeeListToJobApplication(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String jobApplicationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().loadJobApplication(userContext,jobApplicationId,new String[]{"none"} );
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String professionInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().loadProfessionInterview(userContext,professionInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToHrInterview(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String hrInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().loadHrInterview(userContext,hrInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String offerApprovalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().loadOfferApproval(userContext,offerApprovalId,new String[]{"none"} );
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String offerAcceptanceId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().loadOfferAcceptance(userContext,offerAcceptanceId,new String[]{"none"} );
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToEmployeeBoarding(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String employeeBoardingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().loadEmployeeBoarding(userContext,employeeBoardingId,new String[]{"none"} );
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}	public  ResponsibilityType associateEmployeeListToTermination(RetailscmUserContext userContext, String responsibilityTypeId, String  employeeIds[], String terminationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().loadTermination(userContext,terminationId,new String[]{"none"} );
-		
-		for(Employee employee: responsibilityType.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveResponsibilityType(userContext, responsibilityType);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ResponsibilityType newCreated) throws Exception{

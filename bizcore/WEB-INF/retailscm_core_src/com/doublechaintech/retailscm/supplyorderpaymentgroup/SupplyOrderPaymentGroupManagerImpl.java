@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.supplyorder.CandidateSupplyOrder;
 public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerManager implements SupplyOrderPaymentGroupManager {
 	
 	private static final String SERVICE_TYPE = "SupplyOrderPaymentGroup";
+	@Override
+	public SupplyOrderPaymentGroupDAO daoOf(RetailscmUserContext userContext) {
+		return supplyOrderPaymentGroupDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
  	
  	public SupplyOrderPaymentGroup loadSupplyOrderPaymentGroup(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderPaymentGroupManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderPaymentGroupManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
  	
  	 public SupplyOrderPaymentGroup searchSupplyOrderPaymentGroup(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderPaymentGroupManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderPaymentGroupManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		addActions(userContext,supplyOrderPaymentGroup,tokens);
 		
 		
-		SupplyOrderPaymentGroup  supplyOrderPaymentGroupToPresent = userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().present(supplyOrderPaymentGroup, tokens);
+		SupplyOrderPaymentGroup  supplyOrderPaymentGroupToPresent = supplyOrderPaymentGroupDaoOf(userContext).present(supplyOrderPaymentGroup, tokens);
 		
 		List<BaseEntity> entityListToNaming = supplyOrderPaymentGroupToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().alias(entityListToNaming);
+		supplyOrderPaymentGroupDaoOf(userContext).alias(entityListToNaming);
 		
 		return  supplyOrderPaymentGroupToPresent;
 		
@@ -123,14 +127,14 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		
  	}
  	protected SupplyOrderPaymentGroup saveSupplyOrderPaymentGroup(RetailscmUserContext userContext, SupplyOrderPaymentGroup supplyOrderPaymentGroup, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().save(supplyOrderPaymentGroup, tokens);
+ 		return supplyOrderPaymentGroupDaoOf(userContext).save(supplyOrderPaymentGroup, tokens);
  	}
  	protected SupplyOrderPaymentGroup loadSupplyOrderPaymentGroup(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderPaymentGroupManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderPaymentGroupManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().load(supplyOrderPaymentGroupId, tokens);
+ 		return supplyOrderPaymentGroupDaoOf(userContext).load(supplyOrderPaymentGroupId, tokens);
  	}
 
 	
@@ -160,18 +164,18 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
  	
  	
 
-
-	public SupplyOrderPaymentGroup createSupplyOrderPaymentGroup(RetailscmUserContext userContext,String name, String bizOrderId, String cardNumber) throws Exception
+	public SupplyOrderPaymentGroup createSupplyOrderPaymentGroup(RetailscmUserContext userContext, String name,String bizOrderId,String cardNumber) throws Exception
+	//public SupplyOrderPaymentGroup createSupplyOrderPaymentGroup(RetailscmUserContext userContext,String name, String bizOrderId, String cardNumber) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfSupplyOrderPaymentGroup(name);
-		userContext.getChecker().checkCardNumberOfSupplyOrderPaymentGroup(cardNumber);
+		checkerOf(userContext).checkNameOfSupplyOrderPaymentGroup(name);
+		checkerOf(userContext).checkCardNumberOfSupplyOrderPaymentGroup(cardNumber);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
 
 
 		SupplyOrderPaymentGroup supplyOrderPaymentGroup=createNewSupplyOrderPaymentGroup();	
@@ -203,20 +207,20 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 
 		
 		
-		userContext.getChecker().checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
-		userContext.getChecker().checkVersionOfSupplyOrderPaymentGroup( supplyOrderPaymentGroupVersion);
+		checkerOf(userContext).checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
+		checkerOf(userContext).checkVersionOfSupplyOrderPaymentGroup( supplyOrderPaymentGroupVersion);
 		
 
 		if(SupplyOrderPaymentGroup.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfSupplyOrderPaymentGroup(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfSupplyOrderPaymentGroup(parseString(newValueExpr));
 		}		
 
 		
 		if(SupplyOrderPaymentGroup.CARD_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkCardNumberOfSupplyOrderPaymentGroup(parseString(newValueExpr));
+			checkerOf(userContext).checkCardNumberOfSupplyOrderPaymentGroup(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
 	
 		
 	}
@@ -225,7 +229,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	
 	public SupplyOrderPaymentGroup clone(RetailscmUserContext userContext, String fromSupplyOrderPaymentGroupId) throws Exception{
 		
-		return userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().clone(fromSupplyOrderPaymentGroupId, this.allTokens());
+		return supplyOrderPaymentGroupDaoOf(userContext).clone(fromSupplyOrderPaymentGroupId, this.allTokens());
 	}
 	
 	public SupplyOrderPaymentGroup internalSaveSupplyOrderPaymentGroup(RetailscmUserContext userContext, SupplyOrderPaymentGroup supplyOrderPaymentGroup) throws Exception 
@@ -323,9 +327,9 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, String anotherBizOrderId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
- 		userContext.getChecker().checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
+ 		checkerOf(userContext).checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
  		
  	}
  	public SupplyOrderPaymentGroup transferToAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, String anotherBizOrderId) throws Exception
@@ -362,7 +366,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<SupplyOrder> candidateList = userContext.getDAOGroup().getSupplyOrderDAO().requestCandidateSupplyOrderForSupplyOrderPaymentGroup(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<SupplyOrder> candidateList = supplyOrderDaoOf(userContext).requestCandidateSupplyOrderForSupplyOrderPaymentGroup(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -375,7 +379,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
  	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSupplyOrderDAO().load(newBizOrderId, options);
+ 		return supplyOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
  	
@@ -389,7 +393,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().delete(supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
+		supplyOrderPaymentGroupDaoOf(userContext).delete(supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
 	}
 	
 	public SupplyOrderPaymentGroup forgetByAll(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion) throws Exception {
@@ -398,8 +402,9 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	protected SupplyOrderPaymentGroup forgetByAllInternal(RetailscmUserContext userContext,
 			String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().disconnectFromAll(supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
+		return supplyOrderPaymentGroupDaoOf(userContext).disconnectFromAll(supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
 	}
+	
 	
 
 	
@@ -416,7 +421,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSupplyOrderPaymentGroupDAO().deleteAll();
+		return supplyOrderPaymentGroupDaoOf(userContext).deleteAll();
 	}
 
 

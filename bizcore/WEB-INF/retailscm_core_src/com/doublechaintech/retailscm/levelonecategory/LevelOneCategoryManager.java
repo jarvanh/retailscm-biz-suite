@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface LevelOneCategoryManager{
+public interface LevelOneCategoryManager extends BaseManager{
 
 		
 
-	public LevelOneCategory createLevelOneCategory(RetailscmUserContext userContext, String catalogId, String name) throws Exception;	
+	public LevelOneCategory createLevelOneCategory(RetailscmUserContext userContext, String catalogId,String name) throws Exception;	
 	public LevelOneCategory updateLevelOneCategory(RetailscmUserContext userContext,String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public LevelOneCategory loadLevelOneCategory(RetailscmUserContext userContext, String levelOneCategoryId, String [] tokensExpr) throws Exception;
 	public LevelOneCategory internalSaveLevelOneCategory(RetailscmUserContext userContext, LevelOneCategory levelOneCategory) throws Exception;

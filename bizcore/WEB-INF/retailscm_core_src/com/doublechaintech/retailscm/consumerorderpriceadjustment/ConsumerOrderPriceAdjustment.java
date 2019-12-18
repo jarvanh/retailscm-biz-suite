@@ -75,14 +75,6 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrderPriceAdjustment(String name, ConsumerOrder bizOrder, BigDecimal amount, String provider)
-	{
-		setName(name);
-		setBizOrder(bizOrder);
-		setAmount(amount);
-		setProvider(provider);
-	
-	}
 	
 	//Support for changing the property
 	

@@ -31,6 +31,10 @@ import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
 public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderApprovalManager {
 	
 	private static final String SERVICE_TYPE = "ConsumerOrderApproval";
+	@Override
+	public ConsumerOrderApprovalDAO daoOf(RetailscmUserContext userContext) {
+		return consumerOrderApprovalDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -64,8 +68,8 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
  	
  	public ConsumerOrderApproval loadConsumerOrderApproval(RetailscmUserContext userContext, String consumerOrderApprovalId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderApprovalManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderApprovalManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -78,8 +82,8 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
  	
  	 public ConsumerOrderApproval searchConsumerOrderApproval(RetailscmUserContext userContext, String consumerOrderApprovalId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderApprovalManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderApprovalManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -97,10 +101,10 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
 		addActions(userContext,consumerOrderApproval,tokens);
 		
 		
-		ConsumerOrderApproval  consumerOrderApprovalToPresent = userContext.getDAOGroup().getConsumerOrderApprovalDAO().present(consumerOrderApproval, tokens);
+		ConsumerOrderApproval  consumerOrderApprovalToPresent = consumerOrderApprovalDaoOf(userContext).present(consumerOrderApproval, tokens);
 		
 		List<BaseEntity> entityListToNaming = consumerOrderApprovalToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getConsumerOrderApprovalDAO().alias(entityListToNaming);
+		consumerOrderApprovalDaoOf(userContext).alias(entityListToNaming);
 		
 		return  consumerOrderApprovalToPresent;
 		
@@ -121,14 +125,14 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
 		
  	}
  	protected ConsumerOrderApproval saveConsumerOrderApproval(RetailscmUserContext userContext, ConsumerOrderApproval consumerOrderApproval, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getConsumerOrderApprovalDAO().save(consumerOrderApproval, tokens);
+ 		return consumerOrderApprovalDaoOf(userContext).save(consumerOrderApproval, tokens);
  	}
  	protected ConsumerOrderApproval loadConsumerOrderApproval(RetailscmUserContext userContext, String consumerOrderApprovalId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderApprovalManagerException.class);
+		checkerOf(userContext).checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderApprovalManagerException.class);
 
  
- 		return userContext.getDAOGroup().getConsumerOrderApprovalDAO().load(consumerOrderApprovalId, tokens);
+ 		return consumerOrderApprovalDaoOf(userContext).load(consumerOrderApprovalId, tokens);
  	}
 
 	
@@ -157,18 +161,18 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
  	
  	
 
-
-	public ConsumerOrderApproval createConsumerOrderApproval(RetailscmUserContext userContext,String who, Date approveTime) throws Exception
+	public ConsumerOrderApproval createConsumerOrderApproval(RetailscmUserContext userContext, String who,Date approveTime) throws Exception
+	//public ConsumerOrderApproval createConsumerOrderApproval(RetailscmUserContext userContext,String who, Date approveTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfConsumerOrderApproval(who);
-		userContext.getChecker().checkApproveTimeOfConsumerOrderApproval(approveTime);
+		checkerOf(userContext).checkWhoOfConsumerOrderApproval(who);
+		checkerOf(userContext).checkApproveTimeOfConsumerOrderApproval(approveTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderApprovalManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderApprovalManagerException.class);
 
 
 		ConsumerOrderApproval consumerOrderApproval=createNewConsumerOrderApproval();	
@@ -195,18 +199,18 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
 
 		
 		
-		userContext.getChecker().checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
-		userContext.getChecker().checkVersionOfConsumerOrderApproval( consumerOrderApprovalVersion);
+		checkerOf(userContext).checkIdOfConsumerOrderApproval(consumerOrderApprovalId);
+		checkerOf(userContext).checkVersionOfConsumerOrderApproval( consumerOrderApprovalVersion);
 		
 
 		if(ConsumerOrderApproval.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfConsumerOrderApproval(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfConsumerOrderApproval(parseString(newValueExpr));
 		}
 		if(ConsumerOrderApproval.APPROVE_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkApproveTimeOfConsumerOrderApproval(parseDate(newValueExpr));
+			checkerOf(userContext).checkApproveTimeOfConsumerOrderApproval(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderApprovalManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderApprovalManagerException.class);
 	
 		
 	}
@@ -215,7 +219,7 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
 	
 	public ConsumerOrderApproval clone(RetailscmUserContext userContext, String fromConsumerOrderApprovalId) throws Exception{
 		
-		return userContext.getDAOGroup().getConsumerOrderApprovalDAO().clone(fromConsumerOrderApprovalId, this.allTokens());
+		return consumerOrderApprovalDaoOf(userContext).clone(fromConsumerOrderApprovalId, this.allTokens());
 	}
 	
 	public ConsumerOrderApproval internalSaveConsumerOrderApproval(RetailscmUserContext userContext, ConsumerOrderApproval consumerOrderApproval) throws Exception 
@@ -320,7 +324,7 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderApprovalId, int consumerOrderApprovalVersion) throws Exception{
 			
-		userContext.getDAOGroup().getConsumerOrderApprovalDAO().delete(consumerOrderApprovalId, consumerOrderApprovalVersion);
+		consumerOrderApprovalDaoOf(userContext).delete(consumerOrderApprovalId, consumerOrderApprovalVersion);
 	}
 	
 	public ConsumerOrderApproval forgetByAll(RetailscmUserContext userContext, String consumerOrderApprovalId, int consumerOrderApprovalVersion) throws Exception {
@@ -329,8 +333,9 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
 	protected ConsumerOrderApproval forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderApprovalId, int consumerOrderApprovalVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getConsumerOrderApprovalDAO().disconnectFromAll(consumerOrderApprovalId, consumerOrderApprovalVersion);
+		return consumerOrderApprovalDaoOf(userContext).disconnectFromAll(consumerOrderApprovalId, consumerOrderApprovalVersion);
 	}
+	
 	
 
 	
@@ -347,7 +352,7 @@ public class ConsumerOrderApprovalManagerImpl extends CustomRetailscmCheckerMana
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getConsumerOrderApprovalDAO().deleteAll();
+		return consumerOrderApprovalDaoOf(userContext).deleteAll();
 	}
 
 

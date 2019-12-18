@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountingdocument;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -27,9 +28,9 @@ import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumen
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentTypeDAO;
 
 
-public interface AccountingDocumentDAO{
+public interface AccountingDocumentDAO extends BaseDAO{
 
-	
+	public SmartList<AccountingDocument> loadAll();
 	public AccountingDocument load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<AccountingDocument> accountingDocumentList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -68,6 +69,18 @@ public interface AccountingDocumentDAO{
 	public AccountingDocument planToRemoveOriginalVoucherList(AccountingDocument accountingDocument, String originalVoucherIds[], Map<String,Object> options)throws Exception;
 
 
+	//disconnect AccountingDocument with creation in OriginalVoucher
+	public AccountingDocument planToRemoveOriginalVoucherListWithCreation(AccountingDocument accountingDocument, String creationId, Map<String,Object> options)throws Exception;
+	public int countOriginalVoucherListWithCreation(String accountingDocumentId, String creationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect AccountingDocument with confirmation in OriginalVoucher
+	public AccountingDocument planToRemoveOriginalVoucherListWithConfirmation(AccountingDocument accountingDocument, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countOriginalVoucherListWithConfirmation(String accountingDocumentId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect AccountingDocument with auditing in OriginalVoucher
+	public AccountingDocument planToRemoveOriginalVoucherListWithAuditing(AccountingDocument accountingDocument, String auditingId, Map<String,Object> options)throws Exception;
+	public int countOriginalVoucherListWithAuditing(String accountingDocumentId, String auditingId, Map<String,Object> options)throws Exception;
+	
 	public AccountingDocument planToRemoveAccountingDocumentLineList(AccountingDocument accountingDocument, String accountingDocumentLineIds[], Map<String,Object> options)throws Exception;
 
 
@@ -77,6 +90,7 @@ public interface AccountingDocumentDAO{
 	
 	
 	public SmartList<AccountingDocument> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<AccountingDocument> findAccountingDocumentByAccountingPeriod(String accountingPeriodId, Map<String,Object> options);
  	public int countAccountingDocumentByAccountingPeriod(String accountingPeriodId, Map<String,Object> options);

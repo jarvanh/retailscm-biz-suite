@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.consumerorderpriceadjustment;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO;
 
 
-public interface ConsumerOrderPriceAdjustmentDAO{
+public interface ConsumerOrderPriceAdjustmentDAO extends BaseDAO{
 
-	
+	public SmartList<ConsumerOrderPriceAdjustment> loadAll();
 	public ConsumerOrderPriceAdjustment load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ConsumerOrderPriceAdjustment> consumerOrderPriceAdjustmentList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface ConsumerOrderPriceAdjustmentDAO{
 	
 	
 	public SmartList<ConsumerOrderPriceAdjustment> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ConsumerOrderPriceAdjustment> findConsumerOrderPriceAdjustmentByBizOrder(String consumerOrderId, Map<String,Object> options);
  	public int countConsumerOrderPriceAdjustmentByBizOrder(String consumerOrderId, Map<String,Object> options);

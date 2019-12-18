@@ -78,15 +78,6 @@ public class GoodsAllocation extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	GoodsAllocation(String location, BigDecimal latitude, BigDecimal longitude, GoodsShelf goodsShelf)
-	{
-		setLocation(location);
-		setLatitude(latitude);
-		setLongitude(longitude);
-		setGoodsShelf(goodsShelf);
-
-		this.mGoodsList = new SmartList<Goods>();	
-	}
 	
 	//Support for changing the property
 	

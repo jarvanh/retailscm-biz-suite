@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface ObjectAccessManager{
+public interface ObjectAccessManager extends BaseManager{
 
 		
 
-	public ObjectAccess createObjectAccess(RetailscmUserContext userContext, String name, String objectType, String list1, String list2, String list3, String list4, String list5, String list6, String list7, String list8, String list9, String appId) throws Exception;	
+	public ObjectAccess createObjectAccess(RetailscmUserContext userContext, String name,String objectType,String list1,String list2,String list3,String list4,String list5,String list6,String list7,String list8,String list9,String appId) throws Exception;	
 	public ObjectAccess updateObjectAccess(RetailscmUserContext userContext,String objectAccessId, int objectAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public ObjectAccess loadObjectAccess(RetailscmUserContext userContext, String objectAccessId, String [] tokensExpr) throws Exception;
 	public ObjectAccess internalSaveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess) throws Exception;

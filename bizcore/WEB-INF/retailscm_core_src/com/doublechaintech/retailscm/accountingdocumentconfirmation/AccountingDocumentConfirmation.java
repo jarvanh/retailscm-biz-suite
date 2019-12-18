@@ -74,14 +74,6 @@ public class AccountingDocumentConfirmation extends BaseEntity implements  java.
 		this.changed = true;
 	}
 	
-	public 	AccountingDocumentConfirmation(String who, String comments, Date makeDate)
-	{
-		setWho(who);
-		setComments(comments);
-		setMakeDate(makeDate);
-
-		this.mAccountingDocumentList = new SmartList<AccountingDocument>();	
-	}
 	
 	//Support for changing the property
 	

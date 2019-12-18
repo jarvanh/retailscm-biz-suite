@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface ConsumerOrderApprovalManager{
+public interface ConsumerOrderApprovalManager extends BaseManager{
 
 		
 
-	public ConsumerOrderApproval createConsumerOrderApproval(RetailscmUserContext userContext, String who, Date approveTime) throws Exception;	
+	public ConsumerOrderApproval createConsumerOrderApproval(RetailscmUserContext userContext, String who,Date approveTime) throws Exception;	
 	public ConsumerOrderApproval updateConsumerOrderApproval(RetailscmUserContext userContext,String consumerOrderApprovalId, int consumerOrderApprovalVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public ConsumerOrderApproval loadConsumerOrderApproval(RetailscmUserContext userContext, String consumerOrderApprovalId, String [] tokensExpr) throws Exception;
 	public ConsumerOrderApproval internalSaveConsumerOrderApproval(RetailscmUserContext userContext, ConsumerOrderApproval consumerOrderApproval) throws Exception;

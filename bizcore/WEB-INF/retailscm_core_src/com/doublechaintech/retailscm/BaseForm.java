@@ -235,6 +235,32 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
+	protected FormField subCountFromCatalog(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("子数");
+		field.setLocaleKey("catalog.sub_count");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("number");
+		field.setRequired(true);
+		field.setPlaceholder("请填写子数");
+		return field;
+	}
+
+	protected FormField amountFromCatalog(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("金额");
+		field.setLocaleKey("catalog.amount");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("money");
+		field.setRequired(true);
+		field.setPlaceholder("请填写金额");
+		return field;
+	}
+
 	protected FormField idFromLevelOneCategory(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -354,14 +380,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromProduct(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("product.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -690,16 +716,16 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField managerFromProvinceCenterDepartment(String parameterName, String initValue){
+	protected FormField managerNameFromProvinceCenterDepartment(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("经理");
-		field.setLocaleKey("province_center_department.manager");
+		field.setLabel("经理的名字");
+		field.setLocaleKey("province_center_department.manager_name");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写经理");
+		field.setPlaceholder("请填写经理的名字");
 		return field;
 	}
 
@@ -1386,7 +1412,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写电话");
 		return field;
@@ -1571,19 +1597,6 @@ public class BaseForm extends GenericForm{
 		field.setType("date_time");
 		field.setRequired(true);
 		field.setPlaceholder("请填写最后更新时间");
-		return field;
-	}
-
-	protected FormField currentStatusFromRetailStore(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("retail_store.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
 		return field;
 	}
 
@@ -1922,19 +1935,6 @@ public class BaseForm extends GenericForm{
 		field.setType("date_time");
 		field.setRequired(true);
 		field.setPlaceholder("请填写最后更新时间");
-		return field;
-	}
-
-	protected FormField currentStatusFromConsumerOrder(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("consumer_order.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
 		return field;
 	}
 
@@ -3238,19 +3238,6 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromSupplyOrder(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("supply_order.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromSupplyOrderConfirmation(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -3836,19 +3823,6 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromRetailStoreOrder(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("retail_store_order.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromRetailStoreOrderConfirmation(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -4311,7 +4285,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -4415,7 +4389,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -4519,7 +4493,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -5071,19 +5045,6 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromGoods(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("goods.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromGoodsPackaging(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -5312,7 +5273,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -5416,7 +5377,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -5533,7 +5494,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -5650,7 +5611,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -5819,7 +5780,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -5897,7 +5858,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写联系电话");
 		return field;
@@ -6014,7 +5975,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写驾驶执照号码");
 		return field;
@@ -6352,7 +6313,7 @@ public class BaseForm extends GenericForm{
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
-		field.setType("text");
+		field.setType("number");
 		field.setRequired(true);
 		field.setPlaceholder("请填写帐户号码");
 		return field;
@@ -6722,19 +6683,6 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromAccountingDocument(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("accounting_document.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromAccountingDocumentCreation(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -7073,19 +7021,6 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromOriginalVoucher(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("original_voucher.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromOriginalVoucherCreation(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -7385,16 +7320,16 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField managerFromLevelOneDepartment(String parameterName, String initValue){
+	protected FormField managerNameFromLevelOneDepartment(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("经理");
-		field.setLocaleKey("level_one_department.manager");
+		field.setLabel("经理的名字");
+		field.setLocaleKey("level_one_department.manager_name");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写经理");
+		field.setPlaceholder("请填写经理的名字");
 		return field;
 	}
 
@@ -8555,19 +8490,6 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromEmployee(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("employee.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromJobApplication(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -9202,19 +9124,6 @@ public class BaseForm extends GenericForm{
 		field.setType("Scoring");
 		field.setRequired(true);
 		field.setPlaceholder("请填写评分");
-		return field;
-	}
-
-	protected FormField currentStatusFromEmployeeCompanyTraining(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("employee_company_training.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
 		return field;
 	}
 
@@ -9933,19 +9842,6 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromEmployeeSalarySheet(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("employee_salary_sheet.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromPayingOff(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("序号");
@@ -10013,14 +9909,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromUserDomain(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("user_domain.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10039,14 +9935,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromUserWhiteList(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("user_white_list.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10091,14 +9987,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromSecUser(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("sec_user.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10117,14 +10013,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField mobileFromSecUser(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("手机号码");
+		field.setLabel("手机");
 		field.setLocaleKey("sec_user.mobile");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("mobile");
 		field.setRequired(true);
-		field.setPlaceholder("请填写手机号码");
+		field.setPlaceholder("请填写手机");
 		return field;
 	}
 
@@ -10143,14 +10039,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField pwdFromSecUser(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("密码");
+		field.setLabel("PWD");
 		field.setLocaleKey("sec_user.pwd");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("password");
 		field.setRequired(true);
-		field.setPlaceholder("请填写密码");
+		field.setPlaceholder("请填写PWD");
 		return field;
 	}
 
@@ -10258,29 +10154,16 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
-	protected FormField currentStatusFromSecUser(String parameterName, String initValue){
-		FormField field = new FormField();
-		field.setLabel("当前状态");
-		field.setLocaleKey("sec_user.current_status");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写当前状态");
-		return field;
-	}
-
 	protected FormField idFromSecUserBlocking(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("sec_user_blocking.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10325,40 +10208,40 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("user_app.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
 	protected FormField titleFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("标题");
+		field.setLabel("头衔");
 		field.setLocaleKey("user_app.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写标题");
+		field.setPlaceholder("请填写头衔");
 		return field;
 	}
 
 	protected FormField secUserIdFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("安全用户");
+		field.setLabel("SEC的用户");
 		field.setLocaleKey("user_app.sec_user");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("SecUser");
 		field.setRequired(true);
-		field.setPlaceholder("请填写安全用户");
+		field.setPlaceholder("请填写SEC的用户");
 		return field;
 	}
 
@@ -10403,14 +10286,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField objectTypeFromUserApp(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("访问对象类型");
+		field.setLabel("对象类型");
 		field.setLocaleKey("user_app.object_type");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写访问对象类型");
+		field.setPlaceholder("请填写对象类型");
 		return field;
 	}
 
@@ -10442,14 +10325,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromQuickLink(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("quick_link.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10533,14 +10416,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromListAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("list_access.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10650,14 +10533,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("object_access.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10676,86 +10559,73 @@ public class BaseForm extends GenericForm{
 
 	protected FormField objectTypeFromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("访问对象类型");
+		field.setLabel("对象类型");
 		field.setLocaleKey("object_access.object_type");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写访问对象类型");
+		field.setPlaceholder("请填写对象类型");
 		return field;
 	}
 
 	protected FormField list1FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表1");
+		field.setLabel("表");
 		field.setLocaleKey("object_access.list1");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写列表1");
+		field.setPlaceholder("请填写表");
 		return field;
 	}
 
 	protected FormField list2FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表2");
+		field.setLabel("清单");
 		field.setLocaleKey("object_access.list2");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写列表2");
+		field.setPlaceholder("请填写清单");
 		return field;
 	}
 
 	protected FormField list3FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表3");
+		field.setLabel("目录3");
 		field.setLocaleKey("object_access.list3");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写列表3");
+		field.setPlaceholder("请填写目录3");
 		return field;
 	}
 
 	protected FormField list4FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表4");
+		field.setLabel("清单");
 		field.setLocaleKey("object_access.list4");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写列表4");
+		field.setPlaceholder("请填写清单");
 		return field;
 	}
 
 	protected FormField list5FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表5");
-		field.setLocaleKey("object_access.list5");
-		field.setParameterName(parameterName);
-		field.setDefaultValue(initValue);
-		field.setFieldGroup("基本信息");
-		field.setType("text");
-		field.setRequired(true);
-		field.setPlaceholder("请填写列表5");
-		return field;
-	}
-
-	protected FormField list6FromObjectAccess(String parameterName, String initValue){
-		FormField field = new FormField();
 		field.setLabel("列表6");
-		field.setLocaleKey("object_access.list6");
+		field.setLocaleKey("object_access.list5");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
@@ -10765,42 +10635,55 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
+	protected FormField list6FromObjectAccess(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("list6");
+		field.setLocaleKey("object_access.list6");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写list6");
+		return field;
+	}
+
 	protected FormField list7FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表7");
+		field.setLabel("list7");
 		field.setLocaleKey("object_access.list7");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写列表7");
+		field.setPlaceholder("请填写list7");
 		return field;
 	}
 
 	protected FormField list8FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表8");
+		field.setLabel("list8");
 		field.setLocaleKey("object_access.list8");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写列表8");
+		field.setPlaceholder("请填写list8");
 		return field;
 	}
 
 	protected FormField list9FromObjectAccess(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("列表9");
+		field.setLabel("list9");
 		field.setLocaleKey("object_access.list9");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写列表9");
+		field.setPlaceholder("请填写list9");
 		return field;
 	}
 
@@ -10819,14 +10702,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromLoginHistory(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("login_history.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -10845,14 +10728,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField fromIpFromLoginHistory(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("来自IP");
+		field.setLabel("从IP");
 		field.setLocaleKey("login_history.from_ip");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写来自IP");
+		field.setPlaceholder("请填写从IP");
 		return field;
 	}
 
@@ -10871,40 +10754,40 @@ public class BaseForm extends GenericForm{
 
 	protected FormField secUserIdFromLoginHistory(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("安全用户");
+		field.setLabel("SEC的用户");
 		field.setLocaleKey("login_history.sec_user");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("SecUser");
 		field.setRequired(true);
-		field.setPlaceholder("请填写安全用户");
+		field.setPlaceholder("请填写SEC的用户");
 		return field;
 	}
 
 	protected FormField idFromGenericForm(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("generic_form.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
 	protected FormField titleFromGenericForm(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("标题");
+		field.setLabel("头衔");
 		field.setLocaleKey("generic_form.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写标题");
+		field.setPlaceholder("请填写头衔");
 		return field;
 	}
 
@@ -10923,27 +10806,27 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormMessage(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("form_message.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
 	protected FormField titleFromFormMessage(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("标题");
+		field.setLabel("头衔");
 		field.setLocaleKey("form_message.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写标题");
+		field.setPlaceholder("请填写头衔");
 		return field;
 	}
 
@@ -10975,27 +10858,27 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormFieldMessage(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("form_field_message.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
 	protected FormField titleFromFormFieldMessage(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("标题");
+		field.setLabel("头衔");
 		field.setLocaleKey("form_field_message.title");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写标题");
+		field.setPlaceholder("请填写头衔");
 		return field;
 	}
 
@@ -11040,14 +10923,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormField(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("form_field.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -11261,14 +11144,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromFormAction(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("form_action.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -11352,14 +11235,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromCandidateContainer(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("candidate_container.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 
@@ -11378,14 +11261,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField idFromCandidateElement(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("ID");
+		field.setLabel("序号");
 		field.setLocaleKey("candidate_element.id");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("text");
 		field.setRequired(true);
-		field.setPlaceholder("请填写ID");
+		field.setPlaceholder("请填写序号");
 		return field;
 	}
 

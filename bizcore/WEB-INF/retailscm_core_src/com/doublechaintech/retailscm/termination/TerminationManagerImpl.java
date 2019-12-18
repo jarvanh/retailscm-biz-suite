@@ -48,6 +48,10 @@ import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 public class TerminationManagerImpl extends CustomRetailscmCheckerManager implements TerminationManager {
 	
 	private static final String SERVICE_TYPE = "Termination";
+	@Override
+	public TerminationDAO daoOf(RetailscmUserContext userContext) {
+		return terminationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -81,8 +85,8 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	public Termination loadTermination(RetailscmUserContext userContext, String terminationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfTermination(terminationId);
-		userContext.getChecker().throwExceptionIfHasErrors( TerminationManagerException.class);
+ 		checkerOf(userContext).checkIdOfTermination(terminationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TerminationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -95,8 +99,8 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	 public Termination searchTermination(RetailscmUserContext userContext, String terminationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfTermination(terminationId);
-		userContext.getChecker().throwExceptionIfHasErrors( TerminationManagerException.class);
+ 		checkerOf(userContext).checkIdOfTermination(terminationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TerminationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -114,10 +118,10 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 		addActions(userContext,termination,tokens);
 		
 		
-		Termination  terminationToPresent = userContext.getDAOGroup().getTerminationDAO().present(termination, tokens);
+		Termination  terminationToPresent = terminationDaoOf(userContext).present(termination, tokens);
 		
 		List<BaseEntity> entityListToNaming = terminationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getTerminationDAO().alias(entityListToNaming);
+		terminationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  terminationToPresent;
 		
@@ -138,14 +142,14 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 		
  	}
  	protected Termination saveTermination(RetailscmUserContext userContext, Termination termination, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getTerminationDAO().save(termination, tokens);
+ 		return terminationDaoOf(userContext).save(termination, tokens);
  	}
  	protected Termination loadTermination(RetailscmUserContext userContext, String terminationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfTermination(terminationId);
-		userContext.getChecker().throwExceptionIfHasErrors( TerminationManagerException.class);
+		checkerOf(userContext).checkIdOfTermination(terminationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TerminationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getTerminationDAO().load(terminationId, tokens);
+ 		return terminationDaoOf(userContext).load(terminationId, tokens);
  	}
 
 	
@@ -180,17 +184,17 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-
-	public Termination createTermination(RetailscmUserContext userContext,String reasonId, String typeId, String comment) throws Exception
+	public Termination createTermination(RetailscmUserContext userContext, String reasonId,String typeId,String comment) throws Exception
+	//public Termination createTermination(RetailscmUserContext userContext,String reasonId, String typeId, String comment) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCommentOfTermination(comment);
+		checkerOf(userContext).checkCommentOfTermination(comment);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 
 
 		Termination termination=createNewTermination();	
@@ -226,8 +230,8 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 
 		
 		
-		userContext.getChecker().checkIdOfTermination(terminationId);
-		userContext.getChecker().checkVersionOfTermination( terminationVersion);
+		checkerOf(userContext).checkIdOfTermination(terminationId);
+		checkerOf(userContext).checkVersionOfTermination( terminationVersion);
 		
 		
 
@@ -235,10 +239,10 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 
 		
 		if(Termination.COMMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentOfTermination(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentOfTermination(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 	
 		
 	}
@@ -247,7 +251,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	public Termination clone(RetailscmUserContext userContext, String fromTerminationId) throws Exception{
 		
-		return userContext.getDAOGroup().getTerminationDAO().clone(fromTerminationId, this.allTokens());
+		return terminationDaoOf(userContext).clone(fromTerminationId, this.allTokens());
 	}
 	
 	public Termination internalSaveTermination(RetailscmUserContext userContext, Termination termination) throws Exception 
@@ -346,9 +350,9 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForTransferingAnotherReason(RetailscmUserContext userContext, String terminationId, String anotherReasonId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfTermination(terminationId);
- 		userContext.getChecker().checkIdOfTerminationReason(anotherReasonId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+ 		checkerOf(userContext).checkIdOfTermination(terminationId);
+ 		checkerOf(userContext).checkIdOfTerminationReason(anotherReasonId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
  		
  	}
  	public Termination transferToAnotherReason(RetailscmUserContext userContext, String terminationId, String anotherReasonId) throws Exception
@@ -385,7 +389,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<TerminationReason> candidateList = userContext.getDAOGroup().getTerminationReasonDAO().requestCandidateTerminationReasonForTermination(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<TerminationReason> candidateList = terminationReasonDaoOf(userContext).requestCandidateTerminationReasonForTermination(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -395,9 +399,9 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  	protected void checkParamsForTransferingAnotherType(RetailscmUserContext userContext, String terminationId, String anotherTypeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfTermination(terminationId);
- 		userContext.getChecker().checkIdOfTerminationType(anotherTypeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+ 		checkerOf(userContext).checkIdOfTermination(terminationId);
+ 		checkerOf(userContext).checkIdOfTerminationType(anotherTypeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
  		
  	}
  	public Termination transferToAnotherType(RetailscmUserContext userContext, String terminationId, String anotherTypeId) throws Exception
@@ -434,7 +438,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<TerminationType> candidateList = userContext.getDAOGroup().getTerminationTypeDAO().requestCandidateTerminationTypeForTermination(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<TerminationType> candidateList = terminationTypeDaoOf(userContext).requestCandidateTerminationTypeForTermination(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -447,7 +451,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  	protected TerminationReason loadTerminationReason(RetailscmUserContext userContext, String newReasonId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTerminationReasonDAO().load(newReasonId, options);
+ 		return terminationReasonDaoOf(userContext).load(newReasonId, options);
  	}
  	
  	
@@ -457,7 +461,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
  	protected TerminationType loadTerminationType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTerminationTypeDAO().load(newTypeId, options);
+ 		return terminationTypeDaoOf(userContext).load(newTypeId, options);
  	}
  	
  	
@@ -471,7 +475,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String terminationId, int terminationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getTerminationDAO().delete(terminationId, terminationVersion);
+		terminationDaoOf(userContext).delete(terminationId, terminationVersion);
 	}
 	
 	public Termination forgetByAll(RetailscmUserContext userContext, String terminationId, int terminationVersion) throws Exception {
@@ -480,8 +484,9 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	protected Termination forgetByAllInternal(RetailscmUserContext userContext,
 			String terminationId, int terminationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getTerminationDAO().disconnectFromAll(terminationId, terminationVersion);
+		return terminationDaoOf(userContext).disconnectFromAll(terminationId, terminationVersion);
 	}
+	
 	
 
 	
@@ -498,7 +503,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getTerminationDAO().deleteAll();
+		return terminationDaoOf(userContext).deleteAll();
 	}
 
 
@@ -514,7 +519,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTerminationDAO().planToRemoveEmployeeListWithCompany(termination, companyId, this.emptyOptions());
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithCompany(termination, companyId, this.emptyOptions());
 
 				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
 				return termination;
@@ -532,7 +537,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTerminationDAO().planToRemoveEmployeeListWithDepartment(termination, departmentId, this.emptyOptions());
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithDepartment(termination, departmentId, this.emptyOptions());
 
 				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
 				return termination;
@@ -550,7 +555,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTerminationDAO().planToRemoveEmployeeListWithOccupation(termination, occupationId, this.emptyOptions());
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithOccupation(termination, occupationId, this.emptyOptions());
 
 				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
 				return termination;
@@ -568,7 +573,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTerminationDAO().planToRemoveEmployeeListWithResponsibleFor(termination, responsibleForId, this.emptyOptions());
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithResponsibleFor(termination, responsibleForId, this.emptyOptions());
 
 				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
 				return termination;
@@ -586,7 +591,115 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTerminationDAO().planToRemoveEmployeeListWithCurrentSalaryGrade(termination, currentSalaryGradeId, this.emptyOptions());
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(termination, currentSalaryGradeId, this.emptyOptions());
+
+				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
+				return termination;
+			}
+	}
+	//disconnect Termination with job_application in Employee
+	protected Termination breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String terminationId, String jobApplicationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Termination termination = loadTermination(userContext, terminationId, allTokens());
+
+			synchronized(termination){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(termination, jobApplicationId, this.emptyOptions());
+
+				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
+				return termination;
+			}
+	}
+	//disconnect Termination with profession_interview in Employee
+	protected Termination breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String terminationId, String professionInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Termination termination = loadTermination(userContext, terminationId, allTokens());
+
+			synchronized(termination){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(termination, professionInterviewId, this.emptyOptions());
+
+				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
+				return termination;
+			}
+	}
+	//disconnect Termination with hr_interview in Employee
+	protected Termination breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String terminationId, String hrInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Termination termination = loadTermination(userContext, terminationId, allTokens());
+
+			synchronized(termination){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(termination, hrInterviewId, this.emptyOptions());
+
+				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
+				return termination;
+			}
+	}
+	//disconnect Termination with offer_approval in Employee
+	protected Termination breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String terminationId, String offerApprovalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Termination termination = loadTermination(userContext, terminationId, allTokens());
+
+			synchronized(termination){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(termination, offerApprovalId, this.emptyOptions());
+
+				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
+				return termination;
+			}
+	}
+	//disconnect Termination with offer_acceptance in Employee
+	protected Termination breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String terminationId, String offerAcceptanceId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Termination termination = loadTermination(userContext, terminationId, allTokens());
+
+			synchronized(termination){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(termination, offerAcceptanceId, this.emptyOptions());
+
+				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
+				return termination;
+			}
+	}
+	//disconnect Termination with employee_boarding in Employee
+	protected Termination breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String terminationId, String employeeBoardingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Termination termination = loadTermination(userContext, terminationId, allTokens());
+
+			synchronized(termination){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				terminationDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(termination, employeeBoardingId, this.emptyOptions());
 
 				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
 				return termination;
@@ -598,51 +711,59 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String terminationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String terminationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfTermination(terminationId);
 
 		
+		checkerOf(userContext).checkCompanyIdOfEmployee(companyId);
 		
-		userContext.getChecker().checkIdOfTermination(terminationId);
-
+		checkerOf(userContext).checkTitleOfEmployee(title);
 		
-		userContext.getChecker().checkCompanyIdOfEmployee(companyId);
+		checkerOf(userContext).checkDepartmentIdOfEmployee(departmentId);
 		
-		userContext.getChecker().checkTitleOfEmployee(title);
+		checkerOf(userContext).checkFamilyNameOfEmployee(familyName);
 		
-		userContext.getChecker().checkDepartmentIdOfEmployee(departmentId);
+		checkerOf(userContext).checkGivenNameOfEmployee(givenName);
 		
-		userContext.getChecker().checkFamilyNameOfEmployee(familyName);
+		checkerOf(userContext).checkEmailOfEmployee(email);
 		
-		userContext.getChecker().checkGivenNameOfEmployee(givenName);
+		checkerOf(userContext).checkCityOfEmployee(city);
 		
-		userContext.getChecker().checkEmailOfEmployee(email);
+		checkerOf(userContext).checkAddressOfEmployee(address);
 		
-		userContext.getChecker().checkCityOfEmployee(city);
+		checkerOf(userContext).checkCellPhoneOfEmployee(cellPhone);
 		
-		userContext.getChecker().checkAddressOfEmployee(address);
+		checkerOf(userContext).checkOccupationIdOfEmployee(occupationId);
 		
-		userContext.getChecker().checkCellPhoneOfEmployee(cellPhone);
+		checkerOf(userContext).checkResponsibleForIdOfEmployee(responsibleForId);
 		
-		userContext.getChecker().checkOccupationIdOfEmployee(occupationId);
+		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
-		userContext.getChecker().checkResponsibleForIdOfEmployee(responsibleForId);
+		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
 		
-		userContext.getChecker().checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
+		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
 		
-		userContext.getChecker().checkSalaryAccountOfEmployee(salaryAccount);
+		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
+		
+		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
+		
+		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
+		
+		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
+		
+		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 
 	
 	}
-	public  Termination addEmployee(RetailscmUserContext userContext, String terminationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	public  Termination addEmployee(RetailscmUserContext userContext, String terminationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployee(userContext,terminationId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount,tokensExpr);
+		checkParamsForAddingEmployee(userContext,terminationId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId,tokensExpr);
 		
-		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount);
+		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId);
 		
 		Termination termination = loadTermination(userContext, terminationId, allTokens());
 		synchronized(termination){ 
@@ -657,19 +778,19 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String terminationId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfTermination(terminationId);
-		userContext.getChecker().checkIdOfEmployee(id);
+		checkerOf(userContext).checkIdOfTermination(terminationId);
+		checkerOf(userContext).checkIdOfEmployee(id);
 		
-		userContext.getChecker().checkTitleOfEmployee( title);
-		userContext.getChecker().checkFamilyNameOfEmployee( familyName);
-		userContext.getChecker().checkGivenNameOfEmployee( givenName);
-		userContext.getChecker().checkEmailOfEmployee( email);
-		userContext.getChecker().checkCityOfEmployee( city);
-		userContext.getChecker().checkAddressOfEmployee( address);
-		userContext.getChecker().checkCellPhoneOfEmployee( cellPhone);
-		userContext.getChecker().checkSalaryAccountOfEmployee( salaryAccount);
+		checkerOf(userContext).checkTitleOfEmployee( title);
+		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
+		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
+		checkerOf(userContext).checkEmailOfEmployee( email);
+		checkerOf(userContext).checkCityOfEmployee( city);
+		checkerOf(userContext).checkAddressOfEmployee( address);
+		checkerOf(userContext).checkCellPhoneOfEmployee( cellPhone);
+		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 		
 	}
 	public  Termination updateEmployeeProperties(RetailscmUserContext userContext, String terminationId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
@@ -707,7 +828,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	
 	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception{
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -735,8 +856,25 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		employee.setLastUpdateTime(userContext.now());		
-		employee.setCurrentStatus("INIT");
+		JobApplication  jobApplication = new JobApplication();
+		jobApplication.setId(jobApplicationId);		
+		employee.setJobApplication(jobApplication);		
+		ProfessionInterview  professionInterview = new ProfessionInterview();
+		professionInterview.setId(professionInterviewId);		
+		employee.setProfessionInterview(professionInterview);		
+		HrInterview  hrInterview = new HrInterview();
+		hrInterview.setId(hrInterviewId);		
+		employee.setHrInterview(hrInterview);		
+		OfferApproval  offerApproval = new OfferApproval();
+		offerApproval.setId(offerApprovalId);		
+		employee.setOfferApproval(offerApproval);		
+		OfferAcceptance  offerAcceptance = new OfferAcceptance();
+		offerAcceptance.setId(offerAcceptanceId);		
+		employee.setOfferAcceptance(offerAcceptance);		
+		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
+		employeeBoarding.setId(employeeBoardingId);		
+		employee.setEmployeeBoarding(employeeBoarding);		
+		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
@@ -756,12 +894,12 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String terminationId, 
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfTermination(terminationId);
+		checkerOf(userContext).checkIdOfTermination(terminationId);
 		for(String employeeIdItem: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
+			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 		
 	}
 	public  Termination removeEmployeeList(RetailscmUserContext userContext, String terminationId, 
@@ -774,7 +912,7 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(termination){ 
 				//Will be good when the termination loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getTerminationDAO().planToRemoveEmployeeList(termination, employeeIds, allTokens());
+				terminationDaoOf(userContext).planToRemoveEmployeeList(termination, employeeIds, allTokens());
 				termination = saveTermination(userContext, termination, tokens().withEmployeeList().done());
 				deleteRelationListInGraph(userContext, termination.getEmployeeList());
 				return present(userContext,termination, mergedAllTokens(tokensExpr));
@@ -784,10 +922,10 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String terminationId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfTermination( terminationId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).checkIdOfTermination( terminationId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 	
 	}
 	public  Termination removeEmployee(RetailscmUserContext userContext, String terminationId, 
@@ -811,10 +949,10 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String terminationId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfTermination( terminationId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).checkIdOfTermination( terminationId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 	
 	}
 	public  Termination copyEmployeeFrom(RetailscmUserContext userContext, String terminationId, 
@@ -843,45 +981,45 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfTermination(terminationId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).checkIdOfTermination(terminationId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkFamilyNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkGivenNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkCityOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCellPhoneOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkSalaryAccountOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TerminationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TerminationManagerException.class);
 	
 	}
 	
@@ -916,214 +1054,10 @@ public class TerminationManagerImpl extends CustomRetailscmCheckerManager implem
 
 	}
 	/*
-	public  Termination associateEmployeeListToNewJobApplication(RetailscmUserContext userContext, String terminationId, String  employeeIds[], Date applicationTime, String who, String comments, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().createJobApplication(userContext,  applicationTime,  who,  comments);
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().createProfessionInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToNewHrInterview(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().createHrInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().createOfferApproval(userContext,  who,  approveTime,  comments);
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().createOfferAcceptance(userContext,  who,  acceptTime,  comments);
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToNewEmployeeBoarding(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String who, Date employTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().createEmployeeBoarding(userContext,  who,  employTime,  comments);
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}
 	*/
 	
-	public  Termination associateEmployeeListToJobApplication(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String jobApplicationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().loadJobApplication(userContext,jobApplicationId,new String[]{"none"} );
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String professionInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().loadProfessionInterview(userContext,professionInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToHrInterview(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String hrInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().loadHrInterview(userContext,hrInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String offerApprovalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().loadOfferApproval(userContext,offerApprovalId,new String[]{"none"} );
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String offerAcceptanceId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().loadOfferAcceptance(userContext,offerAcceptanceId,new String[]{"none"} );
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}	public  Termination associateEmployeeListToEmployeeBoarding(RetailscmUserContext userContext, String terminationId, String  employeeIds[], String employeeBoardingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		Termination termination = loadTermination(userContext, terminationId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().loadEmployeeBoarding(userContext,employeeBoardingId,new String[]{"none"} );
-		
-		for(Employee employee: termination.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveTermination(userContext, termination);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, Termination newCreated) throws Exception{

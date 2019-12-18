@@ -74,6 +74,11 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}
 	*/
 	
+	public SmartList<LevelTwoCategory> loadAll() {
+	    return this.loadAll(getLevelTwoCategoryMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -800,6 +805,10 @@ public class LevelTwoCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	@Override
 	public SmartList<LevelTwoCategory> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelTwoCategoryMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

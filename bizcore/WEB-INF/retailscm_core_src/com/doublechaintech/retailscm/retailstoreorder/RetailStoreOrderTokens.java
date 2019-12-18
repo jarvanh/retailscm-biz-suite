@@ -230,9 +230,13 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	private int retailStoreOrderLineItemListSearchCounter = 0;
 	public RetailStoreOrderTokens searchRetailStoreOrderLineItemListWith(String field, String verb, String value){		
+		
+		withRetailStoreOrderLineItemList();
 		addSearchMoreOptions(RETAIL_STORE_ORDER_LINE_ITEM_LIST,retailStoreOrderLineItemListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreOrderTokens searchAllTextOfRetailStoreOrderLineItemList(String verb, String value){	
 		String field = "id|skuId|skuName|unitOfMeasurement";
@@ -296,9 +300,13 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	private int retailStoreOrderShippingGroupListSearchCounter = 0;
 	public RetailStoreOrderTokens searchRetailStoreOrderShippingGroupListWith(String field, String verb, String value){		
+		
+		withRetailStoreOrderShippingGroupList();
 		addSearchMoreOptions(RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST,retailStoreOrderShippingGroupListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreOrderTokens searchAllTextOfRetailStoreOrderShippingGroupList(String verb, String value){	
 		String field = "id|name";
@@ -362,9 +370,13 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	private int retailStoreOrderPaymentGroupListSearchCounter = 0;
 	public RetailStoreOrderTokens searchRetailStoreOrderPaymentGroupListWith(String field, String verb, String value){		
+		
+		withRetailStoreOrderPaymentGroupList();
 		addSearchMoreOptions(RETAIL_STORE_ORDER_PAYMENT_GROUP_LIST,retailStoreOrderPaymentGroupListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreOrderTokens searchAllTextOfRetailStoreOrderPaymentGroupList(String verb, String value){	
 		String field = "id|name|cardNumber";
@@ -428,12 +440,16 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	private int goodsListSearchCounter = 0;
 	public RetailStoreOrderTokens searchGoodsListWith(String field, String verb, String value){		
+		
+		withGoodsList();
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreOrderTokens searchAllTextOfGoodsList(String verb, String value){	
-		String field = "id|name|rfid|uom|currentStatus";
+		String field = "id|name|rfid|uom";
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}

@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface InstructorManager{
+public interface InstructorManager extends BaseManager{
 
 		
 
-	public Instructor createInstructor(RetailscmUserContext userContext, String title, String familyName, String givenName, String cellPhone, String email, String companyId, String introduction) throws Exception;	
+	public Instructor createInstructor(RetailscmUserContext userContext, String title,String familyName,String givenName,String cellPhone,String email,String companyId,String introduction) throws Exception;	
 	public Instructor updateInstructor(RetailscmUserContext userContext,String instructorId, int instructorVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public Instructor loadInstructor(RetailscmUserContext userContext, String instructorId, String [] tokensExpr) throws Exception;
 	public Instructor internalSaveInstructor(RetailscmUserContext userContext, Instructor instructor) throws Exception;

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.view;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -11,9 +12,9 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
 
-public interface ViewDAO{
+public interface ViewDAO extends BaseDAO{
 
-	
+	public SmartList<View> loadAll();
 	public View load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<View> viewList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -43,6 +44,7 @@ public interface ViewDAO{
 	
 	
 	public SmartList<View> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 }
 

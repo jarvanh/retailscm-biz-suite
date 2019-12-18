@@ -37,7 +37,6 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		setBizOrder(goods, rs, rowNumber); 		
  		setRetailStoreOrder(goods, rs, rowNumber); 		
  		setPackaging(goods, rs, rowNumber); 		
- 		setCurrentStatus(goods, rs, rowNumber); 		
  		setVersion(goods, rs, rowNumber);
 
 		return goods;
@@ -299,18 +298,6 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		goods.setPackaging(createEmptyPackaging(goodsPackagingId));
  	}
  	
-	protected void setCurrentStatus(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(GoodsTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		goods.setCurrentStatus(currentStatus);
-	}
-		
 	protected void setVersion(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long

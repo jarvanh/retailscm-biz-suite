@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.goodsshelfstockcount.CandidateGoodsShelfSto
 public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManager implements StockCountIssueTrackManager {
 	
 	private static final String SERVICE_TYPE = "StockCountIssueTrack";
+	@Override
+	public StockCountIssueTrackDAO daoOf(RetailscmUserContext userContext) {
+		return stockCountIssueTrackDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
  	
  	public StockCountIssueTrack loadStockCountIssueTrack(RetailscmUserContext userContext, String stockCountIssueTrackId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
-		userContext.getChecker().throwExceptionIfHasErrors( StockCountIssueTrackManagerException.class);
+ 		checkerOf(userContext).checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
+		checkerOf(userContext).throwExceptionIfHasErrors( StockCountIssueTrackManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
  	
  	 public StockCountIssueTrack searchStockCountIssueTrack(RetailscmUserContext userContext, String stockCountIssueTrackId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
-		userContext.getChecker().throwExceptionIfHasErrors( StockCountIssueTrackManagerException.class);
+ 		checkerOf(userContext).checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
+		checkerOf(userContext).throwExceptionIfHasErrors( StockCountIssueTrackManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 		addActions(userContext,stockCountIssueTrack,tokens);
 		
 		
-		StockCountIssueTrack  stockCountIssueTrackToPresent = userContext.getDAOGroup().getStockCountIssueTrackDAO().present(stockCountIssueTrack, tokens);
+		StockCountIssueTrack  stockCountIssueTrackToPresent = stockCountIssueTrackDaoOf(userContext).present(stockCountIssueTrack, tokens);
 		
 		List<BaseEntity> entityListToNaming = stockCountIssueTrackToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getStockCountIssueTrackDAO().alias(entityListToNaming);
+		stockCountIssueTrackDaoOf(userContext).alias(entityListToNaming);
 		
 		return  stockCountIssueTrackToPresent;
 		
@@ -123,14 +127,14 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 		
  	}
  	protected StockCountIssueTrack saveStockCountIssueTrack(RetailscmUserContext userContext, StockCountIssueTrack stockCountIssueTrack, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getStockCountIssueTrackDAO().save(stockCountIssueTrack, tokens);
+ 		return stockCountIssueTrackDaoOf(userContext).save(stockCountIssueTrack, tokens);
  	}
  	protected StockCountIssueTrack loadStockCountIssueTrack(RetailscmUserContext userContext, String stockCountIssueTrackId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
-		userContext.getChecker().throwExceptionIfHasErrors( StockCountIssueTrackManagerException.class);
+		checkerOf(userContext).checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
+		checkerOf(userContext).throwExceptionIfHasErrors( StockCountIssueTrackManagerException.class);
 
  
- 		return userContext.getDAOGroup().getStockCountIssueTrackDAO().load(stockCountIssueTrackId, tokens);
+ 		return stockCountIssueTrackDaoOf(userContext).load(stockCountIssueTrackId, tokens);
  	}
 
 	
@@ -160,19 +164,19 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
  	
  	
 
-
-	public StockCountIssueTrack createStockCountIssueTrack(RetailscmUserContext userContext,String title, Date countTime, String summary, String stockCountId) throws Exception
+	public StockCountIssueTrack createStockCountIssueTrack(RetailscmUserContext userContext, String title,Date countTime,String summary,String stockCountId) throws Exception
+	//public StockCountIssueTrack createStockCountIssueTrack(RetailscmUserContext userContext,String title, Date countTime, String summary, String stockCountId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkTitleOfStockCountIssueTrack(title);
-		userContext.getChecker().checkCountTimeOfStockCountIssueTrack(countTime);
-		userContext.getChecker().checkSummaryOfStockCountIssueTrack(summary);
+		checkerOf(userContext).checkTitleOfStockCountIssueTrack(title);
+		checkerOf(userContext).checkCountTimeOfStockCountIssueTrack(countTime);
+		checkerOf(userContext).checkSummaryOfStockCountIssueTrack(summary);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(StockCountIssueTrackManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StockCountIssueTrackManagerException.class);
 
 
 		StockCountIssueTrack stockCountIssueTrack=createNewStockCountIssueTrack();	
@@ -205,23 +209,23 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 
 		
 		
-		userContext.getChecker().checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
-		userContext.getChecker().checkVersionOfStockCountIssueTrack( stockCountIssueTrackVersion);
+		checkerOf(userContext).checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
+		checkerOf(userContext).checkVersionOfStockCountIssueTrack( stockCountIssueTrackVersion);
 		
 
 		if(StockCountIssueTrack.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfStockCountIssueTrack(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfStockCountIssueTrack(parseString(newValueExpr));
 		}
 		if(StockCountIssueTrack.COUNT_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkCountTimeOfStockCountIssueTrack(parseDate(newValueExpr));
+			checkerOf(userContext).checkCountTimeOfStockCountIssueTrack(parseDate(newValueExpr));
 		}
 		if(StockCountIssueTrack.SUMMARY_PROPERTY.equals(property)){
-			userContext.getChecker().checkSummaryOfStockCountIssueTrack(parseString(newValueExpr));
+			checkerOf(userContext).checkSummaryOfStockCountIssueTrack(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(StockCountIssueTrackManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StockCountIssueTrackManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 	
 	public StockCountIssueTrack clone(RetailscmUserContext userContext, String fromStockCountIssueTrackId) throws Exception{
 		
-		return userContext.getDAOGroup().getStockCountIssueTrackDAO().clone(fromStockCountIssueTrackId, this.allTokens());
+		return stockCountIssueTrackDaoOf(userContext).clone(fromStockCountIssueTrackId, this.allTokens());
 	}
 	
 	public StockCountIssueTrack internalSaveStockCountIssueTrack(RetailscmUserContext userContext, StockCountIssueTrack stockCountIssueTrack) throws Exception 
@@ -328,9 +332,9 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 	protected void checkParamsForTransferingAnotherStockCount(RetailscmUserContext userContext, String stockCountIssueTrackId, String anotherStockCountId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
- 		userContext.getChecker().checkIdOfGoodsShelfStockCount(anotherStockCountId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(StockCountIssueTrackManagerException.class);
+ 		checkerOf(userContext).checkIdOfStockCountIssueTrack(stockCountIssueTrackId);
+ 		checkerOf(userContext).checkIdOfGoodsShelfStockCount(anotherStockCountId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(StockCountIssueTrackManagerException.class);
  		
  	}
  	public StockCountIssueTrack transferToAnotherStockCount(RetailscmUserContext userContext, String stockCountIssueTrackId, String anotherStockCountId) throws Exception
@@ -367,7 +371,7 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<GoodsShelfStockCount> candidateList = userContext.getDAOGroup().getGoodsShelfStockCountDAO().requestCandidateGoodsShelfStockCountForStockCountIssueTrack(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<GoodsShelfStockCount> candidateList = goodsShelfStockCountDaoOf(userContext).requestCandidateGoodsShelfStockCountForStockCountIssueTrack(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -380,7 +384,7 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
  	protected GoodsShelfStockCount loadGoodsShelfStockCount(RetailscmUserContext userContext, String newStockCountId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getGoodsShelfStockCountDAO().load(newStockCountId, options);
+ 		return goodsShelfStockCountDaoOf(userContext).load(newStockCountId, options);
  	}
  	
  	
@@ -394,7 +398,7 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String stockCountIssueTrackId, int stockCountIssueTrackVersion) throws Exception{
 			
-		userContext.getDAOGroup().getStockCountIssueTrackDAO().delete(stockCountIssueTrackId, stockCountIssueTrackVersion);
+		stockCountIssueTrackDaoOf(userContext).delete(stockCountIssueTrackId, stockCountIssueTrackVersion);
 	}
 	
 	public StockCountIssueTrack forgetByAll(RetailscmUserContext userContext, String stockCountIssueTrackId, int stockCountIssueTrackVersion) throws Exception {
@@ -403,8 +407,9 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 	protected StockCountIssueTrack forgetByAllInternal(RetailscmUserContext userContext,
 			String stockCountIssueTrackId, int stockCountIssueTrackVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getStockCountIssueTrackDAO().disconnectFromAll(stockCountIssueTrackId, stockCountIssueTrackVersion);
+		return stockCountIssueTrackDaoOf(userContext).disconnectFromAll(stockCountIssueTrackId, stockCountIssueTrackVersion);
 	}
+	
 	
 
 	
@@ -421,7 +426,7 @@ public class StockCountIssueTrackManagerImpl extends CustomRetailscmCheckerManag
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getStockCountIssueTrackDAO().deleteAll();
+		return stockCountIssueTrackDaoOf(userContext).deleteAll();
 	}
 
 

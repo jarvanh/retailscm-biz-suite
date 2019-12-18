@@ -176,6 +176,8 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(catalogAsBaseEntity,"id",this::checkIdOfCatalog);
 		commonObjectPropertyCheck(catalogAsBaseEntity,"name",this::checkNameOfCatalog);
 		commonObjectPropertyCheck(catalogAsBaseEntity,"owner",this::checkOwnerOfCatalog);
+		commonObjectPropertyCheck(catalogAsBaseEntity,"subCount",this::checkSubCountOfCatalog);
+		commonObjectPropertyCheck(catalogAsBaseEntity,"amount",this::checkAmountOfCatalog);
 		commonObjectPropertyCheck(catalogAsBaseEntity,"version",this::checkVersionOfCatalog);
 		commonObjectPropertyCheck(catalogAsBaseEntity,"levelOneCategoryList",this::checkLevelOneCategoryListOfCatalog);
 		return this;
@@ -297,7 +299,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"name",this::checkNameOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"founded",this::checkFoundedOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"provinceCenter",this::checkProvinceCenterOfProvinceCenterDepartment);
-		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"manager",this::checkManagerOfProvinceCenterDepartment);
+		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"managerName",this::checkManagerNameOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"version",this::checkVersionOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"provinceCenterEmployeeList",this::checkProvinceCenterEmployeeListOfProvinceCenterDepartment);
 		return this;
@@ -465,12 +467,17 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"owner",this::checkOwnerOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"retailStoreCountryCenter",this::checkRetailStoreCountryCenterOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"cityServiceCenter",this::checkCityServiceCenterOfRetailStore);
+		commonObjectPropertyCheck(retailStoreAsBaseEntity,"creation",this::checkCreationOfRetailStore);
+		commonObjectPropertyCheck(retailStoreAsBaseEntity,"investmentInvitation",this::checkInvestmentInvitationOfRetailStore);
+		commonObjectPropertyCheck(retailStoreAsBaseEntity,"franchising",this::checkFranchisingOfRetailStore);
+		commonObjectPropertyCheck(retailStoreAsBaseEntity,"decoration",this::checkDecorationOfRetailStore);
+		commonObjectPropertyCheck(retailStoreAsBaseEntity,"opening",this::checkOpeningOfRetailStore);
+		commonObjectPropertyCheck(retailStoreAsBaseEntity,"closing",this::checkClosingOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"founded",this::checkFoundedOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"latitude",this::checkLatitudeOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"longitude",this::checkLongitudeOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"description",this::checkDescriptionOfRetailStore);
 		commonObjectPropertyAssign(retailStoreAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfRetailStore);
-		commonObjectPropertyAssign(retailStoreAsBaseEntity,"currentStatus",this::assignCurrentStatusOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"version",this::checkVersionOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"consumerOrderList",this::checkConsumerOrderListOfRetailStore);
 		commonObjectPropertyCheck(retailStoreAsBaseEntity,"retailStoreOrderList",this::checkRetailStoreOrderListOfRetailStore);
@@ -596,9 +603,13 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"id",this::checkIdOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"title",this::checkTitleOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"consumer",this::checkConsumerOfConsumerOrder);
+		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"confirmation",this::checkConfirmationOfConsumerOrder);
+		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"approval",this::checkApprovalOfConsumerOrder);
+		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"processing",this::checkProcessingOfConsumerOrder);
+		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"shipment",this::checkShipmentOfConsumerOrder);
+		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"delivery",this::checkDeliveryOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"store",this::checkStoreOfConsumerOrder);
 		commonObjectPropertyAssign(consumerOrderAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfConsumerOrder);
-		commonObjectPropertyAssign(consumerOrderAsBaseEntity,"currentStatus",this::assignCurrentStatusOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"version",this::checkVersionOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"consumerOrderLineItemList",this::checkConsumerOrderLineItemListOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"consumerOrderShippingGroupList",this::checkConsumerOrderShippingGroupListOfConsumerOrder);
@@ -934,8 +945,13 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"seller",this::checkSellerOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"title",this::checkTitleOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"totalAmount",this::checkTotalAmountOfSupplyOrder);
+		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"confirmation",this::checkConfirmationOfSupplyOrder);
+		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"approval",this::checkApprovalOfSupplyOrder);
+		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"processing",this::checkProcessingOfSupplyOrder);
+		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"picking",this::checkPickingOfSupplyOrder);
+		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"shipment",this::checkShipmentOfSupplyOrder);
+		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"delivery",this::checkDeliveryOfSupplyOrder);
 		commonObjectPropertyAssign(supplyOrderAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfSupplyOrder);
-		commonObjectPropertyAssign(supplyOrderAsBaseEntity,"currentStatus",this::assignCurrentStatusOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"version",this::checkVersionOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"supplyOrderLineItemList",this::checkSupplyOrderLineItemListOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"supplyOrderShippingGroupList",this::checkSupplyOrderShippingGroupListOfSupplyOrder);
@@ -1099,8 +1115,13 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"seller",this::checkSellerOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"title",this::checkTitleOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"totalAmount",this::checkTotalAmountOfRetailStoreOrder);
+		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"confirmation",this::checkConfirmationOfRetailStoreOrder);
+		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"approval",this::checkApprovalOfRetailStoreOrder);
+		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"processing",this::checkProcessingOfRetailStoreOrder);
+		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"picking",this::checkPickingOfRetailStoreOrder);
+		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"shipment",this::checkShipmentOfRetailStoreOrder);
+		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"delivery",this::checkDeliveryOfRetailStoreOrder);
 		commonObjectPropertyAssign(retailStoreOrderAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfRetailStoreOrder);
-		commonObjectPropertyAssign(retailStoreOrderAsBaseEntity,"currentStatus",this::assignCurrentStatusOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"version",this::checkVersionOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"retailStoreOrderLineItemList",this::checkRetailStoreOrderLineItemListOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"retailStoreOrderShippingGroupList",this::checkRetailStoreOrderShippingGroupListOfRetailStoreOrder);
@@ -1404,7 +1425,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(goodsAsBaseEntity,"retailStore",this::checkRetailStoreOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"bizOrder",this::checkBizOrderOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"retailStoreOrder",this::checkRetailStoreOrderOfGoods);
-		commonObjectPropertyAssign(goodsAsBaseEntity,"currentStatus",this::assignCurrentStatusOfGoods);
+		commonObjectPropertyCheck(goodsAsBaseEntity,"packaging",this::checkPackagingOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"version",this::checkVersionOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"goodsMovementList",this::checkGoodsMovementListOfGoods);
 		return this;
@@ -1733,7 +1754,10 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"accountingDocumentDate",this::checkAccountingDocumentDateOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"accountingPeriod",this::checkAccountingPeriodOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"documentType",this::checkDocumentTypeOfAccountingDocument);
-		commonObjectPropertyAssign(accountingDocumentAsBaseEntity,"currentStatus",this::assignCurrentStatusOfAccountingDocument);
+		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"creation",this::checkCreationOfAccountingDocument);
+		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"confirmation",this::checkConfirmationOfAccountingDocument);
+		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"auditing",this::checkAuditingOfAccountingDocument);
+		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"posting",this::checkPostingOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"version",this::checkVersionOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"originalVoucherList",this::checkOriginalVoucherListOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"accountingDocumentLineList",this::checkAccountingDocumentLineListOfAccountingDocument);
@@ -1818,7 +1842,9 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"voucherType",this::checkVoucherTypeOfOriginalVoucher);
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"voucherImage",this::checkVoucherImageOfOriginalVoucher);
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"belongsTo",this::checkBelongsToOfOriginalVoucher);
-		commonObjectPropertyAssign(originalVoucherAsBaseEntity,"currentStatus",this::assignCurrentStatusOfOriginalVoucher);
+		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"creation",this::checkCreationOfOriginalVoucher);
+		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"confirmation",this::checkConfirmationOfOriginalVoucher);
+		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"auditing",this::checkAuditingOfOriginalVoucher);
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"version",this::checkVersionOfOriginalVoucher);
 		return this;
 
@@ -1900,7 +1926,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"belongsTo",this::checkBelongsToOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"name",this::checkNameOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"description",this::checkDescriptionOfLevelOneDepartment);
-		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"manager",this::checkManagerOfLevelOneDepartment);
+		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"managerName",this::checkManagerNameOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"founded",this::checkFoundedOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"version",this::checkVersionOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"levelTwoDepartmentList",this::checkLevelTwoDepartmentListOfLevelOneDepartment);
@@ -2161,8 +2187,14 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(employeeAsBaseEntity,"responsibleFor",this::checkResponsibleForOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"currentSalaryGrade",this::checkCurrentSalaryGradeOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"salaryAccount",this::checkSalaryAccountOfEmployee);
+		commonObjectPropertyCheck(employeeAsBaseEntity,"jobApplication",this::checkJobApplicationOfEmployee);
+		commonObjectPropertyCheck(employeeAsBaseEntity,"professionInterview",this::checkProfessionInterviewOfEmployee);
+		commonObjectPropertyCheck(employeeAsBaseEntity,"hrInterview",this::checkHrInterviewOfEmployee);
+		commonObjectPropertyCheck(employeeAsBaseEntity,"offerApproval",this::checkOfferApprovalOfEmployee);
+		commonObjectPropertyCheck(employeeAsBaseEntity,"offerAcceptance",this::checkOfferAcceptanceOfEmployee);
+		commonObjectPropertyCheck(employeeAsBaseEntity,"employeeBoarding",this::checkEmployeeBoardingOfEmployee);
+		commonObjectPropertyCheck(employeeAsBaseEntity,"termination",this::checkTerminationOfEmployee);
 		commonObjectPropertyAssign(employeeAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfEmployee);
-		commonObjectPropertyAssign(employeeAsBaseEntity,"currentStatus",this::assignCurrentStatusOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"version",this::checkVersionOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"employeeCompanyTrainingList",this::checkEmployeeCompanyTrainingListOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"employeeSkillList",this::checkEmployeeSkillListOfEmployee);
@@ -2342,7 +2374,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(employeeCompanyTrainingAsBaseEntity,"id",this::checkIdOfEmployeeCompanyTraining);
 		commonObjectPropertyCheck(employeeCompanyTrainingAsBaseEntity,"employee",this::checkEmployeeOfEmployeeCompanyTraining);
 		commonObjectPropertyCheck(employeeCompanyTrainingAsBaseEntity,"training",this::checkTrainingOfEmployeeCompanyTraining);
-		commonObjectPropertyAssign(employeeCompanyTrainingAsBaseEntity,"currentStatus",this::assignCurrentStatusOfEmployeeCompanyTraining);
+		commonObjectPropertyCheck(employeeCompanyTrainingAsBaseEntity,"scoring",this::checkScoringOfEmployeeCompanyTraining);
 		commonObjectPropertyCheck(employeeCompanyTrainingAsBaseEntity,"version",this::checkVersionOfEmployeeCompanyTraining);
 		return this;
 
@@ -2507,7 +2539,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(employeeSalarySheetAsBaseEntity,"socialSecurity",this::checkSocialSecurityOfEmployeeSalarySheet);
 		commonObjectPropertyCheck(employeeSalarySheetAsBaseEntity,"housingFound",this::checkHousingFoundOfEmployeeSalarySheet);
 		commonObjectPropertyCheck(employeeSalarySheetAsBaseEntity,"jobInsurance",this::checkJobInsuranceOfEmployeeSalarySheet);
-		commonObjectPropertyAssign(employeeSalarySheetAsBaseEntity,"currentStatus",this::assignCurrentStatusOfEmployeeSalarySheet);
+		commonObjectPropertyCheck(employeeSalarySheetAsBaseEntity,"payingOff",this::checkPayingOffOfEmployeeSalarySheet);
 		commonObjectPropertyCheck(employeeSalarySheetAsBaseEntity,"version",this::checkVersionOfEmployeeSalarySheet);
 		return this;
 
@@ -2578,7 +2610,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(secUserAsBaseEntity,"verificationCodeExpire",this::checkVerificationCodeExpireOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"lastLoginTime",this::checkLastLoginTimeOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"domain",this::checkDomainOfSecUser);
-		commonObjectPropertyAssign(secUserAsBaseEntity,"currentStatus",this::assignCurrentStatusOfSecUser);
+		commonObjectPropertyCheck(secUserAsBaseEntity,"blocking",this::checkBlockingOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"version",this::checkVersionOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"userAppList",this::checkUserAppListOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"loginHistoryList",this::checkLoginHistoryListOfSecUser);
@@ -6846,42 +6878,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
 		return this;
 	}
-	public RetailscmObjectChecker assignCreationOfRetailStore(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignInvestmentInvitationOfRetailStore(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignFranchisingOfRetailStore(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignDecorationOfRetailStore(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignOpeningOfRetailStore(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignClosingOfRetailStore(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfRetailStore(BaseEntity targetEntity){
 		if(userContext==null){
 			return this;
@@ -6889,61 +6885,11 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
 		return this;
 	}
-	public RetailscmObjectChecker assignCurrentStatusOfRetailStore(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
-		return this;
-	}
-	public RetailscmObjectChecker assignConfirmationOfConsumerOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignApprovalOfConsumerOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignProcessingOfConsumerOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignShipmentOfConsumerOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignDeliveryOfConsumerOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfConsumerOrder(BaseEntity targetEntity){
 		if(userContext==null){
 			return this;
 		}
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfConsumerOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
 		return this;
 	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfConsumerOrderLineItem(BaseEntity targetEntity){
@@ -6967,42 +6913,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
 		return this;
 	}
-	public RetailscmObjectChecker assignConfirmationOfSupplyOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignApprovalOfSupplyOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignProcessingOfSupplyOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignPickingOfSupplyOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignShipmentOfSupplyOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignDeliveryOfSupplyOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfSupplyOrder(BaseEntity targetEntity){
 		if(userContext==null){
 			return this;
@@ -7010,67 +6920,11 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
 		return this;
 	}
-	public RetailscmObjectChecker assignCurrentStatusOfSupplyOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
-		return this;
-	}
-	public RetailscmObjectChecker assignConfirmationOfRetailStoreOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignApprovalOfRetailStoreOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignProcessingOfRetailStoreOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignPickingOfRetailStoreOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignShipmentOfRetailStoreOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignDeliveryOfRetailStoreOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfRetailStoreOrder(BaseEntity targetEntity){
 		if(userContext==null){
 			return this;
 		}
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfRetailStoreOrder(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
 		return this;
 	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfWarehouse(BaseEntity targetEntity){
@@ -7099,22 +6953,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 			return this;
 		}
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
-		return this;
-	}
-	public RetailscmObjectChecker assignPackagingOfGoods(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfGoods(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
 		return this;
 	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfSupplierSpace(BaseEntity targetEntity){
@@ -7166,125 +7004,11 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
 		return this;
 	}
-	public RetailscmObjectChecker assignCreationOfAccountingDocument(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignConfirmationOfAccountingDocument(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignAuditingOfAccountingDocument(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignPostingOfAccountingDocument(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfAccountingDocument(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
-		return this;
-	}
-	public RetailscmObjectChecker assignCreationOfOriginalVoucher(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignConfirmationOfOriginalVoucher(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignAuditingOfOriginalVoucher(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfOriginalVoucher(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
-		return this;
-	}
-	public RetailscmObjectChecker assignJobApplicationOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignProfessionInterviewOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignHrInterviewOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignOfferApprovalOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignOfferAcceptanceOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignEmployeeBoardingOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignTerminationOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfEmployee(BaseEntity targetEntity){
 		if(userContext==null){
 			return this;
 		}
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfEmployee(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
 		return this;
 	}
 	public RetailscmObjectChecker assignLastUpdateTimeOfInstructor(BaseEntity targetEntity){
@@ -7299,54 +7023,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 			return this;
 		}
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
-		return this;
-	}
-	public RetailscmObjectChecker assignScoringOfEmployeeCompanyTraining(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfEmployeeCompanyTraining(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
-		return this;
-	}
-	public RetailscmObjectChecker assignPayingOffOfEmployeeSalarySheet(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfEmployeeSalarySheet(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
-		return this;
-	}
-	public RetailscmObjectChecker assignBlockingOfSecUser(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		return this;
-	}
-	public RetailscmObjectChecker assignCurrentStatusOfSecUser(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"currentStatus","INIT");
 		return this;
 	}
 	public RetailscmObjectChecker assignBlockTimeOfSecUserBlocking(BaseEntity targetEntity){

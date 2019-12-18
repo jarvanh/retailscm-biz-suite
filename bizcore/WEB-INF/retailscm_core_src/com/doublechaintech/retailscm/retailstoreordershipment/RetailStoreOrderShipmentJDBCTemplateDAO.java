@@ -63,6 +63,11 @@ public class RetailStoreOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	*/
 	
+	public SmartList<RetailStoreOrderShipment> loadAll() {
+	    return this.loadAll(getRetailStoreOrderShipmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -605,6 +610,226 @@ public class RetailStoreOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImp
 		return count;
 	}
 	
+	//disconnect RetailStoreOrderShipment with confirmation in RetailStoreOrder
+	public RetailStoreOrderShipment planToRemoveRetailStoreOrderListWithConfirmation(RetailStoreOrderShipment retailStoreOrderShipment, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipment.getId());
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderShipment;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderShipment;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearConfirmation();
+			retailStoreOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderShipment.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderShipment;
+	}
+	
+	public int countRetailStoreOrderListWithConfirmation(String retailStoreOrderShipmentId, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipmentId);
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderShipment with approval in RetailStoreOrder
+	public RetailStoreOrderShipment planToRemoveRetailStoreOrderListWithApproval(RetailStoreOrderShipment retailStoreOrderShipment, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipment.getId());
+		key.put(RetailStoreOrder.APPROVAL_PROPERTY, approvalId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderShipment;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderShipment;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearApproval();
+			retailStoreOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderShipment.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderShipment;
+	}
+	
+	public int countRetailStoreOrderListWithApproval(String retailStoreOrderShipmentId, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipmentId);
+		key.put(RetailStoreOrder.APPROVAL_PROPERTY, approvalId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderShipment with processing in RetailStoreOrder
+	public RetailStoreOrderShipment planToRemoveRetailStoreOrderListWithProcessing(RetailStoreOrderShipment retailStoreOrderShipment, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipment.getId());
+		key.put(RetailStoreOrder.PROCESSING_PROPERTY, processingId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderShipment;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderShipment;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearProcessing();
+			retailStoreOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderShipment.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderShipment;
+	}
+	
+	public int countRetailStoreOrderListWithProcessing(String retailStoreOrderShipmentId, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipmentId);
+		key.put(RetailStoreOrder.PROCESSING_PROPERTY, processingId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderShipment with picking in RetailStoreOrder
+	public RetailStoreOrderShipment planToRemoveRetailStoreOrderListWithPicking(RetailStoreOrderShipment retailStoreOrderShipment, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipment.getId());
+		key.put(RetailStoreOrder.PICKING_PROPERTY, pickingId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderShipment;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderShipment;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearPicking();
+			retailStoreOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderShipment.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderShipment;
+	}
+	
+	public int countRetailStoreOrderListWithPicking(String retailStoreOrderShipmentId, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipmentId);
+		key.put(RetailStoreOrder.PICKING_PROPERTY, pickingId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderShipment with delivery in RetailStoreOrder
+	public RetailStoreOrderShipment planToRemoveRetailStoreOrderListWithDelivery(RetailStoreOrderShipment retailStoreOrderShipment, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipment.getId());
+		key.put(RetailStoreOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderShipment;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderShipment;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearDelivery();
+			retailStoreOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderShipment.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderShipment;
+	}
+	
+	public int countRetailStoreOrderListWithDelivery(String retailStoreOrderShipmentId, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipmentId);
+		key.put(RetailStoreOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected RetailStoreOrderShipment saveRetailStoreOrderList(RetailStoreOrderShipment retailStoreOrderShipment, Map<String,Object> options){
@@ -777,6 +1002,10 @@ public class RetailStoreOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImp
 	@Override
 	public SmartList<RetailStoreOrderShipment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreOrderShipmentMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

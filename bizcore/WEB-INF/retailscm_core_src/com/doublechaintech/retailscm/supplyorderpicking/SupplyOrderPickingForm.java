@@ -235,20 +235,6 @@ public class SupplyOrderPickingForm extends BaseForm {
 		return lastUpdateTimeFieldForSupplyOrder("lastUpdateTime","");
 	}
 
-
-	public SupplyOrderPickingForm currentStatusFieldForSupplyOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromSupplyOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SupplyOrderPickingForm currentStatusFieldForSupplyOrder(String initValue){
-		return currentStatusFieldForSupplyOrder("currentStatus",initValue);
-	}
-	public SupplyOrderPickingForm currentStatusFieldForSupplyOrder(){
-		return currentStatusFieldForSupplyOrder("currentStatus","");
-	}
-
 	
 
 

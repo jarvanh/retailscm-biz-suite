@@ -74,6 +74,11 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<InterviewType> loadAll() {
+	    return this.loadAll(getInterviewTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -848,6 +853,10 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<InterviewType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getInterviewTypeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

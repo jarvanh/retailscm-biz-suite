@@ -181,6 +181,8 @@ public class RetailscmBaseViewScope {
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
+		.field(Catalog.SUB_COUNT_PROPERTY)
+		.field(Catalog.AMOUNT_PROPERTY)
 		;
 	/** 用于Catalog的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getCatalogSummaryScope() {
@@ -265,7 +267,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
-		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
 		;
 	/** 用于ProvinceCenterDepartment的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getProvinceCenterDepartmentSummaryScope() {
@@ -384,7 +386,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStore.LONGITUDE_PROPERTY)
 		.field(RetailStore.DESCRIPTION_PROPERTY)
 		.field(RetailStore.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStore.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于RetailStore的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreSummaryScope() {
@@ -467,7 +468,6 @@ public class RetailscmBaseViewScope {
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(ConsumerOrder.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于ConsumerOrder的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getConsumerOrderSummaryScope() {
@@ -712,7 +712,6 @@ public class RetailscmBaseViewScope {
 		.field(SupplyOrder.TITLE_PROPERTY)
 		.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY)
 		.field(SupplyOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(SupplyOrder.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于SupplyOrder的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSupplyOrderSummaryScope() {
@@ -827,7 +826,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStoreOrder.TITLE_PROPERTY)
 		.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY)
 		.field(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStoreOrder.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于RetailStoreOrder的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreOrderSummaryScope() {
@@ -1036,7 +1034,6 @@ public class RetailscmBaseViewScope {
 		.field(Goods.UOM_PROPERTY)
 		.field(Goods.MAX_PACKAGE_PROPERTY)
 		.field(Goods.EXPIRE_TIME_PROPERTY)
-		.field(Goods.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于Goods的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getGoodsSummaryScope() {
@@ -1273,7 +1270,6 @@ public class RetailscmBaseViewScope {
 		.field(AccountingDocument.ID_PROPERTY)
 		.field(AccountingDocument.NAME_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
-		.field(AccountingDocument.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于AccountingDocument的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getAccountingDocumentSummaryScope() {
@@ -1336,7 +1332,6 @@ public class RetailscmBaseViewScope {
 		.field(OriginalVoucher.RECEIVED_BY_PROPERTY)
 		.field(OriginalVoucher.VOUCHER_TYPE_PROPERTY)
 		.field(OriginalVoucher.VOUCHER_IMAGE_PROPERTY)
-		.field(OriginalVoucher.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于OriginalVoucher的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherSummaryScope() {
@@ -1397,7 +1392,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		;
 	/** 用于LevelOneDepartment的子对象的详情页时需要序列化的属性列表 */
@@ -1581,7 +1576,6 @@ public class RetailscmBaseViewScope {
 		.field(Employee.CELL_PHONE_PROPERTY)
 		.field(Employee.SALARY_ACCOUNT_PROPERTY)
 		.field(Employee.LAST_UPDATE_TIME_PROPERTY)
-		.field(Employee.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于Employee的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSummaryScope() {
@@ -1704,7 +1698,6 @@ public class RetailscmBaseViewScope {
 	protected static SerializeScope EmployeeCompanyTrainingBaseSummaryScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeCompanyTraining.ID_PROPERTY)
-		.field(EmployeeCompanyTraining.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeCompanyTraining的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeCompanyTrainingSummaryScope() {
@@ -1825,7 +1818,6 @@ public class RetailscmBaseViewScope {
 		.field(EmployeeSalarySheet.SOCIAL_SECURITY_PROPERTY)
 		.field(EmployeeSalarySheet.HOUSING_FOUND_PROPERTY)
 		.field(EmployeeSalarySheet.JOB_INSURANCE_PROPERTY)
-		.field(EmployeeSalarySheet.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeSalarySheet的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSalarySheetSummaryScope() {
@@ -1878,7 +1870,6 @@ public class RetailscmBaseViewScope {
 		.field(SecUser.VERIFICATION_CODE_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
-		.field(SecUser.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于SecUser的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSecUserSummaryScope() {
@@ -2090,6 +2081,8 @@ public class RetailscmBaseViewScope {
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
+		.field(Catalog.SUB_COUNT_PROPERTY)
+		.field(Catalog.AMOUNT_PROPERTY)
 		;
 	/** 用于Catalog的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getCatalogSecondaryListItemScope() {
@@ -2174,7 +2167,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
-		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
 		;
 	/** 用于ProvinceCenterDepartment的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getProvinceCenterDepartmentSecondaryListItemScope() {
@@ -2293,7 +2286,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStore.LONGITUDE_PROPERTY)
 		.field(RetailStore.DESCRIPTION_PROPERTY)
 		.field(RetailStore.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStore.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于RetailStore的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreSecondaryListItemScope() {
@@ -2376,7 +2368,6 @@ public class RetailscmBaseViewScope {
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(ConsumerOrder.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于ConsumerOrder的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getConsumerOrderSecondaryListItemScope() {
@@ -2621,7 +2612,6 @@ public class RetailscmBaseViewScope {
 		.field(SupplyOrder.TITLE_PROPERTY)
 		.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY)
 		.field(SupplyOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(SupplyOrder.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于SupplyOrder的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSupplyOrderSecondaryListItemScope() {
@@ -2736,7 +2726,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStoreOrder.TITLE_PROPERTY)
 		.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY)
 		.field(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStoreOrder.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于RetailStoreOrder的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreOrderSecondaryListItemScope() {
@@ -2945,7 +2934,6 @@ public class RetailscmBaseViewScope {
 		.field(Goods.UOM_PROPERTY)
 		.field(Goods.MAX_PACKAGE_PROPERTY)
 		.field(Goods.EXPIRE_TIME_PROPERTY)
-		.field(Goods.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于Goods的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getGoodsSecondaryListItemScope() {
@@ -3182,7 +3170,6 @@ public class RetailscmBaseViewScope {
 		.field(AccountingDocument.ID_PROPERTY)
 		.field(AccountingDocument.NAME_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
-		.field(AccountingDocument.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于AccountingDocument的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getAccountingDocumentSecondaryListItemScope() {
@@ -3245,7 +3232,6 @@ public class RetailscmBaseViewScope {
 		.field(OriginalVoucher.RECEIVED_BY_PROPERTY)
 		.field(OriginalVoucher.VOUCHER_TYPE_PROPERTY)
 		.field(OriginalVoucher.VOUCHER_IMAGE_PROPERTY)
-		.field(OriginalVoucher.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于OriginalVoucher的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherSecondaryListItemScope() {
@@ -3306,7 +3292,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		;
 	/** 用于LevelOneDepartment的父对象的列表时需要序列化的属性列表 */
@@ -3490,7 +3476,6 @@ public class RetailscmBaseViewScope {
 		.field(Employee.CELL_PHONE_PROPERTY)
 		.field(Employee.SALARY_ACCOUNT_PROPERTY)
 		.field(Employee.LAST_UPDATE_TIME_PROPERTY)
-		.field(Employee.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于Employee的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSecondaryListItemScope() {
@@ -3613,7 +3598,6 @@ public class RetailscmBaseViewScope {
 	protected static SerializeScope EmployeeCompanyTrainingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(EmployeeCompanyTraining.ID_PROPERTY)
-		.field(EmployeeCompanyTraining.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeCompanyTraining的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeCompanyTrainingSecondaryListItemScope() {
@@ -3734,7 +3718,6 @@ public class RetailscmBaseViewScope {
 		.field(EmployeeSalarySheet.SOCIAL_SECURITY_PROPERTY)
 		.field(EmployeeSalarySheet.HOUSING_FOUND_PROPERTY)
 		.field(EmployeeSalarySheet.JOB_INSURANCE_PROPERTY)
-		.field(EmployeeSalarySheet.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeSalarySheet的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSalarySheetSecondaryListItemScope() {
@@ -3787,7 +3770,6 @@ public class RetailscmBaseViewScope {
 		.field(SecUser.VERIFICATION_CODE_PROPERTY)
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
-		.field(SecUser.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于SecUser的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSecUserSecondaryListItemScope() {
@@ -4024,6 +4006,8 @@ public class RetailscmBaseViewScope {
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
 		.field(Catalog.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
+		.field(Catalog.SUB_COUNT_PROPERTY)
+		.field(Catalog.AMOUNT_PROPERTY)
 		.field(Catalog.LEVEL_ONE_CATEGORY_LIST, getLevelOneCategorySecondaryListItemScope())
 		;
 	/** 用于Catalog对象的列表时需要序列化的属性列表 */
@@ -4124,7 +4108,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_PROPERTY, getRetailStoreProvinceCenterSummaryScope())
-		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_EMPLOYEE_LIST, getProvinceCenterEmployeeSecondaryListItemScope())
 		;
 	/** 用于ProvinceCenterDepartment对象的列表时需要序列化的属性列表 */
@@ -4276,7 +4260,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStore.LONGITUDE_PROPERTY)
 		.field(RetailStore.DESCRIPTION_PROPERTY)
 		.field(RetailStore.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStore.CURRENT_STATUS_PROPERTY)
 		.field(RetailStore.CONSUMER_ORDER_LIST, getConsumerOrderSecondaryListItemScope())
 		.field(RetailStore.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderSecondaryListItemScope())
 		.field(RetailStore.GOODS_LIST, getGoodsSecondaryListItemScope())
@@ -4385,7 +4368,6 @@ public class RetailscmBaseViewScope {
 		.field(ConsumerOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(ConsumerOrder.STORE_PROPERTY, getRetailStoreSummaryScope())
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(ConsumerOrder.CURRENT_STATUS_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_ORDER_LINE_ITEM_LIST, getConsumerOrderLineItemSecondaryListItemScope())
 		.field(ConsumerOrder.CONSUMER_ORDER_SHIPPING_GROUP_LIST, getConsumerOrderShippingGroupSecondaryListItemScope())
 		.field(ConsumerOrder.CONSUMER_ORDER_PAYMENT_GROUP_LIST, getConsumerOrderPaymentGroupSecondaryListItemScope())
@@ -4665,7 +4647,6 @@ public class RetailscmBaseViewScope {
 		.field(SupplyOrder.SHIPMENT_PROPERTY, getSupplyOrderShipmentSummaryScope())
 		.field(SupplyOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(SupplyOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(SupplyOrder.CURRENT_STATUS_PROPERTY)
 		.field(SupplyOrder.SUPPLY_ORDER_LINE_ITEM_LIST, getSupplyOrderLineItemSecondaryListItemScope())
 		.field(SupplyOrder.SUPPLY_ORDER_SHIPPING_GROUP_LIST, getSupplyOrderShippingGroupSecondaryListItemScope())
 		.field(SupplyOrder.SUPPLY_ORDER_PAYMENT_GROUP_LIST, getSupplyOrderPaymentGroupSecondaryListItemScope())
@@ -4806,7 +4787,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStoreOrder.SHIPMENT_PROPERTY, getRetailStoreOrderShipmentSummaryScope())
 		.field(RetailStoreOrder.DELIVERY_PROPERTY, getRetailStoreOrderDeliverySummaryScope())
 		.field(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStoreOrder.CURRENT_STATUS_PROPERTY)
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_LINE_ITEM_LIST, getRetailStoreOrderLineItemSecondaryListItemScope())
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST, getRetailStoreOrderShippingGroupSecondaryListItemScope())
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_PAYMENT_GROUP_LIST, getRetailStoreOrderPaymentGroupSecondaryListItemScope())
@@ -5060,7 +5040,6 @@ public class RetailscmBaseViewScope {
 		.field(Goods.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
 		.field(Goods.RETAIL_STORE_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
 		.field(Goods.PACKAGING_PROPERTY, getGoodsPackagingSummaryScope())
-		.field(Goods.CURRENT_STATUS_PROPERTY)
 		.field(Goods.GOODS_MOVEMENT_LIST, getGoodsMovementSecondaryListItemScope())
 		;
 	/** 用于Goods对象的列表时需要序列化的属性列表 */
@@ -5342,7 +5321,6 @@ public class RetailscmBaseViewScope {
 		.field(AccountingDocument.CONFIRMATION_PROPERTY, getAccountingDocumentConfirmationSummaryScope())
 		.field(AccountingDocument.AUDITING_PROPERTY, getAccountingDocumentAuditingSummaryScope())
 		.field(AccountingDocument.POSTING_PROPERTY, getAccountingDocumentPostingSummaryScope())
-		.field(AccountingDocument.CURRENT_STATUS_PROPERTY)
 		.field(AccountingDocument.ORIGINAL_VOUCHER_LIST, getOriginalVoucherSecondaryListItemScope())
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_LINE_LIST, getAccountingDocumentLineSecondaryListItemScope())
 		;
@@ -5415,7 +5393,6 @@ public class RetailscmBaseViewScope {
 		.field(OriginalVoucher.CREATION_PROPERTY, getOriginalVoucherCreationSummaryScope())
 		.field(OriginalVoucher.CONFIRMATION_PROPERTY, getOriginalVoucherConfirmationSummaryScope())
 		.field(OriginalVoucher.AUDITING_PROPERTY, getOriginalVoucherAuditingSummaryScope())
-		.field(OriginalVoucher.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于OriginalVoucher对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherListItemScope() {
@@ -5482,7 +5459,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.BELONGS_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		.field(LevelOneDepartment.LEVEL_TWO_DEPARTMENT_LIST, getLevelTwoDepartmentSecondaryListItemScope())
 		;
@@ -5706,7 +5683,6 @@ public class RetailscmBaseViewScope {
 		.field(Employee.EMPLOYEE_BOARDING_PROPERTY, getEmployeeBoardingSummaryScope())
 		.field(Employee.TERMINATION_PROPERTY, getTerminationSummaryScope())
 		.field(Employee.LAST_UPDATE_TIME_PROPERTY)
-		.field(Employee.CURRENT_STATUS_PROPERTY)
 		.field(Employee.EMPLOYEE_COMPANY_TRAINING_LIST, getEmployeeCompanyTrainingSecondaryListItemScope())
 		.field(Employee.EMPLOYEE_SKILL_LIST, getEmployeeSkillSecondaryListItemScope())
 		.field(Employee.EMPLOYEE_PERFORMANCE_LIST, getEmployeePerformanceSecondaryListItemScope())
@@ -5857,7 +5833,6 @@ public class RetailscmBaseViewScope {
 		.field(EmployeeCompanyTraining.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeCompanyTraining.TRAINING_PROPERTY, getCompanyTrainingSummaryScope())
 		.field(EmployeeCompanyTraining.SCORING_PROPERTY, getScoringSummaryScope())
-		.field(EmployeeCompanyTraining.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeCompanyTraining对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeCompanyTrainingListItemScope() {
@@ -5993,7 +5968,6 @@ public class RetailscmBaseViewScope {
 		.field(EmployeeSalarySheet.HOUSING_FOUND_PROPERTY)
 		.field(EmployeeSalarySheet.JOB_INSURANCE_PROPERTY)
 		.field(EmployeeSalarySheet.PAYING_OFF_PROPERTY, getPayingOffSummaryScope())
-		.field(EmployeeSalarySheet.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeSalarySheet对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSalarySheetListItemScope() {
@@ -6053,7 +6027,6 @@ public class RetailscmBaseViewScope {
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
 		.field(SecUser.DOMAIN_PROPERTY, getUserDomainSummaryScope())
 		.field(SecUser.BLOCKING_PROPERTY, getSecUserBlockingSummaryScope())
-		.field(SecUser.CURRENT_STATUS_PROPERTY)
 		.field(SecUser.USER_APP_LIST, getUserAppSecondaryListItemScope())
 		.field(SecUser.LOGIN_HISTORY_LIST, getLoginHistorySecondaryListItemScope())
 		;
@@ -6311,6 +6284,8 @@ public class RetailscmBaseViewScope {
 		.field(Catalog.ID_PROPERTY)
 		.field(Catalog.NAME_PROPERTY)
 		.field(Catalog.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
+		.field(Catalog.SUB_COUNT_PROPERTY)
+		.field(Catalog.AMOUNT_PROPERTY)
 		.field(Catalog.LEVEL_ONE_CATEGORY_LIST, getLevelOneCategoryListItemScope())
 		;
 	/** 用于Catalog对象的详情页时需要序列化的属性列表 */
@@ -6411,7 +6386,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_PROPERTY, getRetailStoreProvinceCenterSummaryScope())
-		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_EMPLOYEE_LIST, getProvinceCenterEmployeeListItemScope())
 		;
 	/** 用于ProvinceCenterDepartment对象的详情页时需要序列化的属性列表 */
@@ -6563,7 +6538,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStore.LONGITUDE_PROPERTY)
 		.field(RetailStore.DESCRIPTION_PROPERTY)
 		.field(RetailStore.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStore.CURRENT_STATUS_PROPERTY)
 		.field(RetailStore.CONSUMER_ORDER_LIST, getConsumerOrderListItemScope())
 		.field(RetailStore.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderListItemScope())
 		.field(RetailStore.GOODS_LIST, getGoodsListItemScope())
@@ -6672,7 +6646,6 @@ public class RetailscmBaseViewScope {
 		.field(ConsumerOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(ConsumerOrder.STORE_PROPERTY, getRetailStoreSummaryScope())
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(ConsumerOrder.CURRENT_STATUS_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_ORDER_LINE_ITEM_LIST, getConsumerOrderLineItemListItemScope())
 		.field(ConsumerOrder.CONSUMER_ORDER_SHIPPING_GROUP_LIST, getConsumerOrderShippingGroupListItemScope())
 		.field(ConsumerOrder.CONSUMER_ORDER_PAYMENT_GROUP_LIST, getConsumerOrderPaymentGroupListItemScope())
@@ -6952,7 +6925,6 @@ public class RetailscmBaseViewScope {
 		.field(SupplyOrder.SHIPMENT_PROPERTY, getSupplyOrderShipmentSummaryScope())
 		.field(SupplyOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(SupplyOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(SupplyOrder.CURRENT_STATUS_PROPERTY)
 		.field(SupplyOrder.SUPPLY_ORDER_LINE_ITEM_LIST, getSupplyOrderLineItemListItemScope())
 		.field(SupplyOrder.SUPPLY_ORDER_SHIPPING_GROUP_LIST, getSupplyOrderShippingGroupListItemScope())
 		.field(SupplyOrder.SUPPLY_ORDER_PAYMENT_GROUP_LIST, getSupplyOrderPaymentGroupListItemScope())
@@ -7093,7 +7065,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStoreOrder.SHIPMENT_PROPERTY, getRetailStoreOrderShipmentSummaryScope())
 		.field(RetailStoreOrder.DELIVERY_PROPERTY, getRetailStoreOrderDeliverySummaryScope())
 		.field(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY)
-		.field(RetailStoreOrder.CURRENT_STATUS_PROPERTY)
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_LINE_ITEM_LIST, getRetailStoreOrderLineItemListItemScope())
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST, getRetailStoreOrderShippingGroupListItemScope())
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_PAYMENT_GROUP_LIST, getRetailStoreOrderPaymentGroupListItemScope())
@@ -7347,7 +7318,6 @@ public class RetailscmBaseViewScope {
 		.field(Goods.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
 		.field(Goods.RETAIL_STORE_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
 		.field(Goods.PACKAGING_PROPERTY, getGoodsPackagingSummaryScope())
-		.field(Goods.CURRENT_STATUS_PROPERTY)
 		.field(Goods.GOODS_MOVEMENT_LIST, getGoodsMovementListItemScope())
 		;
 	/** 用于Goods对象的详情页时需要序列化的属性列表 */
@@ -7629,7 +7599,6 @@ public class RetailscmBaseViewScope {
 		.field(AccountingDocument.CONFIRMATION_PROPERTY, getAccountingDocumentConfirmationSummaryScope())
 		.field(AccountingDocument.AUDITING_PROPERTY, getAccountingDocumentAuditingSummaryScope())
 		.field(AccountingDocument.POSTING_PROPERTY, getAccountingDocumentPostingSummaryScope())
-		.field(AccountingDocument.CURRENT_STATUS_PROPERTY)
 		.field(AccountingDocument.ORIGINAL_VOUCHER_LIST, getOriginalVoucherListItemScope())
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_LINE_LIST, getAccountingDocumentLineListItemScope())
 		;
@@ -7702,7 +7671,6 @@ public class RetailscmBaseViewScope {
 		.field(OriginalVoucher.CREATION_PROPERTY, getOriginalVoucherCreationSummaryScope())
 		.field(OriginalVoucher.CONFIRMATION_PROPERTY, getOriginalVoucherConfirmationSummaryScope())
 		.field(OriginalVoucher.AUDITING_PROPERTY, getOriginalVoucherAuditingSummaryScope())
-		.field(OriginalVoucher.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于OriginalVoucher对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherDetailScope() {
@@ -7769,7 +7737,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.BELONGS_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		.field(LevelOneDepartment.LEVEL_TWO_DEPARTMENT_LIST, getLevelTwoDepartmentListItemScope())
 		;
@@ -7993,7 +7961,6 @@ public class RetailscmBaseViewScope {
 		.field(Employee.EMPLOYEE_BOARDING_PROPERTY, getEmployeeBoardingSummaryScope())
 		.field(Employee.TERMINATION_PROPERTY, getTerminationSummaryScope())
 		.field(Employee.LAST_UPDATE_TIME_PROPERTY)
-		.field(Employee.CURRENT_STATUS_PROPERTY)
 		.field(Employee.EMPLOYEE_COMPANY_TRAINING_LIST, getEmployeeCompanyTrainingListItemScope())
 		.field(Employee.EMPLOYEE_SKILL_LIST, getEmployeeSkillListItemScope())
 		.field(Employee.EMPLOYEE_PERFORMANCE_LIST, getEmployeePerformanceListItemScope())
@@ -8144,7 +8111,6 @@ public class RetailscmBaseViewScope {
 		.field(EmployeeCompanyTraining.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 		.field(EmployeeCompanyTraining.TRAINING_PROPERTY, getCompanyTrainingSummaryScope())
 		.field(EmployeeCompanyTraining.SCORING_PROPERTY, getScoringSummaryScope())
-		.field(EmployeeCompanyTraining.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeCompanyTraining对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeCompanyTrainingDetailScope() {
@@ -8280,7 +8246,6 @@ public class RetailscmBaseViewScope {
 		.field(EmployeeSalarySheet.HOUSING_FOUND_PROPERTY)
 		.field(EmployeeSalarySheet.JOB_INSURANCE_PROPERTY)
 		.field(EmployeeSalarySheet.PAYING_OFF_PROPERTY, getPayingOffSummaryScope())
-		.field(EmployeeSalarySheet.CURRENT_STATUS_PROPERTY)
 		;
 	/** 用于EmployeeSalarySheet对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSalarySheetDetailScope() {
@@ -8340,7 +8305,6 @@ public class RetailscmBaseViewScope {
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
 		.field(SecUser.DOMAIN_PROPERTY, getUserDomainSummaryScope())
 		.field(SecUser.BLOCKING_PROPERTY, getSecUserBlockingSummaryScope())
-		.field(SecUser.CURRENT_STATUS_PROPERTY)
 		.field(SecUser.USER_APP_LIST, getUserAppListItemScope())
 		.field(SecUser.LOGIN_HISTORY_LIST, getLoginHistoryListItemScope())
 		;

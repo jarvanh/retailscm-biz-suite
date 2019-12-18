@@ -200,6 +200,11 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	}
 	*/
 	
+	public SmartList<Warehouse> loadAll() {
+	    return this.loadAll(getWarehouseMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -2332,6 +2337,10 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	@Override
 	public SmartList<Warehouse> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getWarehouseMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.instructor;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.companytraining.CompanyTrainingDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface InstructorDAO{
+public interface InstructorDAO extends BaseDAO{
 
-	
+	public SmartList<Instructor> loadAll();
 	public Instructor load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<Instructor> instructorList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -62,6 +63,7 @@ public interface InstructorDAO{
 	
 	
 	public SmartList<Instructor> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<Instructor> findInstructorByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countInstructorByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

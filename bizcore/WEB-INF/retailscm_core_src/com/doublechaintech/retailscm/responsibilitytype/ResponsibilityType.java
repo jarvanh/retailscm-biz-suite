@@ -78,15 +78,6 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	ResponsibilityType(String code, RetailStoreCountryCenter company, String baseDescription, String detailDescription)
-	{
-		setCode(code);
-		setCompany(company);
-		setBaseDescription(baseDescription);
-		setDetailDescription(detailDescription);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

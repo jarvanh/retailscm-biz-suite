@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.secuser.CandidateSecUser;
 public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager implements LoginHistoryManager {
 	
 	private static final String SERVICE_TYPE = "LoginHistory";
+	@Override
+	public LoginHistoryDAO daoOf(RetailscmUserContext userContext) {
+		return loginHistoryDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	public LoginHistory loadLoginHistory(RetailscmUserContext userContext, String loginHistoryId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-		userContext.getChecker().throwExceptionIfHasErrors( LoginHistoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LoginHistoryManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	 public LoginHistory searchLoginHistory(RetailscmUserContext userContext, String loginHistoryId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-		userContext.getChecker().throwExceptionIfHasErrors( LoginHistoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LoginHistoryManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 		addActions(userContext,loginHistory,tokens);
 		
 		
-		LoginHistory  loginHistoryToPresent = userContext.getDAOGroup().getLoginHistoryDAO().present(loginHistory, tokens);
+		LoginHistory  loginHistoryToPresent = loginHistoryDaoOf(userContext).present(loginHistory, tokens);
 		
 		List<BaseEntity> entityListToNaming = loginHistoryToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getLoginHistoryDAO().alias(entityListToNaming);
+		loginHistoryDaoOf(userContext).alias(entityListToNaming);
 		
 		return  loginHistoryToPresent;
 		
@@ -123,14 +127,14 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 		
  	}
  	protected LoginHistory saveLoginHistory(RetailscmUserContext userContext, LoginHistory loginHistory, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getLoginHistoryDAO().save(loginHistory, tokens);
+ 		return loginHistoryDaoOf(userContext).save(loginHistory, tokens);
  	}
  	protected LoginHistory loadLoginHistory(RetailscmUserContext userContext, String loginHistoryId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-		userContext.getChecker().throwExceptionIfHasErrors( LoginHistoryManagerException.class);
+		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LoginHistoryManagerException.class);
 
  
- 		return userContext.getDAOGroup().getLoginHistoryDAO().load(loginHistoryId, tokens);
+ 		return loginHistoryDaoOf(userContext).load(loginHistoryId, tokens);
  	}
 
 	
@@ -160,18 +164,18 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	
 
-
-	public LoginHistory createLoginHistory(RetailscmUserContext userContext,String fromIp, String description, String secUserId) throws Exception
+	public LoginHistory createLoginHistory(RetailscmUserContext userContext, String fromIp,String description,String secUserId) throws Exception
+	//public LoginHistory createLoginHistory(RetailscmUserContext userContext,String fromIp, String description, String secUserId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkFromIpOfLoginHistory(fromIp);
-		userContext.getChecker().checkDescriptionOfLoginHistory(description);
+		checkerOf(userContext).checkFromIpOfLoginHistory(fromIp);
+		checkerOf(userContext).checkDescriptionOfLoginHistory(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LoginHistoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LoginHistoryManagerException.class);
 
 
 		LoginHistory loginHistory=createNewLoginHistory();	
@@ -204,20 +208,20 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 
 		
 		
-		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-		userContext.getChecker().checkVersionOfLoginHistory( loginHistoryVersion);
+		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+		checkerOf(userContext).checkVersionOfLoginHistory( loginHistoryVersion);
 		
 
 		if(LoginHistory.FROM_IP_PROPERTY.equals(property)){
-			userContext.getChecker().checkFromIpOfLoginHistory(parseString(newValueExpr));
+			checkerOf(userContext).checkFromIpOfLoginHistory(parseString(newValueExpr));
 		}
 		if(LoginHistory.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfLoginHistory(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfLoginHistory(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LoginHistoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LoginHistoryManagerException.class);
 	
 		
 	}
@@ -226,7 +230,7 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	
 	public LoginHistory clone(RetailscmUserContext userContext, String fromLoginHistoryId) throws Exception{
 		
-		return userContext.getDAOGroup().getLoginHistoryDAO().clone(fromLoginHistoryId, this.allTokens());
+		return loginHistoryDaoOf(userContext).clone(fromLoginHistoryId, this.allTokens());
 	}
 	
 	public LoginHistory internalSaveLoginHistory(RetailscmUserContext userContext, LoginHistory loginHistory) throws Exception 
@@ -324,9 +328,9 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForTransferingAnotherSecUser(RetailscmUserContext userContext, String loginHistoryId, String anotherSecUserId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
- 		userContext.getChecker().checkIdOfSecUser(anotherSecUserId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(LoginHistoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+ 		checkerOf(userContext).checkIdOfSecUser(anotherSecUserId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LoginHistoryManagerException.class);
  		
  	}
  	public LoginHistory transferToAnotherSecUser(RetailscmUserContext userContext, String loginHistoryId, String anotherSecUserId) throws Exception
@@ -352,9 +356,9 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForTransferingAnotherSecUserWithLogin(RetailscmUserContext userContext, String loginHistoryId, String anotherLogin) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
- 		userContext.getChecker().checkLoginOfSecUser( anotherLogin);
- 		userContext.getChecker().throwExceptionIfHasErrors(LoginHistoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+ 		checkerOf(userContext).checkLoginOfSecUser( anotherLogin);
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LoginHistoryManagerException.class);
  		
  	}
 
@@ -379,9 +383,9 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForTransferingAnotherSecUserWithEmail(RetailscmUserContext userContext, String loginHistoryId, String anotherEmail) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
- 		userContext.getChecker().checkEmailOfSecUser( anotherEmail);
- 		userContext.getChecker().throwExceptionIfHasErrors(LoginHistoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+ 		checkerOf(userContext).checkEmailOfSecUser( anotherEmail);
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LoginHistoryManagerException.class);
  		
  	}
 
@@ -406,9 +410,9 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForTransferingAnotherSecUserWithMobile(RetailscmUserContext userContext, String loginHistoryId, String anotherMobile) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
- 		userContext.getChecker().checkMobileOfSecUser( anotherMobile);
- 		userContext.getChecker().throwExceptionIfHasErrors(LoginHistoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+ 		checkerOf(userContext).checkMobileOfSecUser( anotherMobile);
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LoginHistoryManagerException.class);
  		
  	}
 
@@ -444,7 +448,7 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<SecUser> candidateList = userContext.getDAOGroup().getSecUserDAO().requestCandidateSecUserForLoginHistory(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<SecUser> candidateList = secUserDaoOf(userContext).requestCandidateSecUserForLoginHistory(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -457,27 +461,27 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
  	protected SecUser loadSecUser(RetailscmUserContext userContext, String newSecUserId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSecUserDAO().load(newSecUserId, options);
+ 		return secUserDaoOf(userContext).load(newSecUserId, options);
  	}
  	
  	protected SecUser loadSecUserWithLogin(RetailscmUserContext userContext, String newLogin, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSecUserDAO().loadByLogin(newLogin, options);
+ 		return secUserDaoOf(userContext).loadByLogin(newLogin, options);
  	}
  	
  	
  	protected SecUser loadSecUserWithEmail(RetailscmUserContext userContext, String newEmail, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSecUserDAO().loadByEmail(newEmail, options);
+ 		return secUserDaoOf(userContext).loadByEmail(newEmail, options);
  	}
  	
  	
  	protected SecUser loadSecUserWithMobile(RetailscmUserContext userContext, String newMobile, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSecUserDAO().loadByMobile(newMobile, options);
+ 		return secUserDaoOf(userContext).loadByMobile(newMobile, options);
  	}
  	
  	
@@ -492,7 +496,7 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String loginHistoryId, int loginHistoryVersion) throws Exception{
 			
-		userContext.getDAOGroup().getLoginHistoryDAO().delete(loginHistoryId, loginHistoryVersion);
+		loginHistoryDaoOf(userContext).delete(loginHistoryId, loginHistoryVersion);
 	}
 	
 	public LoginHistory forgetByAll(RetailscmUserContext userContext, String loginHistoryId, int loginHistoryVersion) throws Exception {
@@ -501,8 +505,9 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	protected LoginHistory forgetByAllInternal(RetailscmUserContext userContext,
 			String loginHistoryId, int loginHistoryVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getLoginHistoryDAO().disconnectFromAll(loginHistoryId, loginHistoryVersion);
+		return loginHistoryDaoOf(userContext).disconnectFromAll(loginHistoryId, loginHistoryVersion);
 	}
+	
 	
 
 	
@@ -519,7 +524,7 @@ public class LoginHistoryManagerImpl extends CustomRetailscmCheckerManager imple
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getLoginHistoryDAO().deleteAll();
+		return loginHistoryDaoOf(userContext).deleteAll();
 	}
 
 

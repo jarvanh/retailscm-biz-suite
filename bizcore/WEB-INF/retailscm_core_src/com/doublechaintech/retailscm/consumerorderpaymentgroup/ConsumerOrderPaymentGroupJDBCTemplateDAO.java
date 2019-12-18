@@ -53,6 +53,11 @@ public class ConsumerOrderPaymentGroupJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	*/
 	
+	public SmartList<ConsumerOrderPaymentGroup> loadAll() {
+	    return this.loadAll(getConsumerOrderPaymentGroupMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -551,6 +556,10 @@ public class ConsumerOrderPaymentGroupJDBCTemplateDAO extends RetailscmBaseDAOIm
 	@Override
 	public SmartList<ConsumerOrderPaymentGroup> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getConsumerOrderPaymentGroupMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

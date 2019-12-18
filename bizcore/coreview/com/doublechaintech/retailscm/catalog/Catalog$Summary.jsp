@@ -40,6 +40,14 @@
 <span class="summary-label">${userContext.localeMap['catalog.name']}</span>
 <span >${result.name}</span>
 </div>
+<div class="col-xs-12 col-md-3 summary-section">
+<span class="summary-label">${userContext.localeMap['catalog.sub_count']}</span>
+<span >${result.subCount}</span>
+</div>
+<div class="col-xs-12 col-md-3 summary-section">
+<span class="summary-label">${userContext.localeMap['catalog.amount']}</span>
+<span ><fmt:formatNumber type="currency"  value="${result.amount}" /></span>
+</div>
 
 	</div>
 	

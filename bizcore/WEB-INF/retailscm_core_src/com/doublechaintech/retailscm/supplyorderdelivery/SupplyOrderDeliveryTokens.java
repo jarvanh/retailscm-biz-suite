@@ -132,12 +132,16 @@ public class SupplyOrderDeliveryTokens extends CommonTokens{
 	}
 	private int consumerOrderListSearchCounter = 0;
 	public SupplyOrderDeliveryTokens searchConsumerOrderListWith(String field, String verb, String value){		
+		
+		withConsumerOrderList();
 		addSearchMoreOptions(CONSUMER_ORDER_LIST,consumerOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public SupplyOrderDeliveryTokens searchAllTextOfConsumerOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(CONSUMER_ORDER_LIST,consumerOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -198,12 +202,16 @@ public class SupplyOrderDeliveryTokens extends CommonTokens{
 	}
 	private int supplyOrderListSearchCounter = 0;
 	public SupplyOrderDeliveryTokens searchSupplyOrderListWith(String field, String verb, String value){		
+		
+		withSupplyOrderList();
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public SupplyOrderDeliveryTokens searchAllTextOfSupplyOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}

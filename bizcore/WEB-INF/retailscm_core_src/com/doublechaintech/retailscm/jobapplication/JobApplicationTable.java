@@ -23,12 +23,8 @@ public class JobApplicationTable{
 	static final String COLUMN_COMMENTS = "comments";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_APPLICATION_TIME, COLUMN_WHO, COLUMN_COMMENTS, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_APPLICATION_TIME, COLUMN_WHO, COLUMN_COMMENTS
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_APPLICATION_TIME,COLUMN_WHO,COLUMN_COMMENTS,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_APPLICATION_TIME,COLUMN_WHO,COLUMN_COMMENTS};
 	
 	
 }

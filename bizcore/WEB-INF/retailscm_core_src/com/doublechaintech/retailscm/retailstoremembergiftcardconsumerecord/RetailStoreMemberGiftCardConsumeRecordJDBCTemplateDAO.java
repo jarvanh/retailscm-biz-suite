@@ -64,6 +64,11 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
 	}
 	*/
 	
+	public SmartList<RetailStoreMemberGiftCardConsumeRecord> loadAll() {
+	    return this.loadAll(getRetailStoreMemberGiftCardConsumeRecordMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -684,6 +689,10 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
 	@Override
 	public SmartList<RetailStoreMemberGiftCardConsumeRecord> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberGiftCardConsumeRecordMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

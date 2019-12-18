@@ -72,13 +72,6 @@ public class RetailStoreOrderProcessing extends BaseEntity implements  java.io.S
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderProcessing(String who, Date processTime)
-	{
-		setWho(who);
-		setProcessTime(processTime);
-
-		this.mRetailStoreOrderList = new SmartList<RetailStoreOrder>();	
-	}
 	
 	//Support for changing the property
 	

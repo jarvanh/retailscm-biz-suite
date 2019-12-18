@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface EventAttendanceManager{
+public interface EventAttendanceManager extends BaseManager{
 
 		
 
-	public EventAttendance createEventAttendance(RetailscmUserContext userContext, String name, String potentialCustomerId, String cityEventId, String description) throws Exception;	
+	public EventAttendance createEventAttendance(RetailscmUserContext userContext, String name,String potentialCustomerId,String cityEventId,String description) throws Exception;	
 	public EventAttendance updateEventAttendance(RetailscmUserContext userContext,String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public EventAttendance loadEventAttendance(RetailscmUserContext userContext, String eventAttendanceId, String [] tokensExpr) throws Exception;
 	public EventAttendance internalSaveEventAttendance(RetailscmUserContext userContext, EventAttendance eventAttendance) throws Exception;

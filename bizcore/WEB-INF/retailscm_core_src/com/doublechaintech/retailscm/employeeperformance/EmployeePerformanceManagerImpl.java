@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManager implements EmployeePerformanceManager {
 	
 	private static final String SERVICE_TYPE = "EmployeePerformance";
+	@Override
+	public EmployeePerformanceDAO daoOf(RetailscmUserContext userContext) {
+		return employeePerformanceDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
  	
  	public EmployeePerformance loadEmployeePerformance(RetailscmUserContext userContext, String employeePerformanceId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeePerformance(employeePerformanceId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeePerformanceManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeePerformanceManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
  	
  	 public EmployeePerformance searchEmployeePerformance(RetailscmUserContext userContext, String employeePerformanceId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeePerformance(employeePerformanceId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeePerformanceManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeePerformanceManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		addActions(userContext,employeePerformance,tokens);
 		
 		
-		EmployeePerformance  employeePerformanceToPresent = userContext.getDAOGroup().getEmployeePerformanceDAO().present(employeePerformance, tokens);
+		EmployeePerformance  employeePerformanceToPresent = employeePerformanceDaoOf(userContext).present(employeePerformance, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeePerformanceToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeePerformanceDAO().alias(entityListToNaming);
+		employeePerformanceDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeePerformanceToPresent;
 		
@@ -123,14 +127,14 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		
  	}
  	protected EmployeePerformance saveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeePerformanceDAO().save(employeePerformance, tokens);
+ 		return employeePerformanceDaoOf(userContext).save(employeePerformance, tokens);
  	}
  	protected EmployeePerformance loadEmployeePerformance(RetailscmUserContext userContext, String employeePerformanceId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeePerformance(employeePerformanceId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeePerformanceManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeePerformanceManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeePerformanceDAO().load(employeePerformanceId, tokens);
+ 		return employeePerformanceDaoOf(userContext).load(employeePerformanceId, tokens);
  	}
 
 	
@@ -160,17 +164,17 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
  	
  	
 
-
-	public EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext,String employeeId, String performanceComment) throws Exception
+	public EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext, String employeeId,String performanceComment) throws Exception
+	//public EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext,String employeeId, String performanceComment) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkPerformanceCommentOfEmployeePerformance(performanceComment);
+		checkerOf(userContext).checkPerformanceCommentOfEmployeePerformance(performanceComment);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
 
 
 		EmployeePerformance employeePerformance=createNewEmployeePerformance();	
@@ -201,17 +205,17 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeePerformance(employeePerformanceId);
-		userContext.getChecker().checkVersionOfEmployeePerformance( employeePerformanceVersion);
+		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
+		checkerOf(userContext).checkVersionOfEmployeePerformance( employeePerformanceVersion);
 		
 		
 
 		
 		if(EmployeePerformance.PERFORMANCE_COMMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkPerformanceCommentOfEmployeePerformance(parseString(newValueExpr));
+			checkerOf(userContext).checkPerformanceCommentOfEmployeePerformance(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
 	
 		
 	}
@@ -220,7 +224,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	
 	public EmployeePerformance clone(RetailscmUserContext userContext, String fromEmployeePerformanceId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeePerformanceDAO().clone(fromEmployeePerformanceId, this.allTokens());
+		return employeePerformanceDaoOf(userContext).clone(fromEmployeePerformanceId, this.allTokens());
 	}
 	
 	public EmployeePerformance internalSaveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance) throws Exception 
@@ -318,9 +322,9 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeePerformanceId, String anotherEmployeeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeePerformance(employeePerformanceId);
- 		userContext.getChecker().checkIdOfEmployee(anotherEmployeeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
  		
  	}
  	public EmployeePerformance transferToAnotherEmployee(RetailscmUserContext userContext, String employeePerformanceId, String anotherEmployeeId) throws Exception
@@ -357,7 +361,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeePerformance(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeePerformance(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -370,7 +374,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
  	
@@ -384,7 +388,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeePerformanceId, int employeePerformanceVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeePerformanceDAO().delete(employeePerformanceId, employeePerformanceVersion);
+		employeePerformanceDaoOf(userContext).delete(employeePerformanceId, employeePerformanceVersion);
 	}
 	
 	public EmployeePerformance forgetByAll(RetailscmUserContext userContext, String employeePerformanceId, int employeePerformanceVersion) throws Exception {
@@ -393,8 +397,9 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	protected EmployeePerformance forgetByAllInternal(RetailscmUserContext userContext,
 			String employeePerformanceId, int employeePerformanceVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeePerformanceDAO().disconnectFromAll(employeePerformanceId, employeePerformanceVersion);
+		return employeePerformanceDaoOf(userContext).disconnectFromAll(employeePerformanceId, employeePerformanceVersion);
 	}
+	
 	
 
 	
@@ -411,7 +416,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeePerformanceDAO().deleteAll();
+		return employeePerformanceDaoOf(userContext).deleteAll();
 	}
 
 

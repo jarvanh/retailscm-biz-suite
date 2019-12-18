@@ -74,6 +74,11 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<TerminationType> loadAll() {
+	    return this.loadAll(getTerminationTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -848,6 +853,10 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public SmartList<TerminationType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTerminationTypeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -41,7 +41,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	public static final String SHIPMENT_PROPERTY              = "shipment"          ;
 	public static final String DELIVERY_PROPERTY              = "delivery"          ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String RETAIL_STORE_ORDER_LINE_ITEM_LIST        = "retailStoreOrderLineItemList";
@@ -80,7 +79,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	protected		RetailStoreOrderShipment	mShipment           ;
 	protected		RetailStoreOrderDelivery	mDelivery           ;
 	protected		DateTime            	mLastUpdateTime     ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -117,20 +115,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrder(RetailStore buyer, RetailStoreCountryCenter seller, String title, BigDecimal totalAmount, DateTime lastUpdateTime, String currentStatus)
-	{
-		setBuyer(buyer);
-		setSeller(seller);
-		setTitle(title);
-		setTotalAmount(totalAmount);
-		setLastUpdateTime(lastUpdateTime);
-		setCurrentStatus(currentStatus);
-
-		this.mRetailStoreOrderLineItemList = new SmartList<RetailStoreOrderLineItem>();
-		this.mRetailStoreOrderShippingGroupList = new SmartList<RetailStoreOrderShippingGroup>();
-		this.mRetailStoreOrderPaymentGroupList = new SmartList<RetailStoreOrderPaymentGroup>();
-		this.mGoodsList = new SmartList<Goods>();	
-	}
 	
 	//Support for changing the property
 	
@@ -232,9 +216,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
-		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
 		}
 		if(RETAIL_STORE_ORDER_LINE_ITEM_LIST.equals(property)){
 			List<BaseEntity> list = getRetailStoreOrderLineItemList().stream().map(item->item).collect(Collectors.toList());
@@ -492,22 +473,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	}
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
-	}
-	
-	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public RetailStoreOrder updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
 	
 	
@@ -1009,7 +974,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		appendKeyValuePair(result, SHIPMENT_PROPERTY, getShipment());
 		appendKeyValuePair(result, DELIVERY_PROPERTY, getDelivery());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, RETAIL_STORE_ORDER_LINE_ITEM_LIST, getRetailStoreOrderLineItemList());
 		if(!getRetailStoreOrderLineItemList().isEmpty()){
@@ -1057,7 +1021,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 			dest.setShipment(getShipment());
 			dest.setDelivery(getDelivery());
 			dest.setLastUpdateTime(getLastUpdateTime());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 			dest.setRetailStoreOrderLineItemList(getRetailStoreOrderLineItemList());
 			dest.setRetailStoreOrderShippingGroupList(getRetailStoreOrderShippingGroupList());
@@ -1088,7 +1051,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 			dest.mergeShipment(getShipment());
 			dest.mergeDelivery(getDelivery());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 			dest.mergeRetailStoreOrderLineItemList(getRetailStoreOrderLineItemList());
 			dest.mergeRetailStoreOrderShippingGroupList(getRetailStoreOrderShippingGroupList());
@@ -1112,7 +1074,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 			dest.mergeTitle(getTitle());
 			dest.mergeTotalAmount(getTotalAmount());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -1151,7 +1112,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
  			stringBuilder.append("\tdelivery='RetailStoreOrderDelivery("+getDelivery().getId()+")';");
  		}
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

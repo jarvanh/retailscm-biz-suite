@@ -143,9 +143,13 @@ public class LevelOneCategoryTokens extends CommonTokens{
 	}
 	private int levelTwoCategoryListSearchCounter = 0;
 	public LevelOneCategoryTokens searchLevelTwoCategoryListWith(String field, String verb, String value){		
+		
+		withLevelTwoCategoryList();
 		addSearchMoreOptions(LEVEL_TWO_CATEGORY_LIST,levelTwoCategoryListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public LevelOneCategoryTokens searchAllTextOfLevelTwoCategoryList(String verb, String value){	
 		String field = "id|name";

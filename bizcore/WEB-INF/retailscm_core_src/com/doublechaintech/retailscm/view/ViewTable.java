@@ -23,12 +23,8 @@ public class ViewTable{
 	static final String COLUMN_INTERVIEW_TIME = "interview_time";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_WHO, COLUMN_ASSESSMENT, COLUMN_INTERVIEW_TIME, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_WHO, COLUMN_ASSESSMENT, COLUMN_INTERVIEW_TIME
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_ASSESSMENT,COLUMN_INTERVIEW_TIME,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_ASSESSMENT,COLUMN_INTERVIEW_TIME};
 	
 	
 }

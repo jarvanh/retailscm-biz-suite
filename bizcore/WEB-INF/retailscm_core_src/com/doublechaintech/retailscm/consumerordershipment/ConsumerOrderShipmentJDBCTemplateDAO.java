@@ -42,6 +42,11 @@ public class ConsumerOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	}
 	*/
 	
+	public SmartList<ConsumerOrderShipment> loadAll() {
+	    return this.loadAll(getConsumerOrderShipmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -438,6 +443,10 @@ public class ConsumerOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	@Override
 	public SmartList<ConsumerOrderShipment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getConsumerOrderShipmentMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

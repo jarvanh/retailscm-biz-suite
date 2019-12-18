@@ -74,6 +74,11 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Le
 	}
 	*/
 	
+	public SmartList<LeaveType> loadAll() {
+	    return this.loadAll(getLeaveTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -848,6 +853,10 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Le
 	@Override
 	public SmartList<LeaveType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLeaveTypeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

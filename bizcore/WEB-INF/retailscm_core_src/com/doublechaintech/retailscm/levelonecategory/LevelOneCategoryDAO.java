@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.levelonecategory;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.leveltwocategory.LevelTwoCategoryDAO;
 import com.doublechaintech.retailscm.catalog.CatalogDAO;
 
 
-public interface LevelOneCategoryDAO{
+public interface LevelOneCategoryDAO extends BaseDAO{
 
-	
+	public SmartList<LevelOneCategory> loadAll();
 	public LevelOneCategory load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<LevelOneCategory> levelOneCategoryList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -54,6 +55,7 @@ public interface LevelOneCategoryDAO{
 
 	
 	public SmartList<LevelOneCategory> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<LevelOneCategory> findLevelOneCategoryByCatalog(String catalogId, Map<String,Object> options);
  	public int countLevelOneCategoryByCatalog(String catalogId, Map<String,Object> options);

@@ -180,12 +180,16 @@ public class TransportTaskTokens extends CommonTokens{
 	}
 	private int goodsListSearchCounter = 0;
 	public TransportTaskTokens searchGoodsListWith(String field, String verb, String value){		
+		
+		withGoodsList();
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public TransportTaskTokens searchAllTextOfGoodsList(String verb, String value){	
-		String field = "id|name|rfid|uom|currentStatus";
+		String field = "id|name|rfid|uom";
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -246,9 +250,13 @@ public class TransportTaskTokens extends CommonTokens{
 	}
 	private int transportTaskTrackListSearchCounter = 0;
 	public TransportTaskTokens searchTransportTaskTrackListWith(String field, String verb, String value){		
+		
+		withTransportTaskTrackList();
 		addSearchMoreOptions(TRANSPORT_TASK_TRACK_LIST,transportTaskTrackListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public TransportTaskTokens searchAllTextOfTransportTaskTrackList(String verb, String value){	
 		String field = "id";

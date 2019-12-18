@@ -78,15 +78,6 @@ public class InterviewType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	InterviewType(String code, RetailStoreCountryCenter company, String description, String detailDescription)
-	{
-		setCode(code);
-		setCompany(company);
-		setDescription(description);
-		setDetailDescription(detailDescription);
-
-		this.mEmployeeInterviewList = new SmartList<EmployeeInterview>();	
-	}
 	
 	//Support for changing the property
 	

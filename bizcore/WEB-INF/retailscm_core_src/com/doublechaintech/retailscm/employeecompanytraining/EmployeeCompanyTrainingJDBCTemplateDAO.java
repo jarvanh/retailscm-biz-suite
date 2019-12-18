@@ -75,6 +75,11 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 	*/
 	
+	public SmartList<EmployeeCompanyTraining> loadAll() {
+	    return this.loadAll(getEmployeeCompanyTrainingMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -621,7 +626,7 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
  		return prepareEmployeeCompanyTrainingCreateParameters(employeeCompanyTraining);
  	}
  	protected Object[] prepareEmployeeCompanyTrainingUpdateParameters(EmployeeCompanyTraining employeeCompanyTraining){
- 		Object[] parameters = new Object[7];
+ 		Object[] parameters = new Object[6];
   	
  		if(employeeCompanyTraining.getEmployee() != null){
  			parameters[0] = employeeCompanyTraining.getEmployee().getId();
@@ -634,16 +639,15 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
  		if(employeeCompanyTraining.getScoring() != null){
  			parameters[2] = employeeCompanyTraining.getScoring().getId();
  		}
- 
- 		parameters[3] = employeeCompanyTraining.getCurrentStatus();		
- 		parameters[4] = employeeCompanyTraining.nextVersion();
- 		parameters[5] = employeeCompanyTraining.getId();
- 		parameters[6] = employeeCompanyTraining.getVersion();
+ 		
+ 		parameters[3] = employeeCompanyTraining.nextVersion();
+ 		parameters[4] = employeeCompanyTraining.getId();
+ 		parameters[5] = employeeCompanyTraining.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareEmployeeCompanyTrainingCreateParameters(EmployeeCompanyTraining employeeCompanyTraining){
-		Object[] parameters = new Object[5];
+		Object[] parameters = new Object[4];
 		String newEmployeeCompanyTrainingId=getNextId();
 		employeeCompanyTraining.setId(newEmployeeCompanyTrainingId);
 		parameters[0] =  employeeCompanyTraining.getId();
@@ -662,8 +666,7 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
  			parameters[3] = employeeCompanyTraining.getScoring().getId();
  		
  		}
- 		
- 		parameters[4] = employeeCompanyTraining.getCurrentStatus();		
+ 				
  				
  		return parameters;
  	}
@@ -802,6 +805,10 @@ public class EmployeeCompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	@Override
 	public SmartList<EmployeeCompanyTraining> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeCompanyTrainingMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

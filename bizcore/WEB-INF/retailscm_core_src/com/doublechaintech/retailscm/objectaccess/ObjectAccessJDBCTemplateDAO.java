@@ -53,6 +53,11 @@ public class ObjectAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	}
 	*/
 	
+	public SmartList<ObjectAccess> loadAll() {
+	    return this.loadAll(getObjectAccessMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -569,6 +574,10 @@ public class ObjectAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	@Override
 	public SmartList<ObjectAccess> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getObjectAccessMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

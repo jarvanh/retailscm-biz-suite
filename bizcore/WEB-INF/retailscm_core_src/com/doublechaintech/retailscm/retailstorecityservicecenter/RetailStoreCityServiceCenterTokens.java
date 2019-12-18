@@ -146,9 +146,13 @@ public class RetailStoreCityServiceCenterTokens extends CommonTokens{
 	}
 	private int cityPartnerListSearchCounter = 0;
 	public RetailStoreCityServiceCenterTokens searchCityPartnerListWith(String field, String verb, String value){		
+		
+		withCityPartnerList();
 		addSearchMoreOptions(CITY_PARTNER_LIST,cityPartnerListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCityServiceCenterTokens searchAllTextOfCityPartnerList(String verb, String value){	
 		String field = "id|name|mobile|description";
@@ -212,9 +216,13 @@ public class RetailStoreCityServiceCenterTokens extends CommonTokens{
 	}
 	private int potentialCustomerListSearchCounter = 0;
 	public RetailStoreCityServiceCenterTokens searchPotentialCustomerListWith(String field, String verb, String value){		
+		
+		withPotentialCustomerList();
 		addSearchMoreOptions(POTENTIAL_CUSTOMER_LIST,potentialCustomerListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCityServiceCenterTokens searchAllTextOfPotentialCustomerList(String verb, String value){	
 		String field = "id|name|mobile|description";
@@ -278,9 +286,13 @@ public class RetailStoreCityServiceCenterTokens extends CommonTokens{
 	}
 	private int cityEventListSearchCounter = 0;
 	public RetailStoreCityServiceCenterTokens searchCityEventListWith(String field, String verb, String value){		
+		
+		withCityEventList();
 		addSearchMoreOptions(CITY_EVENT_LIST,cityEventListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCityServiceCenterTokens searchAllTextOfCityEventList(String verb, String value){	
 		String field = "id|name|mobile|description";
@@ -344,12 +356,16 @@ public class RetailStoreCityServiceCenterTokens extends CommonTokens{
 	}
 	private int retailStoreListSearchCounter = 0;
 	public RetailStoreCityServiceCenterTokens searchRetailStoreListWith(String field, String verb, String value){		
+		
+		withRetailStoreList();
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCityServiceCenterTokens searchAllTextOfRetailStoreList(String verb, String value){	
-		String field = "id|name|telephone|owner|description|currentStatus";
+		String field = "id|name|owner|description";
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}

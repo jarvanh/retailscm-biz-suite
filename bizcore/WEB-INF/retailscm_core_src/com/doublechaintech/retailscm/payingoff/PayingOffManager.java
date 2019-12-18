@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface PayingOffManager{
+public interface PayingOffManager extends BaseManager{
 
 		
 
-	public PayingOff createPayingOff(RetailscmUserContext userContext, String who, String paidForId, Date paidTime, BigDecimal amount) throws Exception;	
+	public PayingOff createPayingOff(RetailscmUserContext userContext, String who,String paidForId,Date paidTime,BigDecimal amount) throws Exception;	
 	public PayingOff updatePayingOff(RetailscmUserContext userContext,String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public PayingOff loadPayingOff(RetailscmUserContext userContext, String payingOffId, String [] tokensExpr) throws Exception;
 	public PayingOff internalSavePayingOff(RetailscmUserContext userContext, PayingOff payingOff) throws Exception;

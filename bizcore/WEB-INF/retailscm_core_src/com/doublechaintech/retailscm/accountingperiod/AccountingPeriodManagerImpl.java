@@ -40,6 +40,10 @@ import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager implements AccountingPeriodManager {
 	
 	private static final String SERVICE_TYPE = "AccountingPeriod";
+	@Override
+	public AccountingPeriodDAO daoOf(RetailscmUserContext userContext) {
+		return accountingPeriodDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -73,8 +77,8 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
  	
  	public AccountingPeriod loadAccountingPeriod(RetailscmUserContext userContext, String accountingPeriodId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingPeriodManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingPeriodManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -87,8 +91,8 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
  	
  	 public AccountingPeriod searchAccountingPeriod(RetailscmUserContext userContext, String accountingPeriodId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingPeriodManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingPeriodManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -106,10 +110,10 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 		addActions(userContext,accountingPeriod,tokens);
 		
 		
-		AccountingPeriod  accountingPeriodToPresent = userContext.getDAOGroup().getAccountingPeriodDAO().present(accountingPeriod, tokens);
+		AccountingPeriod  accountingPeriodToPresent = accountingPeriodDaoOf(userContext).present(accountingPeriod, tokens);
 		
 		List<BaseEntity> entityListToNaming = accountingPeriodToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getAccountingPeriodDAO().alias(entityListToNaming);
+		accountingPeriodDaoOf(userContext).alias(entityListToNaming);
 		
 		return  accountingPeriodToPresent;
 		
@@ -130,14 +134,14 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 		
  	}
  	protected AccountingPeriod saveAccountingPeriod(RetailscmUserContext userContext, AccountingPeriod accountingPeriod, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getAccountingPeriodDAO().save(accountingPeriod, tokens);
+ 		return accountingPeriodDaoOf(userContext).save(accountingPeriod, tokens);
  	}
  	protected AccountingPeriod loadAccountingPeriod(RetailscmUserContext userContext, String accountingPeriodId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingPeriodManagerException.class);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingPeriodManagerException.class);
 
  
- 		return userContext.getDAOGroup().getAccountingPeriodDAO().load(accountingPeriodId, tokens);
+ 		return accountingPeriodDaoOf(userContext).load(accountingPeriodId, tokens);
  	}
 
 	
@@ -171,19 +175,19 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
  	
  	
 
-
-	public AccountingPeriod createAccountingPeriod(RetailscmUserContext userContext,String name, Date startDate, Date endDate, String accountSetId) throws Exception
+	public AccountingPeriod createAccountingPeriod(RetailscmUserContext userContext, String name,Date startDate,Date endDate,String accountSetId) throws Exception
+	//public AccountingPeriod createAccountingPeriod(RetailscmUserContext userContext,String name, Date startDate, Date endDate, String accountSetId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfAccountingPeriod(name);
-		userContext.getChecker().checkStartDateOfAccountingPeriod(startDate);
-		userContext.getChecker().checkEndDateOfAccountingPeriod(endDate);
+		checkerOf(userContext).checkNameOfAccountingPeriod(name);
+		checkerOf(userContext).checkStartDateOfAccountingPeriod(startDate);
+		checkerOf(userContext).checkEndDateOfAccountingPeriod(endDate);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 
 
 		AccountingPeriod accountingPeriod=createNewAccountingPeriod();	
@@ -216,23 +220,23 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 
 		
 		
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().checkVersionOfAccountingPeriod( accountingPeriodVersion);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).checkVersionOfAccountingPeriod( accountingPeriodVersion);
 		
 
 		if(AccountingPeriod.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfAccountingPeriod(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfAccountingPeriod(parseString(newValueExpr));
 		}
 		if(AccountingPeriod.START_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkStartDateOfAccountingPeriod(parseDate(newValueExpr));
+			checkerOf(userContext).checkStartDateOfAccountingPeriod(parseDate(newValueExpr));
 		}
 		if(AccountingPeriod.END_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkEndDateOfAccountingPeriod(parseDate(newValueExpr));
+			checkerOf(userContext).checkEndDateOfAccountingPeriod(parseDate(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 	
 		
 	}
@@ -241,7 +245,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	
 	public AccountingPeriod clone(RetailscmUserContext userContext, String fromAccountingPeriodId) throws Exception{
 		
-		return userContext.getDAOGroup().getAccountingPeriodDAO().clone(fromAccountingPeriodId, this.allTokens());
+		return accountingPeriodDaoOf(userContext).clone(fromAccountingPeriodId, this.allTokens());
 	}
 	
 	public AccountingPeriod internalSaveAccountingPeriod(RetailscmUserContext userContext, AccountingPeriod accountingPeriod) throws Exception 
@@ -340,9 +344,9 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForTransferingAnotherAccountSet(RetailscmUserContext userContext, String accountingPeriodId, String anotherAccountSetId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
- 		userContext.getChecker().checkIdOfAccountSet(anotherAccountSetId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+ 		checkerOf(userContext).checkIdOfAccountSet(anotherAccountSetId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
  		
  	}
  	public AccountingPeriod transferToAnotherAccountSet(RetailscmUserContext userContext, String accountingPeriodId, String anotherAccountSetId) throws Exception
@@ -379,7 +383,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<AccountSet> candidateList = userContext.getDAOGroup().getAccountSetDAO().requestCandidateAccountSetForAccountingPeriod(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<AccountSet> candidateList = accountSetDaoOf(userContext).requestCandidateAccountSetForAccountingPeriod(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -392,7 +396,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
  	protected AccountSet loadAccountSet(RetailscmUserContext userContext, String newAccountSetId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountSetDAO().load(newAccountSetId, options);
+ 		return accountSetDaoOf(userContext).load(newAccountSetId, options);
  	}
  	
  	
@@ -406,7 +410,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String accountingPeriodId, int accountingPeriodVersion) throws Exception{
 			
-		userContext.getDAOGroup().getAccountingPeriodDAO().delete(accountingPeriodId, accountingPeriodVersion);
+		accountingPeriodDaoOf(userContext).delete(accountingPeriodId, accountingPeriodVersion);
 	}
 	
 	public AccountingPeriod forgetByAll(RetailscmUserContext userContext, String accountingPeriodId, int accountingPeriodVersion) throws Exception {
@@ -415,8 +419,9 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	protected AccountingPeriod forgetByAllInternal(RetailscmUserContext userContext,
 			String accountingPeriodId, int accountingPeriodVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getAccountingPeriodDAO().disconnectFromAll(accountingPeriodId, accountingPeriodVersion);
+		return accountingPeriodDaoOf(userContext).disconnectFromAll(accountingPeriodId, accountingPeriodVersion);
 	}
+	
 	
 
 	
@@ -433,7 +438,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getAccountingPeriodDAO().deleteAll();
+		return accountingPeriodDaoOf(userContext).deleteAll();
 	}
 
 
@@ -449,7 +454,79 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getAccountingPeriodDAO().planToRemoveAccountingDocumentListWithDocumentType(accountingPeriod, documentTypeId, this.emptyOptions());
+				accountingPeriodDaoOf(userContext).planToRemoveAccountingDocumentListWithDocumentType(accountingPeriod, documentTypeId, this.emptyOptions());
+
+				accountingPeriod = saveAccountingPeriod(userContext, accountingPeriod, tokens().withAccountingDocumentList().done());
+				return accountingPeriod;
+			}
+	}
+	//disconnect AccountingPeriod with creation in AccountingDocument
+	protected AccountingPeriod breakWithAccountingDocumentByCreation(RetailscmUserContext userContext, String accountingPeriodId, String creationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, allTokens());
+
+			synchronized(accountingPeriod){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				accountingPeriodDaoOf(userContext).planToRemoveAccountingDocumentListWithCreation(accountingPeriod, creationId, this.emptyOptions());
+
+				accountingPeriod = saveAccountingPeriod(userContext, accountingPeriod, tokens().withAccountingDocumentList().done());
+				return accountingPeriod;
+			}
+	}
+	//disconnect AccountingPeriod with confirmation in AccountingDocument
+	protected AccountingPeriod breakWithAccountingDocumentByConfirmation(RetailscmUserContext userContext, String accountingPeriodId, String confirmationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, allTokens());
+
+			synchronized(accountingPeriod){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				accountingPeriodDaoOf(userContext).planToRemoveAccountingDocumentListWithConfirmation(accountingPeriod, confirmationId, this.emptyOptions());
+
+				accountingPeriod = saveAccountingPeriod(userContext, accountingPeriod, tokens().withAccountingDocumentList().done());
+				return accountingPeriod;
+			}
+	}
+	//disconnect AccountingPeriod with auditing in AccountingDocument
+	protected AccountingPeriod breakWithAccountingDocumentByAuditing(RetailscmUserContext userContext, String accountingPeriodId, String auditingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, allTokens());
+
+			synchronized(accountingPeriod){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				accountingPeriodDaoOf(userContext).planToRemoveAccountingDocumentListWithAuditing(accountingPeriod, auditingId, this.emptyOptions());
+
+				accountingPeriod = saveAccountingPeriod(userContext, accountingPeriod, tokens().withAccountingDocumentList().done());
+				return accountingPeriod;
+			}
+	}
+	//disconnect AccountingPeriod with posting in AccountingDocument
+	protected AccountingPeriod breakWithAccountingDocumentByPosting(RetailscmUserContext userContext, String accountingPeriodId, String postingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, allTokens());
+
+			synchronized(accountingPeriod){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				accountingPeriodDaoOf(userContext).planToRemoveAccountingDocumentListWithPosting(accountingPeriod, postingId, this.emptyOptions());
 
 				accountingPeriod = saveAccountingPeriod(userContext, accountingPeriod, tokens().withAccountingDocumentList().done());
 				return accountingPeriod;
@@ -461,31 +538,35 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	
 	
 
-	protected void checkParamsForAddingAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId, String creationId, String confirmationId, String auditingId, String postingId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
 
 		
+		checkerOf(userContext).checkNameOfAccountingDocument(name);
 		
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-
+		checkerOf(userContext).checkAccountingDocumentDateOfAccountingDocument(accountingDocumentDate);
 		
-		userContext.getChecker().checkNameOfAccountingDocument(name);
+		checkerOf(userContext).checkDocumentTypeIdOfAccountingDocument(documentTypeId);
 		
-		userContext.getChecker().checkAccountingDocumentDateOfAccountingDocument(accountingDocumentDate);
+		checkerOf(userContext).checkCreationIdOfAccountingDocument(creationId);
 		
-		userContext.getChecker().checkDocumentTypeIdOfAccountingDocument(documentTypeId);
+		checkerOf(userContext).checkConfirmationIdOfAccountingDocument(confirmationId);
+		
+		checkerOf(userContext).checkAuditingIdOfAccountingDocument(auditingId);
+		
+		checkerOf(userContext).checkPostingIdOfAccountingDocument(postingId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 
 	
 	}
-	public  AccountingPeriod addAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId, String [] tokensExpr) throws Exception
+	public  AccountingPeriod addAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId, String creationId, String confirmationId, String auditingId, String postingId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingAccountingDocument(userContext,accountingPeriodId,name, accountingDocumentDate, documentTypeId,tokensExpr);
+		checkParamsForAddingAccountingDocument(userContext,accountingPeriodId,name, accountingDocumentDate, documentTypeId, creationId, confirmationId, auditingId, postingId,tokensExpr);
 		
-		AccountingDocument accountingDocument = createAccountingDocument(userContext,name, accountingDocumentDate, documentTypeId);
+		AccountingDocument accountingDocument = createAccountingDocument(userContext,name, accountingDocumentDate, documentTypeId, creationId, confirmationId, auditingId, postingId);
 		
 		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, allTokens());
 		synchronized(accountingPeriod){ 
@@ -500,13 +581,13 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	}
 	protected void checkParamsForUpdatingAccountingDocumentProperties(RetailscmUserContext userContext, String accountingPeriodId,String id,String name,Date accountingDocumentDate,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().checkIdOfAccountingDocument(id);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).checkIdOfAccountingDocument(id);
 		
-		userContext.getChecker().checkNameOfAccountingDocument( name);
-		userContext.getChecker().checkAccountingDocumentDateOfAccountingDocument( accountingDocumentDate);
+		checkerOf(userContext).checkNameOfAccountingDocument( name);
+		checkerOf(userContext).checkAccountingDocumentDateOfAccountingDocument( accountingDocumentDate);
 
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 		
 	}
 	public  AccountingPeriod updateAccountingDocumentProperties(RetailscmUserContext userContext, String accountingPeriodId, String id,String name,Date accountingDocumentDate, String [] tokensExpr) throws Exception
@@ -538,7 +619,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	}
 	
 	
-	protected AccountingDocument createAccountingDocument(RetailscmUserContext userContext, String name, Date accountingDocumentDate, String documentTypeId) throws Exception{
+	protected AccountingDocument createAccountingDocument(RetailscmUserContext userContext, String name, Date accountingDocumentDate, String documentTypeId, String creationId, String confirmationId, String auditingId, String postingId) throws Exception{
 
 		AccountingDocument accountingDocument = new AccountingDocument();
 		
@@ -548,7 +629,18 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 		AccountingDocumentType  documentType = new AccountingDocumentType();
 		documentType.setId(documentTypeId);		
 		accountingDocument.setDocumentType(documentType);		
-		accountingDocument.setCurrentStatus("INIT");
+		AccountingDocumentCreation  creation = new AccountingDocumentCreation();
+		creation.setId(creationId);		
+		accountingDocument.setCreation(creation);		
+		AccountingDocumentConfirmation  confirmation = new AccountingDocumentConfirmation();
+		confirmation.setId(confirmationId);		
+		accountingDocument.setConfirmation(confirmation);		
+		AccountingDocumentAuditing  auditing = new AccountingDocumentAuditing();
+		auditing.setId(auditingId);		
+		accountingDocument.setAuditing(auditing);		
+		AccountingDocumentPosting  posting = new AccountingDocumentPosting();
+		posting.setId(postingId);		
+		accountingDocument.setPosting(posting);
 	
 		
 		return accountingDocument;
@@ -568,12 +660,12 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForRemovingAccountingDocumentList(RetailscmUserContext userContext, String accountingPeriodId, 
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
 		for(String accountingDocumentIdItem: accountingDocumentIds){
-			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
+			checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 		
 	}
 	public  AccountingPeriod removeAccountingDocumentList(RetailscmUserContext userContext, String accountingPeriodId, 
@@ -586,7 +678,7 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 			synchronized(accountingPeriod){ 
 				//Will be good when the accountingPeriod loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getAccountingPeriodDAO().planToRemoveAccountingDocumentList(accountingPeriod, accountingDocumentIds, allTokens());
+				accountingPeriodDaoOf(userContext).planToRemoveAccountingDocumentList(accountingPeriod, accountingDocumentIds, allTokens());
 				accountingPeriod = saveAccountingPeriod(userContext, accountingPeriod, tokens().withAccountingDocumentList().done());
 				deleteRelationListInGraph(userContext, accountingPeriod.getAccountingDocumentList());
 				return present(userContext,accountingPeriod, mergedAllTokens(tokensExpr));
@@ -596,10 +688,10 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForRemovingAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, 
 		String accountingDocumentId, int accountingDocumentVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountingPeriod( accountingPeriodId);
-		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		userContext.getChecker().checkVersionOfAccountingDocument(accountingDocumentVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).checkIdOfAccountingPeriod( accountingPeriodId);
+		checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentId);
+		checkerOf(userContext).checkVersionOfAccountingDocument(accountingDocumentVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 	
 	}
 	public  AccountingPeriod removeAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, 
@@ -623,10 +715,10 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForCopyingAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, 
 		String accountingDocumentId, int accountingDocumentVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountingPeriod( accountingPeriodId);
-		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		userContext.getChecker().checkVersionOfAccountingDocument(accountingDocumentVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).checkIdOfAccountingPeriod( accountingPeriodId);
+		checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentId);
+		checkerOf(userContext).checkVersionOfAccountingDocument(accountingDocumentVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 	
 	}
 	public  AccountingPeriod copyAccountingDocumentFrom(RetailscmUserContext userContext, String accountingPeriodId, 
@@ -655,21 +747,21 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 		
 
 		
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		userContext.getChecker().checkVersionOfAccountingDocument(accountingDocumentVersion);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentId);
+		checkerOf(userContext).checkVersionOfAccountingDocument(accountingDocumentVersion);
 		
 
 		if(AccountingDocument.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfAccountingDocument(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfAccountingDocument(parseString(newValueExpr));
 		}
 		
 		if(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountingDocumentDateOfAccountingDocument(parseDate(newValueExpr));
+			checkerOf(userContext).checkAccountingDocumentDateOfAccountingDocument(parseDate(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingPeriodManagerException.class);
 	
 	}
 	
@@ -704,146 +796,10 @@ public class AccountingPeriodManagerImpl extends CustomRetailscmCheckerManager i
 
 	}
 	/*
-	public  AccountingPeriod associateAccountingDocumentListToNewCreation(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentCreation creation = userContext.getManagerGroup().getAccountingDocumentCreationManager().createAccountingDocumentCreation(userContext,  who,  comments,  makeDate);
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateCreation(creation);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}	public  AccountingPeriod associateAccountingDocumentListToNewConfirmation(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentConfirmation confirmation = userContext.getManagerGroup().getAccountingDocumentConfirmationManager().createAccountingDocumentConfirmation(userContext,  who,  comments,  makeDate);
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateConfirmation(confirmation);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}	public  AccountingPeriod associateAccountingDocumentListToNewAuditing(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentAuditing auditing = userContext.getManagerGroup().getAccountingDocumentAuditingManager().createAccountingDocumentAuditing(userContext,  who,  comments,  makeDate);
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateAuditing(auditing);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}	public  AccountingPeriod associateAccountingDocumentListToNewPosting(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentPosting posting = userContext.getManagerGroup().getAccountingDocumentPostingManager().createAccountingDocumentPosting(userContext,  who,  comments,  makeDate);
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updatePosting(posting);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}
 	*/
 	
-	public  AccountingPeriod associateAccountingDocumentListToCreation(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String creationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentCreation creation = userContext.getManagerGroup().getAccountingDocumentCreationManager().loadAccountingDocumentCreation(userContext,creationId,new String[]{"none"} );
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateCreation(creation);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}	public  AccountingPeriod associateAccountingDocumentListToConfirmation(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String confirmationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentConfirmation confirmation = userContext.getManagerGroup().getAccountingDocumentConfirmationManager().loadAccountingDocumentConfirmation(userContext,confirmationId,new String[]{"none"} );
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateConfirmation(confirmation);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}	public  AccountingPeriod associateAccountingDocumentListToAuditing(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String auditingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentAuditing auditing = userContext.getManagerGroup().getAccountingDocumentAuditingManager().loadAccountingDocumentAuditing(userContext,auditingId,new String[]{"none"} );
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateAuditing(auditing);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}	public  AccountingPeriod associateAccountingDocumentListToPosting(RetailscmUserContext userContext, String accountingPeriodId, String  accountingDocumentIds[], String postingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingPeriod accountingPeriod = loadAccountingPeriod(userContext, accountingPeriodId, options);
-		
-		AccountingDocumentPosting posting = userContext.getManagerGroup().getAccountingDocumentPostingManager().loadAccountingDocumentPosting(userContext,postingId,new String[]{"none"} );
-		
-		for(AccountingDocument accountingDocument: accountingPeriod.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updatePosting(posting);
-		}
-		return this.internalSaveAccountingPeriod(userContext, accountingPeriod);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, AccountingPeriod newCreated) throws Exception{

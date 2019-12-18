@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountingsubject;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLi
 import com.doublechaintech.retailscm.accountset.AccountSetDAO;
 
 
-public interface AccountingSubjectDAO{
+public interface AccountingSubjectDAO extends BaseDAO{
 
-	
+	public SmartList<AccountingSubject> loadAll();
 	public AccountingSubject load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<AccountingSubject> accountingSubjectList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -58,6 +59,7 @@ public interface AccountingSubjectDAO{
 	
 	
 	public SmartList<AccountingSubject> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<AccountingSubject> findAccountingSubjectByAccountSet(String accountSetId, Map<String,Object> options);
  	public int countAccountingSubjectByAccountSet(String accountSetId, Map<String,Object> options);

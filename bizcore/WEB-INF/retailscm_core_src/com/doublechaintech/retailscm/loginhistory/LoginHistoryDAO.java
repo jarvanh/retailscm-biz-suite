@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.loginhistory;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.secuser.SecUserDAO;
 
 
-public interface LoginHistoryDAO{
+public interface LoginHistoryDAO extends BaseDAO{
 
-	
+	public SmartList<LoginHistory> loadAll();
 	public LoginHistory load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<LoginHistory> loginHistoryList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface LoginHistoryDAO{
 	
 	
 	public SmartList<LoginHistory> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<LoginHistory> findLoginHistoryBySecUser(String secUserId, Map<String,Object> options);
  	public int countLoginHistoryBySecUser(String secUserId, Map<String,Object> options);

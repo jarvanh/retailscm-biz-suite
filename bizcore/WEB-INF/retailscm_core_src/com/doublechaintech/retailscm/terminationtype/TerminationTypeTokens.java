@@ -143,9 +143,13 @@ public class TerminationTypeTokens extends CommonTokens{
 	}
 	private int terminationListSearchCounter = 0;
 	public TerminationTypeTokens searchTerminationListWith(String field, String verb, String value){		
+		
+		withTerminationList();
 		addSearchMoreOptions(TERMINATION_LIST,terminationListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public TerminationTypeTokens searchAllTextOfTerminationList(String verb, String value){	
 		String field = "id|comment";

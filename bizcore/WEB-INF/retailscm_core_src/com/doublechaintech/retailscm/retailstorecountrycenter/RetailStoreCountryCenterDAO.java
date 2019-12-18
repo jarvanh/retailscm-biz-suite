@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstorecountrycenter;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -59,9 +60,9 @@ import com.doublechaintech.retailscm.interviewtype.InterviewTypeDAO;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
-public interface RetailStoreCountryCenterDAO{
+public interface RetailStoreCountryCenterDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreCountryCenter> loadAll();
 	public RetailStoreCountryCenter load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreCountryCenter> retailStoreCountryCenterList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -198,6 +199,30 @@ public interface RetailStoreCountryCenterDAO{
 	public RetailStoreCountryCenter planToRemoveRetailStoreListWithCityServiceCenter(RetailStoreCountryCenter retailStoreCountryCenter, String cityServiceCenterId, Map<String,Object> options)throws Exception;
 	public int countRetailStoreListWithCityServiceCenter(String retailStoreCountryCenterId, String cityServiceCenterId, Map<String,Object> options)throws Exception;
 	
+	//disconnect RetailStoreCountryCenter with creation in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithCreation(RetailStoreCountryCenter retailStoreCountryCenter, String creationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithCreation(String retailStoreCountryCenterId, String creationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with investment_invitation in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithInvestmentInvitation(RetailStoreCountryCenter retailStoreCountryCenter, String investmentInvitationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithInvestmentInvitation(String retailStoreCountryCenterId, String investmentInvitationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with franchising in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithFranchising(RetailStoreCountryCenter retailStoreCountryCenter, String franchisingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithFranchising(String retailStoreCountryCenterId, String franchisingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with decoration in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithDecoration(RetailStoreCountryCenter retailStoreCountryCenter, String decorationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithDecoration(String retailStoreCountryCenterId, String decorationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with opening in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithOpening(RetailStoreCountryCenter retailStoreCountryCenter, String openingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithOpening(String retailStoreCountryCenterId, String openingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with closing in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithClosing(RetailStoreCountryCenter retailStoreCountryCenter, String closingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithClosing(String retailStoreCountryCenterId, String closingId, Map<String,Object> options)throws Exception;
+	
 	public RetailStoreCountryCenter planToRemoveRetailStoreMemberList(RetailStoreCountryCenter retailStoreCountryCenter, String retailStoreMemberIds[], Map<String,Object> options)throws Exception;
 
 
@@ -211,12 +236,60 @@ public interface RetailStoreCountryCenterDAO{
 	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithSeller(RetailStoreCountryCenter retailStoreCountryCenter, String sellerId, Map<String,Object> options)throws Exception;
 	public int countSupplyOrderListWithSeller(String retailStoreCountryCenterId, String sellerId, Map<String,Object> options)throws Exception;
 	
+	//disconnect RetailStoreCountryCenter with confirmation in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithConfirmation(RetailStoreCountryCenter retailStoreCountryCenter, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithConfirmation(String retailStoreCountryCenterId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with approval in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithApproval(RetailStoreCountryCenter retailStoreCountryCenter, String approvalId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithApproval(String retailStoreCountryCenterId, String approvalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with processing in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithProcessing(RetailStoreCountryCenter retailStoreCountryCenter, String processingId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithProcessing(String retailStoreCountryCenterId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with picking in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithPicking(RetailStoreCountryCenter retailStoreCountryCenter, String pickingId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithPicking(String retailStoreCountryCenterId, String pickingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with shipment in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithShipment(RetailStoreCountryCenter retailStoreCountryCenter, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithShipment(String retailStoreCountryCenterId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with delivery in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithDelivery(RetailStoreCountryCenter retailStoreCountryCenter, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithDelivery(String retailStoreCountryCenterId, String deliveryId, Map<String,Object> options)throws Exception;
+	
 	public RetailStoreCountryCenter planToRemoveRetailStoreOrderList(RetailStoreCountryCenter retailStoreCountryCenter, String retailStoreOrderIds[], Map<String,Object> options)throws Exception;
 
 
 	//disconnect RetailStoreCountryCenter with buyer in RetailStoreOrder
 	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithBuyer(RetailStoreCountryCenter retailStoreCountryCenter, String buyerId, Map<String,Object> options)throws Exception;
 	public int countRetailStoreOrderListWithBuyer(String retailStoreCountryCenterId, String buyerId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with confirmation in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithConfirmation(RetailStoreCountryCenter retailStoreCountryCenter, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithConfirmation(String retailStoreCountryCenterId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with approval in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithApproval(RetailStoreCountryCenter retailStoreCountryCenter, String approvalId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithApproval(String retailStoreCountryCenterId, String approvalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with processing in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithProcessing(RetailStoreCountryCenter retailStoreCountryCenter, String processingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithProcessing(String retailStoreCountryCenterId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with picking in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithPicking(RetailStoreCountryCenter retailStoreCountryCenter, String pickingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithPicking(String retailStoreCountryCenterId, String pickingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with shipment in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithShipment(RetailStoreCountryCenter retailStoreCountryCenter, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithShipment(String retailStoreCountryCenterId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with delivery in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithDelivery(RetailStoreCountryCenter retailStoreCountryCenter, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithDelivery(String retailStoreCountryCenterId, String deliveryId, Map<String,Object> options)throws Exception;
 	
 	public RetailStoreCountryCenter planToRemoveWarehouseList(RetailStoreCountryCenter retailStoreCountryCenter, String warehouseIds[], Map<String,Object> options)throws Exception;
 
@@ -287,6 +360,34 @@ public interface RetailStoreCountryCenterDAO{
 	public RetailStoreCountryCenter planToRemoveEmployeeListWithCurrentSalaryGrade(RetailStoreCountryCenter retailStoreCountryCenter, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String retailStoreCountryCenterId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	
+	//disconnect RetailStoreCountryCenter with job_application in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithJobApplication(RetailStoreCountryCenter retailStoreCountryCenter, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String retailStoreCountryCenterId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with profession_interview in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithProfessionInterview(RetailStoreCountryCenter retailStoreCountryCenter, String professionInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithProfessionInterview(String retailStoreCountryCenterId, String professionInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with hr_interview in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithHrInterview(RetailStoreCountryCenter retailStoreCountryCenter, String hrInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithHrInterview(String retailStoreCountryCenterId, String hrInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with offer_approval in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithOfferApproval(RetailStoreCountryCenter retailStoreCountryCenter, String offerApprovalId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferApproval(String retailStoreCountryCenterId, String offerApprovalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with offer_acceptance in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithOfferAcceptance(RetailStoreCountryCenter retailStoreCountryCenter, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferAcceptance(String retailStoreCountryCenterId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with employee_boarding in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithEmployeeBoarding(RetailStoreCountryCenter retailStoreCountryCenter, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String retailStoreCountryCenterId, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCountryCenter with termination in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithTermination(RetailStoreCountryCenter retailStoreCountryCenter, String terminationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithTermination(String retailStoreCountryCenterId, String terminationId, Map<String,Object> options)throws Exception;
+	
 	public RetailStoreCountryCenter planToRemoveInstructorList(RetailStoreCountryCenter retailStoreCountryCenter, String instructorIds[], Map<String,Object> options)throws Exception;
 
 
@@ -303,6 +404,7 @@ public interface RetailStoreCountryCenterDAO{
 	
 	
 	public SmartList<RetailStoreCountryCenter> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:Catalog的owner的CatalogList
 	public SmartList<Catalog> loadOurCatalogList(RetailscmUserContext userContext, List<RetailStoreCountryCenter> us, Map<String,Object> options) throws Exception;

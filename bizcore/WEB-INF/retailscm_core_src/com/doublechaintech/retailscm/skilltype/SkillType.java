@@ -76,14 +76,6 @@ public class SkillType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	SkillType(String code, RetailStoreCountryCenter company, String description)
-	{
-		setCode(code);
-		setCompany(company);
-		setDescription(description);
-
-		this.mEmployeeSkillList = new SmartList<EmployeeSkill>();	
-	}
 	
 	//Support for changing the property
 	

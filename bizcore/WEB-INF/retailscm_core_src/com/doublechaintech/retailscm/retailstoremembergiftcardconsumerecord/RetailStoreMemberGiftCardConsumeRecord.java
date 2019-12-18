@@ -79,15 +79,6 @@ public class RetailStoreMemberGiftCardConsumeRecord extends BaseEntity implement
 		this.changed = true;
 	}
 	
-	public 	RetailStoreMemberGiftCardConsumeRecord(Date occureTime, RetailStoreMemberGiftCard owner, ConsumerOrder bizOrder, String number, BigDecimal amount)
-	{
-		setOccureTime(occureTime);
-		setOwner(owner);
-		setBizOrder(bizOrder);
-		setNumber(number);
-		setAmount(amount);
-	
-	}
 	
 	//Support for changing the property
 	

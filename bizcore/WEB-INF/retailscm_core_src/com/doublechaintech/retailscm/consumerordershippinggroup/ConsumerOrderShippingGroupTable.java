@@ -23,12 +23,8 @@ public class ConsumerOrderShippingGroupTable{
 	static final String COLUMN_AMOUNT = "amount";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_NAME, COLUMN_BIZ_ORDER, COLUMN_AMOUNT, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_NAME, COLUMN_BIZ_ORDER, COLUMN_AMOUNT
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_BIZ_ORDER,COLUMN_AMOUNT,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_BIZ_ORDER,COLUMN_AMOUNT};
 	
 	
 }

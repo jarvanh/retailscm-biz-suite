@@ -40,6 +40,10 @@ import com.doublechaintech.retailscm.retailstorefranchising.RetailStoreFranchisi
 public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreCreationManager {
 	
 	private static final String SERVICE_TYPE = "RetailStoreCreation";
+	@Override
+	public RetailStoreCreationDAO daoOf(RetailscmUserContext userContext) {
+		return retailStoreCreationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -73,8 +77,8 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
  	
  	public RetailStoreCreation loadRetailStoreCreation(RetailscmUserContext userContext, String retailStoreCreationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreCreationManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreCreationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -87,8 +91,8 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
  	
  	 public RetailStoreCreation searchRetailStoreCreation(RetailscmUserContext userContext, String retailStoreCreationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreCreationManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreCreationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -106,10 +110,10 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		addActions(userContext,retailStoreCreation,tokens);
 		
 		
-		RetailStoreCreation  retailStoreCreationToPresent = userContext.getDAOGroup().getRetailStoreCreationDAO().present(retailStoreCreation, tokens);
+		RetailStoreCreation  retailStoreCreationToPresent = retailStoreCreationDaoOf(userContext).present(retailStoreCreation, tokens);
 		
 		List<BaseEntity> entityListToNaming = retailStoreCreationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getRetailStoreCreationDAO().alias(entityListToNaming);
+		retailStoreCreationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  retailStoreCreationToPresent;
 		
@@ -130,14 +134,14 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		
  	}
  	protected RetailStoreCreation saveRetailStoreCreation(RetailscmUserContext userContext, RetailStoreCreation retailStoreCreation, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getRetailStoreCreationDAO().save(retailStoreCreation, tokens);
+ 		return retailStoreCreationDaoOf(userContext).save(retailStoreCreation, tokens);
  	}
  	protected RetailStoreCreation loadRetailStoreCreation(RetailscmUserContext userContext, String retailStoreCreationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreCreationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreCreationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getRetailStoreCreationDAO().load(retailStoreCreationId, tokens);
+ 		return retailStoreCreationDaoOf(userContext).load(retailStoreCreationId, tokens);
  	}
 
 	
@@ -170,17 +174,17 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
  	
  	
 
-
-	public RetailStoreCreation createRetailStoreCreation(RetailscmUserContext userContext,String comment) throws Exception
+	public RetailStoreCreation createRetailStoreCreation(RetailscmUserContext userContext, String comment) throws Exception
+	//public RetailStoreCreation createRetailStoreCreation(RetailscmUserContext userContext,String comment) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCommentOfRetailStoreCreation(comment);
+		checkerOf(userContext).checkCommentOfRetailStoreCreation(comment);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 
 
 		RetailStoreCreation retailStoreCreation=createNewRetailStoreCreation();	
@@ -206,15 +210,15 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 
 		
 		
-		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-		userContext.getChecker().checkVersionOfRetailStoreCreation( retailStoreCreationVersion);
+		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
+		checkerOf(userContext).checkVersionOfRetailStoreCreation( retailStoreCreationVersion);
 		
 
 		if(RetailStoreCreation.COMMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentOfRetailStoreCreation(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentOfRetailStoreCreation(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 	
 		
 	}
@@ -223,7 +227,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	
 	public RetailStoreCreation clone(RetailscmUserContext userContext, String fromRetailStoreCreationId) throws Exception{
 		
-		return userContext.getDAOGroup().getRetailStoreCreationDAO().clone(fromRetailStoreCreationId, this.allTokens());
+		return retailStoreCreationDaoOf(userContext).clone(fromRetailStoreCreationId, this.allTokens());
 	}
 	
 	public RetailStoreCreation internalSaveRetailStoreCreation(RetailscmUserContext userContext, RetailStoreCreation retailStoreCreation) throws Exception 
@@ -329,7 +333,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreCreationId, int retailStoreCreationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getRetailStoreCreationDAO().delete(retailStoreCreationId, retailStoreCreationVersion);
+		retailStoreCreationDaoOf(userContext).delete(retailStoreCreationId, retailStoreCreationVersion);
 	}
 	
 	public RetailStoreCreation forgetByAll(RetailscmUserContext userContext, String retailStoreCreationId, int retailStoreCreationVersion) throws Exception {
@@ -338,8 +342,9 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	protected RetailStoreCreation forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreCreationId, int retailStoreCreationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getRetailStoreCreationDAO().disconnectFromAll(retailStoreCreationId, retailStoreCreationVersion);
+		return retailStoreCreationDaoOf(userContext).disconnectFromAll(retailStoreCreationId, retailStoreCreationVersion);
 	}
+	
 	
 
 	
@@ -356,7 +361,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getRetailStoreCreationDAO().deleteAll();
+		return retailStoreCreationDaoOf(userContext).deleteAll();
 	}
 
 
@@ -372,7 +377,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getRetailStoreCreationDAO().planToRemoveRetailStoreListWithRetailStoreCountryCenter(retailStoreCreation, retailStoreCountryCenterId, this.emptyOptions());
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithRetailStoreCountryCenter(retailStoreCreation, retailStoreCountryCenterId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
 				return retailStoreCreation;
@@ -390,7 +395,97 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getRetailStoreCreationDAO().planToRemoveRetailStoreListWithCityServiceCenter(retailStoreCreation, cityServiceCenterId, this.emptyOptions());
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithCityServiceCenter(retailStoreCreation, cityServiceCenterId, this.emptyOptions());
+
+				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
+				return retailStoreCreation;
+			}
+	}
+	//disconnect RetailStoreCreation with investment_invitation in RetailStore
+	protected RetailStoreCreation breakWithRetailStoreByInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCreationId, String investmentInvitationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
+
+			synchronized(retailStoreCreation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithInvestmentInvitation(retailStoreCreation, investmentInvitationId, this.emptyOptions());
+
+				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
+				return retailStoreCreation;
+			}
+	}
+	//disconnect RetailStoreCreation with franchising in RetailStore
+	protected RetailStoreCreation breakWithRetailStoreByFranchising(RetailscmUserContext userContext, String retailStoreCreationId, String franchisingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
+
+			synchronized(retailStoreCreation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithFranchising(retailStoreCreation, franchisingId, this.emptyOptions());
+
+				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
+				return retailStoreCreation;
+			}
+	}
+	//disconnect RetailStoreCreation with decoration in RetailStore
+	protected RetailStoreCreation breakWithRetailStoreByDecoration(RetailscmUserContext userContext, String retailStoreCreationId, String decorationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
+
+			synchronized(retailStoreCreation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithDecoration(retailStoreCreation, decorationId, this.emptyOptions());
+
+				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
+				return retailStoreCreation;
+			}
+	}
+	//disconnect RetailStoreCreation with opening in RetailStore
+	protected RetailStoreCreation breakWithRetailStoreByOpening(RetailscmUserContext userContext, String retailStoreCreationId, String openingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
+
+			synchronized(retailStoreCreation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithOpening(retailStoreCreation, openingId, this.emptyOptions());
+
+				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
+				return retailStoreCreation;
+			}
+	}
+	//disconnect RetailStoreCreation with closing in RetailStore
+	protected RetailStoreCreation breakWithRetailStoreByClosing(RetailscmUserContext userContext, String retailStoreCreationId, String closingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
+
+			synchronized(retailStoreCreation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithClosing(retailStoreCreation, closingId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
 				return retailStoreCreation;
@@ -402,43 +497,49 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	
 	
 
-	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
 
 		
+		checkerOf(userContext).checkNameOfRetailStore(name);
 		
-		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-
+		checkerOf(userContext).checkTelephoneOfRetailStore(telephone);
 		
-		userContext.getChecker().checkNameOfRetailStore(name);
+		checkerOf(userContext).checkOwnerOfRetailStore(owner);
 		
-		userContext.getChecker().checkTelephoneOfRetailStore(telephone);
+		checkerOf(userContext).checkRetailStoreCountryCenterIdOfRetailStore(retailStoreCountryCenterId);
 		
-		userContext.getChecker().checkOwnerOfRetailStore(owner);
+		checkerOf(userContext).checkCityServiceCenterIdOfRetailStore(cityServiceCenterId);
 		
-		userContext.getChecker().checkRetailStoreCountryCenterIdOfRetailStore(retailStoreCountryCenterId);
+		checkerOf(userContext).checkInvestmentInvitationIdOfRetailStore(investmentInvitationId);
 		
-		userContext.getChecker().checkCityServiceCenterIdOfRetailStore(cityServiceCenterId);
+		checkerOf(userContext).checkFranchisingIdOfRetailStore(franchisingId);
 		
-		userContext.getChecker().checkFoundedOfRetailStore(founded);
+		checkerOf(userContext).checkDecorationIdOfRetailStore(decorationId);
 		
-		userContext.getChecker().checkLatitudeOfRetailStore(latitude);
+		checkerOf(userContext).checkOpeningIdOfRetailStore(openingId);
 		
-		userContext.getChecker().checkLongitudeOfRetailStore(longitude);
+		checkerOf(userContext).checkClosingIdOfRetailStore(closingId);
 		
-		userContext.getChecker().checkDescriptionOfRetailStore(description);
+		checkerOf(userContext).checkFoundedOfRetailStore(founded);
+		
+		checkerOf(userContext).checkLatitudeOfRetailStore(latitude);
+		
+		checkerOf(userContext).checkLongitudeOfRetailStore(longitude);
+		
+		checkerOf(userContext).checkDescriptionOfRetailStore(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 
 	
 	}
-	public  RetailStoreCreation addRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
+	public  RetailStoreCreation addRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingRetailStore(userContext,retailStoreCreationId,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, founded, latitude, longitude, description,tokensExpr);
+		checkParamsForAddingRetailStore(userContext,retailStoreCreationId,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, investmentInvitationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description,tokensExpr);
 		
-		RetailStore retailStore = createRetailStore(userContext,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, founded, latitude, longitude, description);
+		RetailStore retailStore = createRetailStore(userContext,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, investmentInvitationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description);
 		
 		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 		synchronized(retailStoreCreation){ 
@@ -451,23 +552,23 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 			return present(userContext,retailStoreCreation, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId,String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId,String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-		userContext.getChecker().checkIdOfRetailStore(id);
+		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
+		checkerOf(userContext).checkIdOfRetailStore(id);
 		
-		userContext.getChecker().checkNameOfRetailStore( name);
-		userContext.getChecker().checkTelephoneOfRetailStore( telephone);
-		userContext.getChecker().checkOwnerOfRetailStore( owner);
-		userContext.getChecker().checkFoundedOfRetailStore( founded);
-		userContext.getChecker().checkLatitudeOfRetailStore( latitude);
-		userContext.getChecker().checkLongitudeOfRetailStore( longitude);
-		userContext.getChecker().checkDescriptionOfRetailStore( description);
+		checkerOf(userContext).checkNameOfRetailStore( name);
+		checkerOf(userContext).checkTelephoneOfRetailStore( telephone);
+		checkerOf(userContext).checkOwnerOfRetailStore( owner);
+		checkerOf(userContext).checkFoundedOfRetailStore( founded);
+		checkerOf(userContext).checkLatitudeOfRetailStore( latitude);
+		checkerOf(userContext).checkLongitudeOfRetailStore( longitude);
+		checkerOf(userContext).checkDescriptionOfRetailStore( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 		
 	}
-	public  RetailStoreCreation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId, String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
+	public  RetailStoreCreation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId, String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingRetailStoreProperties(userContext,retailStoreCreationId,id,name,telephone,owner,founded,latitude,longitude,description,tokensExpr);
 
@@ -501,7 +602,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	}
 	
 	
-	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
+	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
 
 		RetailStore retailStore = new RetailStore();
 		
@@ -515,12 +616,26 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		RetailStoreCityServiceCenter  cityServiceCenter = new RetailStoreCityServiceCenter();
 		cityServiceCenter.setId(cityServiceCenterId);		
 		retailStore.setCityServiceCenter(cityServiceCenter);		
+		RetailStoreInvestmentInvitation  investmentInvitation = new RetailStoreInvestmentInvitation();
+		investmentInvitation.setId(investmentInvitationId);		
+		retailStore.setInvestmentInvitation(investmentInvitation);		
+		RetailStoreFranchising  franchising = new RetailStoreFranchising();
+		franchising.setId(franchisingId);		
+		retailStore.setFranchising(franchising);		
+		RetailStoreDecoration  decoration = new RetailStoreDecoration();
+		decoration.setId(decorationId);		
+		retailStore.setDecoration(decoration);		
+		RetailStoreOpening  opening = new RetailStoreOpening();
+		opening.setId(openingId);		
+		retailStore.setOpening(opening);		
+		RetailStoreClosing  closing = new RetailStoreClosing();
+		closing.setId(closingId);		
+		retailStore.setClosing(closing);		
 		retailStore.setFounded(founded);		
 		retailStore.setLatitude(latitude);		
 		retailStore.setLongitude(longitude);		
 		retailStore.setDescription(description);		
-		retailStore.setLastUpdateTime(userContext.now());		
-		retailStore.setCurrentStatus("INIT");
+		retailStore.setLastUpdateTime(userContext.now());
 	
 		
 		return retailStore;
@@ -540,12 +655,12 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreCreationId, 
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
+		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
 		for(String retailStoreIdItem: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
+			checkerOf(userContext).checkIdOfRetailStore(retailStoreIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 		
 	}
 	public  RetailStoreCreation removeRetailStoreList(RetailscmUserContext userContext, String retailStoreCreationId, 
@@ -558,7 +673,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 			synchronized(retailStoreCreation){ 
 				//Will be good when the retailStoreCreation loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getRetailStoreCreationDAO().planToRemoveRetailStoreList(retailStoreCreation, retailStoreIds, allTokens());
+				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreList(retailStoreCreation, retailStoreIds, allTokens());
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
 				deleteRelationListInGraph(userContext, retailStoreCreation.getRetailStoreList());
 				return present(userContext,retailStoreCreation, mergedAllTokens(tokensExpr));
@@ -568,10 +683,10 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, 
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfRetailStoreCreation( retailStoreCreationId);
-		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-		userContext.getChecker().checkVersionOfRetailStore(retailStoreVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreCreation( retailStoreCreationId);
+		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
+		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 	
 	}
 	public  RetailStoreCreation removeRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, 
@@ -595,10 +710,10 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, 
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfRetailStoreCreation( retailStoreCreationId);
-		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-		userContext.getChecker().checkVersionOfRetailStore(retailStoreVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreCreation( retailStoreCreationId);
+		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
+		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 	
 	}
 	public  RetailStoreCreation copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreCreationId, 
@@ -627,41 +742,41 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		
 
 		
-		userContext.getChecker().checkIdOfRetailStoreCreation(retailStoreCreationId);
-		userContext.getChecker().checkIdOfRetailStore(retailStoreId);
-		userContext.getChecker().checkVersionOfRetailStore(retailStoreVersion);
+		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
+		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
+		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		
 
 		if(RetailStore.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfRetailStore(parseString(newValueExpr));
 		}
 		
 		if(RetailStore.TELEPHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTelephoneOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkTelephoneOfRetailStore(parseLong(newValueExpr));
 		}
 		
 		if(RetailStore.OWNER_PROPERTY.equals(property)){
-			userContext.getChecker().checkOwnerOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkOwnerOfRetailStore(parseString(newValueExpr));
 		}
 		
 		if(RetailStore.FOUNDED_PROPERTY.equals(property)){
-			userContext.getChecker().checkFoundedOfRetailStore(parseDate(newValueExpr));
+			checkerOf(userContext).checkFoundedOfRetailStore(parseDate(newValueExpr));
 		}
 		
 		if(RetailStore.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfRetailStore(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfRetailStore(parseBigDecimal(newValueExpr));
 		}
 		
 		if(RetailStore.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfRetailStore(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfRetailStore(parseBigDecimal(newValueExpr));
 		}
 		
 		if(RetailStore.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfRetailStore(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfRetailStore(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 	
 	}
 	
@@ -696,180 +811,10 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 
 	}
 	/*
-	public  RetailStoreCreation associateRetailStoreListToNewInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreInvestmentInvitation investmentInvitation = userContext.getManagerGroup().getRetailStoreInvestmentInvitationManager().createRetailStoreInvestmentInvitation(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateInvestmentInvitation(investmentInvitation);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToNewFranchising(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreFranchising franchising = userContext.getManagerGroup().getRetailStoreFranchisingManager().createRetailStoreFranchising(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateFranchising(franchising);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToNewDecoration(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreDecoration decoration = userContext.getManagerGroup().getRetailStoreDecorationManager().createRetailStoreDecoration(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateDecoration(decoration);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToNewOpening(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreOpening opening = userContext.getManagerGroup().getRetailStoreOpeningManager().createRetailStoreOpening(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateOpening(opening);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToNewClosing(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreClosing closing = userContext.getManagerGroup().getRetailStoreClosingManager().createRetailStoreClosing(userContext,  comment);
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateClosing(closing);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}
 	*/
 	
-	public  RetailStoreCreation associateRetailStoreListToInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String investmentInvitationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreInvestmentInvitation investmentInvitation = userContext.getManagerGroup().getRetailStoreInvestmentInvitationManager().loadRetailStoreInvestmentInvitation(userContext,investmentInvitationId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateInvestmentInvitation(investmentInvitation);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToFranchising(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String franchisingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreFranchising franchising = userContext.getManagerGroup().getRetailStoreFranchisingManager().loadRetailStoreFranchising(userContext,franchisingId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateFranchising(franchising);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToDecoration(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String decorationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreDecoration decoration = userContext.getManagerGroup().getRetailStoreDecorationManager().loadRetailStoreDecoration(userContext,decorationId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateDecoration(decoration);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToOpening(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String openingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreOpening opening = userContext.getManagerGroup().getRetailStoreOpeningManager().loadRetailStoreOpening(userContext,openingId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateOpening(opening);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}	public  RetailStoreCreation associateRetailStoreListToClosing(RetailscmUserContext userContext, String retailStoreCreationId, String  retailStoreIds[], String closingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "oneof", this.joinArray("|", retailStoreIds)).done();
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
-		RetailStoreClosing closing = userContext.getManagerGroup().getRetailStoreClosingManager().loadRetailStoreClosing(userContext,closingId,new String[]{"none"} );
-		
-		for(RetailStore retailStore: retailStoreCreation.getRetailStoreList()) {
-			//TODO: need to check if already associated
-			retailStore.updateClosing(closing);
-		}
-		return this.internalSaveRetailStoreCreation(userContext, retailStoreCreation);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreCreation newCreated) throws Exception{

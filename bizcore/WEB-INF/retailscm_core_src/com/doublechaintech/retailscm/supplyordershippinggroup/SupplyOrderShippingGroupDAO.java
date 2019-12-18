@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.supplyordershippinggroup;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
-public interface SupplyOrderShippingGroupDAO{
+public interface SupplyOrderShippingGroupDAO extends BaseDAO{
 
-	
+	public SmartList<SupplyOrderShippingGroup> loadAll();
 	public SupplyOrderShippingGroup load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SupplyOrderShippingGroup> supplyOrderShippingGroupList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface SupplyOrderShippingGroupDAO{
 	
 	
 	public SmartList<SupplyOrderShippingGroup> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<SupplyOrderShippingGroup> findSupplyOrderShippingGroupByBizOrder(String supplyOrderId, Map<String,Object> options);
  	public int countSupplyOrderShippingGroupByBizOrder(String supplyOrderId, Map<String,Object> options);

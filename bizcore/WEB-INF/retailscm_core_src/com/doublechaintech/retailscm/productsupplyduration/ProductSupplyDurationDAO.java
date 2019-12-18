@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.productsupplyduration;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.supplierproduct.SupplierProduct;
 import com.doublechaintech.retailscm.supplierproduct.SupplierProductDAO;
 
 
-public interface ProductSupplyDurationDAO{
+public interface ProductSupplyDurationDAO extends BaseDAO{
 
-	
+	public SmartList<ProductSupplyDuration> loadAll();
 	public ProductSupplyDuration load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ProductSupplyDuration> productSupplyDurationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface ProductSupplyDurationDAO{
 	
 	
 	public SmartList<ProductSupplyDuration> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<ProductSupplyDuration> findProductSupplyDurationByProduct(String supplierProductId, Map<String,Object> options);
  	public int countProductSupplyDurationByProduct(String supplierProductId, Map<String,Object> options);

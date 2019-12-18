@@ -74,14 +74,6 @@ public class AccountingDocumentAuditing extends BaseEntity implements  java.io.S
 		this.changed = true;
 	}
 	
-	public 	AccountingDocumentAuditing(String who, String comments, Date makeDate)
-	{
-		setWho(who);
-		setComments(comments);
-		setMakeDate(makeDate);
-
-		this.mAccountingDocumentList = new SmartList<AccountingDocument>();	
-	}
 	
 	//Support for changing the property
 	

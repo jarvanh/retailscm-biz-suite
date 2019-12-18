@@ -291,20 +291,6 @@ public class RetailStoreInvestmentInvitationForm extends BaseForm {
 		return lastUpdateTimeFieldForRetailStore("lastUpdateTime","");
 	}
 
-
-	public RetailStoreInvestmentInvitationForm currentStatusFieldForRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreInvestmentInvitationForm currentStatusFieldForRetailStore(String initValue){
-		return currentStatusFieldForRetailStore("currentStatus",initValue);
-	}
-	public RetailStoreInvestmentInvitationForm currentStatusFieldForRetailStore(){
-		return currentStatusFieldForRetailStore("currentStatus","");
-	}
-
 	
 
 

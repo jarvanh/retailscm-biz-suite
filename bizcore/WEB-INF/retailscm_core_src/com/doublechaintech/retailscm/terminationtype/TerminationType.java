@@ -78,15 +78,6 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	TerminationType(String code, RetailStoreCountryCenter company, String baseDescription, String detailDescription)
-	{
-		setCode(code);
-		setCompany(company);
-		setBaseDescription(baseDescription);
-		setDetailDescription(detailDescription);
-
-		this.mTerminationList = new SmartList<Termination>();	
-	}
 	
 	//Support for changing the property
 	

@@ -31,6 +31,10 @@ import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
 public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderShipmentManager {
 	
 	private static final String SERVICE_TYPE = "ConsumerOrderShipment";
+	@Override
+	public ConsumerOrderShipmentDAO daoOf(RetailscmUserContext userContext) {
+		return consumerOrderShipmentDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -64,8 +68,8 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
  	
  	public ConsumerOrderShipment loadConsumerOrderShipment(RetailscmUserContext userContext, String consumerOrderShipmentId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderShipmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderShipmentManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -78,8 +82,8 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
  	
  	 public ConsumerOrderShipment searchConsumerOrderShipment(RetailscmUserContext userContext, String consumerOrderShipmentId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderShipmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderShipmentManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -97,10 +101,10 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 		addActions(userContext,consumerOrderShipment,tokens);
 		
 		
-		ConsumerOrderShipment  consumerOrderShipmentToPresent = userContext.getDAOGroup().getConsumerOrderShipmentDAO().present(consumerOrderShipment, tokens);
+		ConsumerOrderShipment  consumerOrderShipmentToPresent = consumerOrderShipmentDaoOf(userContext).present(consumerOrderShipment, tokens);
 		
 		List<BaseEntity> entityListToNaming = consumerOrderShipmentToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getConsumerOrderShipmentDAO().alias(entityListToNaming);
+		consumerOrderShipmentDaoOf(userContext).alias(entityListToNaming);
 		
 		return  consumerOrderShipmentToPresent;
 		
@@ -121,14 +125,14 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 		
  	}
  	protected ConsumerOrderShipment saveConsumerOrderShipment(RetailscmUserContext userContext, ConsumerOrderShipment consumerOrderShipment, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getConsumerOrderShipmentDAO().save(consumerOrderShipment, tokens);
+ 		return consumerOrderShipmentDaoOf(userContext).save(consumerOrderShipment, tokens);
  	}
  	protected ConsumerOrderShipment loadConsumerOrderShipment(RetailscmUserContext userContext, String consumerOrderShipmentId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderShipmentManagerException.class);
+		checkerOf(userContext).checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderShipmentManagerException.class);
 
  
- 		return userContext.getDAOGroup().getConsumerOrderShipmentDAO().load(consumerOrderShipmentId, tokens);
+ 		return consumerOrderShipmentDaoOf(userContext).load(consumerOrderShipmentId, tokens);
  	}
 
 	
@@ -157,18 +161,18 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
  	
  	
 
-
-	public ConsumerOrderShipment createConsumerOrderShipment(RetailscmUserContext userContext,String who, Date shipTime) throws Exception
+	public ConsumerOrderShipment createConsumerOrderShipment(RetailscmUserContext userContext, String who,Date shipTime) throws Exception
+	//public ConsumerOrderShipment createConsumerOrderShipment(RetailscmUserContext userContext,String who, Date shipTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfConsumerOrderShipment(who);
-		userContext.getChecker().checkShipTimeOfConsumerOrderShipment(shipTime);
+		checkerOf(userContext).checkWhoOfConsumerOrderShipment(who);
+		checkerOf(userContext).checkShipTimeOfConsumerOrderShipment(shipTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderShipmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderShipmentManagerException.class);
 
 
 		ConsumerOrderShipment consumerOrderShipment=createNewConsumerOrderShipment();	
@@ -195,18 +199,18 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 
 		
 		
-		userContext.getChecker().checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
-		userContext.getChecker().checkVersionOfConsumerOrderShipment( consumerOrderShipmentVersion);
+		checkerOf(userContext).checkIdOfConsumerOrderShipment(consumerOrderShipmentId);
+		checkerOf(userContext).checkVersionOfConsumerOrderShipment( consumerOrderShipmentVersion);
 		
 
 		if(ConsumerOrderShipment.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfConsumerOrderShipment(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfConsumerOrderShipment(parseString(newValueExpr));
 		}
 		if(ConsumerOrderShipment.SHIP_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkShipTimeOfConsumerOrderShipment(parseDate(newValueExpr));
+			checkerOf(userContext).checkShipTimeOfConsumerOrderShipment(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderShipmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderShipmentManagerException.class);
 	
 		
 	}
@@ -215,7 +219,7 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 	
 	public ConsumerOrderShipment clone(RetailscmUserContext userContext, String fromConsumerOrderShipmentId) throws Exception{
 		
-		return userContext.getDAOGroup().getConsumerOrderShipmentDAO().clone(fromConsumerOrderShipmentId, this.allTokens());
+		return consumerOrderShipmentDaoOf(userContext).clone(fromConsumerOrderShipmentId, this.allTokens());
 	}
 	
 	public ConsumerOrderShipment internalSaveConsumerOrderShipment(RetailscmUserContext userContext, ConsumerOrderShipment consumerOrderShipment) throws Exception 
@@ -320,7 +324,7 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderShipmentId, int consumerOrderShipmentVersion) throws Exception{
 			
-		userContext.getDAOGroup().getConsumerOrderShipmentDAO().delete(consumerOrderShipmentId, consumerOrderShipmentVersion);
+		consumerOrderShipmentDaoOf(userContext).delete(consumerOrderShipmentId, consumerOrderShipmentVersion);
 	}
 	
 	public ConsumerOrderShipment forgetByAll(RetailscmUserContext userContext, String consumerOrderShipmentId, int consumerOrderShipmentVersion) throws Exception {
@@ -329,8 +333,9 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 	protected ConsumerOrderShipment forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderShipmentId, int consumerOrderShipmentVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getConsumerOrderShipmentDAO().disconnectFromAll(consumerOrderShipmentId, consumerOrderShipmentVersion);
+		return consumerOrderShipmentDaoOf(userContext).disconnectFromAll(consumerOrderShipmentId, consumerOrderShipmentVersion);
 	}
+	
 	
 
 	
@@ -347,7 +352,7 @@ public class ConsumerOrderShipmentManagerImpl extends CustomRetailscmCheckerMana
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getConsumerOrderShipmentDAO().deleteAll();
+		return consumerOrderShipmentDaoOf(userContext).deleteAll();
 	}
 
 

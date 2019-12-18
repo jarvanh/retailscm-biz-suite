@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employeeattendance;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface EmployeeAttendanceDAO{
+public interface EmployeeAttendanceDAO extends BaseDAO{
 
-	
+	public SmartList<EmployeeAttendance> loadAll();
 	public EmployeeAttendance load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<EmployeeAttendance> employeeAttendanceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface EmployeeAttendanceDAO{
 	
 	
 	public SmartList<EmployeeAttendance> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<EmployeeAttendance> findEmployeeAttendanceByEmployee(String employeeId, Map<String,Object> options);
  	public int countEmployeeAttendanceByEmployee(String employeeId, Map<String,Object> options);

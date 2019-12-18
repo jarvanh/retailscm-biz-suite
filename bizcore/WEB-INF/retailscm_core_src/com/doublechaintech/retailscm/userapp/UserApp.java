@@ -92,21 +92,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	UserApp(String title, SecUser secUser, String appIcon, boolean fullAccess, String permission, String objectType, String objectId, String location)
-	{
-		setTitle(title);
-		setSecUser(secUser);
-		setAppIcon(appIcon);
-		setFullAccess(fullAccess);
-		setPermission(permission);
-		setObjectType(objectType);
-		setObjectId(objectId);
-		setLocation(location);
-
-		this.mQuickLinkList = new SmartList<QuickLink>();
-		this.mListAccessList = new SmartList<ListAccess>();
-		this.mObjectAccessList = new SmartList<ObjectAccess>();	
-	}
 	
 	//Support for changing the property
 	

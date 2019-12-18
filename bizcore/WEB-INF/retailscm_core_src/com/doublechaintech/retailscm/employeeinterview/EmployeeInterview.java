@@ -75,13 +75,6 @@ public class EmployeeInterview extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	EmployeeInterview(Employee employee, InterviewType interviewType, String remark)
-	{
-		setEmployee(employee);
-		setInterviewType(interviewType);
-		setRemark(remark);
-	
-	}
 	
 	//Support for changing the property
 	

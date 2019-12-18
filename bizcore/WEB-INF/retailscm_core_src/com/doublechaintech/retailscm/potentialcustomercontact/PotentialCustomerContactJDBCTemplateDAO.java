@@ -75,6 +75,11 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	*/
 	
+	public SmartList<PotentialCustomerContact> loadAll() {
+	    return this.loadAll(getPotentialCustomerContactMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -831,6 +836,10 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
 	@Override
 	public SmartList<PotentialCustomerContact> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPotentialCustomerContactMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

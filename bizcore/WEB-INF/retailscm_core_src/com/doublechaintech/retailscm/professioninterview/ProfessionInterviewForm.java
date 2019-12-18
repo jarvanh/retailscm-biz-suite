@@ -389,20 +389,6 @@ public class ProfessionInterviewForm extends BaseForm {
 		return lastUpdateTimeFieldForEmployee("lastUpdateTime","");
 	}
 
-
-	public ProfessionInterviewForm currentStatusFieldForEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public ProfessionInterviewForm currentStatusFieldForEmployee(String initValue){
-		return currentStatusFieldForEmployee("currentStatus",initValue);
-	}
-	public ProfessionInterviewForm currentStatusFieldForEmployee(){
-		return currentStatusFieldForEmployee("currentStatus","");
-	}
-
 	
 
 

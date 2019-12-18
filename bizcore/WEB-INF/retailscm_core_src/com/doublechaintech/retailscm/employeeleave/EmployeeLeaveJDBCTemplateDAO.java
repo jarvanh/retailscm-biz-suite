@@ -64,6 +64,11 @@ public class EmployeeLeaveJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<EmployeeLeave> loadAll() {
+	    return this.loadAll(getEmployeeLeaveMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -682,6 +687,10 @@ public class EmployeeLeaveJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<EmployeeLeave> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeLeaveMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

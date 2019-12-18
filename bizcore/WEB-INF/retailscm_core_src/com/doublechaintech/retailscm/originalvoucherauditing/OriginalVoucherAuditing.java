@@ -74,14 +74,6 @@ public class OriginalVoucherAuditing extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-	public 	OriginalVoucherAuditing(String who, String comments, Date makeDate)
-	{
-		setWho(who);
-		setComments(comments);
-		setMakeDate(makeDate);
-
-		this.mOriginalVoucherList = new SmartList<OriginalVoucher>();	
-	}
 	
 	//Support for changing the property
 	

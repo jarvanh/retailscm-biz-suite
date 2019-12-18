@@ -473,20 +473,6 @@ public class LevelThreeDepartmentForm extends BaseForm {
 		return lastUpdateTimeFieldForEmployee("lastUpdateTime","");
 	}
 
-
-	public LevelThreeDepartmentForm currentStatusFieldForEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public LevelThreeDepartmentForm currentStatusFieldForEmployee(String initValue){
-		return currentStatusFieldForEmployee("currentStatus",initValue);
-	}
-	public LevelThreeDepartmentForm currentStatusFieldForEmployee(){
-		return currentStatusFieldForEmployee("currentStatus","");
-	}
-
 	
 
 	

@@ -74,14 +74,6 @@ public class HrInterview extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	HrInterview(String who, Date interviewTime, String comments)
-	{
-		setWho(who);
-		setInterviewTime(interviewTime);
-		setComments(comments);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

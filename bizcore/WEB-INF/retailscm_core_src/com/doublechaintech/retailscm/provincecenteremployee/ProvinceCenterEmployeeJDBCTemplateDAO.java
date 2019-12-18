@@ -64,6 +64,11 @@ public class ProvinceCenterEmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	}
 	*/
 	
+	public SmartList<ProvinceCenterEmployee> loadAll() {
+	    return this.loadAll(getProvinceCenterEmployeeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -686,6 +691,10 @@ public class ProvinceCenterEmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	@Override
 	public SmartList<ProvinceCenterEmployee> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getProvinceCenterEmployeeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

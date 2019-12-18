@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstorecityservicecenter;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -21,9 +22,9 @@ import com.doublechaintech.retailscm.citypartner.CityPartnerDAO;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 
 
-public interface RetailStoreCityServiceCenterDAO{
+public interface RetailStoreCityServiceCenterDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreCityServiceCenter> loadAll();
 	public RetailStoreCityServiceCenter load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreCityServiceCenter> retailStoreCityServiceCenterList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -87,8 +88,33 @@ public interface RetailStoreCityServiceCenterDAO{
 	public RetailStoreCityServiceCenter planToRemoveRetailStoreListWithRetailStoreCountryCenter(RetailStoreCityServiceCenter retailStoreCityServiceCenter, String retailStoreCountryCenterId, Map<String,Object> options)throws Exception;
 	public int countRetailStoreListWithRetailStoreCountryCenter(String retailStoreCityServiceCenterId, String retailStoreCountryCenterId, Map<String,Object> options)throws Exception;
 	
+	//disconnect RetailStoreCityServiceCenter with creation in RetailStore
+	public RetailStoreCityServiceCenter planToRemoveRetailStoreListWithCreation(RetailStoreCityServiceCenter retailStoreCityServiceCenter, String creationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithCreation(String retailStoreCityServiceCenterId, String creationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCityServiceCenter with investment_invitation in RetailStore
+	public RetailStoreCityServiceCenter planToRemoveRetailStoreListWithInvestmentInvitation(RetailStoreCityServiceCenter retailStoreCityServiceCenter, String investmentInvitationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithInvestmentInvitation(String retailStoreCityServiceCenterId, String investmentInvitationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCityServiceCenter with franchising in RetailStore
+	public RetailStoreCityServiceCenter planToRemoveRetailStoreListWithFranchising(RetailStoreCityServiceCenter retailStoreCityServiceCenter, String franchisingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithFranchising(String retailStoreCityServiceCenterId, String franchisingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCityServiceCenter with decoration in RetailStore
+	public RetailStoreCityServiceCenter planToRemoveRetailStoreListWithDecoration(RetailStoreCityServiceCenter retailStoreCityServiceCenter, String decorationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithDecoration(String retailStoreCityServiceCenterId, String decorationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCityServiceCenter with opening in RetailStore
+	public RetailStoreCityServiceCenter planToRemoveRetailStoreListWithOpening(RetailStoreCityServiceCenter retailStoreCityServiceCenter, String openingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithOpening(String retailStoreCityServiceCenterId, String openingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCityServiceCenter with closing in RetailStore
+	public RetailStoreCityServiceCenter planToRemoveRetailStoreListWithClosing(RetailStoreCityServiceCenter retailStoreCityServiceCenter, String closingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithClosing(String retailStoreCityServiceCenterId, String closingId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<RetailStoreCityServiceCenter> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<RetailStoreCityServiceCenter> findRetailStoreCityServiceCenterByBelongsTo(String retailStoreProvinceCenterId, Map<String,Object> options);
  	public int countRetailStoreCityServiceCenterByBelongsTo(String retailStoreProvinceCenterId, Map<String,Object> options);

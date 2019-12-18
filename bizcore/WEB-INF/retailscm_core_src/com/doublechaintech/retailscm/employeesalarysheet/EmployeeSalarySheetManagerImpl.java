@@ -29,7 +29,6 @@ import com.doublechaintech.retailscm.payingoff.CandidatePayingOff;
 import com.doublechaintech.retailscm.salarygrade.CandidateSalaryGrade;
 
 
-import com.doublechaintech.retailscm.employee.Employee;
 
 
 
@@ -38,6 +37,10 @@ import com.doublechaintech.retailscm.employee.Employee;
 public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManager implements EmployeeSalarySheetManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeSalarySheet";
+	@Override
+	public EmployeeSalarySheetDAO daoOf(RetailscmUserContext userContext) {
+		return employeeSalarySheetDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -71,8 +74,8 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	
  	public EmployeeSalarySheet loadEmployeeSalarySheet(RetailscmUserContext userContext, String employeeSalarySheetId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeSalarySheetManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeSalarySheetManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -85,8 +88,8 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	
  	 public EmployeeSalarySheet searchEmployeeSalarySheet(RetailscmUserContext userContext, String employeeSalarySheetId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeSalarySheetManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeSalarySheetManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -104,10 +107,10 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		addActions(userContext,employeeSalarySheet,tokens);
 		
 		
-		EmployeeSalarySheet  employeeSalarySheetToPresent = userContext.getDAOGroup().getEmployeeSalarySheetDAO().present(employeeSalarySheet, tokens);
+		EmployeeSalarySheet  employeeSalarySheetToPresent = employeeSalarySheetDaoOf(userContext).present(employeeSalarySheet, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeSalarySheetToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeSalarySheetDAO().alias(entityListToNaming);
+		employeeSalarySheetDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeSalarySheetToPresent;
 		
@@ -128,14 +131,14 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		
  	}
  	protected EmployeeSalarySheet saveEmployeeSalarySheet(RetailscmUserContext userContext, EmployeeSalarySheet employeeSalarySheet, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeSalarySheetDAO().save(employeeSalarySheet, tokens);
+ 		return employeeSalarySheetDaoOf(userContext).save(employeeSalarySheet, tokens);
  	}
  	protected EmployeeSalarySheet loadEmployeeSalarySheet(RetailscmUserContext userContext, String employeeSalarySheetId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeSalarySheetManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeSalarySheetManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeSalarySheetDAO().load(employeeSalarySheetId, tokens);
+ 		return employeeSalarySheetDaoOf(userContext).load(employeeSalarySheetId, tokens);
  	}
 
 	
@@ -155,7 +158,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		
 		addAction(userContext, employeeSalarySheet, tokens,"employee_salary_sheet.transfer_to_employee","transferToAnotherEmployee","transferToAnotherEmployee/"+employeeSalarySheet.getId()+"/","main","primary");
 		addAction(userContext, employeeSalarySheet, tokens,"employee_salary_sheet.transfer_to_current_salary_grade","transferToAnotherCurrentSalaryGrade","transferToAnotherCurrentSalaryGrade/"+employeeSalarySheet.getId()+"/","main","primary");
-		addAction(userContext, employeeSalarySheet, tokens,"employee_salary_sheet.payOff","payOff","payOffActionForm/"+employeeSalarySheet.getId()+"/","main","success");
+		addAction(userContext, employeeSalarySheet, tokens,"employee_salary_sheet.transfer_to_paying_off","transferToAnotherPayingOff","transferToAnotherPayingOff/"+employeeSalarySheet.getId()+"/","main","primary");
 	
 		
 		
@@ -167,23 +170,23 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	
  	
 
-
-	public EmployeeSalarySheet createEmployeeSalarySheet(RetailscmUserContext userContext,String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance) throws Exception
+	public EmployeeSalarySheet createEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId,String currentSalaryGradeId,BigDecimal baseSalary,BigDecimal bonus,BigDecimal reward,BigDecimal personalTax,BigDecimal socialSecurity,BigDecimal housingFound,BigDecimal jobInsurance,String payingOffId) throws Exception
+	//public EmployeeSalarySheet createEmployeeSalarySheet(RetailscmUserContext userContext,String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkBaseSalaryOfEmployeeSalarySheet(baseSalary);
-		userContext.getChecker().checkBonusOfEmployeeSalarySheet(bonus);
-		userContext.getChecker().checkRewardOfEmployeeSalarySheet(reward);
-		userContext.getChecker().checkPersonalTaxOfEmployeeSalarySheet(personalTax);
-		userContext.getChecker().checkSocialSecurityOfEmployeeSalarySheet(socialSecurity);
-		userContext.getChecker().checkHousingFoundOfEmployeeSalarySheet(housingFound);
-		userContext.getChecker().checkJobInsuranceOfEmployeeSalarySheet(jobInsurance);
+		checkerOf(userContext).checkBaseSalaryOfEmployeeSalarySheet(baseSalary);
+		checkerOf(userContext).checkBonusOfEmployeeSalarySheet(bonus);
+		checkerOf(userContext).checkRewardOfEmployeeSalarySheet(reward);
+		checkerOf(userContext).checkPersonalTaxOfEmployeeSalarySheet(personalTax);
+		checkerOf(userContext).checkSocialSecurityOfEmployeeSalarySheet(socialSecurity);
+		checkerOf(userContext).checkHousingFoundOfEmployeeSalarySheet(housingFound);
+		checkerOf(userContext).checkJobInsuranceOfEmployeeSalarySheet(jobInsurance);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
 
 
 		EmployeeSalarySheet employeeSalarySheet=createNewEmployeeSalarySheet();	
@@ -205,7 +208,11 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		employeeSalarySheet.setSocialSecurity(socialSecurity);
 		employeeSalarySheet.setHousingFound(housingFound);
 		employeeSalarySheet.setJobInsurance(jobInsurance);
-		employeeSalarySheet.setCurrentStatus("INIT");
+			
+		PayingOff payingOff = loadPayingOff(userContext, payingOffId,emptyOptions());
+		employeeSalarySheet.setPayingOff(payingOff);
+		
+		
 
 		employeeSalarySheet = saveEmployeeSalarySheet(userContext, employeeSalarySheet, emptyOptions());
 		
@@ -226,8 +233,8 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().checkVersionOfEmployeeSalarySheet( employeeSalarySheetVersion);
+		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		checkerOf(userContext).checkVersionOfEmployeeSalarySheet( employeeSalarySheetVersion);
 		
 		
 
@@ -235,28 +242,30 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 
 		
 		if(EmployeeSalarySheet.BASE_SALARY_PROPERTY.equals(property)){
-			userContext.getChecker().checkBaseSalaryOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkBaseSalaryOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		if(EmployeeSalarySheet.BONUS_PROPERTY.equals(property)){
-			userContext.getChecker().checkBonusOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkBonusOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		if(EmployeeSalarySheet.REWARD_PROPERTY.equals(property)){
-			userContext.getChecker().checkRewardOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkRewardOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		if(EmployeeSalarySheet.PERSONAL_TAX_PROPERTY.equals(property)){
-			userContext.getChecker().checkPersonalTaxOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkPersonalTaxOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		if(EmployeeSalarySheet.SOCIAL_SECURITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkSocialSecurityOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkSocialSecurityOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		if(EmployeeSalarySheet.HOUSING_FOUND_PROPERTY.equals(property)){
-			userContext.getChecker().checkHousingFoundOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkHousingFoundOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		if(EmployeeSalarySheet.JOB_INSURANCE_PROPERTY.equals(property)){
-			userContext.getChecker().checkJobInsuranceOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
-		}
+			checkerOf(userContext).checkJobInsuranceOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+		}		
+
+		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
 	
 		
 	}
@@ -265,7 +274,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 	
 	public EmployeeSalarySheet clone(RetailscmUserContext userContext, String fromEmployeeSalarySheetId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeSalarySheetDAO().clone(fromEmployeeSalarySheetId, this.allTokens());
+		return employeeSalarySheetDaoOf(userContext).clone(fromEmployeeSalarySheetId, this.allTokens());
 	}
 	
 	public EmployeeSalarySheet internalSaveEmployeeSalarySheet(RetailscmUserContext userContext, EmployeeSalarySheet employeeSalarySheet) throws Exception 
@@ -360,53 +369,12 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		return EmployeeSalarySheetTokens.mergeAll(tokens).done();
 	}
 	
-	private static final String [] STATUS_SEQUENCE={"PAID_OFF"};
- 	protected String[] getNextCandidateStatus(RetailscmUserContext userContext, String currentStatus) throws Exception{
- 	
- 		if("INIT".equals(currentStatus)){
- 			//if current status is null, just return the first status as the next status
- 			//code makes sure not throwing ArrayOutOfIndexException here.
- 			return STATUS_SEQUENCE;
- 		}
- 		/*
- 		List<String> statusList = Arrays.asList(STATUS_SEQUENCE);
- 		int index = statusList.indexOf(currentStatus);
- 		if(index < 0){
- 			throwExceptionWithMessage("The status '"+currentStatus+"' is not found from status list: "+ statusList );
- 		}
- 		if(index + 1 == statusList.size()){
- 			//this is the last status code; no next status any more
- 			return null;
- 		}
- 		
- 		//this is not the last one, just return it.
- 		*/
- 		return STATUS_SEQUENCE;
- 	
- 	}/**/
- 	protected void ensureStatus(RetailscmUserContext userContext, EmployeeSalarySheet employeeSalarySheet, String expectedNextStatus) throws Exception{
-		String currentStatus = employeeSalarySheet.getCurrentStatus();
-		//'null' is fine for function getNextStatus
-		String candidateStatus[] = getNextCandidateStatus(userContext, currentStatus);
-		
-		if(candidateStatus == null){
-			//no more next status
-			String message = "No next status for '"+currentStatus+"', but you want to put the status to 'HIDDEN'";
-			throwExceptionWithMessage(message);
-		}
-		int index = Arrays.asList(candidateStatus).indexOf(expectedNextStatus);
-		if(index<0){
-			String message = "The current status '"+currentStatus+"' next candidate status should be one of '"+candidateStatus+"', but you want to transit the status to '"+expectedNextStatus+"'";
-			throwExceptionWithMessage(message);
-		}
-	}
-	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeSalarySheetId, String anotherEmployeeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
- 		userContext.getChecker().checkIdOfEmployee(anotherEmployeeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
  		
  	}
  	public EmployeeSalarySheet transferToAnotherEmployee(RetailscmUserContext userContext, String employeeSalarySheetId, String anotherEmployeeId) throws Exception
@@ -443,7 +411,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeeSalarySheet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeeSalarySheet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -453,9 +421,9 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	protected void checkParamsForTransferingAnotherCurrentSalaryGrade(RetailscmUserContext userContext, String employeeSalarySheetId, String anotherCurrentSalaryGradeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
- 		userContext.getChecker().checkIdOfSalaryGrade(anotherCurrentSalaryGradeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+ 		checkerOf(userContext).checkIdOfSalaryGrade(anotherCurrentSalaryGradeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
  		
  	}
  	public EmployeeSalarySheet transferToAnotherCurrentSalaryGrade(RetailscmUserContext userContext, String employeeSalarySheetId, String anotherCurrentSalaryGradeId) throws Exception
@@ -492,7 +460,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<SalaryGrade> candidateList = userContext.getDAOGroup().getSalaryGradeDAO().requestCandidateSalaryGradeForEmployeeSalarySheet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<SalaryGrade> candidateList = salaryGradeDaoOf(userContext).requestCandidateSalaryGradeForEmployeeSalarySheet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -502,9 +470,9 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	protected void checkParamsForTransferingAnotherPayingOff(RetailscmUserContext userContext, String employeeSalarySheetId, String anotherPayingOffId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
- 		userContext.getChecker().checkIdOfPayingOff(anotherPayingOffId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+ 		checkerOf(userContext).checkIdOfPayingOff(anotherPayingOffId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
  		
  	}
  	public EmployeeSalarySheet transferToAnotherPayingOff(RetailscmUserContext userContext, String employeeSalarySheetId, String anotherPayingOffId) throws Exception
@@ -541,113 +509,20 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<PayingOff> candidateList = userContext.getDAOGroup().getPayingOffDAO().requestCandidatePayingOffForEmployeeSalarySheet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<PayingOff> candidateList = payingOffDaoOf(userContext).requestCandidatePayingOffForEmployeeSalarySheet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
  	
- 	
-	public static final String PAID_OFF_STATUS = "PAID_OFF";
- 	protected void checkParamsForPayingOff(RetailscmUserContext userContext, String employeeSalarySheetId, String who, String paidForId, Date paidTime, BigDecimal amount
-) throws Exception
- 	{
- 				userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().checkWhoOfPayingOff(who);
-		userContext.getChecker().checkIdOfEmployee(paidForId);
-		userContext.getChecker().checkPaidTimeOfPayingOff(paidTime);
-		userContext.getChecker().checkAmountOfPayingOff(amount);
-
-	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeSalarySheetManagerException.class);
-
- 	}
- 	public EmployeeSalarySheet payOff(RetailscmUserContext userContext, String employeeSalarySheetId, String who, String paidForId, Date paidTime, BigDecimal amount
-) throws Exception
- 	{
-		checkParamsForPayingOff(userContext, employeeSalarySheetId, who, paidForId, paidTime, amount);
-		EmployeeSalarySheet employeeSalarySheet = loadEmployeeSalarySheet(userContext, employeeSalarySheetId, allTokens());	
-		synchronized(employeeSalarySheet){
-			//will be good when the employeeSalarySheet loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			
-			checkIfEligibleForPayingOff(userContext,employeeSalarySheet);
- 		
-
-			employeeSalarySheet.updateCurrentStatus(PAID_OFF_STATUS);
-			//set the new status, it will be good if add constant to the bean definition
-			
-			//extract all referenced objects, load them respectively
-			Employee paidFor = loadEmployee(userContext, paidForId, emptyOptions());
-
-
-			PayingOff payingOff = createPayingOff(userContext, who, paidFor, paidTime, amount);		
-			employeeSalarySheet.updatePayingOff(payingOff);		
-			
-			
-			employeeSalarySheet = saveEmployeeSalarySheet(userContext, employeeSalarySheet, tokens().withPayingOff().done());
-			return present(userContext,employeeSalarySheet, allTokens());
-			
-		}
-
- 	}
- 	
- 	
- 	
- 	
- 	public EmployeeSalarySheetForm payOffActionForm(RetailscmUserContext userContext, String employeeSalarySheetId) throws Exception
- 	{
-		return new EmployeeSalarySheetForm()
-			.withTitle("payOff")
-			.employeeSalarySheetIdField(employeeSalarySheetId)
-			.whoFieldOfPayingOff()
-			.paidForIdFieldOfPayingOff()
-			.paidTimeFieldOfPayingOff()
-			.amountFieldOfPayingOff()
-			.payOffAction();
- 	}
-	
- 	
- 	protected PayingOff createPayingOff(RetailscmUserContext userContext, String who, Employee paidFor, Date paidTime, BigDecimal amount){
- 		PayingOff payingOff = new PayingOff();
- 		//who, paidFor, paidTime, amount
- 		
-		payingOff.setWho(who);
-		payingOff.setPaidFor(paidFor);
-		payingOff.setPaidTime(paidTime);
-		payingOff.setAmount(amount);
-
- 		
- 		
- 		
- 		return userContext.getDAOGroup().getPayingOffDAO().save(payingOff,emptyOptions());
- 	}
- 	protected void checkIfEligibleForPayingOff(RetailscmUserContext userContext, EmployeeSalarySheet employeeSalarySheet) throws Exception{
- 
- 		ensureStatus(userContext,employeeSalarySheet, PAID_OFF_STATUS);
- 		
- 		PayingOff payingOff = employeeSalarySheet.getPayingOff();
- 		//check the current status equals to the status
- 		//String expectedCurrentStatus = payingOff 		
- 		//if the previous is the expected status?
- 		
- 		
- 		//if already transited to this status?
- 		
- 		if( payingOff != null){
-				throwExceptionWithMessage("The EmployeeSalarySheet("+employeeSalarySheet.getId()+") has already been "+ PAID_OFF_STATUS+".");
-		}
- 		
- 		
- 	}
-//--------------------------------------------------------------
+ //--------------------------------------------------------------
 	
 	 	
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
  	
@@ -657,7 +532,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	protected SalaryGrade loadSalaryGrade(RetailscmUserContext userContext, String newCurrentSalaryGradeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSalaryGradeDAO().load(newCurrentSalaryGradeId, options);
+ 		return salaryGradeDaoOf(userContext).load(newCurrentSalaryGradeId, options);
  	}
  	
  	
@@ -667,7 +542,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
  	protected PayingOff loadPayingOff(RetailscmUserContext userContext, String newPayingOffId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getPayingOffDAO().load(newPayingOffId, options);
+ 		return payingOffDaoOf(userContext).load(newPayingOffId, options);
  	}
  	
  	
@@ -681,7 +556,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeSalarySheetId, int employeeSalarySheetVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeSalarySheetDAO().delete(employeeSalarySheetId, employeeSalarySheetVersion);
+		employeeSalarySheetDaoOf(userContext).delete(employeeSalarySheetId, employeeSalarySheetVersion);
 	}
 	
 	public EmployeeSalarySheet forgetByAll(RetailscmUserContext userContext, String employeeSalarySheetId, int employeeSalarySheetVersion) throws Exception {
@@ -690,8 +565,9 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 	protected EmployeeSalarySheet forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeSalarySheetId, int employeeSalarySheetVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeSalarySheetDAO().disconnectFromAll(employeeSalarySheetId, employeeSalarySheetVersion);
+		return employeeSalarySheetDaoOf(userContext).disconnectFromAll(employeeSalarySheetId, employeeSalarySheetVersion);
 	}
+	
 	
 
 	
@@ -708,7 +584,7 @@ public class EmployeeSalarySheetManagerImpl extends CustomRetailscmCheckerManage
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeSalarySheetDAO().deleteAll();
+		return employeeSalarySheetDaoOf(userContext).deleteAll();
 	}
 
 

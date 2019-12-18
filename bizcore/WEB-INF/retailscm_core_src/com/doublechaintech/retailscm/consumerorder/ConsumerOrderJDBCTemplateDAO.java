@@ -224,6 +224,11 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<ConsumerOrder> loadAll() {
+	    return this.loadAll(getConsumerOrderMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1538,7 +1543,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		return prepareConsumerOrderCreateParameters(consumerOrder);
  	}
  	protected Object[] prepareConsumerOrderUpdateParameters(ConsumerOrder consumerOrder){
- 		Object[] parameters = new Object[13];
+ 		Object[] parameters = new Object[12];
  
  		parameters[0] = consumerOrder.getTitle(); 	
  		if(consumerOrder.getConsumer() != null){
@@ -1569,16 +1574,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  			parameters[7] = consumerOrder.getStore().getId();
  		}
  
- 		parameters[8] = consumerOrder.getLastUpdateTime();
- 		parameters[9] = consumerOrder.getCurrentStatus();		
- 		parameters[10] = consumerOrder.nextVersion();
- 		parameters[11] = consumerOrder.getId();
- 		parameters[12] = consumerOrder.getVersion();
+ 		parameters[8] = consumerOrder.getLastUpdateTime();		
+ 		parameters[9] = consumerOrder.nextVersion();
+ 		parameters[10] = consumerOrder.getId();
+ 		parameters[11] = consumerOrder.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareConsumerOrderCreateParameters(ConsumerOrder consumerOrder){
-		Object[] parameters = new Object[11];
+		Object[] parameters = new Object[10];
 		String newConsumerOrderId=getNextId();
 		consumerOrder.setId(newConsumerOrderId);
 		parameters[0] =  consumerOrder.getId();
@@ -1619,8 +1623,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		
  		}
  		
- 		parameters[9] = consumerOrder.getLastUpdateTime();
- 		parameters[10] = consumerOrder.getCurrentStatus();		
+ 		parameters[9] = consumerOrder.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -2686,6 +2689,10 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<ConsumerOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getConsumerOrderMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

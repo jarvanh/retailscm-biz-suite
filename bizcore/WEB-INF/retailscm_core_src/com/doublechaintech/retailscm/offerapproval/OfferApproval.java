@@ -74,14 +74,6 @@ public class OfferApproval extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	OfferApproval(String who, Date approveTime, String comments)
-	{
-		setWho(who);
-		setApproveTime(approveTime);
-		setComments(comments);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

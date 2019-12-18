@@ -70,12 +70,6 @@ public class RetailStoreFranchising extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 	}
 	
-	public 	RetailStoreFranchising(String comment)
-	{
-		setComment(comment);
-
-		this.mRetailStoreList = new SmartList<RetailStore>();	
-	}
 	
 	//Support for changing the property
 	

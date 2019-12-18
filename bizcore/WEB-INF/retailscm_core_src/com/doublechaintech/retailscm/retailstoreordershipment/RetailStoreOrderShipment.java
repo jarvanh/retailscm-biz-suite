@@ -72,13 +72,6 @@ public class RetailStoreOrderShipment extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderShipment(String who, Date shipTime)
-	{
-		setWho(who);
-		setShipTime(shipTime);
-
-		this.mRetailStoreOrderList = new SmartList<RetailStoreOrder>();	
-	}
 	
 	//Support for changing the property
 	

@@ -78,15 +78,6 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		this.changed = true;
 	}
 	
-	public 	PotentialCustomerContactPerson(String name, String mobile, PotentialCustomer potentialCustomer, String description)
-	{
-		setName(name);
-		setMobile(mobile);
-		setPotentialCustomer(potentialCustomer);
-		setDescription(description);
-
-		this.mPotentialCustomerContactList = new SmartList<PotentialCustomerContact>();	
-	}
 	
 	//Support for changing the property
 	

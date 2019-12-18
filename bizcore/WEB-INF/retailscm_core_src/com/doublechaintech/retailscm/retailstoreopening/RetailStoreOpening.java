@@ -70,12 +70,6 @@ public class RetailStoreOpening extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOpening(String comment)
-	{
-		setComment(comment);
-
-		this.mRetailStoreList = new SmartList<RetailStore>();	
-	}
 	
 	//Support for changing the property
 	

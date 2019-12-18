@@ -8,11 +8,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
 public class RetailscmCheckerManager extends BaseManagerImpl {
+	public SmartList<BaseEntity> requestCandidateValuesForSearch(RetailscmUserContext ctx, String ownerMemberName,
+			String ownerId, String resultMemberName, String resutlClassName, String targetClassName, String filterKey, int pageNo) {
+		return ((BaseDAO)daoOf(ctx)).requestCandidateValuesForSearch(ownerMemberName, ownerId, resultMemberName,
+				resutlClassName, targetClassName, filterKey, pageNo);
+	}
+	
+	protected Object daoOf(RetailscmUserContext ctx) {
+		throw new UnsupportedOperationException("You must implement it in your specific Manager implementation");
+	}
+	
 	protected RetailscmObjectChecker checkerOf(RetailscmUserContext ctx) {
 		return ctx.getChecker();
 	}

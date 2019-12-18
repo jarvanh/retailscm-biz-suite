@@ -53,6 +53,11 @@ public class EmployeeAwardJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<EmployeeAward> loadAll() {
+	    return this.loadAll(getEmployeeAwardMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -553,6 +558,10 @@ public class EmployeeAwardJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<EmployeeAward> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeAwardMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

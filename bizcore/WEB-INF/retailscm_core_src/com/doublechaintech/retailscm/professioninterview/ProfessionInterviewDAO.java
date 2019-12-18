@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.professioninterview;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface ProfessionInterviewDAO{
+public interface ProfessionInterviewDAO extends BaseDAO{
 
-	
+	public SmartList<ProfessionInterview> loadAll();
 	public ProfessionInterview load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ProfessionInterview> professionInterviewList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -70,8 +71,33 @@ public interface ProfessionInterviewDAO{
 	public ProfessionInterview planToRemoveEmployeeListWithCurrentSalaryGrade(ProfessionInterview professionInterview, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String professionInterviewId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	
+	//disconnect ProfessionInterview with job_application in Employee
+	public ProfessionInterview planToRemoveEmployeeListWithJobApplication(ProfessionInterview professionInterview, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String professionInterviewId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect ProfessionInterview with hr_interview in Employee
+	public ProfessionInterview planToRemoveEmployeeListWithHrInterview(ProfessionInterview professionInterview, String hrInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithHrInterview(String professionInterviewId, String hrInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect ProfessionInterview with offer_approval in Employee
+	public ProfessionInterview planToRemoveEmployeeListWithOfferApproval(ProfessionInterview professionInterview, String offerApprovalId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferApproval(String professionInterviewId, String offerApprovalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect ProfessionInterview with offer_acceptance in Employee
+	public ProfessionInterview planToRemoveEmployeeListWithOfferAcceptance(ProfessionInterview professionInterview, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferAcceptance(String professionInterviewId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	
+	//disconnect ProfessionInterview with employee_boarding in Employee
+	public ProfessionInterview planToRemoveEmployeeListWithEmployeeBoarding(ProfessionInterview professionInterview, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String professionInterviewId, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect ProfessionInterview with termination in Employee
+	public ProfessionInterview planToRemoveEmployeeListWithTermination(ProfessionInterview professionInterview, String terminationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithTermination(String professionInterviewId, String terminationId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<ProfessionInterview> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:Employee的professionInterview的EmployeeList
 	public SmartList<Employee> loadOurEmployeeList(RetailscmUserContext userContext, List<ProfessionInterview> us, Map<String,Object> options) throws Exception;

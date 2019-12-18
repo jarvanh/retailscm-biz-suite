@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstorecreation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 
 
-public interface RetailStoreCreationDAO{
+public interface RetailStoreCreationDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreCreation> loadAll();
 	public RetailStoreCreation load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreCreation> retailStoreCreationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -58,8 +59,29 @@ public interface RetailStoreCreationDAO{
 	public RetailStoreCreation planToRemoveRetailStoreListWithCityServiceCenter(RetailStoreCreation retailStoreCreation, String cityServiceCenterId, Map<String,Object> options)throws Exception;
 	public int countRetailStoreListWithCityServiceCenter(String retailStoreCreationId, String cityServiceCenterId, Map<String,Object> options)throws Exception;
 	
+	//disconnect RetailStoreCreation with investment_invitation in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithInvestmentInvitation(RetailStoreCreation retailStoreCreation, String investmentInvitationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithInvestmentInvitation(String retailStoreCreationId, String investmentInvitationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCreation with franchising in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithFranchising(RetailStoreCreation retailStoreCreation, String franchisingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithFranchising(String retailStoreCreationId, String franchisingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCreation with decoration in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithDecoration(RetailStoreCreation retailStoreCreation, String decorationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithDecoration(String retailStoreCreationId, String decorationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCreation with opening in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithOpening(RetailStoreCreation retailStoreCreation, String openingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithOpening(String retailStoreCreationId, String openingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreCreation with closing in RetailStore
+	public RetailStoreCreation planToRemoveRetailStoreListWithClosing(RetailStoreCreation retailStoreCreation, String closingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithClosing(String retailStoreCreationId, String closingId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<RetailStoreCreation> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:RetailStore的creation的RetailStoreList
 	public SmartList<RetailStore> loadOurRetailStoreList(RetailscmUserContext userContext, List<RetailStoreCreation> us, Map<String,Object> options) throws Exception;

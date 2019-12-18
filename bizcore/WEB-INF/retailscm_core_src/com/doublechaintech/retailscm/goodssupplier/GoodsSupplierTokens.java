@@ -145,9 +145,13 @@ public class GoodsSupplierTokens extends CommonTokens{
 	}
 	private int supplierProductListSearchCounter = 0;
 	public GoodsSupplierTokens searchSupplierProductListWith(String field, String verb, String value){		
+		
+		withSupplierProductList();
 		addSearchMoreOptions(SUPPLIER_PRODUCT_LIST,supplierProductListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public GoodsSupplierTokens searchAllTextOfSupplierProductList(String verb, String value){	
 		String field = "id|productName|productDescription|productUnit";
@@ -211,12 +215,16 @@ public class GoodsSupplierTokens extends CommonTokens{
 	}
 	private int supplyOrderListSearchCounter = 0;
 	public GoodsSupplierTokens searchSupplyOrderListWith(String field, String verb, String value){		
+		
+		withSupplyOrderList();
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public GoodsSupplierTokens searchAllTextOfSupplyOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -277,12 +285,16 @@ public class GoodsSupplierTokens extends CommonTokens{
 	}
 	private int accountSetListSearchCounter = 0;
 	public GoodsSupplierTokens searchAccountSetListWith(String field, String verb, String value){		
+		
+		withAccountSetList();
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public GoodsSupplierTokens searchAllTextOfAccountSetList(String verb, String value){	
-		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank|accountNumber";
+		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank";
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}

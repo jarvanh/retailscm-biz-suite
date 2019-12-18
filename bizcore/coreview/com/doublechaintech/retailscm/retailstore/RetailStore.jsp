@@ -140,36 +140,40 @@
 <c:set var="referName" value="(cityServiceCenter)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/retailstorecityservicecenter/RetailStoreCityServiceCenter$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="retailStoreCreation" value="${ result.creation}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstorecreation/RetailStoreCreation$Action.jsp" />
+<c:set var="referName" value="(creation)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstorecreation/RetailStoreCreation$Info.jsp" />
 
 <c:set var="retailStoreInvestmentInvitation" value="${ result.investmentInvitation}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreinvestmentinvitation/RetailStoreInvestmentInvitation$Action.jsp" />
+<c:set var="referName" value="(investmentInvitation)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreinvestmentinvitation/RetailStoreInvestmentInvitation$Info.jsp" />
 
 <c:set var="retailStoreFranchising" value="${ result.franchising}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstorefranchising/RetailStoreFranchising$Action.jsp" />
+<c:set var="referName" value="(franchising)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstorefranchising/RetailStoreFranchising$Info.jsp" />
 
 <c:set var="retailStoreDecoration" value="${ result.decoration}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoredecoration/RetailStoreDecoration$Action.jsp" />
+<c:set var="referName" value="(decoration)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoredecoration/RetailStoreDecoration$Info.jsp" />
 
 <c:set var="retailStoreOpening" value="${ result.opening}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreopening/RetailStoreOpening$Action.jsp" />
+<c:set var="referName" value="(opening)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreopening/RetailStoreOpening$Info.jsp" />
 
 <c:set var="retailStoreClosing" value="${ result.closing}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreclosing/RetailStoreClosing$Action.jsp" />
+<c:set var="referName" value="(closing)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreclosing/RetailStoreClosing$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

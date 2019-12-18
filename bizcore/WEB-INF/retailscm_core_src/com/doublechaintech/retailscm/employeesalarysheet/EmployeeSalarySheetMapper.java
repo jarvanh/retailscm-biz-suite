@@ -25,7 +25,6 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
  		setHousingFound(employeeSalarySheet, rs, rowNumber); 		
  		setJobInsurance(employeeSalarySheet, rs, rowNumber); 		
  		setPayingOff(employeeSalarySheet, rs, rowNumber); 		
- 		setCurrentStatus(employeeSalarySheet, rs, rowNumber); 		
  		setVersion(employeeSalarySheet, rs, rowNumber);
 
 		return employeeSalarySheet;
@@ -185,18 +184,6 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
  		employeeSalarySheet.setPayingOff(createEmptyPayingOff(payingOffId));
  	}
  	
-	protected void setCurrentStatus(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(EmployeeSalarySheetTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		employeeSalarySheet.setCurrentStatus(currentStatus);
-	}
-		
 	protected void setVersion(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long

@@ -22,12 +22,8 @@ public class RetailStoreOrderDeliveryTable{
 	static final String COLUMN_DELIVERY_TIME = "delivery_time";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_WHO, COLUMN_DELIVERY_TIME, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_WHO, COLUMN_DELIVERY_TIME
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_DELIVERY_TIME,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_DELIVERY_TIME};
 	
 	
 }

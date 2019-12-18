@@ -95,6 +95,11 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<SalaryGrade> loadAll() {
+	    return this.loadAll(getSalaryGradeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -915,6 +920,314 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		return count;
 	}
 	
+	//disconnect SalaryGrade with job_application in Employee
+	public SalaryGrade planToRemoveEmployeeListWithJobApplication(SalaryGrade salaryGrade, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearJobApplication();
+			employeeItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = salaryGrade.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeListWithJobApplication(String salaryGradeId, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SalaryGrade with profession_interview in Employee
+	public SalaryGrade planToRemoveEmployeeListWithProfessionInterview(SalaryGrade salaryGrade, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearProfessionInterview();
+			employeeItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = salaryGrade.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeListWithProfessionInterview(String salaryGradeId, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SalaryGrade with hr_interview in Employee
+	public SalaryGrade planToRemoveEmployeeListWithHrInterview(SalaryGrade salaryGrade, String hrInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearHrInterview();
+			employeeItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = salaryGrade.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeListWithHrInterview(String salaryGradeId, String hrInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SalaryGrade with offer_approval in Employee
+	public SalaryGrade planToRemoveEmployeeListWithOfferApproval(SalaryGrade salaryGrade, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOfferApproval();
+			employeeItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = salaryGrade.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeListWithOfferApproval(String salaryGradeId, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SalaryGrade with offer_acceptance in Employee
+	public SalaryGrade planToRemoveEmployeeListWithOfferAcceptance(SalaryGrade salaryGrade, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOfferAcceptance();
+			employeeItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = salaryGrade.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeListWithOfferAcceptance(String salaryGradeId, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SalaryGrade with employee_boarding in Employee
+	public SalaryGrade planToRemoveEmployeeListWithEmployeeBoarding(SalaryGrade salaryGrade, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearEmployeeBoarding();
+			employeeItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = salaryGrade.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeListWithEmployeeBoarding(String salaryGradeId, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SalaryGrade with termination in Employee
+	public SalaryGrade planToRemoveEmployeeListWithTermination(SalaryGrade salaryGrade, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearTermination();
+			employeeItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = salaryGrade.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeListWithTermination(String salaryGradeId, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
 	public SalaryGrade planToRemoveEmployeeSalarySheetList(SalaryGrade salaryGrade, String employeeSalarySheetIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();
@@ -982,6 +1295,50 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(EmployeeSalarySheet.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
 		key.put(EmployeeSalarySheet.EMPLOYEE_PROPERTY, employeeId);
+		
+		int count = getEmployeeSalarySheetDAO().countEmployeeSalarySheetWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SalaryGrade with paying_off in EmployeeSalarySheet
+	public SalaryGrade planToRemoveEmployeeSalarySheetListWithPayingOff(SalaryGrade salaryGrade, String payingOffId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeSalarySheet.CURRENT_SALARY_GRADE_PROPERTY, salaryGrade.getId());
+		key.put(EmployeeSalarySheet.PAYING_OFF_PROPERTY, payingOffId);
+		
+		SmartList<EmployeeSalarySheet> externalEmployeeSalarySheetList = getEmployeeSalarySheetDAO().
+				findEmployeeSalarySheetWithKey(key, options);
+		if(externalEmployeeSalarySheetList == null){
+			return salaryGrade;
+		}
+		if(externalEmployeeSalarySheetList.isEmpty()){
+			return salaryGrade;
+		}
+		
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearPayingOff();
+			employeeSalarySheetItem.clearCurrentSalaryGrade();
+			
+		}
+		
+		
+		SmartList<EmployeeSalarySheet> employeeSalarySheetList = salaryGrade.getEmployeeSalarySheetList();		
+		employeeSalarySheetList.addAllToRemoveList(externalEmployeeSalarySheetList);
+		return salaryGrade;
+	}
+	
+	public int countEmployeeSalarySheetListWithPayingOff(String salaryGradeId, String payingOffId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeSalarySheet.CURRENT_SALARY_GRADE_PROPERTY, salaryGradeId);
+		key.put(EmployeeSalarySheet.PAYING_OFF_PROPERTY, payingOffId);
 		
 		int count = getEmployeeSalarySheetDAO().countEmployeeSalarySheetWithKey(key, options);
 		return count;
@@ -1275,6 +1632,10 @@ public class SalaryGradeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public SmartList<SalaryGrade> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSalaryGradeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

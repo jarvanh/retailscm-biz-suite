@@ -73,13 +73,6 @@ public class FormMessage extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	FormMessage(String title, GenericForm form, String level)
-	{
-		setTitle(title);
-		setForm(form);
-		setLevel(level);
-	
-	}
 	
 	//Support for changing the property
 	

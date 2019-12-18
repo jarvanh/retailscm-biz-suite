@@ -143,9 +143,13 @@ public class TrainingCourseTypeTokens extends CommonTokens{
 	}
 	private int companyTrainingListSearchCounter = 0;
 	public TrainingCourseTypeTokens searchCompanyTrainingListWith(String field, String verb, String value){		
+		
+		withCompanyTrainingList();
 		addSearchMoreOptions(COMPANY_TRAINING_LIST,companyTrainingListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public TrainingCourseTypeTokens searchAllTextOfCompanyTrainingList(String verb, String value){	
 		String field = "id|title";

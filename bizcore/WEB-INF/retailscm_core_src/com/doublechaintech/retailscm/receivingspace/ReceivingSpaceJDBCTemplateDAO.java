@@ -74,6 +74,11 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<ReceivingSpace> loadAll() {
+	    return this.loadAll(getReceivingSpaceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1008,6 +1013,50 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 		return count;
 	}
 	
+	//disconnect ReceivingSpace with packaging in Goods
+	public ReceivingSpace planToRemoveGoodsListWithPackaging(ReceivingSpace receivingSpace, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.RECEIVING_SPACE_PROPERTY, receivingSpace.getId());
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		SmartList<Goods> externalGoodsList = getGoodsDAO().
+				findGoodsWithKey(key, options);
+		if(externalGoodsList == null){
+			return receivingSpace;
+		}
+		if(externalGoodsList.isEmpty()){
+			return receivingSpace;
+		}
+		
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearPackaging();
+			goodsItem.clearReceivingSpace();
+			
+		}
+		
+		
+		SmartList<Goods> goodsList = receivingSpace.getGoodsList();		
+		goodsList.addAllToRemoveList(externalGoodsList);
+		return receivingSpace;
+	}
+	
+	public int countGoodsListWithPackaging(String receivingSpaceId, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.RECEIVING_SPACE_PROPERTY, receivingSpaceId);
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		int count = getGoodsDAO().countGoodsWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected ReceivingSpace saveGoodsList(ReceivingSpace receivingSpace, Map<String,Object> options){
@@ -1180,6 +1229,10 @@ public class ReceivingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	@Override
 	public SmartList<ReceivingSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getReceivingSpaceMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

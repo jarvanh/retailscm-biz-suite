@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.supplyorder.CandidateSupplyOrder;
 public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManager implements SupplyOrderLineItemManager {
 	
 	private static final String SERVICE_TYPE = "SupplyOrderLineItem";
+	@Override
+	public SupplyOrderLineItemDAO daoOf(RetailscmUserContext userContext) {
+		return supplyOrderLineItemDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
  	
  	public SupplyOrderLineItem loadSupplyOrderLineItem(RetailscmUserContext userContext, String supplyOrderLineItemId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderLineItemManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderLineItemManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
  	
  	 public SupplyOrderLineItem searchSupplyOrderLineItem(RetailscmUserContext userContext, String supplyOrderLineItemId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderLineItemManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderLineItemManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		addActions(userContext,supplyOrderLineItem,tokens);
 		
 		
-		SupplyOrderLineItem  supplyOrderLineItemToPresent = userContext.getDAOGroup().getSupplyOrderLineItemDAO().present(supplyOrderLineItem, tokens);
+		SupplyOrderLineItem  supplyOrderLineItemToPresent = supplyOrderLineItemDaoOf(userContext).present(supplyOrderLineItem, tokens);
 		
 		List<BaseEntity> entityListToNaming = supplyOrderLineItemToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSupplyOrderLineItemDAO().alias(entityListToNaming);
+		supplyOrderLineItemDaoOf(userContext).alias(entityListToNaming);
 		
 		return  supplyOrderLineItemToPresent;
 		
@@ -123,14 +127,14 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		
  	}
  	protected SupplyOrderLineItem saveSupplyOrderLineItem(RetailscmUserContext userContext, SupplyOrderLineItem supplyOrderLineItem, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSupplyOrderLineItemDAO().save(supplyOrderLineItem, tokens);
+ 		return supplyOrderLineItemDaoOf(userContext).save(supplyOrderLineItem, tokens);
  	}
  	protected SupplyOrderLineItem loadSupplyOrderLineItem(RetailscmUserContext userContext, String supplyOrderLineItemId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderLineItemManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderLineItemManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSupplyOrderLineItemDAO().load(supplyOrderLineItemId, tokens);
+ 		return supplyOrderLineItemDaoOf(userContext).load(supplyOrderLineItemId, tokens);
  	}
 
 	
@@ -160,21 +164,21 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
  	
  	
 
-
-	public SupplyOrderLineItem createSupplyOrderLineItem(RetailscmUserContext userContext,String bizOrderId, String skuId, String skuName, BigDecimal amount, int quantity, String unitOfMeasurement) throws Exception
+	public SupplyOrderLineItem createSupplyOrderLineItem(RetailscmUserContext userContext, String bizOrderId,String skuId,String skuName,BigDecimal amount,int quantity,String unitOfMeasurement) throws Exception
+	//public SupplyOrderLineItem createSupplyOrderLineItem(RetailscmUserContext userContext,String bizOrderId, String skuId, String skuName, BigDecimal amount, int quantity, String unitOfMeasurement) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkSkuIdOfSupplyOrderLineItem(skuId);
-		userContext.getChecker().checkSkuNameOfSupplyOrderLineItem(skuName);
-		userContext.getChecker().checkAmountOfSupplyOrderLineItem(amount);
-		userContext.getChecker().checkQuantityOfSupplyOrderLineItem(quantity);
-		userContext.getChecker().checkUnitOfMeasurementOfSupplyOrderLineItem(unitOfMeasurement);
+		checkerOf(userContext).checkSkuIdOfSupplyOrderLineItem(skuId);
+		checkerOf(userContext).checkSkuNameOfSupplyOrderLineItem(skuName);
+		checkerOf(userContext).checkAmountOfSupplyOrderLineItem(amount);
+		checkerOf(userContext).checkQuantityOfSupplyOrderLineItem(quantity);
+		checkerOf(userContext).checkUnitOfMeasurementOfSupplyOrderLineItem(unitOfMeasurement);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
 
 
 		SupplyOrderLineItem supplyOrderLineItem=createNewSupplyOrderLineItem();	
@@ -209,29 +213,29 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 
 		
 		
-		userContext.getChecker().checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
-		userContext.getChecker().checkVersionOfSupplyOrderLineItem( supplyOrderLineItemVersion);
+		checkerOf(userContext).checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
+		checkerOf(userContext).checkVersionOfSupplyOrderLineItem( supplyOrderLineItemVersion);
 		
 		
 
 		
 		if(SupplyOrderLineItem.SKU_ID_PROPERTY.equals(property)){
-			userContext.getChecker().checkSkuIdOfSupplyOrderLineItem(parseString(newValueExpr));
+			checkerOf(userContext).checkSkuIdOfSupplyOrderLineItem(parseString(newValueExpr));
 		}
 		if(SupplyOrderLineItem.SKU_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkSkuNameOfSupplyOrderLineItem(parseString(newValueExpr));
+			checkerOf(userContext).checkSkuNameOfSupplyOrderLineItem(parseString(newValueExpr));
 		}
 		if(SupplyOrderLineItem.AMOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkAmountOfSupplyOrderLineItem(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkAmountOfSupplyOrderLineItem(parseBigDecimal(newValueExpr));
 		}
 		if(SupplyOrderLineItem.QUANTITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkQuantityOfSupplyOrderLineItem(parseInt(newValueExpr));
+			checkerOf(userContext).checkQuantityOfSupplyOrderLineItem(parseInt(newValueExpr));
 		}
 		if(SupplyOrderLineItem.UNIT_OF_MEASUREMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkUnitOfMeasurementOfSupplyOrderLineItem(parseString(newValueExpr));
+			checkerOf(userContext).checkUnitOfMeasurementOfSupplyOrderLineItem(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
 	
 		
 	}
@@ -240,7 +244,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	
 	public SupplyOrderLineItem clone(RetailscmUserContext userContext, String fromSupplyOrderLineItemId) throws Exception{
 		
-		return userContext.getDAOGroup().getSupplyOrderLineItemDAO().clone(fromSupplyOrderLineItemId, this.allTokens());
+		return supplyOrderLineItemDaoOf(userContext).clone(fromSupplyOrderLineItemId, this.allTokens());
 	}
 	
 	public SupplyOrderLineItem internalSaveSupplyOrderLineItem(RetailscmUserContext userContext, SupplyOrderLineItem supplyOrderLineItem) throws Exception 
@@ -338,9 +342,9 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderLineItemId, String anotherBizOrderId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
- 		userContext.getChecker().checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
+ 		checkerOf(userContext).checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
  		
  	}
  	public SupplyOrderLineItem transferToAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderLineItemId, String anotherBizOrderId) throws Exception
@@ -377,7 +381,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<SupplyOrder> candidateList = userContext.getDAOGroup().getSupplyOrderDAO().requestCandidateSupplyOrderForSupplyOrderLineItem(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<SupplyOrder> candidateList = supplyOrderDaoOf(userContext).requestCandidateSupplyOrderForSupplyOrderLineItem(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -390,7 +394,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
  	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSupplyOrderDAO().load(newBizOrderId, options);
+ 		return supplyOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
  	
@@ -404,7 +408,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplyOrderLineItemId, int supplyOrderLineItemVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSupplyOrderLineItemDAO().delete(supplyOrderLineItemId, supplyOrderLineItemVersion);
+		supplyOrderLineItemDaoOf(userContext).delete(supplyOrderLineItemId, supplyOrderLineItemVersion);
 	}
 	
 	public SupplyOrderLineItem forgetByAll(RetailscmUserContext userContext, String supplyOrderLineItemId, int supplyOrderLineItemVersion) throws Exception {
@@ -413,8 +417,9 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	protected SupplyOrderLineItem forgetByAllInternal(RetailscmUserContext userContext,
 			String supplyOrderLineItemId, int supplyOrderLineItemVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSupplyOrderLineItemDAO().disconnectFromAll(supplyOrderLineItemId, supplyOrderLineItemVersion);
+		return supplyOrderLineItemDaoOf(userContext).disconnectFromAll(supplyOrderLineItemId, supplyOrderLineItemVersion);
 	}
+	
 	
 
 	
@@ -431,7 +436,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSupplyOrderLineItemDAO().deleteAll();
+		return supplyOrderLineItemDaoOf(userContext).deleteAll();
 	}
 
 

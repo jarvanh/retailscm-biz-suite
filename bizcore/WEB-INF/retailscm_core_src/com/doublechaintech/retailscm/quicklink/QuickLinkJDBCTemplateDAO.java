@@ -53,6 +53,11 @@ public class QuickLinkJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Qu
 	}
 	*/
 	
+	public SmartList<QuickLink> loadAll() {
+	    return this.loadAll(getQuickLinkMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -573,6 +578,10 @@ public class QuickLinkJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Qu
 	@Override
 	public SmartList<QuickLink> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getQuickLinkMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

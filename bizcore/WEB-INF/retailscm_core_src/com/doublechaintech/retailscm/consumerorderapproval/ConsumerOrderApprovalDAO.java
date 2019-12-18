@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.consumerorderapproval;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -11,9 +12,9 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
 
-public interface ConsumerOrderApprovalDAO{
+public interface ConsumerOrderApprovalDAO extends BaseDAO{
 
-	
+	public SmartList<ConsumerOrderApproval> loadAll();
 	public ConsumerOrderApproval load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ConsumerOrderApproval> consumerOrderApprovalList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -43,6 +44,7 @@ public interface ConsumerOrderApprovalDAO{
 	
 	
 	public SmartList<ConsumerOrderApproval> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 }
 

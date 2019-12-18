@@ -63,7 +63,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	public static final String EMPLOYEE_BOARDING_PROPERTY     = "employeeBoarding"  ;
 	public static final String TERMINATION_PROPERTY           = "termination"       ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String EMPLOYEE_COMPANY_TRAINING_LIST           = "employeeCompanyTrainingList";
@@ -120,7 +119,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	protected		EmployeeBoarding    	mEmployeeBoarding   ;
 	protected		Termination         	mTermination        ;
 	protected		DateTime            	mLastUpdateTime     ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -169,37 +167,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Employee(RetailStoreCountryCenter company, String title, LevelThreeDepartment department, String familyName, String givenName, String email, String city, String address, String cellPhone, OccupationType occupation, ResponsibilityType responsibleFor, SalaryGrade currentSalaryGrade, String salaryAccount, DateTime lastUpdateTime, String currentStatus)
-	{
-		setCompany(company);
-		setTitle(title);
-		setDepartment(department);
-		setFamilyName(familyName);
-		setGivenName(givenName);
-		setEmail(email);
-		setCity(city);
-		setAddress(address);
-		setCellPhone(cellPhone);
-		setOccupation(occupation);
-		setResponsibleFor(responsibleFor);
-		setCurrentSalaryGrade(currentSalaryGrade);
-		setSalaryAccount(salaryAccount);
-		setLastUpdateTime(lastUpdateTime);
-		setCurrentStatus(currentStatus);
-
-		this.mEmployeeCompanyTrainingList = new SmartList<EmployeeCompanyTraining>();
-		this.mEmployeeSkillList = new SmartList<EmployeeSkill>();
-		this.mEmployeePerformanceList = new SmartList<EmployeePerformance>();
-		this.mEmployeeWorkExperienceList = new SmartList<EmployeeWorkExperience>();
-		this.mEmployeeLeaveList = new SmartList<EmployeeLeave>();
-		this.mEmployeeInterviewList = new SmartList<EmployeeInterview>();
-		this.mEmployeeAttendanceList = new SmartList<EmployeeAttendance>();
-		this.mEmployeeQualifierList = new SmartList<EmployeeQualifier>();
-		this.mEmployeeEducationList = new SmartList<EmployeeEducation>();
-		this.mEmployeeAwardList = new SmartList<EmployeeAward>();
-		this.mEmployeeSalarySheetList = new SmartList<EmployeeSalarySheet>();
-		this.mPayingOffList = new SmartList<PayingOff>();	
-	}
 	
 	//Support for changing the property
 	
@@ -439,9 +406,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
-		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
 		}
 		if(EMPLOYEE_COMPANY_TRAINING_LIST.equals(property)){
 			List<BaseEntity> list = getEmployeeCompanyTrainingList().stream().map(item->item).collect(Collectors.toList());
@@ -918,22 +882,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	}
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
-	}
-	
-	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public Employee updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
 	
 	
@@ -2321,7 +2269,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, EMPLOYEE_BOARDING_PROPERTY, getEmployeeBoarding());
 		appendKeyValuePair(result, TERMINATION_PROPERTY, getTermination());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, EMPLOYEE_COMPANY_TRAINING_LIST, getEmployeeCompanyTrainingList());
 		if(!getEmployeeCompanyTrainingList().isEmpty()){
@@ -2419,7 +2366,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 			dest.setEmployeeBoarding(getEmployeeBoarding());
 			dest.setTermination(getTermination());
 			dest.setLastUpdateTime(getLastUpdateTime());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 			dest.setEmployeeCompanyTrainingList(getEmployeeCompanyTrainingList());
 			dest.setEmployeeSkillList(getEmployeeSkillList());
@@ -2468,7 +2414,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 			dest.mergeEmployeeBoarding(getEmployeeBoarding());
 			dest.mergeTermination(getTermination());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 			dest.mergeEmployeeCompanyTrainingList(getEmployeeCompanyTrainingList());
 			dest.mergeEmployeeSkillList(getEmployeeSkillList());
@@ -2506,7 +2451,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 			dest.mergeCellPhone(getCellPhone());
 			dest.mergeSalaryAccount(getSalaryAccount());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -2563,7 +2507,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
  			stringBuilder.append("\ttermination='Termination("+getTermination().getId()+")';");
  		}
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

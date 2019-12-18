@@ -56,7 +56,7 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setContactNumber(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String contactNumber = rs.getString(SmartPalletTable.COLUMN_CONTACT_NUMBER);
+		Long contactNumber = rs.getLong(SmartPalletTable.COLUMN_CONTACT_NUMBER);
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;

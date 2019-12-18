@@ -26,7 +26,6 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		setConfirmation(accountingDocument, rs, rowNumber); 		
  		setAuditing(accountingDocument, rs, rowNumber); 		
  		setPosting(accountingDocument, rs, rowNumber); 		
- 		setCurrentStatus(accountingDocument, rs, rowNumber); 		
  		setVersion(accountingDocument, rs, rowNumber);
 
 		return accountingDocument;
@@ -180,18 +179,6 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		accountingDocument.setPosting(createEmptyPosting(accountingDocumentPostingId));
  	}
  	
-	protected void setCurrentStatus(AccountingDocument accountingDocument, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(AccountingDocumentTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		accountingDocument.setCurrentStatus(currentStatus);
-	}
-		
 	protected void setVersion(AccountingDocument accountingDocument, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long

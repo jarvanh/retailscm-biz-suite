@@ -22,12 +22,8 @@ public class EmployeePerformanceTable{
 	static final String COLUMN_PERFORMANCE_COMMENT = "performance_comment";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_EMPLOYEE, COLUMN_PERFORMANCE_COMMENT, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_EMPLOYEE, COLUMN_PERFORMANCE_COMMENT
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_EMPLOYEE,COLUMN_PERFORMANCE_COMMENT,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_EMPLOYEE,COLUMN_PERFORMANCE_COMMENT};
 	
 	
 }

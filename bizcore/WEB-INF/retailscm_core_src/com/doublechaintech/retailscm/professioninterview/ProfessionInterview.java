@@ -74,14 +74,6 @@ public class ProfessionInterview extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-	public 	ProfessionInterview(String who, Date interviewTime, String comments)
-	{
-		setWho(who);
-		setInterviewTime(interviewTime);
-		setComments(comments);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

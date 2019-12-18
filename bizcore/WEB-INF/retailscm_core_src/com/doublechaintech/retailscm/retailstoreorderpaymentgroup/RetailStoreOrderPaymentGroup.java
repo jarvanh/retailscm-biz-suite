@@ -73,13 +73,6 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderPaymentGroup(String name, RetailStoreOrder bizOrder, String cardNumber)
-	{
-		setName(name);
-		setBizOrder(bizOrder);
-		setCardNumber(cardNumber);
-	
-	}
 	
 	//Support for changing the property
 	

@@ -36,6 +36,10 @@ import com.doublechaintech.retailscm.cityevent.CityEvent;
 public class CityEventManagerImpl extends CustomRetailscmCheckerManager implements CityEventManager {
 	
 	private static final String SERVICE_TYPE = "CityEvent";
+	@Override
+	public CityEventDAO daoOf(RetailscmUserContext userContext) {
+		return cityEventDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -69,8 +73,8 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	public CityEvent loadCityEvent(RetailscmUserContext userContext, String cityEventId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-		userContext.getChecker().throwExceptionIfHasErrors( CityEventManagerException.class);
+ 		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CityEventManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -83,8 +87,8 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	 public CityEvent searchCityEvent(RetailscmUserContext userContext, String cityEventId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-		userContext.getChecker().throwExceptionIfHasErrors( CityEventManagerException.class);
+ 		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CityEventManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -102,10 +106,10 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 		addActions(userContext,cityEvent,tokens);
 		
 		
-		CityEvent  cityEventToPresent = userContext.getDAOGroup().getCityEventDAO().present(cityEvent, tokens);
+		CityEvent  cityEventToPresent = cityEventDaoOf(userContext).present(cityEvent, tokens);
 		
 		List<BaseEntity> entityListToNaming = cityEventToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getCityEventDAO().alias(entityListToNaming);
+		cityEventDaoOf(userContext).alias(entityListToNaming);
 		
 		return  cityEventToPresent;
 		
@@ -126,14 +130,14 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 		
  	}
  	protected CityEvent saveCityEvent(RetailscmUserContext userContext, CityEvent cityEvent, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getCityEventDAO().save(cityEvent, tokens);
+ 		return cityEventDaoOf(userContext).save(cityEvent, tokens);
  	}
  	protected CityEvent loadCityEvent(RetailscmUserContext userContext, String cityEventId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-		userContext.getChecker().throwExceptionIfHasErrors( CityEventManagerException.class);
+		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CityEventManagerException.class);
 
  
- 		return userContext.getDAOGroup().getCityEventDAO().load(cityEventId, tokens);
+ 		return cityEventDaoOf(userContext).load(cityEventId, tokens);
  	}
 
 	
@@ -167,19 +171,19 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	
 
-
-	public CityEvent createCityEvent(RetailscmUserContext userContext,String name, String mobile, String cityServiceCenterId, String description) throws Exception
+	public CityEvent createCityEvent(RetailscmUserContext userContext, String name,String mobile,String cityServiceCenterId,String description) throws Exception
+	//public CityEvent createCityEvent(RetailscmUserContext userContext,String name, String mobile, String cityServiceCenterId, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfCityEvent(name);
-		userContext.getChecker().checkMobileOfCityEvent(mobile);
-		userContext.getChecker().checkDescriptionOfCityEvent(description);
+		checkerOf(userContext).checkNameOfCityEvent(name);
+		checkerOf(userContext).checkMobileOfCityEvent(mobile);
+		checkerOf(userContext).checkDescriptionOfCityEvent(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 
 
 		CityEvent cityEvent=createNewCityEvent();	
@@ -213,23 +217,23 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 
 		
 		
-		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-		userContext.getChecker().checkVersionOfCityEvent( cityEventVersion);
+		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
+		checkerOf(userContext).checkVersionOfCityEvent( cityEventVersion);
 		
 
 		if(CityEvent.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfCityEvent(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfCityEvent(parseString(newValueExpr));
 		}
 		if(CityEvent.MOBILE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMobileOfCityEvent(parseString(newValueExpr));
+			checkerOf(userContext).checkMobileOfCityEvent(parseString(newValueExpr));
 		}		
 
 		
 		if(CityEvent.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfCityEvent(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfCityEvent(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 	
 		
 	}
@@ -238,7 +242,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	public CityEvent clone(RetailscmUserContext userContext, String fromCityEventId) throws Exception{
 		
-		return userContext.getDAOGroup().getCityEventDAO().clone(fromCityEventId, this.allTokens());
+		return cityEventDaoOf(userContext).clone(fromCityEventId, this.allTokens());
 	}
 	
 	public CityEvent internalSaveCityEvent(RetailscmUserContext userContext, CityEvent cityEvent) throws Exception 
@@ -337,9 +341,9 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForTransferingAnotherCityServiceCenter(RetailscmUserContext userContext, String cityEventId, String anotherCityServiceCenterId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfCityEvent(cityEventId);
- 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(anotherCityServiceCenterId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+ 		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCityServiceCenter(anotherCityServiceCenterId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
  		
  	}
  	public CityEvent transferToAnotherCityServiceCenter(RetailscmUserContext userContext, String cityEventId, String anotherCityServiceCenterId) throws Exception
@@ -376,7 +380,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCityServiceCenter> candidateList = userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().requestCandidateRetailStoreCityServiceCenterForCityEvent(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCityServiceCenter> candidateList = retailStoreCityServiceCenterDaoOf(userContext).requestCandidateRetailStoreCityServiceCenterForCityEvent(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -389,7 +393,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
  	protected RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String newCityServiceCenterId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().load(newCityServiceCenterId, options);
+ 		return retailStoreCityServiceCenterDaoOf(userContext).load(newCityServiceCenterId, options);
  	}
  	
  	
@@ -403,7 +407,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String cityEventId, int cityEventVersion) throws Exception{
 			
-		userContext.getDAOGroup().getCityEventDAO().delete(cityEventId, cityEventVersion);
+		cityEventDaoOf(userContext).delete(cityEventId, cityEventVersion);
 	}
 	
 	public CityEvent forgetByAll(RetailscmUserContext userContext, String cityEventId, int cityEventVersion) throws Exception {
@@ -412,8 +416,9 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected CityEvent forgetByAllInternal(RetailscmUserContext userContext,
 			String cityEventId, int cityEventVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getCityEventDAO().disconnectFromAll(cityEventId, cityEventVersion);
+		return cityEventDaoOf(userContext).disconnectFromAll(cityEventId, cityEventVersion);
 	}
+	
 	
 
 	
@@ -430,7 +435,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getCityEventDAO().deleteAll();
+		return cityEventDaoOf(userContext).deleteAll();
 	}
 
 
@@ -446,7 +451,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getCityEventDAO().planToRemoveEventAttendanceListWithPotentialCustomer(cityEvent, potentialCustomerId, this.emptyOptions());
+				cityEventDaoOf(userContext).planToRemoveEventAttendanceListWithPotentialCustomer(cityEvent, potentialCustomerId, this.emptyOptions());
 
 				cityEvent = saveCityEvent(userContext, cityEvent, tokens().withEventAttendanceList().done());
 				return cityEvent;
@@ -460,20 +465,16 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 
 	protected void checkParamsForAddingEventAttendance(RetailscmUserContext userContext, String cityEventId, String name, String potentialCustomerId, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfCityEvent(cityEventId);
 
 		
+		checkerOf(userContext).checkNameOfEventAttendance(name);
 		
-		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-
+		checkerOf(userContext).checkPotentialCustomerIdOfEventAttendance(potentialCustomerId);
 		
-		userContext.getChecker().checkNameOfEventAttendance(name);
-		
-		userContext.getChecker().checkPotentialCustomerIdOfEventAttendance(potentialCustomerId);
-		
-		userContext.getChecker().checkDescriptionOfEventAttendance(description);
+		checkerOf(userContext).checkDescriptionOfEventAttendance(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 
 	
 	}
@@ -497,13 +498,13 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	protected void checkParamsForUpdatingEventAttendanceProperties(RetailscmUserContext userContext, String cityEventId,String id,String name,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-		userContext.getChecker().checkIdOfEventAttendance(id);
+		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
+		checkerOf(userContext).checkIdOfEventAttendance(id);
 		
-		userContext.getChecker().checkNameOfEventAttendance( name);
-		userContext.getChecker().checkDescriptionOfEventAttendance( description);
+		checkerOf(userContext).checkNameOfEventAttendance( name);
+		checkerOf(userContext).checkDescriptionOfEventAttendance( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 		
 	}
 	public  CityEvent updateEventAttendanceProperties(RetailscmUserContext userContext, String cityEventId, String id,String name,String description, String [] tokensExpr) throws Exception
@@ -564,12 +565,12 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingEventAttendanceList(RetailscmUserContext userContext, String cityEventId, 
 			String eventAttendanceIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCityEvent(cityEventId);
+		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
 		for(String eventAttendanceIdItem: eventAttendanceIds){
-			userContext.getChecker().checkIdOfEventAttendance(eventAttendanceIdItem);
+			checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 		
 	}
 	public  CityEvent removeEventAttendanceList(RetailscmUserContext userContext, String cityEventId, 
@@ -582,7 +583,7 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(cityEvent){ 
 				//Will be good when the cityEvent loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getCityEventDAO().planToRemoveEventAttendanceList(cityEvent, eventAttendanceIds, allTokens());
+				cityEventDaoOf(userContext).planToRemoveEventAttendanceList(cityEvent, eventAttendanceIds, allTokens());
 				cityEvent = saveCityEvent(userContext, cityEvent, tokens().withEventAttendanceList().done());
 				deleteRelationListInGraph(userContext, cityEvent.getEventAttendanceList());
 				return present(userContext,cityEvent, mergedAllTokens(tokensExpr));
@@ -592,10 +593,10 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingEventAttendance(RetailscmUserContext userContext, String cityEventId, 
 		String eventAttendanceId, int eventAttendanceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCityEvent( cityEventId);
-		userContext.getChecker().checkIdOfEventAttendance(eventAttendanceId);
-		userContext.getChecker().checkVersionOfEventAttendance(eventAttendanceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).checkIdOfCityEvent( cityEventId);
+		checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceId);
+		checkerOf(userContext).checkVersionOfEventAttendance(eventAttendanceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 	
 	}
 	public  CityEvent removeEventAttendance(RetailscmUserContext userContext, String cityEventId, 
@@ -619,10 +620,10 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingEventAttendance(RetailscmUserContext userContext, String cityEventId, 
 		String eventAttendanceId, int eventAttendanceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCityEvent( cityEventId);
-		userContext.getChecker().checkIdOfEventAttendance(eventAttendanceId);
-		userContext.getChecker().checkVersionOfEventAttendance(eventAttendanceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).checkIdOfCityEvent( cityEventId);
+		checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceId);
+		checkerOf(userContext).checkVersionOfEventAttendance(eventAttendanceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 	
 	}
 	public  CityEvent copyEventAttendanceFrom(RetailscmUserContext userContext, String cityEventId, 
@@ -651,21 +652,21 @@ public class CityEventManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfCityEvent(cityEventId);
-		userContext.getChecker().checkIdOfEventAttendance(eventAttendanceId);
-		userContext.getChecker().checkVersionOfEventAttendance(eventAttendanceVersion);
+		checkerOf(userContext).checkIdOfCityEvent(cityEventId);
+		checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceId);
+		checkerOf(userContext).checkVersionOfEventAttendance(eventAttendanceVersion);
 		
 
 		if(EventAttendance.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfEventAttendance(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfEventAttendance(parseString(newValueExpr));
 		}
 		
 		if(EventAttendance.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfEventAttendance(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfEventAttendance(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityEventManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityEventManagerException.class);
 	
 	}
 	

@@ -247,20 +247,6 @@ public class AccountingDocumentLineForm extends BaseForm {
 	}
 
 
-	public AccountingDocumentLineForm currentStatusFieldOfAccountingDocument(String parameterName, String initValue){
-		FormField field =  currentStatusFromAccountingDocument(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public AccountingDocumentLineForm currentStatusFieldOfAccountingDocument(String initValue){
-		return currentStatusFieldOfAccountingDocument("currentStatus",initValue);
-	}
-	public AccountingDocumentLineForm currentStatusFieldOfAccountingDocument(){
-		return currentStatusFieldOfAccountingDocument("currentStatus","");
-	}
-
-
 	public AccountingDocumentLineForm accountingSubjectIdFieldOfAccountingSubject(String parameterName, String initValue){
 		FormField field =  idFromAccountingSubject(parameterName, initValue);
 		this.addFormField(field);	

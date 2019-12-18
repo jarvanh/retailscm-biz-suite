@@ -414,20 +414,6 @@ public class EmployeeWorkExperienceForm extends BaseForm {
 		return lastUpdateTimeFieldOfEmployee("lastUpdateTime","");
 	}
 
-
-	public EmployeeWorkExperienceForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeWorkExperienceForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeWorkExperienceForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
 	
 
 

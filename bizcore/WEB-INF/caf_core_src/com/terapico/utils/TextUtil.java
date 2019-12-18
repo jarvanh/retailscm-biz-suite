@@ -1,11 +1,12 @@
 package com.terapico.utils;
 
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextUtil {
     public static boolean isBlank(String str) {
@@ -395,5 +396,14 @@ public class TextUtil {
 		return null;
 	}
 
+	public static List<String> findAllMatched(String source, Pattern pattern) {
+		Matcher matcher = pattern.matcher(source);
+		List<String> list = new ArrayList<>();
+		while (matcher.find()) {
+			list.add(matcher.group());
+		}
+		return list;
+
+	}
 	
 }

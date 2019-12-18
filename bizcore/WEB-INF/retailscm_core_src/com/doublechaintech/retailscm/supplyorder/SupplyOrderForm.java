@@ -187,20 +187,6 @@ public class SupplyOrderForm extends BaseForm {
 		return lastUpdateTimeField("lastUpdateTime","");
 	}
 
-
-	public SupplyOrderForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromSupplyOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SupplyOrderForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public SupplyOrderForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -1117,20 +1103,6 @@ public class SupplyOrderForm extends BaseForm {
 		return packagingIdFieldForGoods("packagingId","");
 	}
 
-
-	public SupplyOrderForm currentStatusFieldForGoods(String parameterName, String initValue){
-		FormField field =  currentStatusFromGoods(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SupplyOrderForm currentStatusFieldForGoods(String initValue){
-		return currentStatusFieldForGoods("currentStatus",initValue);
-	}
-	public SupplyOrderForm currentStatusFieldForGoods(){
-		return currentStatusFieldForGoods("currentStatus","");
-	}
-
 	
 
 	
@@ -1154,54 +1126,66 @@ public class SupplyOrderForm extends BaseForm {
 	}
 
  	
- 	public SupplyOrderForm  confirmAction(){
+ 	public SupplyOrderForm transferToAnotherConfirmationAction(){
 		FormAction action = new FormAction();
-		action.setLabel("确认");
-		action.setLocaleKey("supply_order.confirm");
-		action.setUrl("supplyOrderManager/confirm/supplyOrderId/who/confirmTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public SupplyOrderForm  approveAction(){
-		FormAction action = new FormAction();
-		action.setLabel("验收");
-		action.setLocaleKey("supply_order.approve");
-		action.setUrl("supplyOrderManager/approve/supplyOrderId/who/approveTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public SupplyOrderForm  processAction(){
-		FormAction action = new FormAction();
-		action.setLabel("处理");
-		action.setLocaleKey("supply_order.process");
-		action.setUrl("supplyOrderManager/process/supplyOrderId/who/processTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public SupplyOrderForm  pickAction(){
-		FormAction action = new FormAction();
-		action.setLabel("捡货");
-		action.setLocaleKey("supply_order.pick");
-		action.setUrl("supplyOrderManager/pick/supplyOrderId/who/processTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public SupplyOrderForm  shipAction(){
-		FormAction action = new FormAction();
-		action.setLabel("装运");
-		action.setLocaleKey("supply_order.ship");
-		action.setUrl("supplyOrderManager/ship/supplyOrderId/who/shipTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public SupplyOrderForm  deliverAction(){
-		FormAction action = new FormAction();
-		action.setLabel("送货");
-		action.setLocaleKey("supply_order.deliver");
-		action.setUrl("supplyOrderManager/deliver/supplyOrderId/who/deliveryTime/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherConfirmation/supplyOrderId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 	
+ 	public SupplyOrderForm transferToAnotherApprovalAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherApproval/supplyOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public SupplyOrderForm transferToAnotherProcessingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherProcessing/supplyOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public SupplyOrderForm transferToAnotherPickingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherPicking/supplyOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public SupplyOrderForm transferToAnotherShipmentAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherShipment/supplyOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public SupplyOrderForm transferToAnotherDeliveryAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherDelivery/supplyOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 
 
 	public SupplyOrderForm showAction(){
 		FormAction action = new FormAction();

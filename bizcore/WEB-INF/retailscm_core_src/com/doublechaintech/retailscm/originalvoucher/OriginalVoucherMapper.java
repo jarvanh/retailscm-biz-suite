@@ -25,7 +25,6 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
  		setCreation(originalVoucher, rs, rowNumber); 		
  		setConfirmation(originalVoucher, rs, rowNumber); 		
  		setAuditing(originalVoucher, rs, rowNumber); 		
- 		setCurrentStatus(originalVoucher, rs, rowNumber); 		
  		setVersion(originalVoucher, rs, rowNumber);
 
 		return originalVoucher;
@@ -179,18 +178,6 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
  		originalVoucher.setAuditing(createEmptyAuditing(originalVoucherAuditingId));
  	}
  	
-	protected void setCurrentStatus(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(OriginalVoucherTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		originalVoucher.setCurrentStatus(currentStatus);
-	}
-		
 	protected void setVersion(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long

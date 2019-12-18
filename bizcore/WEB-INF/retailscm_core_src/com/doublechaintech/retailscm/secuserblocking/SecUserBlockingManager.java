@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface SecUserBlockingManager{
+public interface SecUserBlockingManager extends BaseManager{
 
 		
 
-	public SecUserBlocking createSecUserBlocking(RetailscmUserContext userContext, String who, String comments) throws Exception;	
+	public SecUserBlocking createSecUserBlocking(RetailscmUserContext userContext, String who,String comments) throws Exception;	
 	public SecUserBlocking updateSecUserBlocking(RetailscmUserContext userContext,String secUserBlockingId, int secUserBlockingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public SecUserBlocking loadSecUserBlocking(RetailscmUserContext userContext, String secUserBlockingId, String [] tokensExpr) throws Exception;
 	public SecUserBlocking internalSaveSecUserBlocking(RetailscmUserContext userContext, SecUserBlocking secUserBlocking) throws Exception;

@@ -73,13 +73,6 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	UserWhiteList(String userIdentity, String userSpecialFunctions, UserDomain domain)
-	{
-		setUserIdentity(userIdentity);
-		setUserSpecialFunctions(userSpecialFunctions);
-		setDomain(domain);
-	
-	}
 	
 	//Support for changing the property
 	

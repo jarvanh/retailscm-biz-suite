@@ -235,20 +235,6 @@ public class RetailStoreOrderShipmentForm extends BaseForm {
 		return lastUpdateTimeFieldForRetailStoreOrder("lastUpdateTime","");
 	}
 
-
-	public RetailStoreOrderShipmentForm currentStatusFieldForRetailStoreOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStoreOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreOrderShipmentForm currentStatusFieldForRetailStoreOrder(String initValue){
-		return currentStatusFieldForRetailStoreOrder("currentStatus",initValue);
-	}
-	public RetailStoreOrderShipmentForm currentStatusFieldForRetailStoreOrder(){
-		return currentStatusFieldForRetailStoreOrder("currentStatus","");
-	}
-
 	
 
 

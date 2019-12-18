@@ -131,12 +131,16 @@ public class RetailStoreOpeningTokens extends CommonTokens{
 	}
 	private int retailStoreListSearchCounter = 0;
 	public RetailStoreOpeningTokens searchRetailStoreListWith(String field, String verb, String value){		
+		
+		withRetailStoreList();
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreOpeningTokens searchAllTextOfRetailStoreList(String verb, String value){	
-		String field = "id|name|telephone|owner|description|currentStatus";
+		String field = "id|name|owner|description";
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}

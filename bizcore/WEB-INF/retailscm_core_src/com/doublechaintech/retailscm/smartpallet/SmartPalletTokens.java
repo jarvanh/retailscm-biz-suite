@@ -143,12 +143,16 @@ public class SmartPalletTokens extends CommonTokens{
 	}
 	private int goodsListSearchCounter = 0;
 	public SmartPalletTokens searchGoodsListWith(String field, String verb, String value){		
+		
+		withGoodsList();
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public SmartPalletTokens searchAllTextOfGoodsList(String verb, String value){	
-		String field = "id|name|rfid|uom|currentStatus";
+		String field = "id|name|rfid|uom";
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}

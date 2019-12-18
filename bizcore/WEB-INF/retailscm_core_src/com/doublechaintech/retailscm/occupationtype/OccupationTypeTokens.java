@@ -143,12 +143,16 @@ public class OccupationTypeTokens extends CommonTokens{
 	}
 	private int employeeListSearchCounter = 0;
 	public OccupationTypeTokens searchEmployeeListWith(String field, String verb, String value){		
+		
+		withEmployeeList();
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public OccupationTypeTokens searchAllTextOfEmployeeList(String verb, String value){	
-		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount|currentStatus";
+		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount";
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}

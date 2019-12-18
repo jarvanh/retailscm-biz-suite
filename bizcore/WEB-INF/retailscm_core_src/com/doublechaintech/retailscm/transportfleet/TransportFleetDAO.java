@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.transportfleet;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -19,9 +20,9 @@ import com.doublechaintech.retailscm.transporttask.TransportTaskDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface TransportFleetDAO{
+public interface TransportFleetDAO extends BaseDAO{
 
-	
+	public SmartList<TransportFleet> loadAll();
 	public TransportFleet load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<TransportFleet> transportFleetList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -84,6 +85,7 @@ public interface TransportFleetDAO{
 	
 	
 	public SmartList<TransportFleet> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<TransportFleet> findTransportFleetByOwner(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countTransportFleetByOwner(String retailStoreCountryCenterId, Map<String,Object> options);

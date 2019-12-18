@@ -3,12 +3,17 @@ package com.terapico.utils;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DateTimeUtil {
+	public static enum DateRangeRelation  {
+		EarlierThan, EndIn, Inside, StartIn, After, Contains
+	}
+
 	public static long SECOND_IN_MS = 1000L;
 	public static long MINUTE_IN_MS = SECOND_IN_MS * 60;
 	public static long HOUR_IN_MS = MINUTE_IN_MS * 60;
@@ -21,6 +26,7 @@ public class DateTimeUtil {
 	public static final DateTimeFormatter DAY_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-M-d H:m:s");
 	public static final DateTimeFormatter DAY_TIME_FORMAT_S = DateTimeFormatter.ofPattern("yyyy-M-d'T'H:m:s");
 	public static final DateTimeFormatter DAY_TIME_FORMAT_SS = DateTimeFormatter.ofPattern("yyyy-M-d'T'H:m:s.SSS'Z'");
+	public static final DateTimeFormatter YEAR_MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM");
 	private static final DateTimeFormatter[] allFormats = new DateTimeFormatter[] { DAY_FORMAT, DAY_TIME_FORMAT,
 			DAY_TIME_FORMAT_S, DAY_TIME_MINUTE_FORMAT, DAY_TIME_MINUTE_FORMAT_S, DAY_TIME_FORMAT_SS};
 
@@ -50,6 +56,27 @@ public class DateTimeUtil {
 		ChinaHolidayPatch.put("2019-10-04", true);
 		ChinaHolidayPatch.put("2019-10-07", true);
 		ChinaHolidayPatch.put("2019-10-12", false);
+		// 2020年
+		ChinaHolidayPatch.put("2020-01-01", true); // 元旦
+		ChinaHolidayPatch.put("2020-01-19", false); // 春节
+		ChinaHolidayPatch.put("2020-01-24", true);
+		ChinaHolidayPatch.put("2020-01-27", true);
+		ChinaHolidayPatch.put("2020-01-28", true);
+		ChinaHolidayPatch.put("2020-01-29", true);
+		ChinaHolidayPatch.put("2020-01-30", true);
+		ChinaHolidayPatch.put("2020-02-01", false);
+		ChinaHolidayPatch.put("2020-04-06", true); // 清明
+		ChinaHolidayPatch.put("2020-05-01", true); // 5.1
+		ChinaHolidayPatch.put("2020-06-25", true);	// 端午
+		ChinaHolidayPatch.put("2020-06-26", true);
+		ChinaHolidayPatch.put("2020-06-28", false);
+		ChinaHolidayPatch.put("2020-10-01", true); // 国庆-中秋
+		ChinaHolidayPatch.put("2020-10-02", true);
+		ChinaHolidayPatch.put("2020-10-05", true);
+		ChinaHolidayPatch.put("2020-10-06", true);
+		ChinaHolidayPatch.put("2020-10-07", true);
+		ChinaHolidayPatch.put("2020-10-10", false);
+		
 	}
 	
 	public static String toStringAsDay(Date date) {
@@ -156,16 +183,20 @@ public class DateTimeUtil {
 		return result;
 	}
 
+	/**
+	 * use {@code DateTimeUtil.standOn(date).startOfMonth().getDate()} instead
+	 * @param date
+	 * @return
+	 */
+	@Deprecated
 	public static Date toStartOfMonth(Date date) {
-		Calendar cald = Calendar.getInstance();
-		cald.setTime(date);
-		cald.set(Calendar.DAY_OF_MONTH, 1);
-		cald.set(Calendar.HOUR, 0);
-		cald.set(Calendar.MINUTE, 0);
-		cald.set(Calendar.SECOND, 0);
-		return cald.getTime();
+		return toStartOfDay(toDate(toLocalDateTime(date).with(TemporalAdjusters.firstDayOfMonth())));
 	}
 
+	public static Date toEndOfLastMonth(Date date) {
+		return toEndOfDay(toDate(toLocalDateTime(date).plusMonths(-1).with(TemporalAdjusters.lastDayOfMonth())));
+	}
+	
 	public static boolean isSameYear(Date date1, Date date2) {
 		Calendar cald1 = Calendar.getInstance();
 		Calendar cald2 = Calendar.getInstance();
@@ -198,7 +229,7 @@ public class DateTimeUtil {
 			return "";
 		}
 		if (format == null) {
-			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(data);
+			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z").format(data);
 		}
 		String result = CustomDateFormat(data, format);
 		if (result != null) {
@@ -293,5 +324,43 @@ public class DateTimeUtil {
 		}
 		int d = c.get(Calendar.DAY_OF_WEEK);
 		return d == Calendar.SATURDAY || d == Calendar.SUNDAY;
+	}
+	
+	public static DateTimeBuilder standOn(Date date) {
+		return new DateTimeBuilder(date);
+	}
+
+	public static DateRangeRelation compareDateRange(Date start1, Date end1, Date start2, Date end2) {
+		if (end1.before(start1)) {
+			Date t = start1;
+			start1 = end1;
+			end1 = t;
+		}
+		if (end2.before(start2)) {
+			Date t = start2;
+			start2 = end2;
+			end1 = t;
+		}
+		if (start1.before(start2) && !end1.after(start2)) {
+			return DateRangeRelation.EarlierThan;
+		}
+		if (!start1.after(start2) && !end1.before(end2)) {
+			return DateRangeRelation.Contains;
+		}
+		if (!start1.after(start2) && end1.before(end2)) {
+			return DateRangeRelation.EndIn;
+		}
+		if (start1.after(start2) && end1.before(end2)) {
+			return DateRangeRelation.Inside;
+		}
+		if (start1.before(end2) && !end1.before(end2)) {
+			return DateRangeRelation.StartIn;
+		}
+		if (!start1.before(end2) && end1.after(end2)) {
+			return DateRangeRelation.After;
+		}
+		String message = String.format("cannot compare (%s,%s) with (%s,%s)", formatDate(start1, null),
+				formatDate(end1, null), formatDate(start2, null), formatDate(end2, null));
+		throw new RuntimeException(message);
 	}
 }

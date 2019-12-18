@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface EmployeeLeaveManager{
+public interface EmployeeLeaveManager extends BaseManager{
 
 		
 
-	public EmployeeLeave createEmployeeLeave(RetailscmUserContext userContext, String whoId, String typeId, int leaveDurationHour, String remark) throws Exception;	
+	public EmployeeLeave createEmployeeLeave(RetailscmUserContext userContext, String whoId,String typeId,int leaveDurationHour,String remark) throws Exception;	
 	public EmployeeLeave updateEmployeeLeave(RetailscmUserContext userContext,String employeeLeaveId, int employeeLeaveVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public EmployeeLeave loadEmployeeLeave(RetailscmUserContext userContext, String employeeLeaveId, String [] tokensExpr) throws Exception;
 	public EmployeeLeave internalSaveEmployeeLeave(RetailscmUserContext userContext, EmployeeLeave employeeLeave) throws Exception;

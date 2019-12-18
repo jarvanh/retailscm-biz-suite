@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface EmployeePerformanceManager{
+public interface EmployeePerformanceManager extends BaseManager{
 
 		
 
-	public EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext, String employeeId, String performanceComment) throws Exception;	
+	public EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext, String employeeId,String performanceComment) throws Exception;	
 	public EmployeePerformance updateEmployeePerformance(RetailscmUserContext userContext,String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public EmployeePerformance loadEmployeePerformance(RetailscmUserContext userContext, String employeePerformanceId, String [] tokensExpr) throws Exception;
 	public EmployeePerformance internalSaveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance) throws Exception;

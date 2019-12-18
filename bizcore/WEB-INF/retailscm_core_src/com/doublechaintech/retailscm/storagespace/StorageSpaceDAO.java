@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.storagespace;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.warehouse.WarehouseDAO;
 import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
-public interface StorageSpaceDAO{
+public interface StorageSpaceDAO extends BaseDAO{
 
-	
+	public SmartList<StorageSpace> loadAll();
 	public StorageSpace load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<StorageSpace> storageSpaceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -62,6 +63,7 @@ public interface StorageSpaceDAO{
 	
 	
 	public SmartList<StorageSpace> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<StorageSpace> findStorageSpaceByWarehouse(String warehouseId, Map<String,Object> options);
  	public int countStorageSpaceByWarehouse(String warehouseId, Map<String,Object> options);

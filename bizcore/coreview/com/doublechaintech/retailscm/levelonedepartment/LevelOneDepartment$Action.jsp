@@ -20,7 +20,7 @@
 	<li><span>${userContext.localeMap['level_one_department.id']}</span> ${levelOneDepartment.id}</li>
 <li><span>${userContext.localeMap['level_one_department.name']}</span> ${levelOneDepartment.name}</li>
 <li><span>${userContext.localeMap['level_one_department.description']}</span> ${levelOneDepartment.description}</li>
-<li><span>${userContext.localeMap['level_one_department.manager']}</span> ${levelOneDepartment.manager}</li>
+<li><span>${userContext.localeMap['level_one_department.manager_name']}</span> ${levelOneDepartment.managerName}</li>
 <li><span>${userContext.localeMap['level_one_department.founded']}</span> <fmt:formatDate pattern="yyyy-MM-dd" value="${levelOneDepartment.founded}" /></li>
 
 	

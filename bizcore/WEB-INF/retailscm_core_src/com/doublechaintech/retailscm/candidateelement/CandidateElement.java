@@ -75,14 +75,6 @@ public class CandidateElement extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 	}
 	
-	public 	CandidateElement(String name, String type, String image, CandidateContainer container)
-	{
-		setName(name);
-		setType(type);
-		setImage(image);
-		setContainer(container);
-	
-	}
 	
 	//Support for changing the property
 	
@@ -393,6 +385,7 @@ public class CandidateElement extends BaseEntity implements  java.io.Serializabl
 	
 
 }
+
 
 
 

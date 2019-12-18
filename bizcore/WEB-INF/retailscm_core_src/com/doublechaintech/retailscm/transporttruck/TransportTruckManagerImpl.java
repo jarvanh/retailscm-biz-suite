@@ -38,6 +38,10 @@ import com.doublechaintech.retailscm.transportfleet.TransportFleet;
 public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager implements TransportTruckManager {
 	
 	private static final String SERVICE_TYPE = "TransportTruck";
+	@Override
+	public TransportTruckDAO daoOf(RetailscmUserContext userContext) {
+		return transportTruckDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -71,8 +75,8 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	public TransportTruck loadTransportTruck(RetailscmUserContext userContext, String transportTruckId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
-		userContext.getChecker().throwExceptionIfHasErrors( TransportTruckManagerException.class);
+ 		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TransportTruckManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -85,8 +89,8 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	 public TransportTruck searchTransportTruck(RetailscmUserContext userContext, String transportTruckId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
-		userContext.getChecker().throwExceptionIfHasErrors( TransportTruckManagerException.class);
+ 		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TransportTruckManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -104,10 +108,10 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 		addActions(userContext,transportTruck,tokens);
 		
 		
-		TransportTruck  transportTruckToPresent = userContext.getDAOGroup().getTransportTruckDAO().present(transportTruck, tokens);
+		TransportTruck  transportTruckToPresent = transportTruckDaoOf(userContext).present(transportTruck, tokens);
 		
 		List<BaseEntity> entityListToNaming = transportTruckToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getTransportTruckDAO().alias(entityListToNaming);
+		transportTruckDaoOf(userContext).alias(entityListToNaming);
 		
 		return  transportTruckToPresent;
 		
@@ -128,14 +132,14 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 		
  	}
  	protected TransportTruck saveTransportTruck(RetailscmUserContext userContext, TransportTruck transportTruck, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getTransportTruckDAO().save(transportTruck, tokens);
+ 		return transportTruckDaoOf(userContext).save(transportTruck, tokens);
  	}
  	protected TransportTruck loadTransportTruck(RetailscmUserContext userContext, String transportTruckId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
-		userContext.getChecker().throwExceptionIfHasErrors( TransportTruckManagerException.class);
+		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TransportTruckManagerException.class);
 
  
- 		return userContext.getDAOGroup().getTransportTruckDAO().load(transportTruckId, tokens);
+ 		return transportTruckDaoOf(userContext).load(transportTruckId, tokens);
  	}
 
 	
@@ -169,24 +173,24 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	
 
-
-	public TransportTruck createTransportTruck(RetailscmUserContext userContext,String name, String plateNumber, String contactNumber, String vehicleLicenseNumber, String engineNumber, Date makeDate, String mileage, String bodyColor, String ownerId) throws Exception
+	public TransportTruck createTransportTruck(RetailscmUserContext userContext, String name,String plateNumber,long contactNumber,String vehicleLicenseNumber,String engineNumber,Date makeDate,String mileage,String bodyColor,String ownerId) throws Exception
+	//public TransportTruck createTransportTruck(RetailscmUserContext userContext,String name, String plateNumber, long contactNumber, String vehicleLicenseNumber, String engineNumber, Date makeDate, String mileage, String bodyColor, String ownerId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfTransportTruck(name);
-		userContext.getChecker().checkPlateNumberOfTransportTruck(plateNumber);
-		userContext.getChecker().checkContactNumberOfTransportTruck(contactNumber);
-		userContext.getChecker().checkVehicleLicenseNumberOfTransportTruck(vehicleLicenseNumber);
-		userContext.getChecker().checkEngineNumberOfTransportTruck(engineNumber);
-		userContext.getChecker().checkMakeDateOfTransportTruck(makeDate);
-		userContext.getChecker().checkMileageOfTransportTruck(mileage);
-		userContext.getChecker().checkBodyColorOfTransportTruck(bodyColor);
+		checkerOf(userContext).checkNameOfTransportTruck(name);
+		checkerOf(userContext).checkPlateNumberOfTransportTruck(plateNumber);
+		checkerOf(userContext).checkContactNumberOfTransportTruck(contactNumber);
+		checkerOf(userContext).checkVehicleLicenseNumberOfTransportTruck(vehicleLicenseNumber);
+		checkerOf(userContext).checkEngineNumberOfTransportTruck(engineNumber);
+		checkerOf(userContext).checkMakeDateOfTransportTruck(makeDate);
+		checkerOf(userContext).checkMileageOfTransportTruck(mileage);
+		checkerOf(userContext).checkBodyColorOfTransportTruck(bodyColor);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 
 
 		TransportTruck transportTruck=createNewTransportTruck();	
@@ -224,38 +228,38 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 
 		
 		
-		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
-		userContext.getChecker().checkVersionOfTransportTruck( transportTruckVersion);
+		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
+		checkerOf(userContext).checkVersionOfTransportTruck( transportTruckVersion);
 		
 
 		if(TransportTruck.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfTransportTruck(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfTransportTruck(parseString(newValueExpr));
 		}
 		if(TransportTruck.PLATE_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkPlateNumberOfTransportTruck(parseString(newValueExpr));
+			checkerOf(userContext).checkPlateNumberOfTransportTruck(parseString(newValueExpr));
 		}
 		if(TransportTruck.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfTransportTruck(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfTransportTruck(parseLong(newValueExpr));
 		}
 		if(TransportTruck.VEHICLE_LICENSE_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkVehicleLicenseNumberOfTransportTruck(parseString(newValueExpr));
+			checkerOf(userContext).checkVehicleLicenseNumberOfTransportTruck(parseString(newValueExpr));
 		}
 		if(TransportTruck.ENGINE_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkEngineNumberOfTransportTruck(parseString(newValueExpr));
+			checkerOf(userContext).checkEngineNumberOfTransportTruck(parseString(newValueExpr));
 		}
 		if(TransportTruck.MAKE_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMakeDateOfTransportTruck(parseDate(newValueExpr));
+			checkerOf(userContext).checkMakeDateOfTransportTruck(parseDate(newValueExpr));
 		}
 		if(TransportTruck.MILEAGE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMileageOfTransportTruck(parseString(newValueExpr));
+			checkerOf(userContext).checkMileageOfTransportTruck(parseString(newValueExpr));
 		}
 		if(TransportTruck.BODY_COLOR_PROPERTY.equals(property)){
-			userContext.getChecker().checkBodyColorOfTransportTruck(parseString(newValueExpr));
+			checkerOf(userContext).checkBodyColorOfTransportTruck(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 	
 		
 	}
@@ -264,7 +268,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	public TransportTruck clone(RetailscmUserContext userContext, String fromTransportTruckId) throws Exception{
 		
-		return userContext.getDAOGroup().getTransportTruckDAO().clone(fromTransportTruckId, this.allTokens());
+		return transportTruckDaoOf(userContext).clone(fromTransportTruckId, this.allTokens());
 	}
 	
 	public TransportTruck internalSaveTransportTruck(RetailscmUserContext userContext, TransportTruck transportTruck) throws Exception 
@@ -363,9 +367,9 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String transportTruckId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
- 		userContext.getChecker().checkIdOfTransportFleet(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+ 		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
+ 		checkerOf(userContext).checkIdOfTransportFleet(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
  		
  	}
  	public TransportTruck transferToAnotherOwner(RetailscmUserContext userContext, String transportTruckId, String anotherOwnerId) throws Exception
@@ -402,7 +406,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<TransportFleet> candidateList = userContext.getDAOGroup().getTransportFleetDAO().requestCandidateTransportFleetForTransportTruck(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<TransportFleet> candidateList = transportFleetDaoOf(userContext).requestCandidateTransportFleetForTransportTruck(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -415,7 +419,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
  	protected TransportFleet loadTransportFleet(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTransportFleetDAO().load(newOwnerId, options);
+ 		return transportFleetDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -429,7 +433,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String transportTruckId, int transportTruckVersion) throws Exception{
 			
-		userContext.getDAOGroup().getTransportTruckDAO().delete(transportTruckId, transportTruckVersion);
+		transportTruckDaoOf(userContext).delete(transportTruckId, transportTruckVersion);
 	}
 	
 	public TransportTruck forgetByAll(RetailscmUserContext userContext, String transportTruckId, int transportTruckVersion) throws Exception {
@@ -438,8 +442,9 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	protected TransportTruck forgetByAllInternal(RetailscmUserContext userContext,
 			String transportTruckId, int transportTruckVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getTransportTruckDAO().disconnectFromAll(transportTruckId, transportTruckVersion);
+		return transportTruckDaoOf(userContext).disconnectFromAll(transportTruckId, transportTruckVersion);
 	}
+	
 	
 
 	
@@ -456,7 +461,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getTransportTruckDAO().deleteAll();
+		return transportTruckDaoOf(userContext).deleteAll();
 	}
 
 
@@ -472,7 +477,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTransportTruckDAO().planToRemoveTransportTaskListWithEnd(transportTruck, endId, this.emptyOptions());
+				transportTruckDaoOf(userContext).planToRemoveTransportTaskListWithEnd(transportTruck, endId, this.emptyOptions());
 
 				transportTruck = saveTransportTruck(userContext, transportTruck, tokens().withTransportTaskList().done());
 				return transportTruck;
@@ -490,7 +495,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTransportTruckDAO().planToRemoveTransportTaskListWithDriver(transportTruck, driverId, this.emptyOptions());
+				transportTruckDaoOf(userContext).planToRemoveTransportTaskListWithDriver(transportTruck, driverId, this.emptyOptions());
 
 				transportTruck = saveTransportTruck(userContext, transportTruck, tokens().withTransportTaskList().done());
 				return transportTruck;
@@ -508,7 +513,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getTransportTruckDAO().planToRemoveTransportTaskListWithBelongsTo(transportTruck, belongsToId, this.emptyOptions());
+				transportTruckDaoOf(userContext).planToRemoveTransportTaskListWithBelongsTo(transportTruck, belongsToId, this.emptyOptions());
 
 				transportTruck = saveTransportTruck(userContext, transportTruck, tokens().withTransportTaskList().done());
 				return transportTruck;
@@ -522,30 +527,26 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 
 	protected void checkParamsForAddingTransportTask(RetailscmUserContext userContext, String transportTruckId, String name, String start, Date beginTime, String endId, String driverId, String belongsToId, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
 
 		
+		checkerOf(userContext).checkNameOfTransportTask(name);
 		
-		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
-
+		checkerOf(userContext).checkStartOfTransportTask(start);
 		
-		userContext.getChecker().checkNameOfTransportTask(name);
+		checkerOf(userContext).checkBeginTimeOfTransportTask(beginTime);
 		
-		userContext.getChecker().checkStartOfTransportTask(start);
+		checkerOf(userContext).checkEndIdOfTransportTask(endId);
 		
-		userContext.getChecker().checkBeginTimeOfTransportTask(beginTime);
+		checkerOf(userContext).checkDriverIdOfTransportTask(driverId);
 		
-		userContext.getChecker().checkEndIdOfTransportTask(endId);
+		checkerOf(userContext).checkBelongsToIdOfTransportTask(belongsToId);
 		
-		userContext.getChecker().checkDriverIdOfTransportTask(driverId);
+		checkerOf(userContext).checkLatitudeOfTransportTask(latitude);
 		
-		userContext.getChecker().checkBelongsToIdOfTransportTask(belongsToId);
-		
-		userContext.getChecker().checkLatitudeOfTransportTask(latitude);
-		
-		userContext.getChecker().checkLongitudeOfTransportTask(longitude);
+		checkerOf(userContext).checkLongitudeOfTransportTask(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 
 	
 	}
@@ -569,16 +570,16 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	}
 	protected void checkParamsForUpdatingTransportTaskProperties(RetailscmUserContext userContext, String transportTruckId,String id,String name,String start,Date beginTime,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
-		userContext.getChecker().checkIdOfTransportTask(id);
+		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
+		checkerOf(userContext).checkIdOfTransportTask(id);
 		
-		userContext.getChecker().checkNameOfTransportTask( name);
-		userContext.getChecker().checkStartOfTransportTask( start);
-		userContext.getChecker().checkBeginTimeOfTransportTask( beginTime);
-		userContext.getChecker().checkLatitudeOfTransportTask( latitude);
-		userContext.getChecker().checkLongitudeOfTransportTask( longitude);
+		checkerOf(userContext).checkNameOfTransportTask( name);
+		checkerOf(userContext).checkStartOfTransportTask( start);
+		checkerOf(userContext).checkBeginTimeOfTransportTask( beginTime);
+		checkerOf(userContext).checkLatitudeOfTransportTask( latitude);
+		checkerOf(userContext).checkLongitudeOfTransportTask( longitude);
 
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 		
 	}
 	public  TransportTruck updateTransportTaskProperties(RetailscmUserContext userContext, String transportTruckId, String id,String name,String start,Date beginTime,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
@@ -651,12 +652,12 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForRemovingTransportTaskList(RetailscmUserContext userContext, String transportTruckId, 
 			String transportTaskIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
+		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
 		for(String transportTaskIdItem: transportTaskIds){
-			userContext.getChecker().checkIdOfTransportTask(transportTaskIdItem);
+			checkerOf(userContext).checkIdOfTransportTask(transportTaskIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 		
 	}
 	public  TransportTruck removeTransportTaskList(RetailscmUserContext userContext, String transportTruckId, 
@@ -669,7 +670,7 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 			synchronized(transportTruck){ 
 				//Will be good when the transportTruck loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getTransportTruckDAO().planToRemoveTransportTaskList(transportTruck, transportTaskIds, allTokens());
+				transportTruckDaoOf(userContext).planToRemoveTransportTaskList(transportTruck, transportTaskIds, allTokens());
 				transportTruck = saveTransportTruck(userContext, transportTruck, tokens().withTransportTaskList().done());
 				deleteRelationListInGraph(userContext, transportTruck.getTransportTaskList());
 				return present(userContext,transportTruck, mergedAllTokens(tokensExpr));
@@ -679,10 +680,10 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForRemovingTransportTask(RetailscmUserContext userContext, String transportTruckId, 
 		String transportTaskId, int transportTaskVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfTransportTruck( transportTruckId);
-		userContext.getChecker().checkIdOfTransportTask(transportTaskId);
-		userContext.getChecker().checkVersionOfTransportTask(transportTaskVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).checkIdOfTransportTruck( transportTruckId);
+		checkerOf(userContext).checkIdOfTransportTask(transportTaskId);
+		checkerOf(userContext).checkVersionOfTransportTask(transportTaskVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 	
 	}
 	public  TransportTruck removeTransportTask(RetailscmUserContext userContext, String transportTruckId, 
@@ -706,10 +707,10 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForCopyingTransportTask(RetailscmUserContext userContext, String transportTruckId, 
 		String transportTaskId, int transportTaskVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfTransportTruck( transportTruckId);
-		userContext.getChecker().checkIdOfTransportTask(transportTaskId);
-		userContext.getChecker().checkVersionOfTransportTask(transportTaskVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).checkIdOfTransportTruck( transportTruckId);
+		checkerOf(userContext).checkIdOfTransportTask(transportTaskId);
+		checkerOf(userContext).checkVersionOfTransportTask(transportTaskVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 	
 	}
 	public  TransportTruck copyTransportTaskFrom(RetailscmUserContext userContext, String transportTruckId, 
@@ -738,33 +739,33 @@ public class TransportTruckManagerImpl extends CustomRetailscmCheckerManager imp
 		
 
 		
-		userContext.getChecker().checkIdOfTransportTruck(transportTruckId);
-		userContext.getChecker().checkIdOfTransportTask(transportTaskId);
-		userContext.getChecker().checkVersionOfTransportTask(transportTaskVersion);
+		checkerOf(userContext).checkIdOfTransportTruck(transportTruckId);
+		checkerOf(userContext).checkIdOfTransportTask(transportTaskId);
+		checkerOf(userContext).checkVersionOfTransportTask(transportTaskVersion);
 		
 
 		if(TransportTask.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfTransportTask(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfTransportTask(parseString(newValueExpr));
 		}
 		
 		if(TransportTask.START_PROPERTY.equals(property)){
-			userContext.getChecker().checkStartOfTransportTask(parseString(newValueExpr));
+			checkerOf(userContext).checkStartOfTransportTask(parseString(newValueExpr));
 		}
 		
 		if(TransportTask.BEGIN_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkBeginTimeOfTransportTask(parseDate(newValueExpr));
+			checkerOf(userContext).checkBeginTimeOfTransportTask(parseDate(newValueExpr));
 		}
 		
 		if(TransportTask.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfTransportTask(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfTransportTask(parseBigDecimal(newValueExpr));
 		}
 		
 		if(TransportTask.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfTransportTask(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfTransportTask(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTruckManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTruckManagerException.class);
 	
 	}
 	

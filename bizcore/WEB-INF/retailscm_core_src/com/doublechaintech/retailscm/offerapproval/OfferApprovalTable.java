@@ -23,12 +23,8 @@ public class OfferApprovalTable{
 	static final String COLUMN_COMMENTS = "comments";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_WHO, COLUMN_APPROVE_TIME, COLUMN_COMMENTS, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_WHO, COLUMN_APPROVE_TIME, COLUMN_COMMENTS
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_APPROVE_TIME,COLUMN_COMMENTS,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_APPROVE_TIME,COLUMN_COMMENTS};
 	
 	
 }

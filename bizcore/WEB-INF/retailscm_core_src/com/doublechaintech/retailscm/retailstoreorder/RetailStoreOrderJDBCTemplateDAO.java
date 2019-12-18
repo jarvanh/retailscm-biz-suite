@@ -214,6 +214,11 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}
 	*/
 	
+	public SmartList<RetailStoreOrder> loadAll() {
+	    return this.loadAll(getRetailStoreOrderMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1537,7 +1542,7 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		return prepareRetailStoreOrderCreateParameters(retailStoreOrder);
  	}
  	protected Object[] prepareRetailStoreOrderUpdateParameters(RetailStoreOrder retailStoreOrder){
- 		Object[] parameters = new Object[15];
+ 		Object[] parameters = new Object[14];
   	
  		if(retailStoreOrder.getBuyer() != null){
  			parameters[0] = retailStoreOrder.getBuyer().getId();
@@ -1573,16 +1578,15 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  			parameters[9] = retailStoreOrder.getDelivery().getId();
  		}
  
- 		parameters[10] = retailStoreOrder.getLastUpdateTime();
- 		parameters[11] = retailStoreOrder.getCurrentStatus();		
- 		parameters[12] = retailStoreOrder.nextVersion();
- 		parameters[13] = retailStoreOrder.getId();
- 		parameters[14] = retailStoreOrder.getVersion();
+ 		parameters[10] = retailStoreOrder.getLastUpdateTime();		
+ 		parameters[11] = retailStoreOrder.nextVersion();
+ 		parameters[12] = retailStoreOrder.getId();
+ 		parameters[13] = retailStoreOrder.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareRetailStoreOrderCreateParameters(RetailStoreOrder retailStoreOrder){
-		Object[] parameters = new Object[13];
+		Object[] parameters = new Object[12];
 		String newRetailStoreOrderId=getNextId();
 		retailStoreOrder.setId(newRetailStoreOrderId);
 		parameters[0] =  retailStoreOrder.getId();
@@ -1629,8 +1633,7 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		
  		}
  		
- 		parameters[11] = retailStoreOrder.getLastUpdateTime();
- 		parameters[12] = retailStoreOrder.getCurrentStatus();		
+ 		parameters[11] = retailStoreOrder.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -2354,6 +2357,50 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 		return count;
 	}
 	
+	//disconnect RetailStoreOrder with packaging in Goods
+	public RetailStoreOrder planToRemoveGoodsListWithPackaging(RetailStoreOrder retailStoreOrder, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.RETAIL_STORE_ORDER_PROPERTY, retailStoreOrder.getId());
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		SmartList<Goods> externalGoodsList = getGoodsDAO().
+				findGoodsWithKey(key, options);
+		if(externalGoodsList == null){
+			return retailStoreOrder;
+		}
+		if(externalGoodsList.isEmpty()){
+			return retailStoreOrder;
+		}
+		
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearPackaging();
+			goodsItem.clearRetailStoreOrder();
+			
+		}
+		
+		
+		SmartList<Goods> goodsList = retailStoreOrder.getGoodsList();		
+		goodsList.addAllToRemoveList(externalGoodsList);
+		return retailStoreOrder;
+	}
+	
+	public int countGoodsListWithPackaging(String retailStoreOrderId, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.RETAIL_STORE_ORDER_PROPERTY, retailStoreOrderId);
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		int count = getGoodsDAO().countGoodsWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected RetailStoreOrder saveRetailStoreOrderLineItemList(RetailStoreOrder retailStoreOrder, Map<String,Object> options){
@@ -2874,6 +2921,10 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	@Override
 	public SmartList<RetailStoreOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreOrderMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

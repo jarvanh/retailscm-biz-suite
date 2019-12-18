@@ -214,6 +214,11 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<SupplyOrder> loadAll() {
+	    return this.loadAll(getSupplyOrderMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1537,7 +1542,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		return prepareSupplyOrderCreateParameters(supplyOrder);
  	}
  	protected Object[] prepareSupplyOrderUpdateParameters(SupplyOrder supplyOrder){
- 		Object[] parameters = new Object[15];
+ 		Object[] parameters = new Object[14];
   	
  		if(supplyOrder.getBuyer() != null){
  			parameters[0] = supplyOrder.getBuyer().getId();
@@ -1573,16 +1578,15 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  			parameters[9] = supplyOrder.getDelivery().getId();
  		}
  
- 		parameters[10] = supplyOrder.getLastUpdateTime();
- 		parameters[11] = supplyOrder.getCurrentStatus();		
- 		parameters[12] = supplyOrder.nextVersion();
- 		parameters[13] = supplyOrder.getId();
- 		parameters[14] = supplyOrder.getVersion();
+ 		parameters[10] = supplyOrder.getLastUpdateTime();		
+ 		parameters[11] = supplyOrder.nextVersion();
+ 		parameters[12] = supplyOrder.getId();
+ 		parameters[13] = supplyOrder.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareSupplyOrderCreateParameters(SupplyOrder supplyOrder){
-		Object[] parameters = new Object[13];
+		Object[] parameters = new Object[12];
 		String newSupplyOrderId=getNextId();
 		supplyOrder.setId(newSupplyOrderId);
 		parameters[0] =  supplyOrder.getId();
@@ -1629,8 +1633,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		
  		}
  		
- 		parameters[11] = supplyOrder.getLastUpdateTime();
- 		parameters[12] = supplyOrder.getCurrentStatus();		
+ 		parameters[11] = supplyOrder.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -2354,6 +2357,50 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		return count;
 	}
 	
+	//disconnect SupplyOrder with packaging in Goods
+	public SupplyOrder planToRemoveGoodsListWithPackaging(SupplyOrder supplyOrder, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.BIZ_ORDER_PROPERTY, supplyOrder.getId());
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		SmartList<Goods> externalGoodsList = getGoodsDAO().
+				findGoodsWithKey(key, options);
+		if(externalGoodsList == null){
+			return supplyOrder;
+		}
+		if(externalGoodsList.isEmpty()){
+			return supplyOrder;
+		}
+		
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearPackaging();
+			goodsItem.clearBizOrder();
+			
+		}
+		
+		
+		SmartList<Goods> goodsList = supplyOrder.getGoodsList();		
+		goodsList.addAllToRemoveList(externalGoodsList);
+		return supplyOrder;
+	}
+	
+	public int countGoodsListWithPackaging(String supplyOrderId, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.BIZ_ORDER_PROPERTY, supplyOrderId);
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		int count = getGoodsDAO().countGoodsWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected SupplyOrder saveSupplyOrderLineItemList(SupplyOrder supplyOrder, Map<String,Object> options){
@@ -2874,6 +2921,10 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public SmartList<SupplyOrder> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

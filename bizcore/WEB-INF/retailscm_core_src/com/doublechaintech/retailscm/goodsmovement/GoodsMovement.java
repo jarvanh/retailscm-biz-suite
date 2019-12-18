@@ -85,19 +85,6 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	GoodsMovement(DateTime moveTime, String facility, String facilityId, String fromIp, String userAgent, String sessionId, BigDecimal latitude, BigDecimal longitude, Goods goods)
-	{
-		setMoveTime(moveTime);
-		setFacility(facility);
-		setFacilityId(facilityId);
-		setFromIp(fromIp);
-		setUserAgent(userAgent);
-		setSessionId(sessionId);
-		setLatitude(latitude);
-		setLongitude(longitude);
-		setGoods(goods);
-	
-	}
 	
 	//Support for changing the property
 	

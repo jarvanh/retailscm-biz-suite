@@ -143,9 +143,13 @@ public class DamageSpaceTokens extends CommonTokens{
 	}
 	private int goodsShelfListSearchCounter = 0;
 	public DamageSpaceTokens searchGoodsShelfListWith(String field, String verb, String value){		
+		
+		withGoodsShelfList();
 		addSearchMoreOptions(GOODS_SHELF_LIST,goodsShelfListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public DamageSpaceTokens searchAllTextOfGoodsShelfList(String verb, String value){	
 		String field = "id|location";

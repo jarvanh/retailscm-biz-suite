@@ -96,6 +96,11 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<CompanyTraining> loadAll() {
+	    return this.loadAll(getCompanyTrainingMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -952,6 +957,50 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 		return count;
 	}
 	
+	//disconnect CompanyTraining with scoring in EmployeeCompanyTraining
+	public CompanyTraining planToRemoveEmployeeCompanyTrainingListWithScoring(CompanyTraining companyTraining, String scoringId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeCompanyTraining.TRAINING_PROPERTY, companyTraining.getId());
+		key.put(EmployeeCompanyTraining.SCORING_PROPERTY, scoringId);
+		
+		SmartList<EmployeeCompanyTraining> externalEmployeeCompanyTrainingList = getEmployeeCompanyTrainingDAO().
+				findEmployeeCompanyTrainingWithKey(key, options);
+		if(externalEmployeeCompanyTrainingList == null){
+			return companyTraining;
+		}
+		if(externalEmployeeCompanyTrainingList.isEmpty()){
+			return companyTraining;
+		}
+		
+		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
+			employeeCompanyTrainingItem.clearScoring();
+			employeeCompanyTrainingItem.clearTraining();
+			
+		}
+		
+		
+		SmartList<EmployeeCompanyTraining> employeeCompanyTrainingList = companyTraining.getEmployeeCompanyTrainingList();		
+		employeeCompanyTrainingList.addAllToRemoveList(externalEmployeeCompanyTrainingList);
+		return companyTraining;
+	}
+	
+	public int countEmployeeCompanyTrainingListWithScoring(String companyTrainingId, String scoringId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeCompanyTraining.TRAINING_PROPERTY, companyTrainingId);
+		key.put(EmployeeCompanyTraining.SCORING_PROPERTY, scoringId);
+		
+		int count = getEmployeeCompanyTrainingDAO().countEmployeeCompanyTrainingWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected CompanyTraining saveEmployeeCompanyTrainingList(CompanyTraining companyTraining, Map<String,Object> options){
@@ -1124,6 +1173,10 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public SmartList<CompanyTraining> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCompanyTrainingMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

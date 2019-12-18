@@ -426,6 +426,11 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	}
 	*/
 	
+	public SmartList<Employee> loadAll() {
+	    return this.loadAll(getEmployeeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -2733,7 +2738,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		return prepareEmployeeCreateParameters(employee);
  	}
  	protected Object[] prepareEmployeeUpdateParameters(Employee employee){
- 		Object[] parameters = new Object[25];
+ 		Object[] parameters = new Object[24];
   	
  		if(employee.getCompany() != null){
  			parameters[0] = employee.getCompany().getId();
@@ -2791,16 +2796,15 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  			parameters[19] = employee.getTermination().getId();
  		}
  
- 		parameters[20] = employee.getLastUpdateTime();
- 		parameters[21] = employee.getCurrentStatus();		
- 		parameters[22] = employee.nextVersion();
- 		parameters[23] = employee.getId();
- 		parameters[24] = employee.getVersion();
+ 		parameters[20] = employee.getLastUpdateTime();		
+ 		parameters[21] = employee.nextVersion();
+ 		parameters[22] = employee.getId();
+ 		parameters[23] = employee.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareEmployeeCreateParameters(Employee employee){
-		Object[] parameters = new Object[23];
+		Object[] parameters = new Object[22];
 		String newEmployeeId=getNextId();
 		employee.setId(newEmployeeId);
 		parameters[0] =  employee.getId();
@@ -2873,8 +2877,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		
  		}
  		
- 		parameters[21] = employee.getLastUpdateTime();
- 		parameters[22] = employee.getCurrentStatus();		
+ 		parameters[21] = employee.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -3297,6 +3300,50 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(EmployeeCompanyTraining.EMPLOYEE_PROPERTY, employeeId);
 		key.put(EmployeeCompanyTraining.TRAINING_PROPERTY, trainingId);
+		
+		int count = getEmployeeCompanyTrainingDAO().countEmployeeCompanyTrainingWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect Employee with scoring in EmployeeCompanyTraining
+	public Employee planToRemoveEmployeeCompanyTrainingListWithScoring(Employee employee, String scoringId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeCompanyTraining.EMPLOYEE_PROPERTY, employee.getId());
+		key.put(EmployeeCompanyTraining.SCORING_PROPERTY, scoringId);
+		
+		SmartList<EmployeeCompanyTraining> externalEmployeeCompanyTrainingList = getEmployeeCompanyTrainingDAO().
+				findEmployeeCompanyTrainingWithKey(key, options);
+		if(externalEmployeeCompanyTrainingList == null){
+			return employee;
+		}
+		if(externalEmployeeCompanyTrainingList.isEmpty()){
+			return employee;
+		}
+		
+		for(EmployeeCompanyTraining employeeCompanyTrainingItem: externalEmployeeCompanyTrainingList){
+			employeeCompanyTrainingItem.clearScoring();
+			employeeCompanyTrainingItem.clearEmployee();
+			
+		}
+		
+		
+		SmartList<EmployeeCompanyTraining> employeeCompanyTrainingList = employee.getEmployeeCompanyTrainingList();		
+		employeeCompanyTrainingList.addAllToRemoveList(externalEmployeeCompanyTrainingList);
+		return employee;
+	}
+	
+	public int countEmployeeCompanyTrainingListWithScoring(String employeeId, String scoringId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeCompanyTraining.EMPLOYEE_PROPERTY, employeeId);
+		key.put(EmployeeCompanyTraining.SCORING_PROPERTY, scoringId);
 		
 		int count = getEmployeeCompanyTrainingDAO().countEmployeeCompanyTrainingWithKey(key, options);
 		return count;
@@ -3753,6 +3800,50 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(EmployeeSalarySheet.EMPLOYEE_PROPERTY, employeeId);
 		key.put(EmployeeSalarySheet.CURRENT_SALARY_GRADE_PROPERTY, currentSalaryGradeId);
+		
+		int count = getEmployeeSalarySheetDAO().countEmployeeSalarySheetWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect Employee with paying_off in EmployeeSalarySheet
+	public Employee planToRemoveEmployeeSalarySheetListWithPayingOff(Employee employee, String payingOffId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeSalarySheet.EMPLOYEE_PROPERTY, employee.getId());
+		key.put(EmployeeSalarySheet.PAYING_OFF_PROPERTY, payingOffId);
+		
+		SmartList<EmployeeSalarySheet> externalEmployeeSalarySheetList = getEmployeeSalarySheetDAO().
+				findEmployeeSalarySheetWithKey(key, options);
+		if(externalEmployeeSalarySheetList == null){
+			return employee;
+		}
+		if(externalEmployeeSalarySheetList.isEmpty()){
+			return employee;
+		}
+		
+		for(EmployeeSalarySheet employeeSalarySheetItem: externalEmployeeSalarySheetList){
+			employeeSalarySheetItem.clearPayingOff();
+			employeeSalarySheetItem.clearEmployee();
+			
+		}
+		
+		
+		SmartList<EmployeeSalarySheet> employeeSalarySheetList = employee.getEmployeeSalarySheetList();		
+		employeeSalarySheetList.addAllToRemoveList(externalEmployeeSalarySheetList);
+		return employee;
+	}
+	
+	public int countEmployeeSalarySheetListWithPayingOff(String employeeId, String payingOffId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(EmployeeSalarySheet.EMPLOYEE_PROPERTY, employeeId);
+		key.put(EmployeeSalarySheet.PAYING_OFF_PROPERTY, payingOffId);
 		
 		int count = getEmployeeSalarySheetDAO().countEmployeeSalarySheetWithKey(key, options);
 		return count;
@@ -5234,6 +5325,10 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	@Override
 	public SmartList<Employee> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -64,6 +64,11 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<EmployeeInterview> loadAll() {
+	    return this.loadAll(getEmployeeInterviewMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -680,6 +685,10 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public SmartList<EmployeeInterview> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeInterviewMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

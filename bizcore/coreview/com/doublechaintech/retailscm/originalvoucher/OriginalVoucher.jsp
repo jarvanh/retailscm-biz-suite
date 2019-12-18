@@ -131,27 +131,28 @@
 <c:set var="referName" value="(belongsTo)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/accountingdocument/AccountingDocument$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="originalVoucherCreation" value="${ result.creation}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/originalvouchercreation/OriginalVoucherCreation$Action.jsp" />
+<c:set var="referName" value="(creation)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/originalvouchercreation/OriginalVoucherCreation$Info.jsp" />
 
 <c:set var="originalVoucherConfirmation" value="${ result.confirmation}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/originalvoucherconfirmation/OriginalVoucherConfirmation$Action.jsp" />
+<c:set var="referName" value="(confirmation)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/originalvoucherconfirmation/OriginalVoucherConfirmation$Info.jsp" />
 
 <c:set var="originalVoucherAuditing" value="${ result.auditing}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/originalvoucherauditing/OriginalVoucherAuditing$Action.jsp" />
+<c:set var="referName" value="(auditing)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/originalvoucherauditing/OriginalVoucherAuditing$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

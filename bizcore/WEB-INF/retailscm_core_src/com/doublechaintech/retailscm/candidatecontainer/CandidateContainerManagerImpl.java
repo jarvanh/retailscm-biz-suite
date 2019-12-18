@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
 public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager implements CandidateContainerManager {
 	
 	private static final String SERVICE_TYPE = "CandidateContainer";
+	@Override
+	public CandidateContainerDAO daoOf(RetailscmUserContext userContext) {
+		return candidateContainerDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
  	
  	public CandidateContainer loadCandidateContainer(RetailscmUserContext userContext, String candidateContainerId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
-		userContext.getChecker().throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+ 		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CandidateContainerManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
  	
  	 public CandidateContainer searchCandidateContainer(RetailscmUserContext userContext, String candidateContainerId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
-		userContext.getChecker().throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+ 		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CandidateContainerManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		addActions(userContext,candidateContainer,tokens);
 		
 		
-		CandidateContainer  candidateContainerToPresent = userContext.getDAOGroup().getCandidateContainerDAO().present(candidateContainer, tokens);
+		CandidateContainer  candidateContainerToPresent = candidateContainerDaoOf(userContext).present(candidateContainer, tokens);
 		
 		List<BaseEntity> entityListToNaming = candidateContainerToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getCandidateContainerDAO().alias(entityListToNaming);
+		candidateContainerDaoOf(userContext).alias(entityListToNaming);
 		
 		return  candidateContainerToPresent;
 		
@@ -123,14 +127,14 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		
  	}
  	protected CandidateContainer saveCandidateContainer(RetailscmUserContext userContext, CandidateContainer candidateContainer, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getCandidateContainerDAO().save(candidateContainer, tokens);
+ 		return candidateContainerDaoOf(userContext).save(candidateContainer, tokens);
  	}
  	protected CandidateContainer loadCandidateContainer(RetailscmUserContext userContext, String candidateContainerId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
-		userContext.getChecker().throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CandidateContainerManagerException.class);
 
  
- 		return userContext.getDAOGroup().getCandidateContainerDAO().load(candidateContainerId, tokens);
+ 		return candidateContainerDaoOf(userContext).load(candidateContainerId, tokens);
  	}
 
 	
@@ -163,17 +167,17 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
  	
  	
 
-
-	public CandidateContainer createCandidateContainer(RetailscmUserContext userContext,String name) throws Exception
+	public CandidateContainer createCandidateContainer(RetailscmUserContext userContext, String name) throws Exception
+	//public CandidateContainer createCandidateContainer(RetailscmUserContext userContext,String name) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfCandidateContainer(name);
+		checkerOf(userContext).checkNameOfCandidateContainer(name);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 
 
 		CandidateContainer candidateContainer=createNewCandidateContainer();	
@@ -199,15 +203,15 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 
 		
 		
-		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
-		userContext.getChecker().checkVersionOfCandidateContainer( candidateContainerVersion);
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).checkVersionOfCandidateContainer( candidateContainerVersion);
 		
 
 		if(CandidateContainer.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfCandidateContainer(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfCandidateContainer(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 	
 		
 	}
@@ -216,7 +220,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	
 	public CandidateContainer clone(RetailscmUserContext userContext, String fromCandidateContainerId) throws Exception{
 		
-		return userContext.getDAOGroup().getCandidateContainerDAO().clone(fromCandidateContainerId, this.allTokens());
+		return candidateContainerDaoOf(userContext).clone(fromCandidateContainerId, this.allTokens());
 	}
 	
 	public CandidateContainer internalSaveCandidateContainer(RetailscmUserContext userContext, CandidateContainer candidateContainer) throws Exception 
@@ -322,7 +326,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String candidateContainerId, int candidateContainerVersion) throws Exception{
 			
-		userContext.getDAOGroup().getCandidateContainerDAO().delete(candidateContainerId, candidateContainerVersion);
+		candidateContainerDaoOf(userContext).delete(candidateContainerId, candidateContainerVersion);
 	}
 	
 	public CandidateContainer forgetByAll(RetailscmUserContext userContext, String candidateContainerId, int candidateContainerVersion) throws Exception {
@@ -331,8 +335,9 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected CandidateContainer forgetByAllInternal(RetailscmUserContext userContext,
 			String candidateContainerId, int candidateContainerVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getCandidateContainerDAO().disconnectFromAll(candidateContainerId, candidateContainerVersion);
+		return candidateContainerDaoOf(userContext).disconnectFromAll(candidateContainerId, candidateContainerVersion);
 	}
+	
 	
 
 	
@@ -349,7 +354,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getCandidateContainerDAO().deleteAll();
+		return candidateContainerDaoOf(userContext).deleteAll();
 	}
 
 
@@ -361,20 +366,16 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 
 	protected void checkParamsForAddingCandidateElement(RetailscmUserContext userContext, String candidateContainerId, String name, String type, String image,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
 
 		
+		checkerOf(userContext).checkNameOfCandidateElement(name);
 		
-		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
-
+		checkerOf(userContext).checkTypeOfCandidateElement(type);
 		
-		userContext.getChecker().checkNameOfCandidateElement(name);
-		
-		userContext.getChecker().checkTypeOfCandidateElement(type);
-		
-		userContext.getChecker().checkImageOfCandidateElement(image);
+		checkerOf(userContext).checkImageOfCandidateElement(image);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 
 	
 	}
@@ -398,14 +399,14 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	}
 	protected void checkParamsForUpdatingCandidateElementProperties(RetailscmUserContext userContext, String candidateContainerId,String id,String name,String type,String image,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
-		userContext.getChecker().checkIdOfCandidateElement(id);
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(id);
 		
-		userContext.getChecker().checkNameOfCandidateElement( name);
-		userContext.getChecker().checkTypeOfCandidateElement( type);
-		userContext.getChecker().checkImageOfCandidateElement( image);
+		checkerOf(userContext).checkNameOfCandidateElement( name);
+		checkerOf(userContext).checkTypeOfCandidateElement( type);
+		checkerOf(userContext).checkImageOfCandidateElement( image);
 
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 		
 	}
 	public  CandidateContainer updateCandidateElementProperties(RetailscmUserContext userContext, String candidateContainerId, String id,String name,String type,String image, String [] tokensExpr) throws Exception
@@ -465,12 +466,12 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingCandidateElementList(RetailscmUserContext userContext, String candidateContainerId, 
 			String candidateElementIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
 		for(String candidateElementIdItem: candidateElementIds){
-			userContext.getChecker().checkIdOfCandidateElement(candidateElementIdItem);
+			checkerOf(userContext).checkIdOfCandidateElement(candidateElementIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 		
 	}
 	public  CandidateContainer removeCandidateElementList(RetailscmUserContext userContext, String candidateContainerId, 
@@ -483,7 +484,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 			synchronized(candidateContainer){ 
 				//Will be good when the candidateContainer loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getCandidateContainerDAO().planToRemoveCandidateElementList(candidateContainer, candidateElementIds, allTokens());
+				candidateContainerDaoOf(userContext).planToRemoveCandidateElementList(candidateContainer, candidateElementIds, allTokens());
 				candidateContainer = saveCandidateContainer(userContext, candidateContainer, tokens().withCandidateElementList().done());
 				deleteRelationListInGraph(userContext, candidateContainer.getCandidateElementList());
 				return present(userContext,candidateContainer, mergedAllTokens(tokensExpr));
@@ -493,10 +494,10 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingCandidateElement(RetailscmUserContext userContext, String candidateContainerId, 
 		String candidateElementId, int candidateElementVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCandidateContainer( candidateContainerId);
-		userContext.getChecker().checkIdOfCandidateElement(candidateElementId);
-		userContext.getChecker().checkVersionOfCandidateElement(candidateElementVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).checkIdOfCandidateContainer( candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(candidateElementId);
+		checkerOf(userContext).checkVersionOfCandidateElement(candidateElementVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 	
 	}
 	public  CandidateContainer removeCandidateElement(RetailscmUserContext userContext, String candidateContainerId, 
@@ -520,10 +521,10 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForCopyingCandidateElement(RetailscmUserContext userContext, String candidateContainerId, 
 		String candidateElementId, int candidateElementVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCandidateContainer( candidateContainerId);
-		userContext.getChecker().checkIdOfCandidateElement(candidateElementId);
-		userContext.getChecker().checkVersionOfCandidateElement(candidateElementVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).checkIdOfCandidateContainer( candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(candidateElementId);
+		checkerOf(userContext).checkVersionOfCandidateElement(candidateElementVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 	
 	}
 	public  CandidateContainer copyCandidateElementFrom(RetailscmUserContext userContext, String candidateContainerId, 
@@ -552,25 +553,25 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		
 
 		
-		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
-		userContext.getChecker().checkIdOfCandidateElement(candidateElementId);
-		userContext.getChecker().checkVersionOfCandidateElement(candidateElementVersion);
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(candidateElementId);
+		checkerOf(userContext).checkVersionOfCandidateElement(candidateElementVersion);
 		
 
 		if(CandidateElement.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfCandidateElement(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfCandidateElement(parseString(newValueExpr));
 		}
 		
 		if(CandidateElement.TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTypeOfCandidateElement(parseString(newValueExpr));
+			checkerOf(userContext).checkTypeOfCandidateElement(parseString(newValueExpr));
 		}
 		
 		if(CandidateElement.IMAGE_PROPERTY.equals(property)){
-			userContext.getChecker().checkImageOfCandidateElement(parseString(newValueExpr));
+			checkerOf(userContext).checkImageOfCandidateElement(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
 	
 	}
 	

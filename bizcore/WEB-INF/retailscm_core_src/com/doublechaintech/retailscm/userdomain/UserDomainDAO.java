@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.userdomain;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.secuser.SecUserDAO;
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteListDAO;
 
 
-public interface UserDomainDAO{
+public interface UserDomainDAO extends BaseDAO{
 
-	
+	public SmartList<UserDomain> loadAll();
 	public UserDomain load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<UserDomain> userDomainList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -59,8 +60,13 @@ public interface UserDomainDAO{
 	public UserDomain planToRemoveSecUserList(UserDomain userDomain, String secUserIds[], Map<String,Object> options)throws Exception;
 
 
+	//disconnect UserDomain with blocking in SecUser
+	public UserDomain planToRemoveSecUserListWithBlocking(UserDomain userDomain, String blockingId, Map<String,Object> options)throws Exception;
+	public int countSecUserListWithBlocking(String userDomainId, String blockingId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<UserDomain> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:UserWhiteList的domain的UserWhiteListList
 	public SmartList<UserWhiteList> loadOurUserWhiteListList(RetailscmUserContext userContext, List<UserDomain> us, Map<String,Object> options) throws Exception;

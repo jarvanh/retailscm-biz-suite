@@ -72,13 +72,6 @@ public class RetailStoreOrderConfirmation extends BaseEntity implements  java.io
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderConfirmation(String who, Date confirmTime)
-	{
-		setWho(who);
-		setConfirmTime(confirmTime);
-
-		this.mRetailStoreOrderList = new SmartList<RetailStoreOrder>();	
-	}
 	
 	//Support for changing the property
 	

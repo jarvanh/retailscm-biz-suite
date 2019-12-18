@@ -75,6 +75,11 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	}
 	*/
 	
+	public SmartList<EmployeeSalarySheet> loadAll() {
+	    return this.loadAll(getEmployeeSalarySheetMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -621,7 +626,7 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  		return prepareEmployeeSalarySheetCreateParameters(employeeSalarySheet);
  	}
  	protected Object[] prepareEmployeeSalarySheetUpdateParameters(EmployeeSalarySheet employeeSalarySheet){
- 		Object[] parameters = new Object[14];
+ 		Object[] parameters = new Object[13];
   	
  		if(employeeSalarySheet.getEmployee() != null){
  			parameters[0] = employeeSalarySheet.getEmployee().getId();
@@ -641,16 +646,15 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  		if(employeeSalarySheet.getPayingOff() != null){
  			parameters[9] = employeeSalarySheet.getPayingOff().getId();
  		}
- 
- 		parameters[10] = employeeSalarySheet.getCurrentStatus();		
- 		parameters[11] = employeeSalarySheet.nextVersion();
- 		parameters[12] = employeeSalarySheet.getId();
- 		parameters[13] = employeeSalarySheet.getVersion();
+ 		
+ 		parameters[10] = employeeSalarySheet.nextVersion();
+ 		parameters[11] = employeeSalarySheet.getId();
+ 		parameters[12] = employeeSalarySheet.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareEmployeeSalarySheetCreateParameters(EmployeeSalarySheet employeeSalarySheet){
-		Object[] parameters = new Object[12];
+		Object[] parameters = new Object[11];
 		String newEmployeeSalarySheetId=getNextId();
 		employeeSalarySheet.setId(newEmployeeSalarySheetId);
 		parameters[0] =  employeeSalarySheet.getId();
@@ -676,8 +680,7 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  			parameters[10] = employeeSalarySheet.getPayingOff().getId();
  		
  		}
- 		
- 		parameters[11] = employeeSalarySheet.getCurrentStatus();		
+ 				
  				
  		return parameters;
  	}
@@ -816,6 +819,10 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	@Override
 	public SmartList<EmployeeSalarySheet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeSalarySheetMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

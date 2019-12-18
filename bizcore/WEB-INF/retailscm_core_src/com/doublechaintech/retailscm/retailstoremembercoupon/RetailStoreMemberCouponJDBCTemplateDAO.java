@@ -53,6 +53,11 @@ public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 	*/
 	
+	public SmartList<RetailStoreMemberCoupon> loadAll() {
+	    return this.loadAll(getRetailStoreMemberCouponMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -569,6 +574,10 @@ public class RetailStoreMemberCouponJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	@Override
 	public SmartList<RetailStoreMemberCoupon> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberCouponMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

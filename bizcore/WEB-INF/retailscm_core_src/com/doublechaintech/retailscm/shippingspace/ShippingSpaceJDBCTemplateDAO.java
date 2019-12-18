@@ -74,6 +74,11 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<ShippingSpace> loadAll() {
+	    return this.loadAll(getShippingSpaceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1008,6 +1013,50 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 		return count;
 	}
 	
+	//disconnect ShippingSpace with packaging in Goods
+	public ShippingSpace planToRemoveGoodsListWithPackaging(ShippingSpace shippingSpace, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.SHIPPING_SPACE_PROPERTY, shippingSpace.getId());
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		SmartList<Goods> externalGoodsList = getGoodsDAO().
+				findGoodsWithKey(key, options);
+		if(externalGoodsList == null){
+			return shippingSpace;
+		}
+		if(externalGoodsList.isEmpty()){
+			return shippingSpace;
+		}
+		
+		for(Goods goodsItem: externalGoodsList){
+			goodsItem.clearPackaging();
+			goodsItem.clearShippingSpace();
+			
+		}
+		
+		
+		SmartList<Goods> goodsList = shippingSpace.getGoodsList();		
+		goodsList.addAllToRemoveList(externalGoodsList);
+		return shippingSpace;
+	}
+	
+	public int countGoodsListWithPackaging(String shippingSpaceId, String packagingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Goods.SHIPPING_SPACE_PROPERTY, shippingSpaceId);
+		key.put(Goods.PACKAGING_PROPERTY, packagingId);
+		
+		int count = getGoodsDAO().countGoodsWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected ShippingSpace saveGoodsList(ShippingSpace shippingSpace, Map<String,Object> options){
@@ -1180,6 +1229,10 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<ShippingSpace> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getShippingSpaceMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

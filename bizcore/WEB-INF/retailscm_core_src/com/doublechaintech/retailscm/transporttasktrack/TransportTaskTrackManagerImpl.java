@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.transporttask.CandidateTransportTask;
 public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager implements TransportTaskTrackManager {
 	
 	private static final String SERVICE_TYPE = "TransportTaskTrack";
+	@Override
+	public TransportTaskTrackDAO daoOf(RetailscmUserContext userContext) {
+		return transportTaskTrackDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
  	
  	public TransportTaskTrack loadTransportTaskTrack(RetailscmUserContext userContext, String transportTaskTrackId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfTransportTaskTrack(transportTaskTrackId);
-		userContext.getChecker().throwExceptionIfHasErrors( TransportTaskTrackManagerException.class);
+ 		checkerOf(userContext).checkIdOfTransportTaskTrack(transportTaskTrackId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TransportTaskTrackManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
  	
  	 public TransportTaskTrack searchTransportTaskTrack(RetailscmUserContext userContext, String transportTaskTrackId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfTransportTaskTrack(transportTaskTrackId);
-		userContext.getChecker().throwExceptionIfHasErrors( TransportTaskTrackManagerException.class);
+ 		checkerOf(userContext).checkIdOfTransportTaskTrack(transportTaskTrackId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TransportTaskTrackManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 		addActions(userContext,transportTaskTrack,tokens);
 		
 		
-		TransportTaskTrack  transportTaskTrackToPresent = userContext.getDAOGroup().getTransportTaskTrackDAO().present(transportTaskTrack, tokens);
+		TransportTaskTrack  transportTaskTrackToPresent = transportTaskTrackDaoOf(userContext).present(transportTaskTrack, tokens);
 		
 		List<BaseEntity> entityListToNaming = transportTaskTrackToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getTransportTaskTrackDAO().alias(entityListToNaming);
+		transportTaskTrackDaoOf(userContext).alias(entityListToNaming);
 		
 		return  transportTaskTrackToPresent;
 		
@@ -123,14 +127,14 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 		
  	}
  	protected TransportTaskTrack saveTransportTaskTrack(RetailscmUserContext userContext, TransportTaskTrack transportTaskTrack, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getTransportTaskTrackDAO().save(transportTaskTrack, tokens);
+ 		return transportTaskTrackDaoOf(userContext).save(transportTaskTrack, tokens);
  	}
  	protected TransportTaskTrack loadTransportTaskTrack(RetailscmUserContext userContext, String transportTaskTrackId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfTransportTaskTrack(transportTaskTrackId);
-		userContext.getChecker().throwExceptionIfHasErrors( TransportTaskTrackManagerException.class);
+		checkerOf(userContext).checkIdOfTransportTaskTrack(transportTaskTrackId);
+		checkerOf(userContext).throwExceptionIfHasErrors( TransportTaskTrackManagerException.class);
 
  
- 		return userContext.getDAOGroup().getTransportTaskTrackDAO().load(transportTaskTrackId, tokens);
+ 		return transportTaskTrackDaoOf(userContext).load(transportTaskTrackId, tokens);
  	}
 
 	
@@ -160,19 +164,19 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
  	
  	
 
-
-	public TransportTaskTrack createTransportTaskTrack(RetailscmUserContext userContext,Date trackTime, BigDecimal latitude, BigDecimal longitude, String movementId) throws Exception
+	public TransportTaskTrack createTransportTaskTrack(RetailscmUserContext userContext, Date trackTime,BigDecimal latitude,BigDecimal longitude,String movementId) throws Exception
+	//public TransportTaskTrack createTransportTaskTrack(RetailscmUserContext userContext,Date trackTime, BigDecimal latitude, BigDecimal longitude, String movementId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkTrackTimeOfTransportTaskTrack(trackTime);
-		userContext.getChecker().checkLatitudeOfTransportTaskTrack(latitude);
-		userContext.getChecker().checkLongitudeOfTransportTaskTrack(longitude);
+		checkerOf(userContext).checkTrackTimeOfTransportTaskTrack(trackTime);
+		checkerOf(userContext).checkLatitudeOfTransportTaskTrack(latitude);
+		checkerOf(userContext).checkLongitudeOfTransportTaskTrack(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTaskTrackManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTaskTrackManagerException.class);
 
 
 		TransportTaskTrack transportTaskTrack=createNewTransportTaskTrack();	
@@ -205,23 +209,23 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 
 		
 		
-		userContext.getChecker().checkIdOfTransportTaskTrack(transportTaskTrackId);
-		userContext.getChecker().checkVersionOfTransportTaskTrack( transportTaskTrackVersion);
+		checkerOf(userContext).checkIdOfTransportTaskTrack(transportTaskTrackId);
+		checkerOf(userContext).checkVersionOfTransportTaskTrack( transportTaskTrackVersion);
 		
 
 		if(TransportTaskTrack.TRACK_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkTrackTimeOfTransportTaskTrack(parseDate(newValueExpr));
+			checkerOf(userContext).checkTrackTimeOfTransportTaskTrack(parseDate(newValueExpr));
 		}
 		if(TransportTaskTrack.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfTransportTaskTrack(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfTransportTaskTrack(parseBigDecimal(newValueExpr));
 		}
 		if(TransportTaskTrack.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfTransportTaskTrack(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfTransportTaskTrack(parseBigDecimal(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(TransportTaskTrackManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(TransportTaskTrackManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 	
 	public TransportTaskTrack clone(RetailscmUserContext userContext, String fromTransportTaskTrackId) throws Exception{
 		
-		return userContext.getDAOGroup().getTransportTaskTrackDAO().clone(fromTransportTaskTrackId, this.allTokens());
+		return transportTaskTrackDaoOf(userContext).clone(fromTransportTaskTrackId, this.allTokens());
 	}
 	
 	public TransportTaskTrack internalSaveTransportTaskTrack(RetailscmUserContext userContext, TransportTaskTrack transportTaskTrack) throws Exception 
@@ -328,9 +332,9 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForTransferingAnotherMovement(RetailscmUserContext userContext, String transportTaskTrackId, String anotherMovementId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfTransportTaskTrack(transportTaskTrackId);
- 		userContext.getChecker().checkIdOfTransportTask(anotherMovementId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(TransportTaskTrackManagerException.class);
+ 		checkerOf(userContext).checkIdOfTransportTaskTrack(transportTaskTrackId);
+ 		checkerOf(userContext).checkIdOfTransportTask(anotherMovementId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(TransportTaskTrackManagerException.class);
  		
  	}
  	public TransportTaskTrack transferToAnotherMovement(RetailscmUserContext userContext, String transportTaskTrackId, String anotherMovementId) throws Exception
@@ -367,7 +371,7 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<TransportTask> candidateList = userContext.getDAOGroup().getTransportTaskDAO().requestCandidateTransportTaskForTransportTaskTrack(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<TransportTask> candidateList = transportTaskDaoOf(userContext).requestCandidateTransportTaskForTransportTaskTrack(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -380,7 +384,7 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
  	protected TransportTask loadTransportTask(RetailscmUserContext userContext, String newMovementId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getTransportTaskDAO().load(newMovementId, options);
+ 		return transportTaskDaoOf(userContext).load(newMovementId, options);
  	}
  	
  	
@@ -394,7 +398,7 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String transportTaskTrackId, int transportTaskTrackVersion) throws Exception{
 			
-		userContext.getDAOGroup().getTransportTaskTrackDAO().delete(transportTaskTrackId, transportTaskTrackVersion);
+		transportTaskTrackDaoOf(userContext).delete(transportTaskTrackId, transportTaskTrackVersion);
 	}
 	
 	public TransportTaskTrack forgetByAll(RetailscmUserContext userContext, String transportTaskTrackId, int transportTaskTrackVersion) throws Exception {
@@ -403,8 +407,9 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 	protected TransportTaskTrack forgetByAllInternal(RetailscmUserContext userContext,
 			String transportTaskTrackId, int transportTaskTrackVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getTransportTaskTrackDAO().disconnectFromAll(transportTaskTrackId, transportTaskTrackVersion);
+		return transportTaskTrackDaoOf(userContext).disconnectFromAll(transportTaskTrackId, transportTaskTrackVersion);
 	}
+	
 	
 
 	
@@ -421,7 +426,7 @@ public class TransportTaskTrackManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getTransportTaskTrackDAO().deleteAll();
+		return transportTaskTrackDaoOf(userContext).deleteAll();
 	}
 
 

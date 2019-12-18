@@ -414,20 +414,6 @@ public class EmployeeQualifierForm extends BaseForm {
 		return lastUpdateTimeFieldOfEmployee("lastUpdateTime","");
 	}
 
-
-	public EmployeeQualifierForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeQualifierForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeQualifierForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
 	
 
 

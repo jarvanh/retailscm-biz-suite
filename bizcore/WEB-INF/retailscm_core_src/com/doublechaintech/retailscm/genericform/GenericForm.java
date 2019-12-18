@@ -81,16 +81,6 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	GenericForm(String title, String description)
-	{
-		setTitle(title);
-		setDescription(description);
-
-		this.mFormMessageList = new SmartList<FormMessage>();
-		this.mFormFieldMessageList = new SmartList<FormFieldMessage>();
-		this.mFormFieldList = new SmartList<FormField>();
-		this.mFormActionList = new SmartList<FormAction>();	
-	}
 	
 	//Support for changing the property
 	

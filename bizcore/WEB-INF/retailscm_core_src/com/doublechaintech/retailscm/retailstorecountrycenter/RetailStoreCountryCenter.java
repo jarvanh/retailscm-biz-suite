@@ -153,42 +153,6 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public 	RetailStoreCountryCenter(String name, String serviceNumber, Date founded, String webSite, String address, String operatedBy, String legalRepresentative, String description)
-	{
-		setName(name);
-		setServiceNumber(serviceNumber);
-		setFounded(founded);
-		setWebSite(webSite);
-		setAddress(address);
-		setOperatedBy(operatedBy);
-		setLegalRepresentative(legalRepresentative);
-		setDescription(description);
-
-		this.mCatalogList = new SmartList<Catalog>();
-		this.mRetailStoreProvinceCenterList = new SmartList<RetailStoreProvinceCenter>();
-		this.mRetailStoreList = new SmartList<RetailStore>();
-		this.mRetailStoreMemberList = new SmartList<RetailStoreMember>();
-		this.mGoodsSupplierList = new SmartList<GoodsSupplier>();
-		this.mSupplyOrderList = new SmartList<SupplyOrder>();
-		this.mRetailStoreOrderList = new SmartList<RetailStoreOrder>();
-		this.mWarehouseList = new SmartList<Warehouse>();
-		this.mTransportFleetList = new SmartList<TransportFleet>();
-		this.mAccountSetList = new SmartList<AccountSet>();
-		this.mLevelOneDepartmentList = new SmartList<LevelOneDepartment>();
-		this.mSkillTypeList = new SmartList<SkillType>();
-		this.mResponsibilityTypeList = new SmartList<ResponsibilityType>();
-		this.mTerminationReasonList = new SmartList<TerminationReason>();
-		this.mTerminationTypeList = new SmartList<TerminationType>();
-		this.mOccupationTypeList = new SmartList<OccupationType>();
-		this.mLeaveTypeList = new SmartList<LeaveType>();
-		this.mSalaryGradeList = new SmartList<SalaryGrade>();
-		this.mInterviewTypeList = new SmartList<InterviewType>();
-		this.mTrainingCourseTypeList = new SmartList<TrainingCourseType>();
-		this.mPublicHolidayList = new SmartList<PublicHoliday>();
-		this.mEmployeeList = new SmartList<Employee>();
-		this.mInstructorList = new SmartList<Instructor>();
-		this.mCompanyTrainingList = new SmartList<CompanyTraining>();	
-	}
 	
 	//Support for changing the property
 	

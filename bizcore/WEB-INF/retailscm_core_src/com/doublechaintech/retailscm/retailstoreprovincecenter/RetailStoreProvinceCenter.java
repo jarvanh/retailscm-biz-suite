@@ -84,17 +84,6 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 		this.changed = true;
 	}
 	
-	public 	RetailStoreProvinceCenter(String name, Date founded, RetailStoreCountryCenter country, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setFounded(founded);
-		setCountry(country);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mProvinceCenterDepartmentList = new SmartList<ProvinceCenterDepartment>();
-		this.mProvinceCenterEmployeeList = new SmartList<ProvinceCenterEmployee>();
-		this.mRetailStoreCityServiceCenterList = new SmartList<RetailStoreCityServiceCenter>();	
-	}
 	
 	//Support for changing the property
 	

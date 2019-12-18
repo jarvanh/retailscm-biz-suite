@@ -28,7 +28,6 @@ public class ConsumerOrderMapper extends BaseRowMapper<ConsumerOrder>{
  		setDelivery(consumerOrder, rs, rowNumber); 		
  		setStore(consumerOrder, rs, rowNumber); 		
  		setLastUpdateTime(consumerOrder, rs, rowNumber); 		
- 		setCurrentStatus(consumerOrder, rs, rowNumber); 		
  		setVersion(consumerOrder, rs, rowNumber);
 
 		return consumerOrder;
@@ -198,18 +197,6 @@ public class ConsumerOrderMapper extends BaseRowMapper<ConsumerOrder>{
 		}
 		
 		consumerOrder.setLastUpdateTime(convertToDateTime(lastUpdateTime));
-	}
-		
-	protected void setCurrentStatus(ConsumerOrder consumerOrder, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(ConsumerOrderTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		consumerOrder.setCurrentStatus(currentStatus);
 	}
 		
 	protected void setVersion(ConsumerOrder consumerOrder, ResultSet rs, int rowNumber) throws SQLException{

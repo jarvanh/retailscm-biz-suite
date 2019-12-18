@@ -74,6 +74,11 @@ public class CatalogJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Cata
 	}
 	*/
 	
+	public SmartList<Catalog> loadAll() {
+	    return this.loadAll(getCatalogMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -528,21 +533,23 @@ public class CatalogJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Cata
  		return prepareCatalogCreateParameters(catalog);
  	}
  	protected Object[] prepareCatalogUpdateParameters(Catalog catalog){
- 		Object[] parameters = new Object[5];
+ 		Object[] parameters = new Object[7];
  
  		parameters[0] = catalog.getName(); 	
  		if(catalog.getOwner() != null){
  			parameters[1] = catalog.getOwner().getId();
  		}
- 		
- 		parameters[2] = catalog.nextVersion();
- 		parameters[3] = catalog.getId();
- 		parameters[4] = catalog.getVersion();
+ 
+ 		parameters[2] = catalog.getSubCount();
+ 		parameters[3] = catalog.getAmount();		
+ 		parameters[4] = catalog.nextVersion();
+ 		parameters[5] = catalog.getId();
+ 		parameters[6] = catalog.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareCatalogCreateParameters(Catalog catalog){
-		Object[] parameters = new Object[3];
+		Object[] parameters = new Object[5];
 		String newCatalogId=getNextId();
 		catalog.setId(newCatalogId);
 		parameters[0] =  catalog.getId();
@@ -552,7 +559,9 @@ public class CatalogJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Cata
  			parameters[2] = catalog.getOwner().getId();
  		
  		}
- 				
+ 		
+ 		parameters[3] = catalog.getSubCount();
+ 		parameters[4] = catalog.getAmount();		
  				
  		return parameters;
  	}
@@ -800,6 +809,10 @@ public class CatalogJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Cata
 	@Override
 	public SmartList<Catalog> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCatalogMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

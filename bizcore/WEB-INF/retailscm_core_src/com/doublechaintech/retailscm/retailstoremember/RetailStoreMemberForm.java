@@ -348,20 +348,6 @@ public class RetailStoreMemberForm extends BaseForm {
 	}
 
 
-	public RetailStoreMemberForm currentStatusFieldForConsumerOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromConsumerOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreMemberForm currentStatusFieldForConsumerOrder(String initValue){
-		return currentStatusFieldForConsumerOrder("currentStatus",initValue);
-	}
-	public RetailStoreMemberForm currentStatusFieldForConsumerOrder(){
-		return currentStatusFieldForConsumerOrder("currentStatus","");
-	}
-
-
 	public RetailStoreMemberForm retailStoreMemberCouponIdFieldForRetailStoreMemberCoupon(String parameterName, String initValue){
 		FormField field =  idFromRetailStoreMemberCoupon(parameterName, initValue);		
 		this.addFormField(field);

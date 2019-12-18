@@ -41,7 +41,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	public static final String SHIPMENT_PROPERTY              = "shipment"          ;
 	public static final String DELIVERY_PROPERTY              = "delivery"          ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String SUPPLY_ORDER_LINE_ITEM_LIST              = "supplyOrderLineItemList";
@@ -80,7 +79,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	protected		SupplyOrderShipment 	mShipment           ;
 	protected		SupplyOrderDelivery 	mDelivery           ;
 	protected		DateTime            	mLastUpdateTime     ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -117,20 +115,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	SupplyOrder(RetailStoreCountryCenter buyer, GoodsSupplier seller, String title, BigDecimal totalAmount, DateTime lastUpdateTime, String currentStatus)
-	{
-		setBuyer(buyer);
-		setSeller(seller);
-		setTitle(title);
-		setTotalAmount(totalAmount);
-		setLastUpdateTime(lastUpdateTime);
-		setCurrentStatus(currentStatus);
-
-		this.mSupplyOrderLineItemList = new SmartList<SupplyOrderLineItem>();
-		this.mSupplyOrderShippingGroupList = new SmartList<SupplyOrderShippingGroup>();
-		this.mSupplyOrderPaymentGroupList = new SmartList<SupplyOrderPaymentGroup>();
-		this.mGoodsList = new SmartList<Goods>();	
-	}
 	
 	//Support for changing the property
 	
@@ -232,9 +216,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
-		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
 		}
 		if(SUPPLY_ORDER_LINE_ITEM_LIST.equals(property)){
 			List<BaseEntity> list = getSupplyOrderLineItemList().stream().map(item->item).collect(Collectors.toList());
@@ -492,22 +473,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	}
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
-	}
-	
-	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public SupplyOrder updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
 	
 	
@@ -1009,7 +974,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, SHIPMENT_PROPERTY, getShipment());
 		appendKeyValuePair(result, DELIVERY_PROPERTY, getDelivery());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, SUPPLY_ORDER_LINE_ITEM_LIST, getSupplyOrderLineItemList());
 		if(!getSupplyOrderLineItemList().isEmpty()){
@@ -1057,7 +1021,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 			dest.setShipment(getShipment());
 			dest.setDelivery(getDelivery());
 			dest.setLastUpdateTime(getLastUpdateTime());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 			dest.setSupplyOrderLineItemList(getSupplyOrderLineItemList());
 			dest.setSupplyOrderShippingGroupList(getSupplyOrderShippingGroupList());
@@ -1088,7 +1051,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 			dest.mergeShipment(getShipment());
 			dest.mergeDelivery(getDelivery());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 			dest.mergeSupplyOrderLineItemList(getSupplyOrderLineItemList());
 			dest.mergeSupplyOrderShippingGroupList(getSupplyOrderShippingGroupList());
@@ -1112,7 +1074,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 			dest.mergeTitle(getTitle());
 			dest.mergeTotalAmount(getTotalAmount());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -1151,7 +1112,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
  			stringBuilder.append("\tdelivery='SupplyOrderDelivery("+getDelivery().getId()+")';");
  		}
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

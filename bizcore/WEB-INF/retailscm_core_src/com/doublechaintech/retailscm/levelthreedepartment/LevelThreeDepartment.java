@@ -78,15 +78,6 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 	}
 	
-	public 	LevelThreeDepartment(LevelTwoDepartment belongsTo, String name, String description, Date founded)
-	{
-		setBelongsTo(belongsTo);
-		setName(name);
-		setDescription(description);
-		setFounded(founded);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

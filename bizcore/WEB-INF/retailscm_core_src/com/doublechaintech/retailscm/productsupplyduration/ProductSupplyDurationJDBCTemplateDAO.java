@@ -53,6 +53,11 @@ public class ProductSupplyDurationJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	}
 	*/
 	
+	public SmartList<ProductSupplyDuration> loadAll() {
+	    return this.loadAll(getProductSupplyDurationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -553,6 +558,10 @@ public class ProductSupplyDurationJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	@Override
 	public SmartList<ProductSupplyDuration> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getProductSupplyDurationMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

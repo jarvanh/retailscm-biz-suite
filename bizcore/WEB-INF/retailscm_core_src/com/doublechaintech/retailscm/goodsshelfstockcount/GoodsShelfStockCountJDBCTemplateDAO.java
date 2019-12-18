@@ -74,6 +74,11 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmBaseDAOImpl im
 	}
 	*/
 	
+	public SmartList<GoodsShelfStockCount> loadAll() {
+	    return this.loadAll(getGoodsShelfStockCountMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -804,6 +809,10 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmBaseDAOImpl im
 	@Override
 	public SmartList<GoodsShelfStockCount> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsShelfStockCountMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

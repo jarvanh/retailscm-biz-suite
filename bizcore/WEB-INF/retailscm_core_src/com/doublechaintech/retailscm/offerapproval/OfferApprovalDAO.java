@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.offerapproval;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface OfferApprovalDAO{
+public interface OfferApprovalDAO extends BaseDAO{
 
-	
+	public SmartList<OfferApproval> loadAll();
 	public OfferApproval load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<OfferApproval> offerApprovalList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -70,8 +71,33 @@ public interface OfferApprovalDAO{
 	public OfferApproval planToRemoveEmployeeListWithCurrentSalaryGrade(OfferApproval offerApproval, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String offerApprovalId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	
+	//disconnect OfferApproval with job_application in Employee
+	public OfferApproval planToRemoveEmployeeListWithJobApplication(OfferApproval offerApproval, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String offerApprovalId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferApproval with profession_interview in Employee
+	public OfferApproval planToRemoveEmployeeListWithProfessionInterview(OfferApproval offerApproval, String professionInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithProfessionInterview(String offerApprovalId, String professionInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferApproval with hr_interview in Employee
+	public OfferApproval planToRemoveEmployeeListWithHrInterview(OfferApproval offerApproval, String hrInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithHrInterview(String offerApprovalId, String hrInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferApproval with offer_acceptance in Employee
+	public OfferApproval planToRemoveEmployeeListWithOfferAcceptance(OfferApproval offerApproval, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferAcceptance(String offerApprovalId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferApproval with employee_boarding in Employee
+	public OfferApproval planToRemoveEmployeeListWithEmployeeBoarding(OfferApproval offerApproval, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String offerApprovalId, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferApproval with termination in Employee
+	public OfferApproval planToRemoveEmployeeListWithTermination(OfferApproval offerApproval, String terminationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithTermination(String offerApprovalId, String terminationId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<OfferApproval> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:Employee的offerApproval的EmployeeList
 	public SmartList<Employee> loadOurEmployeeList(RetailscmUserContext userContext, List<OfferApproval> us, Map<String,Object> options) throws Exception;

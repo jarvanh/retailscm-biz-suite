@@ -74,6 +74,11 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<AccountingSubject> loadAll() {
+	    return this.loadAll(getAccountingSubjectMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -850,6 +855,10 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public SmartList<AccountingSubject> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingSubjectMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

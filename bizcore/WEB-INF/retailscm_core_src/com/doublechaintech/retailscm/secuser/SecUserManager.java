@@ -6,9 +6,10 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface SecUserManager{
+public interface SecUserManager extends BaseManager{
 
 		
 	
@@ -27,16 +28,15 @@ public interface SecUserManager{
 
 	 
 
-	public SecUser createSecUser(RetailscmUserContext userContext, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId) throws Exception;	
+	public SecUser createSecUser(RetailscmUserContext userContext, String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String domainId,String blockingId) throws Exception;	
 	public SecUser updateSecUser(RetailscmUserContext userContext,String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public SecUser loadSecUser(RetailscmUserContext userContext, String secUserId, String [] tokensExpr) throws Exception;
 	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser) throws Exception;
 	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser,Map<String,Object>option) throws Exception;
 	
 	public SecUser transferToAnotherDomain(RetailscmUserContext userContext, String secUserId, String anotherDomainId)  throws Exception;
- 	public SecUser block(RetailscmUserContext userContext, String secUserId, String who, String comments
-)  throws Exception;
-
+ 	public SecUser transferToAnotherBlocking(RetailscmUserContext userContext, String secUserId, String anotherBlockingId)  throws Exception;
+ 
 
 	public void delete(RetailscmUserContext userContext, String secUserId, int version) throws Exception;
 	public int deleteAll(RetailscmUserContext userContext, String secureCode ) throws Exception;

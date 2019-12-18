@@ -71,13 +71,6 @@ public class View extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	View(String who, String assessment, Date interviewTime)
-	{
-		setWho(who);
-		setAssessment(assessment);
-		setInterviewTime(interviewTime);
-	
-	}
 	
 	//Support for changing the property
 	

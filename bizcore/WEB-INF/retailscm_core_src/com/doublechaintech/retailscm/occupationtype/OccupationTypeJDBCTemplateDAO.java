@@ -74,6 +74,11 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<OccupationType> loadAll() {
+	    return this.loadAll(getOccupationTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -808,6 +813,314 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 		return count;
 	}
 	
+	//disconnect OccupationType with job_application in Employee
+	public OccupationType planToRemoveEmployeeListWithJobApplication(OccupationType occupationType, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationType.getId());
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return occupationType;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return occupationType;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearJobApplication();
+			employeeItem.clearOccupation();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = occupationType.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return occupationType;
+	}
+	
+	public int countEmployeeListWithJobApplication(String occupationTypeId, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationTypeId);
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OccupationType with profession_interview in Employee
+	public OccupationType planToRemoveEmployeeListWithProfessionInterview(OccupationType occupationType, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationType.getId());
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return occupationType;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return occupationType;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearProfessionInterview();
+			employeeItem.clearOccupation();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = occupationType.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return occupationType;
+	}
+	
+	public int countEmployeeListWithProfessionInterview(String occupationTypeId, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationTypeId);
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OccupationType with hr_interview in Employee
+	public OccupationType planToRemoveEmployeeListWithHrInterview(OccupationType occupationType, String hrInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationType.getId());
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return occupationType;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return occupationType;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearHrInterview();
+			employeeItem.clearOccupation();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = occupationType.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return occupationType;
+	}
+	
+	public int countEmployeeListWithHrInterview(String occupationTypeId, String hrInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationTypeId);
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OccupationType with offer_approval in Employee
+	public OccupationType planToRemoveEmployeeListWithOfferApproval(OccupationType occupationType, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationType.getId());
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return occupationType;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return occupationType;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOfferApproval();
+			employeeItem.clearOccupation();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = occupationType.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return occupationType;
+	}
+	
+	public int countEmployeeListWithOfferApproval(String occupationTypeId, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationTypeId);
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OccupationType with offer_acceptance in Employee
+	public OccupationType planToRemoveEmployeeListWithOfferAcceptance(OccupationType occupationType, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationType.getId());
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return occupationType;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return occupationType;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOfferAcceptance();
+			employeeItem.clearOccupation();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = occupationType.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return occupationType;
+	}
+	
+	public int countEmployeeListWithOfferAcceptance(String occupationTypeId, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationTypeId);
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OccupationType with employee_boarding in Employee
+	public OccupationType planToRemoveEmployeeListWithEmployeeBoarding(OccupationType occupationType, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationType.getId());
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return occupationType;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return occupationType;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearEmployeeBoarding();
+			employeeItem.clearOccupation();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = occupationType.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return occupationType;
+	}
+	
+	public int countEmployeeListWithEmployeeBoarding(String occupationTypeId, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationTypeId);
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OccupationType with termination in Employee
+	public OccupationType planToRemoveEmployeeListWithTermination(OccupationType occupationType, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationType.getId());
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return occupationType;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return occupationType;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearTermination();
+			employeeItem.clearOccupation();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = occupationType.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return occupationType;
+	}
+	
+	public int countEmployeeListWithTermination(String occupationTypeId, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.OCCUPATION_PROPERTY, occupationTypeId);
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected OccupationType saveEmployeeList(OccupationType occupationType, Map<String,Object> options){
@@ -980,6 +1293,10 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	@Override
 	public SmartList<OccupationType> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getOccupationTypeMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

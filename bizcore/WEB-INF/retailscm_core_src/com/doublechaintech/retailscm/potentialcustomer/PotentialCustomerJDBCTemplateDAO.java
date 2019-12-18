@@ -127,6 +127,11 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<PotentialCustomer> loadAll() {
+	    return this.loadAll(getPotentialCustomerMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1585,6 +1590,10 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public SmartList<PotentialCustomer> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPotentialCustomerMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -53,6 +53,11 @@ public class MemberWishlistProductJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	}
 	*/
 	
+	public SmartList<MemberWishlistProduct> loadAll() {
+	    return this.loadAll(getMemberWishlistProductMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -549,6 +554,10 @@ public class MemberWishlistProductJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	@Override
 	public SmartList<MemberWishlistProduct> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getMemberWishlistProductMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

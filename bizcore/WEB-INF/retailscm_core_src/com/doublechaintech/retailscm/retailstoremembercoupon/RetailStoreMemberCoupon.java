@@ -75,14 +75,6 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-	public 	RetailStoreMemberCoupon(String name, RetailStoreMember owner, String number, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setOwner(owner);
-		setNumber(number);
-		setLastUpdateTime(lastUpdateTime);
-	
-	}
 	
 	//Support for changing the property
 	

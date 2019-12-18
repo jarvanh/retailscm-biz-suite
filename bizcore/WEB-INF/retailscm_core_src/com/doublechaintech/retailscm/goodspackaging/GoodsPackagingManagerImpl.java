@@ -42,6 +42,10 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager implements GoodsPackagingManager {
 	
 	private static final String SERVICE_TYPE = "GoodsPackaging";
+	@Override
+	public GoodsPackagingDAO daoOf(RetailscmUserContext userContext) {
+		return goodsPackagingDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -75,8 +79,8 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	public GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String goodsPackagingId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-		userContext.getChecker().throwExceptionIfHasErrors( GoodsPackagingManagerException.class);
+ 		checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GoodsPackagingManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -89,8 +93,8 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	 public GoodsPackaging searchGoodsPackaging(RetailscmUserContext userContext, String goodsPackagingId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-		userContext.getChecker().throwExceptionIfHasErrors( GoodsPackagingManagerException.class);
+ 		checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GoodsPackagingManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -108,10 +112,10 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 		addActions(userContext,goodsPackaging,tokens);
 		
 		
-		GoodsPackaging  goodsPackagingToPresent = userContext.getDAOGroup().getGoodsPackagingDAO().present(goodsPackaging, tokens);
+		GoodsPackaging  goodsPackagingToPresent = goodsPackagingDaoOf(userContext).present(goodsPackaging, tokens);
 		
 		List<BaseEntity> entityListToNaming = goodsPackagingToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getGoodsPackagingDAO().alias(entityListToNaming);
+		goodsPackagingDaoOf(userContext).alias(entityListToNaming);
 		
 		return  goodsPackagingToPresent;
 		
@@ -132,14 +136,14 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 		
  	}
  	protected GoodsPackaging saveGoodsPackaging(RetailscmUserContext userContext, GoodsPackaging goodsPackaging, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getGoodsPackagingDAO().save(goodsPackaging, tokens);
+ 		return goodsPackagingDaoOf(userContext).save(goodsPackaging, tokens);
  	}
  	protected GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String goodsPackagingId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-		userContext.getChecker().throwExceptionIfHasErrors( GoodsPackagingManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GoodsPackagingManagerException.class);
 
  
- 		return userContext.getDAOGroup().getGoodsPackagingDAO().load(goodsPackagingId, tokens);
+ 		return goodsPackagingDaoOf(userContext).load(goodsPackagingId, tokens);
  	}
 
 	
@@ -172,20 +176,20 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	
 
-
-	public GoodsPackaging createGoodsPackaging(RetailscmUserContext userContext,String packageName, String rfid, Date packageTime, String description) throws Exception
+	public GoodsPackaging createGoodsPackaging(RetailscmUserContext userContext, String packageName,String rfid,Date packageTime,String description) throws Exception
+	//public GoodsPackaging createGoodsPackaging(RetailscmUserContext userContext,String packageName, String rfid, Date packageTime, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkPackageNameOfGoodsPackaging(packageName);
-		userContext.getChecker().checkRfidOfGoodsPackaging(rfid);
-		userContext.getChecker().checkPackageTimeOfGoodsPackaging(packageTime);
-		userContext.getChecker().checkDescriptionOfGoodsPackaging(description);
+		checkerOf(userContext).checkPackageNameOfGoodsPackaging(packageName);
+		checkerOf(userContext).checkRfidOfGoodsPackaging(rfid);
+		checkerOf(userContext).checkPackageTimeOfGoodsPackaging(packageTime);
+		checkerOf(userContext).checkDescriptionOfGoodsPackaging(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 
 
 		GoodsPackaging goodsPackaging=createNewGoodsPackaging();	
@@ -214,24 +218,24 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 
 		
 		
-		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-		userContext.getChecker().checkVersionOfGoodsPackaging( goodsPackagingVersion);
+		checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
+		checkerOf(userContext).checkVersionOfGoodsPackaging( goodsPackagingVersion);
 		
 
 		if(GoodsPackaging.PACKAGE_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkPackageNameOfGoodsPackaging(parseString(newValueExpr));
+			checkerOf(userContext).checkPackageNameOfGoodsPackaging(parseString(newValueExpr));
 		}
 		if(GoodsPackaging.RFID_PROPERTY.equals(property)){
-			userContext.getChecker().checkRfidOfGoodsPackaging(parseString(newValueExpr));
+			checkerOf(userContext).checkRfidOfGoodsPackaging(parseString(newValueExpr));
 		}
 		if(GoodsPackaging.PACKAGE_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkPackageTimeOfGoodsPackaging(parseDate(newValueExpr));
+			checkerOf(userContext).checkPackageTimeOfGoodsPackaging(parseDate(newValueExpr));
 		}
 		if(GoodsPackaging.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfGoodsPackaging(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfGoodsPackaging(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 	
 		
 	}
@@ -240,7 +244,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	public GoodsPackaging clone(RetailscmUserContext userContext, String fromGoodsPackagingId) throws Exception{
 		
-		return userContext.getDAOGroup().getGoodsPackagingDAO().clone(fromGoodsPackagingId, this.allTokens());
+		return goodsPackagingDaoOf(userContext).clone(fromGoodsPackagingId, this.allTokens());
 	}
 	
 	public GoodsPackaging internalSaveGoodsPackaging(RetailscmUserContext userContext, GoodsPackaging goodsPackaging) throws Exception 
@@ -346,7 +350,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String goodsPackagingId, int goodsPackagingVersion) throws Exception{
 			
-		userContext.getDAOGroup().getGoodsPackagingDAO().delete(goodsPackagingId, goodsPackagingVersion);
+		goodsPackagingDaoOf(userContext).delete(goodsPackagingId, goodsPackagingVersion);
 	}
 	
 	public GoodsPackaging forgetByAll(RetailscmUserContext userContext, String goodsPackagingId, int goodsPackagingVersion) throws Exception {
@@ -355,8 +359,9 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	protected GoodsPackaging forgetByAllInternal(RetailscmUserContext userContext,
 			String goodsPackagingId, int goodsPackagingVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getGoodsPackagingDAO().disconnectFromAll(goodsPackagingId, goodsPackagingVersion);
+		return goodsPackagingDaoOf(userContext).disconnectFromAll(goodsPackagingId, goodsPackagingVersion);
 	}
+	
 	
 
 	
@@ -373,7 +378,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getGoodsPackagingDAO().deleteAll();
+		return goodsPackagingDaoOf(userContext).deleteAll();
 	}
 
 
@@ -389,7 +394,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithSku(goodsPackaging, skuId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithSku(goodsPackaging, skuId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -407,7 +412,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithReceivingSpace(goodsPackaging, receivingSpaceId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithReceivingSpace(goodsPackaging, receivingSpaceId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -425,7 +430,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithGoodsAllocation(goodsPackaging, goodsAllocationId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithGoodsAllocation(goodsPackaging, goodsAllocationId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -443,7 +448,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithSmartPallet(goodsPackaging, smartPalletId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithSmartPallet(goodsPackaging, smartPalletId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -461,7 +466,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithShippingSpace(goodsPackaging, shippingSpaceId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithShippingSpace(goodsPackaging, shippingSpaceId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -479,7 +484,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithTransportTask(goodsPackaging, transportTaskId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithTransportTask(goodsPackaging, transportTaskId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -497,7 +502,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithRetailStore(goodsPackaging, retailStoreId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithRetailStore(goodsPackaging, retailStoreId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -515,7 +520,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithBizOrder(goodsPackaging, bizOrderId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithBizOrder(goodsPackaging, bizOrderId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -533,7 +538,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsListWithRetailStoreOrder(goodsPackaging, retailStoreOrderId, this.emptyOptions());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsListWithRetailStoreOrder(goodsPackaging, retailStoreOrderId, this.emptyOptions());
 
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				return goodsPackaging;
@@ -547,42 +552,38 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 
 	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String goodsPackagingId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
 
 		
+		checkerOf(userContext).checkNameOfGoods(name);
 		
-		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-
+		checkerOf(userContext).checkRfidOfGoods(rfid);
 		
-		userContext.getChecker().checkNameOfGoods(name);
+		checkerOf(userContext).checkUomOfGoods(uom);
 		
-		userContext.getChecker().checkRfidOfGoods(rfid);
+		checkerOf(userContext).checkMaxPackageOfGoods(maxPackage);
 		
-		userContext.getChecker().checkUomOfGoods(uom);
+		checkerOf(userContext).checkExpireTimeOfGoods(expireTime);
 		
-		userContext.getChecker().checkMaxPackageOfGoods(maxPackage);
+		checkerOf(userContext).checkSkuIdOfGoods(skuId);
 		
-		userContext.getChecker().checkExpireTimeOfGoods(expireTime);
+		checkerOf(userContext).checkReceivingSpaceIdOfGoods(receivingSpaceId);
 		
-		userContext.getChecker().checkSkuIdOfGoods(skuId);
+		checkerOf(userContext).checkGoodsAllocationIdOfGoods(goodsAllocationId);
 		
-		userContext.getChecker().checkReceivingSpaceIdOfGoods(receivingSpaceId);
+		checkerOf(userContext).checkSmartPalletIdOfGoods(smartPalletId);
 		
-		userContext.getChecker().checkGoodsAllocationIdOfGoods(goodsAllocationId);
+		checkerOf(userContext).checkShippingSpaceIdOfGoods(shippingSpaceId);
 		
-		userContext.getChecker().checkSmartPalletIdOfGoods(smartPalletId);
+		checkerOf(userContext).checkTransportTaskIdOfGoods(transportTaskId);
 		
-		userContext.getChecker().checkShippingSpaceIdOfGoods(shippingSpaceId);
+		checkerOf(userContext).checkRetailStoreIdOfGoods(retailStoreId);
 		
-		userContext.getChecker().checkTransportTaskIdOfGoods(transportTaskId);
+		checkerOf(userContext).checkBizOrderIdOfGoods(bizOrderId);
 		
-		userContext.getChecker().checkRetailStoreIdOfGoods(retailStoreId);
-		
-		userContext.getChecker().checkBizOrderIdOfGoods(bizOrderId);
-		
-		userContext.getChecker().checkRetailStoreOrderIdOfGoods(retailStoreOrderId);
+		checkerOf(userContext).checkRetailStoreOrderIdOfGoods(retailStoreOrderId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 
 	
 	}
@@ -606,16 +607,16 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	}
 	protected void checkParamsForUpdatingGoodsProperties(RetailscmUserContext userContext, String goodsPackagingId,String id,String name,String rfid,String uom,int maxPackage,Date expireTime,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-		userContext.getChecker().checkIdOfGoods(id);
+		checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
+		checkerOf(userContext).checkIdOfGoods(id);
 		
-		userContext.getChecker().checkNameOfGoods( name);
-		userContext.getChecker().checkRfidOfGoods( rfid);
-		userContext.getChecker().checkUomOfGoods( uom);
-		userContext.getChecker().checkMaxPackageOfGoods( maxPackage);
-		userContext.getChecker().checkExpireTimeOfGoods( expireTime);
+		checkerOf(userContext).checkNameOfGoods( name);
+		checkerOf(userContext).checkRfidOfGoods( rfid);
+		checkerOf(userContext).checkUomOfGoods( uom);
+		checkerOf(userContext).checkMaxPackageOfGoods( maxPackage);
+		checkerOf(userContext).checkExpireTimeOfGoods( expireTime);
 
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 		
 	}
 	public  GoodsPackaging updateGoodsProperties(RetailscmUserContext userContext, String goodsPackagingId, String id,String name,String rfid,String uom,int maxPackage,Date expireTime, String [] tokensExpr) throws Exception
@@ -686,8 +687,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 		goods.setBizOrder(bizOrder);		
 		RetailStoreOrder  retailStoreOrder = new RetailStoreOrder();
 		retailStoreOrder.setId(retailStoreOrderId);		
-		goods.setRetailStoreOrder(retailStoreOrder);		
-		goods.setCurrentStatus("INIT");
+		goods.setRetailStoreOrder(retailStoreOrder);
 	
 		
 		return goods;
@@ -707,12 +707,12 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String goodsPackagingId, 
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
+		checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
 		for(String goodsIdItem: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsIdItem);
+			checkerOf(userContext).checkIdOfGoods(goodsIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 		
 	}
 	public  GoodsPackaging removeGoodsList(RetailscmUserContext userContext, String goodsPackagingId, 
@@ -725,7 +725,7 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 			synchronized(goodsPackaging){ 
 				//Will be good when the goodsPackaging loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getGoodsPackagingDAO().planToRemoveGoodsList(goodsPackaging, goodsIds, allTokens());
+				goodsPackagingDaoOf(userContext).planToRemoveGoodsList(goodsPackaging, goodsIds, allTokens());
 				goodsPackaging = saveGoodsPackaging(userContext, goodsPackaging, tokens().withGoodsList().done());
 				deleteRelationListInGraph(userContext, goodsPackaging.getGoodsList());
 				return present(userContext,goodsPackaging, mergedAllTokens(tokensExpr));
@@ -735,10 +735,10 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String goodsPackagingId, 
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGoodsPackaging( goodsPackagingId);
-		userContext.getChecker().checkIdOfGoods(goodsId);
-		userContext.getChecker().checkVersionOfGoods(goodsVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsPackaging( goodsPackagingId);
+		checkerOf(userContext).checkIdOfGoods(goodsId);
+		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 	
 	}
 	public  GoodsPackaging removeGoods(RetailscmUserContext userContext, String goodsPackagingId, 
@@ -762,10 +762,10 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String goodsPackagingId, 
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGoodsPackaging( goodsPackagingId);
-		userContext.getChecker().checkIdOfGoods(goodsId);
-		userContext.getChecker().checkVersionOfGoods(goodsVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsPackaging( goodsPackagingId);
+		checkerOf(userContext).checkIdOfGoods(goodsId);
+		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 	
 	}
 	public  GoodsPackaging copyGoodsFrom(RetailscmUserContext userContext, String goodsPackagingId, 
@@ -794,33 +794,33 @@ public class GoodsPackagingManagerImpl extends CustomRetailscmCheckerManager imp
 		
 
 		
-		userContext.getChecker().checkIdOfGoodsPackaging(goodsPackagingId);
-		userContext.getChecker().checkIdOfGoods(goodsId);
-		userContext.getChecker().checkVersionOfGoods(goodsVersion);
+		checkerOf(userContext).checkIdOfGoodsPackaging(goodsPackagingId);
+		checkerOf(userContext).checkIdOfGoods(goodsId);
+		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		
 
 		if(Goods.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfGoods(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfGoods(parseString(newValueExpr));
 		}
 		
 		if(Goods.RFID_PROPERTY.equals(property)){
-			userContext.getChecker().checkRfidOfGoods(parseString(newValueExpr));
+			checkerOf(userContext).checkRfidOfGoods(parseString(newValueExpr));
 		}
 		
 		if(Goods.UOM_PROPERTY.equals(property)){
-			userContext.getChecker().checkUomOfGoods(parseString(newValueExpr));
+			checkerOf(userContext).checkUomOfGoods(parseString(newValueExpr));
 		}
 		
 		if(Goods.MAX_PACKAGE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMaxPackageOfGoods(parseInt(newValueExpr));
+			checkerOf(userContext).checkMaxPackageOfGoods(parseInt(newValueExpr));
 		}
 		
 		if(Goods.EXPIRE_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkExpireTimeOfGoods(parseDate(newValueExpr));
+			checkerOf(userContext).checkExpireTimeOfGoods(parseDate(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsPackagingManagerException.class);
 	
 	}
 	

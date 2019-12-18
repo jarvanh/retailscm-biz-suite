@@ -39,6 +39,10 @@ import com.doublechaintech.retailscm.potentialcustomercontactperson.PotentialCus
 public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implements CityPartnerManager {
 	
 	private static final String SERVICE_TYPE = "CityPartner";
+	@Override
+	public CityPartnerDAO daoOf(RetailscmUserContext userContext) {
+		return cityPartnerDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -72,8 +76,8 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	public CityPartner loadCityPartner(RetailscmUserContext userContext, String cityPartnerId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().throwExceptionIfHasErrors( CityPartnerManagerException.class);
+ 		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CityPartnerManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -86,8 +90,8 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	 public CityPartner searchCityPartner(RetailscmUserContext userContext, String cityPartnerId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().throwExceptionIfHasErrors( CityPartnerManagerException.class);
+ 		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CityPartnerManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -105,10 +109,10 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 		addActions(userContext,cityPartner,tokens);
 		
 		
-		CityPartner  cityPartnerToPresent = userContext.getDAOGroup().getCityPartnerDAO().present(cityPartner, tokens);
+		CityPartner  cityPartnerToPresent = cityPartnerDaoOf(userContext).present(cityPartner, tokens);
 		
 		List<BaseEntity> entityListToNaming = cityPartnerToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getCityPartnerDAO().alias(entityListToNaming);
+		cityPartnerDaoOf(userContext).alias(entityListToNaming);
 		
 		return  cityPartnerToPresent;
 		
@@ -129,14 +133,14 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 		
  	}
  	protected CityPartner saveCityPartner(RetailscmUserContext userContext, CityPartner cityPartner, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getCityPartnerDAO().save(cityPartner, tokens);
+ 		return cityPartnerDaoOf(userContext).save(cityPartner, tokens);
  	}
  	protected CityPartner loadCityPartner(RetailscmUserContext userContext, String cityPartnerId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().throwExceptionIfHasErrors( CityPartnerManagerException.class);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CityPartnerManagerException.class);
 
  
- 		return userContext.getDAOGroup().getCityPartnerDAO().load(cityPartnerId, tokens);
+ 		return cityPartnerDaoOf(userContext).load(cityPartnerId, tokens);
  	}
 
 	
@@ -174,19 +178,19 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-
-	public CityPartner createCityPartner(RetailscmUserContext userContext,String name, String mobile, String cityServiceCenterId, String description) throws Exception
+	public CityPartner createCityPartner(RetailscmUserContext userContext, String name,String mobile,String cityServiceCenterId,String description) throws Exception
+	//public CityPartner createCityPartner(RetailscmUserContext userContext,String name, String mobile, String cityServiceCenterId, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfCityPartner(name);
-		userContext.getChecker().checkMobileOfCityPartner(mobile);
-		userContext.getChecker().checkDescriptionOfCityPartner(description);
+		checkerOf(userContext).checkNameOfCityPartner(name);
+		checkerOf(userContext).checkMobileOfCityPartner(mobile);
+		checkerOf(userContext).checkDescriptionOfCityPartner(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 
 
 		CityPartner cityPartner=createNewCityPartner();	
@@ -220,23 +224,23 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 
 		
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().checkVersionOfCityPartner( cityPartnerVersion);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).checkVersionOfCityPartner( cityPartnerVersion);
 		
 
 		if(CityPartner.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfCityPartner(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfCityPartner(parseString(newValueExpr));
 		}
 		if(CityPartner.MOBILE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMobileOfCityPartner(parseString(newValueExpr));
+			checkerOf(userContext).checkMobileOfCityPartner(parseString(newValueExpr));
 		}		
 
 		
 		if(CityPartner.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfCityPartner(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfCityPartner(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 	
 		
 	}
@@ -245,7 +249,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	public CityPartner clone(RetailscmUserContext userContext, String fromCityPartnerId) throws Exception{
 		
-		return userContext.getDAOGroup().getCityPartnerDAO().clone(fromCityPartnerId, this.allTokens());
+		return cityPartnerDaoOf(userContext).clone(fromCityPartnerId, this.allTokens());
 	}
 	
 	public CityPartner internalSaveCityPartner(RetailscmUserContext userContext, CityPartner cityPartner) throws Exception 
@@ -345,9 +349,9 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForTransferingAnotherCityServiceCenter(RetailscmUserContext userContext, String cityPartnerId, String anotherCityServiceCenterId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
- 		userContext.getChecker().checkIdOfRetailStoreCityServiceCenter(anotherCityServiceCenterId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+ 		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCityServiceCenter(anotherCityServiceCenterId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
  		
  	}
  	public CityPartner transferToAnotherCityServiceCenter(RetailscmUserContext userContext, String cityPartnerId, String anotherCityServiceCenterId) throws Exception
@@ -384,7 +388,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCityServiceCenter> candidateList = userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().requestCandidateRetailStoreCityServiceCenterForCityPartner(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCityServiceCenter> candidateList = retailStoreCityServiceCenterDaoOf(userContext).requestCandidateRetailStoreCityServiceCenterForCityPartner(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -397,7 +401,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
  	protected RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String newCityServiceCenterId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCityServiceCenterDAO().load(newCityServiceCenterId, options);
+ 		return retailStoreCityServiceCenterDaoOf(userContext).load(newCityServiceCenterId, options);
  	}
  	
  	
@@ -411,7 +415,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String cityPartnerId, int cityPartnerVersion) throws Exception{
 			
-		userContext.getDAOGroup().getCityPartnerDAO().delete(cityPartnerId, cityPartnerVersion);
+		cityPartnerDaoOf(userContext).delete(cityPartnerId, cityPartnerVersion);
 	}
 	
 	public CityPartner forgetByAll(RetailscmUserContext userContext, String cityPartnerId, int cityPartnerVersion) throws Exception {
@@ -420,8 +424,9 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected CityPartner forgetByAllInternal(RetailscmUserContext userContext,
 			String cityPartnerId, int cityPartnerVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getCityPartnerDAO().disconnectFromAll(cityPartnerId, cityPartnerVersion);
+		return cityPartnerDaoOf(userContext).disconnectFromAll(cityPartnerId, cityPartnerVersion);
 	}
+	
 	
 
 	
@@ -438,7 +443,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getCityPartnerDAO().deleteAll();
+		return cityPartnerDaoOf(userContext).deleteAll();
 	}
 
 
@@ -454,7 +459,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getCityPartnerDAO().planToRemovePotentialCustomerListWithCityServiceCenter(cityPartner, cityServiceCenterId, this.emptyOptions());
+				cityPartnerDaoOf(userContext).planToRemovePotentialCustomerListWithCityServiceCenter(cityPartner, cityServiceCenterId, this.emptyOptions());
 
 				cityPartner = saveCityPartner(userContext, cityPartner, tokens().withPotentialCustomerList().done());
 				return cityPartner;
@@ -472,7 +477,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getCityPartnerDAO().planToRemovePotentialCustomerContactListWithPotentialCustomer(cityPartner, potentialCustomerId, this.emptyOptions());
+				cityPartnerDaoOf(userContext).planToRemovePotentialCustomerContactListWithPotentialCustomer(cityPartner, potentialCustomerId, this.emptyOptions());
 
 				cityPartner = saveCityPartner(userContext, cityPartner, tokens().withPotentialCustomerContactList().done());
 				return cityPartner;
@@ -490,7 +495,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getCityPartnerDAO().planToRemovePotentialCustomerContactListWithContactTo(cityPartner, contactToId, this.emptyOptions());
+				cityPartnerDaoOf(userContext).planToRemovePotentialCustomerContactListWithContactTo(cityPartner, contactToId, this.emptyOptions());
 
 				cityPartner = saveCityPartner(userContext, cityPartner, tokens().withPotentialCustomerContactList().done());
 				return cityPartner;
@@ -504,22 +509,18 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 
 	protected void checkParamsForAddingPotentialCustomer(RetailscmUserContext userContext, String cityPartnerId, String name, String mobile, String cityServiceCenterId, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
 
 		
+		checkerOf(userContext).checkNameOfPotentialCustomer(name);
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-
+		checkerOf(userContext).checkMobileOfPotentialCustomer(mobile);
 		
-		userContext.getChecker().checkNameOfPotentialCustomer(name);
+		checkerOf(userContext).checkCityServiceCenterIdOfPotentialCustomer(cityServiceCenterId);
 		
-		userContext.getChecker().checkMobileOfPotentialCustomer(mobile);
-		
-		userContext.getChecker().checkCityServiceCenterIdOfPotentialCustomer(cityServiceCenterId);
-		
-		userContext.getChecker().checkDescriptionOfPotentialCustomer(description);
+		checkerOf(userContext).checkDescriptionOfPotentialCustomer(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 
 	
 	}
@@ -543,14 +544,14 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingPotentialCustomerProperties(RetailscmUserContext userContext, String cityPartnerId,String id,String name,String mobile,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomer(id);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomer(id);
 		
-		userContext.getChecker().checkNameOfPotentialCustomer( name);
-		userContext.getChecker().checkMobileOfPotentialCustomer( mobile);
-		userContext.getChecker().checkDescriptionOfPotentialCustomer( description);
+		checkerOf(userContext).checkNameOfPotentialCustomer( name);
+		checkerOf(userContext).checkMobileOfPotentialCustomer( mobile);
+		checkerOf(userContext).checkDescriptionOfPotentialCustomer( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 		
 	}
 	public  CityPartner updatePotentialCustomerProperties(RetailscmUserContext userContext, String cityPartnerId, String id,String name,String mobile,String description, String [] tokensExpr) throws Exception
@@ -614,12 +615,12 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingPotentialCustomerList(RetailscmUserContext userContext, String cityPartnerId, 
 			String potentialCustomerIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
 		for(String potentialCustomerIdItem: potentialCustomerIds){
-			userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerIdItem);
+			checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 		
 	}
 	public  CityPartner removePotentialCustomerList(RetailscmUserContext userContext, String cityPartnerId, 
@@ -632,7 +633,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(cityPartner){ 
 				//Will be good when the cityPartner loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getCityPartnerDAO().planToRemovePotentialCustomerList(cityPartner, potentialCustomerIds, allTokens());
+				cityPartnerDaoOf(userContext).planToRemovePotentialCustomerList(cityPartner, potentialCustomerIds, allTokens());
 				cityPartner = saveCityPartner(userContext, cityPartner, tokens().withPotentialCustomerList().done());
 				deleteRelationListInGraph(userContext, cityPartner.getPotentialCustomerList());
 				return present(userContext,cityPartner, mergedAllTokens(tokensExpr));
@@ -642,10 +643,10 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingPotentialCustomer(RetailscmUserContext userContext, String cityPartnerId, 
 		String potentialCustomerId, int potentialCustomerVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCityPartner( cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
-		userContext.getChecker().checkVersionOfPotentialCustomer(potentialCustomerVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).checkIdOfCityPartner( cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
+		checkerOf(userContext).checkVersionOfPotentialCustomer(potentialCustomerVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 	
 	}
 	public  CityPartner removePotentialCustomer(RetailscmUserContext userContext, String cityPartnerId, 
@@ -669,10 +670,10 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingPotentialCustomer(RetailscmUserContext userContext, String cityPartnerId, 
 		String potentialCustomerId, int potentialCustomerVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCityPartner( cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
-		userContext.getChecker().checkVersionOfPotentialCustomer(potentialCustomerVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).checkIdOfCityPartner( cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
+		checkerOf(userContext).checkVersionOfPotentialCustomer(potentialCustomerVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 	
 	}
 	public  CityPartner copyPotentialCustomerFrom(RetailscmUserContext userContext, String cityPartnerId, 
@@ -701,25 +702,25 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomer(potentialCustomerId);
-		userContext.getChecker().checkVersionOfPotentialCustomer(potentialCustomerVersion);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
+		checkerOf(userContext).checkVersionOfPotentialCustomer(potentialCustomerVersion);
 		
 
 		if(PotentialCustomer.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfPotentialCustomer(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfPotentialCustomer(parseString(newValueExpr));
 		}
 		
 		if(PotentialCustomer.MOBILE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMobileOfPotentialCustomer(parseString(newValueExpr));
+			checkerOf(userContext).checkMobileOfPotentialCustomer(parseString(newValueExpr));
 		}
 		
 		if(PotentialCustomer.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfPotentialCustomer(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfPotentialCustomer(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 	
 	}
 	
@@ -762,26 +763,22 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 
 	protected void checkParamsForAddingPotentialCustomerContact(RetailscmUserContext userContext, String cityPartnerId, String name, Date contactDate, String contactMethod, String potentialCustomerId, String contactToId, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
 
 		
+		checkerOf(userContext).checkNameOfPotentialCustomerContact(name);
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-
+		checkerOf(userContext).checkContactDateOfPotentialCustomerContact(contactDate);
 		
-		userContext.getChecker().checkNameOfPotentialCustomerContact(name);
+		checkerOf(userContext).checkContactMethodOfPotentialCustomerContact(contactMethod);
 		
-		userContext.getChecker().checkContactDateOfPotentialCustomerContact(contactDate);
+		checkerOf(userContext).checkPotentialCustomerIdOfPotentialCustomerContact(potentialCustomerId);
 		
-		userContext.getChecker().checkContactMethodOfPotentialCustomerContact(contactMethod);
+		checkerOf(userContext).checkContactToIdOfPotentialCustomerContact(contactToId);
 		
-		userContext.getChecker().checkPotentialCustomerIdOfPotentialCustomerContact(potentialCustomerId);
-		
-		userContext.getChecker().checkContactToIdOfPotentialCustomerContact(contactToId);
-		
-		userContext.getChecker().checkDescriptionOfPotentialCustomerContact(description);
+		checkerOf(userContext).checkDescriptionOfPotentialCustomerContact(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 
 	
 	}
@@ -805,15 +802,15 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingPotentialCustomerContactProperties(RetailscmUserContext userContext, String cityPartnerId,String id,String name,Date contactDate,String contactMethod,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomerContact(id);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomerContact(id);
 		
-		userContext.getChecker().checkNameOfPotentialCustomerContact( name);
-		userContext.getChecker().checkContactDateOfPotentialCustomerContact( contactDate);
-		userContext.getChecker().checkContactMethodOfPotentialCustomerContact( contactMethod);
-		userContext.getChecker().checkDescriptionOfPotentialCustomerContact( description);
+		checkerOf(userContext).checkNameOfPotentialCustomerContact( name);
+		checkerOf(userContext).checkContactDateOfPotentialCustomerContact( contactDate);
+		checkerOf(userContext).checkContactMethodOfPotentialCustomerContact( contactMethod);
+		checkerOf(userContext).checkDescriptionOfPotentialCustomerContact( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 		
 	}
 	public  CityPartner updatePotentialCustomerContactProperties(RetailscmUserContext userContext, String cityPartnerId, String id,String name,Date contactDate,String contactMethod,String description, String [] tokensExpr) throws Exception
@@ -882,12 +879,12 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingPotentialCustomerContactList(RetailscmUserContext userContext, String cityPartnerId, 
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
 		for(String potentialCustomerContactIdItem: potentialCustomerContactIds){
-			userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
+			checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 		
 	}
 	public  CityPartner removePotentialCustomerContactList(RetailscmUserContext userContext, String cityPartnerId, 
@@ -900,7 +897,7 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(cityPartner){ 
 				//Will be good when the cityPartner loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getCityPartnerDAO().planToRemovePotentialCustomerContactList(cityPartner, potentialCustomerContactIds, allTokens());
+				cityPartnerDaoOf(userContext).planToRemovePotentialCustomerContactList(cityPartner, potentialCustomerContactIds, allTokens());
 				cityPartner = saveCityPartner(userContext, cityPartner, tokens().withPotentialCustomerContactList().done());
 				deleteRelationListInGraph(userContext, cityPartner.getPotentialCustomerContactList());
 				return present(userContext,cityPartner, mergedAllTokens(tokensExpr));
@@ -910,10 +907,10 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingPotentialCustomerContact(RetailscmUserContext userContext, String cityPartnerId, 
 		String potentialCustomerContactId, int potentialCustomerContactVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCityPartner( cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-		userContext.getChecker().checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).checkIdOfCityPartner( cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		checkerOf(userContext).checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 	
 	}
 	public  CityPartner removePotentialCustomerContact(RetailscmUserContext userContext, String cityPartnerId, 
@@ -937,10 +934,10 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingPotentialCustomerContact(RetailscmUserContext userContext, String cityPartnerId, 
 		String potentialCustomerContactId, int potentialCustomerContactVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCityPartner( cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-		userContext.getChecker().checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).checkIdOfCityPartner( cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		checkerOf(userContext).checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 	
 	}
 	public  CityPartner copyPotentialCustomerContactFrom(RetailscmUserContext userContext, String cityPartnerId, 
@@ -969,29 +966,29 @@ public class CityPartnerManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfCityPartner(cityPartnerId);
-		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-		userContext.getChecker().checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
+		checkerOf(userContext).checkIdOfCityPartner(cityPartnerId);
+		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		checkerOf(userContext).checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
 		
 
 		if(PotentialCustomerContact.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfPotentialCustomerContact(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfPotentialCustomerContact(parseString(newValueExpr));
 		}
 		
 		if(PotentialCustomerContact.CONTACT_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactDateOfPotentialCustomerContact(parseDate(newValueExpr));
+			checkerOf(userContext).checkContactDateOfPotentialCustomerContact(parseDate(newValueExpr));
 		}
 		
 		if(PotentialCustomerContact.CONTACT_METHOD_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactMethodOfPotentialCustomerContact(parseString(newValueExpr));
+			checkerOf(userContext).checkContactMethodOfPotentialCustomerContact(parseString(newValueExpr));
 		}
 		
 		if(PotentialCustomerContact.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfPotentialCustomerContact(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfPotentialCustomerContact(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CityPartnerManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CityPartnerManagerException.class);
 	
 	}
 	

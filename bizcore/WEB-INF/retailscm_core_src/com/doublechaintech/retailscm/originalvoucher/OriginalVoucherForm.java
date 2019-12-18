@@ -159,20 +159,6 @@ public class OriginalVoucherForm extends BaseForm {
 		return auditingIdField("auditingId","");
 	}
 
-
-	public OriginalVoucherForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromOriginalVoucher(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public OriginalVoucherForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public OriginalVoucherForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -300,20 +286,6 @@ public class OriginalVoucherForm extends BaseForm {
 	}
 	public OriginalVoucherForm postingIdFieldOfAccountingDocument(){
 		return postingIdFieldOfAccountingDocument("postingId","");
-	}
-
-
-	public OriginalVoucherForm currentStatusFieldOfAccountingDocument(String parameterName, String initValue){
-		FormField field =  currentStatusFromAccountingDocument(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public OriginalVoucherForm currentStatusFieldOfAccountingDocument(String initValue){
-		return currentStatusFieldOfAccountingDocument("currentStatus",initValue);
-	}
-	public OriginalVoucherForm currentStatusFieldOfAccountingDocument(){
-		return currentStatusFieldOfAccountingDocument("currentStatus","");
 	}
 
 
@@ -500,30 +472,36 @@ public class OriginalVoucherForm extends BaseForm {
 	}
 
  	
- 	public OriginalVoucherForm  createAction(){
+ 	public OriginalVoucherForm transferToAnotherCreationAction(){
 		FormAction action = new FormAction();
-		action.setLabel("创建");
-		action.setLocaleKey("original_voucher.create");
-		action.setUrl("originalVoucherManager/create/originalVoucherId/who/comments/makeDate/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public OriginalVoucherForm  confirmAction(){
-		FormAction action = new FormAction();
-		action.setLabel("确认");
-		action.setLocaleKey("original_voucher.confirm");
-		action.setUrl("originalVoucherManager/confirm/originalVoucherId/who/comments/makeDate/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public OriginalVoucherForm  auditAction(){
-		FormAction action = new FormAction();
-		action.setLabel("审计");
-		action.setLocaleKey("original_voucher.audit");
-		action.setUrl("originalVoucherManager/audit/originalVoucherId/who/comments/makeDate/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherCreation/originalVoucherId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 	
+ 	public OriginalVoucherForm transferToAnotherConfirmationAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherConfirmation/originalVoucherId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public OriginalVoucherForm transferToAnotherAuditingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherAuditing/originalVoucherId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 
 
 	public OriginalVoucherForm showAction(){
 		FormAction action = new FormAction();

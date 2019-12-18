@@ -143,9 +143,13 @@ public class TruckDriverTokens extends CommonTokens{
 	}
 	private int transportTaskListSearchCounter = 0;
 	public TruckDriverTokens searchTransportTaskListWith(String field, String verb, String value){		
+		
+		withTransportTaskList();
 		addSearchMoreOptions(TRANSPORT_TASK_LIST,transportTaskListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public TruckDriverTokens searchAllTextOfTransportTaskList(String verb, String value){	
 		String field = "id|name|start";

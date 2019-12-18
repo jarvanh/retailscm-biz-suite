@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.accountingsubject.CandidateAccountingSubjec
 public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerManager implements AccountingDocumentLineManager {
 	
 	private static final String SERVICE_TYPE = "AccountingDocumentLine";
+	@Override
+	public AccountingDocumentLineDAO daoOf(RetailscmUserContext userContext) {
+		return accountingDocumentLineDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  	
  	public AccountingDocumentLine loadAccountingDocumentLine(RetailscmUserContext userContext, String accountingDocumentLineId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingDocumentLineManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingDocumentLineManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  	
  	 public AccountingDocumentLine searchAccountingDocumentLine(RetailscmUserContext userContext, String accountingDocumentLineId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingDocumentLineManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingDocumentLineManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 		addActions(userContext,accountingDocumentLine,tokens);
 		
 		
-		AccountingDocumentLine  accountingDocumentLineToPresent = userContext.getDAOGroup().getAccountingDocumentLineDAO().present(accountingDocumentLine, tokens);
+		AccountingDocumentLine  accountingDocumentLineToPresent = accountingDocumentLineDaoOf(userContext).present(accountingDocumentLine, tokens);
 		
 		List<BaseEntity> entityListToNaming = accountingDocumentLineToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getAccountingDocumentLineDAO().alias(entityListToNaming);
+		accountingDocumentLineDaoOf(userContext).alias(entityListToNaming);
 		
 		return  accountingDocumentLineToPresent;
 		
@@ -125,14 +129,14 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 		
  	}
  	protected AccountingDocumentLine saveAccountingDocumentLine(RetailscmUserContext userContext, AccountingDocumentLine accountingDocumentLine, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getAccountingDocumentLineDAO().save(accountingDocumentLine, tokens);
+ 		return accountingDocumentLineDaoOf(userContext).save(accountingDocumentLine, tokens);
  	}
  	protected AccountingDocumentLine loadAccountingDocumentLine(RetailscmUserContext userContext, String accountingDocumentLineId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingDocumentLineManagerException.class);
+		checkerOf(userContext).checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingDocumentLineManagerException.class);
 
  
- 		return userContext.getDAOGroup().getAccountingDocumentLineDAO().load(accountingDocumentLineId, tokens);
+ 		return accountingDocumentLineDaoOf(userContext).load(accountingDocumentLineId, tokens);
  	}
 
 	
@@ -163,20 +167,20 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  	
  	
 
-
-	public AccountingDocumentLine createAccountingDocumentLine(RetailscmUserContext userContext,String name, String code, String direct, BigDecimal amount, String belongsToId, String accountingSubjectId) throws Exception
+	public AccountingDocumentLine createAccountingDocumentLine(RetailscmUserContext userContext, String name,String code,String direct,BigDecimal amount,String belongsToId,String accountingSubjectId) throws Exception
+	//public AccountingDocumentLine createAccountingDocumentLine(RetailscmUserContext userContext,String name, String code, String direct, BigDecimal amount, String belongsToId, String accountingSubjectId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfAccountingDocumentLine(name);
-		userContext.getChecker().checkCodeOfAccountingDocumentLine(code);
-		userContext.getChecker().checkDirectOfAccountingDocumentLine(direct);
-		userContext.getChecker().checkAmountOfAccountingDocumentLine(amount);
+		checkerOf(userContext).checkNameOfAccountingDocumentLine(name);
+		checkerOf(userContext).checkCodeOfAccountingDocumentLine(code);
+		checkerOf(userContext).checkDirectOfAccountingDocumentLine(direct);
+		checkerOf(userContext).checkAmountOfAccountingDocumentLine(amount);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
 
 
 		AccountingDocumentLine accountingDocumentLine=createNewAccountingDocumentLine();	
@@ -215,28 +219,28 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 
 		
 		
-		userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
-		userContext.getChecker().checkVersionOfAccountingDocumentLine( accountingDocumentLineVersion);
+		checkerOf(userContext).checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+		checkerOf(userContext).checkVersionOfAccountingDocumentLine( accountingDocumentLineVersion);
 		
 
 		if(AccountingDocumentLine.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfAccountingDocumentLine(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfAccountingDocumentLine(parseString(newValueExpr));
 		}
 		if(AccountingDocumentLine.CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCodeOfAccountingDocumentLine(parseString(newValueExpr));
+			checkerOf(userContext).checkCodeOfAccountingDocumentLine(parseString(newValueExpr));
 		}
 		if(AccountingDocumentLine.DIRECT_PROPERTY.equals(property)){
-			userContext.getChecker().checkDirectOfAccountingDocumentLine(parseString(newValueExpr));
+			checkerOf(userContext).checkDirectOfAccountingDocumentLine(parseString(newValueExpr));
 		}
 		if(AccountingDocumentLine.AMOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkAmountOfAccountingDocumentLine(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkAmountOfAccountingDocumentLine(parseBigDecimal(newValueExpr));
 		}		
 
 				
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
 	
 		
 	}
@@ -245,7 +249,7 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 	
 	public AccountingDocumentLine clone(RetailscmUserContext userContext, String fromAccountingDocumentLineId) throws Exception{
 		
-		return userContext.getDAOGroup().getAccountingDocumentLineDAO().clone(fromAccountingDocumentLineId, this.allTokens());
+		return accountingDocumentLineDaoOf(userContext).clone(fromAccountingDocumentLineId, this.allTokens());
 	}
 	
 	public AccountingDocumentLine internalSaveAccountingDocumentLine(RetailscmUserContext userContext, AccountingDocumentLine accountingDocumentLine) throws Exception 
@@ -343,9 +347,9 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 	protected void checkParamsForTransferingAnotherBelongsTo(RetailscmUserContext userContext, String accountingDocumentLineId, String anotherBelongsToId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
- 		userContext.getChecker().checkIdOfAccountingDocument(anotherBelongsToId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+ 		checkerOf(userContext).checkIdOfAccountingDocument(anotherBelongsToId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
  		
  	}
  	public AccountingDocumentLine transferToAnotherBelongsTo(RetailscmUserContext userContext, String accountingDocumentLineId, String anotherBelongsToId) throws Exception
@@ -382,7 +386,7 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<AccountingDocument> candidateList = userContext.getDAOGroup().getAccountingDocumentDAO().requestCandidateAccountingDocumentForAccountingDocumentLine(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<AccountingDocument> candidateList = accountingDocumentDaoOf(userContext).requestCandidateAccountingDocumentForAccountingDocumentLine(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -392,9 +396,9 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  	protected void checkParamsForTransferingAnotherAccountingSubject(RetailscmUserContext userContext, String accountingDocumentLineId, String anotherAccountingSubjectId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfAccountingDocumentLine(accountingDocumentLineId);
- 		userContext.getChecker().checkIdOfAccountingSubject(anotherAccountingSubjectId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingDocumentLine(accountingDocumentLineId);
+ 		checkerOf(userContext).checkIdOfAccountingSubject(anotherAccountingSubjectId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentLineManagerException.class);
  		
  	}
  	public AccountingDocumentLine transferToAnotherAccountingSubject(RetailscmUserContext userContext, String accountingDocumentLineId, String anotherAccountingSubjectId) throws Exception
@@ -431,7 +435,7 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<AccountingSubject> candidateList = userContext.getDAOGroup().getAccountingSubjectDAO().requestCandidateAccountingSubjectForAccountingDocumentLine(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<AccountingSubject> candidateList = accountingSubjectDaoOf(userContext).requestCandidateAccountingSubjectForAccountingDocumentLine(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -444,7 +448,7 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  	protected AccountingDocument loadAccountingDocument(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountingDocumentDAO().load(newBelongsToId, options);
+ 		return accountingDocumentDaoOf(userContext).load(newBelongsToId, options);
  	}
  	
  	
@@ -454,7 +458,7 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
  	protected AccountingSubject loadAccountingSubject(RetailscmUserContext userContext, String newAccountingSubjectId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountingSubjectDAO().load(newAccountingSubjectId, options);
+ 		return accountingSubjectDaoOf(userContext).load(newAccountingSubjectId, options);
  	}
  	
  	
@@ -468,7 +472,7 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String accountingDocumentLineId, int accountingDocumentLineVersion) throws Exception{
 			
-		userContext.getDAOGroup().getAccountingDocumentLineDAO().delete(accountingDocumentLineId, accountingDocumentLineVersion);
+		accountingDocumentLineDaoOf(userContext).delete(accountingDocumentLineId, accountingDocumentLineVersion);
 	}
 	
 	public AccountingDocumentLine forgetByAll(RetailscmUserContext userContext, String accountingDocumentLineId, int accountingDocumentLineVersion) throws Exception {
@@ -477,8 +481,9 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 	protected AccountingDocumentLine forgetByAllInternal(RetailscmUserContext userContext,
 			String accountingDocumentLineId, int accountingDocumentLineVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getAccountingDocumentLineDAO().disconnectFromAll(accountingDocumentLineId, accountingDocumentLineVersion);
+		return accountingDocumentLineDaoOf(userContext).disconnectFromAll(accountingDocumentLineId, accountingDocumentLineVersion);
 	}
+	
 	
 
 	
@@ -495,7 +500,7 @@ public class AccountingDocumentLineManagerImpl extends CustomRetailscmCheckerMan
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getAccountingDocumentLineDAO().deleteAll();
+		return accountingDocumentLineDaoOf(userContext).deleteAll();
 	}
 
 

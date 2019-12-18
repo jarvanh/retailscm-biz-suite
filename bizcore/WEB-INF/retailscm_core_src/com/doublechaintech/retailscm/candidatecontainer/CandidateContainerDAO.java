@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.candidatecontainer;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.candidateelement.CandidateElement;
 import com.doublechaintech.retailscm.candidateelement.CandidateElementDAO;
 
 
-public interface CandidateContainerDAO{
+public interface CandidateContainerDAO extends BaseDAO{
 
-	
+	public SmartList<CandidateContainer> loadAll();
 	public CandidateContainer load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<CandidateContainer> candidateContainerList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -52,6 +53,7 @@ public interface CandidateContainerDAO{
 
 	
 	public SmartList<CandidateContainer> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:CandidateElement的container的CandidateElementList
 	public SmartList<CandidateElement> loadOurCandidateElementList(RetailscmUserContext userContext, List<CandidateContainer> us, Map<String,Object> options) throws Exception;

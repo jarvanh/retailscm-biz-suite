@@ -74,6 +74,11 @@ public class PayingOffJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Pa
 	}
 	*/
 	
+	public SmartList<PayingOff> loadAll() {
+	    return this.loadAll(getPayingOffMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -892,6 +897,10 @@ public class PayingOffJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Pa
 	@Override
 	public SmartList<PayingOff> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getPayingOffMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

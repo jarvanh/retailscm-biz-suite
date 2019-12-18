@@ -71,12 +71,6 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-	public 	EmployeePerformance(Employee employee, String performanceComment)
-	{
-		setEmployee(employee);
-		setPerformanceComment(performanceComment);
-	
-	}
 	
 	//Support for changing the property
 	

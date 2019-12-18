@@ -131,9 +131,6 @@
 <c:if test="${param.referName ne 'lastUpdateTime'}">
 	<th>${userContext.localeMap['supply_order.last_update_time']}</th>
 </c:if>
-<c:if test="${param.referName ne 'currentStatus'}">
-	<th>${userContext.localeMap['supply_order.current_status']}</th>
-</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -295,7 +292,6 @@
 	</td>
 </c:if>
 <c:if test="${param.referName ne 'lastUpdateTime'}">	<td contenteditable='true' class='edit-value'  propertyToChange='lastUpdateTime' storedCellValue='${item.lastUpdateTime}' prefix='${ownerBeanName}Manager/updateSupplyOrder/${result.id}/${item.id}/'><fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm:ss" value="${item.lastUpdateTime}" /></td>
-</c:if><c:if test="${param.referName ne 'currentStatus'}">	<td contenteditable='true' class='edit-value'  propertyToChange='currentStatus' storedCellValue='${item.currentStatus}' prefix='${ownerBeanName}Manager/updateSupplyOrder/${result.id}/${item.id}/'>${item.currentStatus}</td>
 </c:if>
 				<td>
 

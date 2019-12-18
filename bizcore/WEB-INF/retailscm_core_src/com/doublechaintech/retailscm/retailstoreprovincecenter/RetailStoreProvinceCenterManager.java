@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface RetailStoreProvinceCenterManager{
+public interface RetailStoreProvinceCenterManager extends BaseManager{
 
 		
 
-	public RetailStoreProvinceCenter createRetailStoreProvinceCenter(RetailscmUserContext userContext, String name, Date founded, String countryId) throws Exception;	
+	public RetailStoreProvinceCenter createRetailStoreProvinceCenter(RetailscmUserContext userContext, String name,Date founded,String countryId) throws Exception;	
 	public RetailStoreProvinceCenter updateRetailStoreProvinceCenter(RetailscmUserContext userContext,String retailStoreProvinceCenterId, int retailStoreProvinceCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public RetailStoreProvinceCenter loadRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String [] tokensExpr) throws Exception;
 	public RetailStoreProvinceCenter internalSaveRetailStoreProvinceCenter(RetailscmUserContext userContext, RetailStoreProvinceCenter retailStoreProvinceCenter) throws Exception;
@@ -28,9 +29,9 @@ public interface RetailStoreProvinceCenterManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  ProvinceCenterDepartmentManager getProvinceCenterDepartmentManager(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String manager ,String [] tokensExpr)  throws Exception;
+	//public  ProvinceCenterDepartmentManager getProvinceCenterDepartmentManager(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String managerName ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreProvinceCenter addProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String manager , String [] tokensExpr)  throws Exception;
+	public  RetailStoreProvinceCenter addProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String managerName , String [] tokensExpr)  throws Exception;
 	public  RetailStoreProvinceCenter removeProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String provinceCenterDepartmentId, int provinceCenterDepartmentVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreProvinceCenter updateProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String provinceCenterDepartmentId, int provinceCenterDepartmentVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

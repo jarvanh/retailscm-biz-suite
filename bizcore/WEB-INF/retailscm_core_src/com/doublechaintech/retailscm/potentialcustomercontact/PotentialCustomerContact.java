@@ -87,18 +87,6 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public 	PotentialCustomerContact(String name, Date contactDate, String contactMethod, PotentialCustomer potentialCustomer, CityPartner cityPartner, PotentialCustomerContactPerson contactTo, String description, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setContactDate(contactDate);
-		setContactMethod(contactMethod);
-		setPotentialCustomer(potentialCustomer);
-		setCityPartner(cityPartner);
-		setContactTo(contactTo);
-		setDescription(description);
-		setLastUpdateTime(lastUpdateTime);
-	
-	}
 	
 	//Support for changing the property
 	

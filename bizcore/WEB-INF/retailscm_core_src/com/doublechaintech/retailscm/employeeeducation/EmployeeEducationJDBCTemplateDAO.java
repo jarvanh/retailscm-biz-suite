@@ -53,6 +53,11 @@ public class EmployeeEducationJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<EmployeeEducation> loadAll() {
+	    return this.loadAll(getEmployeeEducationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -553,6 +558,10 @@ public class EmployeeEducationJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public SmartList<EmployeeEducation> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEmployeeEducationMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

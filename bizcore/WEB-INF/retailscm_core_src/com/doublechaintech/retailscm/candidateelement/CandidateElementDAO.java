@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.candidateelement;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
 import com.doublechaintech.retailscm.candidatecontainer.CandidateContainerDAO;
 
 
-public interface CandidateElementDAO{
+public interface CandidateElementDAO extends BaseDAO{
 
-	
+	public SmartList<CandidateElement> loadAll();
 	public CandidateElement load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<CandidateElement> candidateElementList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -45,6 +46,7 @@ public interface CandidateElementDAO{
 	
 	
 	public SmartList<CandidateElement> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<CandidateElement> findCandidateElementByContainer(String candidateContainerId, Map<String,Object> options);
  	public int countCandidateElementByContainer(String candidateContainerId, Map<String,Object> options);

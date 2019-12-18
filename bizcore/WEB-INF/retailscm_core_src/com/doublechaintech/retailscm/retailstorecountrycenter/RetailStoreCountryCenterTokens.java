@@ -154,9 +154,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int catalogListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchCatalogListWith(String field, String verb, String value){		
+		
+		withCatalogList();
 		addSearchMoreOptions(CATALOG_LIST,catalogListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfCatalogList(String verb, String value){	
 		String field = "id|name";
@@ -220,9 +224,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int retailStoreProvinceCenterListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchRetailStoreProvinceCenterListWith(String field, String verb, String value){		
+		
+		withRetailStoreProvinceCenterList();
 		addSearchMoreOptions(RETAIL_STORE_PROVINCE_CENTER_LIST,retailStoreProvinceCenterListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfRetailStoreProvinceCenterList(String verb, String value){	
 		String field = "id|name";
@@ -286,12 +294,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int retailStoreListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchRetailStoreListWith(String field, String verb, String value){		
+		
+		withRetailStoreList();
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfRetailStoreList(String verb, String value){	
-		String field = "id|name|telephone|owner|description|currentStatus";
+		String field = "id|name|owner|description";
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -352,9 +364,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int retailStoreMemberListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchRetailStoreMemberListWith(String field, String verb, String value){		
+		
+		withRetailStoreMemberList();
 		addSearchMoreOptions(RETAIL_STORE_MEMBER_LIST,retailStoreMemberListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfRetailStoreMemberList(String verb, String value){	
 		String field = "id|name|mobilePhone";
@@ -418,9 +434,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int goodsSupplierListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchGoodsSupplierListWith(String field, String verb, String value){		
+		
+		withGoodsSupplierList();
 		addSearchMoreOptions(GOODS_SUPPLIER_LIST,goodsSupplierListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfGoodsSupplierList(String verb, String value){	
 		String field = "id|name|supplyProduct|contactNumber|description";
@@ -484,12 +504,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int supplyOrderListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchSupplyOrderListWith(String field, String verb, String value){		
+		
+		withSupplyOrderList();
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfSupplyOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -550,12 +574,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int retailStoreOrderListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchRetailStoreOrderListWith(String field, String verb, String value){		
+		
+		withRetailStoreOrderList();
 		addSearchMoreOptions(RETAIL_STORE_ORDER_LIST,retailStoreOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfRetailStoreOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(RETAIL_STORE_ORDER_LIST,retailStoreOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -616,12 +644,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int warehouseListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchWarehouseListWith(String field, String verb, String value){		
+		
+		withWarehouseList();
 		addSearchMoreOptions(WAREHOUSE_LIST,warehouseListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfWarehouseList(String verb, String value){	
-		String field = "id|location|contactNumber|totalArea";
+		String field = "id|location|totalArea";
 		addSearchMoreOptions(WAREHOUSE_LIST,warehouseListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -682,12 +714,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int transportFleetListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchTransportFleetListWith(String field, String verb, String value){		
+		
+		withTransportFleetList();
 		addSearchMoreOptions(TRANSPORT_FLEET_LIST,transportFleetListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfTransportFleetList(String verb, String value){	
-		String field = "id|name|contactNumber";
+		String field = "id|name";
 		addSearchMoreOptions(TRANSPORT_FLEET_LIST,transportFleetListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -748,12 +784,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int accountSetListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchAccountSetListWith(String field, String verb, String value){		
+		
+		withAccountSetList();
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfAccountSetList(String verb, String value){	
-		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank|accountNumber";
+		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank";
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -814,12 +854,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int levelOneDepartmentListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchLevelOneDepartmentListWith(String field, String verb, String value){		
+		
+		withLevelOneDepartmentList();
 		addSearchMoreOptions(LEVEL_ONE_DEPARTMENT_LIST,levelOneDepartmentListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfLevelOneDepartmentList(String verb, String value){	
-		String field = "id|name|description|manager";
+		String field = "id|name|description|managerName";
 		addSearchMoreOptions(LEVEL_ONE_DEPARTMENT_LIST,levelOneDepartmentListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -880,9 +924,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int skillTypeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchSkillTypeListWith(String field, String verb, String value){		
+		
+		withSkillTypeList();
 		addSearchMoreOptions(SKILL_TYPE_LIST,skillTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfSkillTypeList(String verb, String value){	
 		String field = "id|code|description";
@@ -946,9 +994,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int responsibilityTypeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchResponsibilityTypeListWith(String field, String verb, String value){		
+		
+		withResponsibilityTypeList();
 		addSearchMoreOptions(RESPONSIBILITY_TYPE_LIST,responsibilityTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfResponsibilityTypeList(String verb, String value){	
 		String field = "id|code|baseDescription|detailDescription";
@@ -1012,9 +1064,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int terminationReasonListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchTerminationReasonListWith(String field, String verb, String value){		
+		
+		withTerminationReasonList();
 		addSearchMoreOptions(TERMINATION_REASON_LIST,terminationReasonListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfTerminationReasonList(String verb, String value){	
 		String field = "id|code|description";
@@ -1078,9 +1134,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int terminationTypeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchTerminationTypeListWith(String field, String verb, String value){		
+		
+		withTerminationTypeList();
 		addSearchMoreOptions(TERMINATION_TYPE_LIST,terminationTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfTerminationTypeList(String verb, String value){	
 		String field = "id|code|baseDescription|detailDescription";
@@ -1144,9 +1204,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int occupationTypeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchOccupationTypeListWith(String field, String verb, String value){		
+		
+		withOccupationTypeList();
 		addSearchMoreOptions(OCCUPATION_TYPE_LIST,occupationTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfOccupationTypeList(String verb, String value){	
 		String field = "id|code|description|detailDescription";
@@ -1210,9 +1274,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int leaveTypeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchLeaveTypeListWith(String field, String verb, String value){		
+		
+		withLeaveTypeList();
 		addSearchMoreOptions(LEAVE_TYPE_LIST,leaveTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfLeaveTypeList(String verb, String value){	
 		String field = "id|code|description|detailDescription";
@@ -1276,9 +1344,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int salaryGradeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchSalaryGradeListWith(String field, String verb, String value){		
+		
+		withSalaryGradeList();
 		addSearchMoreOptions(SALARY_GRADE_LIST,salaryGradeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfSalaryGradeList(String verb, String value){	
 		String field = "id|code|name|detailDescription";
@@ -1342,9 +1414,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int interviewTypeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchInterviewTypeListWith(String field, String verb, String value){		
+		
+		withInterviewTypeList();
 		addSearchMoreOptions(INTERVIEW_TYPE_LIST,interviewTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfInterviewTypeList(String verb, String value){	
 		String field = "id|code|description|detailDescription";
@@ -1408,9 +1484,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int trainingCourseTypeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchTrainingCourseTypeListWith(String field, String verb, String value){		
+		
+		withTrainingCourseTypeList();
 		addSearchMoreOptions(TRAINING_COURSE_TYPE_LIST,trainingCourseTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfTrainingCourseTypeList(String verb, String value){	
 		String field = "id|code|name|description";
@@ -1474,9 +1554,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int publicHolidayListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchPublicHolidayListWith(String field, String verb, String value){		
+		
+		withPublicHolidayList();
 		addSearchMoreOptions(PUBLIC_HOLIDAY_LIST,publicHolidayListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfPublicHolidayList(String verb, String value){	
 		String field = "id|code|name|description";
@@ -1540,12 +1624,16 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int employeeListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchEmployeeListWith(String field, String verb, String value){		
+		
+		withEmployeeList();
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreCountryCenterTokens searchAllTextOfEmployeeList(String verb, String value){	
-		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount|currentStatus";
+		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount";
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -1606,9 +1694,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int instructorListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchInstructorListWith(String field, String verb, String value){		
+		
+		withInstructorList();
 		addSearchMoreOptions(INSTRUCTOR_LIST,instructorListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfInstructorList(String verb, String value){	
 		String field = "id|title|familyName|givenName|cellPhone|email|introduction";
@@ -1672,9 +1764,13 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	}
 	private int companyTrainingListSearchCounter = 0;
 	public RetailStoreCountryCenterTokens searchCompanyTrainingListWith(String field, String verb, String value){		
+		
+		withCompanyTrainingList();
 		addSearchMoreOptions(COMPANY_TRAINING_LIST,companyTrainingListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfCompanyTrainingList(String verb, String value){	
 		String field = "id|title";

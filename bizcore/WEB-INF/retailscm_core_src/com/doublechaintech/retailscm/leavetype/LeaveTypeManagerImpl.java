@@ -36,6 +36,10 @@ import com.doublechaintech.retailscm.leavetype.LeaveType;
 public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implements LeaveTypeManager {
 	
 	private static final String SERVICE_TYPE = "LeaveType";
+	@Override
+	public LeaveTypeDAO daoOf(RetailscmUserContext userContext) {
+		return leaveTypeDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -69,8 +73,8 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	public LeaveType loadLeaveType(RetailscmUserContext userContext, String leaveTypeId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( LeaveTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LeaveTypeManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -83,8 +87,8 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	 public LeaveType searchLeaveType(RetailscmUserContext userContext, String leaveTypeId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( LeaveTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LeaveTypeManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -102,10 +106,10 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		addActions(userContext,leaveType,tokens);
 		
 		
-		LeaveType  leaveTypeToPresent = userContext.getDAOGroup().getLeaveTypeDAO().present(leaveType, tokens);
+		LeaveType  leaveTypeToPresent = leaveTypeDaoOf(userContext).present(leaveType, tokens);
 		
 		List<BaseEntity> entityListToNaming = leaveTypeToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getLeaveTypeDAO().alias(entityListToNaming);
+		leaveTypeDaoOf(userContext).alias(entityListToNaming);
 		
 		return  leaveTypeToPresent;
 		
@@ -126,14 +130,14 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		
  	}
  	protected LeaveType saveLeaveType(RetailscmUserContext userContext, LeaveType leaveType, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getLeaveTypeDAO().save(leaveType, tokens);
+ 		return leaveTypeDaoOf(userContext).save(leaveType, tokens);
  	}
  	protected LeaveType loadLeaveType(RetailscmUserContext userContext, String leaveTypeId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( LeaveTypeManagerException.class);
+		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LeaveTypeManagerException.class);
 
  
- 		return userContext.getDAOGroup().getLeaveTypeDAO().load(leaveTypeId, tokens);
+ 		return leaveTypeDaoOf(userContext).load(leaveTypeId, tokens);
  	}
 
 	
@@ -167,19 +171,19 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	
 
-
-	public LeaveType createLeaveType(RetailscmUserContext userContext,String code, String companyId, String description, String detailDescription) throws Exception
+	public LeaveType createLeaveType(RetailscmUserContext userContext, String code,String companyId,String description,String detailDescription) throws Exception
+	//public LeaveType createLeaveType(RetailscmUserContext userContext,String code, String companyId, String description, String detailDescription) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCodeOfLeaveType(code);
-		userContext.getChecker().checkDescriptionOfLeaveType(description);
-		userContext.getChecker().checkDetailDescriptionOfLeaveType(detailDescription);
+		checkerOf(userContext).checkCodeOfLeaveType(code);
+		checkerOf(userContext).checkDescriptionOfLeaveType(description);
+		checkerOf(userContext).checkDetailDescriptionOfLeaveType(detailDescription);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 
 
 		LeaveType leaveType=createNewLeaveType();	
@@ -212,23 +216,23 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 
 		
 		
-		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-		userContext.getChecker().checkVersionOfLeaveType( leaveTypeVersion);
+		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
+		checkerOf(userContext).checkVersionOfLeaveType( leaveTypeVersion);
 		
 
 		if(LeaveType.CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCodeOfLeaveType(parseString(newValueExpr));
+			checkerOf(userContext).checkCodeOfLeaveType(parseString(newValueExpr));
 		}		
 
 		
 		if(LeaveType.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfLeaveType(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfLeaveType(parseString(newValueExpr));
 		}
 		if(LeaveType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDetailDescriptionOfLeaveType(parseString(newValueExpr));
+			checkerOf(userContext).checkDetailDescriptionOfLeaveType(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 	
 		
 	}
@@ -237,7 +241,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	public LeaveType clone(RetailscmUserContext userContext, String fromLeaveTypeId) throws Exception{
 		
-		return userContext.getDAOGroup().getLeaveTypeDAO().clone(fromLeaveTypeId, this.allTokens());
+		return leaveTypeDaoOf(userContext).clone(fromLeaveTypeId, this.allTokens());
 	}
 	
 	public LeaveType internalSaveLeaveType(RetailscmUserContext userContext, LeaveType leaveType) throws Exception 
@@ -336,9 +340,9 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String leaveTypeId, String anotherCompanyId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
  		
  	}
  	public LeaveType transferToAnotherCompany(RetailscmUserContext userContext, String leaveTypeId, String anotherCompanyId) throws Exception
@@ -375,7 +379,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForLeaveType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForLeaveType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -388,7 +392,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
  	
@@ -402,7 +406,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String leaveTypeId, int leaveTypeVersion) throws Exception{
 			
-		userContext.getDAOGroup().getLeaveTypeDAO().delete(leaveTypeId, leaveTypeVersion);
+		leaveTypeDaoOf(userContext).delete(leaveTypeId, leaveTypeVersion);
 	}
 	
 	public LeaveType forgetByAll(RetailscmUserContext userContext, String leaveTypeId, int leaveTypeVersion) throws Exception {
@@ -411,8 +415,9 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected LeaveType forgetByAllInternal(RetailscmUserContext userContext,
 			String leaveTypeId, int leaveTypeVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getLeaveTypeDAO().disconnectFromAll(leaveTypeId, leaveTypeVersion);
+		return leaveTypeDaoOf(userContext).disconnectFromAll(leaveTypeId, leaveTypeVersion);
 	}
+	
 	
 
 	
@@ -429,7 +434,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getLeaveTypeDAO().deleteAll();
+		return leaveTypeDaoOf(userContext).deleteAll();
 	}
 
 
@@ -445,7 +450,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getLeaveTypeDAO().planToRemoveEmployeeLeaveListWithWho(leaveType, whoId, this.emptyOptions());
+				leaveTypeDaoOf(userContext).planToRemoveEmployeeLeaveListWithWho(leaveType, whoId, this.emptyOptions());
 
 				leaveType = saveLeaveType(userContext, leaveType, tokens().withEmployeeLeaveList().done());
 				return leaveType;
@@ -459,20 +464,16 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 
 	protected void checkParamsForAddingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, String whoId, int leaveDurationHour, String remark,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
 
 		
+		checkerOf(userContext).checkWhoIdOfEmployeeLeave(whoId);
 		
-		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-
+		checkerOf(userContext).checkLeaveDurationHourOfEmployeeLeave(leaveDurationHour);
 		
-		userContext.getChecker().checkWhoIdOfEmployeeLeave(whoId);
-		
-		userContext.getChecker().checkLeaveDurationHourOfEmployeeLeave(leaveDurationHour);
-		
-		userContext.getChecker().checkRemarkOfEmployeeLeave(remark);
+		checkerOf(userContext).checkRemarkOfEmployeeLeave(remark);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 
 	
 	}
@@ -496,13 +497,13 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	protected void checkParamsForUpdatingEmployeeLeaveProperties(RetailscmUserContext userContext, String leaveTypeId,String id,int leaveDurationHour,String remark,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-		userContext.getChecker().checkIdOfEmployeeLeave(id);
+		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
+		checkerOf(userContext).checkIdOfEmployeeLeave(id);
 		
-		userContext.getChecker().checkLeaveDurationHourOfEmployeeLeave( leaveDurationHour);
-		userContext.getChecker().checkRemarkOfEmployeeLeave( remark);
+		checkerOf(userContext).checkLeaveDurationHourOfEmployeeLeave( leaveDurationHour);
+		checkerOf(userContext).checkRemarkOfEmployeeLeave( remark);
 
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 		
 	}
 	public  LeaveType updateEmployeeLeaveProperties(RetailscmUserContext userContext, String leaveTypeId, String id,int leaveDurationHour,String remark, String [] tokensExpr) throws Exception
@@ -563,12 +564,12 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingEmployeeLeaveList(RetailscmUserContext userContext, String leaveTypeId, 
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
+		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
 		for(String employeeLeaveIdItem: employeeLeaveIds){
-			userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveIdItem);
+			checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 		
 	}
 	public  LeaveType removeEmployeeLeaveList(RetailscmUserContext userContext, String leaveTypeId, 
@@ -581,7 +582,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(leaveType){ 
 				//Will be good when the leaveType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getLeaveTypeDAO().planToRemoveEmployeeLeaveList(leaveType, employeeLeaveIds, allTokens());
+				leaveTypeDaoOf(userContext).planToRemoveEmployeeLeaveList(leaveType, employeeLeaveIds, allTokens());
 				leaveType = saveLeaveType(userContext, leaveType, tokens().withEmployeeLeaveList().done());
 				deleteRelationListInGraph(userContext, leaveType.getEmployeeLeaveList());
 				return present(userContext,leaveType, mergedAllTokens(tokensExpr));
@@ -591,10 +592,10 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, 
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLeaveType( leaveTypeId);
-		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-		userContext.getChecker().checkVersionOfEmployeeLeave(employeeLeaveVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).checkIdOfLeaveType( leaveTypeId);
+		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+		checkerOf(userContext).checkVersionOfEmployeeLeave(employeeLeaveVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 	
 	}
 	public  LeaveType removeEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, 
@@ -618,10 +619,10 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, 
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLeaveType( leaveTypeId);
-		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-		userContext.getChecker().checkVersionOfEmployeeLeave(employeeLeaveVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).checkIdOfLeaveType( leaveTypeId);
+		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+		checkerOf(userContext).checkVersionOfEmployeeLeave(employeeLeaveVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 	
 	}
 	public  LeaveType copyEmployeeLeaveFrom(RetailscmUserContext userContext, String leaveTypeId, 
@@ -650,21 +651,21 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfLeaveType(leaveTypeId);
-		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-		userContext.getChecker().checkVersionOfEmployeeLeave(employeeLeaveVersion);
+		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
+		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+		checkerOf(userContext).checkVersionOfEmployeeLeave(employeeLeaveVersion);
 		
 
 		if(EmployeeLeave.LEAVE_DURATION_HOUR_PROPERTY.equals(property)){
-			userContext.getChecker().checkLeaveDurationHourOfEmployeeLeave(parseInt(newValueExpr));
+			checkerOf(userContext).checkLeaveDurationHourOfEmployeeLeave(parseInt(newValueExpr));
 		}
 		
 		if(EmployeeLeave.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfEmployeeLeave(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfEmployeeLeave(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LeaveTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 	
 	}
 	

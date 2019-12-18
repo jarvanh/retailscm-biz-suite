@@ -56,7 +56,7 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setContactNumber(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String contactNumber = rs.getString(StorageSpaceTable.COLUMN_CONTACT_NUMBER);
+		Long contactNumber = rs.getLong(StorageSpaceTable.COLUMN_CONTACT_NUMBER);
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;

@@ -53,6 +53,11 @@ public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmBaseDAO
 	}
 	*/
 	
+	public SmartList<MemberRewardPointRedemption> loadAll() {
+	    return this.loadAll(getMemberRewardPointRedemptionMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -551,6 +556,10 @@ public class MemberRewardPointRedemptionJDBCTemplateDAO extends RetailscmBaseDAO
 	@Override
 	public SmartList<MemberRewardPointRedemption> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getMemberRewardPointRedemptionMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -74,6 +74,11 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	*/
 	
+	public SmartList<RetailStoreMemberGiftCard> loadAll() {
+	    return this.loadAll(getRetailStoreMemberGiftCardMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -848,6 +853,10 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOIm
 	@Override
 	public SmartList<RetailStoreMemberGiftCard> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreMemberGiftCardMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

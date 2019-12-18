@@ -246,20 +246,6 @@ public class RetailStoreOrderPaymentGroupForm extends BaseForm {
 		return lastUpdateTimeFieldOfRetailStoreOrder("lastUpdateTime","");
 	}
 
-
-	public RetailStoreOrderPaymentGroupForm currentStatusFieldOfRetailStoreOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStoreOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public RetailStoreOrderPaymentGroupForm currentStatusFieldOfRetailStoreOrder(String initValue){
-		return currentStatusFieldOfRetailStoreOrder("currentStatus",initValue);
-	}
-	public RetailStoreOrderPaymentGroupForm currentStatusFieldOfRetailStoreOrder(){
-		return currentStatusFieldOfRetailStoreOrder("currentStatus","");
-	}
-
 	
 
 

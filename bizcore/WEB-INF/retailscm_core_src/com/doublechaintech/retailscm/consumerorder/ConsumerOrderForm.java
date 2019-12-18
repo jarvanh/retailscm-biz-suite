@@ -159,20 +159,6 @@ public class ConsumerOrderForm extends BaseForm {
 		return lastUpdateTimeField("lastUpdateTime","");
 	}
 
-
-	public ConsumerOrderForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromConsumerOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public ConsumerOrderForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public ConsumerOrderForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -680,20 +666,6 @@ public class ConsumerOrderForm extends BaseForm {
 		return lastUpdateTimeFieldOfRetailStore("lastUpdateTime","");
 	}
 
-
-	public ConsumerOrderForm currentStatusFieldOfRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public ConsumerOrderForm currentStatusFieldOfRetailStore(String initValue){
-		return currentStatusFieldOfRetailStore("currentStatus",initValue);
-	}
-	public ConsumerOrderForm currentStatusFieldOfRetailStore(){
-		return currentStatusFieldOfRetailStore("currentStatus","");
-	}
-
 	
 
 
@@ -1088,46 +1060,56 @@ public class ConsumerOrderForm extends BaseForm {
 	}
 
  	
- 	public ConsumerOrderForm  confirmAction(){
+ 	public ConsumerOrderForm transferToAnotherConfirmationAction(){
 		FormAction action = new FormAction();
-		action.setLabel("确认");
-		action.setLocaleKey("consumer_order.confirm");
-		action.setUrl("consumerOrderManager/confirm/consumerOrderId/who/confirmTime/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherConfirmation/consumerOrderId/");
 		this.addFormAction(action);
 		return this;
-	}	
- 	public ConsumerOrderForm  approveAction(){
+	}
+
+ 	
+ 	public ConsumerOrderForm transferToAnotherApprovalAction(){
 		FormAction action = new FormAction();
-		action.setLabel("验收");
-		action.setLocaleKey("consumer_order.approve");
-		action.setUrl("consumerOrderManager/approve/consumerOrderId/who/approveTime/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherApproval/consumerOrderId/");
 		this.addFormAction(action);
 		return this;
-	}	
- 	public ConsumerOrderForm  processAction(){
+	}
+
+ 	
+ 	public ConsumerOrderForm transferToAnotherProcessingAction(){
 		FormAction action = new FormAction();
-		action.setLabel("处理");
-		action.setLocaleKey("consumer_order.process");
-		action.setUrl("consumerOrderManager/process/consumerOrderId/who/processTime/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherProcessing/consumerOrderId/");
 		this.addFormAction(action);
 		return this;
-	}	
- 	public ConsumerOrderForm  shipAction(){
+	}
+
+ 	
+ 	public ConsumerOrderForm transferToAnotherShipmentAction(){
 		FormAction action = new FormAction();
-		action.setLabel("装运");
-		action.setLocaleKey("consumer_order.ship");
-		action.setUrl("consumerOrderManager/ship/consumerOrderId/who/shipTime/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherShipment/consumerOrderId/");
 		this.addFormAction(action);
 		return this;
-	}	
- 	public ConsumerOrderForm  deliverAction(){
+	}
+
+ 	
+ 	public ConsumerOrderForm transferToAnotherDeliveryAction(){
 		FormAction action = new FormAction();
-		action.setLabel("送货");
-		action.setLocaleKey("consumer_order.deliver");
-		action.setUrl("consumerOrderManager/deliver/consumerOrderId/who/deliveryTime/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherDelivery/consumerOrderId/");
 		this.addFormAction(action);
 		return this;
-	}	
+	}
+
+ 	
  	public ConsumerOrderForm transferToAnotherStoreAction(){
 		FormAction action = new FormAction();
 		action.setLabel("显示");

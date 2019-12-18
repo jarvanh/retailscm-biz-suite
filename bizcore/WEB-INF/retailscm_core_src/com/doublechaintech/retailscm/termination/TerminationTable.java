@@ -23,12 +23,8 @@ public class TerminationTable{
 	static final String COLUMN_COMMENT = "comment";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_REASON, COLUMN_TYPE, COLUMN_COMMENT, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_REASON, COLUMN_TYPE, COLUMN_COMMENT
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_REASON,COLUMN_TYPE,COLUMN_COMMENT,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_REASON,COLUMN_TYPE,COLUMN_COMMENT};
 	
 	
 }

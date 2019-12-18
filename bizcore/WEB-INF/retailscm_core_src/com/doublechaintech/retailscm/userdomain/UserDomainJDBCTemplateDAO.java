@@ -84,6 +84,11 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	}
 	*/
 	
+	public SmartList<UserDomain> loadAll() {
+	    return this.loadAll(getUserDomainMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -650,6 +655,50 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	}
 
 
+	//disconnect UserDomain with blocking in SecUser
+	public UserDomain planToRemoveSecUserListWithBlocking(UserDomain userDomain, String blockingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SecUser.DOMAIN_PROPERTY, userDomain.getId());
+		key.put(SecUser.BLOCKING_PROPERTY, blockingId);
+		
+		SmartList<SecUser> externalSecUserList = getSecUserDAO().
+				findSecUserWithKey(key, options);
+		if(externalSecUserList == null){
+			return userDomain;
+		}
+		if(externalSecUserList.isEmpty()){
+			return userDomain;
+		}
+		
+		for(SecUser secUserItem: externalSecUserList){
+			secUserItem.clearBlocking();
+			secUserItem.clearDomain();
+			
+		}
+		
+		
+		SmartList<SecUser> secUserList = userDomain.getSecUserList();		
+		secUserList.addAllToRemoveList(externalSecUserList);
+		return userDomain;
+	}
+	
+	public int countSecUserListWithBlocking(String userDomainId, String blockingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SecUser.DOMAIN_PROPERTY, userDomainId);
+		key.put(SecUser.BLOCKING_PROPERTY, blockingId);
+		
+		int count = getSecUserDAO().countSecUserWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected UserDomain saveUserWhiteListList(UserDomain userDomain, Map<String,Object> options){
@@ -938,6 +987,10 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	@Override
 	public SmartList<UserDomain> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getUserDomainMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

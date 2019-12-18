@@ -53,6 +53,11 @@ public class StockCountIssueTrackJDBCTemplateDAO extends RetailscmBaseDAOImpl im
 	}
 	*/
 	
+	public SmartList<StockCountIssueTrack> loadAll() {
+	    return this.loadAll(getStockCountIssueTrackMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -553,6 +558,10 @@ public class StockCountIssueTrackJDBCTemplateDAO extends RetailscmBaseDAOImpl im
 	@Override
 	public SmartList<StockCountIssueTrack> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getStockCountIssueTrackMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

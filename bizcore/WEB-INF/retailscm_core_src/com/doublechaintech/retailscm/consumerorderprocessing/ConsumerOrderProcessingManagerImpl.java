@@ -31,6 +31,10 @@ import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
 public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderProcessingManager {
 	
 	private static final String SERVICE_TYPE = "ConsumerOrderProcessing";
+	@Override
+	public ConsumerOrderProcessingDAO daoOf(RetailscmUserContext userContext) {
+		return consumerOrderProcessingDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -64,8 +68,8 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
  	
  	public ConsumerOrderProcessing loadConsumerOrderProcessing(RetailscmUserContext userContext, String consumerOrderProcessingId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderProcessingManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderProcessingManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -78,8 +82,8 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
  	
  	 public ConsumerOrderProcessing searchConsumerOrderProcessing(RetailscmUserContext userContext, String consumerOrderProcessingId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderProcessingManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderProcessingManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -97,10 +101,10 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
 		addActions(userContext,consumerOrderProcessing,tokens);
 		
 		
-		ConsumerOrderProcessing  consumerOrderProcessingToPresent = userContext.getDAOGroup().getConsumerOrderProcessingDAO().present(consumerOrderProcessing, tokens);
+		ConsumerOrderProcessing  consumerOrderProcessingToPresent = consumerOrderProcessingDaoOf(userContext).present(consumerOrderProcessing, tokens);
 		
 		List<BaseEntity> entityListToNaming = consumerOrderProcessingToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getConsumerOrderProcessingDAO().alias(entityListToNaming);
+		consumerOrderProcessingDaoOf(userContext).alias(entityListToNaming);
 		
 		return  consumerOrderProcessingToPresent;
 		
@@ -121,14 +125,14 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
 		
  	}
  	protected ConsumerOrderProcessing saveConsumerOrderProcessing(RetailscmUserContext userContext, ConsumerOrderProcessing consumerOrderProcessing, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getConsumerOrderProcessingDAO().save(consumerOrderProcessing, tokens);
+ 		return consumerOrderProcessingDaoOf(userContext).save(consumerOrderProcessing, tokens);
  	}
  	protected ConsumerOrderProcessing loadConsumerOrderProcessing(RetailscmUserContext userContext, String consumerOrderProcessingId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderProcessingManagerException.class);
+		checkerOf(userContext).checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderProcessingManagerException.class);
 
  
- 		return userContext.getDAOGroup().getConsumerOrderProcessingDAO().load(consumerOrderProcessingId, tokens);
+ 		return consumerOrderProcessingDaoOf(userContext).load(consumerOrderProcessingId, tokens);
  	}
 
 	
@@ -157,18 +161,18 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
  	
  	
 
-
-	public ConsumerOrderProcessing createConsumerOrderProcessing(RetailscmUserContext userContext,String who, Date processTime) throws Exception
+	public ConsumerOrderProcessing createConsumerOrderProcessing(RetailscmUserContext userContext, String who,Date processTime) throws Exception
+	//public ConsumerOrderProcessing createConsumerOrderProcessing(RetailscmUserContext userContext,String who, Date processTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfConsumerOrderProcessing(who);
-		userContext.getChecker().checkProcessTimeOfConsumerOrderProcessing(processTime);
+		checkerOf(userContext).checkWhoOfConsumerOrderProcessing(who);
+		checkerOf(userContext).checkProcessTimeOfConsumerOrderProcessing(processTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderProcessingManagerException.class);
 
 
 		ConsumerOrderProcessing consumerOrderProcessing=createNewConsumerOrderProcessing();	
@@ -195,18 +199,18 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
 
 		
 		
-		userContext.getChecker().checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
-		userContext.getChecker().checkVersionOfConsumerOrderProcessing( consumerOrderProcessingVersion);
+		checkerOf(userContext).checkIdOfConsumerOrderProcessing(consumerOrderProcessingId);
+		checkerOf(userContext).checkVersionOfConsumerOrderProcessing( consumerOrderProcessingVersion);
 		
 
 		if(ConsumerOrderProcessing.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfConsumerOrderProcessing(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfConsumerOrderProcessing(parseString(newValueExpr));
 		}
 		if(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkProcessTimeOfConsumerOrderProcessing(parseDate(newValueExpr));
+			checkerOf(userContext).checkProcessTimeOfConsumerOrderProcessing(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderProcessingManagerException.class);
 	
 		
 	}
@@ -215,7 +219,7 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
 	
 	public ConsumerOrderProcessing clone(RetailscmUserContext userContext, String fromConsumerOrderProcessingId) throws Exception{
 		
-		return userContext.getDAOGroup().getConsumerOrderProcessingDAO().clone(fromConsumerOrderProcessingId, this.allTokens());
+		return consumerOrderProcessingDaoOf(userContext).clone(fromConsumerOrderProcessingId, this.allTokens());
 	}
 	
 	public ConsumerOrderProcessing internalSaveConsumerOrderProcessing(RetailscmUserContext userContext, ConsumerOrderProcessing consumerOrderProcessing) throws Exception 
@@ -320,7 +324,7 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderProcessingId, int consumerOrderProcessingVersion) throws Exception{
 			
-		userContext.getDAOGroup().getConsumerOrderProcessingDAO().delete(consumerOrderProcessingId, consumerOrderProcessingVersion);
+		consumerOrderProcessingDaoOf(userContext).delete(consumerOrderProcessingId, consumerOrderProcessingVersion);
 	}
 	
 	public ConsumerOrderProcessing forgetByAll(RetailscmUserContext userContext, String consumerOrderProcessingId, int consumerOrderProcessingVersion) throws Exception {
@@ -329,8 +333,9 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
 	protected ConsumerOrderProcessing forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderProcessingId, int consumerOrderProcessingVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getConsumerOrderProcessingDAO().disconnectFromAll(consumerOrderProcessingId, consumerOrderProcessingVersion);
+		return consumerOrderProcessingDaoOf(userContext).disconnectFromAll(consumerOrderProcessingId, consumerOrderProcessingVersion);
 	}
+	
 	
 
 	
@@ -347,7 +352,7 @@ public class ConsumerOrderProcessingManagerImpl extends CustomRetailscmCheckerMa
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getConsumerOrderProcessingDAO().deleteAll();
+		return consumerOrderProcessingDaoOf(userContext).deleteAll();
 	}
 
 

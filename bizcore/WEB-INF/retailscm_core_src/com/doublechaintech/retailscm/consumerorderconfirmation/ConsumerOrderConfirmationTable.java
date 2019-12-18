@@ -22,12 +22,8 @@ public class ConsumerOrderConfirmationTable{
 	static final String COLUMN_CONFIRM_TIME = "confirm_time";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_WHO, COLUMN_CONFIRM_TIME, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_WHO, COLUMN_CONFIRM_TIME
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_CONFIRM_TIME,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_CONFIRM_TIME};
 	
 	
 }

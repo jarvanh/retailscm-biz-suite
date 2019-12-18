@@ -149,12 +149,16 @@ public class RetailStoreMemberTokens extends CommonTokens{
 	}
 	private int consumerOrderListSearchCounter = 0;
 	public RetailStoreMemberTokens searchConsumerOrderListWith(String field, String verb, String value){		
+		
+		withConsumerOrderList();
 		addSearchMoreOptions(CONSUMER_ORDER_LIST,consumerOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreMemberTokens searchAllTextOfConsumerOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(CONSUMER_ORDER_LIST,consumerOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -215,9 +219,13 @@ public class RetailStoreMemberTokens extends CommonTokens{
 	}
 	private int retailStoreMemberCouponListSearchCounter = 0;
 	public RetailStoreMemberTokens searchRetailStoreMemberCouponListWith(String field, String verb, String value){		
+		
+		withRetailStoreMemberCouponList();
 		addSearchMoreOptions(RETAIL_STORE_MEMBER_COUPON_LIST,retailStoreMemberCouponListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreMemberTokens searchAllTextOfRetailStoreMemberCouponList(String verb, String value){	
 		String field = "id|name|number";
@@ -281,9 +289,13 @@ public class RetailStoreMemberTokens extends CommonTokens{
 	}
 	private int memberWishlistListSearchCounter = 0;
 	public RetailStoreMemberTokens searchMemberWishlistListWith(String field, String verb, String value){		
+		
+		withMemberWishlistList();
 		addSearchMoreOptions(MEMBER_WISHLIST_LIST,memberWishlistListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreMemberTokens searchAllTextOfMemberWishlistList(String verb, String value){	
 		String field = "id|name";
@@ -347,9 +359,13 @@ public class RetailStoreMemberTokens extends CommonTokens{
 	}
 	private int memberRewardPointListSearchCounter = 0;
 	public RetailStoreMemberTokens searchMemberRewardPointListWith(String field, String verb, String value){		
+		
+		withMemberRewardPointList();
 		addSearchMoreOptions(MEMBER_REWARD_POINT_LIST,memberRewardPointListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreMemberTokens searchAllTextOfMemberRewardPointList(String verb, String value){	
 		String field = "id|name";
@@ -413,9 +429,13 @@ public class RetailStoreMemberTokens extends CommonTokens{
 	}
 	private int memberRewardPointRedemptionListSearchCounter = 0;
 	public RetailStoreMemberTokens searchMemberRewardPointRedemptionListWith(String field, String verb, String value){		
+		
+		withMemberRewardPointRedemptionList();
 		addSearchMoreOptions(MEMBER_REWARD_POINT_REDEMPTION_LIST,memberRewardPointRedemptionListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreMemberTokens searchAllTextOfMemberRewardPointRedemptionList(String verb, String value){	
 		String field = "id|name";
@@ -479,9 +499,13 @@ public class RetailStoreMemberTokens extends CommonTokens{
 	}
 	private int retailStoreMemberAddressListSearchCounter = 0;
 	public RetailStoreMemberTokens searchRetailStoreMemberAddressListWith(String field, String verb, String value){		
+		
+		withRetailStoreMemberAddressList();
 		addSearchMoreOptions(RETAIL_STORE_MEMBER_ADDRESS_LIST,retailStoreMemberAddressListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreMemberTokens searchAllTextOfRetailStoreMemberAddressList(String verb, String value){	
 		String field = "id|name|mobilePhone|address";
@@ -545,9 +569,13 @@ public class RetailStoreMemberTokens extends CommonTokens{
 	}
 	private int retailStoreMemberGiftCardListSearchCounter = 0;
 	public RetailStoreMemberTokens searchRetailStoreMemberGiftCardListWith(String field, String verb, String value){		
+		
+		withRetailStoreMemberGiftCardList();
 		addSearchMoreOptions(RETAIL_STORE_MEMBER_GIFT_CARD_LIST,retailStoreMemberGiftCardListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreMemberTokens searchAllTextOfRetailStoreMemberGiftCardList(String verb, String value){	
 		String field = "id|name|number";

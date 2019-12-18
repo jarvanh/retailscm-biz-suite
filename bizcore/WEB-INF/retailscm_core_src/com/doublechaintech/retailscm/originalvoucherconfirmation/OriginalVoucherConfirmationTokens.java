@@ -131,12 +131,16 @@ public class OriginalVoucherConfirmationTokens extends CommonTokens{
 	}
 	private int originalVoucherListSearchCounter = 0;
 	public OriginalVoucherConfirmationTokens searchOriginalVoucherListWith(String field, String verb, String value){		
+		
+		withOriginalVoucherList();
 		addSearchMoreOptions(ORIGINAL_VOUCHER_LIST,originalVoucherListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public OriginalVoucherConfirmationTokens searchAllTextOfOriginalVoucherList(String verb, String value){	
-		String field = "id|title|madeBy|receivedBy|voucherType|currentStatus";
+		String field = "id|title|madeBy|receivedBy|voucherType";
 		addSearchMoreOptions(ORIGINAL_VOUCHER_LIST,originalVoucherListSearchCounter++, field, verb, value);
 		return this;
 	}

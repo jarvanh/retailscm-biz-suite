@@ -83,18 +83,6 @@ public class ListAccess extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	ListAccess(String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission, UserApp app)
-	{
-		setName(name);
-		setInternalName(internalName);
-		setReadPermission(readPermission);
-		setCreatePermission(createPermission);
-		setDeletePermission(deletePermission);
-		setUpdatePermission(updatePermission);
-		setExecutionPermission(executionPermission);
-		setApp(app);
-	
-	}
 	
 	//Support for changing the property
 	

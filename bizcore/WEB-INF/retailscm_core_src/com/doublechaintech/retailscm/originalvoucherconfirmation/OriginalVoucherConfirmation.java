@@ -74,14 +74,6 @@ public class OriginalVoucherConfirmation extends BaseEntity implements  java.io.
 		this.changed = true;
 	}
 	
-	public 	OriginalVoucherConfirmation(String who, String comments, Date makeDate)
-	{
-		setWho(who);
-		setComments(comments);
-		setMakeDate(makeDate);
-
-		this.mOriginalVoucherList = new SmartList<OriginalVoucher>();	
-	}
 	
 	//Support for changing the property
 	

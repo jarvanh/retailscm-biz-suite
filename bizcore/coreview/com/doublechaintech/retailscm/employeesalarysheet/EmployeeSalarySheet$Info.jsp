@@ -27,7 +27,6 @@
 <li><span>${userContext.localeMap['employee_salary_sheet.social_security']}</span> <fmt:formatNumber type="currency"  value="${employeeSalarySheet.socialSecurity}" /></li>
 <li><span>${userContext.localeMap['employee_salary_sheet.housing_found']}</span> <fmt:formatNumber type="currency"  value="${employeeSalarySheet.housingFound}" /></li>
 <li><span>${userContext.localeMap['employee_salary_sheet.job_insurance']}</span> <fmt:formatNumber type="currency"  value="${employeeSalarySheet.jobInsurance}" /></li>
-<li><span>${userContext.localeMap['employee_salary_sheet.current_status']}</span> ${employeeSalarySheet.currentStatus}</li>
 
 	
 	</ul>

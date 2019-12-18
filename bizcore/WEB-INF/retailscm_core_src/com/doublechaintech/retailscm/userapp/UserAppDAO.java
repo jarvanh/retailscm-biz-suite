@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.userapp;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -19,9 +20,9 @@ import com.doublechaintech.retailscm.listaccess.ListAccessDAO;
 import com.doublechaintech.retailscm.objectaccess.ObjectAccessDAO;
 
 
-public interface UserAppDAO{
+public interface UserAppDAO extends BaseDAO{
 
-	
+	public SmartList<UserApp> loadAll();
 	public UserApp load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<UserApp> userAppList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -72,6 +73,7 @@ public interface UserAppDAO{
 
 	
 	public SmartList<UserApp> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<UserApp> findUserAppBySecUser(String secUserId, Map<String,Object> options);
  	public int countUserAppBySecUser(String secUserId, Map<String,Object> options);

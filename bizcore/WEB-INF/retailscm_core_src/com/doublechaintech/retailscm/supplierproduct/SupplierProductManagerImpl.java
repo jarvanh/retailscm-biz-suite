@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.supplierproduct.SupplierProduct;
 public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager implements SupplierProductManager {
 	
 	private static final String SERVICE_TYPE = "SupplierProduct";
+	@Override
+	public SupplierProductDAO daoOf(RetailscmUserContext userContext) {
+		return supplierProductDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
  	
  	public SupplierProduct loadSupplierProduct(RetailscmUserContext userContext, String supplierProductId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplierProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplierProductManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
  	
  	 public SupplierProduct searchSupplierProduct(RetailscmUserContext userContext, String supplierProductId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplierProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplierProductManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 		addActions(userContext,supplierProduct,tokens);
 		
 		
-		SupplierProduct  supplierProductToPresent = userContext.getDAOGroup().getSupplierProductDAO().present(supplierProduct, tokens);
+		SupplierProduct  supplierProductToPresent = supplierProductDaoOf(userContext).present(supplierProduct, tokens);
 		
 		List<BaseEntity> entityListToNaming = supplierProductToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSupplierProductDAO().alias(entityListToNaming);
+		supplierProductDaoOf(userContext).alias(entityListToNaming);
 		
 		return  supplierProductToPresent;
 		
@@ -125,14 +129,14 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 		
  	}
  	protected SupplierProduct saveSupplierProduct(RetailscmUserContext userContext, SupplierProduct supplierProduct, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSupplierProductDAO().save(supplierProduct, tokens);
+ 		return supplierProductDaoOf(userContext).save(supplierProduct, tokens);
  	}
  	protected SupplierProduct loadSupplierProduct(RetailscmUserContext userContext, String supplierProductId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplierProductManagerException.class);
+		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplierProductManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSupplierProductDAO().load(supplierProductId, tokens);
+ 		return supplierProductDaoOf(userContext).load(supplierProductId, tokens);
  	}
 
 	
@@ -166,19 +170,19 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
  	
  	
 
-
-	public SupplierProduct createSupplierProduct(RetailscmUserContext userContext,String productName, String productDescription, String productUnit, String supplierId) throws Exception
+	public SupplierProduct createSupplierProduct(RetailscmUserContext userContext, String productName,String productDescription,String productUnit,String supplierId) throws Exception
+	//public SupplierProduct createSupplierProduct(RetailscmUserContext userContext,String productName, String productDescription, String productUnit, String supplierId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkProductNameOfSupplierProduct(productName);
-		userContext.getChecker().checkProductDescriptionOfSupplierProduct(productDescription);
-		userContext.getChecker().checkProductUnitOfSupplierProduct(productUnit);
+		checkerOf(userContext).checkProductNameOfSupplierProduct(productName);
+		checkerOf(userContext).checkProductDescriptionOfSupplierProduct(productDescription);
+		checkerOf(userContext).checkProductUnitOfSupplierProduct(productUnit);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 
 
 		SupplierProduct supplierProduct=createNewSupplierProduct();	
@@ -211,23 +215,23 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 
 		
 		
-		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-		userContext.getChecker().checkVersionOfSupplierProduct( supplierProductVersion);
+		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
+		checkerOf(userContext).checkVersionOfSupplierProduct( supplierProductVersion);
 		
 
 		if(SupplierProduct.PRODUCT_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkProductNameOfSupplierProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkProductNameOfSupplierProduct(parseString(newValueExpr));
 		}
 		if(SupplierProduct.PRODUCT_DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkProductDescriptionOfSupplierProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkProductDescriptionOfSupplierProduct(parseString(newValueExpr));
 		}
 		if(SupplierProduct.PRODUCT_UNIT_PROPERTY.equals(property)){
-			userContext.getChecker().checkProductUnitOfSupplierProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkProductUnitOfSupplierProduct(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 	
 		
 	}
@@ -236,7 +240,7 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	
 	public SupplierProduct clone(RetailscmUserContext userContext, String fromSupplierProductId) throws Exception{
 		
-		return userContext.getDAOGroup().getSupplierProductDAO().clone(fromSupplierProductId, this.allTokens());
+		return supplierProductDaoOf(userContext).clone(fromSupplierProductId, this.allTokens());
 	}
 	
 	public SupplierProduct internalSaveSupplierProduct(RetailscmUserContext userContext, SupplierProduct supplierProduct) throws Exception 
@@ -335,9 +339,9 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	protected void checkParamsForTransferingAnotherSupplier(RetailscmUserContext userContext, String supplierProductId, String anotherSupplierId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
- 		userContext.getChecker().checkIdOfGoodsSupplier(anotherSupplierId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
+ 		checkerOf(userContext).checkIdOfGoodsSupplier(anotherSupplierId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
  		
  	}
  	public SupplierProduct transferToAnotherSupplier(RetailscmUserContext userContext, String supplierProductId, String anotherSupplierId) throws Exception
@@ -374,7 +378,7 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<GoodsSupplier> candidateList = userContext.getDAOGroup().getGoodsSupplierDAO().requestCandidateGoodsSupplierForSupplierProduct(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<GoodsSupplier> candidateList = goodsSupplierDaoOf(userContext).requestCandidateGoodsSupplierForSupplierProduct(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -387,7 +391,7 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
  	protected GoodsSupplier loadGoodsSupplier(RetailscmUserContext userContext, String newSupplierId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getGoodsSupplierDAO().load(newSupplierId, options);
+ 		return goodsSupplierDaoOf(userContext).load(newSupplierId, options);
  	}
  	
  	
@@ -401,7 +405,7 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplierProductId, int supplierProductVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSupplierProductDAO().delete(supplierProductId, supplierProductVersion);
+		supplierProductDaoOf(userContext).delete(supplierProductId, supplierProductVersion);
 	}
 	
 	public SupplierProduct forgetByAll(RetailscmUserContext userContext, String supplierProductId, int supplierProductVersion) throws Exception {
@@ -410,8 +414,9 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	protected SupplierProduct forgetByAllInternal(RetailscmUserContext userContext,
 			String supplierProductId, int supplierProductVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSupplierProductDAO().disconnectFromAll(supplierProductId, supplierProductVersion);
+		return supplierProductDaoOf(userContext).disconnectFromAll(supplierProductId, supplierProductVersion);
 	}
+	
 	
 
 	
@@ -428,7 +433,7 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSupplierProductDAO().deleteAll();
+		return supplierProductDaoOf(userContext).deleteAll();
 	}
 
 
@@ -440,20 +445,16 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 
 	protected void checkParamsForAddingProductSupplyDuration(RetailscmUserContext userContext, String supplierProductId, int quantity, String duration, BigDecimal price,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
 
 		
+		checkerOf(userContext).checkQuantityOfProductSupplyDuration(quantity);
 		
-		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-
+		checkerOf(userContext).checkDurationOfProductSupplyDuration(duration);
 		
-		userContext.getChecker().checkQuantityOfProductSupplyDuration(quantity);
-		
-		userContext.getChecker().checkDurationOfProductSupplyDuration(duration);
-		
-		userContext.getChecker().checkPriceOfProductSupplyDuration(price);
+		checkerOf(userContext).checkPriceOfProductSupplyDuration(price);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 
 	
 	}
@@ -477,14 +478,14 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	}
 	protected void checkParamsForUpdatingProductSupplyDurationProperties(RetailscmUserContext userContext, String supplierProductId,String id,int quantity,String duration,BigDecimal price,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-		userContext.getChecker().checkIdOfProductSupplyDuration(id);
+		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
+		checkerOf(userContext).checkIdOfProductSupplyDuration(id);
 		
-		userContext.getChecker().checkQuantityOfProductSupplyDuration( quantity);
-		userContext.getChecker().checkDurationOfProductSupplyDuration( duration);
-		userContext.getChecker().checkPriceOfProductSupplyDuration( price);
+		checkerOf(userContext).checkQuantityOfProductSupplyDuration( quantity);
+		checkerOf(userContext).checkDurationOfProductSupplyDuration( duration);
+		checkerOf(userContext).checkPriceOfProductSupplyDuration( price);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 		
 	}
 	public  SupplierProduct updateProductSupplyDurationProperties(RetailscmUserContext userContext, String supplierProductId, String id,int quantity,String duration,BigDecimal price, String [] tokensExpr) throws Exception
@@ -544,12 +545,12 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	protected void checkParamsForRemovingProductSupplyDurationList(RetailscmUserContext userContext, String supplierProductId, 
 			String productSupplyDurationIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
+		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
 		for(String productSupplyDurationIdItem: productSupplyDurationIds){
-			userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationIdItem);
+			checkerOf(userContext).checkIdOfProductSupplyDuration(productSupplyDurationIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 		
 	}
 	public  SupplierProduct removeProductSupplyDurationList(RetailscmUserContext userContext, String supplierProductId, 
@@ -562,7 +563,7 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 			synchronized(supplierProduct){ 
 				//Will be good when the supplierProduct loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSupplierProductDAO().planToRemoveProductSupplyDurationList(supplierProduct, productSupplyDurationIds, allTokens());
+				supplierProductDaoOf(userContext).planToRemoveProductSupplyDurationList(supplierProduct, productSupplyDurationIds, allTokens());
 				supplierProduct = saveSupplierProduct(userContext, supplierProduct, tokens().withProductSupplyDurationList().done());
 				deleteRelationListInGraph(userContext, supplierProduct.getProductSupplyDurationList());
 				return present(userContext,supplierProduct, mergedAllTokens(tokensExpr));
@@ -572,10 +573,10 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	protected void checkParamsForRemovingProductSupplyDuration(RetailscmUserContext userContext, String supplierProductId, 
 		String productSupplyDurationId, int productSupplyDurationVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplierProduct( supplierProductId);
-		userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationId);
-		userContext.getChecker().checkVersionOfProductSupplyDuration(productSupplyDurationVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).checkIdOfSupplierProduct( supplierProductId);
+		checkerOf(userContext).checkIdOfProductSupplyDuration(productSupplyDurationId);
+		checkerOf(userContext).checkVersionOfProductSupplyDuration(productSupplyDurationVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 	
 	}
 	public  SupplierProduct removeProductSupplyDuration(RetailscmUserContext userContext, String supplierProductId, 
@@ -599,10 +600,10 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 	protected void checkParamsForCopyingProductSupplyDuration(RetailscmUserContext userContext, String supplierProductId, 
 		String productSupplyDurationId, int productSupplyDurationVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplierProduct( supplierProductId);
-		userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationId);
-		userContext.getChecker().checkVersionOfProductSupplyDuration(productSupplyDurationVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).checkIdOfSupplierProduct( supplierProductId);
+		checkerOf(userContext).checkIdOfProductSupplyDuration(productSupplyDurationId);
+		checkerOf(userContext).checkVersionOfProductSupplyDuration(productSupplyDurationVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 	
 	}
 	public  SupplierProduct copyProductSupplyDurationFrom(RetailscmUserContext userContext, String supplierProductId, 
@@ -631,25 +632,25 @@ public class SupplierProductManagerImpl extends CustomRetailscmCheckerManager im
 		
 
 		
-		userContext.getChecker().checkIdOfSupplierProduct(supplierProductId);
-		userContext.getChecker().checkIdOfProductSupplyDuration(productSupplyDurationId);
-		userContext.getChecker().checkVersionOfProductSupplyDuration(productSupplyDurationVersion);
+		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
+		checkerOf(userContext).checkIdOfProductSupplyDuration(productSupplyDurationId);
+		checkerOf(userContext).checkVersionOfProductSupplyDuration(productSupplyDurationVersion);
 		
 
 		if(ProductSupplyDuration.QUANTITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkQuantityOfProductSupplyDuration(parseInt(newValueExpr));
+			checkerOf(userContext).checkQuantityOfProductSupplyDuration(parseInt(newValueExpr));
 		}
 		
 		if(ProductSupplyDuration.DURATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDurationOfProductSupplyDuration(parseString(newValueExpr));
+			checkerOf(userContext).checkDurationOfProductSupplyDuration(parseString(newValueExpr));
 		}
 		
 		if(ProductSupplyDuration.PRICE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPriceOfProductSupplyDuration(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkPriceOfProductSupplyDuration(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierProductManagerException.class);
 	
 	}
 	

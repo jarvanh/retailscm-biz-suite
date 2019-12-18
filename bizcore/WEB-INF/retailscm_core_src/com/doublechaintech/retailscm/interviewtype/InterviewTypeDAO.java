@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.interviewtype;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.employeeinterview.EmployeeInterviewDAO;
 
 
-public interface InterviewTypeDAO{
+public interface InterviewTypeDAO extends BaseDAO{
 
-	
+	public SmartList<InterviewType> loadAll();
 	public InterviewType load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<InterviewType> interviewTypeList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -58,6 +59,7 @@ public interface InterviewTypeDAO{
 	
 	
 	public SmartList<InterviewType> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<InterviewType> findInterviewTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countInterviewTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

@@ -53,6 +53,11 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	}
 	*/
 	
+	public SmartList<SupplyOrderLineItem> loadAll() {
+	    return this.loadAll(getSupplyOrderLineItemMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -557,6 +562,10 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	@Override
 	public SmartList<SupplyOrderLineItem> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplyOrderLineItemMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -145,20 +145,6 @@ public class AccountingDocumentForm extends BaseForm {
 		return postingIdField("postingId","");
 	}
 
-
-	public AccountingDocumentForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromAccountingDocument(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public AccountingDocumentForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public AccountingDocumentForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -656,20 +642,6 @@ public class AccountingDocumentForm extends BaseForm {
 	}
 
 
-	public AccountingDocumentForm currentStatusFieldForOriginalVoucher(String parameterName, String initValue){
-		FormField field =  currentStatusFromOriginalVoucher(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public AccountingDocumentForm currentStatusFieldForOriginalVoucher(String initValue){
-		return currentStatusFieldForOriginalVoucher("currentStatus",initValue);
-	}
-	public AccountingDocumentForm currentStatusFieldForOriginalVoucher(){
-		return currentStatusFieldForOriginalVoucher("currentStatus","");
-	}
-
-
 	public AccountingDocumentForm accountingDocumentLineIdFieldForAccountingDocumentLine(String parameterName, String initValue){
 		FormField field =  idFromAccountingDocumentLine(parameterName, initValue);		
 		this.addFormField(field);
@@ -790,38 +762,46 @@ public class AccountingDocumentForm extends BaseForm {
 	}
 
  	
- 	public AccountingDocumentForm  createAction(){
+ 	public AccountingDocumentForm transferToAnotherCreationAction(){
 		FormAction action = new FormAction();
-		action.setLabel("创建");
-		action.setLocaleKey("accounting_document.create");
-		action.setUrl("accountingDocumentManager/create/accountingDocumentId/who/comments/makeDate/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public AccountingDocumentForm  confirmAction(){
-		FormAction action = new FormAction();
-		action.setLabel("确认");
-		action.setLocaleKey("accounting_document.confirm");
-		action.setUrl("accountingDocumentManager/confirm/accountingDocumentId/who/comments/makeDate/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public AccountingDocumentForm  auditAction(){
-		FormAction action = new FormAction();
-		action.setLabel("审计");
-		action.setLocaleKey("accounting_document.audit");
-		action.setUrl("accountingDocumentManager/audit/accountingDocumentId/who/comments/makeDate/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public AccountingDocumentForm  postAction(){
-		FormAction action = new FormAction();
-		action.setLabel("过账");
-		action.setLocaleKey("accounting_document.post");
-		action.setUrl("accountingDocumentManager/post/accountingDocumentId/who/comments/makeDate/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherCreation/accountingDocumentId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 	
+ 	public AccountingDocumentForm transferToAnotherConfirmationAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherConfirmation/accountingDocumentId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public AccountingDocumentForm transferToAnotherAuditingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherAuditing/accountingDocumentId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public AccountingDocumentForm transferToAnotherPostingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherPosting/accountingDocumentId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 
 
 	public AccountingDocumentForm showAction(){
 		FormAction action = new FormAction();

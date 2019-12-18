@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.secuserblocking;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.secuser.SecUserDAO;
 
 
-public interface SecUserBlockingDAO{
+public interface SecUserBlockingDAO extends BaseDAO{
 
-	
+	public SmartList<SecUserBlocking> loadAll();
 	public SecUserBlocking load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SecUserBlocking> secUserBlockingList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -56,6 +57,7 @@ public interface SecUserBlockingDAO{
 	
 	
 	public SmartList<SecUserBlocking> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
 
 	// 需要一个加载引用我的对象的enhance方法:SecUser的blocking的SecUserList
 	public SmartList<SecUser> loadOurSecUserList(RetailscmUserContext userContext, List<SecUserBlocking> us, Map<String,Object> options) throws Exception;

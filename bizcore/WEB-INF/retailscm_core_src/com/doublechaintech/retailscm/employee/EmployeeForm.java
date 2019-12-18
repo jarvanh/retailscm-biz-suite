@@ -327,20 +327,6 @@ public class EmployeeForm extends BaseForm {
 		return lastUpdateTimeField("lastUpdateTime","");
 	}
 
-
-	public EmployeeForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromEmployee(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public EmployeeForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public EmployeeForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -1202,20 +1188,6 @@ public class EmployeeForm extends BaseForm {
 	}
 
 
-	public EmployeeForm currentStatusFieldForEmployeeCompanyTraining(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployeeCompanyTraining(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public EmployeeForm currentStatusFieldForEmployeeCompanyTraining(String initValue){
-		return currentStatusFieldForEmployeeCompanyTraining("currentStatus",initValue);
-	}
-	public EmployeeForm currentStatusFieldForEmployeeCompanyTraining(){
-		return currentStatusFieldForEmployeeCompanyTraining("currentStatus","");
-	}
-
-
 	public EmployeeForm employeeSkillIdFieldForEmployeeSkill(String parameterName, String initValue){
 		FormField field =  idFromEmployeeSkill(parameterName, initValue);		
 		this.addFormField(field);
@@ -1986,20 +1958,6 @@ public class EmployeeForm extends BaseForm {
 	}
 
 
-	public EmployeeForm currentStatusFieldForEmployeeSalarySheet(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployeeSalarySheet(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public EmployeeForm currentStatusFieldForEmployeeSalarySheet(String initValue){
-		return currentStatusFieldForEmployeeSalarySheet("currentStatus",initValue);
-	}
-	public EmployeeForm currentStatusFieldForEmployeeSalarySheet(){
-		return currentStatusFieldForEmployeeSalarySheet("currentStatus","");
-	}
-
-
 	public EmployeeForm payingOffIdFieldForPayingOff(String parameterName, String initValue){
 		FormField field =  idFromPayingOff(parameterName, initValue);		
 		this.addFormField(field);
@@ -2122,62 +2080,76 @@ public class EmployeeForm extends BaseForm {
 	}
 
  	
- 	public EmployeeForm  applyJobAction(){
+ 	public EmployeeForm transferToAnotherJobApplicationAction(){
 		FormAction action = new FormAction();
-		action.setLabel("工作申请");
-		action.setLocaleKey("employee.applyJob");
-		action.setUrl("employeeManager/applyJob/employeeId/applicationTime/who/comments/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public EmployeeForm  interviewWithProfessionAction(){
-		FormAction action = new FormAction();
-		action.setLabel("专业面试");
-		action.setLocaleKey("employee.interviewWithProfession");
-		action.setUrl("employeeManager/interviewWithProfession/employeeId/who/interviewTime/comments/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public EmployeeForm  interviewByHrAction(){
-		FormAction action = new FormAction();
-		action.setLabel("人力资源部面试");
-		action.setLocaleKey("employee.interviewByHr");
-		action.setUrl("employeeManager/interviewByHr/employeeId/who/interviewTime/comments/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public EmployeeForm  approveOfferAction(){
-		FormAction action = new FormAction();
-		action.setLabel("审批工作要约");
-		action.setLocaleKey("employee.approveOffer");
-		action.setUrl("employeeManager/approveOffer/employeeId/who/approveTime/comments/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public EmployeeForm  acceptOfferAction(){
-		FormAction action = new FormAction();
-		action.setLabel("接受工作要约");
-		action.setLocaleKey("employee.acceptOffer");
-		action.setUrl("employeeManager/acceptOffer/employeeId/who/acceptTime/comments/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public EmployeeForm  boardEmployeeAction(){
-		FormAction action = new FormAction();
-		action.setLabel("员工入职");
-		action.setLocaleKey("employee.boardEmployee");
-		action.setUrl("employeeManager/boardEmployee/employeeId/who/employTime/comments/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public EmployeeForm  terminateAction(){
-		FormAction action = new FormAction();
-		action.setLabel("雇佣终止");
-		action.setLocaleKey("employee.terminate");
-		action.setUrl("employeeManager/terminate/employeeId/reasonIdtypeIdcomment/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherJobApplication/employeeId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 	
+ 	public EmployeeForm transferToAnotherProfessionInterviewAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherProfessionInterview/employeeId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public EmployeeForm transferToAnotherHrInterviewAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherHrInterview/employeeId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public EmployeeForm transferToAnotherOfferApprovalAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherOfferApproval/employeeId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public EmployeeForm transferToAnotherOfferAcceptanceAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherOfferAcceptance/employeeId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public EmployeeForm transferToAnotherEmployeeBoardingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherEmployeeBoarding/employeeId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public EmployeeForm transferToAnotherTerminationAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherTermination/employeeId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 
 
 	public EmployeeForm showAction(){
 		FormAction action = new FormAction();

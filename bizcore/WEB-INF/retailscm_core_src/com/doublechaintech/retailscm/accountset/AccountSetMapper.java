@@ -135,7 +135,7 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setAccountNumber(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String accountNumber = rs.getString(AccountSetTable.COLUMN_ACCOUNT_NUMBER);
+		Long accountNumber = rs.getLong(AccountSetTable.COLUMN_ACCOUNT_NUMBER);
 		if(accountNumber == null){
 			//do nothing when nothing found in database
 			return;

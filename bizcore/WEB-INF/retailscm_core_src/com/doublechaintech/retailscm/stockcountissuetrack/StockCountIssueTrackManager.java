@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface StockCountIssueTrackManager{
+public interface StockCountIssueTrackManager extends BaseManager{
 
 		
 
-	public StockCountIssueTrack createStockCountIssueTrack(RetailscmUserContext userContext, String title, Date countTime, String summary, String stockCountId) throws Exception;	
+	public StockCountIssueTrack createStockCountIssueTrack(RetailscmUserContext userContext, String title,Date countTime,String summary,String stockCountId) throws Exception;	
 	public StockCountIssueTrack updateStockCountIssueTrack(RetailscmUserContext userContext,String stockCountIssueTrackId, int stockCountIssueTrackVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public StockCountIssueTrack loadStockCountIssueTrack(RetailscmUserContext userContext, String stockCountIssueTrackId, String [] tokensExpr) throws Exception;
 	public StockCountIssueTrack internalSaveStockCountIssueTrack(RetailscmUserContext userContext, StockCountIssueTrack stockCountIssueTrack) throws Exception;

@@ -569,20 +569,6 @@ public class AccountSetForm extends BaseForm {
 	}
 
 
-	public AccountSetForm currentStatusFieldOfRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public AccountSetForm currentStatusFieldOfRetailStore(String initValue){
-		return currentStatusFieldOfRetailStore("currentStatus",initValue);
-	}
-	public AccountSetForm currentStatusFieldOfRetailStore(){
-		return currentStatusFieldOfRetailStore("currentStatus","");
-	}
-
-
 	public AccountSetForm goodsSupplierIdFieldOfGoodsSupplier(String parameterName, String initValue){
 		FormField field =  idFromGoodsSupplier(parameterName, initValue);
 		this.addFormField(field);	

@@ -218,20 +218,6 @@ public class ConsumerOrderShippingGroupForm extends BaseForm {
 		return lastUpdateTimeFieldOfConsumerOrder("lastUpdateTime","");
 	}
 
-
-	public ConsumerOrderShippingGroupForm currentStatusFieldOfConsumerOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromConsumerOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public ConsumerOrderShippingGroupForm currentStatusFieldOfConsumerOrder(String initValue){
-		return currentStatusFieldOfConsumerOrder("currentStatus",initValue);
-	}
-	public ConsumerOrderShippingGroupForm currentStatusFieldOfConsumerOrder(){
-		return currentStatusFieldOfConsumerOrder("currentStatus","");
-	}
-
 	
 
 

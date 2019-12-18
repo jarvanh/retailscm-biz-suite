@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.genericform.CandidateGenericForm;
 public class FormActionManagerImpl extends CustomRetailscmCheckerManager implements FormActionManager {
 	
 	private static final String SERVICE_TYPE = "FormAction";
+	@Override
+	public FormActionDAO daoOf(RetailscmUserContext userContext) {
+		return formActionDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	public FormAction loadFormAction(RetailscmUserContext userContext, String formActionId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfFormAction(formActionId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormActionManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormAction(formActionId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormActionManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	 public FormAction searchFormAction(RetailscmUserContext userContext, String formActionId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfFormAction(formActionId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormActionManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormAction(formActionId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormActionManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		addActions(userContext,formAction,tokens);
 		
 		
-		FormAction  formActionToPresent = userContext.getDAOGroup().getFormActionDAO().present(formAction, tokens);
+		FormAction  formActionToPresent = formActionDaoOf(userContext).present(formAction, tokens);
 		
 		List<BaseEntity> entityListToNaming = formActionToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getFormActionDAO().alias(entityListToNaming);
+		formActionDaoOf(userContext).alias(entityListToNaming);
 		
 		return  formActionToPresent;
 		
@@ -123,14 +127,14 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		
  	}
  	protected FormAction saveFormAction(RetailscmUserContext userContext, FormAction formAction, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getFormActionDAO().save(formAction, tokens);
+ 		return formActionDaoOf(userContext).save(formAction, tokens);
  	}
  	protected FormAction loadFormAction(RetailscmUserContext userContext, String formActionId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfFormAction(formActionId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormActionManagerException.class);
+		checkerOf(userContext).checkIdOfFormAction(formActionId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormActionManagerException.class);
 
  
- 		return userContext.getDAOGroup().getFormActionDAO().load(formActionId, tokens);
+ 		return formActionDaoOf(userContext).load(formActionId, tokens);
  	}
 
 	
@@ -160,21 +164,21 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	
 
-
-	public FormAction createFormAction(RetailscmUserContext userContext,String label, String localeKey, String actionKey, String level, String url, String formId) throws Exception
+	public FormAction createFormAction(RetailscmUserContext userContext, String label,String localeKey,String actionKey,String level,String url,String formId) throws Exception
+	//public FormAction createFormAction(RetailscmUserContext userContext,String label, String localeKey, String actionKey, String level, String url, String formId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLabelOfFormAction(label);
-		userContext.getChecker().checkLocaleKeyOfFormAction(localeKey);
-		userContext.getChecker().checkActionKeyOfFormAction(actionKey);
-		userContext.getChecker().checkLevelOfFormAction(level);
-		userContext.getChecker().checkUrlOfFormAction(url);
+		checkerOf(userContext).checkLabelOfFormAction(label);
+		checkerOf(userContext).checkLocaleKeyOfFormAction(localeKey);
+		checkerOf(userContext).checkActionKeyOfFormAction(actionKey);
+		checkerOf(userContext).checkLevelOfFormAction(level);
+		checkerOf(userContext).checkUrlOfFormAction(url);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(FormActionManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(FormActionManagerException.class);
 
 
 		FormAction formAction=createNewFormAction();	
@@ -209,29 +213,29 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 
 		
 		
-		userContext.getChecker().checkIdOfFormAction(formActionId);
-		userContext.getChecker().checkVersionOfFormAction( formActionVersion);
+		checkerOf(userContext).checkIdOfFormAction(formActionId);
+		checkerOf(userContext).checkVersionOfFormAction( formActionVersion);
 		
 
 		if(FormAction.LABEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLabelOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkLabelOfFormAction(parseString(newValueExpr));
 		}
 		if(FormAction.LOCALE_KEY_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocaleKeyOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkLocaleKeyOfFormAction(parseString(newValueExpr));
 		}
 		if(FormAction.ACTION_KEY_PROPERTY.equals(property)){
-			userContext.getChecker().checkActionKeyOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkActionKeyOfFormAction(parseString(newValueExpr));
 		}
 		if(FormAction.LEVEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLevelOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkLevelOfFormAction(parseString(newValueExpr));
 		}
 		if(FormAction.URL_PROPERTY.equals(property)){
-			userContext.getChecker().checkUrlOfFormAction(parseString(newValueExpr));
+			checkerOf(userContext).checkUrlOfFormAction(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(FormActionManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(FormActionManagerException.class);
 	
 		
 	}
@@ -240,7 +244,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	public FormAction clone(RetailscmUserContext userContext, String fromFormActionId) throws Exception{
 		
-		return userContext.getDAOGroup().getFormActionDAO().clone(fromFormActionId, this.allTokens());
+		return formActionDaoOf(userContext).clone(fromFormActionId, this.allTokens());
 	}
 	
 	public FormAction internalSaveFormAction(RetailscmUserContext userContext, FormAction formAction) throws Exception 
@@ -338,9 +342,9 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForTransferingAnotherForm(RetailscmUserContext userContext, String formActionId, String anotherFormId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfFormAction(formActionId);
- 		userContext.getChecker().checkIdOfGenericForm(anotherFormId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(FormActionManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormAction(formActionId);
+ 		checkerOf(userContext).checkIdOfGenericForm(anotherFormId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(FormActionManagerException.class);
  		
  	}
  	public FormAction transferToAnotherForm(RetailscmUserContext userContext, String formActionId, String anotherFormId) throws Exception
@@ -377,7 +381,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<GenericForm> candidateList = userContext.getDAOGroup().getGenericFormDAO().requestCandidateGenericFormForFormAction(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<GenericForm> candidateList = genericFormDaoOf(userContext).requestCandidateGenericFormForFormAction(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -390,7 +394,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected GenericForm loadGenericForm(RetailscmUserContext userContext, String newFormId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getGenericFormDAO().load(newFormId, options);
+ 		return genericFormDaoOf(userContext).load(newFormId, options);
  	}
  	
  	
@@ -404,7 +408,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String formActionId, int formActionVersion) throws Exception{
 			
-		userContext.getDAOGroup().getFormActionDAO().delete(formActionId, formActionVersion);
+		formActionDaoOf(userContext).delete(formActionId, formActionVersion);
 	}
 	
 	public FormAction forgetByAll(RetailscmUserContext userContext, String formActionId, int formActionVersion) throws Exception {
@@ -413,8 +417,9 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected FormAction forgetByAllInternal(RetailscmUserContext userContext,
 			String formActionId, int formActionVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getFormActionDAO().disconnectFromAll(formActionId, formActionVersion);
+		return formActionDaoOf(userContext).disconnectFromAll(formActionId, formActionVersion);
 	}
+	
 	
 
 	
@@ -431,7 +436,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getFormActionDAO().deleteAll();
+		return formActionDaoOf(userContext).deleteAll();
 	}
 
 

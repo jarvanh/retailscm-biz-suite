@@ -251,9 +251,13 @@ public class GoodsTokens extends CommonTokens{
 	}
 	private int goodsMovementListSearchCounter = 0;
 	public GoodsTokens searchGoodsMovementListWith(String field, String verb, String value){		
+		
+		withGoodsMovementList();
 		addSearchMoreOptions(GOODS_MOVEMENT_LIST,goodsMovementListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public GoodsTokens searchAllTextOfGoodsMovementList(String verb, String value){	
 		String field = "id|facility|facilityId|fromIp|userAgent|sessionId";

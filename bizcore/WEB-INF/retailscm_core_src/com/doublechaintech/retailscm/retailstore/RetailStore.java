@@ -47,7 +47,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	public static final String LONGITUDE_PROPERTY             = "longitude"         ;
 	public static final String DESCRIPTION_PROPERTY           = "description"       ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String CONSUMER_ORDER_LIST                      = "consumerOrderList" ;
@@ -77,7 +76,7 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mName               ;
-	protected		String              	mTelephone          ;
+	protected		long                	mTelephone          ;
 	protected		String              	mOwner              ;
 	protected		RetailStoreCountryCenter	mRetailStoreCountryCenter;
 	protected		RetailStoreCityServiceCenter	mCityServiceCenter  ;
@@ -92,7 +91,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	protected		BigDecimal          	mLongitude          ;
 	protected		String              	mDescription        ;
 	protected		DateTime            	mLastUpdateTime     ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -130,26 +128,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	RetailStore(String name, String telephone, String owner, RetailStoreCountryCenter retailStoreCountryCenter, RetailStoreCityServiceCenter cityServiceCenter, Date founded, BigDecimal latitude, BigDecimal longitude, String description, DateTime lastUpdateTime, String currentStatus)
-	{
-		setName(name);
-		setTelephone(telephone);
-		setOwner(owner);
-		setRetailStoreCountryCenter(retailStoreCountryCenter);
-		setCityServiceCenter(cityServiceCenter);
-		setFounded(founded);
-		setLatitude(latitude);
-		setLongitude(longitude);
-		setDescription(description);
-		setLastUpdateTime(lastUpdateTime);
-		setCurrentStatus(currentStatus);
-
-		this.mConsumerOrderList = new SmartList<ConsumerOrder>();
-		this.mRetailStoreOrderList = new SmartList<RetailStoreOrder>();
-		this.mGoodsList = new SmartList<Goods>();
-		this.mTransportTaskList = new SmartList<TransportTask>();
-		this.mAccountSetList = new SmartList<AccountSet>();	
-	}
 	
 	//Support for changing the property
 	
@@ -200,9 +178,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeTelephoneProperty(String newValueExpr){
-		String oldValue = getTelephone();
-		String newValue = parseString(newValueExpr);
-		if(equalsString(oldValue , newValue)){
+		long oldValue = getTelephone();
+		long newValue = parseLong(newValueExpr);
+		if(equalsLong(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -357,9 +335,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
 		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
-		}
 		if(CONSUMER_ORDER_LIST.equals(property)){
 			List<BaseEntity> list = getConsumerOrderList().stream().map(item->item).collect(Collectors.toList());
 			return list;
@@ -423,19 +398,19 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setTelephone(String telephone){
-		this.mTelephone = trimString(telephone);;
+	public void setTelephone(long telephone){
+		this.mTelephone = telephone;;
 	}
-	public String getTelephone(){
+	public long getTelephone(){
 		return this.mTelephone;
 	}
-	public RetailStore updateTelephone(String telephone){
-		this.mTelephone = trimString(telephone);;
+	public RetailStore updateTelephone(long telephone){
+		this.mTelephone = telephone;;
 		this.changed = true;
 		return this;
 	}
-	public void mergeTelephone(String telephone){
-		if(telephone != null) { setTelephone(telephone);}
+	public void mergeTelephone(long telephone){
+		setTelephone(telephone);
 	}
 	
 	
@@ -700,22 +675,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	}
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
-	}
-	
-	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public RetailStore updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
 	
 	
@@ -1331,7 +1290,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, LONGITUDE_PROPERTY, getLongitude());
 		appendKeyValuePair(result, DESCRIPTION_PROPERTY, getDescription());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, CONSUMER_ORDER_LIST, getConsumerOrderList());
 		if(!getConsumerOrderList().isEmpty()){
@@ -1389,7 +1347,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 			dest.setLongitude(getLongitude());
 			dest.setDescription(getDescription());
 			dest.setLastUpdateTime(getLastUpdateTime());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 			dest.setConsumerOrderList(getConsumerOrderList());
 			dest.setRetailStoreOrderList(getRetailStoreOrderList());
@@ -1426,7 +1383,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 			dest.mergeLongitude(getLongitude());
 			dest.mergeDescription(getDescription());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 			dest.mergeConsumerOrderList(getConsumerOrderList());
 			dest.mergeRetailStoreOrderList(getRetailStoreOrderList());
@@ -1456,7 +1412,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 			dest.mergeLongitude(getLongitude());
 			dest.mergeDescription(getDescription());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -1500,7 +1455,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		stringBuilder.append("\tlongitude='"+getLongitude()+"';");
 		stringBuilder.append("\tdescription='"+getDescription()+"';");
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 
@@ -1508,6 +1462,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
+	
+	public void increaseTelephone(long incTelephone){
+		updateTelephone(this.mTelephone +  incTelephone);
+	}
+	public void decreaseTelephone(long decTelephone){
+		updateTelephone(this.mTelephone - decTelephone);
+	}
 	
 
 }

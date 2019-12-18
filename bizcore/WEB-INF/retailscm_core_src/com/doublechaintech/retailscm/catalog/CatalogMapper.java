@@ -15,6 +15,8 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
  		setId(catalog, rs, rowNumber); 		
  		setName(catalog, rs, rowNumber); 		
  		setOwner(catalog, rs, rowNumber); 		
+ 		setSubCount(catalog, rs, rowNumber); 		
+ 		setAmount(catalog, rs, rowNumber); 		
  		setVersion(catalog, rs, rowNumber);
 
 		return catalog;
@@ -66,6 +68,30 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
  		catalog.setOwner(createEmptyOwner(retailStoreCountryCenterId));
  	}
  	
+	protected void setSubCount(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
+	
+		//there will be issue when the type is double/int/long
+		Integer subCount = rs.getInt(CatalogTable.COLUMN_SUB_COUNT);
+		if(subCount == null){
+			//do nothing when nothing found in database
+			return;
+		}
+		
+		catalog.setSubCount(subCount);
+	}
+		
+	protected void setAmount(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
+	
+		//there will be issue when the type is double/int/long
+		BigDecimal amount = rs.getBigDecimal(CatalogTable.COLUMN_AMOUNT);
+		if(amount == null){
+			//do nothing when nothing found in database
+			return;
+		}
+		
+		catalog.setAmount(amount);
+	}
+		
 	protected void setVersion(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long

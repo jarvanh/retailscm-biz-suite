@@ -22,12 +22,8 @@ public class LevelOneCategoryTable{
 	static final String COLUMN_NAME = "name";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_CATALOG, COLUMN_NAME, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_CATALOG, COLUMN_NAME
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_CATALOG,COLUMN_NAME,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_CATALOG,COLUMN_NAME};
 	
 	
 }

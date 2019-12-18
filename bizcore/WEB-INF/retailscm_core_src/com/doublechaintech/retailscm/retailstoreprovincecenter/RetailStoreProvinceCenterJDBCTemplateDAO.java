@@ -116,6 +116,11 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	*/
 	
+	public SmartList<RetailStoreProvinceCenter> loadAll() {
+	    return this.loadAll(getRetailStoreProvinceCenterMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1366,6 +1371,10 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
 	@Override
 	public SmartList<RetailStoreProvinceCenter> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreProvinceCenterMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

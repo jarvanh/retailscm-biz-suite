@@ -31,7 +31,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	public static final String HOUSING_FOUND_PROPERTY         = "housingFound"      ;
 	public static final String JOB_INSURANCE_PROPERTY         = "jobInsurance"      ;
 	public static final String PAYING_OFF_PROPERTY            = "payingOff"         ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 
@@ -42,7 +41,7 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	
 	public String getDisplayName(){
 	
-		String displayName = getCurrentStatus();
+		String displayName = getId();
 		if(displayName!=null){
 			return displayName;
 		}
@@ -65,7 +64,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	protected		BigDecimal          	mHousingFound       ;
 	protected		BigDecimal          	mJobInsurance       ;
 	protected		PayingOff           	mPayingOff          ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -93,20 +91,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-	public 	EmployeeSalarySheet(Employee employee, SalaryGrade currentSalaryGrade, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String currentStatus)
-	{
-		setEmployee(employee);
-		setCurrentSalaryGrade(currentSalaryGrade);
-		setBaseSalary(baseSalary);
-		setBonus(bonus);
-		setReward(reward);
-		setPersonalTax(personalTax);
-		setSocialSecurity(socialSecurity);
-		setHousingFound(housingFound);
-		setJobInsurance(jobInsurance);
-		setCurrentStatus(currentStatus);
-	
-	}
 	
 	//Support for changing the property
 	
@@ -277,9 +261,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		}
 		if(PAYING_OFF_PROPERTY.equals(property)){
 			return getPayingOff();
-		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
 		}
 
     		//other property not include here
@@ -483,22 +464,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public EmployeeSalarySheet updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
-	}
-	
-	
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -555,7 +520,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		appendKeyValuePair(result, HOUSING_FOUND_PROPERTY, getHousingFound());
 		appendKeyValuePair(result, JOB_INSURANCE_PROPERTY, getJobInsurance());
 		appendKeyValuePair(result, PAYING_OFF_PROPERTY, getPayingOff());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
 		
@@ -582,7 +546,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 			dest.setHousingFound(getHousingFound());
 			dest.setJobInsurance(getJobInsurance());
 			dest.setPayingOff(getPayingOff());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 
 		}
@@ -608,7 +571,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 			dest.mergeHousingFound(getHousingFound());
 			dest.mergeJobInsurance(getJobInsurance());
 			dest.mergePayingOff(getPayingOff());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -632,7 +594,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 			dest.mergeSocialSecurity(getSocialSecurity());
 			dest.mergeHousingFound(getHousingFound());
 			dest.mergeJobInsurance(getJobInsurance());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -660,7 +621,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		if(getPayingOff() != null ){
  			stringBuilder.append("\tpayingOff='PayingOff("+getPayingOff().getId()+")';");
  		}
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

@@ -74,6 +74,11 @@ public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Ci
 	}
 	*/
 	
+	public SmartList<CityEvent> loadAll() {
+	    return this.loadAll(getCityEventMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -866,6 +871,10 @@ public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Ci
 	@Override
 	public SmartList<CityEvent> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getCityEventMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

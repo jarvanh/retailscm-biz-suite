@@ -75,20 +75,6 @@ public class EmployeeCompanyTrainingForm extends BaseForm {
 		return scoringIdField("scoringId","");
 	}
 
-
-	public EmployeeCompanyTrainingForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromEmployeeCompanyTraining(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public EmployeeCompanyTrainingForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public EmployeeCompanyTrainingForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -401,20 +387,6 @@ public class EmployeeCompanyTrainingForm extends BaseForm {
 	}
 
 
-	public EmployeeCompanyTrainingForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeCompanyTrainingForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeCompanyTrainingForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
-
 	public EmployeeCompanyTrainingForm companyTrainingIdFieldOfCompanyTraining(String parameterName, String initValue){
 		FormField field =  idFromCompanyTraining(parameterName, initValue);
 		this.addFormField(field);	
@@ -608,14 +580,16 @@ public class EmployeeCompanyTrainingForm extends BaseForm {
 	}
 
  	
- 	public EmployeeCompanyTrainingForm  scoreAction(){
+ 	public EmployeeCompanyTrainingForm transferToAnotherScoringAction(){
 		FormAction action = new FormAction();
-		action.setLabel("评分");
-		action.setLocaleKey("employee_company_training.score");
-		action.setUrl("employeeCompanyTrainingManager/score/employeeCompanyTrainingId/scoredBy/score/comment/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherScoring/employeeCompanyTrainingId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 
 
 	public EmployeeCompanyTrainingForm showAction(){
 		FormAction action = new FormAction();

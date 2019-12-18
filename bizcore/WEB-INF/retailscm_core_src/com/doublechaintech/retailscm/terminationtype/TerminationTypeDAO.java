@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.terminationtype;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.termination.TerminationDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface TerminationTypeDAO{
+public interface TerminationTypeDAO extends BaseDAO{
 
-	
+	public SmartList<TerminationType> loadAll();
 	public TerminationType load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<TerminationType> terminationTypeList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -58,6 +59,7 @@ public interface TerminationTypeDAO{
 	
 	
 	public SmartList<TerminationType> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<TerminationType> findTerminationTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countTerminationTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

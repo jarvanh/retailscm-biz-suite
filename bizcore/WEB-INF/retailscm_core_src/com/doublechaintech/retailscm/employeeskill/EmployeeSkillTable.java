@@ -23,12 +23,8 @@ public class EmployeeSkillTable{
 	static final String COLUMN_DESCRIPTION = "description";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_EMPLOYEE, COLUMN_SKILL_TYPE, COLUMN_DESCRIPTION, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_EMPLOYEE, COLUMN_SKILL_TYPE, COLUMN_DESCRIPTION
-		};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_EMPLOYEE,COLUMN_SKILL_TYPE,COLUMN_DESCRIPTION,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_EMPLOYEE,COLUMN_SKILL_TYPE,COLUMN_DESCRIPTION};
 	
 	
 }

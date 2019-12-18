@@ -106,6 +106,11 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	}
 	*/
 	
+	public SmartList<SecUser> loadAll() {
+	    return this.loadAll(getSecUserMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -561,7 +566,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  
 		StatsItem verificationCodeExpireStatsItem = new StatsItem();
 		//SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY
-		verificationCodeExpireStatsItem.setDisplayName("安全用户");
+		verificationCodeExpireStatsItem.setDisplayName("SEC的用户");
 		verificationCodeExpireStatsItem.setInternalName(formatKeyForDateLine(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY));
 		verificationCodeExpireStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY),filterKey,emptyOptions));
 		info.addItem(verificationCodeExpireStatsItem);
@@ -611,7 +616,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  
 		StatsItem verificationCodeExpireStatsItem = new StatsItem();
 		//SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY
-		verificationCodeExpireStatsItem.setDisplayName("安全用户");
+		verificationCodeExpireStatsItem.setDisplayName("SEC的用户");
 		verificationCodeExpireStatsItem.setInternalName(formatKeyForDateLine(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY));
 		verificationCodeExpireStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY),filterKey,emptyOptions));
 		info.addItem(verificationCodeExpireStatsItem);
@@ -773,7 +778,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		return prepareSecUserCreateParameters(secUser);
  	}
  	protected Object[] prepareSecUserUpdateParameters(SecUser secUser){
- 		Object[] parameters = new Object[16];
+ 		Object[] parameters = new Object[15];
  
  		parameters[0] = secUser.getLogin();
  		parameters[1] = secUser.getMobile();
@@ -792,16 +797,15 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		if(secUser.getBlocking() != null){
  			parameters[11] = secUser.getBlocking().getId();
  		}
- 
- 		parameters[12] = secUser.getCurrentStatus();		
- 		parameters[13] = secUser.nextVersion();
- 		parameters[14] = secUser.getId();
- 		parameters[15] = secUser.getVersion();
+ 		
+ 		parameters[12] = secUser.nextVersion();
+ 		parameters[13] = secUser.getId();
+ 		parameters[14] = secUser.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareSecUserCreateParameters(SecUser secUser){
-		Object[] parameters = new Object[14];
+		Object[] parameters = new Object[13];
 		String newSecUserId=getNextId();
 		secUser.setId(newSecUserId);
 		parameters[0] =  secUser.getId();
@@ -825,8 +829,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  			parameters[12] = secUser.getBlocking().getId();
  		
  		}
- 		
- 		parameters[13] = secUser.getCurrentStatus();		
+ 				
  				
  		return parameters;
  	}
@@ -1290,6 +1293,10 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	@Override
 	public SmartList<SecUser> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSecUserMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.leavetype.CandidateLeaveType;
 public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager implements EmployeeLeaveManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeLeave";
+	@Override
+	public EmployeeLeaveDAO daoOf(RetailscmUserContext userContext) {
+		return employeeLeaveDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	public EmployeeLeave loadEmployeeLeave(RetailscmUserContext userContext, String employeeLeaveId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeLeaveManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeLeaveManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	 public EmployeeLeave searchEmployeeLeave(RetailscmUserContext userContext, String employeeLeaveId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeLeaveManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeLeaveManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 		addActions(userContext,employeeLeave,tokens);
 		
 		
-		EmployeeLeave  employeeLeaveToPresent = userContext.getDAOGroup().getEmployeeLeaveDAO().present(employeeLeave, tokens);
+		EmployeeLeave  employeeLeaveToPresent = employeeLeaveDaoOf(userContext).present(employeeLeave, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeLeaveToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeLeaveDAO().alias(entityListToNaming);
+		employeeLeaveDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeLeaveToPresent;
 		
@@ -125,14 +129,14 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 		
  	}
  	protected EmployeeLeave saveEmployeeLeave(RetailscmUserContext userContext, EmployeeLeave employeeLeave, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeLeaveDAO().save(employeeLeave, tokens);
+ 		return employeeLeaveDaoOf(userContext).save(employeeLeave, tokens);
  	}
  	protected EmployeeLeave loadEmployeeLeave(RetailscmUserContext userContext, String employeeLeaveId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeLeaveManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeLeaveManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeLeaveDAO().load(employeeLeaveId, tokens);
+ 		return employeeLeaveDaoOf(userContext).load(employeeLeaveId, tokens);
  	}
 
 	
@@ -163,18 +167,18 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	
 
-
-	public EmployeeLeave createEmployeeLeave(RetailscmUserContext userContext,String whoId, String typeId, int leaveDurationHour, String remark) throws Exception
+	public EmployeeLeave createEmployeeLeave(RetailscmUserContext userContext, String whoId,String typeId,int leaveDurationHour,String remark) throws Exception
+	//public EmployeeLeave createEmployeeLeave(RetailscmUserContext userContext,String whoId, String typeId, int leaveDurationHour, String remark) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLeaveDurationHourOfEmployeeLeave(leaveDurationHour);
-		userContext.getChecker().checkRemarkOfEmployeeLeave(remark);
+		checkerOf(userContext).checkLeaveDurationHourOfEmployeeLeave(leaveDurationHour);
+		checkerOf(userContext).checkRemarkOfEmployeeLeave(remark);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
 
 
 		EmployeeLeave employeeLeave=createNewEmployeeLeave();	
@@ -211,8 +215,8 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
-		userContext.getChecker().checkVersionOfEmployeeLeave( employeeLeaveVersion);
+		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+		checkerOf(userContext).checkVersionOfEmployeeLeave( employeeLeaveVersion);
 		
 		
 
@@ -220,13 +224,13 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		if(EmployeeLeave.LEAVE_DURATION_HOUR_PROPERTY.equals(property)){
-			userContext.getChecker().checkLeaveDurationHourOfEmployeeLeave(parseInt(newValueExpr));
+			checkerOf(userContext).checkLeaveDurationHourOfEmployeeLeave(parseInt(newValueExpr));
 		}
 		if(EmployeeLeave.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfEmployeeLeave(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfEmployeeLeave(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
 	
 		
 	}
@@ -235,7 +239,7 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	public EmployeeLeave clone(RetailscmUserContext userContext, String fromEmployeeLeaveId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeLeaveDAO().clone(fromEmployeeLeaveId, this.allTokens());
+		return employeeLeaveDaoOf(userContext).clone(fromEmployeeLeaveId, this.allTokens());
 	}
 	
 	public EmployeeLeave internalSaveEmployeeLeave(RetailscmUserContext userContext, EmployeeLeave employeeLeave) throws Exception 
@@ -333,9 +337,9 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForTransferingAnotherWho(RetailscmUserContext userContext, String employeeLeaveId, String anotherWhoId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
- 		userContext.getChecker().checkIdOfEmployee(anotherWhoId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherWhoId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
  		
  	}
  	public EmployeeLeave transferToAnotherWho(RetailscmUserContext userContext, String employeeLeaveId, String anotherWhoId) throws Exception
@@ -372,7 +376,7 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeeLeave(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeeLeave(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -382,9 +386,9 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
  	protected void checkParamsForTransferingAnotherType(RetailscmUserContext userContext, String employeeLeaveId, String anotherTypeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeLeave(employeeLeaveId);
- 		userContext.getChecker().checkIdOfLeaveType(anotherTypeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
+ 		checkerOf(userContext).checkIdOfLeaveType(anotherTypeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeLeaveManagerException.class);
  		
  	}
  	public EmployeeLeave transferToAnotherType(RetailscmUserContext userContext, String employeeLeaveId, String anotherTypeId) throws Exception
@@ -421,7 +425,7 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<LeaveType> candidateList = userContext.getDAOGroup().getLeaveTypeDAO().requestCandidateLeaveTypeForEmployeeLeave(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<LeaveType> candidateList = leaveTypeDaoOf(userContext).requestCandidateLeaveTypeForEmployeeLeave(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -434,7 +438,7 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
  	protected LeaveType loadLeaveType(RetailscmUserContext userContext, String newTypeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getLeaveTypeDAO().load(newTypeId, options);
+ 		return leaveTypeDaoOf(userContext).load(newTypeId, options);
  	}
  	
  	
@@ -444,7 +448,7 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newWhoId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newWhoId, options);
+ 		return employeeDaoOf(userContext).load(newWhoId, options);
  	}
  	
  	
@@ -458,7 +462,7 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeLeaveId, int employeeLeaveVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeLeaveDAO().delete(employeeLeaveId, employeeLeaveVersion);
+		employeeLeaveDaoOf(userContext).delete(employeeLeaveId, employeeLeaveVersion);
 	}
 	
 	public EmployeeLeave forgetByAll(RetailscmUserContext userContext, String employeeLeaveId, int employeeLeaveVersion) throws Exception {
@@ -467,8 +471,9 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 	protected EmployeeLeave forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeLeaveId, int employeeLeaveVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeLeaveDAO().disconnectFromAll(employeeLeaveId, employeeLeaveVersion);
+		return employeeLeaveDaoOf(userContext).disconnectFromAll(employeeLeaveId, employeeLeaveVersion);
 	}
+	
 	
 
 	
@@ -485,7 +490,7 @@ public class EmployeeLeaveManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeLeaveDAO().deleteAll();
+		return employeeLeaveDaoOf(userContext).deleteAll();
 	}
 
 

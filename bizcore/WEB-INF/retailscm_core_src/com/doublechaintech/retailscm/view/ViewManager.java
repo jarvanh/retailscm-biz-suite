@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface ViewManager{
+public interface ViewManager extends BaseManager{
 
 		
 
-	public View createView(RetailscmUserContext userContext, String who, String assessment, Date interviewTime) throws Exception;	
+	public View createView(RetailscmUserContext userContext, String who,String assessment,Date interviewTime) throws Exception;	
 	public View updateView(RetailscmUserContext userContext,String viewId, int viewVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public View loadView(RetailscmUserContext userContext, String viewId, String [] tokensExpr) throws Exception;
 	public View internalSaveView(RetailscmUserContext userContext, View view) throws Exception;

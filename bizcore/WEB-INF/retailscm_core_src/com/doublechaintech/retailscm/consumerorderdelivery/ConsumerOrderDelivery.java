@@ -69,12 +69,6 @@ public class ConsumerOrderDelivery extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrderDelivery(String who, Date deliveryTime)
-	{
-		setWho(who);
-		setDeliveryTime(deliveryTime);
-	
-	}
 	
 	//Support for changing the property
 	

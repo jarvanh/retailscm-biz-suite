@@ -173,20 +173,6 @@ public class EmployeeSalarySheetForm extends BaseForm {
 		return payingOffIdField("payingOffId","");
 	}
 
-
-	public EmployeeSalarySheetForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromEmployeeSalarySheet(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public EmployeeSalarySheetForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public EmployeeSalarySheetForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -499,20 +485,6 @@ public class EmployeeSalarySheetForm extends BaseForm {
 	}
 
 
-	public EmployeeSalarySheetForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeSalarySheetForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeSalarySheetForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
-
 	public EmployeeSalarySheetForm salaryGradeIdFieldOfSalaryGrade(String parameterName, String initValue){
 		FormField field =  idFromSalaryGrade(parameterName, initValue);
 		this.addFormField(field);	
@@ -678,14 +650,16 @@ public class EmployeeSalarySheetForm extends BaseForm {
 	}
 
  	
- 	public EmployeeSalarySheetForm  payOffAction(){
+ 	public EmployeeSalarySheetForm transferToAnotherPayingOffAction(){
 		FormAction action = new FormAction();
-		action.setLabel("工资支付");
-		action.setLocaleKey("employee_salary_sheet.payOff");
-		action.setUrl("employeeSalarySheetManager/payOff/employeeSalarySheetId/who/paidForIdpaidTime/amount/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherPayingOff/employeeSalarySheetId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 
 
 	public EmployeeSalarySheetForm showAction(){
 		FormAction action = new FormAction();

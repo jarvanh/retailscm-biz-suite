@@ -135,21 +135,20 @@
 <c:set var="referName" value="(currentSalaryGrade)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/salarygrade/SalaryGrade$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="payingOff" value="${ result.payingOff}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/payingoff/PayingOff$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/payingoff/PayingOff$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

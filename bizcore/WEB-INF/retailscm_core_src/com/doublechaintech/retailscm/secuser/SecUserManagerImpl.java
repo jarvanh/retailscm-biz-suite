@@ -38,6 +38,10 @@ import com.doublechaintech.retailscm.secuser.SecUser;
 public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements SecUserManager {
 	
 	private static final String SERVICE_TYPE = "SecUser";
+	@Override
+	public SecUserDAO daoOf(RetailscmUserContext userContext) {
+		return secUserDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -71,8 +75,8 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	public SecUser loadSecUser(RetailscmUserContext userContext, String secUserId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().throwExceptionIfHasErrors( SecUserManagerException.class);
+ 		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SecUserManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -85,8 +89,8 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	 public SecUser searchSecUser(RetailscmUserContext userContext, String secUserId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().throwExceptionIfHasErrors( SecUserManagerException.class);
+ 		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SecUserManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -104,10 +108,10 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		addActions(userContext,secUser,tokens);
 		
 		
-		SecUser  secUserToPresent = userContext.getDAOGroup().getSecUserDAO().present(secUser, tokens);
+		SecUser  secUserToPresent = secUserDaoOf(userContext).present(secUser, tokens);
 		
 		List<BaseEntity> entityListToNaming = secUserToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSecUserDAO().alias(entityListToNaming);
+		secUserDaoOf(userContext).alias(entityListToNaming);
 		
 		return  secUserToPresent;
 		
@@ -128,35 +132,35 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		
  	}
  	protected SecUser saveSecUser(RetailscmUserContext userContext, SecUser secUser, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSecUserDAO().save(secUser, tokens);
+ 		return secUserDaoOf(userContext).save(secUser, tokens);
  	}
  	protected SecUser loadSecUser(RetailscmUserContext userContext, String secUserId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().throwExceptionIfHasErrors( SecUserManagerException.class);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SecUserManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSecUserDAO().load(secUserId, tokens);
+ 		return secUserDaoOf(userContext).load(secUserId, tokens);
  	}
 
 	
 	
 
 	public SecUser loadSecUserWithLogin(RetailscmUserContext userContext, String login, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSecUserDAO().loadByLogin(login, tokens);
+ 		return secUserDaoOf(userContext).loadByLogin(login, tokens);
  	}
 
 	 
 	
 
 	public SecUser loadSecUserWithEmail(RetailscmUserContext userContext, String email, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSecUserDAO().loadByEmail(email, tokens);
+ 		return secUserDaoOf(userContext).loadByEmail(email, tokens);
  	}
 
 	 
 	
 
 	public SecUser loadSecUserWithMobile(RetailscmUserContext userContext, String mobile, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSecUserDAO().loadByMobile(mobile, tokens);
+ 		return secUserDaoOf(userContext).loadByMobile(mobile, tokens);
  	}
 
 	 
@@ -175,7 +179,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		addAction(userContext, secUser, tokens,"@copy","cloneSecUser","cloneSecUser/"+secUser.getId()+"/","main","primary");
 		
 		addAction(userContext, secUser, tokens,"sec_user.transfer_to_domain","transferToAnotherDomain","transferToAnotherDomain/"+secUser.getId()+"/","main","primary");
-		addAction(userContext, secUser, tokens,"sec_user.block","block","blockActionForm/"+secUser.getId()+"/","main","danger");
+		addAction(userContext, secUser, tokens,"sec_user.transfer_to_blocking","transferToAnotherBlocking","transferToAnotherBlocking/"+secUser.getId()+"/","main","primary");
 		addAction(userContext, secUser, tokens,"sec_user.addUserApp","addUserApp","addUserApp/"+secUser.getId()+"/","userAppList","primary");
 		addAction(userContext, secUser, tokens,"sec_user.removeUserApp","removeUserApp","removeUserApp/"+secUser.getId()+"/","userAppList","primary");
 		addAction(userContext, secUser, tokens,"sec_user.updateUserApp","updateUserApp","updateUserApp/"+secUser.getId()+"/","userAppList","primary");
@@ -195,26 +199,26 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	
 
-
-	public SecUser createSecUser(RetailscmUserContext userContext,String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId) throws Exception
+	public SecUser createSecUser(RetailscmUserContext userContext, String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String domainId,String blockingId) throws Exception
+	//public SecUser createSecUser(RetailscmUserContext userContext,String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId, String blockingId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLoginOfSecUser(login);
-		userContext.getChecker().checkMobileOfSecUser(mobile);
-		userContext.getChecker().checkEmailOfSecUser(email);
-		userContext.getChecker().checkPwdOfSecUser(pwd);
-		userContext.getChecker().checkWeixinOpenidOfSecUser(weixinOpenid);
-		userContext.getChecker().checkWeixinAppidOfSecUser(weixinAppid);
-		userContext.getChecker().checkAccessTokenOfSecUser(accessToken);
-		userContext.getChecker().checkVerificationCodeOfSecUser(verificationCode);
-		userContext.getChecker().checkVerificationCodeExpireOfSecUser(verificationCodeExpire);
-		userContext.getChecker().checkLastLoginTimeOfSecUser(lastLoginTime);
+		checkerOf(userContext).checkLoginOfSecUser(login);
+		checkerOf(userContext).checkMobileOfSecUser(mobile);
+		checkerOf(userContext).checkEmailOfSecUser(email);
+		checkerOf(userContext).checkPwdOfSecUser(pwd);
+		checkerOf(userContext).checkWeixinOpenidOfSecUser(weixinOpenid);
+		checkerOf(userContext).checkWeixinAppidOfSecUser(weixinAppid);
+		checkerOf(userContext).checkAccessTokenOfSecUser(accessToken);
+		checkerOf(userContext).checkVerificationCodeOfSecUser(verificationCode);
+		checkerOf(userContext).checkVerificationCodeExpireOfSecUser(verificationCodeExpire);
+		checkerOf(userContext).checkLastLoginTimeOfSecUser(lastLoginTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 
 
 		SecUser secUser=createNewSecUser();	
@@ -234,7 +238,11 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		secUser.setDomain(domain);
 		
 		
-		secUser.setCurrentStatus("INIT");
+			
+		SecUserBlocking blocking = loadSecUserBlocking(userContext, blockingId,emptyOptions());
+		secUser.setBlocking(blocking);
+		
+		
 
 		secUser = saveSecUser(userContext, secUser, emptyOptions());
 		
@@ -255,44 +263,46 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 
 		
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().checkVersionOfSecUser( secUserVersion);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).checkVersionOfSecUser( secUserVersion);
 		
 
 		if(SecUser.LOGIN_PROPERTY.equals(property)){
-			userContext.getChecker().checkLoginOfSecUser(parseString(newValueExpr));
+			checkerOf(userContext).checkLoginOfSecUser(parseString(newValueExpr));
 		}
 		if(SecUser.MOBILE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMobileOfSecUser(parseString(newValueExpr));
+			checkerOf(userContext).checkMobileOfSecUser(parseString(newValueExpr));
 		}
 		if(SecUser.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfSecUser(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfSecUser(parseString(newValueExpr));
 		}
 		if(SecUser.PWD_PROPERTY.equals(property)){
-			userContext.getChecker().checkPwdOfSecUser(parseString(newValueExpr));
+			checkerOf(userContext).checkPwdOfSecUser(parseString(newValueExpr));
 		}
 		if(SecUser.WEIXIN_OPENID_PROPERTY.equals(property)){
-			userContext.getChecker().checkWeixinOpenidOfSecUser(parseString(newValueExpr));
+			checkerOf(userContext).checkWeixinOpenidOfSecUser(parseString(newValueExpr));
 		}
 		if(SecUser.WEIXIN_APPID_PROPERTY.equals(property)){
-			userContext.getChecker().checkWeixinAppidOfSecUser(parseString(newValueExpr));
+			checkerOf(userContext).checkWeixinAppidOfSecUser(parseString(newValueExpr));
 		}
 		if(SecUser.ACCESS_TOKEN_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccessTokenOfSecUser(parseString(newValueExpr));
+			checkerOf(userContext).checkAccessTokenOfSecUser(parseString(newValueExpr));
 		}
 		if(SecUser.VERIFICATION_CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkVerificationCodeOfSecUser(parseInt(newValueExpr));
+			checkerOf(userContext).checkVerificationCodeOfSecUser(parseInt(newValueExpr));
 		}
 		if(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY.equals(property)){
-			userContext.getChecker().checkVerificationCodeExpireOfSecUser(parseTimestamp(newValueExpr));
+			checkerOf(userContext).checkVerificationCodeExpireOfSecUser(parseTimestamp(newValueExpr));
 		}
 		if(SecUser.LAST_LOGIN_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkLastLoginTimeOfSecUser(parseTimestamp(newValueExpr));
+			checkerOf(userContext).checkLastLoginTimeOfSecUser(parseTimestamp(newValueExpr));
 		}		
+
+				
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 	
 		
 	}
@@ -301,7 +311,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	public SecUser clone(RetailscmUserContext userContext, String fromSecUserId) throws Exception{
 		
-		return userContext.getDAOGroup().getSecUserDAO().clone(fromSecUserId, this.allTokens());
+		return secUserDaoOf(userContext).clone(fromSecUserId, this.allTokens());
 	}
 	
 	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser) throws Exception 
@@ -398,53 +408,12 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		return SecUserTokens.mergeAll(tokens).done();
 	}
 	
-	private static final String [] STATUS_SEQUENCE={"BLOCKED"};
- 	protected String[] getNextCandidateStatus(RetailscmUserContext userContext, String currentStatus) throws Exception{
- 	
- 		if("INIT".equals(currentStatus)){
- 			//if current status is null, just return the first status as the next status
- 			//code makes sure not throwing ArrayOutOfIndexException here.
- 			return STATUS_SEQUENCE;
- 		}
- 		/*
- 		List<String> statusList = Arrays.asList(STATUS_SEQUENCE);
- 		int index = statusList.indexOf(currentStatus);
- 		if(index < 0){
- 			throwExceptionWithMessage("The status '"+currentStatus+"' is not found from status list: "+ statusList );
- 		}
- 		if(index + 1 == statusList.size()){
- 			//this is the last status code; no next status any more
- 			return null;
- 		}
- 		
- 		//this is not the last one, just return it.
- 		*/
- 		return STATUS_SEQUENCE;
- 	
- 	}/**/
- 	protected void ensureStatus(RetailscmUserContext userContext, SecUser secUser, String expectedNextStatus) throws Exception{
-		String currentStatus = secUser.getCurrentStatus();
-		//'null' is fine for function getNextStatus
-		String candidateStatus[] = getNextCandidateStatus(userContext, currentStatus);
-		
-		if(candidateStatus == null){
-			//no more next status
-			String message = "No next status for '"+currentStatus+"', but you want to put the status to 'HIDDEN'";
-			throwExceptionWithMessage(message);
-		}
-		int index = Arrays.asList(candidateStatus).indexOf(expectedNextStatus);
-		if(index<0){
-			String message = "The current status '"+currentStatus+"' next candidate status should be one of '"+candidateStatus+"', but you want to transit the status to '"+expectedNextStatus+"'";
-			throwExceptionWithMessage(message);
-		}
-	}
-	
 	protected void checkParamsForTransferingAnotherDomain(RetailscmUserContext userContext, String secUserId, String anotherDomainId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSecUser(secUserId);
- 		userContext.getChecker().checkIdOfUserDomain(anotherDomainId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+ 		checkerOf(userContext).checkIdOfSecUser(secUserId);
+ 		checkerOf(userContext).checkIdOfUserDomain(anotherDomainId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
  		
  	}
  	public SecUser transferToAnotherDomain(RetailscmUserContext userContext, String secUserId, String anotherDomainId) throws Exception
@@ -481,7 +450,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<UserDomain> candidateList = userContext.getDAOGroup().getUserDomainDAO().requestCandidateUserDomainForSecUser(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<UserDomain> candidateList = userDomainDaoOf(userContext).requestCandidateUserDomainForSecUser(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -491,9 +460,9 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
  	protected void checkParamsForTransferingAnotherBlocking(RetailscmUserContext userContext, String secUserId, String anotherBlockingId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSecUser(secUserId);
- 		userContext.getChecker().checkIdOfSecUserBlocking(anotherBlockingId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+ 		checkerOf(userContext).checkIdOfSecUser(secUserId);
+ 		checkerOf(userContext).checkIdOfSecUserBlocking(anotherBlockingId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
  		
  	}
  	public SecUser transferToAnotherBlocking(RetailscmUserContext userContext, String secUserId, String anotherBlockingId) throws Exception
@@ -530,107 +499,20 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<SecUserBlocking> candidateList = userContext.getDAOGroup().getSecUserBlockingDAO().requestCandidateSecUserBlockingForSecUser(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<SecUserBlocking> candidateList = secUserBlockingDaoOf(userContext).requestCandidateSecUserBlockingForSecUser(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
  	
- 	
-	public static final String BLOCKED_STATUS = "BLOCKED";
- 	protected void checkParamsForBlocking(RetailscmUserContext userContext, String secUserId, String who, String comments
-) throws Exception
- 	{
- 				userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().checkWhoOfSecUserBlocking(who);
-		userContext.getChecker().checkCommentsOfSecUserBlocking(comments);
-
-	
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
-
- 	}
- 	public SecUser block(RetailscmUserContext userContext, String secUserId, String who, String comments
-) throws Exception
- 	{
-		checkParamsForBlocking(userContext, secUserId, who, comments);
-		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());	
-		synchronized(secUser){
-			//will be good when the secUser loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			
-			checkIfEligibleForBlocking(userContext,secUser);
- 		
-
-			secUser.updateCurrentStatus(BLOCKED_STATUS);
-			//set the new status, it will be good if add constant to the bean definition
-			
-			//extract all referenced objects, load them respectively
-
-
-			SecUserBlocking blocking = createBlocking(userContext, who, comments);		
-			secUser.updateBlocking(blocking);		
-			
-			
-			secUser = saveSecUser(userContext, secUser, tokens().withBlocking().done());
-			return present(userContext,secUser, allTokens());
-			
-		}
-
- 	}
- 	
- 	
- 	
- 	
- 	public SecUserForm blockActionForm(RetailscmUserContext userContext, String secUserId) throws Exception
- 	{
-		return new SecUserForm()
-			.withTitle("block")
-			.secUserIdField(secUserId)
-			.whoFieldOfSecUserBlocking()
-			.commentsFieldOfSecUserBlocking()
-			.blockAction();
- 	}
-	
- 	
- 	protected SecUserBlocking createBlocking(RetailscmUserContext userContext, String who, String comments){
- 		SecUserBlocking blocking = new SecUserBlocking();
- 		//who, comments
- 		
-		blocking.setWho(who);
-		blocking.setBlockTime(userContext.now());
-		blocking.setComments(comments);
-
- 		
- 		
- 		
- 		return userContext.getDAOGroup().getSecUserBlockingDAO().save(blocking,emptyOptions());
- 	}
- 	protected void checkIfEligibleForBlocking(RetailscmUserContext userContext, SecUser secUser) throws Exception{
- 
- 		ensureStatus(userContext,secUser, BLOCKED_STATUS);
- 		
- 		SecUserBlocking blocking = secUser.getBlocking();
- 		//check the current status equals to the status
- 		//String expectedCurrentStatus = blocking 		
- 		//if the previous is the expected status?
- 		
- 		
- 		//if already transited to this status?
- 		
- 		if( blocking != null){
-				throwExceptionWithMessage("The SecUser("+secUser.getId()+") has already been "+ BLOCKED_STATUS+".");
-		}
- 		
- 		
- 	}
-//--------------------------------------------------------------
+ //--------------------------------------------------------------
 	
 	 	
  	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getUserDomainDAO().load(newDomainId, options);
+ 		return userDomainDaoOf(userContext).load(newDomainId, options);
  	}
  	
  	
@@ -640,7 +522,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
  	protected SecUserBlocking loadSecUserBlocking(RetailscmUserContext userContext, String newBlockingId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getSecUserBlockingDAO().load(newBlockingId, options);
+ 		return secUserBlockingDaoOf(userContext).load(newBlockingId, options);
  	}
  	
  	
@@ -654,7 +536,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String secUserId, int secUserVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSecUserDAO().delete(secUserId, secUserVersion);
+		secUserDaoOf(userContext).delete(secUserId, secUserVersion);
 	}
 	
 	public SecUser forgetByAll(RetailscmUserContext userContext, String secUserId, int secUserVersion) throws Exception {
@@ -663,8 +545,9 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected SecUser forgetByAllInternal(RetailscmUserContext userContext,
 			String secUserId, int secUserVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSecUserDAO().disconnectFromAll(secUserId, secUserVersion);
+		return secUserDaoOf(userContext).disconnectFromAll(secUserId, secUserVersion);
 	}
+	
 	
 
 	
@@ -681,7 +564,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSecUserDAO().deleteAll();
+		return secUserDaoOf(userContext).deleteAll();
 	}
 
 
@@ -697,7 +580,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSecUserDAO().planToRemoveUserAppListWithObjectId(secUser, objectIdId, this.emptyOptions());
+				secUserDaoOf(userContext).planToRemoveUserAppListWithObjectId(secUser, objectIdId, this.emptyOptions());
 
 				secUser = saveSecUser(userContext, secUser, tokens().withUserAppList().done());
 				return secUser;
@@ -711,28 +594,24 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 
 	protected void checkParamsForAddingUserApp(RetailscmUserContext userContext, String secUserId, String title, String appIcon, boolean fullAccess, String permission, String objectType, String objectId, String location,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSecUser(secUserId);
 
 		
+		checkerOf(userContext).checkTitleOfUserApp(title);
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-
+		checkerOf(userContext).checkAppIconOfUserApp(appIcon);
 		
-		userContext.getChecker().checkTitleOfUserApp(title);
+		checkerOf(userContext).checkFullAccessOfUserApp(fullAccess);
 		
-		userContext.getChecker().checkAppIconOfUserApp(appIcon);
+		checkerOf(userContext).checkPermissionOfUserApp(permission);
 		
-		userContext.getChecker().checkFullAccessOfUserApp(fullAccess);
+		checkerOf(userContext).checkObjectTypeOfUserApp(objectType);
 		
-		userContext.getChecker().checkPermissionOfUserApp(permission);
+		checkerOf(userContext).checkObjectIdOfUserApp(objectId);
 		
-		userContext.getChecker().checkObjectTypeOfUserApp(objectType);
-		
-		userContext.getChecker().checkObjectIdOfUserApp(objectId);
-		
-		userContext.getChecker().checkLocationOfUserApp(location);
+		checkerOf(userContext).checkLocationOfUserApp(location);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 
 	
 	}
@@ -756,18 +635,18 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	}
 	protected void checkParamsForUpdatingUserAppProperties(RetailscmUserContext userContext, String secUserId,String id,String title,String appIcon,boolean fullAccess,String permission,String objectType,String objectId,String location,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().checkIdOfUserApp(id);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).checkIdOfUserApp(id);
 		
-		userContext.getChecker().checkTitleOfUserApp( title);
-		userContext.getChecker().checkAppIconOfUserApp( appIcon);
-		userContext.getChecker().checkFullAccessOfUserApp( fullAccess);
-		userContext.getChecker().checkPermissionOfUserApp( permission);
-		userContext.getChecker().checkObjectTypeOfUserApp( objectType);
-		userContext.getChecker().checkObjectIdOfUserApp( objectId);
-		userContext.getChecker().checkLocationOfUserApp( location);
+		checkerOf(userContext).checkTitleOfUserApp( title);
+		checkerOf(userContext).checkAppIconOfUserApp( appIcon);
+		checkerOf(userContext).checkFullAccessOfUserApp( fullAccess);
+		checkerOf(userContext).checkPermissionOfUserApp( permission);
+		checkerOf(userContext).checkObjectTypeOfUserApp( objectType);
+		checkerOf(userContext).checkObjectIdOfUserApp( objectId);
+		checkerOf(userContext).checkLocationOfUserApp( location);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 		
 	}
 	public  SecUser updateUserAppProperties(RetailscmUserContext userContext, String secUserId, String id,String title,String appIcon,boolean fullAccess,String permission,String objectType,String objectId,String location, String [] tokensExpr) throws Exception
@@ -835,12 +714,12 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingUserAppList(RetailscmUserContext userContext, String secUserId, 
 			String userAppIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		for(String userAppIdItem: userAppIds){
-			userContext.getChecker().checkIdOfUserApp(userAppIdItem);
+			checkerOf(userContext).checkIdOfUserApp(userAppIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 		
 	}
 	public  SecUser removeUserAppList(RetailscmUserContext userContext, String secUserId, 
@@ -853,7 +732,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 			synchronized(secUser){ 
 				//Will be good when the secUser loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSecUserDAO().planToRemoveUserAppList(secUser, userAppIds, allTokens());
+				secUserDaoOf(userContext).planToRemoveUserAppList(secUser, userAppIds, allTokens());
 				secUser = saveSecUser(userContext, secUser, tokens().withUserAppList().done());
 				deleteRelationListInGraph(userContext, secUser.getUserAppList());
 				return present(userContext,secUser, mergedAllTokens(tokensExpr));
@@ -863,10 +742,10 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingUserApp(RetailscmUserContext userContext, String secUserId, 
 		String userAppId, int userAppVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSecUser( secUserId);
-		userContext.getChecker().checkIdOfUserApp(userAppId);
-		userContext.getChecker().checkVersionOfUserApp(userAppVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).checkIdOfSecUser( secUserId);
+		checkerOf(userContext).checkIdOfUserApp(userAppId);
+		checkerOf(userContext).checkVersionOfUserApp(userAppVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 	
 	}
 	public  SecUser removeUserApp(RetailscmUserContext userContext, String secUserId, 
@@ -890,10 +769,10 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForCopyingUserApp(RetailscmUserContext userContext, String secUserId, 
 		String userAppId, int userAppVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSecUser( secUserId);
-		userContext.getChecker().checkIdOfUserApp(userAppId);
-		userContext.getChecker().checkVersionOfUserApp(userAppVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).checkIdOfSecUser( secUserId);
+		checkerOf(userContext).checkIdOfUserApp(userAppId);
+		checkerOf(userContext).checkVersionOfUserApp(userAppVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 	
 	}
 	public  SecUser copyUserAppFrom(RetailscmUserContext userContext, String secUserId, 
@@ -922,41 +801,41 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		
 
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().checkIdOfUserApp(userAppId);
-		userContext.getChecker().checkVersionOfUserApp(userAppVersion);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).checkIdOfUserApp(userAppId);
+		checkerOf(userContext).checkVersionOfUserApp(userAppVersion);
 		
 
 		if(UserApp.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfUserApp(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfUserApp(parseString(newValueExpr));
 		}
 		
 		if(UserApp.APP_ICON_PROPERTY.equals(property)){
-			userContext.getChecker().checkAppIconOfUserApp(parseString(newValueExpr));
+			checkerOf(userContext).checkAppIconOfUserApp(parseString(newValueExpr));
 		}
 		
 		if(UserApp.FULL_ACCESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkFullAccessOfUserApp(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkFullAccessOfUserApp(parseBoolean(newValueExpr));
 		}
 		
 		if(UserApp.PERMISSION_PROPERTY.equals(property)){
-			userContext.getChecker().checkPermissionOfUserApp(parseString(newValueExpr));
+			checkerOf(userContext).checkPermissionOfUserApp(parseString(newValueExpr));
 		}
 		
 		if(UserApp.OBJECT_TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkObjectTypeOfUserApp(parseString(newValueExpr));
+			checkerOf(userContext).checkObjectTypeOfUserApp(parseString(newValueExpr));
 		}
 		
 		if(UserApp.OBJECT_ID_PROPERTY.equals(property)){
-			userContext.getChecker().checkObjectIdOfUserApp(parseString(newValueExpr));
+			checkerOf(userContext).checkObjectIdOfUserApp(parseString(newValueExpr));
 		}
 		
 		if(UserApp.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfUserApp(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfUserApp(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 	
 	}
 	
@@ -999,18 +878,14 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 
 	protected void checkParamsForAddingLoginHistory(RetailscmUserContext userContext, String secUserId, String fromIp, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSecUser(secUserId);
 
 		
+		checkerOf(userContext).checkFromIpOfLoginHistory(fromIp);
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-
-		
-		userContext.getChecker().checkFromIpOfLoginHistory(fromIp);
-		
-		userContext.getChecker().checkDescriptionOfLoginHistory(description);
+		checkerOf(userContext).checkDescriptionOfLoginHistory(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 
 	
 	}
@@ -1034,13 +909,13 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	}
 	protected void checkParamsForUpdatingLoginHistoryProperties(RetailscmUserContext userContext, String secUserId,String id,String fromIp,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().checkIdOfLoginHistory(id);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).checkIdOfLoginHistory(id);
 		
-		userContext.getChecker().checkFromIpOfLoginHistory( fromIp);
-		userContext.getChecker().checkDescriptionOfLoginHistory( description);
+		checkerOf(userContext).checkFromIpOfLoginHistory( fromIp);
+		checkerOf(userContext).checkDescriptionOfLoginHistory( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 		
 	}
 	public  SecUser updateLoginHistoryProperties(RetailscmUserContext userContext, String secUserId, String id,String fromIp,String description, String [] tokensExpr) throws Exception
@@ -1099,12 +974,12 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingLoginHistoryList(RetailscmUserContext userContext, String secUserId, 
 			String loginHistoryIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		for(String loginHistoryIdItem: loginHistoryIds){
-			userContext.getChecker().checkIdOfLoginHistory(loginHistoryIdItem);
+			checkerOf(userContext).checkIdOfLoginHistory(loginHistoryIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 		
 	}
 	public  SecUser removeLoginHistoryList(RetailscmUserContext userContext, String secUserId, 
@@ -1117,7 +992,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 			synchronized(secUser){ 
 				//Will be good when the secUser loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSecUserDAO().planToRemoveLoginHistoryList(secUser, loginHistoryIds, allTokens());
+				secUserDaoOf(userContext).planToRemoveLoginHistoryList(secUser, loginHistoryIds, allTokens());
 				secUser = saveSecUser(userContext, secUser, tokens().withLoginHistoryList().done());
 				deleteRelationListInGraph(userContext, secUser.getLoginHistoryList());
 				return present(userContext,secUser, mergedAllTokens(tokensExpr));
@@ -1127,10 +1002,10 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingLoginHistory(RetailscmUserContext userContext, String secUserId, 
 		String loginHistoryId, int loginHistoryVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSecUser( secUserId);
-		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-		userContext.getChecker().checkVersionOfLoginHistory(loginHistoryVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).checkIdOfSecUser( secUserId);
+		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+		checkerOf(userContext).checkVersionOfLoginHistory(loginHistoryVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 	
 	}
 	public  SecUser removeLoginHistory(RetailscmUserContext userContext, String secUserId, 
@@ -1154,10 +1029,10 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForCopyingLoginHistory(RetailscmUserContext userContext, String secUserId, 
 		String loginHistoryId, int loginHistoryVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSecUser( secUserId);
-		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-		userContext.getChecker().checkVersionOfLoginHistory(loginHistoryVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).checkIdOfSecUser( secUserId);
+		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+		checkerOf(userContext).checkVersionOfLoginHistory(loginHistoryVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 	
 	}
 	public  SecUser copyLoginHistoryFrom(RetailscmUserContext userContext, String secUserId, 
@@ -1186,21 +1061,21 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		
 
 		
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		userContext.getChecker().checkIdOfLoginHistory(loginHistoryId);
-		userContext.getChecker().checkVersionOfLoginHistory(loginHistoryVersion);
+		checkerOf(userContext).checkIdOfSecUser(secUserId);
+		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
+		checkerOf(userContext).checkVersionOfLoginHistory(loginHistoryVersion);
 		
 
 		if(LoginHistory.FROM_IP_PROPERTY.equals(property)){
-			userContext.getChecker().checkFromIpOfLoginHistory(parseString(newValueExpr));
+			checkerOf(userContext).checkFromIpOfLoginHistory(parseString(newValueExpr));
 		}
 		
 		if(LoginHistory.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfLoginHistory(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfLoginHistory(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SecUserManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 	
 	}
 	

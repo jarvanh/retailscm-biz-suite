@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employeeleave;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.leavetype.LeaveTypeDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface EmployeeLeaveDAO{
+public interface EmployeeLeaveDAO extends BaseDAO{
 
-	
+	public SmartList<EmployeeLeave> loadAll();
 	public EmployeeLeave load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<EmployeeLeave> employeeLeaveList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -47,6 +48,7 @@ public interface EmployeeLeaveDAO{
 	
 	
 	public SmartList<EmployeeLeave> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<EmployeeLeave> findEmployeeLeaveByWho(String employeeId, Map<String,Object> options);
  	public int countEmployeeLeaveByWho(String employeeId, Map<String,Object> options);

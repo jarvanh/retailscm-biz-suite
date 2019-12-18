@@ -156,9 +156,13 @@ public class SecUserTokens extends CommonTokens{
 	}
 	private int userAppListSearchCounter = 0;
 	public SecUserTokens searchUserAppListWith(String field, String verb, String value){		
+		
+		withUserAppList();
 		addSearchMoreOptions(USER_APP_LIST,userAppListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SecUserTokens searchAllTextOfUserAppList(String verb, String value){	
 		String field = "id|title|appIcon|permission|objectType|objectId|location";
@@ -222,9 +226,13 @@ public class SecUserTokens extends CommonTokens{
 	}
 	private int loginHistoryListSearchCounter = 0;
 	public SecUserTokens searchLoginHistoryListWith(String field, String verb, String value){		
+		
+		withLoginHistoryList();
 		addSearchMoreOptions(LOGIN_HISTORY_LIST,loginHistoryListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SecUserTokens searchAllTextOfLoginHistoryList(String verb, String value){	
 		String field = "id|fromIp|description";

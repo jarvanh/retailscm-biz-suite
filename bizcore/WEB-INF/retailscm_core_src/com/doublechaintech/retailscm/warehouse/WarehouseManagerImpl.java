@@ -41,6 +41,10 @@ import com.doublechaintech.retailscm.warehouse.Warehouse;
 public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implements WarehouseManager {
 	
 	private static final String SERVICE_TYPE = "Warehouse";
+	@Override
+	public WarehouseDAO daoOf(RetailscmUserContext userContext) {
+		return warehouseDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -74,8 +78,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	public Warehouse loadWarehouse(RetailscmUserContext userContext, String warehouseId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().throwExceptionIfHasErrors( WarehouseManagerException.class);
+ 		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).throwExceptionIfHasErrors( WarehouseManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -88,8 +92,8 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	 public Warehouse searchWarehouse(RetailscmUserContext userContext, String warehouseId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().throwExceptionIfHasErrors( WarehouseManagerException.class);
+ 		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).throwExceptionIfHasErrors( WarehouseManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -107,10 +111,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		addActions(userContext,warehouse,tokens);
 		
 		
-		Warehouse  warehouseToPresent = userContext.getDAOGroup().getWarehouseDAO().present(warehouse, tokens);
+		Warehouse  warehouseToPresent = warehouseDaoOf(userContext).present(warehouse, tokens);
 		
 		List<BaseEntity> entityListToNaming = warehouseToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getWarehouseDAO().alias(entityListToNaming);
+		warehouseDaoOf(userContext).alias(entityListToNaming);
 		
 		return  warehouseToPresent;
 		
@@ -131,14 +135,14 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
  	}
  	protected Warehouse saveWarehouse(RetailscmUserContext userContext, Warehouse warehouse, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getWarehouseDAO().save(warehouse, tokens);
+ 		return warehouseDaoOf(userContext).save(warehouse, tokens);
  	}
  	protected Warehouse loadWarehouse(RetailscmUserContext userContext, String warehouseId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().throwExceptionIfHasErrors( WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).throwExceptionIfHasErrors( WarehouseManagerException.class);
 
  
- 		return userContext.getDAOGroup().getWarehouseDAO().load(warehouseId, tokens);
+ 		return warehouseDaoOf(userContext).load(warehouseId, tokens);
  	}
 
 	
@@ -196,21 +200,21 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	
 
-
-	public Warehouse createWarehouse(RetailscmUserContext userContext,String location, String contactNumber, String totalArea, String ownerId, BigDecimal latitude, BigDecimal longitude) throws Exception
+	public Warehouse createWarehouse(RetailscmUserContext userContext, String location,long contactNumber,String totalArea,String ownerId,BigDecimal latitude,BigDecimal longitude) throws Exception
+	//public Warehouse createWarehouse(RetailscmUserContext userContext,String location, long contactNumber, String totalArea, String ownerId, BigDecimal latitude, BigDecimal longitude) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLocationOfWarehouse(location);
-		userContext.getChecker().checkContactNumberOfWarehouse(contactNumber);
-		userContext.getChecker().checkTotalAreaOfWarehouse(totalArea);
-		userContext.getChecker().checkLatitudeOfWarehouse(latitude);
-		userContext.getChecker().checkLongitudeOfWarehouse(longitude);
+		checkerOf(userContext).checkLocationOfWarehouse(location);
+		checkerOf(userContext).checkContactNumberOfWarehouse(contactNumber);
+		checkerOf(userContext).checkTotalAreaOfWarehouse(totalArea);
+		checkerOf(userContext).checkLatitudeOfWarehouse(latitude);
+		checkerOf(userContext).checkLongitudeOfWarehouse(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 
 		Warehouse warehouse=createNewWarehouse();	
@@ -246,29 +250,29 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 
 		
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkVersionOfWarehouse( warehouseVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkVersionOfWarehouse( warehouseVersion);
 		
 
 		if(Warehouse.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfWarehouse(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfWarehouse(parseString(newValueExpr));
 		}
 		if(Warehouse.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfWarehouse(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfWarehouse(parseLong(newValueExpr));
 		}
 		if(Warehouse.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfWarehouse(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfWarehouse(parseString(newValueExpr));
 		}		
 
 		
 		if(Warehouse.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfWarehouse(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfWarehouse(parseBigDecimal(newValueExpr));
 		}
 		if(Warehouse.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfWarehouse(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfWarehouse(parseBigDecimal(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 		
 	}
@@ -277,7 +281,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	public Warehouse clone(RetailscmUserContext userContext, String fromWarehouseId) throws Exception{
 		
-		return userContext.getDAOGroup().getWarehouseDAO().clone(fromWarehouseId, this.allTokens());
+		return warehouseDaoOf(userContext).clone(fromWarehouseId, this.allTokens());
 	}
 	
 	public Warehouse internalSaveWarehouse(RetailscmUserContext userContext, Warehouse warehouse) throws Exception 
@@ -382,9 +386,9 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String warehouseId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfWarehouse(warehouseId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+ 		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
  		
  	}
  	public Warehouse transferToAnotherOwner(RetailscmUserContext userContext, String warehouseId, String anotherOwnerId) throws Exception
@@ -421,7 +425,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForWarehouse(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForWarehouse(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -434,7 +438,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newOwnerId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -448,7 +452,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String warehouseId, int warehouseVersion) throws Exception{
 			
-		userContext.getDAOGroup().getWarehouseDAO().delete(warehouseId, warehouseVersion);
+		warehouseDaoOf(userContext).delete(warehouseId, warehouseVersion);
 	}
 	
 	public Warehouse forgetByAll(RetailscmUserContext userContext, String warehouseId, int warehouseVersion) throws Exception {
@@ -457,8 +461,9 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Warehouse forgetByAllInternal(RetailscmUserContext userContext,
 			String warehouseId, int warehouseVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getWarehouseDAO().disconnectFromAll(warehouseId, warehouseVersion);
+		return warehouseDaoOf(userContext).disconnectFromAll(warehouseId, warehouseVersion);
 	}
+	
 	
 
 	
@@ -475,7 +480,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getWarehouseDAO().deleteAll();
+		return warehouseDaoOf(userContext).deleteAll();
 	}
 
 
@@ -485,30 +490,26 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	
 
-	protected void checkParamsForAddingStorageSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingStorageSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 
 		
+		checkerOf(userContext).checkLocationOfStorageSpace(location);
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-
+		checkerOf(userContext).checkContactNumberOfStorageSpace(contactNumber);
 		
-		userContext.getChecker().checkLocationOfStorageSpace(location);
+		checkerOf(userContext).checkTotalAreaOfStorageSpace(totalArea);
 		
-		userContext.getChecker().checkContactNumberOfStorageSpace(contactNumber);
+		checkerOf(userContext).checkLatitudeOfStorageSpace(latitude);
 		
-		userContext.getChecker().checkTotalAreaOfStorageSpace(totalArea);
-		
-		userContext.getChecker().checkLatitudeOfStorageSpace(latitude);
-		
-		userContext.getChecker().checkLongitudeOfStorageSpace(longitude);
+		checkerOf(userContext).checkLongitudeOfStorageSpace(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 	
 	}
-	public  Warehouse addStorageSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse addStorageSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		
 		checkParamsForAddingStorageSpace(userContext,warehouseId,location, contactNumber, totalArea, latitude, longitude,tokensExpr);
@@ -526,21 +527,21 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			return present(userContext,warehouse, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingStorageSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingStorageSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfStorageSpace(id);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfStorageSpace(id);
 		
-		userContext.getChecker().checkLocationOfStorageSpace( location);
-		userContext.getChecker().checkContactNumberOfStorageSpace( contactNumber);
-		userContext.getChecker().checkTotalAreaOfStorageSpace( totalArea);
-		userContext.getChecker().checkLatitudeOfStorageSpace( latitude);
-		userContext.getChecker().checkLongitudeOfStorageSpace( longitude);
+		checkerOf(userContext).checkLocationOfStorageSpace( location);
+		checkerOf(userContext).checkContactNumberOfStorageSpace( contactNumber);
+		checkerOf(userContext).checkTotalAreaOfStorageSpace( totalArea);
+		checkerOf(userContext).checkLatitudeOfStorageSpace( latitude);
+		checkerOf(userContext).checkLongitudeOfStorageSpace( longitude);
 
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
-	public  Warehouse updateStorageSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse updateStorageSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingStorageSpaceProperties(userContext,warehouseId,id,location,contactNumber,totalArea,latitude,longitude,tokensExpr);
 
@@ -572,7 +573,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	
 	
-	protected StorageSpace createStorageSpace(RetailscmUserContext userContext, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
+	protected StorageSpace createStorageSpace(RetailscmUserContext userContext, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		StorageSpace storageSpace = new StorageSpace();
 		
@@ -602,12 +603,12 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingStorageSpaceList(RetailscmUserContext userContext, String warehouseId, 
 			String storageSpaceIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		for(String storageSpaceIdItem: storageSpaceIds){
-			userContext.getChecker().checkIdOfStorageSpace(storageSpaceIdItem);
+			checkerOf(userContext).checkIdOfStorageSpace(storageSpaceIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse removeStorageSpaceList(RetailscmUserContext userContext, String warehouseId, 
@@ -620,7 +621,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(warehouse){ 
 				//Will be good when the warehouse loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getWarehouseDAO().planToRemoveStorageSpaceList(warehouse, storageSpaceIds, allTokens());
+				warehouseDaoOf(userContext).planToRemoveStorageSpaceList(warehouse, storageSpaceIds, allTokens());
 				warehouse = saveWarehouse(userContext, warehouse, tokens().withStorageSpaceList().done());
 				deleteRelationListInGraph(userContext, warehouse.getStorageSpaceList());
 				return present(userContext,warehouse, mergedAllTokens(tokensExpr));
@@ -630,10 +631,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingStorageSpace(RetailscmUserContext userContext, String warehouseId, 
 		String storageSpaceId, int storageSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().checkVersionOfStorageSpace(storageSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).checkVersionOfStorageSpace(storageSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse removeStorageSpace(RetailscmUserContext userContext, String warehouseId, 
@@ -657,10 +658,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingStorageSpace(RetailscmUserContext userContext, String warehouseId, 
 		String storageSpaceId, int storageSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().checkVersionOfStorageSpace(storageSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).checkVersionOfStorageSpace(storageSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse copyStorageSpaceFrom(RetailscmUserContext userContext, String warehouseId, 
@@ -689,33 +690,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().checkVersionOfStorageSpace(storageSpaceVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).checkVersionOfStorageSpace(storageSpaceVersion);
 		
 
 		if(StorageSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfStorageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfStorageSpace(parseString(newValueExpr));
 		}
 		
 		if(StorageSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfStorageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfStorageSpace(parseLong(newValueExpr));
 		}
 		
 		if(StorageSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfStorageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfStorageSpace(parseString(newValueExpr));
 		}
 		
 		if(StorageSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfStorageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfStorageSpace(parseBigDecimal(newValueExpr));
 		}
 		
 		if(StorageSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfStorageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfStorageSpace(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	
@@ -756,30 +757,26 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 
 
 
-	protected void checkParamsForAddingSmartPallet(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingSmartPallet(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 
 		
+		checkerOf(userContext).checkLocationOfSmartPallet(location);
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-
+		checkerOf(userContext).checkContactNumberOfSmartPallet(contactNumber);
 		
-		userContext.getChecker().checkLocationOfSmartPallet(location);
+		checkerOf(userContext).checkTotalAreaOfSmartPallet(totalArea);
 		
-		userContext.getChecker().checkContactNumberOfSmartPallet(contactNumber);
+		checkerOf(userContext).checkLatitudeOfSmartPallet(latitude);
 		
-		userContext.getChecker().checkTotalAreaOfSmartPallet(totalArea);
-		
-		userContext.getChecker().checkLatitudeOfSmartPallet(latitude);
-		
-		userContext.getChecker().checkLongitudeOfSmartPallet(longitude);
+		checkerOf(userContext).checkLongitudeOfSmartPallet(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 	
 	}
-	public  Warehouse addSmartPallet(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse addSmartPallet(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		
 		checkParamsForAddingSmartPallet(userContext,warehouseId,location, contactNumber, totalArea, latitude, longitude,tokensExpr);
@@ -797,21 +794,21 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			return present(userContext,warehouse, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingSmartPalletProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingSmartPalletProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfSmartPallet(id);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfSmartPallet(id);
 		
-		userContext.getChecker().checkLocationOfSmartPallet( location);
-		userContext.getChecker().checkContactNumberOfSmartPallet( contactNumber);
-		userContext.getChecker().checkTotalAreaOfSmartPallet( totalArea);
-		userContext.getChecker().checkLatitudeOfSmartPallet( latitude);
-		userContext.getChecker().checkLongitudeOfSmartPallet( longitude);
+		checkerOf(userContext).checkLocationOfSmartPallet( location);
+		checkerOf(userContext).checkContactNumberOfSmartPallet( contactNumber);
+		checkerOf(userContext).checkTotalAreaOfSmartPallet( totalArea);
+		checkerOf(userContext).checkLatitudeOfSmartPallet( latitude);
+		checkerOf(userContext).checkLongitudeOfSmartPallet( longitude);
 
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
-	public  Warehouse updateSmartPalletProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse updateSmartPalletProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingSmartPalletProperties(userContext,warehouseId,id,location,contactNumber,totalArea,latitude,longitude,tokensExpr);
 
@@ -843,7 +840,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	
 	
-	protected SmartPallet createSmartPallet(RetailscmUserContext userContext, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
+	protected SmartPallet createSmartPallet(RetailscmUserContext userContext, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		SmartPallet smartPallet = new SmartPallet();
 		
@@ -873,12 +870,12 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingSmartPalletList(RetailscmUserContext userContext, String warehouseId, 
 			String smartPalletIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		for(String smartPalletIdItem: smartPalletIds){
-			userContext.getChecker().checkIdOfSmartPallet(smartPalletIdItem);
+			checkerOf(userContext).checkIdOfSmartPallet(smartPalletIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse removeSmartPalletList(RetailscmUserContext userContext, String warehouseId, 
@@ -891,7 +888,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(warehouse){ 
 				//Will be good when the warehouse loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getWarehouseDAO().planToRemoveSmartPalletList(warehouse, smartPalletIds, allTokens());
+				warehouseDaoOf(userContext).planToRemoveSmartPalletList(warehouse, smartPalletIds, allTokens());
 				warehouse = saveWarehouse(userContext, warehouse, tokens().withSmartPalletList().done());
 				deleteRelationListInGraph(userContext, warehouse.getSmartPalletList());
 				return present(userContext,warehouse, mergedAllTokens(tokensExpr));
@@ -901,10 +898,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingSmartPallet(RetailscmUserContext userContext, String warehouseId, 
 		String smartPalletId, int smartPalletVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfSmartPallet(smartPalletId);
-		userContext.getChecker().checkVersionOfSmartPallet(smartPalletVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfSmartPallet(smartPalletId);
+		checkerOf(userContext).checkVersionOfSmartPallet(smartPalletVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse removeSmartPallet(RetailscmUserContext userContext, String warehouseId, 
@@ -928,10 +925,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingSmartPallet(RetailscmUserContext userContext, String warehouseId, 
 		String smartPalletId, int smartPalletVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfSmartPallet(smartPalletId);
-		userContext.getChecker().checkVersionOfSmartPallet(smartPalletVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfSmartPallet(smartPalletId);
+		checkerOf(userContext).checkVersionOfSmartPallet(smartPalletVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse copySmartPalletFrom(RetailscmUserContext userContext, String warehouseId, 
@@ -960,33 +957,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfSmartPallet(smartPalletId);
-		userContext.getChecker().checkVersionOfSmartPallet(smartPalletVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfSmartPallet(smartPalletId);
+		checkerOf(userContext).checkVersionOfSmartPallet(smartPalletVersion);
 		
 
 		if(SmartPallet.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfSmartPallet(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfSmartPallet(parseString(newValueExpr));
 		}
 		
 		if(SmartPallet.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfSmartPallet(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfSmartPallet(parseLong(newValueExpr));
 		}
 		
 		if(SmartPallet.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfSmartPallet(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfSmartPallet(parseString(newValueExpr));
 		}
 		
 		if(SmartPallet.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfSmartPallet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfSmartPallet(parseBigDecimal(newValueExpr));
 		}
 		
 		if(SmartPallet.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfSmartPallet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfSmartPallet(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	
@@ -1027,30 +1024,26 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 
 
 
-	protected void checkParamsForAddingSupplierSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingSupplierSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 
 		
+		checkerOf(userContext).checkLocationOfSupplierSpace(location);
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-
+		checkerOf(userContext).checkContactNumberOfSupplierSpace(contactNumber);
 		
-		userContext.getChecker().checkLocationOfSupplierSpace(location);
+		checkerOf(userContext).checkTotalAreaOfSupplierSpace(totalArea);
 		
-		userContext.getChecker().checkContactNumberOfSupplierSpace(contactNumber);
+		checkerOf(userContext).checkLatitudeOfSupplierSpace(latitude);
 		
-		userContext.getChecker().checkTotalAreaOfSupplierSpace(totalArea);
-		
-		userContext.getChecker().checkLatitudeOfSupplierSpace(latitude);
-		
-		userContext.getChecker().checkLongitudeOfSupplierSpace(longitude);
+		checkerOf(userContext).checkLongitudeOfSupplierSpace(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 	
 	}
-	public  Warehouse addSupplierSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse addSupplierSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		
 		checkParamsForAddingSupplierSpace(userContext,warehouseId,location, contactNumber, totalArea, latitude, longitude,tokensExpr);
@@ -1068,21 +1061,21 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			return present(userContext,warehouse, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingSupplierSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingSupplierSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfSupplierSpace(id);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfSupplierSpace(id);
 		
-		userContext.getChecker().checkLocationOfSupplierSpace( location);
-		userContext.getChecker().checkContactNumberOfSupplierSpace( contactNumber);
-		userContext.getChecker().checkTotalAreaOfSupplierSpace( totalArea);
-		userContext.getChecker().checkLatitudeOfSupplierSpace( latitude);
-		userContext.getChecker().checkLongitudeOfSupplierSpace( longitude);
+		checkerOf(userContext).checkLocationOfSupplierSpace( location);
+		checkerOf(userContext).checkContactNumberOfSupplierSpace( contactNumber);
+		checkerOf(userContext).checkTotalAreaOfSupplierSpace( totalArea);
+		checkerOf(userContext).checkLatitudeOfSupplierSpace( latitude);
+		checkerOf(userContext).checkLongitudeOfSupplierSpace( longitude);
 
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
-	public  Warehouse updateSupplierSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse updateSupplierSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingSupplierSpaceProperties(userContext,warehouseId,id,location,contactNumber,totalArea,latitude,longitude,tokensExpr);
 
@@ -1114,7 +1107,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	
 	
-	protected SupplierSpace createSupplierSpace(RetailscmUserContext userContext, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
+	protected SupplierSpace createSupplierSpace(RetailscmUserContext userContext, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		SupplierSpace supplierSpace = new SupplierSpace();
 		
@@ -1144,12 +1137,12 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingSupplierSpaceList(RetailscmUserContext userContext, String warehouseId, 
 			String supplierSpaceIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		for(String supplierSpaceIdItem: supplierSpaceIds){
-			userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceIdItem);
+			checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse removeSupplierSpaceList(RetailscmUserContext userContext, String warehouseId, 
@@ -1162,7 +1155,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(warehouse){ 
 				//Will be good when the warehouse loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getWarehouseDAO().planToRemoveSupplierSpaceList(warehouse, supplierSpaceIds, allTokens());
+				warehouseDaoOf(userContext).planToRemoveSupplierSpaceList(warehouse, supplierSpaceIds, allTokens());
 				warehouse = saveWarehouse(userContext, warehouse, tokens().withSupplierSpaceList().done());
 				deleteRelationListInGraph(userContext, warehouse.getSupplierSpaceList());
 				return present(userContext,warehouse, mergedAllTokens(tokensExpr));
@@ -1172,10 +1165,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingSupplierSpace(RetailscmUserContext userContext, String warehouseId, 
 		String supplierSpaceId, int supplierSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().checkVersionOfSupplierSpace(supplierSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).checkVersionOfSupplierSpace(supplierSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse removeSupplierSpace(RetailscmUserContext userContext, String warehouseId, 
@@ -1199,10 +1192,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingSupplierSpace(RetailscmUserContext userContext, String warehouseId, 
 		String supplierSpaceId, int supplierSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().checkVersionOfSupplierSpace(supplierSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).checkVersionOfSupplierSpace(supplierSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse copySupplierSpaceFrom(RetailscmUserContext userContext, String warehouseId, 
@@ -1231,33 +1224,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().checkVersionOfSupplierSpace(supplierSpaceVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).checkVersionOfSupplierSpace(supplierSpaceVersion);
 		
 
 		if(SupplierSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfSupplierSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfSupplierSpace(parseString(newValueExpr));
 		}
 		
 		if(SupplierSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfSupplierSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfSupplierSpace(parseLong(newValueExpr));
 		}
 		
 		if(SupplierSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfSupplierSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfSupplierSpace(parseString(newValueExpr));
 		}
 		
 		if(SupplierSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
 		}
 		
 		if(SupplierSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	
@@ -1298,32 +1291,28 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 
 
 
-	protected void checkParamsForAddingReceivingSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String description, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingReceivingSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String description, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 
 		
+		checkerOf(userContext).checkLocationOfReceivingSpace(location);
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-
+		checkerOf(userContext).checkContactNumberOfReceivingSpace(contactNumber);
 		
-		userContext.getChecker().checkLocationOfReceivingSpace(location);
+		checkerOf(userContext).checkDescriptionOfReceivingSpace(description);
 		
-		userContext.getChecker().checkContactNumberOfReceivingSpace(contactNumber);
+		checkerOf(userContext).checkTotalAreaOfReceivingSpace(totalArea);
 		
-		userContext.getChecker().checkDescriptionOfReceivingSpace(description);
+		checkerOf(userContext).checkLatitudeOfReceivingSpace(latitude);
 		
-		userContext.getChecker().checkTotalAreaOfReceivingSpace(totalArea);
-		
-		userContext.getChecker().checkLatitudeOfReceivingSpace(latitude);
-		
-		userContext.getChecker().checkLongitudeOfReceivingSpace(longitude);
+		checkerOf(userContext).checkLongitudeOfReceivingSpace(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 	
 	}
-	public  Warehouse addReceivingSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String description, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse addReceivingSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String description, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		
 		checkParamsForAddingReceivingSpace(userContext,warehouseId,location, contactNumber, description, totalArea, latitude, longitude,tokensExpr);
@@ -1341,22 +1330,22 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			return present(userContext,warehouse, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingReceivingSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,String contactNumber,String description,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingReceivingSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,long contactNumber,String description,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfReceivingSpace(id);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfReceivingSpace(id);
 		
-		userContext.getChecker().checkLocationOfReceivingSpace( location);
-		userContext.getChecker().checkContactNumberOfReceivingSpace( contactNumber);
-		userContext.getChecker().checkDescriptionOfReceivingSpace( description);
-		userContext.getChecker().checkTotalAreaOfReceivingSpace( totalArea);
-		userContext.getChecker().checkLatitudeOfReceivingSpace( latitude);
-		userContext.getChecker().checkLongitudeOfReceivingSpace( longitude);
+		checkerOf(userContext).checkLocationOfReceivingSpace( location);
+		checkerOf(userContext).checkContactNumberOfReceivingSpace( contactNumber);
+		checkerOf(userContext).checkDescriptionOfReceivingSpace( description);
+		checkerOf(userContext).checkTotalAreaOfReceivingSpace( totalArea);
+		checkerOf(userContext).checkLatitudeOfReceivingSpace( latitude);
+		checkerOf(userContext).checkLongitudeOfReceivingSpace( longitude);
 
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
-	public  Warehouse updateReceivingSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,String contactNumber,String description,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse updateReceivingSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,long contactNumber,String description,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingReceivingSpaceProperties(userContext,warehouseId,id,location,contactNumber,description,totalArea,latitude,longitude,tokensExpr);
 
@@ -1389,7 +1378,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	
 	
-	protected ReceivingSpace createReceivingSpace(RetailscmUserContext userContext, String location, String contactNumber, String description, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
+	protected ReceivingSpace createReceivingSpace(RetailscmUserContext userContext, String location, long contactNumber, String description, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		ReceivingSpace receivingSpace = new ReceivingSpace();
 		
@@ -1420,12 +1409,12 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingReceivingSpaceList(RetailscmUserContext userContext, String warehouseId, 
 			String receivingSpaceIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		for(String receivingSpaceIdItem: receivingSpaceIds){
-			userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceIdItem);
+			checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse removeReceivingSpaceList(RetailscmUserContext userContext, String warehouseId, 
@@ -1438,7 +1427,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(warehouse){ 
 				//Will be good when the warehouse loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getWarehouseDAO().planToRemoveReceivingSpaceList(warehouse, receivingSpaceIds, allTokens());
+				warehouseDaoOf(userContext).planToRemoveReceivingSpaceList(warehouse, receivingSpaceIds, allTokens());
 				warehouse = saveWarehouse(userContext, warehouse, tokens().withReceivingSpaceList().done());
 				deleteRelationListInGraph(userContext, warehouse.getReceivingSpaceList());
 				return present(userContext,warehouse, mergedAllTokens(tokensExpr));
@@ -1448,10 +1437,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingReceivingSpace(RetailscmUserContext userContext, String warehouseId, 
 		String receivingSpaceId, int receivingSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceId);
-		userContext.getChecker().checkVersionOfReceivingSpace(receivingSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceId);
+		checkerOf(userContext).checkVersionOfReceivingSpace(receivingSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse removeReceivingSpace(RetailscmUserContext userContext, String warehouseId, 
@@ -1475,10 +1464,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingReceivingSpace(RetailscmUserContext userContext, String warehouseId, 
 		String receivingSpaceId, int receivingSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceId);
-		userContext.getChecker().checkVersionOfReceivingSpace(receivingSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceId);
+		checkerOf(userContext).checkVersionOfReceivingSpace(receivingSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse copyReceivingSpaceFrom(RetailscmUserContext userContext, String warehouseId, 
@@ -1507,37 +1496,37 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfReceivingSpace(receivingSpaceId);
-		userContext.getChecker().checkVersionOfReceivingSpace(receivingSpaceVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceId);
+		checkerOf(userContext).checkVersionOfReceivingSpace(receivingSpaceVersion);
 		
 
 		if(ReceivingSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfReceivingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfReceivingSpace(parseString(newValueExpr));
 		}
 		
 		if(ReceivingSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfReceivingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfReceivingSpace(parseLong(newValueExpr));
 		}
 		
 		if(ReceivingSpace.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfReceivingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfReceivingSpace(parseString(newValueExpr));
 		}
 		
 		if(ReceivingSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfReceivingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfReceivingSpace(parseString(newValueExpr));
 		}
 		
 		if(ReceivingSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfReceivingSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfReceivingSpace(parseBigDecimal(newValueExpr));
 		}
 		
 		if(ReceivingSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfReceivingSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfReceivingSpace(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	
@@ -1578,32 +1567,28 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 
 
 
-	protected void checkParamsForAddingShippingSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingShippingSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 
 		
+		checkerOf(userContext).checkLocationOfShippingSpace(location);
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-
+		checkerOf(userContext).checkContactNumberOfShippingSpace(contactNumber);
 		
-		userContext.getChecker().checkLocationOfShippingSpace(location);
+		checkerOf(userContext).checkTotalAreaOfShippingSpace(totalArea);
 		
-		userContext.getChecker().checkContactNumberOfShippingSpace(contactNumber);
+		checkerOf(userContext).checkLatitudeOfShippingSpace(latitude);
 		
-		userContext.getChecker().checkTotalAreaOfShippingSpace(totalArea);
+		checkerOf(userContext).checkLongitudeOfShippingSpace(longitude);
 		
-		userContext.getChecker().checkLatitudeOfShippingSpace(latitude);
-		
-		userContext.getChecker().checkLongitudeOfShippingSpace(longitude);
-		
-		userContext.getChecker().checkDescriptionOfShippingSpace(description);
+		checkerOf(userContext).checkDescriptionOfShippingSpace(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 	
 	}
-	public  Warehouse addShippingSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
+	public  Warehouse addShippingSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
 	{	
 		
 		checkParamsForAddingShippingSpace(userContext,warehouseId,location, contactNumber, totalArea, latitude, longitude, description,tokensExpr);
@@ -1621,22 +1606,22 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			return present(userContext,warehouse, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingShippingSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingShippingSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfShippingSpace(id);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfShippingSpace(id);
 		
-		userContext.getChecker().checkLocationOfShippingSpace( location);
-		userContext.getChecker().checkContactNumberOfShippingSpace( contactNumber);
-		userContext.getChecker().checkTotalAreaOfShippingSpace( totalArea);
-		userContext.getChecker().checkLatitudeOfShippingSpace( latitude);
-		userContext.getChecker().checkLongitudeOfShippingSpace( longitude);
-		userContext.getChecker().checkDescriptionOfShippingSpace( description);
+		checkerOf(userContext).checkLocationOfShippingSpace( location);
+		checkerOf(userContext).checkContactNumberOfShippingSpace( contactNumber);
+		checkerOf(userContext).checkTotalAreaOfShippingSpace( totalArea);
+		checkerOf(userContext).checkLatitudeOfShippingSpace( latitude);
+		checkerOf(userContext).checkLongitudeOfShippingSpace( longitude);
+		checkerOf(userContext).checkDescriptionOfShippingSpace( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
-	public  Warehouse updateShippingSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
+	public  Warehouse updateShippingSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingShippingSpaceProperties(userContext,warehouseId,id,location,contactNumber,totalArea,latitude,longitude,description,tokensExpr);
 
@@ -1669,7 +1654,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	
 	
-	protected ShippingSpace createShippingSpace(RetailscmUserContext userContext, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
+	protected ShippingSpace createShippingSpace(RetailscmUserContext userContext, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
 
 		ShippingSpace shippingSpace = new ShippingSpace();
 		
@@ -1700,12 +1685,12 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingShippingSpaceList(RetailscmUserContext userContext, String warehouseId, 
 			String shippingSpaceIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		for(String shippingSpaceIdItem: shippingSpaceIds){
-			userContext.getChecker().checkIdOfShippingSpace(shippingSpaceIdItem);
+			checkerOf(userContext).checkIdOfShippingSpace(shippingSpaceIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse removeShippingSpaceList(RetailscmUserContext userContext, String warehouseId, 
@@ -1718,7 +1703,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(warehouse){ 
 				//Will be good when the warehouse loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getWarehouseDAO().planToRemoveShippingSpaceList(warehouse, shippingSpaceIds, allTokens());
+				warehouseDaoOf(userContext).planToRemoveShippingSpaceList(warehouse, shippingSpaceIds, allTokens());
 				warehouse = saveWarehouse(userContext, warehouse, tokens().withShippingSpaceList().done());
 				deleteRelationListInGraph(userContext, warehouse.getShippingSpaceList());
 				return present(userContext,warehouse, mergedAllTokens(tokensExpr));
@@ -1728,10 +1713,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingShippingSpace(RetailscmUserContext userContext, String warehouseId, 
 		String shippingSpaceId, int shippingSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfShippingSpace(shippingSpaceId);
-		userContext.getChecker().checkVersionOfShippingSpace(shippingSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfShippingSpace(shippingSpaceId);
+		checkerOf(userContext).checkVersionOfShippingSpace(shippingSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse removeShippingSpace(RetailscmUserContext userContext, String warehouseId, 
@@ -1755,10 +1740,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingShippingSpace(RetailscmUserContext userContext, String warehouseId, 
 		String shippingSpaceId, int shippingSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfShippingSpace(shippingSpaceId);
-		userContext.getChecker().checkVersionOfShippingSpace(shippingSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfShippingSpace(shippingSpaceId);
+		checkerOf(userContext).checkVersionOfShippingSpace(shippingSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse copyShippingSpaceFrom(RetailscmUserContext userContext, String warehouseId, 
@@ -1787,37 +1772,37 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfShippingSpace(shippingSpaceId);
-		userContext.getChecker().checkVersionOfShippingSpace(shippingSpaceVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfShippingSpace(shippingSpaceId);
+		checkerOf(userContext).checkVersionOfShippingSpace(shippingSpaceVersion);
 		
 
 		if(ShippingSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfShippingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfShippingSpace(parseString(newValueExpr));
 		}
 		
 		if(ShippingSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfShippingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfShippingSpace(parseLong(newValueExpr));
 		}
 		
 		if(ShippingSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfShippingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfShippingSpace(parseString(newValueExpr));
 		}
 		
 		if(ShippingSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfShippingSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfShippingSpace(parseBigDecimal(newValueExpr));
 		}
 		
 		if(ShippingSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfShippingSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfShippingSpace(parseBigDecimal(newValueExpr));
 		}
 		
 		if(ShippingSpace.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfShippingSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfShippingSpace(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	
@@ -1858,30 +1843,26 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 
 
 
-	protected void checkParamsForAddingDamageSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingDamageSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 
 		
+		checkerOf(userContext).checkLocationOfDamageSpace(location);
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-
+		checkerOf(userContext).checkContactNumberOfDamageSpace(contactNumber);
 		
-		userContext.getChecker().checkLocationOfDamageSpace(location);
+		checkerOf(userContext).checkTotalAreaOfDamageSpace(totalArea);
 		
-		userContext.getChecker().checkContactNumberOfDamageSpace(contactNumber);
+		checkerOf(userContext).checkLatitudeOfDamageSpace(latitude);
 		
-		userContext.getChecker().checkTotalAreaOfDamageSpace(totalArea);
-		
-		userContext.getChecker().checkLatitudeOfDamageSpace(latitude);
-		
-		userContext.getChecker().checkLongitudeOfDamageSpace(longitude);
+		checkerOf(userContext).checkLongitudeOfDamageSpace(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 	
 	}
-	public  Warehouse addDamageSpace(RetailscmUserContext userContext, String warehouseId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse addDamageSpace(RetailscmUserContext userContext, String warehouseId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		
 		checkParamsForAddingDamageSpace(userContext,warehouseId,location, contactNumber, totalArea, latitude, longitude,tokensExpr);
@@ -1899,21 +1880,21 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			return present(userContext,warehouse, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingDamageSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
+	protected void checkParamsForUpdatingDamageSpaceProperties(RetailscmUserContext userContext, String warehouseId,String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfDamageSpace(id);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfDamageSpace(id);
 		
-		userContext.getChecker().checkLocationOfDamageSpace( location);
-		userContext.getChecker().checkContactNumberOfDamageSpace( contactNumber);
-		userContext.getChecker().checkTotalAreaOfDamageSpace( totalArea);
-		userContext.getChecker().checkLatitudeOfDamageSpace( latitude);
-		userContext.getChecker().checkLongitudeOfDamageSpace( longitude);
+		checkerOf(userContext).checkLocationOfDamageSpace( location);
+		checkerOf(userContext).checkContactNumberOfDamageSpace( contactNumber);
+		checkerOf(userContext).checkTotalAreaOfDamageSpace( totalArea);
+		checkerOf(userContext).checkLatitudeOfDamageSpace( latitude);
+		checkerOf(userContext).checkLongitudeOfDamageSpace( longitude);
 
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
-	public  Warehouse updateDamageSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
+	public  Warehouse updateDamageSpaceProperties(RetailscmUserContext userContext, String warehouseId, String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
 	{	
 		checkParamsForUpdatingDamageSpaceProperties(userContext,warehouseId,id,location,contactNumber,totalArea,latitude,longitude,tokensExpr);
 
@@ -1945,7 +1926,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	
 	
-	protected DamageSpace createDamageSpace(RetailscmUserContext userContext, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
+	protected DamageSpace createDamageSpace(RetailscmUserContext userContext, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		DamageSpace damageSpace = new DamageSpace();
 		
@@ -1975,12 +1956,12 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingDamageSpaceList(RetailscmUserContext userContext, String warehouseId, 
 			String damageSpaceIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		for(String damageSpaceIdItem: damageSpaceIds){
-			userContext.getChecker().checkIdOfDamageSpace(damageSpaceIdItem);
+			checkerOf(userContext).checkIdOfDamageSpace(damageSpaceIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse removeDamageSpaceList(RetailscmUserContext userContext, String warehouseId, 
@@ -1993,7 +1974,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(warehouse){ 
 				//Will be good when the warehouse loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getWarehouseDAO().planToRemoveDamageSpaceList(warehouse, damageSpaceIds, allTokens());
+				warehouseDaoOf(userContext).planToRemoveDamageSpaceList(warehouse, damageSpaceIds, allTokens());
 				warehouse = saveWarehouse(userContext, warehouse, tokens().withDamageSpaceList().done());
 				deleteRelationListInGraph(userContext, warehouse.getDamageSpaceList());
 				return present(userContext,warehouse, mergedAllTokens(tokensExpr));
@@ -2003,10 +1984,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingDamageSpace(RetailscmUserContext userContext, String warehouseId, 
 		String damageSpaceId, int damageSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().checkVersionOfDamageSpace(damageSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).checkVersionOfDamageSpace(damageSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse removeDamageSpace(RetailscmUserContext userContext, String warehouseId, 
@@ -2030,10 +2011,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingDamageSpace(RetailscmUserContext userContext, String warehouseId, 
 		String damageSpaceId, int damageSpaceVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().checkVersionOfDamageSpace(damageSpaceVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).checkVersionOfDamageSpace(damageSpaceVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse copyDamageSpaceFrom(RetailscmUserContext userContext, String warehouseId, 
@@ -2062,33 +2043,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfDamageSpace(damageSpaceId);
-		userContext.getChecker().checkVersionOfDamageSpace(damageSpaceVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfDamageSpace(damageSpaceId);
+		checkerOf(userContext).checkVersionOfDamageSpace(damageSpaceVersion);
 		
 
 		if(DamageSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfDamageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfDamageSpace(parseString(newValueExpr));
 		}
 		
 		if(DamageSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfDamageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfDamageSpace(parseLong(newValueExpr));
 		}
 		
 		if(DamageSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfDamageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfDamageSpace(parseString(newValueExpr));
 		}
 		
 		if(DamageSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfDamageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfDamageSpace(parseBigDecimal(newValueExpr));
 		}
 		
 		if(DamageSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfDamageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfDamageSpace(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	
@@ -2131,18 +2112,14 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 
 	protected void checkParamsForAddingWarehouseAsset(RetailscmUserContext userContext, String warehouseId, String name, String position,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 
 		
+		checkerOf(userContext).checkNameOfWarehouseAsset(name);
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-
-		
-		userContext.getChecker().checkNameOfWarehouseAsset(name);
-		
-		userContext.getChecker().checkPositionOfWarehouseAsset(position);
+		checkerOf(userContext).checkPositionOfWarehouseAsset(position);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 
 	
 	}
@@ -2166,13 +2143,13 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	protected void checkParamsForUpdatingWarehouseAssetProperties(RetailscmUserContext userContext, String warehouseId,String id,String name,String position,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfWarehouseAsset(id);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouseAsset(id);
 		
-		userContext.getChecker().checkNameOfWarehouseAsset( name);
-		userContext.getChecker().checkPositionOfWarehouseAsset( position);
+		checkerOf(userContext).checkNameOfWarehouseAsset( name);
+		checkerOf(userContext).checkPositionOfWarehouseAsset( position);
 
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse updateWarehouseAssetProperties(RetailscmUserContext userContext, String warehouseId, String id,String name,String position, String [] tokensExpr) throws Exception
@@ -2231,12 +2208,12 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingWarehouseAssetList(RetailscmUserContext userContext, String warehouseId, 
 			String warehouseAssetIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		for(String warehouseAssetIdItem: warehouseAssetIds){
-			userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetIdItem);
+			checkerOf(userContext).checkIdOfWarehouseAsset(warehouseAssetIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 		
 	}
 	public  Warehouse removeWarehouseAssetList(RetailscmUserContext userContext, String warehouseId, 
@@ -2249,7 +2226,7 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(warehouse){ 
 				//Will be good when the warehouse loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getWarehouseDAO().planToRemoveWarehouseAssetList(warehouse, warehouseAssetIds, allTokens());
+				warehouseDaoOf(userContext).planToRemoveWarehouseAssetList(warehouse, warehouseAssetIds, allTokens());
 				warehouse = saveWarehouse(userContext, warehouse, tokens().withWarehouseAssetList().done());
 				deleteRelationListInGraph(userContext, warehouse.getWarehouseAssetList());
 				return present(userContext,warehouse, mergedAllTokens(tokensExpr));
@@ -2259,10 +2236,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingWarehouseAsset(RetailscmUserContext userContext, String warehouseId, 
 		String warehouseAssetId, int warehouseAssetVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetId);
-		userContext.getChecker().checkVersionOfWarehouseAsset(warehouseAssetVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfWarehouseAsset(warehouseAssetId);
+		checkerOf(userContext).checkVersionOfWarehouseAsset(warehouseAssetVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse removeWarehouseAsset(RetailscmUserContext userContext, String warehouseId, 
@@ -2286,10 +2263,10 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingWarehouseAsset(RetailscmUserContext userContext, String warehouseId, 
 		String warehouseAssetId, int warehouseAssetVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfWarehouse( warehouseId);
-		userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetId);
-		userContext.getChecker().checkVersionOfWarehouseAsset(warehouseAssetVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).checkIdOfWarehouse( warehouseId);
+		checkerOf(userContext).checkIdOfWarehouseAsset(warehouseAssetId);
+		checkerOf(userContext).checkVersionOfWarehouseAsset(warehouseAssetVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	public  Warehouse copyWarehouseAssetFrom(RetailscmUserContext userContext, String warehouseId, 
@@ -2318,21 +2295,21 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfWarehouse(warehouseId);
-		userContext.getChecker().checkIdOfWarehouseAsset(warehouseAssetId);
-		userContext.getChecker().checkVersionOfWarehouseAsset(warehouseAssetVersion);
+		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
+		checkerOf(userContext).checkIdOfWarehouseAsset(warehouseAssetId);
+		checkerOf(userContext).checkVersionOfWarehouseAsset(warehouseAssetVersion);
 		
 
 		if(WarehouseAsset.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfWarehouseAsset(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfWarehouseAsset(parseString(newValueExpr));
 		}
 		
 		if(WarehouseAsset.POSITION_PROPERTY.equals(property)){
-			userContext.getChecker().checkPositionOfWarehouseAsset(parseString(newValueExpr));
+			checkerOf(userContext).checkPositionOfWarehouseAsset(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(WarehouseManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
 	
 	}
 	

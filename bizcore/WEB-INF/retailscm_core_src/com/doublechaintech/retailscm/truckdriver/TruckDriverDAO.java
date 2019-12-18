@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.truckdriver;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.transportfleet.TransportFleetDAO;
 import com.doublechaintech.retailscm.transporttask.TransportTaskDAO;
 
 
-public interface TruckDriverDAO{
+public interface TruckDriverDAO extends BaseDAO{
 
-	
+	public SmartList<TruckDriver> loadAll();
 	public TruckDriver load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<TruckDriver> truckDriverList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -66,6 +67,7 @@ public interface TruckDriverDAO{
 	
 	
 	public SmartList<TruckDriver> queryList(String sql, Object ... parmeters);
+	public int count(String sql, Object ... parmeters);
  
  	public SmartList<TruckDriver> findTruckDriverByBelongsTo(String transportFleetId, Map<String,Object> options);
  	public int countTruckDriverByBelongsTo(String transportFleetId, Map<String,Object> options);

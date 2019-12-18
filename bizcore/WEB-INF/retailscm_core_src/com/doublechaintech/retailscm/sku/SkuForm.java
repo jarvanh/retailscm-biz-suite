@@ -487,20 +487,6 @@ public class SkuForm extends BaseForm {
 		return packagingIdFieldForGoods("packagingId","");
 	}
 
-
-	public SkuForm currentStatusFieldForGoods(String parameterName, String initValue){
-		FormField field =  currentStatusFromGoods(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SkuForm currentStatusFieldForGoods(String initValue){
-		return currentStatusFieldForGoods("currentStatus",initValue);
-	}
-	public SkuForm currentStatusFieldForGoods(){
-		return currentStatusFieldForGoods("currentStatus","");
-	}
-
 	
 
 	

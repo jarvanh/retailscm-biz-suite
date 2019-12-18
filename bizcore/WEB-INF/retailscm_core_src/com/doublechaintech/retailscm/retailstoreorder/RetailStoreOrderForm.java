@@ -187,20 +187,6 @@ public class RetailStoreOrderForm extends BaseForm {
 		return lastUpdateTimeField("lastUpdateTime","");
 	}
 
-
-	public RetailStoreOrderForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromRetailStoreOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreOrderForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public RetailStoreOrderForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -440,20 +426,6 @@ public class RetailStoreOrderForm extends BaseForm {
 	}
 	public RetailStoreOrderForm lastUpdateTimeFieldOfRetailStore(){
 		return lastUpdateTimeFieldOfRetailStore("lastUpdateTime","");
-	}
-
-
-	public RetailStoreOrderForm currentStatusFieldOfRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public RetailStoreOrderForm currentStatusFieldOfRetailStore(String initValue){
-		return currentStatusFieldOfRetailStore("currentStatus",initValue);
-	}
-	public RetailStoreOrderForm currentStatusFieldOfRetailStore(){
-		return currentStatusFieldOfRetailStore("currentStatus","");
 	}
 
 
@@ -1271,20 +1243,6 @@ public class RetailStoreOrderForm extends BaseForm {
 		return packagingIdFieldForGoods("packagingId","");
 	}
 
-
-	public RetailStoreOrderForm currentStatusFieldForGoods(String parameterName, String initValue){
-		FormField field =  currentStatusFromGoods(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreOrderForm currentStatusFieldForGoods(String initValue){
-		return currentStatusFieldForGoods("currentStatus",initValue);
-	}
-	public RetailStoreOrderForm currentStatusFieldForGoods(){
-		return currentStatusFieldForGoods("currentStatus","");
-	}
-
 	
 
 	
@@ -1308,54 +1266,66 @@ public class RetailStoreOrderForm extends BaseForm {
 	}
 
  	
- 	public RetailStoreOrderForm  confirmAction(){
+ 	public RetailStoreOrderForm transferToAnotherConfirmationAction(){
 		FormAction action = new FormAction();
-		action.setLabel("确认");
-		action.setLocaleKey("retail_store_order.confirm");
-		action.setUrl("retailStoreOrderManager/confirm/retailStoreOrderId/who/confirmTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreOrderForm  approveAction(){
-		FormAction action = new FormAction();
-		action.setLabel("验收");
-		action.setLocaleKey("retail_store_order.approve");
-		action.setUrl("retailStoreOrderManager/approve/retailStoreOrderId/who/approveTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreOrderForm  processAction(){
-		FormAction action = new FormAction();
-		action.setLabel("处理");
-		action.setLocaleKey("retail_store_order.process");
-		action.setUrl("retailStoreOrderManager/process/retailStoreOrderId/who/processTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreOrderForm  pickAction(){
-		FormAction action = new FormAction();
-		action.setLabel("捡货");
-		action.setLocaleKey("retail_store_order.pick");
-		action.setUrl("retailStoreOrderManager/pick/retailStoreOrderId/who/processTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreOrderForm  shipAction(){
-		FormAction action = new FormAction();
-		action.setLabel("装运");
-		action.setLocaleKey("retail_store_order.ship");
-		action.setUrl("retailStoreOrderManager/ship/retailStoreOrderId/who/shipTime/");
-		this.addFormAction(action);
-		return this;
-	}	
- 	public RetailStoreOrderForm  deliverAction(){
-		FormAction action = new FormAction();
-		action.setLabel("送货");
-		action.setLocaleKey("retail_store_order.deliver");
-		action.setUrl("retailStoreOrderManager/deliver/retailStoreOrderId/who/deliveryTime/");
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherConfirmation/retailStoreOrderId/");
 		this.addFormAction(action);
 		return this;
 	}
+
+ 	
+ 	public RetailStoreOrderForm transferToAnotherApprovalAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherApproval/retailStoreOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreOrderForm transferToAnotherProcessingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherProcessing/retailStoreOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreOrderForm transferToAnotherPickingAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherPicking/retailStoreOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreOrderForm transferToAnotherShipmentAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherShipment/retailStoreOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
+ 	public RetailStoreOrderForm transferToAnotherDeliveryAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherDelivery/retailStoreOrderId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 
 
 	public RetailStoreOrderForm showAction(){
 		FormAction action = new FormAction();

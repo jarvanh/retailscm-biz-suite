@@ -39,7 +39,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	public static final String DELIVERY_PROPERTY              = "delivery"          ;
 	public static final String STORE_PROPERTY                 = "store"             ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String CONSUMER_ORDER_LINE_ITEM_LIST            = "consumerOrderLineItemList";
@@ -77,7 +76,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	protected		SupplyOrderDelivery 	mDelivery           ;
 	protected		RetailStore         	mStore              ;
 	protected		DateTime            	mLastUpdateTime     ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -114,20 +112,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrder(String title, RetailStoreMember consumer, RetailStore store, DateTime lastUpdateTime, String currentStatus)
-	{
-		setTitle(title);
-		setConsumer(consumer);
-		setStore(store);
-		setLastUpdateTime(lastUpdateTime);
-		setCurrentStatus(currentStatus);
-
-		this.mConsumerOrderLineItemList = new SmartList<ConsumerOrderLineItem>();
-		this.mConsumerOrderShippingGroupList = new SmartList<ConsumerOrderShippingGroup>();
-		this.mConsumerOrderPaymentGroupList = new SmartList<ConsumerOrderPaymentGroup>();
-		this.mConsumerOrderPriceAdjustmentList = new SmartList<ConsumerOrderPriceAdjustment>();
-		this.mRetailStoreMemberGiftCardConsumeRecordList = new SmartList<RetailStoreMemberGiftCardConsumeRecord>();	
-	}
 	
 	//Support for changing the property
 	
@@ -205,9 +189,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
-		}
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
 		}
 		if(CONSUMER_ORDER_LINE_ITEM_LIST.equals(property)){
 			List<BaseEntity> list = getConsumerOrderLineItemList().stream().map(item->item).collect(Collectors.toList());
@@ -432,22 +413,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	}
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
-	}
-	
-	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public ConsumerOrder updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
 	
 	
@@ -1055,7 +1020,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, DELIVERY_PROPERTY, getDelivery());
 		appendKeyValuePair(result, STORE_PROPERTY, getStore());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, CONSUMER_ORDER_LINE_ITEM_LIST, getConsumerOrderLineItemList());
 		if(!getConsumerOrderLineItemList().isEmpty()){
@@ -1106,7 +1070,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 			dest.setDelivery(getDelivery());
 			dest.setStore(getStore());
 			dest.setLastUpdateTime(getLastUpdateTime());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 			dest.setConsumerOrderLineItemList(getConsumerOrderLineItemList());
 			dest.setConsumerOrderShippingGroupList(getConsumerOrderShippingGroupList());
@@ -1136,7 +1099,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 			dest.mergeDelivery(getDelivery());
 			dest.mergeStore(getStore());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 			dest.mergeConsumerOrderLineItemList(getConsumerOrderLineItemList());
 			dest.mergeConsumerOrderShippingGroupList(getConsumerOrderShippingGroupList());
@@ -1160,7 +1122,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeTitle(getTitle());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-			dest.mergeCurrentStatus(getCurrentStatus());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -1195,7 +1156,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
  			stringBuilder.append("\tstore='RetailStore("+getStore().getId()+")';");
  		}
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

@@ -230,9 +230,13 @@ public class SupplyOrderTokens extends CommonTokens{
 	}
 	private int supplyOrderLineItemListSearchCounter = 0;
 	public SupplyOrderTokens searchSupplyOrderLineItemListWith(String field, String verb, String value){		
+		
+		withSupplyOrderLineItemList();
 		addSearchMoreOptions(SUPPLY_ORDER_LINE_ITEM_LIST,supplyOrderLineItemListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SupplyOrderTokens searchAllTextOfSupplyOrderLineItemList(String verb, String value){	
 		String field = "id|skuId|skuName|unitOfMeasurement";
@@ -296,9 +300,13 @@ public class SupplyOrderTokens extends CommonTokens{
 	}
 	private int supplyOrderShippingGroupListSearchCounter = 0;
 	public SupplyOrderTokens searchSupplyOrderShippingGroupListWith(String field, String verb, String value){		
+		
+		withSupplyOrderShippingGroupList();
 		addSearchMoreOptions(SUPPLY_ORDER_SHIPPING_GROUP_LIST,supplyOrderShippingGroupListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SupplyOrderTokens searchAllTextOfSupplyOrderShippingGroupList(String verb, String value){	
 		String field = "id|name";
@@ -362,9 +370,13 @@ public class SupplyOrderTokens extends CommonTokens{
 	}
 	private int supplyOrderPaymentGroupListSearchCounter = 0;
 	public SupplyOrderTokens searchSupplyOrderPaymentGroupListWith(String field, String verb, String value){		
+		
+		withSupplyOrderPaymentGroupList();
 		addSearchMoreOptions(SUPPLY_ORDER_PAYMENT_GROUP_LIST,supplyOrderPaymentGroupListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SupplyOrderTokens searchAllTextOfSupplyOrderPaymentGroupList(String verb, String value){	
 		String field = "id|name|cardNumber";
@@ -428,12 +440,16 @@ public class SupplyOrderTokens extends CommonTokens{
 	}
 	private int goodsListSearchCounter = 0;
 	public SupplyOrderTokens searchGoodsListWith(String field, String verb, String value){		
+		
+		withGoodsList();
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public SupplyOrderTokens searchAllTextOfGoodsList(String verb, String value){	
-		String field = "id|name|rfid|uom|currentStatus";
+		String field = "id|name|rfid|uom";
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}

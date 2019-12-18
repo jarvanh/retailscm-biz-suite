@@ -53,6 +53,11 @@ public class GoodsMovementJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<GoodsMovement> loadAll() {
+	    return this.loadAll(getGoodsMovementMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -579,6 +584,10 @@ public class GoodsMovementJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public SmartList<GoodsMovement> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getGoodsMovementMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

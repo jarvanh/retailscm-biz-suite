@@ -73,13 +73,6 @@ public class RetailStoreOrderShippingGroup extends BaseEntity implements  java.i
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderShippingGroup(String name, RetailStoreOrder bizOrder, BigDecimal amount)
-	{
-		setName(name);
-		setBizOrder(bizOrder);
-		setAmount(amount);
-	
-	}
 	
 	//Support for changing the property
 	

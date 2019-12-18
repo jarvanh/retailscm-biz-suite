@@ -64,6 +64,11 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	}
 	*/
 	
+	public SmartList<AccountingDocumentLine> loadAll() {
+	    return this.loadAll(getAccountingDocumentLineMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -686,6 +691,10 @@ public class AccountingDocumentLineJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	@Override
 	public SmartList<AccountingDocumentLine> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getAccountingDocumentLineMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

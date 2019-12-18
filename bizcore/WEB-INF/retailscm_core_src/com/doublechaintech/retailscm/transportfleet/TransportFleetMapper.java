@@ -53,7 +53,7 @@ public class TransportFleetMapper extends BaseRowMapper<TransportFleet>{
 	protected void setContactNumber(TransportFleet transportFleet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String contactNumber = rs.getString(TransportFleetTable.COLUMN_CONTACT_NUMBER);
+		Long contactNumber = rs.getLong(TransportFleetTable.COLUMN_CONTACT_NUMBER);
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;

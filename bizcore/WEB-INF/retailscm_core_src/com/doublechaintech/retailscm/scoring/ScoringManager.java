@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface ScoringManager{
+public interface ScoringManager extends BaseManager{
 
 		
 
-	public Scoring createScoring(RetailscmUserContext userContext, String scoredBy, int score, String comment) throws Exception;	
+	public Scoring createScoring(RetailscmUserContext userContext, String scoredBy,int score,String comment) throws Exception;	
 	public Scoring updateScoring(RetailscmUserContext userContext,String scoringId, int scoringVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public Scoring loadScoring(RetailscmUserContext userContext, String scoringId, String [] tokensExpr) throws Exception;
 	public Scoring internalSaveScoring(RetailscmUserContext userContext, Scoring scoring) throws Exception;

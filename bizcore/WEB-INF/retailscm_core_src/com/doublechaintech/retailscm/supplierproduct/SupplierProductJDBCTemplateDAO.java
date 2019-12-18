@@ -74,6 +74,11 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<SupplierProduct> loadAll() {
+	    return this.loadAll(getSupplierProductMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -804,6 +809,10 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public SmartList<SupplierProduct> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getSupplierProductMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

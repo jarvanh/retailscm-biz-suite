@@ -400,20 +400,6 @@ public class EmployeeAwardForm extends BaseForm {
 		return lastUpdateTimeFieldOfEmployee("lastUpdateTime","");
 	}
 
-
-	public EmployeeAwardForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeAwardForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeAwardForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
 	
 
 

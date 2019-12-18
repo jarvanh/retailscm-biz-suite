@@ -53,6 +53,11 @@ public class RetailStoreOrderShippingGroupJDBCTemplateDAO extends RetailscmBaseD
 	}
 	*/
 	
+	public SmartList<RetailStoreOrderShippingGroup> loadAll() {
+	    return this.loadAll(getRetailStoreOrderShippingGroupMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -551,6 +556,10 @@ public class RetailStoreOrderShippingGroupJDBCTemplateDAO extends RetailscmBaseD
 	@Override
 	public SmartList<RetailStoreOrderShippingGroup> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getRetailStoreOrderShippingGroupMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface TruckDriverManager{
+public interface TruckDriverManager extends BaseManager{
 
 		
 
-	public TruckDriver createTruckDriver(RetailscmUserContext userContext, String name, String driverLicenseNumber, String contactNumber, String belongsToId) throws Exception;	
+	public TruckDriver createTruckDriver(RetailscmUserContext userContext, String name,long driverLicenseNumber,String contactNumber,String belongsToId) throws Exception;	
 	public TruckDriver updateTruckDriver(RetailscmUserContext userContext,String truckDriverId, int truckDriverVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public TruckDriver loadTruckDriver(RetailscmUserContext userContext, String truckDriverId, String [] tokensExpr) throws Exception;
 	public TruckDriver internalSaveTruckDriver(RetailscmUserContext userContext, TruckDriver truckDriver) throws Exception;

@@ -64,6 +64,11 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<EventAttendance> loadAll() {
+	    return this.loadAll(getEventAttendanceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -682,6 +687,10 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public SmartList<EventAttendance> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getEventAttendanceMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

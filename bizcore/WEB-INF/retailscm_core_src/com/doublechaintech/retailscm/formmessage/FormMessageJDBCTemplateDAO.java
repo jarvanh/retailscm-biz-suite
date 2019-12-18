@@ -53,6 +53,11 @@ public class FormMessageJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<FormMessage> loadAll() {
+	    return this.loadAll(getFormMessageMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -551,6 +556,10 @@ public class FormMessageJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public SmartList<FormMessage> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getFormMessageMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

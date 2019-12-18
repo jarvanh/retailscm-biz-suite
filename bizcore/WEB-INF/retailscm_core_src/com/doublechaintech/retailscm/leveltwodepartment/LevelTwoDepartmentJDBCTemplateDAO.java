@@ -74,6 +74,11 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<LevelTwoDepartment> loadAll() {
+	    return this.loadAll(getLevelTwoDepartmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -804,6 +809,10 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	@Override
 	public SmartList<LevelTwoDepartment> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getLevelTwoDepartmentMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

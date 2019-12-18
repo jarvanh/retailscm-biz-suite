@@ -77,15 +77,6 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 	}
 	
-	public 	EmployeeWorkExperience(Employee employee, Date start, Date end, String company, String description)
-	{
-		setEmployee(employee);
-		setStart(start);
-		setEnd(end);
-		setCompany(company);
-		setDescription(description);
-	
-	}
 	
 	//Support for changing the property
 	

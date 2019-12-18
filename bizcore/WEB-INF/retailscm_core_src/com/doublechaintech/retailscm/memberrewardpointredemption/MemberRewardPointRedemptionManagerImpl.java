@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.retailstoremember.CandidateRetailStoreMembe
 public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheckerManager implements MemberRewardPointRedemptionManager {
 	
 	private static final String SERVICE_TYPE = "MemberRewardPointRedemption";
+	@Override
+	public MemberRewardPointRedemptionDAO daoOf(RetailscmUserContext userContext) {
+		return memberRewardPointRedemptionDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
  	
  	public MemberRewardPointRedemption loadMemberRewardPointRedemption(RetailscmUserContext userContext, String memberRewardPointRedemptionId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberRewardPointRedemptionManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberRewardPointRedemptionManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
  	
  	 public MemberRewardPointRedemption searchMemberRewardPointRedemption(RetailscmUserContext userContext, String memberRewardPointRedemptionId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberRewardPointRedemptionManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberRewardPointRedemptionManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		addActions(userContext,memberRewardPointRedemption,tokens);
 		
 		
-		MemberRewardPointRedemption  memberRewardPointRedemptionToPresent = userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().present(memberRewardPointRedemption, tokens);
+		MemberRewardPointRedemption  memberRewardPointRedemptionToPresent = memberRewardPointRedemptionDaoOf(userContext).present(memberRewardPointRedemption, tokens);
 		
 		List<BaseEntity> entityListToNaming = memberRewardPointRedemptionToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().alias(entityListToNaming);
+		memberRewardPointRedemptionDaoOf(userContext).alias(entityListToNaming);
 		
 		return  memberRewardPointRedemptionToPresent;
 		
@@ -123,14 +127,14 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		
  	}
  	protected MemberRewardPointRedemption saveMemberRewardPointRedemption(RetailscmUserContext userContext, MemberRewardPointRedemption memberRewardPointRedemption, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().save(memberRewardPointRedemption, tokens);
+ 		return memberRewardPointRedemptionDaoOf(userContext).save(memberRewardPointRedemption, tokens);
  	}
  	protected MemberRewardPointRedemption loadMemberRewardPointRedemption(RetailscmUserContext userContext, String memberRewardPointRedemptionId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberRewardPointRedemptionManagerException.class);
+		checkerOf(userContext).checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberRewardPointRedemptionManagerException.class);
 
  
- 		return userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().load(memberRewardPointRedemptionId, tokens);
+ 		return memberRewardPointRedemptionDaoOf(userContext).load(memberRewardPointRedemptionId, tokens);
  	}
 
 	
@@ -160,18 +164,18 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
  	
  	
 
-
-	public MemberRewardPointRedemption createMemberRewardPointRedemption(RetailscmUserContext userContext,String name, int point, String ownerId) throws Exception
+	public MemberRewardPointRedemption createMemberRewardPointRedemption(RetailscmUserContext userContext, String name,int point,String ownerId) throws Exception
+	//public MemberRewardPointRedemption createMemberRewardPointRedemption(RetailscmUserContext userContext,String name, int point, String ownerId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfMemberRewardPointRedemption(name);
-		userContext.getChecker().checkPointOfMemberRewardPointRedemption(point);
+		checkerOf(userContext).checkNameOfMemberRewardPointRedemption(name);
+		checkerOf(userContext).checkPointOfMemberRewardPointRedemption(point);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
 
 
 		MemberRewardPointRedemption memberRewardPointRedemption=createNewMemberRewardPointRedemption();	
@@ -203,20 +207,20 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 
 		
 		
-		userContext.getChecker().checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
-		userContext.getChecker().checkVersionOfMemberRewardPointRedemption( memberRewardPointRedemptionVersion);
+		checkerOf(userContext).checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
+		checkerOf(userContext).checkVersionOfMemberRewardPointRedemption( memberRewardPointRedemptionVersion);
 		
 
 		if(MemberRewardPointRedemption.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfMemberRewardPointRedemption(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfMemberRewardPointRedemption(parseString(newValueExpr));
 		}
 		if(MemberRewardPointRedemption.POINT_PROPERTY.equals(property)){
-			userContext.getChecker().checkPointOfMemberRewardPointRedemption(parseInt(newValueExpr));
+			checkerOf(userContext).checkPointOfMemberRewardPointRedemption(parseInt(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
 	
 		
 	}
@@ -225,7 +229,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	
 	public MemberRewardPointRedemption clone(RetailscmUserContext userContext, String fromMemberRewardPointRedemptionId) throws Exception{
 		
-		return userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().clone(fromMemberRewardPointRedemptionId, this.allTokens());
+		return memberRewardPointRedemptionDaoOf(userContext).clone(fromMemberRewardPointRedemptionId, this.allTokens());
 	}
 	
 	public MemberRewardPointRedemption internalSaveMemberRewardPointRedemption(RetailscmUserContext userContext, MemberRewardPointRedemption memberRewardPointRedemption) throws Exception 
@@ -323,9 +327,9 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String memberRewardPointRedemptionId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
- 		userContext.getChecker().checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
+ 		checkerOf(userContext).checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
  		
  	}
  	public MemberRewardPointRedemption transferToAnotherOwner(RetailscmUserContext userContext, String memberRewardPointRedemptionId, String anotherOwnerId) throws Exception
@@ -362,7 +366,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreMember> candidateList = userContext.getDAOGroup().getRetailStoreMemberDAO().requestCandidateRetailStoreMemberForMemberRewardPointRedemption(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreMember> candidateList = retailStoreMemberDaoOf(userContext).requestCandidateRetailStoreMemberForMemberRewardPointRedemption(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -375,7 +379,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
  	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreMemberDAO().load(newOwnerId, options);
+ 		return retailStoreMemberDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -389,7 +393,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion) throws Exception{
 			
-		userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().delete(memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
+		memberRewardPointRedemptionDaoOf(userContext).delete(memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
 	}
 	
 	public MemberRewardPointRedemption forgetByAll(RetailscmUserContext userContext, String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion) throws Exception {
@@ -398,8 +402,9 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	protected MemberRewardPointRedemption forgetByAllInternal(RetailscmUserContext userContext,
 			String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().disconnectFromAll(memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
+		return memberRewardPointRedemptionDaoOf(userContext).disconnectFromAll(memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
 	}
+	
 	
 
 	
@@ -416,7 +421,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getMemberRewardPointRedemptionDAO().deleteAll();
+		return memberRewardPointRedemptionDaoOf(userContext).deleteAll();
 	}
 
 

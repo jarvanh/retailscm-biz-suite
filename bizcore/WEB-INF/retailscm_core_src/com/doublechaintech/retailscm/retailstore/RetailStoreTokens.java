@@ -231,12 +231,16 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	private int consumerOrderListSearchCounter = 0;
 	public RetailStoreTokens searchConsumerOrderListWith(String field, String verb, String value){		
+		
+		withConsumerOrderList();
 		addSearchMoreOptions(CONSUMER_ORDER_LIST,consumerOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreTokens searchAllTextOfConsumerOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(CONSUMER_ORDER_LIST,consumerOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -297,12 +301,16 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	private int retailStoreOrderListSearchCounter = 0;
 	public RetailStoreTokens searchRetailStoreOrderListWith(String field, String verb, String value){		
+		
+		withRetailStoreOrderList();
 		addSearchMoreOptions(RETAIL_STORE_ORDER_LIST,retailStoreOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreTokens searchAllTextOfRetailStoreOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(RETAIL_STORE_ORDER_LIST,retailStoreOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -363,12 +371,16 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	private int goodsListSearchCounter = 0;
 	public RetailStoreTokens searchGoodsListWith(String field, String verb, String value){		
+		
+		withGoodsList();
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreTokens searchAllTextOfGoodsList(String verb, String value){	
-		String field = "id|name|rfid|uom|currentStatus";
+		String field = "id|name|rfid|uom";
 		addSearchMoreOptions(GOODS_LIST,goodsListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -429,9 +441,13 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	private int transportTaskListSearchCounter = 0;
 	public RetailStoreTokens searchTransportTaskListWith(String field, String verb, String value){		
+		
+		withTransportTaskList();
 		addSearchMoreOptions(TRANSPORT_TASK_LIST,transportTaskListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreTokens searchAllTextOfTransportTaskList(String verb, String value){	
 		String field = "id|name|start";
@@ -495,12 +511,16 @@ public class RetailStoreTokens extends CommonTokens{
 	}
 	private int accountSetListSearchCounter = 0;
 	public RetailStoreTokens searchAccountSetListWith(String field, String verb, String value){		
+		
+		withAccountSetList();
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreTokens searchAllTextOfAccountSetList(String verb, String value){	
-		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank|accountNumber";
+		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank";
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}

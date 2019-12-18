@@ -144,12 +144,16 @@ public class SalaryGradeTokens extends CommonTokens{
 	}
 	private int employeeListSearchCounter = 0;
 	public SalaryGradeTokens searchEmployeeListWith(String field, String verb, String value){		
+		
+		withEmployeeList();
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public SalaryGradeTokens searchAllTextOfEmployeeList(String verb, String value){	
-		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount|currentStatus";
+		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount";
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -210,12 +214,16 @@ public class SalaryGradeTokens extends CommonTokens{
 	}
 	private int employeeSalarySheetListSearchCounter = 0;
 	public SalaryGradeTokens searchEmployeeSalarySheetListWith(String field, String verb, String value){		
+		
+		withEmployeeSalarySheetList();
 		addSearchMoreOptions(EMPLOYEE_SALARY_SHEET_LIST,employeeSalarySheetListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public SalaryGradeTokens searchAllTextOfEmployeeSalarySheetList(String verb, String value){	
-		String field = "id|currentStatus";
+		String field = "id";
 		addSearchMoreOptions(EMPLOYEE_SALARY_SHEET_LIST,employeeSalarySheetListSearchCounter++, field, verb, value);
 		return this;
 	}

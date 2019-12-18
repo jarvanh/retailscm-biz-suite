@@ -74,14 +74,6 @@ public class AccountingDocumentPosting extends BaseEntity implements  java.io.Se
 		this.changed = true;
 	}
 	
-	public 	AccountingDocumentPosting(String who, String comments, Date makeDate)
-	{
-		setWho(who);
-		setComments(comments);
-		setMakeDate(makeDate);
-
-		this.mAccountingDocumentList = new SmartList<AccountingDocument>();	
-	}
 	
 	//Support for changing the property
 	

@@ -143,9 +143,13 @@ public class LevelThreeCategoryTokens extends CommonTokens{
 	}
 	private int productListSearchCounter = 0;
 	public LevelThreeCategoryTokens searchProductListWith(String field, String verb, String value){		
+		
+		withProductList();
 		addSearchMoreOptions(PRODUCT_LIST,productListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public LevelThreeCategoryTokens searchAllTextOfProductList(String verb, String value){	
 		String field = "id|name|origin|remark|brand";

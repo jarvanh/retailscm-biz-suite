@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.retailstoremembergiftcard.CandidateRetailSt
 public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreMemberGiftCardConsumeRecordManager {
 	
 	private static final String SERVICE_TYPE = "RetailStoreMemberGiftCardConsumeRecord";
+	@Override
+	public RetailStoreMemberGiftCardConsumeRecordDAO daoOf(RetailscmUserContext userContext) {
+		return retailStoreMemberGiftCardConsumeRecordDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  	
  	public RetailStoreMemberGiftCardConsumeRecord loadRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreMemberGiftCardConsumeRecordManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreMemberGiftCardConsumeRecordManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  	
  	 public RetailStoreMemberGiftCardConsumeRecord searchRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreMemberGiftCardConsumeRecordManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreMemberGiftCardConsumeRecordManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 		addActions(userContext,retailStoreMemberGiftCardConsumeRecord,tokens);
 		
 		
-		RetailStoreMemberGiftCardConsumeRecord  retailStoreMemberGiftCardConsumeRecordToPresent = userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().present(retailStoreMemberGiftCardConsumeRecord, tokens);
+		RetailStoreMemberGiftCardConsumeRecord  retailStoreMemberGiftCardConsumeRecordToPresent = retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).present(retailStoreMemberGiftCardConsumeRecord, tokens);
 		
 		List<BaseEntity> entityListToNaming = retailStoreMemberGiftCardConsumeRecordToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().alias(entityListToNaming);
+		retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).alias(entityListToNaming);
 		
 		return  retailStoreMemberGiftCardConsumeRecordToPresent;
 		
@@ -125,14 +129,14 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 		
  	}
  	protected RetailStoreMemberGiftCardConsumeRecord saveRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext, RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().save(retailStoreMemberGiftCardConsumeRecord, tokens);
+ 		return retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).save(retailStoreMemberGiftCardConsumeRecord, tokens);
  	}
  	protected RetailStoreMemberGiftCardConsumeRecord loadRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreMemberGiftCardConsumeRecordManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreMemberGiftCardConsumeRecordManagerException.class);
 
  
- 		return userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().load(retailStoreMemberGiftCardConsumeRecordId, tokens);
+ 		return retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).load(retailStoreMemberGiftCardConsumeRecordId, tokens);
  	}
 
 	
@@ -163,19 +167,19 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  	
  	
 
-
-	public RetailStoreMemberGiftCardConsumeRecord createRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext,Date occureTime, String ownerId, String bizOrderId, String number, BigDecimal amount) throws Exception
+	public RetailStoreMemberGiftCardConsumeRecord createRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext, Date occureTime,String ownerId,String bizOrderId,String number,BigDecimal amount) throws Exception
+	//public RetailStoreMemberGiftCardConsumeRecord createRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext,Date occureTime, String ownerId, String bizOrderId, String number, BigDecimal amount) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkOccureTimeOfRetailStoreMemberGiftCardConsumeRecord(occureTime);
-		userContext.getChecker().checkNumberOfRetailStoreMemberGiftCardConsumeRecord(number);
-		userContext.getChecker().checkAmountOfRetailStoreMemberGiftCardConsumeRecord(amount);
+		checkerOf(userContext).checkOccureTimeOfRetailStoreMemberGiftCardConsumeRecord(occureTime);
+		checkerOf(userContext).checkNumberOfRetailStoreMemberGiftCardConsumeRecord(number);
+		checkerOf(userContext).checkAmountOfRetailStoreMemberGiftCardConsumeRecord(amount);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
 
 
 		RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord=createNewRetailStoreMemberGiftCardConsumeRecord();	
@@ -213,25 +217,25 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 
 		
 		
-		userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
-		userContext.getChecker().checkVersionOfRetailStoreMemberGiftCardConsumeRecord( retailStoreMemberGiftCardConsumeRecordVersion);
+		checkerOf(userContext).checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
+		checkerOf(userContext).checkVersionOfRetailStoreMemberGiftCardConsumeRecord( retailStoreMemberGiftCardConsumeRecordVersion);
 		
 
 		if(RetailStoreMemberGiftCardConsumeRecord.OCCURE_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkOccureTimeOfRetailStoreMemberGiftCardConsumeRecord(parseDate(newValueExpr));
+			checkerOf(userContext).checkOccureTimeOfRetailStoreMemberGiftCardConsumeRecord(parseDate(newValueExpr));
 		}		
 
 				
 
 		
 		if(RetailStoreMemberGiftCardConsumeRecord.NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkNumberOfRetailStoreMemberGiftCardConsumeRecord(parseString(newValueExpr));
+			checkerOf(userContext).checkNumberOfRetailStoreMemberGiftCardConsumeRecord(parseString(newValueExpr));
 		}
 		if(RetailStoreMemberGiftCardConsumeRecord.AMOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkAmountOfRetailStoreMemberGiftCardConsumeRecord(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkAmountOfRetailStoreMemberGiftCardConsumeRecord(parseBigDecimal(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
 	
 		
 	}
@@ -240,7 +244,7 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 	
 	public RetailStoreMemberGiftCardConsumeRecord clone(RetailscmUserContext userContext, String fromRetailStoreMemberGiftCardConsumeRecordId) throws Exception{
 		
-		return userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().clone(fromRetailStoreMemberGiftCardConsumeRecordId, this.allTokens());
+		return retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).clone(fromRetailStoreMemberGiftCardConsumeRecordId, this.allTokens());
 	}
 	
 	public RetailStoreMemberGiftCardConsumeRecord internalSaveRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext, RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord) throws Exception 
@@ -338,9 +342,9 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
- 		userContext.getChecker().checkIdOfRetailStoreMemberGiftCard(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberGiftCard(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
  		
  	}
  	public RetailStoreMemberGiftCardConsumeRecord transferToAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, String anotherOwnerId) throws Exception
@@ -377,7 +381,7 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreMemberGiftCard> candidateList = userContext.getDAOGroup().getRetailStoreMemberGiftCardDAO().requestCandidateRetailStoreMemberGiftCardForRetailStoreMemberGiftCardConsumeRecord(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreMemberGiftCard> candidateList = retailStoreMemberGiftCardDaoOf(userContext).requestCandidateRetailStoreMemberGiftCardForRetailStoreMemberGiftCardConsumeRecord(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -387,9 +391,9 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, String anotherBizOrderId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
- 		userContext.getChecker().checkIdOfConsumerOrder(anotherBizOrderId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreMemberGiftCardConsumeRecord(retailStoreMemberGiftCardConsumeRecordId);
+ 		checkerOf(userContext).checkIdOfConsumerOrder(anotherBizOrderId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberGiftCardConsumeRecordManagerException.class);
  		
  	}
  	public RetailStoreMemberGiftCardConsumeRecord transferToAnotherBizOrder(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, String anotherBizOrderId) throws Exception
@@ -426,7 +430,7 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<ConsumerOrder> candidateList = userContext.getDAOGroup().getConsumerOrderDAO().requestCandidateConsumerOrderForRetailStoreMemberGiftCardConsumeRecord(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<ConsumerOrder> candidateList = consumerOrderDaoOf(userContext).requestCandidateConsumerOrderForRetailStoreMemberGiftCardConsumeRecord(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -439,7 +443,7 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  	protected RetailStoreMemberGiftCard loadRetailStoreMemberGiftCard(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreMemberGiftCardDAO().load(newOwnerId, options);
+ 		return retailStoreMemberGiftCardDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -449,7 +453,7 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
  	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getConsumerOrderDAO().load(newBizOrderId, options);
+ 		return consumerOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
  	
@@ -463,7 +467,7 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreMemberGiftCardConsumeRecordId, int retailStoreMemberGiftCardConsumeRecordVersion) throws Exception{
 			
-		userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().delete(retailStoreMemberGiftCardConsumeRecordId, retailStoreMemberGiftCardConsumeRecordVersion);
+		retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).delete(retailStoreMemberGiftCardConsumeRecordId, retailStoreMemberGiftCardConsumeRecordVersion);
 	}
 	
 	public RetailStoreMemberGiftCardConsumeRecord forgetByAll(RetailscmUserContext userContext, String retailStoreMemberGiftCardConsumeRecordId, int retailStoreMemberGiftCardConsumeRecordVersion) throws Exception {
@@ -472,8 +476,9 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 	protected RetailStoreMemberGiftCardConsumeRecord forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreMemberGiftCardConsumeRecordId, int retailStoreMemberGiftCardConsumeRecordVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().disconnectFromAll(retailStoreMemberGiftCardConsumeRecordId, retailStoreMemberGiftCardConsumeRecordVersion);
+		return retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).disconnectFromAll(retailStoreMemberGiftCardConsumeRecordId, retailStoreMemberGiftCardConsumeRecordVersion);
 	}
+	
 	
 
 	
@@ -490,7 +495,7 @@ public class RetailStoreMemberGiftCardConsumeRecordManagerImpl extends CustomRet
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getRetailStoreMemberGiftCardConsumeRecordDAO().deleteAll();
+		return retailStoreMemberGiftCardConsumeRecordDaoOf(userContext).deleteAll();
 	}
 
 

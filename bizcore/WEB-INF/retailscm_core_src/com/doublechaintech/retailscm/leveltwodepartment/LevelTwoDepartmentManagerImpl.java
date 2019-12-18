@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.leveltwodepartment.LevelTwoDepartment;
 public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager implements LevelTwoDepartmentManager {
 	
 	private static final String SERVICE_TYPE = "LevelTwoDepartment";
+	@Override
+	public LevelTwoDepartmentDAO daoOf(RetailscmUserContext userContext) {
+		return levelTwoDepartmentDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
  	
  	public LevelTwoDepartment loadLevelTwoDepartment(RetailscmUserContext userContext, String levelTwoDepartmentId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelTwoDepartmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelTwoDepartmentManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
  	
  	 public LevelTwoDepartment searchLevelTwoDepartment(RetailscmUserContext userContext, String levelTwoDepartmentId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelTwoDepartmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelTwoDepartmentManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 		addActions(userContext,levelTwoDepartment,tokens);
 		
 		
-		LevelTwoDepartment  levelTwoDepartmentToPresent = userContext.getDAOGroup().getLevelTwoDepartmentDAO().present(levelTwoDepartment, tokens);
+		LevelTwoDepartment  levelTwoDepartmentToPresent = levelTwoDepartmentDaoOf(userContext).present(levelTwoDepartment, tokens);
 		
 		List<BaseEntity> entityListToNaming = levelTwoDepartmentToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getLevelTwoDepartmentDAO().alias(entityListToNaming);
+		levelTwoDepartmentDaoOf(userContext).alias(entityListToNaming);
 		
 		return  levelTwoDepartmentToPresent;
 		
@@ -125,14 +129,14 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 		
  	}
  	protected LevelTwoDepartment saveLevelTwoDepartment(RetailscmUserContext userContext, LevelTwoDepartment levelTwoDepartment, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getLevelTwoDepartmentDAO().save(levelTwoDepartment, tokens);
+ 		return levelTwoDepartmentDaoOf(userContext).save(levelTwoDepartment, tokens);
  	}
  	protected LevelTwoDepartment loadLevelTwoDepartment(RetailscmUserContext userContext, String levelTwoDepartmentId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelTwoDepartmentManagerException.class);
 
  
- 		return userContext.getDAOGroup().getLevelTwoDepartmentDAO().load(levelTwoDepartmentId, tokens);
+ 		return levelTwoDepartmentDaoOf(userContext).load(levelTwoDepartmentId, tokens);
  	}
 
 	
@@ -166,19 +170,19 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
  	
  	
 
-
-	public LevelTwoDepartment createLevelTwoDepartment(RetailscmUserContext userContext,String belongsToId, String name, String description, Date founded) throws Exception
+	public LevelTwoDepartment createLevelTwoDepartment(RetailscmUserContext userContext, String belongsToId,String name,String description,Date founded) throws Exception
+	//public LevelTwoDepartment createLevelTwoDepartment(RetailscmUserContext userContext,String belongsToId, String name, String description, Date founded) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfLevelTwoDepartment(name);
-		userContext.getChecker().checkDescriptionOfLevelTwoDepartment(description);
-		userContext.getChecker().checkFoundedOfLevelTwoDepartment(founded);
+		checkerOf(userContext).checkNameOfLevelTwoDepartment(name);
+		checkerOf(userContext).checkDescriptionOfLevelTwoDepartment(description);
+		checkerOf(userContext).checkFoundedOfLevelTwoDepartment(founded);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 
 
 		LevelTwoDepartment levelTwoDepartment=createNewLevelTwoDepartment();	
@@ -211,23 +215,23 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 
 		
 		
-		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-		userContext.getChecker().checkVersionOfLevelTwoDepartment( levelTwoDepartmentVersion);
+		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		checkerOf(userContext).checkVersionOfLevelTwoDepartment( levelTwoDepartmentVersion);
 		
 		
 
 		
 		if(LevelTwoDepartment.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfLevelTwoDepartment(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfLevelTwoDepartment(parseString(newValueExpr));
 		}
 		if(LevelTwoDepartment.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfLevelTwoDepartment(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfLevelTwoDepartment(parseString(newValueExpr));
 		}
 		if(LevelTwoDepartment.FOUNDED_PROPERTY.equals(property)){
-			userContext.getChecker().checkFoundedOfLevelTwoDepartment(parseDate(newValueExpr));
+			checkerOf(userContext).checkFoundedOfLevelTwoDepartment(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 	
 		
 	}
@@ -236,7 +240,7 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	
 	public LevelTwoDepartment clone(RetailscmUserContext userContext, String fromLevelTwoDepartmentId) throws Exception{
 		
-		return userContext.getDAOGroup().getLevelTwoDepartmentDAO().clone(fromLevelTwoDepartmentId, this.allTokens());
+		return levelTwoDepartmentDaoOf(userContext).clone(fromLevelTwoDepartmentId, this.allTokens());
 	}
 	
 	public LevelTwoDepartment internalSaveLevelTwoDepartment(RetailscmUserContext userContext, LevelTwoDepartment levelTwoDepartment) throws Exception 
@@ -335,9 +339,9 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForTransferingAnotherBelongsTo(RetailscmUserContext userContext, String levelTwoDepartmentId, String anotherBelongsToId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
- 		userContext.getChecker().checkIdOfLevelOneDepartment(anotherBelongsToId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+ 		checkerOf(userContext).checkIdOfLevelOneDepartment(anotherBelongsToId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
  		
  	}
  	public LevelTwoDepartment transferToAnotherBelongsTo(RetailscmUserContext userContext, String levelTwoDepartmentId, String anotherBelongsToId) throws Exception
@@ -374,7 +378,7 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<LevelOneDepartment> candidateList = userContext.getDAOGroup().getLevelOneDepartmentDAO().requestCandidateLevelOneDepartmentForLevelTwoDepartment(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<LevelOneDepartment> candidateList = levelOneDepartmentDaoOf(userContext).requestCandidateLevelOneDepartmentForLevelTwoDepartment(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -387,7 +391,7 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
  	protected LevelOneDepartment loadLevelOneDepartment(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getLevelOneDepartmentDAO().load(newBelongsToId, options);
+ 		return levelOneDepartmentDaoOf(userContext).load(newBelongsToId, options);
  	}
  	
  	
@@ -401,7 +405,7 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String levelTwoDepartmentId, int levelTwoDepartmentVersion) throws Exception{
 			
-		userContext.getDAOGroup().getLevelTwoDepartmentDAO().delete(levelTwoDepartmentId, levelTwoDepartmentVersion);
+		levelTwoDepartmentDaoOf(userContext).delete(levelTwoDepartmentId, levelTwoDepartmentVersion);
 	}
 	
 	public LevelTwoDepartment forgetByAll(RetailscmUserContext userContext, String levelTwoDepartmentId, int levelTwoDepartmentVersion) throws Exception {
@@ -410,8 +414,9 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	protected LevelTwoDepartment forgetByAllInternal(RetailscmUserContext userContext,
 			String levelTwoDepartmentId, int levelTwoDepartmentVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getLevelTwoDepartmentDAO().disconnectFromAll(levelTwoDepartmentId, levelTwoDepartmentVersion);
+		return levelTwoDepartmentDaoOf(userContext).disconnectFromAll(levelTwoDepartmentId, levelTwoDepartmentVersion);
 	}
+	
 	
 
 	
@@ -428,7 +433,7 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getLevelTwoDepartmentDAO().deleteAll();
+		return levelTwoDepartmentDaoOf(userContext).deleteAll();
 	}
 
 
@@ -440,20 +445,16 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 
 	protected void checkParamsForAddingLevelThreeDepartment(RetailscmUserContext userContext, String levelTwoDepartmentId, String name, String description, Date founded,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
 
 		
+		checkerOf(userContext).checkNameOfLevelThreeDepartment(name);
 		
-		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-
+		checkerOf(userContext).checkDescriptionOfLevelThreeDepartment(description);
 		
-		userContext.getChecker().checkNameOfLevelThreeDepartment(name);
-		
-		userContext.getChecker().checkDescriptionOfLevelThreeDepartment(description);
-		
-		userContext.getChecker().checkFoundedOfLevelThreeDepartment(founded);
+		checkerOf(userContext).checkFoundedOfLevelThreeDepartment(founded);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 
 	
 	}
@@ -477,14 +478,14 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	}
 	protected void checkParamsForUpdatingLevelThreeDepartmentProperties(RetailscmUserContext userContext, String levelTwoDepartmentId,String id,String name,String description,Date founded,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-		userContext.getChecker().checkIdOfLevelThreeDepartment(id);
+		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(id);
 		
-		userContext.getChecker().checkNameOfLevelThreeDepartment( name);
-		userContext.getChecker().checkDescriptionOfLevelThreeDepartment( description);
-		userContext.getChecker().checkFoundedOfLevelThreeDepartment( founded);
+		checkerOf(userContext).checkNameOfLevelThreeDepartment( name);
+		checkerOf(userContext).checkDescriptionOfLevelThreeDepartment( description);
+		checkerOf(userContext).checkFoundedOfLevelThreeDepartment( founded);
 
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 		
 	}
 	public  LevelTwoDepartment updateLevelThreeDepartmentProperties(RetailscmUserContext userContext, String levelTwoDepartmentId, String id,String name,String description,Date founded, String [] tokensExpr) throws Exception
@@ -544,12 +545,12 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingLevelThreeDepartmentList(RetailscmUserContext userContext, String levelTwoDepartmentId, 
 			String levelThreeDepartmentIds[],String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
 		for(String levelThreeDepartmentIdItem: levelThreeDepartmentIds){
-			userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentIdItem);
+			checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentIdItem);
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 		
 	}
 	public  LevelTwoDepartment removeLevelThreeDepartmentList(RetailscmUserContext userContext, String levelTwoDepartmentId, 
@@ -562,7 +563,7 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 			synchronized(levelTwoDepartment){ 
 				//Will be good when the levelTwoDepartment loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getLevelTwoDepartmentDAO().planToRemoveLevelThreeDepartmentList(levelTwoDepartment, levelThreeDepartmentIds, allTokens());
+				levelTwoDepartmentDaoOf(userContext).planToRemoveLevelThreeDepartmentList(levelTwoDepartment, levelThreeDepartmentIds, allTokens());
 				levelTwoDepartment = saveLevelTwoDepartment(userContext, levelTwoDepartment, tokens().withLevelThreeDepartmentList().done());
 				deleteRelationListInGraph(userContext, levelTwoDepartment.getLevelThreeDepartmentList());
 				return present(userContext,levelTwoDepartment, mergedAllTokens(tokensExpr));
@@ -572,10 +573,10 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingLevelThreeDepartment(RetailscmUserContext userContext, String levelTwoDepartmentId, 
 		String levelThreeDepartmentId, int levelThreeDepartmentVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLevelTwoDepartment( levelTwoDepartmentId);
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().checkVersionOfLevelThreeDepartment(levelThreeDepartmentVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).checkIdOfLevelTwoDepartment( levelTwoDepartmentId);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).checkVersionOfLevelThreeDepartment(levelThreeDepartmentVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 	
 	}
 	public  LevelTwoDepartment removeLevelThreeDepartment(RetailscmUserContext userContext, String levelTwoDepartmentId, 
@@ -599,10 +600,10 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForCopyingLevelThreeDepartment(RetailscmUserContext userContext, String levelTwoDepartmentId, 
 		String levelThreeDepartmentId, int levelThreeDepartmentVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLevelTwoDepartment( levelTwoDepartmentId);
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().checkVersionOfLevelThreeDepartment(levelThreeDepartmentVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).checkIdOfLevelTwoDepartment( levelTwoDepartmentId);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).checkVersionOfLevelThreeDepartment(levelThreeDepartmentVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 	
 	}
 	public  LevelTwoDepartment copyLevelThreeDepartmentFrom(RetailscmUserContext userContext, String levelTwoDepartmentId, 
@@ -631,25 +632,25 @@ public class LevelTwoDepartmentManagerImpl extends CustomRetailscmCheckerManager
 		
 
 		
-		userContext.getChecker().checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().checkVersionOfLevelThreeDepartment(levelThreeDepartmentVersion);
+		checkerOf(userContext).checkIdOfLevelTwoDepartment(levelTwoDepartmentId);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).checkVersionOfLevelThreeDepartment(levelThreeDepartmentVersion);
 		
 
 		if(LevelThreeDepartment.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfLevelThreeDepartment(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfLevelThreeDepartment(parseString(newValueExpr));
 		}
 		
 		if(LevelThreeDepartment.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfLevelThreeDepartment(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfLevelThreeDepartment(parseString(newValueExpr));
 		}
 		
 		if(LevelThreeDepartment.FOUNDED_PROPERTY.equals(property)){
-			userContext.getChecker().checkFoundedOfLevelThreeDepartment(parseDate(newValueExpr));
+			checkerOf(userContext).checkFoundedOfLevelThreeDepartment(parseDate(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelTwoDepartmentManagerException.class);
 	
 	}
 	

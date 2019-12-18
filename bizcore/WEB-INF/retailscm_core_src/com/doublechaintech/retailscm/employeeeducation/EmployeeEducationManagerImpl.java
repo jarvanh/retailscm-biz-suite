@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager implements EmployeeEducationManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeEducation";
+	@Override
+	public EmployeeEducationDAO daoOf(RetailscmUserContext userContext) {
+		return employeeEducationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
  	
  	public EmployeeEducation loadEmployeeEducation(RetailscmUserContext userContext, String employeeEducationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeEducation(employeeEducationId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeEducationManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeEducationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
  	
  	 public EmployeeEducation searchEmployeeEducation(RetailscmUserContext userContext, String employeeEducationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeEducation(employeeEducationId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeEducationManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeEducationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		addActions(userContext,employeeEducation,tokens);
 		
 		
-		EmployeeEducation  employeeEducationToPresent = userContext.getDAOGroup().getEmployeeEducationDAO().present(employeeEducation, tokens);
+		EmployeeEducation  employeeEducationToPresent = employeeEducationDaoOf(userContext).present(employeeEducation, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeEducationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeEducationDAO().alias(entityListToNaming);
+		employeeEducationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeEducationToPresent;
 		
@@ -123,14 +127,14 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		
  	}
  	protected EmployeeEducation saveEmployeeEducation(RetailscmUserContext userContext, EmployeeEducation employeeEducation, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeEducationDAO().save(employeeEducation, tokens);
+ 		return employeeEducationDaoOf(userContext).save(employeeEducation, tokens);
  	}
  	protected EmployeeEducation loadEmployeeEducation(RetailscmUserContext userContext, String employeeEducationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeEducation(employeeEducationId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeEducationManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeEducationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeEducationDAO().load(employeeEducationId, tokens);
+ 		return employeeEducationDaoOf(userContext).load(employeeEducationId, tokens);
  	}
 
 	
@@ -160,19 +164,19 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
  	
  	
 
-
-	public EmployeeEducation createEmployeeEducation(RetailscmUserContext userContext,String employeeId, Date completeTime, String type, String remark) throws Exception
+	public EmployeeEducation createEmployeeEducation(RetailscmUserContext userContext, String employeeId,Date completeTime,String type,String remark) throws Exception
+	//public EmployeeEducation createEmployeeEducation(RetailscmUserContext userContext,String employeeId, Date completeTime, String type, String remark) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCompleteTimeOfEmployeeEducation(completeTime);
-		userContext.getChecker().checkTypeOfEmployeeEducation(type);
-		userContext.getChecker().checkRemarkOfEmployeeEducation(remark);
+		checkerOf(userContext).checkCompleteTimeOfEmployeeEducation(completeTime);
+		checkerOf(userContext).checkTypeOfEmployeeEducation(type);
+		checkerOf(userContext).checkRemarkOfEmployeeEducation(remark);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
 
 
 		EmployeeEducation employeeEducation=createNewEmployeeEducation();	
@@ -205,23 +209,23 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeEducation(employeeEducationId);
-		userContext.getChecker().checkVersionOfEmployeeEducation( employeeEducationVersion);
+		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
+		checkerOf(userContext).checkVersionOfEmployeeEducation( employeeEducationVersion);
 		
 		
 
 		
 		if(EmployeeEducation.COMPLETE_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkCompleteTimeOfEmployeeEducation(parseDate(newValueExpr));
+			checkerOf(userContext).checkCompleteTimeOfEmployeeEducation(parseDate(newValueExpr));
 		}
 		if(EmployeeEducation.TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTypeOfEmployeeEducation(parseString(newValueExpr));
+			checkerOf(userContext).checkTypeOfEmployeeEducation(parseString(newValueExpr));
 		}
 		if(EmployeeEducation.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfEmployeeEducation(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfEmployeeEducation(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	
 	public EmployeeEducation clone(RetailscmUserContext userContext, String fromEmployeeEducationId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeEducationDAO().clone(fromEmployeeEducationId, this.allTokens());
+		return employeeEducationDaoOf(userContext).clone(fromEmployeeEducationId, this.allTokens());
 	}
 	
 	public EmployeeEducation internalSaveEmployeeEducation(RetailscmUserContext userContext, EmployeeEducation employeeEducation) throws Exception 
@@ -328,9 +332,9 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeEducationId, String anotherEmployeeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeEducation(employeeEducationId);
- 		userContext.getChecker().checkIdOfEmployee(anotherEmployeeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
  		
  	}
  	public EmployeeEducation transferToAnotherEmployee(RetailscmUserContext userContext, String employeeEducationId, String anotherEmployeeId) throws Exception
@@ -367,7 +371,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeeEducation(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeeEducation(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -380,7 +384,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
  	
@@ -394,7 +398,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeEducationId, int employeeEducationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeEducationDAO().delete(employeeEducationId, employeeEducationVersion);
+		employeeEducationDaoOf(userContext).delete(employeeEducationId, employeeEducationVersion);
 	}
 	
 	public EmployeeEducation forgetByAll(RetailscmUserContext userContext, String employeeEducationId, int employeeEducationVersion) throws Exception {
@@ -403,8 +407,9 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	protected EmployeeEducation forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeEducationId, int employeeEducationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeEducationDAO().disconnectFromAll(employeeEducationId, employeeEducationVersion);
+		return employeeEducationDaoOf(userContext).disconnectFromAll(employeeEducationId, employeeEducationVersion);
 	}
+	
 	
 
 	
@@ -421,7 +426,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeEducationDAO().deleteAll();
+		return employeeEducationDaoOf(userContext).deleteAll();
 	}
 
 

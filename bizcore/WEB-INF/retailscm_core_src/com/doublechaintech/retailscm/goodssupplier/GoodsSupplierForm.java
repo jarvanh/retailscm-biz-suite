@@ -488,20 +488,6 @@ public class GoodsSupplierForm extends BaseForm {
 	}
 
 
-	public GoodsSupplierForm currentStatusFieldForSupplyOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromSupplyOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public GoodsSupplierForm currentStatusFieldForSupplyOrder(String initValue){
-		return currentStatusFieldForSupplyOrder("currentStatus",initValue);
-	}
-	public GoodsSupplierForm currentStatusFieldForSupplyOrder(){
-		return currentStatusFieldForSupplyOrder("currentStatus","");
-	}
-
-
 	public GoodsSupplierForm accountSetIdFieldForAccountSet(String parameterName, String initValue){
 		FormField field =  idFromAccountSet(parameterName, initValue);		
 		this.addFormField(field);

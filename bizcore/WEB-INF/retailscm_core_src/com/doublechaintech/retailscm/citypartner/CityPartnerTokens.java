@@ -144,9 +144,13 @@ public class CityPartnerTokens extends CommonTokens{
 	}
 	private int potentialCustomerListSearchCounter = 0;
 	public CityPartnerTokens searchPotentialCustomerListWith(String field, String verb, String value){		
+		
+		withPotentialCustomerList();
 		addSearchMoreOptions(POTENTIAL_CUSTOMER_LIST,potentialCustomerListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public CityPartnerTokens searchAllTextOfPotentialCustomerList(String verb, String value){	
 		String field = "id|name|mobile|description";
@@ -210,9 +214,13 @@ public class CityPartnerTokens extends CommonTokens{
 	}
 	private int potentialCustomerContactListSearchCounter = 0;
 	public CityPartnerTokens searchPotentialCustomerContactListWith(String field, String verb, String value){		
+		
+		withPotentialCustomerContactList();
 		addSearchMoreOptions(POTENTIAL_CUSTOMER_CONTACT_LIST,potentialCustomerContactListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public CityPartnerTokens searchAllTextOfPotentialCustomerContactList(String verb, String value){	
 		String field = "id|name|contactMethod|description";

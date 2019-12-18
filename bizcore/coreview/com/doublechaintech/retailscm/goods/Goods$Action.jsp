@@ -23,7 +23,6 @@
 <li><span>${userContext.localeMap['goods.uom']}</span> ${goods.uom}</li>
 <li><span>${userContext.localeMap['goods.max_package']}</span> ${goods.maxPackage}</li>
 <li><span>${userContext.localeMap['goods.expire_time']}</span> <fmt:formatDate pattern="yyyy-MM-dd" value="${goods.expireTime}" /></li>
-<li><span>${userContext.localeMap['goods.current_status']}</span> ${goods.currentStatus}</li>
 
 	
 	</ul>

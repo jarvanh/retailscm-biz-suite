@@ -116,6 +116,11 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<TransportFleet> loadAll() {
+	    return this.loadAll(getTransportFleetMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1454,6 +1459,10 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	@Override
 	public SmartList<TransportFleet> queryList(String sql, Object... parameters) {
 	    return this.queryForList(sql, parameters, this.getTransportFleetMapper());
+	}
+	@Override
+	public int count(String sql, Object... parameters) {
+	    return queryInt(sql, parameters);
 	}
 	
 	

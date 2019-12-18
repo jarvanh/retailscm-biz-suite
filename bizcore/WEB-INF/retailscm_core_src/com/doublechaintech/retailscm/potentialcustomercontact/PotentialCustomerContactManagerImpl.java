@@ -37,6 +37,10 @@ import com.doublechaintech.retailscm.potentialcustomercontactperson.CandidatePot
 public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerManager implements PotentialCustomerContactManager {
 	
 	private static final String SERVICE_TYPE = "PotentialCustomerContact";
+	@Override
+	public PotentialCustomerContactDAO daoOf(RetailscmUserContext userContext) {
+		return potentialCustomerContactDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -70,8 +74,8 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	
  	public PotentialCustomerContact loadPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerContactId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-		userContext.getChecker().throwExceptionIfHasErrors( PotentialCustomerContactManagerException.class);
+ 		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		checkerOf(userContext).throwExceptionIfHasErrors( PotentialCustomerContactManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -84,8 +88,8 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	
  	 public PotentialCustomerContact searchPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerContactId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-		userContext.getChecker().throwExceptionIfHasErrors( PotentialCustomerContactManagerException.class);
+ 		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		checkerOf(userContext).throwExceptionIfHasErrors( PotentialCustomerContactManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -103,10 +107,10 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 		addActions(userContext,potentialCustomerContact,tokens);
 		
 		
-		PotentialCustomerContact  potentialCustomerContactToPresent = userContext.getDAOGroup().getPotentialCustomerContactDAO().present(potentialCustomerContact, tokens);
+		PotentialCustomerContact  potentialCustomerContactToPresent = potentialCustomerContactDaoOf(userContext).present(potentialCustomerContact, tokens);
 		
 		List<BaseEntity> entityListToNaming = potentialCustomerContactToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getPotentialCustomerContactDAO().alias(entityListToNaming);
+		potentialCustomerContactDaoOf(userContext).alias(entityListToNaming);
 		
 		return  potentialCustomerContactToPresent;
 		
@@ -127,14 +131,14 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 		
  	}
  	protected PotentialCustomerContact savePotentialCustomerContact(RetailscmUserContext userContext, PotentialCustomerContact potentialCustomerContact, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getPotentialCustomerContactDAO().save(potentialCustomerContact, tokens);
+ 		return potentialCustomerContactDaoOf(userContext).save(potentialCustomerContact, tokens);
  	}
  	protected PotentialCustomerContact loadPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerContactId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-		userContext.getChecker().throwExceptionIfHasErrors( PotentialCustomerContactManagerException.class);
+		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		checkerOf(userContext).throwExceptionIfHasErrors( PotentialCustomerContactManagerException.class);
 
  
- 		return userContext.getDAOGroup().getPotentialCustomerContactDAO().load(potentialCustomerContactId, tokens);
+ 		return potentialCustomerContactDaoOf(userContext).load(potentialCustomerContactId, tokens);
  	}
 
 	
@@ -166,20 +170,20 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	
  	
 
-
-	public PotentialCustomerContact createPotentialCustomerContact(RetailscmUserContext userContext,String name, Date contactDate, String contactMethod, String potentialCustomerId, String cityPartnerId, String contactToId, String description) throws Exception
+	public PotentialCustomerContact createPotentialCustomerContact(RetailscmUserContext userContext, String name,Date contactDate,String contactMethod,String potentialCustomerId,String cityPartnerId,String contactToId,String description) throws Exception
+	//public PotentialCustomerContact createPotentialCustomerContact(RetailscmUserContext userContext,String name, Date contactDate, String contactMethod, String potentialCustomerId, String cityPartnerId, String contactToId, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfPotentialCustomerContact(name);
-		userContext.getChecker().checkContactDateOfPotentialCustomerContact(contactDate);
-		userContext.getChecker().checkContactMethodOfPotentialCustomerContact(contactMethod);
-		userContext.getChecker().checkDescriptionOfPotentialCustomerContact(description);
+		checkerOf(userContext).checkNameOfPotentialCustomerContact(name);
+		checkerOf(userContext).checkContactDateOfPotentialCustomerContact(contactDate);
+		checkerOf(userContext).checkContactMethodOfPotentialCustomerContact(contactMethod);
+		checkerOf(userContext).checkDescriptionOfPotentialCustomerContact(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
 
 
 		PotentialCustomerContact potentialCustomerContact=createNewPotentialCustomerContact();	
@@ -224,18 +228,18 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 
 		
 		
-		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
-		userContext.getChecker().checkVersionOfPotentialCustomerContact( potentialCustomerContactVersion);
+		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+		checkerOf(userContext).checkVersionOfPotentialCustomerContact( potentialCustomerContactVersion);
 		
 
 		if(PotentialCustomerContact.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfPotentialCustomerContact(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfPotentialCustomerContact(parseString(newValueExpr));
 		}
 		if(PotentialCustomerContact.CONTACT_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactDateOfPotentialCustomerContact(parseDate(newValueExpr));
+			checkerOf(userContext).checkContactDateOfPotentialCustomerContact(parseDate(newValueExpr));
 		}
 		if(PotentialCustomerContact.CONTACT_METHOD_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactMethodOfPotentialCustomerContact(parseString(newValueExpr));
+			checkerOf(userContext).checkContactMethodOfPotentialCustomerContact(parseString(newValueExpr));
 		}		
 
 				
@@ -244,10 +248,10 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 
 		
 		if(PotentialCustomerContact.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfPotentialCustomerContact(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfPotentialCustomerContact(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
 	
 		
 	}
@@ -256,7 +260,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 	
 	public PotentialCustomerContact clone(RetailscmUserContext userContext, String fromPotentialCustomerContactId) throws Exception{
 		
-		return userContext.getDAOGroup().getPotentialCustomerContactDAO().clone(fromPotentialCustomerContactId, this.allTokens());
+		return potentialCustomerContactDaoOf(userContext).clone(fromPotentialCustomerContactId, this.allTokens());
 	}
 	
 	public PotentialCustomerContact internalSavePotentialCustomerContact(RetailscmUserContext userContext, PotentialCustomerContact potentialCustomerContact) throws Exception 
@@ -354,9 +358,9 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 	protected void checkParamsForTransferingAnotherPotentialCustomer(RetailscmUserContext userContext, String potentialCustomerContactId, String anotherPotentialCustomerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
- 		userContext.getChecker().checkIdOfPotentialCustomer(anotherPotentialCustomerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
+ 		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+ 		checkerOf(userContext).checkIdOfPotentialCustomer(anotherPotentialCustomerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
  		
  	}
  	public PotentialCustomerContact transferToAnotherPotentialCustomer(RetailscmUserContext userContext, String potentialCustomerContactId, String anotherPotentialCustomerId) throws Exception
@@ -393,7 +397,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<PotentialCustomer> candidateList = userContext.getDAOGroup().getPotentialCustomerDAO().requestCandidatePotentialCustomerForPotentialCustomerContact(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<PotentialCustomer> candidateList = potentialCustomerDaoOf(userContext).requestCandidatePotentialCustomerForPotentialCustomerContact(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -403,9 +407,9 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	protected void checkParamsForTransferingAnotherCityPartner(RetailscmUserContext userContext, String potentialCustomerContactId, String anotherCityPartnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
- 		userContext.getChecker().checkIdOfCityPartner(anotherCityPartnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
+ 		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+ 		checkerOf(userContext).checkIdOfCityPartner(anotherCityPartnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
  		
  	}
  	public PotentialCustomerContact transferToAnotherCityPartner(RetailscmUserContext userContext, String potentialCustomerContactId, String anotherCityPartnerId) throws Exception
@@ -442,7 +446,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<CityPartner> candidateList = userContext.getDAOGroup().getCityPartnerDAO().requestCandidateCityPartnerForPotentialCustomerContact(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<CityPartner> candidateList = cityPartnerDaoOf(userContext).requestCandidateCityPartnerForPotentialCustomerContact(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -452,9 +456,9 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	protected void checkParamsForTransferingAnotherContactTo(RetailscmUserContext userContext, String potentialCustomerContactId, String anotherContactToId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfPotentialCustomerContact(potentialCustomerContactId);
- 		userContext.getChecker().checkIdOfPotentialCustomerContactPerson(anotherContactToId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
+ 		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
+ 		checkerOf(userContext).checkIdOfPotentialCustomerContactPerson(anotherContactToId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerContactManagerException.class);
  		
  	}
  	public PotentialCustomerContact transferToAnotherContactTo(RetailscmUserContext userContext, String potentialCustomerContactId, String anotherContactToId) throws Exception
@@ -491,7 +495,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<PotentialCustomerContactPerson> candidateList = userContext.getDAOGroup().getPotentialCustomerContactPersonDAO().requestCandidatePotentialCustomerContactPersonForPotentialCustomerContact(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<PotentialCustomerContactPerson> candidateList = potentialCustomerContactPersonDaoOf(userContext).requestCandidatePotentialCustomerContactPersonForPotentialCustomerContact(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -504,7 +508,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
+ 		return potentialCustomerDaoOf(userContext).load(newPotentialCustomerId, options);
  	}
  	
  	
@@ -514,7 +518,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	protected CityPartner loadCityPartner(RetailscmUserContext userContext, String newCityPartnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getCityPartnerDAO().load(newCityPartnerId, options);
+ 		return cityPartnerDaoOf(userContext).load(newCityPartnerId, options);
  	}
  	
  	
@@ -524,7 +528,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
  	protected PotentialCustomerContactPerson loadPotentialCustomerContactPerson(RetailscmUserContext userContext, String newContactToId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getPotentialCustomerContactPersonDAO().load(newContactToId, options);
+ 		return potentialCustomerContactPersonDaoOf(userContext).load(newContactToId, options);
  	}
  	
  	
@@ -538,7 +542,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String potentialCustomerContactId, int potentialCustomerContactVersion) throws Exception{
 			
-		userContext.getDAOGroup().getPotentialCustomerContactDAO().delete(potentialCustomerContactId, potentialCustomerContactVersion);
+		potentialCustomerContactDaoOf(userContext).delete(potentialCustomerContactId, potentialCustomerContactVersion);
 	}
 	
 	public PotentialCustomerContact forgetByAll(RetailscmUserContext userContext, String potentialCustomerContactId, int potentialCustomerContactVersion) throws Exception {
@@ -547,8 +551,9 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 	protected PotentialCustomerContact forgetByAllInternal(RetailscmUserContext userContext,
 			String potentialCustomerContactId, int potentialCustomerContactVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getPotentialCustomerContactDAO().disconnectFromAll(potentialCustomerContactId, potentialCustomerContactVersion);
+		return potentialCustomerContactDaoOf(userContext).disconnectFromAll(potentialCustomerContactId, potentialCustomerContactVersion);
 	}
+	
 	
 
 	
@@ -565,7 +570,7 @@ public class PotentialCustomerContactManagerImpl extends CustomRetailscmCheckerM
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getPotentialCustomerContactDAO().deleteAll();
+		return potentialCustomerContactDaoOf(userContext).deleteAll();
 	}
 
 
