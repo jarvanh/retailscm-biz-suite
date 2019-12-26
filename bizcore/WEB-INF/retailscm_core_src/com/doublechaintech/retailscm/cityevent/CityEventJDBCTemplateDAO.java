@@ -74,6 +74,11 @@ public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Ci
 	}
 	*/
 	
+	public SmartList<CityEvent> loadAll() {
+	    return this.loadAll(getCityEventMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

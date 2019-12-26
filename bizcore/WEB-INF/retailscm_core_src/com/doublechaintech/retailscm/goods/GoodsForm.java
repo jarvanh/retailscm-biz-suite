@@ -243,20 +243,6 @@ public class GoodsForm extends BaseForm {
 		return packagingIdField("packagingId","");
 	}
 
-
-	public GoodsForm currentStatusField(String parameterName, String initValue){
-		FormField field = currentStatusFromGoods(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public GoodsForm currentStatusField(String initValue){
-		return currentStatusField("currentStatus",initValue);
-	}
-	public GoodsForm currentStatusField(){
-		return currentStatusField("currentStatus","");
-	}
-
 	
 	
 
@@ -1199,20 +1185,6 @@ public class GoodsForm extends BaseForm {
 	}
 
 
-	public GoodsForm currentStatusFieldOfRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public GoodsForm currentStatusFieldOfRetailStore(String initValue){
-		return currentStatusFieldOfRetailStore("currentStatus",initValue);
-	}
-	public GoodsForm currentStatusFieldOfRetailStore(){
-		return currentStatusFieldOfRetailStore("currentStatus","");
-	}
-
-
 	public GoodsForm supplyOrderIdFieldOfSupplyOrder(String parameterName, String initValue){
 		FormField field =  idFromSupplyOrder(parameterName, initValue);
 		this.addFormField(field);	
@@ -1381,20 +1353,6 @@ public class GoodsForm extends BaseForm {
 	}
 
 
-	public GoodsForm currentStatusFieldOfSupplyOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromSupplyOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public GoodsForm currentStatusFieldOfSupplyOrder(String initValue){
-		return currentStatusFieldOfSupplyOrder("currentStatus",initValue);
-	}
-	public GoodsForm currentStatusFieldOfSupplyOrder(){
-		return currentStatusFieldOfSupplyOrder("currentStatus","");
-	}
-
-
 	public GoodsForm retailStoreOrderIdFieldOfRetailStoreOrder(String parameterName, String initValue){
 		FormField field =  idFromRetailStoreOrder(parameterName, initValue);
 		this.addFormField(field);	
@@ -1560,20 +1518,6 @@ public class GoodsForm extends BaseForm {
 	}
 	public GoodsForm lastUpdateTimeFieldOfRetailStoreOrder(){
 		return lastUpdateTimeFieldOfRetailStoreOrder("lastUpdateTime","");
-	}
-
-
-	public GoodsForm currentStatusFieldOfRetailStoreOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStoreOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public GoodsForm currentStatusFieldOfRetailStoreOrder(String initValue){
-		return currentStatusFieldOfRetailStoreOrder("currentStatus",initValue);
-	}
-	public GoodsForm currentStatusFieldOfRetailStoreOrder(){
-		return currentStatusFieldOfRetailStoreOrder("currentStatus","");
 	}
 
 
@@ -1882,14 +1826,22 @@ public class GoodsForm extends BaseForm {
 	}
 
  	
- 	public GoodsForm  packAction(){
+ 	public GoodsForm transferToAnotherPackagingAction(){
 		FormAction action = new FormAction();
+<<<<<<< HEAD
 		action.setLabel("包装");
 		action.setLocaleKey("goods.pack");
 		action.setUrl("goodsManager/pack/goodsId/packageName/rfid/packageTime/description/");
+=======
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherPackaging/goodsId/");
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		this.addFormAction(action);
 		return this;
 	}
+
+ 
 
 	public GoodsForm showAction(){
 		FormAction action = new FormAction();

@@ -24,12 +24,17 @@ public class RetailStoreMemberGiftCardTable{
 	static final String COLUMN_REMAIN = "remain";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_NAME, COLUMN_OWNER, COLUMN_NUMBER, COLUMN_REMAIN, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_NAME, COLUMN_OWNER, COLUMN_NUMBER, COLUMN_REMAIN
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_OWNER,COLUMN_NUMBER,COLUMN_REMAIN,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_OWNER,COLUMN_NUMBER,COLUMN_REMAIN};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

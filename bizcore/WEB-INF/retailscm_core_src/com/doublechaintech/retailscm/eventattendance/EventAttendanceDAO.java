@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.eventattendance;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.potentialcustomer.PotentialCustomerDAO;
 import com.doublechaintech.retailscm.cityevent.CityEventDAO;
 
 
-public interface EventAttendanceDAO{
+public interface EventAttendanceDAO extends BaseDAO{
 
-	
+	public SmartList<EventAttendance> loadAll();
 	public EventAttendance load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<EventAttendance> eventAttendanceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

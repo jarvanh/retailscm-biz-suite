@@ -22,12 +22,17 @@ public class ConsumerOrderDeliveryTable{
 	static final String COLUMN_DELIVERY_TIME = "delivery_time";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_WHO, COLUMN_DELIVERY_TIME, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_WHO, COLUMN_DELIVERY_TIME
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_DELIVERY_TIME,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_DELIVERY_TIME};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

@@ -80,16 +80,6 @@ public class CityEvent extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	CityEvent(String name, String mobile, RetailStoreCityServiceCenter cityServiceCenter, String description, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setMobile(mobile);
-		setCityServiceCenter(cityServiceCenter);
-		setDescription(description);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mEventAttendanceList = new SmartList<EventAttendance>();	
-	}
 	
 	//Support for changing the property
 	

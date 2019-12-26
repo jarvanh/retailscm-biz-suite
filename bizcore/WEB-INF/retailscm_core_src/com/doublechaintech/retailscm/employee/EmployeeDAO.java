@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employee;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -59,9 +60,9 @@ import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTrai
 import com.doublechaintech.retailscm.employeeeducation.EmployeeEducationDAO;
 
 
-public interface EmployeeDAO{
+public interface EmployeeDAO extends BaseDAO{
 
-	
+	public SmartList<Employee> loadAll();
 	public Employee load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<Employee> employeeList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -144,6 +145,10 @@ public interface EmployeeDAO{
 	public Employee planToRemoveEmployeeCompanyTrainingListWithTraining(Employee employee, String trainingId, Map<String,Object> options)throws Exception;
 	public int countEmployeeCompanyTrainingListWithTraining(String employeeId, String trainingId, Map<String,Object> options)throws Exception;
 	
+	//disconnect Employee with scoring in EmployeeCompanyTraining
+	public Employee planToRemoveEmployeeCompanyTrainingListWithScoring(Employee employee, String scoringId, Map<String,Object> options)throws Exception;
+	public int countEmployeeCompanyTrainingListWithScoring(String employeeId, String scoringId, Map<String,Object> options)throws Exception;
+	
 	public Employee planToRemoveEmployeeSkillList(Employee employee, String employeeSkillIds[], Map<String,Object> options)throws Exception;
 
 
@@ -189,6 +194,10 @@ public interface EmployeeDAO{
 	//disconnect Employee with current_salary_grade in EmployeeSalarySheet
 	public Employee planToRemoveEmployeeSalarySheetListWithCurrentSalaryGrade(Employee employee, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeSalarySheetListWithCurrentSalaryGrade(String employeeId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Employee with paying_off in EmployeeSalarySheet
+	public Employee planToRemoveEmployeeSalarySheetListWithPayingOff(Employee employee, String payingOffId, Map<String,Object> options)throws Exception;
+	public int countEmployeeSalarySheetListWithPayingOff(String employeeId, String payingOffId, Map<String,Object> options)throws Exception;
 	
 	public Employee planToRemovePayingOffList(Employee employee, String payingOffIds[], Map<String,Object> options)throws Exception;
 

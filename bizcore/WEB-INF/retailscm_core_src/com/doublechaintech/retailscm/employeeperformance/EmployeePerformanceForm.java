@@ -372,20 +372,6 @@ public class EmployeePerformanceForm extends BaseForm {
 		return lastUpdateTimeFieldOfEmployee("lastUpdateTime","");
 	}
 
-
-	public EmployeePerformanceForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeePerformanceForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeePerformanceForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
 	
 
 

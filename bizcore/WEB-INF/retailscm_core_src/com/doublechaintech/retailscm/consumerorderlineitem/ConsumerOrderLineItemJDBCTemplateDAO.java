@@ -53,6 +53,11 @@ public class ConsumerOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	}
 	*/
 	
+	public SmartList<ConsumerOrderLineItem> loadAll() {
+	    return this.loadAll(getConsumerOrderLineItemMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -74,6 +74,11 @@ public class LevelOneDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<LevelOneDepartment> loadAll() {
+	    return this.loadAll(getLevelOneDepartmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -536,7 +541,7 @@ public class LevelOneDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  
  		parameters[1] = levelOneDepartment.getName();
  		parameters[2] = levelOneDepartment.getDescription();
- 		parameters[3] = levelOneDepartment.getManager();
+ 		parameters[3] = levelOneDepartment.getManagerName();
  		parameters[4] = levelOneDepartment.getFounded();		
  		parameters[5] = levelOneDepartment.nextVersion();
  		parameters[6] = levelOneDepartment.getId();
@@ -557,7 +562,7 @@ public class LevelOneDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		
  		parameters[2] = levelOneDepartment.getName();
  		parameters[3] = levelOneDepartment.getDescription();
- 		parameters[4] = levelOneDepartment.getManager();
+ 		parameters[4] = levelOneDepartment.getManagerName();
  		parameters[5] = levelOneDepartment.getFounded();		
  				
  		return parameters;

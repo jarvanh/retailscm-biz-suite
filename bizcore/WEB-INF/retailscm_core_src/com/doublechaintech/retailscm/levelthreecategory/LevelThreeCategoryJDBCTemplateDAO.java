@@ -74,6 +74,11 @@ public class LevelThreeCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<LevelThreeCategory> loadAll() {
+	    return this.loadAll(getLevelThreeCategoryMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

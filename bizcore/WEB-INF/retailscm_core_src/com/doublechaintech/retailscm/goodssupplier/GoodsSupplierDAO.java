@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.goodssupplier;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -19,9 +20,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.accountset.AccountSetDAO;
 
 
-public interface GoodsSupplierDAO{
+public interface GoodsSupplierDAO extends BaseDAO{
 
-	
+	public SmartList<GoodsSupplier> loadAll();
 	public GoodsSupplier load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<GoodsSupplier> goodsSupplierList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -70,6 +71,30 @@ public interface GoodsSupplierDAO{
 	//disconnect GoodsSupplier with buyer in SupplyOrder
 	public GoodsSupplier planToRemoveSupplyOrderListWithBuyer(GoodsSupplier goodsSupplier, String buyerId, Map<String,Object> options)throws Exception;
 	public int countSupplyOrderListWithBuyer(String goodsSupplierId, String buyerId, Map<String,Object> options)throws Exception;
+	
+	//disconnect GoodsSupplier with confirmation in SupplyOrder
+	public GoodsSupplier planToRemoveSupplyOrderListWithConfirmation(GoodsSupplier goodsSupplier, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithConfirmation(String goodsSupplierId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect GoodsSupplier with approval in SupplyOrder
+	public GoodsSupplier planToRemoveSupplyOrderListWithApproval(GoodsSupplier goodsSupplier, String approvalId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithApproval(String goodsSupplierId, String approvalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect GoodsSupplier with processing in SupplyOrder
+	public GoodsSupplier planToRemoveSupplyOrderListWithProcessing(GoodsSupplier goodsSupplier, String processingId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithProcessing(String goodsSupplierId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect GoodsSupplier with picking in SupplyOrder
+	public GoodsSupplier planToRemoveSupplyOrderListWithPicking(GoodsSupplier goodsSupplier, String pickingId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithPicking(String goodsSupplierId, String pickingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect GoodsSupplier with shipment in SupplyOrder
+	public GoodsSupplier planToRemoveSupplyOrderListWithShipment(GoodsSupplier goodsSupplier, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithShipment(String goodsSupplierId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect GoodsSupplier with delivery in SupplyOrder
+	public GoodsSupplier planToRemoveSupplyOrderListWithDelivery(GoodsSupplier goodsSupplier, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithDelivery(String goodsSupplierId, String deliveryId, Map<String,Object> options)throws Exception;
 	
 	public GoodsSupplier planToRemoveAccountSetList(GoodsSupplier goodsSupplier, String accountSetIds[], Map<String,Object> options)throws Exception;
 

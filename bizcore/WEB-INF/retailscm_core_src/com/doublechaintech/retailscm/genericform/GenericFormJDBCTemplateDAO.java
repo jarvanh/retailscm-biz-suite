@@ -126,6 +126,11 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<GenericForm> loadAll() {
+	    return this.loadAll(getGenericFormMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -446,12 +451,21 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			getFormMessageDAO().analyzeFormMessageByForm(formMessageList, genericForm.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return genericForm;
 	
 	}	
 	
 		
+=======
+		
+		return genericForm;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceFormFieldMessageList(SmartList<FormFieldMessage> formFieldMessageList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;

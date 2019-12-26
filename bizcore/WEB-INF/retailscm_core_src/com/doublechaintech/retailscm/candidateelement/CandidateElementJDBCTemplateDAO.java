@@ -53,6 +53,14 @@ public class CandidateElementJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}
 	*/
 	
+<<<<<<< HEAD
+=======
+	public SmartList<CandidateElement> loadAll() {
+	    return this.loadAll(getCandidateElementMapper());
+	}
+	
+	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

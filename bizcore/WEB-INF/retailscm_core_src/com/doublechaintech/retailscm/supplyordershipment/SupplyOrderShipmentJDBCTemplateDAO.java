@@ -84,6 +84,11 @@ public class SupplyOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	}
 	*/
 	
+	public SmartList<SupplyOrderShipment> loadAll() {
+	    return this.loadAll(getSupplyOrderShipmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -346,12 +351,21 @@ public class SupplyOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 			getConsumerOrderDAO().analyzeConsumerOrderByShipment(consumerOrderList, supplyOrderShipment.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return supplyOrderShipment;
 	
 	}	
 	
 		
+=======
+		
+		return supplyOrderShipment;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceSupplyOrderList(SmartList<SupplyOrder> supplyOrderList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -668,6 +682,182 @@ public class SupplyOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 		return count;
 	}
 	
+	//disconnect SupplyOrderShipment with confirmation in ConsumerOrder
+	public SupplyOrderShipment planToRemoveConsumerOrderListWithConfirmation(SupplyOrderShipment supplyOrderShipment, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(ConsumerOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearConfirmation();
+			consumerOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = supplyOrderShipment.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countConsumerOrderListWithConfirmation(String supplyOrderShipmentId, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(ConsumerOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with approval in ConsumerOrder
+	public SupplyOrderShipment planToRemoveConsumerOrderListWithApproval(SupplyOrderShipment supplyOrderShipment, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(ConsumerOrder.APPROVAL_PROPERTY, approvalId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearApproval();
+			consumerOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = supplyOrderShipment.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countConsumerOrderListWithApproval(String supplyOrderShipmentId, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(ConsumerOrder.APPROVAL_PROPERTY, approvalId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with processing in ConsumerOrder
+	public SupplyOrderShipment planToRemoveConsumerOrderListWithProcessing(SupplyOrderShipment supplyOrderShipment, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(ConsumerOrder.PROCESSING_PROPERTY, processingId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearProcessing();
+			consumerOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = supplyOrderShipment.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countConsumerOrderListWithProcessing(String supplyOrderShipmentId, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(ConsumerOrder.PROCESSING_PROPERTY, processingId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with delivery in ConsumerOrder
+	public SupplyOrderShipment planToRemoveConsumerOrderListWithDelivery(SupplyOrderShipment supplyOrderShipment, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(ConsumerOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearDelivery();
+			consumerOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = supplyOrderShipment.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countConsumerOrderListWithDelivery(String supplyOrderShipmentId, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(ConsumerOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
 	//disconnect SupplyOrderShipment with store in ConsumerOrder
 	public SupplyOrderShipment planToRemoveConsumerOrderListWithStore(SupplyOrderShipment supplyOrderShipment, String storeId, Map<String,Object> options)throws Exception{
 				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
@@ -823,6 +1013,226 @@ public class SupplyOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
 		key.put(SupplyOrder.SELLER_PROPERTY, sellerId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with confirmation in SupplyOrder
+	public SupplyOrderShipment planToRemoveSupplyOrderListWithConfirmation(SupplyOrderShipment supplyOrderShipment, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(SupplyOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearConfirmation();
+			supplyOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = supplyOrderShipment.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countSupplyOrderListWithConfirmation(String supplyOrderShipmentId, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(SupplyOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with approval in SupplyOrder
+	public SupplyOrderShipment planToRemoveSupplyOrderListWithApproval(SupplyOrderShipment supplyOrderShipment, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(SupplyOrder.APPROVAL_PROPERTY, approvalId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearApproval();
+			supplyOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = supplyOrderShipment.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countSupplyOrderListWithApproval(String supplyOrderShipmentId, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(SupplyOrder.APPROVAL_PROPERTY, approvalId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with processing in SupplyOrder
+	public SupplyOrderShipment planToRemoveSupplyOrderListWithProcessing(SupplyOrderShipment supplyOrderShipment, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(SupplyOrder.PROCESSING_PROPERTY, processingId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearProcessing();
+			supplyOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = supplyOrderShipment.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countSupplyOrderListWithProcessing(String supplyOrderShipmentId, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(SupplyOrder.PROCESSING_PROPERTY, processingId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with picking in SupplyOrder
+	public SupplyOrderShipment planToRemoveSupplyOrderListWithPicking(SupplyOrderShipment supplyOrderShipment, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(SupplyOrder.PICKING_PROPERTY, pickingId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearPicking();
+			supplyOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = supplyOrderShipment.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countSupplyOrderListWithPicking(String supplyOrderShipmentId, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(SupplyOrder.PICKING_PROPERTY, pickingId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SupplyOrderShipment with delivery in SupplyOrder
+	public SupplyOrderShipment planToRemoveSupplyOrderListWithDelivery(SupplyOrderShipment supplyOrderShipment, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipment.getId());
+		key.put(SupplyOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return supplyOrderShipment;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return supplyOrderShipment;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearDelivery();
+			supplyOrderItem.clearShipment();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = supplyOrderShipment.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return supplyOrderShipment;
+	}
+	
+	public int countSupplyOrderListWithDelivery(String supplyOrderShipmentId, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
+		key.put(SupplyOrder.DELIVERY_PROPERTY, deliveryId);
 		
 		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
 		return count;

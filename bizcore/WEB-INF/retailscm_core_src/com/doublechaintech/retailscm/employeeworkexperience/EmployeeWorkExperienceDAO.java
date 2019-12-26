@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employeeworkexperience;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface EmployeeWorkExperienceDAO{
+public interface EmployeeWorkExperienceDAO extends BaseDAO{
 
-	
+	public SmartList<EmployeeWorkExperience> loadAll();
 	public EmployeeWorkExperience load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<EmployeeWorkExperience> employeeWorkExperienceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

@@ -31,6 +31,10 @@ import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
 public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderDeliveryManager {
 	
 	private static final String SERVICE_TYPE = "ConsumerOrderDelivery";
+	@Override
+	public ConsumerOrderDeliveryDAO daoOf(RetailscmUserContext userContext) {
+		return consumerOrderDeliveryDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -64,8 +68,8 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
  	
  	public ConsumerOrderDelivery loadConsumerOrderDelivery(RetailscmUserContext userContext, String consumerOrderDeliveryId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderDeliveryManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderDeliveryManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -78,8 +82,8 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
  	
  	 public ConsumerOrderDelivery searchConsumerOrderDelivery(RetailscmUserContext userContext, String consumerOrderDeliveryId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderDeliveryManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderDeliveryManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -97,10 +101,10 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
 		addActions(userContext,consumerOrderDelivery,tokens);
 		
 		
-		ConsumerOrderDelivery  consumerOrderDeliveryToPresent = userContext.getDAOGroup().getConsumerOrderDeliveryDAO().present(consumerOrderDelivery, tokens);
+		ConsumerOrderDelivery  consumerOrderDeliveryToPresent = consumerOrderDeliveryDaoOf(userContext).present(consumerOrderDelivery, tokens);
 		
 		List<BaseEntity> entityListToNaming = consumerOrderDeliveryToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getConsumerOrderDeliveryDAO().alias(entityListToNaming);
+		consumerOrderDeliveryDaoOf(userContext).alias(entityListToNaming);
 		
 		return  consumerOrderDeliveryToPresent;
 		
@@ -121,14 +125,14 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
 		
  	}
  	protected ConsumerOrderDelivery saveConsumerOrderDelivery(RetailscmUserContext userContext, ConsumerOrderDelivery consumerOrderDelivery, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getConsumerOrderDeliveryDAO().save(consumerOrderDelivery, tokens);
+ 		return consumerOrderDeliveryDaoOf(userContext).save(consumerOrderDelivery, tokens);
  	}
  	protected ConsumerOrderDelivery loadConsumerOrderDelivery(RetailscmUserContext userContext, String consumerOrderDeliveryId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderDeliveryManagerException.class);
+		checkerOf(userContext).checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderDeliveryManagerException.class);
 
  
- 		return userContext.getDAOGroup().getConsumerOrderDeliveryDAO().load(consumerOrderDeliveryId, tokens);
+ 		return consumerOrderDeliveryDaoOf(userContext).load(consumerOrderDeliveryId, tokens);
  	}
 
 	
@@ -157,18 +161,18 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
  	
  	
 
-
-	public ConsumerOrderDelivery createConsumerOrderDelivery(RetailscmUserContext userContext,String who, Date deliveryTime) throws Exception
+	public ConsumerOrderDelivery createConsumerOrderDelivery(RetailscmUserContext userContext, String who,Date deliveryTime) throws Exception
+	//public ConsumerOrderDelivery createConsumerOrderDelivery(RetailscmUserContext userContext,String who, Date deliveryTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfConsumerOrderDelivery(who);
-		userContext.getChecker().checkDeliveryTimeOfConsumerOrderDelivery(deliveryTime);
+		checkerOf(userContext).checkWhoOfConsumerOrderDelivery(who);
+		checkerOf(userContext).checkDeliveryTimeOfConsumerOrderDelivery(deliveryTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderDeliveryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderDeliveryManagerException.class);
 
 
 		ConsumerOrderDelivery consumerOrderDelivery=createNewConsumerOrderDelivery();	
@@ -195,18 +199,18 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
 
 		
 		
-		userContext.getChecker().checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
-		userContext.getChecker().checkVersionOfConsumerOrderDelivery( consumerOrderDeliveryVersion);
+		checkerOf(userContext).checkIdOfConsumerOrderDelivery(consumerOrderDeliveryId);
+		checkerOf(userContext).checkVersionOfConsumerOrderDelivery( consumerOrderDeliveryVersion);
 		
 
 		if(ConsumerOrderDelivery.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfConsumerOrderDelivery(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfConsumerOrderDelivery(parseString(newValueExpr));
 		}
 		if(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkDeliveryTimeOfConsumerOrderDelivery(parseDate(newValueExpr));
+			checkerOf(userContext).checkDeliveryTimeOfConsumerOrderDelivery(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderDeliveryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderDeliveryManagerException.class);
 	
 		
 	}
@@ -215,7 +219,7 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
 	
 	public ConsumerOrderDelivery clone(RetailscmUserContext userContext, String fromConsumerOrderDeliveryId) throws Exception{
 		
-		return userContext.getDAOGroup().getConsumerOrderDeliveryDAO().clone(fromConsumerOrderDeliveryId, this.allTokens());
+		return consumerOrderDeliveryDaoOf(userContext).clone(fromConsumerOrderDeliveryId, this.allTokens());
 	}
 	
 	public ConsumerOrderDelivery internalSaveConsumerOrderDelivery(RetailscmUserContext userContext, ConsumerOrderDelivery consumerOrderDelivery) throws Exception 
@@ -320,7 +324,7 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderDeliveryId, int consumerOrderDeliveryVersion) throws Exception{
 			
-		userContext.getDAOGroup().getConsumerOrderDeliveryDAO().delete(consumerOrderDeliveryId, consumerOrderDeliveryVersion);
+		consumerOrderDeliveryDaoOf(userContext).delete(consumerOrderDeliveryId, consumerOrderDeliveryVersion);
 	}
 	
 	public ConsumerOrderDelivery forgetByAll(RetailscmUserContext userContext, String consumerOrderDeliveryId, int consumerOrderDeliveryVersion) throws Exception {
@@ -329,8 +333,9 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
 	protected ConsumerOrderDelivery forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderDeliveryId, int consumerOrderDeliveryVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getConsumerOrderDeliveryDAO().disconnectFromAll(consumerOrderDeliveryId, consumerOrderDeliveryVersion);
+		return consumerOrderDeliveryDaoOf(userContext).disconnectFromAll(consumerOrderDeliveryId, consumerOrderDeliveryVersion);
 	}
+	
 	
 
 	
@@ -347,7 +352,7 @@ public class ConsumerOrderDeliveryManagerImpl extends CustomRetailscmCheckerMana
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getConsumerOrderDeliveryDAO().deleteAll();
+		return consumerOrderDeliveryDaoOf(userContext).deleteAll();
 	}
 
 

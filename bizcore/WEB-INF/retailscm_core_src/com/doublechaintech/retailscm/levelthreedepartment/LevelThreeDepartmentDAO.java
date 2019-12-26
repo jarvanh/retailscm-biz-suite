@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.levelthreedepartment;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.leveltwodepartment.LevelTwoDepartmentDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface LevelThreeDepartmentDAO{
+public interface LevelThreeDepartmentDAO extends BaseDAO{
 
-	
+	public SmartList<LevelThreeDepartment> loadAll();
 	public LevelThreeDepartment load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<LevelThreeDepartment> levelThreeDepartmentList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -67,6 +68,34 @@ public interface LevelThreeDepartmentDAO{
 	//disconnect LevelThreeDepartment with current_salary_grade in Employee
 	public LevelThreeDepartment planToRemoveEmployeeListWithCurrentSalaryGrade(LevelThreeDepartment levelThreeDepartment, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String levelThreeDepartmentId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
+	
+	//disconnect LevelThreeDepartment with job_application in Employee
+	public LevelThreeDepartment planToRemoveEmployeeListWithJobApplication(LevelThreeDepartment levelThreeDepartment, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String levelThreeDepartmentId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect LevelThreeDepartment with profession_interview in Employee
+	public LevelThreeDepartment planToRemoveEmployeeListWithProfessionInterview(LevelThreeDepartment levelThreeDepartment, String professionInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithProfessionInterview(String levelThreeDepartmentId, String professionInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect LevelThreeDepartment with hr_interview in Employee
+	public LevelThreeDepartment planToRemoveEmployeeListWithHrInterview(LevelThreeDepartment levelThreeDepartment, String hrInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithHrInterview(String levelThreeDepartmentId, String hrInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect LevelThreeDepartment with offer_approval in Employee
+	public LevelThreeDepartment planToRemoveEmployeeListWithOfferApproval(LevelThreeDepartment levelThreeDepartment, String offerApprovalId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferApproval(String levelThreeDepartmentId, String offerApprovalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect LevelThreeDepartment with offer_acceptance in Employee
+	public LevelThreeDepartment planToRemoveEmployeeListWithOfferAcceptance(LevelThreeDepartment levelThreeDepartment, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferAcceptance(String levelThreeDepartmentId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	
+	//disconnect LevelThreeDepartment with employee_boarding in Employee
+	public LevelThreeDepartment planToRemoveEmployeeListWithEmployeeBoarding(LevelThreeDepartment levelThreeDepartment, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String levelThreeDepartmentId, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect LevelThreeDepartment with termination in Employee
+	public LevelThreeDepartment planToRemoveEmployeeListWithTermination(LevelThreeDepartment levelThreeDepartment, String terminationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithTermination(String levelThreeDepartmentId, String terminationId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<LevelThreeDepartment> queryList(String sql, Object ... parmeters);

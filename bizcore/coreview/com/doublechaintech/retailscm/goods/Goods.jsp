@@ -164,21 +164,20 @@
 <c:set var="referName" value="" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/retailstoreorder/RetailStoreOrder$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="goodsPackaging" value="${ result.packaging}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/goodspackaging/GoodsPackaging$Action.jsp" />
+<c:set var="referName" value="(packaging)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/goodspackaging/GoodsPackaging$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

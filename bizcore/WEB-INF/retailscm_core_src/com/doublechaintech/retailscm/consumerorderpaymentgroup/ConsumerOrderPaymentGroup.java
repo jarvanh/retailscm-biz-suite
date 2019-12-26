@@ -73,13 +73,6 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrderPaymentGroup(String name, ConsumerOrder bizOrder, String cardNumber)
-	{
-		setName(name);
-		setBizOrder(bizOrder);
-		setCardNumber(cardNumber);
-	
-	}
 	
 	//Support for changing the property
 	

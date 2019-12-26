@@ -530,20 +530,6 @@ public class SalaryGradeForm extends BaseForm {
 	}
 
 
-	public SalaryGradeForm currentStatusFieldForEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SalaryGradeForm currentStatusFieldForEmployee(String initValue){
-		return currentStatusFieldForEmployee("currentStatus",initValue);
-	}
-	public SalaryGradeForm currentStatusFieldForEmployee(){
-		return currentStatusFieldForEmployee("currentStatus","");
-	}
-
-
 	public SalaryGradeForm employeeSalarySheetIdFieldForEmployeeSalarySheet(String parameterName, String initValue){
 		FormField field =  idFromEmployeeSalarySheet(parameterName, initValue);		
 		this.addFormField(field);
@@ -695,20 +681,6 @@ public class SalaryGradeForm extends BaseForm {
 	}
 	public SalaryGradeForm payingOffIdFieldForEmployeeSalarySheet(){
 		return payingOffIdFieldForEmployeeSalarySheet("payingOffId","");
-	}
-
-
-	public SalaryGradeForm currentStatusFieldForEmployeeSalarySheet(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployeeSalarySheet(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SalaryGradeForm currentStatusFieldForEmployeeSalarySheet(String initValue){
-		return currentStatusFieldForEmployeeSalarySheet("currentStatus",initValue);
-	}
-	public SalaryGradeForm currentStatusFieldForEmployeeSalarySheet(){
-		return currentStatusFieldForEmployeeSalarySheet("currentStatus","");
 	}
 
 	

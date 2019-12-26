@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.leveltwodepartment;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.levelonedepartment.LevelOneDepartmentDAO;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartmentDAO;
 
 
-public interface LevelTwoDepartmentDAO{
+public interface LevelTwoDepartmentDAO extends BaseDAO{
 
-	
+	public SmartList<LevelTwoDepartment> loadAll();
 	public LevelTwoDepartment load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<LevelTwoDepartment> levelTwoDepartmentList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

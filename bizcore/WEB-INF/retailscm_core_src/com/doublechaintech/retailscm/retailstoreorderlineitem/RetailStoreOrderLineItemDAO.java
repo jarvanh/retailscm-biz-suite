@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoreorderlineitem;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 
 
-public interface RetailStoreOrderLineItemDAO{
+public interface RetailStoreOrderLineItemDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreOrderLineItem> loadAll();
 	public RetailStoreOrderLineItem load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreOrderLineItem> retailStoreOrderLineItemList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

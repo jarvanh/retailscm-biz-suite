@@ -75,14 +75,6 @@ public class EmployeeEducation extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	EmployeeEducation(Employee employee, Date completeTime, String type, String remark)
-	{
-		setEmployee(employee);
-		setCompleteTime(completeTime);
-		setType(type);
-		setRemark(remark);
-	
-	}
 	
 	//Support for changing the property
 	

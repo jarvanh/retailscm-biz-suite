@@ -117,7 +117,7 @@ public class RetailscmChecker extends BaseChecker{
 	public RetailscmChecker checkNameOfCatalog(String name)
 	{
 		
-	 	checkStringLengthRange(name,2, 16,NAME_OF_CATALOG ); 		
+	 	checkStringLengthRange(name,10, 201,NAME_OF_CATALOG ); 		
 		
 		return this;
 	}	
@@ -130,6 +130,27 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  SUB_COUNT_OF_CATALOG ="catalog.sub_count";
+	public RetailscmChecker checkSubCountOfCatalog(int subCount)
+	{
+		
+	 	checkIntegerRange(subCount,0, 10,SUB_COUNT_OF_CATALOG ); 		
+		
+		return this;
+	}	
+
+	public static final String  AMOUNT_OF_CATALOG ="catalog.amount";
+	public RetailscmChecker checkAmountOfCatalog(BigDecimal amount)
+	{
+		
+	 	checkMoneyAmount(amount,0.00, 10.11,AMOUNT_OF_CATALOG ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_CATALOG ="catalog.version";
 	public RetailscmChecker checkVersionOfCatalog(int version)
@@ -491,11 +512,11 @@ public class RetailscmChecker extends BaseChecker{
 		return this;
 	}	
 
-	public static final String  MANAGER_OF_PROVINCE_CENTER_DEPARTMENT ="province_center_department.manager";
-	public RetailscmChecker checkManagerOfProvinceCenterDepartment(String manager)
+	public static final String  MANAGER_NAME_OF_PROVINCE_CENTER_DEPARTMENT ="province_center_department.manager_name";
+	public RetailscmChecker checkManagerNameOfProvinceCenterDepartment(String managerName)
 	{
 		
-	 	checkStringLengthRange(manager,1, 12,MANAGER_OF_PROVINCE_CENTER_DEPARTMENT ); 		
+	 	checkStringLengthRange(managerName,1, 12,MANAGER_NAME_OF_PROVINCE_CENTER_DEPARTMENT ); 		
 		
 		return this;
 	}	
@@ -1005,10 +1026,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  TELEPHONE_OF_RETAIL_STORE ="retail_store.telephone";
-	public RetailscmChecker checkTelephoneOfRetailStore(String telephone)
+	public RetailscmChecker checkTelephoneOfRetailStore(long telephone)
 	{
 		
-	 	checkStringLengthRange(telephone,3, 44,TELEPHONE_OF_RETAIL_STORE ); 		
+	 	checkLongRange(telephone,0, 02887654321,TELEPHONE_OF_RETAIL_STORE ); 		
 		
 		return this;
 	}	
@@ -1039,6 +1060,63 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  CREATION_OF_RETAIL_STORE ="retail_store.creation";
+	public RetailscmChecker checkCreationIdOfRetailStore(String creationId)
+	{
+		
+	 	checkIdOfRetailStore(creationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  INVESTMENT_INVITATION_OF_RETAIL_STORE ="retail_store.investment_invitation";
+	public RetailscmChecker checkInvestmentInvitationIdOfRetailStore(String investmentInvitationId)
+	{
+		
+	 	checkIdOfRetailStore(investmentInvitationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  FRANCHISING_OF_RETAIL_STORE ="retail_store.franchising";
+	public RetailscmChecker checkFranchisingIdOfRetailStore(String franchisingId)
+	{
+		
+	 	checkIdOfRetailStore(franchisingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  DECORATION_OF_RETAIL_STORE ="retail_store.decoration";
+	public RetailscmChecker checkDecorationIdOfRetailStore(String decorationId)
+	{
+		
+	 	checkIdOfRetailStore(decorationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  OPENING_OF_RETAIL_STORE ="retail_store.opening";
+	public RetailscmChecker checkOpeningIdOfRetailStore(String openingId)
+	{
+		
+	 	checkIdOfRetailStore(openingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  CLOSING_OF_RETAIL_STORE ="retail_store.closing";
+	public RetailscmChecker checkClosingIdOfRetailStore(String closingId)
+	{
+		
+	 	checkIdOfRetailStore(closingId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  FOUNDED_OF_RETAIL_STORE ="retail_store.founded";
 	public RetailscmChecker checkFoundedOfRetailStore(Date founded)
@@ -1318,6 +1396,54 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  CONFIRMATION_OF_CONSUMER_ORDER ="consumer_order.confirmation";
+	public RetailscmChecker checkConfirmationIdOfConsumerOrder(String confirmationId)
+	{
+		
+	 	checkIdOfConsumerOrder(confirmationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  APPROVAL_OF_CONSUMER_ORDER ="consumer_order.approval";
+	public RetailscmChecker checkApprovalIdOfConsumerOrder(String approvalId)
+	{
+		
+	 	checkIdOfConsumerOrder(approvalId ); 		
+		
+		return this;
+	}	
+
+	public static final String  PROCESSING_OF_CONSUMER_ORDER ="consumer_order.processing";
+	public RetailscmChecker checkProcessingIdOfConsumerOrder(String processingId)
+	{
+		
+	 	checkIdOfConsumerOrder(processingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  SHIPMENT_OF_CONSUMER_ORDER ="consumer_order.shipment";
+	public RetailscmChecker checkShipmentIdOfConsumerOrder(String shipmentId)
+	{
+		
+	 	checkIdOfConsumerOrder(shipmentId ); 		
+		
+		return this;
+	}	
+
+	public static final String  DELIVERY_OF_CONSUMER_ORDER ="consumer_order.delivery";
+	public RetailscmChecker checkDeliveryIdOfConsumerOrder(String deliveryId)
+	{
+		
+	 	checkIdOfConsumerOrder(deliveryId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  STORE_OF_CONSUMER_ORDER ="consumer_order.store";
 	public RetailscmChecker checkStoreIdOfConsumerOrder(String storeId)
@@ -2326,6 +2452,63 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  CONFIRMATION_OF_SUPPLY_ORDER ="supply_order.confirmation";
+	public RetailscmChecker checkConfirmationIdOfSupplyOrder(String confirmationId)
+	{
+		
+	 	checkIdOfSupplyOrder(confirmationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  APPROVAL_OF_SUPPLY_ORDER ="supply_order.approval";
+	public RetailscmChecker checkApprovalIdOfSupplyOrder(String approvalId)
+	{
+		
+	 	checkIdOfSupplyOrder(approvalId ); 		
+		
+		return this;
+	}	
+
+	public static final String  PROCESSING_OF_SUPPLY_ORDER ="supply_order.processing";
+	public RetailscmChecker checkProcessingIdOfSupplyOrder(String processingId)
+	{
+		
+	 	checkIdOfSupplyOrder(processingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  PICKING_OF_SUPPLY_ORDER ="supply_order.picking";
+	public RetailscmChecker checkPickingIdOfSupplyOrder(String pickingId)
+	{
+		
+	 	checkIdOfSupplyOrder(pickingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  SHIPMENT_OF_SUPPLY_ORDER ="supply_order.shipment";
+	public RetailscmChecker checkShipmentIdOfSupplyOrder(String shipmentId)
+	{
+		
+	 	checkIdOfSupplyOrder(shipmentId ); 		
+		
+		return this;
+	}	
+
+	public static final String  DELIVERY_OF_SUPPLY_ORDER ="supply_order.delivery";
+	public RetailscmChecker checkDeliveryIdOfSupplyOrder(String deliveryId)
+	{
+		
+	 	checkIdOfSupplyOrder(deliveryId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_SUPPLY_ORDER ="supply_order.version";
 	public RetailscmChecker checkVersionOfSupplyOrder(int version)
@@ -2758,6 +2941,63 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  CONFIRMATION_OF_RETAIL_STORE_ORDER ="retail_store_order.confirmation";
+	public RetailscmChecker checkConfirmationIdOfRetailStoreOrder(String confirmationId)
+	{
+		
+	 	checkIdOfRetailStoreOrder(confirmationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  APPROVAL_OF_RETAIL_STORE_ORDER ="retail_store_order.approval";
+	public RetailscmChecker checkApprovalIdOfRetailStoreOrder(String approvalId)
+	{
+		
+	 	checkIdOfRetailStoreOrder(approvalId ); 		
+		
+		return this;
+	}	
+
+	public static final String  PROCESSING_OF_RETAIL_STORE_ORDER ="retail_store_order.processing";
+	public RetailscmChecker checkProcessingIdOfRetailStoreOrder(String processingId)
+	{
+		
+	 	checkIdOfRetailStoreOrder(processingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  PICKING_OF_RETAIL_STORE_ORDER ="retail_store_order.picking";
+	public RetailscmChecker checkPickingIdOfRetailStoreOrder(String pickingId)
+	{
+		
+	 	checkIdOfRetailStoreOrder(pickingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  SHIPMENT_OF_RETAIL_STORE_ORDER ="retail_store_order.shipment";
+	public RetailscmChecker checkShipmentIdOfRetailStoreOrder(String shipmentId)
+	{
+		
+	 	checkIdOfRetailStoreOrder(shipmentId ); 		
+		
+		return this;
+	}	
+
+	public static final String  DELIVERY_OF_RETAIL_STORE_ORDER ="retail_store_order.delivery";
+	public RetailscmChecker checkDeliveryIdOfRetailStoreOrder(String deliveryId)
+	{
+		
+	 	checkIdOfRetailStoreOrder(deliveryId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_RETAIL_STORE_ORDER ="retail_store_order.version";
 	public RetailscmChecker checkVersionOfRetailStoreOrder(int version)
@@ -3165,10 +3405,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_WAREHOUSE ="warehouse.contact_number";
-	public RetailscmChecker checkContactNumberOfWarehouse(String contactNumber)
+	public RetailscmChecker checkContactNumberOfWarehouse(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_WAREHOUSE ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_WAREHOUSE ); 		
 		
 		return this;
 	}	
@@ -3237,10 +3477,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_STORAGE_SPACE ="storage_space.contact_number";
-	public RetailscmChecker checkContactNumberOfStorageSpace(String contactNumber)
+	public RetailscmChecker checkContactNumberOfStorageSpace(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_STORAGE_SPACE ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_STORAGE_SPACE ); 		
 		
 		return this;
 	}	
@@ -3309,10 +3549,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_SMART_PALLET ="smart_pallet.contact_number";
-	public RetailscmChecker checkContactNumberOfSmartPallet(String contactNumber)
+	public RetailscmChecker checkContactNumberOfSmartPallet(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_SMART_PALLET ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_SMART_PALLET ); 		
 		
 		return this;
 	}	
@@ -3712,6 +3952,18 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  PACKAGING_OF_GOODS ="goods.packaging";
+	public RetailscmChecker checkPackagingIdOfGoods(String packagingId)
+	{
+		
+	 	checkIdOfGoods(packagingId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_GOODS ="goods.version";
 	public RetailscmChecker checkVersionOfGoods(int version)
@@ -3894,10 +4146,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_SUPPLIER_SPACE ="supplier_space.contact_number";
-	public RetailscmChecker checkContactNumberOfSupplierSpace(String contactNumber)
+	public RetailscmChecker checkContactNumberOfSupplierSpace(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_SUPPLIER_SPACE ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_SUPPLIER_SPACE ); 		
 		
 		return this;
 	}	
@@ -3966,10 +4218,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_RECEIVING_SPACE ="receiving_space.contact_number";
-	public RetailscmChecker checkContactNumberOfReceivingSpace(String contactNumber)
+	public RetailscmChecker checkContactNumberOfReceivingSpace(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_RECEIVING_SPACE ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_RECEIVING_SPACE ); 		
 		
 		return this;
 	}	
@@ -4047,10 +4299,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_SHIPPING_SPACE ="shipping_space.contact_number";
-	public RetailscmChecker checkContactNumberOfShippingSpace(String contactNumber)
+	public RetailscmChecker checkContactNumberOfShippingSpace(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_SHIPPING_SPACE ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_SHIPPING_SPACE ); 		
 		
 		return this;
 	}	
@@ -4128,10 +4380,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_DAMAGE_SPACE ="damage_space.contact_number";
-	public RetailscmChecker checkContactNumberOfDamageSpace(String contactNumber)
+	public RetailscmChecker checkContactNumberOfDamageSpace(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_DAMAGE_SPACE ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_DAMAGE_SPACE ); 		
 		
 		return this;
 	}	
@@ -4245,10 +4497,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_TRANSPORT_FLEET ="transport_fleet.contact_number";
-	public RetailscmChecker checkContactNumberOfTransportFleet(String contactNumber)
+	public RetailscmChecker checkContactNumberOfTransportFleet(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_TRANSPORT_FLEET ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_TRANSPORT_FLEET ); 		
 		
 		return this;
 	}	
@@ -4299,10 +4551,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_TRANSPORT_TRUCK ="transport_truck.contact_number";
-	public RetailscmChecker checkContactNumberOfTransportTruck(String contactNumber)
+	public RetailscmChecker checkContactNumberOfTransportTruck(long contactNumber)
 	{
 		
-	 	checkStringLengthRange(contactNumber,3, 44,CONTACT_NUMBER_OF_TRANSPORT_TRUCK ); 		
+	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_TRANSPORT_TRUCK ); 		
 		
 		return this;
 	}	
@@ -4389,10 +4641,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  DRIVER_LICENSE_NUMBER_OF_TRUCK_DRIVER ="truck_driver.driver_license_number";
-	public RetailscmChecker checkDriverLicenseNumberOfTruckDriver(String driverLicenseNumber)
+	public RetailscmChecker checkDriverLicenseNumberOfTruckDriver(long driverLicenseNumber)
 	{
 		
-	 	checkStringLengthRange(driverLicenseNumber,3, 44,DRIVER_LICENSE_NUMBER_OF_TRUCK_DRIVER ); 		
+	 	checkLongRange(driverLicenseNumber,0, 51099887733,DRIVER_LICENSE_NUMBER_OF_TRUCK_DRIVER ); 		
 		
 		return this;
 	}	
@@ -4650,10 +4902,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  ACCOUNT_NUMBER_OF_ACCOUNT_SET ="account_set.account_number";
-	public RetailscmChecker checkAccountNumberOfAccountSet(String accountNumber)
+	public RetailscmChecker checkAccountNumberOfAccountSet(long accountNumber)
 	{
 		
-	 	checkStringLengthRange(accountNumber,4, 56,ACCOUNT_NUMBER_OF_ACCOUNT_SET ); 		
+	 	checkLongRange(accountNumber,0, 33265805054885,ACCOUNT_NUMBER_OF_ACCOUNT_SET ); 		
 		
 		return this;
 	}	
@@ -4900,6 +5152,45 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  CREATION_OF_ACCOUNTING_DOCUMENT ="accounting_document.creation";
+	public RetailscmChecker checkCreationIdOfAccountingDocument(String creationId)
+	{
+		
+	 	checkIdOfAccountingDocument(creationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  CONFIRMATION_OF_ACCOUNTING_DOCUMENT ="accounting_document.confirmation";
+	public RetailscmChecker checkConfirmationIdOfAccountingDocument(String confirmationId)
+	{
+		
+	 	checkIdOfAccountingDocument(confirmationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  AUDITING_OF_ACCOUNTING_DOCUMENT ="accounting_document.auditing";
+	public RetailscmChecker checkAuditingIdOfAccountingDocument(String auditingId)
+	{
+		
+	 	checkIdOfAccountingDocument(auditingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  POSTING_OF_ACCOUNTING_DOCUMENT ="accounting_document.posting";
+	public RetailscmChecker checkPostingIdOfAccountingDocument(String postingId)
+	{
+		
+	 	checkIdOfAccountingDocument(postingId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_ACCOUNTING_DOCUMENT ="accounting_document.version";
 	public RetailscmChecker checkVersionOfAccountingDocument(int version)
@@ -5152,6 +5443,36 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  CREATION_OF_ORIGINAL_VOUCHER ="original_voucher.creation";
+	public RetailscmChecker checkCreationIdOfOriginalVoucher(String creationId)
+	{
+		
+	 	checkIdOfOriginalVoucher(creationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  CONFIRMATION_OF_ORIGINAL_VOUCHER ="original_voucher.confirmation";
+	public RetailscmChecker checkConfirmationIdOfOriginalVoucher(String confirmationId)
+	{
+		
+	 	checkIdOfOriginalVoucher(confirmationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  AUDITING_OF_ORIGINAL_VOUCHER ="original_voucher.auditing";
+	public RetailscmChecker checkAuditingIdOfOriginalVoucher(String auditingId)
+	{
+		
+	 	checkIdOfOriginalVoucher(auditingId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_ORIGINAL_VOUCHER ="original_voucher.version";
 	public RetailscmChecker checkVersionOfOriginalVoucher(int version)
@@ -5405,11 +5726,11 @@ public class RetailscmChecker extends BaseChecker{
 		return this;
 	}	
 
-	public static final String  MANAGER_OF_LEVEL_ONE_DEPARTMENT ="level_one_department.manager";
-	public RetailscmChecker checkManagerOfLevelOneDepartment(String manager)
+	public static final String  MANAGER_NAME_OF_LEVEL_ONE_DEPARTMENT ="level_one_department.manager_name";
+	public RetailscmChecker checkManagerNameOfLevelOneDepartment(String managerName)
 	{
 		
-	 	checkStringLengthRange(manager,1, 12,MANAGER_OF_LEVEL_ONE_DEPARTMENT ); 		
+	 	checkStringLengthRange(managerName,1, 12,MANAGER_NAME_OF_LEVEL_ONE_DEPARTMENT ); 		
 		
 		return this;
 	}	
@@ -6277,6 +6598,72 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  JOB_APPLICATION_OF_EMPLOYEE ="employee.job_application";
+	public RetailscmChecker checkJobApplicationIdOfEmployee(String jobApplicationId)
+	{
+		
+	 	checkIdOfEmployee(jobApplicationId ); 		
+		
+		return this;
+	}	
+
+	public static final String  PROFESSION_INTERVIEW_OF_EMPLOYEE ="employee.profession_interview";
+	public RetailscmChecker checkProfessionInterviewIdOfEmployee(String professionInterviewId)
+	{
+		
+	 	checkIdOfEmployee(professionInterviewId ); 		
+		
+		return this;
+	}	
+
+	public static final String  HR_INTERVIEW_OF_EMPLOYEE ="employee.hr_interview";
+	public RetailscmChecker checkHrInterviewIdOfEmployee(String hrInterviewId)
+	{
+		
+	 	checkIdOfEmployee(hrInterviewId ); 		
+		
+		return this;
+	}	
+
+	public static final String  OFFER_APPROVAL_OF_EMPLOYEE ="employee.offer_approval";
+	public RetailscmChecker checkOfferApprovalIdOfEmployee(String offerApprovalId)
+	{
+		
+	 	checkIdOfEmployee(offerApprovalId ); 		
+		
+		return this;
+	}	
+
+	public static final String  OFFER_ACCEPTANCE_OF_EMPLOYEE ="employee.offer_acceptance";
+	public RetailscmChecker checkOfferAcceptanceIdOfEmployee(String offerAcceptanceId)
+	{
+		
+	 	checkIdOfEmployee(offerAcceptanceId ); 		
+		
+		return this;
+	}	
+
+	public static final String  EMPLOYEE_BOARDING_OF_EMPLOYEE ="employee.employee_boarding";
+	public RetailscmChecker checkEmployeeBoardingIdOfEmployee(String employeeBoardingId)
+	{
+		
+	 	checkIdOfEmployee(employeeBoardingId ); 		
+		
+		return this;
+	}	
+
+	public static final String  TERMINATION_OF_EMPLOYEE ="employee.termination";
+	public RetailscmChecker checkTerminationIdOfEmployee(String terminationId)
+	{
+		
+	 	checkIdOfEmployee(terminationId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_EMPLOYEE ="employee.version";
 	public RetailscmChecker checkVersionOfEmployee(int version)
@@ -6781,6 +7168,18 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  SCORING_OF_EMPLOYEE_COMPANY_TRAINING ="employee_company_training.scoring";
+	public RetailscmChecker checkScoringIdOfEmployeeCompanyTraining(String scoringId)
+	{
+		
+	 	checkIdOfEmployeeCompanyTraining(scoringId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_EMPLOYEE_COMPANY_TRAINING ="employee_company_training.version";
 	public RetailscmChecker checkVersionOfEmployeeCompanyTraining(int version)
@@ -7357,6 +7756,18 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  PAYING_OFF_OF_EMPLOYEE_SALARY_SHEET ="employee_salary_sheet.paying_off";
+	public RetailscmChecker checkPayingOffIdOfEmployeeSalarySheet(String payingOffId)
+	{
+		
+	 	checkIdOfEmployeeSalarySheet(payingOffId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_EMPLOYEE_SALARY_SHEET ="employee_salary_sheet.version";
 	public RetailscmChecker checkVersionOfEmployeeSalarySheet(int version)
@@ -7506,7 +7917,7 @@ public class RetailscmChecker extends BaseChecker{
 	public RetailscmChecker checkLoginOfSecUser(String login)
 	{
 		
-	 	checkStringLengthRange(login,2, 20,LOGIN_OF_SEC_USER ); 		
+	 	checkStringLengthRange(login,0, 256,LOGIN_OF_SEC_USER ); 		
 		
 		return this;
 	}	
@@ -7524,7 +7935,7 @@ public class RetailscmChecker extends BaseChecker{
 	public RetailscmChecker checkEmailOfSecUser(String email)
 	{
 		
-	 	checkStringLengthRange(email,0, 76,EMAIL_OF_SEC_USER ); 		
+	 	checkEmail(email,0, 256,EMAIL_OF_SEC_USER ); 		
 		
 		return this;
 	}	
@@ -7600,6 +8011,18 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  BLOCKING_OF_SEC_USER ="sec_user.blocking";
+	public RetailscmChecker checkBlockingIdOfSecUser(String blockingId)
+	{
+		
+	 	checkIdOfSecUser(blockingId ); 		
+		
+		return this;
+	}	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_SEC_USER ="sec_user.version";
 	public RetailscmChecker checkVersionOfSecUser(int version)
@@ -8446,6 +8869,14 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+
+	public static final String  VERSION_OF_CANDIDATE_CONTAINER ="candidate_container.version";
+	public RetailscmChecker checkVersionOfCandidateContainer(int version)
+	{
+		
+	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CANDIDATE_CONTAINER ); 		
+=======
 
 	public static final String  VERSION_OF_CANDIDATE_CONTAINER ="candidate_container.version";
 	public RetailscmChecker checkVersionOfCandidateContainer(int version)
@@ -8461,10 +8892,29 @@ public class RetailscmChecker extends BaseChecker{
 	{
 		
 	 	checkStringLengthRange(id,2, 64,ID_OF_CANDIDATE_ELEMENT ); 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		return this;
 	}	
 
+<<<<<<< HEAD
+	public static final String  ID_OF_CANDIDATE_ELEMENT ="candidate_element.id";
+	public RetailscmChecker checkIdOfCandidateElement(String id)
+	{
+		
+	 	checkStringLengthRange(id,2, 64,ID_OF_CANDIDATE_ELEMENT ); 		
+=======
+	public static final String  NAME_OF_CANDIDATE_ELEMENT ="candidate_element.name";
+	public RetailscmChecker checkNameOfCandidateElement(String name)
+	{
+		
+	 	checkStringLengthRange(name,1, 200,NAME_OF_CANDIDATE_ELEMENT ); 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		
+		return this;
+	}	
+
+<<<<<<< HEAD
 	public static final String  NAME_OF_CANDIDATE_ELEMENT ="candidate_element.name";
 	public RetailscmChecker checkNameOfCandidateElement(String name)
 	{
@@ -8474,6 +8924,8 @@ public class RetailscmChecker extends BaseChecker{
 		return this;
 	}	
 
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public static final String  TYPE_OF_CANDIDATE_ELEMENT ="candidate_element.type";
 	public RetailscmChecker checkTypeOfCandidateElement(String type)
 	{
@@ -8500,6 +8952,19 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
+<<<<<<< HEAD
+=======
+
+	public static final String  VERSION_OF_CANDIDATE_ELEMENT ="candidate_element.version";
+	public RetailscmChecker checkVersionOfCandidateElement(int version)
+	{
+		
+	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CANDIDATE_ELEMENT ); 		
+		
+		return this;
+	}	
+}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_CANDIDATE_ELEMENT ="candidate_element.version";
 	public RetailscmChecker checkVersionOfCandidateElement(int version)

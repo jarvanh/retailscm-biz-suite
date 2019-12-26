@@ -149,17 +149,17 @@ public class LevelTwoDepartmentForm extends BaseForm {
 	}
 
 
-	public LevelTwoDepartmentForm managerFieldOfLevelOneDepartment(String parameterName, String initValue){
-		FormField field =  managerFromLevelOneDepartment(parameterName, initValue);
+	public LevelTwoDepartmentForm managerNameFieldOfLevelOneDepartment(String parameterName, String initValue){
+		FormField field =  managerNameFromLevelOneDepartment(parameterName, initValue);
 		this.addFormField(field);	
 		return this;
 	}
 	
-	public LevelTwoDepartmentForm managerFieldOfLevelOneDepartment(String initValue){
-		return managerFieldOfLevelOneDepartment("manager",initValue);
+	public LevelTwoDepartmentForm managerNameFieldOfLevelOneDepartment(String initValue){
+		return managerNameFieldOfLevelOneDepartment("managerName",initValue);
 	}
-	public LevelTwoDepartmentForm managerFieldOfLevelOneDepartment(){
-		return managerFieldOfLevelOneDepartment("manager","");
+	public LevelTwoDepartmentForm managerNameFieldOfLevelOneDepartment(){
+		return managerNameFieldOfLevelOneDepartment("managerName","");
 	}
 
 

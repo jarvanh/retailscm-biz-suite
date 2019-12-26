@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.companytraining.CompanyTraining;
 public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements ScoringManager {
 	
 	private static final String SERVICE_TYPE = "Scoring";
+	@Override
+	public ScoringDAO daoOf(RetailscmUserContext userContext) {
+		return scoringDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	public Scoring loadScoring(RetailscmUserContext userContext, String scoringId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfScoring(scoringId);
-		userContext.getChecker().throwExceptionIfHasErrors( ScoringManagerException.class);
+ 		checkerOf(userContext).checkIdOfScoring(scoringId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ScoringManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	 public Scoring searchScoring(RetailscmUserContext userContext, String scoringId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfScoring(scoringId);
-		userContext.getChecker().throwExceptionIfHasErrors( ScoringManagerException.class);
+ 		checkerOf(userContext).checkIdOfScoring(scoringId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ScoringManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 		addActions(userContext,scoring,tokens);
 		
 		
-		Scoring  scoringToPresent = userContext.getDAOGroup().getScoringDAO().present(scoring, tokens);
+		Scoring  scoringToPresent = scoringDaoOf(userContext).present(scoring, tokens);
 		
 		List<BaseEntity> entityListToNaming = scoringToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getScoringDAO().alias(entityListToNaming);
+		scoringDaoOf(userContext).alias(entityListToNaming);
 		
 		return  scoringToPresent;
 		
@@ -125,14 +129,14 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 		
  	}
  	protected Scoring saveScoring(RetailscmUserContext userContext, Scoring scoring, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getScoringDAO().save(scoring, tokens);
+ 		return scoringDaoOf(userContext).save(scoring, tokens);
  	}
  	protected Scoring loadScoring(RetailscmUserContext userContext, String scoringId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfScoring(scoringId);
-		userContext.getChecker().throwExceptionIfHasErrors( ScoringManagerException.class);
+		checkerOf(userContext).checkIdOfScoring(scoringId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ScoringManagerException.class);
 
  
- 		return userContext.getDAOGroup().getScoringDAO().load(scoringId, tokens);
+ 		return scoringDaoOf(userContext).load(scoringId, tokens);
  	}
 
 	
@@ -165,19 +169,19 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	
 
-
-	public Scoring createScoring(RetailscmUserContext userContext,String scoredBy, int score, String comment) throws Exception
+	public Scoring createScoring(RetailscmUserContext userContext, String scoredBy,int score,String comment) throws Exception
+	//public Scoring createScoring(RetailscmUserContext userContext,String scoredBy, int score, String comment) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkScoredByOfScoring(scoredBy);
-		userContext.getChecker().checkScoreOfScoring(score);
-		userContext.getChecker().checkCommentOfScoring(comment);
+		checkerOf(userContext).checkScoredByOfScoring(scoredBy);
+		checkerOf(userContext).checkScoreOfScoring(score);
+		checkerOf(userContext).checkCommentOfScoring(comment);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 
 
 		Scoring scoring=createNewScoring();	
@@ -205,21 +209,21 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 
 		
 		
-		userContext.getChecker().checkIdOfScoring(scoringId);
-		userContext.getChecker().checkVersionOfScoring( scoringVersion);
+		checkerOf(userContext).checkIdOfScoring(scoringId);
+		checkerOf(userContext).checkVersionOfScoring( scoringVersion);
 		
 
 		if(Scoring.SCORED_BY_PROPERTY.equals(property)){
-			userContext.getChecker().checkScoredByOfScoring(parseString(newValueExpr));
+			checkerOf(userContext).checkScoredByOfScoring(parseString(newValueExpr));
 		}
 		if(Scoring.SCORE_PROPERTY.equals(property)){
-			userContext.getChecker().checkScoreOfScoring(parseInt(newValueExpr));
+			checkerOf(userContext).checkScoreOfScoring(parseInt(newValueExpr));
 		}
 		if(Scoring.COMMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentOfScoring(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentOfScoring(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 	
 		
 	}
@@ -228,7 +232,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	public Scoring clone(RetailscmUserContext userContext, String fromScoringId) throws Exception{
 		
-		return userContext.getDAOGroup().getScoringDAO().clone(fromScoringId, this.allTokens());
+		return scoringDaoOf(userContext).clone(fromScoringId, this.allTokens());
 	}
 	
 	public Scoring internalSaveScoring(RetailscmUserContext userContext, Scoring scoring) throws Exception 
@@ -334,7 +338,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String scoringId, int scoringVersion) throws Exception{
 			
-		userContext.getDAOGroup().getScoringDAO().delete(scoringId, scoringVersion);
+		scoringDaoOf(userContext).delete(scoringId, scoringVersion);
 	}
 	
 	public Scoring forgetByAll(RetailscmUserContext userContext, String scoringId, int scoringVersion) throws Exception {
@@ -343,8 +347,9 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Scoring forgetByAllInternal(RetailscmUserContext userContext,
 			String scoringId, int scoringVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getScoringDAO().disconnectFromAll(scoringId, scoringVersion);
+		return scoringDaoOf(userContext).disconnectFromAll(scoringId, scoringVersion);
 	}
+	
 	
 
 	
@@ -361,7 +366,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getScoringDAO().deleteAll();
+		return scoringDaoOf(userContext).deleteAll();
 	}
 
 
@@ -377,7 +382,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getScoringDAO().planToRemoveEmployeeCompanyTrainingListWithEmployee(scoring, employeeId, this.emptyOptions());
+				scoringDaoOf(userContext).planToRemoveEmployeeCompanyTrainingListWithEmployee(scoring, employeeId, this.emptyOptions());
 
 				scoring = saveScoring(userContext, scoring, tokens().withEmployeeCompanyTrainingList().done());
 				return scoring;
@@ -395,7 +400,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getScoringDAO().planToRemoveEmployeeCompanyTrainingListWithTraining(scoring, trainingId, this.emptyOptions());
+				scoringDaoOf(userContext).planToRemoveEmployeeCompanyTrainingListWithTraining(scoring, trainingId, this.emptyOptions());
 
 				scoring = saveScoring(userContext, scoring, tokens().withEmployeeCompanyTrainingList().done());
 				return scoring;
@@ -409,18 +414,14 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 
 	protected void checkParamsForAddingEmployeeCompanyTraining(RetailscmUserContext userContext, String scoringId, String employeeId, String trainingId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfScoring(scoringId);
 
 		
+		checkerOf(userContext).checkEmployeeIdOfEmployeeCompanyTraining(employeeId);
 		
-		userContext.getChecker().checkIdOfScoring(scoringId);
-
-		
-		userContext.getChecker().checkEmployeeIdOfEmployeeCompanyTraining(employeeId);
-		
-		userContext.getChecker().checkTrainingIdOfEmployeeCompanyTraining(trainingId);
+		checkerOf(userContext).checkTrainingIdOfEmployeeCompanyTraining(trainingId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 
 	
 	}
@@ -444,11 +445,11 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	}
 	protected void checkParamsForUpdatingEmployeeCompanyTrainingProperties(RetailscmUserContext userContext, String scoringId,String id,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfScoring(scoringId);
-		userContext.getChecker().checkIdOfEmployeeCompanyTraining(id);
+		checkerOf(userContext).checkIdOfScoring(scoringId);
+		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(id);
 		
 
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 		
 	}
 	public  Scoring updateEmployeeCompanyTrainingProperties(RetailscmUserContext userContext, String scoringId, String id, String [] tokensExpr) throws Exception
@@ -488,8 +489,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 		employeeCompanyTraining.setEmployee(employee);		
 		CompanyTraining  training = new CompanyTraining();
 		training.setId(trainingId);		
-		employeeCompanyTraining.setTraining(training);		
-		employeeCompanyTraining.setCurrentStatus("INIT");
+		employeeCompanyTraining.setTraining(training);
 	
 		
 		return employeeCompanyTraining;
@@ -509,12 +509,18 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingEmployeeCompanyTrainingList(RetailscmUserContext userContext, String scoringId, 
 			String employeeCompanyTrainingIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfScoring(scoringId);
 		for(String employeeCompanyTrainingIdItem: employeeCompanyTrainingIds){
 			userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingIdItem);
+=======
+		checkerOf(userContext).checkIdOfScoring(scoringId);
+		for(String employeeCompanyTrainingIdItem: employeeCompanyTrainingIds){
+			checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 		
 	}
 	public  Scoring removeEmployeeCompanyTrainingList(RetailscmUserContext userContext, String scoringId, 
@@ -527,7 +533,7 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 			synchronized(scoring){ 
 				//Will be good when the scoring loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getScoringDAO().planToRemoveEmployeeCompanyTrainingList(scoring, employeeCompanyTrainingIds, allTokens());
+				scoringDaoOf(userContext).planToRemoveEmployeeCompanyTrainingList(scoring, employeeCompanyTrainingIds, allTokens());
 				scoring = saveScoring(userContext, scoring, tokens().withEmployeeCompanyTrainingList().done());
 				deleteRelationListInGraph(userContext, scoring.getEmployeeCompanyTrainingList());
 				return present(userContext,scoring, mergedAllTokens(tokensExpr));
@@ -537,10 +543,10 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingEmployeeCompanyTraining(RetailscmUserContext userContext, String scoringId, 
 		String employeeCompanyTrainingId, int employeeCompanyTrainingVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfScoring( scoringId);
-		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).checkIdOfScoring( scoringId);
+		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		checkerOf(userContext).checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 	
 	}
 	public  Scoring removeEmployeeCompanyTraining(RetailscmUserContext userContext, String scoringId, 
@@ -564,10 +570,10 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForCopyingEmployeeCompanyTraining(RetailscmUserContext userContext, String scoringId, 
 		String employeeCompanyTrainingId, int employeeCompanyTrainingVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfScoring( scoringId);
-		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).checkIdOfScoring( scoringId);
+		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		checkerOf(userContext).checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 	
 	}
 	public  Scoring copyEmployeeCompanyTrainingFrom(RetailscmUserContext userContext, String scoringId, 
@@ -596,13 +602,13 @@ public class ScoringManagerImpl extends CustomRetailscmCheckerManager implements
 		
 
 		
-		userContext.getChecker().checkIdOfScoring(scoringId);
-		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
+		checkerOf(userContext).checkIdOfScoring(scoringId);
+		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		checkerOf(userContext).checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
 		
 
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ScoringManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ScoringManagerException.class);
 	
 	}
 	

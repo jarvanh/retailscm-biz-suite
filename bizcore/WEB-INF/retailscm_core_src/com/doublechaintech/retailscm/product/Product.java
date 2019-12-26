@@ -84,18 +84,6 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Product(String name, LevelThreeCategory parentCategory, String origin, String remark, String brand, String picture, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setParentCategory(parentCategory);
-		setOrigin(origin);
-		setRemark(remark);
-		setBrand(brand);
-		setPicture(picture);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mSkuList = new SmartList<Sku>();	
-	}
 	
 	//Support for changing the property
 	

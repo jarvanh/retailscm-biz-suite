@@ -387,20 +387,6 @@ public class EmployeeSkillForm extends BaseForm {
 	}
 
 
-	public EmployeeSkillForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeSkillForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeSkillForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
-
 	public EmployeeSkillForm skillTypeIdFieldOfSkillType(String parameterName, String initValue){
 		FormField field =  idFromSkillType(parameterName, initValue);
 		this.addFormField(field);	

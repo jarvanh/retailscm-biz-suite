@@ -87,18 +87,6 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		this.changed = true;
 	}
 	
-	public 	RetailStoreCityServiceCenter(String name, Date founded, RetailStoreProvinceCenter belongsTo, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setFounded(founded);
-		setBelongsTo(belongsTo);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mCityPartnerList = new SmartList<CityPartner>();
-		this.mPotentialCustomerList = new SmartList<PotentialCustomer>();
-		this.mCityEventList = new SmartList<CityEvent>();
-		this.mRetailStoreList = new SmartList<RetailStore>();	
-	}
 	
 	//Support for changing the property
 	

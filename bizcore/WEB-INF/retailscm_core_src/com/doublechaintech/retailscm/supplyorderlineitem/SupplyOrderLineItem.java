@@ -79,16 +79,6 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderLineItem(SupplyOrder bizOrder, String skuId, String skuName, BigDecimal amount, int quantity, String unitOfMeasurement)
-	{
-		setBizOrder(bizOrder);
-		setSkuId(skuId);
-		setSkuName(skuName);
-		setAmount(amount);
-		setQuantity(quantity);
-		setUnitOfMeasurement(unitOfMeasurement);
-	
-	}
 	
 	//Support for changing the property
 	

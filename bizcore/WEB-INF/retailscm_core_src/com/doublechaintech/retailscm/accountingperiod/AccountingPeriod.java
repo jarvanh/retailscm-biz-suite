@@ -78,15 +78,6 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 	}
 	
-	public 	AccountingPeriod(String name, Date startDate, Date endDate, AccountSet accountSet)
-	{
-		setName(name);
-		setStartDate(startDate);
-		setEndDate(endDate);
-		setAccountSet(accountSet);
-
-		this.mAccountingDocumentList = new SmartList<AccountingDocument>();	
-	}
 	
 	//Support for changing the property
 	

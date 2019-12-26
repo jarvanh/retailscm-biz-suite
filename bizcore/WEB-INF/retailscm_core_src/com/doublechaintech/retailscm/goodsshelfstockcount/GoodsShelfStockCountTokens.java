@@ -143,9 +143,13 @@ public class GoodsShelfStockCountTokens extends CommonTokens{
 	}
 	private int stockCountIssueTrackListSearchCounter = 0;
 	public GoodsShelfStockCountTokens searchStockCountIssueTrackListWith(String field, String verb, String value){		
+		
+		withStockCountIssueTrackList();
 		addSearchMoreOptions(STOCK_COUNT_ISSUE_TRACK_LIST,stockCountIssueTrackListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public GoodsShelfStockCountTokens searchAllTextOfStockCountIssueTrackList(String verb, String value){	
 		String field = "id|title|summary";

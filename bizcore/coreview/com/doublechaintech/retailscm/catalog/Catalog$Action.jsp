@@ -19,6 +19,8 @@
 	
 	<li><span>${userContext.localeMap['catalog.id']}</span> ${catalog.id}</li>
 <li><span>${userContext.localeMap['catalog.name']}</span> ${catalog.name}</li>
+<li><span>${userContext.localeMap['catalog.sub_count']}</span> ${catalog.subCount}</li>
+<li><span>${userContext.localeMap['catalog.amount']}</span> <fmt:formatNumber type="currency"  value="${catalog.amount}" /></li>
 
 	
 	</ul>

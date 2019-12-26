@@ -74,13 +74,6 @@ public class MemberWishlist extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	MemberWishlist(String name, RetailStoreMember owner)
-	{
-		setName(name);
-		setOwner(owner);
-
-		this.mMemberWishlistProductList = new SmartList<MemberWishlistProduct>();	
-	}
 	
 	//Support for changing the property
 	

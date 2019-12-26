@@ -116,6 +116,11 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	*/
 	
+	public SmartList<RetailStoreProvinceCenter> loadAll() {
+	    return this.loadAll(getRetailStoreProvinceCenterMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -438,7 +443,10 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
 			return retailStoreProvinceCenter;
 		}
 
+<<<<<<< HEAD
 		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<ProvinceCenterDepartment> provinceCenterDepartmentList = retailStoreProvinceCenter.getProvinceCenterDepartmentList();
 		if(provinceCenterDepartmentList != null){
@@ -446,6 +454,15 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
 			
 		}
 		
+<<<<<<< HEAD
+=======
+		SmartList<ProvinceCenterDepartment> provinceCenterDepartmentList = retailStoreProvinceCenter.getProvinceCenterDepartmentList();
+		if(provinceCenterDepartmentList != null){
+			getProvinceCenterDepartmentDAO().analyzeProvinceCenterDepartmentByProvinceCenter(provinceCenterDepartmentList, retailStoreProvinceCenter.getId(), options);
+			
+		}
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreProvinceCenter;
 	
 	}	

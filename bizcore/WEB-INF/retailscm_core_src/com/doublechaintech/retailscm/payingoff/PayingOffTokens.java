@@ -143,12 +143,16 @@ public class PayingOffTokens extends CommonTokens{
 	}
 	private int employeeSalarySheetListSearchCounter = 0;
 	public PayingOffTokens searchEmployeeSalarySheetListWith(String field, String verb, String value){		
+		
+		withEmployeeSalarySheetList();
 		addSearchMoreOptions(EMPLOYEE_SALARY_SHEET_LIST,employeeSalarySheetListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public PayingOffTokens searchAllTextOfEmployeeSalarySheetList(String verb, String value){	
-		String field = "id|currentStatus";
+		String field = "id";
 		addSearchMoreOptions(EMPLOYEE_SALARY_SHEET_LIST,employeeSalarySheetListSearchCounter++, field, verb, value);
 		return this;
 	}

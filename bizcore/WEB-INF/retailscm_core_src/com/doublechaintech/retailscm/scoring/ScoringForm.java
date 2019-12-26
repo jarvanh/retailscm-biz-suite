@@ -137,20 +137,6 @@ public class ScoringForm extends BaseForm {
 		return scoringIdFieldForEmployeeCompanyTraining("scoringId","");
 	}
 
-
-	public ScoringForm currentStatusFieldForEmployeeCompanyTraining(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployeeCompanyTraining(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public ScoringForm currentStatusFieldForEmployeeCompanyTraining(String initValue){
-		return currentStatusFieldForEmployeeCompanyTraining("currentStatus",initValue);
-	}
-	public ScoringForm currentStatusFieldForEmployeeCompanyTraining(){
-		return currentStatusFieldForEmployeeCompanyTraining("currentStatus","");
-	}
-
 	
 
 

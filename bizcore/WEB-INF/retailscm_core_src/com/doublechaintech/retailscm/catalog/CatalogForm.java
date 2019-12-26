@@ -61,6 +61,34 @@ public class CatalogForm extends BaseForm {
 		return ownerIdField("ownerId","");
 	}
 
+
+	public CatalogForm subCountField(String parameterName, String initValue){
+		FormField field = subCountFromCatalog(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public CatalogForm subCountField(String initValue){
+		return subCountField("subCount",initValue);
+	}
+	public CatalogForm subCountField(){
+		return subCountField("subCount","");
+	}
+
+
+	public CatalogForm amountField(String parameterName, String initValue){
+		FormField field = amountFromCatalog(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public CatalogForm amountField(String initValue){
+		return amountField("amount",initValue);
+	}
+	public CatalogForm amountField(){
+		return amountField("amount","");
+	}
+
 	
 	
 

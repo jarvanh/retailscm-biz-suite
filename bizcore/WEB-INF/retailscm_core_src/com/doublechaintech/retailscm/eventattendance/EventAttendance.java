@@ -77,14 +77,6 @@ public class EventAttendance extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	EventAttendance(String name, PotentialCustomer potentialCustomer, CityEvent cityEvent, String description)
-	{
-		setName(name);
-		setPotentialCustomer(potentialCustomer);
-		setCityEvent(cityEvent);
-		setDescription(description);
-	
-	}
 	
 	//Support for changing the property
 	

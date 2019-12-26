@@ -24,12 +24,17 @@ public class RetailStoreMemberAddressTable{
 	static final String COLUMN_ADDRESS = "address";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_NAME, COLUMN_OWNER, COLUMN_MOBILE_PHONE, COLUMN_ADDRESS, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_NAME, COLUMN_OWNER, COLUMN_MOBILE_PHONE, COLUMN_ADDRESS
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_OWNER,COLUMN_MOBILE_PHONE,COLUMN_ADDRESS,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_OWNER,COLUMN_MOBILE_PHONE,COLUMN_ADDRESS};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

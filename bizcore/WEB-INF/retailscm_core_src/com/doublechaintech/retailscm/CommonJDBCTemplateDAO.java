@@ -27,6 +27,22 @@ import java.util.Arrays;
 
 public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 
+
+	protected String getSelectAllSQL() {
+		
+		//return new String[]{"name","bize_order","card_number","billing_address"};
+		StringBuilder stringBuilder=new StringBuilder();
+		stringBuilder.append("select * from ");
+		stringBuilder.append(this.getTableName());
+		return stringBuilder.toString();
+	}
+
+	protected <T  extends BaseEntity> SmartList<T> loadAll(RowMapper<T> mapper) {
+	
+		return this.queryForList(getSelectAllSQL(), new Object[] {}, mapper);
+		
+	}
+
 	/**
 	 * 
 	 */
@@ -235,12 +251,23 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 	protected static final String DATABASE_PRODUCT_PGSQL="PostgreSQL".toLowerCase();
 	protected static final String DATABASE_PRODUCT_ORACLE="Oracle".toLowerCase();
 	protected static final String DATABASE_PRODUCT_MSSQL="Microsoft SQL Server".toLowerCase();
+<<<<<<< HEAD
 	//body should like   "* from table where ... order ... group by ... "
+=======
+	protected static final String DATABASE_PRODUCT_H2="H2".toLowerCase();
+	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected String wrapRangeQuery(String body) {
 		
 		if(getDatabaseProductName().equals(DATABASE_PRODUCT_MYSQL)) {
 			return this.join("select ",body," limit ?, ?");
 		}
+<<<<<<< HEAD
+=======
+		if(getDatabaseProductName().equals(DATABASE_PRODUCT_H2)) {
+			return this.join("select ",body," limit ?, ?");
+		}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		if(getDatabaseProductName().equals(DATABASE_PRODUCT_GBASE)) {
 			return this.join("select skip ? first ? ",body);
 		}
@@ -250,6 +277,7 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 		if(getDatabaseProductName().equals(DATABASE_PRODUCT_PGSQL)) {
 			return this.join("select  ",body," offset ? limit ?");
 		}
+<<<<<<< HEAD
 		/*
 		 * select *
     from (select a.*, rownum rowno
@@ -260,6 +288,8 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
    where b.rowno >= 11;
 		 * 
 		 * */
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		if(getDatabaseProductName().equals(DATABASE_PRODUCT_ORACLE)) {
 			//not tested yet, more issue is here
@@ -270,10 +300,14 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 					") _internal where _internal.rownum>=? ");
 		}
 		return this.join("select ",body," offset ? limit ?");
+<<<<<<< HEAD
 		//please do not go there, will fail for most case;
 		
 		
 		
+=======
+
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -1125,7 +1159,11 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 			RowMapper<T> mapper, int start, int count){
 		QueryCriteria qc = this.createQueryCriteria(options);
 		String SQL = wrapRangeQuery("* from "+this.getTableName()+" where "+target+" = ? " + qc.getSQL());
+<<<<<<< HEAD
  		//MySQL only, please replace it when using ORACLE DB
+=======
+ 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		Object []parameters = this.joinArrays(new Object[][]{new Object[]{value}, qc.getParameters(), new Object[]{ start, count}} );
 		
@@ -1150,18 +1188,26 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 
 	protected Object[] constractFindAllByFilterParams(String fieldName, String filterKey, int pageNo, int pageSize) {
 		if (filterKey == null || filterKey.trim().isEmpty()) {
-			return constractFindAllWithoutFilterKey(fieldName, pageNo, pageSize);
+			return constructFindAllWithoutFilterKey(fieldName, pageNo, pageSize);
 		}
 		return constractFindAllWithFilterKey(fieldName, filterKey, pageNo, pageSize);
 	}
 	
+<<<<<<< HEAD
 	protected Object[] constractFindAllWithoutFilterKey(String fieldName, int pageNo, int pageSize) {
+=======
+	protected Object[] constructFindAllWithoutFilterKey(String fieldName, int pageNo, int pageSize) {
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		String querySQL = wrapRangeQuery("* from " + this.getTableName() + " order by " + fieldName + " asc ");
 		String countSQL = "select count(*) from " + this.getTableName();
 		Object[] params = new Object[] { (pageNo - 1) * pageSize, pageSize };
 		return new Object[] { countSQL, new Object[] {}, querySQL, params };
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected Object[] constractFindAllWithFilterKey(String fieldName, String filterKey, int pageNo, int pageSize) {
 		String querySQL =  wrapRangeQuery("* from " + this.getTableName() + " where " + fieldName + " like ? order by " + fieldName + " asc ");
 		String countSQL = "select count(*) from " + this.getTableName() + " where " + fieldName + " like ? ";
@@ -1170,7 +1216,11 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 		return new Object[] { countSQL, countParams, querySQL, queryParams };
 	}
 	/*
+<<<<<<< HEAD
 	protected Object[] constractFindAllWithoutFilterKey(String fieldName, int pageNo, int pageSize) {
+=======
+	protected Object[] constructFindAllWithoutFilterKey(String fieldName, int pageNo, int pageSize) {
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		String querySQL = "select * from " + this.getTableName() + " order by " + fieldName + " asc limit ?,?";
 		String countSQL = "select count(*) from " + this.getTableName();
 		Object[] params = new Object[] { (pageNo - 1) * pageSize, pageSize };

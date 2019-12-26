@@ -63,6 +63,11 @@ public class SecUserBlockingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<SecUserBlocking> loadAll() {
+	    return this.loadAll(getSecUserBlockingMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

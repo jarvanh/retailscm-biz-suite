@@ -40,6 +40,10 @@ import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager implements SupplyOrderPickingManager {
 	
 	private static final String SERVICE_TYPE = "SupplyOrderPicking";
+	@Override
+	public SupplyOrderPickingDAO daoOf(RetailscmUserContext userContext) {
+		return supplyOrderPickingDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -73,8 +77,8 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
  	
  	public SupplyOrderPicking loadSupplyOrderPicking(RetailscmUserContext userContext, String supplyOrderPickingId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderPickingManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderPickingManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -87,8 +91,8 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
  	
  	 public SupplyOrderPicking searchSupplyOrderPicking(RetailscmUserContext userContext, String supplyOrderPickingId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderPickingManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderPickingManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -106,10 +110,10 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 		addActions(userContext,supplyOrderPicking,tokens);
 		
 		
-		SupplyOrderPicking  supplyOrderPickingToPresent = userContext.getDAOGroup().getSupplyOrderPickingDAO().present(supplyOrderPicking, tokens);
+		SupplyOrderPicking  supplyOrderPickingToPresent = supplyOrderPickingDaoOf(userContext).present(supplyOrderPicking, tokens);
 		
 		List<BaseEntity> entityListToNaming = supplyOrderPickingToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSupplyOrderPickingDAO().alias(entityListToNaming);
+		supplyOrderPickingDaoOf(userContext).alias(entityListToNaming);
 		
 		return  supplyOrderPickingToPresent;
 		
@@ -130,14 +134,14 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 		
  	}
  	protected SupplyOrderPicking saveSupplyOrderPicking(RetailscmUserContext userContext, SupplyOrderPicking supplyOrderPicking, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSupplyOrderPickingDAO().save(supplyOrderPicking, tokens);
+ 		return supplyOrderPickingDaoOf(userContext).save(supplyOrderPicking, tokens);
  	}
  	protected SupplyOrderPicking loadSupplyOrderPicking(RetailscmUserContext userContext, String supplyOrderPickingId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderPickingManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSupplyOrderPickingDAO().load(supplyOrderPickingId, tokens);
+ 		return supplyOrderPickingDaoOf(userContext).load(supplyOrderPickingId, tokens);
  	}
 
 	
@@ -170,18 +174,18 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
  	
  	
 
-
-	public SupplyOrderPicking createSupplyOrderPicking(RetailscmUserContext userContext,String who, Date processTime) throws Exception
+	public SupplyOrderPicking createSupplyOrderPicking(RetailscmUserContext userContext, String who,Date processTime) throws Exception
+	//public SupplyOrderPicking createSupplyOrderPicking(RetailscmUserContext userContext,String who, Date processTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfSupplyOrderPicking(who);
-		userContext.getChecker().checkProcessTimeOfSupplyOrderPicking(processTime);
+		checkerOf(userContext).checkWhoOfSupplyOrderPicking(who);
+		checkerOf(userContext).checkProcessTimeOfSupplyOrderPicking(processTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 
 
 		SupplyOrderPicking supplyOrderPicking=createNewSupplyOrderPicking();	
@@ -208,18 +212,18 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 
 		
 		
-		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-		userContext.getChecker().checkVersionOfSupplyOrderPicking( supplyOrderPickingVersion);
+		checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+		checkerOf(userContext).checkVersionOfSupplyOrderPicking( supplyOrderPickingVersion);
 		
 
 		if(SupplyOrderPicking.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfSupplyOrderPicking(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfSupplyOrderPicking(parseString(newValueExpr));
 		}
 		if(SupplyOrderPicking.PROCESS_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkProcessTimeOfSupplyOrderPicking(parseDate(newValueExpr));
+			checkerOf(userContext).checkProcessTimeOfSupplyOrderPicking(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 	
 		
 	}
@@ -228,7 +232,7 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	
 	public SupplyOrderPicking clone(RetailscmUserContext userContext, String fromSupplyOrderPickingId) throws Exception{
 		
-		return userContext.getDAOGroup().getSupplyOrderPickingDAO().clone(fromSupplyOrderPickingId, this.allTokens());
+		return supplyOrderPickingDaoOf(userContext).clone(fromSupplyOrderPickingId, this.allTokens());
 	}
 	
 	public SupplyOrderPicking internalSaveSupplyOrderPicking(RetailscmUserContext userContext, SupplyOrderPicking supplyOrderPicking) throws Exception 
@@ -334,7 +338,7 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplyOrderPickingId, int supplyOrderPickingVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSupplyOrderPickingDAO().delete(supplyOrderPickingId, supplyOrderPickingVersion);
+		supplyOrderPickingDaoOf(userContext).delete(supplyOrderPickingId, supplyOrderPickingVersion);
 	}
 	
 	public SupplyOrderPicking forgetByAll(RetailscmUserContext userContext, String supplyOrderPickingId, int supplyOrderPickingVersion) throws Exception {
@@ -343,8 +347,9 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	protected SupplyOrderPicking forgetByAllInternal(RetailscmUserContext userContext,
 			String supplyOrderPickingId, int supplyOrderPickingVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSupplyOrderPickingDAO().disconnectFromAll(supplyOrderPickingId, supplyOrderPickingVersion);
+		return supplyOrderPickingDaoOf(userContext).disconnectFromAll(supplyOrderPickingId, supplyOrderPickingVersion);
 	}
+	
 	
 
 	
@@ -361,7 +366,7 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSupplyOrderPickingDAO().deleteAll();
+		return supplyOrderPickingDaoOf(userContext).deleteAll();
 	}
 
 
@@ -377,7 +382,7 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplyOrderPickingDAO().planToRemoveSupplyOrderListWithBuyer(supplyOrderPicking, buyerId, this.emptyOptions());
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderListWithBuyer(supplyOrderPicking, buyerId, this.emptyOptions());
 
 				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
 				return supplyOrderPicking;
@@ -395,7 +400,97 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplyOrderPickingDAO().planToRemoveSupplyOrderListWithSeller(supplyOrderPicking, sellerId, this.emptyOptions());
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderListWithSeller(supplyOrderPicking, sellerId, this.emptyOptions());
+
+				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
+				return supplyOrderPicking;
+			}
+	}
+	//disconnect SupplyOrderPicking with confirmation in SupplyOrder
+	protected SupplyOrderPicking breakWithSupplyOrderByConfirmation(RetailscmUserContext userContext, String supplyOrderPickingId, String confirmationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, allTokens());
+
+			synchronized(supplyOrderPicking){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderListWithConfirmation(supplyOrderPicking, confirmationId, this.emptyOptions());
+
+				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
+				return supplyOrderPicking;
+			}
+	}
+	//disconnect SupplyOrderPicking with approval in SupplyOrder
+	protected SupplyOrderPicking breakWithSupplyOrderByApproval(RetailscmUserContext userContext, String supplyOrderPickingId, String approvalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, allTokens());
+
+			synchronized(supplyOrderPicking){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderListWithApproval(supplyOrderPicking, approvalId, this.emptyOptions());
+
+				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
+				return supplyOrderPicking;
+			}
+	}
+	//disconnect SupplyOrderPicking with processing in SupplyOrder
+	protected SupplyOrderPicking breakWithSupplyOrderByProcessing(RetailscmUserContext userContext, String supplyOrderPickingId, String processingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, allTokens());
+
+			synchronized(supplyOrderPicking){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderListWithProcessing(supplyOrderPicking, processingId, this.emptyOptions());
+
+				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
+				return supplyOrderPicking;
+			}
+	}
+	//disconnect SupplyOrderPicking with shipment in SupplyOrder
+	protected SupplyOrderPicking breakWithSupplyOrderByShipment(RetailscmUserContext userContext, String supplyOrderPickingId, String shipmentId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, allTokens());
+
+			synchronized(supplyOrderPicking){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderListWithShipment(supplyOrderPicking, shipmentId, this.emptyOptions());
+
+				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
+				return supplyOrderPicking;
+			}
+	}
+	//disconnect SupplyOrderPicking with delivery in SupplyOrder
+	protected SupplyOrderPicking breakWithSupplyOrderByDelivery(RetailscmUserContext userContext, String supplyOrderPickingId, String deliveryId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, allTokens());
+
+			synchronized(supplyOrderPicking){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderListWithDelivery(supplyOrderPicking, deliveryId, this.emptyOptions());
 
 				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
 				return supplyOrderPicking;
@@ -407,33 +502,39 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 
-	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String supplyOrderPickingId, String buyerId, String sellerId, String title, BigDecimal totalAmount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String supplyOrderPickingId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String shipmentId, String deliveryId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
 
 		
+		checkerOf(userContext).checkBuyerIdOfSupplyOrder(buyerId);
 		
-		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-
+		checkerOf(userContext).checkSellerIdOfSupplyOrder(sellerId);
 		
-		userContext.getChecker().checkBuyerIdOfSupplyOrder(buyerId);
+		checkerOf(userContext).checkTitleOfSupplyOrder(title);
 		
-		userContext.getChecker().checkSellerIdOfSupplyOrder(sellerId);
+		checkerOf(userContext).checkTotalAmountOfSupplyOrder(totalAmount);
 		
-		userContext.getChecker().checkTitleOfSupplyOrder(title);
+		checkerOf(userContext).checkConfirmationIdOfSupplyOrder(confirmationId);
 		
-		userContext.getChecker().checkTotalAmountOfSupplyOrder(totalAmount);
+		checkerOf(userContext).checkApprovalIdOfSupplyOrder(approvalId);
+		
+		checkerOf(userContext).checkProcessingIdOfSupplyOrder(processingId);
+		
+		checkerOf(userContext).checkShipmentIdOfSupplyOrder(shipmentId);
+		
+		checkerOf(userContext).checkDeliveryIdOfSupplyOrder(deliveryId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 
 	
 	}
-	public  SupplyOrderPicking addSupplyOrder(RetailscmUserContext userContext, String supplyOrderPickingId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String [] tokensExpr) throws Exception
+	public  SupplyOrderPicking addSupplyOrder(RetailscmUserContext userContext, String supplyOrderPickingId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String shipmentId, String deliveryId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingSupplyOrder(userContext,supplyOrderPickingId,buyerId, sellerId, title, totalAmount,tokensExpr);
+		checkParamsForAddingSupplyOrder(userContext,supplyOrderPickingId,buyerId, sellerId, title, totalAmount, confirmationId, approvalId, processingId, shipmentId, deliveryId,tokensExpr);
 		
-		SupplyOrder supplyOrder = createSupplyOrder(userContext,buyerId, sellerId, title, totalAmount);
+		SupplyOrder supplyOrder = createSupplyOrder(userContext,buyerId, sellerId, title, totalAmount, confirmationId, approvalId, processingId, shipmentId, deliveryId);
 		
 		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, allTokens());
 		synchronized(supplyOrderPicking){ 
@@ -448,13 +549,13 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	}
 	protected void checkParamsForUpdatingSupplyOrderProperties(RetailscmUserContext userContext, String supplyOrderPickingId,String id,String title,BigDecimal totalAmount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-		userContext.getChecker().checkIdOfSupplyOrder(id);
+		checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(id);
 		
-		userContext.getChecker().checkTitleOfSupplyOrder( title);
-		userContext.getChecker().checkTotalAmountOfSupplyOrder( totalAmount);
+		checkerOf(userContext).checkTitleOfSupplyOrder( title);
+		checkerOf(userContext).checkTotalAmountOfSupplyOrder( totalAmount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 		
 	}
 	public  SupplyOrderPicking updateSupplyOrderProperties(RetailscmUserContext userContext, String supplyOrderPickingId, String id,String title,BigDecimal totalAmount, String [] tokensExpr) throws Exception
@@ -486,7 +587,7 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	}
 	
 	
-	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId, String sellerId, String title, BigDecimal totalAmount) throws Exception{
+	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String shipmentId, String deliveryId) throws Exception{
 
 		SupplyOrder supplyOrder = new SupplyOrder();
 		
@@ -499,8 +600,22 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 		supplyOrder.setSeller(seller);		
 		supplyOrder.setTitle(title);		
 		supplyOrder.setTotalAmount(totalAmount);		
-		supplyOrder.setLastUpdateTime(userContext.now());		
-		supplyOrder.setCurrentStatus("INIT");
+		SupplyOrderConfirmation  confirmation = new SupplyOrderConfirmation();
+		confirmation.setId(confirmationId);		
+		supplyOrder.setConfirmation(confirmation);		
+		SupplyOrderApproval  approval = new SupplyOrderApproval();
+		approval.setId(approvalId);		
+		supplyOrder.setApproval(approval);		
+		SupplyOrderProcessing  processing = new SupplyOrderProcessing();
+		processing.setId(processingId);		
+		supplyOrder.setProcessing(processing);		
+		SupplyOrderShipment  shipment = new SupplyOrderShipment();
+		shipment.setId(shipmentId);		
+		supplyOrder.setShipment(shipment);		
+		SupplyOrderDelivery  delivery = new SupplyOrderDelivery();
+		delivery.setId(deliveryId);		
+		supplyOrder.setDelivery(delivery);		
+		supplyOrder.setLastUpdateTime(userContext.now());
 	
 		
 		return supplyOrder;
@@ -520,12 +635,18 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingSupplyOrderList(RetailscmUserContext userContext, String supplyOrderPickingId, 
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
 		for(String supplyOrderIdItem: supplyOrderIds){
 			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
+=======
+		checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+		for(String supplyOrderIdItem: supplyOrderIds){
+			checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 		
 	}
 	public  SupplyOrderPicking removeSupplyOrderList(RetailscmUserContext userContext, String supplyOrderPickingId, 
@@ -538,7 +659,7 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 			synchronized(supplyOrderPicking){ 
 				//Will be good when the supplyOrderPicking loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSupplyOrderPickingDAO().planToRemoveSupplyOrderList(supplyOrderPicking, supplyOrderIds, allTokens());
+				supplyOrderPickingDaoOf(userContext).planToRemoveSupplyOrderList(supplyOrderPicking, supplyOrderIds, allTokens());
 				supplyOrderPicking = saveSupplyOrderPicking(userContext, supplyOrderPicking, tokens().withSupplyOrderList().done());
 				deleteRelationListInGraph(userContext, supplyOrderPicking.getSupplyOrderList());
 				return present(userContext,supplyOrderPicking, mergedAllTokens(tokensExpr));
@@ -548,10 +669,10 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingSupplyOrder(RetailscmUserContext userContext, String supplyOrderPickingId, 
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplyOrderPicking( supplyOrderPickingId);
-		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		userContext.getChecker().checkVersionOfSupplyOrder(supplyOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderPicking( supplyOrderPickingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
+		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 	
 	}
 	public  SupplyOrderPicking removeSupplyOrder(RetailscmUserContext userContext, String supplyOrderPickingId, 
@@ -575,10 +696,10 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForCopyingSupplyOrder(RetailscmUserContext userContext, String supplyOrderPickingId, 
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplyOrderPicking( supplyOrderPickingId);
-		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		userContext.getChecker().checkVersionOfSupplyOrder(supplyOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderPicking( supplyOrderPickingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
+		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 	
 	}
 	public  SupplyOrderPicking copySupplyOrderFrom(RetailscmUserContext userContext, String supplyOrderPickingId, 
@@ -607,21 +728,21 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 		
 
 		
-		userContext.getChecker().checkIdOfSupplyOrderPicking(supplyOrderPickingId);
-		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		userContext.getChecker().checkVersionOfSupplyOrder(supplyOrderVersion);
+		checkerOf(userContext).checkIdOfSupplyOrderPicking(supplyOrderPickingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
+		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
 		
 
 		if(SupplyOrder.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfSupplyOrder(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfSupplyOrder(parseString(newValueExpr));
 		}
 		
 		if(SupplyOrder.TOTAL_AMOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAmountOfSupplyOrder(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkTotalAmountOfSupplyOrder(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPickingManagerException.class);
 	
 	}
 	
@@ -656,180 +777,10 @@ public class SupplyOrderPickingManagerImpl extends CustomRetailscmCheckerManager
 
 	}
 	/*
-	public  SupplyOrderPicking associateSupplyOrderListToNewConfirmation(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String who, Date confirmTime, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderConfirmation confirmation = userContext.getManagerGroup().getSupplyOrderConfirmationManager().createSupplyOrderConfirmation(userContext,  who,  confirmTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateConfirmation(confirmation);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToNewApproval(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String who, Date approveTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderApproval approval = userContext.getManagerGroup().getSupplyOrderApprovalManager().createSupplyOrderApproval(userContext,  who,  approveTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateApproval(approval);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToNewProcessing(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderProcessing processing = userContext.getManagerGroup().getSupplyOrderProcessingManager().createSupplyOrderProcessing(userContext,  who,  processTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateProcessing(processing);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToNewShipment(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String who, Date shipTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderShipment shipment = userContext.getManagerGroup().getSupplyOrderShipmentManager().createSupplyOrderShipment(userContext,  who,  shipTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateShipment(shipment);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToNewDelivery(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String who, Date deliveryTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderDelivery delivery = userContext.getManagerGroup().getSupplyOrderDeliveryManager().createSupplyOrderDelivery(userContext,  who,  deliveryTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}
 	*/
 	
-	public  SupplyOrderPicking associateSupplyOrderListToConfirmation(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String confirmationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderConfirmation confirmation = userContext.getManagerGroup().getSupplyOrderConfirmationManager().loadSupplyOrderConfirmation(userContext,confirmationId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateConfirmation(confirmation);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToApproval(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String approvalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderApproval approval = userContext.getManagerGroup().getSupplyOrderApprovalManager().loadSupplyOrderApproval(userContext,approvalId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateApproval(approval);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToProcessing(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String processingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderProcessing processing = userContext.getManagerGroup().getSupplyOrderProcessingManager().loadSupplyOrderProcessing(userContext,processingId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateProcessing(processing);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToShipment(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String shipmentId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderShipment shipment = userContext.getManagerGroup().getSupplyOrderShipmentManager().loadSupplyOrderShipment(userContext,shipmentId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateShipment(shipment);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}	public  SupplyOrderPicking associateSupplyOrderListToDelivery(RetailscmUserContext userContext, String supplyOrderPickingId, String  supplyOrderIds[], String deliveryId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderPicking supplyOrderPicking = loadSupplyOrderPicking(userContext, supplyOrderPickingId, options);
-		
-		SupplyOrderDelivery delivery = userContext.getManagerGroup().getSupplyOrderDeliveryManager().loadSupplyOrderDelivery(userContext,deliveryId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderPicking.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveSupplyOrderPicking(userContext, supplyOrderPicking);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SupplyOrderPicking newCreated) throws Exception{

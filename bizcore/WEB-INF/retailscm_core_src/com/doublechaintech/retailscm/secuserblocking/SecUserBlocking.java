@@ -74,14 +74,6 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	SecUserBlocking(String who, DateTime blockTime, String comments)
-	{
-		setWho(who);
-		setBlockTime(blockTime);
-		setComments(comments);
-
-		this.mSecUserList = new SmartList<SecUser>();	
-	}
 	
 	//Support for changing the property
 	

@@ -128,9 +128,6 @@
 <c:if test="${param.referName ne 'payingOff'}">
 	<th>${userContext.localeMap['employee_salary_sheet.paying_off']}</th>
 </c:if>
-<c:if test="${param.referName ne 'currentStatus'}">
-	<th>${userContext.localeMap['employee_salary_sheet.current_status']}</th>
-</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -201,8 +198,7 @@
 		</div>
 	</td>
 </c:if>
-<c:if test="${param.referName ne 'currentStatus'}">	<td contenteditable='true' class='edit-value'  propertyToChange='currentStatus' storedCellValue='${item.currentStatus}' prefix='${ownerBeanName}Manager/updateEmployeeSalarySheet/${result.id}/${item.id}/'>${item.currentStatus}</td>
-</c:if>
+
 				<td>
 
 				<a href='#${ownerBeanName}Manager/removeEmployeeSalarySheet/${result.id}/${item.id}/' class='delete-action btn btn-danger btn-xs'><i class="fa fa-trash-o fa-lg"></i> ${userContext.localeMap['@delete']}</a>

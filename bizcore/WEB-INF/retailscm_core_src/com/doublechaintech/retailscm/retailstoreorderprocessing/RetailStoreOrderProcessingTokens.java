@@ -131,12 +131,16 @@ public class RetailStoreOrderProcessingTokens extends CommonTokens{
 	}
 	private int retailStoreOrderListSearchCounter = 0;
 	public RetailStoreOrderProcessingTokens searchRetailStoreOrderListWith(String field, String verb, String value){		
+		
+		withRetailStoreOrderList();
 		addSearchMoreOptions(RETAIL_STORE_ORDER_LIST,retailStoreOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreOrderProcessingTokens searchAllTextOfRetailStoreOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(RETAIL_STORE_ORDER_LIST,retailStoreOrderListSearchCounter++, field, verb, value);
 		return this;
 	}

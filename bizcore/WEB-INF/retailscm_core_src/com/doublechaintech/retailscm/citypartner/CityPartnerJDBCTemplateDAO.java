@@ -95,6 +95,11 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<CityPartner> loadAll() {
+	    return this.loadAll(getCityPartnerMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -388,8 +393,18 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			return cityPartner;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<PotentialCustomer> potentialCustomerList = cityPartner.getPotentialCustomerList();
+		if(potentialCustomerList != null){
+			getPotentialCustomerDAO().analyzePotentialCustomerByCityPartner(potentialCustomerList, cityPartner.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<PotentialCustomer> potentialCustomerList = cityPartner.getPotentialCustomerList();
 		if(potentialCustomerList != null){
 			getPotentialCustomerDAO().analyzePotentialCustomerByCityPartner(potentialCustomerList, cityPartner.getId(), options);
@@ -401,6 +416,13 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}	
 	
 		
+=======
+		return cityPartner;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhancePotentialCustomerContactList(SmartList<PotentialCustomerContact> potentialCustomerContactList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;

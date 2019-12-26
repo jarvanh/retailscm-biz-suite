@@ -291,20 +291,6 @@ public class RetailStoreFranchisingForm extends BaseForm {
 		return lastUpdateTimeFieldForRetailStore("lastUpdateTime","");
 	}
 
-
-	public RetailStoreFranchisingForm currentStatusFieldForRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreFranchisingForm currentStatusFieldForRetailStore(String initValue){
-		return currentStatusFieldForRetailStore("currentStatus",initValue);
-	}
-	public RetailStoreFranchisingForm currentStatusFieldForRetailStore(){
-		return currentStatusFieldForRetailStore("currentStatus","");
-	}
-
 	
 
 

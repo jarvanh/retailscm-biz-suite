@@ -56,7 +56,7 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setContactNumber(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String contactNumber = rs.getString(DamageSpaceTable.COLUMN_CONTACT_NUMBER);
+		Long contactNumber = rs.getLong(DamageSpaceTable.COLUMN_CONTACT_NUMBER);
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountset;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -23,9 +24,9 @@ import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentTy
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface AccountSetDAO{
+public interface AccountSetDAO extends BaseDAO{
 
-	
+	public SmartList<AccountSet> loadAll();
 	public AccountSet load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<AccountSet> accountSetList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

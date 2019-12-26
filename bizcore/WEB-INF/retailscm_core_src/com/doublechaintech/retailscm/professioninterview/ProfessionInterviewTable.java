@@ -23,12 +23,17 @@ public class ProfessionInterviewTable{
 	static final String COLUMN_COMMENTS = "comments";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_WHO, COLUMN_INTERVIEW_TIME, COLUMN_COMMENTS, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_WHO, COLUMN_INTERVIEW_TIME, COLUMN_COMMENTS
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_INTERVIEW_TIME,COLUMN_COMMENTS,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_INTERVIEW_TIME,COLUMN_COMMENTS};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

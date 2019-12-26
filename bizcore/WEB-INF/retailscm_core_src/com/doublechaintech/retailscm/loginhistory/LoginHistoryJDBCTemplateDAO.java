@@ -53,6 +53,11 @@ public class LoginHistoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	}
 	*/
 	
+	public SmartList<LoginHistory> loadAll() {
+	    return this.loadAll(getLoginHistoryMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

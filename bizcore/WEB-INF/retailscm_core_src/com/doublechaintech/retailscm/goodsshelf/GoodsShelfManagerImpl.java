@@ -40,6 +40,10 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelf;
 public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager implements GoodsShelfManager {
 	
 	private static final String SERVICE_TYPE = "GoodsShelf";
+	@Override
+	public GoodsShelfDAO daoOf(RetailscmUserContext userContext) {
+		return goodsShelfDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -73,8 +77,8 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	public GoodsShelf loadGoodsShelf(RetailscmUserContext userContext, String goodsShelfId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().throwExceptionIfHasErrors( GoodsShelfManagerException.class);
+ 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GoodsShelfManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -87,8 +91,8 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	 public GoodsShelf searchGoodsShelf(RetailscmUserContext userContext, String goodsShelfId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().throwExceptionIfHasErrors( GoodsShelfManagerException.class);
+ 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GoodsShelfManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -106,10 +110,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		addActions(userContext,goodsShelf,tokens);
 		
 		
-		GoodsShelf  goodsShelfToPresent = userContext.getDAOGroup().getGoodsShelfDAO().present(goodsShelf, tokens);
+		GoodsShelf  goodsShelfToPresent = goodsShelfDaoOf(userContext).present(goodsShelf, tokens);
 		
 		List<BaseEntity> entityListToNaming = goodsShelfToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getGoodsShelfDAO().alias(entityListToNaming);
+		goodsShelfDaoOf(userContext).alias(entityListToNaming);
 		
 		return  goodsShelfToPresent;
 		
@@ -130,14 +134,14 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
  	}
  	protected GoodsShelf saveGoodsShelf(RetailscmUserContext userContext, GoodsShelf goodsShelf, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getGoodsShelfDAO().save(goodsShelf, tokens);
+ 		return goodsShelfDaoOf(userContext).save(goodsShelf, tokens);
  	}
  	protected GoodsShelf loadGoodsShelf(RetailscmUserContext userContext, String goodsShelfId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().throwExceptionIfHasErrors( GoodsShelfManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).throwExceptionIfHasErrors( GoodsShelfManagerException.class);
 
  
- 		return userContext.getDAOGroup().getGoodsShelfDAO().load(goodsShelfId, tokens);
+ 		return goodsShelfDaoOf(userContext).load(goodsShelfId, tokens);
  	}
 
 	
@@ -177,17 +181,17 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	
 
-
-	public GoodsShelf createGoodsShelf(RetailscmUserContext userContext,String location, String storageSpaceId, String supplierSpaceId, String damageSpaceId) throws Exception
+	public GoodsShelf createGoodsShelf(RetailscmUserContext userContext, String location,String storageSpaceId,String supplierSpaceId,String damageSpaceId) throws Exception
+	//public GoodsShelf createGoodsShelf(RetailscmUserContext userContext,String location, String storageSpaceId, String supplierSpaceId, String damageSpaceId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLocationOfGoodsShelf(location);
+		checkerOf(userContext).checkLocationOfGoodsShelf(location);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 
 
 		GoodsShelf goodsShelf=createNewGoodsShelf();	
@@ -229,12 +233,12 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 
 		
 		
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf( goodsShelfVersion);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf( goodsShelfVersion);
 		
 
 		if(GoodsShelf.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfGoodsShelf(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfGoodsShelf(parseString(newValueExpr));
 		}		
 
 				
@@ -243,7 +247,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 	
 		
 	}
@@ -252,7 +256,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	public GoodsShelf clone(RetailscmUserContext userContext, String fromGoodsShelfId) throws Exception{
 		
-		return userContext.getDAOGroup().getGoodsShelfDAO().clone(fromGoodsShelfId, this.allTokens());
+		return goodsShelfDaoOf(userContext).clone(fromGoodsShelfId, this.allTokens());
 	}
 	
 	public GoodsShelf internalSaveGoodsShelf(RetailscmUserContext userContext, GoodsShelf goodsShelf) throws Exception 
@@ -352,9 +356,9 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForTransferingAnotherStorageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherStorageSpaceId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
- 		userContext.getChecker().checkIdOfStorageSpace(anotherStorageSpaceId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+ 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+ 		checkerOf(userContext).checkIdOfStorageSpace(anotherStorageSpaceId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
  		
  	}
  	public GoodsShelf transferToAnotherStorageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherStorageSpaceId) throws Exception
@@ -391,7 +395,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<StorageSpace> candidateList = userContext.getDAOGroup().getStorageSpaceDAO().requestCandidateStorageSpaceForGoodsShelf(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<StorageSpace> candidateList = storageSpaceDaoOf(userContext).requestCandidateStorageSpaceForGoodsShelf(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -401,9 +405,9 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected void checkParamsForTransferingAnotherSupplierSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherSupplierSpaceId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
- 		userContext.getChecker().checkIdOfSupplierSpace(anotherSupplierSpaceId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+ 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+ 		checkerOf(userContext).checkIdOfSupplierSpace(anotherSupplierSpaceId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
  		
  	}
  	public GoodsShelf transferToAnotherSupplierSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherSupplierSpaceId) throws Exception
@@ -440,7 +444,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<SupplierSpace> candidateList = userContext.getDAOGroup().getSupplierSpaceDAO().requestCandidateSupplierSpaceForGoodsShelf(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<SupplierSpace> candidateList = supplierSpaceDaoOf(userContext).requestCandidateSupplierSpaceForGoodsShelf(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -450,9 +454,9 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected void checkParamsForTransferingAnotherDamageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherDamageSpaceId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
- 		userContext.getChecker().checkIdOfDamageSpace(anotherDamageSpaceId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+ 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+ 		checkerOf(userContext).checkIdOfDamageSpace(anotherDamageSpaceId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
  		
  	}
  	public GoodsShelf transferToAnotherDamageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherDamageSpaceId) throws Exception
@@ -489,7 +493,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<DamageSpace> candidateList = userContext.getDAOGroup().getDamageSpaceDAO().requestCandidateDamageSpaceForGoodsShelf(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<DamageSpace> candidateList = damageSpaceDaoOf(userContext).requestCandidateDamageSpaceForGoodsShelf(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -502,7 +506,11 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String newSupplierSpaceId, Map<String,Object> options) throws Exception
  	{
 		
+<<<<<<< HEAD
  		return userContext.getDAOGroup().getSupplierSpaceDAO().load(newSupplierSpaceId, options);
+=======
+ 		return supplierSpaceDaoOf(userContext).load(newSupplierSpaceId, options);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
  	
@@ -512,7 +520,11 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected DamageSpace loadDamageSpace(RetailscmUserContext userContext, String newDamageSpaceId, Map<String,Object> options) throws Exception
  	{
 		
+<<<<<<< HEAD
  		return userContext.getDAOGroup().getDamageSpaceDAO().load(newDamageSpaceId, options);
+=======
+ 		return damageSpaceDaoOf(userContext).load(newDamageSpaceId, options);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
  	
@@ -522,7 +534,11 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected StorageSpace loadStorageSpace(RetailscmUserContext userContext, String newStorageSpaceId, Map<String,Object> options) throws Exception
  	{
 		
+<<<<<<< HEAD
  		return userContext.getDAOGroup().getStorageSpaceDAO().load(newStorageSpaceId, options);
+=======
+ 		return storageSpaceDaoOf(userContext).load(newStorageSpaceId, options);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
  	
@@ -536,7 +552,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String goodsShelfId, int goodsShelfVersion) throws Exception{
 			
-		userContext.getDAOGroup().getGoodsShelfDAO().delete(goodsShelfId, goodsShelfVersion);
+		goodsShelfDaoOf(userContext).delete(goodsShelfId, goodsShelfVersion);
 	}
 	
 	public GoodsShelf forgetByAll(RetailscmUserContext userContext, String goodsShelfId, int goodsShelfVersion) throws Exception {
@@ -545,8 +561,9 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected GoodsShelf forgetByAllInternal(RetailscmUserContext userContext,
 			String goodsShelfId, int goodsShelfVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getGoodsShelfDAO().disconnectFromAll(goodsShelfId, goodsShelfVersion);
+		return goodsShelfDaoOf(userContext).disconnectFromAll(goodsShelfId, goodsShelfVersion);
 	}
+	
 	
 
 	
@@ -563,7 +580,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getGoodsShelfDAO().deleteAll();
+		return goodsShelfDaoOf(userContext).deleteAll();
 	}
 
 
@@ -575,20 +592,16 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 
 	protected void checkParamsForAddingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, String title, Date countTime, String summary,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 
 		
+		checkerOf(userContext).checkTitleOfGoodsShelfStockCount(title);
 		
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-
+		checkerOf(userContext).checkCountTimeOfGoodsShelfStockCount(countTime);
 		
-		userContext.getChecker().checkTitleOfGoodsShelfStockCount(title);
-		
-		userContext.getChecker().checkCountTimeOfGoodsShelfStockCount(countTime);
-		
-		userContext.getChecker().checkSummaryOfGoodsShelfStockCount(summary);
+		checkerOf(userContext).checkSummaryOfGoodsShelfStockCount(summary);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 
 	
 	}
@@ -612,14 +625,14 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	}
 	protected void checkParamsForUpdatingGoodsShelfStockCountProperties(RetailscmUserContext userContext, String goodsShelfId,String id,String title,Date countTime,String summary,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsShelfStockCount(id);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsShelfStockCount(id);
 		
-		userContext.getChecker().checkTitleOfGoodsShelfStockCount( title);
-		userContext.getChecker().checkCountTimeOfGoodsShelfStockCount( countTime);
-		userContext.getChecker().checkSummaryOfGoodsShelfStockCount( summary);
+		checkerOf(userContext).checkTitleOfGoodsShelfStockCount( title);
+		checkerOf(userContext).checkCountTimeOfGoodsShelfStockCount( countTime);
+		checkerOf(userContext).checkSummaryOfGoodsShelfStockCount( summary);
 
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 		
 	}
 	public  GoodsShelf updateGoodsShelfStockCountProperties(RetailscmUserContext userContext, String goodsShelfId, String id,String title,Date countTime,String summary, String [] tokensExpr) throws Exception
@@ -679,12 +692,18 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingGoodsShelfStockCountList(RetailscmUserContext userContext, String goodsShelfId, 
 			String goodsShelfStockCountIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
 		for(String goodsShelfStockCountIdItem: goodsShelfStockCountIds){
 			userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountIdItem);
+=======
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		for(String goodsShelfStockCountIdItem: goodsShelfStockCountIds){
+			checkerOf(userContext).checkIdOfGoodsShelfStockCount(goodsShelfStockCountIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 		
 	}
 	public  GoodsShelf removeGoodsShelfStockCountList(RetailscmUserContext userContext, String goodsShelfId, 
@@ -697,7 +716,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			synchronized(goodsShelf){ 
 				//Will be good when the goodsShelf loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getGoodsShelfDAO().planToRemoveGoodsShelfStockCountList(goodsShelf, goodsShelfStockCountIds, allTokens());
+				goodsShelfDaoOf(userContext).planToRemoveGoodsShelfStockCountList(goodsShelf, goodsShelfStockCountIds, allTokens());
 				goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsShelfStockCountList().done());
 				deleteRelationListInGraph(userContext, goodsShelf.getGoodsShelfStockCountList());
 				return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
@@ -707,10 +726,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, 
 		String goodsShelfStockCountId, int goodsShelfStockCountVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGoodsShelf( goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
-		userContext.getChecker().checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
+		checkerOf(userContext).checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 	
 	}
 	public  GoodsShelf removeGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, 
@@ -734,10 +753,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForCopyingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, 
 		String goodsShelfStockCountId, int goodsShelfStockCountVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGoodsShelf( goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
-		userContext.getChecker().checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
+		checkerOf(userContext).checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 	
 	}
 	public  GoodsShelf copyGoodsShelfStockCountFrom(RetailscmUserContext userContext, String goodsShelfId, 
@@ -766,25 +785,25 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
-		userContext.getChecker().checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
+		checkerOf(userContext).checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
 		
 
 		if(GoodsShelfStockCount.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfGoodsShelfStockCount(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfGoodsShelfStockCount(parseString(newValueExpr));
 		}
 		
 		if(GoodsShelfStockCount.COUNT_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkCountTimeOfGoodsShelfStockCount(parseDate(newValueExpr));
+			checkerOf(userContext).checkCountTimeOfGoodsShelfStockCount(parseDate(newValueExpr));
 		}
 		
 		if(GoodsShelfStockCount.SUMMARY_PROPERTY.equals(property)){
-			userContext.getChecker().checkSummaryOfGoodsShelfStockCount(parseString(newValueExpr));
+			checkerOf(userContext).checkSummaryOfGoodsShelfStockCount(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 	
 	}
 	
@@ -827,20 +846,16 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 
 	protected void checkParamsForAddingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, String location, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 
 		
+		checkerOf(userContext).checkLocationOfGoodsAllocation(location);
 		
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-
+		checkerOf(userContext).checkLatitudeOfGoodsAllocation(latitude);
 		
-		userContext.getChecker().checkLocationOfGoodsAllocation(location);
-		
-		userContext.getChecker().checkLatitudeOfGoodsAllocation(latitude);
-		
-		userContext.getChecker().checkLongitudeOfGoodsAllocation(longitude);
+		checkerOf(userContext).checkLongitudeOfGoodsAllocation(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 
 	
 	}
@@ -864,14 +879,14 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	}
 	protected void checkParamsForUpdatingGoodsAllocationProperties(RetailscmUserContext userContext, String goodsShelfId,String id,String location,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsAllocation(id);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsAllocation(id);
 		
-		userContext.getChecker().checkLocationOfGoodsAllocation( location);
-		userContext.getChecker().checkLatitudeOfGoodsAllocation( latitude);
-		userContext.getChecker().checkLongitudeOfGoodsAllocation( longitude);
+		checkerOf(userContext).checkLocationOfGoodsAllocation( location);
+		checkerOf(userContext).checkLatitudeOfGoodsAllocation( latitude);
+		checkerOf(userContext).checkLongitudeOfGoodsAllocation( longitude);
 
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 		
 	}
 	public  GoodsShelf updateGoodsAllocationProperties(RetailscmUserContext userContext, String goodsShelfId, String id,String location,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
@@ -931,12 +946,18 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingGoodsAllocationList(RetailscmUserContext userContext, String goodsShelfId, 
 			String goodsAllocationIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
 		for(String goodsAllocationIdItem: goodsAllocationIds){
 			userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationIdItem);
+=======
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		for(String goodsAllocationIdItem: goodsAllocationIds){
+			checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 		
 	}
 	public  GoodsShelf removeGoodsAllocationList(RetailscmUserContext userContext, String goodsShelfId, 
@@ -949,7 +970,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			synchronized(goodsShelf){ 
 				//Will be good when the goodsShelf loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getGoodsShelfDAO().planToRemoveGoodsAllocationList(goodsShelf, goodsAllocationIds, allTokens());
+				goodsShelfDaoOf(userContext).planToRemoveGoodsAllocationList(goodsShelf, goodsAllocationIds, allTokens());
 				goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsAllocationList().done());
 				deleteRelationListInGraph(userContext, goodsShelf.getGoodsAllocationList());
 				return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
@@ -959,10 +980,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, 
 		String goodsAllocationId, int goodsAllocationVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGoodsShelf( goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationId);
-		userContext.getChecker().checkVersionOfGoodsAllocation(goodsAllocationVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
+		checkerOf(userContext).checkVersionOfGoodsAllocation(goodsAllocationVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 	
 	}
 	public  GoodsShelf removeGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, 
@@ -986,10 +1007,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForCopyingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, 
 		String goodsAllocationId, int goodsAllocationVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfGoodsShelf( goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationId);
-		userContext.getChecker().checkVersionOfGoodsAllocation(goodsAllocationVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
+		checkerOf(userContext).checkVersionOfGoodsAllocation(goodsAllocationVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 	
 	}
 	public  GoodsShelf copyGoodsAllocationFrom(RetailscmUserContext userContext, String goodsShelfId, 
@@ -1018,25 +1039,25 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationId);
-		userContext.getChecker().checkVersionOfGoodsAllocation(goodsAllocationVersion);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
+		checkerOf(userContext).checkVersionOfGoodsAllocation(goodsAllocationVersion);
 		
 
 		if(GoodsAllocation.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfGoodsAllocation(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfGoodsAllocation(parseString(newValueExpr));
 		}
 		
 		if(GoodsAllocation.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfGoodsAllocation(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfGoodsAllocation(parseBigDecimal(newValueExpr));
 		}
 		
 		if(GoodsAllocation.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfGoodsAllocation(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfGoodsAllocation(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(GoodsShelfManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 	
 	}
 	

@@ -133,21 +133,20 @@
 <c:set var="referName" value="(domain)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/userdomain/UserDomain$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="secUserBlocking" value="${ result.blocking}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/secuserblocking/SecUserBlocking$Action.jsp" />
+<c:set var="referName" value="(blocking)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/secuserblocking/SecUserBlocking$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.trainingcoursetype;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.companytraining.CompanyTrainingDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface TrainingCourseTypeDAO{
+public interface TrainingCourseTypeDAO extends BaseDAO{
 
-	
+	public SmartList<TrainingCourseType> loadAll();
 	public TrainingCourseType load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<TrainingCourseType> trainingCourseTypeList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

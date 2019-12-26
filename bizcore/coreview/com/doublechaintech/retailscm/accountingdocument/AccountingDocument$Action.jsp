@@ -20,7 +20,6 @@
 	<li><span>${userContext.localeMap['accounting_document.id']}</span> ${accountingDocument.id}</li>
 <li><span>${userContext.localeMap['accounting_document.name']}</span> ${accountingDocument.name}</li>
 <li><span>${userContext.localeMap['accounting_document.accounting_document_date']}</span> <fmt:formatDate pattern="yyyy-MM-dd" value="${accountingDocument.accountingDocumentDate}" /></li>
-<li><span>${userContext.localeMap['accounting_document.current_status']}</span> ${accountingDocument.currentStatus}</li>
 
 	
 	</ul>

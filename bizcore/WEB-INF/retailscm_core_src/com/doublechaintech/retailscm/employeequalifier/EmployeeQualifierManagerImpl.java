@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager implements EmployeeQualifierManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeQualifier";
+	@Override
+	public EmployeeQualifierDAO daoOf(RetailscmUserContext userContext) {
+		return employeeQualifierDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
  	
  	public EmployeeQualifier loadEmployeeQualifier(RetailscmUserContext userContext, String employeeQualifierId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeQualifier(employeeQualifierId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeQualifierManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeQualifierManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
  	
  	 public EmployeeQualifier searchEmployeeQualifier(RetailscmUserContext userContext, String employeeQualifierId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeQualifier(employeeQualifierId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeQualifierManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeQualifierManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 		addActions(userContext,employeeQualifier,tokens);
 		
 		
-		EmployeeQualifier  employeeQualifierToPresent = userContext.getDAOGroup().getEmployeeQualifierDAO().present(employeeQualifier, tokens);
+		EmployeeQualifier  employeeQualifierToPresent = employeeQualifierDaoOf(userContext).present(employeeQualifier, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeQualifierToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeQualifierDAO().alias(entityListToNaming);
+		employeeQualifierDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeQualifierToPresent;
 		
@@ -123,14 +127,14 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 		
  	}
  	protected EmployeeQualifier saveEmployeeQualifier(RetailscmUserContext userContext, EmployeeQualifier employeeQualifier, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeQualifierDAO().save(employeeQualifier, tokens);
+ 		return employeeQualifierDaoOf(userContext).save(employeeQualifier, tokens);
  	}
  	protected EmployeeQualifier loadEmployeeQualifier(RetailscmUserContext userContext, String employeeQualifierId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeQualifier(employeeQualifierId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeQualifierManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeQualifierManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeQualifierDAO().load(employeeQualifierId, tokens);
+ 		return employeeQualifierDaoOf(userContext).load(employeeQualifierId, tokens);
  	}
 
 	
@@ -160,20 +164,20 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
  	
  	
 
-
-	public EmployeeQualifier createEmployeeQualifier(RetailscmUserContext userContext,String employeeId, Date qualifiedTime, String type, String level, String remark) throws Exception
+	public EmployeeQualifier createEmployeeQualifier(RetailscmUserContext userContext, String employeeId,Date qualifiedTime,String type,String level,String remark) throws Exception
+	//public EmployeeQualifier createEmployeeQualifier(RetailscmUserContext userContext,String employeeId, Date qualifiedTime, String type, String level, String remark) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkQualifiedTimeOfEmployeeQualifier(qualifiedTime);
-		userContext.getChecker().checkTypeOfEmployeeQualifier(type);
-		userContext.getChecker().checkLevelOfEmployeeQualifier(level);
-		userContext.getChecker().checkRemarkOfEmployeeQualifier(remark);
+		checkerOf(userContext).checkQualifiedTimeOfEmployeeQualifier(qualifiedTime);
+		checkerOf(userContext).checkTypeOfEmployeeQualifier(type);
+		checkerOf(userContext).checkLevelOfEmployeeQualifier(level);
+		checkerOf(userContext).checkRemarkOfEmployeeQualifier(remark);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeQualifierManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeQualifierManagerException.class);
 
 
 		EmployeeQualifier employeeQualifier=createNewEmployeeQualifier();	
@@ -207,26 +211,26 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeQualifier(employeeQualifierId);
-		userContext.getChecker().checkVersionOfEmployeeQualifier( employeeQualifierVersion);
+		checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierId);
+		checkerOf(userContext).checkVersionOfEmployeeQualifier( employeeQualifierVersion);
 		
 		
 
 		
 		if(EmployeeQualifier.QUALIFIED_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkQualifiedTimeOfEmployeeQualifier(parseDate(newValueExpr));
+			checkerOf(userContext).checkQualifiedTimeOfEmployeeQualifier(parseDate(newValueExpr));
 		}
 		if(EmployeeQualifier.TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTypeOfEmployeeQualifier(parseString(newValueExpr));
+			checkerOf(userContext).checkTypeOfEmployeeQualifier(parseString(newValueExpr));
 		}
 		if(EmployeeQualifier.LEVEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLevelOfEmployeeQualifier(parseString(newValueExpr));
+			checkerOf(userContext).checkLevelOfEmployeeQualifier(parseString(newValueExpr));
 		}
 		if(EmployeeQualifier.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfEmployeeQualifier(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfEmployeeQualifier(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeQualifierManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeQualifierManagerException.class);
 	
 		
 	}
@@ -235,7 +239,7 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 	
 	public EmployeeQualifier clone(RetailscmUserContext userContext, String fromEmployeeQualifierId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeQualifierDAO().clone(fromEmployeeQualifierId, this.allTokens());
+		return employeeQualifierDaoOf(userContext).clone(fromEmployeeQualifierId, this.allTokens());
 	}
 	
 	public EmployeeQualifier internalSaveEmployeeQualifier(RetailscmUserContext userContext, EmployeeQualifier employeeQualifier) throws Exception 
@@ -333,9 +337,9 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeQualifierId, String anotherEmployeeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeQualifier(employeeQualifierId);
- 		userContext.getChecker().checkIdOfEmployee(anotherEmployeeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeQualifierManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeQualifierManagerException.class);
  		
  	}
  	public EmployeeQualifier transferToAnotherEmployee(RetailscmUserContext userContext, String employeeQualifierId, String anotherEmployeeId) throws Exception
@@ -372,7 +376,7 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeeQualifier(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeeQualifier(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -385,7 +389,7 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+ 		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
  	
@@ -399,7 +403,7 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeQualifierId, int employeeQualifierVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeQualifierDAO().delete(employeeQualifierId, employeeQualifierVersion);
+		employeeQualifierDaoOf(userContext).delete(employeeQualifierId, employeeQualifierVersion);
 	}
 	
 	public EmployeeQualifier forgetByAll(RetailscmUserContext userContext, String employeeQualifierId, int employeeQualifierVersion) throws Exception {
@@ -408,8 +412,9 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 	protected EmployeeQualifier forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeQualifierId, int employeeQualifierVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeQualifierDAO().disconnectFromAll(employeeQualifierId, employeeQualifierVersion);
+		return employeeQualifierDaoOf(userContext).disconnectFromAll(employeeQualifierId, employeeQualifierVersion);
 	}
+	
 	
 
 	
@@ -426,7 +431,7 @@ public class EmployeeQualifierManagerImpl extends CustomRetailscmCheckerManager 
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeQualifierDAO().deleteAll();
+		return employeeQualifierDaoOf(userContext).deleteAll();
 	}
 
 

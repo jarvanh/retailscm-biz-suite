@@ -24,7 +24,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 	public static final String EMPLOYEE_PROPERTY              = "employee"          ;
 	public static final String TRAINING_PROPERTY              = "training"          ;
 	public static final String SCORING_PROPERTY               = "scoring"           ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 
@@ -35,7 +34,7 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 	
 	public String getDisplayName(){
 	
-		String displayName = getCurrentStatus();
+		String displayName = getId();
 		if(displayName!=null){
 			return displayName;
 		}
@@ -51,7 +50,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 	protected		Employee            	mEmployee           ;
 	protected		CompanyTraining     	mTraining           ;
 	protected		Scoring             	mScoring            ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -79,13 +77,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-	public 	EmployeeCompanyTraining(Employee employee, CompanyTraining training, String currentStatus)
-	{
-		setEmployee(employee);
-		setTraining(training);
-		setCurrentStatus(currentStatus);
-	
-	}
 	
 	//Support for changing the property
 	
@@ -110,9 +101,12 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		if(SCORING_PROPERTY.equals(property)){
 			return getScoring();
 		}
+<<<<<<< HEAD
 		if(CURRENT_STATUS_PROPERTY.equals(property)){
 			return getCurrentStatus();
 		}
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
     		//other property not include here
 		return super.propertyOf(property);
@@ -203,6 +197,7 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
+<<<<<<< HEAD
 	public void setCurrentStatus(String currentStatus){
 		this.mCurrentStatus = trimString(currentStatus);;
 	}
@@ -219,6 +214,8 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 	}
 	
 	
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -268,7 +265,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		appendKeyValuePair(result, EMPLOYEE_PROPERTY, getEmployee());
 		appendKeyValuePair(result, TRAINING_PROPERTY, getTraining());
 		appendKeyValuePair(result, SCORING_PROPERTY, getScoring());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
 		
@@ -288,7 +284,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 			dest.setEmployee(getEmployee());
 			dest.setTraining(getTraining());
 			dest.setScoring(getScoring());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 
 		}
@@ -307,7 +302,10 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 			dest.mergeEmployee(getEmployee());
 			dest.mergeTraining(getTraining());
 			dest.mergeScoring(getScoring());
+<<<<<<< HEAD
 			dest.mergeCurrentStatus(getCurrentStatus());
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
@@ -324,7 +322,10 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 			EmployeeCompanyTraining dest =(EmployeeCompanyTraining)baseDest;
 		
 			dest.mergeId(getId());
+<<<<<<< HEAD
 			dest.mergeCurrentStatus(getCurrentStatus());
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
@@ -345,7 +346,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		if(getScoring() != null ){
  			stringBuilder.append("\tscoring='Scoring("+getScoring().getId()+")';");
  		}
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

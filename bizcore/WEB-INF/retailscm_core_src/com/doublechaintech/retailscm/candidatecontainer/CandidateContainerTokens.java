@@ -131,10 +131,20 @@ public class CandidateContainerTokens extends CommonTokens{
 	}
 	private int candidateElementListSearchCounter = 0;
 	public CandidateContainerTokens searchCandidateElementListWith(String field, String verb, String value){		
+<<<<<<< HEAD
+=======
+		
+		withCandidateElementList();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		addSearchMoreOptions(CANDIDATE_ELEMENT_LIST,candidateElementListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public CandidateContainerTokens searchAllTextOfCandidateElementList(String verb, String value){	
 		String field = "id|name|type";
 		addSearchMoreOptions(CANDIDATE_ELEMENT_LIST,candidateElementListSearchCounter++, field, verb, value);

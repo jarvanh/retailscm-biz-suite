@@ -669,20 +669,6 @@ public class RetailStoreCityServiceCenterForm extends BaseForm {
 		return lastUpdateTimeFieldForRetailStore("lastUpdateTime","");
 	}
 
-
-	public RetailStoreCityServiceCenterForm currentStatusFieldForRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreCityServiceCenterForm currentStatusFieldForRetailStore(String initValue){
-		return currentStatusFieldForRetailStore("currentStatus",initValue);
-	}
-	public RetailStoreCityServiceCenterForm currentStatusFieldForRetailStore(){
-		return currentStatusFieldForRetailStore("currentStatus","");
-	}
-
 	
 
 	

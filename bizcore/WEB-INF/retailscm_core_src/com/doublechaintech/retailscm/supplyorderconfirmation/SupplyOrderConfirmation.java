@@ -75,14 +75,6 @@ public class SupplyOrderConfirmation extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderConfirmation(String who, Date confirmTime)
-	{
-		setWho(who);
-		setConfirmTime(confirmTime);
-
-		this.mConsumerOrderList = new SmartList<ConsumerOrder>();
-		this.mSupplyOrderList = new SmartList<SupplyOrder>();	
-	}
 	
 	//Support for changing the property
 	

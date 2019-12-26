@@ -319,20 +319,6 @@ public class GoodsPackagingForm extends BaseForm {
 		return packagingIdFieldForGoods("packagingId","");
 	}
 
-
-	public GoodsPackagingForm currentStatusFieldForGoods(String parameterName, String initValue){
-		FormField field =  currentStatusFromGoods(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public GoodsPackagingForm currentStatusFieldForGoods(String initValue){
-		return currentStatusFieldForGoods("currentStatus",initValue);
-	}
-	public GoodsPackagingForm currentStatusFieldForGoods(){
-		return currentStatusFieldForGoods("currentStatus","");
-	}
-
 	
 
 

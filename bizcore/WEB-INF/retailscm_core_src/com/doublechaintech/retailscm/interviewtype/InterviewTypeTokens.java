@@ -143,9 +143,13 @@ public class InterviewTypeTokens extends CommonTokens{
 	}
 	private int employeeInterviewListSearchCounter = 0;
 	public InterviewTypeTokens searchEmployeeInterviewListWith(String field, String verb, String value){		
+		
+		withEmployeeInterviewList();
 		addSearchMoreOptions(EMPLOYEE_INTERVIEW_LIST,employeeInterviewListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public InterviewTypeTokens searchAllTextOfEmployeeInterviewList(String verb, String value){	
 		String field = "id|remark";

@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface RetailStoreMemberManager{
+public interface RetailStoreMemberManager extends BaseManager{
 
 		
 
-	public RetailStoreMember createRetailStoreMember(RetailscmUserContext userContext, String name, String mobilePhone, String ownerId) throws Exception;	
+	public RetailStoreMember createRetailStoreMember(RetailscmUserContext userContext, String name,String mobilePhone,String ownerId) throws Exception;	
 	public RetailStoreMember updateRetailStoreMember(RetailscmUserContext userContext,String retailStoreMemberId, int retailStoreMemberVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String retailStoreMemberId, String [] tokensExpr) throws Exception;
 	public RetailStoreMember internalSaveRetailStoreMember(RetailscmUserContext userContext, RetailStoreMember retailStoreMember) throws Exception;
@@ -28,23 +29,13 @@ public interface RetailStoreMemberManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  ConsumerOrderManager getConsumerOrderManager(RetailscmUserContext userContext, String retailStoreMemberId, String title, String storeId ,String [] tokensExpr)  throws Exception;
+	//public  ConsumerOrderManager getConsumerOrderManager(RetailscmUserContext userContext, String retailStoreMemberId, String title, String confirmationId, String approvalId, String processingId, String shipmentId, String deliveryId, String storeId ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreMember addConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String title, String storeId , String [] tokensExpr)  throws Exception;
+	public  RetailStoreMember addConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String title, String confirmationId, String approvalId, String processingId, String shipmentId, String deliveryId, String storeId , String [] tokensExpr)  throws Exception;
 	public  RetailStoreMember removeConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String consumerOrderId, int consumerOrderVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreMember updateConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String consumerOrderId, int consumerOrderVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  RetailStoreMember associateConsumerOrderListToNewConfirmation(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[], String who, Date confirmTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToConfirmation(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[],String confirmationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToNewApproval(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[], String who, Date approveTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToApproval(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[],String approvalId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToNewProcessing(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToProcessing(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[],String processingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToNewShipment(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[], String who, Date shipTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToShipment(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[],String shipmentId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToNewDelivery(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[], String who, Date deliveryTime, String [] tokensExpr) throws Exception ;
-	public  RetailStoreMember associateConsumerOrderListToDelivery(RetailscmUserContext userContext, String retailStoreMemberId, String  consumerOrderIds[],String deliveryId, String [] tokensExpr) throws Exception ;
 
 	*/
 

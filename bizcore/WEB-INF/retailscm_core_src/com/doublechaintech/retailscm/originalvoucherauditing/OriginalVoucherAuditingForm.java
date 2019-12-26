@@ -221,20 +221,6 @@ public class OriginalVoucherAuditingForm extends BaseForm {
 		return auditingIdFieldForOriginalVoucher("auditingId","");
 	}
 
-
-	public OriginalVoucherAuditingForm currentStatusFieldForOriginalVoucher(String parameterName, String initValue){
-		FormField field =  currentStatusFromOriginalVoucher(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public OriginalVoucherAuditingForm currentStatusFieldForOriginalVoucher(String initValue){
-		return currentStatusFieldForOriginalVoucher("currentStatus",initValue);
-	}
-	public OriginalVoucherAuditingForm currentStatusFieldForOriginalVoucher(){
-		return currentStatusFieldForOriginalVoucher("currentStatus","");
-	}
-
 	
 
 

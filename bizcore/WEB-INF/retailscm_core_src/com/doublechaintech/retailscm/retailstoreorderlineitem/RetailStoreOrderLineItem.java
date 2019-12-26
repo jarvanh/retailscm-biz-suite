@@ -79,16 +79,6 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderLineItem(RetailStoreOrder bizOrder, String skuId, String skuName, BigDecimal amount, int quantity, String unitOfMeasurement)
-	{
-		setBizOrder(bizOrder);
-		setSkuId(skuId);
-		setSkuName(skuName);
-		setAmount(amount);
-		setQuantity(quantity);
-		setUnitOfMeasurement(unitOfMeasurement);
-	
-	}
 	
 	//Support for changing the property
 	

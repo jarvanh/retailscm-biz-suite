@@ -401,20 +401,6 @@ public class EmployeeLeaveForm extends BaseForm {
 	}
 
 
-	public EmployeeLeaveForm currentStatusFieldOfEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public EmployeeLeaveForm currentStatusFieldOfEmployee(String initValue){
-		return currentStatusFieldOfEmployee("currentStatus",initValue);
-	}
-	public EmployeeLeaveForm currentStatusFieldOfEmployee(){
-		return currentStatusFieldOfEmployee("currentStatus","");
-	}
-
-
 	public EmployeeLeaveForm leaveTypeIdFieldOfLeaveType(String parameterName, String initValue){
 		FormField field =  idFromLeaveType(parameterName, initValue);
 		this.addFormField(field);	

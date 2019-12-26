@@ -135,21 +135,20 @@
 <c:set var="referName" value="(training)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/companytraining/CompanyTraining$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="scoring" value="${ result.scoring}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/scoring/Scoring$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/scoring/Scoring$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

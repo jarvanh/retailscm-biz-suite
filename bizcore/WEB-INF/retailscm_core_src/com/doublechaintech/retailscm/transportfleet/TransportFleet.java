@@ -53,7 +53,7 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mName               ;
-	protected		String              	mContactNumber      ;
+	protected		long                	mContactNumber      ;
 	protected		RetailStoreCountryCenter	mOwner              ;
 	protected		DateTime            	mLastUpdateTime     ;
 	protected		int                 	mVersion            ;
@@ -84,17 +84,6 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	TransportFleet(String name, String contactNumber, RetailStoreCountryCenter owner, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setContactNumber(contactNumber);
-		setOwner(owner);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mTransportTruckList = new SmartList<TransportTruck>();
-		this.mTruckDriverList = new SmartList<TruckDriver>();
-		this.mTransportTaskList = new SmartList<TransportTask>();	
-	}
 	
 	//Support for changing the property
 	
@@ -130,9 +119,9 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
-		String oldValue = getContactNumber();
-		String newValue = parseString(newValueExpr);
-		if(equalsString(oldValue , newValue)){
+		long oldValue = getContactNumber();
+		long newValue = parseLong(newValueExpr);
+		if(equalsLong(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -231,19 +220,24 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setContactNumber(String contactNumber){
-		this.mContactNumber = trimString(contactNumber);;
+	public void setContactNumber(long contactNumber){
+		this.mContactNumber = contactNumber;;
 	}
-	public String getContactNumber(){
+	public long getContactNumber(){
 		return this.mContactNumber;
 	}
-	public TransportFleet updateContactNumber(String contactNumber){
-		this.mContactNumber = trimString(contactNumber);;
+	public TransportFleet updateContactNumber(long contactNumber){
+		this.mContactNumber = contactNumber;;
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
 	public void mergeContactNumber(String contactNumber){
 		if(contactNumber != null) { setContactNumber(contactNumber);}
+=======
+	public void mergeContactNumber(long contactNumber){
+		setContactNumber(contactNumber);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -762,6 +756,13 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
+	
+	public void increaseContactNumber(long incContactNumber){
+		updateContactNumber(this.mContactNumber +  incContactNumber);
+	}
+	public void decreaseContactNumber(long decContactNumber){
+		updateContactNumber(this.mContactNumber - decContactNumber);
+	}
 	
 
 }

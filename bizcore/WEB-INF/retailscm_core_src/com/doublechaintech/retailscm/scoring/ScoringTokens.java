@@ -131,12 +131,16 @@ public class ScoringTokens extends CommonTokens{
 	}
 	private int employeeCompanyTrainingListSearchCounter = 0;
 	public ScoringTokens searchEmployeeCompanyTrainingListWith(String field, String verb, String value){		
+		
+		withEmployeeCompanyTrainingList();
 		addSearchMoreOptions(EMPLOYEE_COMPANY_TRAINING_LIST,employeeCompanyTrainingListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public ScoringTokens searchAllTextOfEmployeeCompanyTrainingList(String verb, String value){	
-		String field = "id|currentStatus";
+		String field = "id";
 		addSearchMoreOptions(EMPLOYEE_COMPANY_TRAINING_LIST,employeeCompanyTrainingListSearchCounter++, field, verb, value);
 		return this;
 	}

@@ -75,14 +75,6 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		this.changed = true;
 	}
 	
-	public 	StockCountIssueTrack(String title, Date countTime, String summary, GoodsShelfStockCount stockCount)
-	{
-		setTitle(title);
-		setCountTime(countTime);
-		setSummary(summary);
-		setStockCount(stockCount);
-	
-	}
 	
 	//Support for changing the property
 	

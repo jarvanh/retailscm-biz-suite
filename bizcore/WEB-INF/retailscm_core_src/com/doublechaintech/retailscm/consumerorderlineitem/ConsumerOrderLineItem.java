@@ -81,6 +81,7 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
+<<<<<<< HEAD
 	public 	ConsumerOrderLineItem(ConsumerOrder bizOrder, String skuId, String skuName, BigDecimal price, BigDecimal quantity, BigDecimal amount, DateTime lastUpdateTime)
 	{
 		setBizOrder(bizOrder);
@@ -92,6 +93,8 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		setLastUpdateTime(lastUpdateTime);
 	
 	}
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	

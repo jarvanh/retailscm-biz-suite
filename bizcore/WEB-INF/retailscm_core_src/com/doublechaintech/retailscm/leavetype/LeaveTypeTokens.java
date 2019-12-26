@@ -143,9 +143,13 @@ public class LeaveTypeTokens extends CommonTokens{
 	}
 	private int employeeLeaveListSearchCounter = 0;
 	public LeaveTypeTokens searchEmployeeLeaveListWith(String field, String verb, String value){		
+		
+		withEmployeeLeaveList();
 		addSearchMoreOptions(EMPLOYEE_LEAVE_LIST,employeeLeaveListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public LeaveTypeTokens searchAllTextOfEmployeeLeaveList(String verb, String value){	
 		String field = "id|remark";

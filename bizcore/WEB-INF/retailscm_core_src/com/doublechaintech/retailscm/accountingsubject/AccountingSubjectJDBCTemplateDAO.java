@@ -74,6 +74,11 @@ public class AccountingSubjectJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<AccountingSubject> loadAll() {
+	    return this.loadAll(getAccountingSubjectMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

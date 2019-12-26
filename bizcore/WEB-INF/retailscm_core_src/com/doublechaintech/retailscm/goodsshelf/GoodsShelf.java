@@ -87,6 +87,7 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
+<<<<<<< HEAD
 	public 	GoodsShelf(String location, StorageSpace storageSpace, SupplierSpace supplierSpace, DamageSpace damageSpace, DateTime lastUpdateTime)
 	{
 		setLocation(location);
@@ -98,6 +99,8 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 		this.mGoodsShelfStockCountList = new SmartList<GoodsShelfStockCount>();
 		this.mGoodsAllocationList = new SmartList<GoodsAllocation>();	
 	}
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	

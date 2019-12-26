@@ -74,6 +74,11 @@ public class SkillTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Sk
 	}
 	*/
 	
+	public SmartList<SkillType> loadAll() {
+	    return this.loadAll(getSkillTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

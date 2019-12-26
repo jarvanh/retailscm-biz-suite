@@ -53,6 +53,11 @@ public class FormFieldMessageJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}
 	*/
 	
+	public SmartList<FormFieldMessage> loadAll() {
+	    return this.loadAll(getFormFieldMessageMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

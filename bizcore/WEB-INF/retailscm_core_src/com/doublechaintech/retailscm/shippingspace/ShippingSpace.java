@@ -53,7 +53,7 @@ public class ShippingSpace extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mLocation           ;
-	protected		String              	mContactNumber      ;
+	protected		long                	mContactNumber      ;
 	protected		String              	mTotalArea          ;
 	protected		Warehouse           	mWarehouse          ;
 	protected		BigDecimal          	mLatitude           ;
@@ -86,6 +86,7 @@ public class ShippingSpace extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
+<<<<<<< HEAD
 	public 	ShippingSpace(String location, String contactNumber, String totalArea, Warehouse warehouse, BigDecimal latitude, BigDecimal longitude, String description, DateTime lastUpdateTime)
 	{
 		setLocation(location);
@@ -99,6 +100,8 @@ public class ShippingSpace extends BaseEntity implements  java.io.Serializable{
 
 		this.mGoodsList = new SmartList<Goods>();	
 	}
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	
@@ -146,9 +149,9 @@ public class ShippingSpace extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
-		String oldValue = getContactNumber();
-		String newValue = parseString(newValueExpr);
-		if(equalsString(oldValue , newValue)){
+		long oldValue = getContactNumber();
+		long newValue = parseLong(newValueExpr);
+		if(equalsLong(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -311,19 +314,24 @@ public class ShippingSpace extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setContactNumber(String contactNumber){
-		this.mContactNumber = trimString(contactNumber);;
+	public void setContactNumber(long contactNumber){
+		this.mContactNumber = contactNumber;;
 	}
-	public String getContactNumber(){
+	public long getContactNumber(){
 		return this.mContactNumber;
 	}
-	public ShippingSpace updateContactNumber(String contactNumber){
-		this.mContactNumber = trimString(contactNumber);;
+	public ShippingSpace updateContactNumber(long contactNumber){
+		this.mContactNumber = contactNumber;;
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
 	public void mergeContactNumber(String contactNumber){
 		if(contactNumber != null) { setContactNumber(contactNumber);}
+=======
+	public void mergeContactNumber(long contactNumber){
+		setContactNumber(contactNumber);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -694,6 +702,13 @@ public class ShippingSpace extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
+	
+	public void increaseContactNumber(long incContactNumber){
+		updateContactNumber(this.mContactNumber +  incContactNumber);
+	}
+	public void decreaseContactNumber(long decContactNumber){
+		updateContactNumber(this.mContactNumber - decContactNumber);
+	}
 	
 
 }

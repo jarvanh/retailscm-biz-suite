@@ -64,6 +64,11 @@ public class EmployeeLeaveJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<EmployeeLeave> loadAll() {
+	    return this.loadAll(getEmployeeLeaveMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

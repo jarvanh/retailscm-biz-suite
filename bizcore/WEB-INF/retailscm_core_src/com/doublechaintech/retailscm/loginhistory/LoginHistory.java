@@ -75,14 +75,6 @@ public class LoginHistory extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	LoginHistory(DateTime loginTime, String fromIp, String description, SecUser secUser)
-	{
-		setLoginTime(loginTime);
-		setFromIp(fromIp);
-		setDescription(description);
-		setSecUser(secUser);
-	
-	}
 	
 	//Support for changing the property
 	

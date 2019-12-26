@@ -127,6 +127,11 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<PotentialCustomer> loadAll() {
+	    return this.loadAll(getPotentialCustomerMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -494,12 +499,21 @@ public class PotentialCustomerJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			getPotentialCustomerContactPersonDAO().analyzePotentialCustomerContactPersonByPotentialCustomer(potentialCustomerContactPersonList, potentialCustomer.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return potentialCustomer;
 	
 	}	
 	
 		
+=======
+		
+		return potentialCustomer;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhancePotentialCustomerContactList(SmartList<PotentialCustomerContact> potentialCustomerContactList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;

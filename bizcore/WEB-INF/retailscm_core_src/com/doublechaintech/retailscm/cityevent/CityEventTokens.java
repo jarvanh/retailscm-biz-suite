@@ -143,9 +143,13 @@ public class CityEventTokens extends CommonTokens{
 	}
 	private int eventAttendanceListSearchCounter = 0;
 	public CityEventTokens searchEventAttendanceListWith(String field, String verb, String value){		
+		
+		withEventAttendanceList();
 		addSearchMoreOptions(EVENT_ATTENDANCE_LIST,eventAttendanceListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public CityEventTokens searchAllTextOfEventAttendanceList(String verb, String value){	
 		String field = "id|name|description";

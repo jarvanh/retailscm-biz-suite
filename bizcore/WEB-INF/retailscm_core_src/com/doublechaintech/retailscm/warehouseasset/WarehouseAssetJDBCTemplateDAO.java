@@ -53,6 +53,11 @@ public class WarehouseAssetJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<WarehouseAsset> loadAll() {
+	    return this.loadAll(getWarehouseAssetMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

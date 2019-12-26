@@ -232,20 +232,6 @@ public class ConsumerOrderPriceAdjustmentForm extends BaseForm {
 		return lastUpdateTimeFieldOfConsumerOrder("lastUpdateTime","");
 	}
 
-
-	public ConsumerOrderPriceAdjustmentForm currentStatusFieldOfConsumerOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromConsumerOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public ConsumerOrderPriceAdjustmentForm currentStatusFieldOfConsumerOrder(String initValue){
-		return currentStatusFieldOfConsumerOrder("currentStatus",initValue);
-	}
-	public ConsumerOrderPriceAdjustmentForm currentStatusFieldOfConsumerOrder(){
-		return currentStatusFieldOfConsumerOrder("currentStatus","");
-	}
-
 	
 
 

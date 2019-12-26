@@ -77,14 +77,6 @@ public class EmployeeLeave extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	EmployeeLeave(Employee who, LeaveType type, int leaveDurationHour, String remark)
-	{
-		setWho(who);
-		setType(type);
-		setLeaveDurationHour(leaveDurationHour);
-		setRemark(remark);
-	
-	}
 	
 	//Support for changing the property
 	

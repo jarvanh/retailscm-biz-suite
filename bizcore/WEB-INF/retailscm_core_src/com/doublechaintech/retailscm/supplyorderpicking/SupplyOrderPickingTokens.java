@@ -131,12 +131,16 @@ public class SupplyOrderPickingTokens extends CommonTokens{
 	}
 	private int supplyOrderListSearchCounter = 0;
 	public SupplyOrderPickingTokens searchSupplyOrderListWith(String field, String verb, String value){		
+		
+		withSupplyOrderList();
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public SupplyOrderPickingTokens searchAllTextOfSupplyOrderList(String verb, String value){	
-		String field = "id|title|currentStatus";
+		String field = "id|title";
 		addSearchMoreOptions(SUPPLY_ORDER_LIST,supplyOrderListSearchCounter++, field, verb, value);
 		return this;
 	}

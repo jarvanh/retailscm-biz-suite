@@ -78,15 +78,6 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	SupplierProduct(String productName, String productDescription, String productUnit, GoodsSupplier supplier)
-	{
-		setProductName(productName);
-		setProductDescription(productDescription);
-		setProductUnit(productUnit);
-		setSupplier(supplier);
-
-		this.mProductSupplyDurationList = new SmartList<ProductSupplyDuration>();	
-	}
 	
 	//Support for changing the property
 	

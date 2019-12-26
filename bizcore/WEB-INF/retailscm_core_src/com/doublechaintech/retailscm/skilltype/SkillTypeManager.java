@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface SkillTypeManager{
+public interface SkillTypeManager extends BaseManager{
 
 		
 
-	public SkillType createSkillType(RetailscmUserContext userContext, String code, String companyId, String description) throws Exception;	
+	public SkillType createSkillType(RetailscmUserContext userContext, String code,String companyId,String description) throws Exception;	
 	public SkillType updateSkillType(RetailscmUserContext userContext,String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public SkillType loadSkillType(RetailscmUserContext userContext, String skillTypeId, String [] tokensExpr) throws Exception;
 	public SkillType internalSaveSkillType(RetailscmUserContext userContext, SkillType skillType) throws Exception;

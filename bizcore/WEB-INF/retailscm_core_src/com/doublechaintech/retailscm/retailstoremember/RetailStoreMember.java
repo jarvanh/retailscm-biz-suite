@@ -94,20 +94,6 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	RetailStoreMember(String name, String mobilePhone, RetailStoreCountryCenter owner)
-	{
-		setName(name);
-		setMobilePhone(mobilePhone);
-		setOwner(owner);
-
-		this.mConsumerOrderList = new SmartList<ConsumerOrder>();
-		this.mRetailStoreMemberCouponList = new SmartList<RetailStoreMemberCoupon>();
-		this.mMemberWishlistList = new SmartList<MemberWishlist>();
-		this.mMemberRewardPointList = new SmartList<MemberRewardPoint>();
-		this.mMemberRewardPointRedemptionList = new SmartList<MemberRewardPointRedemption>();
-		this.mRetailStoreMemberAddressList = new SmartList<RetailStoreMemberAddress>();
-		this.mRetailStoreMemberGiftCardList = new SmartList<RetailStoreMemberGiftCard>();	
-	}
 	
 	//Support for changing the property
 	

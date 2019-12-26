@@ -74,6 +74,11 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<DamageSpace> loadAll() {
+	    return this.loadAll(getDamageSpaceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

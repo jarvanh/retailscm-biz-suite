@@ -44,6 +44,10 @@ import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implements HrInterviewManager {
 	
 	private static final String SERVICE_TYPE = "HrInterview";
+	@Override
+	public HrInterviewDAO daoOf(RetailscmUserContext userContext) {
+		return hrInterviewDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -77,8 +81,8 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	public HrInterview loadHrInterview(RetailscmUserContext userContext, String hrInterviewId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
-		userContext.getChecker().throwExceptionIfHasErrors( HrInterviewManagerException.class);
+ 		checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
+		checkerOf(userContext).throwExceptionIfHasErrors( HrInterviewManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -91,8 +95,8 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	 public HrInterview searchHrInterview(RetailscmUserContext userContext, String hrInterviewId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
-		userContext.getChecker().throwExceptionIfHasErrors( HrInterviewManagerException.class);
+ 		checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
+		checkerOf(userContext).throwExceptionIfHasErrors( HrInterviewManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -110,10 +114,10 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 		addActions(userContext,hrInterview,tokens);
 		
 		
-		HrInterview  hrInterviewToPresent = userContext.getDAOGroup().getHrInterviewDAO().present(hrInterview, tokens);
+		HrInterview  hrInterviewToPresent = hrInterviewDaoOf(userContext).present(hrInterview, tokens);
 		
 		List<BaseEntity> entityListToNaming = hrInterviewToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getHrInterviewDAO().alias(entityListToNaming);
+		hrInterviewDaoOf(userContext).alias(entityListToNaming);
 		
 		return  hrInterviewToPresent;
 		
@@ -134,14 +138,14 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 		
  	}
  	protected HrInterview saveHrInterview(RetailscmUserContext userContext, HrInterview hrInterview, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getHrInterviewDAO().save(hrInterview, tokens);
+ 		return hrInterviewDaoOf(userContext).save(hrInterview, tokens);
  	}
  	protected HrInterview loadHrInterview(RetailscmUserContext userContext, String hrInterviewId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
-		userContext.getChecker().throwExceptionIfHasErrors( HrInterviewManagerException.class);
+		checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
+		checkerOf(userContext).throwExceptionIfHasErrors( HrInterviewManagerException.class);
 
  
- 		return userContext.getDAOGroup().getHrInterviewDAO().load(hrInterviewId, tokens);
+ 		return hrInterviewDaoOf(userContext).load(hrInterviewId, tokens);
  	}
 
 	
@@ -174,19 +178,19 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-
-	public HrInterview createHrInterview(RetailscmUserContext userContext,String who, Date interviewTime, String comments) throws Exception
+	public HrInterview createHrInterview(RetailscmUserContext userContext, String who,Date interviewTime,String comments) throws Exception
+	//public HrInterview createHrInterview(RetailscmUserContext userContext,String who, Date interviewTime, String comments) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfHrInterview(who);
-		userContext.getChecker().checkInterviewTimeOfHrInterview(interviewTime);
-		userContext.getChecker().checkCommentsOfHrInterview(comments);
+		checkerOf(userContext).checkWhoOfHrInterview(who);
+		checkerOf(userContext).checkInterviewTimeOfHrInterview(interviewTime);
+		checkerOf(userContext).checkCommentsOfHrInterview(comments);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 
 
 		HrInterview hrInterview=createNewHrInterview();	
@@ -214,21 +218,21 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 
 		
 		
-		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
-		userContext.getChecker().checkVersionOfHrInterview( hrInterviewVersion);
+		checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
+		checkerOf(userContext).checkVersionOfHrInterview( hrInterviewVersion);
 		
 
 		if(HrInterview.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfHrInterview(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfHrInterview(parseString(newValueExpr));
 		}
 		if(HrInterview.INTERVIEW_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkInterviewTimeOfHrInterview(parseDate(newValueExpr));
+			checkerOf(userContext).checkInterviewTimeOfHrInterview(parseDate(newValueExpr));
 		}
 		if(HrInterview.COMMENTS_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentsOfHrInterview(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentsOfHrInterview(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 	
 		
 	}
@@ -237,7 +241,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	public HrInterview clone(RetailscmUserContext userContext, String fromHrInterviewId) throws Exception{
 		
-		return userContext.getDAOGroup().getHrInterviewDAO().clone(fromHrInterviewId, this.allTokens());
+		return hrInterviewDaoOf(userContext).clone(fromHrInterviewId, this.allTokens());
 	}
 	
 	public HrInterview internalSaveHrInterview(RetailscmUserContext userContext, HrInterview hrInterview) throws Exception 
@@ -343,7 +347,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String hrInterviewId, int hrInterviewVersion) throws Exception{
 			
-		userContext.getDAOGroup().getHrInterviewDAO().delete(hrInterviewId, hrInterviewVersion);
+		hrInterviewDaoOf(userContext).delete(hrInterviewId, hrInterviewVersion);
 	}
 	
 	public HrInterview forgetByAll(RetailscmUserContext userContext, String hrInterviewId, int hrInterviewVersion) throws Exception {
@@ -352,8 +356,9 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	protected HrInterview forgetByAllInternal(RetailscmUserContext userContext,
 			String hrInterviewId, int hrInterviewVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getHrInterviewDAO().disconnectFromAll(hrInterviewId, hrInterviewVersion);
+		return hrInterviewDaoOf(userContext).disconnectFromAll(hrInterviewId, hrInterviewVersion);
 	}
+	
 	
 
 	
@@ -370,7 +375,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getHrInterviewDAO().deleteAll();
+		return hrInterviewDaoOf(userContext).deleteAll();
 	}
 
 
@@ -386,7 +391,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getHrInterviewDAO().planToRemoveEmployeeListWithCompany(hrInterview, companyId, this.emptyOptions());
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithCompany(hrInterview, companyId, this.emptyOptions());
 
 				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
 				return hrInterview;
@@ -404,7 +409,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getHrInterviewDAO().planToRemoveEmployeeListWithDepartment(hrInterview, departmentId, this.emptyOptions());
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithDepartment(hrInterview, departmentId, this.emptyOptions());
 
 				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
 				return hrInterview;
@@ -422,7 +427,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getHrInterviewDAO().planToRemoveEmployeeListWithOccupation(hrInterview, occupationId, this.emptyOptions());
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithOccupation(hrInterview, occupationId, this.emptyOptions());
 
 				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
 				return hrInterview;
@@ -440,7 +445,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getHrInterviewDAO().planToRemoveEmployeeListWithResponsibleFor(hrInterview, responsibleForId, this.emptyOptions());
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithResponsibleFor(hrInterview, responsibleForId, this.emptyOptions());
 
 				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
 				return hrInterview;
@@ -458,7 +463,115 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getHrInterviewDAO().planToRemoveEmployeeListWithCurrentSalaryGrade(hrInterview, currentSalaryGradeId, this.emptyOptions());
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(hrInterview, currentSalaryGradeId, this.emptyOptions());
+
+				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
+				return hrInterview;
+			}
+	}
+	//disconnect HrInterview with job_application in Employee
+	protected HrInterview breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String hrInterviewId, String jobApplicationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, allTokens());
+
+			synchronized(hrInterview){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(hrInterview, jobApplicationId, this.emptyOptions());
+
+				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
+				return hrInterview;
+			}
+	}
+	//disconnect HrInterview with profession_interview in Employee
+	protected HrInterview breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String hrInterviewId, String professionInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, allTokens());
+
+			synchronized(hrInterview){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(hrInterview, professionInterviewId, this.emptyOptions());
+
+				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
+				return hrInterview;
+			}
+	}
+	//disconnect HrInterview with offer_approval in Employee
+	protected HrInterview breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String hrInterviewId, String offerApprovalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, allTokens());
+
+			synchronized(hrInterview){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(hrInterview, offerApprovalId, this.emptyOptions());
+
+				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
+				return hrInterview;
+			}
+	}
+	//disconnect HrInterview with offer_acceptance in Employee
+	protected HrInterview breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String hrInterviewId, String offerAcceptanceId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, allTokens());
+
+			synchronized(hrInterview){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(hrInterview, offerAcceptanceId, this.emptyOptions());
+
+				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
+				return hrInterview;
+			}
+	}
+	//disconnect HrInterview with employee_boarding in Employee
+	protected HrInterview breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String hrInterviewId, String employeeBoardingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, allTokens());
+
+			synchronized(hrInterview){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(hrInterview, employeeBoardingId, this.emptyOptions());
+
+				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
+				return hrInterview;
+			}
+	}
+	//disconnect HrInterview with termination in Employee
+	protected HrInterview breakWithEmployeeByTermination(RetailscmUserContext userContext, String hrInterviewId, String terminationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, allTokens());
+
+			synchronized(hrInterview){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeListWithTermination(hrInterview, terminationId, this.emptyOptions());
 
 				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
 				return hrInterview;
@@ -470,51 +583,59 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String hrInterviewId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String hrInterviewId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
 
 		
+		checkerOf(userContext).checkCompanyIdOfEmployee(companyId);
 		
-		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
-
+		checkerOf(userContext).checkTitleOfEmployee(title);
 		
-		userContext.getChecker().checkCompanyIdOfEmployee(companyId);
+		checkerOf(userContext).checkDepartmentIdOfEmployee(departmentId);
 		
-		userContext.getChecker().checkTitleOfEmployee(title);
+		checkerOf(userContext).checkFamilyNameOfEmployee(familyName);
 		
-		userContext.getChecker().checkDepartmentIdOfEmployee(departmentId);
+		checkerOf(userContext).checkGivenNameOfEmployee(givenName);
 		
-		userContext.getChecker().checkFamilyNameOfEmployee(familyName);
+		checkerOf(userContext).checkEmailOfEmployee(email);
 		
-		userContext.getChecker().checkGivenNameOfEmployee(givenName);
+		checkerOf(userContext).checkCityOfEmployee(city);
 		
-		userContext.getChecker().checkEmailOfEmployee(email);
+		checkerOf(userContext).checkAddressOfEmployee(address);
 		
-		userContext.getChecker().checkCityOfEmployee(city);
+		checkerOf(userContext).checkCellPhoneOfEmployee(cellPhone);
 		
-		userContext.getChecker().checkAddressOfEmployee(address);
+		checkerOf(userContext).checkOccupationIdOfEmployee(occupationId);
 		
-		userContext.getChecker().checkCellPhoneOfEmployee(cellPhone);
+		checkerOf(userContext).checkResponsibleForIdOfEmployee(responsibleForId);
 		
-		userContext.getChecker().checkOccupationIdOfEmployee(occupationId);
+		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
-		userContext.getChecker().checkResponsibleForIdOfEmployee(responsibleForId);
+		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
 		
-		userContext.getChecker().checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
+		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
 		
-		userContext.getChecker().checkSalaryAccountOfEmployee(salaryAccount);
+		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
+		
+		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
+		
+		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
+		
+		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
+		
+		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 
 	
 	}
-	public  HrInterview addEmployee(RetailscmUserContext userContext, String hrInterviewId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	public  HrInterview addEmployee(RetailscmUserContext userContext, String hrInterviewId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployee(userContext,hrInterviewId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount,tokensExpr);
+		checkParamsForAddingEmployee(userContext,hrInterviewId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId,tokensExpr);
 		
-		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount);
+		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId);
 		
 		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, allTokens());
 		synchronized(hrInterview){ 
@@ -529,19 +650,19 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String hrInterviewId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
-		userContext.getChecker().checkIdOfEmployee(id);
+		checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
+		checkerOf(userContext).checkIdOfEmployee(id);
 		
-		userContext.getChecker().checkTitleOfEmployee( title);
-		userContext.getChecker().checkFamilyNameOfEmployee( familyName);
-		userContext.getChecker().checkGivenNameOfEmployee( givenName);
-		userContext.getChecker().checkEmailOfEmployee( email);
-		userContext.getChecker().checkCityOfEmployee( city);
-		userContext.getChecker().checkAddressOfEmployee( address);
-		userContext.getChecker().checkCellPhoneOfEmployee( cellPhone);
-		userContext.getChecker().checkSalaryAccountOfEmployee( salaryAccount);
+		checkerOf(userContext).checkTitleOfEmployee( title);
+		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
+		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
+		checkerOf(userContext).checkEmailOfEmployee( email);
+		checkerOf(userContext).checkCityOfEmployee( city);
+		checkerOf(userContext).checkAddressOfEmployee( address);
+		checkerOf(userContext).checkCellPhoneOfEmployee( cellPhone);
+		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 		
 	}
 	public  HrInterview updateEmployeeProperties(RetailscmUserContext userContext, String hrInterviewId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
@@ -579,7 +700,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	
 	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception{
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -607,8 +728,25 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		employee.setLastUpdateTime(userContext.now());		
-		employee.setCurrentStatus("INIT");
+		JobApplication  jobApplication = new JobApplication();
+		jobApplication.setId(jobApplicationId);		
+		employee.setJobApplication(jobApplication);		
+		ProfessionInterview  professionInterview = new ProfessionInterview();
+		professionInterview.setId(professionInterviewId);		
+		employee.setProfessionInterview(professionInterview);		
+		OfferApproval  offerApproval = new OfferApproval();
+		offerApproval.setId(offerApprovalId);		
+		employee.setOfferApproval(offerApproval);		
+		OfferAcceptance  offerAcceptance = new OfferAcceptance();
+		offerAcceptance.setId(offerAcceptanceId);		
+		employee.setOfferAcceptance(offerAcceptance);		
+		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
+		employeeBoarding.setId(employeeBoardingId);		
+		employee.setEmployeeBoarding(employeeBoarding);		
+		Termination  termination = new Termination();
+		termination.setId(terminationId);		
+		employee.setTermination(termination);		
+		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
@@ -628,12 +766,18 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String hrInterviewId, 
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
+=======
+		checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
+		for(String employeeIdItem: employeeIds){
+			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 		
 	}
 	public  HrInterview removeEmployeeList(RetailscmUserContext userContext, String hrInterviewId, 
@@ -646,7 +790,7 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(hrInterview){ 
 				//Will be good when the hrInterview loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getHrInterviewDAO().planToRemoveEmployeeList(hrInterview, employeeIds, allTokens());
+				hrInterviewDaoOf(userContext).planToRemoveEmployeeList(hrInterview, employeeIds, allTokens());
 				hrInterview = saveHrInterview(userContext, hrInterview, tokens().withEmployeeList().done());
 				deleteRelationListInGraph(userContext, hrInterview.getEmployeeList());
 				return present(userContext,hrInterview, mergedAllTokens(tokensExpr));
@@ -656,10 +800,10 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String hrInterviewId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfHrInterview( hrInterviewId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).checkIdOfHrInterview( hrInterviewId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 	
 	}
 	public  HrInterview removeEmployee(RetailscmUserContext userContext, String hrInterviewId, 
@@ -683,10 +827,10 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String hrInterviewId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfHrInterview( hrInterviewId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).checkIdOfHrInterview( hrInterviewId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 	
 	}
 	public  HrInterview copyEmployeeFrom(RetailscmUserContext userContext, String hrInterviewId, 
@@ -715,45 +859,45 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfHrInterview(hrInterviewId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).checkIdOfHrInterview(hrInterviewId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkFamilyNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkGivenNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkCityOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCellPhoneOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkSalaryAccountOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(HrInterviewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(HrInterviewManagerException.class);
 	
 	}
 	
@@ -788,214 +932,10 @@ public class HrInterviewManagerImpl extends CustomRetailscmCheckerManager implem
 
 	}
 	/*
-	public  HrInterview associateEmployeeListToNewJobApplication(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], Date applicationTime, String who, String comments, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().createJobApplication(userContext,  applicationTime,  who,  comments);
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().createProfessionInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().createOfferApproval(userContext,  who,  approveTime,  comments);
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().createOfferAcceptance(userContext,  who,  acceptTime,  comments);
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToNewEmployeeBoarding(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String who, Date employTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().createEmployeeBoarding(userContext,  who,  employTime,  comments);
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToNewTermination(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String reasonId, String typeId, String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().createTermination(userContext, reasonId, typeId,  comment);
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}
 	*/
 	
-	public  HrInterview associateEmployeeListToJobApplication(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String jobApplicationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().loadJobApplication(userContext,jobApplicationId,new String[]{"none"} );
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String professionInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().loadProfessionInterview(userContext,professionInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String offerApprovalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().loadOfferApproval(userContext,offerApprovalId,new String[]{"none"} );
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String offerAcceptanceId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().loadOfferAcceptance(userContext,offerAcceptanceId,new String[]{"none"} );
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToEmployeeBoarding(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String employeeBoardingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().loadEmployeeBoarding(userContext,employeeBoardingId,new String[]{"none"} );
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}	public  HrInterview associateEmployeeListToTermination(RetailscmUserContext userContext, String hrInterviewId, String  employeeIds[], String terminationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().loadTermination(userContext,terminationId,new String[]{"none"} );
-		
-		for(Employee employee: hrInterview.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveHrInterview(userContext, hrInterview);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, HrInterview newCreated) throws Exception{

@@ -63,6 +63,11 @@ public class ScoringJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Scor
 	}
 	*/
 	
+	public SmartList<Scoring> loadAll() {
+	    return this.loadAll(getScoringMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.userwhitelist;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
 
 
-public interface UserWhiteListDAO{
+public interface UserWhiteListDAO extends BaseDAO{
 
-	
+	public SmartList<UserWhiteList> loadAll();
 	public UserWhiteList load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<UserWhiteList> userWhiteListList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

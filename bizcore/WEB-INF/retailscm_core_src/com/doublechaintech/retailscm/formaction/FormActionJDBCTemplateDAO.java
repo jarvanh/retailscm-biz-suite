@@ -53,6 +53,11 @@ public class FormActionJDBCTemplateDAO extends RetailscmBaseDAOImpl implements F
 	}
 	*/
 	
+	public SmartList<FormAction> loadAll() {
+	    return this.loadAll(getFormActionMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

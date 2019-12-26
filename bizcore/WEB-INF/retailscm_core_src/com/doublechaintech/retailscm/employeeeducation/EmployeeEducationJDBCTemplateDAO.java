@@ -53,6 +53,11 @@ public class EmployeeEducationJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<EmployeeEducation> loadAll() {
+	    return this.loadAll(getEmployeeEducationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

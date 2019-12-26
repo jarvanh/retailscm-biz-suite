@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.genericform.CandidateGenericForm;
 public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implements FormFieldManager {
 	
 	private static final String SERVICE_TYPE = "FormField";
+	@Override
+	public FormFieldDAO daoOf(RetailscmUserContext userContext) {
+		return formFieldDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	public FormField loadFormField(RetailscmUserContext userContext, String formFieldId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfFormField(formFieldId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormFieldManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormField(formFieldId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormFieldManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	 public FormField searchFormField(RetailscmUserContext userContext, String formFieldId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfFormField(formFieldId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormFieldManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormField(formFieldId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormFieldManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		addActions(userContext,formField,tokens);
 		
 		
-		FormField  formFieldToPresent = userContext.getDAOGroup().getFormFieldDAO().present(formField, tokens);
+		FormField  formFieldToPresent = formFieldDaoOf(userContext).present(formField, tokens);
 		
 		List<BaseEntity> entityListToNaming = formFieldToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getFormFieldDAO().alias(entityListToNaming);
+		formFieldDaoOf(userContext).alias(entityListToNaming);
 		
 		return  formFieldToPresent;
 		
@@ -123,14 +127,14 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		
  	}
  	protected FormField saveFormField(RetailscmUserContext userContext, FormField formField, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getFormFieldDAO().save(formField, tokens);
+ 		return formFieldDaoOf(userContext).save(formField, tokens);
  	}
  	protected FormField loadFormField(RetailscmUserContext userContext, String formFieldId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfFormField(formFieldId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormFieldManagerException.class);
+		checkerOf(userContext).checkIdOfFormField(formFieldId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormFieldManagerException.class);
 
  
- 		return userContext.getDAOGroup().getFormFieldDAO().load(formFieldId, tokens);
+ 		return formFieldDaoOf(userContext).load(formFieldId, tokens);
  	}
 
 	
@@ -160,31 +164,31 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	
 
-
-	public FormField createFormField(RetailscmUserContext userContext,String label, String localeKey, String parameterName, String type, String formId, String placeholder, String defaultValue, String description, String fieldGroup, String minimumValue, String maximumValue, boolean required, boolean disabled, boolean customRendering, String candidateValues, String suggestValues) throws Exception
+	public FormField createFormField(RetailscmUserContext userContext, String label,String localeKey,String parameterName,String type,String formId,String placeholder,String defaultValue,String description,String fieldGroup,String minimumValue,String maximumValue,boolean required,boolean disabled,boolean customRendering,String candidateValues,String suggestValues) throws Exception
+	//public FormField createFormField(RetailscmUserContext userContext,String label, String localeKey, String parameterName, String type, String formId, String placeholder, String defaultValue, String description, String fieldGroup, String minimumValue, String maximumValue, boolean required, boolean disabled, boolean customRendering, String candidateValues, String suggestValues) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLabelOfFormField(label);
-		userContext.getChecker().checkLocaleKeyOfFormField(localeKey);
-		userContext.getChecker().checkParameterNameOfFormField(parameterName);
-		userContext.getChecker().checkTypeOfFormField(type);
-		userContext.getChecker().checkPlaceholderOfFormField(placeholder);
-		userContext.getChecker().checkDefaultValueOfFormField(defaultValue);
-		userContext.getChecker().checkDescriptionOfFormField(description);
-		userContext.getChecker().checkFieldGroupOfFormField(fieldGroup);
-		userContext.getChecker().checkMinimumValueOfFormField(minimumValue);
-		userContext.getChecker().checkMaximumValueOfFormField(maximumValue);
-		userContext.getChecker().checkRequiredOfFormField(required);
-		userContext.getChecker().checkDisabledOfFormField(disabled);
-		userContext.getChecker().checkCustomRenderingOfFormField(customRendering);
-		userContext.getChecker().checkCandidateValuesOfFormField(candidateValues);
-		userContext.getChecker().checkSuggestValuesOfFormField(suggestValues);
+		checkerOf(userContext).checkLabelOfFormField(label);
+		checkerOf(userContext).checkLocaleKeyOfFormField(localeKey);
+		checkerOf(userContext).checkParameterNameOfFormField(parameterName);
+		checkerOf(userContext).checkTypeOfFormField(type);
+		checkerOf(userContext).checkPlaceholderOfFormField(placeholder);
+		checkerOf(userContext).checkDefaultValueOfFormField(defaultValue);
+		checkerOf(userContext).checkDescriptionOfFormField(description);
+		checkerOf(userContext).checkFieldGroupOfFormField(fieldGroup);
+		checkerOf(userContext).checkMinimumValueOfFormField(minimumValue);
+		checkerOf(userContext).checkMaximumValueOfFormField(maximumValue);
+		checkerOf(userContext).checkRequiredOfFormField(required);
+		checkerOf(userContext).checkDisabledOfFormField(disabled);
+		checkerOf(userContext).checkCustomRenderingOfFormField(customRendering);
+		checkerOf(userContext).checkCandidateValuesOfFormField(candidateValues);
+		checkerOf(userContext).checkSuggestValuesOfFormField(suggestValues);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(FormFieldManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldManagerException.class);
 
 
 		FormField formField=createNewFormField();	
@@ -229,59 +233,59 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 
 		
 		
-		userContext.getChecker().checkIdOfFormField(formFieldId);
-		userContext.getChecker().checkVersionOfFormField( formFieldVersion);
+		checkerOf(userContext).checkIdOfFormField(formFieldId);
+		checkerOf(userContext).checkVersionOfFormField( formFieldVersion);
 		
 
 		if(FormField.LABEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLabelOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkLabelOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.LOCALE_KEY_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocaleKeyOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkLocaleKeyOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.PARAMETER_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkParameterNameOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkParameterNameOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTypeOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkTypeOfFormField(parseString(newValueExpr));
 		}		
 
 		
 		if(FormField.PLACEHOLDER_PROPERTY.equals(property)){
-			userContext.getChecker().checkPlaceholderOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkPlaceholderOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.DEFAULT_VALUE_PROPERTY.equals(property)){
-			userContext.getChecker().checkDefaultValueOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkDefaultValueOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.FIELD_GROUP_PROPERTY.equals(property)){
-			userContext.getChecker().checkFieldGroupOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkFieldGroupOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.MINIMUM_VALUE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMinimumValueOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkMinimumValueOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.MAXIMUM_VALUE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMaximumValueOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkMaximumValueOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.REQUIRED_PROPERTY.equals(property)){
-			userContext.getChecker().checkRequiredOfFormField(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkRequiredOfFormField(parseBoolean(newValueExpr));
 		}
 		if(FormField.DISABLED_PROPERTY.equals(property)){
-			userContext.getChecker().checkDisabledOfFormField(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkDisabledOfFormField(parseBoolean(newValueExpr));
 		}
 		if(FormField.CUSTOM_RENDERING_PROPERTY.equals(property)){
-			userContext.getChecker().checkCustomRenderingOfFormField(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkCustomRenderingOfFormField(parseBoolean(newValueExpr));
 		}
 		if(FormField.CANDIDATE_VALUES_PROPERTY.equals(property)){
-			userContext.getChecker().checkCandidateValuesOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkCandidateValuesOfFormField(parseString(newValueExpr));
 		}
 		if(FormField.SUGGEST_VALUES_PROPERTY.equals(property)){
-			userContext.getChecker().checkSuggestValuesOfFormField(parseString(newValueExpr));
+			checkerOf(userContext).checkSuggestValuesOfFormField(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(FormFieldManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldManagerException.class);
 	
 		
 	}
@@ -290,7 +294,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	public FormField clone(RetailscmUserContext userContext, String fromFormFieldId) throws Exception{
 		
-		return userContext.getDAOGroup().getFormFieldDAO().clone(fromFormFieldId, this.allTokens());
+		return formFieldDaoOf(userContext).clone(fromFormFieldId, this.allTokens());
 	}
 	
 	public FormField internalSaveFormField(RetailscmUserContext userContext, FormField formField) throws Exception 
@@ -388,9 +392,9 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForTransferingAnotherForm(RetailscmUserContext userContext, String formFieldId, String anotherFormId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfFormField(formFieldId);
- 		userContext.getChecker().checkIdOfGenericForm(anotherFormId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(FormFieldManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormField(formFieldId);
+ 		checkerOf(userContext).checkIdOfGenericForm(anotherFormId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldManagerException.class);
  		
  	}
  	public FormField transferToAnotherForm(RetailscmUserContext userContext, String formFieldId, String anotherFormId) throws Exception
@@ -427,7 +431,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<GenericForm> candidateList = userContext.getDAOGroup().getGenericFormDAO().requestCandidateGenericFormForFormField(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<GenericForm> candidateList = genericFormDaoOf(userContext).requestCandidateGenericFormForFormField(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -440,7 +444,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
  	protected GenericForm loadGenericForm(RetailscmUserContext userContext, String newFormId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getGenericFormDAO().load(newFormId, options);
+ 		return genericFormDaoOf(userContext).load(newFormId, options);
  	}
  	
  	
@@ -454,7 +458,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String formFieldId, int formFieldVersion) throws Exception{
 			
-		userContext.getDAOGroup().getFormFieldDAO().delete(formFieldId, formFieldVersion);
+		formFieldDaoOf(userContext).delete(formFieldId, formFieldVersion);
 	}
 	
 	public FormField forgetByAll(RetailscmUserContext userContext, String formFieldId, int formFieldVersion) throws Exception {
@@ -463,8 +467,9 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected FormField forgetByAllInternal(RetailscmUserContext userContext,
 			String formFieldId, int formFieldVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getFormFieldDAO().disconnectFromAll(formFieldId, formFieldVersion);
+		return formFieldDaoOf(userContext).disconnectFromAll(formFieldId, formFieldVersion);
 	}
+	
 	
 
 	
@@ -481,7 +486,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getFormFieldDAO().deleteAll();
+		return formFieldDaoOf(userContext).deleteAll();
 	}
 
 

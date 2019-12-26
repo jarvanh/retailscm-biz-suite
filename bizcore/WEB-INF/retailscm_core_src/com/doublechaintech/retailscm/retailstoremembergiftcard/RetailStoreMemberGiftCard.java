@@ -78,15 +78,6 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		this.changed = true;
 	}
 	
-	public 	RetailStoreMemberGiftCard(String name, RetailStoreMember owner, String number, BigDecimal remain)
-	{
-		setName(name);
-		setOwner(owner);
-		setNumber(number);
-		setRemain(remain);
-
-		this.mRetailStoreMemberGiftCardConsumeRecordList = new SmartList<RetailStoreMemberGiftCardConsumeRecord>();	
-	}
 	
 	//Support for changing the property
 	

@@ -63,6 +63,11 @@ public class OriginalVoucherConfirmationJDBCTemplateDAO extends RetailscmBaseDAO
 	}
 	*/
 	
+	public SmartList<OriginalVoucherConfirmation> loadAll() {
+	    return this.loadAll(getOriginalVoucherConfirmationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -558,6 +563,94 @@ public class OriginalVoucherConfirmationJDBCTemplateDAO extends RetailscmBaseDAO
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, originalVoucherConfirmationId);
 		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, belongsToId);
+		
+		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OriginalVoucherConfirmation with creation in OriginalVoucher
+	public OriginalVoucherConfirmation planToRemoveOriginalVoucherListWithCreation(OriginalVoucherConfirmation originalVoucherConfirmation, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, originalVoucherConfirmation.getId());
+		key.put(OriginalVoucher.CREATION_PROPERTY, creationId);
+		
+		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
+				findOriginalVoucherWithKey(key, options);
+		if(externalOriginalVoucherList == null){
+			return originalVoucherConfirmation;
+		}
+		if(externalOriginalVoucherList.isEmpty()){
+			return originalVoucherConfirmation;
+		}
+		
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
+			originalVoucherItem.clearCreation();
+			originalVoucherItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<OriginalVoucher> originalVoucherList = originalVoucherConfirmation.getOriginalVoucherList();		
+		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
+		return originalVoucherConfirmation;
+	}
+	
+	public int countOriginalVoucherListWithCreation(String originalVoucherConfirmationId, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, originalVoucherConfirmationId);
+		key.put(OriginalVoucher.CREATION_PROPERTY, creationId);
+		
+		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect OriginalVoucherConfirmation with auditing in OriginalVoucher
+	public OriginalVoucherConfirmation planToRemoveOriginalVoucherListWithAuditing(OriginalVoucherConfirmation originalVoucherConfirmation, String auditingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, originalVoucherConfirmation.getId());
+		key.put(OriginalVoucher.AUDITING_PROPERTY, auditingId);
+		
+		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
+				findOriginalVoucherWithKey(key, options);
+		if(externalOriginalVoucherList == null){
+			return originalVoucherConfirmation;
+		}
+		if(externalOriginalVoucherList.isEmpty()){
+			return originalVoucherConfirmation;
+		}
+		
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
+			originalVoucherItem.clearAuditing();
+			originalVoucherItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<OriginalVoucher> originalVoucherList = originalVoucherConfirmation.getOriginalVoucherList();		
+		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
+		return originalVoucherConfirmation;
+	}
+	
+	public int countOriginalVoucherListWithAuditing(String originalVoucherConfirmationId, String auditingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, originalVoucherConfirmationId);
+		key.put(OriginalVoucher.AUDITING_PROPERTY, auditingId);
 		
 		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
 		return count;

@@ -53,6 +53,11 @@ public class UserWhiteListJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<UserWhiteList> loadAll() {
+	    return this.loadAll(getUserWhiteListMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

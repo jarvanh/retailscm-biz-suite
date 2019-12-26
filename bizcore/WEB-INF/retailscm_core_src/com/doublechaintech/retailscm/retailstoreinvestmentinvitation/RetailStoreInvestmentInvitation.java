@@ -70,12 +70,6 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
 		this.changed = true;
 	}
 	
-	public 	RetailStoreInvestmentInvitation(String comment)
-	{
-		setComment(comment);
-
-		this.mRetailStoreList = new SmartList<RetailStore>();	
-	}
 	
 	//Support for changing the property
 	

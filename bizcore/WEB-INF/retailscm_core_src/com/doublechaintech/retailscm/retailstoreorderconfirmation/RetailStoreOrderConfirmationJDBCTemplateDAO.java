@@ -63,6 +63,11 @@ public class RetailStoreOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDA
 	}
 	*/
 	
+	public SmartList<RetailStoreOrderConfirmation> loadAll() {
+	    return this.loadAll(getRetailStoreOrderConfirmationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -600,6 +605,226 @@ public class RetailStoreOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDA
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmationId);
 		key.put(RetailStoreOrder.SELLER_PROPERTY, sellerId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderConfirmation with approval in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithApproval(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmation.getId());
+		key.put(RetailStoreOrder.APPROVAL_PROPERTY, approvalId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderConfirmation;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderConfirmation;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearApproval();
+			retailStoreOrderItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderConfirmation.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderConfirmation;
+	}
+	
+	public int countRetailStoreOrderListWithApproval(String retailStoreOrderConfirmationId, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmationId);
+		key.put(RetailStoreOrder.APPROVAL_PROPERTY, approvalId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderConfirmation with processing in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithProcessing(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmation.getId());
+		key.put(RetailStoreOrder.PROCESSING_PROPERTY, processingId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderConfirmation;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderConfirmation;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearProcessing();
+			retailStoreOrderItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderConfirmation.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderConfirmation;
+	}
+	
+	public int countRetailStoreOrderListWithProcessing(String retailStoreOrderConfirmationId, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmationId);
+		key.put(RetailStoreOrder.PROCESSING_PROPERTY, processingId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderConfirmation with picking in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithPicking(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmation.getId());
+		key.put(RetailStoreOrder.PICKING_PROPERTY, pickingId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderConfirmation;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderConfirmation;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearPicking();
+			retailStoreOrderItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderConfirmation.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderConfirmation;
+	}
+	
+	public int countRetailStoreOrderListWithPicking(String retailStoreOrderConfirmationId, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmationId);
+		key.put(RetailStoreOrder.PICKING_PROPERTY, pickingId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderConfirmation with shipment in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithShipment(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmation.getId());
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderConfirmation;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderConfirmation;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearShipment();
+			retailStoreOrderItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderConfirmation.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderConfirmation;
+	}
+	
+	public int countRetailStoreOrderListWithShipment(String retailStoreOrderConfirmationId, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmationId);
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreOrderConfirmation with delivery in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithDelivery(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmation.getId());
+		key.put(RetailStoreOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreOrderConfirmation;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreOrderConfirmation;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearDelivery();
+			retailStoreOrderItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreOrderConfirmation.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreOrderConfirmation;
+	}
+	
+	public int countRetailStoreOrderListWithDelivery(String retailStoreOrderConfirmationId, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmationId);
+		key.put(RetailStoreOrder.DELIVERY_PROPERTY, deliveryId);
 		
 		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
 		return count;

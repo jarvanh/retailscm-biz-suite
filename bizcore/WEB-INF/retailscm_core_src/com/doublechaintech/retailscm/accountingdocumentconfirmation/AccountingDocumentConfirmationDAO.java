@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountingdocumentconfirmation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
-public interface AccountingDocumentConfirmationDAO{
+public interface AccountingDocumentConfirmationDAO extends BaseDAO{
 
-	
+	public SmartList<AccountingDocumentConfirmation> loadAll();
 	public AccountingDocumentConfirmation load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<AccountingDocumentConfirmation> accountingDocumentConfirmationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -57,6 +58,18 @@ public interface AccountingDocumentConfirmationDAO{
 	//disconnect AccountingDocumentConfirmation with document_type in AccountingDocument
 	public AccountingDocumentConfirmation planToRemoveAccountingDocumentListWithDocumentType(AccountingDocumentConfirmation accountingDocumentConfirmation, String documentTypeId, Map<String,Object> options)throws Exception;
 	public int countAccountingDocumentListWithDocumentType(String accountingDocumentConfirmationId, String documentTypeId, Map<String,Object> options)throws Exception;
+	
+	//disconnect AccountingDocumentConfirmation with creation in AccountingDocument
+	public AccountingDocumentConfirmation planToRemoveAccountingDocumentListWithCreation(AccountingDocumentConfirmation accountingDocumentConfirmation, String creationId, Map<String,Object> options)throws Exception;
+	public int countAccountingDocumentListWithCreation(String accountingDocumentConfirmationId, String creationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect AccountingDocumentConfirmation with auditing in AccountingDocument
+	public AccountingDocumentConfirmation planToRemoveAccountingDocumentListWithAuditing(AccountingDocumentConfirmation accountingDocumentConfirmation, String auditingId, Map<String,Object> options)throws Exception;
+	public int countAccountingDocumentListWithAuditing(String accountingDocumentConfirmationId, String auditingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect AccountingDocumentConfirmation with posting in AccountingDocument
+	public AccountingDocumentConfirmation planToRemoveAccountingDocumentListWithPosting(AccountingDocumentConfirmation accountingDocumentConfirmation, String postingId, Map<String,Object> options)throws Exception;
+	public int countAccountingDocumentListWithPosting(String accountingDocumentConfirmationId, String postingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<AccountingDocumentConfirmation> queryList(String sql, Object ... parmeters);

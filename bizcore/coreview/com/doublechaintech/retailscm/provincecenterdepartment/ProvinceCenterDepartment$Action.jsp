@@ -20,7 +20,7 @@
 	<li><span>${userContext.localeMap['province_center_department.id']}</span> ${provinceCenterDepartment.id}</li>
 <li><span>${userContext.localeMap['province_center_department.name']}</span> ${provinceCenterDepartment.name}</li>
 <li><span>${userContext.localeMap['province_center_department.founded']}</span> <fmt:formatDate pattern="yyyy-MM-dd" value="${provinceCenterDepartment.founded}" /></li>
-<li><span>${userContext.localeMap['province_center_department.manager']}</span> ${provinceCenterDepartment.manager}</li>
+<li><span>${userContext.localeMap['province_center_department.manager_name']}</span> ${provinceCenterDepartment.managerName}</li>
 
 	
 	</ul>

@@ -74,6 +74,11 @@ public class LeaveTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Le
 	}
 	*/
 	
+	public SmartList<LeaveType> loadAll() {
+	    return this.loadAll(getLeaveTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

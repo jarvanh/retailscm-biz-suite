@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.levelthreecategory.LevelThreeCategory;
 public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager implements LevelThreeCategoryManager {
 	
 	private static final String SERVICE_TYPE = "LevelThreeCategory";
+	@Override
+	public LevelThreeCategoryDAO daoOf(RetailscmUserContext userContext) {
+		return levelThreeCategoryDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
  	
  	public LevelThreeCategory loadLevelThreeCategory(RetailscmUserContext userContext, String levelThreeCategoryId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelThreeCategoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelThreeCategoryManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
  	
  	 public LevelThreeCategory searchLevelThreeCategory(RetailscmUserContext userContext, String levelThreeCategoryId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelThreeCategoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelThreeCategoryManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 		addActions(userContext,levelThreeCategory,tokens);
 		
 		
-		LevelThreeCategory  levelThreeCategoryToPresent = userContext.getDAOGroup().getLevelThreeCategoryDAO().present(levelThreeCategory, tokens);
+		LevelThreeCategory  levelThreeCategoryToPresent = levelThreeCategoryDaoOf(userContext).present(levelThreeCategory, tokens);
 		
 		List<BaseEntity> entityListToNaming = levelThreeCategoryToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getLevelThreeCategoryDAO().alias(entityListToNaming);
+		levelThreeCategoryDaoOf(userContext).alias(entityListToNaming);
 		
 		return  levelThreeCategoryToPresent;
 		
@@ -125,14 +129,14 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 		
  	}
  	protected LevelThreeCategory saveLevelThreeCategory(RetailscmUserContext userContext, LevelThreeCategory levelThreeCategory, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getLevelThreeCategoryDAO().save(levelThreeCategory, tokens);
+ 		return levelThreeCategoryDaoOf(userContext).save(levelThreeCategory, tokens);
  	}
  	protected LevelThreeCategory loadLevelThreeCategory(RetailscmUserContext userContext, String levelThreeCategoryId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelThreeCategoryManagerException.class);
 
  
- 		return userContext.getDAOGroup().getLevelThreeCategoryDAO().load(levelThreeCategoryId, tokens);
+ 		return levelThreeCategoryDaoOf(userContext).load(levelThreeCategoryId, tokens);
  	}
 
 	
@@ -166,17 +170,17 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
  	
  	
 
-
-	public LevelThreeCategory createLevelThreeCategory(RetailscmUserContext userContext,String parentCategoryId, String name) throws Exception
+	public LevelThreeCategory createLevelThreeCategory(RetailscmUserContext userContext, String parentCategoryId,String name) throws Exception
+	//public LevelThreeCategory createLevelThreeCategory(RetailscmUserContext userContext,String parentCategoryId, String name) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfLevelThreeCategory(name);
+		checkerOf(userContext).checkNameOfLevelThreeCategory(name);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 
 
 		LevelThreeCategory levelThreeCategory=createNewLevelThreeCategory();	
@@ -207,17 +211,17 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 
 		
 		
-		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-		userContext.getChecker().checkVersionOfLevelThreeCategory( levelThreeCategoryVersion);
+		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		checkerOf(userContext).checkVersionOfLevelThreeCategory( levelThreeCategoryVersion);
 		
 		
 
 		
 		if(LevelThreeCategory.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfLevelThreeCategory(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfLevelThreeCategory(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 	
 		
 	}
@@ -226,7 +230,7 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	
 	public LevelThreeCategory clone(RetailscmUserContext userContext, String fromLevelThreeCategoryId) throws Exception{
 		
-		return userContext.getDAOGroup().getLevelThreeCategoryDAO().clone(fromLevelThreeCategoryId, this.allTokens());
+		return levelThreeCategoryDaoOf(userContext).clone(fromLevelThreeCategoryId, this.allTokens());
 	}
 	
 	public LevelThreeCategory internalSaveLevelThreeCategory(RetailscmUserContext userContext, LevelThreeCategory levelThreeCategory) throws Exception 
@@ -325,9 +329,9 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForTransferingAnotherParentCategory(RetailscmUserContext userContext, String levelThreeCategoryId, String anotherParentCategoryId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
- 		userContext.getChecker().checkIdOfLevelTwoCategory(anotherParentCategoryId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+ 		checkerOf(userContext).checkIdOfLevelTwoCategory(anotherParentCategoryId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
  		
  	}
  	public LevelThreeCategory transferToAnotherParentCategory(RetailscmUserContext userContext, String levelThreeCategoryId, String anotherParentCategoryId) throws Exception
@@ -364,7 +368,7 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<LevelTwoCategory> candidateList = userContext.getDAOGroup().getLevelTwoCategoryDAO().requestCandidateLevelTwoCategoryForLevelThreeCategory(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<LevelTwoCategory> candidateList = levelTwoCategoryDaoOf(userContext).requestCandidateLevelTwoCategoryForLevelThreeCategory(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -377,7 +381,7 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
  	protected LevelTwoCategory loadLevelTwoCategory(RetailscmUserContext userContext, String newParentCategoryId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getLevelTwoCategoryDAO().load(newParentCategoryId, options);
+ 		return levelTwoCategoryDaoOf(userContext).load(newParentCategoryId, options);
  	}
  	
  	
@@ -391,7 +395,7 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String levelThreeCategoryId, int levelThreeCategoryVersion) throws Exception{
 			
-		userContext.getDAOGroup().getLevelThreeCategoryDAO().delete(levelThreeCategoryId, levelThreeCategoryVersion);
+		levelThreeCategoryDaoOf(userContext).delete(levelThreeCategoryId, levelThreeCategoryVersion);
 	}
 	
 	public LevelThreeCategory forgetByAll(RetailscmUserContext userContext, String levelThreeCategoryId, int levelThreeCategoryVersion) throws Exception {
@@ -400,8 +404,9 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	protected LevelThreeCategory forgetByAllInternal(RetailscmUserContext userContext,
 			String levelThreeCategoryId, int levelThreeCategoryVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getLevelThreeCategoryDAO().disconnectFromAll(levelThreeCategoryId, levelThreeCategoryVersion);
+		return levelThreeCategoryDaoOf(userContext).disconnectFromAll(levelThreeCategoryId, levelThreeCategoryVersion);
 	}
+	
 	
 
 	
@@ -418,7 +423,7 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getLevelThreeCategoryDAO().deleteAll();
+		return levelThreeCategoryDaoOf(userContext).deleteAll();
 	}
 
 
@@ -430,24 +435,20 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 
 	protected void checkParamsForAddingProduct(RetailscmUserContext userContext, String levelThreeCategoryId, String name, String origin, String remark, String brand, String picture,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
 
 		
+		checkerOf(userContext).checkNameOfProduct(name);
 		
-		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-
+		checkerOf(userContext).checkOriginOfProduct(origin);
 		
-		userContext.getChecker().checkNameOfProduct(name);
+		checkerOf(userContext).checkRemarkOfProduct(remark);
 		
-		userContext.getChecker().checkOriginOfProduct(origin);
+		checkerOf(userContext).checkBrandOfProduct(brand);
 		
-		userContext.getChecker().checkRemarkOfProduct(remark);
-		
-		userContext.getChecker().checkBrandOfProduct(brand);
-		
-		userContext.getChecker().checkPictureOfProduct(picture);
+		checkerOf(userContext).checkPictureOfProduct(picture);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 
 	
 	}
@@ -471,16 +472,16 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	}
 	protected void checkParamsForUpdatingProductProperties(RetailscmUserContext userContext, String levelThreeCategoryId,String id,String name,String origin,String remark,String brand,String picture,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-		userContext.getChecker().checkIdOfProduct(id);
+		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		checkerOf(userContext).checkIdOfProduct(id);
 		
-		userContext.getChecker().checkNameOfProduct( name);
-		userContext.getChecker().checkOriginOfProduct( origin);
-		userContext.getChecker().checkRemarkOfProduct( remark);
-		userContext.getChecker().checkBrandOfProduct( brand);
-		userContext.getChecker().checkPictureOfProduct( picture);
+		checkerOf(userContext).checkNameOfProduct( name);
+		checkerOf(userContext).checkOriginOfProduct( origin);
+		checkerOf(userContext).checkRemarkOfProduct( remark);
+		checkerOf(userContext).checkBrandOfProduct( brand);
+		checkerOf(userContext).checkPictureOfProduct( picture);
 
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 		
 	}
 	public  LevelThreeCategory updateProductProperties(RetailscmUserContext userContext, String levelThreeCategoryId, String id,String name,String origin,String remark,String brand,String picture, String [] tokensExpr) throws Exception
@@ -545,12 +546,18 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingProductList(RetailscmUserContext userContext, String levelThreeCategoryId, 
 			String productIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
 		for(String productIdItem: productIds){
 			userContext.getChecker().checkIdOfProduct(productIdItem);
+=======
+		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		for(String productIdItem: productIds){
+			checkerOf(userContext).checkIdOfProduct(productIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 		
 	}
 	public  LevelThreeCategory removeProductList(RetailscmUserContext userContext, String levelThreeCategoryId, 
@@ -563,7 +570,7 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 			synchronized(levelThreeCategory){ 
 				//Will be good when the levelThreeCategory loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getLevelThreeCategoryDAO().planToRemoveProductList(levelThreeCategory, productIds, allTokens());
+				levelThreeCategoryDaoOf(userContext).planToRemoveProductList(levelThreeCategory, productIds, allTokens());
 				levelThreeCategory = saveLevelThreeCategory(userContext, levelThreeCategory, tokens().withProductList().done());
 				deleteRelationListInGraph(userContext, levelThreeCategory.getProductList());
 				return present(userContext,levelThreeCategory, mergedAllTokens(tokensExpr));
@@ -573,10 +580,10 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingProduct(RetailscmUserContext userContext, String levelThreeCategoryId, 
 		String productId, int productVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLevelThreeCategory( levelThreeCategoryId);
-		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().checkVersionOfProduct(productVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).checkIdOfLevelThreeCategory( levelThreeCategoryId);
+		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).checkVersionOfProduct(productVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 	
 	}
 	public  LevelThreeCategory removeProduct(RetailscmUserContext userContext, String levelThreeCategoryId, 
@@ -600,10 +607,10 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForCopyingProduct(RetailscmUserContext userContext, String levelThreeCategoryId, 
 		String productId, int productVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLevelThreeCategory( levelThreeCategoryId);
-		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().checkVersionOfProduct(productVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).checkIdOfLevelThreeCategory( levelThreeCategoryId);
+		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).checkVersionOfProduct(productVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 	
 	}
 	public  LevelThreeCategory copyProductFrom(RetailscmUserContext userContext, String levelThreeCategoryId, 
@@ -632,33 +639,33 @@ public class LevelThreeCategoryManagerImpl extends CustomRetailscmCheckerManager
 		
 
 		
-		userContext.getChecker().checkIdOfLevelThreeCategory(levelThreeCategoryId);
-		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().checkVersionOfProduct(productVersion);
+		checkerOf(userContext).checkIdOfLevelThreeCategory(levelThreeCategoryId);
+		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).checkVersionOfProduct(productVersion);
 		
 
 		if(Product.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfProduct(parseString(newValueExpr));
 		}
 		
 		if(Product.ORIGIN_PROPERTY.equals(property)){
-			userContext.getChecker().checkOriginOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkOriginOfProduct(parseString(newValueExpr));
 		}
 		
 		if(Product.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfProduct(parseString(newValueExpr));
 		}
 		
 		if(Product.BRAND_PROPERTY.equals(property)){
-			userContext.getChecker().checkBrandOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkBrandOfProduct(parseString(newValueExpr));
 		}
 		
 		if(Product.PICTURE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPictureOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkPictureOfProduct(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeCategoryManagerException.class);
 	
 	}
 	

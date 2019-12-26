@@ -411,6 +411,9 @@ public class BaseChecker {
 	}
 	protected void checkEmail(String value, int min, int max,
 			String propertyKey) {
+		if (min == 0 && (value==null || value.isEmpty())) {
+			return;
+		}
 		checkStringLengthRange(value, 5, 256, propertyKey);
 		/*
 		 * The maximum length is specified in RFC 5321: "The maximum total length of 
@@ -507,6 +510,7 @@ public class BaseChecker {
 
 			return;
 		}
+<<<<<<< HEAD
 
 	}
 	public void throwExceptionIfHasErrors(Class<? extends Exception> exceptionClazz) throws Exception {
@@ -540,6 +544,41 @@ public class BaseChecker {
 		Class [] classes = {List.class};
 		throw  exceptionClazz.getDeclaredConstructor(classes).newInstance(messageList);
 
+=======
+
+	}
+	public void throwExceptionIfHasErrors(Class<? extends Exception> exceptionClazz) throws Exception {
+		if(messageList.isEmpty()){
+			return;
+		}
+		if(userContext==null) {
+			Class [] classes = {List.class};
+			throw  exceptionClazz.getDeclaredConstructor(classes).newInstance(messageList);
+		}
+		for(Message message: messageList){
+			String subject = message.getSubject();
+			String template = userContext.getLocaleKey(subject);
+			if(template==null){
+				//not found, it is fine to use hard coded value
+				userContext.log("Check Result "+message.getBody());
+				continue;
+			}
+			MessageFormat mf = new MessageFormat(template);
+			
+			String labelKey = message.getFirstParam();
+			String newLabel = userContext.getLocaleKey(labelKey);
+			message.setFirstParam(newLabel);
+			String newBody = mf.format(message.getParameters());
+			message.setBody(newBody);
+			userContext.log("Check Result "+message.getBody());
+			
+		}
+		
+		
+		Class [] classes = {List.class};
+		throw  exceptionClazz.getDeclaredConstructor(classes).newInstance(messageList);
+
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 	}
 	

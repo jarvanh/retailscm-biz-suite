@@ -63,6 +63,11 @@ public class HrInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	}
 	*/
 	
+	public SmartList<HrInterview> loadAll() {
+	    return this.loadAll(getHrInterviewMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -734,6 +739,270 @@ public class HrInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
 		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, currentSalaryGradeId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect HrInterview with job_application in Employee
+	public HrInterview planToRemoveEmployeeListWithJobApplication(HrInterview hrInterview, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterview.getId());
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return hrInterview;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return hrInterview;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearJobApplication();
+			employeeItem.clearHrInterview();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = hrInterview.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return hrInterview;
+	}
+	
+	public int countEmployeeListWithJobApplication(String hrInterviewId, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect HrInterview with profession_interview in Employee
+	public HrInterview planToRemoveEmployeeListWithProfessionInterview(HrInterview hrInterview, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterview.getId());
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return hrInterview;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return hrInterview;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearProfessionInterview();
+			employeeItem.clearHrInterview();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = hrInterview.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return hrInterview;
+	}
+	
+	public int countEmployeeListWithProfessionInterview(String hrInterviewId, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect HrInterview with offer_approval in Employee
+	public HrInterview planToRemoveEmployeeListWithOfferApproval(HrInterview hrInterview, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterview.getId());
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return hrInterview;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return hrInterview;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOfferApproval();
+			employeeItem.clearHrInterview();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = hrInterview.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return hrInterview;
+	}
+	
+	public int countEmployeeListWithOfferApproval(String hrInterviewId, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect HrInterview with offer_acceptance in Employee
+	public HrInterview planToRemoveEmployeeListWithOfferAcceptance(HrInterview hrInterview, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterview.getId());
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return hrInterview;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return hrInterview;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearOfferAcceptance();
+			employeeItem.clearHrInterview();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = hrInterview.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return hrInterview;
+	}
+	
+	public int countEmployeeListWithOfferAcceptance(String hrInterviewId, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect HrInterview with employee_boarding in Employee
+	public HrInterview planToRemoveEmployeeListWithEmployeeBoarding(HrInterview hrInterview, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterview.getId());
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return hrInterview;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return hrInterview;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearEmployeeBoarding();
+			employeeItem.clearHrInterview();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = hrInterview.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return hrInterview;
+	}
+	
+	public int countEmployeeListWithEmployeeBoarding(String hrInterviewId, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect HrInterview with termination in Employee
+	public HrInterview planToRemoveEmployeeListWithTermination(HrInterview hrInterview, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterview.getId());
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return hrInterview;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return hrInterview;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearTermination();
+			employeeItem.clearHrInterview();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = hrInterview.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return hrInterview;
+	}
+	
+	public int countEmployeeListWithTermination(String hrInterviewId, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
 		
 		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
 		return count;

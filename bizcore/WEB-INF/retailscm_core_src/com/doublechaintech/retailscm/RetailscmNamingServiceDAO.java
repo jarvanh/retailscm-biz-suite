@@ -144,7 +144,7 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("Instructor", new String[]{"instructor_data","title"});
 		namingTableMap.put("CompanyTraining", new String[]{"company_training_data","title"});
 		namingTableMap.put("Scoring", new String[]{"scoring_data","scored_by"});
-		namingTableMap.put("EmployeeCompanyTraining", new String[]{"employee_company_training_data","current_status"});
+		namingTableMap.put("EmployeeCompanyTraining", new String[]{"employee_company_training_data","id"});
 		namingTableMap.put("EmployeeSkill", new String[]{"employee_skill_data","description"});
 		namingTableMap.put("EmployeePerformance", new String[]{"employee_performance_data","performance_comment"});
 		namingTableMap.put("EmployeeWorkExperience", new String[]{"employee_work_experience_data","company"});
@@ -154,7 +154,7 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("EmployeeQualifier", new String[]{"employee_qualifier_data","type"});
 		namingTableMap.put("EmployeeEducation", new String[]{"employee_education_data","type"});
 		namingTableMap.put("EmployeeAward", new String[]{"employee_award_data","type"});
-		namingTableMap.put("EmployeeSalarySheet", new String[]{"employee_salary_sheet_data","current_status"});
+		namingTableMap.put("EmployeeSalarySheet", new String[]{"employee_salary_sheet_data","id"});
 		namingTableMap.put("PayingOff", new String[]{"paying_off_data","who"});
 		namingTableMap.put("UserDomain", new String[]{"user_domain_data","name"});
 		namingTableMap.put("UserWhiteList", new String[]{"user_white_list_data","user_identity"});
@@ -428,7 +428,68 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		
 	}*/
 	
+    public SmartList<BaseEntity> requestCandidateValuesForSearch(String ownerMemberName, String ownerId, String resultMemberName, String resutlClassName, String targetClassName, String filterKey, int pageNo){
+    	this.checkFieldName(resultMemberName);
+    	this.checkFieldName(resutlClassName);
+    	this.checkFieldName(ownerMemberName);
+    	this.checkFieldName(targetClassName);
+    	
+    	List<Object> params = new ArrayList<>();
+    	params.add(ownerId);
+    	
+    	String filterClause = " ";
+    	String joinClause = " ";
+    	if (filterKey != null && !filterKey.trim().isEmpty() ) {
+    		String[] sqlInfo=namingTableMap.get(targetClassName);
+    		if(sqlInfo==null){
+    			throw new IllegalArgumentException("sqlOf(String currentClassName): Not able to find sql info for filter class: "+targetClassName);
+    		}
+    		if(sqlInfo.length<2){
+    			throw new IllegalArgumentException("sqlOf(String currentClassName): sqlInfo.length should equals 2 for filter class: "+targetClassName);
+    			
+    		}
+    		String displayExpr = sqlInfo[1];
+    		joinClause = String.format(" left join %s_data T2 on T1.%s=T2.id ", mapToInternalColumn(targetClassName), mapToInternalColumn(resultMemberName));
+    		filterClause = String.format(" and T2.%s like ? ", displayExpr);
+    		params.add("%"+filterKey.trim()+"%");
+    	}
+    	String sql = String.format("select distinct T1.%s from %s_data T1%swhere T1.%s = ?%sorder by cast(%s as CHAR CHARACTER SET GBK) asc", 
+    			mapToInternalColumn(resultMemberName), mapToInternalColumn(resutlClassName), 
+    			joinClause,
+    			mapToInternalColumn(ownerMemberName), 
+    			filterClause,
+    			mapToInternalColumn(resultMemberName));
+    	// System.out.println(sql +" executed with " + params);
+    	List<String> keyList = getJdbcTemplateObject().queryForList(sql, params.toArray(), String.class);
+    	SmartList<BaseEntity> resultList = new SmartList<>();
+    	if (keyList == null) {
+    		return resultList;
+    	}
+    	keyList.forEach(key->{
+    		resultList.add(BaseEntity.pretendToBe(targetClassName, key));
+    	});
+    	this.alias(resultList);
+    	return resultList;
+    }
     
+    protected String mapToInternalColumn(String field){
+		char [] fieldArray = field.toCharArray();
+		StringBuilder internalFieldBuffer = new StringBuilder();
+		int i = 0;
+		for(char ch:fieldArray){
+			i++;
+			if(Character.isUpperCase(ch) ){
+				if (i > 1) {
+					internalFieldBuffer.append('_');
+				}
+				char lowerCaseChar = Character.toLowerCase(ch);
+				internalFieldBuffer.append(lowerCaseChar);
+				continue;
+			}
+			internalFieldBuffer.append(ch);
+		}
+		return internalFieldBuffer.toString();
+	}
 }
 
 

@@ -44,6 +44,10 @@ import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager implements EmployeeBoardingManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeBoarding";
+	@Override
+	public EmployeeBoardingDAO daoOf(RetailscmUserContext userContext) {
+		return employeeBoardingDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -77,8 +81,8 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
  	
  	public EmployeeBoarding loadEmployeeBoarding(RetailscmUserContext userContext, String employeeBoardingId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeBoardingManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeBoardingManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -91,8 +95,8 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
  	
  	 public EmployeeBoarding searchEmployeeBoarding(RetailscmUserContext userContext, String employeeBoardingId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeBoardingManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeBoardingManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -110,10 +114,10 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 		addActions(userContext,employeeBoarding,tokens);
 		
 		
-		EmployeeBoarding  employeeBoardingToPresent = userContext.getDAOGroup().getEmployeeBoardingDAO().present(employeeBoarding, tokens);
+		EmployeeBoarding  employeeBoardingToPresent = employeeBoardingDaoOf(userContext).present(employeeBoarding, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeBoardingToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeBoardingDAO().alias(entityListToNaming);
+		employeeBoardingDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeBoardingToPresent;
 		
@@ -134,14 +138,14 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 		
  	}
  	protected EmployeeBoarding saveEmployeeBoarding(RetailscmUserContext userContext, EmployeeBoarding employeeBoarding, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeBoardingDAO().save(employeeBoarding, tokens);
+ 		return employeeBoardingDaoOf(userContext).save(employeeBoarding, tokens);
  	}
  	protected EmployeeBoarding loadEmployeeBoarding(RetailscmUserContext userContext, String employeeBoardingId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeBoardingManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeBoardingManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeBoardingDAO().load(employeeBoardingId, tokens);
+ 		return employeeBoardingDaoOf(userContext).load(employeeBoardingId, tokens);
  	}
 
 	
@@ -174,19 +178,19 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
  	
  	
 
-
-	public EmployeeBoarding createEmployeeBoarding(RetailscmUserContext userContext,String who, Date employTime, String comments) throws Exception
+	public EmployeeBoarding createEmployeeBoarding(RetailscmUserContext userContext, String who,Date employTime,String comments) throws Exception
+	//public EmployeeBoarding createEmployeeBoarding(RetailscmUserContext userContext,String who, Date employTime, String comments) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfEmployeeBoarding(who);
-		userContext.getChecker().checkEmployTimeOfEmployeeBoarding(employTime);
-		userContext.getChecker().checkCommentsOfEmployeeBoarding(comments);
+		checkerOf(userContext).checkWhoOfEmployeeBoarding(who);
+		checkerOf(userContext).checkEmployTimeOfEmployeeBoarding(employTime);
+		checkerOf(userContext).checkCommentsOfEmployeeBoarding(comments);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 
 
 		EmployeeBoarding employeeBoarding=createNewEmployeeBoarding();	
@@ -214,21 +218,21 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-		userContext.getChecker().checkVersionOfEmployeeBoarding( employeeBoardingVersion);
+		checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
+		checkerOf(userContext).checkVersionOfEmployeeBoarding( employeeBoardingVersion);
 		
 
 		if(EmployeeBoarding.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfEmployeeBoarding(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfEmployeeBoarding(parseString(newValueExpr));
 		}
 		if(EmployeeBoarding.EMPLOY_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmployTimeOfEmployeeBoarding(parseDate(newValueExpr));
+			checkerOf(userContext).checkEmployTimeOfEmployeeBoarding(parseDate(newValueExpr));
 		}
 		if(EmployeeBoarding.COMMENTS_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentsOfEmployeeBoarding(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentsOfEmployeeBoarding(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 	
 		
 	}
@@ -237,7 +241,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	
 	public EmployeeBoarding clone(RetailscmUserContext userContext, String fromEmployeeBoardingId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeBoardingDAO().clone(fromEmployeeBoardingId, this.allTokens());
+		return employeeBoardingDaoOf(userContext).clone(fromEmployeeBoardingId, this.allTokens());
 	}
 	
 	public EmployeeBoarding internalSaveEmployeeBoarding(RetailscmUserContext userContext, EmployeeBoarding employeeBoarding) throws Exception 
@@ -343,7 +347,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeBoardingId, int employeeBoardingVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeBoardingDAO().delete(employeeBoardingId, employeeBoardingVersion);
+		employeeBoardingDaoOf(userContext).delete(employeeBoardingId, employeeBoardingVersion);
 	}
 	
 	public EmployeeBoarding forgetByAll(RetailscmUserContext userContext, String employeeBoardingId, int employeeBoardingVersion) throws Exception {
@@ -352,8 +356,9 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	protected EmployeeBoarding forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeBoardingId, int employeeBoardingVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeBoardingDAO().disconnectFromAll(employeeBoardingId, employeeBoardingVersion);
+		return employeeBoardingDaoOf(userContext).disconnectFromAll(employeeBoardingId, employeeBoardingVersion);
 	}
+	
 	
 
 	
@@ -370,7 +375,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeBoardingDAO().deleteAll();
+		return employeeBoardingDaoOf(userContext).deleteAll();
 	}
 
 
@@ -386,7 +391,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getEmployeeBoardingDAO().planToRemoveEmployeeListWithCompany(employeeBoarding, companyId, this.emptyOptions());
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithCompany(employeeBoarding, companyId, this.emptyOptions());
 
 				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
 				return employeeBoarding;
@@ -404,7 +409,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getEmployeeBoardingDAO().planToRemoveEmployeeListWithDepartment(employeeBoarding, departmentId, this.emptyOptions());
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithDepartment(employeeBoarding, departmentId, this.emptyOptions());
 
 				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
 				return employeeBoarding;
@@ -422,7 +427,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getEmployeeBoardingDAO().planToRemoveEmployeeListWithOccupation(employeeBoarding, occupationId, this.emptyOptions());
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithOccupation(employeeBoarding, occupationId, this.emptyOptions());
 
 				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
 				return employeeBoarding;
@@ -440,7 +445,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getEmployeeBoardingDAO().planToRemoveEmployeeListWithResponsibleFor(employeeBoarding, responsibleForId, this.emptyOptions());
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithResponsibleFor(employeeBoarding, responsibleForId, this.emptyOptions());
 
 				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
 				return employeeBoarding;
@@ -458,7 +463,115 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getEmployeeBoardingDAO().planToRemoveEmployeeListWithCurrentSalaryGrade(employeeBoarding, currentSalaryGradeId, this.emptyOptions());
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(employeeBoarding, currentSalaryGradeId, this.emptyOptions());
+
+				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
+				return employeeBoarding;
+			}
+	}
+	//disconnect EmployeeBoarding with job_application in Employee
+	protected EmployeeBoarding breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String employeeBoardingId, String jobApplicationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, allTokens());
+
+			synchronized(employeeBoarding){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(employeeBoarding, jobApplicationId, this.emptyOptions());
+
+				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
+				return employeeBoarding;
+			}
+	}
+	//disconnect EmployeeBoarding with profession_interview in Employee
+	protected EmployeeBoarding breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String employeeBoardingId, String professionInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, allTokens());
+
+			synchronized(employeeBoarding){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(employeeBoarding, professionInterviewId, this.emptyOptions());
+
+				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
+				return employeeBoarding;
+			}
+	}
+	//disconnect EmployeeBoarding with hr_interview in Employee
+	protected EmployeeBoarding breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String employeeBoardingId, String hrInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, allTokens());
+
+			synchronized(employeeBoarding){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(employeeBoarding, hrInterviewId, this.emptyOptions());
+
+				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
+				return employeeBoarding;
+			}
+	}
+	//disconnect EmployeeBoarding with offer_approval in Employee
+	protected EmployeeBoarding breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String employeeBoardingId, String offerApprovalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, allTokens());
+
+			synchronized(employeeBoarding){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(employeeBoarding, offerApprovalId, this.emptyOptions());
+
+				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
+				return employeeBoarding;
+			}
+	}
+	//disconnect EmployeeBoarding with offer_acceptance in Employee
+	protected EmployeeBoarding breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String employeeBoardingId, String offerAcceptanceId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, allTokens());
+
+			synchronized(employeeBoarding){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(employeeBoarding, offerAcceptanceId, this.emptyOptions());
+
+				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
+				return employeeBoarding;
+			}
+	}
+	//disconnect EmployeeBoarding with termination in Employee
+	protected EmployeeBoarding breakWithEmployeeByTermination(RetailscmUserContext userContext, String employeeBoardingId, String terminationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, allTokens());
+
+			synchronized(employeeBoarding){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeListWithTermination(employeeBoarding, terminationId, this.emptyOptions());
 
 				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
 				return employeeBoarding;
@@ -470,51 +583,59 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	
 	
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String employeeBoardingId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String employeeBoardingId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String terminationId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
 
 		
+		checkerOf(userContext).checkCompanyIdOfEmployee(companyId);
 		
-		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-
+		checkerOf(userContext).checkTitleOfEmployee(title);
 		
-		userContext.getChecker().checkCompanyIdOfEmployee(companyId);
+		checkerOf(userContext).checkDepartmentIdOfEmployee(departmentId);
 		
-		userContext.getChecker().checkTitleOfEmployee(title);
+		checkerOf(userContext).checkFamilyNameOfEmployee(familyName);
 		
-		userContext.getChecker().checkDepartmentIdOfEmployee(departmentId);
+		checkerOf(userContext).checkGivenNameOfEmployee(givenName);
 		
-		userContext.getChecker().checkFamilyNameOfEmployee(familyName);
+		checkerOf(userContext).checkEmailOfEmployee(email);
 		
-		userContext.getChecker().checkGivenNameOfEmployee(givenName);
+		checkerOf(userContext).checkCityOfEmployee(city);
 		
-		userContext.getChecker().checkEmailOfEmployee(email);
+		checkerOf(userContext).checkAddressOfEmployee(address);
 		
-		userContext.getChecker().checkCityOfEmployee(city);
+		checkerOf(userContext).checkCellPhoneOfEmployee(cellPhone);
 		
-		userContext.getChecker().checkAddressOfEmployee(address);
+		checkerOf(userContext).checkOccupationIdOfEmployee(occupationId);
 		
-		userContext.getChecker().checkCellPhoneOfEmployee(cellPhone);
+		checkerOf(userContext).checkResponsibleForIdOfEmployee(responsibleForId);
 		
-		userContext.getChecker().checkOccupationIdOfEmployee(occupationId);
+		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
-		userContext.getChecker().checkResponsibleForIdOfEmployee(responsibleForId);
+		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
 		
-		userContext.getChecker().checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
+		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
 		
-		userContext.getChecker().checkSalaryAccountOfEmployee(salaryAccount);
+		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
+		
+		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
+		
+		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
+		
+		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
+		
+		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 
 	
 	}
-	public  EmployeeBoarding addEmployee(RetailscmUserContext userContext, String employeeBoardingId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	public  EmployeeBoarding addEmployee(RetailscmUserContext userContext, String employeeBoardingId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String terminationId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployee(userContext,employeeBoardingId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount,tokensExpr);
+		checkParamsForAddingEmployee(userContext,employeeBoardingId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, terminationId,tokensExpr);
 		
-		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount);
+		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, terminationId);
 		
 		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, allTokens());
 		synchronized(employeeBoarding){ 
@@ -529,19 +650,19 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String employeeBoardingId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-		userContext.getChecker().checkIdOfEmployee(id);
+		checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
+		checkerOf(userContext).checkIdOfEmployee(id);
 		
-		userContext.getChecker().checkTitleOfEmployee( title);
-		userContext.getChecker().checkFamilyNameOfEmployee( familyName);
-		userContext.getChecker().checkGivenNameOfEmployee( givenName);
-		userContext.getChecker().checkEmailOfEmployee( email);
-		userContext.getChecker().checkCityOfEmployee( city);
-		userContext.getChecker().checkAddressOfEmployee( address);
-		userContext.getChecker().checkCellPhoneOfEmployee( cellPhone);
-		userContext.getChecker().checkSalaryAccountOfEmployee( salaryAccount);
+		checkerOf(userContext).checkTitleOfEmployee( title);
+		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
+		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
+		checkerOf(userContext).checkEmailOfEmployee( email);
+		checkerOf(userContext).checkCityOfEmployee( city);
+		checkerOf(userContext).checkAddressOfEmployee( address);
+		checkerOf(userContext).checkCellPhoneOfEmployee( cellPhone);
+		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 		
 	}
 	public  EmployeeBoarding updateEmployeeProperties(RetailscmUserContext userContext, String employeeBoardingId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
@@ -579,7 +700,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	}
 	
 	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception{
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String terminationId) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -607,8 +728,25 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		employee.setLastUpdateTime(userContext.now());		
-		employee.setCurrentStatus("INIT");
+		JobApplication  jobApplication = new JobApplication();
+		jobApplication.setId(jobApplicationId);		
+		employee.setJobApplication(jobApplication);		
+		ProfessionInterview  professionInterview = new ProfessionInterview();
+		professionInterview.setId(professionInterviewId);		
+		employee.setProfessionInterview(professionInterview);		
+		HrInterview  hrInterview = new HrInterview();
+		hrInterview.setId(hrInterviewId);		
+		employee.setHrInterview(hrInterview);		
+		OfferApproval  offerApproval = new OfferApproval();
+		offerApproval.setId(offerApprovalId);		
+		employee.setOfferApproval(offerApproval);		
+		OfferAcceptance  offerAcceptance = new OfferAcceptance();
+		offerAcceptance.setId(offerAcceptanceId);		
+		employee.setOfferAcceptance(offerAcceptance);		
+		Termination  termination = new Termination();
+		termination.setId(terminationId);		
+		employee.setTermination(termination);		
+		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
@@ -628,12 +766,18 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String employeeBoardingId, 
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
+=======
+		checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
+		for(String employeeIdItem: employeeIds){
+			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 		
 	}
 	public  EmployeeBoarding removeEmployeeList(RetailscmUserContext userContext, String employeeBoardingId, 
@@ -646,7 +790,7 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 			synchronized(employeeBoarding){ 
 				//Will be good when the employeeBoarding loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getEmployeeBoardingDAO().planToRemoveEmployeeList(employeeBoarding, employeeIds, allTokens());
+				employeeBoardingDaoOf(userContext).planToRemoveEmployeeList(employeeBoarding, employeeIds, allTokens());
 				employeeBoarding = saveEmployeeBoarding(userContext, employeeBoarding, tokens().withEmployeeList().done());
 				deleteRelationListInGraph(userContext, employeeBoarding.getEmployeeList());
 				return present(userContext,employeeBoarding, mergedAllTokens(tokensExpr));
@@ -656,10 +800,10 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String employeeBoardingId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfEmployeeBoarding( employeeBoardingId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeBoarding( employeeBoardingId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 	
 	}
 	public  EmployeeBoarding removeEmployee(RetailscmUserContext userContext, String employeeBoardingId, 
@@ -683,10 +827,10 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String employeeBoardingId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfEmployeeBoarding( employeeBoardingId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeBoarding( employeeBoardingId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 	
 	}
 	public  EmployeeBoarding copyEmployeeFrom(RetailscmUserContext userContext, String employeeBoardingId, 
@@ -715,45 +859,45 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 		
 
 		
-		userContext.getChecker().checkIdOfEmployeeBoarding(employeeBoardingId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).checkIdOfEmployeeBoarding(employeeBoardingId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkFamilyNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkGivenNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkCityOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCellPhoneOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkSalaryAccountOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeBoardingManagerException.class);
 	
 	}
 	
@@ -788,214 +932,10 @@ public class EmployeeBoardingManagerImpl extends CustomRetailscmCheckerManager i
 
 	}
 	/*
-	public  EmployeeBoarding associateEmployeeListToNewJobApplication(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], Date applicationTime, String who, String comments, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().createJobApplication(userContext,  applicationTime,  who,  comments);
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().createProfessionInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToNewHrInterview(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().createHrInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().createOfferApproval(userContext,  who,  approveTime,  comments);
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().createOfferAcceptance(userContext,  who,  acceptTime,  comments);
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToNewTermination(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String reasonId, String typeId, String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().createTermination(userContext, reasonId, typeId,  comment);
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}
 	*/
 	
-	public  EmployeeBoarding associateEmployeeListToJobApplication(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String jobApplicationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().loadJobApplication(userContext,jobApplicationId,new String[]{"none"} );
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String professionInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().loadProfessionInterview(userContext,professionInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToHrInterview(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String hrInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().loadHrInterview(userContext,hrInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String offerApprovalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().loadOfferApproval(userContext,offerApprovalId,new String[]{"none"} );
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String offerAcceptanceId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().loadOfferAcceptance(userContext,offerAcceptanceId,new String[]{"none"} );
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}	public  EmployeeBoarding associateEmployeeListToTermination(RetailscmUserContext userContext, String employeeBoardingId, String  employeeIds[], String terminationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().loadTermination(userContext,terminationId,new String[]{"none"} );
-		
-		for(Employee employee: employeeBoarding.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveEmployeeBoarding(userContext, employeeBoarding);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EmployeeBoarding newCreated) throws Exception{

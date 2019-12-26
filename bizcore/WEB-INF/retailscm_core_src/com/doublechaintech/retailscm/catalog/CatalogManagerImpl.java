@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.catalog.Catalog;
 public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements CatalogManager {
 	
 	private static final String SERVICE_TYPE = "Catalog";
+	@Override
+	public CatalogDAO daoOf(RetailscmUserContext userContext) {
+		return catalogDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	public Catalog loadCatalog(RetailscmUserContext userContext, String catalogId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCatalog(catalogId);
-		userContext.getChecker().throwExceptionIfHasErrors( CatalogManagerException.class);
+ 		checkerOf(userContext).checkIdOfCatalog(catalogId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CatalogManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	 public Catalog searchCatalog(RetailscmUserContext userContext, String catalogId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfCatalog(catalogId);
-		userContext.getChecker().throwExceptionIfHasErrors( CatalogManagerException.class);
+ 		checkerOf(userContext).checkIdOfCatalog(catalogId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CatalogManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		addActions(userContext,catalog,tokens);
 		
 		
-		Catalog  catalogToPresent = userContext.getDAOGroup().getCatalogDAO().present(catalog, tokens);
+		Catalog  catalogToPresent = catalogDaoOf(userContext).present(catalog, tokens);
 		
 		List<BaseEntity> entityListToNaming = catalogToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getCatalogDAO().alias(entityListToNaming);
+		catalogDaoOf(userContext).alias(entityListToNaming);
 		
 		return  catalogToPresent;
 		
@@ -125,14 +129,14 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		
  	}
  	protected Catalog saveCatalog(RetailscmUserContext userContext, Catalog catalog, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getCatalogDAO().save(catalog, tokens);
+ 		return catalogDaoOf(userContext).save(catalog, tokens);
  	}
  	protected Catalog loadCatalog(RetailscmUserContext userContext, String catalogId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfCatalog(catalogId);
-		userContext.getChecker().throwExceptionIfHasErrors( CatalogManagerException.class);
+		checkerOf(userContext).checkIdOfCatalog(catalogId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CatalogManagerException.class);
 
  
- 		return userContext.getDAOGroup().getCatalogDAO().load(catalogId, tokens);
+ 		return catalogDaoOf(userContext).load(catalogId, tokens);
  	}
 
 	
@@ -166,17 +170,19 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	
 
-
-	public Catalog createCatalog(RetailscmUserContext userContext,String name, String ownerId) throws Exception
+	public Catalog createCatalog(RetailscmUserContext userContext, String name,String ownerId,int subCount,BigDecimal amount) throws Exception
+	//public Catalog createCatalog(RetailscmUserContext userContext,String name, String ownerId, int subCount, BigDecimal amount) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfCatalog(name);
+		checkerOf(userContext).checkNameOfCatalog(name);
+		checkerOf(userContext).checkSubCountOfCatalog(subCount);
+		checkerOf(userContext).checkAmountOfCatalog(amount);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 
 
 		Catalog catalog=createNewCatalog();	
@@ -187,6 +193,8 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		catalog.setOwner(owner);
 		
 		
+		catalog.setSubCount(subCount);
+		catalog.setAmount(amount);
 
 		catalog = saveCatalog(userContext, catalog, emptyOptions());
 		
@@ -207,17 +215,23 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 
 		
 		
-		userContext.getChecker().checkIdOfCatalog(catalogId);
-		userContext.getChecker().checkVersionOfCatalog( catalogVersion);
+		checkerOf(userContext).checkIdOfCatalog(catalogId);
+		checkerOf(userContext).checkVersionOfCatalog( catalogVersion);
 		
 
 		if(Catalog.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfCatalog(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfCatalog(parseString(newValueExpr));
 		}		
 
 		
+		if(Catalog.SUB_COUNT_PROPERTY.equals(property)){
+			checkerOf(userContext).checkSubCountOfCatalog(parseInt(newValueExpr));
+		}
+		if(Catalog.AMOUNT_PROPERTY.equals(property)){
+			checkerOf(userContext).checkAmountOfCatalog(parseBigDecimal(newValueExpr));
+		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 	
 		
 	}
@@ -226,7 +240,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	public Catalog clone(RetailscmUserContext userContext, String fromCatalogId) throws Exception{
 		
-		return userContext.getDAOGroup().getCatalogDAO().clone(fromCatalogId, this.allTokens());
+		return catalogDaoOf(userContext).clone(fromCatalogId, this.allTokens());
 	}
 	
 	public Catalog internalSaveCatalog(RetailscmUserContext userContext, Catalog catalog) throws Exception 
@@ -325,9 +339,9 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String catalogId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfCatalog(catalogId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+ 		checkerOf(userContext).checkIdOfCatalog(catalogId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
  		
  	}
  	public Catalog transferToAnotherOwner(RetailscmUserContext userContext, String catalogId, String anotherOwnerId) throws Exception
@@ -364,7 +378,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForCatalog(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForCatalog(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -377,7 +391,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newOwnerId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -391,7 +405,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String catalogId, int catalogVersion) throws Exception{
 			
-		userContext.getDAOGroup().getCatalogDAO().delete(catalogId, catalogVersion);
+		catalogDaoOf(userContext).delete(catalogId, catalogVersion);
 	}
 	
 	public Catalog forgetByAll(RetailscmUserContext userContext, String catalogId, int catalogVersion) throws Exception {
@@ -400,8 +414,9 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Catalog forgetByAllInternal(RetailscmUserContext userContext,
 			String catalogId, int catalogVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getCatalogDAO().disconnectFromAll(catalogId, catalogVersion);
+		return catalogDaoOf(userContext).disconnectFromAll(catalogId, catalogVersion);
 	}
+	
 	
 
 	
@@ -418,7 +433,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getCatalogDAO().deleteAll();
+		return catalogDaoOf(userContext).deleteAll();
 	}
 
 
@@ -430,16 +445,12 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 
 	protected void checkParamsForAddingLevelOneCategory(RetailscmUserContext userContext, String catalogId, String name,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfCatalog(catalogId);
 
 		
-		
-		userContext.getChecker().checkIdOfCatalog(catalogId);
-
-		
-		userContext.getChecker().checkNameOfLevelOneCategory(name);
+		checkerOf(userContext).checkNameOfLevelOneCategory(name);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 
 	
 	}
@@ -463,12 +474,12 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	}
 	protected void checkParamsForUpdatingLevelOneCategoryProperties(RetailscmUserContext userContext, String catalogId,String id,String name,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfCatalog(catalogId);
-		userContext.getChecker().checkIdOfLevelOneCategory(id);
+		checkerOf(userContext).checkIdOfCatalog(catalogId);
+		checkerOf(userContext).checkIdOfLevelOneCategory(id);
 		
-		userContext.getChecker().checkNameOfLevelOneCategory( name);
+		checkerOf(userContext).checkNameOfLevelOneCategory( name);
 
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 		
 	}
 	public  Catalog updateLevelOneCategoryProperties(RetailscmUserContext userContext, String catalogId, String id,String name, String [] tokensExpr) throws Exception
@@ -524,12 +535,18 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingLevelOneCategoryList(RetailscmUserContext userContext, String catalogId, 
 			String levelOneCategoryIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfCatalog(catalogId);
 		for(String levelOneCategoryIdItem: levelOneCategoryIds){
 			userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryIdItem);
+=======
+		checkerOf(userContext).checkIdOfCatalog(catalogId);
+		for(String levelOneCategoryIdItem: levelOneCategoryIds){
+			checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 		
 	}
 	public  Catalog removeLevelOneCategoryList(RetailscmUserContext userContext, String catalogId, 
@@ -542,7 +559,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 			synchronized(catalog){ 
 				//Will be good when the catalog loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getCatalogDAO().planToRemoveLevelOneCategoryList(catalog, levelOneCategoryIds, allTokens());
+				catalogDaoOf(userContext).planToRemoveLevelOneCategoryList(catalog, levelOneCategoryIds, allTokens());
 				catalog = saveCatalog(userContext, catalog, tokens().withLevelOneCategoryList().done());
 				deleteRelationListInGraph(userContext, catalog.getLevelOneCategoryList());
 				return present(userContext,catalog, mergedAllTokens(tokensExpr));
@@ -552,10 +569,10 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingLevelOneCategory(RetailscmUserContext userContext, String catalogId, 
 		String levelOneCategoryId, int levelOneCategoryVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCatalog( catalogId);
-		userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryId);
-		userContext.getChecker().checkVersionOfLevelOneCategory(levelOneCategoryVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).checkIdOfCatalog( catalogId);
+		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
+		checkerOf(userContext).checkVersionOfLevelOneCategory(levelOneCategoryVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 	
 	}
 	public  Catalog removeLevelOneCategory(RetailscmUserContext userContext, String catalogId, 
@@ -579,10 +596,10 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForCopyingLevelOneCategory(RetailscmUserContext userContext, String catalogId, 
 		String levelOneCategoryId, int levelOneCategoryVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfCatalog( catalogId);
-		userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryId);
-		userContext.getChecker().checkVersionOfLevelOneCategory(levelOneCategoryVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).checkIdOfCatalog( catalogId);
+		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
+		checkerOf(userContext).checkVersionOfLevelOneCategory(levelOneCategoryVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 	
 	}
 	public  Catalog copyLevelOneCategoryFrom(RetailscmUserContext userContext, String catalogId, 
@@ -611,17 +628,17 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		
 
 		
-		userContext.getChecker().checkIdOfCatalog(catalogId);
-		userContext.getChecker().checkIdOfLevelOneCategory(levelOneCategoryId);
-		userContext.getChecker().checkVersionOfLevelOneCategory(levelOneCategoryVersion);
+		checkerOf(userContext).checkIdOfCatalog(catalogId);
+		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
+		checkerOf(userContext).checkVersionOfLevelOneCategory(levelOneCategoryVersion);
 		
 
 		if(LevelOneCategory.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfLevelOneCategory(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfLevelOneCategory(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(CatalogManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 	
 	}
 	

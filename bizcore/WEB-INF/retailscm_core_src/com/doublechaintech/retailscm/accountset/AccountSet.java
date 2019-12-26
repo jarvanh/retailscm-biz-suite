@@ -69,7 +69,7 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	protected		String              	mDomesticCurrencyCode;
 	protected		String              	mDomesticCurrencyName;
 	protected		String              	mOpeningBank        ;
-	protected		String              	mAccountNumber      ;
+	protected		long                	mAccountNumber      ;
 	protected		RetailStoreCountryCenter	mCountryCenter      ;
 	protected		RetailStore         	mRetailStore        ;
 	protected		GoodsSupplier       	mGoodsSupplier      ;
@@ -104,25 +104,6 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	AccountSet(String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, RetailStoreCountryCenter countryCenter, RetailStore retailStore, GoodsSupplier goodsSupplier, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setYearSet(yearSet);
-		setEffectiveDate(effectiveDate);
-		setAccountingSystem(accountingSystem);
-		setDomesticCurrencyCode(domesticCurrencyCode);
-		setDomesticCurrencyName(domesticCurrencyName);
-		setOpeningBank(openingBank);
-		setAccountNumber(accountNumber);
-		setCountryCenter(countryCenter);
-		setRetailStore(retailStore);
-		setGoodsSupplier(goodsSupplier);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mAccountingSubjectList = new SmartList<AccountingSubject>();
-		this.mAccountingPeriodList = new SmartList<AccountingPeriod>();
-		this.mAccountingDocumentTypeList = new SmartList<AccountingDocumentType>();	
-	}
 	
 	//Support for changing the property
 	
@@ -266,9 +247,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeAccountNumberProperty(String newValueExpr){
-		String oldValue = getAccountNumber();
-		String newValue = parseString(newValueExpr);
-		if(equalsString(oldValue , newValue)){
+		long oldValue = getAccountNumber();
+		long newValue = parseLong(newValueExpr);
+		if(equalsLong(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -487,19 +468,24 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setAccountNumber(String accountNumber){
-		this.mAccountNumber = trimString(accountNumber);;
+	public void setAccountNumber(long accountNumber){
+		this.mAccountNumber = accountNumber;;
 	}
-	public String getAccountNumber(){
+	public long getAccountNumber(){
 		return this.mAccountNumber;
 	}
-	public AccountSet updateAccountNumber(String accountNumber){
-		this.mAccountNumber = trimString(accountNumber);;
+	public AccountSet updateAccountNumber(long accountNumber){
+		this.mAccountNumber = accountNumber;;
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
 	public void mergeAccountNumber(String accountNumber){
 		if(accountNumber != null) { setAccountNumber(accountNumber);}
+=======
+	public void mergeAccountNumber(long accountNumber){
+		setAccountNumber(accountNumber);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -1104,6 +1090,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
+	
+	public void increaseAccountNumber(long incAccountNumber){
+		updateAccountNumber(this.mAccountNumber +  incAccountNumber);
+	}
+	public void decreaseAccountNumber(long decAccountNumber){
+		updateAccountNumber(this.mAccountNumber - decAccountNumber);
+	}
 	
 
 }

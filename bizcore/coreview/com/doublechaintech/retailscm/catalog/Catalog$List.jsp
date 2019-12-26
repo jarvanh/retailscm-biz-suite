@@ -104,6 +104,12 @@
 <c:if test="${param.referName ne 'owner'}">
 	<th>${userContext.localeMap['catalog.owner']}</th>
 </c:if>
+<c:if test="${param.referName ne 'subCount'}">
+	<th>${userContext.localeMap['catalog.sub_count']}</th>
+</c:if>
+<c:if test="${param.referName ne 'amount'}">
+	<th>${userContext.localeMap['catalog.amount']}</th>
+</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -130,7 +136,9 @@
 		</div>
 	</td>
 </c:if>
-
+<c:if test="${param.referName ne 'subCount'}">	<td contenteditable='true' class='edit-value'  propertyToChange='subCount' storedCellValue='${item.subCount}' prefix='${ownerBeanName}Manager/updateCatalog/${result.id}/${item.id}/'>${item.subCount}</td>
+</c:if><c:if test="${param.referName ne 'amount'}">	<td contenteditable='true' class='edit-value money'  propertyToChange='amount' storedCellValue='${item.amount}' prefix='${ownerBeanName}Manager/updateCatalog/${result.id}/${item.id}/'><fmt:formatNumber type="currency"  value="${item.amount}" /></td>
+</c:if>
 				<td>
 
 				<a href='#${ownerBeanName}Manager/removeCatalog/${result.id}/${item.id}/' class='delete-action btn btn-danger btn-xs'><i class="fa fa-trash-o fa-lg"></i> ${userContext.localeMap['@delete']}</a>

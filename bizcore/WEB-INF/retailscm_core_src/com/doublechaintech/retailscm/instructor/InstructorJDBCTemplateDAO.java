@@ -74,6 +74,11 @@ public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements I
 	}
 	*/
 	
+	public SmartList<Instructor> loadAll() {
+	    return this.loadAll(getInstructorMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

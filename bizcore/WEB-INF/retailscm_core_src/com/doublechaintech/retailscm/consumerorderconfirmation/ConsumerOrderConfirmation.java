@@ -69,12 +69,6 @@ public class ConsumerOrderConfirmation extends BaseEntity implements  java.io.Se
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrderConfirmation(String who, Date confirmTime)
-	{
-		setWho(who);
-		setConfirmTime(confirmTime);
-	
-	}
 	
 	//Support for changing the property
 	

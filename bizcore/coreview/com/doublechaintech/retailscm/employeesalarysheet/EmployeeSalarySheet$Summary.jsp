@@ -64,10 +64,6 @@
 <span class="summary-label">${userContext.localeMap['employee_salary_sheet.job_insurance']}</span>
 <span ><fmt:formatNumber type="currency"  value="${result.jobInsurance}" /></span>
 </div>
-<div class="col-xs-12 col-md-3 summary-section">
-<span class="summary-label">${userContext.localeMap['employee_salary_sheet.current_status']}</span>
-<span >${result.currentStatus}</span>
-</div>
 
 	</div>
 	

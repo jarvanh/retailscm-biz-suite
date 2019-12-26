@@ -72,13 +72,6 @@ public class RetailStoreOrderApproval extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderApproval(String who, Date approveTime)
-	{
-		setWho(who);
-		setApproveTime(approveTime);
-
-		this.mRetailStoreOrderList = new SmartList<RetailStoreOrder>();	
-	}
 	
 	//Support for changing the property
 	

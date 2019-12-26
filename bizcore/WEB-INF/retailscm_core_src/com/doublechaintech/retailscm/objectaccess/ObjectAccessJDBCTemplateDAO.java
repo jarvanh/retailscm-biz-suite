@@ -53,6 +53,11 @@ public class ObjectAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	}
 	*/
 	
+	public SmartList<ObjectAccess> loadAll() {
+	    return this.loadAll(getObjectAccessMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

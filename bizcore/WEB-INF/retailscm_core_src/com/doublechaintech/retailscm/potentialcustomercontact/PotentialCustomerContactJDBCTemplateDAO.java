@@ -75,6 +75,11 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	*/
 	
+	public SmartList<PotentialCustomerContact> loadAll() {
+	    return this.loadAll(getPotentialCustomerContactMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

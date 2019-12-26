@@ -194,6 +194,34 @@ public class RetailStoreCountryCenterForm extends BaseForm {
 	}
 
 
+	public RetailStoreCountryCenterForm subCountFieldForCatalog(String parameterName, String initValue){
+		FormField field =  subCountFromCatalog(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public RetailStoreCountryCenterForm subCountFieldForCatalog(String initValue){
+		return subCountFieldForCatalog("subCount",initValue);
+	}
+	public RetailStoreCountryCenterForm subCountFieldForCatalog(){
+		return subCountFieldForCatalog("subCount","");
+	}
+
+
+	public RetailStoreCountryCenterForm amountFieldForCatalog(String parameterName, String initValue){
+		FormField field =  amountFromCatalog(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public RetailStoreCountryCenterForm amountFieldForCatalog(String initValue){
+		return amountFieldForCatalog("amount",initValue);
+	}
+	public RetailStoreCountryCenterForm amountFieldForCatalog(){
+		return amountFieldForCatalog("amount","");
+	}
+
+
 	public RetailStoreCountryCenterForm retailStoreProvinceCenterIdFieldForRetailStoreProvinceCenter(String parameterName, String initValue){
 		FormField field =  idFromRetailStoreProvinceCenter(parameterName, initValue);		
 		this.addFormField(field);
@@ -499,20 +527,6 @@ public class RetailStoreCountryCenterForm extends BaseForm {
 	}
 	public RetailStoreCountryCenterForm lastUpdateTimeFieldForRetailStore(){
 		return lastUpdateTimeFieldForRetailStore("lastUpdateTime","");
-	}
-
-
-	public RetailStoreCountryCenterForm currentStatusFieldForRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreCountryCenterForm currentStatusFieldForRetailStore(String initValue){
-		return currentStatusFieldForRetailStore("currentStatus",initValue);
-	}
-	public RetailStoreCountryCenterForm currentStatusFieldForRetailStore(){
-		return currentStatusFieldForRetailStore("currentStatus","");
 	}
 
 
@@ -838,20 +852,6 @@ public class RetailStoreCountryCenterForm extends BaseForm {
 	}
 
 
-	public RetailStoreCountryCenterForm currentStatusFieldForSupplyOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromSupplyOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreCountryCenterForm currentStatusFieldForSupplyOrder(String initValue){
-		return currentStatusFieldForSupplyOrder("currentStatus",initValue);
-	}
-	public RetailStoreCountryCenterForm currentStatusFieldForSupplyOrder(){
-		return currentStatusFieldForSupplyOrder("currentStatus","");
-	}
-
-
 	public RetailStoreCountryCenterForm retailStoreOrderIdFieldForRetailStoreOrder(String parameterName, String initValue){
 		FormField field =  idFromRetailStoreOrder(parameterName, initValue);		
 		this.addFormField(field);
@@ -1017,20 +1017,6 @@ public class RetailStoreCountryCenterForm extends BaseForm {
 	}
 	public RetailStoreCountryCenterForm lastUpdateTimeFieldForRetailStoreOrder(){
 		return lastUpdateTimeFieldForRetailStoreOrder("lastUpdateTime","");
-	}
-
-
-	public RetailStoreCountryCenterForm currentStatusFieldForRetailStoreOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStoreOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreCountryCenterForm currentStatusFieldForRetailStoreOrder(String initValue){
-		return currentStatusFieldForRetailStoreOrder("currentStatus",initValue);
-	}
-	public RetailStoreCountryCenterForm currentStatusFieldForRetailStoreOrder(){
-		return currentStatusFieldForRetailStoreOrder("currentStatus","");
 	}
 
 
@@ -1454,17 +1440,17 @@ public class RetailStoreCountryCenterForm extends BaseForm {
 	}
 
 
-	public RetailStoreCountryCenterForm managerFieldForLevelOneDepartment(String parameterName, String initValue){
-		FormField field =  managerFromLevelOneDepartment(parameterName, initValue);		
+	public RetailStoreCountryCenterForm managerNameFieldForLevelOneDepartment(String parameterName, String initValue){
+		FormField field =  managerNameFromLevelOneDepartment(parameterName, initValue);		
 		this.addFormField(field);
 		return this;
 	}
 	
-	public RetailStoreCountryCenterForm managerFieldForLevelOneDepartment(String initValue){
-		return managerFieldForLevelOneDepartment("manager",initValue);
+	public RetailStoreCountryCenterForm managerNameFieldForLevelOneDepartment(String initValue){
+		return managerNameFieldForLevelOneDepartment("managerName",initValue);
 	}
-	public RetailStoreCountryCenterForm managerFieldForLevelOneDepartment(){
-		return managerFieldForLevelOneDepartment("manager","");
+	public RetailStoreCountryCenterForm managerNameFieldForLevelOneDepartment(){
+		return managerNameFieldForLevelOneDepartment("managerName","");
 	}
 
 
@@ -2459,20 +2445,6 @@ public class RetailStoreCountryCenterForm extends BaseForm {
 	}
 	public RetailStoreCountryCenterForm lastUpdateTimeFieldForEmployee(){
 		return lastUpdateTimeFieldForEmployee("lastUpdateTime","");
-	}
-
-
-	public RetailStoreCountryCenterForm currentStatusFieldForEmployee(String parameterName, String initValue){
-		FormField field =  currentStatusFromEmployee(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreCountryCenterForm currentStatusFieldForEmployee(String initValue){
-		return currentStatusFieldForEmployee("currentStatus",initValue);
-	}
-	public RetailStoreCountryCenterForm currentStatusFieldForEmployee(){
-		return currentStatusFieldForEmployee("currentStatus","");
 	}
 
 

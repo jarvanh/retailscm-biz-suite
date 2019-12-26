@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.secuser;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -19,9 +20,9 @@ import com.doublechaintech.retailscm.userapp.UserAppDAO;
 import com.doublechaintech.retailscm.loginhistory.LoginHistoryDAO;
 
 
-public interface SecUserDAO{
+public interface SecUserDAO extends BaseDAO{
 
-	
+	public SmartList<SecUser> loadAll();
 	public SecUser load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SecUser> secUserList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

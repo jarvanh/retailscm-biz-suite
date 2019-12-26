@@ -36,6 +36,10 @@ import com.doublechaintech.retailscm.employee.Employee;
 public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implements SkillTypeManager {
 	
 	private static final String SERVICE_TYPE = "SkillType";
+	@Override
+	public SkillTypeDAO daoOf(RetailscmUserContext userContext) {
+		return skillTypeDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -69,8 +73,8 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	public SkillType loadSkillType(RetailscmUserContext userContext, String skillTypeId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( SkillTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SkillTypeManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -83,8 +87,8 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	 public SkillType searchSkillType(RetailscmUserContext userContext, String skillTypeId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( SkillTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SkillTypeManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -102,10 +106,10 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		addActions(userContext,skillType,tokens);
 		
 		
-		SkillType  skillTypeToPresent = userContext.getDAOGroup().getSkillTypeDAO().present(skillType, tokens);
+		SkillType  skillTypeToPresent = skillTypeDaoOf(userContext).present(skillType, tokens);
 		
 		List<BaseEntity> entityListToNaming = skillTypeToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSkillTypeDAO().alias(entityListToNaming);
+		skillTypeDaoOf(userContext).alias(entityListToNaming);
 		
 		return  skillTypeToPresent;
 		
@@ -126,14 +130,14 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		
  	}
  	protected SkillType saveSkillType(RetailscmUserContext userContext, SkillType skillType, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSkillTypeDAO().save(skillType, tokens);
+ 		return skillTypeDaoOf(userContext).save(skillType, tokens);
  	}
  	protected SkillType loadSkillType(RetailscmUserContext userContext, String skillTypeId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( SkillTypeManagerException.class);
+		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SkillTypeManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSkillTypeDAO().load(skillTypeId, tokens);
+ 		return skillTypeDaoOf(userContext).load(skillTypeId, tokens);
  	}
 
 	
@@ -167,18 +171,18 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	
  	
 
-
-	public SkillType createSkillType(RetailscmUserContext userContext,String code, String companyId, String description) throws Exception
+	public SkillType createSkillType(RetailscmUserContext userContext, String code,String companyId,String description) throws Exception
+	//public SkillType createSkillType(RetailscmUserContext userContext,String code, String companyId, String description) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCodeOfSkillType(code);
-		userContext.getChecker().checkDescriptionOfSkillType(description);
+		checkerOf(userContext).checkCodeOfSkillType(code);
+		checkerOf(userContext).checkDescriptionOfSkillType(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 
 
 		SkillType skillType=createNewSkillType();	
@@ -210,20 +214,20 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 
 		
 		
-		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		userContext.getChecker().checkVersionOfSkillType( skillTypeVersion);
+		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+		checkerOf(userContext).checkVersionOfSkillType( skillTypeVersion);
 		
 
 		if(SkillType.CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCodeOfSkillType(parseString(newValueExpr));
+			checkerOf(userContext).checkCodeOfSkillType(parseString(newValueExpr));
 		}		
 
 		
 		if(SkillType.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfSkillType(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfSkillType(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 	
 		
 	}
@@ -232,7 +236,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	public SkillType clone(RetailscmUserContext userContext, String fromSkillTypeId) throws Exception{
 		
-		return userContext.getDAOGroup().getSkillTypeDAO().clone(fromSkillTypeId, this.allTokens());
+		return skillTypeDaoOf(userContext).clone(fromSkillTypeId, this.allTokens());
 	}
 	
 	public SkillType internalSaveSkillType(RetailscmUserContext userContext, SkillType skillType) throws Exception 
@@ -331,9 +335,9 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String skillTypeId, String anotherCompanyId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSkillType(skillTypeId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
  		
  	}
  	public SkillType transferToAnotherCompany(RetailscmUserContext userContext, String skillTypeId, String anotherCompanyId) throws Exception
@@ -370,7 +374,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForSkillType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForSkillType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -383,7 +387,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
  	
@@ -397,7 +401,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String skillTypeId, int skillTypeVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSkillTypeDAO().delete(skillTypeId, skillTypeVersion);
+		skillTypeDaoOf(userContext).delete(skillTypeId, skillTypeVersion);
 	}
 	
 	public SkillType forgetByAll(RetailscmUserContext userContext, String skillTypeId, int skillTypeVersion) throws Exception {
@@ -406,8 +410,9 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected SkillType forgetByAllInternal(RetailscmUserContext userContext,
 			String skillTypeId, int skillTypeVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSkillTypeDAO().disconnectFromAll(skillTypeId, skillTypeVersion);
+		return skillTypeDaoOf(userContext).disconnectFromAll(skillTypeId, skillTypeVersion);
 	}
+	
 	
 
 	
@@ -424,7 +429,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSkillTypeDAO().deleteAll();
+		return skillTypeDaoOf(userContext).deleteAll();
 	}
 
 
@@ -440,7 +445,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkillTypeDAO().planToRemoveEmployeeSkillListWithEmployee(skillType, employeeId, this.emptyOptions());
+				skillTypeDaoOf(userContext).planToRemoveEmployeeSkillListWithEmployee(skillType, employeeId, this.emptyOptions());
 
 				skillType = saveSkillType(userContext, skillType, tokens().withEmployeeSkillList().done());
 				return skillType;
@@ -454,18 +459,14 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 
 	protected void checkParamsForAddingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, String employeeId, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSkillType(skillTypeId);
 
 		
+		checkerOf(userContext).checkEmployeeIdOfEmployeeSkill(employeeId);
 		
-		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-
-		
-		userContext.getChecker().checkEmployeeIdOfEmployeeSkill(employeeId);
-		
-		userContext.getChecker().checkDescriptionOfEmployeeSkill(description);
+		checkerOf(userContext).checkDescriptionOfEmployeeSkill(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 
 	
 	}
@@ -489,12 +490,12 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	}
 	protected void checkParamsForUpdatingEmployeeSkillProperties(RetailscmUserContext userContext, String skillTypeId,String id,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		userContext.getChecker().checkIdOfEmployeeSkill(id);
+		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+		checkerOf(userContext).checkIdOfEmployeeSkill(id);
 		
-		userContext.getChecker().checkDescriptionOfEmployeeSkill( description);
+		checkerOf(userContext).checkDescriptionOfEmployeeSkill( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 		
 	}
 	public  SkillType updateEmployeeSkillProperties(RetailscmUserContext userContext, String skillTypeId, String id,String description, String [] tokensExpr) throws Exception
@@ -553,12 +554,18 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingEmployeeSkillList(RetailscmUserContext userContext, String skillTypeId, 
 			String employeeSkillIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSkillType(skillTypeId);
 		for(String employeeSkillIdItem: employeeSkillIds){
 			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillIdItem);
+=======
+		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+		for(String employeeSkillIdItem: employeeSkillIds){
+			checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 		
 	}
 	public  SkillType removeEmployeeSkillList(RetailscmUserContext userContext, String skillTypeId, 
@@ -571,7 +578,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			synchronized(skillType){ 
 				//Will be good when the skillType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSkillTypeDAO().planToRemoveEmployeeSkillList(skillType, employeeSkillIds, allTokens());
+				skillTypeDaoOf(userContext).planToRemoveEmployeeSkillList(skillType, employeeSkillIds, allTokens());
 				skillType = saveSkillType(userContext, skillType, tokens().withEmployeeSkillList().done());
 				deleteRelationListInGraph(userContext, skillType.getEmployeeSkillList());
 				return present(userContext,skillType, mergedAllTokens(tokensExpr));
@@ -581,10 +588,10 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForRemovingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, 
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSkillType( skillTypeId);
-		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-		userContext.getChecker().checkVersionOfEmployeeSkill(employeeSkillVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).checkIdOfSkillType( skillTypeId);
+		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+		checkerOf(userContext).checkVersionOfEmployeeSkill(employeeSkillVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 	
 	}
 	public  SkillType removeEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, 
@@ -608,10 +615,10 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected void checkParamsForCopyingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, 
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSkillType( skillTypeId);
-		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-		userContext.getChecker().checkVersionOfEmployeeSkill(employeeSkillVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).checkIdOfSkillType( skillTypeId);
+		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+		checkerOf(userContext).checkVersionOfEmployeeSkill(employeeSkillVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 	
 	}
 	public  SkillType copyEmployeeSkillFrom(RetailscmUserContext userContext, String skillTypeId, 
@@ -640,17 +647,17 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		
-		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillId);
-		userContext.getChecker().checkVersionOfEmployeeSkill(employeeSkillVersion);
+		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
+		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
+		checkerOf(userContext).checkVersionOfEmployeeSkill(employeeSkillVersion);
 		
 
 		if(EmployeeSkill.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfEmployeeSkill(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfEmployeeSkill(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkillTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 	
 	}
 	

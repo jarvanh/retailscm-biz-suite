@@ -1,7 +1,6 @@
 package com.doublechaintech.retailscm;
 
 
-
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -18,12 +17,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.terapico.caf.DateTime;
 import com.terapico.caf.RemoteInitiable;
 import com.terapico.utils.TextUtil;
 
 public class BaseEntity implements Serializable, RemoteInitiable{
+<<<<<<< HEAD
+=======
+	private String internalType = null; // 禁止直接操作这个成员
+	public static BaseEntity pretendToBe(String classShortName, String id) {
+		BaseEntity result = new BaseEntity();
+		result.internalType = classShortName;
+		result.setId(id);
+		result.setDisplayName(id);
+		return result;
+	}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public  void ensureAccess(Map<String,Object> accessTokens) {
 		
 		List<SmartList<?>> allLists = this.getAllRelatedLists();
@@ -46,17 +57,27 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		
 	}
 	
+	protected List<Action> filterActionList(){
+		if(this.getActionList()==null) {
+			return null;
+		}
+		List<Action> filteredActionList = this.getActionList()
+				.stream()
+				.filter(action->this.isOneOf(action.getActionGroup(), action.specialActionTypes()))
+				.collect(Collectors.toList());
+		
+		return filteredActionList;
+		
+	}
+	
 	public List<KeyValuePair> keyValuePairOf(){
 		
 		List<KeyValuePair> result = new ArrayList<KeyValuePair>();
-		
-		this.appendKeyValuePair(result, "actionList", this.getActionList());
+		this.appendKeyValuePair(result, "actionList", filterActionList() );
 		this.appendKeyValuePair(result, "messageList", this.getErrorMessageList());
-		
-		
-		
 		return result;
 	}
+	
 	protected void appendKeyValuePair(List<KeyValuePair> list, String key, Object value) {
 		
 		
@@ -81,6 +102,9 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		return null;
 	}
 	public String getInternalType(){
+		if (internalType != null){
+			return internalType;
+		}
 		return this.getClass().getSimpleName();
 	}
 	boolean endsWithOneOf(String value, String candiates[]){
@@ -375,6 +399,9 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 	}
 	public Map<String, Object> getValueMap() {
 		return valueMap;
+	}
+	public void setValueMap(Map<String, Object> valueMap) {
+		this.valueMap = valueMap;
 	}
 	public <T> void  addItemToValueMap(String key, T item){
 		ensureValueMap();

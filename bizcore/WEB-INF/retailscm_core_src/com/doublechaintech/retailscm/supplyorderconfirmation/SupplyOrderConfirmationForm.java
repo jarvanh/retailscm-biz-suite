@@ -208,20 +208,6 @@ public class SupplyOrderConfirmationForm extends BaseForm {
 	}
 
 
-	public SupplyOrderConfirmationForm currentStatusFieldForConsumerOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromConsumerOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SupplyOrderConfirmationForm currentStatusFieldForConsumerOrder(String initValue){
-		return currentStatusFieldForConsumerOrder("currentStatus",initValue);
-	}
-	public SupplyOrderConfirmationForm currentStatusFieldForConsumerOrder(){
-		return currentStatusFieldForConsumerOrder("currentStatus","");
-	}
-
-
 	public SupplyOrderConfirmationForm supplyOrderIdFieldForSupplyOrder(String parameterName, String initValue){
 		FormField field =  idFromSupplyOrder(parameterName, initValue);		
 		this.addFormField(field);
@@ -387,20 +373,6 @@ public class SupplyOrderConfirmationForm extends BaseForm {
 	}
 	public SupplyOrderConfirmationForm lastUpdateTimeFieldForSupplyOrder(){
 		return lastUpdateTimeFieldForSupplyOrder("lastUpdateTime","");
-	}
-
-
-	public SupplyOrderConfirmationForm currentStatusFieldForSupplyOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromSupplyOrder(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public SupplyOrderConfirmationForm currentStatusFieldForSupplyOrder(String initValue){
-		return currentStatusFieldForSupplyOrder("currentStatus",initValue);
-	}
-	public SupplyOrderConfirmationForm currentStatusFieldForSupplyOrder(){
-		return currentStatusFieldForSupplyOrder("currentStatus","");
 	}
 
 	

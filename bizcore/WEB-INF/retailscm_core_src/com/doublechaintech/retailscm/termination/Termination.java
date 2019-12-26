@@ -78,14 +78,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Termination(TerminationReason reason, TerminationType type, String comment)
-	{
-		setReason(reason);
-		setType(type);
-		setComment(comment);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

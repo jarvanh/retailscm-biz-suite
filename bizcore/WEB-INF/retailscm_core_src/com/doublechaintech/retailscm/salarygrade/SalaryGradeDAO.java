@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.salarygrade;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -17,9 +18,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface SalaryGradeDAO{
+public interface SalaryGradeDAO extends BaseDAO{
 
-	
+	public SmartList<SalaryGrade> loadAll();
 	public SalaryGrade load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SalaryGrade> salaryGradeList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -74,12 +75,44 @@ public interface SalaryGradeDAO{
 	public SalaryGrade planToRemoveEmployeeListWithResponsibleFor(SalaryGrade salaryGrade, String responsibleForId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithResponsibleFor(String salaryGradeId, String responsibleForId, Map<String,Object> options)throws Exception;
 	
+	//disconnect SalaryGrade with job_application in Employee
+	public SalaryGrade planToRemoveEmployeeListWithJobApplication(SalaryGrade salaryGrade, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String salaryGradeId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SalaryGrade with profession_interview in Employee
+	public SalaryGrade planToRemoveEmployeeListWithProfessionInterview(SalaryGrade salaryGrade, String professionInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithProfessionInterview(String salaryGradeId, String professionInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SalaryGrade with hr_interview in Employee
+	public SalaryGrade planToRemoveEmployeeListWithHrInterview(SalaryGrade salaryGrade, String hrInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithHrInterview(String salaryGradeId, String hrInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SalaryGrade with offer_approval in Employee
+	public SalaryGrade planToRemoveEmployeeListWithOfferApproval(SalaryGrade salaryGrade, String offerApprovalId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferApproval(String salaryGradeId, String offerApprovalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SalaryGrade with offer_acceptance in Employee
+	public SalaryGrade planToRemoveEmployeeListWithOfferAcceptance(SalaryGrade salaryGrade, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferAcceptance(String salaryGradeId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SalaryGrade with employee_boarding in Employee
+	public SalaryGrade planToRemoveEmployeeListWithEmployeeBoarding(SalaryGrade salaryGrade, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String salaryGradeId, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SalaryGrade with termination in Employee
+	public SalaryGrade planToRemoveEmployeeListWithTermination(SalaryGrade salaryGrade, String terminationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithTermination(String salaryGradeId, String terminationId, Map<String,Object> options)throws Exception;
+	
 	public SalaryGrade planToRemoveEmployeeSalarySheetList(SalaryGrade salaryGrade, String employeeSalarySheetIds[], Map<String,Object> options)throws Exception;
 
 
 	//disconnect SalaryGrade with employee in EmployeeSalarySheet
 	public SalaryGrade planToRemoveEmployeeSalarySheetListWithEmployee(SalaryGrade salaryGrade, String employeeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeSalarySheetListWithEmployee(String salaryGradeId, String employeeId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SalaryGrade with paying_off in EmployeeSalarySheet
+	public SalaryGrade planToRemoveEmployeeSalarySheetListWithPayingOff(SalaryGrade salaryGrade, String payingOffId, Map<String,Object> options)throws Exception;
+	public int countEmployeeSalarySheetListWithPayingOff(String salaryGradeId, String payingOffId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<SalaryGrade> queryList(String sql, Object ... parmeters);

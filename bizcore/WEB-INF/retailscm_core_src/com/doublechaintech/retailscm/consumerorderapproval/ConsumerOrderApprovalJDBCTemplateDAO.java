@@ -42,6 +42,11 @@ public class ConsumerOrderApprovalJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	}
 	*/
 	
+	public SmartList<ConsumerOrderApproval> loadAll() {
+	    return this.loadAll(getConsumerOrderApprovalMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

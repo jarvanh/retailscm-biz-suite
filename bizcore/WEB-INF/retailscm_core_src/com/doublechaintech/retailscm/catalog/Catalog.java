@@ -22,6 +22,8 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 	public static final String ID_PROPERTY                    = "id"                ;
 	public static final String NAME_PROPERTY                  = "name"              ;
 	public static final String OWNER_PROPERTY                 = "owner"             ;
+	public static final String SUB_COUNT_PROPERTY             = "subCount"          ;
+	public static final String AMOUNT_PROPERTY                = "amount"            ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String LEVEL_ONE_CATEGORY_LIST                  = "levelOneCategoryList";
@@ -48,6 +50,8 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 	protected		String              	mId                 ;
 	protected		String              	mName               ;
 	protected		RetailStoreCountryCenter	mOwner              ;
+	protected		int                 	mSubCount           ;
+	protected		BigDecimal          	mAmount             ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -74,13 +78,6 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Catalog(String name, RetailStoreCountryCenter owner)
-	{
-		setName(name);
-		setOwner(owner);
-
-		this.mLevelOneCategoryList = new SmartList<LevelOneCategory>();	
-	}
 	
 	//Support for changing the property
 	
@@ -88,6 +85,12 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
      	
 		if(NAME_PROPERTY.equals(property)){
 			changeNameProperty(newValueExpr);
+		}
+		if(SUB_COUNT_PROPERTY.equals(property)){
+			changeSubCountProperty(newValueExpr);
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			changeAmountProperty(newValueExpr);
 		}
 
       
@@ -109,6 +112,63 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+	protected void changeSubCountProperty(String newValueExpr){
+		int oldValue = getSubCount();
+		int newValue = parseInt(newValueExpr);
+		if(equalsInt(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateSubCount(newValue);
+		this.onChangeProperty(SUB_COUNT_PROPERTY, oldValue, newValue);
+		return;
+  
+	}
+			
+			
+			
+	protected void changeAmountProperty(String newValueExpr){
+		BigDecimal oldValue = getAmount();
+		BigDecimal newValue = parseBigDecimal(newValueExpr);
+		if(equalsBigDecimal(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateAmount(newValue);
+		this.onChangeProperty(AMOUNT_PROPERTY, oldValue, newValue);
+		return;
+  
+	}
+			
+			
+			
+
+
+	
+	public Object propertyOf(String property) {
+     	
+		if(NAME_PROPERTY.equals(property)){
+			return getName();
+		}
+		if(OWNER_PROPERTY.equals(property)){
+			return getOwner();
+		}
+		if(SUB_COUNT_PROPERTY.equals(property)){
+			return getSubCount();
+		}
+		if(AMOUNT_PROPERTY.equals(property)){
+			return getAmount();
+		}
+		if(LEVEL_ONE_CATEGORY_LIST.equals(property)){
+			List<BaseEntity> list = getLevelOneCategoryList().stream().map(item->item).collect(Collectors.toList());
+			return list;
+		}
+
+    		//other property not include here
+		return super.propertyOf(property);
+	}
+    
+    
 
 
 	
@@ -187,6 +247,38 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 		setOwner ( null );
 		this.changed = true;
 	}
+	
+	public void setSubCount(int subCount){
+		this.mSubCount = subCount;;
+	}
+	public int getSubCount(){
+		return this.mSubCount;
+	}
+	public Catalog updateSubCount(int subCount){
+		this.mSubCount = subCount;;
+		this.changed = true;
+		return this;
+	}
+	public void mergeSubCount(int subCount){
+		setSubCount(subCount);
+	}
+	
+	
+	public void setAmount(BigDecimal amount){
+		this.mAmount = amount;;
+	}
+	public BigDecimal getAmount(){
+		return this.mAmount;
+	}
+	public Catalog updateAmount(BigDecimal amount){
+		this.mAmount = amount;;
+		this.changed = true;
+		return this;
+	}
+	public void mergeAmount(BigDecimal amount){
+		setAmount(amount);
+	}
+	
 	
 	public void setVersion(int version){
 		this.mVersion = version;;
@@ -343,6 +435,8 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, ID_PROPERTY, getId());
 		appendKeyValuePair(result, NAME_PROPERTY, getName());
 		appendKeyValuePair(result, OWNER_PROPERTY, getOwner());
+		appendKeyValuePair(result, SUB_COUNT_PROPERTY, getSubCount());
+		appendKeyValuePair(result, AMOUNT_PROPERTY, getAmount());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, LEVEL_ONE_CATEGORY_LIST, getLevelOneCategoryList());
 		if(!getLevelOneCategoryList().isEmpty()){
@@ -366,6 +460,8 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 			dest.setId(getId());
 			dest.setName(getName());
 			dest.setOwner(getOwner());
+			dest.setSubCount(getSubCount());
+			dest.setAmount(getAmount());
 			dest.setVersion(getVersion());
 			dest.setLevelOneCategoryList(getLevelOneCategoryList());
 
@@ -384,6 +480,11 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeOwner(getOwner());
+<<<<<<< HEAD
+=======
+			dest.mergeSubCount(getSubCount());
+			dest.mergeAmount(getAmount());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 			dest.mergeLevelOneCategoryList(getLevelOneCategoryList());
 
@@ -402,6 +503,11 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 		
 			dest.mergeId(getId());
 			dest.mergeName(getName());
+<<<<<<< HEAD
+=======
+			dest.mergeSubCount(getSubCount());
+			dest.mergeAmount(getAmount());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
@@ -417,6 +523,8 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 		if(getOwner() != null ){
  			stringBuilder.append("\towner='RetailStoreCountryCenter("+getOwner().getId()+")';");
  		}
+		stringBuilder.append("\tsubCount='"+getSubCount()+"';");
+		stringBuilder.append("\tamount='"+getAmount()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 
@@ -424,6 +532,13 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
+	
+	public void increaseSubCount(int incSubCount){
+		updateSubCount(this.mSubCount +  incSubCount);
+	}
+	public void decreaseSubCount(int decSubCount){
+		updateSubCount(this.mSubCount - decSubCount);
+	}
 	
 
 }

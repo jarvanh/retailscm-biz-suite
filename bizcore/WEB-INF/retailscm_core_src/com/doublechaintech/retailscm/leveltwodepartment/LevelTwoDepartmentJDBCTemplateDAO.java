@@ -74,6 +74,11 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<LevelTwoDepartment> loadAll() {
+	    return this.loadAll(getLevelTwoDepartmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

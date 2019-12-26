@@ -316,20 +316,6 @@ public class RetailStoreMemberGiftCardConsumeRecordForm extends BaseForm {
 		return lastUpdateTimeFieldOfConsumerOrder("lastUpdateTime","");
 	}
 
-
-	public RetailStoreMemberGiftCardConsumeRecordForm currentStatusFieldOfConsumerOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromConsumerOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public RetailStoreMemberGiftCardConsumeRecordForm currentStatusFieldOfConsumerOrder(String initValue){
-		return currentStatusFieldOfConsumerOrder("currentStatus",initValue);
-	}
-	public RetailStoreMemberGiftCardConsumeRecordForm currentStatusFieldOfConsumerOrder(){
-		return currentStatusFieldOfConsumerOrder("currentStatus","");
-	}
-
 	
 
 

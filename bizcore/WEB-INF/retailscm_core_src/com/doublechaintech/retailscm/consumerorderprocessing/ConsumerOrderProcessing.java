@@ -69,12 +69,6 @@ public class ConsumerOrderProcessing extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrderProcessing(String who, Date processTime)
-	{
-		setWho(who);
-		setProcessTime(processTime);
-	
-	}
 	
 	//Support for changing the property
 	

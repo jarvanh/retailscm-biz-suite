@@ -45,8 +45,8 @@
 <span ><fmt:formatDate pattern="yyyy-MM-dd" value="${result.founded}" /></span>
 </div>
 <div class="col-xs-12 col-md-3 summary-section">
-<span class="summary-label">${userContext.localeMap['province_center_department.manager']}</span>
-<span >${result.manager}</span>
+<span class="summary-label">${userContext.localeMap['province_center_department.manager_name']}</span>
+<span >${result.managerName}</span>
 </div>
 
 	</div>

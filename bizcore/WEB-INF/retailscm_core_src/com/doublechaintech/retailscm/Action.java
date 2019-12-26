@@ -1,6 +1,21 @@
 package com.doublechaintech.retailscm;
 
 public class Action {
+	public static final String CHANGE_REQUEST_TYPE="changerequesttype";
+	public static final String CUSTOM_ACTION="custom";
+	
+	public Action asCustomGroup() {
+		this.setActionGroup(CUSTOM_ACTION);
+		return this;
+	}
+	public Action asChangeRequestGroup() {
+		this.setActionGroup(CHANGE_REQUEST_TYPE);
+		return this;
+	}
+	
+	public String[] specialActionTypes() {
+		return new String[] {Action.CUSTOM_ACTION,Action.CHANGE_REQUEST_TYPE};
+	}
 
 	protected String actionName;
 	protected String actionPath;

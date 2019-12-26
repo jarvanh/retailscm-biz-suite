@@ -37,6 +37,10 @@ import com.doublechaintech.retailscm.storagespace.StorageSpace;
 public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager implements StorageSpaceManager {
 	
 	private static final String SERVICE_TYPE = "StorageSpace";
+	@Override
+	public StorageSpaceDAO daoOf(RetailscmUserContext userContext) {
+		return storageSpaceDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -70,8 +74,8 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	public StorageSpace loadStorageSpace(RetailscmUserContext userContext, String storageSpaceId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( StorageSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( StorageSpaceManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -84,8 +88,8 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	 public StorageSpace searchStorageSpace(RetailscmUserContext userContext, String storageSpaceId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( StorageSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( StorageSpaceManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -103,10 +107,10 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 		addActions(userContext,storageSpace,tokens);
 		
 		
-		StorageSpace  storageSpaceToPresent = userContext.getDAOGroup().getStorageSpaceDAO().present(storageSpace, tokens);
+		StorageSpace  storageSpaceToPresent = storageSpaceDaoOf(userContext).present(storageSpace, tokens);
 		
 		List<BaseEntity> entityListToNaming = storageSpaceToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getStorageSpaceDAO().alias(entityListToNaming);
+		storageSpaceDaoOf(userContext).alias(entityListToNaming);
 		
 		return  storageSpaceToPresent;
 		
@@ -127,14 +131,14 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 		
  	}
  	protected StorageSpace saveStorageSpace(RetailscmUserContext userContext, StorageSpace storageSpace, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getStorageSpaceDAO().save(storageSpace, tokens);
+ 		return storageSpaceDaoOf(userContext).save(storageSpace, tokens);
  	}
  	protected StorageSpace loadStorageSpace(RetailscmUserContext userContext, String storageSpaceId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( StorageSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( StorageSpaceManagerException.class);
 
  
- 		return userContext.getDAOGroup().getStorageSpaceDAO().load(storageSpaceId, tokens);
+ 		return storageSpaceDaoOf(userContext).load(storageSpaceId, tokens);
  	}
 
 	
@@ -168,21 +172,21 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	
 
-
-	public StorageSpace createStorageSpace(RetailscmUserContext userContext,String location, String contactNumber, String totalArea, String warehouseId, BigDecimal latitude, BigDecimal longitude) throws Exception
+	public StorageSpace createStorageSpace(RetailscmUserContext userContext, String location,long contactNumber,String totalArea,String warehouseId,BigDecimal latitude,BigDecimal longitude) throws Exception
+	//public StorageSpace createStorageSpace(RetailscmUserContext userContext,String location, long contactNumber, String totalArea, String warehouseId, BigDecimal latitude, BigDecimal longitude) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLocationOfStorageSpace(location);
-		userContext.getChecker().checkContactNumberOfStorageSpace(contactNumber);
-		userContext.getChecker().checkTotalAreaOfStorageSpace(totalArea);
-		userContext.getChecker().checkLatitudeOfStorageSpace(latitude);
-		userContext.getChecker().checkLongitudeOfStorageSpace(longitude);
+		checkerOf(userContext).checkLocationOfStorageSpace(location);
+		checkerOf(userContext).checkContactNumberOfStorageSpace(contactNumber);
+		checkerOf(userContext).checkTotalAreaOfStorageSpace(totalArea);
+		checkerOf(userContext).checkLatitudeOfStorageSpace(latitude);
+		checkerOf(userContext).checkLongitudeOfStorageSpace(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 
 
 		StorageSpace storageSpace=createNewStorageSpace();	
@@ -218,29 +222,29 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 
 		
 		
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().checkVersionOfStorageSpace( storageSpaceVersion);
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).checkVersionOfStorageSpace( storageSpaceVersion);
 		
 
 		if(StorageSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfStorageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfStorageSpace(parseString(newValueExpr));
 		}
 		if(StorageSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfStorageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfStorageSpace(parseLong(newValueExpr));
 		}
 		if(StorageSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfStorageSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfStorageSpace(parseString(newValueExpr));
 		}		
 
 		
 		if(StorageSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfStorageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfStorageSpace(parseBigDecimal(newValueExpr));
 		}
 		if(StorageSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfStorageSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfStorageSpace(parseBigDecimal(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 	
 		
 	}
@@ -249,7 +253,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	
 	public StorageSpace clone(RetailscmUserContext userContext, String fromStorageSpaceId) throws Exception{
 		
-		return userContext.getDAOGroup().getStorageSpaceDAO().clone(fromStorageSpaceId, this.allTokens());
+		return storageSpaceDaoOf(userContext).clone(fromStorageSpaceId, this.allTokens());
 	}
 	
 	public StorageSpace internalSaveStorageSpace(RetailscmUserContext userContext, StorageSpace storageSpace) throws Exception 
@@ -348,9 +352,9 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForTransferingAnotherWarehouse(RetailscmUserContext userContext, String storageSpaceId, String anotherWarehouseId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
- 		userContext.getChecker().checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+ 		checkerOf(userContext).checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
  		
  	}
  	public StorageSpace transferToAnotherWarehouse(RetailscmUserContext userContext, String storageSpaceId, String anotherWarehouseId) throws Exception
@@ -387,7 +391,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Warehouse> candidateList = userContext.getDAOGroup().getWarehouseDAO().requestCandidateWarehouseForStorageSpace(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Warehouse> candidateList = warehouseDaoOf(userContext).requestCandidateWarehouseForStorageSpace(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -400,7 +404,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
  	protected Warehouse loadWarehouse(RetailscmUserContext userContext, String newWarehouseId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getWarehouseDAO().load(newWarehouseId, options);
+ 		return warehouseDaoOf(userContext).load(newWarehouseId, options);
  	}
  	
  	
@@ -414,7 +418,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String storageSpaceId, int storageSpaceVersion) throws Exception{
 			
-		userContext.getDAOGroup().getStorageSpaceDAO().delete(storageSpaceId, storageSpaceVersion);
+		storageSpaceDaoOf(userContext).delete(storageSpaceId, storageSpaceVersion);
 	}
 	
 	public StorageSpace forgetByAll(RetailscmUserContext userContext, String storageSpaceId, int storageSpaceVersion) throws Exception {
@@ -423,8 +427,9 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	protected StorageSpace forgetByAllInternal(RetailscmUserContext userContext,
 			String storageSpaceId, int storageSpaceVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getStorageSpaceDAO().disconnectFromAll(storageSpaceId, storageSpaceVersion);
+		return storageSpaceDaoOf(userContext).disconnectFromAll(storageSpaceId, storageSpaceVersion);
 	}
+	
 	
 
 	
@@ -441,7 +446,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getStorageSpaceDAO().deleteAll();
+		return storageSpaceDaoOf(userContext).deleteAll();
 	}
 
 
@@ -457,7 +462,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getStorageSpaceDAO().planToRemoveGoodsShelfListWithSupplierSpace(storageSpace, supplierSpaceId, this.emptyOptions());
+				storageSpaceDaoOf(userContext).planToRemoveGoodsShelfListWithSupplierSpace(storageSpace, supplierSpaceId, this.emptyOptions());
 
 				storageSpace = saveStorageSpace(userContext, storageSpace, tokens().withGoodsShelfList().done());
 				return storageSpace;
@@ -475,7 +480,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getStorageSpaceDAO().planToRemoveGoodsShelfListWithDamageSpace(storageSpace, damageSpaceId, this.emptyOptions());
+				storageSpaceDaoOf(userContext).planToRemoveGoodsShelfListWithDamageSpace(storageSpace, damageSpaceId, this.emptyOptions());
 
 				storageSpace = saveStorageSpace(userContext, storageSpace, tokens().withGoodsShelfList().done());
 				return storageSpace;
@@ -489,20 +494,16 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 
 	protected void checkParamsForAddingGoodsShelf(RetailscmUserContext userContext, String storageSpaceId, String location, String supplierSpaceId, String damageSpaceId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
 
 		
+		checkerOf(userContext).checkLocationOfGoodsShelf(location);
 		
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-
+		checkerOf(userContext).checkSupplierSpaceIdOfGoodsShelf(supplierSpaceId);
 		
-		userContext.getChecker().checkLocationOfGoodsShelf(location);
-		
-		userContext.getChecker().checkSupplierSpaceIdOfGoodsShelf(supplierSpaceId);
-		
-		userContext.getChecker().checkDamageSpaceIdOfGoodsShelf(damageSpaceId);
+		checkerOf(userContext).checkDamageSpaceIdOfGoodsShelf(damageSpaceId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 
 	
 	}
@@ -526,12 +527,12 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	}
 	protected void checkParamsForUpdatingGoodsShelfProperties(RetailscmUserContext userContext, String storageSpaceId,String id,String location,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(id);
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(id);
 		
-		userContext.getChecker().checkLocationOfGoodsShelf( location);
+		checkerOf(userContext).checkLocationOfGoodsShelf( location);
 
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 		
 	}
 	public  StorageSpace updateGoodsShelfProperties(RetailscmUserContext userContext, String storageSpaceId, String id,String location, String [] tokensExpr) throws Exception
@@ -594,12 +595,18 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForRemovingGoodsShelfList(RetailscmUserContext userContext, String storageSpaceId, 
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
 		for(String goodsShelfIdItem: goodsShelfIds){
 			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
+=======
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		for(String goodsShelfIdItem: goodsShelfIds){
+			checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 		
 	}
 	public  StorageSpace removeGoodsShelfList(RetailscmUserContext userContext, String storageSpaceId, 
@@ -612,7 +619,7 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 			synchronized(storageSpace){ 
 				//Will be good when the storageSpace loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getStorageSpaceDAO().planToRemoveGoodsShelfList(storageSpace, goodsShelfIds, allTokens());
+				storageSpaceDaoOf(userContext).planToRemoveGoodsShelfList(storageSpace, goodsShelfIds, allTokens());
 				storageSpace = saveStorageSpace(userContext, storageSpace, tokens().withGoodsShelfList().done());
 				deleteRelationListInGraph(userContext, storageSpace.getGoodsShelfList());
 				return present(userContext,storageSpace, mergedAllTokens(tokensExpr));
@@ -622,10 +629,10 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForRemovingGoodsShelf(RetailscmUserContext userContext, String storageSpaceId, 
 		String goodsShelfId, int goodsShelfVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfStorageSpace( storageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfStorageSpace( storageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 	
 	}
 	public  StorageSpace removeGoodsShelf(RetailscmUserContext userContext, String storageSpaceId, 
@@ -649,10 +656,10 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForCopyingGoodsShelf(RetailscmUserContext userContext, String storageSpaceId, 
 		String goodsShelfId, int goodsShelfVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfStorageSpace( storageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfStorageSpace( storageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 	
 	}
 	public  StorageSpace copyGoodsShelfFrom(RetailscmUserContext userContext, String storageSpaceId, 
@@ -681,17 +688,17 @@ public class StorageSpaceManagerImpl extends CustomRetailscmCheckerManager imple
 		
 
 		
-		userContext.getChecker().checkIdOfStorageSpace(storageSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).checkIdOfStorageSpace(storageSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
 		
 
 		if(GoodsShelf.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfGoodsShelf(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfGoodsShelf(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(StorageSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(StorageSpaceManagerException.class);
 	
 	}
 	

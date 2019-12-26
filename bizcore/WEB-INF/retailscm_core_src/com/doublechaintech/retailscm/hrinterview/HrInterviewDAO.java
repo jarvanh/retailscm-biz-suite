@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.hrinterview;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface HrInterviewDAO{
+public interface HrInterviewDAO extends BaseDAO{
 
-	
+	public SmartList<HrInterview> loadAll();
 	public HrInterview load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<HrInterview> hrInterviewList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -69,6 +70,30 @@ public interface HrInterviewDAO{
 	//disconnect HrInterview with current_salary_grade in Employee
 	public HrInterview planToRemoveEmployeeListWithCurrentSalaryGrade(HrInterview hrInterview, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String hrInterviewId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
+	
+	//disconnect HrInterview with job_application in Employee
+	public HrInterview planToRemoveEmployeeListWithJobApplication(HrInterview hrInterview, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String hrInterviewId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect HrInterview with profession_interview in Employee
+	public HrInterview planToRemoveEmployeeListWithProfessionInterview(HrInterview hrInterview, String professionInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithProfessionInterview(String hrInterviewId, String professionInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect HrInterview with offer_approval in Employee
+	public HrInterview planToRemoveEmployeeListWithOfferApproval(HrInterview hrInterview, String offerApprovalId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferApproval(String hrInterviewId, String offerApprovalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect HrInterview with offer_acceptance in Employee
+	public HrInterview planToRemoveEmployeeListWithOfferAcceptance(HrInterview hrInterview, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferAcceptance(String hrInterviewId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	
+	//disconnect HrInterview with employee_boarding in Employee
+	public HrInterview planToRemoveEmployeeListWithEmployeeBoarding(HrInterview hrInterview, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String hrInterviewId, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect HrInterview with termination in Employee
+	public HrInterview planToRemoveEmployeeListWithTermination(HrInterview hrInterview, String terminationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithTermination(String hrInterviewId, String terminationId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<HrInterview> queryList(String sql, Object ... parmeters);

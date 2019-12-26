@@ -23,7 +23,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	public static final String BELONGS_TO_PROPERTY            = "belongsTo"         ;
 	public static final String NAME_PROPERTY                  = "name"              ;
 	public static final String DESCRIPTION_PROPERTY           = "description"       ;
-	public static final String MANAGER_PROPERTY               = "manager"           ;
+	public static final String MANAGER_NAME_PROPERTY          = "managerName"       ;
 	public static final String FOUNDED_PROPERTY               = "founded"           ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
@@ -52,7 +52,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	protected		RetailStoreCountryCenter	mBelongsTo          ;
 	protected		String              	mName               ;
 	protected		String              	mDescription        ;
-	protected		String              	mManager            ;
+	protected		String              	mManagerName        ;
 	protected		Date                	mFounded            ;
 	protected		int                 	mVersion            ;
 	
@@ -80,16 +80,6 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	LevelOneDepartment(RetailStoreCountryCenter belongsTo, String name, String description, String manager, Date founded)
-	{
-		setBelongsTo(belongsTo);
-		setName(name);
-		setDescription(description);
-		setManager(manager);
-		setFounded(founded);
-
-		this.mLevelTwoDepartmentList = new SmartList<LevelTwoDepartment>();	
-	}
 	
 	//Support for changing the property
 	
@@ -101,8 +91,8 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		if(DESCRIPTION_PROPERTY.equals(property)){
 			changeDescriptionProperty(newValueExpr);
 		}
-		if(MANAGER_PROPERTY.equals(property)){
-			changeManagerProperty(newValueExpr);
+		if(MANAGER_NAME_PROPERTY.equals(property)){
+			changeManagerNameProperty(newValueExpr);
 		}
 		if(FOUNDED_PROPERTY.equals(property)){
 			changeFoundedProperty(newValueExpr);
@@ -142,15 +132,15 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			
 			
 			
-	protected void changeManagerProperty(String newValueExpr){
-		String oldValue = getManager();
+	protected void changeManagerNameProperty(String newValueExpr){
+		String oldValue = getManagerName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
-		updateManager(newValue);
-		this.onChangeProperty(MANAGER_PROPERTY, oldValue, newValue);
+		updateManagerName(newValue);
+		this.onChangeProperty(MANAGER_NAME_PROPERTY, oldValue, newValue);
 		return;
   
 	}
@@ -186,8 +176,13 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		if(DESCRIPTION_PROPERTY.equals(property)){
 			return getDescription();
 		}
+<<<<<<< HEAD
 		if(MANAGER_PROPERTY.equals(property)){
 			return getManager();
+=======
+		if(MANAGER_NAME_PROPERTY.equals(property)){
+			return getManagerName();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		if(FOUNDED_PROPERTY.equals(property)){
 			return getFounded();
@@ -276,19 +271,24 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	}
 	
 	
-	public void setManager(String manager){
-		this.mManager = trimString(manager);;
+	public void setManagerName(String managerName){
+		this.mManagerName = trimString(managerName);;
 	}
-	public String getManager(){
-		return this.mManager;
+	public String getManagerName(){
+		return this.mManagerName;
 	}
-	public LevelOneDepartment updateManager(String manager){
-		this.mManager = trimString(manager);;
+	public LevelOneDepartment updateManagerName(String managerName){
+		this.mManagerName = trimString(managerName);;
 		this.changed = true;
 		return this;
 	}
+<<<<<<< HEAD
 	public void mergeManager(String manager){
 		if(manager != null) { setManager(manager);}
+=======
+	public void mergeManagerName(String managerName){
+		if(managerName != null) { setManagerName(managerName);}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -464,7 +464,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		appendKeyValuePair(result, BELONGS_TO_PROPERTY, getBelongsTo());
 		appendKeyValuePair(result, NAME_PROPERTY, getName());
 		appendKeyValuePair(result, DESCRIPTION_PROPERTY, getDescription());
-		appendKeyValuePair(result, MANAGER_PROPERTY, getManager());
+		appendKeyValuePair(result, MANAGER_NAME_PROPERTY, getManagerName());
 		appendKeyValuePair(result, FOUNDED_PROPERTY, getFounded());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, LEVEL_TWO_DEPARTMENT_LIST, getLevelTwoDepartmentList());
@@ -490,7 +490,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			dest.setBelongsTo(getBelongsTo());
 			dest.setName(getName());
 			dest.setDescription(getDescription());
-			dest.setManager(getManager());
+			dest.setManagerName(getManagerName());
 			dest.setFounded(getFounded());
 			dest.setVersion(getVersion());
 			dest.setLevelTwoDepartmentList(getLevelTwoDepartmentList());
@@ -511,7 +511,11 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			dest.mergeBelongsTo(getBelongsTo());
 			dest.mergeName(getName());
 			dest.mergeDescription(getDescription());
+<<<<<<< HEAD
 			dest.mergeManager(getManager());
+=======
+			dest.mergeManagerName(getManagerName());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeFounded(getFounded());
 			dest.mergeVersion(getVersion());
 			dest.mergeLevelTwoDepartmentList(getLevelTwoDepartmentList());
@@ -532,7 +536,11 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeDescription(getDescription());
+<<<<<<< HEAD
 			dest.mergeManager(getManager());
+=======
+			dest.mergeManagerName(getManagerName());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeFounded(getFounded());
 			dest.mergeVersion(getVersion());
 
@@ -550,7 +558,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
  		}
 		stringBuilder.append("\tname='"+getName()+"';");
 		stringBuilder.append("\tdescription='"+getDescription()+"';");
-		stringBuilder.append("\tmanager='"+getManager()+"';");
+		stringBuilder.append("\tmanagerName='"+getManagerName()+"';");
 		stringBuilder.append("\tfounded='"+getFounded()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

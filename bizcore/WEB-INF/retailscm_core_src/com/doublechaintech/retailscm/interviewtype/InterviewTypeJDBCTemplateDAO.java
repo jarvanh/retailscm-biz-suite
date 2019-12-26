@@ -74,6 +74,11 @@ public class InterviewTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<InterviewType> loadAll() {
+	    return this.loadAll(getInterviewTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -79,16 +79,6 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	FormAction(String label, String localeKey, String actionKey, String level, String url, GenericForm form)
-	{
-		setLabel(label);
-		setLocaleKey(localeKey);
-		setActionKey(actionKey);
-		setLevel(level);
-		setUrl(url);
-		setForm(form);
-	
-	}
 	
 	//Support for changing the property
 	

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoreorder;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -35,9 +36,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroupDAO;
 
 
-public interface RetailStoreOrderDAO{
+public interface RetailStoreOrderDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreOrder> loadAll();
 	public RetailStoreOrder load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreOrder> retailStoreOrderList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -128,6 +129,10 @@ public interface RetailStoreOrderDAO{
 	//disconnect RetailStoreOrder with biz_order in Goods
 	public RetailStoreOrder planToRemoveGoodsListWithBizOrder(RetailStoreOrder retailStoreOrder, String bizOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithBizOrder(String retailStoreOrderId, String bizOrderId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrder with packaging in Goods
+	public RetailStoreOrder planToRemoveGoodsListWithPackaging(RetailStoreOrder retailStoreOrder, String packagingId, Map<String,Object> options)throws Exception;
+	public int countGoodsListWithPackaging(String retailStoreOrderId, String packagingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<RetailStoreOrder> queryList(String sql, Object ... parmeters);

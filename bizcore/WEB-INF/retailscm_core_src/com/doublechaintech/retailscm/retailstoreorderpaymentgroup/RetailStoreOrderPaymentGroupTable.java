@@ -23,12 +23,17 @@ public class RetailStoreOrderPaymentGroupTable{
 	static final String COLUMN_CARD_NUMBER = "card_number";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_NAME, COLUMN_BIZ_ORDER, COLUMN_CARD_NUMBER, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_NAME, COLUMN_BIZ_ORDER, COLUMN_CARD_NUMBER
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_BIZ_ORDER,COLUMN_CARD_NUMBER,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_BIZ_ORDER,COLUMN_CARD_NUMBER};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

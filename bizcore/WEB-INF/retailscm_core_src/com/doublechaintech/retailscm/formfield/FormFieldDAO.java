@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.formfield;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.genericform.GenericForm;
 import com.doublechaintech.retailscm.genericform.GenericFormDAO;
 
 
-public interface FormFieldDAO{
+public interface FormFieldDAO extends BaseDAO{
 
-	
+	public SmartList<FormField> loadAll();
 	public FormField load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<FormField> formFieldList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

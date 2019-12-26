@@ -74,6 +74,11 @@ public class PayingOffJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Pa
 	}
 	*/
 	
+	public SmartList<PayingOff> loadAll() {
+	    return this.loadAll(getPayingOffMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

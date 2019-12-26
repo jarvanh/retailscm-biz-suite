@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface ReceivingSpaceManager{
+public interface ReceivingSpaceManager extends BaseManager{
 
 		
 
-	public ReceivingSpace createReceivingSpace(RetailscmUserContext userContext, String location, String contactNumber, String description, String totalArea, String warehouseId, BigDecimal latitude, BigDecimal longitude) throws Exception;	
+	public ReceivingSpace createReceivingSpace(RetailscmUserContext userContext, String location,long contactNumber,String description,String totalArea,String warehouseId,BigDecimal latitude,BigDecimal longitude) throws Exception;	
 	public ReceivingSpace updateReceivingSpace(RetailscmUserContext userContext,String receivingSpaceId, int receivingSpaceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public ReceivingSpace loadReceivingSpace(RetailscmUserContext userContext, String receivingSpaceId, String [] tokensExpr) throws Exception;
 	public ReceivingSpace internalSaveReceivingSpace(RetailscmUserContext userContext, ReceivingSpace receivingSpace) throws Exception;
@@ -28,15 +29,13 @@ public interface ReceivingSpaceManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  GoodsManager getGoodsManager(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId ,String [] tokensExpr)  throws Exception;
+	//public  GoodsManager getGoodsManager(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId ,String [] tokensExpr)  throws Exception;
 	
-	public  ReceivingSpace addGoods(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId , String [] tokensExpr)  throws Exception;
+	public  ReceivingSpace addGoods(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId , String [] tokensExpr)  throws Exception;
 	public  ReceivingSpace removeGoods(RetailscmUserContext userContext, String receivingSpaceId, String goodsId, int goodsVersion,String [] tokensExpr)  throws Exception;
 	public  ReceivingSpace updateGoods(RetailscmUserContext userContext, String receivingSpaceId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  ReceivingSpace associateGoodsListToNewPackaging(RetailscmUserContext userContext, String receivingSpaceId, String  goodsIds[], String packageName, String rfid, Date packageTime, String description, String [] tokensExpr) throws Exception ;
-	public  ReceivingSpace associateGoodsListToPackaging(RetailscmUserContext userContext, String receivingSpaceId, String  goodsIds[],String packagingId, String [] tokensExpr) throws Exception ;
 
 	*/
 

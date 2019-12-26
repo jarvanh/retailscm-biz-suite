@@ -224,6 +224,11 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<ConsumerOrder> loadAll() {
+	    return this.loadAll(getConsumerOrderMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -839,12 +844,21 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			getConsumerOrderLineItemDAO().analyzeConsumerOrderLineItemByBizOrder(consumerOrderLineItemList, consumerOrder.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return consumerOrder;
 	
 	}	
 	
 		
+=======
+		
+		return consumerOrder;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceConsumerOrderShippingGroupList(SmartList<ConsumerOrderShippingGroup> consumerOrderShippingGroupList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -882,8 +896,18 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return consumerOrder;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<ConsumerOrderShippingGroup> consumerOrderShippingGroupList = consumerOrder.getConsumerOrderShippingGroupList();
+		if(consumerOrderShippingGroupList != null){
+			getConsumerOrderShippingGroupDAO().analyzeConsumerOrderShippingGroupByBizOrder(consumerOrderShippingGroupList, consumerOrder.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<ConsumerOrderShippingGroup> consumerOrderShippingGroupList = consumerOrder.getConsumerOrderShippingGroupList();
 		if(consumerOrderShippingGroupList != null){
 			getConsumerOrderShippingGroupDAO().analyzeConsumerOrderShippingGroupByBizOrder(consumerOrderShippingGroupList, consumerOrder.getId(), options);
@@ -895,6 +919,13 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}	
 	
 		
+=======
+		return consumerOrder;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceConsumerOrderPaymentGroupList(SmartList<ConsumerOrderPaymentGroup> consumerOrderPaymentGroupList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1538,7 +1569,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		return prepareConsumerOrderCreateParameters(consumerOrder);
  	}
  	protected Object[] prepareConsumerOrderUpdateParameters(ConsumerOrder consumerOrder){
- 		Object[] parameters = new Object[13];
+ 		Object[] parameters = new Object[12];
  
  		parameters[0] = consumerOrder.getTitle(); 	
  		if(consumerOrder.getConsumer() != null){
@@ -1569,16 +1600,15 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  			parameters[7] = consumerOrder.getStore().getId();
  		}
  
- 		parameters[8] = consumerOrder.getLastUpdateTime();
- 		parameters[9] = consumerOrder.getCurrentStatus();		
- 		parameters[10] = consumerOrder.nextVersion();
- 		parameters[11] = consumerOrder.getId();
- 		parameters[12] = consumerOrder.getVersion();
+ 		parameters[8] = consumerOrder.getLastUpdateTime();		
+ 		parameters[9] = consumerOrder.nextVersion();
+ 		parameters[10] = consumerOrder.getId();
+ 		parameters[11] = consumerOrder.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareConsumerOrderCreateParameters(ConsumerOrder consumerOrder){
-		Object[] parameters = new Object[11];
+		Object[] parameters = new Object[10];
 		String newConsumerOrderId=getNextId();
 		consumerOrder.setId(newConsumerOrderId);
 		parameters[0] =  consumerOrder.getId();
@@ -1619,8 +1649,7 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		
  		}
  		
- 		parameters[9] = consumerOrder.getLastUpdateTime();
- 		parameters[10] = consumerOrder.getCurrentStatus();		
+ 		parameters[9] = consumerOrder.getLastUpdateTime();		
  				
  		return parameters;
  	}

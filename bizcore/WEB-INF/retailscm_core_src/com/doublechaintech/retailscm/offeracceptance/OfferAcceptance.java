@@ -74,14 +74,6 @@ public class OfferAcceptance extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	OfferAcceptance(String who, Date acceptTime, String comments)
-	{
-		setWho(who);
-		setAcceptTime(acceptTime);
-		setComments(comments);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

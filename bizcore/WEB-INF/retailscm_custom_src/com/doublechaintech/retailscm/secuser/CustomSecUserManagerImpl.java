@@ -209,7 +209,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 
     protected Object gotoApp(RetailscmUserContext userContext, UserApp app) throws Exception {
         
-        UserApp fullAppData = userContext.getDAOGroup().getUserAppDAO().load(app.getId(), UserAppTokens.all());
+        UserApp fullAppData = userAppDaoOf(userContext).load(app.getId(), UserAppTokens.all());
         userContext.putToCache(getCurrentAppKey(userContext), fullAppData, 1000000);
         // the app has all the accessable objects
         String targetBeanName = getBeanName( userContext,  app);
@@ -218,7 +218,8 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         }
         Object targetObject = userContext.getBean(targetBeanName );
         if(targetObject == null){
-            return error("targetObject is null");
+        	userContext.log("出现这个错误很可能是数据库因为各种原因没到导入完成或者导入了错误的数据库脚本");
+            return error("targetObject is not found for bean name "+targetBeanName);
         }
 
         String targetId = getTargetObjectId( userContext,  app);
@@ -257,12 +258,20 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
             
             return error("IllegalArgumentException: "+ e.getMessage());
         } catch (InvocationTargetException e) {
+        	Throwable rootCause = e;
+        	while((rootCause != null) && !(rootCause instanceof java.sql.SQLException)) {
+        		rootCause = rootCause.getCause();
+        	}
+        	if(rootCause instanceof java.sql.SQLException) {
+        		userContext.log("SQL出错, 很可能模型更新后，JAVA代码更新了，但是数据库没有重新导入: "+e.getTargetException().getMessage());
+        	}
+            return error("InvocationTargetException: 服务器出错，请管理员帮忙查看服务器端日志" );
             
-            return error("InvocationTargetException: "+ e.getTargetException().getMessage());
         }catch (Exception e) {
             e.printStackTrace();
             return error("Exception1: "+ e.getMessage());
         }
+        
 
     }
     

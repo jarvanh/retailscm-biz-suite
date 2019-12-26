@@ -106,6 +106,11 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	}
 	*/
 	
+	public SmartList<SecUser> loadAll() {
+	    return this.loadAll(getSecUserMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -474,12 +479,21 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 			getUserAppDAO().analyzeUserAppBySecUser(userAppList, secUser.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return secUser;
 	
 	}	
 	
 		
+=======
+		
+		return secUser;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceLoginHistoryList(SmartList<LoginHistory> loginHistoryList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -773,7 +787,11 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		return prepareSecUserCreateParameters(secUser);
  	}
  	protected Object[] prepareSecUserUpdateParameters(SecUser secUser){
+<<<<<<< HEAD
  		Object[] parameters = new Object[16];
+=======
+ 		Object[] parameters = new Object[15];
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  
  		parameters[0] = secUser.getLogin();
  		parameters[1] = secUser.getMobile();
@@ -792,16 +810,27 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		if(secUser.getBlocking() != null){
  			parameters[11] = secUser.getBlocking().getId();
  		}
+<<<<<<< HEAD
  
  		parameters[12] = secUser.getCurrentStatus();		
  		parameters[13] = secUser.nextVersion();
  		parameters[14] = secUser.getId();
  		parameters[15] = secUser.getVersion();
+=======
+ 		
+ 		parameters[12] = secUser.nextVersion();
+ 		parameters[13] = secUser.getId();
+ 		parameters[14] = secUser.getVersion();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  				
  		return parameters;
  	}
  	protected Object[] prepareSecUserCreateParameters(SecUser secUser){
+<<<<<<< HEAD
 		Object[] parameters = new Object[14];
+=======
+		Object[] parameters = new Object[13];
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		String newSecUserId=getNextId();
 		secUser.setId(newSecUserId);
 		parameters[0] =  secUser.getId();
@@ -825,8 +854,12 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  			parameters[12] = secUser.getBlocking().getId();
  		
  		}
+<<<<<<< HEAD
  		
  		parameters[13] = secUser.getCurrentStatus();		
+=======
+ 				
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  				
  		return parameters;
  	}

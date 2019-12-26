@@ -278,17 +278,17 @@ public class RetailStoreProvinceCenterForm extends BaseForm {
 	}
 
 
-	public RetailStoreProvinceCenterForm managerFieldForProvinceCenterDepartment(String parameterName, String initValue){
-		FormField field =  managerFromProvinceCenterDepartment(parameterName, initValue);		
+	public RetailStoreProvinceCenterForm managerNameFieldForProvinceCenterDepartment(String parameterName, String initValue){
+		FormField field =  managerNameFromProvinceCenterDepartment(parameterName, initValue);		
 		this.addFormField(field);
 		return this;
 	}
 	
-	public RetailStoreProvinceCenterForm managerFieldForProvinceCenterDepartment(String initValue){
-		return managerFieldForProvinceCenterDepartment("manager",initValue);
+	public RetailStoreProvinceCenterForm managerNameFieldForProvinceCenterDepartment(String initValue){
+		return managerNameFieldForProvinceCenterDepartment("managerName",initValue);
 	}
-	public RetailStoreProvinceCenterForm managerFieldForProvinceCenterDepartment(){
-		return managerFieldForProvinceCenterDepartment("manager","");
+	public RetailStoreProvinceCenterForm managerNameFieldForProvinceCenterDepartment(){
+		return managerNameFieldForProvinceCenterDepartment("managerName","");
 	}
 
 

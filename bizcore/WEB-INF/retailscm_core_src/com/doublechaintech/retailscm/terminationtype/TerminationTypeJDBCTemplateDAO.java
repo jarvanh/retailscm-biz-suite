@@ -74,6 +74,11 @@ public class TerminationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<TerminationType> loadAll() {
+	    return this.loadAll(getTerminationTypeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

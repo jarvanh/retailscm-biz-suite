@@ -74,14 +74,6 @@ public class Scoring extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Scoring(String scoredBy, int score, String comment)
-	{
-		setScoredBy(scoredBy);
-		setScore(score);
-		setComment(comment);
-
-		this.mEmployeeCompanyTrainingList = new SmartList<EmployeeCompanyTraining>();	
-	}
 	
 	//Support for changing the property
 	

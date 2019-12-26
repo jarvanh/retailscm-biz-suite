@@ -19,14 +19,25 @@
 		description='中国中心正式成立，恭喜恭喜'
 		
 		
+		
+		
+		
 	/>
 	
 
 	
 	<!--连锁店的拥有者会有自己的产品分类，这样就可以保证订货和供货之间不存在不一致的情况-->
 	<catalog 
+<<<<<<< HEAD
 		name="水果蔬菜|肉禽蛋奶|冷热速食|休闲食品|酒水饮料|粮油调味|清洁日化|家居用品|鲜花蛋糕|医药健康" 
 		 owner="$(retail_store_country_center)" _vg4owner="产品管理"/>	
+=======
+		name="水果蔬菜|肉禽蛋奶|冷热速食|休闲食品|酒水饮料|粮油调味|清洁日化|家居用品|鲜花蛋糕|医药健康|[10,201]" 
+		 owner="$(retail_store_country_center)" _vg4owner="产品管理"
+		 sub_count="10"
+		 amount="$10.11"
+		 />	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	<level_one_category catalog="$(catalog)" 
 		name="水果蔬菜|肉禽蛋奶|冷热速食|休闲食品|酒水饮料|粮油调味|清洁日化|家居用品|鲜花蛋糕|医药健康"/>	
 	<level_two_category parent_category="$(level_one_category)" 
@@ -109,7 +120,7 @@ pic   varchar(254),   图片 -->
 		name='供应链部|采购部|管理部|财务部|法务部|市场部|人力资源部'  
 		founded="past()"
 		province_center="$(retail_store_province_center)"
-		manager='刘强|王德宏'
+		manager_name='刘强|王德宏'
 		 _features="setting"
 	/>
 
@@ -898,7 +909,7 @@ ATM取款：ATM withdrawal
 	/>
 	
 	
-
+	
 	
 	
 
@@ -907,7 +918,7 @@ ATM取款：ATM withdrawal
         belongs_to="$(retail_store_country_center)" _vg4belongs_to="组织机构"
         name="供应链部|采购部|管理部|财务部|信息技术部|法务部|市场部|人力资源部"
         description="主要执行集团信息系统建设，维护，规划"
-        manager='刘强|王德宏'
+        manager_name='刘强|王德宏'
         founded="past()"
     />
 

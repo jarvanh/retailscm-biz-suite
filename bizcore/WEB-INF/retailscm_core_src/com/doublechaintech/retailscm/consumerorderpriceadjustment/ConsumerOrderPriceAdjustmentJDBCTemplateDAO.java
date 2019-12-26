@@ -53,6 +53,11 @@ public class ConsumerOrderPriceAdjustmentJDBCTemplateDAO extends RetailscmBaseDA
 	}
 	*/
 	
+	public SmartList<ConsumerOrderPriceAdjustment> loadAll() {
+	    return this.loadAll(getConsumerOrderPriceAdjustmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

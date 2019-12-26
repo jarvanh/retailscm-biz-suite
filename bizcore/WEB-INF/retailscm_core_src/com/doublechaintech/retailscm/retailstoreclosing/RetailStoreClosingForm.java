@@ -291,20 +291,6 @@ public class RetailStoreClosingForm extends BaseForm {
 		return lastUpdateTimeFieldForRetailStore("lastUpdateTime","");
 	}
 
-
-	public RetailStoreClosingForm currentStatusFieldForRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public RetailStoreClosingForm currentStatusFieldForRetailStore(String initValue){
-		return currentStatusFieldForRetailStore("currentStatus",initValue);
-	}
-	public RetailStoreClosingForm currentStatusFieldForRetailStore(){
-		return currentStatusFieldForRetailStore("currentStatus","");
-	}
-
 	
 
 

@@ -76,14 +76,6 @@ public class TerminationReason extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	TerminationReason(String code, RetailStoreCountryCenter company, String description)
-	{
-		setCode(code);
-		setCompany(company);
-		setDescription(description);
-
-		this.mTerminationList = new SmartList<Termination>();	
-	}
 	
 	//Support for changing the property
 	

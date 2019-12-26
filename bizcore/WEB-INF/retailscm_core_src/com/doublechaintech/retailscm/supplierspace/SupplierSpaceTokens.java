@@ -143,9 +143,13 @@ public class SupplierSpaceTokens extends CommonTokens{
 	}
 	private int goodsShelfListSearchCounter = 0;
 	public SupplierSpaceTokens searchGoodsShelfListWith(String field, String verb, String value){		
+		
+		withGoodsShelfList();
 		addSearchMoreOptions(GOODS_SHELF_LIST,goodsShelfListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SupplierSpaceTokens searchAllTextOfGoodsShelfList(String verb, String value){	
 		String field = "id|location";

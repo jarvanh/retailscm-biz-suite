@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoreinvestmentinvitation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 
 
-public interface RetailStoreInvestmentInvitationDAO{
+public interface RetailStoreInvestmentInvitationDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreInvestmentInvitation> loadAll();
 	public RetailStoreInvestmentInvitation load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreInvestmentInvitation> retailStoreInvestmentInvitationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -57,6 +58,26 @@ public interface RetailStoreInvestmentInvitationDAO{
 	//disconnect RetailStoreInvestmentInvitation with city_service_center in RetailStore
 	public RetailStoreInvestmentInvitation planToRemoveRetailStoreListWithCityServiceCenter(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, String cityServiceCenterId, Map<String,Object> options)throws Exception;
 	public int countRetailStoreListWithCityServiceCenter(String retailStoreInvestmentInvitationId, String cityServiceCenterId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreInvestmentInvitation with creation in RetailStore
+	public RetailStoreInvestmentInvitation planToRemoveRetailStoreListWithCreation(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, String creationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithCreation(String retailStoreInvestmentInvitationId, String creationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreInvestmentInvitation with franchising in RetailStore
+	public RetailStoreInvestmentInvitation planToRemoveRetailStoreListWithFranchising(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, String franchisingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithFranchising(String retailStoreInvestmentInvitationId, String franchisingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreInvestmentInvitation with decoration in RetailStore
+	public RetailStoreInvestmentInvitation planToRemoveRetailStoreListWithDecoration(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, String decorationId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithDecoration(String retailStoreInvestmentInvitationId, String decorationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreInvestmentInvitation with opening in RetailStore
+	public RetailStoreInvestmentInvitation planToRemoveRetailStoreListWithOpening(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, String openingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithOpening(String retailStoreInvestmentInvitationId, String openingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreInvestmentInvitation with closing in RetailStore
+	public RetailStoreInvestmentInvitation planToRemoveRetailStoreListWithClosing(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, String closingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreListWithClosing(String retailStoreInvestmentInvitationId, String closingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<RetailStoreInvestmentInvitation> queryList(String sql, Object ... parmeters);

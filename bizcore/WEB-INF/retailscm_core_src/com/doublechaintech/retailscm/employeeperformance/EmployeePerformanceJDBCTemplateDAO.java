@@ -53,6 +53,11 @@ public class EmployeePerformanceJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	}
 	*/
 	
+	public SmartList<EmployeePerformance> loadAll() {
+	    return this.loadAll(getEmployeePerformanceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -86,19 +86,6 @@ public class Sku extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	Sku(String name, String size, Product product, String barcode, String packageType, String netContent, BigDecimal price, String picture)
-	{
-		setName(name);
-		setSize(size);
-		setProduct(product);
-		setBarcode(barcode);
-		setPackageType(packageType);
-		setNetContent(netContent);
-		setPrice(price);
-		setPicture(picture);
-
-		this.mGoodsList = new SmartList<Goods>();	
-	}
 	
 	//Support for changing the property
 	

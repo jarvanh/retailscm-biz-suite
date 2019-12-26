@@ -53,7 +53,7 @@ public class TruckDriverMapper extends BaseRowMapper<TruckDriver>{
 	protected void setDriverLicenseNumber(TruckDriver truckDriver, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String driverLicenseNumber = rs.getString(TruckDriverTable.COLUMN_DRIVER_LICENSE_NUMBER);
+		Long driverLicenseNumber = rs.getLong(TruckDriverTable.COLUMN_DRIVER_LICENSE_NUMBER);
 		if(driverLicenseNumber == null){
 			//do nothing when nothing found in database
 			return;

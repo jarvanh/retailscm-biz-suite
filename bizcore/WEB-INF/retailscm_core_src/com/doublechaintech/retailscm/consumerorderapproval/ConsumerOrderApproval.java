@@ -69,12 +69,6 @@ public class ConsumerOrderApproval extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrderApproval(String who, Date approveTime)
-	{
-		setWho(who);
-		setApproveTime(approveTime);
-	
-	}
 	
 	//Support for changing the property
 	

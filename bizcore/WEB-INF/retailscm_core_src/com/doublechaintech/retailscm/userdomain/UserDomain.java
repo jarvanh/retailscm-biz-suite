@@ -73,13 +73,6 @@ public class UserDomain extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	UserDomain(String name)
-	{
-		setName(name);
-
-		this.mUserWhiteListList = new SmartList<UserWhiteList>();
-		this.mSecUserList = new SmartList<SecUser>();	
-	}
 	
 	//Support for changing the property
 	

@@ -168,9 +168,13 @@ public class GoodsShelfTokens extends CommonTokens{
 	}
 	private int goodsShelfStockCountListSearchCounter = 0;
 	public GoodsShelfTokens searchGoodsShelfStockCountListWith(String field, String verb, String value){		
+		
+		withGoodsShelfStockCountList();
 		addSearchMoreOptions(GOODS_SHELF_STOCK_COUNT_LIST,goodsShelfStockCountListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public GoodsShelfTokens searchAllTextOfGoodsShelfStockCountList(String verb, String value){	
 		String field = "id|title|summary";
@@ -234,9 +238,13 @@ public class GoodsShelfTokens extends CommonTokens{
 	}
 	private int goodsAllocationListSearchCounter = 0;
 	public GoodsShelfTokens searchGoodsAllocationListWith(String field, String verb, String value){		
+		
+		withGoodsAllocationList();
 		addSearchMoreOptions(GOODS_ALLOCATION_LIST,goodsAllocationListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public GoodsShelfTokens searchAllTextOfGoodsAllocationList(String verb, String value){	
 		String field = "id|location";

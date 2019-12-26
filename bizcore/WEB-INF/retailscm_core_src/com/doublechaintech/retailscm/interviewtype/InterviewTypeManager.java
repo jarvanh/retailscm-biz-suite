@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface InterviewTypeManager{
+public interface InterviewTypeManager extends BaseManager{
 
 		
 
-	public InterviewType createInterviewType(RetailscmUserContext userContext, String code, String companyId, String description, String detailDescription) throws Exception;	
+	public InterviewType createInterviewType(RetailscmUserContext userContext, String code,String companyId,String description,String detailDescription) throws Exception;	
 	public InterviewType updateInterviewType(RetailscmUserContext userContext,String interviewTypeId, int interviewTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public InterviewType loadInterviewType(RetailscmUserContext userContext, String interviewTypeId, String [] tokensExpr) throws Exception;
 	public InterviewType internalSaveInterviewType(RetailscmUserContext userContext, InterviewType interviewType) throws Exception;

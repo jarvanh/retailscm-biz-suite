@@ -75,14 +75,6 @@ public class SupplyOrderApproval extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderApproval(String who, Date approveTime)
-	{
-		setWho(who);
-		setApproveTime(approveTime);
-
-		this.mConsumerOrderList = new SmartList<ConsumerOrder>();
-		this.mSupplyOrderList = new SmartList<SupplyOrder>();	
-	}
 	
 	//Support for changing the property
 	

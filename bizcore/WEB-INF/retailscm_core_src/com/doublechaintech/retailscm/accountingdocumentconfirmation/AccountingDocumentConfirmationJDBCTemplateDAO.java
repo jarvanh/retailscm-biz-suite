@@ -63,6 +63,11 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 	}
 	*/
 	
+	public SmartList<AccountingDocumentConfirmation> loadAll() {
+	    return this.loadAll(getAccountingDocumentConfirmationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -602,6 +607,138 @@ public class AccountingDocumentConfirmationJDBCTemplateDAO extends RetailscmBase
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmationId);
 		key.put(AccountingDocument.DOCUMENT_TYPE_PROPERTY, documentTypeId);
+		
+		int count = getAccountingDocumentDAO().countAccountingDocumentWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect AccountingDocumentConfirmation with creation in AccountingDocument
+	public AccountingDocumentConfirmation planToRemoveAccountingDocumentListWithCreation(AccountingDocumentConfirmation accountingDocumentConfirmation, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmation.getId());
+		key.put(AccountingDocument.CREATION_PROPERTY, creationId);
+		
+		SmartList<AccountingDocument> externalAccountingDocumentList = getAccountingDocumentDAO().
+				findAccountingDocumentWithKey(key, options);
+		if(externalAccountingDocumentList == null){
+			return accountingDocumentConfirmation;
+		}
+		if(externalAccountingDocumentList.isEmpty()){
+			return accountingDocumentConfirmation;
+		}
+		
+		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
+			accountingDocumentItem.clearCreation();
+			accountingDocumentItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<AccountingDocument> accountingDocumentList = accountingDocumentConfirmation.getAccountingDocumentList();		
+		accountingDocumentList.addAllToRemoveList(externalAccountingDocumentList);
+		return accountingDocumentConfirmation;
+	}
+	
+	public int countAccountingDocumentListWithCreation(String accountingDocumentConfirmationId, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmationId);
+		key.put(AccountingDocument.CREATION_PROPERTY, creationId);
+		
+		int count = getAccountingDocumentDAO().countAccountingDocumentWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect AccountingDocumentConfirmation with auditing in AccountingDocument
+	public AccountingDocumentConfirmation planToRemoveAccountingDocumentListWithAuditing(AccountingDocumentConfirmation accountingDocumentConfirmation, String auditingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmation.getId());
+		key.put(AccountingDocument.AUDITING_PROPERTY, auditingId);
+		
+		SmartList<AccountingDocument> externalAccountingDocumentList = getAccountingDocumentDAO().
+				findAccountingDocumentWithKey(key, options);
+		if(externalAccountingDocumentList == null){
+			return accountingDocumentConfirmation;
+		}
+		if(externalAccountingDocumentList.isEmpty()){
+			return accountingDocumentConfirmation;
+		}
+		
+		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
+			accountingDocumentItem.clearAuditing();
+			accountingDocumentItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<AccountingDocument> accountingDocumentList = accountingDocumentConfirmation.getAccountingDocumentList();		
+		accountingDocumentList.addAllToRemoveList(externalAccountingDocumentList);
+		return accountingDocumentConfirmation;
+	}
+	
+	public int countAccountingDocumentListWithAuditing(String accountingDocumentConfirmationId, String auditingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmationId);
+		key.put(AccountingDocument.AUDITING_PROPERTY, auditingId);
+		
+		int count = getAccountingDocumentDAO().countAccountingDocumentWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect AccountingDocumentConfirmation with posting in AccountingDocument
+	public AccountingDocumentConfirmation planToRemoveAccountingDocumentListWithPosting(AccountingDocumentConfirmation accountingDocumentConfirmation, String postingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmation.getId());
+		key.put(AccountingDocument.POSTING_PROPERTY, postingId);
+		
+		SmartList<AccountingDocument> externalAccountingDocumentList = getAccountingDocumentDAO().
+				findAccountingDocumentWithKey(key, options);
+		if(externalAccountingDocumentList == null){
+			return accountingDocumentConfirmation;
+		}
+		if(externalAccountingDocumentList.isEmpty()){
+			return accountingDocumentConfirmation;
+		}
+		
+		for(AccountingDocument accountingDocumentItem: externalAccountingDocumentList){
+			accountingDocumentItem.clearPosting();
+			accountingDocumentItem.clearConfirmation();
+			
+		}
+		
+		
+		SmartList<AccountingDocument> accountingDocumentList = accountingDocumentConfirmation.getAccountingDocumentList();		
+		accountingDocumentList.addAllToRemoveList(externalAccountingDocumentList);
+		return accountingDocumentConfirmation;
+	}
+	
+	public int countAccountingDocumentListWithPosting(String accountingDocumentConfirmationId, String postingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmationId);
+		key.put(AccountingDocument.POSTING_PROPERTY, postingId);
 		
 		int count = getAccountingDocumentDAO().countAccountingDocumentWithKey(key, options);
 		return count;

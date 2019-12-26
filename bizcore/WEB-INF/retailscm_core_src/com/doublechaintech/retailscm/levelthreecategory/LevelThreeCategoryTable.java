@@ -22,12 +22,17 @@ public class LevelThreeCategoryTable{
 	static final String COLUMN_NAME = "name";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_PARENT_CATEGORY, COLUMN_NAME, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_PARENT_CATEGORY, COLUMN_NAME
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_PARENT_CATEGORY,COLUMN_NAME,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_PARENT_CATEGORY,COLUMN_NAME};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

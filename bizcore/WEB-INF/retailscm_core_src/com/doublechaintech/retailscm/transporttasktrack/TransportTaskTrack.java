@@ -75,14 +75,6 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	TransportTaskTrack(Date trackTime, BigDecimal latitude, BigDecimal longitude, TransportTask movement)
-	{
-		setTrackTime(trackTime);
-		setLatitude(latitude);
-		setLongitude(longitude);
-		setMovement(movement);
-	
-	}
 	
 	//Support for changing the property
 	

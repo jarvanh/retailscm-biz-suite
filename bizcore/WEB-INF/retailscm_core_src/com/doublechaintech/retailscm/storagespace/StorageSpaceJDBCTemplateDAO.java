@@ -74,6 +74,11 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	}
 	*/
 	
+	public SmartList<StorageSpace> loadAll() {
+	    return this.loadAll(getStorageSpaceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

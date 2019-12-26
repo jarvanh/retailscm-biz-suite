@@ -53,6 +53,11 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	*/
 	
+	public SmartList<RetailStoreOrderLineItem> loadAll() {
+	    return this.loadAll(getRetailStoreOrderLineItemMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

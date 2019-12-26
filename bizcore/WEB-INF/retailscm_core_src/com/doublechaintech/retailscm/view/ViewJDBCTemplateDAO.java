@@ -42,6 +42,11 @@ public class ViewJDBCTemplateDAO extends RetailscmBaseDAOImpl implements ViewDAO
 	}
 	*/
 	
+	public SmartList<View> loadAll() {
+	    return this.loadAll(getViewMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

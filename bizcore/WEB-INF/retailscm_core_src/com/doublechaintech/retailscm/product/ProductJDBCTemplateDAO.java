@@ -74,6 +74,11 @@ public class ProductJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Prod
 	}
 	*/
 	
+	public SmartList<Product> loadAll() {
+	    return this.loadAll(getProductMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

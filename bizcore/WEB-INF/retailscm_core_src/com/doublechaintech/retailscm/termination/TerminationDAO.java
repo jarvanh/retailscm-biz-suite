@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.termination;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -17,9 +18,9 @@ import com.doublechaintech.retailscm.terminationreason.TerminationReasonDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface TerminationDAO{
+public interface TerminationDAO extends BaseDAO{
 
-	
+	public SmartList<Termination> loadAll();
 	public Termination load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<Termination> terminationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -73,6 +74,30 @@ public interface TerminationDAO{
 	//disconnect Termination with current_salary_grade in Employee
 	public Termination planToRemoveEmployeeListWithCurrentSalaryGrade(Termination termination, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String terminationId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Termination with job_application in Employee
+	public Termination planToRemoveEmployeeListWithJobApplication(Termination termination, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String terminationId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Termination with profession_interview in Employee
+	public Termination planToRemoveEmployeeListWithProfessionInterview(Termination termination, String professionInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithProfessionInterview(String terminationId, String professionInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Termination with hr_interview in Employee
+	public Termination planToRemoveEmployeeListWithHrInterview(Termination termination, String hrInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithHrInterview(String terminationId, String hrInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Termination with offer_approval in Employee
+	public Termination planToRemoveEmployeeListWithOfferApproval(Termination termination, String offerApprovalId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferApproval(String terminationId, String offerApprovalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Termination with offer_acceptance in Employee
+	public Termination planToRemoveEmployeeListWithOfferAcceptance(Termination termination, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferAcceptance(String terminationId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Termination with employee_boarding in Employee
+	public Termination planToRemoveEmployeeListWithEmployeeBoarding(Termination termination, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String terminationId, String employeeBoardingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<Termination> queryList(String sql, Object ... parmeters);

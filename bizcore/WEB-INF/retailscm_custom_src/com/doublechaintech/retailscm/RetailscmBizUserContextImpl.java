@@ -8,6 +8,10 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 
 import com.terapico.caf.BlobObject;
+<<<<<<< HEAD
+=======
+import com.terapico.caf.baseelement.LoginParam;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import com.terapico.caf.viewcomponent.ButtonViewComponent;
 import com.terapico.caf.viewcomponent.FilterTabsViewComponent;
 import com.terapico.caf.viewcomponent.PopupViewComponent;
@@ -18,7 +22,10 @@ import com.terapico.utils.TextUtil;
 import com.doublechaintech.retailscm.secuser.SecUser;
 
 public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected static final String DEFAULT_ACTION_GROUP = "default";
 	protected Map<String, List<ButtonViewComponent>> actionGroups;
 	protected String accessUrl;
@@ -44,6 +51,12 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 	protected String assignmentId;
 	protected BaseRetailscmFormProcessor inputFormData;
 	protected BaseRetailscmFormProcessor outputFormData;
+<<<<<<< HEAD
+=======
+	protected LoginParam loginParam;
+
+	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public void clearFormResubmitFlag() {
 		removeFromCache(getPostMd5Key(this));
@@ -263,6 +276,15 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 	public void setAssignmentId(String assignmentId) {
 		this.assignmentId = assignmentId;
 	}
+<<<<<<< HEAD
+=======
+	public LoginParam getLoginParam() {
+		return loginParam;
+	}
+	public void setLoginParam(LoginParam loginParam) {
+		this.loginParam = loginParam;
+	}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	@Override
 	public void sendEmail(String to, String subject, String content) throws Exception {
 		if (!isProductEnvironment()) {

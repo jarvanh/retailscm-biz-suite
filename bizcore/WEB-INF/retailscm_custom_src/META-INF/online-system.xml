@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<<<<<<< HEAD
 	
 	<import resource="classpath*:/META-INF/infra.xml" />
 	
@@ -18,6 +19,23 @@
 	
 	
 	
+=======
+
+	<import resource="classpath*:/META-INF/infra.xml" />
+
+	<!--
+
+	****************************************************************************
+	*						HELP YOU GET FAST CODE                             *
+	****************************************************************************
+
+
+	 -->
+	<import resource="classpath*:/META-INF/retailscm_custom.xml" />
+
+
+
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 </beans>
 
 

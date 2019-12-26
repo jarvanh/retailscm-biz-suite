@@ -145,12 +145,16 @@ public class TransportFleetTokens extends CommonTokens{
 	}
 	private int transportTruckListSearchCounter = 0;
 	public TransportFleetTokens searchTransportTruckListWith(String field, String verb, String value){		
+		
+		withTransportTruckList();
 		addSearchMoreOptions(TRANSPORT_TRUCK_LIST,transportTruckListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public TransportFleetTokens searchAllTextOfTransportTruckList(String verb, String value){	
-		String field = "id|name|plateNumber|contactNumber|vehicleLicenseNumber|engineNumber|mileage|bodyColor";
+		String field = "id|name|plateNumber|vehicleLicenseNumber|engineNumber|mileage|bodyColor";
 		addSearchMoreOptions(TRANSPORT_TRUCK_LIST,transportTruckListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -211,12 +215,16 @@ public class TransportFleetTokens extends CommonTokens{
 	}
 	private int truckDriverListSearchCounter = 0;
 	public TransportFleetTokens searchTruckDriverListWith(String field, String verb, String value){		
+		
+		withTruckDriverList();
 		addSearchMoreOptions(TRUCK_DRIVER_LIST,truckDriverListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public TransportFleetTokens searchAllTextOfTruckDriverList(String verb, String value){	
-		String field = "id|name|driverLicenseNumber|contactNumber";
+		String field = "id|name|contactNumber";
 		addSearchMoreOptions(TRUCK_DRIVER_LIST,truckDriverListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -277,9 +285,13 @@ public class TransportFleetTokens extends CommonTokens{
 	}
 	private int transportTaskListSearchCounter = 0;
 	public TransportFleetTokens searchTransportTaskListWith(String field, String verb, String value){		
+		
+		withTransportTaskList();
 		addSearchMoreOptions(TRANSPORT_TASK_LIST,transportTaskListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public TransportFleetTokens searchAllTextOfTransportTaskList(String verb, String value){	
 		String field = "id|name|start";

@@ -74,13 +74,6 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 	}
 	
-	public 	LevelOneCategory(Catalog catalog, String name)
-	{
-		setCatalog(catalog);
-		setName(name);
-
-		this.mLevelTwoCategoryList = new SmartList<LevelTwoCategory>();	
-	}
 	
 	//Support for changing the property
 	

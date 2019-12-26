@@ -3,17 +3,24 @@ package com.doublechaintech.retailscm.consumerorderdelivery;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
+<<<<<<< HEAD
 
 
 public interface ConsumerOrderDeliveryDAO{
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
-	
+
+public interface ConsumerOrderDeliveryDAO extends BaseDAO{
+
+	public SmartList<ConsumerOrderDelivery> loadAll();
 	public ConsumerOrderDelivery load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ConsumerOrderDelivery> consumerOrderDeliveryList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

@@ -149,12 +149,16 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	private int storageSpaceListSearchCounter = 0;
 	public WarehouseTokens searchStorageSpaceListWith(String field, String verb, String value){		
+		
+		withStorageSpaceList();
 		addSearchMoreOptions(STORAGE_SPACE_LIST,storageSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public WarehouseTokens searchAllTextOfStorageSpaceList(String verb, String value){	
-		String field = "id|location|contactNumber|totalArea";
+		String field = "id|location|totalArea";
 		addSearchMoreOptions(STORAGE_SPACE_LIST,storageSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -215,12 +219,16 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	private int smartPalletListSearchCounter = 0;
 	public WarehouseTokens searchSmartPalletListWith(String field, String verb, String value){		
+		
+		withSmartPalletList();
 		addSearchMoreOptions(SMART_PALLET_LIST,smartPalletListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public WarehouseTokens searchAllTextOfSmartPalletList(String verb, String value){	
-		String field = "id|location|contactNumber|totalArea";
+		String field = "id|location|totalArea";
 		addSearchMoreOptions(SMART_PALLET_LIST,smartPalletListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -281,12 +289,16 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	private int supplierSpaceListSearchCounter = 0;
 	public WarehouseTokens searchSupplierSpaceListWith(String field, String verb, String value){		
+		
+		withSupplierSpaceList();
 		addSearchMoreOptions(SUPPLIER_SPACE_LIST,supplierSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public WarehouseTokens searchAllTextOfSupplierSpaceList(String verb, String value){	
-		String field = "id|location|contactNumber|totalArea";
+		String field = "id|location|totalArea";
 		addSearchMoreOptions(SUPPLIER_SPACE_LIST,supplierSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -347,12 +359,16 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	private int receivingSpaceListSearchCounter = 0;
 	public WarehouseTokens searchReceivingSpaceListWith(String field, String verb, String value){		
+		
+		withReceivingSpaceList();
 		addSearchMoreOptions(RECEIVING_SPACE_LIST,receivingSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public WarehouseTokens searchAllTextOfReceivingSpaceList(String verb, String value){	
-		String field = "id|location|contactNumber|description|totalArea";
+		String field = "id|location|description|totalArea";
 		addSearchMoreOptions(RECEIVING_SPACE_LIST,receivingSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -413,12 +429,16 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	private int shippingSpaceListSearchCounter = 0;
 	public WarehouseTokens searchShippingSpaceListWith(String field, String verb, String value){		
+		
+		withShippingSpaceList();
 		addSearchMoreOptions(SHIPPING_SPACE_LIST,shippingSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public WarehouseTokens searchAllTextOfShippingSpaceList(String verb, String value){	
-		String field = "id|location|contactNumber|totalArea|description";
+		String field = "id|location|totalArea|description";
 		addSearchMoreOptions(SHIPPING_SPACE_LIST,shippingSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -479,12 +499,16 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	private int damageSpaceListSearchCounter = 0;
 	public WarehouseTokens searchDamageSpaceListWith(String field, String verb, String value){		
+		
+		withDamageSpaceList();
 		addSearchMoreOptions(DAMAGE_SPACE_LIST,damageSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public WarehouseTokens searchAllTextOfDamageSpaceList(String verb, String value){	
-		String field = "id|location|contactNumber|totalArea";
+		String field = "id|location|totalArea";
 		addSearchMoreOptions(DAMAGE_SPACE_LIST,damageSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -545,9 +569,13 @@ public class WarehouseTokens extends CommonTokens{
 	}
 	private int warehouseAssetListSearchCounter = 0;
 	public WarehouseTokens searchWarehouseAssetListWith(String field, String verb, String value){		
+		
+		withWarehouseAssetList();
 		addSearchMoreOptions(WAREHOUSE_ASSET_LIST,warehouseAssetListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public WarehouseTokens searchAllTextOfWarehouseAssetList(String verb, String value){	
 		String field = "id|name|position";

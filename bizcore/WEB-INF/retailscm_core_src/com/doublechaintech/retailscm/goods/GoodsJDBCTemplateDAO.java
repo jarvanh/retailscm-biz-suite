@@ -173,6 +173,11 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 	}
 	*/
 	
+	public SmartList<Goods> loadAll() {
+	    return this.loadAll(getGoodsMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1365,7 +1370,7 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  		return prepareGoodsCreateParameters(goods);
  	}
  	protected Object[] prepareGoodsUpdateParameters(Goods goods){
- 		Object[] parameters = new Object[19];
+ 		Object[] parameters = new Object[18];
  
  		parameters[0] = goods.getName();
  		parameters[1] = goods.getRfid();
@@ -1411,16 +1416,15 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  		if(goods.getPackaging() != null){
  			parameters[14] = goods.getPackaging().getId();
  		}
- 
- 		parameters[15] = goods.getCurrentStatus();		
- 		parameters[16] = goods.nextVersion();
- 		parameters[17] = goods.getId();
- 		parameters[18] = goods.getVersion();
+ 		
+ 		parameters[15] = goods.nextVersion();
+ 		parameters[16] = goods.getId();
+ 		parameters[17] = goods.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareGoodsCreateParameters(Goods goods){
-		Object[] parameters = new Object[17];
+		Object[] parameters = new Object[16];
 		String newGoodsId=getNextId();
 		goods.setId(newGoodsId);
 		parameters[0] =  goods.getId();
@@ -1479,8 +1483,7 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  			parameters[15] = goods.getPackaging().getId();
  		
  		}
- 		
- 		parameters[16] = goods.getCurrentStatus();		
+ 				
  				
  		return parameters;
  	}

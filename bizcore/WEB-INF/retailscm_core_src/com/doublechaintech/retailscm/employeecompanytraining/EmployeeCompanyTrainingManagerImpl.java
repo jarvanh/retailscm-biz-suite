@@ -37,6 +37,10 @@ import com.doublechaintech.retailscm.companytraining.CandidateCompanyTraining;
 public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerManager implements EmployeeCompanyTrainingManager {
 	
 	private static final String SERVICE_TYPE = "EmployeeCompanyTraining";
+	@Override
+	public EmployeeCompanyTrainingDAO daoOf(RetailscmUserContext userContext) {
+		return employeeCompanyTrainingDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -70,8 +74,8 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	
  	public EmployeeCompanyTraining loadEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeCompanyTrainingId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeCompanyTrainingManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeCompanyTrainingManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -84,8 +88,8 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	
  	 public EmployeeCompanyTraining searchEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeCompanyTrainingId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeCompanyTrainingManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeCompanyTrainingManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -103,10 +107,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		addActions(userContext,employeeCompanyTraining,tokens);
 		
 		
-		EmployeeCompanyTraining  employeeCompanyTrainingToPresent = userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().present(employeeCompanyTraining, tokens);
+		EmployeeCompanyTraining  employeeCompanyTrainingToPresent = employeeCompanyTrainingDaoOf(userContext).present(employeeCompanyTraining, tokens);
 		
 		List<BaseEntity> entityListToNaming = employeeCompanyTrainingToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().alias(entityListToNaming);
+		employeeCompanyTrainingDaoOf(userContext).alias(entityListToNaming);
 		
 		return  employeeCompanyTrainingToPresent;
 		
@@ -127,14 +131,14 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		
  	}
  	protected EmployeeCompanyTraining saveEmployeeCompanyTraining(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().save(employeeCompanyTraining, tokens);
+ 		return employeeCompanyTrainingDaoOf(userContext).save(employeeCompanyTraining, tokens);
  	}
  	protected EmployeeCompanyTraining loadEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeCompanyTrainingId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().throwExceptionIfHasErrors( EmployeeCompanyTrainingManagerException.class);
+		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( EmployeeCompanyTrainingManagerException.class);
 
  
- 		return userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().load(employeeCompanyTrainingId, tokens);
+ 		return employeeCompanyTrainingDaoOf(userContext).load(employeeCompanyTrainingId, tokens);
  	}
 
 	
@@ -154,7 +158,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		
 		addAction(userContext, employeeCompanyTraining, tokens,"employee_company_training.transfer_to_employee","transferToAnotherEmployee","transferToAnotherEmployee/"+employeeCompanyTraining.getId()+"/","main","primary");
 		addAction(userContext, employeeCompanyTraining, tokens,"employee_company_training.transfer_to_training","transferToAnotherTraining","transferToAnotherTraining/"+employeeCompanyTraining.getId()+"/","main","primary");
-		addAction(userContext, employeeCompanyTraining, tokens,"employee_company_training.score","score","scoreActionForm/"+employeeCompanyTraining.getId()+"/","main","success");
+		addAction(userContext, employeeCompanyTraining, tokens,"employee_company_training.transfer_to_scoring","transferToAnotherScoring","transferToAnotherScoring/"+employeeCompanyTraining.getId()+"/","main","primary");
 	
 		
 		
@@ -166,8 +170,8 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	
  	
 
-
-	public EmployeeCompanyTraining createEmployeeCompanyTraining(RetailscmUserContext userContext,String employeeId, String trainingId) throws Exception
+	public EmployeeCompanyTraining createEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId,String trainingId,String scoringId) throws Exception
+	//public EmployeeCompanyTraining createEmployeeCompanyTraining(RetailscmUserContext userContext,String employeeId, String trainingId, String scoringId) throws Exception
 	{
 		
 		
@@ -175,7 +179,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		
 
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
 
 
 		EmployeeCompanyTraining employeeCompanyTraining=createNewEmployeeCompanyTraining();	
@@ -190,7 +194,11 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		employeeCompanyTraining.setTraining(training);
 		
 		
-		employeeCompanyTraining.setCurrentStatus("INIT");
+			
+		Scoring scoring = loadScoring(userContext, scoringId,emptyOptions());
+		employeeCompanyTraining.setScoring(scoring);
+		
+		
 
 		employeeCompanyTraining = saveEmployeeCompanyTraining(userContext, employeeCompanyTraining, emptyOptions());
 		
@@ -211,16 +219,18 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 
 		
 		
-		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().checkVersionOfEmployeeCompanyTraining( employeeCompanyTrainingVersion);
+		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+		checkerOf(userContext).checkVersionOfEmployeeCompanyTraining( employeeCompanyTrainingVersion);
 		
 		
 
 				
 
+				
+
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
 	
 		
 	}
@@ -229,7 +239,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	
 	public EmployeeCompanyTraining clone(RetailscmUserContext userContext, String fromEmployeeCompanyTrainingId) throws Exception{
 		
-		return userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().clone(fromEmployeeCompanyTrainingId, this.allTokens());
+		return employeeCompanyTrainingDaoOf(userContext).clone(fromEmployeeCompanyTrainingId, this.allTokens());
 	}
 	
 	public EmployeeCompanyTraining internalSaveEmployeeCompanyTraining(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining) throws Exception 
@@ -324,53 +334,12 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		return EmployeeCompanyTrainingTokens.mergeAll(tokens).done();
 	}
 	
-	private static final String [] STATUS_SEQUENCE={"SCORED"};
- 	protected String[] getNextCandidateStatus(RetailscmUserContext userContext, String currentStatus) throws Exception{
- 	
- 		if("INIT".equals(currentStatus)){
- 			//if current status is null, just return the first status as the next status
- 			//code makes sure not throwing ArrayOutOfIndexException here.
- 			return STATUS_SEQUENCE;
- 		}
- 		/*
- 		List<String> statusList = Arrays.asList(STATUS_SEQUENCE);
- 		int index = statusList.indexOf(currentStatus);
- 		if(index < 0){
- 			throwExceptionWithMessage("The status '"+currentStatus+"' is not found from status list: "+ statusList );
- 		}
- 		if(index + 1 == statusList.size()){
- 			//this is the last status code; no next status any more
- 			return null;
- 		}
- 		
- 		//this is not the last one, just return it.
- 		*/
- 		return STATUS_SEQUENCE;
- 	
- 	}/**/
- 	protected void ensureStatus(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining, String expectedNextStatus) throws Exception{
-		String currentStatus = employeeCompanyTraining.getCurrentStatus();
-		//'null' is fine for function getNextStatus
-		String candidateStatus[] = getNextCandidateStatus(userContext, currentStatus);
-		
-		if(candidateStatus == null){
-			//no more next status
-			String message = "No next status for '"+currentStatus+"', but you want to put the status to 'HIDDEN'";
-			throwExceptionWithMessage(message);
-		}
-		int index = Arrays.asList(candidateStatus).indexOf(expectedNextStatus);
-		if(index<0){
-			String message = "The current status '"+currentStatus+"' next candidate status should be one of '"+candidateStatus+"', but you want to transit the status to '"+expectedNextStatus+"'";
-			throwExceptionWithMessage(message);
-		}
-	}
-	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherEmployeeId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
- 		userContext.getChecker().checkIdOfEmployee(anotherEmployeeId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+ 		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
  		
  	}
  	public EmployeeCompanyTraining transferToAnotherEmployee(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherEmployeeId) throws Exception
@@ -407,7 +376,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Employee> candidateList = userContext.getDAOGroup().getEmployeeDAO().requestCandidateEmployeeForEmployeeCompanyTraining(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Employee> candidateList = employeeDaoOf(userContext).requestCandidateEmployeeForEmployeeCompanyTraining(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -417,9 +386,9 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	protected void checkParamsForTransferingAnotherTraining(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherTrainingId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
- 		userContext.getChecker().checkIdOfCompanyTraining(anotherTrainingId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+ 		checkerOf(userContext).checkIdOfCompanyTraining(anotherTrainingId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
  		
  	}
  	public EmployeeCompanyTraining transferToAnotherTraining(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherTrainingId) throws Exception
@@ -456,7 +425,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<CompanyTraining> candidateList = userContext.getDAOGroup().getCompanyTrainingDAO().requestCandidateCompanyTrainingForEmployeeCompanyTraining(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<CompanyTraining> candidateList = companyTrainingDaoOf(userContext).requestCandidateCompanyTrainingForEmployeeCompanyTraining(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -466,9 +435,9 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	protected void checkParamsForTransferingAnotherScoring(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherScoringId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
- 		userContext.getChecker().checkIdOfScoring(anotherScoringId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
+ 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
+ 		checkerOf(userContext).checkIdOfScoring(anotherScoringId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
  		
  	}
  	public EmployeeCompanyTraining transferToAnotherScoring(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherScoringId) throws Exception
@@ -505,109 +474,24 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Scoring> candidateList = userContext.getDAOGroup().getScoringDAO().requestCandidateScoringForEmployeeCompanyTraining(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Scoring> candidateList = scoringDaoOf(userContext).requestCandidateScoringForEmployeeCompanyTraining(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
  	
- 	
-	public static final String SCORED_STATUS = "SCORED";
- 	protected void checkParamsForScoring(RetailscmUserContext userContext, String employeeCompanyTrainingId, String scoredBy, int score, String comment
-) throws Exception
- 	{
- 				userContext.getChecker().checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
-		userContext.getChecker().checkScoredByOfScoring(scoredBy);
-		userContext.getChecker().checkScoreOfScoring(score);
-		userContext.getChecker().checkCommentOfScoring(comment);
-
-	
-		userContext.getChecker().throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
-
- 	}
- 	public EmployeeCompanyTraining score(RetailscmUserContext userContext, String employeeCompanyTrainingId, String scoredBy, int score, String comment
-) throws Exception
- 	{
-		checkParamsForScoring(userContext, employeeCompanyTrainingId, scoredBy, score, comment);
-		EmployeeCompanyTraining employeeCompanyTraining = loadEmployeeCompanyTraining(userContext, employeeCompanyTrainingId, allTokens());	
-		synchronized(employeeCompanyTraining){
-			//will be good when the employeeCompanyTraining loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			
-			checkIfEligibleForScoring(userContext,employeeCompanyTraining);
- 		
-
-			employeeCompanyTraining.updateCurrentStatus(SCORED_STATUS);
-			//set the new status, it will be good if add constant to the bean definition
-			
-			//extract all referenced objects, load them respectively
-
-
-			Scoring scoring = createScoring(userContext, scoredBy, score, comment);		
-			employeeCompanyTraining.updateScoring(scoring);		
-			
-			
-			employeeCompanyTraining = saveEmployeeCompanyTraining(userContext, employeeCompanyTraining, tokens().withScoring().done());
-			return present(userContext,employeeCompanyTraining, allTokens());
-			
-		}
-
- 	}
- 	
- 	
- 	
- 	
- 	public EmployeeCompanyTrainingForm scoreActionForm(RetailscmUserContext userContext, String employeeCompanyTrainingId) throws Exception
- 	{
-		return new EmployeeCompanyTrainingForm()
-			.withTitle("score")
-			.employeeCompanyTrainingIdField(employeeCompanyTrainingId)
-			.scoredByFieldOfScoring()
-			.scoreFieldOfScoring()
-			.commentFieldOfScoring()
-			.scoreAction();
- 	}
-	
- 	
- 	protected Scoring createScoring(RetailscmUserContext userContext, String scoredBy, int score, String comment){
- 		Scoring scoring = new Scoring();
- 		//scoredBy, score, comment
- 		
-		scoring.setScoredBy(scoredBy);
-		scoring.setScore(score);
-		scoring.setComment(comment);
-
- 		
- 		
- 		
- 		return userContext.getDAOGroup().getScoringDAO().save(scoring,emptyOptions());
- 	}
- 	protected void checkIfEligibleForScoring(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining) throws Exception{
- 
- 		ensureStatus(userContext,employeeCompanyTraining, SCORED_STATUS);
- 		
- 		Scoring scoring = employeeCompanyTraining.getScoring();
- 		//check the current status equals to the status
- 		//String expectedCurrentStatus = scoring 		
- 		//if the previous is the expected status?
- 		
- 		
- 		//if already transited to this status?
- 		
- 		if( scoring != null){
-				throwExceptionWithMessage("The EmployeeCompanyTraining("+employeeCompanyTraining.getId()+") has already been "+ SCORED_STATUS+".");
-		}
- 		
- 		
- 	}
-//--------------------------------------------------------------
+ //--------------------------------------------------------------
 	
 	 	
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
 		
+<<<<<<< HEAD
  		return userContext.getDAOGroup().getEmployeeDAO().load(newEmployeeId, options);
+=======
+ 		return employeeDaoOf(userContext).load(newEmployeeId, options);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
  	
@@ -617,7 +501,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	protected Scoring loadScoring(RetailscmUserContext userContext, String newScoringId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getScoringDAO().load(newScoringId, options);
+ 		return scoringDaoOf(userContext).load(newScoringId, options);
  	}
  	
  	
@@ -627,7 +511,11 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
  	protected CompanyTraining loadCompanyTraining(RetailscmUserContext userContext, String newTrainingId, Map<String,Object> options) throws Exception
  	{
 		
+<<<<<<< HEAD
  		return userContext.getDAOGroup().getCompanyTrainingDAO().load(newTrainingId, options);
+=======
+ 		return companyTrainingDaoOf(userContext).load(newTrainingId, options);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
  	
@@ -641,7 +529,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeCompanyTrainingId, int employeeCompanyTrainingVersion) throws Exception{
 			
-		userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().delete(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
+		employeeCompanyTrainingDaoOf(userContext).delete(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 	}
 	
 	public EmployeeCompanyTraining forgetByAll(RetailscmUserContext userContext, String employeeCompanyTrainingId, int employeeCompanyTrainingVersion) throws Exception {
@@ -650,8 +538,9 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	protected EmployeeCompanyTraining forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeCompanyTrainingId, int employeeCompanyTrainingVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().disconnectFromAll(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
+		return employeeCompanyTrainingDaoOf(userContext).disconnectFromAll(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 	}
+	
 	
 
 	
@@ -668,7 +557,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getEmployeeCompanyTrainingDAO().deleteAll();
+		return employeeCompanyTrainingDaoOf(userContext).deleteAll();
 	}
 
 

@@ -219,9 +219,13 @@ public class ConsumerOrderTokens extends CommonTokens{
 	}
 	private int consumerOrderLineItemListSearchCounter = 0;
 	public ConsumerOrderTokens searchConsumerOrderLineItemListWith(String field, String verb, String value){		
+		
+		withConsumerOrderLineItemList();
 		addSearchMoreOptions(CONSUMER_ORDER_LINE_ITEM_LIST,consumerOrderLineItemListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public ConsumerOrderTokens searchAllTextOfConsumerOrderLineItemList(String verb, String value){	
 		String field = "id|skuId|skuName";
@@ -285,9 +289,13 @@ public class ConsumerOrderTokens extends CommonTokens{
 	}
 	private int consumerOrderShippingGroupListSearchCounter = 0;
 	public ConsumerOrderTokens searchConsumerOrderShippingGroupListWith(String field, String verb, String value){		
+		
+		withConsumerOrderShippingGroupList();
 		addSearchMoreOptions(CONSUMER_ORDER_SHIPPING_GROUP_LIST,consumerOrderShippingGroupListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public ConsumerOrderTokens searchAllTextOfConsumerOrderShippingGroupList(String verb, String value){	
 		String field = "id|name";
@@ -351,9 +359,13 @@ public class ConsumerOrderTokens extends CommonTokens{
 	}
 	private int consumerOrderPaymentGroupListSearchCounter = 0;
 	public ConsumerOrderTokens searchConsumerOrderPaymentGroupListWith(String field, String verb, String value){		
+		
+		withConsumerOrderPaymentGroupList();
 		addSearchMoreOptions(CONSUMER_ORDER_PAYMENT_GROUP_LIST,consumerOrderPaymentGroupListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public ConsumerOrderTokens searchAllTextOfConsumerOrderPaymentGroupList(String verb, String value){	
 		String field = "id|name|cardNumber";
@@ -417,9 +429,13 @@ public class ConsumerOrderTokens extends CommonTokens{
 	}
 	private int consumerOrderPriceAdjustmentListSearchCounter = 0;
 	public ConsumerOrderTokens searchConsumerOrderPriceAdjustmentListWith(String field, String verb, String value){		
+		
+		withConsumerOrderPriceAdjustmentList();
 		addSearchMoreOptions(CONSUMER_ORDER_PRICE_ADJUSTMENT_LIST,consumerOrderPriceAdjustmentListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public ConsumerOrderTokens searchAllTextOfConsumerOrderPriceAdjustmentList(String verb, String value){	
 		String field = "id|name|provider";
@@ -483,9 +499,13 @@ public class ConsumerOrderTokens extends CommonTokens{
 	}
 	private int retailStoreMemberGiftCardConsumeRecordListSearchCounter = 0;
 	public ConsumerOrderTokens searchRetailStoreMemberGiftCardConsumeRecordListWith(String field, String verb, String value){		
+		
+		withRetailStoreMemberGiftCardConsumeRecordList();
 		addSearchMoreOptions(RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST,retailStoreMemberGiftCardConsumeRecordListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public ConsumerOrderTokens searchAllTextOfRetailStoreMemberGiftCardConsumeRecordList(String verb, String value){	
 		String field = "id|number";

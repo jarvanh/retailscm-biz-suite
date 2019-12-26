@@ -143,9 +143,13 @@ public class LevelOneDepartmentTokens extends CommonTokens{
 	}
 	private int levelTwoDepartmentListSearchCounter = 0;
 	public LevelOneDepartmentTokens searchLevelTwoDepartmentListWith(String field, String verb, String value){		
+		
+		withLevelTwoDepartmentList();
 		addSearchMoreOptions(LEVEL_TWO_DEPARTMENT_LIST,levelTwoDepartmentListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public LevelOneDepartmentTokens searchAllTextOfLevelTwoDepartmentList(String verb, String value){	
 		String field = "id|name|description";

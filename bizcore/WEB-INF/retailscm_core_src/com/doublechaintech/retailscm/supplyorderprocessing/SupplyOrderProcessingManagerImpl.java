@@ -43,6 +43,10 @@ import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerManager implements SupplyOrderProcessingManager {
 	
 	private static final String SERVICE_TYPE = "SupplyOrderProcessing";
+	@Override
+	public SupplyOrderProcessingDAO daoOf(RetailscmUserContext userContext) {
+		return supplyOrderProcessingDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -76,8 +80,8 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
  	
  	public SupplyOrderProcessing loadSupplyOrderProcessing(RetailscmUserContext userContext, String supplyOrderProcessingId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderProcessingManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderProcessingManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -90,8 +94,8 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
  	
  	 public SupplyOrderProcessing searchSupplyOrderProcessing(RetailscmUserContext userContext, String supplyOrderProcessingId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderProcessingManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderProcessingManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -109,10 +113,10 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 		addActions(userContext,supplyOrderProcessing,tokens);
 		
 		
-		SupplyOrderProcessing  supplyOrderProcessingToPresent = userContext.getDAOGroup().getSupplyOrderProcessingDAO().present(supplyOrderProcessing, tokens);
+		SupplyOrderProcessing  supplyOrderProcessingToPresent = supplyOrderProcessingDaoOf(userContext).present(supplyOrderProcessing, tokens);
 		
 		List<BaseEntity> entityListToNaming = supplyOrderProcessingToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSupplyOrderProcessingDAO().alias(entityListToNaming);
+		supplyOrderProcessingDaoOf(userContext).alias(entityListToNaming);
 		
 		return  supplyOrderProcessingToPresent;
 		
@@ -133,14 +137,14 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 		
  	}
  	protected SupplyOrderProcessing saveSupplyOrderProcessing(RetailscmUserContext userContext, SupplyOrderProcessing supplyOrderProcessing, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().save(supplyOrderProcessing, tokens);
+ 		return supplyOrderProcessingDaoOf(userContext).save(supplyOrderProcessing, tokens);
  	}
  	protected SupplyOrderProcessing loadSupplyOrderProcessing(RetailscmUserContext userContext, String supplyOrderProcessingId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplyOrderProcessingManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().load(supplyOrderProcessingId, tokens);
+ 		return supplyOrderProcessingDaoOf(userContext).load(supplyOrderProcessingId, tokens);
  	}
 
 	
@@ -177,18 +181,18 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
  	
  	
 
-
-	public SupplyOrderProcessing createSupplyOrderProcessing(RetailscmUserContext userContext,String who, Date processTime) throws Exception
+	public SupplyOrderProcessing createSupplyOrderProcessing(RetailscmUserContext userContext, String who,Date processTime) throws Exception
+	//public SupplyOrderProcessing createSupplyOrderProcessing(RetailscmUserContext userContext,String who, Date processTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfSupplyOrderProcessing(who);
-		userContext.getChecker().checkProcessTimeOfSupplyOrderProcessing(processTime);
+		checkerOf(userContext).checkWhoOfSupplyOrderProcessing(who);
+		checkerOf(userContext).checkProcessTimeOfSupplyOrderProcessing(processTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 
 
 		SupplyOrderProcessing supplyOrderProcessing=createNewSupplyOrderProcessing();	
@@ -215,18 +219,18 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 
 		
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().checkVersionOfSupplyOrderProcessing( supplyOrderProcessingVersion);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).checkVersionOfSupplyOrderProcessing( supplyOrderProcessingVersion);
 		
 
 		if(SupplyOrderProcessing.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfSupplyOrderProcessing(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfSupplyOrderProcessing(parseString(newValueExpr));
 		}
 		if(SupplyOrderProcessing.PROCESS_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkProcessTimeOfSupplyOrderProcessing(parseDate(newValueExpr));
+			checkerOf(userContext).checkProcessTimeOfSupplyOrderProcessing(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 	
 		
 	}
@@ -235,7 +239,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	
 	public SupplyOrderProcessing clone(RetailscmUserContext userContext, String fromSupplyOrderProcessingId) throws Exception{
 		
-		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().clone(fromSupplyOrderProcessingId, this.allTokens());
+		return supplyOrderProcessingDaoOf(userContext).clone(fromSupplyOrderProcessingId, this.allTokens());
 	}
 	
 	public SupplyOrderProcessing internalSaveSupplyOrderProcessing(RetailscmUserContext userContext, SupplyOrderProcessing supplyOrderProcessing) throws Exception 
@@ -342,7 +346,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplyOrderProcessingId, int supplyOrderProcessingVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSupplyOrderProcessingDAO().delete(supplyOrderProcessingId, supplyOrderProcessingVersion);
+		supplyOrderProcessingDaoOf(userContext).delete(supplyOrderProcessingId, supplyOrderProcessingVersion);
 	}
 	
 	public SupplyOrderProcessing forgetByAll(RetailscmUserContext userContext, String supplyOrderProcessingId, int supplyOrderProcessingVersion) throws Exception {
@@ -351,8 +355,9 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected SupplyOrderProcessing forgetByAllInternal(RetailscmUserContext userContext,
 			String supplyOrderProcessingId, int supplyOrderProcessingVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().disconnectFromAll(supplyOrderProcessingId, supplyOrderProcessingVersion);
+		return supplyOrderProcessingDaoOf(userContext).disconnectFromAll(supplyOrderProcessingId, supplyOrderProcessingVersion);
 	}
+	
 	
 
 	
@@ -369,7 +374,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSupplyOrderProcessingDAO().deleteAll();
+		return supplyOrderProcessingDaoOf(userContext).deleteAll();
 	}
 
 
@@ -385,7 +390,79 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplyOrderProcessingDAO().planToRemoveConsumerOrderListWithConsumer(supplyOrderProcessing, consumerId, this.emptyOptions());
+				supplyOrderProcessingDaoOf(userContext).planToRemoveConsumerOrderListWithConsumer(supplyOrderProcessing, consumerId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withConsumerOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with confirmation in ConsumerOrder
+	protected SupplyOrderProcessing breakWithConsumerOrderByConfirmation(RetailscmUserContext userContext, String supplyOrderProcessingId, String confirmationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveConsumerOrderListWithConfirmation(supplyOrderProcessing, confirmationId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withConsumerOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with approval in ConsumerOrder
+	protected SupplyOrderProcessing breakWithConsumerOrderByApproval(RetailscmUserContext userContext, String supplyOrderProcessingId, String approvalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveConsumerOrderListWithApproval(supplyOrderProcessing, approvalId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withConsumerOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with shipment in ConsumerOrder
+	protected SupplyOrderProcessing breakWithConsumerOrderByShipment(RetailscmUserContext userContext, String supplyOrderProcessingId, String shipmentId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveConsumerOrderListWithShipment(supplyOrderProcessing, shipmentId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withConsumerOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with delivery in ConsumerOrder
+	protected SupplyOrderProcessing breakWithConsumerOrderByDelivery(RetailscmUserContext userContext, String supplyOrderProcessingId, String deliveryId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveConsumerOrderListWithDelivery(supplyOrderProcessing, deliveryId, this.emptyOptions());
 
 				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withConsumerOrderList().done());
 				return supplyOrderProcessing;
@@ -403,7 +480,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplyOrderProcessingDAO().planToRemoveConsumerOrderListWithStore(supplyOrderProcessing, storeId, this.emptyOptions());
+				supplyOrderProcessingDaoOf(userContext).planToRemoveConsumerOrderListWithStore(supplyOrderProcessing, storeId, this.emptyOptions());
 
 				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withConsumerOrderList().done());
 				return supplyOrderProcessing;
@@ -421,7 +498,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplyOrderProcessingDAO().planToRemoveSupplyOrderListWithBuyer(supplyOrderProcessing, buyerId, this.emptyOptions());
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderListWithBuyer(supplyOrderProcessing, buyerId, this.emptyOptions());
 
 				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
 				return supplyOrderProcessing;
@@ -439,7 +516,97 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplyOrderProcessingDAO().planToRemoveSupplyOrderListWithSeller(supplyOrderProcessing, sellerId, this.emptyOptions());
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderListWithSeller(supplyOrderProcessing, sellerId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with confirmation in SupplyOrder
+	protected SupplyOrderProcessing breakWithSupplyOrderByConfirmation(RetailscmUserContext userContext, String supplyOrderProcessingId, String confirmationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderListWithConfirmation(supplyOrderProcessing, confirmationId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with approval in SupplyOrder
+	protected SupplyOrderProcessing breakWithSupplyOrderByApproval(RetailscmUserContext userContext, String supplyOrderProcessingId, String approvalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderListWithApproval(supplyOrderProcessing, approvalId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with picking in SupplyOrder
+	protected SupplyOrderProcessing breakWithSupplyOrderByPicking(RetailscmUserContext userContext, String supplyOrderProcessingId, String pickingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderListWithPicking(supplyOrderProcessing, pickingId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with shipment in SupplyOrder
+	protected SupplyOrderProcessing breakWithSupplyOrderByShipment(RetailscmUserContext userContext, String supplyOrderProcessingId, String shipmentId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderListWithShipment(supplyOrderProcessing, shipmentId, this.emptyOptions());
+
+				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
+				return supplyOrderProcessing;
+			}
+	}
+	//disconnect SupplyOrderProcessing with delivery in SupplyOrder
+	protected SupplyOrderProcessing breakWithSupplyOrderByDelivery(RetailscmUserContext userContext, String supplyOrderProcessingId, String deliveryId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
+
+			synchronized(supplyOrderProcessing){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderListWithDelivery(supplyOrderProcessing, deliveryId, this.emptyOptions());
 
 				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
 				return supplyOrderProcessing;
@@ -451,31 +618,35 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	
 	
 
-	protected void checkParamsForAddingConsumerOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String title, String consumerId, String storeId,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingConsumerOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String title, String consumerId, String confirmationId, String approvalId, String shipmentId, String deliveryId, String storeId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
 
 		
+		checkerOf(userContext).checkTitleOfConsumerOrder(title);
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-
+		checkerOf(userContext).checkConsumerIdOfConsumerOrder(consumerId);
 		
-		userContext.getChecker().checkTitleOfConsumerOrder(title);
+		checkerOf(userContext).checkConfirmationIdOfConsumerOrder(confirmationId);
 		
-		userContext.getChecker().checkConsumerIdOfConsumerOrder(consumerId);
+		checkerOf(userContext).checkApprovalIdOfConsumerOrder(approvalId);
 		
-		userContext.getChecker().checkStoreIdOfConsumerOrder(storeId);
+		checkerOf(userContext).checkShipmentIdOfConsumerOrder(shipmentId);
+		
+		checkerOf(userContext).checkDeliveryIdOfConsumerOrder(deliveryId);
+		
+		checkerOf(userContext).checkStoreIdOfConsumerOrder(storeId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 
 	
 	}
-	public  SupplyOrderProcessing addConsumerOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String title, String consumerId, String storeId, String [] tokensExpr) throws Exception
+	public  SupplyOrderProcessing addConsumerOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String title, String consumerId, String confirmationId, String approvalId, String shipmentId, String deliveryId, String storeId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingConsumerOrder(userContext,supplyOrderProcessingId,title, consumerId, storeId,tokensExpr);
+		checkParamsForAddingConsumerOrder(userContext,supplyOrderProcessingId,title, consumerId, confirmationId, approvalId, shipmentId, deliveryId, storeId,tokensExpr);
 		
-		ConsumerOrder consumerOrder = createConsumerOrder(userContext,title, consumerId, storeId);
+		ConsumerOrder consumerOrder = createConsumerOrder(userContext,title, consumerId, confirmationId, approvalId, shipmentId, deliveryId, storeId);
 		
 		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
 		synchronized(supplyOrderProcessing){ 
@@ -490,12 +661,12 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	}
 	protected void checkParamsForUpdatingConsumerOrderProperties(RetailscmUserContext userContext, String supplyOrderProcessingId,String id,String title,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfConsumerOrder(id);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfConsumerOrder(id);
 		
-		userContext.getChecker().checkTitleOfConsumerOrder( title);
+		checkerOf(userContext).checkTitleOfConsumerOrder( title);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 		
 	}
 	public  SupplyOrderProcessing updateConsumerOrderProperties(RetailscmUserContext userContext, String supplyOrderProcessingId, String id,String title, String [] tokensExpr) throws Exception
@@ -526,7 +697,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	}
 	
 	
-	protected ConsumerOrder createConsumerOrder(RetailscmUserContext userContext, String title, String consumerId, String storeId) throws Exception{
+	protected ConsumerOrder createConsumerOrder(RetailscmUserContext userContext, String title, String consumerId, String confirmationId, String approvalId, String shipmentId, String deliveryId, String storeId) throws Exception{
 
 		ConsumerOrder consumerOrder = new ConsumerOrder();
 		
@@ -535,11 +706,22 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 		RetailStoreMember  consumer = new RetailStoreMember();
 		consumer.setId(consumerId);		
 		consumerOrder.setConsumer(consumer);		
+		SupplyOrderConfirmation  confirmation = new SupplyOrderConfirmation();
+		confirmation.setId(confirmationId);		
+		consumerOrder.setConfirmation(confirmation);		
+		SupplyOrderApproval  approval = new SupplyOrderApproval();
+		approval.setId(approvalId);		
+		consumerOrder.setApproval(approval);		
+		SupplyOrderShipment  shipment = new SupplyOrderShipment();
+		shipment.setId(shipmentId);		
+		consumerOrder.setShipment(shipment);		
+		SupplyOrderDelivery  delivery = new SupplyOrderDelivery();
+		delivery.setId(deliveryId);		
+		consumerOrder.setDelivery(delivery);		
 		RetailStore  store = new RetailStore();
 		store.setId(storeId);		
 		consumerOrder.setStore(store);		
-		consumerOrder.setLastUpdateTime(userContext.now());		
-		consumerOrder.setCurrentStatus("INIT");
+		consumerOrder.setLastUpdateTime(userContext.now());
 	
 		
 		return consumerOrder;
@@ -559,12 +741,18 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected void checkParamsForRemovingConsumerOrderList(RetailscmUserContext userContext, String supplyOrderProcessingId, 
 			String consumerOrderIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
 		for(String consumerOrderIdItem: consumerOrderIds){
 			userContext.getChecker().checkIdOfConsumerOrder(consumerOrderIdItem);
+=======
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		for(String consumerOrderIdItem: consumerOrderIds){
+			checkerOf(userContext).checkIdOfConsumerOrder(consumerOrderIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 		
 	}
 	public  SupplyOrderProcessing removeConsumerOrderList(RetailscmUserContext userContext, String supplyOrderProcessingId, 
@@ -577,7 +765,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 			synchronized(supplyOrderProcessing){ 
 				//Will be good when the supplyOrderProcessing loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSupplyOrderProcessingDAO().planToRemoveConsumerOrderList(supplyOrderProcessing, consumerOrderIds, allTokens());
+				supplyOrderProcessingDaoOf(userContext).planToRemoveConsumerOrderList(supplyOrderProcessing, consumerOrderIds, allTokens());
 				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withConsumerOrderList().done());
 				deleteRelationListInGraph(userContext, supplyOrderProcessing.getConsumerOrderList());
 				return present(userContext,supplyOrderProcessing, mergedAllTokens(tokensExpr));
@@ -587,10 +775,10 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected void checkParamsForRemovingConsumerOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, 
 		String consumerOrderId, int consumerOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-		userContext.getChecker().checkVersionOfConsumerOrder(consumerOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfConsumerOrder(consumerOrderId);
+		checkerOf(userContext).checkVersionOfConsumerOrder(consumerOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 	
 	}
 	public  SupplyOrderProcessing removeConsumerOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, 
@@ -614,10 +802,10 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected void checkParamsForCopyingConsumerOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, 
 		String consumerOrderId, int consumerOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-		userContext.getChecker().checkVersionOfConsumerOrder(consumerOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfConsumerOrder(consumerOrderId);
+		checkerOf(userContext).checkVersionOfConsumerOrder(consumerOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 	
 	}
 	public  SupplyOrderProcessing copyConsumerOrderFrom(RetailscmUserContext userContext, String supplyOrderProcessingId, 
@@ -646,17 +834,17 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 		
 
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfConsumerOrder(consumerOrderId);
-		userContext.getChecker().checkVersionOfConsumerOrder(consumerOrderVersion);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfConsumerOrder(consumerOrderId);
+		checkerOf(userContext).checkVersionOfConsumerOrder(consumerOrderVersion);
 		
 
 		if(ConsumerOrder.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfConsumerOrder(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfConsumerOrder(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 	
 	}
 	
@@ -691,175 +879,45 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 
 	}
 	/*
-	public  SupplyOrderProcessing associateConsumerOrderListToNewConfirmation(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String who, Date confirmTime, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderConfirmation confirmation = userContext.getManagerGroup().getSupplyOrderConfirmationManager().createSupplyOrderConfirmation(userContext,  who,  confirmTime);
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateConfirmation(confirmation);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateConsumerOrderListToNewApproval(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String who, Date approveTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderApproval approval = userContext.getManagerGroup().getSupplyOrderApprovalManager().createSupplyOrderApproval(userContext,  who,  approveTime);
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateApproval(approval);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateConsumerOrderListToNewShipment(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String who, Date shipTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderShipment shipment = userContext.getManagerGroup().getSupplyOrderShipmentManager().createSupplyOrderShipment(userContext,  who,  shipTime);
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateShipment(shipment);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateConsumerOrderListToNewDelivery(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String who, Date deliveryTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderDelivery delivery = userContext.getManagerGroup().getSupplyOrderDeliveryManager().createSupplyOrderDelivery(userContext,  who,  deliveryTime);
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}
 	*/
 	
-	public  SupplyOrderProcessing associateConsumerOrderListToConfirmation(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String confirmationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderConfirmation confirmation = userContext.getManagerGroup().getSupplyOrderConfirmationManager().loadSupplyOrderConfirmation(userContext,confirmationId,new String[]{"none"} );
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateConfirmation(confirmation);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateConsumerOrderListToApproval(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String approvalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderApproval approval = userContext.getManagerGroup().getSupplyOrderApprovalManager().loadSupplyOrderApproval(userContext,approvalId,new String[]{"none"} );
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateApproval(approval);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateConsumerOrderListToShipment(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String shipmentId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderShipment shipment = userContext.getManagerGroup().getSupplyOrderShipmentManager().loadSupplyOrderShipment(userContext,shipmentId,new String[]{"none"} );
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateShipment(shipment);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateConsumerOrderListToDelivery(RetailscmUserContext userContext, String supplyOrderProcessingId, String  consumerOrderIds[], String deliveryId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchConsumerOrderListWith(ConsumerOrder.ID_PROPERTY, "oneof", this.joinArray("|", consumerOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderDelivery delivery = userContext.getManagerGroup().getSupplyOrderDeliveryManager().loadSupplyOrderDelivery(userContext,deliveryId,new String[]{"none"} );
-		
-		for(ConsumerOrder consumerOrder: supplyOrderProcessing.getConsumerOrderList()) {
-			//TODO: need to check if already associated
-			consumerOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}
 
 
-	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String buyerId, String sellerId, String title, BigDecimal totalAmount,String [] tokensExpr) throws Exception{
+
+	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String pickingId, String shipmentId, String deliveryId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
 
 		
+		checkerOf(userContext).checkBuyerIdOfSupplyOrder(buyerId);
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-
+		checkerOf(userContext).checkSellerIdOfSupplyOrder(sellerId);
 		
-		userContext.getChecker().checkBuyerIdOfSupplyOrder(buyerId);
+		checkerOf(userContext).checkTitleOfSupplyOrder(title);
 		
-		userContext.getChecker().checkSellerIdOfSupplyOrder(sellerId);
+		checkerOf(userContext).checkTotalAmountOfSupplyOrder(totalAmount);
 		
-		userContext.getChecker().checkTitleOfSupplyOrder(title);
+		checkerOf(userContext).checkConfirmationIdOfSupplyOrder(confirmationId);
 		
-		userContext.getChecker().checkTotalAmountOfSupplyOrder(totalAmount);
+		checkerOf(userContext).checkApprovalIdOfSupplyOrder(approvalId);
+		
+		checkerOf(userContext).checkPickingIdOfSupplyOrder(pickingId);
+		
+		checkerOf(userContext).checkShipmentIdOfSupplyOrder(shipmentId);
+		
+		checkerOf(userContext).checkDeliveryIdOfSupplyOrder(deliveryId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 
 	
 	}
-	public  SupplyOrderProcessing addSupplyOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String [] tokensExpr) throws Exception
+	public  SupplyOrderProcessing addSupplyOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, String buyerId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String pickingId, String shipmentId, String deliveryId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingSupplyOrder(userContext,supplyOrderProcessingId,buyerId, sellerId, title, totalAmount,tokensExpr);
+		checkParamsForAddingSupplyOrder(userContext,supplyOrderProcessingId,buyerId, sellerId, title, totalAmount, confirmationId, approvalId, pickingId, shipmentId, deliveryId,tokensExpr);
 		
-		SupplyOrder supplyOrder = createSupplyOrder(userContext,buyerId, sellerId, title, totalAmount);
+		SupplyOrder supplyOrder = createSupplyOrder(userContext,buyerId, sellerId, title, totalAmount, confirmationId, approvalId, pickingId, shipmentId, deliveryId);
 		
 		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, allTokens());
 		synchronized(supplyOrderProcessing){ 
@@ -874,13 +932,13 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	}
 	protected void checkParamsForUpdatingSupplyOrderProperties(RetailscmUserContext userContext, String supplyOrderProcessingId,String id,String title,BigDecimal totalAmount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfSupplyOrder(id);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(id);
 		
-		userContext.getChecker().checkTitleOfSupplyOrder( title);
-		userContext.getChecker().checkTotalAmountOfSupplyOrder( totalAmount);
+		checkerOf(userContext).checkTitleOfSupplyOrder( title);
+		checkerOf(userContext).checkTotalAmountOfSupplyOrder( totalAmount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 		
 	}
 	public  SupplyOrderProcessing updateSupplyOrderProperties(RetailscmUserContext userContext, String supplyOrderProcessingId, String id,String title,BigDecimal totalAmount, String [] tokensExpr) throws Exception
@@ -912,7 +970,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	}
 	
 	
-	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId, String sellerId, String title, BigDecimal totalAmount) throws Exception{
+	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String pickingId, String shipmentId, String deliveryId) throws Exception{
 
 		SupplyOrder supplyOrder = new SupplyOrder();
 		
@@ -925,8 +983,22 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 		supplyOrder.setSeller(seller);		
 		supplyOrder.setTitle(title);		
 		supplyOrder.setTotalAmount(totalAmount);		
-		supplyOrder.setLastUpdateTime(userContext.now());		
-		supplyOrder.setCurrentStatus("INIT");
+		SupplyOrderConfirmation  confirmation = new SupplyOrderConfirmation();
+		confirmation.setId(confirmationId);		
+		supplyOrder.setConfirmation(confirmation);		
+		SupplyOrderApproval  approval = new SupplyOrderApproval();
+		approval.setId(approvalId);		
+		supplyOrder.setApproval(approval);		
+		SupplyOrderPicking  picking = new SupplyOrderPicking();
+		picking.setId(pickingId);		
+		supplyOrder.setPicking(picking);		
+		SupplyOrderShipment  shipment = new SupplyOrderShipment();
+		shipment.setId(shipmentId);		
+		supplyOrder.setShipment(shipment);		
+		SupplyOrderDelivery  delivery = new SupplyOrderDelivery();
+		delivery.setId(deliveryId);		
+		supplyOrder.setDelivery(delivery);		
+		supplyOrder.setLastUpdateTime(userContext.now());
 	
 		
 		return supplyOrder;
@@ -946,12 +1018,18 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected void checkParamsForRemovingSupplyOrderList(RetailscmUserContext userContext, String supplyOrderProcessingId, 
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
 		for(String supplyOrderIdItem: supplyOrderIds){
 			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
+=======
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		for(String supplyOrderIdItem: supplyOrderIds){
+			checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 		
 	}
 	public  SupplyOrderProcessing removeSupplyOrderList(RetailscmUserContext userContext, String supplyOrderProcessingId, 
@@ -964,7 +1042,7 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 			synchronized(supplyOrderProcessing){ 
 				//Will be good when the supplyOrderProcessing loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSupplyOrderProcessingDAO().planToRemoveSupplyOrderList(supplyOrderProcessing, supplyOrderIds, allTokens());
+				supplyOrderProcessingDaoOf(userContext).planToRemoveSupplyOrderList(supplyOrderProcessing, supplyOrderIds, allTokens());
 				supplyOrderProcessing = saveSupplyOrderProcessing(userContext, supplyOrderProcessing, tokens().withSupplyOrderList().done());
 				deleteRelationListInGraph(userContext, supplyOrderProcessing.getSupplyOrderList());
 				return present(userContext,supplyOrderProcessing, mergedAllTokens(tokensExpr));
@@ -974,10 +1052,10 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected void checkParamsForRemovingSupplyOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, 
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		userContext.getChecker().checkVersionOfSupplyOrder(supplyOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
+		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 	
 	}
 	public  SupplyOrderProcessing removeSupplyOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, 
@@ -1001,10 +1079,10 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 	protected void checkParamsForCopyingSupplyOrder(RetailscmUserContext userContext, String supplyOrderProcessingId, 
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		userContext.getChecker().checkVersionOfSupplyOrder(supplyOrderVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing( supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
+		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 	
 	}
 	public  SupplyOrderProcessing copySupplyOrderFrom(RetailscmUserContext userContext, String supplyOrderProcessingId, 
@@ -1033,21 +1111,21 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 		
 
 		
-		userContext.getChecker().checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
-		userContext.getChecker().checkIdOfSupplyOrder(supplyOrderId);
-		userContext.getChecker().checkVersionOfSupplyOrder(supplyOrderVersion);
+		checkerOf(userContext).checkIdOfSupplyOrderProcessing(supplyOrderProcessingId);
+		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
+		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
 		
 
 		if(SupplyOrder.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfSupplyOrder(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfSupplyOrder(parseString(newValueExpr));
 		}
 		
 		if(SupplyOrder.TOTAL_AMOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAmountOfSupplyOrder(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkTotalAmountOfSupplyOrder(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderProcessingManagerException.class);
 	
 	}
 	
@@ -1082,180 +1160,10 @@ public class SupplyOrderProcessingManagerImpl extends CustomRetailscmCheckerMana
 
 	}
 	/*
-	public  SupplyOrderProcessing associateSupplyOrderListToNewConfirmation(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String who, Date confirmTime, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderConfirmation confirmation = userContext.getManagerGroup().getSupplyOrderConfirmationManager().createSupplyOrderConfirmation(userContext,  who,  confirmTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateConfirmation(confirmation);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToNewApproval(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String who, Date approveTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderApproval approval = userContext.getManagerGroup().getSupplyOrderApprovalManager().createSupplyOrderApproval(userContext,  who,  approveTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateApproval(approval);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToNewPicking(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String who, Date processTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderPicking picking = userContext.getManagerGroup().getSupplyOrderPickingManager().createSupplyOrderPicking(userContext,  who,  processTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updatePicking(picking);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToNewShipment(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String who, Date shipTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderShipment shipment = userContext.getManagerGroup().getSupplyOrderShipmentManager().createSupplyOrderShipment(userContext,  who,  shipTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateShipment(shipment);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToNewDelivery(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String who, Date deliveryTime, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderDelivery delivery = userContext.getManagerGroup().getSupplyOrderDeliveryManager().createSupplyOrderDelivery(userContext,  who,  deliveryTime);
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}
 	*/
 	
-	public  SupplyOrderProcessing associateSupplyOrderListToConfirmation(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String confirmationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderConfirmation confirmation = userContext.getManagerGroup().getSupplyOrderConfirmationManager().loadSupplyOrderConfirmation(userContext,confirmationId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateConfirmation(confirmation);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToApproval(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String approvalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderApproval approval = userContext.getManagerGroup().getSupplyOrderApprovalManager().loadSupplyOrderApproval(userContext,approvalId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateApproval(approval);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToPicking(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String pickingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderPicking picking = userContext.getManagerGroup().getSupplyOrderPickingManager().loadSupplyOrderPicking(userContext,pickingId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updatePicking(picking);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToShipment(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String shipmentId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderShipment shipment = userContext.getManagerGroup().getSupplyOrderShipmentManager().loadSupplyOrderShipment(userContext,shipmentId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateShipment(shipment);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}	public  SupplyOrderProcessing associateSupplyOrderListToDelivery(RetailscmUserContext userContext, String supplyOrderProcessingId, String  supplyOrderIds[], String deliveryId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "oneof", this.joinArray("|", supplyOrderIds)).done();
-		
-		SupplyOrderProcessing supplyOrderProcessing = loadSupplyOrderProcessing(userContext, supplyOrderProcessingId, options);
-		
-		SupplyOrderDelivery delivery = userContext.getManagerGroup().getSupplyOrderDeliveryManager().loadSupplyOrderDelivery(userContext,deliveryId,new String[]{"none"} );
-		
-		for(SupplyOrder supplyOrder: supplyOrderProcessing.getSupplyOrderList()) {
-			//TODO: need to check if already associated
-			supplyOrder.updateDelivery(delivery);
-		}
-		return this.internalSaveSupplyOrderProcessing(userContext, supplyOrderProcessing);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SupplyOrderProcessing newCreated) throws Exception{

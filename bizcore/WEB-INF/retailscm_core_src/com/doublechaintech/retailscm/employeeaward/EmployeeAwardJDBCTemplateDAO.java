@@ -53,6 +53,11 @@ public class EmployeeAwardJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<EmployeeAward> loadAll() {
+	    return this.loadAll(getEmployeeAwardMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

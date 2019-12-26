@@ -72,13 +72,6 @@ public class SupplyOrderPicking extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderPicking(String who, Date processTime)
-	{
-		setWho(who);
-		setProcessTime(processTime);
-
-		this.mSupplyOrderList = new SmartList<SupplyOrder>();	
-	}
 	
 	//Support for changing the property
 	

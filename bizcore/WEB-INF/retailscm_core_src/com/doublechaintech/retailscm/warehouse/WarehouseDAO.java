@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.warehouse;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -27,9 +28,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpaceDAO;
 
 
-public interface WarehouseDAO{
+public interface WarehouseDAO extends BaseDAO{
 
-	
+	public SmartList<Warehouse> loadAll();
 	public Warehouse load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<Warehouse> warehouseList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

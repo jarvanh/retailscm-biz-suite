@@ -45,7 +45,6 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		setEmployeeBoarding(employee, rs, rowNumber); 		
  		setTermination(employee, rs, rowNumber); 		
  		setLastUpdateTime(employee, rs, rowNumber); 		
- 		setCurrentStatus(employee, rs, rowNumber); 		
  		setVersion(employee, rs, rowNumber);
 
 		return employee;
@@ -389,18 +388,6 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 		}
 		
 		employee.setLastUpdateTime(convertToDateTime(lastUpdateTime));
-	}
-		
-	protected void setCurrentStatus(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(EmployeeTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		employee.setCurrentStatus(currentStatus);
 	}
 		
 	protected void setVersion(Employee employee, ResultSet rs, int rowNumber) throws SQLException{

@@ -159,39 +159,44 @@
 <c:set var="referName" value="(currentSalaryGrade)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/salarygrade/SalaryGrade$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="jobApplication" value="${ result.jobApplication}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/jobapplication/JobApplication$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/jobapplication/JobApplication$Info.jsp" />
 
 <c:set var="professionInterview" value="${ result.professionInterview}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/professioninterview/ProfessionInterview$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/professioninterview/ProfessionInterview$Info.jsp" />
 
 <c:set var="hrInterview" value="${ result.hrInterview}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/hrinterview/HrInterview$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/hrinterview/HrInterview$Info.jsp" />
 
 <c:set var="offerApproval" value="${ result.offerApproval}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/offerapproval/OfferApproval$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/offerapproval/OfferApproval$Info.jsp" />
 
 <c:set var="offerAcceptance" value="${ result.offerAcceptance}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/offeracceptance/OfferAcceptance$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/offeracceptance/OfferAcceptance$Info.jsp" />
 
 <c:set var="employeeBoarding" value="${ result.employeeBoarding}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/employeeboarding/EmployeeBoarding$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/employeeboarding/EmployeeBoarding$Info.jsp" />
 
 <c:set var="termination" value="${ result.termination}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/termination/Termination$Action.jsp" />
+<c:set var="referName" value="" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/termination/Termination$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

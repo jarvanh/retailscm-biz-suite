@@ -37,6 +37,10 @@ import com.doublechaintech.retailscm.storagespace.StorageSpace;
 public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager implements SupplierSpaceManager {
 	
 	private static final String SERVICE_TYPE = "SupplierSpace";
+	@Override
+	public SupplierSpaceDAO daoOf(RetailscmUserContext userContext) {
+		return supplierSpaceDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -70,8 +74,8 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	public SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String supplierSpaceId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplierSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplierSpaceManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -84,8 +88,8 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	 public SupplierSpace searchSupplierSpace(RetailscmUserContext userContext, String supplierSpaceId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplierSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplierSpaceManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -103,10 +107,10 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 		addActions(userContext,supplierSpace,tokens);
 		
 		
-		SupplierSpace  supplierSpaceToPresent = userContext.getDAOGroup().getSupplierSpaceDAO().present(supplierSpace, tokens);
+		SupplierSpace  supplierSpaceToPresent = supplierSpaceDaoOf(userContext).present(supplierSpace, tokens);
 		
 		List<BaseEntity> entityListToNaming = supplierSpaceToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSupplierSpaceDAO().alias(entityListToNaming);
+		supplierSpaceDaoOf(userContext).alias(entityListToNaming);
 		
 		return  supplierSpaceToPresent;
 		
@@ -127,14 +131,14 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 		
  	}
  	protected SupplierSpace saveSupplierSpace(RetailscmUserContext userContext, SupplierSpace supplierSpace, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSupplierSpaceDAO().save(supplierSpace, tokens);
+ 		return supplierSpaceDaoOf(userContext).save(supplierSpace, tokens);
  	}
  	protected SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String supplierSpaceId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().throwExceptionIfHasErrors( SupplierSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SupplierSpaceManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSupplierSpaceDAO().load(supplierSpaceId, tokens);
+ 		return supplierSpaceDaoOf(userContext).load(supplierSpaceId, tokens);
  	}
 
 	
@@ -168,21 +172,21 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	
 
-
-	public SupplierSpace createSupplierSpace(RetailscmUserContext userContext,String location, String contactNumber, String totalArea, String warehouseId, BigDecimal latitude, BigDecimal longitude) throws Exception
+	public SupplierSpace createSupplierSpace(RetailscmUserContext userContext, String location,long contactNumber,String totalArea,String warehouseId,BigDecimal latitude,BigDecimal longitude) throws Exception
+	//public SupplierSpace createSupplierSpace(RetailscmUserContext userContext,String location, long contactNumber, String totalArea, String warehouseId, BigDecimal latitude, BigDecimal longitude) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkLocationOfSupplierSpace(location);
-		userContext.getChecker().checkContactNumberOfSupplierSpace(contactNumber);
-		userContext.getChecker().checkTotalAreaOfSupplierSpace(totalArea);
-		userContext.getChecker().checkLatitudeOfSupplierSpace(latitude);
-		userContext.getChecker().checkLongitudeOfSupplierSpace(longitude);
+		checkerOf(userContext).checkLocationOfSupplierSpace(location);
+		checkerOf(userContext).checkContactNumberOfSupplierSpace(contactNumber);
+		checkerOf(userContext).checkTotalAreaOfSupplierSpace(totalArea);
+		checkerOf(userContext).checkLatitudeOfSupplierSpace(latitude);
+		checkerOf(userContext).checkLongitudeOfSupplierSpace(longitude);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 
 
 		SupplierSpace supplierSpace=createNewSupplierSpace();	
@@ -218,29 +222,29 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().checkVersionOfSupplierSpace( supplierSpaceVersion);
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).checkVersionOfSupplierSpace( supplierSpaceVersion);
 		
 
 		if(SupplierSpace.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfSupplierSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfSupplierSpace(parseString(newValueExpr));
 		}
 		if(SupplierSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkContactNumberOfSupplierSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfSupplierSpace(parseLong(newValueExpr));
 		}
 		if(SupplierSpace.TOTAL_AREA_PROPERTY.equals(property)){
-			userContext.getChecker().checkTotalAreaOfSupplierSpace(parseString(newValueExpr));
+			checkerOf(userContext).checkTotalAreaOfSupplierSpace(parseString(newValueExpr));
 		}		
 
 		
 		if(SupplierSpace.LATITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLatitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLatitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
 		}
 		if(SupplierSpace.LONGITUDE_PROPERTY.equals(property)){
-			userContext.getChecker().checkLongitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkLongitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 	
 		
 	}
@@ -249,7 +253,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	public SupplierSpace clone(RetailscmUserContext userContext, String fromSupplierSpaceId) throws Exception{
 		
-		return userContext.getDAOGroup().getSupplierSpaceDAO().clone(fromSupplierSpaceId, this.allTokens());
+		return supplierSpaceDaoOf(userContext).clone(fromSupplierSpaceId, this.allTokens());
 	}
 	
 	public SupplierSpace internalSaveSupplierSpace(RetailscmUserContext userContext, SupplierSpace supplierSpace) throws Exception 
@@ -348,9 +352,9 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForTransferingAnotherWarehouse(RetailscmUserContext userContext, String supplierSpaceId, String anotherWarehouseId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
- 		userContext.getChecker().checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+ 		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+ 		checkerOf(userContext).checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
  		
  	}
  	public SupplierSpace transferToAnotherWarehouse(RetailscmUserContext userContext, String supplierSpaceId, String anotherWarehouseId) throws Exception
@@ -387,7 +391,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Warehouse> candidateList = userContext.getDAOGroup().getWarehouseDAO().requestCandidateWarehouseForSupplierSpace(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Warehouse> candidateList = warehouseDaoOf(userContext).requestCandidateWarehouseForSupplierSpace(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -400,7 +404,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
  	protected Warehouse loadWarehouse(RetailscmUserContext userContext, String newWarehouseId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getWarehouseDAO().load(newWarehouseId, options);
+ 		return warehouseDaoOf(userContext).load(newWarehouseId, options);
  	}
  	
  	
@@ -414,7 +418,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplierSpaceId, int supplierSpaceVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSupplierSpaceDAO().delete(supplierSpaceId, supplierSpaceVersion);
+		supplierSpaceDaoOf(userContext).delete(supplierSpaceId, supplierSpaceVersion);
 	}
 	
 	public SupplierSpace forgetByAll(RetailscmUserContext userContext, String supplierSpaceId, int supplierSpaceVersion) throws Exception {
@@ -423,8 +427,9 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	protected SupplierSpace forgetByAllInternal(RetailscmUserContext userContext,
 			String supplierSpaceId, int supplierSpaceVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSupplierSpaceDAO().disconnectFromAll(supplierSpaceId, supplierSpaceVersion);
+		return supplierSpaceDaoOf(userContext).disconnectFromAll(supplierSpaceId, supplierSpaceVersion);
 	}
+	
 	
 
 	
@@ -441,7 +446,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSupplierSpaceDAO().deleteAll();
+		return supplierSpaceDaoOf(userContext).deleteAll();
 	}
 
 
@@ -457,7 +462,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplierSpaceDAO().planToRemoveGoodsShelfListWithStorageSpace(supplierSpace, storageSpaceId, this.emptyOptions());
+				supplierSpaceDaoOf(userContext).planToRemoveGoodsShelfListWithStorageSpace(supplierSpace, storageSpaceId, this.emptyOptions());
 
 				supplierSpace = saveSupplierSpace(userContext, supplierSpace, tokens().withGoodsShelfList().done());
 				return supplierSpace;
@@ -475,7 +480,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSupplierSpaceDAO().planToRemoveGoodsShelfListWithDamageSpace(supplierSpace, damageSpaceId, this.emptyOptions());
+				supplierSpaceDaoOf(userContext).planToRemoveGoodsShelfListWithDamageSpace(supplierSpace, damageSpaceId, this.emptyOptions());
 
 				supplierSpace = saveSupplierSpace(userContext, supplierSpace, tokens().withGoodsShelfList().done());
 				return supplierSpace;
@@ -489,20 +494,16 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 
 	protected void checkParamsForAddingGoodsShelf(RetailscmUserContext userContext, String supplierSpaceId, String location, String storageSpaceId, String damageSpaceId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
 
 		
+		checkerOf(userContext).checkLocationOfGoodsShelf(location);
 		
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-
+		checkerOf(userContext).checkStorageSpaceIdOfGoodsShelf(storageSpaceId);
 		
-		userContext.getChecker().checkLocationOfGoodsShelf(location);
-		
-		userContext.getChecker().checkStorageSpaceIdOfGoodsShelf(storageSpaceId);
-		
-		userContext.getChecker().checkDamageSpaceIdOfGoodsShelf(damageSpaceId);
+		checkerOf(userContext).checkDamageSpaceIdOfGoodsShelf(damageSpaceId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 
 	
 	}
@@ -526,12 +527,12 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	}
 	protected void checkParamsForUpdatingGoodsShelfProperties(RetailscmUserContext userContext, String supplierSpaceId,String id,String location,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(id);
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(id);
 		
-		userContext.getChecker().checkLocationOfGoodsShelf( location);
+		checkerOf(userContext).checkLocationOfGoodsShelf( location);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 		
 	}
 	public  SupplierSpace updateGoodsShelfProperties(RetailscmUserContext userContext, String supplierSpaceId, String id,String location, String [] tokensExpr) throws Exception
@@ -594,12 +595,18 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForRemovingGoodsShelfList(RetailscmUserContext userContext, String supplierSpaceId, 
 			String goodsShelfIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
 		for(String goodsShelfIdItem: goodsShelfIds){
 			userContext.getChecker().checkIdOfGoodsShelf(goodsShelfIdItem);
+=======
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		for(String goodsShelfIdItem: goodsShelfIds){
+			checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 		
 	}
 	public  SupplierSpace removeGoodsShelfList(RetailscmUserContext userContext, String supplierSpaceId, 
@@ -612,7 +619,7 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 			synchronized(supplierSpace){ 
 				//Will be good when the supplierSpace loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSupplierSpaceDAO().planToRemoveGoodsShelfList(supplierSpace, goodsShelfIds, allTokens());
+				supplierSpaceDaoOf(userContext).planToRemoveGoodsShelfList(supplierSpace, goodsShelfIds, allTokens());
 				supplierSpace = saveSupplierSpace(userContext, supplierSpace, tokens().withGoodsShelfList().done());
 				deleteRelationListInGraph(userContext, supplierSpace.getGoodsShelfList());
 				return present(userContext,supplierSpace, mergedAllTokens(tokensExpr));
@@ -622,10 +629,10 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForRemovingGoodsShelf(RetailscmUserContext userContext, String supplierSpaceId, 
 		String goodsShelfId, int goodsShelfVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplierSpace( supplierSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfSupplierSpace( supplierSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 	
 	}
 	public  SupplierSpace removeGoodsShelf(RetailscmUserContext userContext, String supplierSpaceId, 
@@ -649,10 +656,10 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForCopyingGoodsShelf(RetailscmUserContext userContext, String supplierSpaceId, 
 		String goodsShelfId, int goodsShelfVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSupplierSpace( supplierSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).checkIdOfSupplierSpace( supplierSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 	
 	}
 	public  SupplierSpace copyGoodsShelfFrom(RetailscmUserContext userContext, String supplierSpaceId, 
@@ -681,17 +688,17 @@ public class SupplierSpaceManagerImpl extends CustomRetailscmCheckerManager impl
 		
 
 		
-		userContext.getChecker().checkIdOfSupplierSpace(supplierSpaceId);
-		userContext.getChecker().checkIdOfGoodsShelf(goodsShelfId);
-		userContext.getChecker().checkVersionOfGoodsShelf(goodsShelfVersion);
+		checkerOf(userContext).checkIdOfSupplierSpace(supplierSpaceId);
+		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
+		checkerOf(userContext).checkVersionOfGoodsShelf(goodsShelfVersion);
 		
 
 		if(GoodsShelf.LOCATION_PROPERTY.equals(property)){
-			userContext.getChecker().checkLocationOfGoodsShelf(parseString(newValueExpr));
+			checkerOf(userContext).checkLocationOfGoodsShelf(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SupplierSpaceManagerException.class);
 	
 	}
 	

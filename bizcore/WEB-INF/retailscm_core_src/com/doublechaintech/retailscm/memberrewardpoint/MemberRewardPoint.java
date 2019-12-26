@@ -73,13 +73,6 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	MemberRewardPoint(String name, int point, RetailStoreMember owner)
-	{
-		setName(name);
-		setPoint(point);
-		setOwner(owner);
-	
-	}
 	
 	//Support for changing the property
 	

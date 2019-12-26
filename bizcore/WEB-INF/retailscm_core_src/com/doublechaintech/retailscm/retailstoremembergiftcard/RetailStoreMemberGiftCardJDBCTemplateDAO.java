@@ -74,6 +74,11 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	*/
 	
+	public SmartList<RetailStoreMemberGiftCard> loadAll() {
+	    return this.loadAll(getRetailStoreMemberGiftCardMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -42,6 +42,11 @@ public class ConsumerOrderConfirmationJDBCTemplateDAO extends RetailscmBaseDAOIm
 	}
 	*/
 	
+	public SmartList<ConsumerOrderConfirmation> loadAll() {
+	    return this.loadAll(getConsumerOrderConfirmationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

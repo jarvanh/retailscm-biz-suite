@@ -64,6 +64,11 @@ public class RetailStoreMemberGiftCardConsumeRecordJDBCTemplateDAO extends Retai
 	}
 	*/
 	
+	public SmartList<RetailStoreMemberGiftCardConsumeRecord> loadAll() {
+	    return this.loadAll(getRetailStoreMemberGiftCardConsumeRecordMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

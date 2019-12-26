@@ -31,6 +31,16 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 	public static final String X_NEXT_PAGE_URL = "nextPageUrl";
 	private static final boolean OBJECT_HASHCODE = false;
 	
+<<<<<<< HEAD
+=======
+	public static Map<String, Object> makeToast(String content, int duration, String type) {
+		return MapUtil.put("text", content)
+				.put("duration", duration * 1000)
+				.put("icon", type)
+				.put("position", "center").into_map();
+	}
+	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public void addHashCode(Map<String, Object> resultMap) {
 		if (resultMap == null || resultMap.isEmpty()) {
 			return;
@@ -89,7 +99,13 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		ensureDataPool();
 		dataPool.put(name, value);
 	}
+<<<<<<< HEAD
 
+=======
+	public void assemblerContent(RetailscmUserContext userContext, String requestName) throws Exception {
+		setPageTitle("尚未实现");
+	}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public Map<String, Object> doRender(RetailscmUserContext userContext) {
 		this.userContext = userContext;
 		beforeDoRendering();
@@ -473,6 +489,10 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			addFieldToOwner(resultData, fieldScope, "linkToUrl", btn.getLinkToUrl());
 			addFieldToOwner(resultData, fieldScope, "code", btn.getTag());
 			addFieldToOwner(resultData, fieldScope, "type", btn.getType());
+<<<<<<< HEAD
+=======
+			addFieldToOwner(resultData, fieldScope, "ajax", btn.isAjax());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			return resultData;
 		}
 	}
@@ -504,6 +524,10 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		Map<String, Object> resultMap = new HashMap<>();
 		SerializeScope ssWrapper = SerializeScope.INCLUDE().field("data", serializeScope).noListMeta();
 		handleOneData(resultMap, ssWrapper, "/", "data", object);
+<<<<<<< HEAD
+=======
+		addFieldToOwner(resultMap, null, "dataContainer", this.dataContainer);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		if (object instanceof Collection) {
 			return resultMap;
 		}

@@ -76,14 +76,6 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		this.changed = true;
 	}
 	
-	public 	AccountingDocumentType(String name, String description, AccountSet accountingPeriod)
-	{
-		setName(name);
-		setDescription(description);
-		setAccountingPeriod(accountingPeriod);
-
-		this.mAccountingDocumentList = new SmartList<AccountingDocument>();	
-	}
 	
 	//Support for changing the property
 	

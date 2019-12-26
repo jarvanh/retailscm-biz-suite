@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstorememberaddress;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
-public interface RetailStoreMemberAddressDAO{
+public interface RetailStoreMemberAddressDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreMemberAddress> loadAll();
 	public RetailStoreMemberAddress load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreMemberAddress> retailStoreMemberAddressList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

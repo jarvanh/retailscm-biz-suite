@@ -137,30 +137,32 @@
 <c:set var="referName" value="(documentType)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/accountingdocumenttype/AccountingDocumentType$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="accountingDocumentCreation" value="${ result.creation}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/accountingdocumentcreation/AccountingDocumentCreation$Action.jsp" />
+<c:set var="referName" value="(creation)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/accountingdocumentcreation/AccountingDocumentCreation$Info.jsp" />
 
 <c:set var="accountingDocumentConfirmation" value="${ result.confirmation}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/accountingdocumentconfirmation/AccountingDocumentConfirmation$Action.jsp" />
+<c:set var="referName" value="(confirmation)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/accountingdocumentconfirmation/AccountingDocumentConfirmation$Info.jsp" />
 
 <c:set var="accountingDocumentAuditing" value="${ result.auditing}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/accountingdocumentauditing/AccountingDocumentAuditing$Action.jsp" />
+<c:set var="referName" value="(auditing)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/accountingdocumentauditing/AccountingDocumentAuditing$Info.jsp" />
 
 <c:set var="accountingDocumentPosting" value="${ result.posting}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/accountingdocumentposting/AccountingDocumentPosting$Action.jsp" />
+<c:set var="referName" value="(posting)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/accountingdocumentposting/AccountingDocumentPosting$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

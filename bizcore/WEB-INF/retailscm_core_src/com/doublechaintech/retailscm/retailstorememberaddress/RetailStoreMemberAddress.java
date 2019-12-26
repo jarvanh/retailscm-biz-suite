@@ -75,14 +75,6 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public 	RetailStoreMemberAddress(String name, RetailStoreMember owner, String mobilePhone, String address)
-	{
-		setName(name);
-		setOwner(owner);
-		setMobilePhone(mobilePhone);
-		setAddress(address);
-	
-	}
 	
 	//Support for changing the property
 	

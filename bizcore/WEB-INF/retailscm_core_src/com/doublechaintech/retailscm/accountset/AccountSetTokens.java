@@ -169,9 +169,13 @@ public class AccountSetTokens extends CommonTokens{
 	}
 	private int accountingSubjectListSearchCounter = 0;
 	public AccountSetTokens searchAccountingSubjectListWith(String field, String verb, String value){		
+		
+		withAccountingSubjectList();
 		addSearchMoreOptions(ACCOUNTING_SUBJECT_LIST,accountingSubjectListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public AccountSetTokens searchAllTextOfAccountingSubjectList(String verb, String value){	
 		String field = "id|accountingSubjectCode|accountingSubjectName|accountingSubjectClassName";
@@ -235,9 +239,13 @@ public class AccountSetTokens extends CommonTokens{
 	}
 	private int accountingPeriodListSearchCounter = 0;
 	public AccountSetTokens searchAccountingPeriodListWith(String field, String verb, String value){		
+		
+		withAccountingPeriodList();
 		addSearchMoreOptions(ACCOUNTING_PERIOD_LIST,accountingPeriodListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public AccountSetTokens searchAllTextOfAccountingPeriodList(String verb, String value){	
 		String field = "id|name";
@@ -301,9 +309,13 @@ public class AccountSetTokens extends CommonTokens{
 	}
 	private int accountingDocumentTypeListSearchCounter = 0;
 	public AccountSetTokens searchAccountingDocumentTypeListWith(String field, String verb, String value){		
+		
+		withAccountingDocumentTypeList();
 		addSearchMoreOptions(ACCOUNTING_DOCUMENT_TYPE_LIST,accountingDocumentTypeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public AccountSetTokens searchAllTextOfAccountingDocumentTypeList(String verb, String value){	
 		String field = "id|name|description";

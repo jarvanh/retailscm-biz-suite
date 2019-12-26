@@ -53,6 +53,11 @@ public class EmployeeWorkExperienceJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	}
 	*/
 	
+	public SmartList<EmployeeWorkExperience> loadAll() {
+	    return this.loadAll(getEmployeeWorkExperienceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

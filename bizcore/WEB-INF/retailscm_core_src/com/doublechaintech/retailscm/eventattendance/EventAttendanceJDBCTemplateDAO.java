@@ -64,6 +64,11 @@ public class EventAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<EventAttendance> loadAll() {
+	    return this.loadAll(getEventAttendanceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface RetailStoreCityServiceCenterManager{
+public interface RetailStoreCityServiceCenterManager extends BaseManager{
 
 		
 
-	public RetailStoreCityServiceCenter createRetailStoreCityServiceCenter(RetailscmUserContext userContext, String name, Date founded, String belongsToId) throws Exception;	
+	public RetailStoreCityServiceCenter createRetailStoreCityServiceCenter(RetailscmUserContext userContext, String name,Date founded,String belongsToId) throws Exception;	
 	public RetailStoreCityServiceCenter updateRetailStoreCityServiceCenter(RetailscmUserContext userContext,String retailStoreCityServiceCenterId, int retailStoreCityServiceCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String [] tokensExpr) throws Exception;
 	public RetailStoreCityServiceCenter internalSaveRetailStoreCityServiceCenter(RetailscmUserContext userContext, RetailStoreCityServiceCenter retailStoreCityServiceCenter) throws Exception;
@@ -58,25 +59,13 @@ public interface RetailStoreCityServiceCenterManager{
 
 	*/
 
-	//public  RetailStoreManager getRetailStoreManager(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String name, String telephone, String owner, String retailStoreCountryCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description ,String [] tokensExpr)  throws Exception;
+	//public  RetailStoreManager getRetailStoreManager(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String name, long telephone, String owner, String retailStoreCountryCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreCityServiceCenter addRetailStore(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String name, String telephone, String owner, String retailStoreCountryCenterId, Date founded, BigDecimal latitude, BigDecimal longitude, String description , String [] tokensExpr)  throws Exception;
+	public  RetailStoreCityServiceCenter addRetailStore(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String name, long telephone, String owner, String retailStoreCountryCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description , String [] tokensExpr)  throws Exception;
 	public  RetailStoreCityServiceCenter removeRetailStore(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String retailStoreId, int retailStoreVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreCityServiceCenter updateRetailStore(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
 	/*
-	public  RetailStoreCityServiceCenter associateRetailStoreListToNewCreation(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToCreation(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[],String creationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToNewInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[],String investmentInvitationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToNewFranchising(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToFranchising(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[],String franchisingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToNewDecoration(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToDecoration(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[],String decorationId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToNewOpening(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToOpening(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[],String openingId, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToNewClosing(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[], String comment, String [] tokensExpr) throws Exception ;
-	public  RetailStoreCityServiceCenter associateRetailStoreListToClosing(RetailscmUserContext userContext, String retailStoreCityServiceCenterId, String  retailStoreIds[],String closingId, String [] tokensExpr) throws Exception ;
 
 	*/
 

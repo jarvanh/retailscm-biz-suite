@@ -116,6 +116,11 @@ public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements User
 	}
 	*/
 	
+	public SmartList<UserApp> loadAll() {
+	    return this.loadAll(getUserAppMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -417,6 +422,21 @@ public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements User
 		}
 
 		
+<<<<<<< HEAD
+		
+		SmartList<QuickLink> quickLinkList = getQuickLinkDAO().findQuickLinkByApp(userApp.getId(),options);
+		if(quickLinkList != null){
+			enhanceQuickLinkList(quickLinkList,options);
+			userApp.setQuickLinkList(quickLinkList);
+		}
+		
+		return userApp;
+	
+	}	
+	
+	protected UserApp analyzeQuickLinkList(UserApp userApp, Map<String,Object> options){
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<QuickLink> quickLinkList = getQuickLinkDAO().findQuickLinkByApp(userApp.getId(),options);
 		if(quickLinkList != null){
@@ -430,7 +450,6 @@ public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements User
 	
 	protected UserApp analyzeQuickLinkList(UserApp userApp, Map<String,Object> options){
 		
-		
 		if(userApp == null){
 			return null;
 		}
@@ -439,6 +458,17 @@ public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements User
 		}
 
 		
+<<<<<<< HEAD
+=======
+		if(userApp == null){
+			return null;
+		}
+		if(userApp.getId() == null){
+			return userApp;
+		}
+
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<QuickLink> quickLinkList = userApp.getQuickLinkList();
 		if(quickLinkList != null){
@@ -495,12 +525,21 @@ public class UserAppJDBCTemplateDAO extends RetailscmBaseDAOImpl implements User
 			getListAccessDAO().analyzeListAccessByApp(listAccessList, userApp.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return userApp;
 	
 	}	
 	
 		
+=======
+		
+		return userApp;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceObjectAccessList(SmartList<ObjectAccess> objectAccessList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;

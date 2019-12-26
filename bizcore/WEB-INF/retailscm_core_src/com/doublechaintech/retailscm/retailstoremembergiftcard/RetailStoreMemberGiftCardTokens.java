@@ -143,9 +143,13 @@ public class RetailStoreMemberGiftCardTokens extends CommonTokens{
 	}
 	private int retailStoreMemberGiftCardConsumeRecordListSearchCounter = 0;
 	public RetailStoreMemberGiftCardTokens searchRetailStoreMemberGiftCardConsumeRecordListWith(String field, String verb, String value){		
+		
+		withRetailStoreMemberGiftCardConsumeRecordList();
 		addSearchMoreOptions(RETAIL_STORE_MEMBER_GIFT_CARD_CONSUME_RECORD_LIST,retailStoreMemberGiftCardConsumeRecordListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreMemberGiftCardTokens searchAllTextOfRetailStoreMemberGiftCardConsumeRecordList(String verb, String value){	
 		String field = "id|number";

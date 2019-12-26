@@ -3,7 +3,10 @@ package com.terapico.utils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+<<<<<<< HEAD
 import java.io.UnsupportedEncodingException;
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +20,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -72,6 +77,37 @@ public class RestUtil {
 		
 	}
 
+	private static byte[] getResponseAsByteArray(CloseableHttpResponse response) throws IOException {
+		HttpEntity entity = response.getEntity();
+		return EntityUtils.toByteArray(entity);
+	}
+
+	public static Object remoteGetObject(String sessionId, String url, Class<?> clazz)
+			throws ClientProtocolException, IOException {
+
+		CloseableHttpClient httpClient = getHttpClient();
+		HttpGet getRequest = new HttpGet(url);
+		getRequest.addHeader("Accept", "application/json");
+		getRequest.addHeader("Cookie", sessionId);
+		getRequest.addHeader("X-Auth", sessionId);
+
+		HttpResponse response = httpClient.execute(getRequest);
+
+		if (response.getStatusLine().getStatusCode() != 200) {
+			throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
+		}
+
+		BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+		Object responseObj = mapper.readValue(br, clazz);
+
+		return responseObj;
+
+	}
+
 	private static CloseableHttpClient getHttpClient() {
 		if (httpclient != null) {
 			return httpclient;
@@ -124,6 +160,7 @@ public class RestUtil {
 		URI uri = builder.build();
 		return uri;
 	}
+<<<<<<< HEAD
 	
 	public static String postXml(String url, String xml,String encoding) throws  IOException{
         String body = "";
@@ -147,6 +184,47 @@ public class RestUtil {
 
 
 	public static String postJson(String url, String json) throws Exception{
+=======
+
+	public static String postXml(String url, String xml, String encoding) throws IOException {
+		String body = "";
+
+		CloseableHttpClient client = getHttpClient();
+
+		HttpPost httpPost = new HttpPost(url);
+
+		httpPost.setHeader("Content-Type", "text/xml; charset=UTF-8");
+		StringEntity entityParams = new StringEntity(xml, encoding);
+		httpPost.setEntity(entityParams);
+		CloseableHttpResponse response = client.execute(httpPost);
+		HttpEntity entity = response.getEntity();
+		if (entity != null) {
+			body = EntityUtils.toString(entity, encoding);
+		}
+		EntityUtils.consume(entity);
+		response.close();
+		return body;
+	}
+
+	public static String postForm(String url, List<NameValuePair> params) throws Exception {
+		HttpClient client = getHttpClient();
+		HttpPost httpPost = new HttpPost(url);
+		String s = "";
+		httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+		httpPost.setHeader("Content-type", "application/x-www-form-urlencoded");
+		HttpResponse response = client.execute(httpPost);
+		int statusCode = response.getStatusLine().getStatusCode();
+		if (statusCode == 200) {
+			HttpEntity entity = response.getEntity();
+			s = EntityUtils.toString(entity);
+			return s;
+		} else {
+			throw new Exception("Request not success: " + statusCode);
+		}
+	}
+
+	public static String postJson(String url, String json) throws Exception {
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		String body = "";
 
 		CloseableHttpClient client = getHttpClient();
@@ -156,7 +234,11 @@ public class RestUtil {
 		StringEntity entityParams = null;
 		CloseableHttpResponse response = null;
 		HttpEntity entity = null;
+<<<<<<< HEAD
 		try{
+=======
+		try {
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			entityParams = new StringEntity(json);
 			httpPost.setEntity(entityParams);
 			response = client.execute(httpPost);
@@ -164,18 +246,27 @@ public class RestUtil {
 			if (entity != null) {
 				body = EntityUtils.toString(entity);
 			}
+<<<<<<< HEAD
 		}
 		catch(Exception e){
 
 		}finally {
 			EntityUtils.consume(entity);
 			if (response != null){
+=======
+		} catch (Exception e) {
+
+		} finally {
+			EntityUtils.consume(entity);
+			if (response != null) {
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 				response.close();
 			}
 		}
 
 		return body;
 	}
+<<<<<<< HEAD
 	
 	public static Map<String, Object> getForJsonWithHeader(URI uri, Map<String, String> headers) throws URISyntaxException, IOException {
     	CloseableHttpClient client = getHttpClient();
@@ -196,4 +287,27 @@ public class RestUtil {
     	return responseObj;
         }
     
+=======
+
+	public static Map<String, Object> getForJsonWithHeader(URI uri, Map<String, String> headers)
+			throws URISyntaxException, IOException {
+		CloseableHttpClient client = getHttpClient();
+		HttpGet httpget = new HttpGet(uri);
+		if (headers != null && !headers.isEmpty()) {
+			for (Entry<String, String> entry : headers.entrySet()) {
+				httpget.addHeader(entry.getKey(), entry.getValue());
+			}
+		}
+		CloseableHttpResponse response = client.execute(httpget);
+		StatusLine resLine = response.getStatusLine();
+		String content = getResponseAsString(response);
+		System.out.println(new Date() + " http-get got: " + content);
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> responseObj = mapper.readValue(content, Map.class);
+		responseObj.put("__response", MapUtil.put("code", resLine.getStatusCode())
+				.put("reason", resLine.getReasonPhrase()).into_map());
+		return responseObj;
+	}
+
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 }

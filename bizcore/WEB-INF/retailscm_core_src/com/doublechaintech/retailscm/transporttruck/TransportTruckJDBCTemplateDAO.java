@@ -74,6 +74,11 @@ public class TransportTruckJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<TransportTruck> loadAll() {
+	    return this.loadAll(getTransportTruckMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

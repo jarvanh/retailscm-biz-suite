@@ -143,9 +143,13 @@ public class PotentialCustomerContactPersonTokens extends CommonTokens{
 	}
 	private int potentialCustomerContactListSearchCounter = 0;
 	public PotentialCustomerContactPersonTokens searchPotentialCustomerContactListWith(String field, String verb, String value){		
+		
+		withPotentialCustomerContactList();
 		addSearchMoreOptions(POTENTIAL_CUSTOMER_CONTACT_LIST,potentialCustomerContactListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public PotentialCustomerContactPersonTokens searchAllTextOfPotentialCustomerContactList(String verb, String value){	
 		String field = "id|name|contactMethod|description";

@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.retailstoreorder.CandidateRetailStoreOrder;
 public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreOrderLineItemManager {
 	
 	private static final String SERVICE_TYPE = "RetailStoreOrderLineItem";
+	@Override
+	public RetailStoreOrderLineItemDAO daoOf(RetailscmUserContext userContext) {
+		return retailStoreOrderLineItemDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
  	
  	public RetailStoreOrderLineItem loadRetailStoreOrderLineItem(RetailscmUserContext userContext, String retailStoreOrderLineItemId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderLineItemManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderLineItemManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
  	
  	 public RetailStoreOrderLineItem searchRetailStoreOrderLineItem(RetailscmUserContext userContext, String retailStoreOrderLineItemId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderLineItemManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderLineItemManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 		addActions(userContext,retailStoreOrderLineItem,tokens);
 		
 		
-		RetailStoreOrderLineItem  retailStoreOrderLineItemToPresent = userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().present(retailStoreOrderLineItem, tokens);
+		RetailStoreOrderLineItem  retailStoreOrderLineItemToPresent = retailStoreOrderLineItemDaoOf(userContext).present(retailStoreOrderLineItem, tokens);
 		
 		List<BaseEntity> entityListToNaming = retailStoreOrderLineItemToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().alias(entityListToNaming);
+		retailStoreOrderLineItemDaoOf(userContext).alias(entityListToNaming);
 		
 		return  retailStoreOrderLineItemToPresent;
 		
@@ -123,14 +127,14 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 		
  	}
  	protected RetailStoreOrderLineItem saveRetailStoreOrderLineItem(RetailscmUserContext userContext, RetailStoreOrderLineItem retailStoreOrderLineItem, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().save(retailStoreOrderLineItem, tokens);
+ 		return retailStoreOrderLineItemDaoOf(userContext).save(retailStoreOrderLineItem, tokens);
  	}
  	protected RetailStoreOrderLineItem loadRetailStoreOrderLineItem(RetailscmUserContext userContext, String retailStoreOrderLineItemId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderLineItemManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderLineItemManagerException.class);
 
  
- 		return userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().load(retailStoreOrderLineItemId, tokens);
+ 		return retailStoreOrderLineItemDaoOf(userContext).load(retailStoreOrderLineItemId, tokens);
  	}
 
 	
@@ -160,21 +164,21 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
  	
  	
 
-
-	public RetailStoreOrderLineItem createRetailStoreOrderLineItem(RetailscmUserContext userContext,String bizOrderId, String skuId, String skuName, BigDecimal amount, int quantity, String unitOfMeasurement) throws Exception
+	public RetailStoreOrderLineItem createRetailStoreOrderLineItem(RetailscmUserContext userContext, String bizOrderId,String skuId,String skuName,BigDecimal amount,int quantity,String unitOfMeasurement) throws Exception
+	//public RetailStoreOrderLineItem createRetailStoreOrderLineItem(RetailscmUserContext userContext,String bizOrderId, String skuId, String skuName, BigDecimal amount, int quantity, String unitOfMeasurement) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkSkuIdOfRetailStoreOrderLineItem(skuId);
-		userContext.getChecker().checkSkuNameOfRetailStoreOrderLineItem(skuName);
-		userContext.getChecker().checkAmountOfRetailStoreOrderLineItem(amount);
-		userContext.getChecker().checkQuantityOfRetailStoreOrderLineItem(quantity);
-		userContext.getChecker().checkUnitOfMeasurementOfRetailStoreOrderLineItem(unitOfMeasurement);
+		checkerOf(userContext).checkSkuIdOfRetailStoreOrderLineItem(skuId);
+		checkerOf(userContext).checkSkuNameOfRetailStoreOrderLineItem(skuName);
+		checkerOf(userContext).checkAmountOfRetailStoreOrderLineItem(amount);
+		checkerOf(userContext).checkQuantityOfRetailStoreOrderLineItem(quantity);
+		checkerOf(userContext).checkUnitOfMeasurementOfRetailStoreOrderLineItem(unitOfMeasurement);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderLineItemManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderLineItemManagerException.class);
 
 
 		RetailStoreOrderLineItem retailStoreOrderLineItem=createNewRetailStoreOrderLineItem();	
@@ -209,29 +213,29 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 
 		
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
-		userContext.getChecker().checkVersionOfRetailStoreOrderLineItem( retailStoreOrderLineItemVersion);
+		checkerOf(userContext).checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
+		checkerOf(userContext).checkVersionOfRetailStoreOrderLineItem( retailStoreOrderLineItemVersion);
 		
 		
 
 		
 		if(RetailStoreOrderLineItem.SKU_ID_PROPERTY.equals(property)){
-			userContext.getChecker().checkSkuIdOfRetailStoreOrderLineItem(parseString(newValueExpr));
+			checkerOf(userContext).checkSkuIdOfRetailStoreOrderLineItem(parseString(newValueExpr));
 		}
 		if(RetailStoreOrderLineItem.SKU_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkSkuNameOfRetailStoreOrderLineItem(parseString(newValueExpr));
+			checkerOf(userContext).checkSkuNameOfRetailStoreOrderLineItem(parseString(newValueExpr));
 		}
 		if(RetailStoreOrderLineItem.AMOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkAmountOfRetailStoreOrderLineItem(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkAmountOfRetailStoreOrderLineItem(parseBigDecimal(newValueExpr));
 		}
 		if(RetailStoreOrderLineItem.QUANTITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkQuantityOfRetailStoreOrderLineItem(parseInt(newValueExpr));
+			checkerOf(userContext).checkQuantityOfRetailStoreOrderLineItem(parseInt(newValueExpr));
 		}
 		if(RetailStoreOrderLineItem.UNIT_OF_MEASUREMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkUnitOfMeasurementOfRetailStoreOrderLineItem(parseString(newValueExpr));
+			checkerOf(userContext).checkUnitOfMeasurementOfRetailStoreOrderLineItem(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderLineItemManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderLineItemManagerException.class);
 	
 		
 	}
@@ -240,7 +244,7 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 	
 	public RetailStoreOrderLineItem clone(RetailscmUserContext userContext, String fromRetailStoreOrderLineItemId) throws Exception{
 		
-		return userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().clone(fromRetailStoreOrderLineItemId, this.allTokens());
+		return retailStoreOrderLineItemDaoOf(userContext).clone(fromRetailStoreOrderLineItemId, this.allTokens());
 	}
 	
 	public RetailStoreOrderLineItem internalSaveRetailStoreOrderLineItem(RetailscmUserContext userContext, RetailStoreOrderLineItem retailStoreOrderLineItem) throws Exception 
@@ -338,9 +342,9 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String retailStoreOrderLineItemId, String anotherBizOrderId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
- 		userContext.getChecker().checkIdOfRetailStoreOrder(anotherBizOrderId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderLineItemManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderLineItem(retailStoreOrderLineItemId);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrder(anotherBizOrderId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderLineItemManagerException.class);
  		
  	}
  	public RetailStoreOrderLineItem transferToAnotherBizOrder(RetailscmUserContext userContext, String retailStoreOrderLineItemId, String anotherBizOrderId) throws Exception
@@ -377,7 +381,7 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreOrder> candidateList = userContext.getDAOGroup().getRetailStoreOrderDAO().requestCandidateRetailStoreOrderForRetailStoreOrderLineItem(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreOrder> candidateList = retailStoreOrderDaoOf(userContext).requestCandidateRetailStoreOrderForRetailStoreOrderLineItem(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -390,7 +394,7 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
  	protected RetailStoreOrder loadRetailStoreOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreOrderDAO().load(newBizOrderId, options);
+ 		return retailStoreOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
  	
@@ -404,7 +408,7 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreOrderLineItemId, int retailStoreOrderLineItemVersion) throws Exception{
 			
-		userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().delete(retailStoreOrderLineItemId, retailStoreOrderLineItemVersion);
+		retailStoreOrderLineItemDaoOf(userContext).delete(retailStoreOrderLineItemId, retailStoreOrderLineItemVersion);
 	}
 	
 	public RetailStoreOrderLineItem forgetByAll(RetailscmUserContext userContext, String retailStoreOrderLineItemId, int retailStoreOrderLineItemVersion) throws Exception {
@@ -413,8 +417,9 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 	protected RetailStoreOrderLineItem forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreOrderLineItemId, int retailStoreOrderLineItemVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().disconnectFromAll(retailStoreOrderLineItemId, retailStoreOrderLineItemVersion);
+		return retailStoreOrderLineItemDaoOf(userContext).disconnectFromAll(retailStoreOrderLineItemId, retailStoreOrderLineItemVersion);
 	}
+	
 	
 
 	
@@ -431,7 +436,7 @@ public class RetailStoreOrderLineItemManagerImpl extends CustomRetailscmCheckerM
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getRetailStoreOrderLineItemDAO().deleteAll();
+		return retailStoreOrderLineItemDaoOf(userContext).deleteAll();
 	}
 
 

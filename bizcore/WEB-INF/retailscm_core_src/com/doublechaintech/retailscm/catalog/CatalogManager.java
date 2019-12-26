@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface CatalogManager{
+public interface CatalogManager extends BaseManager{
 
 		
 
-	public Catalog createCatalog(RetailscmUserContext userContext, String name, String ownerId) throws Exception;	
+	public Catalog createCatalog(RetailscmUserContext userContext, String name,String ownerId,int subCount,BigDecimal amount) throws Exception;	
 	public Catalog updateCatalog(RetailscmUserContext userContext,String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public Catalog loadCatalog(RetailscmUserContext userContext, String catalogId, String [] tokensExpr) throws Exception;
 	public Catalog internalSaveCatalog(RetailscmUserContext userContext, Catalog catalog) throws Exception;

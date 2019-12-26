@@ -36,6 +36,10 @@ import com.doublechaintech.retailscm.interviewtype.InterviewType;
 public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager implements InterviewTypeManager {
 	
 	private static final String SERVICE_TYPE = "InterviewType";
+	@Override
+	public InterviewTypeDAO daoOf(RetailscmUserContext userContext) {
+		return interviewTypeDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -69,8 +73,8 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	public InterviewType loadInterviewType(RetailscmUserContext userContext, String interviewTypeId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( InterviewTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( InterviewTypeManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -83,8 +87,8 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	 public InterviewType searchInterviewType(RetailscmUserContext userContext, String interviewTypeId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( InterviewTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( InterviewTypeManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -102,10 +106,10 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 		addActions(userContext,interviewType,tokens);
 		
 		
-		InterviewType  interviewTypeToPresent = userContext.getDAOGroup().getInterviewTypeDAO().present(interviewType, tokens);
+		InterviewType  interviewTypeToPresent = interviewTypeDaoOf(userContext).present(interviewType, tokens);
 		
 		List<BaseEntity> entityListToNaming = interviewTypeToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getInterviewTypeDAO().alias(entityListToNaming);
+		interviewTypeDaoOf(userContext).alias(entityListToNaming);
 		
 		return  interviewTypeToPresent;
 		
@@ -126,14 +130,14 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 		
  	}
  	protected InterviewType saveInterviewType(RetailscmUserContext userContext, InterviewType interviewType, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getInterviewTypeDAO().save(interviewType, tokens);
+ 		return interviewTypeDaoOf(userContext).save(interviewType, tokens);
  	}
  	protected InterviewType loadInterviewType(RetailscmUserContext userContext, String interviewTypeId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-		userContext.getChecker().throwExceptionIfHasErrors( InterviewTypeManagerException.class);
+		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( InterviewTypeManagerException.class);
 
  
- 		return userContext.getDAOGroup().getInterviewTypeDAO().load(interviewTypeId, tokens);
+ 		return interviewTypeDaoOf(userContext).load(interviewTypeId, tokens);
  	}
 
 	
@@ -167,19 +171,19 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
  	
  	
 
-
-	public InterviewType createInterviewType(RetailscmUserContext userContext,String code, String companyId, String description, String detailDescription) throws Exception
+	public InterviewType createInterviewType(RetailscmUserContext userContext, String code,String companyId,String description,String detailDescription) throws Exception
+	//public InterviewType createInterviewType(RetailscmUserContext userContext,String code, String companyId, String description, String detailDescription) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCodeOfInterviewType(code);
-		userContext.getChecker().checkDescriptionOfInterviewType(description);
-		userContext.getChecker().checkDetailDescriptionOfInterviewType(detailDescription);
+		checkerOf(userContext).checkCodeOfInterviewType(code);
+		checkerOf(userContext).checkDescriptionOfInterviewType(description);
+		checkerOf(userContext).checkDetailDescriptionOfInterviewType(detailDescription);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 
 
 		InterviewType interviewType=createNewInterviewType();	
@@ -212,23 +216,23 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 
 		
 		
-		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-		userContext.getChecker().checkVersionOfInterviewType( interviewTypeVersion);
+		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+		checkerOf(userContext).checkVersionOfInterviewType( interviewTypeVersion);
 		
 
 		if(InterviewType.CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCodeOfInterviewType(parseString(newValueExpr));
+			checkerOf(userContext).checkCodeOfInterviewType(parseString(newValueExpr));
 		}		
 
 		
 		if(InterviewType.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfInterviewType(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfInterviewType(parseString(newValueExpr));
 		}
 		if(InterviewType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDetailDescriptionOfInterviewType(parseString(newValueExpr));
+			checkerOf(userContext).checkDetailDescriptionOfInterviewType(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 	
 		
 	}
@@ -237,7 +241,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	public InterviewType clone(RetailscmUserContext userContext, String fromInterviewTypeId) throws Exception{
 		
-		return userContext.getDAOGroup().getInterviewTypeDAO().clone(fromInterviewTypeId, this.allTokens());
+		return interviewTypeDaoOf(userContext).clone(fromInterviewTypeId, this.allTokens());
 	}
 	
 	public InterviewType internalSaveInterviewType(RetailscmUserContext userContext, InterviewType interviewType) throws Exception 
@@ -336,9 +340,9 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String interviewTypeId, String anotherCompanyId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+ 		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
  		
  	}
  	public InterviewType transferToAnotherCompany(RetailscmUserContext userContext, String interviewTypeId, String anotherCompanyId) throws Exception
@@ -375,7 +379,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForInterviewType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForInterviewType(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -388,7 +392,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
  	
@@ -402,7 +406,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String interviewTypeId, int interviewTypeVersion) throws Exception{
 			
-		userContext.getDAOGroup().getInterviewTypeDAO().delete(interviewTypeId, interviewTypeVersion);
+		interviewTypeDaoOf(userContext).delete(interviewTypeId, interviewTypeVersion);
 	}
 	
 	public InterviewType forgetByAll(RetailscmUserContext userContext, String interviewTypeId, int interviewTypeVersion) throws Exception {
@@ -411,8 +415,9 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	protected InterviewType forgetByAllInternal(RetailscmUserContext userContext,
 			String interviewTypeId, int interviewTypeVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getInterviewTypeDAO().disconnectFromAll(interviewTypeId, interviewTypeVersion);
+		return interviewTypeDaoOf(userContext).disconnectFromAll(interviewTypeId, interviewTypeVersion);
 	}
+	
 	
 
 	
@@ -429,7 +434,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getInterviewTypeDAO().deleteAll();
+		return interviewTypeDaoOf(userContext).deleteAll();
 	}
 
 
@@ -445,7 +450,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getInterviewTypeDAO().planToRemoveEmployeeInterviewListWithEmployee(interviewType, employeeId, this.emptyOptions());
+				interviewTypeDaoOf(userContext).planToRemoveEmployeeInterviewListWithEmployee(interviewType, employeeId, this.emptyOptions());
 
 				interviewType = saveInterviewType(userContext, interviewType, tokens().withEmployeeInterviewList().done());
 				return interviewType;
@@ -459,18 +464,14 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 
 	protected void checkParamsForAddingEmployeeInterview(RetailscmUserContext userContext, String interviewTypeId, String employeeId, String remark,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
 
 		
+		checkerOf(userContext).checkEmployeeIdOfEmployeeInterview(employeeId);
 		
-		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-
-		
-		userContext.getChecker().checkEmployeeIdOfEmployeeInterview(employeeId);
-		
-		userContext.getChecker().checkRemarkOfEmployeeInterview(remark);
+		checkerOf(userContext).checkRemarkOfEmployeeInterview(remark);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 
 	
 	}
@@ -494,12 +495,12 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	}
 	protected void checkParamsForUpdatingEmployeeInterviewProperties(RetailscmUserContext userContext, String interviewTypeId,String id,String remark,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-		userContext.getChecker().checkIdOfEmployeeInterview(id);
+		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+		checkerOf(userContext).checkIdOfEmployeeInterview(id);
 		
-		userContext.getChecker().checkRemarkOfEmployeeInterview( remark);
+		checkerOf(userContext).checkRemarkOfEmployeeInterview( remark);
 
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 		
 	}
 	public  InterviewType updateEmployeeInterviewProperties(RetailscmUserContext userContext, String interviewTypeId, String id,String remark, String [] tokensExpr) throws Exception
@@ -558,12 +559,18 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForRemovingEmployeeInterviewList(RetailscmUserContext userContext, String interviewTypeId, 
 			String employeeInterviewIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
 		for(String employeeInterviewIdItem: employeeInterviewIds){
 			userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewIdItem);
+=======
+		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+		for(String employeeInterviewIdItem: employeeInterviewIds){
+			checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 		
 	}
 	public  InterviewType removeEmployeeInterviewList(RetailscmUserContext userContext, String interviewTypeId, 
@@ -576,7 +583,7 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 			synchronized(interviewType){ 
 				//Will be good when the interviewType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getInterviewTypeDAO().planToRemoveEmployeeInterviewList(interviewType, employeeInterviewIds, allTokens());
+				interviewTypeDaoOf(userContext).planToRemoveEmployeeInterviewList(interviewType, employeeInterviewIds, allTokens());
 				interviewType = saveInterviewType(userContext, interviewType, tokens().withEmployeeInterviewList().done());
 				deleteRelationListInGraph(userContext, interviewType.getEmployeeInterviewList());
 				return present(userContext,interviewType, mergedAllTokens(tokensExpr));
@@ -586,10 +593,10 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForRemovingEmployeeInterview(RetailscmUserContext userContext, String interviewTypeId, 
 		String employeeInterviewId, int employeeInterviewVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfInterviewType( interviewTypeId);
-		userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewId);
-		userContext.getChecker().checkVersionOfEmployeeInterview(employeeInterviewVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).checkIdOfInterviewType( interviewTypeId);
+		checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewId);
+		checkerOf(userContext).checkVersionOfEmployeeInterview(employeeInterviewVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 	
 	}
 	public  InterviewType removeEmployeeInterview(RetailscmUserContext userContext, String interviewTypeId, 
@@ -613,10 +620,10 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 	protected void checkParamsForCopyingEmployeeInterview(RetailscmUserContext userContext, String interviewTypeId, 
 		String employeeInterviewId, int employeeInterviewVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfInterviewType( interviewTypeId);
-		userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewId);
-		userContext.getChecker().checkVersionOfEmployeeInterview(employeeInterviewVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).checkIdOfInterviewType( interviewTypeId);
+		checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewId);
+		checkerOf(userContext).checkVersionOfEmployeeInterview(employeeInterviewVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 	
 	}
 	public  InterviewType copyEmployeeInterviewFrom(RetailscmUserContext userContext, String interviewTypeId, 
@@ -645,17 +652,17 @@ public class InterviewTypeManagerImpl extends CustomRetailscmCheckerManager impl
 		
 
 		
-		userContext.getChecker().checkIdOfInterviewType(interviewTypeId);
-		userContext.getChecker().checkIdOfEmployeeInterview(employeeInterviewId);
-		userContext.getChecker().checkVersionOfEmployeeInterview(employeeInterviewVersion);
+		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
+		checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewId);
+		checkerOf(userContext).checkVersionOfEmployeeInterview(employeeInterviewVersion);
 		
 
 		if(EmployeeInterview.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfEmployeeInterview(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfEmployeeInterview(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(InterviewTypeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(InterviewTypeManagerException.class);
 	
 	}
 	

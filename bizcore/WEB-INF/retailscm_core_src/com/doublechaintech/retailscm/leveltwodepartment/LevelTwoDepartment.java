@@ -78,15 +78,6 @@ public class LevelTwoDepartment extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	LevelTwoDepartment(LevelOneDepartment belongsTo, String name, String description, Date founded)
-	{
-		setBelongsTo(belongsTo);
-		setName(name);
-		setDescription(description);
-		setFounded(founded);
-
-		this.mLevelThreeDepartmentList = new SmartList<LevelThreeDepartment>();	
-	}
 	
 	//Support for changing the property
 	

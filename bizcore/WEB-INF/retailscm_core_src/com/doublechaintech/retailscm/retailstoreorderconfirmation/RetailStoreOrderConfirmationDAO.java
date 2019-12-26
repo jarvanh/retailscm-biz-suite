@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoreorderconfirmation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 
 
-public interface RetailStoreOrderConfirmationDAO{
+public interface RetailStoreOrderConfirmationDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreOrderConfirmation> loadAll();
 	public RetailStoreOrderConfirmation load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreOrderConfirmation> retailStoreOrderConfirmationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -57,6 +58,26 @@ public interface RetailStoreOrderConfirmationDAO{
 	//disconnect RetailStoreOrderConfirmation with seller in RetailStoreOrder
 	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithSeller(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String sellerId, Map<String,Object> options)throws Exception;
 	public int countRetailStoreOrderListWithSeller(String retailStoreOrderConfirmationId, String sellerId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderConfirmation with approval in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithApproval(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String approvalId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithApproval(String retailStoreOrderConfirmationId, String approvalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderConfirmation with processing in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithProcessing(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String processingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithProcessing(String retailStoreOrderConfirmationId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderConfirmation with picking in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithPicking(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String pickingId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithPicking(String retailStoreOrderConfirmationId, String pickingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderConfirmation with shipment in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithShipment(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithShipment(String retailStoreOrderConfirmationId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect RetailStoreOrderConfirmation with delivery in RetailStoreOrder
+	public RetailStoreOrderConfirmation planToRemoveRetailStoreOrderListWithDelivery(RetailStoreOrderConfirmation retailStoreOrderConfirmation, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countRetailStoreOrderListWithDelivery(String retailStoreOrderConfirmationId, String deliveryId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<RetailStoreOrderConfirmation> queryList(String sql, Object ... parmeters);

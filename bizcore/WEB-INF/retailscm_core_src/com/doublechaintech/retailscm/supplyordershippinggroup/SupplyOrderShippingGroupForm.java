@@ -246,20 +246,6 @@ public class SupplyOrderShippingGroupForm extends BaseForm {
 		return lastUpdateTimeFieldOfSupplyOrder("lastUpdateTime","");
 	}
 
-
-	public SupplyOrderShippingGroupForm currentStatusFieldOfSupplyOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromSupplyOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public SupplyOrderShippingGroupForm currentStatusFieldOfSupplyOrder(String initValue){
-		return currentStatusFieldOfSupplyOrder("currentStatus",initValue);
-	}
-	public SupplyOrderShippingGroupForm currentStatusFieldOfSupplyOrder(){
-		return currentStatusFieldOfSupplyOrder("currentStatus","");
-	}
-
 	
 
 

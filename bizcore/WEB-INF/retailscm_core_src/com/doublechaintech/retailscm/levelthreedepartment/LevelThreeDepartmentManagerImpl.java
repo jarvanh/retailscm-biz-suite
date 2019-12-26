@@ -46,6 +46,10 @@ import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManager implements LevelThreeDepartmentManager {
 	
 	private static final String SERVICE_TYPE = "LevelThreeDepartment";
+	@Override
+	public LevelThreeDepartmentDAO daoOf(RetailscmUserContext userContext) {
+		return levelThreeDepartmentDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -79,8 +83,8 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
  	
  	public LevelThreeDepartment loadLevelThreeDepartment(RetailscmUserContext userContext, String levelThreeDepartmentId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelThreeDepartmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelThreeDepartmentManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -93,8 +97,8 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
  	
  	 public LevelThreeDepartment searchLevelThreeDepartment(RetailscmUserContext userContext, String levelThreeDepartmentId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelThreeDepartmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelThreeDepartmentManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -112,10 +116,10 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 		addActions(userContext,levelThreeDepartment,tokens);
 		
 		
-		LevelThreeDepartment  levelThreeDepartmentToPresent = userContext.getDAOGroup().getLevelThreeDepartmentDAO().present(levelThreeDepartment, tokens);
+		LevelThreeDepartment  levelThreeDepartmentToPresent = levelThreeDepartmentDaoOf(userContext).present(levelThreeDepartment, tokens);
 		
 		List<BaseEntity> entityListToNaming = levelThreeDepartmentToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getLevelThreeDepartmentDAO().alias(entityListToNaming);
+		levelThreeDepartmentDaoOf(userContext).alias(entityListToNaming);
 		
 		return  levelThreeDepartmentToPresent;
 		
@@ -136,14 +140,14 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 		
  	}
  	protected LevelThreeDepartment saveLevelThreeDepartment(RetailscmUserContext userContext, LevelThreeDepartment levelThreeDepartment, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getLevelThreeDepartmentDAO().save(levelThreeDepartment, tokens);
+ 		return levelThreeDepartmentDaoOf(userContext).save(levelThreeDepartment, tokens);
  	}
  	protected LevelThreeDepartment loadLevelThreeDepartment(RetailscmUserContext userContext, String levelThreeDepartmentId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().throwExceptionIfHasErrors( LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).throwExceptionIfHasErrors( LevelThreeDepartmentManagerException.class);
 
  
- 		return userContext.getDAOGroup().getLevelThreeDepartmentDAO().load(levelThreeDepartmentId, tokens);
+ 		return levelThreeDepartmentDaoOf(userContext).load(levelThreeDepartmentId, tokens);
  	}
 
 	
@@ -177,19 +181,19 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
  	
  	
 
-
-	public LevelThreeDepartment createLevelThreeDepartment(RetailscmUserContext userContext,String belongsToId, String name, String description, Date founded) throws Exception
+	public LevelThreeDepartment createLevelThreeDepartment(RetailscmUserContext userContext, String belongsToId,String name,String description,Date founded) throws Exception
+	//public LevelThreeDepartment createLevelThreeDepartment(RetailscmUserContext userContext,String belongsToId, String name, String description, Date founded) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfLevelThreeDepartment(name);
-		userContext.getChecker().checkDescriptionOfLevelThreeDepartment(description);
-		userContext.getChecker().checkFoundedOfLevelThreeDepartment(founded);
+		checkerOf(userContext).checkNameOfLevelThreeDepartment(name);
+		checkerOf(userContext).checkDescriptionOfLevelThreeDepartment(description);
+		checkerOf(userContext).checkFoundedOfLevelThreeDepartment(founded);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 
 
 		LevelThreeDepartment levelThreeDepartment=createNewLevelThreeDepartment();	
@@ -222,23 +226,23 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 
 		
 		
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().checkVersionOfLevelThreeDepartment( levelThreeDepartmentVersion);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).checkVersionOfLevelThreeDepartment( levelThreeDepartmentVersion);
 		
 		
 
 		
 		if(LevelThreeDepartment.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfLevelThreeDepartment(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfLevelThreeDepartment(parseString(newValueExpr));
 		}
 		if(LevelThreeDepartment.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfLevelThreeDepartment(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfLevelThreeDepartment(parseString(newValueExpr));
 		}
 		if(LevelThreeDepartment.FOUNDED_PROPERTY.equals(property)){
-			userContext.getChecker().checkFoundedOfLevelThreeDepartment(parseDate(newValueExpr));
+			checkerOf(userContext).checkFoundedOfLevelThreeDepartment(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 	
 		
 	}
@@ -247,7 +251,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	
 	public LevelThreeDepartment clone(RetailscmUserContext userContext, String fromLevelThreeDepartmentId) throws Exception{
 		
-		return userContext.getDAOGroup().getLevelThreeDepartmentDAO().clone(fromLevelThreeDepartmentId, this.allTokens());
+		return levelThreeDepartmentDaoOf(userContext).clone(fromLevelThreeDepartmentId, this.allTokens());
 	}
 	
 	public LevelThreeDepartment internalSaveLevelThreeDepartment(RetailscmUserContext userContext, LevelThreeDepartment levelThreeDepartment) throws Exception 
@@ -346,9 +350,9 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	protected void checkParamsForTransferingAnotherBelongsTo(RetailscmUserContext userContext, String levelThreeDepartmentId, String anotherBelongsToId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
- 		userContext.getChecker().checkIdOfLevelTwoDepartment(anotherBelongsToId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+ 		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+ 		checkerOf(userContext).checkIdOfLevelTwoDepartment(anotherBelongsToId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
  		
  	}
  	public LevelThreeDepartment transferToAnotherBelongsTo(RetailscmUserContext userContext, String levelThreeDepartmentId, String anotherBelongsToId) throws Exception
@@ -385,7 +389,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<LevelTwoDepartment> candidateList = userContext.getDAOGroup().getLevelTwoDepartmentDAO().requestCandidateLevelTwoDepartmentForLevelThreeDepartment(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<LevelTwoDepartment> candidateList = levelTwoDepartmentDaoOf(userContext).requestCandidateLevelTwoDepartmentForLevelThreeDepartment(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -398,7 +402,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
  	protected LevelTwoDepartment loadLevelTwoDepartment(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getLevelTwoDepartmentDAO().load(newBelongsToId, options);
+ 		return levelTwoDepartmentDaoOf(userContext).load(newBelongsToId, options);
  	}
  	
  	
@@ -412,7 +416,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String levelThreeDepartmentId, int levelThreeDepartmentVersion) throws Exception{
 			
-		userContext.getDAOGroup().getLevelThreeDepartmentDAO().delete(levelThreeDepartmentId, levelThreeDepartmentVersion);
+		levelThreeDepartmentDaoOf(userContext).delete(levelThreeDepartmentId, levelThreeDepartmentVersion);
 	}
 	
 	public LevelThreeDepartment forgetByAll(RetailscmUserContext userContext, String levelThreeDepartmentId, int levelThreeDepartmentVersion) throws Exception {
@@ -421,8 +425,9 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	protected LevelThreeDepartment forgetByAllInternal(RetailscmUserContext userContext,
 			String levelThreeDepartmentId, int levelThreeDepartmentVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getLevelThreeDepartmentDAO().disconnectFromAll(levelThreeDepartmentId, levelThreeDepartmentVersion);
+		return levelThreeDepartmentDaoOf(userContext).disconnectFromAll(levelThreeDepartmentId, levelThreeDepartmentVersion);
 	}
+	
 	
 
 	
@@ -439,7 +444,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getLevelThreeDepartmentDAO().deleteAll();
+		return levelThreeDepartmentDaoOf(userContext).deleteAll();
 	}
 
 
@@ -455,7 +460,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getLevelThreeDepartmentDAO().planToRemoveEmployeeListWithCompany(levelThreeDepartment, companyId, this.emptyOptions());
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithCompany(levelThreeDepartment, companyId, this.emptyOptions());
 
 				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
 				return levelThreeDepartment;
@@ -473,7 +478,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getLevelThreeDepartmentDAO().planToRemoveEmployeeListWithOccupation(levelThreeDepartment, occupationId, this.emptyOptions());
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithOccupation(levelThreeDepartment, occupationId, this.emptyOptions());
 
 				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
 				return levelThreeDepartment;
@@ -491,7 +496,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getLevelThreeDepartmentDAO().planToRemoveEmployeeListWithResponsibleFor(levelThreeDepartment, responsibleForId, this.emptyOptions());
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithResponsibleFor(levelThreeDepartment, responsibleForId, this.emptyOptions());
 
 				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
 				return levelThreeDepartment;
@@ -509,7 +514,133 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getLevelThreeDepartmentDAO().planToRemoveEmployeeListWithCurrentSalaryGrade(levelThreeDepartment, currentSalaryGradeId, this.emptyOptions());
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(levelThreeDepartment, currentSalaryGradeId, this.emptyOptions());
+
+				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
+				return levelThreeDepartment;
+			}
+	}
+	//disconnect LevelThreeDepartment with job_application in Employee
+	protected LevelThreeDepartment breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String levelThreeDepartmentId, String jobApplicationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
+
+			synchronized(levelThreeDepartment){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(levelThreeDepartment, jobApplicationId, this.emptyOptions());
+
+				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
+				return levelThreeDepartment;
+			}
+	}
+	//disconnect LevelThreeDepartment with profession_interview in Employee
+	protected LevelThreeDepartment breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String levelThreeDepartmentId, String professionInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
+
+			synchronized(levelThreeDepartment){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(levelThreeDepartment, professionInterviewId, this.emptyOptions());
+
+				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
+				return levelThreeDepartment;
+			}
+	}
+	//disconnect LevelThreeDepartment with hr_interview in Employee
+	protected LevelThreeDepartment breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String levelThreeDepartmentId, String hrInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
+
+			synchronized(levelThreeDepartment){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(levelThreeDepartment, hrInterviewId, this.emptyOptions());
+
+				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
+				return levelThreeDepartment;
+			}
+	}
+	//disconnect LevelThreeDepartment with offer_approval in Employee
+	protected LevelThreeDepartment breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String levelThreeDepartmentId, String offerApprovalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
+
+			synchronized(levelThreeDepartment){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(levelThreeDepartment, offerApprovalId, this.emptyOptions());
+
+				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
+				return levelThreeDepartment;
+			}
+	}
+	//disconnect LevelThreeDepartment with offer_acceptance in Employee
+	protected LevelThreeDepartment breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String levelThreeDepartmentId, String offerAcceptanceId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
+
+			synchronized(levelThreeDepartment){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(levelThreeDepartment, offerAcceptanceId, this.emptyOptions());
+
+				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
+				return levelThreeDepartment;
+			}
+	}
+	//disconnect LevelThreeDepartment with employee_boarding in Employee
+	protected LevelThreeDepartment breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String levelThreeDepartmentId, String employeeBoardingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
+
+			synchronized(levelThreeDepartment){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(levelThreeDepartment, employeeBoardingId, this.emptyOptions());
+
+				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
+				return levelThreeDepartment;
+			}
+	}
+	//disconnect LevelThreeDepartment with termination in Employee
+	protected LevelThreeDepartment breakWithEmployeeByTermination(RetailscmUserContext userContext, String levelThreeDepartmentId, String terminationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
+
+			synchronized(levelThreeDepartment){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeListWithTermination(levelThreeDepartment, terminationId, this.emptyOptions());
 
 				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
 				return levelThreeDepartment;
@@ -521,49 +652,59 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	
 	
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String levelThreeDepartmentId, String companyId, String title, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String levelThreeDepartmentId, String companyId, String title, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
 
 		
+		checkerOf(userContext).checkCompanyIdOfEmployee(companyId);
 		
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-
+		checkerOf(userContext).checkTitleOfEmployee(title);
 		
-		userContext.getChecker().checkCompanyIdOfEmployee(companyId);
+		checkerOf(userContext).checkFamilyNameOfEmployee(familyName);
 		
-		userContext.getChecker().checkTitleOfEmployee(title);
+		checkerOf(userContext).checkGivenNameOfEmployee(givenName);
 		
-		userContext.getChecker().checkFamilyNameOfEmployee(familyName);
+		checkerOf(userContext).checkEmailOfEmployee(email);
 		
-		userContext.getChecker().checkGivenNameOfEmployee(givenName);
+		checkerOf(userContext).checkCityOfEmployee(city);
 		
-		userContext.getChecker().checkEmailOfEmployee(email);
+		checkerOf(userContext).checkAddressOfEmployee(address);
 		
-		userContext.getChecker().checkCityOfEmployee(city);
+		checkerOf(userContext).checkCellPhoneOfEmployee(cellPhone);
 		
-		userContext.getChecker().checkAddressOfEmployee(address);
+		checkerOf(userContext).checkOccupationIdOfEmployee(occupationId);
 		
-		userContext.getChecker().checkCellPhoneOfEmployee(cellPhone);
+		checkerOf(userContext).checkResponsibleForIdOfEmployee(responsibleForId);
 		
-		userContext.getChecker().checkOccupationIdOfEmployee(occupationId);
+		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
-		userContext.getChecker().checkResponsibleForIdOfEmployee(responsibleForId);
+		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
 		
-		userContext.getChecker().checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
+		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
 		
-		userContext.getChecker().checkSalaryAccountOfEmployee(salaryAccount);
+		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
+		
+		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
+		
+		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
+		
+		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
+		
+		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
+		
+		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 
 	
 	}
-	public  LevelThreeDepartment addEmployee(RetailscmUserContext userContext, String levelThreeDepartmentId, String companyId, String title, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	public  LevelThreeDepartment addEmployee(RetailscmUserContext userContext, String levelThreeDepartmentId, String companyId, String title, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployee(userContext,levelThreeDepartmentId,companyId, title, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount,tokensExpr);
+		checkParamsForAddingEmployee(userContext,levelThreeDepartmentId,companyId, title, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId,tokensExpr);
 		
-		Employee employee = createEmployee(userContext,companyId, title, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount);
+		Employee employee = createEmployee(userContext,companyId, title, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId);
 		
 		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, allTokens());
 		synchronized(levelThreeDepartment){ 
@@ -578,19 +719,19 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String levelThreeDepartmentId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().checkIdOfEmployee(id);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).checkIdOfEmployee(id);
 		
-		userContext.getChecker().checkTitleOfEmployee( title);
-		userContext.getChecker().checkFamilyNameOfEmployee( familyName);
-		userContext.getChecker().checkGivenNameOfEmployee( givenName);
-		userContext.getChecker().checkEmailOfEmployee( email);
-		userContext.getChecker().checkCityOfEmployee( city);
-		userContext.getChecker().checkAddressOfEmployee( address);
-		userContext.getChecker().checkCellPhoneOfEmployee( cellPhone);
-		userContext.getChecker().checkSalaryAccountOfEmployee( salaryAccount);
+		checkerOf(userContext).checkTitleOfEmployee( title);
+		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
+		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
+		checkerOf(userContext).checkEmailOfEmployee( email);
+		checkerOf(userContext).checkCityOfEmployee( city);
+		checkerOf(userContext).checkAddressOfEmployee( address);
+		checkerOf(userContext).checkCellPhoneOfEmployee( cellPhone);
+		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 		
 	}
 	public  LevelThreeDepartment updateEmployeeProperties(RetailscmUserContext userContext, String levelThreeDepartmentId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
@@ -628,7 +769,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	}
 	
 	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception{
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -653,8 +794,28 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		employee.setLastUpdateTime(userContext.now());		
-		employee.setCurrentStatus("INIT");
+		JobApplication  jobApplication = new JobApplication();
+		jobApplication.setId(jobApplicationId);		
+		employee.setJobApplication(jobApplication);		
+		ProfessionInterview  professionInterview = new ProfessionInterview();
+		professionInterview.setId(professionInterviewId);		
+		employee.setProfessionInterview(professionInterview);		
+		HrInterview  hrInterview = new HrInterview();
+		hrInterview.setId(hrInterviewId);		
+		employee.setHrInterview(hrInterview);		
+		OfferApproval  offerApproval = new OfferApproval();
+		offerApproval.setId(offerApprovalId);		
+		employee.setOfferApproval(offerApproval);		
+		OfferAcceptance  offerAcceptance = new OfferAcceptance();
+		offerAcceptance.setId(offerAcceptanceId);		
+		employee.setOfferAcceptance(offerAcceptance);		
+		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
+		employeeBoarding.setId(employeeBoardingId);		
+		employee.setEmployeeBoarding(employeeBoarding);		
+		Termination  termination = new Termination();
+		termination.setId(terminationId);		
+		employee.setTermination(termination);		
+		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
@@ -674,12 +835,18 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String levelThreeDepartmentId, 
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
+=======
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		for(String employeeIdItem: employeeIds){
+			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 		
 	}
 	public  LevelThreeDepartment removeEmployeeList(RetailscmUserContext userContext, String levelThreeDepartmentId, 
@@ -692,7 +859,7 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 			synchronized(levelThreeDepartment){ 
 				//Will be good when the levelThreeDepartment loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getLevelThreeDepartmentDAO().planToRemoveEmployeeList(levelThreeDepartment, employeeIds, allTokens());
+				levelThreeDepartmentDaoOf(userContext).planToRemoveEmployeeList(levelThreeDepartment, employeeIds, allTokens());
 				levelThreeDepartment = saveLevelThreeDepartment(userContext, levelThreeDepartment, tokens().withEmployeeList().done());
 				deleteRelationListInGraph(userContext, levelThreeDepartment.getEmployeeList());
 				return present(userContext,levelThreeDepartment, mergedAllTokens(tokensExpr));
@@ -702,10 +869,10 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String levelThreeDepartmentId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLevelThreeDepartment( levelThreeDepartmentId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment( levelThreeDepartmentId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 	
 	}
 	public  LevelThreeDepartment removeEmployee(RetailscmUserContext userContext, String levelThreeDepartmentId, 
@@ -729,10 +896,10 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String levelThreeDepartmentId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfLevelThreeDepartment( levelThreeDepartmentId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment( levelThreeDepartmentId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 	
 	}
 	public  LevelThreeDepartment copyEmployeeFrom(RetailscmUserContext userContext, String levelThreeDepartmentId, 
@@ -761,45 +928,45 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 		
 
 		
-		userContext.getChecker().checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).checkIdOfLevelThreeDepartment(levelThreeDepartmentId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkFamilyNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkGivenNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkCityOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCellPhoneOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkSalaryAccountOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(LevelThreeDepartmentManagerException.class);
 	
 	}
 	
@@ -834,248 +1001,10 @@ public class LevelThreeDepartmentManagerImpl extends CustomRetailscmCheckerManag
 
 	}
 	/*
-	public  LevelThreeDepartment associateEmployeeListToNewJobApplication(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], Date applicationTime, String who, String comments, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().createJobApplication(userContext,  applicationTime,  who,  comments);
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().createProfessionInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToNewHrInterview(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().createHrInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().createOfferApproval(userContext,  who,  approveTime,  comments);
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().createOfferAcceptance(userContext,  who,  acceptTime,  comments);
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToNewEmployeeBoarding(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String who, Date employTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().createEmployeeBoarding(userContext,  who,  employTime,  comments);
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToNewTermination(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String reasonId, String typeId, String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().createTermination(userContext, reasonId, typeId,  comment);
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}
 	*/
 	
-	public  LevelThreeDepartment associateEmployeeListToJobApplication(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String jobApplicationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().loadJobApplication(userContext,jobApplicationId,new String[]{"none"} );
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String professionInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().loadProfessionInterview(userContext,professionInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToHrInterview(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String hrInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().loadHrInterview(userContext,hrInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String offerApprovalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().loadOfferApproval(userContext,offerApprovalId,new String[]{"none"} );
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String offerAcceptanceId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().loadOfferAcceptance(userContext,offerAcceptanceId,new String[]{"none"} );
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToEmployeeBoarding(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String employeeBoardingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().loadEmployeeBoarding(userContext,employeeBoardingId,new String[]{"none"} );
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}	public  LevelThreeDepartment associateEmployeeListToTermination(RetailscmUserContext userContext, String levelThreeDepartmentId, String  employeeIds[], String terminationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		LevelThreeDepartment levelThreeDepartment = loadLevelThreeDepartment(userContext, levelThreeDepartmentId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().loadTermination(userContext,terminationId,new String[]{"none"} );
-		
-		for(Employee employee: levelThreeDepartment.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveLevelThreeDepartment(userContext, levelThreeDepartment);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, LevelThreeDepartment newCreated) throws Exception{

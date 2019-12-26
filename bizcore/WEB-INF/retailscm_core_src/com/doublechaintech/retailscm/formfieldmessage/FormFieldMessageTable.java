@@ -24,12 +24,17 @@ public class FormFieldMessageTable{
 	static final String COLUMN_LEVEL = "level";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_TITLE, COLUMN_PARAMETER_NAME, COLUMN_FORM, COLUMN_LEVEL, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_TITLE, COLUMN_PARAMETER_NAME, COLUMN_FORM, COLUMN_LEVEL
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_TITLE,COLUMN_PARAMETER_NAME,COLUMN_FORM,COLUMN_LEVEL,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_TITLE,COLUMN_PARAMETER_NAME,COLUMN_FORM,COLUMN_LEVEL};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.originalvouchercreation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.originalvoucher.OriginalVoucher;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO;
 
 
-public interface OriginalVoucherCreationDAO{
+public interface OriginalVoucherCreationDAO extends BaseDAO{
 
-	
+	public SmartList<OriginalVoucherCreation> loadAll();
 	public OriginalVoucherCreation load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<OriginalVoucherCreation> originalVoucherCreationList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -53,6 +54,14 @@ public interface OriginalVoucherCreationDAO{
 	//disconnect OriginalVoucherCreation with belongs_to in OriginalVoucher
 	public OriginalVoucherCreation planToRemoveOriginalVoucherListWithBelongsTo(OriginalVoucherCreation originalVoucherCreation, String belongsToId, Map<String,Object> options)throws Exception;
 	public int countOriginalVoucherListWithBelongsTo(String originalVoucherCreationId, String belongsToId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OriginalVoucherCreation with confirmation in OriginalVoucher
+	public OriginalVoucherCreation planToRemoveOriginalVoucherListWithConfirmation(OriginalVoucherCreation originalVoucherCreation, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countOriginalVoucherListWithConfirmation(String originalVoucherCreationId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OriginalVoucherCreation with auditing in OriginalVoucher
+	public OriginalVoucherCreation planToRemoveOriginalVoucherListWithAuditing(OriginalVoucherCreation originalVoucherCreation, String auditingId, Map<String,Object> options)throws Exception;
+	public int countOriginalVoucherListWithAuditing(String originalVoucherCreationId, String auditingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<OriginalVoucherCreation> queryList(String sql, Object ... parmeters);

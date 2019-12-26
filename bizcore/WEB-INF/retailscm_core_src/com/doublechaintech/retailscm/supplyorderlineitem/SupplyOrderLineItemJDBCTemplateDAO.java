@@ -53,6 +53,11 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	}
 	*/
 	
+	public SmartList<SupplyOrderLineItem> loadAll() {
+	    return this.loadAll(getSupplyOrderLineItemMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

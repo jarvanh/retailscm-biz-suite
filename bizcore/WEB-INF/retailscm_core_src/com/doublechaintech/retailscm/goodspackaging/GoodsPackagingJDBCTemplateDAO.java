@@ -63,6 +63,11 @@ public class GoodsPackagingJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<GoodsPackaging> loadAll() {
+	    return this.loadAll(getGoodsPackagingMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

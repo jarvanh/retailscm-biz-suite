@@ -288,20 +288,6 @@ public class SupplyOrderLineItemForm extends BaseForm {
 		return lastUpdateTimeFieldOfSupplyOrder("lastUpdateTime","");
 	}
 
-
-	public SupplyOrderLineItemForm currentStatusFieldOfSupplyOrder(String parameterName, String initValue){
-		FormField field =  currentStatusFromSupplyOrder(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public SupplyOrderLineItemForm currentStatusFieldOfSupplyOrder(String initValue){
-		return currentStatusFieldOfSupplyOrder("currentStatus",initValue);
-	}
-	public SupplyOrderLineItemForm currentStatusFieldOfSupplyOrder(){
-		return currentStatusFieldOfSupplyOrder("currentStatus","");
-	}
-
 	
 
 

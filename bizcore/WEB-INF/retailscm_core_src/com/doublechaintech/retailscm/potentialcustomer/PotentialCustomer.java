@@ -90,19 +90,6 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	PotentialCustomer(String name, String mobile, RetailStoreCityServiceCenter cityServiceCenter, CityPartner cityPartner, String description, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setMobile(mobile);
-		setCityServiceCenter(cityServiceCenter);
-		setCityPartner(cityPartner);
-		setDescription(description);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mPotentialCustomerContactPersonList = new SmartList<PotentialCustomerContactPerson>();
-		this.mPotentialCustomerContactList = new SmartList<PotentialCustomerContact>();
-		this.mEventAttendanceList = new SmartList<EventAttendance>();	
-	}
 	
 	//Support for changing the property
 	

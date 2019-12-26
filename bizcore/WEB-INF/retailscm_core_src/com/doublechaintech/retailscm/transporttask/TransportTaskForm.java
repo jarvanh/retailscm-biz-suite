@@ -401,20 +401,6 @@ public class TransportTaskForm extends BaseForm {
 	}
 
 
-	public TransportTaskForm currentStatusFieldOfRetailStore(String parameterName, String initValue){
-		FormField field =  currentStatusFromRetailStore(parameterName, initValue);
-		this.addFormField(field);	
-		return this;
-	}
-	
-	public TransportTaskForm currentStatusFieldOfRetailStore(String initValue){
-		return currentStatusFieldOfRetailStore("currentStatus",initValue);
-	}
-	public TransportTaskForm currentStatusFieldOfRetailStore(){
-		return currentStatusFieldOfRetailStore("currentStatus","");
-	}
-
-
 	public TransportTaskForm truckDriverIdFieldOfTruckDriver(String parameterName, String initValue){
 		FormField field =  idFromTruckDriver(parameterName, initValue);
 		this.addFormField(field);	
@@ -919,20 +905,6 @@ public class TransportTaskForm extends BaseForm {
 	}
 	public TransportTaskForm packagingIdFieldForGoods(){
 		return packagingIdFieldForGoods("packagingId","");
-	}
-
-
-	public TransportTaskForm currentStatusFieldForGoods(String parameterName, String initValue){
-		FormField field =  currentStatusFromGoods(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public TransportTaskForm currentStatusFieldForGoods(String initValue){
-		return currentStatusFieldForGoods("currentStatus",initValue);
-	}
-	public TransportTaskForm currentStatusFieldForGoods(){
-		return currentStatusFieldForGoods("currentStatus","");
 	}
 
 

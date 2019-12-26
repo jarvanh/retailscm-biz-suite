@@ -42,6 +42,11 @@ public class ConsumerOrderShipmentJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	}
 	*/
 	
+	public SmartList<ConsumerOrderShipment> loadAll() {
+	    return this.loadAll(getConsumerOrderShipmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<classpathentry kind="src" output="bin/main" path="WEB-INF/retailscm_core_src">
 		<attributes>
 			<attribute name="gradle_scope" value="main"/>
@@ -31,6 +32,8 @@
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
 =======
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	<classpathentry kind="src" path="WEB-INF/retailscm_core_src"/>
 	<classpathentry kind="src" path="WEB-INF/retailscm_custom_src"/>
 	<classpathentry kind="src" path="WEB-INF/caf_core_src"/>
@@ -141,4 +144,7 @@
 </classpath>
 
 
+<<<<<<< HEAD
 >>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe

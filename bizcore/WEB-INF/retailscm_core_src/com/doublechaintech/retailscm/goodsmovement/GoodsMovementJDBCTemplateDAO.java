@@ -53,6 +53,11 @@ public class GoodsMovementJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<GoodsMovement> loadAll() {
+	    return this.loadAll(getGoodsMovementMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

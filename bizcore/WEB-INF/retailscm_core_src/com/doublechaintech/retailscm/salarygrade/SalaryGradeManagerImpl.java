@@ -49,6 +49,10 @@ import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implements SalaryGradeManager {
 	
 	private static final String SERVICE_TYPE = "SalaryGrade";
+	@Override
+	public SalaryGradeDAO daoOf(RetailscmUserContext userContext) {
+		return salaryGradeDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -82,8 +86,8 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	public SalaryGrade loadSalaryGrade(RetailscmUserContext userContext, String salaryGradeId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().throwExceptionIfHasErrors( SalaryGradeManagerException.class);
+ 		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SalaryGradeManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -96,8 +100,8 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	 public SalaryGrade searchSalaryGrade(RetailscmUserContext userContext, String salaryGradeId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().throwExceptionIfHasErrors( SalaryGradeManagerException.class);
+ 		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SalaryGradeManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -115,10 +119,10 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 		addActions(userContext,salaryGrade,tokens);
 		
 		
-		SalaryGrade  salaryGradeToPresent = userContext.getDAOGroup().getSalaryGradeDAO().present(salaryGrade, tokens);
+		SalaryGrade  salaryGradeToPresent = salaryGradeDaoOf(userContext).present(salaryGrade, tokens);
 		
 		List<BaseEntity> entityListToNaming = salaryGradeToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSalaryGradeDAO().alias(entityListToNaming);
+		salaryGradeDaoOf(userContext).alias(entityListToNaming);
 		
 		return  salaryGradeToPresent;
 		
@@ -139,14 +143,14 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 		
  	}
  	protected SalaryGrade saveSalaryGrade(RetailscmUserContext userContext, SalaryGrade salaryGrade, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSalaryGradeDAO().save(salaryGrade, tokens);
+ 		return salaryGradeDaoOf(userContext).save(salaryGrade, tokens);
  	}
  	protected SalaryGrade loadSalaryGrade(RetailscmUserContext userContext, String salaryGradeId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().throwExceptionIfHasErrors( SalaryGradeManagerException.class);
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SalaryGradeManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSalaryGradeDAO().load(salaryGradeId, tokens);
+ 		return salaryGradeDaoOf(userContext).load(salaryGradeId, tokens);
  	}
 
 	
@@ -184,19 +188,19 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-
-	public SalaryGrade createSalaryGrade(RetailscmUserContext userContext,String code, String companyId, String name, String detailDescription) throws Exception
+	public SalaryGrade createSalaryGrade(RetailscmUserContext userContext, String code,String companyId,String name,String detailDescription) throws Exception
+	//public SalaryGrade createSalaryGrade(RetailscmUserContext userContext,String code, String companyId, String name, String detailDescription) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkCodeOfSalaryGrade(code);
-		userContext.getChecker().checkNameOfSalaryGrade(name);
-		userContext.getChecker().checkDetailDescriptionOfSalaryGrade(detailDescription);
+		checkerOf(userContext).checkCodeOfSalaryGrade(code);
+		checkerOf(userContext).checkNameOfSalaryGrade(name);
+		checkerOf(userContext).checkDetailDescriptionOfSalaryGrade(detailDescription);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 
 
 		SalaryGrade salaryGrade=createNewSalaryGrade();	
@@ -229,23 +233,23 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 
 		
 		
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().checkVersionOfSalaryGrade( salaryGradeVersion);
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).checkVersionOfSalaryGrade( salaryGradeVersion);
 		
 
 		if(SalaryGrade.CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCodeOfSalaryGrade(parseString(newValueExpr));
+			checkerOf(userContext).checkCodeOfSalaryGrade(parseString(newValueExpr));
 		}		
 
 		
 		if(SalaryGrade.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfSalaryGrade(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfSalaryGrade(parseString(newValueExpr));
 		}
 		if(SalaryGrade.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDetailDescriptionOfSalaryGrade(parseString(newValueExpr));
+			checkerOf(userContext).checkDetailDescriptionOfSalaryGrade(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 	
 		
 	}
@@ -254,7 +258,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	public SalaryGrade clone(RetailscmUserContext userContext, String fromSalaryGradeId) throws Exception{
 		
-		return userContext.getDAOGroup().getSalaryGradeDAO().clone(fromSalaryGradeId, this.allTokens());
+		return salaryGradeDaoOf(userContext).clone(fromSalaryGradeId, this.allTokens());
 	}
 	
 	public SalaryGrade internalSaveSalaryGrade(RetailscmUserContext userContext, SalaryGrade salaryGrade) throws Exception 
@@ -354,9 +358,9 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String salaryGradeId, String anotherCompanyId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+ 		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
  		
  	}
  	public SalaryGrade transferToAnotherCompany(RetailscmUserContext userContext, String salaryGradeId, String anotherCompanyId) throws Exception
@@ -393,7 +397,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForSalaryGrade(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForSalaryGrade(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -406,7 +410,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCompanyId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
  	
@@ -420,7 +424,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String salaryGradeId, int salaryGradeVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSalaryGradeDAO().delete(salaryGradeId, salaryGradeVersion);
+		salaryGradeDaoOf(userContext).delete(salaryGradeId, salaryGradeVersion);
 	}
 	
 	public SalaryGrade forgetByAll(RetailscmUserContext userContext, String salaryGradeId, int salaryGradeVersion) throws Exception {
@@ -429,8 +433,9 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected SalaryGrade forgetByAllInternal(RetailscmUserContext userContext,
 			String salaryGradeId, int salaryGradeVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSalaryGradeDAO().disconnectFromAll(salaryGradeId, salaryGradeVersion);
+		return salaryGradeDaoOf(userContext).disconnectFromAll(salaryGradeId, salaryGradeVersion);
 	}
+	
 	
 
 	
@@ -447,7 +452,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSalaryGradeDAO().deleteAll();
+		return salaryGradeDaoOf(userContext).deleteAll();
 	}
 
 
@@ -463,7 +468,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSalaryGradeDAO().planToRemoveEmployeeListWithCompany(salaryGrade, companyId, this.emptyOptions());
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithCompany(salaryGrade, companyId, this.emptyOptions());
 
 				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
 				return salaryGrade;
@@ -481,7 +486,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSalaryGradeDAO().planToRemoveEmployeeListWithDepartment(salaryGrade, departmentId, this.emptyOptions());
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithDepartment(salaryGrade, departmentId, this.emptyOptions());
 
 				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
 				return salaryGrade;
@@ -499,7 +504,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSalaryGradeDAO().planToRemoveEmployeeListWithOccupation(salaryGrade, occupationId, this.emptyOptions());
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithOccupation(salaryGrade, occupationId, this.emptyOptions());
 
 				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
 				return salaryGrade;
@@ -517,7 +522,133 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSalaryGradeDAO().planToRemoveEmployeeListWithResponsibleFor(salaryGrade, responsibleForId, this.emptyOptions());
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithResponsibleFor(salaryGrade, responsibleForId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with job_application in Employee
+	protected SalaryGrade breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String salaryGradeId, String jobApplicationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(salaryGrade, jobApplicationId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with profession_interview in Employee
+	protected SalaryGrade breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String salaryGradeId, String professionInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(salaryGrade, professionInterviewId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with hr_interview in Employee
+	protected SalaryGrade breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String salaryGradeId, String hrInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(salaryGrade, hrInterviewId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with offer_approval in Employee
+	protected SalaryGrade breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String salaryGradeId, String offerApprovalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(salaryGrade, offerApprovalId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with offer_acceptance in Employee
+	protected SalaryGrade breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String salaryGradeId, String offerAcceptanceId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(salaryGrade, offerAcceptanceId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with employee_boarding in Employee
+	protected SalaryGrade breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String salaryGradeId, String employeeBoardingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(salaryGrade, employeeBoardingId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with termination in Employee
+	protected SalaryGrade breakWithEmployeeByTermination(RetailscmUserContext userContext, String salaryGradeId, String terminationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeListWithTermination(salaryGrade, terminationId, this.emptyOptions());
 
 				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
 				return salaryGrade;
@@ -535,7 +666,25 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSalaryGradeDAO().planToRemoveEmployeeSalarySheetListWithEmployee(salaryGrade, employeeId, this.emptyOptions());
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeSalarySheetListWithEmployee(salaryGrade, employeeId, this.emptyOptions());
+
+				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeSalarySheetList().done());
+				return salaryGrade;
+			}
+	}
+	//disconnect SalaryGrade with paying_off in EmployeeSalarySheet
+	protected SalaryGrade breakWithEmployeeSalarySheetByPayingOff(RetailscmUserContext userContext, String salaryGradeId, String payingOffId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
+
+			synchronized(salaryGrade){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeSalarySheetListWithPayingOff(salaryGrade, payingOffId, this.emptyOptions());
 
 				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeSalarySheetList().done());
 				return salaryGrade;
@@ -547,49 +696,59 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String salaryGradeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String salaryAccount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String salaryGradeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
 
 		
+		checkerOf(userContext).checkCompanyIdOfEmployee(companyId);
 		
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-
+		checkerOf(userContext).checkTitleOfEmployee(title);
 		
-		userContext.getChecker().checkCompanyIdOfEmployee(companyId);
+		checkerOf(userContext).checkDepartmentIdOfEmployee(departmentId);
 		
-		userContext.getChecker().checkTitleOfEmployee(title);
+		checkerOf(userContext).checkFamilyNameOfEmployee(familyName);
 		
-		userContext.getChecker().checkDepartmentIdOfEmployee(departmentId);
+		checkerOf(userContext).checkGivenNameOfEmployee(givenName);
 		
-		userContext.getChecker().checkFamilyNameOfEmployee(familyName);
+		checkerOf(userContext).checkEmailOfEmployee(email);
 		
-		userContext.getChecker().checkGivenNameOfEmployee(givenName);
+		checkerOf(userContext).checkCityOfEmployee(city);
 		
-		userContext.getChecker().checkEmailOfEmployee(email);
+		checkerOf(userContext).checkAddressOfEmployee(address);
 		
-		userContext.getChecker().checkCityOfEmployee(city);
+		checkerOf(userContext).checkCellPhoneOfEmployee(cellPhone);
 		
-		userContext.getChecker().checkAddressOfEmployee(address);
+		checkerOf(userContext).checkOccupationIdOfEmployee(occupationId);
 		
-		userContext.getChecker().checkCellPhoneOfEmployee(cellPhone);
+		checkerOf(userContext).checkResponsibleForIdOfEmployee(responsibleForId);
 		
-		userContext.getChecker().checkOccupationIdOfEmployee(occupationId);
+		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
 		
-		userContext.getChecker().checkResponsibleForIdOfEmployee(responsibleForId);
+		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
 		
-		userContext.getChecker().checkSalaryAccountOfEmployee(salaryAccount);
+		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
+		
+		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
+		
+		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
+		
+		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
+		
+		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
+		
+		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 
 	
 	}
-	public  SalaryGrade addEmployee(RetailscmUserContext userContext, String salaryGradeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String salaryAccount, String [] tokensExpr) throws Exception
+	public  SalaryGrade addEmployee(RetailscmUserContext userContext, String salaryGradeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployee(userContext,salaryGradeId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, salaryAccount,tokensExpr);
+		checkParamsForAddingEmployee(userContext,salaryGradeId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId,tokensExpr);
 		
-		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, salaryAccount);
+		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId);
 		
 		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
 		synchronized(salaryGrade){ 
@@ -604,19 +763,19 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String salaryGradeId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().checkIdOfEmployee(id);
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployee(id);
 		
-		userContext.getChecker().checkTitleOfEmployee( title);
-		userContext.getChecker().checkFamilyNameOfEmployee( familyName);
-		userContext.getChecker().checkGivenNameOfEmployee( givenName);
-		userContext.getChecker().checkEmailOfEmployee( email);
-		userContext.getChecker().checkCityOfEmployee( city);
-		userContext.getChecker().checkAddressOfEmployee( address);
-		userContext.getChecker().checkCellPhoneOfEmployee( cellPhone);
-		userContext.getChecker().checkSalaryAccountOfEmployee( salaryAccount);
+		checkerOf(userContext).checkTitleOfEmployee( title);
+		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
+		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
+		checkerOf(userContext).checkEmailOfEmployee( email);
+		checkerOf(userContext).checkCityOfEmployee( city);
+		checkerOf(userContext).checkAddressOfEmployee( address);
+		checkerOf(userContext).checkCellPhoneOfEmployee( cellPhone);
+		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 		
 	}
 	public  SalaryGrade updateEmployeeProperties(RetailscmUserContext userContext, String salaryGradeId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
@@ -654,7 +813,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	
 	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String salaryAccount) throws Exception{
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -679,8 +838,28 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 		responsibleFor.setId(responsibleForId);		
 		employee.setResponsibleFor(responsibleFor);		
 		employee.setSalaryAccount(salaryAccount);		
-		employee.setLastUpdateTime(userContext.now());		
-		employee.setCurrentStatus("INIT");
+		JobApplication  jobApplication = new JobApplication();
+		jobApplication.setId(jobApplicationId);		
+		employee.setJobApplication(jobApplication);		
+		ProfessionInterview  professionInterview = new ProfessionInterview();
+		professionInterview.setId(professionInterviewId);		
+		employee.setProfessionInterview(professionInterview);		
+		HrInterview  hrInterview = new HrInterview();
+		hrInterview.setId(hrInterviewId);		
+		employee.setHrInterview(hrInterview);		
+		OfferApproval  offerApproval = new OfferApproval();
+		offerApproval.setId(offerApprovalId);		
+		employee.setOfferApproval(offerApproval);		
+		OfferAcceptance  offerAcceptance = new OfferAcceptance();
+		offerAcceptance.setId(offerAcceptanceId);		
+		employee.setOfferAcceptance(offerAcceptance);		
+		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
+		employeeBoarding.setId(employeeBoardingId);		
+		employee.setEmployeeBoarding(employeeBoarding);		
+		Termination  termination = new Termination();
+		termination.setId(terminationId);		
+		employee.setTermination(termination);		
+		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
@@ -700,12 +879,18 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String salaryGradeId, 
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
+=======
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		for(String employeeIdItem: employeeIds){
+			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 		
 	}
 	public  SalaryGrade removeEmployeeList(RetailscmUserContext userContext, String salaryGradeId, 
@@ -718,7 +903,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(salaryGrade){ 
 				//Will be good when the salaryGrade loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSalaryGradeDAO().planToRemoveEmployeeList(salaryGrade, employeeIds, allTokens());
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeList(salaryGrade, employeeIds, allTokens());
 				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeList().done());
 				deleteRelationListInGraph(userContext, salaryGrade.getEmployeeList());
 				return present(userContext,salaryGrade, mergedAllTokens(tokensExpr));
@@ -728,10 +913,10 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String salaryGradeId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSalaryGrade( salaryGradeId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).checkIdOfSalaryGrade( salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 	
 	}
 	public  SalaryGrade removeEmployee(RetailscmUserContext userContext, String salaryGradeId, 
@@ -755,10 +940,10 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String salaryGradeId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSalaryGrade( salaryGradeId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).checkIdOfSalaryGrade( salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 	
 	}
 	public  SalaryGrade copyEmployeeFrom(RetailscmUserContext userContext, String salaryGradeId, 
@@ -787,45 +972,45 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkFamilyNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkGivenNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkCityOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCellPhoneOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkSalaryAccountOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 	
 	}
 	
@@ -860,285 +1045,45 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 
 	}
 	/*
-	public  SalaryGrade associateEmployeeListToNewJobApplication(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], Date applicationTime, String who, String comments, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().createJobApplication(userContext,  applicationTime,  who,  comments);
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().createProfessionInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToNewHrInterview(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().createHrInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().createOfferApproval(userContext,  who,  approveTime,  comments);
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().createOfferAcceptance(userContext,  who,  acceptTime,  comments);
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToNewEmployeeBoarding(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String who, Date employTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().createEmployeeBoarding(userContext,  who,  employTime,  comments);
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToNewTermination(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String reasonId, String typeId, String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().createTermination(userContext, reasonId, typeId,  comment);
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}
 	*/
 	
-	public  SalaryGrade associateEmployeeListToJobApplication(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String jobApplicationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		JobApplication jobApplication = userContext.getManagerGroup().getJobApplicationManager().loadJobApplication(userContext,jobApplicationId,new String[]{"none"} );
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateJobApplication(jobApplication);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String professionInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().loadProfessionInterview(userContext,professionInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToHrInterview(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String hrInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().loadHrInterview(userContext,hrInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String offerApprovalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().loadOfferApproval(userContext,offerApprovalId,new String[]{"none"} );
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String offerAcceptanceId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().loadOfferAcceptance(userContext,offerAcceptanceId,new String[]{"none"} );
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToEmployeeBoarding(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String employeeBoardingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().loadEmployeeBoarding(userContext,employeeBoardingId,new String[]{"none"} );
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}	public  SalaryGrade associateEmployeeListToTermination(RetailscmUserContext userContext, String salaryGradeId, String  employeeIds[], String terminationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().loadTermination(userContext,terminationId,new String[]{"none"} );
-		
-		for(Employee employee: salaryGrade.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}
 
 
-	protected void checkParamsForAddingEmployeeSalarySheet(RetailscmUserContext userContext, String salaryGradeId, String employeeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance,String [] tokensExpr) throws Exception{
+
+	protected void checkParamsForAddingEmployeeSalarySheet(RetailscmUserContext userContext, String salaryGradeId, String employeeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
 
 		
+		checkerOf(userContext).checkEmployeeIdOfEmployeeSalarySheet(employeeId);
 		
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-
+		checkerOf(userContext).checkBaseSalaryOfEmployeeSalarySheet(baseSalary);
 		
-		userContext.getChecker().checkEmployeeIdOfEmployeeSalarySheet(employeeId);
+		checkerOf(userContext).checkBonusOfEmployeeSalarySheet(bonus);
 		
-		userContext.getChecker().checkBaseSalaryOfEmployeeSalarySheet(baseSalary);
+		checkerOf(userContext).checkRewardOfEmployeeSalarySheet(reward);
 		
-		userContext.getChecker().checkBonusOfEmployeeSalarySheet(bonus);
+		checkerOf(userContext).checkPersonalTaxOfEmployeeSalarySheet(personalTax);
 		
-		userContext.getChecker().checkRewardOfEmployeeSalarySheet(reward);
+		checkerOf(userContext).checkSocialSecurityOfEmployeeSalarySheet(socialSecurity);
 		
-		userContext.getChecker().checkPersonalTaxOfEmployeeSalarySheet(personalTax);
+		checkerOf(userContext).checkHousingFoundOfEmployeeSalarySheet(housingFound);
 		
-		userContext.getChecker().checkSocialSecurityOfEmployeeSalarySheet(socialSecurity);
+		checkerOf(userContext).checkJobInsuranceOfEmployeeSalarySheet(jobInsurance);
 		
-		userContext.getChecker().checkHousingFoundOfEmployeeSalarySheet(housingFound);
-		
-		userContext.getChecker().checkJobInsuranceOfEmployeeSalarySheet(jobInsurance);
+		checkerOf(userContext).checkPayingOffIdOfEmployeeSalarySheet(payingOffId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 
 	
 	}
-	public  SalaryGrade addEmployeeSalarySheet(RetailscmUserContext userContext, String salaryGradeId, String employeeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String [] tokensExpr) throws Exception
+	public  SalaryGrade addEmployeeSalarySheet(RetailscmUserContext userContext, String salaryGradeId, String employeeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployeeSalarySheet(userContext,salaryGradeId,employeeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance,tokensExpr);
+		checkParamsForAddingEmployeeSalarySheet(userContext,salaryGradeId,employeeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance, payingOffId,tokensExpr);
 		
-		EmployeeSalarySheet employeeSalarySheet = createEmployeeSalarySheet(userContext,employeeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance);
+		EmployeeSalarySheet employeeSalarySheet = createEmployeeSalarySheet(userContext,employeeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance, payingOffId);
 		
 		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, allTokens());
 		synchronized(salaryGrade){ 
@@ -1153,18 +1098,18 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	protected void checkParamsForUpdatingEmployeeSalarySheetProperties(RetailscmUserContext userContext, String salaryGradeId,String id,BigDecimal baseSalary,BigDecimal bonus,BigDecimal reward,BigDecimal personalTax,BigDecimal socialSecurity,BigDecimal housingFound,BigDecimal jobInsurance,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().checkIdOfEmployeeSalarySheet(id);
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployeeSalarySheet(id);
 		
-		userContext.getChecker().checkBaseSalaryOfEmployeeSalarySheet( baseSalary);
-		userContext.getChecker().checkBonusOfEmployeeSalarySheet( bonus);
-		userContext.getChecker().checkRewardOfEmployeeSalarySheet( reward);
-		userContext.getChecker().checkPersonalTaxOfEmployeeSalarySheet( personalTax);
-		userContext.getChecker().checkSocialSecurityOfEmployeeSalarySheet( socialSecurity);
-		userContext.getChecker().checkHousingFoundOfEmployeeSalarySheet( housingFound);
-		userContext.getChecker().checkJobInsuranceOfEmployeeSalarySheet( jobInsurance);
+		checkerOf(userContext).checkBaseSalaryOfEmployeeSalarySheet( baseSalary);
+		checkerOf(userContext).checkBonusOfEmployeeSalarySheet( bonus);
+		checkerOf(userContext).checkRewardOfEmployeeSalarySheet( reward);
+		checkerOf(userContext).checkPersonalTaxOfEmployeeSalarySheet( personalTax);
+		checkerOf(userContext).checkSocialSecurityOfEmployeeSalarySheet( socialSecurity);
+		checkerOf(userContext).checkHousingFoundOfEmployeeSalarySheet( housingFound);
+		checkerOf(userContext).checkJobInsuranceOfEmployeeSalarySheet( jobInsurance);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 		
 	}
 	public  SalaryGrade updateEmployeeSalarySheetProperties(RetailscmUserContext userContext, String salaryGradeId, String id,BigDecimal baseSalary,BigDecimal bonus,BigDecimal reward,BigDecimal personalTax,BigDecimal socialSecurity,BigDecimal housingFound,BigDecimal jobInsurance, String [] tokensExpr) throws Exception
@@ -1201,7 +1146,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	}
 	
 	
-	protected EmployeeSalarySheet createEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance) throws Exception{
+	protected EmployeeSalarySheet createEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId) throws Exception{
 
 		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
 		
@@ -1216,7 +1161,9 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 		employeeSalarySheet.setSocialSecurity(socialSecurity);		
 		employeeSalarySheet.setHousingFound(housingFound);		
 		employeeSalarySheet.setJobInsurance(jobInsurance);		
-		employeeSalarySheet.setCurrentStatus("INIT");
+		PayingOff  payingOff = new PayingOff();
+		payingOff.setId(payingOffId);		
+		employeeSalarySheet.setPayingOff(payingOff);
 	
 		
 		return employeeSalarySheet;
@@ -1236,12 +1183,18 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployeeSalarySheetList(RetailscmUserContext userContext, String salaryGradeId, 
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
 		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
 			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
+=======
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
+			checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 		
 	}
 	public  SalaryGrade removeEmployeeSalarySheetList(RetailscmUserContext userContext, String salaryGradeId, 
@@ -1254,7 +1207,7 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 			synchronized(salaryGrade){ 
 				//Will be good when the salaryGrade loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSalaryGradeDAO().planToRemoveEmployeeSalarySheetList(salaryGrade, employeeSalarySheetIds, allTokens());
+				salaryGradeDaoOf(userContext).planToRemoveEmployeeSalarySheetList(salaryGrade, employeeSalarySheetIds, allTokens());
 				salaryGrade = saveSalaryGrade(userContext, salaryGrade, tokens().withEmployeeSalarySheetList().done());
 				deleteRelationListInGraph(userContext, salaryGrade.getEmployeeSalarySheetList());
 				return present(userContext,salaryGrade, mergedAllTokens(tokensExpr));
@@ -1264,10 +1217,10 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForRemovingEmployeeSalarySheet(RetailscmUserContext userContext, String salaryGradeId, 
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSalaryGrade( salaryGradeId);
-		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).checkIdOfSalaryGrade( salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		checkerOf(userContext).checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 	
 	}
 	public  SalaryGrade removeEmployeeSalarySheet(RetailscmUserContext userContext, String salaryGradeId, 
@@ -1291,10 +1244,10 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 	protected void checkParamsForCopyingEmployeeSalarySheet(RetailscmUserContext userContext, String salaryGradeId, 
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSalaryGrade( salaryGradeId);
-		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).checkIdOfSalaryGrade( salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		checkerOf(userContext).checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 	
 	}
 	public  SalaryGrade copyEmployeeSalarySheetFrom(RetailscmUserContext userContext, String salaryGradeId, 
@@ -1323,41 +1276,41 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		
-		userContext.getChecker().checkIdOfSalaryGrade(salaryGradeId);
-		userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
-		userContext.getChecker().checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
+		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
+		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
+		checkerOf(userContext).checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
 		
 
 		if(EmployeeSalarySheet.BASE_SALARY_PROPERTY.equals(property)){
-			userContext.getChecker().checkBaseSalaryOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkBaseSalaryOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		
 		if(EmployeeSalarySheet.BONUS_PROPERTY.equals(property)){
-			userContext.getChecker().checkBonusOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkBonusOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		
 		if(EmployeeSalarySheet.REWARD_PROPERTY.equals(property)){
-			userContext.getChecker().checkRewardOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkRewardOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		
 		if(EmployeeSalarySheet.PERSONAL_TAX_PROPERTY.equals(property)){
-			userContext.getChecker().checkPersonalTaxOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkPersonalTaxOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		
 		if(EmployeeSalarySheet.SOCIAL_SECURITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkSocialSecurityOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkSocialSecurityOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		
 		if(EmployeeSalarySheet.HOUSING_FOUND_PROPERTY.equals(property)){
-			userContext.getChecker().checkHousingFoundOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkHousingFoundOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		
 		if(EmployeeSalarySheet.JOB_INSURANCE_PROPERTY.equals(property)){
-			userContext.getChecker().checkJobInsuranceOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkJobInsuranceOfEmployeeSalarySheet(parseBigDecimal(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SalaryGradeManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SalaryGradeManagerException.class);
 	
 	}
 	
@@ -1392,44 +1345,10 @@ public class SalaryGradeManagerImpl extends CustomRetailscmCheckerManager implem
 
 	}
 	/*
-	public  SalaryGrade associateEmployeeSalarySheetListToNewPayingOff(RetailscmUserContext userContext, String salaryGradeId, String  employeeSalarySheetIds[], String who, String paidForId, Date paidTime, BigDecimal amount, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeSalarySheetListWith(EmployeeSalarySheet.ID_PROPERTY, "oneof", this.joinArray("|", employeeSalarySheetIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		PayingOff payingOff = userContext.getManagerGroup().getPayingOffManager().createPayingOff(userContext,  who, paidForId,  paidTime,  amount);
-		
-		for(EmployeeSalarySheet employeeSalarySheet: salaryGrade.getEmployeeSalarySheetList()) {
-			//TODO: need to check if already associated
-			employeeSalarySheet.updatePayingOff(payingOff);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}
 	*/
 	
-	public  SalaryGrade associateEmployeeSalarySheetListToPayingOff(RetailscmUserContext userContext, String salaryGradeId, String  employeeSalarySheetIds[], String payingOffId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeSalarySheetListWith(EmployeeSalarySheet.ID_PROPERTY, "oneof", this.joinArray("|", employeeSalarySheetIds)).done();
-		
-		SalaryGrade salaryGrade = loadSalaryGrade(userContext, salaryGradeId, options);
-		
-		PayingOff payingOff = userContext.getManagerGroup().getPayingOffManager().loadPayingOff(userContext,payingOffId,new String[]{"none"} );
-		
-		for(EmployeeSalarySheet employeeSalarySheet: salaryGrade.getEmployeeSalarySheetList()) {
-			//TODO: need to check if already associated
-			employeeSalarySheet.updatePayingOff(payingOff);
-		}
-		return this.internalSaveSalaryGrade(userContext, salaryGrade);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SalaryGrade newCreated) throws Exception{

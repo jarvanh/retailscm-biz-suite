@@ -44,6 +44,10 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 public class SkuManagerImpl extends CustomRetailscmCheckerManager implements SkuManager {
 	
 	private static final String SERVICE_TYPE = "Sku";
+	@Override
+	public SkuDAO daoOf(RetailscmUserContext userContext) {
+		return skuDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -77,8 +81,8 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
  	
  	public Sku loadSku(RetailscmUserContext userContext, String skuId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().throwExceptionIfHasErrors( SkuManagerException.class);
+ 		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SkuManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -91,8 +95,8 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
  	
  	 public Sku searchSku(RetailscmUserContext userContext, String skuId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().throwExceptionIfHasErrors( SkuManagerException.class);
+ 		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SkuManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -110,10 +114,10 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 		addActions(userContext,sku,tokens);
 		
 		
-		Sku  skuToPresent = userContext.getDAOGroup().getSkuDAO().present(sku, tokens);
+		Sku  skuToPresent = skuDaoOf(userContext).present(sku, tokens);
 		
 		List<BaseEntity> entityListToNaming = skuToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getSkuDAO().alias(entityListToNaming);
+		skuDaoOf(userContext).alias(entityListToNaming);
 		
 		return  skuToPresent;
 		
@@ -134,14 +138,14 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 		
  	}
  	protected Sku saveSku(RetailscmUserContext userContext, Sku sku, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getSkuDAO().save(sku, tokens);
+ 		return skuDaoOf(userContext).save(sku, tokens);
  	}
  	protected Sku loadSku(RetailscmUserContext userContext, String skuId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().throwExceptionIfHasErrors( SkuManagerException.class);
+		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).throwExceptionIfHasErrors( SkuManagerException.class);
 
  
- 		return userContext.getDAOGroup().getSkuDAO().load(skuId, tokens);
+ 		return skuDaoOf(userContext).load(skuId, tokens);
  	}
 
 	
@@ -175,23 +179,23 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
  	
  	
 
-
-	public Sku createSku(RetailscmUserContext userContext,String name, String size, String productId, String barcode, String packageType, String netContent, BigDecimal price, String picture) throws Exception
+	public Sku createSku(RetailscmUserContext userContext, String name,String size,String productId,String barcode,String packageType,String netContent,BigDecimal price,String picture) throws Exception
+	//public Sku createSku(RetailscmUserContext userContext,String name, String size, String productId, String barcode, String packageType, String netContent, BigDecimal price, String picture) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfSku(name);
-		userContext.getChecker().checkSizeOfSku(size);
-		userContext.getChecker().checkBarcodeOfSku(barcode);
-		userContext.getChecker().checkPackageTypeOfSku(packageType);
-		userContext.getChecker().checkNetContentOfSku(netContent);
-		userContext.getChecker().checkPriceOfSku(price);
-		userContext.getChecker().checkPictureOfSku(picture);
+		checkerOf(userContext).checkNameOfSku(name);
+		checkerOf(userContext).checkSizeOfSku(size);
+		checkerOf(userContext).checkBarcodeOfSku(barcode);
+		checkerOf(userContext).checkPackageTypeOfSku(packageType);
+		checkerOf(userContext).checkNetContentOfSku(netContent);
+		checkerOf(userContext).checkPriceOfSku(price);
+		checkerOf(userContext).checkPictureOfSku(picture);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 
 
 		Sku sku=createNewSku();	
@@ -228,35 +232,35 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 
 		
 		
-		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().checkVersionOfSku( skuVersion);
+		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).checkVersionOfSku( skuVersion);
 		
 
 		if(Sku.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfSku(parseString(newValueExpr));
 		}
 		if(Sku.SIZE_PROPERTY.equals(property)){
-			userContext.getChecker().checkSizeOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkSizeOfSku(parseString(newValueExpr));
 		}		
 
 		
 		if(Sku.BARCODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkBarcodeOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkBarcodeOfSku(parseString(newValueExpr));
 		}
 		if(Sku.PACKAGE_TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPackageTypeOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkPackageTypeOfSku(parseString(newValueExpr));
 		}
 		if(Sku.NET_CONTENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkNetContentOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkNetContentOfSku(parseString(newValueExpr));
 		}
 		if(Sku.PRICE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPriceOfSku(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkPriceOfSku(parseBigDecimal(newValueExpr));
 		}
 		if(Sku.PICTURE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPictureOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkPictureOfSku(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 	
 		
 	}
@@ -265,7 +269,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	
 	public Sku clone(RetailscmUserContext userContext, String fromSkuId) throws Exception{
 		
-		return userContext.getDAOGroup().getSkuDAO().clone(fromSkuId, this.allTokens());
+		return skuDaoOf(userContext).clone(fromSkuId, this.allTokens());
 	}
 	
 	public Sku internalSaveSku(RetailscmUserContext userContext, Sku sku) throws Exception 
@@ -364,9 +368,9 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	protected void checkParamsForTransferingAnotherProduct(RetailscmUserContext userContext, String skuId, String anotherProductId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfSku(skuId);
- 		userContext.getChecker().checkIdOfProduct(anotherProductId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+ 		checkerOf(userContext).checkIdOfSku(skuId);
+ 		checkerOf(userContext).checkIdOfProduct(anotherProductId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
  		
  	}
  	public Sku transferToAnotherProduct(RetailscmUserContext userContext, String skuId, String anotherProductId) throws Exception
@@ -403,7 +407,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<Product> candidateList = userContext.getDAOGroup().getProductDAO().requestCandidateProductForSku(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<Product> candidateList = productDaoOf(userContext).requestCandidateProductForSku(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -416,7 +420,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
  	protected Product loadProduct(RetailscmUserContext userContext, String newProductId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getProductDAO().load(newProductId, options);
+ 		return productDaoOf(userContext).load(newProductId, options);
  	}
  	
  	
@@ -430,7 +434,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String skuId, int skuVersion) throws Exception{
 			
-		userContext.getDAOGroup().getSkuDAO().delete(skuId, skuVersion);
+		skuDaoOf(userContext).delete(skuId, skuVersion);
 	}
 	
 	public Sku forgetByAll(RetailscmUserContext userContext, String skuId, int skuVersion) throws Exception {
@@ -439,8 +443,9 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	protected Sku forgetByAllInternal(RetailscmUserContext userContext,
 			String skuId, int skuVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getSkuDAO().disconnectFromAll(skuId, skuVersion);
+		return skuDaoOf(userContext).disconnectFromAll(skuId, skuVersion);
 	}
+	
 	
 
 	
@@ -457,7 +462,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getSkuDAO().deleteAll();
+		return skuDaoOf(userContext).deleteAll();
 	}
 
 
@@ -473,7 +478,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithReceivingSpace(sku, receivingSpaceId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithReceivingSpace(sku, receivingSpaceId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -491,7 +496,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithGoodsAllocation(sku, goodsAllocationId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithGoodsAllocation(sku, goodsAllocationId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -509,7 +514,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithSmartPallet(sku, smartPalletId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithSmartPallet(sku, smartPalletId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -527,7 +532,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithShippingSpace(sku, shippingSpaceId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithShippingSpace(sku, shippingSpaceId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -545,7 +550,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithTransportTask(sku, transportTaskId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithTransportTask(sku, transportTaskId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -563,7 +568,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithRetailStore(sku, retailStoreId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithRetailStore(sku, retailStoreId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -581,7 +586,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithBizOrder(sku, bizOrderId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithBizOrder(sku, bizOrderId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -599,7 +604,25 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsListWithRetailStoreOrder(sku, retailStoreOrderId, this.emptyOptions());
+				skuDaoOf(userContext).planToRemoveGoodsListWithRetailStoreOrder(sku, retailStoreOrderId, this.emptyOptions());
+
+				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
+				return sku;
+			}
+	}
+	//disconnect Sku with packaging in Goods
+	protected Sku breakWithGoodsByPackaging(RetailscmUserContext userContext, String skuId, String packagingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Sku sku = loadSku(userContext, skuId, allTokens());
+
+			synchronized(sku){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				skuDaoOf(userContext).planToRemoveGoodsListWithPackaging(sku, packagingId, this.emptyOptions());
 
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				return sku;
@@ -611,51 +634,49 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	
 	
 
-	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String skuId, String name, String rfid, String uom, int maxPackage, Date expireTime, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String skuId, String name, String rfid, String uom, int maxPackage, Date expireTime, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfSku(skuId);
 
 		
+		checkerOf(userContext).checkNameOfGoods(name);
 		
-		userContext.getChecker().checkIdOfSku(skuId);
-
+		checkerOf(userContext).checkRfidOfGoods(rfid);
 		
-		userContext.getChecker().checkNameOfGoods(name);
+		checkerOf(userContext).checkUomOfGoods(uom);
 		
-		userContext.getChecker().checkRfidOfGoods(rfid);
+		checkerOf(userContext).checkMaxPackageOfGoods(maxPackage);
 		
-		userContext.getChecker().checkUomOfGoods(uom);
+		checkerOf(userContext).checkExpireTimeOfGoods(expireTime);
 		
-		userContext.getChecker().checkMaxPackageOfGoods(maxPackage);
+		checkerOf(userContext).checkReceivingSpaceIdOfGoods(receivingSpaceId);
 		
-		userContext.getChecker().checkExpireTimeOfGoods(expireTime);
+		checkerOf(userContext).checkGoodsAllocationIdOfGoods(goodsAllocationId);
 		
-		userContext.getChecker().checkReceivingSpaceIdOfGoods(receivingSpaceId);
+		checkerOf(userContext).checkSmartPalletIdOfGoods(smartPalletId);
 		
-		userContext.getChecker().checkGoodsAllocationIdOfGoods(goodsAllocationId);
+		checkerOf(userContext).checkShippingSpaceIdOfGoods(shippingSpaceId);
 		
-		userContext.getChecker().checkSmartPalletIdOfGoods(smartPalletId);
+		checkerOf(userContext).checkTransportTaskIdOfGoods(transportTaskId);
 		
-		userContext.getChecker().checkShippingSpaceIdOfGoods(shippingSpaceId);
+		checkerOf(userContext).checkRetailStoreIdOfGoods(retailStoreId);
 		
-		userContext.getChecker().checkTransportTaskIdOfGoods(transportTaskId);
+		checkerOf(userContext).checkBizOrderIdOfGoods(bizOrderId);
 		
-		userContext.getChecker().checkRetailStoreIdOfGoods(retailStoreId);
+		checkerOf(userContext).checkRetailStoreOrderIdOfGoods(retailStoreOrderId);
 		
-		userContext.getChecker().checkBizOrderIdOfGoods(bizOrderId);
-		
-		userContext.getChecker().checkRetailStoreOrderIdOfGoods(retailStoreOrderId);
+		checkerOf(userContext).checkPackagingIdOfGoods(packagingId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 
 	
 	}
-	public  Sku addGoods(RetailscmUserContext userContext, String skuId, String name, String rfid, String uom, int maxPackage, Date expireTime, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String [] tokensExpr) throws Exception
+	public  Sku addGoods(RetailscmUserContext userContext, String skuId, String name, String rfid, String uom, int maxPackage, Date expireTime, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingGoods(userContext,skuId,name, rfid, uom, maxPackage, expireTime, receivingSpaceId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId,tokensExpr);
+		checkParamsForAddingGoods(userContext,skuId,name, rfid, uom, maxPackage, expireTime, receivingSpaceId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId,tokensExpr);
 		
-		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, receivingSpaceId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId);
+		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, receivingSpaceId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId);
 		
 		Sku sku = loadSku(userContext, skuId, allTokens());
 		synchronized(sku){ 
@@ -670,16 +691,16 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	}
 	protected void checkParamsForUpdatingGoodsProperties(RetailscmUserContext userContext, String skuId,String id,String name,String rfid,String uom,int maxPackage,Date expireTime,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().checkIdOfGoods(id);
+		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).checkIdOfGoods(id);
 		
-		userContext.getChecker().checkNameOfGoods( name);
-		userContext.getChecker().checkRfidOfGoods( rfid);
-		userContext.getChecker().checkUomOfGoods( uom);
-		userContext.getChecker().checkMaxPackageOfGoods( maxPackage);
-		userContext.getChecker().checkExpireTimeOfGoods( expireTime);
+		checkerOf(userContext).checkNameOfGoods( name);
+		checkerOf(userContext).checkRfidOfGoods( rfid);
+		checkerOf(userContext).checkUomOfGoods( uom);
+		checkerOf(userContext).checkMaxPackageOfGoods( maxPackage);
+		checkerOf(userContext).checkExpireTimeOfGoods( expireTime);
 
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 		
 	}
 	public  Sku updateGoodsProperties(RetailscmUserContext userContext, String skuId, String id,String name,String rfid,String uom,int maxPackage,Date expireTime, String [] tokensExpr) throws Exception
@@ -714,7 +735,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	}
 	
 	
-	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId) throws Exception{
+	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId) throws Exception{
 
 		Goods goods = new Goods();
 		
@@ -748,7 +769,9 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 		RetailStoreOrder  retailStoreOrder = new RetailStoreOrder();
 		retailStoreOrder.setId(retailStoreOrderId);		
 		goods.setRetailStoreOrder(retailStoreOrder);		
-		goods.setCurrentStatus("INIT");
+		GoodsPackaging  packaging = new GoodsPackaging();
+		packaging.setId(packagingId);		
+		goods.setPackaging(packaging);
 	
 		
 		return goods;
@@ -768,12 +791,18 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String skuId, 
 			String goodsIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfSku(skuId);
 		for(String goodsIdItem: goodsIds){
 			userContext.getChecker().checkIdOfGoods(goodsIdItem);
+=======
+		checkerOf(userContext).checkIdOfSku(skuId);
+		for(String goodsIdItem: goodsIds){
+			checkerOf(userContext).checkIdOfGoods(goodsIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 		
 	}
 	public  Sku removeGoodsList(RetailscmUserContext userContext, String skuId, 
@@ -786,7 +815,7 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 			synchronized(sku){ 
 				//Will be good when the sku loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getSkuDAO().planToRemoveGoodsList(sku, goodsIds, allTokens());
+				skuDaoOf(userContext).planToRemoveGoodsList(sku, goodsIds, allTokens());
 				sku = saveSku(userContext, sku, tokens().withGoodsList().done());
 				deleteRelationListInGraph(userContext, sku.getGoodsList());
 				return present(userContext,sku, mergedAllTokens(tokensExpr));
@@ -796,10 +825,10 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String skuId, 
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSku( skuId);
-		userContext.getChecker().checkIdOfGoods(goodsId);
-		userContext.getChecker().checkVersionOfGoods(goodsVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).checkIdOfSku( skuId);
+		checkerOf(userContext).checkIdOfGoods(goodsId);
+		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 	
 	}
 	public  Sku removeGoods(RetailscmUserContext userContext, String skuId, 
@@ -823,10 +852,10 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String skuId, 
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfSku( skuId);
-		userContext.getChecker().checkIdOfGoods(goodsId);
-		userContext.getChecker().checkVersionOfGoods(goodsVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).checkIdOfSku( skuId);
+		checkerOf(userContext).checkIdOfGoods(goodsId);
+		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 	
 	}
 	public  Sku copyGoodsFrom(RetailscmUserContext userContext, String skuId, 
@@ -855,33 +884,33 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 		
 
 		
-		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().checkIdOfGoods(goodsId);
-		userContext.getChecker().checkVersionOfGoods(goodsVersion);
+		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).checkIdOfGoods(goodsId);
+		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		
 
 		if(Goods.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfGoods(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfGoods(parseString(newValueExpr));
 		}
 		
 		if(Goods.RFID_PROPERTY.equals(property)){
-			userContext.getChecker().checkRfidOfGoods(parseString(newValueExpr));
+			checkerOf(userContext).checkRfidOfGoods(parseString(newValueExpr));
 		}
 		
 		if(Goods.UOM_PROPERTY.equals(property)){
-			userContext.getChecker().checkUomOfGoods(parseString(newValueExpr));
+			checkerOf(userContext).checkUomOfGoods(parseString(newValueExpr));
 		}
 		
 		if(Goods.MAX_PACKAGE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMaxPackageOfGoods(parseInt(newValueExpr));
+			checkerOf(userContext).checkMaxPackageOfGoods(parseInt(newValueExpr));
 		}
 		
 		if(Goods.EXPIRE_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkExpireTimeOfGoods(parseDate(newValueExpr));
+			checkerOf(userContext).checkExpireTimeOfGoods(parseDate(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(SkuManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
 	
 	}
 	
@@ -916,44 +945,10 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 
 	}
 	/*
-	public  Sku associateGoodsListToNewPackaging(RetailscmUserContext userContext, String skuId, String  goodsIds[], String packageName, String rfid, Date packageTime, String description, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchGoodsListWith(Goods.ID_PROPERTY, "oneof", this.joinArray("|", goodsIds)).done();
-		
-		Sku sku = loadSku(userContext, skuId, options);
-		
-		GoodsPackaging packaging = userContext.getManagerGroup().getGoodsPackagingManager().createGoodsPackaging(userContext,  packageName,  rfid,  packageTime,  description);
-		
-		for(Goods goods: sku.getGoodsList()) {
-			//TODO: need to check if already associated
-			goods.updatePackaging(packaging);
-		}
-		return this.internalSaveSku(userContext, sku);
-	}
 	*/
 	
-	public  Sku associateGoodsListToPackaging(RetailscmUserContext userContext, String skuId, String  goodsIds[], String packagingId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchGoodsListWith(Goods.ID_PROPERTY, "oneof", this.joinArray("|", goodsIds)).done();
-		
-		Sku sku = loadSku(userContext, skuId, options);
-		
-		GoodsPackaging packaging = userContext.getManagerGroup().getGoodsPackagingManager().loadGoodsPackaging(userContext,packagingId,new String[]{"none"} );
-		
-		for(Goods goods: sku.getGoodsList()) {
-			//TODO: need to check if already associated
-			goods.updatePackaging(packaging);
-		}
-		return this.internalSaveSku(userContext, sku);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, Sku newCreated) throws Exception{

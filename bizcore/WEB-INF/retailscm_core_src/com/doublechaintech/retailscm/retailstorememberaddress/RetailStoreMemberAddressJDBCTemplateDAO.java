@@ -53,6 +53,11 @@ public class RetailStoreMemberAddressJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	*/
 	
+	public SmartList<RetailStoreMemberAddress> loadAll() {
+	    return this.loadAll(getRetailStoreMemberAddressMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

@@ -88,18 +88,6 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public 	CompanyTraining(String title, RetailStoreCountryCenter company, Instructor instructor, TrainingCourseType trainingCourseType, Date timeStart, int durationHours, DateTime lastUpdateTime)
-	{
-		setTitle(title);
-		setCompany(company);
-		setInstructor(instructor);
-		setTrainingCourseType(trainingCourseType);
-		setTimeStart(timeStart);
-		setDurationHours(durationHours);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mEmployeeCompanyTrainingList = new SmartList<EmployeeCompanyTraining>();	
-	}
 	
 	//Support for changing the property
 	

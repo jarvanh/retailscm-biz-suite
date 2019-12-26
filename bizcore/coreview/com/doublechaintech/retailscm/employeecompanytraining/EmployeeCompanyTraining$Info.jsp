@@ -20,7 +20,6 @@
 	
 	
 	<li><span>ID</span><a class="link-action-removed" href="./employeeCompanyTrainingManager/view/${employeeCompanyTraining.id}/"> ${employeeCompanyTraining.id}</a></li>
-<li><span>${userContext.localeMap['employee_company_training.current_status']}</span> ${employeeCompanyTraining.currentStatus}</li>
 
 	
 	</ul>

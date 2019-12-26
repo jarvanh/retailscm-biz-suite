@@ -56,10 +56,6 @@
 <span class="summary-label">${userContext.localeMap['original_voucher.voucher_image']}</span>
 <span >${result.voucherImage}</span>
 </div>
-<div class="col-xs-12 col-md-3 summary-section">
-<span class="summary-label">${userContext.localeMap['original_voucher.current_status']}</span>
-<span >${result.currentStatus}</span>
-</div>
 
 	</div>
 	

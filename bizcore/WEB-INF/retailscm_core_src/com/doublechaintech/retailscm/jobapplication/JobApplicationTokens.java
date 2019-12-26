@@ -131,12 +131,16 @@ public class JobApplicationTokens extends CommonTokens{
 	}
 	private int employeeListSearchCounter = 0;
 	public JobApplicationTokens searchEmployeeListWith(String field, String verb, String value){		
+		
+		withEmployeeList();
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public JobApplicationTokens searchAllTextOfEmployeeList(String verb, String value){	
-		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount|currentStatus";
+		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount";
 		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
 		return this;
 	}

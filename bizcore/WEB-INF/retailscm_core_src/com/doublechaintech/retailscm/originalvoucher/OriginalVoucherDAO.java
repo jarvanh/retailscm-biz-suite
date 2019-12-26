@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.originalvoucher;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -19,9 +20,9 @@ import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucher
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
-public interface OriginalVoucherDAO{
+public interface OriginalVoucherDAO extends BaseDAO{
 
-	
+	public SmartList<OriginalVoucher> loadAll();
 	public OriginalVoucher load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<OriginalVoucher> originalVoucherList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

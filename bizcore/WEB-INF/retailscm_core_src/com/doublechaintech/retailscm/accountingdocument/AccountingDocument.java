@@ -34,7 +34,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	public static final String CONFIRMATION_PROPERTY          = "confirmation"      ;
 	public static final String AUDITING_PROPERTY              = "auditing"          ;
 	public static final String POSTING_PROPERTY               = "posting"           ;
-	public static final String CURRENT_STATUS_PROPERTY        = "currentStatus"     ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String ORIGINAL_VOUCHER_LIST                    = "originalVoucherList";
@@ -68,7 +67,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	protected		AccountingDocumentConfirmation	mConfirmation       ;
 	protected		AccountingDocumentAuditing	mAuditing           ;
 	protected		AccountingDocumentPosting	mPosting            ;
-	protected		String              	mCurrentStatus      ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -101,17 +99,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	AccountingDocument(String name, Date accountingDocumentDate, AccountingPeriod accountingPeriod, AccountingDocumentType documentType, String currentStatus)
-	{
-		setName(name);
-		setAccountingDocumentDate(accountingDocumentDate);
-		setAccountingPeriod(accountingPeriod);
-		setDocumentType(documentType);
-		setCurrentStatus(currentStatus);
-
-		this.mOriginalVoucherList = new SmartList<OriginalVoucher>();
-		this.mAccountingDocumentLineList = new SmartList<AccountingDocumentLine>();	
-	}
 	
 	//Support for changing the property
 	
@@ -187,9 +174,12 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		if(POSTING_PROPERTY.equals(property)){
 			return getPosting();
 		}
+<<<<<<< HEAD
 		if(CURRENT_STATUS_PROPERTY.equals(property)){
 			return getCurrentStatus();
 		}
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		if(ORIGINAL_VOUCHER_LIST.equals(property)){
 			List<BaseEntity> list = getOriginalVoucherList().stream().map(item->item).collect(Collectors.toList());
 			return list;
@@ -383,6 +373,7 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
+<<<<<<< HEAD
 	public void setCurrentStatus(String currentStatus){
 		this.mCurrentStatus = trimString(currentStatus);;
 	}
@@ -399,6 +390,8 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	}
 	
 	
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -674,7 +667,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		appendKeyValuePair(result, CONFIRMATION_PROPERTY, getConfirmation());
 		appendKeyValuePair(result, AUDITING_PROPERTY, getAuditing());
 		appendKeyValuePair(result, POSTING_PROPERTY, getPosting());
-		appendKeyValuePair(result, CURRENT_STATUS_PROPERTY, getCurrentStatus());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, ORIGINAL_VOUCHER_LIST, getOriginalVoucherList());
 		if(!getOriginalVoucherList().isEmpty()){
@@ -709,7 +701,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 			dest.setConfirmation(getConfirmation());
 			dest.setAuditing(getAuditing());
 			dest.setPosting(getPosting());
-			dest.setCurrentStatus(getCurrentStatus());
 			dest.setVersion(getVersion());
 			dest.setOriginalVoucherList(getOriginalVoucherList());
 			dest.setAccountingDocumentLineList(getAccountingDocumentLineList());
@@ -735,7 +726,10 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 			dest.mergeConfirmation(getConfirmation());
 			dest.mergeAuditing(getAuditing());
 			dest.mergePosting(getPosting());
+<<<<<<< HEAD
 			dest.mergeCurrentStatus(getCurrentStatus());
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 			dest.mergeOriginalVoucherList(getOriginalVoucherList());
 			dest.mergeAccountingDocumentLineList(getAccountingDocumentLineList());
@@ -756,7 +750,10 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeAccountingDocumentDate(getAccountingDocumentDate());
+<<<<<<< HEAD
 			dest.mergeCurrentStatus(getCurrentStatus());
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
@@ -788,7 +785,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		if(getPosting() != null ){
  			stringBuilder.append("\tposting='AccountingDocumentPosting("+getPosting().getId()+")';");
  		}
-		stringBuilder.append("\tcurrentStatus='"+getCurrentStatus()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

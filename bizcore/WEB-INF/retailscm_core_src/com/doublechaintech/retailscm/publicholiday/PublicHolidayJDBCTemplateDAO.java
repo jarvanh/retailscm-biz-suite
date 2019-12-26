@@ -53,6 +53,11 @@ public class PublicHolidayJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<PublicHoliday> loadAll() {
+	    return this.loadAll(getPublicHolidayMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

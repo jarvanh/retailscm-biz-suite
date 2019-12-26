@@ -64,6 +64,11 @@ public class ProvinceCenterEmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	}
 	*/
 	
+	public SmartList<ProvinceCenterEmployee> loadAll() {
+	    return this.loadAll(getProvinceCenterEmployeeMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

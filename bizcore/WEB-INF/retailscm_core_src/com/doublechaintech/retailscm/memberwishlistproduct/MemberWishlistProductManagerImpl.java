@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.memberwishlist.CandidateMemberWishlist;
 public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerManager implements MemberWishlistProductManager {
 	
 	private static final String SERVICE_TYPE = "MemberWishlistProduct";
+	@Override
+	public MemberWishlistProductDAO daoOf(RetailscmUserContext userContext) {
+		return memberWishlistProductDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
  	
  	public MemberWishlistProduct loadMemberWishlistProduct(RetailscmUserContext userContext, String memberWishlistProductId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberWishlistProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberWishlistProduct(memberWishlistProductId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberWishlistProductManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
  	
  	 public MemberWishlistProduct searchMemberWishlistProduct(RetailscmUserContext userContext, String memberWishlistProductId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberWishlistProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberWishlistProduct(memberWishlistProductId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberWishlistProductManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		addActions(userContext,memberWishlistProduct,tokens);
 		
 		
-		MemberWishlistProduct  memberWishlistProductToPresent = userContext.getDAOGroup().getMemberWishlistProductDAO().present(memberWishlistProduct, tokens);
+		MemberWishlistProduct  memberWishlistProductToPresent = memberWishlistProductDaoOf(userContext).present(memberWishlistProduct, tokens);
 		
 		List<BaseEntity> entityListToNaming = memberWishlistProductToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getMemberWishlistProductDAO().alias(entityListToNaming);
+		memberWishlistProductDaoOf(userContext).alias(entityListToNaming);
 		
 		return  memberWishlistProductToPresent;
 		
@@ -123,14 +127,14 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		
  	}
  	protected MemberWishlistProduct saveMemberWishlistProduct(RetailscmUserContext userContext, MemberWishlistProduct memberWishlistProduct, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getMemberWishlistProductDAO().save(memberWishlistProduct, tokens);
+ 		return memberWishlistProductDaoOf(userContext).save(memberWishlistProduct, tokens);
  	}
  	protected MemberWishlistProduct loadMemberWishlistProduct(RetailscmUserContext userContext, String memberWishlistProductId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberWishlistProductManagerException.class);
+		checkerOf(userContext).checkIdOfMemberWishlistProduct(memberWishlistProductId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberWishlistProductManagerException.class);
 
  
- 		return userContext.getDAOGroup().getMemberWishlistProductDAO().load(memberWishlistProductId, tokens);
+ 		return memberWishlistProductDaoOf(userContext).load(memberWishlistProductId, tokens);
  	}
 
 	
@@ -160,17 +164,17 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
  	
  	
 
-
-	public MemberWishlistProduct createMemberWishlistProduct(RetailscmUserContext userContext,String name, String ownerId) throws Exception
+	public MemberWishlistProduct createMemberWishlistProduct(RetailscmUserContext userContext, String name,String ownerId) throws Exception
+	//public MemberWishlistProduct createMemberWishlistProduct(RetailscmUserContext userContext,String name, String ownerId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfMemberWishlistProduct(name);
+		checkerOf(userContext).checkNameOfMemberWishlistProduct(name);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
 
 
 		MemberWishlistProduct memberWishlistProduct=createNewMemberWishlistProduct();	
@@ -201,17 +205,17 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 
 		
 		
-		userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductId);
-		userContext.getChecker().checkVersionOfMemberWishlistProduct( memberWishlistProductVersion);
+		checkerOf(userContext).checkIdOfMemberWishlistProduct(memberWishlistProductId);
+		checkerOf(userContext).checkVersionOfMemberWishlistProduct( memberWishlistProductVersion);
 		
 
 		if(MemberWishlistProduct.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfMemberWishlistProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfMemberWishlistProduct(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
 	
 		
 	}
@@ -220,7 +224,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	
 	public MemberWishlistProduct clone(RetailscmUserContext userContext, String fromMemberWishlistProductId) throws Exception{
 		
-		return userContext.getDAOGroup().getMemberWishlistProductDAO().clone(fromMemberWishlistProductId, this.allTokens());
+		return memberWishlistProductDaoOf(userContext).clone(fromMemberWishlistProductId, this.allTokens());
 	}
 	
 	public MemberWishlistProduct internalSaveMemberWishlistProduct(RetailscmUserContext userContext, MemberWishlistProduct memberWishlistProduct) throws Exception 
@@ -318,9 +322,9 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String memberWishlistProductId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfMemberWishlistProduct(memberWishlistProductId);
- 		userContext.getChecker().checkIdOfMemberWishlist(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberWishlistProduct(memberWishlistProductId);
+ 		checkerOf(userContext).checkIdOfMemberWishlist(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
  		
  	}
  	public MemberWishlistProduct transferToAnotherOwner(RetailscmUserContext userContext, String memberWishlistProductId, String anotherOwnerId) throws Exception
@@ -357,7 +361,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<MemberWishlist> candidateList = userContext.getDAOGroup().getMemberWishlistDAO().requestCandidateMemberWishlistForMemberWishlistProduct(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<MemberWishlist> candidateList = memberWishlistDaoOf(userContext).requestCandidateMemberWishlistForMemberWishlistProduct(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -370,7 +374,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
  	protected MemberWishlist loadMemberWishlist(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getMemberWishlistDAO().load(newOwnerId, options);
+ 		return memberWishlistDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -384,7 +388,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String memberWishlistProductId, int memberWishlistProductVersion) throws Exception{
 			
-		userContext.getDAOGroup().getMemberWishlistProductDAO().delete(memberWishlistProductId, memberWishlistProductVersion);
+		memberWishlistProductDaoOf(userContext).delete(memberWishlistProductId, memberWishlistProductVersion);
 	}
 	
 	public MemberWishlistProduct forgetByAll(RetailscmUserContext userContext, String memberWishlistProductId, int memberWishlistProductVersion) throws Exception {
@@ -393,8 +397,9 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	protected MemberWishlistProduct forgetByAllInternal(RetailscmUserContext userContext,
 			String memberWishlistProductId, int memberWishlistProductVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getMemberWishlistProductDAO().disconnectFromAll(memberWishlistProductId, memberWishlistProductVersion);
+		return memberWishlistProductDaoOf(userContext).disconnectFromAll(memberWishlistProductId, memberWishlistProductVersion);
 	}
+	
 	
 
 	
@@ -411,7 +416,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getMemberWishlistProductDAO().deleteAll();
+		return memberWishlistProductDaoOf(userContext).deleteAll();
 	}
 
 

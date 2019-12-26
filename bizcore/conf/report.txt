@@ -1,14 +1,24 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 @warning sku.barcode: word 'barcode' seems not found in library
 @warning object definition: member_wishlist: word 'wishlist' seems not found in library
 @warning retail_store_member_gift_card_consume_record.occure_time: word 'occure' seems not found in library
 @warning goods.rfid: word 'rfid' seems not found in library
 @warning goods.uom: word 'uom' seems not found in library
 
+<<<<<<< HEAD
 #Error field definition: province_center_department.manager: word 'manager' in keywords set skynet.kw; 
 #Error field definition: level_one_department.manager: word 'manager' in keywords set skynet.kw; 
 
 
 =================Execute Report (Model Time 190712T2334) @Wed Oct 16 21:04:28 CST 2019, 153 objects and 1027 fields===========================
+=======
+
+
+=================Execute Report (Model Time 191114T1246) @Fri Dec 06 02:18:00 CST 2019, 153 objects and 1018 fields===========================
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 
 
@@ -1523,10 +1533,19 @@ retail_store_country_center{
 } depth=0; isRoot = true
 
 catalog{
+<<<<<<< HEAD
 	fields(4){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('水果蔬菜|肉禽蛋奶|冷热速食|休闲食品|酒水饮料|粮油调味|清洁日化|家居用品|鲜花蛋糕|医药健康'), verb: false, required: true;
 		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: catalogList;
+=======
+	fields(6){
+		string	id('ABCD'), verb: false, required: true;
+		string	name('水果蔬菜|肉禽蛋奶|冷热速食|休闲食品|酒水饮料|粮油调味|清洁日化|家居用品|鲜花蛋糕|医药健康'), verb: false, required: true;
+		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: catalogList;
+		int	sub_count('10'), verb: false, required: true;
+		money	amount('$10.11'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(1){
@@ -1627,7 +1646,11 @@ province_center_department{
 		string	name('供应链部|采购部|管理部|财务部|法务部|市场部|人力资源部'), verb: false, required: true;
 		date_past	founded('past()'), verb: false, required: true;
 		retail_store_province_center	province_center('$(object)'), verb: false, required: true, referenceBy: provinceCenterDepartmentList;
+<<<<<<< HEAD
 		string	manager('刘强|王德宏'), verb: false, required: true;
+=======
+		string	manager_name('刘强|王德宏'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(1){
@@ -1761,6 +1784,7 @@ event_attendance{
 } depth=5; isRoot = false
 
 retail_store{
+<<<<<<< HEAD
 	fields(19){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('中和社区小超|华阳社区小超|大源社区小超'), verb: false, required: true;
@@ -1774,12 +1798,30 @@ retail_store{
 		retail_store_decoration	decoration('$(object)'), verb: true, required: true, referenceBy: retailStoreList;
 		retail_store_opening	opening('$(object)'), verb: true, required: true, referenceBy: retailStoreList;
 		retail_store_closing	closing('$(object)'), verb: true, required: true, referenceBy: retailStoreList;
+=======
+	fields(18){
+		string	id('ABCD'), verb: false, required: true;
+		string	name('中和社区小超|华阳社区小超|大源社区小超'), verb: false, required: true;
+		long	telephone('02887654321'), verb: false, required: true;
+		string	owner('吕刚'), verb: false, required: true;
+		retail_store_country_center	retail_store_country_center('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_city_service_center	city_service_center('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_creation	creation('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_investment_invitation	investment_invitation('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_franchising	franchising('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_decoration	decoration('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_opening	opening('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_closing	closing('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		date_past	founded('past()'), verb: false, required: true;
 		double	latitude('40.776877'), verb: false, required: true;
 		double	longitude('130.273647'), verb: false, required: true;
 		string	description('啤酒饮料矿泉水，香肠瓜子方便面, 请让一让'), verb: false, required: true;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+<<<<<<< HEAD
 		string	current_status('CREATED|INVESTMENT_INVITED|FRANCHISED|DECORATED|OPENNED|CLOSED'), verb: false, required: true;
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(5){
@@ -1877,6 +1919,7 @@ retail_store_member{
 } depth=1; isRoot = false
 
 consumer_order{
+<<<<<<< HEAD
 	fields(12){
 		string	id('ABCD'), verb: false, required: true;
 		string	title('消费订单'), verb: false, required: true;
@@ -1889,6 +1932,19 @@ consumer_order{
 		retail_store	store('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('CONFIRMED|APPROVED|PROCESSED|SHIPPED|DELIVERED'), verb: false, required: true;
+=======
+	fields(11){
+		string	id('ABCD'), verb: false, required: true;
+		string	title('消费订单'), verb: false, required: true;
+		retail_store_member	consumer('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_approval	approval('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_processing	processing('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_shipment	shipment('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_delivery	delivery('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		retail_store	store('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(5){
@@ -2155,12 +2211,17 @@ product_supply_duration{
 } depth=3; isRoot = false
 
 supply_order{
+<<<<<<< HEAD
 	fields(14){
+=======
+	fields(13){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		retail_store_country_center	buyer('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
 		goods_supplier	seller('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
 		string	title('双链给供货商下的订单'), verb: false, required: true;
 		money	total_amount('$3000000000.88'), verb: false, required: true;
+<<<<<<< HEAD
 		supply_order_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
 		supply_order_approval	approval('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
 		supply_order_processing	processing('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
@@ -2169,6 +2230,15 @@ supply_order{
 		supply_order_delivery	delivery('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('CONFIRMED|APPROVED|PROCESSED|PICKED|SHIPPED|DELIVERED'), verb: false, required: true;
+=======
+		supply_order_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_approval	approval('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_processing	processing('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_picking	picking('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_shipment	shipment('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_delivery	delivery('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(4){
@@ -2296,12 +2366,17 @@ supply_order_payment_group{
 } depth=3; isRoot = false
 
 retail_store_order{
+<<<<<<< HEAD
 	fields(14){
+=======
+	fields(13){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		retail_store	buyer('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
 		retail_store_country_center	seller('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
 		string	title('双链小超给双链供应链下的订单'), verb: false, required: true;
 		money	total_amount('$3000000000.88'), verb: false, required: true;
+<<<<<<< HEAD
 		retail_store_order_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
 		retail_store_order_approval	approval('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
 		retail_store_order_processing	processing('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
@@ -2310,6 +2385,15 @@ retail_store_order{
 		retail_store_order_delivery	delivery('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('CONFIRMED|APPROVED|PROCESSED|PICKED|SHIPPED|DELIVERED'), verb: false, required: true;
+=======
+		retail_store_order_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_approval	approval('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_processing	processing('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_picking	picking('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_shipment	shipment('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_delivery	delivery('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(4){
@@ -2435,7 +2519,11 @@ warehouse{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('187672平方米'), verb: false, required: true;
 		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: warehouseList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -2458,7 +2546,11 @@ storage_space{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号存货区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: storageSpaceList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -2475,7 +2567,11 @@ smart_pallet{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号移动区域，比如过道，货运通道等'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		double	latitude('40.776877'), verb: false, required: true;
 		double	longitude('130.273647'), verb: false, required: true;
@@ -2546,7 +2642,11 @@ goods_allocation{
 } depth=4; isRoot = false
 
 goods{
+<<<<<<< HEAD
 	fields(18){
+=======
+	fields(17){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		string	name('可口可乐'), verb: false, required: true;
 		string	rfid('RF99192'), verb: false, required: true;
@@ -2562,8 +2662,12 @@ goods{
 		retail_store	retail_store('$(object)'), verb: false, required: true, referenceBy: goodsList;
 		supply_order	biz_order('$(object)'), verb: false, required: true, referenceBy: goodsList;
 		retail_store_order	retail_store_order('$(object)'), verb: false, required: true, referenceBy: goodsList;
+<<<<<<< HEAD
 		goods_packaging	packaging('$(object)'), verb: true, required: true, referenceBy: goodsList;
 		string	current_status('PACKED'), verb: false, required: true;
+=======
+		goods_packaging	packaging('$(object)'), verb: false, required: true, referenceBy: goodsList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(1){
@@ -2607,7 +2711,11 @@ supplier_space{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号供货商独立管理区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: supplierSpaceList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -2624,7 +2732,11 @@ receiving_space{
 	fields(10){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号仓库卸货区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	description('每个收货区可以供一辆车卸货'), verb: false, required: true;
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: receivingSpaceList;
@@ -2642,7 +2754,11 @@ shipping_space{
 	fields(10){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号装货区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: shippingSpaceList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -2660,7 +2776,11 @@ damage_space{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号仓库损坏货物堆放区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		double	latitude('40.776877'), verb: false, required: true;
 		double	longitude('130.273647'), verb: false, required: true;
@@ -2690,7 +2810,11 @@ transport_fleet{
 	fields(6){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('双链先锋号车队'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: transportFleetList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		int	version('2147483647'), verb: false, required: true;
@@ -2707,7 +2831,11 @@ transport_truck{
 		string	id('ABCD'), verb: false, required: true;
 		string	name('运货卡车'), verb: false, required: true;
 		string	plate_number('川AK5'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	vehicle_license_number('VL9198'), verb: false, required: true;
 		string	engine_number('EN00102'), verb: false, required: true;
 		date	make_date('2010-09-09'), verb: false, required: true;
@@ -2725,7 +2853,11 @@ truck_driver{
 	fields(6){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('运货卡车司机'), verb: false, required: true;
+<<<<<<< HEAD
 		string	driver_license_number('51099887733'), verb: false, required: true;
+=======
+		long	driver_license_number('51099887733'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string_china_mobile_phone	contact_number('18777778888'), verb: false, required: true;
 		transport_fleet	belongs_to('$(object)'), verb: false, required: true, referenceBy: truckDriverList;
 		int	version('2147483647'), verb: false, required: true;
@@ -2778,7 +2910,11 @@ account_set{
 		string	domestic_currency_code('RMB|USD'), verb: false, required: true;
 		string	domestic_currency_name('人民币|美元'), verb: false, required: true;
 		string	opening_bank('招商银行|工商银行'), verb: false, required: true;
+<<<<<<< HEAD
 		string	account_number('33265805054885'), verb: false, required: true;
+=======
+		long	account_number('33265805054885'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		retail_store_country_center	country_center('$(object)'), verb: false, required: true, referenceBy: accountSetList;
 		retail_store	retail_store('$(object)'), verb: false, required: true, referenceBy: accountSetList;
 		goods_supplier	goods_supplier('$(object)'), verb: false, required: true, referenceBy: accountSetList;
@@ -2835,17 +2971,28 @@ accounting_document_type{
 } depth=5; isRoot = false
 
 accounting_document{
+<<<<<<< HEAD
 	fields(11){
+=======
+	fields(10){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		string	name('记账凭证'), verb: false, required: true;
 		date	accounting_document_date('2018-09-09'), verb: false, required: true;
 		accounting_period	accounting_period('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
 		accounting_document_type	document_type('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+<<<<<<< HEAD
 		accounting_document_creation	creation('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		accounting_document_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		accounting_document_auditing	auditing('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		accounting_document_posting	posting('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		string	current_status('CREATED|CONFIRMED|AUDITED|POSTED'), verb: false, required: true;
+=======
+		accounting_document_creation	creation('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+		accounting_document_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+		accounting_document_auditing	auditing('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+		accounting_document_posting	posting('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(2){
@@ -2907,7 +3054,11 @@ accounting_document_posting{
 } depth=0; isRoot = true
 
 original_voucher{
+<<<<<<< HEAD
 	fields(12){
+=======
+	fields(11){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		string	title('这是手写的发票'), verb: false, required: true;
 		string	made_by('李亚青'), verb: false, required: true;
@@ -2915,10 +3066,16 @@ original_voucher{
 		string	voucher_type('原始凭证|发票|出库单|入库单|存款回执|验收证明|借款凭证'), verb: false, required: true;
 		string_image	voucher_image('goodthing.jpg'), verb: false, required: true;
 		accounting_document	belongs_to('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+<<<<<<< HEAD
 		original_voucher_creation	creation('$(object)'), verb: true, required: true, referenceBy: originalVoucherList;
 		original_voucher_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: originalVoucherList;
 		original_voucher_auditing	auditing('$(object)'), verb: true, required: true, referenceBy: originalVoucherList;
 		string	current_status('CREATED|CONFIRMED|AUDITED'), verb: false, required: true;
+=======
+		original_voucher_creation	creation('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+		original_voucher_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+		original_voucher_auditing	auditing('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
@@ -2985,7 +3142,11 @@ level_one_department{
 		retail_store_country_center	belongs_to('$(object)'), verb: false, required: true, referenceBy: levelOneDepartmentList;
 		string	name('供应链部|采购部|管理部|财务部|信息技术部|法务部|市场部|人力资源部'), verb: false, required: true;
 		string	description('主要执行集团信息系统建设，维护，规划'), verb: false, required: true;
+<<<<<<< HEAD
 		string	manager('刘强|王德宏'), verb: false, required: true;
+=======
+		string	manager_name('刘强|王德宏'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		date_past	founded('past()'), verb: false, required: true;
 		int	version('2147483647'), verb: false, required: true;
 	}
@@ -3186,7 +3347,11 @@ view{
 } depth=0; isRoot = true
 
 employee{
+<<<<<<< HEAD
 	fields(24){
+=======
+	fields(23){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		retail_store_country_center	company('$(object)'), verb: false, required: true, referenceBy: employeeList;
 		string	title('程序员'), verb: false, required: true;
@@ -3201,6 +3366,7 @@ employee{
 		responsibility_type	responsible_for('$(object)'), verb: false, required: true, referenceBy: employeeList;
 		salary_grade	current_salary_grade('$(object)'), verb: false, required: true, referenceBy: employeeList;
 		string	salary_account('6226 7788 9908 '), verb: false, required: true;
+<<<<<<< HEAD
 		job_application	job_application('$(object)'), verb: true, required: true, referenceBy: employeeList;
 		profession_interview	profession_interview('$(object)'), verb: true, required: true, referenceBy: employeeList;
 		hr_interview	hr_interview('$(object)'), verb: true, required: true, referenceBy: employeeList;
@@ -3210,6 +3376,16 @@ employee{
 		termination	termination('$(object)'), verb: true, required: true, referenceBy: employeeList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('JOB_APPLIED|PASSED_WITH_PROFESSION|PASSED_BY_HR|OFFER_APPROVED|OFFER_ACCEPTED|EMPLOYEE_BOARDED|TERMINATED'), verb: false, required: true;
+=======
+		job_application	job_application('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		profession_interview	profession_interview('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		hr_interview	hr_interview('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		offer_approval	offer_approval('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		offer_acceptance	offer_acceptance('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		employee_boarding	employee_boarding('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		termination	termination('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(12){
@@ -3355,12 +3531,20 @@ scoring{
 } depth=0; isRoot = true
 
 employee_company_training{
+<<<<<<< HEAD
 	fields(6){
 		string	id('ABCD'), verb: false, required: true;
 		employee	employee('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
 		company_training	training('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
 		scoring	scoring('$(object)'), verb: true, required: true, referenceBy: employeeCompanyTrainingList;
 		string	current_status('SCORED'), verb: false, required: true;
+=======
+	fields(5){
+		string	id('ABCD'), verb: false, required: true;
+		employee	employee('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
+		company_training	training('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
+		scoring	scoring('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
@@ -3484,7 +3668,11 @@ employee_award{
 } depth=5; isRoot = false
 
 employee_salary_sheet{
+<<<<<<< HEAD
 	fields(13){
+=======
+	fields(12){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		employee	employee('$(object)'), verb: false, required: true, referenceBy: employeeSalarySheetList;
 		salary_grade	current_salary_grade('$(object)'), verb: false, required: true, referenceBy: employeeSalarySheetList;
@@ -3495,8 +3683,12 @@ employee_salary_sheet{
 		money	social_security('$1100.22'), verb: false, required: true;
 		money	housing_found('$1222.99'), verb: false, required: true;
 		money	job_insurance('$8.88'), verb: false, required: true;
+<<<<<<< HEAD
 		paying_off	paying_off('$(object)'), verb: true, required: true, referenceBy: employeeSalarySheetList;
 		string	current_status('PAID_OFF'), verb: false, required: true;
+=======
+		paying_off	paying_off('$(object)'), verb: false, required: true, referenceBy: employeeSalarySheetList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
@@ -3559,10 +3751,19 @@ retail_store_country_center{
 } depth=0; isRoot = true
 
 catalog{
+<<<<<<< HEAD
 	fields(4){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('水果蔬菜|肉禽蛋奶|冷热速食|休闲食品|酒水饮料|粮油调味|清洁日化|家居用品|鲜花蛋糕|医药健康'), verb: false, required: true;
 		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: catalogList;
+=======
+	fields(6){
+		string	id('ABCD'), verb: false, required: true;
+		string	name('水果蔬菜|肉禽蛋奶|冷热速食|休闲食品|酒水饮料|粮油调味|清洁日化|家居用品|鲜花蛋糕|医药健康'), verb: false, required: true;
+		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: catalogList;
+		int	sub_count('10'), verb: false, required: true;
+		money	amount('$10.11'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(1){
@@ -3663,7 +3864,11 @@ province_center_department{
 		string	name('供应链部|采购部|管理部|财务部|法务部|市场部|人力资源部'), verb: false, required: true;
 		date_past	founded('past()'), verb: false, required: true;
 		retail_store_province_center	province_center('$(object)'), verb: false, required: true, referenceBy: provinceCenterDepartmentList;
+<<<<<<< HEAD
 		string	manager('刘强|王德宏'), verb: false, required: true;
+=======
+		string	manager_name('刘强|王德宏'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(1){
@@ -3797,6 +4002,7 @@ event_attendance{
 } depth=5; isRoot = false
 
 retail_store{
+<<<<<<< HEAD
 	fields(19){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('中和社区小超|华阳社区小超|大源社区小超'), verb: false, required: true;
@@ -3810,12 +4016,30 @@ retail_store{
 		retail_store_decoration	decoration('$(object)'), verb: true, required: true, referenceBy: retailStoreList;
 		retail_store_opening	opening('$(object)'), verb: true, required: true, referenceBy: retailStoreList;
 		retail_store_closing	closing('$(object)'), verb: true, required: true, referenceBy: retailStoreList;
+=======
+	fields(18){
+		string	id('ABCD'), verb: false, required: true;
+		string	name('中和社区小超|华阳社区小超|大源社区小超'), verb: false, required: true;
+		long	telephone('02887654321'), verb: false, required: true;
+		string	owner('吕刚'), verb: false, required: true;
+		retail_store_country_center	retail_store_country_center('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_city_service_center	city_service_center('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_creation	creation('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_investment_invitation	investment_invitation('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_franchising	franchising('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_decoration	decoration('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_opening	opening('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+		retail_store_closing	closing('$(object)'), verb: false, required: true, referenceBy: retailStoreList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		date_past	founded('past()'), verb: false, required: true;
 		double	latitude('40.776877'), verb: false, required: true;
 		double	longitude('130.273647'), verb: false, required: true;
 		string	description('啤酒饮料矿泉水，香肠瓜子方便面, 请让一让'), verb: false, required: true;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+<<<<<<< HEAD
 		string	current_status('CREATED|INVESTMENT_INVITED|FRANCHISED|DECORATED|OPENNED|CLOSED'), verb: false, required: true;
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(5){
@@ -3913,6 +4137,7 @@ retail_store_member{
 } depth=1; isRoot = false
 
 consumer_order{
+<<<<<<< HEAD
 	fields(12){
 		string	id('ABCD'), verb: false, required: true;
 		string	title('消费订单'), verb: false, required: true;
@@ -3925,6 +4150,19 @@ consumer_order{
 		retail_store	store('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('CONFIRMED|APPROVED|PROCESSED|SHIPPED|DELIVERED'), verb: false, required: true;
+=======
+	fields(11){
+		string	id('ABCD'), verb: false, required: true;
+		string	title('消费订单'), verb: false, required: true;
+		retail_store_member	consumer('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_approval	approval('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_processing	processing('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_shipment	shipment('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		supply_order_delivery	delivery('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		retail_store	store('$(object)'), verb: false, required: true, referenceBy: consumerOrderList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(5){
@@ -4191,12 +4429,17 @@ product_supply_duration{
 } depth=3; isRoot = false
 
 supply_order{
+<<<<<<< HEAD
 	fields(14){
+=======
+	fields(13){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		retail_store_country_center	buyer('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
 		goods_supplier	seller('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
 		string	title('双链给供货商下的订单'), verb: false, required: true;
 		money	total_amount('$3000000000.88'), verb: false, required: true;
+<<<<<<< HEAD
 		supply_order_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
 		supply_order_approval	approval('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
 		supply_order_processing	processing('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
@@ -4205,6 +4448,15 @@ supply_order{
 		supply_order_delivery	delivery('$(object)'), verb: true, required: true, referenceBy: supplyOrderList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('CONFIRMED|APPROVED|PROCESSED|PICKED|SHIPPED|DELIVERED'), verb: false, required: true;
+=======
+		supply_order_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_approval	approval('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_processing	processing('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_picking	picking('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_shipment	shipment('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		supply_order_delivery	delivery('$(object)'), verb: false, required: true, referenceBy: supplyOrderList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(4){
@@ -4332,12 +4584,17 @@ supply_order_payment_group{
 } depth=3; isRoot = false
 
 retail_store_order{
+<<<<<<< HEAD
 	fields(14){
+=======
+	fields(13){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		retail_store	buyer('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
 		retail_store_country_center	seller('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
 		string	title('双链小超给双链供应链下的订单'), verb: false, required: true;
 		money	total_amount('$3000000000.88'), verb: false, required: true;
+<<<<<<< HEAD
 		retail_store_order_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
 		retail_store_order_approval	approval('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
 		retail_store_order_processing	processing('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
@@ -4346,6 +4603,15 @@ retail_store_order{
 		retail_store_order_delivery	delivery('$(object)'), verb: true, required: true, referenceBy: retailStoreOrderList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('CONFIRMED|APPROVED|PROCESSED|PICKED|SHIPPED|DELIVERED'), verb: false, required: true;
+=======
+		retail_store_order_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_approval	approval('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_processing	processing('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_picking	picking('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_shipment	shipment('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		retail_store_order_delivery	delivery('$(object)'), verb: false, required: true, referenceBy: retailStoreOrderList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(4){
@@ -4471,7 +4737,11 @@ warehouse{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('187672平方米'), verb: false, required: true;
 		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: warehouseList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -4494,7 +4764,11 @@ storage_space{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号存货区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: storageSpaceList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -4511,7 +4785,11 @@ smart_pallet{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号移动区域，比如过道，货运通道等'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		double	latitude('40.776877'), verb: false, required: true;
 		double	longitude('130.273647'), verb: false, required: true;
@@ -4582,7 +4860,11 @@ goods_allocation{
 } depth=4; isRoot = false
 
 goods{
+<<<<<<< HEAD
 	fields(18){
+=======
+	fields(17){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		string	name('可口可乐'), verb: false, required: true;
 		string	rfid('RF99192'), verb: false, required: true;
@@ -4598,8 +4880,12 @@ goods{
 		retail_store	retail_store('$(object)'), verb: false, required: true, referenceBy: goodsList;
 		supply_order	biz_order('$(object)'), verb: false, required: true, referenceBy: goodsList;
 		retail_store_order	retail_store_order('$(object)'), verb: false, required: true, referenceBy: goodsList;
+<<<<<<< HEAD
 		goods_packaging	packaging('$(object)'), verb: true, required: true, referenceBy: goodsList;
 		string	current_status('PACKED'), verb: false, required: true;
+=======
+		goods_packaging	packaging('$(object)'), verb: false, required: true, referenceBy: goodsList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(1){
@@ -4643,7 +4929,11 @@ supplier_space{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号供货商独立管理区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: supplierSpaceList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -4660,7 +4950,11 @@ receiving_space{
 	fields(10){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号仓库卸货区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	description('每个收货区可以供一辆车卸货'), verb: false, required: true;
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: receivingSpaceList;
@@ -4678,7 +4972,11 @@ shipping_space{
 	fields(10){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号装货区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		warehouse	warehouse('$(object)'), verb: false, required: true, referenceBy: shippingSpaceList;
 		double	latitude('40.776877'), verb: false, required: true;
@@ -4696,7 +4994,11 @@ damage_space{
 	fields(9){
 		string	id('ABCD'), verb: false, required: true;
 		string	location('成都龙泉驿飞鹤路20号仓库损坏货物堆放区'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	total_area('1876平方米'), verb: false, required: true;
 		double	latitude('40.776877'), verb: false, required: true;
 		double	longitude('130.273647'), verb: false, required: true;
@@ -4726,7 +5028,11 @@ transport_fleet{
 	fields(6){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('双链先锋号车队'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		retail_store_country_center	owner('$(object)'), verb: false, required: true, referenceBy: transportFleetList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		int	version('2147483647'), verb: false, required: true;
@@ -4743,7 +5049,11 @@ transport_truck{
 		string	id('ABCD'), verb: false, required: true;
 		string	name('运货卡车'), verb: false, required: true;
 		string	plate_number('川AK5'), verb: false, required: true;
+<<<<<<< HEAD
 		string	contact_number('02887654321'), verb: false, required: true;
+=======
+		long	contact_number('02887654321'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	vehicle_license_number('VL9198'), verb: false, required: true;
 		string	engine_number('EN00102'), verb: false, required: true;
 		date	make_date('2010-09-09'), verb: false, required: true;
@@ -4761,7 +5071,11 @@ truck_driver{
 	fields(6){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('运货卡车司机'), verb: false, required: true;
+<<<<<<< HEAD
 		string	driver_license_number('51099887733'), verb: false, required: true;
+=======
+		long	driver_license_number('51099887733'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string_china_mobile_phone	contact_number('18777778888'), verb: false, required: true;
 		transport_fleet	belongs_to('$(object)'), verb: false, required: true, referenceBy: truckDriverList;
 		int	version('2147483647'), verb: false, required: true;
@@ -4814,7 +5128,11 @@ account_set{
 		string	domestic_currency_code('RMB|USD'), verb: false, required: true;
 		string	domestic_currency_name('人民币|美元'), verb: false, required: true;
 		string	opening_bank('招商银行|工商银行'), verb: false, required: true;
+<<<<<<< HEAD
 		string	account_number('33265805054885'), verb: false, required: true;
+=======
+		long	account_number('33265805054885'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		retail_store_country_center	country_center('$(object)'), verb: false, required: true, referenceBy: accountSetList;
 		retail_store	retail_store('$(object)'), verb: false, required: true, referenceBy: accountSetList;
 		goods_supplier	goods_supplier('$(object)'), verb: false, required: true, referenceBy: accountSetList;
@@ -4871,17 +5189,28 @@ accounting_document_type{
 } depth=5; isRoot = false
 
 accounting_document{
+<<<<<<< HEAD
 	fields(11){
+=======
+	fields(10){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		string	name('记账凭证'), verb: false, required: true;
 		date	accounting_document_date('2018-09-09'), verb: false, required: true;
 		accounting_period	accounting_period('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
 		accounting_document_type	document_type('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+<<<<<<< HEAD
 		accounting_document_creation	creation('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		accounting_document_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		accounting_document_auditing	auditing('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		accounting_document_posting	posting('$(object)'), verb: true, required: true, referenceBy: accountingDocumentList;
 		string	current_status('CREATED|CONFIRMED|AUDITED|POSTED'), verb: false, required: true;
+=======
+		accounting_document_creation	creation('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+		accounting_document_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+		accounting_document_auditing	auditing('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+		accounting_document_posting	posting('$(object)'), verb: false, required: true, referenceBy: accountingDocumentList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(2){
@@ -4943,7 +5272,11 @@ accounting_document_posting{
 } depth=0; isRoot = true
 
 original_voucher{
+<<<<<<< HEAD
 	fields(12){
+=======
+	fields(11){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		string	title('这是手写的发票'), verb: false, required: true;
 		string	made_by('李亚青'), verb: false, required: true;
@@ -4951,10 +5284,16 @@ original_voucher{
 		string	voucher_type('原始凭证|发票|出库单|入库单|存款回执|验收证明|借款凭证'), verb: false, required: true;
 		string_image	voucher_image('goodthing.jpg'), verb: false, required: true;
 		accounting_document	belongs_to('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+<<<<<<< HEAD
 		original_voucher_creation	creation('$(object)'), verb: true, required: true, referenceBy: originalVoucherList;
 		original_voucher_confirmation	confirmation('$(object)'), verb: true, required: true, referenceBy: originalVoucherList;
 		original_voucher_auditing	auditing('$(object)'), verb: true, required: true, referenceBy: originalVoucherList;
 		string	current_status('CREATED|CONFIRMED|AUDITED'), verb: false, required: true;
+=======
+		original_voucher_creation	creation('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+		original_voucher_confirmation	confirmation('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+		original_voucher_auditing	auditing('$(object)'), verb: false, required: true, referenceBy: originalVoucherList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
@@ -5021,7 +5360,11 @@ level_one_department{
 		retail_store_country_center	belongs_to('$(object)'), verb: false, required: true, referenceBy: levelOneDepartmentList;
 		string	name('供应链部|采购部|管理部|财务部|信息技术部|法务部|市场部|人力资源部'), verb: false, required: true;
 		string	description('主要执行集团信息系统建设，维护，规划'), verb: false, required: true;
+<<<<<<< HEAD
 		string	manager('刘强|王德宏'), verb: false, required: true;
+=======
+		string	manager_name('刘强|王德宏'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		date_past	founded('past()'), verb: false, required: true;
 		int	version('2147483647'), verb: false, required: true;
 	}
@@ -5222,7 +5565,11 @@ view{
 } depth=0; isRoot = true
 
 employee{
+<<<<<<< HEAD
 	fields(24){
+=======
+	fields(23){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		retail_store_country_center	company('$(object)'), verb: false, required: true, referenceBy: employeeList;
 		string	title('程序员'), verb: false, required: true;
@@ -5237,6 +5584,7 @@ employee{
 		responsibility_type	responsible_for('$(object)'), verb: false, required: true, referenceBy: employeeList;
 		salary_grade	current_salary_grade('$(object)'), verb: false, required: true, referenceBy: employeeList;
 		string	salary_account('6226 7788 9908 '), verb: false, required: true;
+<<<<<<< HEAD
 		job_application	job_application('$(object)'), verb: true, required: true, referenceBy: employeeList;
 		profession_interview	profession_interview('$(object)'), verb: true, required: true, referenceBy: employeeList;
 		hr_interview	hr_interview('$(object)'), verb: true, required: true, referenceBy: employeeList;
@@ -5246,6 +5594,16 @@ employee{
 		termination	termination('$(object)'), verb: true, required: true, referenceBy: employeeList;
 		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
 		string	current_status('JOB_APPLIED|PASSED_WITH_PROFESSION|PASSED_BY_HR|OFFER_APPROVED|OFFER_ACCEPTED|EMPLOYEE_BOARDED|TERMINATED'), verb: false, required: true;
+=======
+		job_application	job_application('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		profession_interview	profession_interview('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		hr_interview	hr_interview('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		offer_approval	offer_approval('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		offer_acceptance	offer_acceptance('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		employee_boarding	employee_boarding('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		termination	termination('$(object)'), verb: false, required: true, referenceBy: employeeList;
+		date_time_update	last_update_time('updateTime()'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(12){
@@ -5391,12 +5749,20 @@ scoring{
 } depth=0; isRoot = true
 
 employee_company_training{
+<<<<<<< HEAD
 	fields(6){
 		string	id('ABCD'), verb: false, required: true;
 		employee	employee('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
 		company_training	training('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
 		scoring	scoring('$(object)'), verb: true, required: true, referenceBy: employeeCompanyTrainingList;
 		string	current_status('SCORED'), verb: false, required: true;
+=======
+	fields(5){
+		string	id('ABCD'), verb: false, required: true;
+		employee	employee('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
+		company_training	training('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
+		scoring	scoring('$(object)'), verb: false, required: true, referenceBy: employeeCompanyTrainingList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
@@ -5520,7 +5886,11 @@ employee_award{
 } depth=5; isRoot = false
 
 employee_salary_sheet{
+<<<<<<< HEAD
 	fields(13){
+=======
+	fields(12){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string	id('ABCD'), verb: false, required: true;
 		employee	employee('$(object)'), verb: false, required: true, referenceBy: employeeSalarySheetList;
 		salary_grade	current_salary_grade('$(object)'), verb: false, required: true, referenceBy: employeeSalarySheetList;
@@ -5531,8 +5901,12 @@ employee_salary_sheet{
 		money	social_security('$1100.22'), verb: false, required: true;
 		money	housing_found('$1222.99'), verb: false, required: true;
 		money	job_insurance('$8.88'), verb: false, required: true;
+<<<<<<< HEAD
 		paying_off	paying_off('$(object)'), verb: true, required: true, referenceBy: employeeSalarySheetList;
 		string	current_status('PAID_OFF'), verb: false, required: true;
+=======
+		paying_off	paying_off('$(object)'), verb: false, required: true, referenceBy: employeeSalarySheetList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
@@ -5578,11 +5952,19 @@ user_white_list{
 } depth=1; isRoot = false
 
 sec_user{
+<<<<<<< HEAD
 	fields(15){
 		string	id('ABCD'), verb: false, required: true;
 		string	login('login'), verb: false, required: true;
 		string_china_mobile_phone	mobile('13900000001'), verb: false, required: true;
 		string	email('|suddy_chang@163.com'), verb: false, required: false;
+=======
+	fields(14){
+		string	id('ABCD'), verb: false, required: true;
+		string	login('login'), verb: false, required: true;
+		string_china_mobile_phone	mobile('13900000001'), verb: false, required: true;
+		string_email	email('suddy_chang@163.com'), verb: false, required: true;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		string_password	pwd('*******'), verb: false, required: true;
 		string	weixin_openid('wx123456789abcdefghijklmn'), verb: false, required: true;
 		string	weixin_appid('wxapp12098410239840'), verb: false, required: true;
@@ -5591,8 +5973,12 @@ sec_user{
 		date_time	verification_code_expire('2099-12-31T09:09:09'), verb: false, required: true;
 		date_time	last_login_time('2099-12-31T09:09:09'), verb: false, required: true;
 		user_domain	domain('$(object)'), verb: false, required: true, referenceBy: secUserList;
+<<<<<<< HEAD
 		sec_user_blocking	blocking('$(object)'), verb: true, required: true, referenceBy: secUserList;
 		string	current_status('BLOCKED'), verb: false, required: true;
+=======
+		sec_user_blocking	blocking('$(object)'), verb: false, required: true, referenceBy: secUserList;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(2){

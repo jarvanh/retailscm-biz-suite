@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface AccountingSubjectManager{
+public interface AccountingSubjectManager extends BaseManager{
 
 		
 
-	public AccountingSubject createAccountingSubject(RetailscmUserContext userContext, String accountingSubjectCode, String accountingSubjectName, int accountingSubjectClassCode, String accountingSubjectClassName, String accountSetId) throws Exception;	
+	public AccountingSubject createAccountingSubject(RetailscmUserContext userContext, String accountingSubjectCode,String accountingSubjectName,int accountingSubjectClassCode,String accountingSubjectClassName,String accountSetId) throws Exception;	
 	public AccountingSubject updateAccountingSubject(RetailscmUserContext userContext,String accountingSubjectId, int accountingSubjectVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public AccountingSubject loadAccountingSubject(RetailscmUserContext userContext, String accountingSubjectId, String [] tokensExpr) throws Exception;
 	public AccountingSubject internalSaveAccountingSubject(RetailscmUserContext userContext, AccountingSubject accountingSubject) throws Exception;

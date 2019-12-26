@@ -74,14 +74,6 @@ public class EmployeeBoarding extends BaseEntity implements  java.io.Serializabl
 		this.changed = true;
 	}
 	
-	public 	EmployeeBoarding(String who, Date employTime, String comments)
-	{
-		setWho(who);
-		setEmployTime(employTime);
-		setComments(comments);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	

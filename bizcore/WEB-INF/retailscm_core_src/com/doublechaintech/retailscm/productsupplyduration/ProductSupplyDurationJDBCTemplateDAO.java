@@ -53,6 +53,11 @@ public class ProductSupplyDurationJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	}
 	*/
 	
+	public SmartList<ProductSupplyDuration> loadAll() {
+	    return this.loadAll(getProductSupplyDurationMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

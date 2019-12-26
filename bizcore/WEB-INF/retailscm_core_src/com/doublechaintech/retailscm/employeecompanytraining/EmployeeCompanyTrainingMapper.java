@@ -18,7 +18,6 @@ public class EmployeeCompanyTrainingMapper extends BaseRowMapper<EmployeeCompany
  		setEmployee(employeeCompanyTraining, rs, rowNumber); 		
  		setTraining(employeeCompanyTraining, rs, rowNumber); 		
  		setScoring(employeeCompanyTraining, rs, rowNumber); 		
- 		setCurrentStatus(employeeCompanyTraining, rs, rowNumber); 		
  		setVersion(employeeCompanyTraining, rs, rowNumber);
 
 		return employeeCompanyTraining;
@@ -94,18 +93,6 @@ public class EmployeeCompanyTrainingMapper extends BaseRowMapper<EmployeeCompany
  		employeeCompanyTraining.setScoring(createEmptyScoring(scoringId));
  	}
  	
-	protected void setCurrentStatus(EmployeeCompanyTraining employeeCompanyTraining, ResultSet rs, int rowNumber) throws SQLException{
-	
-		//there will be issue when the type is double/int/long
-		String currentStatus = rs.getString(EmployeeCompanyTrainingTable.COLUMN_CURRENT_STATUS);
-		if(currentStatus == null){
-			//do nothing when nothing found in database
-			return;
-		}
-		
-		employeeCompanyTraining.setCurrentStatus(currentStatus);
-	}
-		
 	protected void setVersion(EmployeeCompanyTraining employeeCompanyTraining, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long

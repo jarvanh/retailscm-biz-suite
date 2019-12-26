@@ -143,9 +143,13 @@ public class MemberWishlistTokens extends CommonTokens{
 	}
 	private int memberWishlistProductListSearchCounter = 0;
 	public MemberWishlistTokens searchMemberWishlistProductListWith(String field, String verb, String value){		
+		
+		withMemberWishlistProductList();
 		addSearchMoreOptions(MEMBER_WISHLIST_PRODUCT_LIST,memberWishlistProductListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public MemberWishlistTokens searchAllTextOfMemberWishlistProductList(String verb, String value){	
 		String field = "id|name";

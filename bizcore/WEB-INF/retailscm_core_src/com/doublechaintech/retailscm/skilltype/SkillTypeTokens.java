@@ -143,9 +143,13 @@ public class SkillTypeTokens extends CommonTokens{
 	}
 	private int employeeSkillListSearchCounter = 0;
 	public SkillTypeTokens searchEmployeeSkillListWith(String field, String verb, String value){		
+		
+		withEmployeeSkillList();
 		addSearchMoreOptions(EMPLOYEE_SKILL_LIST,employeeSkillListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public SkillTypeTokens searchAllTextOfEmployeeSkillList(String verb, String value){	
 		String field = "id|description";

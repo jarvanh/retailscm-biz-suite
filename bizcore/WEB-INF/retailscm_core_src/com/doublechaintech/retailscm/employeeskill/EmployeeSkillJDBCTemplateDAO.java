@@ -64,6 +64,11 @@ public class EmployeeSkillJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
 	*/
 	
+	public SmartList<EmployeeSkill> loadAll() {
+	    return this.loadAll(getEmployeeSkillMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

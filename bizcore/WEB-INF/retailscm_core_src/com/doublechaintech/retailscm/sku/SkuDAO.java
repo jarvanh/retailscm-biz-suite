@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.sku;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.goods.GoodsDAO;
 import com.doublechaintech.retailscm.product.ProductDAO;
 
 
-public interface SkuDAO{
+public interface SkuDAO extends BaseDAO{
 
-	
+	public SmartList<Sku> loadAll();
 	public Sku load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<Sku> skuList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -83,6 +84,10 @@ public interface SkuDAO{
 	//disconnect Sku with retail_store_order in Goods
 	public Sku planToRemoveGoodsListWithRetailStoreOrder(Sku sku, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String skuId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
+	
+	//disconnect Sku with packaging in Goods
+	public Sku planToRemoveGoodsListWithPackaging(Sku sku, String packagingId, Map<String,Object> options)throws Exception;
+	public int countGoodsListWithPackaging(String skuId, String packagingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<Sku> queryList(String sql, Object ... parmeters);

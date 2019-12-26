@@ -204,12 +204,16 @@ public class AccountingDocumentTokens extends CommonTokens{
 	}
 	private int originalVoucherListSearchCounter = 0;
 	public AccountingDocumentTokens searchOriginalVoucherListWith(String field, String verb, String value){		
+		
+		withOriginalVoucherList();
 		addSearchMoreOptions(ORIGINAL_VOUCHER_LIST,originalVoucherListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public AccountingDocumentTokens searchAllTextOfOriginalVoucherList(String verb, String value){	
-		String field = "id|title|madeBy|receivedBy|voucherType|currentStatus";
+		String field = "id|title|madeBy|receivedBy|voucherType";
 		addSearchMoreOptions(ORIGINAL_VOUCHER_LIST,originalVoucherListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -270,9 +274,13 @@ public class AccountingDocumentTokens extends CommonTokens{
 	}
 	private int accountingDocumentLineListSearchCounter = 0;
 	public AccountingDocumentTokens searchAccountingDocumentLineListWith(String field, String verb, String value){		
+		
+		withAccountingDocumentLineList();
 		addSearchMoreOptions(ACCOUNTING_DOCUMENT_LINE_LIST,accountingDocumentLineListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public AccountingDocumentTokens searchAllTextOfAccountingDocumentLineList(String verb, String value){	
 		String field = "id|name|code|direct";

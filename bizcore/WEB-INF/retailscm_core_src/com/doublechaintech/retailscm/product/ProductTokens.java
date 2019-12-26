@@ -143,9 +143,13 @@ public class ProductTokens extends CommonTokens{
 	}
 	private int skuListSearchCounter = 0;
 	public ProductTokens searchSkuListWith(String field, String verb, String value){		
+		
+		withSkuList();
 		addSearchMoreOptions(SKU_LIST,skuListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public ProductTokens searchAllTextOfSkuList(String verb, String value){	
 		String field = "id|name|size|barcode|packageType|netContent";

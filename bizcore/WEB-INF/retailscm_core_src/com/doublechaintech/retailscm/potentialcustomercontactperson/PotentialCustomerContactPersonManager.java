@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface PotentialCustomerContactPersonManager{
+public interface PotentialCustomerContactPersonManager extends BaseManager{
 
 		
 
-	public PotentialCustomerContactPerson createPotentialCustomerContactPerson(RetailscmUserContext userContext, String name, String mobile, String potentialCustomerId, String description) throws Exception;	
+	public PotentialCustomerContactPerson createPotentialCustomerContactPerson(RetailscmUserContext userContext, String name,String mobile,String potentialCustomerId,String description) throws Exception;	
 	public PotentialCustomerContactPerson updatePotentialCustomerContactPerson(RetailscmUserContext userContext,String potentialCustomerContactPersonId, int potentialCustomerContactPersonVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public PotentialCustomerContactPerson loadPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerContactPersonId, String [] tokensExpr) throws Exception;
 	public PotentialCustomerContactPerson internalSavePotentialCustomerContactPerson(RetailscmUserContext userContext, PotentialCustomerContactPerson potentialCustomerContactPerson) throws Exception;

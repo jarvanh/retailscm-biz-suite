@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.retailstoreorder.CandidateRetailStoreOrder;
 public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreOrderPaymentGroupManager {
 	
 	private static final String SERVICE_TYPE = "RetailStoreOrderPaymentGroup";
+	@Override
+	public RetailStoreOrderPaymentGroupDAO daoOf(RetailscmUserContext userContext) {
+		return retailStoreOrderPaymentGroupDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
  	
  	public RetailStoreOrderPaymentGroup loadRetailStoreOrderPaymentGroup(RetailscmUserContext userContext, String retailStoreOrderPaymentGroupId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderPaymentGroupManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderPaymentGroupManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
  	
  	 public RetailStoreOrderPaymentGroup searchRetailStoreOrderPaymentGroup(RetailscmUserContext userContext, String retailStoreOrderPaymentGroupId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderPaymentGroupManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderPaymentGroupManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 		addActions(userContext,retailStoreOrderPaymentGroup,tokens);
 		
 		
-		RetailStoreOrderPaymentGroup  retailStoreOrderPaymentGroupToPresent = userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().present(retailStoreOrderPaymentGroup, tokens);
+		RetailStoreOrderPaymentGroup  retailStoreOrderPaymentGroupToPresent = retailStoreOrderPaymentGroupDaoOf(userContext).present(retailStoreOrderPaymentGroup, tokens);
 		
 		List<BaseEntity> entityListToNaming = retailStoreOrderPaymentGroupToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().alias(entityListToNaming);
+		retailStoreOrderPaymentGroupDaoOf(userContext).alias(entityListToNaming);
 		
 		return  retailStoreOrderPaymentGroupToPresent;
 		
@@ -123,14 +127,14 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 		
  	}
  	protected RetailStoreOrderPaymentGroup saveRetailStoreOrderPaymentGroup(RetailscmUserContext userContext, RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroup, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().save(retailStoreOrderPaymentGroup, tokens);
+ 		return retailStoreOrderPaymentGroupDaoOf(userContext).save(retailStoreOrderPaymentGroup, tokens);
  	}
  	protected RetailStoreOrderPaymentGroup loadRetailStoreOrderPaymentGroup(RetailscmUserContext userContext, String retailStoreOrderPaymentGroupId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
-		userContext.getChecker().throwExceptionIfHasErrors( RetailStoreOrderPaymentGroupManagerException.class);
+		checkerOf(userContext).checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
+		checkerOf(userContext).throwExceptionIfHasErrors( RetailStoreOrderPaymentGroupManagerException.class);
 
  
- 		return userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().load(retailStoreOrderPaymentGroupId, tokens);
+ 		return retailStoreOrderPaymentGroupDaoOf(userContext).load(retailStoreOrderPaymentGroupId, tokens);
  	}
 
 	
@@ -160,18 +164,18 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
  	
  	
 
-
-	public RetailStoreOrderPaymentGroup createRetailStoreOrderPaymentGroup(RetailscmUserContext userContext,String name, String bizOrderId, String cardNumber) throws Exception
+	public RetailStoreOrderPaymentGroup createRetailStoreOrderPaymentGroup(RetailscmUserContext userContext, String name,String bizOrderId,String cardNumber) throws Exception
+	//public RetailStoreOrderPaymentGroup createRetailStoreOrderPaymentGroup(RetailscmUserContext userContext,String name, String bizOrderId, String cardNumber) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfRetailStoreOrderPaymentGroup(name);
-		userContext.getChecker().checkCardNumberOfRetailStoreOrderPaymentGroup(cardNumber);
+		checkerOf(userContext).checkNameOfRetailStoreOrderPaymentGroup(name);
+		checkerOf(userContext).checkCardNumberOfRetailStoreOrderPaymentGroup(cardNumber);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderPaymentGroupManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderPaymentGroupManagerException.class);
 
 
 		RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroup=createNewRetailStoreOrderPaymentGroup();	
@@ -203,20 +207,20 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 
 		
 		
-		userContext.getChecker().checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
-		userContext.getChecker().checkVersionOfRetailStoreOrderPaymentGroup( retailStoreOrderPaymentGroupVersion);
+		checkerOf(userContext).checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
+		checkerOf(userContext).checkVersionOfRetailStoreOrderPaymentGroup( retailStoreOrderPaymentGroupVersion);
 		
 
 		if(RetailStoreOrderPaymentGroup.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfRetailStoreOrderPaymentGroup(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfRetailStoreOrderPaymentGroup(parseString(newValueExpr));
 		}		
 
 		
 		if(RetailStoreOrderPaymentGroup.CARD_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkCardNumberOfRetailStoreOrderPaymentGroup(parseString(newValueExpr));
+			checkerOf(userContext).checkCardNumberOfRetailStoreOrderPaymentGroup(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderPaymentGroupManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderPaymentGroupManagerException.class);
 	
 		
 	}
@@ -225,7 +229,7 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 	
 	public RetailStoreOrderPaymentGroup clone(RetailscmUserContext userContext, String fromRetailStoreOrderPaymentGroupId) throws Exception{
 		
-		return userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().clone(fromRetailStoreOrderPaymentGroupId, this.allTokens());
+		return retailStoreOrderPaymentGroupDaoOf(userContext).clone(fromRetailStoreOrderPaymentGroupId, this.allTokens());
 	}
 	
 	public RetailStoreOrderPaymentGroup internalSaveRetailStoreOrderPaymentGroup(RetailscmUserContext userContext, RetailStoreOrderPaymentGroup retailStoreOrderPaymentGroup) throws Exception 
@@ -323,9 +327,9 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String retailStoreOrderPaymentGroupId, String anotherBizOrderId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
- 		userContext.getChecker().checkIdOfRetailStoreOrder(anotherBizOrderId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(RetailStoreOrderPaymentGroupManagerException.class);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrderPaymentGroup(retailStoreOrderPaymentGroupId);
+ 		checkerOf(userContext).checkIdOfRetailStoreOrder(anotherBizOrderId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderPaymentGroupManagerException.class);
  		
  	}
  	public RetailStoreOrderPaymentGroup transferToAnotherBizOrder(RetailscmUserContext userContext, String retailStoreOrderPaymentGroupId, String anotherBizOrderId) throws Exception
@@ -362,7 +366,7 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreOrder> candidateList = userContext.getDAOGroup().getRetailStoreOrderDAO().requestCandidateRetailStoreOrderForRetailStoreOrderPaymentGroup(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreOrder> candidateList = retailStoreOrderDaoOf(userContext).requestCandidateRetailStoreOrderForRetailStoreOrderPaymentGroup(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -375,7 +379,7 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
  	protected RetailStoreOrder loadRetailStoreOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreOrderDAO().load(newBizOrderId, options);
+ 		return retailStoreOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
  	
@@ -389,7 +393,7 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreOrderPaymentGroupId, int retailStoreOrderPaymentGroupVersion) throws Exception{
 			
-		userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().delete(retailStoreOrderPaymentGroupId, retailStoreOrderPaymentGroupVersion);
+		retailStoreOrderPaymentGroupDaoOf(userContext).delete(retailStoreOrderPaymentGroupId, retailStoreOrderPaymentGroupVersion);
 	}
 	
 	public RetailStoreOrderPaymentGroup forgetByAll(RetailscmUserContext userContext, String retailStoreOrderPaymentGroupId, int retailStoreOrderPaymentGroupVersion) throws Exception {
@@ -398,8 +402,9 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 	protected RetailStoreOrderPaymentGroup forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreOrderPaymentGroupId, int retailStoreOrderPaymentGroupVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().disconnectFromAll(retailStoreOrderPaymentGroupId, retailStoreOrderPaymentGroupVersion);
+		return retailStoreOrderPaymentGroupDaoOf(userContext).disconnectFromAll(retailStoreOrderPaymentGroupId, retailStoreOrderPaymentGroupVersion);
 	}
+	
 	
 
 	
@@ -416,7 +421,7 @@ public class RetailStoreOrderPaymentGroupManagerImpl extends CustomRetailscmChec
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getRetailStoreOrderPaymentGroupDAO().deleteAll();
+		return retailStoreOrderPaymentGroupDaoOf(userContext).deleteAll();
 	}
 
 

@@ -75,14 +75,6 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
-	public 	ProductSupplyDuration(int quantity, String duration, BigDecimal price, SupplierProduct product)
-	{
-		setQuantity(quantity);
-		setDuration(duration);
-		setPrice(price);
-		setProduct(product);
-	
-	}
 	
 	//Support for changing the property
 	

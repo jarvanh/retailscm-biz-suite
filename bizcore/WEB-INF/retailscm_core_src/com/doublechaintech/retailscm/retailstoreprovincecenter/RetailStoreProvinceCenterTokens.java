@@ -145,12 +145,16 @@ public class RetailStoreProvinceCenterTokens extends CommonTokens{
 	}
 	private int provinceCenterDepartmentListSearchCounter = 0;
 	public RetailStoreProvinceCenterTokens searchProvinceCenterDepartmentListWith(String field, String verb, String value){		
+		
+		withProvinceCenterDepartmentList();
 		addSearchMoreOptions(PROVINCE_CENTER_DEPARTMENT_LIST,provinceCenterDepartmentListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public RetailStoreProvinceCenterTokens searchAllTextOfProvinceCenterDepartmentList(String verb, String value){	
-		String field = "id|name|manager";
+		String field = "id|name|managerName";
 		addSearchMoreOptions(PROVINCE_CENTER_DEPARTMENT_LIST,provinceCenterDepartmentListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -211,9 +215,13 @@ public class RetailStoreProvinceCenterTokens extends CommonTokens{
 	}
 	private int provinceCenterEmployeeListSearchCounter = 0;
 	public RetailStoreProvinceCenterTokens searchProvinceCenterEmployeeListWith(String field, String verb, String value){		
+		
+		withProvinceCenterEmployeeList();
 		addSearchMoreOptions(PROVINCE_CENTER_EMPLOYEE_LIST,provinceCenterEmployeeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreProvinceCenterTokens searchAllTextOfProvinceCenterEmployeeList(String verb, String value){	
 		String field = "id|name|mobile|email";
@@ -277,9 +285,13 @@ public class RetailStoreProvinceCenterTokens extends CommonTokens{
 	}
 	private int retailStoreCityServiceCenterListSearchCounter = 0;
 	public RetailStoreProvinceCenterTokens searchRetailStoreCityServiceCenterListWith(String field, String verb, String value){		
+		
+		withRetailStoreCityServiceCenterList();
 		addSearchMoreOptions(RETAIL_STORE_CITY_SERVICE_CENTER_LIST,retailStoreCityServiceCenterListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public RetailStoreProvinceCenterTokens searchAllTextOfRetailStoreCityServiceCenterList(String verb, String value){	
 		String field = "id|name";

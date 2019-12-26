@@ -72,13 +72,6 @@ public class RetailStoreOrderPicking extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-	public 	RetailStoreOrderPicking(String who, Date processTime)
-	{
-		setWho(who);
-		setProcessTime(processTime);
-
-		this.mRetailStoreOrderList = new SmartList<RetailStoreOrder>();	
-	}
 	
 	//Support for changing the property
 	

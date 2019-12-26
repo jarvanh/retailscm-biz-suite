@@ -39,6 +39,10 @@ import com.doublechaintech.retailscm.originalvoucherconfirmation.CandidateOrigin
 public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager implements OriginalVoucherManager {
 	
 	private static final String SERVICE_TYPE = "OriginalVoucher";
+	@Override
+	public OriginalVoucherDAO daoOf(RetailscmUserContext userContext) {
+		return originalVoucherDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -72,8 +76,8 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
  	
  	public OriginalVoucher loadOriginalVoucher(RetailscmUserContext userContext, String originalVoucherId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().throwExceptionIfHasErrors( OriginalVoucherManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+		checkerOf(userContext).throwExceptionIfHasErrors( OriginalVoucherManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -86,8 +90,8 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
  	
  	 public OriginalVoucher searchOriginalVoucher(RetailscmUserContext userContext, String originalVoucherId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().throwExceptionIfHasErrors( OriginalVoucherManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+		checkerOf(userContext).throwExceptionIfHasErrors( OriginalVoucherManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -105,10 +109,10 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		addActions(userContext,originalVoucher,tokens);
 		
 		
-		OriginalVoucher  originalVoucherToPresent = userContext.getDAOGroup().getOriginalVoucherDAO().present(originalVoucher, tokens);
+		OriginalVoucher  originalVoucherToPresent = originalVoucherDaoOf(userContext).present(originalVoucher, tokens);
 		
 		List<BaseEntity> entityListToNaming = originalVoucherToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getOriginalVoucherDAO().alias(entityListToNaming);
+		originalVoucherDaoOf(userContext).alias(entityListToNaming);
 		
 		return  originalVoucherToPresent;
 		
@@ -129,14 +133,14 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		
  	}
  	protected OriginalVoucher saveOriginalVoucher(RetailscmUserContext userContext, OriginalVoucher originalVoucher, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getOriginalVoucherDAO().save(originalVoucher, tokens);
+ 		return originalVoucherDaoOf(userContext).save(originalVoucher, tokens);
  	}
  	protected OriginalVoucher loadOriginalVoucher(RetailscmUserContext userContext, String originalVoucherId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().throwExceptionIfHasErrors( OriginalVoucherManagerException.class);
+		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+		checkerOf(userContext).throwExceptionIfHasErrors( OriginalVoucherManagerException.class);
 
  
- 		return userContext.getDAOGroup().getOriginalVoucherDAO().load(originalVoucherId, tokens);
+ 		return originalVoucherDaoOf(userContext).load(originalVoucherId, tokens);
  	}
 
 	
@@ -155,9 +159,9 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		addAction(userContext, originalVoucher, tokens,"@copy","cloneOriginalVoucher","cloneOriginalVoucher/"+originalVoucher.getId()+"/","main","primary");
 		
 		addAction(userContext, originalVoucher, tokens,"original_voucher.transfer_to_belongs_to","transferToAnotherBelongsTo","transferToAnotherBelongsTo/"+originalVoucher.getId()+"/","main","primary");
-		addAction(userContext, originalVoucher, tokens,"original_voucher.create","create","createActionForm/"+originalVoucher.getId()+"/","main","primary");
-		addAction(userContext, originalVoucher, tokens,"original_voucher.confirm","confirm","confirmActionForm/"+originalVoucher.getId()+"/","main","success");
-		addAction(userContext, originalVoucher, tokens,"original_voucher.audit","audit","auditActionForm/"+originalVoucher.getId()+"/","main","success");
+		addAction(userContext, originalVoucher, tokens,"original_voucher.transfer_to_creation","transferToAnotherCreation","transferToAnotherCreation/"+originalVoucher.getId()+"/","main","primary");
+		addAction(userContext, originalVoucher, tokens,"original_voucher.transfer_to_confirmation","transferToAnotherConfirmation","transferToAnotherConfirmation/"+originalVoucher.getId()+"/","main","primary");
+		addAction(userContext, originalVoucher, tokens,"original_voucher.transfer_to_auditing","transferToAnotherAuditing","transferToAnotherAuditing/"+originalVoucher.getId()+"/","main","primary");
 	
 		
 		
@@ -169,21 +173,21 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
  	
  	
 
-
-	public OriginalVoucher createOriginalVoucher(RetailscmUserContext userContext,String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId) throws Exception
+	public OriginalVoucher createOriginalVoucher(RetailscmUserContext userContext, String title,String madeBy,String receivedBy,String voucherType,String voucherImage,String belongsToId,String creationId,String confirmationId,String auditingId) throws Exception
+	//public OriginalVoucher createOriginalVoucher(RetailscmUserContext userContext,String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId, String creationId, String confirmationId, String auditingId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkTitleOfOriginalVoucher(title);
-		userContext.getChecker().checkMadeByOfOriginalVoucher(madeBy);
-		userContext.getChecker().checkReceivedByOfOriginalVoucher(receivedBy);
-		userContext.getChecker().checkVoucherTypeOfOriginalVoucher(voucherType);
-		userContext.getChecker().checkVoucherImageOfOriginalVoucher(voucherImage);
+		checkerOf(userContext).checkTitleOfOriginalVoucher(title);
+		checkerOf(userContext).checkMadeByOfOriginalVoucher(madeBy);
+		checkerOf(userContext).checkReceivedByOfOriginalVoucher(receivedBy);
+		checkerOf(userContext).checkVoucherTypeOfOriginalVoucher(voucherType);
+		checkerOf(userContext).checkVoucherImageOfOriginalVoucher(voucherImage);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
 
 
 		OriginalVoucher originalVoucher=createNewOriginalVoucher();	
@@ -198,7 +202,21 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		originalVoucher.setBelongsTo(belongsTo);
 		
 		
-		originalVoucher.setCurrentStatus("INIT");
+			
+		OriginalVoucherCreation creation = loadOriginalVoucherCreation(userContext, creationId,emptyOptions());
+		originalVoucher.setCreation(creation);
+		
+		
+			
+		OriginalVoucherConfirmation confirmation = loadOriginalVoucherConfirmation(userContext, confirmationId,emptyOptions());
+		originalVoucher.setConfirmation(confirmation);
+		
+		
+			
+		OriginalVoucherAuditing auditing = loadOriginalVoucherAuditing(userContext, auditingId,emptyOptions());
+		originalVoucher.setAuditing(auditing);
+		
+		
 
 		originalVoucher = saveOriginalVoucher(userContext, originalVoucher, emptyOptions());
 		
@@ -219,29 +237,35 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 
 		
 		
-		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().checkVersionOfOriginalVoucher( originalVoucherVersion);
+		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+		checkerOf(userContext).checkVersionOfOriginalVoucher( originalVoucherVersion);
 		
 
 		if(OriginalVoucher.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfOriginalVoucher(parseString(newValueExpr));
 		}
 		if(OriginalVoucher.MADE_BY_PROPERTY.equals(property)){
-			userContext.getChecker().checkMadeByOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkMadeByOfOriginalVoucher(parseString(newValueExpr));
 		}
 		if(OriginalVoucher.RECEIVED_BY_PROPERTY.equals(property)){
-			userContext.getChecker().checkReceivedByOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkReceivedByOfOriginalVoucher(parseString(newValueExpr));
 		}
 		if(OriginalVoucher.VOUCHER_TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkVoucherTypeOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkVoucherTypeOfOriginalVoucher(parseString(newValueExpr));
 		}
 		if(OriginalVoucher.VOUCHER_IMAGE_PROPERTY.equals(property)){
-			userContext.getChecker().checkVoucherImageOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkVoucherImageOfOriginalVoucher(parseString(newValueExpr));
 		}		
+
+				
+
+				
+
+				
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
 	
 		
 	}
@@ -250,7 +274,7 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 	
 	public OriginalVoucher clone(RetailscmUserContext userContext, String fromOriginalVoucherId) throws Exception{
 		
-		return userContext.getDAOGroup().getOriginalVoucherDAO().clone(fromOriginalVoucherId, this.allTokens());
+		return originalVoucherDaoOf(userContext).clone(fromOriginalVoucherId, this.allTokens());
 	}
 	
 	public OriginalVoucher internalSaveOriginalVoucher(RetailscmUserContext userContext, OriginalVoucher originalVoucher) throws Exception 
@@ -345,53 +369,12 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		return OriginalVoucherTokens.mergeAll(tokens).done();
 	}
 	
-	private static final String [] STATUS_SEQUENCE={"CREATED","CONFIRMED","AUDITED"};
- 	protected String[] getNextCandidateStatus(RetailscmUserContext userContext, String currentStatus) throws Exception{
- 	
- 		if("INIT".equals(currentStatus)){
- 			//if current status is null, just return the first status as the next status
- 			//code makes sure not throwing ArrayOutOfIndexException here.
- 			return STATUS_SEQUENCE;
- 		}
- 		/*
- 		List<String> statusList = Arrays.asList(STATUS_SEQUENCE);
- 		int index = statusList.indexOf(currentStatus);
- 		if(index < 0){
- 			throwExceptionWithMessage("The status '"+currentStatus+"' is not found from status list: "+ statusList );
- 		}
- 		if(index + 1 == statusList.size()){
- 			//this is the last status code; no next status any more
- 			return null;
- 		}
- 		
- 		//this is not the last one, just return it.
- 		*/
- 		return STATUS_SEQUENCE;
- 	
- 	}/**/
- 	protected void ensureStatus(RetailscmUserContext userContext, OriginalVoucher originalVoucher, String expectedNextStatus) throws Exception{
-		String currentStatus = originalVoucher.getCurrentStatus();
-		//'null' is fine for function getNextStatus
-		String candidateStatus[] = getNextCandidateStatus(userContext, currentStatus);
-		
-		if(candidateStatus == null){
-			//no more next status
-			String message = "No next status for '"+currentStatus+"', but you want to put the status to 'HIDDEN'";
-			throwExceptionWithMessage(message);
-		}
-		int index = Arrays.asList(candidateStatus).indexOf(expectedNextStatus);
-		if(index<0){
-			String message = "The current status '"+currentStatus+"' next candidate status should be one of '"+candidateStatus+"', but you want to transit the status to '"+expectedNextStatus+"'";
-			throwExceptionWithMessage(message);
-		}
-	}
-	
 	protected void checkParamsForTransferingAnotherBelongsTo(RetailscmUserContext userContext, String originalVoucherId, String anotherBelongsToId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
- 		userContext.getChecker().checkIdOfAccountingDocument(anotherBelongsToId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+ 		checkerOf(userContext).checkIdOfAccountingDocument(anotherBelongsToId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
  		
  	}
  	public OriginalVoucher transferToAnotherBelongsTo(RetailscmUserContext userContext, String originalVoucherId, String anotherBelongsToId) throws Exception
@@ -428,7 +411,7 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<AccountingDocument> candidateList = userContext.getDAOGroup().getAccountingDocumentDAO().requestCandidateAccountingDocumentForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<AccountingDocument> candidateList = accountingDocumentDaoOf(userContext).requestCandidateAccountingDocumentForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -438,9 +421,9 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
  	protected void checkParamsForTransferingAnotherCreation(RetailscmUserContext userContext, String originalVoucherId, String anotherCreationId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
- 		userContext.getChecker().checkIdOfOriginalVoucherCreation(anotherCreationId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+ 		checkerOf(userContext).checkIdOfOriginalVoucherCreation(anotherCreationId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
  		
  	}
  	public OriginalVoucher transferToAnotherCreation(RetailscmUserContext userContext, String originalVoucherId, String anotherCreationId) throws Exception
@@ -477,108 +460,19 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<OriginalVoucherCreation> candidateList = userContext.getDAOGroup().getOriginalVoucherCreationDAO().requestCandidateOriginalVoucherCreationForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<OriginalVoucherCreation> candidateList = originalVoucherCreationDaoOf(userContext).requestCandidateOriginalVoucherCreationForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
  	
- 	
-	public static final String CREATED_STATUS = "CREATED";
- 	protected void checkParamsForCreation(RetailscmUserContext userContext, String originalVoucherId, String who, String comments, Date makeDate
-) throws Exception
- 	{
- 				userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().checkWhoOfOriginalVoucherCreation(who);
-		userContext.getChecker().checkCommentsOfOriginalVoucherCreation(comments);
-		userContext.getChecker().checkMakeDateOfOriginalVoucherCreation(makeDate);
-
-	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
-
- 	}
- 	public OriginalVoucher create(RetailscmUserContext userContext, String originalVoucherId, String who, String comments, Date makeDate
-) throws Exception
- 	{
-		checkParamsForCreation(userContext, originalVoucherId, who, comments, makeDate);
-		OriginalVoucher originalVoucher = loadOriginalVoucher(userContext, originalVoucherId, allTokens());	
-		synchronized(originalVoucher){
-			//will be good when the originalVoucher loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			
-			checkIfEligibleForCreation(userContext,originalVoucher);
- 		
-
-			originalVoucher.updateCurrentStatus(CREATED_STATUS);
-			//set the new status, it will be good if add constant to the bean definition
-			
-			//extract all referenced objects, load them respectively
-
-
-			OriginalVoucherCreation creation = createCreation(userContext, who, comments, makeDate);		
-			originalVoucher.updateCreation(creation);		
-			
-			
-			originalVoucher = saveOriginalVoucher(userContext, originalVoucher, tokens().withCreation().done());
-			return present(userContext,originalVoucher, allTokens());
-			
-		}
-
- 	}
- 	
- 	
- 	
- 	
- 	public OriginalVoucherForm createActionForm(RetailscmUserContext userContext, String originalVoucherId) throws Exception
- 	{
-		return new OriginalVoucherForm()
-			.withTitle("create")
-			.originalVoucherIdField(originalVoucherId)
-			.whoFieldOfOriginalVoucherCreation()
-			.commentsFieldOfOriginalVoucherCreation()
-			.makeDateFieldOfOriginalVoucherCreation()
-			.createAction();
- 	}
-	
- 	
- 	protected OriginalVoucherCreation createCreation(RetailscmUserContext userContext, String who, String comments, Date makeDate){
- 		OriginalVoucherCreation creation = new OriginalVoucherCreation();
- 		//who, comments, makeDate
- 		
-		creation.setWho(who);
-		creation.setComments(comments);
-		creation.setMakeDate(makeDate);
-
- 		
- 		
- 		
- 		return userContext.getDAOGroup().getOriginalVoucherCreationDAO().save(creation,emptyOptions());
- 	}
- 	protected void checkIfEligibleForCreation(RetailscmUserContext userContext, OriginalVoucher originalVoucher) throws Exception{
- 
- 		ensureStatus(userContext,originalVoucher, CREATED_STATUS);
- 		
- 		OriginalVoucherCreation creation = originalVoucher.getCreation();
- 		//check the current status equals to the status
- 		//String expectedCurrentStatus = creation 		
- 		//if the previous is the expected status?
- 		
- 		
- 		//if already transited to this status?
- 		
- 		if( creation != null){
-				throwExceptionWithMessage("The OriginalVoucher("+originalVoucher.getId()+") has already been "+ CREATED_STATUS+".");
-		}
- 		
- 		
- 	}
-	protected void checkParamsForTransferingAnotherConfirmation(RetailscmUserContext userContext, String originalVoucherId, String anotherConfirmationId) throws Exception
+ 	protected void checkParamsForTransferingAnotherConfirmation(RetailscmUserContext userContext, String originalVoucherId, String anotherConfirmationId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
- 		userContext.getChecker().checkIdOfOriginalVoucherConfirmation(anotherConfirmationId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+ 		checkerOf(userContext).checkIdOfOriginalVoucherConfirmation(anotherConfirmationId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
  		
  	}
  	public OriginalVoucher transferToAnotherConfirmation(RetailscmUserContext userContext, String originalVoucherId, String anotherConfirmationId) throws Exception
@@ -615,108 +509,19 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<OriginalVoucherConfirmation> candidateList = userContext.getDAOGroup().getOriginalVoucherConfirmationDAO().requestCandidateOriginalVoucherConfirmationForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<OriginalVoucherConfirmation> candidateList = originalVoucherConfirmationDaoOf(userContext).requestCandidateOriginalVoucherConfirmationForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
  	
- 	
-	public static final String CONFIRMED_STATUS = "CONFIRMED";
- 	protected void checkParamsForConfirmation(RetailscmUserContext userContext, String originalVoucherId, String who, String comments, Date makeDate
-) throws Exception
- 	{
- 				userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().checkWhoOfOriginalVoucherConfirmation(who);
-		userContext.getChecker().checkCommentsOfOriginalVoucherConfirmation(comments);
-		userContext.getChecker().checkMakeDateOfOriginalVoucherConfirmation(makeDate);
-
-	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
-
- 	}
- 	public OriginalVoucher confirm(RetailscmUserContext userContext, String originalVoucherId, String who, String comments, Date makeDate
-) throws Exception
- 	{
-		checkParamsForConfirmation(userContext, originalVoucherId, who, comments, makeDate);
-		OriginalVoucher originalVoucher = loadOriginalVoucher(userContext, originalVoucherId, allTokens());	
-		synchronized(originalVoucher){
-			//will be good when the originalVoucher loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			
-			checkIfEligibleForConfirmation(userContext,originalVoucher);
- 		
-
-			originalVoucher.updateCurrentStatus(CONFIRMED_STATUS);
-			//set the new status, it will be good if add constant to the bean definition
-			
-			//extract all referenced objects, load them respectively
-
-
-			OriginalVoucherConfirmation confirmation = createConfirmation(userContext, who, comments, makeDate);		
-			originalVoucher.updateConfirmation(confirmation);		
-			
-			
-			originalVoucher = saveOriginalVoucher(userContext, originalVoucher, tokens().withConfirmation().done());
-			return present(userContext,originalVoucher, allTokens());
-			
-		}
-
- 	}
- 	
- 	
- 	
- 	
- 	public OriginalVoucherForm confirmActionForm(RetailscmUserContext userContext, String originalVoucherId) throws Exception
- 	{
-		return new OriginalVoucherForm()
-			.withTitle("confirm")
-			.originalVoucherIdField(originalVoucherId)
-			.whoFieldOfOriginalVoucherConfirmation()
-			.commentsFieldOfOriginalVoucherConfirmation()
-			.makeDateFieldOfOriginalVoucherConfirmation()
-			.confirmAction();
- 	}
-	
- 	
- 	protected OriginalVoucherConfirmation createConfirmation(RetailscmUserContext userContext, String who, String comments, Date makeDate){
- 		OriginalVoucherConfirmation confirmation = new OriginalVoucherConfirmation();
- 		//who, comments, makeDate
- 		
-		confirmation.setWho(who);
-		confirmation.setComments(comments);
-		confirmation.setMakeDate(makeDate);
-
- 		
- 		
- 		
- 		return userContext.getDAOGroup().getOriginalVoucherConfirmationDAO().save(confirmation,emptyOptions());
- 	}
- 	protected void checkIfEligibleForConfirmation(RetailscmUserContext userContext, OriginalVoucher originalVoucher) throws Exception{
- 
- 		ensureStatus(userContext,originalVoucher, CONFIRMED_STATUS);
- 		
- 		OriginalVoucherConfirmation confirmation = originalVoucher.getConfirmation();
- 		//check the current status equals to the status
- 		//String expectedCurrentStatus = confirmation 		
- 		//if the previous is the expected status?
- 		
- 		
- 		//if already transited to this status?
- 		
- 		if( confirmation != null){
-				throwExceptionWithMessage("The OriginalVoucher("+originalVoucher.getId()+") has already been "+ CONFIRMED_STATUS+".");
-		}
- 		
- 		
- 	}
-	protected void checkParamsForTransferingAnotherAuditing(RetailscmUserContext userContext, String originalVoucherId, String anotherAuditingId) throws Exception
+ 	protected void checkParamsForTransferingAnotherAuditing(RetailscmUserContext userContext, String originalVoucherId, String anotherAuditingId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
- 		userContext.getChecker().checkIdOfOriginalVoucherAuditing(anotherAuditingId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+ 		checkerOf(userContext).checkIdOfOriginalVoucherAuditing(anotherAuditingId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
  		
  	}
  	public OriginalVoucher transferToAnotherAuditing(RetailscmUserContext userContext, String originalVoucherId, String anotherAuditingId) throws Exception
@@ -753,109 +558,20 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<OriginalVoucherAuditing> candidateList = userContext.getDAOGroup().getOriginalVoucherAuditingDAO().requestCandidateOriginalVoucherAuditingForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<OriginalVoucherAuditing> candidateList = originalVoucherAuditingDaoOf(userContext).requestCandidateOriginalVoucherAuditingForOriginalVoucher(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
  	
- 	
-	public static final String AUDITED_STATUS = "AUDITED";
- 	protected void checkParamsForAuditing(RetailscmUserContext userContext, String originalVoucherId, String who, String comments, Date makeDate
-) throws Exception
- 	{
- 				userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().checkWhoOfOriginalVoucherAuditing(who);
-		userContext.getChecker().checkCommentsOfOriginalVoucherAuditing(comments);
-		userContext.getChecker().checkMakeDateOfOriginalVoucherAuditing(makeDate);
-
-	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherManagerException.class);
-
- 	}
- 	public OriginalVoucher audit(RetailscmUserContext userContext, String originalVoucherId, String who, String comments, Date makeDate
-) throws Exception
- 	{
-		checkParamsForAuditing(userContext, originalVoucherId, who, comments, makeDate);
-		OriginalVoucher originalVoucher = loadOriginalVoucher(userContext, originalVoucherId, allTokens());	
-		synchronized(originalVoucher){
-			//will be good when the originalVoucher loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			
-			checkIfEligibleForAuditing(userContext,originalVoucher);
- 		
-
-			originalVoucher.updateCurrentStatus(AUDITED_STATUS);
-			//set the new status, it will be good if add constant to the bean definition
-			
-			//extract all referenced objects, load them respectively
-
-
-			OriginalVoucherAuditing auditing = createAuditing(userContext, who, comments, makeDate);		
-			originalVoucher.updateAuditing(auditing);		
-			
-			
-			originalVoucher = saveOriginalVoucher(userContext, originalVoucher, tokens().withAuditing().done());
-			return present(userContext,originalVoucher, allTokens());
-			
-		}
-
- 	}
- 	
- 	
- 	
- 	
- 	public OriginalVoucherForm auditActionForm(RetailscmUserContext userContext, String originalVoucherId) throws Exception
- 	{
-		return new OriginalVoucherForm()
-			.withTitle("audit")
-			.originalVoucherIdField(originalVoucherId)
-			.whoFieldOfOriginalVoucherAuditing()
-			.commentsFieldOfOriginalVoucherAuditing()
-			.makeDateFieldOfOriginalVoucherAuditing()
-			.auditAction();
- 	}
-	
- 	
- 	protected OriginalVoucherAuditing createAuditing(RetailscmUserContext userContext, String who, String comments, Date makeDate){
- 		OriginalVoucherAuditing auditing = new OriginalVoucherAuditing();
- 		//who, comments, makeDate
- 		
-		auditing.setWho(who);
-		auditing.setComments(comments);
-		auditing.setMakeDate(makeDate);
-
- 		
- 		
- 		
- 		return userContext.getDAOGroup().getOriginalVoucherAuditingDAO().save(auditing,emptyOptions());
- 	}
- 	protected void checkIfEligibleForAuditing(RetailscmUserContext userContext, OriginalVoucher originalVoucher) throws Exception{
- 
- 		ensureStatus(userContext,originalVoucher, AUDITED_STATUS);
- 		
- 		OriginalVoucherAuditing auditing = originalVoucher.getAuditing();
- 		//check the current status equals to the status
- 		//String expectedCurrentStatus = auditing 		
- 		//if the previous is the expected status?
- 		
- 		
- 		//if already transited to this status?
- 		
- 		if( auditing != null){
-				throwExceptionWithMessage("The OriginalVoucher("+originalVoucher.getId()+") has already been "+ AUDITED_STATUS+".");
-		}
- 		
- 		
- 	}
-//--------------------------------------------------------------
+ //--------------------------------------------------------------
 	
 	 	
  	protected OriginalVoucherCreation loadOriginalVoucherCreation(RetailscmUserContext userContext, String newCreationId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getOriginalVoucherCreationDAO().load(newCreationId, options);
+ 		return originalVoucherCreationDaoOf(userContext).load(newCreationId, options);
  	}
  	
  	
@@ -865,7 +581,7 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
  	protected AccountingDocument loadAccountingDocument(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getAccountingDocumentDAO().load(newBelongsToId, options);
+ 		return accountingDocumentDaoOf(userContext).load(newBelongsToId, options);
  	}
  	
  	
@@ -875,7 +591,7 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
  	protected OriginalVoucherConfirmation loadOriginalVoucherConfirmation(RetailscmUserContext userContext, String newConfirmationId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getOriginalVoucherConfirmationDAO().load(newConfirmationId, options);
+ 		return originalVoucherConfirmationDaoOf(userContext).load(newConfirmationId, options);
  	}
  	
  	
@@ -885,7 +601,7 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
  	protected OriginalVoucherAuditing loadOriginalVoucherAuditing(RetailscmUserContext userContext, String newAuditingId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getOriginalVoucherAuditingDAO().load(newAuditingId, options);
+ 		return originalVoucherAuditingDaoOf(userContext).load(newAuditingId, options);
  	}
  	
  	
@@ -899,7 +615,7 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String originalVoucherId, int originalVoucherVersion) throws Exception{
 			
-		userContext.getDAOGroup().getOriginalVoucherDAO().delete(originalVoucherId, originalVoucherVersion);
+		originalVoucherDaoOf(userContext).delete(originalVoucherId, originalVoucherVersion);
 	}
 	
 	public OriginalVoucher forgetByAll(RetailscmUserContext userContext, String originalVoucherId, int originalVoucherVersion) throws Exception {
@@ -908,8 +624,9 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 	protected OriginalVoucher forgetByAllInternal(RetailscmUserContext userContext,
 			String originalVoucherId, int originalVoucherVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getOriginalVoucherDAO().disconnectFromAll(originalVoucherId, originalVoucherVersion);
+		return originalVoucherDaoOf(userContext).disconnectFromAll(originalVoucherId, originalVoucherVersion);
 	}
+	
 	
 
 	
@@ -926,7 +643,7 @@ public class OriginalVoucherManagerImpl extends CustomRetailscmCheckerManager im
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getOriginalVoucherDAO().deleteAll();
+		return originalVoucherDaoOf(userContext).deleteAll();
 	}
 
 

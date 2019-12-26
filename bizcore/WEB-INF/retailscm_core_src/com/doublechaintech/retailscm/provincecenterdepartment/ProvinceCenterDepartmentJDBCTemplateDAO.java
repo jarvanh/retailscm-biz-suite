@@ -74,6 +74,11 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	*/
 	
+	public SmartList<ProvinceCenterDepartment> loadAll() {
+	    return this.loadAll(getProvinceCenterDepartmentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -536,7 +541,7 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImp
  			parameters[2] = provinceCenterDepartment.getProvinceCenter().getId();
  		}
  
- 		parameters[3] = provinceCenterDepartment.getManager();		
+ 		parameters[3] = provinceCenterDepartment.getManagerName();		
  		parameters[4] = provinceCenterDepartment.nextVersion();
  		parameters[5] = provinceCenterDepartment.getId();
  		parameters[6] = provinceCenterDepartment.getVersion();
@@ -556,7 +561,7 @@ public class ProvinceCenterDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImp
  		
  		}
  		
- 		parameters[4] = provinceCenterDepartment.getManager();		
+ 		parameters[4] = provinceCenterDepartment.getManagerName();		
  				
  		return parameters;
  	}

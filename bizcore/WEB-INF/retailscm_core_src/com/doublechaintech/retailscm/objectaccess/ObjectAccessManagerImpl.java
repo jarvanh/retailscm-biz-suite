@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.userapp.CandidateUserApp;
 public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager implements ObjectAccessManager {
 	
 	private static final String SERVICE_TYPE = "ObjectAccess";
+	@Override
+	public ObjectAccessDAO daoOf(RetailscmUserContext userContext) {
+		return objectAccessDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	public ObjectAccess loadObjectAccess(RetailscmUserContext userContext, String objectAccessId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfObjectAccess(objectAccessId);
-		userContext.getChecker().throwExceptionIfHasErrors( ObjectAccessManagerException.class);
+ 		checkerOf(userContext).checkIdOfObjectAccess(objectAccessId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ObjectAccessManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	 public ObjectAccess searchObjectAccess(RetailscmUserContext userContext, String objectAccessId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfObjectAccess(objectAccessId);
-		userContext.getChecker().throwExceptionIfHasErrors( ObjectAccessManagerException.class);
+ 		checkerOf(userContext).checkIdOfObjectAccess(objectAccessId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ObjectAccessManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		addActions(userContext,objectAccess,tokens);
 		
 		
-		ObjectAccess  objectAccessToPresent = userContext.getDAOGroup().getObjectAccessDAO().present(objectAccess, tokens);
+		ObjectAccess  objectAccessToPresent = objectAccessDaoOf(userContext).present(objectAccess, tokens);
 		
 		List<BaseEntity> entityListToNaming = objectAccessToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getObjectAccessDAO().alias(entityListToNaming);
+		objectAccessDaoOf(userContext).alias(entityListToNaming);
 		
 		return  objectAccessToPresent;
 		
@@ -123,14 +127,14 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		
  	}
  	protected ObjectAccess saveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getObjectAccessDAO().save(objectAccess, tokens);
+ 		return objectAccessDaoOf(userContext).save(objectAccess, tokens);
  	}
  	protected ObjectAccess loadObjectAccess(RetailscmUserContext userContext, String objectAccessId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfObjectAccess(objectAccessId);
-		userContext.getChecker().throwExceptionIfHasErrors( ObjectAccessManagerException.class);
+		checkerOf(userContext).checkIdOfObjectAccess(objectAccessId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ObjectAccessManagerException.class);
 
  
- 		return userContext.getDAOGroup().getObjectAccessDAO().load(objectAccessId, tokens);
+ 		return objectAccessDaoOf(userContext).load(objectAccessId, tokens);
  	}
 
 	
@@ -160,27 +164,27 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
  	
  	
 
-
-	public ObjectAccess createObjectAccess(RetailscmUserContext userContext,String name, String objectType, String list1, String list2, String list3, String list4, String list5, String list6, String list7, String list8, String list9, String appId) throws Exception
+	public ObjectAccess createObjectAccess(RetailscmUserContext userContext, String name,String objectType,String list1,String list2,String list3,String list4,String list5,String list6,String list7,String list8,String list9,String appId) throws Exception
+	//public ObjectAccess createObjectAccess(RetailscmUserContext userContext,String name, String objectType, String list1, String list2, String list3, String list4, String list5, String list6, String list7, String list8, String list9, String appId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfObjectAccess(name);
-		userContext.getChecker().checkObjectTypeOfObjectAccess(objectType);
-		userContext.getChecker().checkList1OfObjectAccess(list1);
-		userContext.getChecker().checkList2OfObjectAccess(list2);
-		userContext.getChecker().checkList3OfObjectAccess(list3);
-		userContext.getChecker().checkList4OfObjectAccess(list4);
-		userContext.getChecker().checkList5OfObjectAccess(list5);
-		userContext.getChecker().checkList6OfObjectAccess(list6);
-		userContext.getChecker().checkList7OfObjectAccess(list7);
-		userContext.getChecker().checkList8OfObjectAccess(list8);
-		userContext.getChecker().checkList9OfObjectAccess(list9);
+		checkerOf(userContext).checkNameOfObjectAccess(name);
+		checkerOf(userContext).checkObjectTypeOfObjectAccess(objectType);
+		checkerOf(userContext).checkList1OfObjectAccess(list1);
+		checkerOf(userContext).checkList2OfObjectAccess(list2);
+		checkerOf(userContext).checkList3OfObjectAccess(list3);
+		checkerOf(userContext).checkList4OfObjectAccess(list4);
+		checkerOf(userContext).checkList5OfObjectAccess(list5);
+		checkerOf(userContext).checkList6OfObjectAccess(list6);
+		checkerOf(userContext).checkList7OfObjectAccess(list7);
+		checkerOf(userContext).checkList8OfObjectAccess(list8);
+		checkerOf(userContext).checkList9OfObjectAccess(list9);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ObjectAccessManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ObjectAccessManagerException.class);
 
 
 		ObjectAccess objectAccess=createNewObjectAccess();	
@@ -221,47 +225,47 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 
 		
 		
-		userContext.getChecker().checkIdOfObjectAccess(objectAccessId);
-		userContext.getChecker().checkVersionOfObjectAccess( objectAccessVersion);
+		checkerOf(userContext).checkIdOfObjectAccess(objectAccessId);
+		checkerOf(userContext).checkVersionOfObjectAccess( objectAccessVersion);
 		
 
 		if(ObjectAccess.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.OBJECT_TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkObjectTypeOfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkObjectTypeOfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST1_PROPERTY.equals(property)){
-			userContext.getChecker().checkList1OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList1OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST2_PROPERTY.equals(property)){
-			userContext.getChecker().checkList2OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList2OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST3_PROPERTY.equals(property)){
-			userContext.getChecker().checkList3OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList3OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST4_PROPERTY.equals(property)){
-			userContext.getChecker().checkList4OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList4OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST5_PROPERTY.equals(property)){
-			userContext.getChecker().checkList5OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList5OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST6_PROPERTY.equals(property)){
-			userContext.getChecker().checkList6OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList6OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST7_PROPERTY.equals(property)){
-			userContext.getChecker().checkList7OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList7OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST8_PROPERTY.equals(property)){
-			userContext.getChecker().checkList8OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList8OfObjectAccess(parseString(newValueExpr));
 		}
 		if(ObjectAccess.LIST9_PROPERTY.equals(property)){
-			userContext.getChecker().checkList9OfObjectAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkList9OfObjectAccess(parseString(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ObjectAccessManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ObjectAccessManagerException.class);
 	
 		
 	}
@@ -270,7 +274,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	
 	public ObjectAccess clone(RetailscmUserContext userContext, String fromObjectAccessId) throws Exception{
 		
-		return userContext.getDAOGroup().getObjectAccessDAO().clone(fromObjectAccessId, this.allTokens());
+		return objectAccessDaoOf(userContext).clone(fromObjectAccessId, this.allTokens());
 	}
 	
 	public ObjectAccess internalSaveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess) throws Exception 
@@ -368,9 +372,9 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void checkParamsForTransferingAnotherApp(RetailscmUserContext userContext, String objectAccessId, String anotherAppId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfObjectAccess(objectAccessId);
- 		userContext.getChecker().checkIdOfUserApp(anotherAppId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(ObjectAccessManagerException.class);
+ 		checkerOf(userContext).checkIdOfObjectAccess(objectAccessId);
+ 		checkerOf(userContext).checkIdOfUserApp(anotherAppId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(ObjectAccessManagerException.class);
  		
  	}
  	public ObjectAccess transferToAnotherApp(RetailscmUserContext userContext, String objectAccessId, String anotherAppId) throws Exception
@@ -407,7 +411,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<UserApp> candidateList = userContext.getDAOGroup().getUserAppDAO().requestCandidateUserAppForObjectAccess(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<UserApp> candidateList = userAppDaoOf(userContext).requestCandidateUserAppForObjectAccess(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -420,7 +424,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
  	protected UserApp loadUserApp(RetailscmUserContext userContext, String newAppId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getUserAppDAO().load(newAppId, options);
+ 		return userAppDaoOf(userContext).load(newAppId, options);
  	}
  	
  	
@@ -434,7 +438,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String objectAccessId, int objectAccessVersion) throws Exception{
 			
-		userContext.getDAOGroup().getObjectAccessDAO().delete(objectAccessId, objectAccessVersion);
+		objectAccessDaoOf(userContext).delete(objectAccessId, objectAccessVersion);
 	}
 	
 	public ObjectAccess forgetByAll(RetailscmUserContext userContext, String objectAccessId, int objectAccessVersion) throws Exception {
@@ -443,8 +447,9 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	protected ObjectAccess forgetByAllInternal(RetailscmUserContext userContext,
 			String objectAccessId, int objectAccessVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getObjectAccessDAO().disconnectFromAll(objectAccessId, objectAccessVersion);
+		return objectAccessDaoOf(userContext).disconnectFromAll(objectAccessId, objectAccessVersion);
 	}
+	
 	
 
 	
@@ -461,7 +466,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getObjectAccessDAO().deleteAll();
+		return objectAccessDaoOf(userContext).deleteAll();
 	}
 
 

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.shippingspace;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.warehouse.WarehouseDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
-public interface ShippingSpaceDAO{
+public interface ShippingSpaceDAO extends BaseDAO{
 
-	
+	public SmartList<ShippingSpace> loadAll();
 	public ShippingSpace load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<ShippingSpace> shippingSpaceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -83,6 +84,10 @@ public interface ShippingSpaceDAO{
 	//disconnect ShippingSpace with retail_store_order in Goods
 	public ShippingSpace planToRemoveGoodsListWithRetailStoreOrder(ShippingSpace shippingSpace, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String shippingSpaceId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
+	
+	//disconnect ShippingSpace with packaging in Goods
+	public ShippingSpace planToRemoveGoodsListWithPackaging(ShippingSpace shippingSpace, String packagingId, Map<String,Object> options)throws Exception;
+	public int countGoodsListWithPackaging(String shippingSpaceId, String packagingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<ShippingSpace> queryList(String sql, Object ... parmeters);

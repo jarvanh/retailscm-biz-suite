@@ -207,20 +207,6 @@ public class AccountingDocumentConfirmationForm extends BaseForm {
 		return postingIdFieldForAccountingDocument("postingId","");
 	}
 
-
-	public AccountingDocumentConfirmationForm currentStatusFieldForAccountingDocument(String parameterName, String initValue){
-		FormField field =  currentStatusFromAccountingDocument(parameterName, initValue);		
-		this.addFormField(field);
-		return this;
-	}
-	
-	public AccountingDocumentConfirmationForm currentStatusFieldForAccountingDocument(String initValue){
-		return currentStatusFieldForAccountingDocument("currentStatus",initValue);
-	}
-	public AccountingDocumentConfirmationForm currentStatusFieldForAccountingDocument(){
-		return currentStatusFieldForAccountingDocument("currentStatus","");
-	}
-
 	
 
 

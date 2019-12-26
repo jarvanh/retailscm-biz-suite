@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.genericform.CandidateGenericForm;
 public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager implements FormFieldMessageManager {
 	
 	private static final String SERVICE_TYPE = "FormFieldMessage";
+	@Override
+	public FormFieldMessageDAO daoOf(RetailscmUserContext userContext) {
+		return formFieldMessageDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
  	
  	public FormFieldMessage loadFormFieldMessage(RetailscmUserContext userContext, String formFieldMessageId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormFieldMessageManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormFieldMessageManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
  	
  	 public FormFieldMessage searchFormFieldMessage(RetailscmUserContext userContext, String formFieldMessageId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormFieldMessageManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormFieldMessageManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 		addActions(userContext,formFieldMessage,tokens);
 		
 		
-		FormFieldMessage  formFieldMessageToPresent = userContext.getDAOGroup().getFormFieldMessageDAO().present(formFieldMessage, tokens);
+		FormFieldMessage  formFieldMessageToPresent = formFieldMessageDaoOf(userContext).present(formFieldMessage, tokens);
 		
 		List<BaseEntity> entityListToNaming = formFieldMessageToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getFormFieldMessageDAO().alias(entityListToNaming);
+		formFieldMessageDaoOf(userContext).alias(entityListToNaming);
 		
 		return  formFieldMessageToPresent;
 		
@@ -123,14 +127,14 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 		
  	}
  	protected FormFieldMessage saveFormFieldMessage(RetailscmUserContext userContext, FormFieldMessage formFieldMessage, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getFormFieldMessageDAO().save(formFieldMessage, tokens);
+ 		return formFieldMessageDaoOf(userContext).save(formFieldMessage, tokens);
  	}
  	protected FormFieldMessage loadFormFieldMessage(RetailscmUserContext userContext, String formFieldMessageId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
-		userContext.getChecker().throwExceptionIfHasErrors( FormFieldMessageManagerException.class);
+		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+		checkerOf(userContext).throwExceptionIfHasErrors( FormFieldMessageManagerException.class);
 
  
- 		return userContext.getDAOGroup().getFormFieldMessageDAO().load(formFieldMessageId, tokens);
+ 		return formFieldMessageDaoOf(userContext).load(formFieldMessageId, tokens);
  	}
 
 	
@@ -160,19 +164,19 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
  	
  	
 
-
-	public FormFieldMessage createFormFieldMessage(RetailscmUserContext userContext,String title, String parameterName, String formId, String level) throws Exception
+	public FormFieldMessage createFormFieldMessage(RetailscmUserContext userContext, String title,String parameterName,String formId,String level) throws Exception
+	//public FormFieldMessage createFormFieldMessage(RetailscmUserContext userContext,String title, String parameterName, String formId, String level) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkTitleOfFormFieldMessage(title);
-		userContext.getChecker().checkParameterNameOfFormFieldMessage(parameterName);
-		userContext.getChecker().checkLevelOfFormFieldMessage(level);
+		checkerOf(userContext).checkTitleOfFormFieldMessage(title);
+		checkerOf(userContext).checkParameterNameOfFormFieldMessage(parameterName);
+		checkerOf(userContext).checkLevelOfFormFieldMessage(level);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(FormFieldMessageManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldMessageManagerException.class);
 
 
 		FormFieldMessage formFieldMessage=createNewFormFieldMessage();	
@@ -205,23 +209,23 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 
 		
 		
-		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
-		userContext.getChecker().checkVersionOfFormFieldMessage( formFieldMessageVersion);
+		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+		checkerOf(userContext).checkVersionOfFormFieldMessage( formFieldMessageVersion);
 		
 
 		if(FormFieldMessage.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfFormFieldMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfFormFieldMessage(parseString(newValueExpr));
 		}
 		if(FormFieldMessage.PARAMETER_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkParameterNameOfFormFieldMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkParameterNameOfFormFieldMessage(parseString(newValueExpr));
 		}		
 
 		
 		if(FormFieldMessage.LEVEL_PROPERTY.equals(property)){
-			userContext.getChecker().checkLevelOfFormFieldMessage(parseString(newValueExpr));
+			checkerOf(userContext).checkLevelOfFormFieldMessage(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(FormFieldMessageManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldMessageManagerException.class);
 	
 		
 	}
@@ -230,7 +234,7 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 	
 	public FormFieldMessage clone(RetailscmUserContext userContext, String fromFormFieldMessageId) throws Exception{
 		
-		return userContext.getDAOGroup().getFormFieldMessageDAO().clone(fromFormFieldMessageId, this.allTokens());
+		return formFieldMessageDaoOf(userContext).clone(fromFormFieldMessageId, this.allTokens());
 	}
 	
 	public FormFieldMessage internalSaveFormFieldMessage(RetailscmUserContext userContext, FormFieldMessage formFieldMessage) throws Exception 
@@ -328,9 +332,9 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 	protected void checkParamsForTransferingAnotherForm(RetailscmUserContext userContext, String formFieldMessageId, String anotherFormId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfFormFieldMessage(formFieldMessageId);
- 		userContext.getChecker().checkIdOfGenericForm(anotherFormId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(FormFieldMessageManagerException.class);
+ 		checkerOf(userContext).checkIdOfFormFieldMessage(formFieldMessageId);
+ 		checkerOf(userContext).checkIdOfGenericForm(anotherFormId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldMessageManagerException.class);
  		
  	}
  	public FormFieldMessage transferToAnotherForm(RetailscmUserContext userContext, String formFieldMessageId, String anotherFormId) throws Exception
@@ -367,7 +371,7 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<GenericForm> candidateList = userContext.getDAOGroup().getGenericFormDAO().requestCandidateGenericFormForFormFieldMessage(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<GenericForm> candidateList = genericFormDaoOf(userContext).requestCandidateGenericFormForFormFieldMessage(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -380,7 +384,7 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
  	protected GenericForm loadGenericForm(RetailscmUserContext userContext, String newFormId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getGenericFormDAO().load(newFormId, options);
+ 		return genericFormDaoOf(userContext).load(newFormId, options);
  	}
  	
  	
@@ -394,7 +398,7 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String formFieldMessageId, int formFieldMessageVersion) throws Exception{
 			
-		userContext.getDAOGroup().getFormFieldMessageDAO().delete(formFieldMessageId, formFieldMessageVersion);
+		formFieldMessageDaoOf(userContext).delete(formFieldMessageId, formFieldMessageVersion);
 	}
 	
 	public FormFieldMessage forgetByAll(RetailscmUserContext userContext, String formFieldMessageId, int formFieldMessageVersion) throws Exception {
@@ -403,8 +407,9 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 	protected FormFieldMessage forgetByAllInternal(RetailscmUserContext userContext,
 			String formFieldMessageId, int formFieldMessageVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getFormFieldMessageDAO().disconnectFromAll(formFieldMessageId, formFieldMessageVersion);
+		return formFieldMessageDaoOf(userContext).disconnectFromAll(formFieldMessageId, formFieldMessageVersion);
 	}
+	
 	
 
 	
@@ -421,7 +426,7 @@ public class FormFieldMessageManagerImpl extends CustomRetailscmCheckerManager i
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getFormFieldMessageDAO().deleteAll();
+		return formFieldMessageDaoOf(userContext).deleteAll();
 	}
 
 

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.memberrewardpointredemption;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberDAO;
 
 
-public interface MemberRewardPointRedemptionDAO{
+public interface MemberRewardPointRedemptionDAO extends BaseDAO{
 
-	
+	public SmartList<MemberRewardPointRedemption> loadAll();
 	public MemberRewardPointRedemption load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<MemberRewardPointRedemption> memberRewardPointRedemptionList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

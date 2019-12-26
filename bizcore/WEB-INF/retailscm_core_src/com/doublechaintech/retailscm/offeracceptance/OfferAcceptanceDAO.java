@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.offeracceptance;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface OfferAcceptanceDAO{
+public interface OfferAcceptanceDAO extends BaseDAO{
 
-	
+	public SmartList<OfferAcceptance> loadAll();
 	public OfferAcceptance load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<OfferAcceptance> offerAcceptanceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -69,6 +70,30 @@ public interface OfferAcceptanceDAO{
 	//disconnect OfferAcceptance with current_salary_grade in Employee
 	public OfferAcceptance planToRemoveEmployeeListWithCurrentSalaryGrade(OfferAcceptance offerAcceptance, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String offerAcceptanceId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferAcceptance with job_application in Employee
+	public OfferAcceptance planToRemoveEmployeeListWithJobApplication(OfferAcceptance offerAcceptance, String jobApplicationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithJobApplication(String offerAcceptanceId, String jobApplicationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferAcceptance with profession_interview in Employee
+	public OfferAcceptance planToRemoveEmployeeListWithProfessionInterview(OfferAcceptance offerAcceptance, String professionInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithProfessionInterview(String offerAcceptanceId, String professionInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferAcceptance with hr_interview in Employee
+	public OfferAcceptance planToRemoveEmployeeListWithHrInterview(OfferAcceptance offerAcceptance, String hrInterviewId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithHrInterview(String offerAcceptanceId, String hrInterviewId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferAcceptance with offer_approval in Employee
+	public OfferAcceptance planToRemoveEmployeeListWithOfferApproval(OfferAcceptance offerAcceptance, String offerApprovalId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithOfferApproval(String offerAcceptanceId, String offerApprovalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferAcceptance with employee_boarding in Employee
+	public OfferAcceptance planToRemoveEmployeeListWithEmployeeBoarding(OfferAcceptance offerAcceptance, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithEmployeeBoarding(String offerAcceptanceId, String employeeBoardingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect OfferAcceptance with termination in Employee
+	public OfferAcceptance planToRemoveEmployeeListWithTermination(OfferAcceptance offerAcceptance, String terminationId, Map<String,Object> options)throws Exception;
+	public int countEmployeeListWithTermination(String offerAcceptanceId, String terminationId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<OfferAcceptance> queryList(String sql, Object ... parmeters);

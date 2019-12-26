@@ -74,6 +74,11 @@ public class MemberWishlistJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<MemberWishlist> loadAll() {
+	    return this.loadAll(getMemberWishlistMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

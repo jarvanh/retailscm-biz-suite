@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.publicholiday;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountry
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 
 
-public interface PublicHolidayDAO{
+public interface PublicHolidayDAO extends BaseDAO{
 
-	
+	public SmartList<PublicHoliday> loadAll();
 	public PublicHoliday load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<PublicHoliday> publicHolidayList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

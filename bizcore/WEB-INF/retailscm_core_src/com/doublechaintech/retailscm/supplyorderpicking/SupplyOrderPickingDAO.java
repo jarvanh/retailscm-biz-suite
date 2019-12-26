@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.supplyorderpicking;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -13,9 +14,9 @@ import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
-public interface SupplyOrderPickingDAO{
+public interface SupplyOrderPickingDAO extends BaseDAO{
 
-	
+	public SmartList<SupplyOrderPicking> loadAll();
 	public SupplyOrderPicking load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SupplyOrderPicking> supplyOrderPickingList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -57,6 +58,26 @@ public interface SupplyOrderPickingDAO{
 	//disconnect SupplyOrderPicking with seller in SupplyOrder
 	public SupplyOrderPicking planToRemoveSupplyOrderListWithSeller(SupplyOrderPicking supplyOrderPicking, String sellerId, Map<String,Object> options)throws Exception;
 	public int countSupplyOrderListWithSeller(String supplyOrderPickingId, String sellerId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderPicking with confirmation in SupplyOrder
+	public SupplyOrderPicking planToRemoveSupplyOrderListWithConfirmation(SupplyOrderPicking supplyOrderPicking, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithConfirmation(String supplyOrderPickingId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderPicking with approval in SupplyOrder
+	public SupplyOrderPicking planToRemoveSupplyOrderListWithApproval(SupplyOrderPicking supplyOrderPicking, String approvalId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithApproval(String supplyOrderPickingId, String approvalId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderPicking with processing in SupplyOrder
+	public SupplyOrderPicking planToRemoveSupplyOrderListWithProcessing(SupplyOrderPicking supplyOrderPicking, String processingId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithProcessing(String supplyOrderPickingId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderPicking with shipment in SupplyOrder
+	public SupplyOrderPicking planToRemoveSupplyOrderListWithShipment(SupplyOrderPicking supplyOrderPicking, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithShipment(String supplyOrderPickingId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderPicking with delivery in SupplyOrder
+	public SupplyOrderPicking planToRemoveSupplyOrderListWithDelivery(SupplyOrderPicking supplyOrderPicking, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithDelivery(String supplyOrderPickingId, String deliveryId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<SupplyOrderPicking> queryList(String sql, Object ... parmeters);

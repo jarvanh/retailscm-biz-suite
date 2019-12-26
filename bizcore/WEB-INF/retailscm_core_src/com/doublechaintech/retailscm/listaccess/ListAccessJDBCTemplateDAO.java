@@ -53,6 +53,11 @@ public class ListAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements L
 	}
 	*/
 	
+	public SmartList<ListAccess> loadAll() {
+	    return this.loadAll(getListAccessMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

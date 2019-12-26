@@ -143,9 +143,6 @@
 <c:if test="${param.referName ne 'packaging'}">
 	<th>${userContext.localeMap['goods.packaging']}</th>
 </c:if>
-<c:if test="${param.referName ne 'currentStatus'}">
-	<th>${userContext.localeMap['goods.current_status']}</th>
-</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -347,8 +344,7 @@
 		</div>
 	</td>
 </c:if>
-<c:if test="${param.referName ne 'currentStatus'}">	<td contenteditable='true' class='edit-value'  propertyToChange='currentStatus' storedCellValue='${item.currentStatus}' prefix='${ownerBeanName}Manager/updateGoods/${result.id}/${item.id}/'>${item.currentStatus}</td>
-</c:if>
+
 				<td>
 
 				<a href='#${ownerBeanName}Manager/removeGoods/${result.id}/${item.id}/' class='delete-action btn btn-danger btn-xs'><i class="fa fa-trash-o fa-lg"></i> ${userContext.localeMap['@delete']}</a>

@@ -73,13 +73,6 @@ public class SupplyOrderPaymentGroup extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderPaymentGroup(String name, SupplyOrder bizOrder, String cardNumber)
-	{
-		setName(name);
-		setBizOrder(bizOrder);
-		setCardNumber(cardNumber);
-	
-	}
 	
 	//Support for changing the property
 	

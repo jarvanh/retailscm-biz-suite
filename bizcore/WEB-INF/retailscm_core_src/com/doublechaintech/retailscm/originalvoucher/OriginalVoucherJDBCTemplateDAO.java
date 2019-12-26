@@ -86,6 +86,11 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	}
 	*/
 	
+	public SmartList<OriginalVoucher> loadAll() {
+	    return this.loadAll(getOriginalVoucherMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -713,7 +718,7 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  		return prepareOriginalVoucherCreateParameters(originalVoucher);
  	}
  	protected Object[] prepareOriginalVoucherUpdateParameters(OriginalVoucher originalVoucher){
- 		Object[] parameters = new Object[13];
+ 		Object[] parameters = new Object[12];
  
  		parameters[0] = originalVoucher.getTitle();
  		parameters[1] = originalVoucher.getMadeBy();
@@ -735,16 +740,15 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  		if(originalVoucher.getAuditing() != null){
  			parameters[8] = originalVoucher.getAuditing().getId();
  		}
- 
- 		parameters[9] = originalVoucher.getCurrentStatus();		
- 		parameters[10] = originalVoucher.nextVersion();
- 		parameters[11] = originalVoucher.getId();
- 		parameters[12] = originalVoucher.getVersion();
+ 		
+ 		parameters[9] = originalVoucher.nextVersion();
+ 		parameters[10] = originalVoucher.getId();
+ 		parameters[11] = originalVoucher.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareOriginalVoucherCreateParameters(OriginalVoucher originalVoucher){
-		Object[] parameters = new Object[11];
+		Object[] parameters = new Object[10];
 		String newOriginalVoucherId=getNextId();
 		originalVoucher.setId(newOriginalVoucherId);
 		parameters[0] =  originalVoucher.getId();
@@ -773,8 +777,7 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  			parameters[9] = originalVoucher.getAuditing().getId();
  		
  		}
- 		
- 		parameters[10] = originalVoucher.getCurrentStatus();		
+ 				
  				
  		return parameters;
  	}

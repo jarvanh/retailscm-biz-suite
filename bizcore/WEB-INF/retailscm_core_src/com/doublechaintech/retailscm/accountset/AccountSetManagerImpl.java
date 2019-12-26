@@ -41,6 +41,10 @@ import com.doublechaintech.retailscm.accountset.AccountSet;
 public class AccountSetManagerImpl extends CustomRetailscmCheckerManager implements AccountSetManager {
 	
 	private static final String SERVICE_TYPE = "AccountSet";
+	@Override
+	public AccountSetDAO daoOf(RetailscmUserContext userContext) {
+		return accountSetDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -74,8 +78,8 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	public AccountSet loadAccountSet(RetailscmUserContext userContext, String accountSetId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountSetManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountSetManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -88,8 +92,8 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	 public AccountSet searchAccountSet(RetailscmUserContext userContext, String accountSetId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountSetManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountSetManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -107,10 +111,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		addActions(userContext,accountSet,tokens);
 		
 		
-		AccountSet  accountSetToPresent = userContext.getDAOGroup().getAccountSetDAO().present(accountSet, tokens);
+		AccountSet  accountSetToPresent = accountSetDaoOf(userContext).present(accountSet, tokens);
 		
 		List<BaseEntity> entityListToNaming = accountSetToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getAccountSetDAO().alias(entityListToNaming);
+		accountSetDaoOf(userContext).alias(entityListToNaming);
 		
 		return  accountSetToPresent;
 		
@@ -131,14 +135,14 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
  	}
  	protected AccountSet saveAccountSet(RetailscmUserContext userContext, AccountSet accountSet, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getAccountSetDAO().save(accountSet, tokens);
+ 		return accountSetDaoOf(userContext).save(accountSet, tokens);
  	}
  	protected AccountSet loadAccountSet(RetailscmUserContext userContext, String accountSetId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountSetManagerException.class);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountSetManagerException.class);
 
  
- 		return userContext.getDAOGroup().getAccountSetDAO().load(accountSetId, tokens);
+ 		return accountSetDaoOf(userContext).load(accountSetId, tokens);
  	}
 
 	
@@ -182,24 +186,24 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	
 
-
-	public AccountSet createAccountSet(RetailscmUserContext userContext,String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String countryCenterId, String retailStoreId, String goodsSupplierId) throws Exception
+	public AccountSet createAccountSet(RetailscmUserContext userContext, String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,long accountNumber,String countryCenterId,String retailStoreId,String goodsSupplierId) throws Exception
+	//public AccountSet createAccountSet(RetailscmUserContext userContext,String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String countryCenterId, String retailStoreId, String goodsSupplierId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfAccountSet(name);
-		userContext.getChecker().checkYearSetOfAccountSet(yearSet);
-		userContext.getChecker().checkEffectiveDateOfAccountSet(effectiveDate);
-		userContext.getChecker().checkAccountingSystemOfAccountSet(accountingSystem);
-		userContext.getChecker().checkDomesticCurrencyCodeOfAccountSet(domesticCurrencyCode);
-		userContext.getChecker().checkDomesticCurrencyNameOfAccountSet(domesticCurrencyName);
-		userContext.getChecker().checkOpeningBankOfAccountSet(openingBank);
-		userContext.getChecker().checkAccountNumberOfAccountSet(accountNumber);
+		checkerOf(userContext).checkNameOfAccountSet(name);
+		checkerOf(userContext).checkYearSetOfAccountSet(yearSet);
+		checkerOf(userContext).checkEffectiveDateOfAccountSet(effectiveDate);
+		checkerOf(userContext).checkAccountingSystemOfAccountSet(accountingSystem);
+		checkerOf(userContext).checkDomesticCurrencyCodeOfAccountSet(domesticCurrencyCode);
+		checkerOf(userContext).checkDomesticCurrencyNameOfAccountSet(domesticCurrencyName);
+		checkerOf(userContext).checkOpeningBankOfAccountSet(openingBank);
+		checkerOf(userContext).checkAccountNumberOfAccountSet(accountNumber);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 
 
 		AccountSet accountSet=createNewAccountSet();	
@@ -248,33 +252,33 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 
 		
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().checkVersionOfAccountSet( accountSetVersion);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).checkVersionOfAccountSet( accountSetVersion);
 		
 
 		if(AccountSet.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfAccountSet(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfAccountSet(parseString(newValueExpr));
 		}
 		if(AccountSet.YEAR_SET_PROPERTY.equals(property)){
-			userContext.getChecker().checkYearSetOfAccountSet(parseString(newValueExpr));
+			checkerOf(userContext).checkYearSetOfAccountSet(parseString(newValueExpr));
 		}
 		if(AccountSet.EFFECTIVE_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkEffectiveDateOfAccountSet(parseDate(newValueExpr));
+			checkerOf(userContext).checkEffectiveDateOfAccountSet(parseDate(newValueExpr));
 		}
 		if(AccountSet.ACCOUNTING_SYSTEM_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountingSystemOfAccountSet(parseString(newValueExpr));
+			checkerOf(userContext).checkAccountingSystemOfAccountSet(parseString(newValueExpr));
 		}
 		if(AccountSet.DOMESTIC_CURRENCY_CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkDomesticCurrencyCodeOfAccountSet(parseString(newValueExpr));
+			checkerOf(userContext).checkDomesticCurrencyCodeOfAccountSet(parseString(newValueExpr));
 		}
 		if(AccountSet.DOMESTIC_CURRENCY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkDomesticCurrencyNameOfAccountSet(parseString(newValueExpr));
+			checkerOf(userContext).checkDomesticCurrencyNameOfAccountSet(parseString(newValueExpr));
 		}
 		if(AccountSet.OPENING_BANK_PROPERTY.equals(property)){
-			userContext.getChecker().checkOpeningBankOfAccountSet(parseString(newValueExpr));
+			checkerOf(userContext).checkOpeningBankOfAccountSet(parseString(newValueExpr));
 		}
 		if(AccountSet.ACCOUNT_NUMBER_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountNumberOfAccountSet(parseString(newValueExpr));
+			checkerOf(userContext).checkAccountNumberOfAccountSet(parseLong(newValueExpr));
 		}		
 
 				
@@ -283,7 +287,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 		
 	}
@@ -292,7 +296,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	public AccountSet clone(RetailscmUserContext userContext, String fromAccountSetId) throws Exception{
 		
-		return userContext.getDAOGroup().getAccountSetDAO().clone(fromAccountSetId, this.allTokens());
+		return accountSetDaoOf(userContext).clone(fromAccountSetId, this.allTokens());
 	}
 	
 	public AccountSet internalSaveAccountSet(RetailscmUserContext userContext, AccountSet accountSet) throws Exception 
@@ -393,9 +397,9 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForTransferingAnotherCountryCenter(RetailscmUserContext userContext, String accountSetId, String anotherCountryCenterId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
- 		userContext.getChecker().checkIdOfRetailStoreCountryCenter(anotherCountryCenterId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+ 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCountryCenterId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
  		
  	}
  	public AccountSet transferToAnotherCountryCenter(RetailscmUserContext userContext, String accountSetId, String anotherCountryCenterId) throws Exception
@@ -432,7 +436,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreCountryCenter> candidateList = userContext.getDAOGroup().getRetailStoreCountryCenterDAO().requestCandidateRetailStoreCountryCenterForAccountSet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreCountryCenter> candidateList = retailStoreCountryCenterDaoOf(userContext).requestCandidateRetailStoreCountryCenterForAccountSet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -442,9 +446,9 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected void checkParamsForTransferingAnotherRetailStore(RetailscmUserContext userContext, String accountSetId, String anotherRetailStoreId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
- 		userContext.getChecker().checkIdOfRetailStore(anotherRetailStoreId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+ 		checkerOf(userContext).checkIdOfRetailStore(anotherRetailStoreId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
  		
  	}
  	public AccountSet transferToAnotherRetailStore(RetailscmUserContext userContext, String accountSetId, String anotherRetailStoreId) throws Exception
@@ -481,7 +485,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStore> candidateList = userContext.getDAOGroup().getRetailStoreDAO().requestCandidateRetailStoreForAccountSet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStore> candidateList = retailStoreDaoOf(userContext).requestCandidateRetailStoreForAccountSet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -491,9 +495,9 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected void checkParamsForTransferingAnotherGoodsSupplier(RetailscmUserContext userContext, String accountSetId, String anotherGoodsSupplierId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
- 		userContext.getChecker().checkIdOfGoodsSupplier(anotherGoodsSupplierId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+ 		checkerOf(userContext).checkIdOfGoodsSupplier(anotherGoodsSupplierId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
  		
  	}
  	public AccountSet transferToAnotherGoodsSupplier(RetailscmUserContext userContext, String accountSetId, String anotherGoodsSupplierId) throws Exception
@@ -530,7 +534,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<GoodsSupplier> candidateList = userContext.getDAOGroup().getGoodsSupplierDAO().requestCandidateGoodsSupplierForAccountSet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<GoodsSupplier> candidateList = goodsSupplierDaoOf(userContext).requestCandidateGoodsSupplierForAccountSet(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -543,7 +547,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCountryCenterId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreCountryCenterDAO().load(newCountryCenterId, options);
+ 		return retailStoreCountryCenterDaoOf(userContext).load(newCountryCenterId, options);
  	}
  	
  	
@@ -553,7 +557,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected GoodsSupplier loadGoodsSupplier(RetailscmUserContext userContext, String newGoodsSupplierId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getGoodsSupplierDAO().load(newGoodsSupplierId, options);
+ 		return goodsSupplierDaoOf(userContext).load(newGoodsSupplierId, options);
  	}
  	
  	
@@ -563,7 +567,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newRetailStoreId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newRetailStoreId, options);
+ 		return retailStoreDaoOf(userContext).load(newRetailStoreId, options);
  	}
  	
  	
@@ -577,7 +581,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String accountSetId, int accountSetVersion) throws Exception{
 			
-		userContext.getDAOGroup().getAccountSetDAO().delete(accountSetId, accountSetVersion);
+		accountSetDaoOf(userContext).delete(accountSetId, accountSetVersion);
 	}
 	
 	public AccountSet forgetByAll(RetailscmUserContext userContext, String accountSetId, int accountSetVersion) throws Exception {
@@ -586,8 +590,9 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected AccountSet forgetByAllInternal(RetailscmUserContext userContext,
 			String accountSetId, int accountSetVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getAccountSetDAO().disconnectFromAll(accountSetId, accountSetVersion);
+		return accountSetDaoOf(userContext).disconnectFromAll(accountSetId, accountSetVersion);
 	}
+	
 	
 
 	
@@ -604,7 +609,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getAccountSetDAO().deleteAll();
+		return accountSetDaoOf(userContext).deleteAll();
 	}
 
 
@@ -616,22 +621,18 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 
 	protected void checkParamsForAddingAccountingSubject(RetailscmUserContext userContext, String accountSetId, String accountingSubjectCode, String accountingSubjectName, int accountingSubjectClassCode, String accountingSubjectClassName,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 
 		
+		checkerOf(userContext).checkAccountingSubjectCodeOfAccountingSubject(accountingSubjectCode);
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-
+		checkerOf(userContext).checkAccountingSubjectNameOfAccountingSubject(accountingSubjectName);
 		
-		userContext.getChecker().checkAccountingSubjectCodeOfAccountingSubject(accountingSubjectCode);
+		checkerOf(userContext).checkAccountingSubjectClassCodeOfAccountingSubject(accountingSubjectClassCode);
 		
-		userContext.getChecker().checkAccountingSubjectNameOfAccountingSubject(accountingSubjectName);
-		
-		userContext.getChecker().checkAccountingSubjectClassCodeOfAccountingSubject(accountingSubjectClassCode);
-		
-		userContext.getChecker().checkAccountingSubjectClassNameOfAccountingSubject(accountingSubjectClassName);
+		checkerOf(userContext).checkAccountingSubjectClassNameOfAccountingSubject(accountingSubjectClassName);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 
 	
 	}
@@ -655,15 +656,15 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	}
 	protected void checkParamsForUpdatingAccountingSubjectProperties(RetailscmUserContext userContext, String accountSetId,String id,String accountingSubjectCode,String accountingSubjectName,int accountingSubjectClassCode,String accountingSubjectClassName,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().checkIdOfAccountingSubject(id);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).checkIdOfAccountingSubject(id);
 		
-		userContext.getChecker().checkAccountingSubjectCodeOfAccountingSubject( accountingSubjectCode);
-		userContext.getChecker().checkAccountingSubjectNameOfAccountingSubject( accountingSubjectName);
-		userContext.getChecker().checkAccountingSubjectClassCodeOfAccountingSubject( accountingSubjectClassCode);
-		userContext.getChecker().checkAccountingSubjectClassNameOfAccountingSubject( accountingSubjectClassName);
+		checkerOf(userContext).checkAccountingSubjectCodeOfAccountingSubject( accountingSubjectCode);
+		checkerOf(userContext).checkAccountingSubjectNameOfAccountingSubject( accountingSubjectName);
+		checkerOf(userContext).checkAccountingSubjectClassCodeOfAccountingSubject( accountingSubjectClassCode);
+		checkerOf(userContext).checkAccountingSubjectClassNameOfAccountingSubject( accountingSubjectClassName);
 
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 		
 	}
 	public  AccountSet updateAccountingSubjectProperties(RetailscmUserContext userContext, String accountSetId, String id,String accountingSubjectCode,String accountingSubjectName,int accountingSubjectClassCode,String accountingSubjectClassName, String [] tokensExpr) throws Exception
@@ -725,12 +726,18 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingAccountingSubjectList(RetailscmUserContext userContext, String accountSetId, 
 			String accountingSubjectIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
 		for(String accountingSubjectIdItem: accountingSubjectIds){
 			userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectIdItem);
+=======
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		for(String accountingSubjectIdItem: accountingSubjectIds){
+			checkerOf(userContext).checkIdOfAccountingSubject(accountingSubjectIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 		
 	}
 	public  AccountSet removeAccountingSubjectList(RetailscmUserContext userContext, String accountSetId, 
@@ -743,7 +750,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			synchronized(accountSet){ 
 				//Will be good when the accountSet loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getAccountSetDAO().planToRemoveAccountingSubjectList(accountSet, accountingSubjectIds, allTokens());
+				accountSetDaoOf(userContext).planToRemoveAccountingSubjectList(accountSet, accountingSubjectIds, allTokens());
 				accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingSubjectList().done());
 				deleteRelationListInGraph(userContext, accountSet.getAccountingSubjectList());
 				return present(userContext,accountSet, mergedAllTokens(tokensExpr));
@@ -753,10 +760,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingAccountingSubject(RetailscmUserContext userContext, String accountSetId, 
 		String accountingSubjectId, int accountingSubjectVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountSet( accountSetId);
-		userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectId);
-		userContext.getChecker().checkVersionOfAccountingSubject(accountingSubjectVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
+		checkerOf(userContext).checkIdOfAccountingSubject(accountingSubjectId);
+		checkerOf(userContext).checkVersionOfAccountingSubject(accountingSubjectVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	public  AccountSet removeAccountingSubject(RetailscmUserContext userContext, String accountSetId, 
@@ -780,10 +787,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForCopyingAccountingSubject(RetailscmUserContext userContext, String accountSetId, 
 		String accountingSubjectId, int accountingSubjectVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountSet( accountSetId);
-		userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectId);
-		userContext.getChecker().checkVersionOfAccountingSubject(accountingSubjectVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
+		checkerOf(userContext).checkIdOfAccountingSubject(accountingSubjectId);
+		checkerOf(userContext).checkVersionOfAccountingSubject(accountingSubjectVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	public  AccountSet copyAccountingSubjectFrom(RetailscmUserContext userContext, String accountSetId, 
@@ -812,29 +819,29 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().checkIdOfAccountingSubject(accountingSubjectId);
-		userContext.getChecker().checkVersionOfAccountingSubject(accountingSubjectVersion);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).checkIdOfAccountingSubject(accountingSubjectId);
+		checkerOf(userContext).checkVersionOfAccountingSubject(accountingSubjectVersion);
 		
 
 		if(AccountingSubject.ACCOUNTING_SUBJECT_CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountingSubjectCodeOfAccountingSubject(parseString(newValueExpr));
+			checkerOf(userContext).checkAccountingSubjectCodeOfAccountingSubject(parseString(newValueExpr));
 		}
 		
 		if(AccountingSubject.ACCOUNTING_SUBJECT_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountingSubjectNameOfAccountingSubject(parseString(newValueExpr));
+			checkerOf(userContext).checkAccountingSubjectNameOfAccountingSubject(parseString(newValueExpr));
 		}
 		
 		if(AccountingSubject.ACCOUNTING_SUBJECT_CLASS_CODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountingSubjectClassCodeOfAccountingSubject(parseInt(newValueExpr));
+			checkerOf(userContext).checkAccountingSubjectClassCodeOfAccountingSubject(parseInt(newValueExpr));
 		}
 		
 		if(AccountingSubject.ACCOUNTING_SUBJECT_CLASS_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountingSubjectClassNameOfAccountingSubject(parseString(newValueExpr));
+			checkerOf(userContext).checkAccountingSubjectClassNameOfAccountingSubject(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	
@@ -877,20 +884,16 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 
 	protected void checkParamsForAddingAccountingPeriod(RetailscmUserContext userContext, String accountSetId, String name, Date startDate, Date endDate,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 
 		
+		checkerOf(userContext).checkNameOfAccountingPeriod(name);
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-
+		checkerOf(userContext).checkStartDateOfAccountingPeriod(startDate);
 		
-		userContext.getChecker().checkNameOfAccountingPeriod(name);
-		
-		userContext.getChecker().checkStartDateOfAccountingPeriod(startDate);
-		
-		userContext.getChecker().checkEndDateOfAccountingPeriod(endDate);
+		checkerOf(userContext).checkEndDateOfAccountingPeriod(endDate);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 
 	
 	}
@@ -914,14 +917,14 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	}
 	protected void checkParamsForUpdatingAccountingPeriodProperties(RetailscmUserContext userContext, String accountSetId,String id,String name,Date startDate,Date endDate,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().checkIdOfAccountingPeriod(id);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).checkIdOfAccountingPeriod(id);
 		
-		userContext.getChecker().checkNameOfAccountingPeriod( name);
-		userContext.getChecker().checkStartDateOfAccountingPeriod( startDate);
-		userContext.getChecker().checkEndDateOfAccountingPeriod( endDate);
+		checkerOf(userContext).checkNameOfAccountingPeriod( name);
+		checkerOf(userContext).checkStartDateOfAccountingPeriod( startDate);
+		checkerOf(userContext).checkEndDateOfAccountingPeriod( endDate);
 
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 		
 	}
 	public  AccountSet updateAccountingPeriodProperties(RetailscmUserContext userContext, String accountSetId, String id,String name,Date startDate,Date endDate, String [] tokensExpr) throws Exception
@@ -981,12 +984,18 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingAccountingPeriodList(RetailscmUserContext userContext, String accountSetId, 
 			String accountingPeriodIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
 		for(String accountingPeriodIdItem: accountingPeriodIds){
 			userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodIdItem);
+=======
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		for(String accountingPeriodIdItem: accountingPeriodIds){
+			checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 		
 	}
 	public  AccountSet removeAccountingPeriodList(RetailscmUserContext userContext, String accountSetId, 
@@ -999,7 +1008,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			synchronized(accountSet){ 
 				//Will be good when the accountSet loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getAccountSetDAO().planToRemoveAccountingPeriodList(accountSet, accountingPeriodIds, allTokens());
+				accountSetDaoOf(userContext).planToRemoveAccountingPeriodList(accountSet, accountingPeriodIds, allTokens());
 				accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingPeriodList().done());
 				deleteRelationListInGraph(userContext, accountSet.getAccountingPeriodList());
 				return present(userContext,accountSet, mergedAllTokens(tokensExpr));
@@ -1009,10 +1018,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingAccountingPeriod(RetailscmUserContext userContext, String accountSetId, 
 		String accountingPeriodId, int accountingPeriodVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountSet( accountSetId);
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().checkVersionOfAccountingPeriod(accountingPeriodVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).checkVersionOfAccountingPeriod(accountingPeriodVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	public  AccountSet removeAccountingPeriod(RetailscmUserContext userContext, String accountSetId, 
@@ -1036,10 +1045,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForCopyingAccountingPeriod(RetailscmUserContext userContext, String accountSetId, 
 		String accountingPeriodId, int accountingPeriodVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountSet( accountSetId);
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().checkVersionOfAccountingPeriod(accountingPeriodVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).checkVersionOfAccountingPeriod(accountingPeriodVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	public  AccountSet copyAccountingPeriodFrom(RetailscmUserContext userContext, String accountSetId, 
@@ -1068,25 +1077,25 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().checkIdOfAccountingPeriod(accountingPeriodId);
-		userContext.getChecker().checkVersionOfAccountingPeriod(accountingPeriodVersion);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
+		checkerOf(userContext).checkVersionOfAccountingPeriod(accountingPeriodVersion);
 		
 
 		if(AccountingPeriod.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfAccountingPeriod(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfAccountingPeriod(parseString(newValueExpr));
 		}
 		
 		if(AccountingPeriod.START_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkStartDateOfAccountingPeriod(parseDate(newValueExpr));
+			checkerOf(userContext).checkStartDateOfAccountingPeriod(parseDate(newValueExpr));
 		}
 		
 		if(AccountingPeriod.END_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkEndDateOfAccountingPeriod(parseDate(newValueExpr));
+			checkerOf(userContext).checkEndDateOfAccountingPeriod(parseDate(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	
@@ -1129,18 +1138,14 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 
 	protected void checkParamsForAddingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, String name, String description,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 
 		
+		checkerOf(userContext).checkNameOfAccountingDocumentType(name);
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-
-		
-		userContext.getChecker().checkNameOfAccountingDocumentType(name);
-		
-		userContext.getChecker().checkDescriptionOfAccountingDocumentType(description);
+		checkerOf(userContext).checkDescriptionOfAccountingDocumentType(description);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 
 	
 	}
@@ -1164,13 +1169,13 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	}
 	protected void checkParamsForUpdatingAccountingDocumentTypeProperties(RetailscmUserContext userContext, String accountSetId,String id,String name,String description,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().checkIdOfAccountingDocumentType(id);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).checkIdOfAccountingDocumentType(id);
 		
-		userContext.getChecker().checkNameOfAccountingDocumentType( name);
-		userContext.getChecker().checkDescriptionOfAccountingDocumentType( description);
+		checkerOf(userContext).checkNameOfAccountingDocumentType( name);
+		checkerOf(userContext).checkDescriptionOfAccountingDocumentType( description);
 
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 		
 	}
 	public  AccountSet updateAccountingDocumentTypeProperties(RetailscmUserContext userContext, String accountSetId, String id,String name,String description, String [] tokensExpr) throws Exception
@@ -1228,12 +1233,18 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingAccountingDocumentTypeList(RetailscmUserContext userContext, String accountSetId, 
 			String accountingDocumentTypeIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfAccountSet(accountSetId);
 		for(String accountingDocumentTypeIdItem: accountingDocumentTypeIds){
 			userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeIdItem);
+=======
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		for(String accountingDocumentTypeIdItem: accountingDocumentTypeIds){
+			checkerOf(userContext).checkIdOfAccountingDocumentType(accountingDocumentTypeIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 		
 	}
 	public  AccountSet removeAccountingDocumentTypeList(RetailscmUserContext userContext, String accountSetId, 
@@ -1246,7 +1257,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			synchronized(accountSet){ 
 				//Will be good when the accountSet loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getAccountSetDAO().planToRemoveAccountingDocumentTypeList(accountSet, accountingDocumentTypeIds, allTokens());
+				accountSetDaoOf(userContext).planToRemoveAccountingDocumentTypeList(accountSet, accountingDocumentTypeIds, allTokens());
 				accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingDocumentTypeList().done());
 				deleteRelationListInGraph(userContext, accountSet.getAccountingDocumentTypeList());
 				return present(userContext,accountSet, mergedAllTokens(tokensExpr));
@@ -1256,10 +1267,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForRemovingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, 
 		String accountingDocumentTypeId, int accountingDocumentTypeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountSet( accountSetId);
-		userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeId);
-		userContext.getChecker().checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
+		checkerOf(userContext).checkIdOfAccountingDocumentType(accountingDocumentTypeId);
+		checkerOf(userContext).checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	public  AccountSet removeAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, 
@@ -1283,10 +1294,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForCopyingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, 
 		String accountingDocumentTypeId, int accountingDocumentTypeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountSet( accountSetId);
-		userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeId);
-		userContext.getChecker().checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
+		checkerOf(userContext).checkIdOfAccountingDocumentType(accountingDocumentTypeId);
+		checkerOf(userContext).checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	public  AccountSet copyAccountingDocumentTypeFrom(RetailscmUserContext userContext, String accountSetId, 
@@ -1315,21 +1326,21 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		
-		userContext.getChecker().checkIdOfAccountSet(accountSetId);
-		userContext.getChecker().checkIdOfAccountingDocumentType(accountingDocumentTypeId);
-		userContext.getChecker().checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
+		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
+		checkerOf(userContext).checkIdOfAccountingDocumentType(accountingDocumentTypeId);
+		checkerOf(userContext).checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
 		
 
 		if(AccountingDocumentType.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfAccountingDocumentType(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfAccountingDocumentType(parseString(newValueExpr));
 		}
 		
 		if(AccountingDocumentType.DESCRIPTION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDescriptionOfAccountingDocumentType(parseString(newValueExpr));
+			checkerOf(userContext).checkDescriptionOfAccountingDocumentType(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountSetManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 	
 	}
 	

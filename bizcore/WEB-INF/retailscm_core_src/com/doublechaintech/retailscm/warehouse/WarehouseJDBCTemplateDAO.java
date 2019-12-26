@@ -200,6 +200,11 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	}
 	*/
 	
+	public SmartList<Warehouse> loadAll() {
+	    return this.loadAll(getWarehouseMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -738,8 +743,24 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 
+<<<<<<< HEAD
 		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<SupplierSpace> supplierSpaceList = warehouse.getSupplierSpaceList();
+		if(supplierSpaceList != null){
+			getSupplierSpaceDAO().analyzeSupplierSpaceByWarehouse(supplierSpaceList, warehouse.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
+		return warehouse;
+	
+	}	
+	
+		
+=======
 		SmartList<SupplierSpace> supplierSpaceList = warehouse.getSupplierSpaceList();
 		if(supplierSpaceList != null){
 			getSupplierSpaceDAO().analyzeSupplierSpaceByWarehouse(supplierSpaceList, warehouse.getId(), options);
@@ -751,6 +772,7 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 	}	
 	
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceReceivingSpaceList(SmartList<ReceivingSpace> receivingSpaceList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -795,12 +817,21 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			getReceivingSpaceDAO().analyzeReceivingSpaceByWarehouse(receivingSpaceList, warehouse.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return warehouse;
 	
 	}	
 	
 		
+=======
+		
+		return warehouse;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceShippingSpaceList(SmartList<ShippingSpace> shippingSpaceList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -838,7 +869,10 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			return warehouse;
 		}
 
+<<<<<<< HEAD
 		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<ShippingSpace> shippingSpaceList = warehouse.getShippingSpaceList();
 		if(shippingSpaceList != null){
@@ -846,6 +880,15 @@ public class WarehouseJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Wa
 			
 		}
 		
+<<<<<<< HEAD
+=======
+		SmartList<ShippingSpace> shippingSpaceList = warehouse.getShippingSpaceList();
+		if(shippingSpaceList != null){
+			getShippingSpaceDAO().analyzeShippingSpaceByWarehouse(shippingSpaceList, warehouse.getId(), options);
+			
+		}
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return warehouse;
 	
 	}	

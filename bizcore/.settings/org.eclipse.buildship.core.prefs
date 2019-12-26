@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=502e8b8dfc403300a992b5083e79c722e85d1854
@@ -5,6 +6,12 @@ arguments=
 auto.sync=false
 build.scans.enabled=false
 connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(5.6.1))
+=======
+arguments=
+auto.sync=false
+build.scans.enabled=false
+connection.gradle.distribution=GRADLE_DISTRIBUTION(VERSION(5.4))
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 connection.project.dir=
 eclipse.preferences.version=1
 gradle.user.home=

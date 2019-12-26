@@ -107,8 +107,8 @@
 <c:if test="${param.referName ne 'provinceCenter'}">
 	<th>${userContext.localeMap['province_center_department.province_center']}</th>
 </c:if>
-<c:if test="${param.referName ne 'manager'}">
-	<th>${userContext.localeMap['province_center_department.manager']}</th>
+<c:if test="${param.referName ne 'managerName'}">
+	<th>${userContext.localeMap['province_center_department.manager_name']}</th>
 </c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
@@ -137,7 +137,7 @@
 		</div>
 	</td>
 </c:if>
-<c:if test="${param.referName ne 'manager'}">	<td contenteditable='true' class='edit-value'  propertyToChange='manager' storedCellValue='${item.manager}' prefix='${ownerBeanName}Manager/updateProvinceCenterDepartment/${result.id}/${item.id}/'>${item.manager}</td>
+<c:if test="${param.referName ne 'managerName'}">	<td contenteditable='true' class='edit-value'  propertyToChange='managerName' storedCellValue='${item.managerName}' prefix='${ownerBeanName}Manager/updateProvinceCenterDepartment/${result.id}/${item.id}/'>${item.managerName}</td>
 </c:if>
 				<td>
 

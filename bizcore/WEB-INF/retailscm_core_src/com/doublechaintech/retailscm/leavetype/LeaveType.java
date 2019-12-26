@@ -78,15 +78,6 @@ public class LeaveType extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	LeaveType(String code, RetailStoreCountryCenter company, String description, String detailDescription)
-	{
-		setCode(code);
-		setCompany(company);
-		setDescription(description);
-		setDetailDescription(detailDescription);
-
-		this.mEmployeeLeaveList = new SmartList<EmployeeLeave>();	
-	}
 	
 	//Support for changing the property
 	

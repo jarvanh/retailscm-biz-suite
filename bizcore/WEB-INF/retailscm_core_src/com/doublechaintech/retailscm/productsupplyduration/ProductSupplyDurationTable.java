@@ -24,12 +24,17 @@ public class ProductSupplyDurationTable{
 	static final String COLUMN_PRODUCT = "product";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_QUANTITY, COLUMN_DURATION, COLUMN_PRICE, COLUMN_PRODUCT, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_QUANTITY, COLUMN_DURATION, COLUMN_PRICE, COLUMN_PRODUCT
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_QUANTITY,COLUMN_DURATION,COLUMN_PRICE,COLUMN_PRODUCT,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_QUANTITY,COLUMN_DURATION,COLUMN_PRICE,COLUMN_PRODUCT};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

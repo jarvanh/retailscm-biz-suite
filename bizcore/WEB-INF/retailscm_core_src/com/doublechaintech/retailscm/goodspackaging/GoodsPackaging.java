@@ -76,15 +76,6 @@ public class GoodsPackaging extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	GoodsPackaging(String packageName, String rfid, Date packageTime, String description)
-	{
-		setPackageName(packageName);
-		setRfid(rfid);
-		setPackageTime(packageTime);
-		setDescription(description);
-
-		this.mGoodsList = new SmartList<Goods>();	
-	}
 	
 	//Support for changing the property
 	

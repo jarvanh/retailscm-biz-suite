@@ -80,16 +80,6 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	AccountingSubject(String accountingSubjectCode, String accountingSubjectName, int accountingSubjectClassCode, String accountingSubjectClassName, AccountSet accountSet)
-	{
-		setAccountingSubjectCode(accountingSubjectCode);
-		setAccountingSubjectName(accountingSubjectName);
-		setAccountingSubjectClassCode(accountingSubjectClassCode);
-		setAccountingSubjectClassName(accountingSubjectClassName);
-		setAccountSet(accountSet);
-
-		this.mAccountingDocumentLineList = new SmartList<AccountingDocumentLine>();	
-	}
 	
 	//Support for changing the property
 	

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.supplyorderapproval;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 
 
-public interface SupplyOrderApprovalDAO{
+public interface SupplyOrderApprovalDAO extends BaseDAO{
 
-	
+	public SmartList<SupplyOrderApproval> loadAll();
 	public SupplyOrderApproval load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SupplyOrderApproval> supplyOrderApprovalList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -60,6 +61,22 @@ public interface SupplyOrderApprovalDAO{
 	public SupplyOrderApproval planToRemoveConsumerOrderListWithConsumer(SupplyOrderApproval supplyOrderApproval, String consumerId, Map<String,Object> options)throws Exception;
 	public int countConsumerOrderListWithConsumer(String supplyOrderApprovalId, String consumerId, Map<String,Object> options)throws Exception;
 	
+	//disconnect SupplyOrderApproval with confirmation in ConsumerOrder
+	public SupplyOrderApproval planToRemoveConsumerOrderListWithConfirmation(SupplyOrderApproval supplyOrderApproval, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithConfirmation(String supplyOrderApprovalId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with processing in ConsumerOrder
+	public SupplyOrderApproval planToRemoveConsumerOrderListWithProcessing(SupplyOrderApproval supplyOrderApproval, String processingId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithProcessing(String supplyOrderApprovalId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with shipment in ConsumerOrder
+	public SupplyOrderApproval planToRemoveConsumerOrderListWithShipment(SupplyOrderApproval supplyOrderApproval, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithShipment(String supplyOrderApprovalId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with delivery in ConsumerOrder
+	public SupplyOrderApproval planToRemoveConsumerOrderListWithDelivery(SupplyOrderApproval supplyOrderApproval, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countConsumerOrderListWithDelivery(String supplyOrderApprovalId, String deliveryId, Map<String,Object> options)throws Exception;
+	
 	//disconnect SupplyOrderApproval with store in ConsumerOrder
 	public SupplyOrderApproval planToRemoveConsumerOrderListWithStore(SupplyOrderApproval supplyOrderApproval, String storeId, Map<String,Object> options)throws Exception;
 	public int countConsumerOrderListWithStore(String supplyOrderApprovalId, String storeId, Map<String,Object> options)throws Exception;
@@ -74,6 +91,26 @@ public interface SupplyOrderApprovalDAO{
 	//disconnect SupplyOrderApproval with seller in SupplyOrder
 	public SupplyOrderApproval planToRemoveSupplyOrderListWithSeller(SupplyOrderApproval supplyOrderApproval, String sellerId, Map<String,Object> options)throws Exception;
 	public int countSupplyOrderListWithSeller(String supplyOrderApprovalId, String sellerId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with confirmation in SupplyOrder
+	public SupplyOrderApproval planToRemoveSupplyOrderListWithConfirmation(SupplyOrderApproval supplyOrderApproval, String confirmationId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithConfirmation(String supplyOrderApprovalId, String confirmationId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with processing in SupplyOrder
+	public SupplyOrderApproval planToRemoveSupplyOrderListWithProcessing(SupplyOrderApproval supplyOrderApproval, String processingId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithProcessing(String supplyOrderApprovalId, String processingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with picking in SupplyOrder
+	public SupplyOrderApproval planToRemoveSupplyOrderListWithPicking(SupplyOrderApproval supplyOrderApproval, String pickingId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithPicking(String supplyOrderApprovalId, String pickingId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with shipment in SupplyOrder
+	public SupplyOrderApproval planToRemoveSupplyOrderListWithShipment(SupplyOrderApproval supplyOrderApproval, String shipmentId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithShipment(String supplyOrderApprovalId, String shipmentId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SupplyOrderApproval with delivery in SupplyOrder
+	public SupplyOrderApproval planToRemoveSupplyOrderListWithDelivery(SupplyOrderApproval supplyOrderApproval, String deliveryId, Map<String,Object> options)throws Exception;
+	public int countSupplyOrderListWithDelivery(String supplyOrderApprovalId, String deliveryId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<SupplyOrderApproval> queryList(String sql, Object ... parmeters);

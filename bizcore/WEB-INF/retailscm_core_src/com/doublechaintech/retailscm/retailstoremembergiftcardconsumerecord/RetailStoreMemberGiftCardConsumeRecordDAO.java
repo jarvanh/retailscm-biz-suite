@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO;
 import com.doublechaintech.retailscm.retailstoremembergiftcard.RetailStoreMemberGiftCardDAO;
 
 
-public interface RetailStoreMemberGiftCardConsumeRecordDAO{
+public interface RetailStoreMemberGiftCardConsumeRecordDAO extends BaseDAO{
 
-	
+	public SmartList<RetailStoreMemberGiftCardConsumeRecord> loadAll();
 	public RetailStoreMemberGiftCardConsumeRecord load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<RetailStoreMemberGiftCardConsumeRecord> retailStoreMemberGiftCardConsumeRecordList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

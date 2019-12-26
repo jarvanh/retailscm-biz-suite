@@ -53,6 +53,11 @@ public class FormFieldJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Fo
 	}
 	*/
 	
+	public SmartList<FormField> loadAll() {
+	    return this.loadAll(getFormFieldMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

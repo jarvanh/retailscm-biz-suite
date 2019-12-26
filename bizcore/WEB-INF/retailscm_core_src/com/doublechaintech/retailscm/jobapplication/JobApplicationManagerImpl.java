@@ -44,6 +44,10 @@ import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager implements JobApplicationManager {
 	
 	private static final String SERVICE_TYPE = "JobApplication";
+	@Override
+	public JobApplicationDAO daoOf(RetailscmUserContext userContext) {
+		return jobApplicationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -77,8 +81,8 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	public JobApplication loadJobApplication(RetailscmUserContext userContext, String jobApplicationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-		userContext.getChecker().throwExceptionIfHasErrors( JobApplicationManagerException.class);
+ 		checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( JobApplicationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -91,8 +95,8 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	 public JobApplication searchJobApplication(RetailscmUserContext userContext, String jobApplicationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-		userContext.getChecker().throwExceptionIfHasErrors( JobApplicationManagerException.class);
+ 		checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( JobApplicationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -110,10 +114,10 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 		addActions(userContext,jobApplication,tokens);
 		
 		
-		JobApplication  jobApplicationToPresent = userContext.getDAOGroup().getJobApplicationDAO().present(jobApplication, tokens);
+		JobApplication  jobApplicationToPresent = jobApplicationDaoOf(userContext).present(jobApplication, tokens);
 		
 		List<BaseEntity> entityListToNaming = jobApplicationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getJobApplicationDAO().alias(entityListToNaming);
+		jobApplicationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  jobApplicationToPresent;
 		
@@ -134,14 +138,14 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 		
  	}
  	protected JobApplication saveJobApplication(RetailscmUserContext userContext, JobApplication jobApplication, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getJobApplicationDAO().save(jobApplication, tokens);
+ 		return jobApplicationDaoOf(userContext).save(jobApplication, tokens);
  	}
  	protected JobApplication loadJobApplication(RetailscmUserContext userContext, String jobApplicationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-		userContext.getChecker().throwExceptionIfHasErrors( JobApplicationManagerException.class);
+		checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( JobApplicationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getJobApplicationDAO().load(jobApplicationId, tokens);
+ 		return jobApplicationDaoOf(userContext).load(jobApplicationId, tokens);
  	}
 
 	
@@ -174,19 +178,19 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	
 
-
-	public JobApplication createJobApplication(RetailscmUserContext userContext,Date applicationTime, String who, String comments) throws Exception
+	public JobApplication createJobApplication(RetailscmUserContext userContext, Date applicationTime,String who,String comments) throws Exception
+	//public JobApplication createJobApplication(RetailscmUserContext userContext,Date applicationTime, String who, String comments) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkApplicationTimeOfJobApplication(applicationTime);
-		userContext.getChecker().checkWhoOfJobApplication(who);
-		userContext.getChecker().checkCommentsOfJobApplication(comments);
+		checkerOf(userContext).checkApplicationTimeOfJobApplication(applicationTime);
+		checkerOf(userContext).checkWhoOfJobApplication(who);
+		checkerOf(userContext).checkCommentsOfJobApplication(comments);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 
 
 		JobApplication jobApplication=createNewJobApplication();	
@@ -214,21 +218,21 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 
 		
 		
-		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-		userContext.getChecker().checkVersionOfJobApplication( jobApplicationVersion);
+		checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
+		checkerOf(userContext).checkVersionOfJobApplication( jobApplicationVersion);
 		
 
 		if(JobApplication.APPLICATION_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkApplicationTimeOfJobApplication(parseDate(newValueExpr));
+			checkerOf(userContext).checkApplicationTimeOfJobApplication(parseDate(newValueExpr));
 		}
 		if(JobApplication.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfJobApplication(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfJobApplication(parseString(newValueExpr));
 		}
 		if(JobApplication.COMMENTS_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentsOfJobApplication(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentsOfJobApplication(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 	
 		
 	}
@@ -237,7 +241,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	public JobApplication clone(RetailscmUserContext userContext, String fromJobApplicationId) throws Exception{
 		
-		return userContext.getDAOGroup().getJobApplicationDAO().clone(fromJobApplicationId, this.allTokens());
+		return jobApplicationDaoOf(userContext).clone(fromJobApplicationId, this.allTokens());
 	}
 	
 	public JobApplication internalSaveJobApplication(RetailscmUserContext userContext, JobApplication jobApplication) throws Exception 
@@ -343,7 +347,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String jobApplicationId, int jobApplicationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getJobApplicationDAO().delete(jobApplicationId, jobApplicationVersion);
+		jobApplicationDaoOf(userContext).delete(jobApplicationId, jobApplicationVersion);
 	}
 	
 	public JobApplication forgetByAll(RetailscmUserContext userContext, String jobApplicationId, int jobApplicationVersion) throws Exception {
@@ -352,8 +356,9 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	protected JobApplication forgetByAllInternal(RetailscmUserContext userContext,
 			String jobApplicationId, int jobApplicationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getJobApplicationDAO().disconnectFromAll(jobApplicationId, jobApplicationVersion);
+		return jobApplicationDaoOf(userContext).disconnectFromAll(jobApplicationId, jobApplicationVersion);
 	}
+	
 	
 
 	
@@ -370,7 +375,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getJobApplicationDAO().deleteAll();
+		return jobApplicationDaoOf(userContext).deleteAll();
 	}
 
 
@@ -386,7 +391,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getJobApplicationDAO().planToRemoveEmployeeListWithCompany(jobApplication, companyId, this.emptyOptions());
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithCompany(jobApplication, companyId, this.emptyOptions());
 
 				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
 				return jobApplication;
@@ -404,7 +409,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getJobApplicationDAO().planToRemoveEmployeeListWithDepartment(jobApplication, departmentId, this.emptyOptions());
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithDepartment(jobApplication, departmentId, this.emptyOptions());
 
 				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
 				return jobApplication;
@@ -422,7 +427,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getJobApplicationDAO().planToRemoveEmployeeListWithOccupation(jobApplication, occupationId, this.emptyOptions());
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithOccupation(jobApplication, occupationId, this.emptyOptions());
 
 				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
 				return jobApplication;
@@ -440,7 +445,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getJobApplicationDAO().planToRemoveEmployeeListWithResponsibleFor(jobApplication, responsibleForId, this.emptyOptions());
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithResponsibleFor(jobApplication, responsibleForId, this.emptyOptions());
 
 				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
 				return jobApplication;
@@ -458,7 +463,115 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getJobApplicationDAO().planToRemoveEmployeeListWithCurrentSalaryGrade(jobApplication, currentSalaryGradeId, this.emptyOptions());
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(jobApplication, currentSalaryGradeId, this.emptyOptions());
+
+				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
+				return jobApplication;
+			}
+	}
+	//disconnect JobApplication with profession_interview in Employee
+	protected JobApplication breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String jobApplicationId, String professionInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, allTokens());
+
+			synchronized(jobApplication){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(jobApplication, professionInterviewId, this.emptyOptions());
+
+				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
+				return jobApplication;
+			}
+	}
+	//disconnect JobApplication with hr_interview in Employee
+	protected JobApplication breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String jobApplicationId, String hrInterviewId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, allTokens());
+
+			synchronized(jobApplication){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(jobApplication, hrInterviewId, this.emptyOptions());
+
+				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
+				return jobApplication;
+			}
+	}
+	//disconnect JobApplication with offer_approval in Employee
+	protected JobApplication breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String jobApplicationId, String offerApprovalId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, allTokens());
+
+			synchronized(jobApplication){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(jobApplication, offerApprovalId, this.emptyOptions());
+
+				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
+				return jobApplication;
+			}
+	}
+	//disconnect JobApplication with offer_acceptance in Employee
+	protected JobApplication breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String jobApplicationId, String offerAcceptanceId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, allTokens());
+
+			synchronized(jobApplication){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(jobApplication, offerAcceptanceId, this.emptyOptions());
+
+				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
+				return jobApplication;
+			}
+	}
+	//disconnect JobApplication with employee_boarding in Employee
+	protected JobApplication breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String jobApplicationId, String employeeBoardingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, allTokens());
+
+			synchronized(jobApplication){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(jobApplication, employeeBoardingId, this.emptyOptions());
+
+				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
+				return jobApplication;
+			}
+	}
+	//disconnect JobApplication with termination in Employee
+	protected JobApplication breakWithEmployeeByTermination(RetailscmUserContext userContext, String jobApplicationId, String terminationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, allTokens());
+
+			synchronized(jobApplication){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeListWithTermination(jobApplication, terminationId, this.emptyOptions());
 
 				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
 				return jobApplication;
@@ -470,51 +583,59 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String jobApplicationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String jobApplicationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
 
 		
+		checkerOf(userContext).checkCompanyIdOfEmployee(companyId);
 		
-		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-
+		checkerOf(userContext).checkTitleOfEmployee(title);
 		
-		userContext.getChecker().checkCompanyIdOfEmployee(companyId);
+		checkerOf(userContext).checkDepartmentIdOfEmployee(departmentId);
 		
-		userContext.getChecker().checkTitleOfEmployee(title);
+		checkerOf(userContext).checkFamilyNameOfEmployee(familyName);
 		
-		userContext.getChecker().checkDepartmentIdOfEmployee(departmentId);
+		checkerOf(userContext).checkGivenNameOfEmployee(givenName);
 		
-		userContext.getChecker().checkFamilyNameOfEmployee(familyName);
+		checkerOf(userContext).checkEmailOfEmployee(email);
 		
-		userContext.getChecker().checkGivenNameOfEmployee(givenName);
+		checkerOf(userContext).checkCityOfEmployee(city);
 		
-		userContext.getChecker().checkEmailOfEmployee(email);
+		checkerOf(userContext).checkAddressOfEmployee(address);
 		
-		userContext.getChecker().checkCityOfEmployee(city);
+		checkerOf(userContext).checkCellPhoneOfEmployee(cellPhone);
 		
-		userContext.getChecker().checkAddressOfEmployee(address);
+		checkerOf(userContext).checkOccupationIdOfEmployee(occupationId);
 		
-		userContext.getChecker().checkCellPhoneOfEmployee(cellPhone);
+		checkerOf(userContext).checkResponsibleForIdOfEmployee(responsibleForId);
 		
-		userContext.getChecker().checkOccupationIdOfEmployee(occupationId);
+		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
-		userContext.getChecker().checkResponsibleForIdOfEmployee(responsibleForId);
+		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
 		
-		userContext.getChecker().checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
+		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
 		
-		userContext.getChecker().checkSalaryAccountOfEmployee(salaryAccount);
+		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
+		
+		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
+		
+		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
+		
+		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
+		
+		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 
 	
 	}
-	public  JobApplication addEmployee(RetailscmUserContext userContext, String jobApplicationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	public  JobApplication addEmployee(RetailscmUserContext userContext, String jobApplicationId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingEmployee(userContext,jobApplicationId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount,tokensExpr);
+		checkParamsForAddingEmployee(userContext,jobApplicationId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId,tokensExpr);
 		
-		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount);
+		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId);
 		
 		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, allTokens());
 		synchronized(jobApplication){ 
@@ -529,19 +650,19 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String jobApplicationId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-		userContext.getChecker().checkIdOfEmployee(id);
+		checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
+		checkerOf(userContext).checkIdOfEmployee(id);
 		
-		userContext.getChecker().checkTitleOfEmployee( title);
-		userContext.getChecker().checkFamilyNameOfEmployee( familyName);
-		userContext.getChecker().checkGivenNameOfEmployee( givenName);
-		userContext.getChecker().checkEmailOfEmployee( email);
-		userContext.getChecker().checkCityOfEmployee( city);
-		userContext.getChecker().checkAddressOfEmployee( address);
-		userContext.getChecker().checkCellPhoneOfEmployee( cellPhone);
-		userContext.getChecker().checkSalaryAccountOfEmployee( salaryAccount);
+		checkerOf(userContext).checkTitleOfEmployee( title);
+		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
+		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
+		checkerOf(userContext).checkEmailOfEmployee( email);
+		checkerOf(userContext).checkCityOfEmployee( city);
+		checkerOf(userContext).checkAddressOfEmployee( address);
+		checkerOf(userContext).checkCellPhoneOfEmployee( cellPhone);
+		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 		
 	}
 	public  JobApplication updateEmployeeProperties(RetailscmUserContext userContext, String jobApplicationId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
@@ -579,7 +700,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	}
 	
 	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception{
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -607,8 +728,25 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		employee.setLastUpdateTime(userContext.now());		
-		employee.setCurrentStatus("INIT");
+		ProfessionInterview  professionInterview = new ProfessionInterview();
+		professionInterview.setId(professionInterviewId);		
+		employee.setProfessionInterview(professionInterview);		
+		HrInterview  hrInterview = new HrInterview();
+		hrInterview.setId(hrInterviewId);		
+		employee.setHrInterview(hrInterview);		
+		OfferApproval  offerApproval = new OfferApproval();
+		offerApproval.setId(offerApprovalId);		
+		employee.setOfferApproval(offerApproval);		
+		OfferAcceptance  offerAcceptance = new OfferAcceptance();
+		offerAcceptance.setId(offerAcceptanceId);		
+		employee.setOfferAcceptance(offerAcceptance);		
+		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
+		employeeBoarding.setId(employeeBoardingId);		
+		employee.setEmployeeBoarding(employeeBoarding);		
+		Termination  termination = new Termination();
+		termination.setId(terminationId);		
+		employee.setTermination(termination);		
+		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
@@ -628,12 +766,18 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String jobApplicationId, 
 			String employeeIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
 		for(String employeeIdItem: employeeIds){
 			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
+=======
+		checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
+		for(String employeeIdItem: employeeIds){
+			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 		
 	}
 	public  JobApplication removeEmployeeList(RetailscmUserContext userContext, String jobApplicationId, 
@@ -646,7 +790,7 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 			synchronized(jobApplication){ 
 				//Will be good when the jobApplication loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getJobApplicationDAO().planToRemoveEmployeeList(jobApplication, employeeIds, allTokens());
+				jobApplicationDaoOf(userContext).planToRemoveEmployeeList(jobApplication, employeeIds, allTokens());
 				jobApplication = saveJobApplication(userContext, jobApplication, tokens().withEmployeeList().done());
 				deleteRelationListInGraph(userContext, jobApplication.getEmployeeList());
 				return present(userContext,jobApplication, mergedAllTokens(tokensExpr));
@@ -656,10 +800,10 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String jobApplicationId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfJobApplication( jobApplicationId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).checkIdOfJobApplication( jobApplicationId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 	
 	}
 	public  JobApplication removeEmployee(RetailscmUserContext userContext, String jobApplicationId, 
@@ -683,10 +827,10 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String jobApplicationId, 
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfJobApplication( jobApplicationId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).checkIdOfJobApplication( jobApplicationId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 	
 	}
 	public  JobApplication copyEmployeeFrom(RetailscmUserContext userContext, String jobApplicationId, 
@@ -715,45 +859,45 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 		
 
 		
-		userContext.getChecker().checkIdOfJobApplication(jobApplicationId);
-		userContext.getChecker().checkIdOfEmployee(employeeId);
-		userContext.getChecker().checkVersionOfEmployee(employeeVersion);
+		checkerOf(userContext).checkIdOfJobApplication(jobApplicationId);
+		checkerOf(userContext).checkIdOfEmployee(employeeId);
+		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkFamilyNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkGivenNameOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
-			userContext.getChecker().checkEmailOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
-			userContext.getChecker().checkCityOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
-			userContext.getChecker().checkAddressOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
-			userContext.getChecker().checkCellPhoneOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
-			userContext.getChecker().checkSalaryAccountOfEmployee(parseString(newValueExpr));
+			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(JobApplicationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(JobApplicationManagerException.class);
 	
 	}
 	
@@ -788,214 +932,10 @@ public class JobApplicationManagerImpl extends CustomRetailscmCheckerManager imp
 
 	}
 	/*
-	public  JobApplication associateEmployeeListToNewProfessionInterview(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().createProfessionInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToNewHrInterview(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String who, Date interviewTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().createHrInterview(userContext,  who,  interviewTime,  comments);
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToNewOfferApproval(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String who, Date approveTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().createOfferApproval(userContext,  who,  approveTime,  comments);
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToNewOfferAcceptance(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String who, Date acceptTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().createOfferAcceptance(userContext,  who,  acceptTime,  comments);
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToNewEmployeeBoarding(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String who, Date employTime, String comments, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().createEmployeeBoarding(userContext,  who,  employTime,  comments);
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToNewTermination(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String reasonId, String typeId, String comment, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().createTermination(userContext, reasonId, typeId,  comment);
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}
 	*/
 	
-	public  JobApplication associateEmployeeListToProfessionInterview(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String professionInterviewId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		ProfessionInterview professionInterview = userContext.getManagerGroup().getProfessionInterviewManager().loadProfessionInterview(userContext,professionInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateProfessionInterview(professionInterview);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToHrInterview(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String hrInterviewId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		HrInterview hrInterview = userContext.getManagerGroup().getHrInterviewManager().loadHrInterview(userContext,hrInterviewId,new String[]{"none"} );
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateHrInterview(hrInterview);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToOfferApproval(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String offerApprovalId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		OfferApproval offerApproval = userContext.getManagerGroup().getOfferApprovalManager().loadOfferApproval(userContext,offerApprovalId,new String[]{"none"} );
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferApproval(offerApproval);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToOfferAcceptance(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String offerAcceptanceId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		OfferAcceptance offerAcceptance = userContext.getManagerGroup().getOfferAcceptanceManager().loadOfferAcceptance(userContext,offerAcceptanceId,new String[]{"none"} );
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateOfferAcceptance(offerAcceptance);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToEmployeeBoarding(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String employeeBoardingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		EmployeeBoarding employeeBoarding = userContext.getManagerGroup().getEmployeeBoardingManager().loadEmployeeBoarding(userContext,employeeBoardingId,new String[]{"none"} );
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateEmployeeBoarding(employeeBoarding);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}	public  JobApplication associateEmployeeListToTermination(RetailscmUserContext userContext, String jobApplicationId, String  employeeIds[], String terminationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchEmployeeListWith(Employee.ID_PROPERTY, "oneof", this.joinArray("|", employeeIds)).done();
-		
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId, options);
-		
-		Termination termination = userContext.getManagerGroup().getTerminationManager().loadTermination(userContext,terminationId,new String[]{"none"} );
-		
-		for(Employee employee: jobApplication.getEmployeeList()) {
-			//TODO: need to check if already associated
-			employee.updateTermination(termination);
-		}
-		return this.internalSaveJobApplication(userContext, jobApplication);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, JobApplication newCreated) throws Exception{

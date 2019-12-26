@@ -5,6 +5,10 @@ import java.util.List;
 public interface CacheService {
 	public Object get(String key, Class<?> clazz) ;
 	public void put(String key, Object value, int ttlInSeconds) ;
+<<<<<<< HEAD
+=======
+	public List<Object> mget(List<String> keys, Class<?> clazz) ;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public void remove(String key) ;
 
 	default void lpush(String key, Object value , int ttlInSeconds){};

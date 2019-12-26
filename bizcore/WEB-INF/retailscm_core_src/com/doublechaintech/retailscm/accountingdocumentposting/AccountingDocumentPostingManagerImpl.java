@@ -38,6 +38,10 @@ import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 public class AccountingDocumentPostingManagerImpl extends CustomRetailscmCheckerManager implements AccountingDocumentPostingManager {
 	
 	private static final String SERVICE_TYPE = "AccountingDocumentPosting";
+	@Override
+	public AccountingDocumentPostingDAO daoOf(RetailscmUserContext userContext) {
+		return accountingDocumentPostingDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -71,8 +75,8 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
  	
  	public AccountingDocumentPosting loadAccountingDocumentPosting(RetailscmUserContext userContext, String accountingDocumentPostingId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingDocumentPostingManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingDocumentPostingManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -85,8 +89,8 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
  	
  	 public AccountingDocumentPosting searchAccountingDocumentPosting(RetailscmUserContext userContext, String accountingDocumentPostingId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingDocumentPostingManagerException.class);
+ 		checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingDocumentPostingManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -104,10 +108,10 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 		addActions(userContext,accountingDocumentPosting,tokens);
 		
 		
-		AccountingDocumentPosting  accountingDocumentPostingToPresent = userContext.getDAOGroup().getAccountingDocumentPostingDAO().present(accountingDocumentPosting, tokens);
+		AccountingDocumentPosting  accountingDocumentPostingToPresent = accountingDocumentPostingDaoOf(userContext).present(accountingDocumentPosting, tokens);
 		
 		List<BaseEntity> entityListToNaming = accountingDocumentPostingToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getAccountingDocumentPostingDAO().alias(entityListToNaming);
+		accountingDocumentPostingDaoOf(userContext).alias(entityListToNaming);
 		
 		return  accountingDocumentPostingToPresent;
 		
@@ -128,14 +132,14 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 		
  	}
  	protected AccountingDocumentPosting saveAccountingDocumentPosting(RetailscmUserContext userContext, AccountingDocumentPosting accountingDocumentPosting, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getAccountingDocumentPostingDAO().save(accountingDocumentPosting, tokens);
+ 		return accountingDocumentPostingDaoOf(userContext).save(accountingDocumentPosting, tokens);
  	}
  	protected AccountingDocumentPosting loadAccountingDocumentPosting(RetailscmUserContext userContext, String accountingDocumentPostingId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
-		userContext.getChecker().throwExceptionIfHasErrors( AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
+		checkerOf(userContext).throwExceptionIfHasErrors( AccountingDocumentPostingManagerException.class);
 
  
- 		return userContext.getDAOGroup().getAccountingDocumentPostingDAO().load(accountingDocumentPostingId, tokens);
+ 		return accountingDocumentPostingDaoOf(userContext).load(accountingDocumentPostingId, tokens);
  	}
 
 	
@@ -168,19 +172,19 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
  	
  	
 
-
-	public AccountingDocumentPosting createAccountingDocumentPosting(RetailscmUserContext userContext,String who, String comments, Date makeDate) throws Exception
+	public AccountingDocumentPosting createAccountingDocumentPosting(RetailscmUserContext userContext, String who,String comments,Date makeDate) throws Exception
+	//public AccountingDocumentPosting createAccountingDocumentPosting(RetailscmUserContext userContext,String who, String comments, Date makeDate) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfAccountingDocumentPosting(who);
-		userContext.getChecker().checkCommentsOfAccountingDocumentPosting(comments);
-		userContext.getChecker().checkMakeDateOfAccountingDocumentPosting(makeDate);
+		checkerOf(userContext).checkWhoOfAccountingDocumentPosting(who);
+		checkerOf(userContext).checkCommentsOfAccountingDocumentPosting(comments);
+		checkerOf(userContext).checkMakeDateOfAccountingDocumentPosting(makeDate);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 
 
 		AccountingDocumentPosting accountingDocumentPosting=createNewAccountingDocumentPosting();	
@@ -208,21 +212,21 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 
 		
 		
-		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
-		userContext.getChecker().checkVersionOfAccountingDocumentPosting( accountingDocumentPostingVersion);
+		checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
+		checkerOf(userContext).checkVersionOfAccountingDocumentPosting( accountingDocumentPostingVersion);
 		
 
 		if(AccountingDocumentPosting.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfAccountingDocumentPosting(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfAccountingDocumentPosting(parseString(newValueExpr));
 		}
 		if(AccountingDocumentPosting.COMMENTS_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentsOfAccountingDocumentPosting(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentsOfAccountingDocumentPosting(parseString(newValueExpr));
 		}
 		if(AccountingDocumentPosting.MAKE_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMakeDateOfAccountingDocumentPosting(parseDate(newValueExpr));
+			checkerOf(userContext).checkMakeDateOfAccountingDocumentPosting(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 	
 		
 	}
@@ -231,7 +235,7 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	
 	public AccountingDocumentPosting clone(RetailscmUserContext userContext, String fromAccountingDocumentPostingId) throws Exception{
 		
-		return userContext.getDAOGroup().getAccountingDocumentPostingDAO().clone(fromAccountingDocumentPostingId, this.allTokens());
+		return accountingDocumentPostingDaoOf(userContext).clone(fromAccountingDocumentPostingId, this.allTokens());
 	}
 	
 	public AccountingDocumentPosting internalSaveAccountingDocumentPosting(RetailscmUserContext userContext, AccountingDocumentPosting accountingDocumentPosting) throws Exception 
@@ -337,7 +341,7 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String accountingDocumentPostingId, int accountingDocumentPostingVersion) throws Exception{
 			
-		userContext.getDAOGroup().getAccountingDocumentPostingDAO().delete(accountingDocumentPostingId, accountingDocumentPostingVersion);
+		accountingDocumentPostingDaoOf(userContext).delete(accountingDocumentPostingId, accountingDocumentPostingVersion);
 	}
 	
 	public AccountingDocumentPosting forgetByAll(RetailscmUserContext userContext, String accountingDocumentPostingId, int accountingDocumentPostingVersion) throws Exception {
@@ -346,8 +350,9 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	protected AccountingDocumentPosting forgetByAllInternal(RetailscmUserContext userContext,
 			String accountingDocumentPostingId, int accountingDocumentPostingVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getAccountingDocumentPostingDAO().disconnectFromAll(accountingDocumentPostingId, accountingDocumentPostingVersion);
+		return accountingDocumentPostingDaoOf(userContext).disconnectFromAll(accountingDocumentPostingId, accountingDocumentPostingVersion);
 	}
+	
 	
 
 	
@@ -364,7 +369,7 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getAccountingDocumentPostingDAO().deleteAll();
+		return accountingDocumentPostingDaoOf(userContext).deleteAll();
 	}
 
 
@@ -380,7 +385,7 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getAccountingDocumentPostingDAO().planToRemoveAccountingDocumentListWithAccountingPeriod(accountingDocumentPosting, accountingPeriodId, this.emptyOptions());
+				accountingDocumentPostingDaoOf(userContext).planToRemoveAccountingDocumentListWithAccountingPeriod(accountingDocumentPosting, accountingPeriodId, this.emptyOptions());
 
 				accountingDocumentPosting = saveAccountingDocumentPosting(userContext, accountingDocumentPosting, tokens().withAccountingDocumentList().done());
 				return accountingDocumentPosting;
@@ -398,7 +403,61 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getAccountingDocumentPostingDAO().planToRemoveAccountingDocumentListWithDocumentType(accountingDocumentPosting, documentTypeId, this.emptyOptions());
+				accountingDocumentPostingDaoOf(userContext).planToRemoveAccountingDocumentListWithDocumentType(accountingDocumentPosting, documentTypeId, this.emptyOptions());
+
+				accountingDocumentPosting = saveAccountingDocumentPosting(userContext, accountingDocumentPosting, tokens().withAccountingDocumentList().done());
+				return accountingDocumentPosting;
+			}
+	}
+	//disconnect AccountingDocumentPosting with creation in AccountingDocument
+	protected AccountingDocumentPosting breakWithAccountingDocumentByCreation(RetailscmUserContext userContext, String accountingDocumentPostingId, String creationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, allTokens());
+
+			synchronized(accountingDocumentPosting){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				accountingDocumentPostingDaoOf(userContext).planToRemoveAccountingDocumentListWithCreation(accountingDocumentPosting, creationId, this.emptyOptions());
+
+				accountingDocumentPosting = saveAccountingDocumentPosting(userContext, accountingDocumentPosting, tokens().withAccountingDocumentList().done());
+				return accountingDocumentPosting;
+			}
+	}
+	//disconnect AccountingDocumentPosting with confirmation in AccountingDocument
+	protected AccountingDocumentPosting breakWithAccountingDocumentByConfirmation(RetailscmUserContext userContext, String accountingDocumentPostingId, String confirmationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, allTokens());
+
+			synchronized(accountingDocumentPosting){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				accountingDocumentPostingDaoOf(userContext).planToRemoveAccountingDocumentListWithConfirmation(accountingDocumentPosting, confirmationId, this.emptyOptions());
+
+				accountingDocumentPosting = saveAccountingDocumentPosting(userContext, accountingDocumentPosting, tokens().withAccountingDocumentList().done());
+				return accountingDocumentPosting;
+			}
+	}
+	//disconnect AccountingDocumentPosting with auditing in AccountingDocument
+	protected AccountingDocumentPosting breakWithAccountingDocumentByAuditing(RetailscmUserContext userContext, String accountingDocumentPostingId, String auditingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, allTokens());
+
+			synchronized(accountingDocumentPosting){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				accountingDocumentPostingDaoOf(userContext).planToRemoveAccountingDocumentListWithAuditing(accountingDocumentPosting, auditingId, this.emptyOptions());
 
 				accountingDocumentPosting = saveAccountingDocumentPosting(userContext, accountingDocumentPosting, tokens().withAccountingDocumentList().done());
 				return accountingDocumentPosting;
@@ -410,33 +469,35 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	
 	
 
-	protected void checkParamsForAddingAccountingDocument(RetailscmUserContext userContext, String accountingDocumentPostingId, String name, Date accountingDocumentDate, String accountingPeriodId, String documentTypeId,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingAccountingDocument(RetailscmUserContext userContext, String accountingDocumentPostingId, String name, Date accountingDocumentDate, String accountingPeriodId, String documentTypeId, String creationId, String confirmationId, String auditingId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
 
 		
+		checkerOf(userContext).checkNameOfAccountingDocument(name);
 		
-		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
-
+		checkerOf(userContext).checkAccountingDocumentDateOfAccountingDocument(accountingDocumentDate);
 		
-		userContext.getChecker().checkNameOfAccountingDocument(name);
+		checkerOf(userContext).checkAccountingPeriodIdOfAccountingDocument(accountingPeriodId);
 		
-		userContext.getChecker().checkAccountingDocumentDateOfAccountingDocument(accountingDocumentDate);
+		checkerOf(userContext).checkDocumentTypeIdOfAccountingDocument(documentTypeId);
 		
-		userContext.getChecker().checkAccountingPeriodIdOfAccountingDocument(accountingPeriodId);
+		checkerOf(userContext).checkCreationIdOfAccountingDocument(creationId);
 		
-		userContext.getChecker().checkDocumentTypeIdOfAccountingDocument(documentTypeId);
+		checkerOf(userContext).checkConfirmationIdOfAccountingDocument(confirmationId);
+		
+		checkerOf(userContext).checkAuditingIdOfAccountingDocument(auditingId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 
 	
 	}
-	public  AccountingDocumentPosting addAccountingDocument(RetailscmUserContext userContext, String accountingDocumentPostingId, String name, Date accountingDocumentDate, String accountingPeriodId, String documentTypeId, String [] tokensExpr) throws Exception
+	public  AccountingDocumentPosting addAccountingDocument(RetailscmUserContext userContext, String accountingDocumentPostingId, String name, Date accountingDocumentDate, String accountingPeriodId, String documentTypeId, String creationId, String confirmationId, String auditingId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingAccountingDocument(userContext,accountingDocumentPostingId,name, accountingDocumentDate, accountingPeriodId, documentTypeId,tokensExpr);
+		checkParamsForAddingAccountingDocument(userContext,accountingDocumentPostingId,name, accountingDocumentDate, accountingPeriodId, documentTypeId, creationId, confirmationId, auditingId,tokensExpr);
 		
-		AccountingDocument accountingDocument = createAccountingDocument(userContext,name, accountingDocumentDate, accountingPeriodId, documentTypeId);
+		AccountingDocument accountingDocument = createAccountingDocument(userContext,name, accountingDocumentDate, accountingPeriodId, documentTypeId, creationId, confirmationId, auditingId);
 		
 		AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, allTokens());
 		synchronized(accountingDocumentPosting){ 
@@ -451,13 +512,13 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	}
 	protected void checkParamsForUpdatingAccountingDocumentProperties(RetailscmUserContext userContext, String accountingDocumentPostingId,String id,String name,Date accountingDocumentDate,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
-		userContext.getChecker().checkIdOfAccountingDocument(id);
+		checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
+		checkerOf(userContext).checkIdOfAccountingDocument(id);
 		
-		userContext.getChecker().checkNameOfAccountingDocument( name);
-		userContext.getChecker().checkAccountingDocumentDateOfAccountingDocument( accountingDocumentDate);
+		checkerOf(userContext).checkNameOfAccountingDocument( name);
+		checkerOf(userContext).checkAccountingDocumentDateOfAccountingDocument( accountingDocumentDate);
 
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 		
 	}
 	public  AccountingDocumentPosting updateAccountingDocumentProperties(RetailscmUserContext userContext, String accountingDocumentPostingId, String id,String name,Date accountingDocumentDate, String [] tokensExpr) throws Exception
@@ -489,7 +550,7 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	}
 	
 	
-	protected AccountingDocument createAccountingDocument(RetailscmUserContext userContext, String name, Date accountingDocumentDate, String accountingPeriodId, String documentTypeId) throws Exception{
+	protected AccountingDocument createAccountingDocument(RetailscmUserContext userContext, String name, Date accountingDocumentDate, String accountingPeriodId, String documentTypeId, String creationId, String confirmationId, String auditingId) throws Exception{
 
 		AccountingDocument accountingDocument = new AccountingDocument();
 		
@@ -502,7 +563,15 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 		AccountingDocumentType  documentType = new AccountingDocumentType();
 		documentType.setId(documentTypeId);		
 		accountingDocument.setDocumentType(documentType);		
-		accountingDocument.setCurrentStatus("INIT");
+		AccountingDocumentCreation  creation = new AccountingDocumentCreation();
+		creation.setId(creationId);		
+		accountingDocument.setCreation(creation);		
+		AccountingDocumentConfirmation  confirmation = new AccountingDocumentConfirmation();
+		confirmation.setId(confirmationId);		
+		accountingDocument.setConfirmation(confirmation);		
+		AccountingDocumentAuditing  auditing = new AccountingDocumentAuditing();
+		auditing.setId(auditingId);		
+		accountingDocument.setAuditing(auditing);
 	
 		
 		return accountingDocument;
@@ -522,12 +591,18 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	protected void checkParamsForRemovingAccountingDocumentList(RetailscmUserContext userContext, String accountingDocumentPostingId, 
 			String accountingDocumentIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
 		for(String accountingDocumentIdItem: accountingDocumentIds){
 			userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentIdItem);
+=======
+		checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
+		for(String accountingDocumentIdItem: accountingDocumentIds){
+			checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 		
 	}
 	public  AccountingDocumentPosting removeAccountingDocumentList(RetailscmUserContext userContext, String accountingDocumentPostingId, 
@@ -540,7 +615,7 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 			synchronized(accountingDocumentPosting){ 
 				//Will be good when the accountingDocumentPosting loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getAccountingDocumentPostingDAO().planToRemoveAccountingDocumentList(accountingDocumentPosting, accountingDocumentIds, allTokens());
+				accountingDocumentPostingDaoOf(userContext).planToRemoveAccountingDocumentList(accountingDocumentPosting, accountingDocumentIds, allTokens());
 				accountingDocumentPosting = saveAccountingDocumentPosting(userContext, accountingDocumentPosting, tokens().withAccountingDocumentList().done());
 				deleteRelationListInGraph(userContext, accountingDocumentPosting.getAccountingDocumentList());
 				return present(userContext,accountingDocumentPosting, mergedAllTokens(tokensExpr));
@@ -550,10 +625,10 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	protected void checkParamsForRemovingAccountingDocument(RetailscmUserContext userContext, String accountingDocumentPostingId, 
 		String accountingDocumentId, int accountingDocumentVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountingDocumentPosting( accountingDocumentPostingId);
-		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		userContext.getChecker().checkVersionOfAccountingDocument(accountingDocumentVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).checkIdOfAccountingDocumentPosting( accountingDocumentPostingId);
+		checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentId);
+		checkerOf(userContext).checkVersionOfAccountingDocument(accountingDocumentVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 	
 	}
 	public  AccountingDocumentPosting removeAccountingDocument(RetailscmUserContext userContext, String accountingDocumentPostingId, 
@@ -577,10 +652,10 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 	protected void checkParamsForCopyingAccountingDocument(RetailscmUserContext userContext, String accountingDocumentPostingId, 
 		String accountingDocumentId, int accountingDocumentVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfAccountingDocumentPosting( accountingDocumentPostingId);
-		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		userContext.getChecker().checkVersionOfAccountingDocument(accountingDocumentVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).checkIdOfAccountingDocumentPosting( accountingDocumentPostingId);
+		checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentId);
+		checkerOf(userContext).checkVersionOfAccountingDocument(accountingDocumentVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 	
 	}
 	public  AccountingDocumentPosting copyAccountingDocumentFrom(RetailscmUserContext userContext, String accountingDocumentPostingId, 
@@ -609,21 +684,21 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 		
 
 		
-		userContext.getChecker().checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
-		userContext.getChecker().checkIdOfAccountingDocument(accountingDocumentId);
-		userContext.getChecker().checkVersionOfAccountingDocument(accountingDocumentVersion);
+		checkerOf(userContext).checkIdOfAccountingDocumentPosting(accountingDocumentPostingId);
+		checkerOf(userContext).checkIdOfAccountingDocument(accountingDocumentId);
+		checkerOf(userContext).checkVersionOfAccountingDocument(accountingDocumentVersion);
 		
 
 		if(AccountingDocument.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfAccountingDocument(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfAccountingDocument(parseString(newValueExpr));
 		}
 		
 		if(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccountingDocumentDateOfAccountingDocument(parseDate(newValueExpr));
+			checkerOf(userContext).checkAccountingDocumentDateOfAccountingDocument(parseDate(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(AccountingDocumentPostingManagerException.class);
 	
 	}
 	
@@ -658,112 +733,10 @@ public class AccountingDocumentPostingManagerImpl extends CustomRetailscmChecker
 
 	}
 	/*
-	public  AccountingDocumentPosting associateAccountingDocumentListToNewCreation(RetailscmUserContext userContext, String accountingDocumentPostingId, String  accountingDocumentIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, options);
-		
-		AccountingDocumentCreation creation = userContext.getManagerGroup().getAccountingDocumentCreationManager().createAccountingDocumentCreation(userContext,  who,  comments,  makeDate);
-		
-		for(AccountingDocument accountingDocument: accountingDocumentPosting.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateCreation(creation);
-		}
-		return this.internalSaveAccountingDocumentPosting(userContext, accountingDocumentPosting);
-	}	public  AccountingDocumentPosting associateAccountingDocumentListToNewConfirmation(RetailscmUserContext userContext, String accountingDocumentPostingId, String  accountingDocumentIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, options);
-		
-		AccountingDocumentConfirmation confirmation = userContext.getManagerGroup().getAccountingDocumentConfirmationManager().createAccountingDocumentConfirmation(userContext,  who,  comments,  makeDate);
-		
-		for(AccountingDocument accountingDocument: accountingDocumentPosting.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateConfirmation(confirmation);
-		}
-		return this.internalSaveAccountingDocumentPosting(userContext, accountingDocumentPosting);
-	}	public  AccountingDocumentPosting associateAccountingDocumentListToNewAuditing(RetailscmUserContext userContext, String accountingDocumentPostingId, String  accountingDocumentIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, options);
-		
-		AccountingDocumentAuditing auditing = userContext.getManagerGroup().getAccountingDocumentAuditingManager().createAccountingDocumentAuditing(userContext,  who,  comments,  makeDate);
-		
-		for(AccountingDocument accountingDocument: accountingDocumentPosting.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateAuditing(auditing);
-		}
-		return this.internalSaveAccountingDocumentPosting(userContext, accountingDocumentPosting);
-	}
 	*/
 	
-	public  AccountingDocumentPosting associateAccountingDocumentListToCreation(RetailscmUserContext userContext, String accountingDocumentPostingId, String  accountingDocumentIds[], String creationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, options);
-		
-		AccountingDocumentCreation creation = userContext.getManagerGroup().getAccountingDocumentCreationManager().loadAccountingDocumentCreation(userContext,creationId,new String[]{"none"} );
-		
-		for(AccountingDocument accountingDocument: accountingDocumentPosting.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateCreation(creation);
-		}
-		return this.internalSaveAccountingDocumentPosting(userContext, accountingDocumentPosting);
-	}	public  AccountingDocumentPosting associateAccountingDocumentListToConfirmation(RetailscmUserContext userContext, String accountingDocumentPostingId, String  accountingDocumentIds[], String confirmationId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, options);
-		
-		AccountingDocumentConfirmation confirmation = userContext.getManagerGroup().getAccountingDocumentConfirmationManager().loadAccountingDocumentConfirmation(userContext,confirmationId,new String[]{"none"} );
-		
-		for(AccountingDocument accountingDocument: accountingDocumentPosting.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateConfirmation(confirmation);
-		}
-		return this.internalSaveAccountingDocumentPosting(userContext, accountingDocumentPosting);
-	}	public  AccountingDocumentPosting associateAccountingDocumentListToAuditing(RetailscmUserContext userContext, String accountingDocumentPostingId, String  accountingDocumentIds[], String auditingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchAccountingDocumentListWith(AccountingDocument.ID_PROPERTY, "oneof", this.joinArray("|", accountingDocumentIds)).done();
-		
-		AccountingDocumentPosting accountingDocumentPosting = loadAccountingDocumentPosting(userContext, accountingDocumentPostingId, options);
-		
-		AccountingDocumentAuditing auditing = userContext.getManagerGroup().getAccountingDocumentAuditingManager().loadAccountingDocumentAuditing(userContext,auditingId,new String[]{"none"} );
-		
-		for(AccountingDocument accountingDocument: accountingDocumentPosting.getAccountingDocumentList()) {
-			//TODO: need to check if already associated
-			accountingDocument.updateAuditing(auditing);
-		}
-		return this.internalSaveAccountingDocumentPosting(userContext, accountingDocumentPosting);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, AccountingDocumentPosting newCreated) throws Exception{

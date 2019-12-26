@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface PublicHolidayManager{
+public interface PublicHolidayManager extends BaseManager{
 
 		
 
-	public PublicHoliday createPublicHoliday(RetailscmUserContext userContext, String code, String companyId, String name, String description) throws Exception;	
+	public PublicHoliday createPublicHoliday(RetailscmUserContext userContext, String code,String companyId,String name,String description) throws Exception;	
 	public PublicHoliday updatePublicHoliday(RetailscmUserContext userContext,String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public PublicHoliday loadPublicHoliday(RetailscmUserContext userContext, String publicHolidayId, String [] tokensExpr) throws Exception;
 	public PublicHoliday internalSavePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday) throws Exception;

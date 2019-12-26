@@ -81,16 +81,6 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	SalaryGrade(String code, RetailStoreCountryCenter company, String name, String detailDescription)
-	{
-		setCode(code);
-		setCompany(company);
-		setName(name);
-		setDetailDescription(detailDescription);
-
-		this.mEmployeeList = new SmartList<Employee>();
-		this.mEmployeeSalarySheetList = new SmartList<EmployeeSalarySheet>();	
-	}
 	
 	//Support for changing the property
 	

@@ -12,28 +12,40 @@
 		</buildCommand>
 		<buildCommand>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<name>org.eclipse.wst.common.project.facet.core.builder</name>
 =======
 			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
 >>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+=======
+			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<name>org.eclipse.wst.validation.validationbuilder</name>
 =======
 			<name>org.eclipse.wst.common.project.facet.core.builder</name>
 >>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+=======
+			<name>org.eclipse.wst.common.project.facet.core.builder</name>
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
 =======
 			<name>org.eclipse.wst.validation.validationbuilder</name>
 >>>>>>> 502e8b8dfc403300a992b5083e79c722e85d1854
+=======
+			<name>org.eclipse.wst.validation.validationbuilder</name>
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			<arguments>
 			</arguments>
 		</buildCommand>

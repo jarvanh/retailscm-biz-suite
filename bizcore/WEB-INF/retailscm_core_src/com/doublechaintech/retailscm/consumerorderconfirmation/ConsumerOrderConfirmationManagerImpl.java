@@ -31,6 +31,10 @@ import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
 public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderConfirmationManager {
 	
 	private static final String SERVICE_TYPE = "ConsumerOrderConfirmation";
+	@Override
+	public ConsumerOrderConfirmationDAO daoOf(RetailscmUserContext userContext) {
+		return consumerOrderConfirmationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -64,8 +68,8 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
  	
  	public ConsumerOrderConfirmation loadConsumerOrderConfirmation(RetailscmUserContext userContext, String consumerOrderConfirmationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderConfirmationManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderConfirmationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -78,8 +82,8 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
  	
  	 public ConsumerOrderConfirmation searchConsumerOrderConfirmation(RetailscmUserContext userContext, String consumerOrderConfirmationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderConfirmationManagerException.class);
+ 		checkerOf(userContext).checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderConfirmationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -97,10 +101,10 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
 		addActions(userContext,consumerOrderConfirmation,tokens);
 		
 		
-		ConsumerOrderConfirmation  consumerOrderConfirmationToPresent = userContext.getDAOGroup().getConsumerOrderConfirmationDAO().present(consumerOrderConfirmation, tokens);
+		ConsumerOrderConfirmation  consumerOrderConfirmationToPresent = consumerOrderConfirmationDaoOf(userContext).present(consumerOrderConfirmation, tokens);
 		
 		List<BaseEntity> entityListToNaming = consumerOrderConfirmationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getConsumerOrderConfirmationDAO().alias(entityListToNaming);
+		consumerOrderConfirmationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  consumerOrderConfirmationToPresent;
 		
@@ -121,14 +125,14 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
 		
  	}
  	protected ConsumerOrderConfirmation saveConsumerOrderConfirmation(RetailscmUserContext userContext, ConsumerOrderConfirmation consumerOrderConfirmation, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getConsumerOrderConfirmationDAO().save(consumerOrderConfirmation, tokens);
+ 		return consumerOrderConfirmationDaoOf(userContext).save(consumerOrderConfirmation, tokens);
  	}
  	protected ConsumerOrderConfirmation loadConsumerOrderConfirmation(RetailscmUserContext userContext, String consumerOrderConfirmationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
-		userContext.getChecker().throwExceptionIfHasErrors( ConsumerOrderConfirmationManagerException.class);
+		checkerOf(userContext).checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ConsumerOrderConfirmationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getConsumerOrderConfirmationDAO().load(consumerOrderConfirmationId, tokens);
+ 		return consumerOrderConfirmationDaoOf(userContext).load(consumerOrderConfirmationId, tokens);
  	}
 
 	
@@ -157,18 +161,18 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
  	
  	
 
-
-	public ConsumerOrderConfirmation createConsumerOrderConfirmation(RetailscmUserContext userContext,String who, Date confirmTime) throws Exception
+	public ConsumerOrderConfirmation createConsumerOrderConfirmation(RetailscmUserContext userContext, String who,Date confirmTime) throws Exception
+	//public ConsumerOrderConfirmation createConsumerOrderConfirmation(RetailscmUserContext userContext,String who, Date confirmTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfConsumerOrderConfirmation(who);
-		userContext.getChecker().checkConfirmTimeOfConsumerOrderConfirmation(confirmTime);
+		checkerOf(userContext).checkWhoOfConsumerOrderConfirmation(who);
+		checkerOf(userContext).checkConfirmTimeOfConsumerOrderConfirmation(confirmTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderConfirmationManagerException.class);
 
 
 		ConsumerOrderConfirmation consumerOrderConfirmation=createNewConsumerOrderConfirmation();	
@@ -195,18 +199,18 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
 
 		
 		
-		userContext.getChecker().checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
-		userContext.getChecker().checkVersionOfConsumerOrderConfirmation( consumerOrderConfirmationVersion);
+		checkerOf(userContext).checkIdOfConsumerOrderConfirmation(consumerOrderConfirmationId);
+		checkerOf(userContext).checkVersionOfConsumerOrderConfirmation( consumerOrderConfirmationVersion);
 		
 
 		if(ConsumerOrderConfirmation.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfConsumerOrderConfirmation(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfConsumerOrderConfirmation(parseString(newValueExpr));
 		}
 		if(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkConfirmTimeOfConsumerOrderConfirmation(parseDate(newValueExpr));
+			checkerOf(userContext).checkConfirmTimeOfConsumerOrderConfirmation(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ConsumerOrderConfirmationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderConfirmationManagerException.class);
 	
 		
 	}
@@ -215,7 +219,7 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
 	
 	public ConsumerOrderConfirmation clone(RetailscmUserContext userContext, String fromConsumerOrderConfirmationId) throws Exception{
 		
-		return userContext.getDAOGroup().getConsumerOrderConfirmationDAO().clone(fromConsumerOrderConfirmationId, this.allTokens());
+		return consumerOrderConfirmationDaoOf(userContext).clone(fromConsumerOrderConfirmationId, this.allTokens());
 	}
 	
 	public ConsumerOrderConfirmation internalSaveConsumerOrderConfirmation(RetailscmUserContext userContext, ConsumerOrderConfirmation consumerOrderConfirmation) throws Exception 
@@ -320,7 +324,7 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderConfirmationId, int consumerOrderConfirmationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getConsumerOrderConfirmationDAO().delete(consumerOrderConfirmationId, consumerOrderConfirmationVersion);
+		consumerOrderConfirmationDaoOf(userContext).delete(consumerOrderConfirmationId, consumerOrderConfirmationVersion);
 	}
 	
 	public ConsumerOrderConfirmation forgetByAll(RetailscmUserContext userContext, String consumerOrderConfirmationId, int consumerOrderConfirmationVersion) throws Exception {
@@ -329,8 +333,9 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
 	protected ConsumerOrderConfirmation forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderConfirmationId, int consumerOrderConfirmationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getConsumerOrderConfirmationDAO().disconnectFromAll(consumerOrderConfirmationId, consumerOrderConfirmationVersion);
+		return consumerOrderConfirmationDaoOf(userContext).disconnectFromAll(consumerOrderConfirmationId, consumerOrderConfirmationVersion);
 	}
+	
 	
 
 	
@@ -347,7 +352,7 @@ public class ConsumerOrderConfirmationManagerImpl extends CustomRetailscmChecker
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getConsumerOrderConfirmationDAO().deleteAll();
+		return consumerOrderConfirmationDaoOf(userContext).deleteAll();
 	}
 
 

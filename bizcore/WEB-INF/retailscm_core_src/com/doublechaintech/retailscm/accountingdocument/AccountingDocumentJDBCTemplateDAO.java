@@ -150,6 +150,11 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<AccountingDocument> loadAll() {
+	    return this.loadAll(getAccountingDocumentMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -640,12 +645,21 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			getOriginalVoucherDAO().analyzeOriginalVoucherByBelongsTo(originalVoucherList, accountingDocument.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return accountingDocument;
 	
 	}	
 	
 		
+=======
+		
+		return accountingDocument;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceAccountingDocumentLineList(SmartList<AccountingDocumentLine> accountingDocumentLineList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1097,7 +1111,7 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		return prepareAccountingDocumentCreateParameters(accountingDocument);
  	}
  	protected Object[] prepareAccountingDocumentUpdateParameters(AccountingDocument accountingDocument){
- 		Object[] parameters = new Object[12];
+ 		Object[] parameters = new Object[11];
  
  		parameters[0] = accountingDocument.getName();
  		parameters[1] = accountingDocument.getAccountingDocumentDate(); 	
@@ -1124,16 +1138,15 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		if(accountingDocument.getPosting() != null){
  			parameters[7] = accountingDocument.getPosting().getId();
  		}
- 
- 		parameters[8] = accountingDocument.getCurrentStatus();		
- 		parameters[9] = accountingDocument.nextVersion();
- 		parameters[10] = accountingDocument.getId();
- 		parameters[11] = accountingDocument.getVersion();
+ 		
+ 		parameters[8] = accountingDocument.nextVersion();
+ 		parameters[9] = accountingDocument.getId();
+ 		parameters[10] = accountingDocument.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareAccountingDocumentCreateParameters(AccountingDocument accountingDocument){
-		Object[] parameters = new Object[10];
+		Object[] parameters = new Object[9];
 		String newAccountingDocumentId=getNextId();
 		accountingDocument.setId(newAccountingDocumentId);
 		parameters[0] =  accountingDocument.getId();
@@ -1169,8 +1182,7 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  			parameters[8] = accountingDocument.getPosting().getId();
  		
  		}
- 		
- 		parameters[9] = accountingDocument.getCurrentStatus();		
+ 				
  				
  		return parameters;
  	}
@@ -1358,6 +1370,138 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 
 
+	//disconnect AccountingDocument with creation in OriginalVoucher
+	public AccountingDocument planToRemoveOriginalVoucherListWithCreation(AccountingDocument accountingDocument, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocument.getId());
+		key.put(OriginalVoucher.CREATION_PROPERTY, creationId);
+		
+		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
+				findOriginalVoucherWithKey(key, options);
+		if(externalOriginalVoucherList == null){
+			return accountingDocument;
+		}
+		if(externalOriginalVoucherList.isEmpty()){
+			return accountingDocument;
+		}
+		
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
+			originalVoucherItem.clearCreation();
+			originalVoucherItem.clearBelongsTo();
+			
+		}
+		
+		
+		SmartList<OriginalVoucher> originalVoucherList = accountingDocument.getOriginalVoucherList();		
+		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
+		return accountingDocument;
+	}
+	
+	public int countOriginalVoucherListWithCreation(String accountingDocumentId, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocumentId);
+		key.put(OriginalVoucher.CREATION_PROPERTY, creationId);
+		
+		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect AccountingDocument with confirmation in OriginalVoucher
+	public AccountingDocument planToRemoveOriginalVoucherListWithConfirmation(AccountingDocument accountingDocument, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocument.getId());
+		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, confirmationId);
+		
+		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
+				findOriginalVoucherWithKey(key, options);
+		if(externalOriginalVoucherList == null){
+			return accountingDocument;
+		}
+		if(externalOriginalVoucherList.isEmpty()){
+			return accountingDocument;
+		}
+		
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
+			originalVoucherItem.clearConfirmation();
+			originalVoucherItem.clearBelongsTo();
+			
+		}
+		
+		
+		SmartList<OriginalVoucher> originalVoucherList = accountingDocument.getOriginalVoucherList();		
+		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
+		return accountingDocument;
+	}
+	
+	public int countOriginalVoucherListWithConfirmation(String accountingDocumentId, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocumentId);
+		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, confirmationId);
+		
+		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect AccountingDocument with auditing in OriginalVoucher
+	public AccountingDocument planToRemoveOriginalVoucherListWithAuditing(AccountingDocument accountingDocument, String auditingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocument.getId());
+		key.put(OriginalVoucher.AUDITING_PROPERTY, auditingId);
+		
+		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
+				findOriginalVoucherWithKey(key, options);
+		if(externalOriginalVoucherList == null){
+			return accountingDocument;
+		}
+		if(externalOriginalVoucherList.isEmpty()){
+			return accountingDocument;
+		}
+		
+		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
+			originalVoucherItem.clearAuditing();
+			originalVoucherItem.clearBelongsTo();
+			
+		}
+		
+		
+		SmartList<OriginalVoucher> originalVoucherList = accountingDocument.getOriginalVoucherList();		
+		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
+		return accountingDocument;
+	}
+	
+	public int countOriginalVoucherListWithAuditing(String accountingDocumentId, String auditingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocumentId);
+		key.put(OriginalVoucher.AUDITING_PROPERTY, auditingId);
+		
+		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
+		return count;
+	}
+	
 	public AccountingDocument planToRemoveAccountingDocumentLineList(AccountingDocument accountingDocument, String accountingDocumentLineIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();

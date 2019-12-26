@@ -75,14 +75,6 @@ public class SupplyOrderShipment extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderShipment(String who, Date shipTime)
-	{
-		setWho(who);
-		setShipTime(shipTime);
-
-		this.mConsumerOrderList = new SmartList<ConsumerOrder>();
-		this.mSupplyOrderList = new SmartList<SupplyOrder>();	
-	}
 	
 	//Support for changing the property
 	

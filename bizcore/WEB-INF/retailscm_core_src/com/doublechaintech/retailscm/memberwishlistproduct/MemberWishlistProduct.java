@@ -71,12 +71,6 @@ public class MemberWishlistProduct extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
-	public 	MemberWishlistProduct(String name, MemberWishlist owner)
-	{
-		setName(name);
-		setOwner(owner);
-	
-	}
 	
 	//Support for changing the property
 	

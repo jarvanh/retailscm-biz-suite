@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface GoodsPackagingManager{
+public interface GoodsPackagingManager extends BaseManager{
 
 		
 
-	public GoodsPackaging createGoodsPackaging(RetailscmUserContext userContext, String packageName, String rfid, Date packageTime, String description) throws Exception;	
+	public GoodsPackaging createGoodsPackaging(RetailscmUserContext userContext, String packageName,String rfid,Date packageTime,String description) throws Exception;	
 	public GoodsPackaging updateGoodsPackaging(RetailscmUserContext userContext,String goodsPackagingId, int goodsPackagingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String goodsPackagingId, String [] tokensExpr) throws Exception;
 	public GoodsPackaging internalSaveGoodsPackaging(RetailscmUserContext userContext, GoodsPackaging goodsPackaging) throws Exception;

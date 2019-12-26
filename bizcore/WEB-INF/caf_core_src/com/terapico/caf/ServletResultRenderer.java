@@ -36,7 +36,12 @@ public class ServletResultRenderer {
 			throw new IllegalArgumentException("The return object is not a blob");
 		}
 		BlobObject blob = (BlobObject) actualResult;
+<<<<<<< HEAD
 
+=======
+		response.addHeader("X-Env-Type", result.getEnvType());
+		response.addHeader("X-Env-Name", result.getEnvName());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		response.setCharacterEncoding(null);
 		response.setContentType(blob.getMimeType());
 		response.getOutputStream().write(blob.getData());
@@ -176,6 +181,7 @@ public class ServletResultRenderer {
 	private ObjectMapper objectMapper = null;
 
 	protected ObjectMapper getObjectMapper() {
+<<<<<<< HEAD
 		if (objectMapper == null) {
 			objectMapper = new ObjectMapper();
 			return objectMapper;
@@ -185,6 +191,18 @@ public class ServletResultRenderer {
 
 		return objectMapper.copy();
 
+=======
+		//// objectMapper = null;
+		// if(objectMapper == null){
+		// objectMapper = new ObjectMapper();
+		// return objectMapper;
+		// //DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		// //objectMapper.setDateFormat(df);
+		// }
+		//
+		// return objectMapper.copy();
+		return new ObjectMapper();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 
 	protected void fillOrigin(InvocationResult result, HttpServletRequest request, HttpServletResponse response) {
@@ -195,6 +213,7 @@ public class ServletResultRenderer {
 		response.addHeader("Access-Control-Allow-Origin", origin);
 		response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 		// Access-Control-Expose-Headers
+<<<<<<< HEAD
 		response.addHeader("Access-Control-Expose-Headers", "Set-Cookie");
 		response.addHeader("Access-Control-Allow-Credentials", "true");
 
@@ -205,7 +224,21 @@ public class ServletResultRenderer {
 		}
 		return "<Object>";
 		
+=======
+		response.addHeader("Access-Control-Expose-Headers", "Set-Cookie, X-Redirect, X-Env-Type, X-Env-Name");
+		response.addHeader("Access-Control-Allow-Credentials", "true");
+
 	}
+
+	protected String renderLogResult(Object value) {
+		if (ReflectionTool.isPrimaryType(value.getClass())) {
+			return value.toString();
+		}
+		return "<Object>";
+
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+	}
+
 	protected void renderJson(InvocationResult result, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -218,6 +251,7 @@ public class ServletResultRenderer {
 			renderClass = result.getResponseHeader().get("X-Class");
 		}
 		response.addHeader("X-Class", renderClass);
+<<<<<<< HEAD
 		response.addHeader("Access-Control-Expose-Headers", "X-Class");
 		// Access-Control-Expose-Headers
 		
@@ -225,6 +259,16 @@ public class ServletResultRenderer {
 		//BeanCreationException
 		
 		
+=======
+		response.addHeader("X-Env-Type", result.getEnvType());
+		response.addHeader("X-Env-Name", result.getEnvName());
+		response.addHeader("Access-Control-Expose-Headers", "X-Class, X-Redirect, X-Env-Type, X-Env-Name");
+		// Access-Control-Expose-Headers
+
+		log("Render JSON result with class: " + renderClass + "(" + renderLogResult(result.getActualResult()) + ")");
+		// BeanCreationException
+
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		// Access-Control-Allow-Origin
 		fillOrigin(result, request, response);
 		// Access-Control-Allow-Credentials: true
@@ -238,9 +282,15 @@ public class ServletResultRenderer {
 			}
 		}
 
+<<<<<<< HEAD
 		
 		
 		
+=======
+		
+		
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		// Gson gson = new Gson();
 		ObjectMapper mapper = getObjectMapper();
 		// Type t=new TypeToken<weather.WeatherResponse>().getType();
@@ -281,6 +331,15 @@ public class ServletResultRenderer {
 		return message;
 	}
 
+	protected Message constructionBeanCreateMessage() {
+		Message message =  new Message();
+		message.setLevel("fatal");
+		message.setSourcePosition("spring configuration xml files");
+		message.setBody("Bean Creation Error, please check it from server side");
+		
+		return message;
+	}
+
 	private void log(String header) {
 		// TODO Auto-generated method stub
 		System.out.println(header);
@@ -295,6 +354,8 @@ public class ServletResultRenderer {
 		if (result.getResponseHeader() != null && result.getResponseHeader().containsKey("X-Class")) {
 			renderClass = result.getResponseHeader().get("X-Class");
 		}
+		response.addHeader("X-Env-Type", result.getEnvType());
+		response.addHeader("X-Env-Name", result.getEnvName());
 		response.addHeader("X-Class", renderClass);
 		// 其他header
 		if (result.getResponseHeader() != null) {
@@ -318,6 +379,8 @@ public class ServletResultRenderer {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/javascript");
 		response.addHeader("Cache-Control", "no-cache, must-revalidate");
+		response.addHeader("X-Env-Type", result.getEnvType());
+		response.addHeader("X-Env-Name", result.getEnvName());
 		// 其他header
 		if (result.getResponseHeader() != null) {
 			for (String hName : result.getResponseHeader().keySet()) {

@@ -78,15 +78,6 @@ public class TrainingCourseType extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-	public 	TrainingCourseType(String code, RetailStoreCountryCenter company, String name, String description)
-	{
-		setCode(code);
-		setCompany(company);
-		setName(name);
-		setDescription(description);
-
-		this.mCompanyTrainingList = new SmartList<CompanyTraining>();	
-	}
 	
 	//Support for changing the property
 	

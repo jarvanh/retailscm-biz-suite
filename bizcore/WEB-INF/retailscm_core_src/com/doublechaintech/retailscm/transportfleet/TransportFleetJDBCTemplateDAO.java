@@ -116,6 +116,11 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	}
 	*/
 	
+	public SmartList<TransportFleet> loadAll() {
+	    return this.loadAll(getTransportFleetMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -438,7 +443,10 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			return transportFleet;
 		}
 
+<<<<<<< HEAD
 		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<TransportTruck> transportTruckList = transportFleet.getTransportTruckList();
 		if(transportTruckList != null){
@@ -446,6 +454,15 @@ public class TransportFleetJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 			
 		}
 		
+<<<<<<< HEAD
+=======
+		SmartList<TransportTruck> transportTruckList = transportFleet.getTransportTruckList();
+		if(transportTruckList != null){
+			getTransportTruckDAO().analyzeTransportTruckByOwner(transportTruckList, transportFleet.getId(), options);
+			
+		}
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return transportFleet;
 	
 	}	

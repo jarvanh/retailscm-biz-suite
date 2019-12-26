@@ -31,6 +31,10 @@ import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
 public class ViewManagerImpl extends CustomRetailscmCheckerManager implements ViewManager {
 	
 	private static final String SERVICE_TYPE = "View";
+	@Override
+	public ViewDAO daoOf(RetailscmUserContext userContext) {
+		return viewDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -64,8 +68,8 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
  	
  	public View loadView(RetailscmUserContext userContext, String viewId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfView(viewId);
-		userContext.getChecker().throwExceptionIfHasErrors( ViewManagerException.class);
+ 		checkerOf(userContext).checkIdOfView(viewId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ViewManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -78,8 +82,8 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
  	
  	 public View searchView(RetailscmUserContext userContext, String viewId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfView(viewId);
-		userContext.getChecker().throwExceptionIfHasErrors( ViewManagerException.class);
+ 		checkerOf(userContext).checkIdOfView(viewId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ViewManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -97,10 +101,10 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
 		addActions(userContext,view,tokens);
 		
 		
-		View  viewToPresent = userContext.getDAOGroup().getViewDAO().present(view, tokens);
+		View  viewToPresent = viewDaoOf(userContext).present(view, tokens);
 		
 		List<BaseEntity> entityListToNaming = viewToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getViewDAO().alias(entityListToNaming);
+		viewDaoOf(userContext).alias(entityListToNaming);
 		
 		return  viewToPresent;
 		
@@ -121,14 +125,14 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
 		
  	}
  	protected View saveView(RetailscmUserContext userContext, View view, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getViewDAO().save(view, tokens);
+ 		return viewDaoOf(userContext).save(view, tokens);
  	}
  	protected View loadView(RetailscmUserContext userContext, String viewId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfView(viewId);
-		userContext.getChecker().throwExceptionIfHasErrors( ViewManagerException.class);
+		checkerOf(userContext).checkIdOfView(viewId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ViewManagerException.class);
 
  
- 		return userContext.getDAOGroup().getViewDAO().load(viewId, tokens);
+ 		return viewDaoOf(userContext).load(viewId, tokens);
  	}
 
 	
@@ -157,19 +161,19 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
  	
  	
 
-
-	public View createView(RetailscmUserContext userContext,String who, String assessment, Date interviewTime) throws Exception
+	public View createView(RetailscmUserContext userContext, String who,String assessment,Date interviewTime) throws Exception
+	//public View createView(RetailscmUserContext userContext,String who, String assessment, Date interviewTime) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfView(who);
-		userContext.getChecker().checkAssessmentOfView(assessment);
-		userContext.getChecker().checkInterviewTimeOfView(interviewTime);
+		checkerOf(userContext).checkWhoOfView(who);
+		checkerOf(userContext).checkAssessmentOfView(assessment);
+		checkerOf(userContext).checkInterviewTimeOfView(interviewTime);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ViewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ViewManagerException.class);
 
 
 		View view=createNewView();	
@@ -197,21 +201,21 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
 
 		
 		
-		userContext.getChecker().checkIdOfView(viewId);
-		userContext.getChecker().checkVersionOfView( viewVersion);
+		checkerOf(userContext).checkIdOfView(viewId);
+		checkerOf(userContext).checkVersionOfView( viewVersion);
 		
 
 		if(View.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfView(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfView(parseString(newValueExpr));
 		}
 		if(View.ASSESSMENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkAssessmentOfView(parseString(newValueExpr));
+			checkerOf(userContext).checkAssessmentOfView(parseString(newValueExpr));
 		}
 		if(View.INTERVIEW_TIME_PROPERTY.equals(property)){
-			userContext.getChecker().checkInterviewTimeOfView(parseDate(newValueExpr));
+			checkerOf(userContext).checkInterviewTimeOfView(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ViewManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ViewManagerException.class);
 	
 		
 	}
@@ -220,7 +224,7 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
 	
 	public View clone(RetailscmUserContext userContext, String fromViewId) throws Exception{
 		
-		return userContext.getDAOGroup().getViewDAO().clone(fromViewId, this.allTokens());
+		return viewDaoOf(userContext).clone(fromViewId, this.allTokens());
 	}
 	
 	public View internalSaveView(RetailscmUserContext userContext, View view) throws Exception 
@@ -325,7 +329,7 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String viewId, int viewVersion) throws Exception{
 			
-		userContext.getDAOGroup().getViewDAO().delete(viewId, viewVersion);
+		viewDaoOf(userContext).delete(viewId, viewVersion);
 	}
 	
 	public View forgetByAll(RetailscmUserContext userContext, String viewId, int viewVersion) throws Exception {
@@ -334,8 +338,9 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
 	protected View forgetByAllInternal(RetailscmUserContext userContext,
 			String viewId, int viewVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getViewDAO().disconnectFromAll(viewId, viewVersion);
+		return viewDaoOf(userContext).disconnectFromAll(viewId, viewVersion);
 	}
+	
 	
 
 	
@@ -352,7 +357,7 @@ public class ViewManagerImpl extends CustomRetailscmCheckerManager implements Vi
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getViewDAO().deleteAll();
+		return viewDaoOf(userContext).deleteAll();
 	}
 
 

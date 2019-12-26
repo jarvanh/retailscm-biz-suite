@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.potentialcustomer;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -21,9 +22,9 @@ import com.doublechaintech.retailscm.citypartner.CityPartnerDAO;
 import com.doublechaintech.retailscm.potentialcustomercontactperson.PotentialCustomerContactPersonDAO;
 
 
-public interface PotentialCustomerDAO{
+public interface PotentialCustomerDAO extends BaseDAO{
 
-	
+	public SmartList<PotentialCustomer> loadAll();
 	public PotentialCustomer load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<PotentialCustomer> potentialCustomerList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

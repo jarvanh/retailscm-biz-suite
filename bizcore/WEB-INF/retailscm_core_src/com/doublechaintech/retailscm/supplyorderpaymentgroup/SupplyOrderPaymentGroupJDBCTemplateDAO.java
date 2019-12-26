@@ -53,6 +53,11 @@ public class SupplyOrderPaymentGroupJDBCTemplateDAO extends RetailscmBaseDAOImpl
 	}
 	*/
 	
+	public SmartList<SupplyOrderPaymentGroup> loadAll() {
+	    return this.loadAll(getSupplyOrderPaymentGroupMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

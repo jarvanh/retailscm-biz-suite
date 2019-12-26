@@ -35,6 +35,10 @@ import com.doublechaintech.retailscm.product.Product;
 public class ProductManagerImpl extends CustomRetailscmCheckerManager implements ProductManager {
 	
 	private static final String SERVICE_TYPE = "Product";
+	@Override
+	public ProductDAO daoOf(RetailscmUserContext userContext) {
+		return productDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -68,8 +72,8 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	public Product loadProduct(RetailscmUserContext userContext, String productId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().throwExceptionIfHasErrors( ProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ProductManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -82,8 +86,8 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	 public Product searchProduct(RetailscmUserContext userContext, String productId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().throwExceptionIfHasErrors( ProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ProductManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -101,10 +105,10 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		addActions(userContext,product,tokens);
 		
 		
-		Product  productToPresent = userContext.getDAOGroup().getProductDAO().present(product, tokens);
+		Product  productToPresent = productDaoOf(userContext).present(product, tokens);
 		
 		List<BaseEntity> entityListToNaming = productToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getProductDAO().alias(entityListToNaming);
+		productDaoOf(userContext).alias(entityListToNaming);
 		
 		return  productToPresent;
 		
@@ -125,14 +129,14 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		
  	}
  	protected Product saveProduct(RetailscmUserContext userContext, Product product, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getProductDAO().save(product, tokens);
+ 		return productDaoOf(userContext).save(product, tokens);
  	}
  	protected Product loadProduct(RetailscmUserContext userContext, String productId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().throwExceptionIfHasErrors( ProductManagerException.class);
+		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ProductManagerException.class);
 
  
- 		return userContext.getDAOGroup().getProductDAO().load(productId, tokens);
+ 		return productDaoOf(userContext).load(productId, tokens);
  	}
 
 	
@@ -166,21 +170,21 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	
 
-
-	public Product createProduct(RetailscmUserContext userContext,String name, String parentCategoryId, String origin, String remark, String brand, String picture) throws Exception
+	public Product createProduct(RetailscmUserContext userContext, String name,String parentCategoryId,String origin,String remark,String brand,String picture) throws Exception
+	//public Product createProduct(RetailscmUserContext userContext,String name, String parentCategoryId, String origin, String remark, String brand, String picture) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfProduct(name);
-		userContext.getChecker().checkOriginOfProduct(origin);
-		userContext.getChecker().checkRemarkOfProduct(remark);
-		userContext.getChecker().checkBrandOfProduct(brand);
-		userContext.getChecker().checkPictureOfProduct(picture);
+		checkerOf(userContext).checkNameOfProduct(name);
+		checkerOf(userContext).checkOriginOfProduct(origin);
+		checkerOf(userContext).checkRemarkOfProduct(remark);
+		checkerOf(userContext).checkBrandOfProduct(brand);
+		checkerOf(userContext).checkPictureOfProduct(picture);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 
 
 		Product product=createNewProduct();	
@@ -216,29 +220,29 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 
 		
 		
-		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().checkVersionOfProduct( productVersion);
+		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).checkVersionOfProduct( productVersion);
 		
 
 		if(Product.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfProduct(parseString(newValueExpr));
 		}		
 
 		
 		if(Product.ORIGIN_PROPERTY.equals(property)){
-			userContext.getChecker().checkOriginOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkOriginOfProduct(parseString(newValueExpr));
 		}
 		if(Product.REMARK_PROPERTY.equals(property)){
-			userContext.getChecker().checkRemarkOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkRemarkOfProduct(parseString(newValueExpr));
 		}
 		if(Product.BRAND_PROPERTY.equals(property)){
-			userContext.getChecker().checkBrandOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkBrandOfProduct(parseString(newValueExpr));
 		}
 		if(Product.PICTURE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPictureOfProduct(parseString(newValueExpr));
+			checkerOf(userContext).checkPictureOfProduct(parseString(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 	
 		
 	}
@@ -247,7 +251,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	public Product clone(RetailscmUserContext userContext, String fromProductId) throws Exception{
 		
-		return userContext.getDAOGroup().getProductDAO().clone(fromProductId, this.allTokens());
+		return productDaoOf(userContext).clone(fromProductId, this.allTokens());
 	}
 	
 	public Product internalSaveProduct(RetailscmUserContext userContext, Product product) throws Exception 
@@ -346,9 +350,9 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForTransferingAnotherParentCategory(RetailscmUserContext userContext, String productId, String anotherParentCategoryId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfProduct(productId);
- 		userContext.getChecker().checkIdOfLevelThreeCategory(anotherParentCategoryId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+ 		checkerOf(userContext).checkIdOfProduct(productId);
+ 		checkerOf(userContext).checkIdOfLevelThreeCategory(anotherParentCategoryId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
  		
  	}
  	public Product transferToAnotherParentCategory(RetailscmUserContext userContext, String productId, String anotherParentCategoryId) throws Exception
@@ -385,7 +389,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<LevelThreeCategory> candidateList = userContext.getDAOGroup().getLevelThreeCategoryDAO().requestCandidateLevelThreeCategoryForProduct(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<LevelThreeCategory> candidateList = levelThreeCategoryDaoOf(userContext).requestCandidateLevelThreeCategoryForProduct(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -398,7 +402,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
  	protected LevelThreeCategory loadLevelThreeCategory(RetailscmUserContext userContext, String newParentCategoryId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getLevelThreeCategoryDAO().load(newParentCategoryId, options);
+ 		return levelThreeCategoryDaoOf(userContext).load(newParentCategoryId, options);
  	}
  	
  	
@@ -412,7 +416,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String productId, int productVersion) throws Exception{
 			
-		userContext.getDAOGroup().getProductDAO().delete(productId, productVersion);
+		productDaoOf(userContext).delete(productId, productVersion);
 	}
 	
 	public Product forgetByAll(RetailscmUserContext userContext, String productId, int productVersion) throws Exception {
@@ -421,8 +425,9 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Product forgetByAllInternal(RetailscmUserContext userContext,
 			String productId, int productVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getProductDAO().disconnectFromAll(productId, productVersion);
+		return productDaoOf(userContext).disconnectFromAll(productId, productVersion);
 	}
+	
 	
 
 	
@@ -439,7 +444,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getProductDAO().deleteAll();
+		return productDaoOf(userContext).deleteAll();
 	}
 
 
@@ -451,28 +456,24 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 
 	protected void checkParamsForAddingSku(RetailscmUserContext userContext, String productId, String name, String size, String barcode, String packageType, String netContent, BigDecimal price, String picture,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfProduct(productId);
 
 		
+		checkerOf(userContext).checkNameOfSku(name);
 		
-		userContext.getChecker().checkIdOfProduct(productId);
-
+		checkerOf(userContext).checkSizeOfSku(size);
 		
-		userContext.getChecker().checkNameOfSku(name);
+		checkerOf(userContext).checkBarcodeOfSku(barcode);
 		
-		userContext.getChecker().checkSizeOfSku(size);
+		checkerOf(userContext).checkPackageTypeOfSku(packageType);
 		
-		userContext.getChecker().checkBarcodeOfSku(barcode);
+		checkerOf(userContext).checkNetContentOfSku(netContent);
 		
-		userContext.getChecker().checkPackageTypeOfSku(packageType);
+		checkerOf(userContext).checkPriceOfSku(price);
 		
-		userContext.getChecker().checkNetContentOfSku(netContent);
-		
-		userContext.getChecker().checkPriceOfSku(price);
-		
-		userContext.getChecker().checkPictureOfSku(picture);
+		checkerOf(userContext).checkPictureOfSku(picture);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 
 	
 	}
@@ -496,18 +497,18 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	}
 	protected void checkParamsForUpdatingSkuProperties(RetailscmUserContext userContext, String productId,String id,String name,String size,String barcode,String packageType,String netContent,BigDecimal price,String picture,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().checkIdOfSku(id);
+		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).checkIdOfSku(id);
 		
-		userContext.getChecker().checkNameOfSku( name);
-		userContext.getChecker().checkSizeOfSku( size);
-		userContext.getChecker().checkBarcodeOfSku( barcode);
-		userContext.getChecker().checkPackageTypeOfSku( packageType);
-		userContext.getChecker().checkNetContentOfSku( netContent);
-		userContext.getChecker().checkPriceOfSku( price);
-		userContext.getChecker().checkPictureOfSku( picture);
+		checkerOf(userContext).checkNameOfSku( name);
+		checkerOf(userContext).checkSizeOfSku( size);
+		checkerOf(userContext).checkBarcodeOfSku( barcode);
+		checkerOf(userContext).checkPackageTypeOfSku( packageType);
+		checkerOf(userContext).checkNetContentOfSku( netContent);
+		checkerOf(userContext).checkPriceOfSku( price);
+		checkerOf(userContext).checkPictureOfSku( picture);
 
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 		
 	}
 	public  Product updateSkuProperties(RetailscmUserContext userContext, String productId, String id,String name,String size,String barcode,String packageType,String netContent,BigDecimal price,String picture, String [] tokensExpr) throws Exception
@@ -575,12 +576,18 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingSkuList(RetailscmUserContext userContext, String productId, 
 			String skuIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfProduct(productId);
 		for(String skuIdItem: skuIds){
 			userContext.getChecker().checkIdOfSku(skuIdItem);
+=======
+		checkerOf(userContext).checkIdOfProduct(productId);
+		for(String skuIdItem: skuIds){
+			checkerOf(userContext).checkIdOfSku(skuIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 		
 	}
 	public  Product removeSkuList(RetailscmUserContext userContext, String productId, 
@@ -593,7 +600,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 			synchronized(product){ 
 				//Will be good when the product loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getProductDAO().planToRemoveSkuList(product, skuIds, allTokens());
+				productDaoOf(userContext).planToRemoveSkuList(product, skuIds, allTokens());
 				product = saveProduct(userContext, product, tokens().withSkuList().done());
 				deleteRelationListInGraph(userContext, product.getSkuList());
 				return present(userContext,product, mergedAllTokens(tokensExpr));
@@ -603,10 +610,10 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForRemovingSku(RetailscmUserContext userContext, String productId, 
 		String skuId, int skuVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfProduct( productId);
-		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().checkVersionOfSku(skuVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).checkIdOfProduct( productId);
+		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).checkVersionOfSku(skuVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 	
 	}
 	public  Product removeSku(RetailscmUserContext userContext, String productId, 
@@ -630,10 +637,10 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	protected void checkParamsForCopyingSku(RetailscmUserContext userContext, String productId, 
 		String skuId, int skuVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfProduct( productId);
-		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().checkVersionOfSku(skuVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).checkIdOfProduct( productId);
+		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).checkVersionOfSku(skuVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 	
 	}
 	public  Product copySkuFrom(RetailscmUserContext userContext, String productId, 
@@ -662,41 +669,41 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		
 
 		
-		userContext.getChecker().checkIdOfProduct(productId);
-		userContext.getChecker().checkIdOfSku(skuId);
-		userContext.getChecker().checkVersionOfSku(skuVersion);
+		checkerOf(userContext).checkIdOfProduct(productId);
+		checkerOf(userContext).checkIdOfSku(skuId);
+		checkerOf(userContext).checkVersionOfSku(skuVersion);
 		
 
 		if(Sku.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfSku(parseString(newValueExpr));
 		}
 		
 		if(Sku.SIZE_PROPERTY.equals(property)){
-			userContext.getChecker().checkSizeOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkSizeOfSku(parseString(newValueExpr));
 		}
 		
 		if(Sku.BARCODE_PROPERTY.equals(property)){
-			userContext.getChecker().checkBarcodeOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkBarcodeOfSku(parseString(newValueExpr));
 		}
 		
 		if(Sku.PACKAGE_TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPackageTypeOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkPackageTypeOfSku(parseString(newValueExpr));
 		}
 		
 		if(Sku.NET_CONTENT_PROPERTY.equals(property)){
-			userContext.getChecker().checkNetContentOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkNetContentOfSku(parseString(newValueExpr));
 		}
 		
 		if(Sku.PRICE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPriceOfSku(parseBigDecimal(newValueExpr));
+			checkerOf(userContext).checkPriceOfSku(parseBigDecimal(newValueExpr));
 		}
 		
 		if(Sku.PICTURE_PROPERTY.equals(property)){
-			userContext.getChecker().checkPictureOfSku(parseString(newValueExpr));
+			checkerOf(userContext).checkPictureOfSku(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ProductManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 	
 	}
 	

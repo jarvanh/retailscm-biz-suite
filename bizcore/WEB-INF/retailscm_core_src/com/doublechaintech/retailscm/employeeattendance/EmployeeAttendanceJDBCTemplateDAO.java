@@ -53,6 +53,11 @@ public class EmployeeAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<EmployeeAttendance> loadAll() {
+	    return this.loadAll(getEmployeeAttendanceMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

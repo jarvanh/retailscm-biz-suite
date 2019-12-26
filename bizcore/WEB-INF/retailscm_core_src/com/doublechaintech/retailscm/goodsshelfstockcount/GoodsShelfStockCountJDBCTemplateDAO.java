@@ -74,6 +74,11 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmBaseDAOImpl im
 	}
 	*/
 	
+	public SmartList<GoodsShelfStockCount> loadAll() {
+	    return this.loadAll(getGoodsShelfStockCountMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

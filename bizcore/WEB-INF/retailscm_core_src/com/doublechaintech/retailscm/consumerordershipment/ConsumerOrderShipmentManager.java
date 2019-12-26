@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface ConsumerOrderShipmentManager{
+public interface ConsumerOrderShipmentManager extends BaseManager{
 
 		
 
-	public ConsumerOrderShipment createConsumerOrderShipment(RetailscmUserContext userContext, String who, Date shipTime) throws Exception;	
+	public ConsumerOrderShipment createConsumerOrderShipment(RetailscmUserContext userContext, String who,Date shipTime) throws Exception;	
 	public ConsumerOrderShipment updateConsumerOrderShipment(RetailscmUserContext userContext,String consumerOrderShipmentId, int consumerOrderShipmentVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public ConsumerOrderShipment loadConsumerOrderShipment(RetailscmUserContext userContext, String consumerOrderShipmentId, String [] tokensExpr) throws Exception;
 	public ConsumerOrderShipment internalSaveConsumerOrderShipment(RetailscmUserContext userContext, ConsumerOrderShipment consumerOrderShipment) throws Exception;

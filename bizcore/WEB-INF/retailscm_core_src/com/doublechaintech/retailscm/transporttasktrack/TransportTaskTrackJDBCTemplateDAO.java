@@ -53,6 +53,11 @@ public class TransportTaskTrackJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 	*/
 	
+	public SmartList<TransportTaskTrack> loadAll() {
+	    return this.loadAll(getTransportTaskTrackMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

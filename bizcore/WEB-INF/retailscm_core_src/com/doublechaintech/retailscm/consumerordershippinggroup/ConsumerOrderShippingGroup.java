@@ -73,13 +73,6 @@ public class ConsumerOrderShippingGroup extends BaseEntity implements  java.io.S
 		this.changed = true;
 	}
 	
-	public 	ConsumerOrderShippingGroup(String name, ConsumerOrder bizOrder, BigDecimal amount)
-	{
-		setName(name);
-		setBizOrder(bizOrder);
-		setAmount(amount);
-	
-	}
 	
 	//Support for changing the property
 	

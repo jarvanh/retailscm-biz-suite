@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employeesalarysheet;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -17,9 +18,9 @@ import com.doublechaintech.retailscm.payingoff.PayingOffDAO;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 
 
-public interface EmployeeSalarySheetDAO{
+public interface EmployeeSalarySheetDAO extends BaseDAO{
 
-	
+	public SmartList<EmployeeSalarySheet> loadAll();
 	public EmployeeSalarySheet load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<EmployeeSalarySheet> employeeSalarySheetList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

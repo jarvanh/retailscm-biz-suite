@@ -143,9 +143,13 @@ public class AccountingSubjectTokens extends CommonTokens{
 	}
 	private int accountingDocumentLineListSearchCounter = 0;
 	public AccountingSubjectTokens searchAccountingDocumentLineListWith(String field, String verb, String value){		
+		
+		withAccountingDocumentLineList();
 		addSearchMoreOptions(ACCOUNTING_DOCUMENT_LINE_LIST,accountingDocumentLineListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public AccountingSubjectTokens searchAllTextOfAccountingDocumentLineList(String verb, String value){	
 		String field = "id|name|code|direct";

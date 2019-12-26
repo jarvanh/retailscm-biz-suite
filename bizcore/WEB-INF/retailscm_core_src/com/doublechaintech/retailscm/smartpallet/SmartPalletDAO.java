@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.smartpallet;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.warehouse.WarehouseDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 
 
-public interface SmartPalletDAO{
+public interface SmartPalletDAO extends BaseDAO{
 
-	
+	public SmartList<SmartPallet> loadAll();
 	public SmartPallet load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<SmartPallet> smartPalletList);
 	public void collectAndEnhance(BaseEntity ownerEntity);
@@ -83,6 +84,10 @@ public interface SmartPalletDAO{
 	//disconnect SmartPallet with retail_store_order in Goods
 	public SmartPallet planToRemoveGoodsListWithRetailStoreOrder(SmartPallet smartPallet, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String smartPalletId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SmartPallet with packaging in Goods
+	public SmartPallet planToRemoveGoodsListWithPackaging(SmartPallet smartPallet, String packagingId, Map<String,Object> options)throws Exception;
+	public int countGoodsListWithPackaging(String smartPalletId, String packagingId, Map<String,Object> options)throws Exception;
 	
 	
 	public SmartList<SmartPallet> queryList(String sql, Object ... parmeters);

@@ -24,12 +24,17 @@ public class LevelThreeDepartmentTable{
 	static final String COLUMN_FOUNDED = "founded";
 	static final String COLUMN_VERSION = "version";
  
+<<<<<<< HEAD
 	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
 		COLUMN_BELONGS_TO, COLUMN_NAME, COLUMN_DESCRIPTION, COLUMN_FOUNDED, 
 		COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {
 		COLUMN_BELONGS_TO, COLUMN_NAME, COLUMN_DESCRIPTION, COLUMN_FOUNDED
 		};
+=======
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_BELONGS_TO,COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_FOUNDED,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_BELONGS_TO,COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_FOUNDED};
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

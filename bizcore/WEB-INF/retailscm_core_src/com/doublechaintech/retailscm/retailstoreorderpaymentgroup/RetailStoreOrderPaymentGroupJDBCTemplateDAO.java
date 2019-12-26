@@ -53,6 +53,11 @@ public class RetailStoreOrderPaymentGroupJDBCTemplateDAO extends RetailscmBaseDA
 	}
 	*/
 	
+	public SmartList<RetailStoreOrderPaymentGroup> loadAll() {
+	    return this.loadAll(getRetailStoreOrderPaymentGroupMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

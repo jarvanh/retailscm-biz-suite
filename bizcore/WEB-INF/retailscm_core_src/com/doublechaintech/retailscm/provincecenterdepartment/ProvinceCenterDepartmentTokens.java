@@ -143,9 +143,13 @@ public class ProvinceCenterDepartmentTokens extends CommonTokens{
 	}
 	private int provinceCenterEmployeeListSearchCounter = 0;
 	public ProvinceCenterDepartmentTokens searchProvinceCenterEmployeeListWith(String field, String verb, String value){		
+		
+		withProvinceCenterEmployeeList();
 		addSearchMoreOptions(PROVINCE_CENTER_EMPLOYEE_LIST,provinceCenterEmployeeListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public ProvinceCenterDepartmentTokens searchAllTextOfProvinceCenterEmployeeList(String verb, String value){	
 		String field = "id|name|mobile|email";

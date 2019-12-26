@@ -200,6 +200,11 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 	*/
 	
+	public SmartList<RetailStoreMember> loadAll() {
+	    return this.loadAll(getRetailStoreMemberMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -645,12 +650,21 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			getConsumerOrderDAO().analyzeConsumerOrderByConsumer(consumerOrderList, retailStoreMember.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return retailStoreMember;
 	
 	}	
 	
 		
+=======
+		
+		return retailStoreMember;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceRetailStoreMemberCouponList(SmartList<RetailStoreMemberCoupon> retailStoreMemberCouponList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -795,12 +809,21 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			getMemberRewardPointDAO().analyzeMemberRewardPointByOwner(memberRewardPointList, retailStoreMember.getId(), options);
 			
 		}
+<<<<<<< HEAD
 		
 		return retailStoreMember;
 	
 	}	
 	
 		
+=======
+		
+		return retailStoreMember;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceMemberRewardPointRedemptionList(SmartList<MemberRewardPointRedemption> memberRewardPointRedemptionList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -838,8 +861,24 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 			return retailStoreMember;
 		}
 
+<<<<<<< HEAD
 		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<MemberRewardPointRedemption> memberRewardPointRedemptionList = retailStoreMember.getMemberRewardPointRedemptionList();
+		if(memberRewardPointRedemptionList != null){
+			getMemberRewardPointRedemptionDAO().analyzeMemberRewardPointRedemptionByOwner(memberRewardPointRedemptionList, retailStoreMember.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
+		return retailStoreMember;
+	
+	}	
+	
+		
+=======
 		SmartList<MemberRewardPointRedemption> memberRewardPointRedemptionList = retailStoreMember.getMemberRewardPointRedemptionList();
 		if(memberRewardPointRedemptionList != null){
 			getMemberRewardPointRedemptionDAO().analyzeMemberRewardPointRedemptionByOwner(memberRewardPointRedemptionList, retailStoreMember.getId(), options);
@@ -851,6 +890,7 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}	
 	
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceRetailStoreMemberAddressList(SmartList<RetailStoreMemberAddress> retailStoreMemberAddressList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1272,6 +1312,226 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	}
 
 
+	//disconnect RetailStoreMember with confirmation in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithConfirmation(RetailStoreMember retailStoreMember, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMember.getId());
+		key.put(ConsumerOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return retailStoreMember;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return retailStoreMember;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearConfirmation();
+			consumerOrderItem.clearConsumer();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = retailStoreMember.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return retailStoreMember;
+	}
+	
+	public int countConsumerOrderListWithConfirmation(String retailStoreMemberId, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMemberId);
+		key.put(ConsumerOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreMember with approval in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithApproval(RetailStoreMember retailStoreMember, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMember.getId());
+		key.put(ConsumerOrder.APPROVAL_PROPERTY, approvalId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return retailStoreMember;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return retailStoreMember;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearApproval();
+			consumerOrderItem.clearConsumer();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = retailStoreMember.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return retailStoreMember;
+	}
+	
+	public int countConsumerOrderListWithApproval(String retailStoreMemberId, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMemberId);
+		key.put(ConsumerOrder.APPROVAL_PROPERTY, approvalId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreMember with processing in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithProcessing(RetailStoreMember retailStoreMember, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMember.getId());
+		key.put(ConsumerOrder.PROCESSING_PROPERTY, processingId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return retailStoreMember;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return retailStoreMember;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearProcessing();
+			consumerOrderItem.clearConsumer();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = retailStoreMember.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return retailStoreMember;
+	}
+	
+	public int countConsumerOrderListWithProcessing(String retailStoreMemberId, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMemberId);
+		key.put(ConsumerOrder.PROCESSING_PROPERTY, processingId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreMember with shipment in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithShipment(RetailStoreMember retailStoreMember, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMember.getId());
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return retailStoreMember;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return retailStoreMember;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearShipment();
+			consumerOrderItem.clearConsumer();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = retailStoreMember.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return retailStoreMember;
+	}
+	
+	public int countConsumerOrderListWithShipment(String retailStoreMemberId, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMemberId);
+		key.put(ConsumerOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreMember with delivery in ConsumerOrder
+	public RetailStoreMember planToRemoveConsumerOrderListWithDelivery(RetailStoreMember retailStoreMember, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMember.getId());
+		key.put(ConsumerOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		SmartList<ConsumerOrder> externalConsumerOrderList = getConsumerOrderDAO().
+				findConsumerOrderWithKey(key, options);
+		if(externalConsumerOrderList == null){
+			return retailStoreMember;
+		}
+		if(externalConsumerOrderList.isEmpty()){
+			return retailStoreMember;
+		}
+		
+		for(ConsumerOrder consumerOrderItem: externalConsumerOrderList){
+			consumerOrderItem.clearDelivery();
+			consumerOrderItem.clearConsumer();
+			
+		}
+		
+		
+		SmartList<ConsumerOrder> consumerOrderList = retailStoreMember.getConsumerOrderList();		
+		consumerOrderList.addAllToRemoveList(externalConsumerOrderList);
+		return retailStoreMember;
+	}
+	
+	public int countConsumerOrderListWithDelivery(String retailStoreMemberId, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ConsumerOrder.CONSUMER_PROPERTY, retailStoreMemberId);
+		key.put(ConsumerOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		int count = getConsumerOrderDAO().countConsumerOrderWithKey(key, options);
+		return count;
+	}
+	
 	//disconnect RetailStoreMember with store in ConsumerOrder
 	public RetailStoreMember planToRemoveConsumerOrderListWithStore(RetailStoreMember retailStoreMember, String storeId, Map<String,Object> options)throws Exception{
 				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();

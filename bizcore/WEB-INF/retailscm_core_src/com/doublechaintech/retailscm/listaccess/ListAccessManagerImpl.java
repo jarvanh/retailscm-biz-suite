@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.userapp.CandidateUserApp;
 public class ListAccessManagerImpl extends CustomRetailscmCheckerManager implements ListAccessManager {
 	
 	private static final String SERVICE_TYPE = "ListAccess";
+	@Override
+	public ListAccessDAO daoOf(RetailscmUserContext userContext) {
+		return listAccessDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	public ListAccess loadListAccess(RetailscmUserContext userContext, String listAccessId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfListAccess(listAccessId);
-		userContext.getChecker().throwExceptionIfHasErrors( ListAccessManagerException.class);
+ 		checkerOf(userContext).checkIdOfListAccess(listAccessId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ListAccessManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	 public ListAccess searchListAccess(RetailscmUserContext userContext, String listAccessId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfListAccess(listAccessId);
-		userContext.getChecker().throwExceptionIfHasErrors( ListAccessManagerException.class);
+ 		checkerOf(userContext).checkIdOfListAccess(listAccessId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ListAccessManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		addActions(userContext,listAccess,tokens);
 		
 		
-		ListAccess  listAccessToPresent = userContext.getDAOGroup().getListAccessDAO().present(listAccess, tokens);
+		ListAccess  listAccessToPresent = listAccessDaoOf(userContext).present(listAccess, tokens);
 		
 		List<BaseEntity> entityListToNaming = listAccessToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getListAccessDAO().alias(entityListToNaming);
+		listAccessDaoOf(userContext).alias(entityListToNaming);
 		
 		return  listAccessToPresent;
 		
@@ -123,14 +127,14 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		
  	}
  	protected ListAccess saveListAccess(RetailscmUserContext userContext, ListAccess listAccess, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getListAccessDAO().save(listAccess, tokens);
+ 		return listAccessDaoOf(userContext).save(listAccess, tokens);
  	}
  	protected ListAccess loadListAccess(RetailscmUserContext userContext, String listAccessId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfListAccess(listAccessId);
-		userContext.getChecker().throwExceptionIfHasErrors( ListAccessManagerException.class);
+		checkerOf(userContext).checkIdOfListAccess(listAccessId);
+		checkerOf(userContext).throwExceptionIfHasErrors( ListAccessManagerException.class);
 
  
- 		return userContext.getDAOGroup().getListAccessDAO().load(listAccessId, tokens);
+ 		return listAccessDaoOf(userContext).load(listAccessId, tokens);
  	}
 
 	
@@ -160,23 +164,23 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	
 
-
-	public ListAccess createListAccess(RetailscmUserContext userContext,String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission, String appId) throws Exception
+	public ListAccess createListAccess(RetailscmUserContext userContext, String name,String internalName,boolean readPermission,boolean createPermission,boolean deletePermission,boolean updatePermission,boolean executionPermission,String appId) throws Exception
+	//public ListAccess createListAccess(RetailscmUserContext userContext,String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission, String appId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfListAccess(name);
-		userContext.getChecker().checkInternalNameOfListAccess(internalName);
-		userContext.getChecker().checkReadPermissionOfListAccess(readPermission);
-		userContext.getChecker().checkCreatePermissionOfListAccess(createPermission);
-		userContext.getChecker().checkDeletePermissionOfListAccess(deletePermission);
-		userContext.getChecker().checkUpdatePermissionOfListAccess(updatePermission);
-		userContext.getChecker().checkExecutionPermissionOfListAccess(executionPermission);
+		checkerOf(userContext).checkNameOfListAccess(name);
+		checkerOf(userContext).checkInternalNameOfListAccess(internalName);
+		checkerOf(userContext).checkReadPermissionOfListAccess(readPermission);
+		checkerOf(userContext).checkCreatePermissionOfListAccess(createPermission);
+		checkerOf(userContext).checkDeletePermissionOfListAccess(deletePermission);
+		checkerOf(userContext).checkUpdatePermissionOfListAccess(updatePermission);
+		checkerOf(userContext).checkExecutionPermissionOfListAccess(executionPermission);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ListAccessManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ListAccessManagerException.class);
 
 
 		ListAccess listAccess=createNewListAccess();	
@@ -213,35 +217,35 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 
 		
 		
-		userContext.getChecker().checkIdOfListAccess(listAccessId);
-		userContext.getChecker().checkVersionOfListAccess( listAccessVersion);
+		checkerOf(userContext).checkIdOfListAccess(listAccessId);
+		checkerOf(userContext).checkVersionOfListAccess( listAccessVersion);
 		
 
 		if(ListAccess.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfListAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfListAccess(parseString(newValueExpr));
 		}
 		if(ListAccess.INTERNAL_NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkInternalNameOfListAccess(parseString(newValueExpr));
+			checkerOf(userContext).checkInternalNameOfListAccess(parseString(newValueExpr));
 		}
 		if(ListAccess.READ_PERMISSION_PROPERTY.equals(property)){
-			userContext.getChecker().checkReadPermissionOfListAccess(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkReadPermissionOfListAccess(parseBoolean(newValueExpr));
 		}
 		if(ListAccess.CREATE_PERMISSION_PROPERTY.equals(property)){
-			userContext.getChecker().checkCreatePermissionOfListAccess(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkCreatePermissionOfListAccess(parseBoolean(newValueExpr));
 		}
 		if(ListAccess.DELETE_PERMISSION_PROPERTY.equals(property)){
-			userContext.getChecker().checkDeletePermissionOfListAccess(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkDeletePermissionOfListAccess(parseBoolean(newValueExpr));
 		}
 		if(ListAccess.UPDATE_PERMISSION_PROPERTY.equals(property)){
-			userContext.getChecker().checkUpdatePermissionOfListAccess(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkUpdatePermissionOfListAccess(parseBoolean(newValueExpr));
 		}
 		if(ListAccess.EXECUTION_PERMISSION_PROPERTY.equals(property)){
-			userContext.getChecker().checkExecutionPermissionOfListAccess(parseBoolean(newValueExpr));
+			checkerOf(userContext).checkExecutionPermissionOfListAccess(parseBoolean(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(ListAccessManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(ListAccessManagerException.class);
 	
 		
 	}
@@ -250,7 +254,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	public ListAccess clone(RetailscmUserContext userContext, String fromListAccessId) throws Exception{
 		
-		return userContext.getDAOGroup().getListAccessDAO().clone(fromListAccessId, this.allTokens());
+		return listAccessDaoOf(userContext).clone(fromListAccessId, this.allTokens());
 	}
 	
 	public ListAccess internalSaveListAccess(RetailscmUserContext userContext, ListAccess listAccess) throws Exception 
@@ -348,9 +352,9 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void checkParamsForTransferingAnotherApp(RetailscmUserContext userContext, String listAccessId, String anotherAppId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfListAccess(listAccessId);
- 		userContext.getChecker().checkIdOfUserApp(anotherAppId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(ListAccessManagerException.class);
+ 		checkerOf(userContext).checkIdOfListAccess(listAccessId);
+ 		checkerOf(userContext).checkIdOfUserApp(anotherAppId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(ListAccessManagerException.class);
  		
  	}
  	public ListAccess transferToAnotherApp(RetailscmUserContext userContext, String listAccessId, String anotherAppId) throws Exception
@@ -387,7 +391,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<UserApp> candidateList = userContext.getDAOGroup().getUserAppDAO().requestCandidateUserAppForListAccess(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<UserApp> candidateList = userAppDaoOf(userContext).requestCandidateUserAppForListAccess(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -400,7 +404,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
  	protected UserApp loadUserApp(RetailscmUserContext userContext, String newAppId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getUserAppDAO().load(newAppId, options);
+ 		return userAppDaoOf(userContext).load(newAppId, options);
  	}
  	
  	
@@ -414,7 +418,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String listAccessId, int listAccessVersion) throws Exception{
 			
-		userContext.getDAOGroup().getListAccessDAO().delete(listAccessId, listAccessVersion);
+		listAccessDaoOf(userContext).delete(listAccessId, listAccessVersion);
 	}
 	
 	public ListAccess forgetByAll(RetailscmUserContext userContext, String listAccessId, int listAccessVersion) throws Exception {
@@ -423,8 +427,9 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected ListAccess forgetByAllInternal(RetailscmUserContext userContext,
 			String listAccessId, int listAccessVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getListAccessDAO().disconnectFromAll(listAccessId, listAccessVersion);
+		return listAccessDaoOf(userContext).disconnectFromAll(listAccessId, listAccessVersion);
 	}
+	
 	
 
 	
@@ -441,7 +446,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getListAccessDAO().deleteAll();
+		return listAccessDaoOf(userContext).deleteAll();
 	}
 
 

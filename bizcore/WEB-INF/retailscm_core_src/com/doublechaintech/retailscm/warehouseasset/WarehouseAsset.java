@@ -75,6 +75,7 @@ public class WarehouseAsset extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
+<<<<<<< HEAD
 	public 	WarehouseAsset(String name, String position, Warehouse owner, DateTime lastUpdateTime)
 	{
 		setName(name);
@@ -83,6 +84,8 @@ public class WarehouseAsset extends BaseEntity implements  java.io.Serializable{
 		setLastUpdateTime(lastUpdateTime);
 	
 	}
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	

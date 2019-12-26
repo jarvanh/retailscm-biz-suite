@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.damagespace;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -15,9 +16,9 @@ import com.doublechaintech.retailscm.warehouse.WarehouseDAO;
 import com.doublechaintech.retailscm.goodsshelf.GoodsShelfDAO;
 
 
-public interface DamageSpaceDAO{
+public interface DamageSpaceDAO extends BaseDAO{
 
-	
+	public SmartList<DamageSpace> loadAll();
 	public DamageSpace load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<DamageSpace> damageSpaceList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

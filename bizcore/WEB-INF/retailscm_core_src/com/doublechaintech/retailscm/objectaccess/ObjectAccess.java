@@ -91,22 +91,6 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	ObjectAccess(String name, String objectType, String list1, String list2, String list3, String list4, String list5, String list6, String list7, String list8, String list9, UserApp app)
-	{
-		setName(name);
-		setObjectType(objectType);
-		setList1(list1);
-		setList2(list2);
-		setList3(list3);
-		setList4(list4);
-		setList5(list5);
-		setList6(list6);
-		setList7(list7);
-		setList8(list8);
-		setList9(list9);
-		setApp(app);
-	
-	}
 	
 	//Support for changing the property
 	

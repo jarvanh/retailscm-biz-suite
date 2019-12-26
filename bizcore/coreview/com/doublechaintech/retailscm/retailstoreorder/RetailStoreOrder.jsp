@@ -139,36 +139,40 @@
 <c:set var="referName" value="(seller)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/retailstorecountrycenter/RetailStoreCountryCenter$Info.jsp" />
 
-</div>
-
-
-
-
-
-
-
-
-	<div class="row">
 <c:set var="retailStoreOrderConfirmation" value="${ result.confirmation}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreorderconfirmation/RetailStoreOrderConfirmation$Action.jsp" />
+<c:set var="referName" value="(confirmation)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreorderconfirmation/RetailStoreOrderConfirmation$Info.jsp" />
 
 <c:set var="retailStoreOrderApproval" value="${ result.approval}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreorderapproval/RetailStoreOrderApproval$Action.jsp" />
+<c:set var="referName" value="(approval)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreorderapproval/RetailStoreOrderApproval$Info.jsp" />
 
 <c:set var="retailStoreOrderProcessing" value="${ result.processing}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreorderprocessing/RetailStoreOrderProcessing$Action.jsp" />
+<c:set var="referName" value="(processing)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreorderprocessing/RetailStoreOrderProcessing$Info.jsp" />
 
 <c:set var="retailStoreOrderPicking" value="${ result.picking}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreorderpicking/RetailStoreOrderPicking$Action.jsp" />
+<c:set var="referName" value="(picking)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreorderpicking/RetailStoreOrderPicking$Info.jsp" />
 
 <c:set var="retailStoreOrderShipment" value="${ result.shipment}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreordershipment/RetailStoreOrderShipment$Action.jsp" />
+<c:set var="referName" value="(shipment)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreordershipment/RetailStoreOrderShipment$Info.jsp" />
 
 <c:set var="retailStoreOrderDelivery" value="${ result.delivery}" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/retailstoreorderdelivery/RetailStoreOrderDelivery$Action.jsp" />
+<c:set var="referName" value="(delivery)" scope="request" />
+<sky:include page="com/doublechaintech/retailscm/retailstoreorderdelivery/RetailStoreOrderDelivery$Info.jsp" />
 
 </div>
 
+
+
+
+
+
+
+
+	
 
 
 

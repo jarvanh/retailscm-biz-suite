@@ -6,13 +6,14 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
+import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
-public interface ProvinceCenterDepartmentManager{
+public interface ProvinceCenterDepartmentManager extends BaseManager{
 
 		
 
-	public ProvinceCenterDepartment createProvinceCenterDepartment(RetailscmUserContext userContext, String name, Date founded, String provinceCenterId, String manager) throws Exception;	
+	public ProvinceCenterDepartment createProvinceCenterDepartment(RetailscmUserContext userContext, String name,Date founded,String provinceCenterId,String managerName) throws Exception;	
 	public ProvinceCenterDepartment updateProvinceCenterDepartment(RetailscmUserContext userContext,String provinceCenterDepartmentId, int provinceCenterDepartmentVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public ProvinceCenterDepartment loadProvinceCenterDepartment(RetailscmUserContext userContext, String provinceCenterDepartmentId, String [] tokensExpr) throws Exception;
 	public ProvinceCenterDepartment internalSaveProvinceCenterDepartment(RetailscmUserContext userContext, ProvinceCenterDepartment provinceCenterDepartment) throws Exception;

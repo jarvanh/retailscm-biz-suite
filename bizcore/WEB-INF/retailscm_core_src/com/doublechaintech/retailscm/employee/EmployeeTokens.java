@@ -286,12 +286,16 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeCompanyTrainingListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeCompanyTrainingListWith(String field, String verb, String value){		
+		
+		withEmployeeCompanyTrainingList();
 		addSearchMoreOptions(EMPLOYEE_COMPANY_TRAINING_LIST,employeeCompanyTrainingListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public EmployeeTokens searchAllTextOfEmployeeCompanyTrainingList(String verb, String value){	
-		String field = "id|currentStatus";
+		String field = "id";
 		addSearchMoreOptions(EMPLOYEE_COMPANY_TRAINING_LIST,employeeCompanyTrainingListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -352,9 +356,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeSkillListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeSkillListWith(String field, String verb, String value){		
+		
+		withEmployeeSkillList();
 		addSearchMoreOptions(EMPLOYEE_SKILL_LIST,employeeSkillListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeSkillList(String verb, String value){	
 		String field = "id|description";
@@ -418,9 +426,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeePerformanceListSearchCounter = 0;
 	public EmployeeTokens searchEmployeePerformanceListWith(String field, String verb, String value){		
+		
+		withEmployeePerformanceList();
 		addSearchMoreOptions(EMPLOYEE_PERFORMANCE_LIST,employeePerformanceListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeePerformanceList(String verb, String value){	
 		String field = "id|performanceComment";
@@ -484,9 +496,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeWorkExperienceListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeWorkExperienceListWith(String field, String verb, String value){		
+		
+		withEmployeeWorkExperienceList();
 		addSearchMoreOptions(EMPLOYEE_WORK_EXPERIENCE_LIST,employeeWorkExperienceListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeWorkExperienceList(String verb, String value){	
 		String field = "id|company|description";
@@ -550,9 +566,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeLeaveListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeLeaveListWith(String field, String verb, String value){		
+		
+		withEmployeeLeaveList();
 		addSearchMoreOptions(EMPLOYEE_LEAVE_LIST,employeeLeaveListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeLeaveList(String verb, String value){	
 		String field = "id|remark";
@@ -616,9 +636,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeInterviewListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeInterviewListWith(String field, String verb, String value){		
+		
+		withEmployeeInterviewList();
 		addSearchMoreOptions(EMPLOYEE_INTERVIEW_LIST,employeeInterviewListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeInterviewList(String verb, String value){	
 		String field = "id|remark";
@@ -682,9 +706,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeAttendanceListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeAttendanceListWith(String field, String verb, String value){		
+		
+		withEmployeeAttendanceList();
 		addSearchMoreOptions(EMPLOYEE_ATTENDANCE_LIST,employeeAttendanceListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeAttendanceList(String verb, String value){	
 		String field = "id|remark";
@@ -748,9 +776,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeQualifierListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeQualifierListWith(String field, String verb, String value){		
+		
+		withEmployeeQualifierList();
 		addSearchMoreOptions(EMPLOYEE_QUALIFIER_LIST,employeeQualifierListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeQualifierList(String verb, String value){	
 		String field = "id|type|level|remark";
@@ -814,9 +846,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeEducationListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeEducationListWith(String field, String verb, String value){		
+		
+		withEmployeeEducationList();
 		addSearchMoreOptions(EMPLOYEE_EDUCATION_LIST,employeeEducationListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeEducationList(String verb, String value){	
 		String field = "id|type|remark";
@@ -880,9 +916,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeAwardListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeAwardListWith(String field, String verb, String value){		
+		
+		withEmployeeAwardList();
 		addSearchMoreOptions(EMPLOYEE_AWARD_LIST,employeeAwardListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfEmployeeAwardList(String verb, String value){	
 		String field = "id|type|remark";
@@ -946,12 +986,16 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int employeeSalarySheetListSearchCounter = 0;
 	public EmployeeTokens searchEmployeeSalarySheetListWith(String field, String verb, String value){		
+		
+		withEmployeeSalarySheetList();
 		addSearchMoreOptions(EMPLOYEE_SALARY_SHEET_LIST,employeeSalarySheetListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
+	
+	
 	public EmployeeTokens searchAllTextOfEmployeeSalarySheetList(String verb, String value){	
-		String field = "id|currentStatus";
+		String field = "id";
 		addSearchMoreOptions(EMPLOYEE_SALARY_SHEET_LIST,employeeSalarySheetListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -1012,9 +1056,13 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	private int payingOffListSearchCounter = 0;
 	public EmployeeTokens searchPayingOffListWith(String field, String verb, String value){		
+		
+		withPayingOffList();
 		addSearchMoreOptions(PAYING_OFF_LIST,payingOffListSearchCounter++, field, verb, value);
 		return this;
 	}
+	
+	
 	
 	public EmployeeTokens searchAllTextOfPayingOffList(String verb, String value){	
 		String field = "id|who";

@@ -36,6 +36,10 @@ import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucher
 public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerManager implements OriginalVoucherCreationManager {
 	
 	private static final String SERVICE_TYPE = "OriginalVoucherCreation";
+	@Override
+	public OriginalVoucherCreationDAO daoOf(RetailscmUserContext userContext) {
+		return originalVoucherCreationDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -69,8 +73,8 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
  	
  	public OriginalVoucherCreation loadOriginalVoucherCreation(RetailscmUserContext userContext, String originalVoucherCreationId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
-		userContext.getChecker().throwExceptionIfHasErrors( OriginalVoucherCreationManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( OriginalVoucherCreationManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -83,8 +87,8 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
  	
  	 public OriginalVoucherCreation searchOriginalVoucherCreation(RetailscmUserContext userContext, String originalVoucherCreationId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
-		userContext.getChecker().throwExceptionIfHasErrors( OriginalVoucherCreationManagerException.class);
+ 		checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( OriginalVoucherCreationManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -102,10 +106,10 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 		addActions(userContext,originalVoucherCreation,tokens);
 		
 		
-		OriginalVoucherCreation  originalVoucherCreationToPresent = userContext.getDAOGroup().getOriginalVoucherCreationDAO().present(originalVoucherCreation, tokens);
+		OriginalVoucherCreation  originalVoucherCreationToPresent = originalVoucherCreationDaoOf(userContext).present(originalVoucherCreation, tokens);
 		
 		List<BaseEntity> entityListToNaming = originalVoucherCreationToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getOriginalVoucherCreationDAO().alias(entityListToNaming);
+		originalVoucherCreationDaoOf(userContext).alias(entityListToNaming);
 		
 		return  originalVoucherCreationToPresent;
 		
@@ -126,14 +130,14 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 		
  	}
  	protected OriginalVoucherCreation saveOriginalVoucherCreation(RetailscmUserContext userContext, OriginalVoucherCreation originalVoucherCreation, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getOriginalVoucherCreationDAO().save(originalVoucherCreation, tokens);
+ 		return originalVoucherCreationDaoOf(userContext).save(originalVoucherCreation, tokens);
  	}
  	protected OriginalVoucherCreation loadOriginalVoucherCreation(RetailscmUserContext userContext, String originalVoucherCreationId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
-		userContext.getChecker().throwExceptionIfHasErrors( OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
+		checkerOf(userContext).throwExceptionIfHasErrors( OriginalVoucherCreationManagerException.class);
 
  
- 		return userContext.getDAOGroup().getOriginalVoucherCreationDAO().load(originalVoucherCreationId, tokens);
+ 		return originalVoucherCreationDaoOf(userContext).load(originalVoucherCreationId, tokens);
  	}
 
 	
@@ -166,19 +170,19 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
  	
  	
 
-
-	public OriginalVoucherCreation createOriginalVoucherCreation(RetailscmUserContext userContext,String who, String comments, Date makeDate) throws Exception
+	public OriginalVoucherCreation createOriginalVoucherCreation(RetailscmUserContext userContext, String who,String comments,Date makeDate) throws Exception
+	//public OriginalVoucherCreation createOriginalVoucherCreation(RetailscmUserContext userContext,String who, String comments, Date makeDate) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkWhoOfOriginalVoucherCreation(who);
-		userContext.getChecker().checkCommentsOfOriginalVoucherCreation(comments);
-		userContext.getChecker().checkMakeDateOfOriginalVoucherCreation(makeDate);
+		checkerOf(userContext).checkWhoOfOriginalVoucherCreation(who);
+		checkerOf(userContext).checkCommentsOfOriginalVoucherCreation(comments);
+		checkerOf(userContext).checkMakeDateOfOriginalVoucherCreation(makeDate);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 
 
 		OriginalVoucherCreation originalVoucherCreation=createNewOriginalVoucherCreation();	
@@ -206,21 +210,21 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 
 		
 		
-		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
-		userContext.getChecker().checkVersionOfOriginalVoucherCreation( originalVoucherCreationVersion);
+		checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
+		checkerOf(userContext).checkVersionOfOriginalVoucherCreation( originalVoucherCreationVersion);
 		
 
 		if(OriginalVoucherCreation.WHO_PROPERTY.equals(property)){
-			userContext.getChecker().checkWhoOfOriginalVoucherCreation(parseString(newValueExpr));
+			checkerOf(userContext).checkWhoOfOriginalVoucherCreation(parseString(newValueExpr));
 		}
 		if(OriginalVoucherCreation.COMMENTS_PROPERTY.equals(property)){
-			userContext.getChecker().checkCommentsOfOriginalVoucherCreation(parseString(newValueExpr));
+			checkerOf(userContext).checkCommentsOfOriginalVoucherCreation(parseString(newValueExpr));
 		}
 		if(OriginalVoucherCreation.MAKE_DATE_PROPERTY.equals(property)){
-			userContext.getChecker().checkMakeDateOfOriginalVoucherCreation(parseDate(newValueExpr));
+			checkerOf(userContext).checkMakeDateOfOriginalVoucherCreation(parseDate(newValueExpr));
 		}
 	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 	
 		
 	}
@@ -229,7 +233,7 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	
 	public OriginalVoucherCreation clone(RetailscmUserContext userContext, String fromOriginalVoucherCreationId) throws Exception{
 		
-		return userContext.getDAOGroup().getOriginalVoucherCreationDAO().clone(fromOriginalVoucherCreationId, this.allTokens());
+		return originalVoucherCreationDaoOf(userContext).clone(fromOriginalVoucherCreationId, this.allTokens());
 	}
 	
 	public OriginalVoucherCreation internalSaveOriginalVoucherCreation(RetailscmUserContext userContext, OriginalVoucherCreation originalVoucherCreation) throws Exception 
@@ -335,7 +339,7 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String originalVoucherCreationId, int originalVoucherCreationVersion) throws Exception{
 			
-		userContext.getDAOGroup().getOriginalVoucherCreationDAO().delete(originalVoucherCreationId, originalVoucherCreationVersion);
+		originalVoucherCreationDaoOf(userContext).delete(originalVoucherCreationId, originalVoucherCreationVersion);
 	}
 	
 	public OriginalVoucherCreation forgetByAll(RetailscmUserContext userContext, String originalVoucherCreationId, int originalVoucherCreationVersion) throws Exception {
@@ -344,8 +348,9 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	protected OriginalVoucherCreation forgetByAllInternal(RetailscmUserContext userContext,
 			String originalVoucherCreationId, int originalVoucherCreationVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getOriginalVoucherCreationDAO().disconnectFromAll(originalVoucherCreationId, originalVoucherCreationVersion);
+		return originalVoucherCreationDaoOf(userContext).disconnectFromAll(originalVoucherCreationId, originalVoucherCreationVersion);
 	}
+	
 	
 
 	
@@ -362,7 +367,7 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getOriginalVoucherCreationDAO().deleteAll();
+		return originalVoucherCreationDaoOf(userContext).deleteAll();
 	}
 
 
@@ -378,7 +383,43 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				
-				userContext.getDAOGroup().getOriginalVoucherCreationDAO().planToRemoveOriginalVoucherListWithBelongsTo(originalVoucherCreation, belongsToId, this.emptyOptions());
+				originalVoucherCreationDaoOf(userContext).planToRemoveOriginalVoucherListWithBelongsTo(originalVoucherCreation, belongsToId, this.emptyOptions());
+
+				originalVoucherCreation = saveOriginalVoucherCreation(userContext, originalVoucherCreation, tokens().withOriginalVoucherList().done());
+				return originalVoucherCreation;
+			}
+	}
+	//disconnect OriginalVoucherCreation with confirmation in OriginalVoucher
+	protected OriginalVoucherCreation breakWithOriginalVoucherByConfirmation(RetailscmUserContext userContext, String originalVoucherCreationId, String confirmationId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			OriginalVoucherCreation originalVoucherCreation = loadOriginalVoucherCreation(userContext, originalVoucherCreationId, allTokens());
+
+			synchronized(originalVoucherCreation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				originalVoucherCreationDaoOf(userContext).planToRemoveOriginalVoucherListWithConfirmation(originalVoucherCreation, confirmationId, this.emptyOptions());
+
+				originalVoucherCreation = saveOriginalVoucherCreation(userContext, originalVoucherCreation, tokens().withOriginalVoucherList().done());
+				return originalVoucherCreation;
+			}
+	}
+	//disconnect OriginalVoucherCreation with auditing in OriginalVoucher
+	protected OriginalVoucherCreation breakWithOriginalVoucherByAuditing(RetailscmUserContext userContext, String originalVoucherCreationId, String auditingId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			OriginalVoucherCreation originalVoucherCreation = loadOriginalVoucherCreation(userContext, originalVoucherCreationId, allTokens());
+
+			synchronized(originalVoucherCreation){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				originalVoucherCreationDaoOf(userContext).planToRemoveOriginalVoucherListWithAuditing(originalVoucherCreation, auditingId, this.emptyOptions());
 
 				originalVoucherCreation = saveOriginalVoucherCreation(userContext, originalVoucherCreation, tokens().withOriginalVoucherList().done());
 				return originalVoucherCreation;
@@ -390,37 +431,37 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	
 	
 
-	protected void checkParamsForAddingOriginalVoucher(RetailscmUserContext userContext, String originalVoucherCreationId, String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingOriginalVoucher(RetailscmUserContext userContext, String originalVoucherCreationId, String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId, String confirmationId, String auditingId,String [] tokensExpr) throws Exception{
 		
-		
+				checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
 
 		
+		checkerOf(userContext).checkTitleOfOriginalVoucher(title);
 		
-		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
-
+		checkerOf(userContext).checkMadeByOfOriginalVoucher(madeBy);
 		
-		userContext.getChecker().checkTitleOfOriginalVoucher(title);
+		checkerOf(userContext).checkReceivedByOfOriginalVoucher(receivedBy);
 		
-		userContext.getChecker().checkMadeByOfOriginalVoucher(madeBy);
+		checkerOf(userContext).checkVoucherTypeOfOriginalVoucher(voucherType);
 		
-		userContext.getChecker().checkReceivedByOfOriginalVoucher(receivedBy);
+		checkerOf(userContext).checkVoucherImageOfOriginalVoucher(voucherImage);
 		
-		userContext.getChecker().checkVoucherTypeOfOriginalVoucher(voucherType);
+		checkerOf(userContext).checkBelongsToIdOfOriginalVoucher(belongsToId);
 		
-		userContext.getChecker().checkVoucherImageOfOriginalVoucher(voucherImage);
+		checkerOf(userContext).checkConfirmationIdOfOriginalVoucher(confirmationId);
 		
-		userContext.getChecker().checkBelongsToIdOfOriginalVoucher(belongsToId);
+		checkerOf(userContext).checkAuditingIdOfOriginalVoucher(auditingId);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 
 	
 	}
-	public  OriginalVoucherCreation addOriginalVoucher(RetailscmUserContext userContext, String originalVoucherCreationId, String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId, String [] tokensExpr) throws Exception
+	public  OriginalVoucherCreation addOriginalVoucher(RetailscmUserContext userContext, String originalVoucherCreationId, String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId, String confirmationId, String auditingId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingOriginalVoucher(userContext,originalVoucherCreationId,title, madeBy, receivedBy, voucherType, voucherImage, belongsToId,tokensExpr);
+		checkParamsForAddingOriginalVoucher(userContext,originalVoucherCreationId,title, madeBy, receivedBy, voucherType, voucherImage, belongsToId, confirmationId, auditingId,tokensExpr);
 		
-		OriginalVoucher originalVoucher = createOriginalVoucher(userContext,title, madeBy, receivedBy, voucherType, voucherImage, belongsToId);
+		OriginalVoucher originalVoucher = createOriginalVoucher(userContext,title, madeBy, receivedBy, voucherType, voucherImage, belongsToId, confirmationId, auditingId);
 		
 		OriginalVoucherCreation originalVoucherCreation = loadOriginalVoucherCreation(userContext, originalVoucherCreationId, allTokens());
 		synchronized(originalVoucherCreation){ 
@@ -435,16 +476,16 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	}
 	protected void checkParamsForUpdatingOriginalVoucherProperties(RetailscmUserContext userContext, String originalVoucherCreationId,String id,String title,String madeBy,String receivedBy,String voucherType,String voucherImage,String [] tokensExpr) throws Exception {
 		
-		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
-		userContext.getChecker().checkIdOfOriginalVoucher(id);
+		checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
+		checkerOf(userContext).checkIdOfOriginalVoucher(id);
 		
-		userContext.getChecker().checkTitleOfOriginalVoucher( title);
-		userContext.getChecker().checkMadeByOfOriginalVoucher( madeBy);
-		userContext.getChecker().checkReceivedByOfOriginalVoucher( receivedBy);
-		userContext.getChecker().checkVoucherTypeOfOriginalVoucher( voucherType);
-		userContext.getChecker().checkVoucherImageOfOriginalVoucher( voucherImage);
+		checkerOf(userContext).checkTitleOfOriginalVoucher( title);
+		checkerOf(userContext).checkMadeByOfOriginalVoucher( madeBy);
+		checkerOf(userContext).checkReceivedByOfOriginalVoucher( receivedBy);
+		checkerOf(userContext).checkVoucherTypeOfOriginalVoucher( voucherType);
+		checkerOf(userContext).checkVoucherImageOfOriginalVoucher( voucherImage);
 
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 		
 	}
 	public  OriginalVoucherCreation updateOriginalVoucherProperties(RetailscmUserContext userContext, String originalVoucherCreationId, String id,String title,String madeBy,String receivedBy,String voucherType,String voucherImage, String [] tokensExpr) throws Exception
@@ -479,7 +520,7 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	}
 	
 	
-	protected OriginalVoucher createOriginalVoucher(RetailscmUserContext userContext, String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId) throws Exception{
+	protected OriginalVoucher createOriginalVoucher(RetailscmUserContext userContext, String title, String madeBy, String receivedBy, String voucherType, String voucherImage, String belongsToId, String confirmationId, String auditingId) throws Exception{
 
 		OriginalVoucher originalVoucher = new OriginalVoucher();
 		
@@ -492,7 +533,12 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 		AccountingDocument  belongsTo = new AccountingDocument();
 		belongsTo.setId(belongsToId);		
 		originalVoucher.setBelongsTo(belongsTo);		
-		originalVoucher.setCurrentStatus("INIT");
+		OriginalVoucherConfirmation  confirmation = new OriginalVoucherConfirmation();
+		confirmation.setId(confirmationId);		
+		originalVoucher.setConfirmation(confirmation);		
+		OriginalVoucherAuditing  auditing = new OriginalVoucherAuditing();
+		auditing.setId(auditingId);		
+		originalVoucher.setAuditing(auditing);
 	
 		
 		return originalVoucher;
@@ -512,12 +558,18 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	protected void checkParamsForRemovingOriginalVoucherList(RetailscmUserContext userContext, String originalVoucherCreationId, 
 			String originalVoucherIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
 		for(String originalVoucherIdItem: originalVoucherIds){
 			userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherIdItem);
+=======
+		checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
+		for(String originalVoucherIdItem: originalVoucherIds){
+			checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherIdItem);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 		
 	}
 	public  OriginalVoucherCreation removeOriginalVoucherList(RetailscmUserContext userContext, String originalVoucherCreationId, 
@@ -530,7 +582,7 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 			synchronized(originalVoucherCreation){ 
 				//Will be good when the originalVoucherCreation loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				userContext.getDAOGroup().getOriginalVoucherCreationDAO().planToRemoveOriginalVoucherList(originalVoucherCreation, originalVoucherIds, allTokens());
+				originalVoucherCreationDaoOf(userContext).planToRemoveOriginalVoucherList(originalVoucherCreation, originalVoucherIds, allTokens());
 				originalVoucherCreation = saveOriginalVoucherCreation(userContext, originalVoucherCreation, tokens().withOriginalVoucherList().done());
 				deleteRelationListInGraph(userContext, originalVoucherCreation.getOriginalVoucherList());
 				return present(userContext,originalVoucherCreation, mergedAllTokens(tokensExpr));
@@ -540,10 +592,10 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	protected void checkParamsForRemovingOriginalVoucher(RetailscmUserContext userContext, String originalVoucherCreationId, 
 		String originalVoucherId, int originalVoucherVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfOriginalVoucherCreation( originalVoucherCreationId);
-		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().checkVersionOfOriginalVoucher(originalVoucherVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).checkIdOfOriginalVoucherCreation( originalVoucherCreationId);
+		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+		checkerOf(userContext).checkVersionOfOriginalVoucher(originalVoucherVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 	
 	}
 	public  OriginalVoucherCreation removeOriginalVoucher(RetailscmUserContext userContext, String originalVoucherCreationId, 
@@ -567,10 +619,10 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 	protected void checkParamsForCopyingOriginalVoucher(RetailscmUserContext userContext, String originalVoucherCreationId, 
 		String originalVoucherId, int originalVoucherVersion,String [] tokensExpr) throws Exception{
 		
-		userContext.getChecker().checkIdOfOriginalVoucherCreation( originalVoucherCreationId);
-		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().checkVersionOfOriginalVoucher(originalVoucherVersion);
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).checkIdOfOriginalVoucherCreation( originalVoucherCreationId);
+		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+		checkerOf(userContext).checkVersionOfOriginalVoucher(originalVoucherVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 	
 	}
 	public  OriginalVoucherCreation copyOriginalVoucherFrom(RetailscmUserContext userContext, String originalVoucherCreationId, 
@@ -599,33 +651,33 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 		
 
 		
-		userContext.getChecker().checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
-		userContext.getChecker().checkIdOfOriginalVoucher(originalVoucherId);
-		userContext.getChecker().checkVersionOfOriginalVoucher(originalVoucherVersion);
+		checkerOf(userContext).checkIdOfOriginalVoucherCreation(originalVoucherCreationId);
+		checkerOf(userContext).checkIdOfOriginalVoucher(originalVoucherId);
+		checkerOf(userContext).checkVersionOfOriginalVoucher(originalVoucherVersion);
 		
 
 		if(OriginalVoucher.TITLE_PROPERTY.equals(property)){
-			userContext.getChecker().checkTitleOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkTitleOfOriginalVoucher(parseString(newValueExpr));
 		}
 		
 		if(OriginalVoucher.MADE_BY_PROPERTY.equals(property)){
-			userContext.getChecker().checkMadeByOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkMadeByOfOriginalVoucher(parseString(newValueExpr));
 		}
 		
 		if(OriginalVoucher.RECEIVED_BY_PROPERTY.equals(property)){
-			userContext.getChecker().checkReceivedByOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkReceivedByOfOriginalVoucher(parseString(newValueExpr));
 		}
 		
 		if(OriginalVoucher.VOUCHER_TYPE_PROPERTY.equals(property)){
-			userContext.getChecker().checkVoucherTypeOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkVoucherTypeOfOriginalVoucher(parseString(newValueExpr));
 		}
 		
 		if(OriginalVoucher.VOUCHER_IMAGE_PROPERTY.equals(property)){
-			userContext.getChecker().checkVoucherImageOfOriginalVoucher(parseString(newValueExpr));
+			checkerOf(userContext).checkVoucherImageOfOriginalVoucher(parseString(newValueExpr));
 		}
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(OriginalVoucherCreationManagerException.class);
 	
 	}
 	
@@ -660,78 +712,10 @@ public class OriginalVoucherCreationManagerImpl extends CustomRetailscmCheckerMa
 
 	}
 	/*
-	public  OriginalVoucherCreation associateOriginalVoucherListToNewConfirmation(RetailscmUserContext userContext, String originalVoucherCreationId, String  originalVoucherIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchOriginalVoucherListWith(OriginalVoucher.ID_PROPERTY, "oneof", this.joinArray("|", originalVoucherIds)).done();
-		
-		OriginalVoucherCreation originalVoucherCreation = loadOriginalVoucherCreation(userContext, originalVoucherCreationId, options);
-		
-		OriginalVoucherConfirmation confirmation = userContext.getManagerGroup().getOriginalVoucherConfirmationManager().createOriginalVoucherConfirmation(userContext,  who,  comments,  makeDate);
-		
-		for(OriginalVoucher originalVoucher: originalVoucherCreation.getOriginalVoucherList()) {
-			//TODO: need to check if already associated
-			originalVoucher.updateConfirmation(confirmation);
-		}
-		return this.internalSaveOriginalVoucherCreation(userContext, originalVoucherCreation);
-	}	public  OriginalVoucherCreation associateOriginalVoucherListToNewAuditing(RetailscmUserContext userContext, String originalVoucherCreationId, String  originalVoucherIds[], String who, String comments, Date makeDate, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchOriginalVoucherListWith(OriginalVoucher.ID_PROPERTY, "oneof", this.joinArray("|", originalVoucherIds)).done();
-		
-		OriginalVoucherCreation originalVoucherCreation = loadOriginalVoucherCreation(userContext, originalVoucherCreationId, options);
-		
-		OriginalVoucherAuditing auditing = userContext.getManagerGroup().getOriginalVoucherAuditingManager().createOriginalVoucherAuditing(userContext,  who,  comments,  makeDate);
-		
-		for(OriginalVoucher originalVoucher: originalVoucherCreation.getOriginalVoucherList()) {
-			//TODO: need to check if already associated
-			originalVoucher.updateAuditing(auditing);
-		}
-		return this.internalSaveOriginalVoucherCreation(userContext, originalVoucherCreation);
-	}
 	*/
 	
-	public  OriginalVoucherCreation associateOriginalVoucherListToConfirmation(RetailscmUserContext userContext, String originalVoucherCreationId, String  originalVoucherIds[], String confirmationId, String [] tokensExpr) throws Exception {
 
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchOriginalVoucherListWith(OriginalVoucher.ID_PROPERTY, "oneof", this.joinArray("|", originalVoucherIds)).done();
-		
-		OriginalVoucherCreation originalVoucherCreation = loadOriginalVoucherCreation(userContext, originalVoucherCreationId, options);
-		
-		OriginalVoucherConfirmation confirmation = userContext.getManagerGroup().getOriginalVoucherConfirmationManager().loadOriginalVoucherConfirmation(userContext,confirmationId,new String[]{"none"} );
-		
-		for(OriginalVoucher originalVoucher: originalVoucherCreation.getOriginalVoucherList()) {
-			//TODO: need to check if already associated
-			originalVoucher.updateConfirmation(confirmation);
-		}
-		return this.internalSaveOriginalVoucherCreation(userContext, originalVoucherCreation);
-	}	public  OriginalVoucherCreation associateOriginalVoucherListToAuditing(RetailscmUserContext userContext, String originalVoucherCreationId, String  originalVoucherIds[], String auditingId, String [] tokensExpr) throws Exception {
-
-		
-		
-		Map<String, Object> options = tokens()
-				.allTokens()
-				.searchOriginalVoucherListWith(OriginalVoucher.ID_PROPERTY, "oneof", this.joinArray("|", originalVoucherIds)).done();
-		
-		OriginalVoucherCreation originalVoucherCreation = loadOriginalVoucherCreation(userContext, originalVoucherCreationId, options);
-		
-		OriginalVoucherAuditing auditing = userContext.getManagerGroup().getOriginalVoucherAuditingManager().loadOriginalVoucherAuditing(userContext,auditingId,new String[]{"none"} );
-		
-		for(OriginalVoucher originalVoucher: originalVoucherCreation.getOriginalVoucherList()) {
-			//TODO: need to check if already associated
-			originalVoucher.updateAuditing(auditing);
-		}
-		return this.internalSaveOriginalVoucherCreation(userContext, originalVoucherCreation);
-	}
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, OriginalVoucherCreation newCreated) throws Exception{

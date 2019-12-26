@@ -16,7 +16,7 @@ public class ProvinceCenterDepartmentMapper extends BaseRowMapper<ProvinceCenter
  		setName(provinceCenterDepartment, rs, rowNumber); 		
  		setFounded(provinceCenterDepartment, rs, rowNumber); 		
  		setProvinceCenter(provinceCenterDepartment, rs, rowNumber); 		
- 		setManager(provinceCenterDepartment, rs, rowNumber); 		
+ 		setManagerName(provinceCenterDepartment, rs, rowNumber); 		
  		setVersion(provinceCenterDepartment, rs, rowNumber);
 
 		return provinceCenterDepartment;
@@ -80,16 +80,16 @@ public class ProvinceCenterDepartmentMapper extends BaseRowMapper<ProvinceCenter
  		provinceCenterDepartment.setProvinceCenter(createEmptyProvinceCenter(retailStoreProvinceCenterId));
  	}
  	
-	protected void setManager(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{
+	protected void setManagerName(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String manager = rs.getString(ProvinceCenterDepartmentTable.COLUMN_MANAGER);
-		if(manager == null){
+		String managerName = rs.getString(ProvinceCenterDepartmentTable.COLUMN_MANAGER_NAME);
+		if(managerName == null){
 			//do nothing when nothing found in database
 			return;
 		}
 		
-		provinceCenterDepartment.setManager(manager);
+		provinceCenterDepartment.setManagerName(managerName);
 	}
 		
 	protected void setVersion(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{

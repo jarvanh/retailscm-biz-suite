@@ -33,6 +33,13 @@ import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
 public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager implements CandidateContainerManager {
 	
 	private static final String SERVICE_TYPE = "CandidateContainer";
+<<<<<<< HEAD
+=======
+	@Override
+	public CandidateContainerDAO daoOf(RetailscmUserContext userContext) {
+		return candidateContainerDaoOf(userContext);
+	}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +73,13 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
  	
  	public CandidateContainer loadCandidateContainer(RetailscmUserContext userContext, String candidateContainerId, String [] tokensExpr) throws Exception{				
  
+<<<<<<< HEAD
  		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
 		userContext.getChecker().throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+=======
+ 		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +92,13 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
  	
  	 public CandidateContainer searchCandidateContainer(RetailscmUserContext userContext, String candidateContainerId, String textToSearch,String [] tokensExpr) throws Exception{				
  
+<<<<<<< HEAD
  		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
 		userContext.getChecker().throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+=======
+ 		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +116,17 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		addActions(userContext,candidateContainer,tokens);
 		
 		
+<<<<<<< HEAD
 		CandidateContainer  candidateContainerToPresent = userContext.getDAOGroup().getCandidateContainerDAO().present(candidateContainer, tokens);
 		
 		List<BaseEntity> entityListToNaming = candidateContainerToPresent.collectRefercencesFromLists();
 		userContext.getDAOGroup().getCandidateContainerDAO().alias(entityListToNaming);
+=======
+		CandidateContainer  candidateContainerToPresent = candidateContainerDaoOf(userContext).present(candidateContainer, tokens);
+		
+		List<BaseEntity> entityListToNaming = candidateContainerToPresent.collectRefercencesFromLists();
+		candidateContainerDaoOf(userContext).alias(entityListToNaming);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		return  candidateContainerToPresent;
 		
@@ -123,6 +147,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		
  	}
  	protected CandidateContainer saveCandidateContainer(RetailscmUserContext userContext, CandidateContainer candidateContainer, Map<String,Object>tokens) throws Exception{	
+<<<<<<< HEAD
  		return userContext.getDAOGroup().getCandidateContainerDAO().save(candidateContainer, tokens);
  	}
  	protected CandidateContainer loadCandidateContainer(RetailscmUserContext userContext, String candidateContainerId, Map<String,Object>tokens) throws Exception{	
@@ -131,6 +156,16 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 
  
  		return userContext.getDAOGroup().getCandidateContainerDAO().load(candidateContainerId, tokens);
+=======
+ 		return candidateContainerDaoOf(userContext).save(candidateContainer, tokens);
+ 	}
+ 	protected CandidateContainer loadCandidateContainer(RetailscmUserContext userContext, String candidateContainerId, Map<String,Object>tokens) throws Exception{	
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).throwExceptionIfHasErrors( CandidateContainerManagerException.class);
+
+ 
+ 		return candidateContainerDaoOf(userContext).load(candidateContainerId, tokens);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
 
 	
@@ -163,17 +198,28 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
  	
  	
 
+<<<<<<< HEAD
 
 	public CandidateContainer createCandidateContainer(RetailscmUserContext userContext,String name) throws Exception
+=======
+	public CandidateContainer createCandidateContainer(RetailscmUserContext userContext, String name) throws Exception
+	//public CandidateContainer createCandidateContainer(RetailscmUserContext userContext,String name) throws Exception
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	{
 		
 		
 
 		
 
+<<<<<<< HEAD
 		userContext.getChecker().checkNameOfCandidateContainer(name);
 	
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+		checkerOf(userContext).checkNameOfCandidateContainer(name);
+	
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 
 		CandidateContainer candidateContainer=createNewCandidateContainer();	
@@ -199,6 +245,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 
 		
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
 		userContext.getChecker().checkVersionOfCandidateContainer( candidateContainerVersion);
 		
@@ -208,6 +255,17 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		}
 	
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).checkVersionOfCandidateContainer( candidateContainerVersion);
+		
+
+		if(CandidateContainer.NAME_PROPERTY.equals(property)){
+			checkerOf(userContext).checkNameOfCandidateContainer(parseString(newValueExpr));
+		}
+	
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 		
 	}
@@ -216,7 +274,11 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	
 	public CandidateContainer clone(RetailscmUserContext userContext, String fromCandidateContainerId) throws Exception{
 		
+<<<<<<< HEAD
 		return userContext.getDAOGroup().getCandidateContainerDAO().clone(fromCandidateContainerId, this.allTokens());
+=======
+		return candidateContainerDaoOf(userContext).clone(fromCandidateContainerId, this.allTokens());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	public CandidateContainer internalSaveCandidateContainer(RetailscmUserContext userContext, CandidateContainer candidateContainer) throws Exception 
@@ -322,7 +384,11 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String candidateContainerId, int candidateContainerVersion) throws Exception{
 			
+<<<<<<< HEAD
 		userContext.getDAOGroup().getCandidateContainerDAO().delete(candidateContainerId, candidateContainerVersion);
+=======
+		candidateContainerDaoOf(userContext).delete(candidateContainerId, candidateContainerVersion);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	public CandidateContainer forgetByAll(RetailscmUserContext userContext, String candidateContainerId, int candidateContainerVersion) throws Exception {
@@ -331,9 +397,16 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected CandidateContainer forgetByAllInternal(RetailscmUserContext userContext,
 			String candidateContainerId, int candidateContainerVersion) throws Exception{
 			
+<<<<<<< HEAD
 		return userContext.getDAOGroup().getCandidateContainerDAO().disconnectFromAll(candidateContainerId, candidateContainerVersion);
 	}
 	
+=======
+		return candidateContainerDaoOf(userContext).disconnectFromAll(candidateContainerId, candidateContainerVersion);
+	}
+	
+	
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
@@ -349,7 +422,11 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
+<<<<<<< HEAD
 		return userContext.getDAOGroup().getCandidateContainerDAO().deleteAll();
+=======
+		return candidateContainerDaoOf(userContext).deleteAll();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 
 
@@ -361,6 +438,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 
 	protected void checkParamsForAddingCandidateElement(RetailscmUserContext userContext, String candidateContainerId, String name, String type, String image,String [] tokensExpr) throws Exception{
 		
+<<<<<<< HEAD
 		
 
 		
@@ -375,6 +453,18 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		userContext.getChecker().checkImageOfCandidateElement(image);
 	
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+				checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+
+		
+		checkerOf(userContext).checkNameOfCandidateElement(name);
+		
+		checkerOf(userContext).checkTypeOfCandidateElement(type);
+		
+		checkerOf(userContext).checkImageOfCandidateElement(image);
+	
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	
 	}
@@ -398,6 +488,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	}
 	protected void checkParamsForUpdatingCandidateElementProperties(RetailscmUserContext userContext, String candidateContainerId,String id,String name,String type,String image,String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
 		userContext.getChecker().checkIdOfCandidateElement(id);
 		
@@ -406,6 +497,16 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		userContext.getChecker().checkImageOfCandidateElement( image);
 
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(id);
+		
+		checkerOf(userContext).checkNameOfCandidateElement( name);
+		checkerOf(userContext).checkTypeOfCandidateElement( type);
+		checkerOf(userContext).checkImageOfCandidateElement( image);
+
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 	}
 	public  CandidateContainer updateCandidateElementProperties(RetailscmUserContext userContext, String candidateContainerId, String id,String name,String type,String image, String [] tokensExpr) throws Exception
@@ -465,12 +566,21 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingCandidateElementList(RetailscmUserContext userContext, String candidateContainerId, 
 			String candidateElementIds[],String [] tokensExpr) throws Exception {
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
 		for(String candidateElementIdItem: candidateElementIds){
 			userContext.getChecker().checkIdOfCandidateElement(candidateElementIdItem);
 		}
 		
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		for(String candidateElementIdItem: candidateElementIds){
+			checkerOf(userContext).checkIdOfCandidateElement(candidateElementIdItem);
+		}
+		
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 	}
 	public  CandidateContainer removeCandidateElementList(RetailscmUserContext userContext, String candidateContainerId, 
@@ -483,7 +593,11 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 			synchronized(candidateContainer){ 
 				//Will be good when the candidateContainer loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
+<<<<<<< HEAD
 				userContext.getDAOGroup().getCandidateContainerDAO().planToRemoveCandidateElementList(candidateContainer, candidateElementIds, allTokens());
+=======
+				candidateContainerDaoOf(userContext).planToRemoveCandidateElementList(candidateContainer, candidateElementIds, allTokens());
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 				candidateContainer = saveCandidateContainer(userContext, candidateContainer, tokens().withCandidateElementList().done());
 				deleteRelationListInGraph(userContext, candidateContainer.getCandidateElementList());
 				return present(userContext,candidateContainer, mergedAllTokens(tokensExpr));
@@ -493,10 +607,17 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForRemovingCandidateElement(RetailscmUserContext userContext, String candidateContainerId, 
 		String candidateElementId, int candidateElementVersion,String [] tokensExpr) throws Exception{
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfCandidateContainer( candidateContainerId);
 		userContext.getChecker().checkIdOfCandidateElement(candidateElementId);
 		userContext.getChecker().checkVersionOfCandidateElement(candidateElementVersion);
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+		checkerOf(userContext).checkIdOfCandidateContainer( candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(candidateElementId);
+		checkerOf(userContext).checkVersionOfCandidateElement(candidateElementVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	}
 	public  CandidateContainer removeCandidateElement(RetailscmUserContext userContext, String candidateContainerId, 
@@ -520,10 +641,17 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 	protected void checkParamsForCopyingCandidateElement(RetailscmUserContext userContext, String candidateContainerId, 
 		String candidateElementId, int candidateElementVersion,String [] tokensExpr) throws Exception{
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfCandidateContainer( candidateContainerId);
 		userContext.getChecker().checkIdOfCandidateElement(candidateElementId);
 		userContext.getChecker().checkVersionOfCandidateElement(candidateElementVersion);
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+		checkerOf(userContext).checkIdOfCandidateContainer( candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(candidateElementId);
+		checkerOf(userContext).checkVersionOfCandidateElement(candidateElementVersion);
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	}
 	public  CandidateContainer copyCandidateElementFrom(RetailscmUserContext userContext, String candidateContainerId, 
@@ -552,6 +680,7 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		
 
 		
+<<<<<<< HEAD
 		userContext.getChecker().checkIdOfCandidateContainer(candidateContainerId);
 		userContext.getChecker().checkIdOfCandidateElement(candidateElementId);
 		userContext.getChecker().checkVersionOfCandidateElement(candidateElementVersion);
@@ -571,6 +700,27 @@ public class CandidateContainerManagerImpl extends CustomRetailscmCheckerManager
 		
 	
 		userContext.getChecker().throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+=======
+		checkerOf(userContext).checkIdOfCandidateContainer(candidateContainerId);
+		checkerOf(userContext).checkIdOfCandidateElement(candidateElementId);
+		checkerOf(userContext).checkVersionOfCandidateElement(candidateElementVersion);
+		
+
+		if(CandidateElement.NAME_PROPERTY.equals(property)){
+			checkerOf(userContext).checkNameOfCandidateElement(parseString(newValueExpr));
+		}
+		
+		if(CandidateElement.TYPE_PROPERTY.equals(property)){
+			checkerOf(userContext).checkTypeOfCandidateElement(parseString(newValueExpr));
+		}
+		
+		if(CandidateElement.IMAGE_PROPERTY.equals(property)){
+			checkerOf(userContext).checkImageOfCandidateElement(parseString(newValueExpr));
+		}
+		
+	
+		checkerOf(userContext).throwExceptionIfHasErrors(CandidateContainerManagerException.class);
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	}
 	

@@ -106,6 +106,34 @@ public class LevelOneCategoryForm extends BaseForm {
 		return ownerIdFieldOfCatalog("ownerId","");
 	}
 
+
+	public LevelOneCategoryForm subCountFieldOfCatalog(String parameterName, String initValue){
+		FormField field =  subCountFromCatalog(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public LevelOneCategoryForm subCountFieldOfCatalog(String initValue){
+		return subCountFieldOfCatalog("subCount",initValue);
+	}
+	public LevelOneCategoryForm subCountFieldOfCatalog(){
+		return subCountFieldOfCatalog("subCount","");
+	}
+
+
+	public LevelOneCategoryForm amountFieldOfCatalog(String parameterName, String initValue){
+		FormField field =  amountFromCatalog(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public LevelOneCategoryForm amountFieldOfCatalog(String initValue){
+		return amountFieldOfCatalog("amount",initValue);
+	}
+	public LevelOneCategoryForm amountFieldOfCatalog(){
+		return amountFieldOfCatalog("amount","");
+	}
+
 	
 
 

@@ -546,6 +546,11 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	*/
 	
+	public SmartList<RetailStoreCountryCenter> loadAll() {
+	    return this.loadAll(getRetailStoreCountryCenterMapper());
+	}
+	
+	
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";
@@ -1430,8 +1435,32 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 	protected RetailStoreCountryCenter analyzeCatalogList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+<<<<<<< HEAD
+=======
 		
 		
+		if(retailStoreCountryCenter == null){
+			return null;
+		}
+		if(retailStoreCountryCenter.getId() == null){
+			return retailStoreCountryCenter;
+		}
+
+		
+		
+		SmartList<Catalog> catalogList = retailStoreCountryCenter.getCatalogList();
+		if(catalogList != null){
+			getCatalogDAO().analyzeCatalogByOwner(catalogList, retailStoreCountryCenter.getId(), options);
+			
+		}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+<<<<<<< HEAD
 		if(retailStoreCountryCenter == null){
 			return null;
 		}
@@ -1452,6 +1481,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceRetailStoreProvinceCenterList(SmartList<RetailStoreProvinceCenter> retailStoreProvinceCenterList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1489,7 +1520,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<RetailStoreProvinceCenter> retailStoreProvinceCenterList = retailStoreCountryCenter.getRetailStoreProvinceCenterList();
 		if(retailStoreProvinceCenterList != null){
@@ -1497,6 +1531,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<RetailStoreProvinceCenter> retailStoreProvinceCenterList = retailStoreCountryCenter.getRetailStoreProvinceCenterList();
+		if(retailStoreProvinceCenterList != null){
+			getRetailStoreProvinceCenterDAO().analyzeRetailStoreProvinceCenterByCountry(retailStoreProvinceCenterList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -1539,7 +1582,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();
 		if(retailStoreList != null){
@@ -1547,6 +1593,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();
+		if(retailStoreList != null){
+			getRetailStoreDAO().analyzeRetailStoreByRetailStoreCountryCenter(retailStoreList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -1589,7 +1644,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<RetailStoreMember> retailStoreMemberList = retailStoreCountryCenter.getRetailStoreMemberList();
 		if(retailStoreMemberList != null){
@@ -1597,6 +1655,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<RetailStoreMember> retailStoreMemberList = retailStoreCountryCenter.getRetailStoreMemberList();
+		if(retailStoreMemberList != null){
+			getRetailStoreMemberDAO().analyzeRetailStoreMemberByOwner(retailStoreMemberList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -1639,8 +1706,18 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<GoodsSupplier> goodsSupplierList = retailStoreCountryCenter.getGoodsSupplierList();
+		if(goodsSupplierList != null){
+			getGoodsSupplierDAO().analyzeGoodsSupplierByBelongTo(goodsSupplierList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<GoodsSupplier> goodsSupplierList = retailStoreCountryCenter.getGoodsSupplierList();
 		if(goodsSupplierList != null){
 			getGoodsSupplierDAO().analyzeGoodsSupplierByBelongTo(goodsSupplierList, retailStoreCountryCenter.getId(), options);
@@ -1652,6 +1729,13 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 		
+=======
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceSupplyOrderList(SmartList<SupplyOrder> supplyOrderList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1689,8 +1773,18 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();
+		if(supplyOrderList != null){
+			getSupplyOrderDAO().analyzeSupplyOrderByBuyer(supplyOrderList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();
 		if(supplyOrderList != null){
 			getSupplyOrderDAO().analyzeSupplyOrderByBuyer(supplyOrderList, retailStoreCountryCenter.getId(), options);
@@ -1702,6 +1796,13 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 		
+=======
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceRetailStoreOrderList(SmartList<RetailStoreOrder> retailStoreOrderList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1739,8 +1840,18 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();
+		if(retailStoreOrderList != null){
+			getRetailStoreOrderDAO().analyzeRetailStoreOrderBySeller(retailStoreOrderList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();
 		if(retailStoreOrderList != null){
 			getRetailStoreOrderDAO().analyzeRetailStoreOrderBySeller(retailStoreOrderList, retailStoreCountryCenter.getId(), options);
@@ -1752,6 +1863,13 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 		
+=======
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceWarehouseList(SmartList<Warehouse> warehouseList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1789,7 +1907,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<Warehouse> warehouseList = retailStoreCountryCenter.getWarehouseList();
 		if(warehouseList != null){
@@ -1797,6 +1918,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<Warehouse> warehouseList = retailStoreCountryCenter.getWarehouseList();
+		if(warehouseList != null){
+			getWarehouseDAO().analyzeWarehouseByOwner(warehouseList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -1889,7 +2019,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<AccountSet> accountSetList = retailStoreCountryCenter.getAccountSetList();
 		if(accountSetList != null){
@@ -1897,6 +2030,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<AccountSet> accountSetList = retailStoreCountryCenter.getAccountSetList();
+		if(accountSetList != null){
+			getAccountSetDAO().analyzeAccountSetByCountryCenter(accountSetList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -1980,6 +2122,7 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 	protected RetailStoreCountryCenter analyzeSkillTypeList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+<<<<<<< HEAD
 		
 		
 		if(retailStoreCountryCenter == null){
@@ -2008,6 +2151,8 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	
 	protected RetailStoreCountryCenter extractResponsibilityTypeList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		
 		if(retailStoreCountryCenter == null){
@@ -2017,6 +2162,41 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+		
+		
+		SmartList<SkillType> skillTypeList = retailStoreCountryCenter.getSkillTypeList();
+		if(skillTypeList != null){
+			getSkillTypeDAO().analyzeSkillTypeByCompany(skillTypeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+		return retailStoreCountryCenter;
+	
+	}	
+	
+<<<<<<< HEAD
+	protected RetailStoreCountryCenter analyzeResponsibilityTypeList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+		
+=======
+		
+	protected void enhanceResponsibilityTypeList(SmartList<ResponsibilityType> responsibilityTypeList,Map<String,Object> options){
+		//extract multiple list from difference sources
+		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
+	}
+	
+	protected RetailStoreCountryCenter extractResponsibilityTypeList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		
+		if(retailStoreCountryCenter == null){
+			return null;
+		}
+		if(retailStoreCountryCenter.getId() == null){
+			return retailStoreCountryCenter;
+		}
+
+<<<<<<< HEAD
+=======
 		
 		
 		SmartList<ResponsibilityType> responsibilityTypeList = getResponsibilityTypeDAO().findResponsibilityTypeByCompany(retailStoreCountryCenter.getId(),options);
@@ -2040,6 +2220,7 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 		}
 
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<ResponsibilityType> responsibilityTypeList = retailStoreCountryCenter.getResponsibilityTypeList();
 		if(responsibilityTypeList != null){
@@ -2047,6 +2228,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<ResponsibilityType> responsibilityTypeList = retailStoreCountryCenter.getResponsibilityTypeList();
+		if(responsibilityTypeList != null){
+			getResponsibilityTypeDAO().analyzeResponsibilityTypeByCompany(responsibilityTypeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -2089,7 +2279,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<TerminationReason> terminationReasonList = retailStoreCountryCenter.getTerminationReasonList();
 		if(terminationReasonList != null){
@@ -2097,6 +2290,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<TerminationReason> terminationReasonList = retailStoreCountryCenter.getTerminationReasonList();
+		if(terminationReasonList != null){
+			getTerminationReasonDAO().analyzeTerminationReasonByCompany(terminationReasonList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -2139,8 +2341,18 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<TerminationType> terminationTypeList = retailStoreCountryCenter.getTerminationTypeList();
+		if(terminationTypeList != null){
+			getTerminationTypeDAO().analyzeTerminationTypeByCompany(terminationTypeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<TerminationType> terminationTypeList = retailStoreCountryCenter.getTerminationTypeList();
 		if(terminationTypeList != null){
 			getTerminationTypeDAO().analyzeTerminationTypeByCompany(terminationTypeList, retailStoreCountryCenter.getId(), options);
@@ -2152,6 +2364,13 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 		
+=======
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceOccupationTypeList(SmartList<OccupationType> occupationTypeList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -2189,8 +2408,18 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<OccupationType> occupationTypeList = retailStoreCountryCenter.getOccupationTypeList();
+		if(occupationTypeList != null){
+			getOccupationTypeDAO().analyzeOccupationTypeByCompany(occupationTypeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<OccupationType> occupationTypeList = retailStoreCountryCenter.getOccupationTypeList();
 		if(occupationTypeList != null){
 			getOccupationTypeDAO().analyzeOccupationTypeByCompany(occupationTypeList, retailStoreCountryCenter.getId(), options);
@@ -2202,6 +2431,13 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 		
+=======
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceLeaveTypeList(SmartList<LeaveType> leaveTypeList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -2239,8 +2475,18 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
+		SmartList<LeaveType> leaveTypeList = retailStoreCountryCenter.getLeaveTypeList();
+		if(leaveTypeList != null){
+			getLeaveTypeDAO().analyzeLeaveTypeByCompany(leaveTypeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+<<<<<<< HEAD
 		SmartList<LeaveType> leaveTypeList = retailStoreCountryCenter.getLeaveTypeList();
 		if(leaveTypeList != null){
 			getLeaveTypeDAO().analyzeLeaveTypeByCompany(leaveTypeList, retailStoreCountryCenter.getId(), options);
@@ -2252,6 +2498,13 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 		
+=======
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceSalaryGradeList(SmartList<SalaryGrade> salaryGradeList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -2289,7 +2542,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<SalaryGrade> salaryGradeList = retailStoreCountryCenter.getSalaryGradeList();
 		if(salaryGradeList != null){
@@ -2297,6 +2553,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<SalaryGrade> salaryGradeList = retailStoreCountryCenter.getSalaryGradeList();
+		if(salaryGradeList != null){
+			getSalaryGradeDAO().analyzeSalaryGradeByCompany(salaryGradeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -2401,7 +2666,33 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	
 	}	
 	
+<<<<<<< HEAD
 		
+=======
+	protected RetailStoreCountryCenter analyzeTrainingCourseTypeList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+		
+		
+		if(retailStoreCountryCenter == null){
+			return null;
+		}
+		if(retailStoreCountryCenter.getId() == null){
+			return retailStoreCountryCenter;
+		}
+
+		
+		
+		SmartList<TrainingCourseType> trainingCourseTypeList = retailStoreCountryCenter.getTrainingCourseTypeList();
+		if(trainingCourseTypeList != null){
+			getTrainingCourseTypeDAO().analyzeTrainingCourseTypeByCompany(trainingCourseTypeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhancePublicHolidayList(SmartList<PublicHoliday> publicHolidayList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -2439,7 +2730,10 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			return retailStoreCountryCenter;
 		}
 
+<<<<<<< HEAD
+=======
 		
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		SmartList<PublicHoliday> publicHolidayList = retailStoreCountryCenter.getPublicHolidayList();
 		if(publicHolidayList != null){
@@ -2447,6 +2741,15 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 			
 		}
 		
+<<<<<<< HEAD
+		SmartList<PublicHoliday> publicHolidayList = retailStoreCountryCenter.getPublicHolidayList();
+		if(publicHolidayList != null){
+			getPublicHolidayDAO().analyzePublicHolidayByCompany(publicHolidayList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		return retailStoreCountryCenter;
 	
 	}	
@@ -2480,6 +2783,7 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}	
 	
 	protected RetailStoreCountryCenter analyzeEmployeeList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+<<<<<<< HEAD
 		
 		
 		if(retailStoreCountryCenter == null){
@@ -2508,6 +2812,67 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	}
 	
 	protected RetailStoreCountryCenter extractInstructorList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		
+		
+		if(retailStoreCountryCenter == null){
+			return null;
+		}
+		if(retailStoreCountryCenter.getId() == null){
+			return retailStoreCountryCenter;
+		}
+
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();
+		if(employeeList != null){
+			getEmployeeDAO().analyzeEmployeeByCompany(employeeList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+		return retailStoreCountryCenter;
+	
+	}	
+	
+<<<<<<< HEAD
+	protected RetailStoreCountryCenter analyzeInstructorList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+		
+		
+		if(retailStoreCountryCenter == null){
+			return null;
+		}
+		if(retailStoreCountryCenter.getId() == null){
+			return retailStoreCountryCenter;
+		}
+
+		
+		
+		SmartList<Instructor> instructorList = retailStoreCountryCenter.getInstructorList();
+		if(instructorList != null){
+			getInstructorDAO().analyzeInstructorByCompany(instructorList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+		return retailStoreCountryCenter;
+	
+	}	
+	
+		
+	protected void enhanceCompanyTrainingList(SmartList<CompanyTraining> companyTrainingList,Map<String,Object> options){
+=======
+		
+	protected void enhanceInstructorList(SmartList<Instructor> instructorList,Map<String,Object> options){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		//extract multiple list from difference sources
+		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
+	}
+	
+<<<<<<< HEAD
+	protected RetailStoreCountryCenter extractCompanyTrainingList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+=======
+	protected RetailStoreCountryCenter extractInstructorList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		
 		if(retailStoreCountryCenter == null){
@@ -2601,6 +2966,31 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	
 	}	
 	
+<<<<<<< HEAD
+	protected RetailStoreCountryCenter analyzeCompanyTrainingList(RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options){
+		
+		
+		if(retailStoreCountryCenter == null){
+			return null;
+		}
+		if(retailStoreCountryCenter.getId() == null){
+			return retailStoreCountryCenter;
+		}
+
+		
+		
+		SmartList<CompanyTraining> companyTrainingList = retailStoreCountryCenter.getCompanyTrainingList();
+		if(companyTrainingList != null){
+			getCompanyTrainingDAO().analyzeCompanyTrainingByCompany(companyTrainingList, retailStoreCountryCenter.getId(), options);
+			
+		}
+		
+		return retailStoreCountryCenter;
+	
+	}	
+	
+=======
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		
  	
@@ -3090,6 +3480,300 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 		return count;
 	}
 	
+	//disconnect RetailStoreCountryCenter with creation in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithCreation(RetailStoreCountryCenter retailStoreCountryCenter, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStore.CREATION_PROPERTY, creationId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+<<<<<<< HEAD
+		for(RetailStoreMember retailStoreMemberItem: externalRetailStoreMemberList){
+
+			retailStoreMemberItem.clearFromAll();
+=======
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearCreation();
+			retailStoreItem.clearRetailStoreCountryCenter();
+			
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreListWithCreation(String retailStoreCountryCenterId, String creationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStore.CREATION_PROPERTY, creationId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with investment_invitation in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithInvestmentInvitation(RetailStoreCountryCenter retailStoreCountryCenter, String investmentInvitationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStore.INVESTMENT_INVITATION_PROPERTY, investmentInvitationId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+<<<<<<< HEAD
+		for(GoodsSupplier goodsSupplierItem: externalGoodsSupplierList){
+
+			goodsSupplierItem.clearFromAll();
+=======
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearInvestmentInvitation();
+			retailStoreItem.clearRetailStoreCountryCenter();
+			
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreListWithInvestmentInvitation(String retailStoreCountryCenterId, String investmentInvitationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStore.INVESTMENT_INVITATION_PROPERTY, investmentInvitationId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with franchising in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithFranchising(RetailStoreCountryCenter retailStoreCountryCenter, String franchisingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStore.FRANCHISING_PROPERTY, franchisingId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+<<<<<<< HEAD
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+
+			supplyOrderItem.clearFromAll();
+=======
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearFranchising();
+			retailStoreItem.clearRetailStoreCountryCenter();
+			
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreListWithFranchising(String retailStoreCountryCenterId, String franchisingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStore.FRANCHISING_PROPERTY, franchisingId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with decoration in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithDecoration(RetailStoreCountryCenter retailStoreCountryCenter, String decorationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStore.DECORATION_PROPERTY, decorationId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+<<<<<<< HEAD
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearSeller();
+			supplyOrderItem.clearBuyer();
+=======
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearDecoration();
+			retailStoreItem.clearRetailStoreCountryCenter();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreListWithDecoration(String retailStoreCountryCenterId, String decorationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStore.DECORATION_PROPERTY, decorationId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with opening in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithOpening(RetailStoreCountryCenter retailStoreCountryCenter, String openingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStore.OPENING_PROPERTY, openingId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+<<<<<<< HEAD
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+
+			retailStoreOrderItem.clearFromAll();
+=======
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearOpening();
+			retailStoreItem.clearRetailStoreCountryCenter();
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreListWithOpening(String retailStoreCountryCenterId, String openingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStore.OPENING_PROPERTY, openingId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with closing in RetailStore
+	public RetailStoreCountryCenter planToRemoveRetailStoreListWithClosing(RetailStoreCountryCenter retailStoreCountryCenter, String closingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStore.CLOSING_PROPERTY, closingId);
+		
+		SmartList<RetailStore> externalRetailStoreList = getRetailStoreDAO().
+				findRetailStoreWithKey(key, options);
+		if(externalRetailStoreList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreList.isEmpty()){
+			return retailStoreCountryCenter;
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		}
+		
+		for(RetailStore retailStoreItem: externalRetailStoreList){
+			retailStoreItem.clearClosing();
+			retailStoreItem.clearRetailStoreCountryCenter();
+			
+		}
+		
+		
+		SmartList<RetailStore> retailStoreList = retailStoreCountryCenter.getRetailStoreList();		
+		retailStoreList.addAllToRemoveList(externalRetailStoreList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreListWithClosing(String retailStoreCountryCenterId, String closingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStore.RETAIL_STORE_COUNTRY_CENTER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStore.CLOSING_PROPERTY, closingId);
+		
+		int count = getRetailStoreDAO().countRetailStoreWithKey(key, options);
+		return count;
+	}
+	
 	public RetailStoreCountryCenter planToRemoveRetailStoreMemberList(RetailStoreCountryCenter retailStoreCountryCenter, String retailStoreMemberIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();
@@ -3218,6 +3902,270 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 		return count;
 	}
 	
+	//disconnect RetailStoreCountryCenter with confirmation in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithConfirmation(RetailStoreCountryCenter retailStoreCountryCenter, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(SupplyOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearConfirmation();
+			supplyOrderItem.clearBuyer();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countSupplyOrderListWithConfirmation(String retailStoreCountryCenterId, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenterId);
+		key.put(SupplyOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with approval in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithApproval(RetailStoreCountryCenter retailStoreCountryCenter, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(SupplyOrder.APPROVAL_PROPERTY, approvalId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearApproval();
+			supplyOrderItem.clearBuyer();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countSupplyOrderListWithApproval(String retailStoreCountryCenterId, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenterId);
+		key.put(SupplyOrder.APPROVAL_PROPERTY, approvalId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with processing in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithProcessing(RetailStoreCountryCenter retailStoreCountryCenter, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(SupplyOrder.PROCESSING_PROPERTY, processingId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearProcessing();
+			supplyOrderItem.clearBuyer();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countSupplyOrderListWithProcessing(String retailStoreCountryCenterId, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenterId);
+		key.put(SupplyOrder.PROCESSING_PROPERTY, processingId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with picking in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithPicking(RetailStoreCountryCenter retailStoreCountryCenter, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(SupplyOrder.PICKING_PROPERTY, pickingId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearPicking();
+			supplyOrderItem.clearBuyer();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countSupplyOrderListWithPicking(String retailStoreCountryCenterId, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenterId);
+		key.put(SupplyOrder.PICKING_PROPERTY, pickingId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with shipment in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithShipment(RetailStoreCountryCenter retailStoreCountryCenter, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearShipment();
+			supplyOrderItem.clearBuyer();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countSupplyOrderListWithShipment(String retailStoreCountryCenterId, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenterId);
+		key.put(SupplyOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with delivery in SupplyOrder
+	public RetailStoreCountryCenter planToRemoveSupplyOrderListWithDelivery(RetailStoreCountryCenter retailStoreCountryCenter, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(SupplyOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		SmartList<SupplyOrder> externalSupplyOrderList = getSupplyOrderDAO().
+				findSupplyOrderWithKey(key, options);
+		if(externalSupplyOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalSupplyOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(SupplyOrder supplyOrderItem: externalSupplyOrderList){
+			supplyOrderItem.clearDelivery();
+			supplyOrderItem.clearBuyer();
+			
+		}
+		
+		
+		SmartList<SupplyOrder> supplyOrderList = retailStoreCountryCenter.getSupplyOrderList();		
+		supplyOrderList.addAllToRemoveList(externalSupplyOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countSupplyOrderListWithDelivery(String retailStoreCountryCenterId, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(SupplyOrder.BUYER_PROPERTY, retailStoreCountryCenterId);
+		key.put(SupplyOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		int count = getSupplyOrderDAO().countSupplyOrderWithKey(key, options);
+		return count;
+	}
+	
 	public RetailStoreCountryCenter planToRemoveRetailStoreOrderList(RetailStoreCountryCenter retailStoreCountryCenter, String retailStoreOrderIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();
@@ -3285,6 +4233,274 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenterId);
 		key.put(RetailStoreOrder.BUYER_PROPERTY, buyerId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with confirmation in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithConfirmation(RetailStoreCountryCenter retailStoreCountryCenter, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearConfirmation();
+			retailStoreOrderItem.clearSeller();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreOrderListWithConfirmation(String retailStoreCountryCenterId, String confirmationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStoreOrder.CONFIRMATION_PROPERTY, confirmationId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with approval in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithApproval(RetailStoreCountryCenter retailStoreCountryCenter, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStoreOrder.APPROVAL_PROPERTY, approvalId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearApproval();
+			retailStoreOrderItem.clearSeller();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreOrderListWithApproval(String retailStoreCountryCenterId, String approvalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStoreOrder.APPROVAL_PROPERTY, approvalId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with processing in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithProcessing(RetailStoreCountryCenter retailStoreCountryCenter, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStoreOrder.PROCESSING_PROPERTY, processingId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearProcessing();
+			retailStoreOrderItem.clearSeller();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreOrderListWithProcessing(String retailStoreCountryCenterId, String processingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStoreOrder.PROCESSING_PROPERTY, processingId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with picking in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithPicking(RetailStoreCountryCenter retailStoreCountryCenter, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStoreOrder.PICKING_PROPERTY, pickingId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearPicking();
+			retailStoreOrderItem.clearSeller();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreOrderListWithPicking(String retailStoreCountryCenterId, String pickingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStoreOrder.PICKING_PROPERTY, pickingId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with shipment in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithShipment(RetailStoreCountryCenter retailStoreCountryCenter, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+			retailStoreOrderItem.clearShipment();
+			retailStoreOrderItem.clearSeller();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreOrderListWithShipment(String retailStoreCountryCenterId, String shipmentId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStoreOrder.SHIPMENT_PROPERTY, shipmentId);
+		
+		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with delivery in RetailStoreOrder
+	public RetailStoreCountryCenter planToRemoveRetailStoreOrderListWithDelivery(RetailStoreCountryCenter retailStoreCountryCenter, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(RetailStoreOrder.DELIVERY_PROPERTY, deliveryId);
+		
+		SmartList<RetailStoreOrder> externalRetailStoreOrderList = getRetailStoreOrderDAO().
+				findRetailStoreOrderWithKey(key, options);
+		if(externalRetailStoreOrderList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalRetailStoreOrderList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(RetailStoreOrder retailStoreOrderItem: externalRetailStoreOrderList){
+<<<<<<< HEAD
+			retailStoreOrderItem.clearBuyer();
+=======
+			retailStoreOrderItem.clearDelivery();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+			retailStoreOrderItem.clearSeller();
+			
+		}
+		
+		
+		SmartList<RetailStoreOrder> retailStoreOrderList = retailStoreCountryCenter.getRetailStoreOrderList();		
+		retailStoreOrderList.addAllToRemoveList(externalRetailStoreOrderList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countRetailStoreOrderListWithDelivery(String retailStoreCountryCenterId, String deliveryId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(RetailStoreOrder.SELLER_PROPERTY, retailStoreCountryCenterId);
+		key.put(RetailStoreOrder.DELIVERY_PROPERTY, deliveryId);
 		
 		int count = getRetailStoreOrderDAO().countRetailStoreOrderWithKey(key, options);
 		return count;
@@ -3969,6 +5185,347 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
 		key.put(Employee.CURRENT_SALARY_GRADE_PROPERTY, currentSalaryGradeId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with job_application in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithJobApplication(RetailStoreCountryCenter retailStoreCountryCenter, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+<<<<<<< HEAD
+		for(TrainingCourseType trainingCourseTypeItem: externalTrainingCourseTypeList){
+
+			trainingCourseTypeItem.clearFromAll();
+=======
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearJobApplication();
+			employeeItem.clearCompany();
+			
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		}
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countEmployeeListWithJobApplication(String retailStoreCountryCenterId, String jobApplicationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
+		key.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with profession_interview in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithProfessionInterview(RetailStoreCountryCenter retailStoreCountryCenter, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+<<<<<<< HEAD
+		for(PublicHoliday publicHolidayItem: externalPublicHolidayList){
+
+			publicHolidayItem.clearFromAll();
+=======
+		for(Employee employeeItem: externalEmployeeList){
+			employeeItem.clearProfessionInterview();
+			employeeItem.clearCompany();
+			
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		}
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countEmployeeListWithProfessionInterview(String retailStoreCountryCenterId, String professionInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
+		key.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with hr_interview in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithHrInterview(RetailStoreCountryCenter retailStoreCountryCenter, String hrInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+<<<<<<< HEAD
+
+			employeeItem.clearFromAll();
+=======
+			employeeItem.clearHrInterview();
+			employeeItem.clearCompany();
+			
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+		}
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countEmployeeListWithHrInterview(String retailStoreCountryCenterId, String hrInterviewId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
+		key.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with offer_approval in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithOfferApproval(RetailStoreCountryCenter retailStoreCountryCenter, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+<<<<<<< HEAD
+			employeeItem.clearDepartment();
+=======
+			employeeItem.clearOfferApproval();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+			employeeItem.clearCompany();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countEmployeeListWithOfferApproval(String retailStoreCountryCenterId, String offerApprovalId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
+		key.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with offer_acceptance in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithOfferAcceptance(RetailStoreCountryCenter retailStoreCountryCenter, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+<<<<<<< HEAD
+			employeeItem.clearOccupation();
+=======
+			employeeItem.clearOfferAcceptance();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+			employeeItem.clearCompany();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countEmployeeListWithOfferAcceptance(String retailStoreCountryCenterId, String offerAcceptanceId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
+		key.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with employee_boarding in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithEmployeeBoarding(RetailStoreCountryCenter retailStoreCountryCenter, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+<<<<<<< HEAD
+			employeeItem.clearResponsibleFor();
+=======
+			employeeItem.clearEmployeeBoarding();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+			employeeItem.clearCompany();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countEmployeeListWithEmployeeBoarding(String retailStoreCountryCenterId, String employeeBoardingId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
+		key.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
+		
+		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect RetailStoreCountryCenter with termination in Employee
+	public RetailStoreCountryCenter planToRemoveEmployeeListWithTermination(RetailStoreCountryCenter retailStoreCountryCenter, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenter.getId());
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
+		
+		SmartList<Employee> externalEmployeeList = getEmployeeDAO().
+				findEmployeeWithKey(key, options);
+		if(externalEmployeeList == null){
+			return retailStoreCountryCenter;
+		}
+		if(externalEmployeeList.isEmpty()){
+			return retailStoreCountryCenter;
+		}
+		
+		for(Employee employeeItem: externalEmployeeList){
+<<<<<<< HEAD
+			employeeItem.clearCurrentSalaryGrade();
+=======
+			employeeItem.clearTermination();
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+			employeeItem.clearCompany();
+			
+		}
+		
+		
+		SmartList<Employee> employeeList = retailStoreCountryCenter.getEmployeeList();		
+		employeeList.addAllToRemoveList(externalEmployeeList);
+		return retailStoreCountryCenter;
+	}
+	
+	public int countEmployeeListWithTermination(String retailStoreCountryCenterId, String terminationId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(Employee.COMPANY_PROPERTY, retailStoreCountryCenterId);
+		key.put(Employee.TERMINATION_PROPERTY, terminationId);
 		
 		int count = getEmployeeDAO().countEmployeeWithKey(key, options);
 		return count;

@@ -73,13 +73,6 @@ public class SupplyOrderShippingGroup extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public 	SupplyOrderShippingGroup(String name, SupplyOrder bizOrder, BigDecimal amount)
-	{
-		setName(name);
-		setBizOrder(bizOrder);
-		setAmount(amount);
-	
-	}
 	
 	//Support for changing the property
 	

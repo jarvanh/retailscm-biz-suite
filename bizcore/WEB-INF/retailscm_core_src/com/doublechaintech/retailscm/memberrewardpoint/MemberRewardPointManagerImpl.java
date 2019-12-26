@@ -33,6 +33,10 @@ import com.doublechaintech.retailscm.retailstoremember.CandidateRetailStoreMembe
 public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager implements MemberRewardPointManager {
 	
 	private static final String SERVICE_TYPE = "MemberRewardPoint";
+	@Override
+	public MemberRewardPointDAO daoOf(RetailscmUserContext userContext) {
+		return memberRewardPointDaoOf(userContext);
+	}
 	
 	@Override
 	public String serviceFor(){
@@ -66,8 +70,8 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
  	
  	public MemberRewardPoint loadMemberRewardPoint(RetailscmUserContext userContext, String memberRewardPointId, String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfMemberRewardPoint(memberRewardPointId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberRewardPointManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberRewardPoint(memberRewardPointId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberRewardPointManagerException.class);
 
  			
  		Map<String,Object>tokens = parseTokens(tokensExpr);
@@ -80,8 +84,8 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
  	
  	 public MemberRewardPoint searchMemberRewardPoint(RetailscmUserContext userContext, String memberRewardPointId, String textToSearch,String [] tokensExpr) throws Exception{				
  
- 		userContext.getChecker().checkIdOfMemberRewardPoint(memberRewardPointId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberRewardPointManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberRewardPoint(memberRewardPointId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberRewardPointManagerException.class);
 
  		
  		Map<String,Object>tokens = tokens().allTokens().searchEntireObjectText("startsWith", textToSearch).initWithArray(tokensExpr);
@@ -99,10 +103,10 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 		addActions(userContext,memberRewardPoint,tokens);
 		
 		
-		MemberRewardPoint  memberRewardPointToPresent = userContext.getDAOGroup().getMemberRewardPointDAO().present(memberRewardPoint, tokens);
+		MemberRewardPoint  memberRewardPointToPresent = memberRewardPointDaoOf(userContext).present(memberRewardPoint, tokens);
 		
 		List<BaseEntity> entityListToNaming = memberRewardPointToPresent.collectRefercencesFromLists();
-		userContext.getDAOGroup().getMemberRewardPointDAO().alias(entityListToNaming);
+		memberRewardPointDaoOf(userContext).alias(entityListToNaming);
 		
 		return  memberRewardPointToPresent;
 		
@@ -123,14 +127,14 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 		
  	}
  	protected MemberRewardPoint saveMemberRewardPoint(RetailscmUserContext userContext, MemberRewardPoint memberRewardPoint, Map<String,Object>tokens) throws Exception{	
- 		return userContext.getDAOGroup().getMemberRewardPointDAO().save(memberRewardPoint, tokens);
+ 		return memberRewardPointDaoOf(userContext).save(memberRewardPoint, tokens);
  	}
  	protected MemberRewardPoint loadMemberRewardPoint(RetailscmUserContext userContext, String memberRewardPointId, Map<String,Object>tokens) throws Exception{	
-		userContext.getChecker().checkIdOfMemberRewardPoint(memberRewardPointId);
-		userContext.getChecker().throwExceptionIfHasErrors( MemberRewardPointManagerException.class);
+		checkerOf(userContext).checkIdOfMemberRewardPoint(memberRewardPointId);
+		checkerOf(userContext).throwExceptionIfHasErrors( MemberRewardPointManagerException.class);
 
  
- 		return userContext.getDAOGroup().getMemberRewardPointDAO().load(memberRewardPointId, tokens);
+ 		return memberRewardPointDaoOf(userContext).load(memberRewardPointId, tokens);
  	}
 
 	
@@ -160,18 +164,18 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
  	
  	
 
-
-	public MemberRewardPoint createMemberRewardPoint(RetailscmUserContext userContext,String name, int point, String ownerId) throws Exception
+	public MemberRewardPoint createMemberRewardPoint(RetailscmUserContext userContext, String name,int point,String ownerId) throws Exception
+	//public MemberRewardPoint createMemberRewardPoint(RetailscmUserContext userContext,String name, int point, String ownerId) throws Exception
 	{
 		
 		
 
 		
 
-		userContext.getChecker().checkNameOfMemberRewardPoint(name);
-		userContext.getChecker().checkPointOfMemberRewardPoint(point);
+		checkerOf(userContext).checkNameOfMemberRewardPoint(name);
+		checkerOf(userContext).checkPointOfMemberRewardPoint(point);
 	
-		userContext.getChecker().throwExceptionIfHasErrors(MemberRewardPointManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointManagerException.class);
 
 
 		MemberRewardPoint memberRewardPoint=createNewMemberRewardPoint();	
@@ -203,20 +207,20 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 
 		
 		
-		userContext.getChecker().checkIdOfMemberRewardPoint(memberRewardPointId);
-		userContext.getChecker().checkVersionOfMemberRewardPoint( memberRewardPointVersion);
+		checkerOf(userContext).checkIdOfMemberRewardPoint(memberRewardPointId);
+		checkerOf(userContext).checkVersionOfMemberRewardPoint( memberRewardPointVersion);
 		
 
 		if(MemberRewardPoint.NAME_PROPERTY.equals(property)){
-			userContext.getChecker().checkNameOfMemberRewardPoint(parseString(newValueExpr));
+			checkerOf(userContext).checkNameOfMemberRewardPoint(parseString(newValueExpr));
 		}
 		if(MemberRewardPoint.POINT_PROPERTY.equals(property)){
-			userContext.getChecker().checkPointOfMemberRewardPoint(parseInt(newValueExpr));
+			checkerOf(userContext).checkPointOfMemberRewardPoint(parseInt(newValueExpr));
 		}		
 
 		
 	
-		userContext.getChecker().throwExceptionIfHasErrors(MemberRewardPointManagerException.class);
+		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointManagerException.class);
 	
 		
 	}
@@ -225,7 +229,7 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 	
 	public MemberRewardPoint clone(RetailscmUserContext userContext, String fromMemberRewardPointId) throws Exception{
 		
-		return userContext.getDAOGroup().getMemberRewardPointDAO().clone(fromMemberRewardPointId, this.allTokens());
+		return memberRewardPointDaoOf(userContext).clone(fromMemberRewardPointId, this.allTokens());
 	}
 	
 	public MemberRewardPoint internalSaveMemberRewardPoint(RetailscmUserContext userContext, MemberRewardPoint memberRewardPoint) throws Exception 
@@ -323,9 +327,9 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String memberRewardPointId, String anotherOwnerId) throws Exception
  	{
  		
- 		userContext.getChecker().checkIdOfMemberRewardPoint(memberRewardPointId);
- 		userContext.getChecker().checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
- 		userContext.getChecker().throwExceptionIfHasErrors(MemberRewardPointManagerException.class);
+ 		checkerOf(userContext).checkIdOfMemberRewardPoint(memberRewardPointId);
+ 		checkerOf(userContext).checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
+ 		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointManagerException.class);
  		
  	}
  	public MemberRewardPoint transferToAnotherOwner(RetailscmUserContext userContext, String memberRewardPointId, String anotherOwnerId) throws Exception
@@ -362,7 +366,7 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
-		SmartList<RetailStoreMember> candidateList = userContext.getDAOGroup().getRetailStoreMemberDAO().requestCandidateRetailStoreMemberForMemberRewardPoint(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		SmartList<RetailStoreMember> candidateList = retailStoreMemberDaoOf(userContext).requestCandidateRetailStoreMemberForMemberRewardPoint(userContext,ownerClass, id, filterKey, pageNo, pageSize);
 		result.setCandidates(candidateList);
 		int totalCount = candidateList.getTotalCount();
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
@@ -375,7 +379,7 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
  	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
 		
- 		return userContext.getDAOGroup().getRetailStoreMemberDAO().load(newOwnerId, options);
+ 		return retailStoreMemberDaoOf(userContext).load(newOwnerId, options);
  	}
  	
  	
@@ -389,7 +393,7 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String memberRewardPointId, int memberRewardPointVersion) throws Exception{
 			
-		userContext.getDAOGroup().getMemberRewardPointDAO().delete(memberRewardPointId, memberRewardPointVersion);
+		memberRewardPointDaoOf(userContext).delete(memberRewardPointId, memberRewardPointVersion);
 	}
 	
 	public MemberRewardPoint forgetByAll(RetailscmUserContext userContext, String memberRewardPointId, int memberRewardPointVersion) throws Exception {
@@ -398,8 +402,9 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 	protected MemberRewardPoint forgetByAllInternal(RetailscmUserContext userContext,
 			String memberRewardPointId, int memberRewardPointVersion) throws Exception{
 			
-		return userContext.getDAOGroup().getMemberRewardPointDAO().disconnectFromAll(memberRewardPointId, memberRewardPointVersion);
+		return memberRewardPointDaoOf(userContext).disconnectFromAll(memberRewardPointId, memberRewardPointVersion);
 	}
+	
 	
 
 	
@@ -416,7 +421,7 @@ public class MemberRewardPointManagerImpl extends CustomRetailscmCheckerManager 
 	
 	
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
-		return userContext.getDAOGroup().getMemberRewardPointDAO().deleteAll();
+		return memberRewardPointDaoOf(userContext).deleteAll();
 	}
 
 

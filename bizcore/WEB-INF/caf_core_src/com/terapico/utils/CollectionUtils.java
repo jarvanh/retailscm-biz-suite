@@ -43,6 +43,11 @@ public class CollectionUtils {
 		return set;
 	}
 	
+<<<<<<< HEAD
+=======
+	@SafeVarargs
+    @SuppressWarnings("varargs")
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public static <T> List<T> toList(T... objs) {
 		if (objs == null || objs.length == 0) {
 			return new ArrayList<>();

@@ -77,15 +77,6 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		this.changed = true;
 	}
 	
-	public 	EmployeeQualifier(Employee employee, Date qualifiedTime, String type, String level, String remark)
-	{
-		setEmployee(employee);
-		setQualifiedTime(qualifiedTime);
-		setType(type);
-		setLevel(level);
-		setRemark(remark);
-	
-	}
 	
 	//Support for changing the property
 	

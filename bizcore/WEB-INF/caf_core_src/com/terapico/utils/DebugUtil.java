@@ -28,6 +28,12 @@ public class DebugUtil {
     private static final NumberFormat cashFormat = new DecimalFormat("#,##0.00");
     
     public static String dumpAsJson(Object object, boolean pretty) throws Exception {
+<<<<<<< HEAD
+=======
+    	if (object == null) {
+    		return null;
+    	}
+>>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
         ObjectMapper mapper = getObjectMapper();
         String jsonStr = null;
         if (pretty) {

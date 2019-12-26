@@ -74,14 +74,6 @@ public class JobApplication extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	JobApplication(Date applicationTime, String who, String comments)
-	{
-		setApplicationTime(applicationTime);
-		setWho(who);
-		setComments(comments);
-
-		this.mEmployeeList = new SmartList<Employee>();	
-	}
 	
 	//Support for changing the property
 	
