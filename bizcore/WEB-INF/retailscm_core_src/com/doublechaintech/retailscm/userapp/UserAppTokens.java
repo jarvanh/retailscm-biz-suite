@@ -145,20 +145,14 @@ public class UserAppTokens extends CommonTokens{
 	}
 	private int quickLinkListSearchCounter = 0;
 	public UserAppTokens searchQuickLinkListWith(String field, String verb, String value){		
-<<<<<<< HEAD
-=======
 		
 		withQuickLinkList();
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		addSearchMoreOptions(QUICK_LINK_LIST,quickLinkListSearchCounter++, field, verb, value);
 		return this;
 	}
 	
-<<<<<<< HEAD
-=======
 	
 	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public UserAppTokens searchAllTextOfQuickLinkList(String verb, String value){	
 		String field = "id|name|icon|linkTarget";
 		addSearchMoreOptions(QUICK_LINK_LIST,quickLinkListSearchCounter++, field, verb, value);

@@ -140,9 +140,6 @@
 <c:if test="${param.referName ne 'retailStoreOrder'}">
 	<th>${userContext.localeMap['goods.retail_store_order']}</th>
 </c:if>
-<c:if test="${param.referName ne 'packaging'}">
-	<th>${userContext.localeMap['goods.packaging']}</th>
-</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -316,25 +313,6 @@
 			<a href='./retailStoreOrderManager/view/${item.retailStoreOrder.id}/'>${item.retailStoreOrder.displayName}</a>
 			</c:if>
 			<c:if test="${empty  item.retailStoreOrder}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'packaging'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./goodsManager/requestCandidatePackaging/${ownerBeanName}/${item.id}/"
-			data-switch-method="./goodsManager/transferToAnotherPackaging/${item.id}/"
-			data-link-template="./goodsPackagingManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.packaging}">
-			<a href='./goodsPackagingManager/view/${item.packaging.id}/'>${item.packaging.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.packaging}">
 			<a href='#'></a>
 			</c:if>
 			<button class="btn btn-link candidate-action">...</button>

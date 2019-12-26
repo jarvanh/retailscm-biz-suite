@@ -486,7 +486,9 @@ public class InterviewType extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getCode(), getCompany(), getDescription(), getDetailDescription(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

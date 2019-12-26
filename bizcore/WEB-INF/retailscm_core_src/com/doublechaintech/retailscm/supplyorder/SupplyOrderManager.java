@@ -13,7 +13,7 @@ public interface SupplyOrderManager extends BaseManager{
 
 		
 
-	public SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId,String sellerId,String title,BigDecimal totalAmount,String confirmationId,String approvalId,String processingId,String pickingId,String shipmentId,String deliveryId) throws Exception;	
+	public SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId,String sellerId,String title,BigDecimal totalAmount) throws Exception;	
 	public SupplyOrder updateSupplyOrder(RetailscmUserContext userContext,String supplyOrderId, int supplyOrderVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String supplyOrderId, String [] tokensExpr) throws Exception;
 	public SupplyOrder internalSaveSupplyOrder(RetailscmUserContext userContext, SupplyOrder supplyOrder) throws Exception;
@@ -21,12 +21,6 @@ public interface SupplyOrderManager extends BaseManager{
 	
 	public SupplyOrder transferToAnotherBuyer(RetailscmUserContext userContext, String supplyOrderId, String anotherBuyerId)  throws Exception;
  	public SupplyOrder transferToAnotherSeller(RetailscmUserContext userContext, String supplyOrderId, String anotherSellerId)  throws Exception;
- 	public SupplyOrder transferToAnotherConfirmation(RetailscmUserContext userContext, String supplyOrderId, String anotherConfirmationId)  throws Exception;
- 	public SupplyOrder transferToAnotherApproval(RetailscmUserContext userContext, String supplyOrderId, String anotherApprovalId)  throws Exception;
- 	public SupplyOrder transferToAnotherProcessing(RetailscmUserContext userContext, String supplyOrderId, String anotherProcessingId)  throws Exception;
- 	public SupplyOrder transferToAnotherPicking(RetailscmUserContext userContext, String supplyOrderId, String anotherPickingId)  throws Exception;
- 	public SupplyOrder transferToAnotherShipment(RetailscmUserContext userContext, String supplyOrderId, String anotherShipmentId)  throws Exception;
- 	public SupplyOrder transferToAnotherDelivery(RetailscmUserContext userContext, String supplyOrderId, String anotherDeliveryId)  throws Exception;
  
 
 	public void delete(RetailscmUserContext userContext, String supplyOrderId, int version) throws Exception;
@@ -66,9 +60,9 @@ public interface SupplyOrderManager extends BaseManager{
 
 	*/
 
-	//public  GoodsManager getGoodsManager(RetailscmUserContext userContext, String supplyOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String retailStoreOrderId, String packagingId ,String [] tokensExpr)  throws Exception;
+	//public  GoodsManager getGoodsManager(RetailscmUserContext userContext, String supplyOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String retailStoreOrderId ,String [] tokensExpr)  throws Exception;
 	
-	public  SupplyOrder addGoods(RetailscmUserContext userContext, String supplyOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String retailStoreOrderId, String packagingId , String [] tokensExpr)  throws Exception;
+	public  SupplyOrder addGoods(RetailscmUserContext userContext, String supplyOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String retailStoreOrderId , String [] tokensExpr)  throws Exception;
 	public  SupplyOrder removeGoods(RetailscmUserContext userContext, String supplyOrderId, String goodsId, int goodsVersion,String [] tokensExpr)  throws Exception;
 	public  SupplyOrder updateGoods(RetailscmUserContext userContext, String supplyOrderId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

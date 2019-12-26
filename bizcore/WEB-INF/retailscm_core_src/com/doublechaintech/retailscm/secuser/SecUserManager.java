@@ -28,18 +28,13 @@ public interface SecUserManager extends BaseManager{
 
 	 
 
-<<<<<<< HEAD
-	public SecUser createSecUser(RetailscmUserContext userContext, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId) throws Exception;	
-=======
-	public SecUser createSecUser(RetailscmUserContext userContext, String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String domainId,String blockingId) throws Exception;	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+	public SecUser createSecUser(RetailscmUserContext userContext, String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String domainId) throws Exception;	
 	public SecUser updateSecUser(RetailscmUserContext userContext,String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public SecUser loadSecUser(RetailscmUserContext userContext, String secUserId, String [] tokensExpr) throws Exception;
 	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser) throws Exception;
 	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser,Map<String,Object>option) throws Exception;
 	
 	public SecUser transferToAnotherDomain(RetailscmUserContext userContext, String secUserId, String anotherDomainId)  throws Exception;
- 	public SecUser transferToAnotherBlocking(RetailscmUserContext userContext, String secUserId, String anotherBlockingId)  throws Exception;
  
 
 	public void delete(RetailscmUserContext userContext, String secUserId, int version) throws Exception;

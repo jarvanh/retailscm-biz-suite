@@ -344,18 +344,8 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 			return userDomain;
 		}
 
-<<<<<<< HEAD
-=======
 		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
-		SmartList<UserWhiteList> userWhiteListList = userDomain.getUserWhiteListList();
-		if(userWhiteListList != null){
-			getUserWhiteListDAO().analyzeUserWhiteListByDomain(userWhiteListList, userDomain.getId(), options);
-			
-		}
-		
-<<<<<<< HEAD
 		SmartList<UserWhiteList> userWhiteListList = userDomain.getUserWhiteListList();
 		if(userWhiteListList != null){
 			getUserWhiteListDAO().analyzeUserWhiteListByDomain(userWhiteListList, userDomain.getId(), options);
@@ -367,13 +357,6 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	}	
 	
 		
-=======
-		return userDomain;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceSecUserList(SmartList<SecUser> secUserList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -672,50 +655,6 @@ public class UserDomainJDBCTemplateDAO extends RetailscmBaseDAOImpl implements U
 	}
 
 
-	//disconnect UserDomain with blocking in SecUser
-	public UserDomain planToRemoveSecUserListWithBlocking(UserDomain userDomain, String blockingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-		
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(SecUser.DOMAIN_PROPERTY, userDomain.getId());
-		key.put(SecUser.BLOCKING_PROPERTY, blockingId);
-		
-		SmartList<SecUser> externalSecUserList = getSecUserDAO().
-				findSecUserWithKey(key, options);
-		if(externalSecUserList == null){
-			return userDomain;
-		}
-		if(externalSecUserList.isEmpty()){
-			return userDomain;
-		}
-		
-		for(SecUser secUserItem: externalSecUserList){
-			secUserItem.clearBlocking();
-			secUserItem.clearDomain();
-			
-		}
-		
-		
-		SmartList<SecUser> secUserList = userDomain.getSecUserList();		
-		secUserList.addAllToRemoveList(externalSecUserList);
-		return userDomain;
-	}
-	
-	public int countSecUserListWithBlocking(String userDomainId, String blockingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(SecUser.DOMAIN_PROPERTY, userDomainId);
-		key.put(SecUser.BLOCKING_PROPERTY, blockingId);
-		
-		int count = getSecUserDAO().countSecUserWithKey(key, options);
-		return count;
-	}
-	
 
 		
 	protected UserDomain saveUserWhiteListList(UserDomain userDomain, Map<String,Object> options){

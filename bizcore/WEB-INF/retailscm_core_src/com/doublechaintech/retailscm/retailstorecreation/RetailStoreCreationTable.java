@@ -21,17 +21,8 @@ public class RetailStoreCreationTable{
 	static final String COLUMN_COMMENT = "comment";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_COMMENT, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_COMMENT
-		};
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_COMMENT,COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {COLUMN_COMMENT};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

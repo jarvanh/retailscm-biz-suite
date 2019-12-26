@@ -77,13 +77,6 @@ public class EmployeeTokens extends CommonTokens{
 			.withOccupation()
 			.withResponsibleFor()
 			.withCurrentSalaryGrade()
-			.withJobApplication()
-			.withProfessionInterview()
-			.withHrInterview()
-			.withOfferApproval()
-			.withOfferAcceptance()
-			.withEmployeeBoarding()
-			.withTermination()
 			.withEmployeeCompanyTrainingList()
 			.withEmployeeSkillList()
 			.withEmployeePerformanceList()
@@ -105,14 +98,7 @@ public class EmployeeTokens extends CommonTokens{
 			.withDepartment()
 			.withOccupation()
 			.withResponsibleFor()
-			.withCurrentSalaryGrade()
-			.withJobApplication()
-			.withProfessionInterview()
-			.withHrInterview()
-			.withOfferApproval()
-			.withOfferAcceptance()
-			.withEmployeeBoarding()
-			.withTermination();
+			.withCurrentSalaryGrade();
 	
 	}
 	
@@ -177,76 +163,6 @@ public class EmployeeTokens extends CommonTokens{
 	}
 	public EmployeeTokens withCurrentSalaryGrade(){		
 		addSimpleOptions(CURRENTSALARYGRADE);
-		return this;
-	}
-	
-	
-	protected static final String JOBAPPLICATION = "jobApplication";
-	public String getJobApplication(){
-		return JOBAPPLICATION;
-	}
-	public EmployeeTokens withJobApplication(){		
-		addSimpleOptions(JOBAPPLICATION);
-		return this;
-	}
-	
-	
-	protected static final String PROFESSIONINTERVIEW = "professionInterview";
-	public String getProfessionInterview(){
-		return PROFESSIONINTERVIEW;
-	}
-	public EmployeeTokens withProfessionInterview(){		
-		addSimpleOptions(PROFESSIONINTERVIEW);
-		return this;
-	}
-	
-	
-	protected static final String HRINTERVIEW = "hrInterview";
-	public String getHrInterview(){
-		return HRINTERVIEW;
-	}
-	public EmployeeTokens withHrInterview(){		
-		addSimpleOptions(HRINTERVIEW);
-		return this;
-	}
-	
-	
-	protected static final String OFFERAPPROVAL = "offerApproval";
-	public String getOfferApproval(){
-		return OFFERAPPROVAL;
-	}
-	public EmployeeTokens withOfferApproval(){		
-		addSimpleOptions(OFFERAPPROVAL);
-		return this;
-	}
-	
-	
-	protected static final String OFFERACCEPTANCE = "offerAcceptance";
-	public String getOfferAcceptance(){
-		return OFFERACCEPTANCE;
-	}
-	public EmployeeTokens withOfferAcceptance(){		
-		addSimpleOptions(OFFERACCEPTANCE);
-		return this;
-	}
-	
-	
-	protected static final String EMPLOYEEBOARDING = "employeeBoarding";
-	public String getEmployeeBoarding(){
-		return EMPLOYEEBOARDING;
-	}
-	public EmployeeTokens withEmployeeBoarding(){		
-		addSimpleOptions(EMPLOYEEBOARDING);
-		return this;
-	}
-	
-	
-	protected static final String TERMINATION = "termination";
-	public String getTermination(){
-		return TERMINATION;
-	}
-	public EmployeeTokens withTermination(){		
-		addSimpleOptions(TERMINATION);
 		return this;
 	}
 	

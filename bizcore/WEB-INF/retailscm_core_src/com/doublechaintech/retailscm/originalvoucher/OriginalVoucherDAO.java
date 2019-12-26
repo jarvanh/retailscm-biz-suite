@@ -10,13 +10,7 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreation;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditing;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmation;
 
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingDAO;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationDAO;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationDAO;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
@@ -59,30 +53,6 @@ public interface OriginalVoucherDAO extends BaseDAO{
  	public Map<String, Integer> countOriginalVoucherByBelongsToIds(String[] ids, Map<String,Object> options);
  	public SmartList<OriginalVoucher> findOriginalVoucherByBelongsTo(String accountingDocumentId, int start, int count, Map<String,Object> options);
  	public void analyzeOriginalVoucherByBelongsTo(SmartList<OriginalVoucher> resultList, String accountingDocumentId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<OriginalVoucher> findOriginalVoucherByCreation(String originalVoucherCreationId, Map<String,Object> options);
- 	public int countOriginalVoucherByCreation(String originalVoucherCreationId, Map<String,Object> options);
- 	public Map<String, Integer> countOriginalVoucherByCreationIds(String[] ids, Map<String,Object> options);
- 	public SmartList<OriginalVoucher> findOriginalVoucherByCreation(String originalVoucherCreationId, int start, int count, Map<String,Object> options);
- 	public void analyzeOriginalVoucherByCreation(SmartList<OriginalVoucher> resultList, String originalVoucherCreationId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<OriginalVoucher> findOriginalVoucherByConfirmation(String originalVoucherConfirmationId, Map<String,Object> options);
- 	public int countOriginalVoucherByConfirmation(String originalVoucherConfirmationId, Map<String,Object> options);
- 	public Map<String, Integer> countOriginalVoucherByConfirmationIds(String[] ids, Map<String,Object> options);
- 	public SmartList<OriginalVoucher> findOriginalVoucherByConfirmation(String originalVoucherConfirmationId, int start, int count, Map<String,Object> options);
- 	public void analyzeOriginalVoucherByConfirmation(SmartList<OriginalVoucher> resultList, String originalVoucherConfirmationId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<OriginalVoucher> findOriginalVoucherByAuditing(String originalVoucherAuditingId, Map<String,Object> options);
- 	public int countOriginalVoucherByAuditing(String originalVoucherAuditingId, Map<String,Object> options);
- 	public Map<String, Integer> countOriginalVoucherByAuditingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<OriginalVoucher> findOriginalVoucherByAuditing(String originalVoucherAuditingId, int start, int count, Map<String,Object> options);
- 	public void analyzeOriginalVoucherByAuditing(SmartList<OriginalVoucher> resultList, String originalVoucherAuditingId, Map<String,Object> options);
 
  
  

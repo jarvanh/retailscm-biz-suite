@@ -26,10 +26,6 @@
 <li><span>${userContext.localeMap['retail_store.longitude']}</span> ${retailStore.longitude}</li>
 <li><span>${userContext.localeMap['retail_store.description']}</span> ${retailStore.description}</li>
 <li><span>${userContext.localeMap['retail_store.last_update_time']}</span> <fmt:formatDate pattern="yyyy-MM-dd" value="${retailStore.lastUpdateTime}" /></li>
-<<<<<<< HEAD
-<li><span>${userContext.localeMap['retail_store.current_status']}</span> ${retailStore.currentStatus}</li>
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	
 	</ul>

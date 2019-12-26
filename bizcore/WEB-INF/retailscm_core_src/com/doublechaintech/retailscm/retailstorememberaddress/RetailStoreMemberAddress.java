@@ -370,7 +370,9 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getOwner(), getMobilePhone(), getAddress(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

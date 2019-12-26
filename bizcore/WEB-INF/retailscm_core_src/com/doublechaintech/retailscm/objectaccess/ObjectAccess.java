@@ -707,7 +707,9 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getObjectType(), getList1(), getList2(), getList3(), getList4(), getList5(), getList6(), getList7(), getList8(), getList9(), getApp(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

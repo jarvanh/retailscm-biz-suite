@@ -486,7 +486,9 @@ public class LevelThreeDepartment extends BaseEntity implements  java.io.Seriali
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getBelongsTo(), getName(), getDescription(), getFounded(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

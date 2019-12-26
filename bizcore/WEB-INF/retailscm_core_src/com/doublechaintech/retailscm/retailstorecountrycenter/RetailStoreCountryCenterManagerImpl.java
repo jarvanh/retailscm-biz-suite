@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
 import com.doublechaintech.retailscm.warehouse.Warehouse;
@@ -47,39 +38,20 @@ import com.doublechaintech.retailscm.accountset.AccountSet;
 
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
+import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
+import com.doublechaintech.retailscm.instructor.Instructor;
 import com.doublechaintech.retailscm.retailstoreclosing.RetailStoreClosing;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPicking;
 import com.doublechaintech.retailscm.retailstoreinvestmentinvitation.RetailStoreInvestmentInvitation;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
 import com.doublechaintech.retailscm.trainingcoursetype.TrainingCourseType;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipment;
+import com.doublechaintech.retailscm.occupationtype.OccupationType;
+import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
 import com.doublechaintech.retailscm.retailstorefranchising.RetailStoreFranchising;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
-import com.doublechaintech.retailscm.termination.Termination;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmation;
+import com.doublechaintech.retailscm.retailstoredecoration.RetailStoreDecoration;
 import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 import com.doublechaintech.retailscm.retailstorecreation.RetailStoreCreation;
 import com.doublechaintech.retailscm.retailstoreopening.RetailStoreOpening;
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
-import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApproval;
-import com.doublechaintech.retailscm.instructor.Instructor;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDelivery;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
-import com.doublechaintech.retailscm.occupationtype.OccupationType;
-import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessing;
-import com.doublechaintech.retailscm.retailstoredecoration.RetailStoreDecoration;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
 import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCityServiceCenter;
 
 
@@ -88,28 +60,31 @@ import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCit
 
 
 public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreCountryCenterManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "RetailStoreCountryCenter";
 	@Override
 	public RetailStoreCountryCenterDAO daoOf(RetailscmUserContext userContext) {
 		return retailStoreCountryCenterDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws RetailStoreCountryCenterManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new RetailStoreCountryCenterManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected RetailStoreCountryCenter saveRetailStoreCountryCenter(RetailscmUserContext userContext, RetailStoreCountryCenter retailStoreCountryCenter, String [] tokensExpr) throws Exception{	
  		//return getRetailStoreCountryCenterDAO().save(retailStoreCountryCenter, tokens);
@@ -319,7 +294,7 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	public RetailStoreCountryCenter createRetailStoreCountryCenter(RetailscmUserContext userContext, String name,String serviceNumber,Date founded,String webSite,String address,String operatedBy,String legalRepresentative,String description) throws Exception
 	//public RetailStoreCountryCenter createRetailStoreCountryCenter(RetailscmUserContext userContext,String name, String serviceNumber, Date founded, String webSite, String address, String operatedBy, String legalRepresentative, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -352,14 +327,14 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		onNewInstanceCreated(userContext, retailStoreCountryCenter);
 		return retailStoreCountryCenter;
 
-		
+
 	}
-	protected RetailStoreCountryCenter createNewRetailStoreCountryCenter() 
+	protected RetailStoreCountryCenter createNewRetailStoreCountryCenter()
 	{
-		
-		return new RetailStoreCountryCenter();		
+
+		return new RetailStoreCountryCenter();
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreCountryCenter(RetailscmUserContext userContext,String retailStoreCountryCenterId, int retailStoreCountryCenterVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -396,28 +371,28 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public RetailStoreCountryCenter clone(RetailscmUserContext userContext, String fromRetailStoreCountryCenterId) throws Exception{
-		
+
 		return retailStoreCountryCenterDaoOf(userContext).clone(fromRetailStoreCountryCenterId, this.allTokens());
 	}
-	
-	public RetailStoreCountryCenter internalSaveRetailStoreCountryCenter(RetailscmUserContext userContext, RetailStoreCountryCenter retailStoreCountryCenter) throws Exception 
+
+	public RetailStoreCountryCenter internalSaveRetailStoreCountryCenter(RetailscmUserContext userContext, RetailStoreCountryCenter retailStoreCountryCenter) throws Exception
 	{
 		return internalSaveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, allTokens());
 
 	}
-	public RetailStoreCountryCenter internalSaveRetailStoreCountryCenter(RetailscmUserContext userContext, RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options) throws Exception 
+	public RetailStoreCountryCenter internalSaveRetailStoreCountryCenter(RetailscmUserContext userContext, RetailStoreCountryCenter retailStoreCountryCenter, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, retailStoreCountryCenterVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(retailStoreCountryCenter){ 
+
+
+		synchronized(retailStoreCountryCenter){
 			//will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCountryCenter.
@@ -426,23 +401,23 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			}
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, options);
 			return retailStoreCountryCenter;
-			
+
 		}
 
 	}
-	
-	public RetailStoreCountryCenter updateRetailStoreCountryCenter(RetailscmUserContext userContext,String retailStoreCountryCenterId, int retailStoreCountryCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreCountryCenter updateRetailStoreCountryCenter(RetailscmUserContext userContext,String retailStoreCountryCenterId, int retailStoreCountryCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, retailStoreCountryCenterVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 		if(retailStoreCountryCenter.getVersion() != retailStoreCountryCenterVersion){
 			String message = "The target version("+retailStoreCountryCenter.getVersion()+") is not equals to version("+retailStoreCountryCenterVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCountryCenter.
@@ -454,21 +429,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 
 	}
-	
-	public RetailStoreCountryCenter updateRetailStoreCountryCenterProperty(RetailscmUserContext userContext,String retailStoreCountryCenterId, int retailStoreCountryCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreCountryCenter updateRetailStoreCountryCenterProperty(RetailscmUserContext userContext,String retailStoreCountryCenterId, int retailStoreCountryCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, retailStoreCountryCenterVersion, property, newValueExpr, tokensExpr);
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 		if(retailStoreCountryCenter.getVersion() != retailStoreCountryCenterVersion){
 			String message = "The target version("+retailStoreCountryCenter.getVersion()+") is not equals to version("+retailStoreCountryCenterVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCountryCenter.
-			
+
 			retailStoreCountryCenter.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().done());
@@ -480,7 +455,7 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected RetailStoreCountryCenterTokens tokens(){
 		return RetailStoreCountryCenterTokens.start();
 	}
@@ -528,26 +503,26 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String retailStoreCountryCenterId, int retailStoreCountryCenterVersion) throws Exception {
-		//deleteInternal(userContext, retailStoreCountryCenterId, retailStoreCountryCenterVersion);		
+		//deleteInternal(userContext, retailStoreCountryCenterId, retailStoreCountryCenterVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreCountryCenterId, int retailStoreCountryCenterVersion) throws Exception{
-			
+
 		retailStoreCountryCenterDaoOf(userContext).delete(retailStoreCountryCenterId, retailStoreCountryCenterVersion);
 	}
-	
+
 	public RetailStoreCountryCenter forgetByAll(RetailscmUserContext userContext, String retailStoreCountryCenterId, int retailStoreCountryCenterVersion) throws Exception {
-		return forgetByAllInternal(userContext, retailStoreCountryCenterId, retailStoreCountryCenterVersion);		
+		return forgetByAllInternal(userContext, retailStoreCountryCenterId, retailStoreCountryCenterVersion);
 	}
 	protected RetailStoreCountryCenter forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreCountryCenterId, int retailStoreCountryCenterVersion) throws Exception{
-			
+
 		return retailStoreCountryCenterDaoOf(userContext).disconnectFromAll(retailStoreCountryCenterId, retailStoreCountryCenterVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -558,8 +533,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return retailStoreCountryCenterDaoOf(userContext).deleteAll();
 	}
@@ -568,15 +543,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with city_service_center in RetailStore
 	protected RetailStoreCountryCenter breakWithRetailStoreByCityServiceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, String cityServiceCenterId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreListWithCityServiceCenter(retailStoreCountryCenter, cityServiceCenterId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -586,15 +561,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with creation in RetailStore
 	protected RetailStoreCountryCenter breakWithRetailStoreByCreation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String creationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreListWithCreation(retailStoreCountryCenter, creationId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -604,15 +579,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with investment_invitation in RetailStore
 	protected RetailStoreCountryCenter breakWithRetailStoreByInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String investmentInvitationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreListWithInvestmentInvitation(retailStoreCountryCenter, investmentInvitationId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -622,15 +597,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with franchising in RetailStore
 	protected RetailStoreCountryCenter breakWithRetailStoreByFranchising(RetailscmUserContext userContext, String retailStoreCountryCenterId, String franchisingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreListWithFranchising(retailStoreCountryCenter, franchisingId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -640,15 +615,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with decoration in RetailStore
 	protected RetailStoreCountryCenter breakWithRetailStoreByDecoration(RetailscmUserContext userContext, String retailStoreCountryCenterId, String decorationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreListWithDecoration(retailStoreCountryCenter, decorationId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -658,15 +633,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with opening in RetailStore
 	protected RetailStoreCountryCenter breakWithRetailStoreByOpening(RetailscmUserContext userContext, String retailStoreCountryCenterId, String openingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreListWithOpening(retailStoreCountryCenter, openingId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -676,15 +651,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with closing in RetailStore
 	protected RetailStoreCountryCenter breakWithRetailStoreByClosing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String closingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreListWithClosing(retailStoreCountryCenter, closingId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -694,124 +669,16 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with seller in SupplyOrder
 	protected RetailStoreCountryCenter breakWithSupplyOrderBySeller(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderListWithSeller(retailStoreCountryCenter, sellerId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with confirmation in SupplyOrder
-	protected RetailStoreCountryCenter breakWithSupplyOrderByConfirmation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String confirmationId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderListWithConfirmation(retailStoreCountryCenter, confirmationId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with approval in SupplyOrder
-	protected RetailStoreCountryCenter breakWithSupplyOrderByApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String approvalId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderListWithApproval(retailStoreCountryCenter, approvalId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with processing in SupplyOrder
-	protected RetailStoreCountryCenter breakWithSupplyOrderByProcessing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String processingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderListWithProcessing(retailStoreCountryCenter, processingId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with picking in SupplyOrder
-	protected RetailStoreCountryCenter breakWithSupplyOrderByPicking(RetailscmUserContext userContext, String retailStoreCountryCenterId, String pickingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderListWithPicking(retailStoreCountryCenter, pickingId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with shipment in SupplyOrder
-	protected RetailStoreCountryCenter breakWithSupplyOrderByShipment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String shipmentId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderListWithShipment(retailStoreCountryCenter, shipmentId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with delivery in SupplyOrder
-	protected RetailStoreCountryCenter breakWithSupplyOrderByDelivery(RetailscmUserContext userContext, String retailStoreCountryCenterId, String deliveryId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderListWithDelivery(retailStoreCountryCenter, deliveryId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
 				return retailStoreCountryCenter;
@@ -820,124 +687,16 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with buyer in RetailStoreOrder
 	protected RetailStoreCountryCenter breakWithRetailStoreOrderByBuyer(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderListWithBuyer(retailStoreCountryCenter, buyerId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with confirmation in RetailStoreOrder
-	protected RetailStoreCountryCenter breakWithRetailStoreOrderByConfirmation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String confirmationId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderListWithConfirmation(retailStoreCountryCenter, confirmationId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with approval in RetailStoreOrder
-	protected RetailStoreCountryCenter breakWithRetailStoreOrderByApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String approvalId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderListWithApproval(retailStoreCountryCenter, approvalId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with processing in RetailStoreOrder
-	protected RetailStoreCountryCenter breakWithRetailStoreOrderByProcessing(RetailscmUserContext userContext, String retailStoreCountryCenterId, String processingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderListWithProcessing(retailStoreCountryCenter, processingId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with picking in RetailStoreOrder
-	protected RetailStoreCountryCenter breakWithRetailStoreOrderByPicking(RetailscmUserContext userContext, String retailStoreCountryCenterId, String pickingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderListWithPicking(retailStoreCountryCenter, pickingId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with shipment in RetailStoreOrder
-	protected RetailStoreCountryCenter breakWithRetailStoreOrderByShipment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String shipmentId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderListWithShipment(retailStoreCountryCenter, shipmentId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with delivery in RetailStoreOrder
-	protected RetailStoreCountryCenter breakWithRetailStoreOrderByDelivery(RetailscmUserContext userContext, String retailStoreCountryCenterId, String deliveryId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderListWithDelivery(retailStoreCountryCenter, deliveryId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
 				return retailStoreCountryCenter;
@@ -946,15 +705,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with retail_store in AccountSet
 	protected RetailStoreCountryCenter breakWithAccountSetByRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveAccountSetListWithRetailStore(retailStoreCountryCenter, retailStoreId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withAccountSetList().done());
@@ -964,15 +723,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with goods_supplier in AccountSet
 	protected RetailStoreCountryCenter breakWithAccountSetByGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, String goodsSupplierId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveAccountSetListWithGoodsSupplier(retailStoreCountryCenter, goodsSupplierId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withAccountSetList().done());
@@ -982,15 +741,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with department in Employee
 	protected RetailStoreCountryCenter breakWithEmployeeByDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String departmentId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithDepartment(retailStoreCountryCenter, departmentId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
@@ -1000,15 +759,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with occupation in Employee
 	protected RetailStoreCountryCenter breakWithEmployeeByOccupation(RetailscmUserContext userContext, String retailStoreCountryCenterId, String occupationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithOccupation(retailStoreCountryCenter, occupationId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
@@ -1018,15 +777,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with responsible_for in Employee
 	protected RetailStoreCountryCenter breakWithEmployeeByResponsibleFor(RetailscmUserContext userContext, String retailStoreCountryCenterId, String responsibleForId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithResponsibleFor(retailStoreCountryCenter, responsibleForId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
@@ -1036,142 +795,16 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with current_salary_grade in Employee
 	protected RetailStoreCountryCenter breakWithEmployeeByCurrentSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, String currentSalaryGradeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(retailStoreCountryCenter, currentSalaryGradeId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with job_application in Employee
-	protected RetailStoreCountryCenter breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String retailStoreCountryCenterId, String jobApplicationId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(retailStoreCountryCenter, jobApplicationId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with profession_interview in Employee
-	protected RetailStoreCountryCenter breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String retailStoreCountryCenterId, String professionInterviewId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(retailStoreCountryCenter, professionInterviewId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with hr_interview in Employee
-	protected RetailStoreCountryCenter breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String retailStoreCountryCenterId, String hrInterviewId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(retailStoreCountryCenter, hrInterviewId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with offer_approval in Employee
-	protected RetailStoreCountryCenter breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String retailStoreCountryCenterId, String offerApprovalId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(retailStoreCountryCenter, offerApprovalId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with offer_acceptance in Employee
-	protected RetailStoreCountryCenter breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String retailStoreCountryCenterId, String offerAcceptanceId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(retailStoreCountryCenter, offerAcceptanceId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with employee_boarding in Employee
-	protected RetailStoreCountryCenter breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String retailStoreCountryCenterId, String employeeBoardingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(retailStoreCountryCenter, employeeBoardingId, this.emptyOptions());
-
-				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
-				return retailStoreCountryCenter;
-			}
-	}
-	//disconnect RetailStoreCountryCenter with termination in Employee
-	protected RetailStoreCountryCenter breakWithEmployeeByTermination(RetailscmUserContext userContext, String retailStoreCountryCenterId, String terminationId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-
-			synchronized(retailStoreCountryCenter){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeListWithTermination(retailStoreCountryCenter, terminationId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
 				return retailStoreCountryCenter;
@@ -1180,15 +813,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with instructor in CompanyTraining
 	protected RetailStoreCountryCenter breakWithCompanyTrainingByInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, String instructorId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveCompanyTrainingListWithInstructor(retailStoreCountryCenter, instructorId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCompanyTrainingList().done());
@@ -1198,29 +831,29 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	//disconnect RetailStoreCountryCenter with training_course_type in CompanyTraining
 	protected RetailStoreCountryCenter breakWithCompanyTrainingByTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String trainingCourseTypeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
 
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveCompanyTrainingListWithTrainingCourseType(retailStoreCountryCenter, trainingCourseTypeId, this.emptyOptions());
 
 				retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCompanyTrainingList().done());
 				return retailStoreCountryCenter;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, int subCount, BigDecimal amount,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -1232,20 +865,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, int subCount, BigDecimal amount, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingCatalog(userContext,retailStoreCountryCenterId,name, subCount, amount,tokensExpr);
-		
+
 		Catalog catalog = createCatalog(userContext,name, subCount, amount);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addCatalog( catalog );		
+			retailStoreCountryCenter.addCatalog( catalog );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCatalogList().done());
 			
 			userContext.getManagerGroup().getCatalogManager().onNewInstanceCreated(userContext, catalog);
@@ -1253,47 +886,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingCatalogProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,int subCount,BigDecimal amount,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfCatalog(id);
-		
+
 		checkerOf(userContext).checkNameOfCatalog( name);
 		checkerOf(userContext).checkSubCountOfCatalog( subCount);
 		checkerOf(userContext).checkAmountOfCatalog( amount);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateCatalogProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,int subCount,BigDecimal amount, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingCatalogProperties(userContext,retailStoreCountryCenterId,id,name,subCount,amount,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withCatalogListList()
 				.searchCatalogListWith(Catalog.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getCatalogList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("Catalog is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Catalog item = retailStoreCountryCenterToUpdate.getCatalogList().first();
-		
+
 		item.updateName( name );
 		item.updateSubCount( subCount );
 		item.updateAmount( amount );
 
-		
+
 		//checkParamsForAddingCatalog(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withCatalogList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected Catalog createCatalog(RetailscmUserContext userContext, String name, int subCount, BigDecimal amount) throws Exception{
 
 		Catalog catalog = new Catalog();
@@ -1305,44 +938,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return catalog;
-	
-		
+
+
 	}
-	
+
 	protected Catalog createIndexedCatalog(String id, int version){
 
 		Catalog catalog = new Catalog();
 		catalog.setId(id);
 		catalog.setVersion(version);
-		return catalog;			
-		
+		return catalog;
+
 	}
-	
-	protected void checkParamsForRemovingCatalogList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingCatalogList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String catalogIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String catalogIdItem: catalogIds){
-			userContext.getChecker().checkIdOfCatalog(catalogIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String catalogIdItem: catalogIds){
 			checkerOf(userContext).checkIdOfCatalog(catalogIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeCatalogList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeCatalogList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String catalogIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingCatalogList(userContext, retailStoreCountryCenterId,  catalogIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveCatalogList(retailStoreCountryCenter, catalogIds, allTokens());
@@ -1351,65 +978,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String catalogId, int catalogVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfCatalog(catalogId);
 		checkerOf(userContext).checkVersionOfCatalog(catalogVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String catalogId, int catalogVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingCatalog(userContext,retailStoreCountryCenterId, catalogId, catalogVersion,tokensExpr);
-		
+
 		Catalog catalog = createIndexedCatalog(catalogId, catalogVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeCatalog( catalog );		
+			retailStoreCountryCenter.removeCatalog( catalog );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCatalogList().done());
 			deleteRelationInGraph(userContext, catalog);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String catalogId, int catalogVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfCatalog(catalogId);
 		checkerOf(userContext).checkVersionOfCatalog(catalogVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyCatalogFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyCatalogFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String catalogId, int catalogVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingCatalog(userContext,retailStoreCountryCenterId, catalogId, catalogVersion,tokensExpr);
-		
+
 		Catalog catalog = createIndexedCatalog(catalogId, catalogVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyCatalogFrom( catalog );		
+
+			retailStoreCountryCenter.copyCatalogFrom( catalog );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCatalogList().done());
 			
 			userContext.getManagerGroup().getCatalogManager().onNewInstanceCreated(userContext, (Catalog)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1433,32 +1060,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateCatalog(RetailscmUserContext userContext, String retailStoreCountryCenterId, String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingCatalog(userContext, retailStoreCountryCenterId, catalogId, catalogVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withCatalogList().searchCatalogListWith(Catalog.ID_PROPERTY, "eq", catalogId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeCatalog( catalog );	
+			//retailStoreCountryCenter.removeCatalog( catalog );
 			//make changes to AcceleraterAccount.
 			Catalog catalogIndex = createIndexedCatalog(catalogId, catalogVersion);
-		
+
 			Catalog catalog = retailStoreCountryCenter.findTheCatalog(catalogIndex);
 			if(catalog == null){
 				throw new RetailStoreCountryCenterManagerException(catalog+" is NOT FOUND" );
 			}
-			
+
 			catalog.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCatalogList().done());
@@ -1469,12 +1096,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, Date founded,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -1484,20 +1111,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, Date founded, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingRetailStoreProvinceCenter(userContext,retailStoreCountryCenterId,name, founded,tokensExpr);
-		
+
 		RetailStoreProvinceCenter retailStoreProvinceCenter = createRetailStoreProvinceCenter(userContext,name, founded);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addRetailStoreProvinceCenter( retailStoreProvinceCenter );		
+			retailStoreCountryCenter.addRetailStoreProvinceCenter( retailStoreProvinceCenter );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreProvinceCenterList().done());
 			
 			userContext.getManagerGroup().getRetailStoreProvinceCenterManager().onNewInstanceCreated(userContext, retailStoreProvinceCenter);
@@ -1505,45 +1132,45 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingRetailStoreProvinceCenterProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,Date founded,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreProvinceCenter(id);
-		
+
 		checkerOf(userContext).checkNameOfRetailStoreProvinceCenter( name);
 		checkerOf(userContext).checkFoundedOfRetailStoreProvinceCenter( founded);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateRetailStoreProvinceCenterProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,Date founded, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingRetailStoreProvinceCenterProperties(userContext,retailStoreCountryCenterId,id,name,founded,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withRetailStoreProvinceCenterListList()
 				.searchRetailStoreProvinceCenterListWith(RetailStoreProvinceCenter.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getRetailStoreProvinceCenterList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("RetailStoreProvinceCenter is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		RetailStoreProvinceCenter item = retailStoreCountryCenterToUpdate.getRetailStoreProvinceCenterList().first();
-		
+
 		item.updateName( name );
 		item.updateFounded( founded );
 
-		
+
 		//checkParamsForAddingRetailStoreProvinceCenter(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withRetailStoreProvinceCenterList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected RetailStoreProvinceCenter createRetailStoreProvinceCenter(RetailscmUserContext userContext, String name, Date founded) throws Exception{
 
 		RetailStoreProvinceCenter retailStoreProvinceCenter = new RetailStoreProvinceCenter();
@@ -1555,44 +1182,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return retailStoreProvinceCenter;
-	
-		
+
+
 	}
-	
+
 	protected RetailStoreProvinceCenter createIndexedRetailStoreProvinceCenter(String id, int version){
 
 		RetailStoreProvinceCenter retailStoreProvinceCenter = new RetailStoreProvinceCenter();
 		retailStoreProvinceCenter.setId(id);
 		retailStoreProvinceCenter.setVersion(version);
-		return retailStoreProvinceCenter;			
-		
+		return retailStoreProvinceCenter;
+
 	}
-	
-	protected void checkParamsForRemovingRetailStoreProvinceCenterList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStoreProvinceCenterList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreProvinceCenterIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String retailStoreProvinceCenterIdItem: retailStoreProvinceCenterIds){
-			userContext.getChecker().checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String retailStoreProvinceCenterIdItem: retailStoreProvinceCenterIds){
 			checkerOf(userContext).checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeRetailStoreProvinceCenterList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStoreProvinceCenterList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreProvinceCenterIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingRetailStoreProvinceCenterList(userContext, retailStoreCountryCenterId,  retailStoreProvinceCenterIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreProvinceCenterList(retailStoreCountryCenter, retailStoreProvinceCenterIds, allTokens());
@@ -1601,65 +1222,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreProvinceCenterId, int retailStoreProvinceCenterVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterId);
 		checkerOf(userContext).checkVersionOfRetailStoreProvinceCenter(retailStoreProvinceCenterVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreProvinceCenterId, int retailStoreProvinceCenterVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingRetailStoreProvinceCenter(userContext,retailStoreCountryCenterId, retailStoreProvinceCenterId, retailStoreProvinceCenterVersion,tokensExpr);
-		
+
 		RetailStoreProvinceCenter retailStoreProvinceCenter = createIndexedRetailStoreProvinceCenter(retailStoreProvinceCenterId, retailStoreProvinceCenterVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeRetailStoreProvinceCenter( retailStoreProvinceCenter );		
+			retailStoreCountryCenter.removeRetailStoreProvinceCenter( retailStoreProvinceCenter );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreProvinceCenterList().done());
 			deleteRelationInGraph(userContext, retailStoreProvinceCenter);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreProvinceCenterId, int retailStoreProvinceCenterVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreProvinceCenter(retailStoreProvinceCenterId);
 		checkerOf(userContext).checkVersionOfRetailStoreProvinceCenter(retailStoreProvinceCenterVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyRetailStoreProvinceCenterFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyRetailStoreProvinceCenterFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreProvinceCenterId, int retailStoreProvinceCenterVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingRetailStoreProvinceCenter(userContext,retailStoreCountryCenterId, retailStoreProvinceCenterId, retailStoreProvinceCenterVersion,tokensExpr);
-		
+
 		RetailStoreProvinceCenter retailStoreProvinceCenter = createIndexedRetailStoreProvinceCenter(retailStoreProvinceCenterId, retailStoreProvinceCenterVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			retailStoreProvinceCenter.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyRetailStoreProvinceCenterFrom( retailStoreProvinceCenter );		
+
+			retailStoreCountryCenter.copyRetailStoreProvinceCenterFrom( retailStoreProvinceCenter );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreProvinceCenterList().done());
 			
 			userContext.getManagerGroup().getRetailStoreProvinceCenterManager().onNewInstanceCreated(userContext, (RetailStoreProvinceCenter)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreProvinceCenterId, int retailStoreProvinceCenterVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1679,32 +1300,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateRetailStoreProvinceCenter(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreProvinceCenterId, int retailStoreProvinceCenterVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingRetailStoreProvinceCenter(userContext, retailStoreCountryCenterId, retailStoreProvinceCenterId, retailStoreProvinceCenterVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withRetailStoreProvinceCenterList().searchRetailStoreProvinceCenterListWith(RetailStoreProvinceCenter.ID_PROPERTY, "eq", retailStoreProvinceCenterId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeRetailStoreProvinceCenter( retailStoreProvinceCenter );	
+			//retailStoreCountryCenter.removeRetailStoreProvinceCenter( retailStoreProvinceCenter );
 			//make changes to AcceleraterAccount.
 			RetailStoreProvinceCenter retailStoreProvinceCenterIndex = createIndexedRetailStoreProvinceCenter(retailStoreProvinceCenterId, retailStoreProvinceCenterVersion);
-		
+
 			RetailStoreProvinceCenter retailStoreProvinceCenter = retailStoreCountryCenter.findTheRetailStoreProvinceCenter(retailStoreProvinceCenterIndex);
 			if(retailStoreProvinceCenter == null){
 				throw new RetailStoreCountryCenterManagerException(retailStoreProvinceCenter+" is NOT FOUND" );
 			}
-			
+
 			retailStoreProvinceCenter.changeProperty(property, newValueExpr);
 			retailStoreProvinceCenter.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreProvinceCenterList().done());
@@ -1715,12 +1336,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -1754,31 +1375,31 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	public  RetailStoreCountryCenter addRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
+	{
+
 		checkParamsForAddingRetailStore(userContext,retailStoreCountryCenterId,name, telephone, owner, cityServiceCenterId, creationId, investmentInvitationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description,tokensExpr);
-		
+
 		RetailStore retailStore = createRetailStore(userContext,name, telephone, owner, cityServiceCenterId, creationId, investmentInvitationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addRetailStore( retailStore );		
+			retailStoreCountryCenter.addRetailStore( retailStore );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
 			
 			userContext.getManagerGroup().getRetailStoreManager().onNewInstanceCreated(userContext, retailStore);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStore(id);
-		
+
 		checkerOf(userContext).checkNameOfRetailStore( name);
 		checkerOf(userContext).checkTelephoneOfRetailStore( telephone);
 		checkerOf(userContext).checkOwnerOfRetailStore( owner);
@@ -1788,25 +1409,25 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkDescriptionOfRetailStore( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
-	{	
+	public  RetailStoreCountryCenter updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
+	{
 		checkParamsForUpdatingRetailStoreProperties(userContext,retailStoreCountryCenterId,id,name,telephone,owner,founded,latitude,longitude,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withRetailStoreListList()
 				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getRetailStoreList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("RetailStore is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		RetailStore item = retailStoreCountryCenterToUpdate.getRetailStoreList().first();
-		
+
 		item.updateName( name );
 		item.updateTelephone( telephone );
 		item.updateOwner( owner );
@@ -1815,16 +1436,16 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		item.updateLongitude( longitude );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingRetailStore(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withRetailStoreList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, long telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
+
+
+	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, String telephone, String owner, String cityServiceCenterId, String creationId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
 
 		RetailStore retailStore = new RetailStore();
 		
@@ -1861,44 +1482,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return retailStore;
-	
-		
+
+
 	}
-	
+
 	protected RetailStore createIndexedRetailStore(String id, int version){
 
 		RetailStore retailStore = new RetailStore();
 		retailStore.setId(id);
 		retailStore.setVersion(version);
-		return retailStore;			
-		
+		return retailStore;
+
 	}
-	
-	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String retailStoreIdItem: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String retailStoreIdItem: retailStoreIds){
 			checkerOf(userContext).checkIdOfRetailStore(retailStoreIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeRetailStoreList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStoreList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingRetailStoreList(userContext, retailStoreCountryCenterId,  retailStoreIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreList(retailStoreCountryCenter, retailStoreIds, allTokens());
@@ -1907,65 +1522,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
 		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingRetailStore(userContext,retailStoreCountryCenterId, retailStoreId, retailStoreVersion,tokensExpr);
-		
+
 		RetailStore retailStore = createIndexedRetailStore(retailStoreId, retailStoreVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeRetailStore( retailStore );		
+			retailStoreCountryCenter.removeRetailStore( retailStore );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
 			deleteRelationInGraph(userContext, retailStore);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
 		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingRetailStore(userContext,retailStoreCountryCenterId, retailStoreId, retailStoreVersion,tokensExpr);
-		
+
 		RetailStore retailStore = createIndexedRetailStore(retailStoreId, retailStoreVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			retailStore.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyRetailStoreFrom( retailStore );		
+
+			retailStoreCountryCenter.copyRetailStoreFrom( retailStore );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
 			
 			userContext.getManagerGroup().getRetailStoreManager().onNewInstanceCreated(userContext, (RetailStore)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1980,7 +1595,7 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 		
 		if(RetailStore.TELEPHONE_PROPERTY.equals(property)){
-			checkerOf(userContext).checkTelephoneOfRetailStore(parseLong(newValueExpr));
+			checkerOf(userContext).checkTelephoneOfRetailStore(parseString(newValueExpr));
 		}
 		
 		if(RetailStore.OWNER_PROPERTY.equals(property)){
@@ -2005,32 +1620,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateRetailStore(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingRetailStore(userContext, retailStoreCountryCenterId, retailStoreId, retailStoreVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withRetailStoreList().searchRetailStoreListWith(RetailStore.ID_PROPERTY, "eq", retailStoreId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeRetailStore( retailStore );	
+			//retailStoreCountryCenter.removeRetailStore( retailStore );
 			//make changes to AcceleraterAccount.
 			RetailStore retailStoreIndex = createIndexedRetailStore(retailStoreId, retailStoreVersion);
-		
+
 			RetailStore retailStore = retailStoreCountryCenter.findTheRetailStore(retailStoreIndex);
 			if(retailStore == null){
 				throw new RetailStoreCountryCenterManagerException(retailStore+" is NOT FOUND" );
 			}
-			
+
 			retailStore.changeProperty(property, newValueExpr);
 			retailStore.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreList().done());
@@ -2041,12 +1656,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String mobilePhone,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -2056,20 +1671,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String mobilePhone, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingRetailStoreMember(userContext,retailStoreCountryCenterId,name, mobilePhone,tokensExpr);
-		
+
 		RetailStoreMember retailStoreMember = createRetailStoreMember(userContext,name, mobilePhone);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addRetailStoreMember( retailStoreMember );		
+			retailStoreCountryCenter.addRetailStoreMember( retailStoreMember );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreMemberList().done());
 			
 			userContext.getManagerGroup().getRetailStoreMemberManager().onNewInstanceCreated(userContext, retailStoreMember);
@@ -2077,45 +1692,45 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingRetailStoreMemberProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String mobilePhone,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreMember(id);
-		
+
 		checkerOf(userContext).checkNameOfRetailStoreMember( name);
 		checkerOf(userContext).checkMobilePhoneOfRetailStoreMember( mobilePhone);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateRetailStoreMemberProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String mobilePhone, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingRetailStoreMemberProperties(userContext,retailStoreCountryCenterId,id,name,mobilePhone,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withRetailStoreMemberListList()
 				.searchRetailStoreMemberListWith(RetailStoreMember.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getRetailStoreMemberList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("RetailStoreMember is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		RetailStoreMember item = retailStoreCountryCenterToUpdate.getRetailStoreMemberList().first();
-		
+
 		item.updateName( name );
 		item.updateMobilePhone( mobilePhone );
 
-		
+
 		//checkParamsForAddingRetailStoreMember(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withRetailStoreMemberList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected RetailStoreMember createRetailStoreMember(RetailscmUserContext userContext, String name, String mobilePhone) throws Exception{
 
 		RetailStoreMember retailStoreMember = new RetailStoreMember();
@@ -2126,44 +1741,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return retailStoreMember;
-	
-		
+
+
 	}
-	
+
 	protected RetailStoreMember createIndexedRetailStoreMember(String id, int version){
 
 		RetailStoreMember retailStoreMember = new RetailStoreMember();
 		retailStoreMember.setId(id);
 		retailStoreMember.setVersion(version);
-		return retailStoreMember;			
-		
+		return retailStoreMember;
+
 	}
-	
-	protected void checkParamsForRemovingRetailStoreMemberList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStoreMemberList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreMemberIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String retailStoreMemberIdItem: retailStoreMemberIds){
-			userContext.getChecker().checkIdOfRetailStoreMember(retailStoreMemberIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String retailStoreMemberIdItem: retailStoreMemberIds){
 			checkerOf(userContext).checkIdOfRetailStoreMember(retailStoreMemberIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeRetailStoreMemberList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStoreMemberList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreMemberIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingRetailStoreMemberList(userContext, retailStoreCountryCenterId,  retailStoreMemberIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreMemberList(retailStoreCountryCenter, retailStoreMemberIds, allTokens());
@@ -2172,65 +1781,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreMemberId, int retailStoreMemberVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreMember(retailStoreMemberId);
 		checkerOf(userContext).checkVersionOfRetailStoreMember(retailStoreMemberVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreMemberId, int retailStoreMemberVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingRetailStoreMember(userContext,retailStoreCountryCenterId, retailStoreMemberId, retailStoreMemberVersion,tokensExpr);
-		
+
 		RetailStoreMember retailStoreMember = createIndexedRetailStoreMember(retailStoreMemberId, retailStoreMemberVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeRetailStoreMember( retailStoreMember );		
+			retailStoreCountryCenter.removeRetailStoreMember( retailStoreMember );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreMemberList().done());
 			deleteRelationInGraph(userContext, retailStoreMember);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreMemberId, int retailStoreMemberVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreMember(retailStoreMemberId);
 		checkerOf(userContext).checkVersionOfRetailStoreMember(retailStoreMemberVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyRetailStoreMemberFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyRetailStoreMemberFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreMemberId, int retailStoreMemberVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingRetailStoreMember(userContext,retailStoreCountryCenterId, retailStoreMemberId, retailStoreMemberVersion,tokensExpr);
-		
+
 		RetailStoreMember retailStoreMember = createIndexedRetailStoreMember(retailStoreMemberId, retailStoreMemberVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyRetailStoreMemberFrom( retailStoreMember );		
+
+			retailStoreCountryCenter.copyRetailStoreMemberFrom( retailStoreMember );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreMemberList().done());
 			
 			userContext.getManagerGroup().getRetailStoreMemberManager().onNewInstanceCreated(userContext, (RetailStoreMember)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreMemberId, int retailStoreMemberVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -2250,32 +1859,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateRetailStoreMember(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreMemberId, int retailStoreMemberVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingRetailStoreMember(userContext, retailStoreCountryCenterId, retailStoreMemberId, retailStoreMemberVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withRetailStoreMemberList().searchRetailStoreMemberListWith(RetailStoreMember.ID_PROPERTY, "eq", retailStoreMemberId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeRetailStoreMember( retailStoreMember );	
+			//retailStoreCountryCenter.removeRetailStoreMember( retailStoreMember );
 			//make changes to AcceleraterAccount.
 			RetailStoreMember retailStoreMemberIndex = createIndexedRetailStoreMember(retailStoreMemberId, retailStoreMemberVersion);
-		
+
 			RetailStoreMember retailStoreMember = retailStoreCountryCenter.findTheRetailStoreMember(retailStoreMemberIndex);
 			if(retailStoreMember == null){
 				throw new RetailStoreCountryCenterManagerException(retailStoreMember+" is NOT FOUND" );
 			}
-			
+
 			retailStoreMember.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreMemberList().done());
@@ -2286,12 +1895,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String supplyProduct, String contactNumber, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -2305,20 +1914,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String supplyProduct, String contactNumber, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingGoodsSupplier(userContext,retailStoreCountryCenterId,name, supplyProduct, contactNumber, description,tokensExpr);
-		
+
 		GoodsSupplier goodsSupplier = createGoodsSupplier(userContext,name, supplyProduct, contactNumber, description);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addGoodsSupplier( goodsSupplier );		
+			retailStoreCountryCenter.addGoodsSupplier( goodsSupplier );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withGoodsSupplierList().done());
 			
 			userContext.getManagerGroup().getGoodsSupplierManager().onNewInstanceCreated(userContext, goodsSupplier);
@@ -2326,49 +1935,49 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingGoodsSupplierProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String supplyProduct,String contactNumber,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfGoodsSupplier(id);
-		
+
 		checkerOf(userContext).checkNameOfGoodsSupplier( name);
 		checkerOf(userContext).checkSupplyProductOfGoodsSupplier( supplyProduct);
 		checkerOf(userContext).checkContactNumberOfGoodsSupplier( contactNumber);
 		checkerOf(userContext).checkDescriptionOfGoodsSupplier( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateGoodsSupplierProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String supplyProduct,String contactNumber,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingGoodsSupplierProperties(userContext,retailStoreCountryCenterId,id,name,supplyProduct,contactNumber,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withGoodsSupplierListList()
 				.searchGoodsSupplierListWith(GoodsSupplier.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getGoodsSupplierList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("GoodsSupplier is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		GoodsSupplier item = retailStoreCountryCenterToUpdate.getGoodsSupplierList().first();
-		
+
 		item.updateName( name );
 		item.updateSupplyProduct( supplyProduct );
 		item.updateContactNumber( contactNumber );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingGoodsSupplier(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withGoodsSupplierList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected GoodsSupplier createGoodsSupplier(RetailscmUserContext userContext, String name, String supplyProduct, String contactNumber, String description) throws Exception{
 
 		GoodsSupplier goodsSupplier = new GoodsSupplier();
@@ -2382,44 +1991,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return goodsSupplier;
-	
-		
+
+
 	}
-	
+
 	protected GoodsSupplier createIndexedGoodsSupplier(String id, int version){
 
 		GoodsSupplier goodsSupplier = new GoodsSupplier();
 		goodsSupplier.setId(id);
 		goodsSupplier.setVersion(version);
-		return goodsSupplier;			
-		
+		return goodsSupplier;
+
 	}
-	
-	protected void checkParamsForRemovingGoodsSupplierList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingGoodsSupplierList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String goodsSupplierIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String goodsSupplierIdItem: goodsSupplierIds){
-			userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String goodsSupplierIdItem: goodsSupplierIds){
 			checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeGoodsSupplierList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeGoodsSupplierList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String goodsSupplierIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingGoodsSupplierList(userContext, retailStoreCountryCenterId,  goodsSupplierIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveGoodsSupplierList(retailStoreCountryCenter, goodsSupplierIds, allTokens());
@@ -2428,65 +2031,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String goodsSupplierId, int goodsSupplierVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		checkerOf(userContext).checkVersionOfGoodsSupplier(goodsSupplierVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String goodsSupplierId, int goodsSupplierVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingGoodsSupplier(userContext,retailStoreCountryCenterId, goodsSupplierId, goodsSupplierVersion,tokensExpr);
-		
+
 		GoodsSupplier goodsSupplier = createIndexedGoodsSupplier(goodsSupplierId, goodsSupplierVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeGoodsSupplier( goodsSupplier );		
+			retailStoreCountryCenter.removeGoodsSupplier( goodsSupplier );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withGoodsSupplierList().done());
 			deleteRelationInGraph(userContext, goodsSupplier);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String goodsSupplierId, int goodsSupplierVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		checkerOf(userContext).checkVersionOfGoodsSupplier(goodsSupplierVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyGoodsSupplierFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyGoodsSupplierFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String goodsSupplierId, int goodsSupplierVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingGoodsSupplier(userContext,retailStoreCountryCenterId, goodsSupplierId, goodsSupplierVersion,tokensExpr);
-		
+
 		GoodsSupplier goodsSupplier = createIndexedGoodsSupplier(goodsSupplierId, goodsSupplierVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			goodsSupplier.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyGoodsSupplierFrom( goodsSupplier );		
+
+			retailStoreCountryCenter.copyGoodsSupplierFrom( goodsSupplier );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withGoodsSupplierList().done());
 			
 			userContext.getManagerGroup().getGoodsSupplierManager().onNewInstanceCreated(userContext, (GoodsSupplier)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, String goodsSupplierId, int goodsSupplierVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -2514,32 +2117,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateGoodsSupplier(RetailscmUserContext userContext, String retailStoreCountryCenterId, String goodsSupplierId, int goodsSupplierVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingGoodsSupplier(userContext, retailStoreCountryCenterId, goodsSupplierId, goodsSupplierVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withGoodsSupplierList().searchGoodsSupplierListWith(GoodsSupplier.ID_PROPERTY, "eq", goodsSupplierId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeGoodsSupplier( goodsSupplier );	
+			//retailStoreCountryCenter.removeGoodsSupplier( goodsSupplier );
 			//make changes to AcceleraterAccount.
 			GoodsSupplier goodsSupplierIndex = createIndexedGoodsSupplier(goodsSupplierId, goodsSupplierVersion);
-		
+
 			GoodsSupplier goodsSupplier = retailStoreCountryCenter.findTheGoodsSupplier(goodsSupplierIndex);
 			if(goodsSupplier == null){
 				throw new RetailStoreCountryCenterManagerException(goodsSupplier+" is NOT FOUND" );
 			}
-			
+
 			goodsSupplier.changeProperty(property, newValueExpr);
 			goodsSupplier.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withGoodsSupplierList().done());
@@ -2550,12 +2153,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -2564,35 +2167,23 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkTitleOfSupplyOrder(title);
 		
 		checkerOf(userContext).checkTotalAmountOfSupplyOrder(totalAmount);
-		
-		checkerOf(userContext).checkConfirmationIdOfSupplyOrder(confirmationId);
-		
-		checkerOf(userContext).checkApprovalIdOfSupplyOrder(approvalId);
-		
-		checkerOf(userContext).checkProcessingIdOfSupplyOrder(processingId);
-		
-		checkerOf(userContext).checkPickingIdOfSupplyOrder(pickingId);
-		
-		checkerOf(userContext).checkShipmentIdOfSupplyOrder(shipmentId);
-		
-		checkerOf(userContext).checkDeliveryIdOfSupplyOrder(deliveryId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingSupplyOrder(userContext,retailStoreCountryCenterId,sellerId, title, totalAmount, confirmationId, approvalId, processingId, pickingId, shipmentId, deliveryId,tokensExpr);
-		
-		SupplyOrder supplyOrder = createSupplyOrder(userContext,sellerId, title, totalAmount, confirmationId, approvalId, processingId, pickingId, shipmentId, deliveryId);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+	public  RetailStoreCountryCenter addSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String sellerId, String title, BigDecimal totalAmount, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingSupplyOrder(userContext,retailStoreCountryCenterId,sellerId, title, totalAmount,tokensExpr);
+
+		SupplyOrder supplyOrder = createSupplyOrder(userContext,sellerId, title, totalAmount);
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addSupplyOrder( supplyOrder );		
+			retailStoreCountryCenter.addSupplyOrder( supplyOrder );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
 			
 			userContext.getManagerGroup().getSupplyOrderManager().onNewInstanceCreated(userContext, supplyOrder);
@@ -2600,46 +2191,46 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingSupplyOrderProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String title,BigDecimal totalAmount,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSupplyOrder(id);
-		
+
 		checkerOf(userContext).checkTitleOfSupplyOrder( title);
 		checkerOf(userContext).checkTotalAmountOfSupplyOrder( totalAmount);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateSupplyOrderProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String title,BigDecimal totalAmount, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingSupplyOrderProperties(userContext,retailStoreCountryCenterId,id,title,totalAmount,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withSupplyOrderListList()
 				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getSupplyOrderList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("SupplyOrder is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		SupplyOrder item = retailStoreCountryCenterToUpdate.getSupplyOrderList().first();
-		
+
 		item.updateTitle( title );
 		item.updateTotalAmount( totalAmount );
 
-		
+
 		//checkParamsForAddingSupplyOrder(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withSupplyOrderList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String sellerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId) throws Exception{
+
+
+	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String sellerId, String title, BigDecimal totalAmount) throws Exception{
 
 		SupplyOrder supplyOrder = new SupplyOrder();
 		
@@ -2649,66 +2240,42 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		supplyOrder.setSeller(seller);		
 		supplyOrder.setTitle(title);		
 		supplyOrder.setTotalAmount(totalAmount);		
-		SupplyOrderConfirmation  confirmation = new SupplyOrderConfirmation();
-		confirmation.setId(confirmationId);		
-		supplyOrder.setConfirmation(confirmation);		
-		SupplyOrderApproval  approval = new SupplyOrderApproval();
-		approval.setId(approvalId);		
-		supplyOrder.setApproval(approval);		
-		SupplyOrderProcessing  processing = new SupplyOrderProcessing();
-		processing.setId(processingId);		
-		supplyOrder.setProcessing(processing);		
-		SupplyOrderPicking  picking = new SupplyOrderPicking();
-		picking.setId(pickingId);		
-		supplyOrder.setPicking(picking);		
-		SupplyOrderShipment  shipment = new SupplyOrderShipment();
-		shipment.setId(shipmentId);		
-		supplyOrder.setShipment(shipment);		
-		SupplyOrderDelivery  delivery = new SupplyOrderDelivery();
-		delivery.setId(deliveryId);		
-		supplyOrder.setDelivery(delivery);		
 		supplyOrder.setLastUpdateTime(userContext.now());
 	
 		
 		return supplyOrder;
-	
-		
+
+
 	}
-	
+
 	protected SupplyOrder createIndexedSupplyOrder(String id, int version){
 
 		SupplyOrder supplyOrder = new SupplyOrder();
 		supplyOrder.setId(id);
 		supplyOrder.setVersion(version);
-		return supplyOrder;			
-		
+		return supplyOrder;
+
 	}
-	
-	protected void checkParamsForRemovingSupplyOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingSupplyOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String supplyOrderIdItem: supplyOrderIds){
-			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String supplyOrderIdItem: supplyOrderIds){
 			checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeSupplyOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeSupplyOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String supplyOrderIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingSupplyOrderList(userContext, retailStoreCountryCenterId,  supplyOrderIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveSupplyOrderList(retailStoreCountryCenter, supplyOrderIds, allTokens());
@@ -2717,65 +2284,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
 		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingSupplyOrder(userContext,retailStoreCountryCenterId, supplyOrderId, supplyOrderVersion,tokensExpr);
-		
+
 		SupplyOrder supplyOrder = createIndexedSupplyOrder(supplyOrderId, supplyOrderVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeSupplyOrder( supplyOrder );		
+			retailStoreCountryCenter.removeSupplyOrder( supplyOrder );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
 			deleteRelationInGraph(userContext, supplyOrder);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
 		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copySupplyOrderFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copySupplyOrderFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingSupplyOrder(userContext,retailStoreCountryCenterId, supplyOrderId, supplyOrderVersion,tokensExpr);
-		
+
 		SupplyOrder supplyOrder = createIndexedSupplyOrder(supplyOrderId, supplyOrderVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			supplyOrder.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copySupplyOrderFrom( supplyOrder );		
+
+			retailStoreCountryCenter.copySupplyOrderFrom( supplyOrder );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
 			
 			userContext.getManagerGroup().getSupplyOrderManager().onNewInstanceCreated(userContext, (SupplyOrder)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String supplyOrderId, int supplyOrderVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -2795,32 +2362,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateSupplyOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String supplyOrderId, int supplyOrderVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingSupplyOrder(userContext, retailStoreCountryCenterId, supplyOrderId, supplyOrderVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withSupplyOrderList().searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "eq", supplyOrderId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeSupplyOrder( supplyOrder );	
+			//retailStoreCountryCenter.removeSupplyOrder( supplyOrder );
 			//make changes to AcceleraterAccount.
 			SupplyOrder supplyOrderIndex = createIndexedSupplyOrder(supplyOrderId, supplyOrderVersion);
-		
+
 			SupplyOrder supplyOrder = retailStoreCountryCenter.findTheSupplyOrder(supplyOrderIndex);
 			if(supplyOrder == null){
 				throw new RetailStoreCountryCenterManagerException(supplyOrder+" is NOT FOUND" );
 			}
-			
+
 			supplyOrder.changeProperty(property, newValueExpr);
 			supplyOrder.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSupplyOrderList().done());
@@ -2831,12 +2398,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -2845,35 +2412,23 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkTitleOfRetailStoreOrder(title);
 		
 		checkerOf(userContext).checkTotalAmountOfRetailStoreOrder(totalAmount);
-		
-		checkerOf(userContext).checkConfirmationIdOfRetailStoreOrder(confirmationId);
-		
-		checkerOf(userContext).checkApprovalIdOfRetailStoreOrder(approvalId);
-		
-		checkerOf(userContext).checkProcessingIdOfRetailStoreOrder(processingId);
-		
-		checkerOf(userContext).checkPickingIdOfRetailStoreOrder(pickingId);
-		
-		checkerOf(userContext).checkShipmentIdOfRetailStoreOrder(shipmentId);
-		
-		checkerOf(userContext).checkDeliveryIdOfRetailStoreOrder(deliveryId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingRetailStoreOrder(userContext,retailStoreCountryCenterId,buyerId, title, totalAmount, confirmationId, approvalId, processingId, pickingId, shipmentId, deliveryId,tokensExpr);
-		
-		RetailStoreOrder retailStoreOrder = createRetailStoreOrder(userContext,buyerId, title, totalAmount, confirmationId, approvalId, processingId, pickingId, shipmentId, deliveryId);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+	public  RetailStoreCountryCenter addRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String buyerId, String title, BigDecimal totalAmount, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingRetailStoreOrder(userContext,retailStoreCountryCenterId,buyerId, title, totalAmount,tokensExpr);
+
+		RetailStoreOrder retailStoreOrder = createRetailStoreOrder(userContext,buyerId, title, totalAmount);
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addRetailStoreOrder( retailStoreOrder );		
+			retailStoreCountryCenter.addRetailStoreOrder( retailStoreOrder );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
 			
 			userContext.getManagerGroup().getRetailStoreOrderManager().onNewInstanceCreated(userContext, retailStoreOrder);
@@ -2881,46 +2436,46 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingRetailStoreOrderProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String title,BigDecimal totalAmount,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreOrder(id);
-		
+
 		checkerOf(userContext).checkTitleOfRetailStoreOrder( title);
 		checkerOf(userContext).checkTotalAmountOfRetailStoreOrder( totalAmount);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateRetailStoreOrderProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String title,BigDecimal totalAmount, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingRetailStoreOrderProperties(userContext,retailStoreCountryCenterId,id,title,totalAmount,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withRetailStoreOrderListList()
 				.searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getRetailStoreOrderList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("RetailStoreOrder is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		RetailStoreOrder item = retailStoreCountryCenterToUpdate.getRetailStoreOrderList().first();
-		
+
 		item.updateTitle( title );
 		item.updateTotalAmount( totalAmount );
 
-		
+
 		//checkParamsForAddingRetailStoreOrder(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withRetailStoreOrderList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected RetailStoreOrder createRetailStoreOrder(RetailscmUserContext userContext, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId) throws Exception{
+
+
+	protected RetailStoreOrder createRetailStoreOrder(RetailscmUserContext userContext, String buyerId, String title, BigDecimal totalAmount) throws Exception{
 
 		RetailStoreOrder retailStoreOrder = new RetailStoreOrder();
 		
@@ -2930,66 +2485,42 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		retailStoreOrder.setBuyer(buyer);		
 		retailStoreOrder.setTitle(title);		
 		retailStoreOrder.setTotalAmount(totalAmount);		
-		RetailStoreOrderConfirmation  confirmation = new RetailStoreOrderConfirmation();
-		confirmation.setId(confirmationId);		
-		retailStoreOrder.setConfirmation(confirmation);		
-		RetailStoreOrderApproval  approval = new RetailStoreOrderApproval();
-		approval.setId(approvalId);		
-		retailStoreOrder.setApproval(approval);		
-		RetailStoreOrderProcessing  processing = new RetailStoreOrderProcessing();
-		processing.setId(processingId);		
-		retailStoreOrder.setProcessing(processing);		
-		RetailStoreOrderPicking  picking = new RetailStoreOrderPicking();
-		picking.setId(pickingId);		
-		retailStoreOrder.setPicking(picking);		
-		RetailStoreOrderShipment  shipment = new RetailStoreOrderShipment();
-		shipment.setId(shipmentId);		
-		retailStoreOrder.setShipment(shipment);		
-		RetailStoreOrderDelivery  delivery = new RetailStoreOrderDelivery();
-		delivery.setId(deliveryId);		
-		retailStoreOrder.setDelivery(delivery);		
 		retailStoreOrder.setLastUpdateTime(userContext.now());
 	
 		
 		return retailStoreOrder;
-	
-		
+
+
 	}
-	
+
 	protected RetailStoreOrder createIndexedRetailStoreOrder(String id, int version){
 
 		RetailStoreOrder retailStoreOrder = new RetailStoreOrder();
 		retailStoreOrder.setId(id);
 		retailStoreOrder.setVersion(version);
-		return retailStoreOrder;			
-		
+		return retailStoreOrder;
+
 	}
-	
-	protected void checkParamsForRemovingRetailStoreOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStoreOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreOrderIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String retailStoreOrderIdItem: retailStoreOrderIds){
-			userContext.getChecker().checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String retailStoreOrderIdItem: retailStoreOrderIds){
 			checkerOf(userContext).checkIdOfRetailStoreOrder(retailStoreOrderIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeRetailStoreOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStoreOrderList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String retailStoreOrderIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingRetailStoreOrderList(userContext, retailStoreCountryCenterId,  retailStoreOrderIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveRetailStoreOrderList(retailStoreCountryCenter, retailStoreOrderIds, allTokens());
@@ -2998,65 +2529,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreOrderId, int retailStoreOrderVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreOrder(retailStoreOrderId);
 		checkerOf(userContext).checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreOrderId, int retailStoreOrderVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingRetailStoreOrder(userContext,retailStoreCountryCenterId, retailStoreOrderId, retailStoreOrderVersion,tokensExpr);
-		
+
 		RetailStoreOrder retailStoreOrder = createIndexedRetailStoreOrder(retailStoreOrderId, retailStoreOrderVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeRetailStoreOrder( retailStoreOrder );		
+			retailStoreCountryCenter.removeRetailStoreOrder( retailStoreOrder );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
 			deleteRelationInGraph(userContext, retailStoreOrder);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreOrderId, int retailStoreOrderVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfRetailStoreOrder(retailStoreOrderId);
 		checkerOf(userContext).checkVersionOfRetailStoreOrder(retailStoreOrderVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyRetailStoreOrderFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyRetailStoreOrderFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String retailStoreOrderId, int retailStoreOrderVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingRetailStoreOrder(userContext,retailStoreCountryCenterId, retailStoreOrderId, retailStoreOrderVersion,tokensExpr);
-		
+
 		RetailStoreOrder retailStoreOrder = createIndexedRetailStoreOrder(retailStoreOrderId, retailStoreOrderVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			retailStoreOrder.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyRetailStoreOrderFrom( retailStoreOrder );		
+
+			retailStoreCountryCenter.copyRetailStoreOrderFrom( retailStoreOrder );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
 			
 			userContext.getManagerGroup().getRetailStoreOrderManager().onNewInstanceCreated(userContext, (RetailStoreOrder)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreOrderId, int retailStoreOrderVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3076,32 +2607,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateRetailStoreOrder(RetailscmUserContext userContext, String retailStoreCountryCenterId, String retailStoreOrderId, int retailStoreOrderVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingRetailStoreOrder(userContext, retailStoreCountryCenterId, retailStoreOrderId, retailStoreOrderVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withRetailStoreOrderList().searchRetailStoreOrderListWith(RetailStoreOrder.ID_PROPERTY, "eq", retailStoreOrderId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeRetailStoreOrder( retailStoreOrder );	
+			//retailStoreCountryCenter.removeRetailStoreOrder( retailStoreOrder );
 			//make changes to AcceleraterAccount.
 			RetailStoreOrder retailStoreOrderIndex = createIndexedRetailStoreOrder(retailStoreOrderId, retailStoreOrderVersion);
-		
+
 			RetailStoreOrder retailStoreOrder = retailStoreCountryCenter.findTheRetailStoreOrder(retailStoreOrderIndex);
 			if(retailStoreOrder == null){
 				throw new RetailStoreCountryCenterManagerException(retailStoreOrder+" is NOT FOUND" );
 			}
-			
+
 			retailStoreOrder.changeProperty(property, newValueExpr);
 			retailStoreOrder.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withRetailStoreOrderList().done());
@@ -3112,12 +2643,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -3133,31 +2664,31 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
-		
+	public  RetailStoreCountryCenter addWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
+	{
+
 		checkParamsForAddingWarehouse(userContext,retailStoreCountryCenterId,location, contactNumber, totalArea, latitude, longitude,tokensExpr);
-		
+
 		Warehouse warehouse = createWarehouse(userContext,location, contactNumber, totalArea, latitude, longitude);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addWarehouse( warehouse );		
+			retailStoreCountryCenter.addWarehouse( warehouse );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withWarehouseList().done());
 			
 			userContext.getManagerGroup().getWarehouseManager().onNewInstanceCreated(userContext, warehouse);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingWarehouseProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingWarehouseProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfWarehouse(id);
-		
+
 		checkerOf(userContext).checkLocationOfWarehouse( location);
 		checkerOf(userContext).checkContactNumberOfWarehouse( contactNumber);
 		checkerOf(userContext).checkTotalAreaOfWarehouse( totalArea);
@@ -3165,41 +2696,41 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkLongitudeOfWarehouse( longitude);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter updateWarehouseProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
+	public  RetailStoreCountryCenter updateWarehouseProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
+	{
 		checkParamsForUpdatingWarehouseProperties(userContext,retailStoreCountryCenterId,id,location,contactNumber,totalArea,latitude,longitude,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withWarehouseListList()
 				.searchWarehouseListWith(Warehouse.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getWarehouseList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("Warehouse is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Warehouse item = retailStoreCountryCenterToUpdate.getWarehouseList().first();
-		
+
 		item.updateLocation( location );
 		item.updateContactNumber( contactNumber );
 		item.updateTotalArea( totalArea );
 		item.updateLatitude( latitude );
 		item.updateLongitude( longitude );
 
-		
+
 		//checkParamsForAddingWarehouse(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withWarehouseList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected Warehouse createWarehouse(RetailscmUserContext userContext, String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
+
+
+	protected Warehouse createWarehouse(RetailscmUserContext userContext, String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		Warehouse warehouse = new Warehouse();
 		
@@ -3213,44 +2744,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return warehouse;
-	
-		
+
+
 	}
-	
+
 	protected Warehouse createIndexedWarehouse(String id, int version){
 
 		Warehouse warehouse = new Warehouse();
 		warehouse.setId(id);
 		warehouse.setVersion(version);
-		return warehouse;			
-		
+		return warehouse;
+
 	}
-	
-	protected void checkParamsForRemovingWarehouseList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingWarehouseList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String warehouseIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String warehouseIdItem: warehouseIds){
-			userContext.getChecker().checkIdOfWarehouse(warehouseIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String warehouseIdItem: warehouseIds){
 			checkerOf(userContext).checkIdOfWarehouse(warehouseIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeWarehouseList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeWarehouseList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String warehouseIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingWarehouseList(userContext, retailStoreCountryCenterId,  warehouseIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveWarehouseList(retailStoreCountryCenter, warehouseIds, allTokens());
@@ -3259,65 +2784,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String warehouseId, int warehouseVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		checkerOf(userContext).checkVersionOfWarehouse(warehouseVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String warehouseId, int warehouseVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingWarehouse(userContext,retailStoreCountryCenterId, warehouseId, warehouseVersion,tokensExpr);
-		
+
 		Warehouse warehouse = createIndexedWarehouse(warehouseId, warehouseVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeWarehouse( warehouse );		
+			retailStoreCountryCenter.removeWarehouse( warehouse );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withWarehouseList().done());
 			deleteRelationInGraph(userContext, warehouse);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String warehouseId, int warehouseVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfWarehouse(warehouseId);
 		checkerOf(userContext).checkVersionOfWarehouse(warehouseVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyWarehouseFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyWarehouseFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String warehouseId, int warehouseVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingWarehouse(userContext,retailStoreCountryCenterId, warehouseId, warehouseVersion,tokensExpr);
-		
+
 		Warehouse warehouse = createIndexedWarehouse(warehouseId, warehouseVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			warehouse.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyWarehouseFrom( warehouse );		
+
+			retailStoreCountryCenter.copyWarehouseFrom( warehouse );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withWarehouseList().done());
 			
 			userContext.getManagerGroup().getWarehouseManager().onNewInstanceCreated(userContext, (Warehouse)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String warehouseId, int warehouseVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3332,7 +2857,7 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 		
 		if(Warehouse.CONTACT_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkContactNumberOfWarehouse(parseLong(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfWarehouse(parseString(newValueExpr));
 		}
 		
 		if(Warehouse.TOTAL_AREA_PROPERTY.equals(property)){
@@ -3349,32 +2874,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateWarehouse(RetailscmUserContext userContext, String retailStoreCountryCenterId, String warehouseId, int warehouseVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingWarehouse(userContext, retailStoreCountryCenterId, warehouseId, warehouseVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withWarehouseList().searchWarehouseListWith(Warehouse.ID_PROPERTY, "eq", warehouseId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeWarehouse( warehouse );	
+			//retailStoreCountryCenter.removeWarehouse( warehouse );
 			//make changes to AcceleraterAccount.
 			Warehouse warehouseIndex = createIndexedWarehouse(warehouseId, warehouseVersion);
-		
+
 			Warehouse warehouse = retailStoreCountryCenter.findTheWarehouse(warehouseIndex);
 			if(warehouse == null){
 				throw new RetailStoreCountryCenterManagerException(warehouse+" is NOT FOUND" );
 			}
-			
+
 			warehouse.changeProperty(property, newValueExpr);
 			warehouse.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withWarehouseList().done());
@@ -3385,12 +2910,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long contactNumber,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String contactNumber,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -3400,67 +2925,67 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, long contactNumber, String [] tokensExpr) throws Exception
-	{	
-		
+	public  RetailStoreCountryCenter addTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String contactNumber, String [] tokensExpr) throws Exception
+	{
+
 		checkParamsForAddingTransportFleet(userContext,retailStoreCountryCenterId,name, contactNumber,tokensExpr);
-		
+
 		TransportFleet transportFleet = createTransportFleet(userContext,name, contactNumber);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addTransportFleet( transportFleet );		
+			retailStoreCountryCenter.addTransportFleet( transportFleet );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTransportFleetList().done());
 			
 			userContext.getManagerGroup().getTransportFleetManager().onNewInstanceCreated(userContext, transportFleet);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingTransportFleetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,long contactNumber,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingTransportFleetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String contactNumber,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTransportFleet(id);
-		
+
 		checkerOf(userContext).checkNameOfTransportFleet( name);
 		checkerOf(userContext).checkContactNumberOfTransportFleet( contactNumber);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter updateTransportFleetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,long contactNumber, String [] tokensExpr) throws Exception
-	{	
+	public  RetailStoreCountryCenter updateTransportFleetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String contactNumber, String [] tokensExpr) throws Exception
+	{
 		checkParamsForUpdatingTransportFleetProperties(userContext,retailStoreCountryCenterId,id,name,contactNumber,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withTransportFleetListList()
 				.searchTransportFleetListWith(TransportFleet.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getTransportFleetList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("TransportFleet is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		TransportFleet item = retailStoreCountryCenterToUpdate.getTransportFleetList().first();
-		
+
 		item.updateName( name );
 		item.updateContactNumber( contactNumber );
 
-		
+
 		//checkParamsForAddingTransportFleet(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withTransportFleetList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected TransportFleet createTransportFleet(RetailscmUserContext userContext, String name, long contactNumber) throws Exception{
+
+
+	protected TransportFleet createTransportFleet(RetailscmUserContext userContext, String name, String contactNumber) throws Exception{
 
 		TransportFleet transportFleet = new TransportFleet();
 		
@@ -3471,44 +2996,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return transportFleet;
-	
-		
+
+
 	}
-	
+
 	protected TransportFleet createIndexedTransportFleet(String id, int version){
 
 		TransportFleet transportFleet = new TransportFleet();
 		transportFleet.setId(id);
 		transportFleet.setVersion(version);
-		return transportFleet;			
-		
+		return transportFleet;
+
 	}
-	
-	protected void checkParamsForRemovingTransportFleetList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTransportFleetList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String transportFleetIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String transportFleetIdItem: transportFleetIds){
-			userContext.getChecker().checkIdOfTransportFleet(transportFleetIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String transportFleetIdItem: transportFleetIds){
 			checkerOf(userContext).checkIdOfTransportFleet(transportFleetIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeTransportFleetList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTransportFleetList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String transportFleetIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingTransportFleetList(userContext, retailStoreCountryCenterId,  transportFleetIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveTransportFleetList(retailStoreCountryCenter, transportFleetIds, allTokens());
@@ -3517,65 +3036,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String transportFleetId, int transportFleetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTransportFleet(transportFleetId);
 		checkerOf(userContext).checkVersionOfTransportFleet(transportFleetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String transportFleetId, int transportFleetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingTransportFleet(userContext,retailStoreCountryCenterId, transportFleetId, transportFleetVersion,tokensExpr);
-		
+
 		TransportFleet transportFleet = createIndexedTransportFleet(transportFleetId, transportFleetVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeTransportFleet( transportFleet );		
+			retailStoreCountryCenter.removeTransportFleet( transportFleet );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTransportFleetList().done());
 			deleteRelationInGraph(userContext, transportFleet);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String transportFleetId, int transportFleetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTransportFleet(transportFleetId);
 		checkerOf(userContext).checkVersionOfTransportFleet(transportFleetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyTransportFleetFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyTransportFleetFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String transportFleetId, int transportFleetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingTransportFleet(userContext,retailStoreCountryCenterId, transportFleetId, transportFleetVersion,tokensExpr);
-		
+
 		TransportFleet transportFleet = createIndexedTransportFleet(transportFleetId, transportFleetVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			transportFleet.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyTransportFleetFrom( transportFleet );		
+
+			retailStoreCountryCenter.copyTransportFleetFrom( transportFleet );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTransportFleetList().done());
 			
 			userContext.getManagerGroup().getTransportFleetManager().onNewInstanceCreated(userContext, (TransportFleet)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String transportFleetId, int transportFleetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3590,37 +3109,37 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 		
 		if(TransportFleet.CONTACT_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkContactNumberOfTransportFleet(parseLong(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfTransportFleet(parseString(newValueExpr));
 		}
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateTransportFleet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String transportFleetId, int transportFleetVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingTransportFleet(userContext, retailStoreCountryCenterId, transportFleetId, transportFleetVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withTransportFleetList().searchTransportFleetListWith(TransportFleet.ID_PROPERTY, "eq", transportFleetId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeTransportFleet( transportFleet );	
+			//retailStoreCountryCenter.removeTransportFleet( transportFleet );
 			//make changes to AcceleraterAccount.
 			TransportFleet transportFleetIndex = createIndexedTransportFleet(transportFleetId, transportFleetVersion);
-		
+
 			TransportFleet transportFleet = retailStoreCountryCenter.findTheTransportFleet(transportFleetIndex);
 			if(transportFleet == null){
 				throw new RetailStoreCountryCenterManagerException(transportFleet+" is NOT FOUND" );
 			}
-			
+
 			transportFleet.changeProperty(property, newValueExpr);
 			transportFleet.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTransportFleetList().done());
@@ -3631,12 +3150,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String retailStoreId, String goodsSupplierId,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String retailStoreId, String goodsSupplierId,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -3662,31 +3181,31 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String retailStoreId, String goodsSupplierId, String [] tokensExpr) throws Exception
-	{	
-		
+	public  RetailStoreCountryCenter addAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String retailStoreId, String goodsSupplierId, String [] tokensExpr) throws Exception
+	{
+
 		checkParamsForAddingAccountSet(userContext,retailStoreCountryCenterId,name, yearSet, effectiveDate, accountingSystem, domesticCurrencyCode, domesticCurrencyName, openingBank, accountNumber, retailStoreId, goodsSupplierId,tokensExpr);
-		
+
 		AccountSet accountSet = createAccountSet(userContext,name, yearSet, effectiveDate, accountingSystem, domesticCurrencyCode, domesticCurrencyName, openingBank, accountNumber, retailStoreId, goodsSupplierId);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addAccountSet( accountSet );		
+			retailStoreCountryCenter.addAccountSet( accountSet );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withAccountSetList().done());
 			
 			userContext.getManagerGroup().getAccountSetManager().onNewInstanceCreated(userContext, accountSet);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingAccountSetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,long accountNumber,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingAccountSetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,String accountNumber,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfAccountSet(id);
-		
+
 		checkerOf(userContext).checkNameOfAccountSet( name);
 		checkerOf(userContext).checkYearSetOfAccountSet( yearSet);
 		checkerOf(userContext).checkEffectiveDateOfAccountSet( effectiveDate);
@@ -3697,25 +3216,25 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkAccountNumberOfAccountSet( accountNumber);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter updateAccountSetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,long accountNumber, String [] tokensExpr) throws Exception
-	{	
+	public  RetailStoreCountryCenter updateAccountSetProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,String accountNumber, String [] tokensExpr) throws Exception
+	{
 		checkParamsForUpdatingAccountSetProperties(userContext,retailStoreCountryCenterId,id,name,yearSet,effectiveDate,accountingSystem,domesticCurrencyCode,domesticCurrencyName,openingBank,accountNumber,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withAccountSetListList()
 				.searchAccountSetListWith(AccountSet.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getAccountSetList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("AccountSet is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		AccountSet item = retailStoreCountryCenterToUpdate.getAccountSetList().first();
-		
+
 		item.updateName( name );
 		item.updateYearSet( yearSet );
 		item.updateEffectiveDate( effectiveDate );
@@ -3725,16 +3244,16 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		item.updateOpeningBank( openingBank );
 		item.updateAccountNumber( accountNumber );
 
-		
+
 		//checkParamsForAddingAccountSet(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withAccountSetList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected AccountSet createAccountSet(RetailscmUserContext userContext, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String retailStoreId, String goodsSupplierId) throws Exception{
+
+
+	protected AccountSet createAccountSet(RetailscmUserContext userContext, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String retailStoreId, String goodsSupplierId) throws Exception{
 
 		AccountSet accountSet = new AccountSet();
 		
@@ -3757,44 +3276,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return accountSet;
-	
-		
+
+
 	}
-	
+
 	protected AccountSet createIndexedAccountSet(String id, int version){
 
 		AccountSet accountSet = new AccountSet();
 		accountSet.setId(id);
 		accountSet.setVersion(version);
-		return accountSet;			
-		
+		return accountSet;
+
 	}
-	
-	protected void checkParamsForRemovingAccountSetList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingAccountSetList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String accountSetIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String accountSetIdItem: accountSetIds){
-			userContext.getChecker().checkIdOfAccountSet(accountSetIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String accountSetIdItem: accountSetIds){
 			checkerOf(userContext).checkIdOfAccountSet(accountSetIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeAccountSetList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeAccountSetList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String accountSetIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingAccountSetList(userContext, retailStoreCountryCenterId,  accountSetIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveAccountSetList(retailStoreCountryCenter, accountSetIds, allTokens());
@@ -3803,65 +3316,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		checkerOf(userContext).checkVersionOfAccountSet(accountSetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingAccountSet(userContext,retailStoreCountryCenterId, accountSetId, accountSetVersion,tokensExpr);
-		
+
 		AccountSet accountSet = createIndexedAccountSet(accountSetId, accountSetVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeAccountSet( accountSet );		
+			retailStoreCountryCenter.removeAccountSet( accountSet );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withAccountSetList().done());
 			deleteRelationInGraph(userContext, accountSet);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		checkerOf(userContext).checkVersionOfAccountSet(accountSetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyAccountSetFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyAccountSetFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingAccountSet(userContext,retailStoreCountryCenterId, accountSetId, accountSetVersion,tokensExpr);
-		
+
 		AccountSet accountSet = createIndexedAccountSet(accountSetId, accountSetVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			accountSet.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyAccountSetFrom( accountSet );		
+
+			retailStoreCountryCenter.copyAccountSetFrom( accountSet );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withAccountSetList().done());
 			
 			userContext.getManagerGroup().getAccountSetManager().onNewInstanceCreated(userContext, (AccountSet)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3900,37 +3413,37 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 		
 		if(AccountSet.ACCOUNT_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkAccountNumberOfAccountSet(parseLong(newValueExpr));
+			checkerOf(userContext).checkAccountNumberOfAccountSet(parseString(newValueExpr));
 		}
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateAccountSet(RetailscmUserContext userContext, String retailStoreCountryCenterId, String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingAccountSet(userContext, retailStoreCountryCenterId, accountSetId, accountSetVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withAccountSetList().searchAccountSetListWith(AccountSet.ID_PROPERTY, "eq", accountSetId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeAccountSet( accountSet );	
+			//retailStoreCountryCenter.removeAccountSet( accountSet );
 			//make changes to AcceleraterAccount.
 			AccountSet accountSetIndex = createIndexedAccountSet(accountSetId, accountSetVersion);
-		
+
 			AccountSet accountSet = retailStoreCountryCenter.findTheAccountSet(accountSetIndex);
 			if(accountSet == null){
 				throw new RetailStoreCountryCenterManagerException(accountSet+" is NOT FOUND" );
 			}
-			
+
 			accountSet.changeProperty(property, newValueExpr);
 			accountSet.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withAccountSetList().done());
@@ -3941,12 +3454,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String managerName, Date founded,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String manager, Date founded,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -3954,126 +3467,120 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 		checkerOf(userContext).checkDescriptionOfLevelOneDepartment(description);
 		
-		checkerOf(userContext).checkManagerNameOfLevelOneDepartment(managerName);
+		checkerOf(userContext).checkManagerOfLevelOneDepartment(manager);
 		
 		checkerOf(userContext).checkFoundedOfLevelOneDepartment(founded);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String managerName, Date founded, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingLevelOneDepartment(userContext,retailStoreCountryCenterId,name, description, managerName, founded,tokensExpr);
-		
-		LevelOneDepartment levelOneDepartment = createLevelOneDepartment(userContext,name, description, managerName, founded);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+	public  RetailStoreCountryCenter addLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String name, String description, String manager, Date founded, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingLevelOneDepartment(userContext,retailStoreCountryCenterId,name, description, manager, founded,tokensExpr);
+
+		LevelOneDepartment levelOneDepartment = createLevelOneDepartment(userContext,name, description, manager, founded);
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addLevelOneDepartment( levelOneDepartment );		
+			retailStoreCountryCenter.addLevelOneDepartment( levelOneDepartment );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLevelOneDepartmentList().done());
 			
 			userContext.getManagerGroup().getLevelOneDepartmentManager().onNewInstanceCreated(userContext, levelOneDepartment);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingLevelOneDepartmentProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String description,String managerName,Date founded,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingLevelOneDepartmentProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String name,String description,String manager,Date founded,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfLevelOneDepartment(id);
-		
+
 		checkerOf(userContext).checkNameOfLevelOneDepartment( name);
 		checkerOf(userContext).checkDescriptionOfLevelOneDepartment( description);
-		checkerOf(userContext).checkManagerNameOfLevelOneDepartment( managerName);
+		checkerOf(userContext).checkManagerOfLevelOneDepartment( manager);
 		checkerOf(userContext).checkFoundedOfLevelOneDepartment( founded);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter updateLevelOneDepartmentProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String description,String managerName,Date founded, String [] tokensExpr) throws Exception
-	{	
-		checkParamsForUpdatingLevelOneDepartmentProperties(userContext,retailStoreCountryCenterId,id,name,description,managerName,founded,tokensExpr);
+	public  RetailStoreCountryCenter updateLevelOneDepartmentProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String name,String description,String manager,Date founded, String [] tokensExpr) throws Exception
+	{
+		checkParamsForUpdatingLevelOneDepartmentProperties(userContext,retailStoreCountryCenterId,id,name,description,manager,founded,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withLevelOneDepartmentListList()
 				.searchLevelOneDepartmentListWith(LevelOneDepartment.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getLevelOneDepartmentList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("LevelOneDepartment is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		LevelOneDepartment item = retailStoreCountryCenterToUpdate.getLevelOneDepartmentList().first();
-		
+
 		item.updateName( name );
 		item.updateDescription( description );
-		item.updateManagerName( managerName );
+		item.updateManager( manager );
 		item.updateFounded( founded );
 
-		
+
 		//checkParamsForAddingLevelOneDepartment(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withLevelOneDepartmentList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected LevelOneDepartment createLevelOneDepartment(RetailscmUserContext userContext, String name, String description, String managerName, Date founded) throws Exception{
+
+
+	protected LevelOneDepartment createLevelOneDepartment(RetailscmUserContext userContext, String name, String description, String manager, Date founded) throws Exception{
 
 		LevelOneDepartment levelOneDepartment = new LevelOneDepartment();
 		
 		
 		levelOneDepartment.setName(name);		
 		levelOneDepartment.setDescription(description);		
-		levelOneDepartment.setManagerName(managerName);		
+		levelOneDepartment.setManager(manager);		
 		levelOneDepartment.setFounded(founded);
 	
 		
 		return levelOneDepartment;
-	
-		
+
+
 	}
-	
+
 	protected LevelOneDepartment createIndexedLevelOneDepartment(String id, int version){
 
 		LevelOneDepartment levelOneDepartment = new LevelOneDepartment();
 		levelOneDepartment.setId(id);
 		levelOneDepartment.setVersion(version);
-		return levelOneDepartment;			
-		
+		return levelOneDepartment;
+
 	}
-	
-	protected void checkParamsForRemovingLevelOneDepartmentList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingLevelOneDepartmentList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String levelOneDepartmentIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String levelOneDepartmentIdItem: levelOneDepartmentIds){
-			userContext.getChecker().checkIdOfLevelOneDepartment(levelOneDepartmentIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String levelOneDepartmentIdItem: levelOneDepartmentIds){
 			checkerOf(userContext).checkIdOfLevelOneDepartment(levelOneDepartmentIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeLevelOneDepartmentList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeLevelOneDepartmentList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String levelOneDepartmentIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingLevelOneDepartmentList(userContext, retailStoreCountryCenterId,  levelOneDepartmentIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveLevelOneDepartmentList(retailStoreCountryCenter, levelOneDepartmentIds, allTokens());
@@ -4082,65 +3589,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String levelOneDepartmentId, int levelOneDepartmentVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfLevelOneDepartment(levelOneDepartmentId);
 		checkerOf(userContext).checkVersionOfLevelOneDepartment(levelOneDepartmentVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String levelOneDepartmentId, int levelOneDepartmentVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingLevelOneDepartment(userContext,retailStoreCountryCenterId, levelOneDepartmentId, levelOneDepartmentVersion,tokensExpr);
-		
+
 		LevelOneDepartment levelOneDepartment = createIndexedLevelOneDepartment(levelOneDepartmentId, levelOneDepartmentVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeLevelOneDepartment( levelOneDepartment );		
+			retailStoreCountryCenter.removeLevelOneDepartment( levelOneDepartment );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLevelOneDepartmentList().done());
 			deleteRelationInGraph(userContext, levelOneDepartment);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String levelOneDepartmentId, int levelOneDepartmentVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfLevelOneDepartment(levelOneDepartmentId);
 		checkerOf(userContext).checkVersionOfLevelOneDepartment(levelOneDepartmentVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyLevelOneDepartmentFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyLevelOneDepartmentFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String levelOneDepartmentId, int levelOneDepartmentVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingLevelOneDepartment(userContext,retailStoreCountryCenterId, levelOneDepartmentId, levelOneDepartmentVersion,tokensExpr);
-		
+
 		LevelOneDepartment levelOneDepartment = createIndexedLevelOneDepartment(levelOneDepartmentId, levelOneDepartmentVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyLevelOneDepartmentFrom( levelOneDepartment );		
+
+			retailStoreCountryCenter.copyLevelOneDepartmentFrom( levelOneDepartment );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLevelOneDepartmentList().done());
 			
 			userContext.getManagerGroup().getLevelOneDepartmentManager().onNewInstanceCreated(userContext, (LevelOneDepartment)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String levelOneDepartmentId, int levelOneDepartmentVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -4158,8 +3665,8 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 			checkerOf(userContext).checkDescriptionOfLevelOneDepartment(parseString(newValueExpr));
 		}
 		
-		if(LevelOneDepartment.MANAGER_NAME_PROPERTY.equals(property)){
-			checkerOf(userContext).checkManagerNameOfLevelOneDepartment(parseString(newValueExpr));
+		if(LevelOneDepartment.MANAGER_PROPERTY.equals(property)){
+			checkerOf(userContext).checkManagerOfLevelOneDepartment(parseString(newValueExpr));
 		}
 		
 		if(LevelOneDepartment.FOUNDED_PROPERTY.equals(property)){
@@ -4168,32 +3675,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateLevelOneDepartment(RetailscmUserContext userContext, String retailStoreCountryCenterId, String levelOneDepartmentId, int levelOneDepartmentVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingLevelOneDepartment(userContext, retailStoreCountryCenterId, levelOneDepartmentId, levelOneDepartmentVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withLevelOneDepartmentList().searchLevelOneDepartmentListWith(LevelOneDepartment.ID_PROPERTY, "eq", levelOneDepartmentId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeLevelOneDepartment( levelOneDepartment );	
+			//retailStoreCountryCenter.removeLevelOneDepartment( levelOneDepartment );
 			//make changes to AcceleraterAccount.
 			LevelOneDepartment levelOneDepartmentIndex = createIndexedLevelOneDepartment(levelOneDepartmentId, levelOneDepartmentVersion);
-		
+
 			LevelOneDepartment levelOneDepartment = retailStoreCountryCenter.findTheLevelOneDepartment(levelOneDepartmentIndex);
 			if(levelOneDepartment == null){
 				throw new RetailStoreCountryCenterManagerException(levelOneDepartment+" is NOT FOUND" );
 			}
-			
+
 			levelOneDepartment.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLevelOneDepartmentList().done());
@@ -4204,12 +3711,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -4219,20 +3726,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingSkillType(userContext,retailStoreCountryCenterId,code, description,tokensExpr);
-		
+
 		SkillType skillType = createSkillType(userContext,code, description);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addSkillType( skillType );		
+			retailStoreCountryCenter.addSkillType( skillType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSkillTypeList().done());
 			
 			userContext.getManagerGroup().getSkillTypeManager().onNewInstanceCreated(userContext, skillType);
@@ -4240,45 +3747,45 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingSkillTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSkillType(id);
-		
+
 		checkerOf(userContext).checkCodeOfSkillType( code);
 		checkerOf(userContext).checkDescriptionOfSkillType( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateSkillTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingSkillTypeProperties(userContext,retailStoreCountryCenterId,id,code,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withSkillTypeListList()
 				.searchSkillTypeListWith(SkillType.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getSkillTypeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("SkillType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		SkillType item = retailStoreCountryCenterToUpdate.getSkillTypeList().first();
-		
+
 		item.updateCode( code );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingSkillType(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withSkillTypeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected SkillType createSkillType(RetailscmUserContext userContext, String code, String description) throws Exception{
 
 		SkillType skillType = new SkillType();
@@ -4289,44 +3796,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return skillType;
-	
-		
+
+
 	}
-	
+
 	protected SkillType createIndexedSkillType(String id, int version){
 
 		SkillType skillType = new SkillType();
 		skillType.setId(id);
 		skillType.setVersion(version);
-		return skillType;			
-		
+		return skillType;
+
 	}
-	
-	protected void checkParamsForRemovingSkillTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingSkillTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String skillTypeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String skillTypeIdItem: skillTypeIds){
-			userContext.getChecker().checkIdOfSkillType(skillTypeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String skillTypeIdItem: skillTypeIds){
 			checkerOf(userContext).checkIdOfSkillType(skillTypeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeSkillTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeSkillTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String skillTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingSkillTypeList(userContext, retailStoreCountryCenterId,  skillTypeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveSkillTypeList(retailStoreCountryCenter, skillTypeIds, allTokens());
@@ -4335,65 +3836,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String skillTypeId, int skillTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
 		checkerOf(userContext).checkVersionOfSkillType(skillTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String skillTypeId, int skillTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingSkillType(userContext,retailStoreCountryCenterId, skillTypeId, skillTypeVersion,tokensExpr);
-		
+
 		SkillType skillType = createIndexedSkillType(skillTypeId, skillTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeSkillType( skillType );		
+			retailStoreCountryCenter.removeSkillType( skillType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSkillTypeList().done());
 			deleteRelationInGraph(userContext, skillType);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String skillTypeId, int skillTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
 		checkerOf(userContext).checkVersionOfSkillType(skillTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copySkillTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copySkillTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String skillTypeId, int skillTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingSkillType(userContext,retailStoreCountryCenterId, skillTypeId, skillTypeVersion,tokensExpr);
-		
+
 		SkillType skillType = createIndexedSkillType(skillTypeId, skillTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copySkillTypeFrom( skillType );		
+
+			retailStoreCountryCenter.copySkillTypeFrom( skillType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSkillTypeList().done());
 			
 			userContext.getManagerGroup().getSkillTypeManager().onNewInstanceCreated(userContext, (SkillType)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -4413,32 +3914,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateSkillType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingSkillType(userContext, retailStoreCountryCenterId, skillTypeId, skillTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withSkillTypeList().searchSkillTypeListWith(SkillType.ID_PROPERTY, "eq", skillTypeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeSkillType( skillType );	
+			//retailStoreCountryCenter.removeSkillType( skillType );
 			//make changes to AcceleraterAccount.
 			SkillType skillTypeIndex = createIndexedSkillType(skillTypeId, skillTypeVersion);
-		
+
 			SkillType skillType = retailStoreCountryCenter.findTheSkillType(skillTypeIndex);
 			if(skillType == null){
 				throw new RetailStoreCountryCenterManagerException(skillType+" is NOT FOUND" );
 			}
-			
+
 			skillType.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSkillTypeList().done());
@@ -4449,12 +3950,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String baseDescription, String detailDescription,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -4466,20 +3967,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String baseDescription, String detailDescription, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingResponsibilityType(userContext,retailStoreCountryCenterId,code, baseDescription, detailDescription,tokensExpr);
-		
+
 		ResponsibilityType responsibilityType = createResponsibilityType(userContext,code, baseDescription, detailDescription);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addResponsibilityType( responsibilityType );		
+			retailStoreCountryCenter.addResponsibilityType( responsibilityType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withResponsibilityTypeList().done());
 			
 			userContext.getManagerGroup().getResponsibilityTypeManager().onNewInstanceCreated(userContext, responsibilityType);
@@ -4487,47 +3988,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingResponsibilityTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String baseDescription,String detailDescription,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfResponsibilityType(id);
-		
+
 		checkerOf(userContext).checkCodeOfResponsibilityType( code);
 		checkerOf(userContext).checkBaseDescriptionOfResponsibilityType( baseDescription);
 		checkerOf(userContext).checkDetailDescriptionOfResponsibilityType( detailDescription);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateResponsibilityTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String baseDescription,String detailDescription, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingResponsibilityTypeProperties(userContext,retailStoreCountryCenterId,id,code,baseDescription,detailDescription,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withResponsibilityTypeListList()
 				.searchResponsibilityTypeListWith(ResponsibilityType.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getResponsibilityTypeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("ResponsibilityType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		ResponsibilityType item = retailStoreCountryCenterToUpdate.getResponsibilityTypeList().first();
-		
+
 		item.updateCode( code );
 		item.updateBaseDescription( baseDescription );
 		item.updateDetailDescription( detailDescription );
 
-		
+
 		//checkParamsForAddingResponsibilityType(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withResponsibilityTypeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected ResponsibilityType createResponsibilityType(RetailscmUserContext userContext, String code, String baseDescription, String detailDescription) throws Exception{
 
 		ResponsibilityType responsibilityType = new ResponsibilityType();
@@ -4539,44 +4040,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return responsibilityType;
-	
-		
+
+
 	}
-	
+
 	protected ResponsibilityType createIndexedResponsibilityType(String id, int version){
 
 		ResponsibilityType responsibilityType = new ResponsibilityType();
 		responsibilityType.setId(id);
 		responsibilityType.setVersion(version);
-		return responsibilityType;			
-		
+		return responsibilityType;
+
 	}
-	
-	protected void checkParamsForRemovingResponsibilityTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingResponsibilityTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String responsibilityTypeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String responsibilityTypeIdItem: responsibilityTypeIds){
-			userContext.getChecker().checkIdOfResponsibilityType(responsibilityTypeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String responsibilityTypeIdItem: responsibilityTypeIds){
 			checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeResponsibilityTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeResponsibilityTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String responsibilityTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingResponsibilityTypeList(userContext, retailStoreCountryCenterId,  responsibilityTypeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveResponsibilityTypeList(retailStoreCountryCenter, responsibilityTypeIds, allTokens());
@@ -4585,65 +4080,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String responsibilityTypeId, int responsibilityTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
 		checkerOf(userContext).checkVersionOfResponsibilityType(responsibilityTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String responsibilityTypeId, int responsibilityTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingResponsibilityType(userContext,retailStoreCountryCenterId, responsibilityTypeId, responsibilityTypeVersion,tokensExpr);
-		
+
 		ResponsibilityType responsibilityType = createIndexedResponsibilityType(responsibilityTypeId, responsibilityTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeResponsibilityType( responsibilityType );		
+			retailStoreCountryCenter.removeResponsibilityType( responsibilityType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withResponsibilityTypeList().done());
 			deleteRelationInGraph(userContext, responsibilityType);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String responsibilityTypeId, int responsibilityTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
 		checkerOf(userContext).checkVersionOfResponsibilityType(responsibilityTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyResponsibilityTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyResponsibilityTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String responsibilityTypeId, int responsibilityTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingResponsibilityType(userContext,retailStoreCountryCenterId, responsibilityTypeId, responsibilityTypeVersion,tokensExpr);
-		
+
 		ResponsibilityType responsibilityType = createIndexedResponsibilityType(responsibilityTypeId, responsibilityTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyResponsibilityTypeFrom( responsibilityType );		
+
+			retailStoreCountryCenter.copyResponsibilityTypeFrom( responsibilityType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withResponsibilityTypeList().done());
 			
 			userContext.getManagerGroup().getResponsibilityTypeManager().onNewInstanceCreated(userContext, (ResponsibilityType)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String responsibilityTypeId, int responsibilityTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -4667,32 +4162,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateResponsibilityType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String responsibilityTypeId, int responsibilityTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingResponsibilityType(userContext, retailStoreCountryCenterId, responsibilityTypeId, responsibilityTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withResponsibilityTypeList().searchResponsibilityTypeListWith(ResponsibilityType.ID_PROPERTY, "eq", responsibilityTypeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeResponsibilityType( responsibilityType );	
+			//retailStoreCountryCenter.removeResponsibilityType( responsibilityType );
 			//make changes to AcceleraterAccount.
 			ResponsibilityType responsibilityTypeIndex = createIndexedResponsibilityType(responsibilityTypeId, responsibilityTypeVersion);
-		
+
 			ResponsibilityType responsibilityType = retailStoreCountryCenter.findTheResponsibilityType(responsibilityTypeIndex);
 			if(responsibilityType == null){
 				throw new RetailStoreCountryCenterManagerException(responsibilityType+" is NOT FOUND" );
 			}
-			
+
 			responsibilityType.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withResponsibilityTypeList().done());
@@ -4703,12 +4198,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -4718,20 +4213,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingTerminationReason(userContext,retailStoreCountryCenterId,code, description,tokensExpr);
-		
+
 		TerminationReason terminationReason = createTerminationReason(userContext,code, description);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addTerminationReason( terminationReason );		
+			retailStoreCountryCenter.addTerminationReason( terminationReason );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationReasonList().done());
 			
 			userContext.getManagerGroup().getTerminationReasonManager().onNewInstanceCreated(userContext, terminationReason);
@@ -4739,45 +4234,45 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingTerminationReasonProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTerminationReason(id);
-		
+
 		checkerOf(userContext).checkCodeOfTerminationReason( code);
 		checkerOf(userContext).checkDescriptionOfTerminationReason( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateTerminationReasonProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingTerminationReasonProperties(userContext,retailStoreCountryCenterId,id,code,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withTerminationReasonListList()
 				.searchTerminationReasonListWith(TerminationReason.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getTerminationReasonList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("TerminationReason is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		TerminationReason item = retailStoreCountryCenterToUpdate.getTerminationReasonList().first();
-		
+
 		item.updateCode( code );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingTerminationReason(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withTerminationReasonList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected TerminationReason createTerminationReason(RetailscmUserContext userContext, String code, String description) throws Exception{
 
 		TerminationReason terminationReason = new TerminationReason();
@@ -4788,44 +4283,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return terminationReason;
-	
-		
+
+
 	}
-	
+
 	protected TerminationReason createIndexedTerminationReason(String id, int version){
 
 		TerminationReason terminationReason = new TerminationReason();
 		terminationReason.setId(id);
 		terminationReason.setVersion(version);
-		return terminationReason;			
-		
+		return terminationReason;
+
 	}
-	
-	protected void checkParamsForRemovingTerminationReasonList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTerminationReasonList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String terminationReasonIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String terminationReasonIdItem: terminationReasonIds){
-			userContext.getChecker().checkIdOfTerminationReason(terminationReasonIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String terminationReasonIdItem: terminationReasonIds){
 			checkerOf(userContext).checkIdOfTerminationReason(terminationReasonIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeTerminationReasonList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTerminationReasonList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String terminationReasonIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingTerminationReasonList(userContext, retailStoreCountryCenterId,  terminationReasonIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveTerminationReasonList(retailStoreCountryCenter, terminationReasonIds, allTokens());
@@ -4834,65 +4323,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationReasonId, int terminationReasonVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTerminationReason(terminationReasonId);
 		checkerOf(userContext).checkVersionOfTerminationReason(terminationReasonVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationReasonId, int terminationReasonVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingTerminationReason(userContext,retailStoreCountryCenterId, terminationReasonId, terminationReasonVersion,tokensExpr);
-		
+
 		TerminationReason terminationReason = createIndexedTerminationReason(terminationReasonId, terminationReasonVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeTerminationReason( terminationReason );		
+			retailStoreCountryCenter.removeTerminationReason( terminationReason );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationReasonList().done());
 			deleteRelationInGraph(userContext, terminationReason);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationReasonId, int terminationReasonVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTerminationReason(terminationReasonId);
 		checkerOf(userContext).checkVersionOfTerminationReason(terminationReasonVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyTerminationReasonFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyTerminationReasonFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationReasonId, int terminationReasonVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingTerminationReason(userContext,retailStoreCountryCenterId, terminationReasonId, terminationReasonVersion,tokensExpr);
-		
+
 		TerminationReason terminationReason = createIndexedTerminationReason(terminationReasonId, terminationReasonVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyTerminationReasonFrom( terminationReason );		
+
+			retailStoreCountryCenter.copyTerminationReasonFrom( terminationReason );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationReasonList().done());
 			
 			userContext.getManagerGroup().getTerminationReasonManager().onNewInstanceCreated(userContext, (TerminationReason)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId, String terminationReasonId, int terminationReasonVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -4912,32 +4401,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateTerminationReason(RetailscmUserContext userContext, String retailStoreCountryCenterId, String terminationReasonId, int terminationReasonVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingTerminationReason(userContext, retailStoreCountryCenterId, terminationReasonId, terminationReasonVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withTerminationReasonList().searchTerminationReasonListWith(TerminationReason.ID_PROPERTY, "eq", terminationReasonId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeTerminationReason( terminationReason );	
+			//retailStoreCountryCenter.removeTerminationReason( terminationReason );
 			//make changes to AcceleraterAccount.
 			TerminationReason terminationReasonIndex = createIndexedTerminationReason(terminationReasonId, terminationReasonVersion);
-		
+
 			TerminationReason terminationReason = retailStoreCountryCenter.findTheTerminationReason(terminationReasonIndex);
 			if(terminationReason == null){
 				throw new RetailStoreCountryCenterManagerException(terminationReason+" is NOT FOUND" );
 			}
-			
+
 			terminationReason.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationReasonList().done());
@@ -4948,12 +4437,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String baseDescription, String detailDescription,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -4965,20 +4454,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String baseDescription, String detailDescription, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingTerminationType(userContext,retailStoreCountryCenterId,code, baseDescription, detailDescription,tokensExpr);
-		
+
 		TerminationType terminationType = createTerminationType(userContext,code, baseDescription, detailDescription);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addTerminationType( terminationType );		
+			retailStoreCountryCenter.addTerminationType( terminationType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationTypeList().done());
 			
 			userContext.getManagerGroup().getTerminationTypeManager().onNewInstanceCreated(userContext, terminationType);
@@ -4986,47 +4475,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingTerminationTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String baseDescription,String detailDescription,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTerminationType(id);
-		
+
 		checkerOf(userContext).checkCodeOfTerminationType( code);
 		checkerOf(userContext).checkBaseDescriptionOfTerminationType( baseDescription);
 		checkerOf(userContext).checkDetailDescriptionOfTerminationType( detailDescription);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateTerminationTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String baseDescription,String detailDescription, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingTerminationTypeProperties(userContext,retailStoreCountryCenterId,id,code,baseDescription,detailDescription,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withTerminationTypeListList()
 				.searchTerminationTypeListWith(TerminationType.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getTerminationTypeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("TerminationType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		TerminationType item = retailStoreCountryCenterToUpdate.getTerminationTypeList().first();
-		
+
 		item.updateCode( code );
 		item.updateBaseDescription( baseDescription );
 		item.updateDetailDescription( detailDescription );
 
-		
+
 		//checkParamsForAddingTerminationType(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withTerminationTypeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected TerminationType createTerminationType(RetailscmUserContext userContext, String code, String baseDescription, String detailDescription) throws Exception{
 
 		TerminationType terminationType = new TerminationType();
@@ -5038,44 +4527,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return terminationType;
-	
-		
+
+
 	}
-	
+
 	protected TerminationType createIndexedTerminationType(String id, int version){
 
 		TerminationType terminationType = new TerminationType();
 		terminationType.setId(id);
 		terminationType.setVersion(version);
-		return terminationType;			
-		
+		return terminationType;
+
 	}
-	
-	protected void checkParamsForRemovingTerminationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTerminationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String terminationTypeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String terminationTypeIdItem: terminationTypeIds){
-			userContext.getChecker().checkIdOfTerminationType(terminationTypeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String terminationTypeIdItem: terminationTypeIds){
 			checkerOf(userContext).checkIdOfTerminationType(terminationTypeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeTerminationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTerminationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String terminationTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingTerminationTypeList(userContext, retailStoreCountryCenterId,  terminationTypeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveTerminationTypeList(retailStoreCountryCenter, terminationTypeIds, allTokens());
@@ -5084,65 +4567,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationTypeId, int terminationTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTerminationType(terminationTypeId);
 		checkerOf(userContext).checkVersionOfTerminationType(terminationTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationTypeId, int terminationTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingTerminationType(userContext,retailStoreCountryCenterId, terminationTypeId, terminationTypeVersion,tokensExpr);
-		
+
 		TerminationType terminationType = createIndexedTerminationType(terminationTypeId, terminationTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeTerminationType( terminationType );		
+			retailStoreCountryCenter.removeTerminationType( terminationType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationTypeList().done());
 			deleteRelationInGraph(userContext, terminationType);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationTypeId, int terminationTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTerminationType(terminationTypeId);
 		checkerOf(userContext).checkVersionOfTerminationType(terminationTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyTerminationTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyTerminationTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String terminationTypeId, int terminationTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingTerminationType(userContext,retailStoreCountryCenterId, terminationTypeId, terminationTypeVersion,tokensExpr);
-		
+
 		TerminationType terminationType = createIndexedTerminationType(terminationTypeId, terminationTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyTerminationTypeFrom( terminationType );		
+
+			retailStoreCountryCenter.copyTerminationTypeFrom( terminationType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationTypeList().done());
 			
 			userContext.getManagerGroup().getTerminationTypeManager().onNewInstanceCreated(userContext, (TerminationType)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String terminationTypeId, int terminationTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -5166,32 +4649,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateTerminationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String terminationTypeId, int terminationTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingTerminationType(userContext, retailStoreCountryCenterId, terminationTypeId, terminationTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withTerminationTypeList().searchTerminationTypeListWith(TerminationType.ID_PROPERTY, "eq", terminationTypeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeTerminationType( terminationType );	
+			//retailStoreCountryCenter.removeTerminationType( terminationType );
 			//make changes to AcceleraterAccount.
 			TerminationType terminationTypeIndex = createIndexedTerminationType(terminationTypeId, terminationTypeVersion);
-		
+
 			TerminationType terminationType = retailStoreCountryCenter.findTheTerminationType(terminationTypeIndex);
 			if(terminationType == null){
 				throw new RetailStoreCountryCenterManagerException(terminationType+" is NOT FOUND" );
 			}
-			
+
 			terminationType.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTerminationTypeList().done());
@@ -5202,12 +4685,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String detailDescription,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -5219,20 +4702,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String detailDescription, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingOccupationType(userContext,retailStoreCountryCenterId,code, description, detailDescription,tokensExpr);
-		
+
 		OccupationType occupationType = createOccupationType(userContext,code, description, detailDescription);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addOccupationType( occupationType );		
+			retailStoreCountryCenter.addOccupationType( occupationType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withOccupationTypeList().done());
 			
 			userContext.getManagerGroup().getOccupationTypeManager().onNewInstanceCreated(userContext, occupationType);
@@ -5240,47 +4723,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingOccupationTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String description,String detailDescription,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfOccupationType(id);
-		
+
 		checkerOf(userContext).checkCodeOfOccupationType( code);
 		checkerOf(userContext).checkDescriptionOfOccupationType( description);
 		checkerOf(userContext).checkDetailDescriptionOfOccupationType( detailDescription);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateOccupationTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String description,String detailDescription, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingOccupationTypeProperties(userContext,retailStoreCountryCenterId,id,code,description,detailDescription,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withOccupationTypeListList()
 				.searchOccupationTypeListWith(OccupationType.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getOccupationTypeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("OccupationType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		OccupationType item = retailStoreCountryCenterToUpdate.getOccupationTypeList().first();
-		
+
 		item.updateCode( code );
 		item.updateDescription( description );
 		item.updateDetailDescription( detailDescription );
 
-		
+
 		//checkParamsForAddingOccupationType(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withOccupationTypeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected OccupationType createOccupationType(RetailscmUserContext userContext, String code, String description, String detailDescription) throws Exception{
 
 		OccupationType occupationType = new OccupationType();
@@ -5292,44 +4775,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return occupationType;
-	
-		
+
+
 	}
-	
+
 	protected OccupationType createIndexedOccupationType(String id, int version){
 
 		OccupationType occupationType = new OccupationType();
 		occupationType.setId(id);
 		occupationType.setVersion(version);
-		return occupationType;			
-		
+		return occupationType;
+
 	}
-	
-	protected void checkParamsForRemovingOccupationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingOccupationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String occupationTypeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String occupationTypeIdItem: occupationTypeIds){
-			userContext.getChecker().checkIdOfOccupationType(occupationTypeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String occupationTypeIdItem: occupationTypeIds){
 			checkerOf(userContext).checkIdOfOccupationType(occupationTypeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeOccupationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeOccupationTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String occupationTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingOccupationTypeList(userContext, retailStoreCountryCenterId,  occupationTypeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveOccupationTypeList(retailStoreCountryCenter, occupationTypeIds, allTokens());
@@ -5338,65 +4815,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String occupationTypeId, int occupationTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfOccupationType(occupationTypeId);
 		checkerOf(userContext).checkVersionOfOccupationType(occupationTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String occupationTypeId, int occupationTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingOccupationType(userContext,retailStoreCountryCenterId, occupationTypeId, occupationTypeVersion,tokensExpr);
-		
+
 		OccupationType occupationType = createIndexedOccupationType(occupationTypeId, occupationTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeOccupationType( occupationType );		
+			retailStoreCountryCenter.removeOccupationType( occupationType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withOccupationTypeList().done());
 			deleteRelationInGraph(userContext, occupationType);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String occupationTypeId, int occupationTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfOccupationType(occupationTypeId);
 		checkerOf(userContext).checkVersionOfOccupationType(occupationTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyOccupationTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyOccupationTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String occupationTypeId, int occupationTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingOccupationType(userContext,retailStoreCountryCenterId, occupationTypeId, occupationTypeVersion,tokensExpr);
-		
+
 		OccupationType occupationType = createIndexedOccupationType(occupationTypeId, occupationTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyOccupationTypeFrom( occupationType );		
+
+			retailStoreCountryCenter.copyOccupationTypeFrom( occupationType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withOccupationTypeList().done());
 			
 			userContext.getManagerGroup().getOccupationTypeManager().onNewInstanceCreated(userContext, (OccupationType)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String occupationTypeId, int occupationTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -5420,32 +4897,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateOccupationType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String occupationTypeId, int occupationTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingOccupationType(userContext, retailStoreCountryCenterId, occupationTypeId, occupationTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withOccupationTypeList().searchOccupationTypeListWith(OccupationType.ID_PROPERTY, "eq", occupationTypeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeOccupationType( occupationType );	
+			//retailStoreCountryCenter.removeOccupationType( occupationType );
 			//make changes to AcceleraterAccount.
 			OccupationType occupationTypeIndex = createIndexedOccupationType(occupationTypeId, occupationTypeVersion);
-		
+
 			OccupationType occupationType = retailStoreCountryCenter.findTheOccupationType(occupationTypeIndex);
 			if(occupationType == null){
 				throw new RetailStoreCountryCenterManagerException(occupationType+" is NOT FOUND" );
 			}
-			
+
 			occupationType.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withOccupationTypeList().done());
@@ -5456,12 +4933,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String detailDescription,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -5473,20 +4950,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String detailDescription, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingLeaveType(userContext,retailStoreCountryCenterId,code, description, detailDescription,tokensExpr);
-		
+
 		LeaveType leaveType = createLeaveType(userContext,code, description, detailDescription);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addLeaveType( leaveType );		
+			retailStoreCountryCenter.addLeaveType( leaveType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLeaveTypeList().done());
 			
 			userContext.getManagerGroup().getLeaveTypeManager().onNewInstanceCreated(userContext, leaveType);
@@ -5494,47 +4971,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingLeaveTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String description,String detailDescription,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfLeaveType(id);
-		
+
 		checkerOf(userContext).checkCodeOfLeaveType( code);
 		checkerOf(userContext).checkDescriptionOfLeaveType( description);
 		checkerOf(userContext).checkDetailDescriptionOfLeaveType( detailDescription);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateLeaveTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String description,String detailDescription, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingLeaveTypeProperties(userContext,retailStoreCountryCenterId,id,code,description,detailDescription,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withLeaveTypeListList()
 				.searchLeaveTypeListWith(LeaveType.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getLeaveTypeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("LeaveType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		LeaveType item = retailStoreCountryCenterToUpdate.getLeaveTypeList().first();
-		
+
 		item.updateCode( code );
 		item.updateDescription( description );
 		item.updateDetailDescription( detailDescription );
 
-		
+
 		//checkParamsForAddingLeaveType(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withLeaveTypeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected LeaveType createLeaveType(RetailscmUserContext userContext, String code, String description, String detailDescription) throws Exception{
 
 		LeaveType leaveType = new LeaveType();
@@ -5546,44 +5023,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return leaveType;
-	
-		
+
+
 	}
-	
+
 	protected LeaveType createIndexedLeaveType(String id, int version){
 
 		LeaveType leaveType = new LeaveType();
 		leaveType.setId(id);
 		leaveType.setVersion(version);
-		return leaveType;			
-		
+		return leaveType;
+
 	}
-	
-	protected void checkParamsForRemovingLeaveTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingLeaveTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String leaveTypeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String leaveTypeIdItem: leaveTypeIds){
-			userContext.getChecker().checkIdOfLeaveType(leaveTypeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String leaveTypeIdItem: leaveTypeIds){
 			checkerOf(userContext).checkIdOfLeaveType(leaveTypeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeLeaveTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeLeaveTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String leaveTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingLeaveTypeList(userContext, retailStoreCountryCenterId,  leaveTypeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveLeaveTypeList(retailStoreCountryCenter, leaveTypeIds, allTokens());
@@ -5592,65 +5063,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String leaveTypeId, int leaveTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
 		checkerOf(userContext).checkVersionOfLeaveType(leaveTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String leaveTypeId, int leaveTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingLeaveType(userContext,retailStoreCountryCenterId, leaveTypeId, leaveTypeVersion,tokensExpr);
-		
+
 		LeaveType leaveType = createIndexedLeaveType(leaveTypeId, leaveTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeLeaveType( leaveType );		
+			retailStoreCountryCenter.removeLeaveType( leaveType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLeaveTypeList().done());
 			deleteRelationInGraph(userContext, leaveType);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String leaveTypeId, int leaveTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
 		checkerOf(userContext).checkVersionOfLeaveType(leaveTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyLeaveTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyLeaveTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String leaveTypeId, int leaveTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingLeaveType(userContext,retailStoreCountryCenterId, leaveTypeId, leaveTypeVersion,tokensExpr);
-		
+
 		LeaveType leaveType = createIndexedLeaveType(leaveTypeId, leaveTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyLeaveTypeFrom( leaveType );		
+
+			retailStoreCountryCenter.copyLeaveTypeFrom( leaveType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLeaveTypeList().done());
 			
 			userContext.getManagerGroup().getLeaveTypeManager().onNewInstanceCreated(userContext, (LeaveType)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String leaveTypeId, int leaveTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -5674,32 +5145,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateLeaveType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String leaveTypeId, int leaveTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingLeaveType(userContext, retailStoreCountryCenterId, leaveTypeId, leaveTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withLeaveTypeList().searchLeaveTypeListWith(LeaveType.ID_PROPERTY, "eq", leaveTypeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeLeaveType( leaveType );	
+			//retailStoreCountryCenter.removeLeaveType( leaveType );
 			//make changes to AcceleraterAccount.
 			LeaveType leaveTypeIndex = createIndexedLeaveType(leaveTypeId, leaveTypeVersion);
-		
+
 			LeaveType leaveType = retailStoreCountryCenter.findTheLeaveType(leaveTypeIndex);
 			if(leaveType == null){
 				throw new RetailStoreCountryCenterManagerException(leaveType+" is NOT FOUND" );
 			}
-			
+
 			leaveType.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withLeaveTypeList().done());
@@ -5710,12 +5181,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String name, String detailDescription,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -5727,20 +5198,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String name, String detailDescription, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingSalaryGrade(userContext,retailStoreCountryCenterId,code, name, detailDescription,tokensExpr);
-		
+
 		SalaryGrade salaryGrade = createSalaryGrade(userContext,code, name, detailDescription);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addSalaryGrade( salaryGrade );		
+			retailStoreCountryCenter.addSalaryGrade( salaryGrade );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSalaryGradeList().done());
 			
 			userContext.getManagerGroup().getSalaryGradeManager().onNewInstanceCreated(userContext, salaryGrade);
@@ -5748,47 +5219,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingSalaryGradeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String name,String detailDescription,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSalaryGrade(id);
-		
+
 		checkerOf(userContext).checkCodeOfSalaryGrade( code);
 		checkerOf(userContext).checkNameOfSalaryGrade( name);
 		checkerOf(userContext).checkDetailDescriptionOfSalaryGrade( detailDescription);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateSalaryGradeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String name,String detailDescription, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingSalaryGradeProperties(userContext,retailStoreCountryCenterId,id,code,name,detailDescription,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withSalaryGradeListList()
 				.searchSalaryGradeListWith(SalaryGrade.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getSalaryGradeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("SalaryGrade is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		SalaryGrade item = retailStoreCountryCenterToUpdate.getSalaryGradeList().first();
-		
+
 		item.updateCode( code );
 		item.updateName( name );
 		item.updateDetailDescription( detailDescription );
 
-		
+
 		//checkParamsForAddingSalaryGrade(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withSalaryGradeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected SalaryGrade createSalaryGrade(RetailscmUserContext userContext, String code, String name, String detailDescription) throws Exception{
 
 		SalaryGrade salaryGrade = new SalaryGrade();
@@ -5800,44 +5271,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return salaryGrade;
-	
-		
+
+
 	}
-	
+
 	protected SalaryGrade createIndexedSalaryGrade(String id, int version){
 
 		SalaryGrade salaryGrade = new SalaryGrade();
 		salaryGrade.setId(id);
 		salaryGrade.setVersion(version);
-		return salaryGrade;			
-		
+		return salaryGrade;
+
 	}
-	
-	protected void checkParamsForRemovingSalaryGradeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingSalaryGradeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String salaryGradeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String salaryGradeIdItem: salaryGradeIds){
-			userContext.getChecker().checkIdOfSalaryGrade(salaryGradeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String salaryGradeIdItem: salaryGradeIds){
 			checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeSalaryGradeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeSalaryGradeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String salaryGradeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingSalaryGradeList(userContext, retailStoreCountryCenterId,  salaryGradeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveSalaryGradeList(retailStoreCountryCenter, salaryGradeIds, allTokens());
@@ -5846,65 +5311,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String salaryGradeId, int salaryGradeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
 		checkerOf(userContext).checkVersionOfSalaryGrade(salaryGradeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String salaryGradeId, int salaryGradeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingSalaryGrade(userContext,retailStoreCountryCenterId, salaryGradeId, salaryGradeVersion,tokensExpr);
-		
+
 		SalaryGrade salaryGrade = createIndexedSalaryGrade(salaryGradeId, salaryGradeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeSalaryGrade( salaryGrade );		
+			retailStoreCountryCenter.removeSalaryGrade( salaryGrade );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSalaryGradeList().done());
 			deleteRelationInGraph(userContext, salaryGrade);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String salaryGradeId, int salaryGradeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfSalaryGrade(salaryGradeId);
 		checkerOf(userContext).checkVersionOfSalaryGrade(salaryGradeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copySalaryGradeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copySalaryGradeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String salaryGradeId, int salaryGradeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingSalaryGrade(userContext,retailStoreCountryCenterId, salaryGradeId, salaryGradeVersion,tokensExpr);
-		
+
 		SalaryGrade salaryGrade = createIndexedSalaryGrade(salaryGradeId, salaryGradeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copySalaryGradeFrom( salaryGrade );		
+
+			retailStoreCountryCenter.copySalaryGradeFrom( salaryGrade );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSalaryGradeList().done());
 			
 			userContext.getManagerGroup().getSalaryGradeManager().onNewInstanceCreated(userContext, (SalaryGrade)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, String salaryGradeId, int salaryGradeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -5928,32 +5393,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateSalaryGrade(RetailscmUserContext userContext, String retailStoreCountryCenterId, String salaryGradeId, int salaryGradeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingSalaryGrade(userContext, retailStoreCountryCenterId, salaryGradeId, salaryGradeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withSalaryGradeList().searchSalaryGradeListWith(SalaryGrade.ID_PROPERTY, "eq", salaryGradeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeSalaryGrade( salaryGrade );	
+			//retailStoreCountryCenter.removeSalaryGrade( salaryGrade );
 			//make changes to AcceleraterAccount.
 			SalaryGrade salaryGradeIndex = createIndexedSalaryGrade(salaryGradeId, salaryGradeVersion);
-		
+
 			SalaryGrade salaryGrade = retailStoreCountryCenter.findTheSalaryGrade(salaryGradeIndex);
 			if(salaryGrade == null){
 				throw new RetailStoreCountryCenterManagerException(salaryGrade+" is NOT FOUND" );
 			}
-			
+
 			salaryGrade.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withSalaryGradeList().done());
@@ -5964,12 +5429,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String detailDescription,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -5981,20 +5446,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String description, String detailDescription, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingInterviewType(userContext,retailStoreCountryCenterId,code, description, detailDescription,tokensExpr);
-		
+
 		InterviewType interviewType = createInterviewType(userContext,code, description, detailDescription);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addInterviewType( interviewType );		
+			retailStoreCountryCenter.addInterviewType( interviewType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInterviewTypeList().done());
 			
 			userContext.getManagerGroup().getInterviewTypeManager().onNewInstanceCreated(userContext, interviewType);
@@ -6002,47 +5467,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingInterviewTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String description,String detailDescription,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfInterviewType(id);
-		
+
 		checkerOf(userContext).checkCodeOfInterviewType( code);
 		checkerOf(userContext).checkDescriptionOfInterviewType( description);
 		checkerOf(userContext).checkDetailDescriptionOfInterviewType( detailDescription);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateInterviewTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String description,String detailDescription, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingInterviewTypeProperties(userContext,retailStoreCountryCenterId,id,code,description,detailDescription,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withInterviewTypeListList()
 				.searchInterviewTypeListWith(InterviewType.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getInterviewTypeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("InterviewType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		InterviewType item = retailStoreCountryCenterToUpdate.getInterviewTypeList().first();
-		
+
 		item.updateCode( code );
 		item.updateDescription( description );
 		item.updateDetailDescription( detailDescription );
 
-		
+
 		//checkParamsForAddingInterviewType(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withInterviewTypeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected InterviewType createInterviewType(RetailscmUserContext userContext, String code, String description, String detailDescription) throws Exception{
 
 		InterviewType interviewType = new InterviewType();
@@ -6054,44 +5519,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return interviewType;
-	
-		
+
+
 	}
-	
+
 	protected InterviewType createIndexedInterviewType(String id, int version){
 
 		InterviewType interviewType = new InterviewType();
 		interviewType.setId(id);
 		interviewType.setVersion(version);
-		return interviewType;			
-		
+		return interviewType;
+
 	}
-	
-	protected void checkParamsForRemovingInterviewTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingInterviewTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String interviewTypeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String interviewTypeIdItem: interviewTypeIds){
-			userContext.getChecker().checkIdOfInterviewType(interviewTypeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String interviewTypeIdItem: interviewTypeIds){
 			checkerOf(userContext).checkIdOfInterviewType(interviewTypeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeInterviewTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeInterviewTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String interviewTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingInterviewTypeList(userContext, retailStoreCountryCenterId,  interviewTypeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveInterviewTypeList(retailStoreCountryCenter, interviewTypeIds, allTokens());
@@ -6100,65 +5559,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String interviewTypeId, int interviewTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
 		checkerOf(userContext).checkVersionOfInterviewType(interviewTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String interviewTypeId, int interviewTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingInterviewType(userContext,retailStoreCountryCenterId, interviewTypeId, interviewTypeVersion,tokensExpr);
-		
+
 		InterviewType interviewType = createIndexedInterviewType(interviewTypeId, interviewTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeInterviewType( interviewType );		
+			retailStoreCountryCenter.removeInterviewType( interviewType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInterviewTypeList().done());
 			deleteRelationInGraph(userContext, interviewType);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String interviewTypeId, int interviewTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfInterviewType(interviewTypeId);
 		checkerOf(userContext).checkVersionOfInterviewType(interviewTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyInterviewTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyInterviewTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String interviewTypeId, int interviewTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingInterviewType(userContext,retailStoreCountryCenterId, interviewTypeId, interviewTypeVersion,tokensExpr);
-		
+
 		InterviewType interviewType = createIndexedInterviewType(interviewTypeId, interviewTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyInterviewTypeFrom( interviewType );		
+
+			retailStoreCountryCenter.copyInterviewTypeFrom( interviewType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInterviewTypeList().done());
 			
 			userContext.getManagerGroup().getInterviewTypeManager().onNewInstanceCreated(userContext, (InterviewType)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String interviewTypeId, int interviewTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -6182,32 +5641,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateInterviewType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String interviewTypeId, int interviewTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingInterviewType(userContext, retailStoreCountryCenterId, interviewTypeId, interviewTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withInterviewTypeList().searchInterviewTypeListWith(InterviewType.ID_PROPERTY, "eq", interviewTypeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeInterviewType( interviewType );	
+			//retailStoreCountryCenter.removeInterviewType( interviewType );
 			//make changes to AcceleraterAccount.
 			InterviewType interviewTypeIndex = createIndexedInterviewType(interviewTypeId, interviewTypeVersion);
-		
+
 			InterviewType interviewType = retailStoreCountryCenter.findTheInterviewType(interviewTypeIndex);
 			if(interviewType == null){
 				throw new RetailStoreCountryCenterManagerException(interviewType+" is NOT FOUND" );
 			}
-			
+
 			interviewType.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInterviewTypeList().done());
@@ -6218,12 +5677,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String name, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -6235,20 +5694,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String name, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingTrainingCourseType(userContext,retailStoreCountryCenterId,code, name, description,tokensExpr);
-		
+
 		TrainingCourseType trainingCourseType = createTrainingCourseType(userContext,code, name, description);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addTrainingCourseType( trainingCourseType );		
+			retailStoreCountryCenter.addTrainingCourseType( trainingCourseType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTrainingCourseTypeList().done());
 			
 			userContext.getManagerGroup().getTrainingCourseTypeManager().onNewInstanceCreated(userContext, trainingCourseType);
@@ -6256,47 +5715,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingTrainingCourseTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String name,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTrainingCourseType(id);
-		
+
 		checkerOf(userContext).checkCodeOfTrainingCourseType( code);
 		checkerOf(userContext).checkNameOfTrainingCourseType( name);
 		checkerOf(userContext).checkDescriptionOfTrainingCourseType( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateTrainingCourseTypeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String name,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingTrainingCourseTypeProperties(userContext,retailStoreCountryCenterId,id,code,name,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withTrainingCourseTypeListList()
 				.searchTrainingCourseTypeListWith(TrainingCourseType.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getTrainingCourseTypeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("TrainingCourseType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		TrainingCourseType item = retailStoreCountryCenterToUpdate.getTrainingCourseTypeList().first();
-		
+
 		item.updateCode( code );
 		item.updateName( name );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingTrainingCourseType(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withTrainingCourseTypeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected TrainingCourseType createTrainingCourseType(RetailscmUserContext userContext, String code, String name, String description) throws Exception{
 
 		TrainingCourseType trainingCourseType = new TrainingCourseType();
@@ -6308,44 +5767,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return trainingCourseType;
-	
-		
+
+
 	}
-	
+
 	protected TrainingCourseType createIndexedTrainingCourseType(String id, int version){
 
 		TrainingCourseType trainingCourseType = new TrainingCourseType();
 		trainingCourseType.setId(id);
 		trainingCourseType.setVersion(version);
-		return trainingCourseType;			
-		
+		return trainingCourseType;
+
 	}
-	
-	protected void checkParamsForRemovingTrainingCourseTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTrainingCourseTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String trainingCourseTypeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String trainingCourseTypeIdItem: trainingCourseTypeIds){
-			userContext.getChecker().checkIdOfTrainingCourseType(trainingCourseTypeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String trainingCourseTypeIdItem: trainingCourseTypeIds){
 			checkerOf(userContext).checkIdOfTrainingCourseType(trainingCourseTypeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeTrainingCourseTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTrainingCourseTypeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String trainingCourseTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingTrainingCourseTypeList(userContext, retailStoreCountryCenterId,  trainingCourseTypeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveTrainingCourseTypeList(retailStoreCountryCenter, trainingCourseTypeIds, allTokens());
@@ -6354,65 +5807,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String trainingCourseTypeId, int trainingCourseTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTrainingCourseType(trainingCourseTypeId);
 		checkerOf(userContext).checkVersionOfTrainingCourseType(trainingCourseTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String trainingCourseTypeId, int trainingCourseTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingTrainingCourseType(userContext,retailStoreCountryCenterId, trainingCourseTypeId, trainingCourseTypeVersion,tokensExpr);
-		
+
 		TrainingCourseType trainingCourseType = createIndexedTrainingCourseType(trainingCourseTypeId, trainingCourseTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeTrainingCourseType( trainingCourseType );		
+			retailStoreCountryCenter.removeTrainingCourseType( trainingCourseType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTrainingCourseTypeList().done());
 			deleteRelationInGraph(userContext, trainingCourseType);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String trainingCourseTypeId, int trainingCourseTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfTrainingCourseType(trainingCourseTypeId);
 		checkerOf(userContext).checkVersionOfTrainingCourseType(trainingCourseTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyTrainingCourseTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyTrainingCourseTypeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String trainingCourseTypeId, int trainingCourseTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingTrainingCourseType(userContext,retailStoreCountryCenterId, trainingCourseTypeId, trainingCourseTypeVersion,tokensExpr);
-		
+
 		TrainingCourseType trainingCourseType = createIndexedTrainingCourseType(trainingCourseTypeId, trainingCourseTypeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyTrainingCourseTypeFrom( trainingCourseType );		
+
+			retailStoreCountryCenter.copyTrainingCourseTypeFrom( trainingCourseType );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTrainingCourseTypeList().done());
 			
 			userContext.getManagerGroup().getTrainingCourseTypeManager().onNewInstanceCreated(userContext, (TrainingCourseType)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -6436,32 +5889,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateTrainingCourseType(RetailscmUserContext userContext, String retailStoreCountryCenterId, String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingTrainingCourseType(userContext, retailStoreCountryCenterId, trainingCourseTypeId, trainingCourseTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withTrainingCourseTypeList().searchTrainingCourseTypeListWith(TrainingCourseType.ID_PROPERTY, "eq", trainingCourseTypeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeTrainingCourseType( trainingCourseType );	
+			//retailStoreCountryCenter.removeTrainingCourseType( trainingCourseType );
 			//make changes to AcceleraterAccount.
 			TrainingCourseType trainingCourseTypeIndex = createIndexedTrainingCourseType(trainingCourseTypeId, trainingCourseTypeVersion);
-		
+
 			TrainingCourseType trainingCourseType = retailStoreCountryCenter.findTheTrainingCourseType(trainingCourseTypeIndex);
 			if(trainingCourseType == null){
 				throw new RetailStoreCountryCenterManagerException(trainingCourseType+" is NOT FOUND" );
 			}
-			
+
 			trainingCourseType.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withTrainingCourseTypeList().done());
@@ -6472,12 +5925,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingPublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String name, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -6489,20 +5942,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addPublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId, String code, String name, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingPublicHoliday(userContext,retailStoreCountryCenterId,code, name, description,tokensExpr);
-		
+
 		PublicHoliday publicHoliday = createPublicHoliday(userContext,code, name, description);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addPublicHoliday( publicHoliday );		
+			retailStoreCountryCenter.addPublicHoliday( publicHoliday );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withPublicHolidayList().done());
 			
 			userContext.getManagerGroup().getPublicHolidayManager().onNewInstanceCreated(userContext, publicHoliday);
@@ -6510,47 +5963,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingPublicHolidayProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String code,String name,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfPublicHoliday(id);
-		
+
 		checkerOf(userContext).checkCodeOfPublicHoliday( code);
 		checkerOf(userContext).checkNameOfPublicHoliday( name);
 		checkerOf(userContext).checkDescriptionOfPublicHoliday( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updatePublicHolidayProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String code,String name,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingPublicHolidayProperties(userContext,retailStoreCountryCenterId,id,code,name,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withPublicHolidayListList()
 				.searchPublicHolidayListWith(PublicHoliday.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getPublicHolidayList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("PublicHoliday is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		PublicHoliday item = retailStoreCountryCenterToUpdate.getPublicHolidayList().first();
-		
+
 		item.updateCode( code );
 		item.updateName( name );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingPublicHoliday(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withPublicHolidayList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected PublicHoliday createPublicHoliday(RetailscmUserContext userContext, String code, String name, String description) throws Exception{
 
 		PublicHoliday publicHoliday = new PublicHoliday();
@@ -6562,44 +6015,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return publicHoliday;
-	
-		
+
+
 	}
-	
+
 	protected PublicHoliday createIndexedPublicHoliday(String id, int version){
 
 		PublicHoliday publicHoliday = new PublicHoliday();
 		publicHoliday.setId(id);
 		publicHoliday.setVersion(version);
-		return publicHoliday;			
-		
+		return publicHoliday;
+
 	}
-	
-	protected void checkParamsForRemovingPublicHolidayList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingPublicHolidayList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String publicHolidayIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String publicHolidayIdItem: publicHolidayIds){
-			userContext.getChecker().checkIdOfPublicHoliday(publicHolidayIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String publicHolidayIdItem: publicHolidayIds){
 			checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removePublicHolidayList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removePublicHolidayList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String publicHolidayIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingPublicHolidayList(userContext, retailStoreCountryCenterId,  publicHolidayIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemovePublicHolidayList(retailStoreCountryCenter, publicHolidayIds, allTokens());
@@ -6608,65 +6055,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingPublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingPublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String publicHolidayId, int publicHolidayVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
 		checkerOf(userContext).checkVersionOfPublicHoliday(publicHolidayVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removePublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removePublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String publicHolidayId, int publicHolidayVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingPublicHoliday(userContext,retailStoreCountryCenterId, publicHolidayId, publicHolidayVersion,tokensExpr);
-		
+
 		PublicHoliday publicHoliday = createIndexedPublicHoliday(publicHolidayId, publicHolidayVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removePublicHoliday( publicHoliday );		
+			retailStoreCountryCenter.removePublicHoliday( publicHoliday );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withPublicHolidayList().done());
 			deleteRelationInGraph(userContext, publicHoliday);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingPublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingPublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String publicHolidayId, int publicHolidayVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
 		checkerOf(userContext).checkVersionOfPublicHoliday(publicHolidayVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyPublicHolidayFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyPublicHolidayFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String publicHolidayId, int publicHolidayVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingPublicHoliday(userContext,retailStoreCountryCenterId, publicHolidayId, publicHolidayVersion,tokensExpr);
-		
+
 		PublicHoliday publicHoliday = createIndexedPublicHoliday(publicHolidayId, publicHolidayVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			retailStoreCountryCenter.copyPublicHolidayFrom( publicHoliday );		
+
+			retailStoreCountryCenter.copyPublicHolidayFrom( publicHoliday );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withPublicHolidayList().done());
 			
 			userContext.getManagerGroup().getPublicHolidayManager().onNewInstanceCreated(userContext, (PublicHoliday)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingPublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId, String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -6690,32 +6137,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updatePublicHoliday(RetailscmUserContext userContext, String retailStoreCountryCenterId, String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingPublicHoliday(userContext, retailStoreCountryCenterId, publicHolidayId, publicHolidayVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withPublicHolidayList().searchPublicHolidayListWith(PublicHoliday.ID_PROPERTY, "eq", publicHolidayId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removePublicHoliday( publicHoliday );	
+			//retailStoreCountryCenter.removePublicHoliday( publicHoliday );
 			//make changes to AcceleraterAccount.
 			PublicHoliday publicHolidayIndex = createIndexedPublicHoliday(publicHolidayId, publicHolidayVersion);
-		
+
 			PublicHoliday publicHoliday = retailStoreCountryCenter.findThePublicHoliday(publicHolidayIndex);
 			if(publicHoliday == null){
 				throw new RetailStoreCountryCenterManagerException(publicHoliday+" is NOT FOUND" );
 			}
-			
+
 			publicHoliday.changeProperty(property, newValueExpr);
 			
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withPublicHolidayList().done());
@@ -6726,12 +6173,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -6758,37 +6205,23 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
 		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
-		
-		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
-		
-		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
-		
-		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
-		
-		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
-		
-		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
-		
-		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
-		
-		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCountryCenter addEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingEmployee(userContext,retailStoreCountryCenterId,title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId,tokensExpr);
-		
-		Employee employee = createEmployee(userContext,title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+	public  RetailStoreCountryCenter addEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingEmployee(userContext,retailStoreCountryCenterId,title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount,tokensExpr);
+
+		Employee employee = createEmployee(userContext,title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, responsibleForId, currentSalaryGradeId, salaryAccount);
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addEmployee( employee );		
+			retailStoreCountryCenter.addEmployee( employee );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
 			
 			userContext.getManagerGroup().getEmployeeManager().onNewInstanceCreated(userContext, employee);
@@ -6796,10 +6229,10 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfEmployee(id);
-		
+
 		checkerOf(userContext).checkTitleOfEmployee( title);
 		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
 		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
@@ -6810,25 +6243,25 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateEmployeeProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeProperties(userContext,retailStoreCountryCenterId,id,title,familyName,givenName,email,city,address,cellPhone,salaryAccount,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeListList()
 				.searchEmployeeListWith(Employee.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getEmployeeList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("Employee is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Employee item = retailStoreCountryCenterToUpdate.getEmployeeList().first();
-		
+
 		item.updateTitle( title );
 		item.updateFamilyName( familyName );
 		item.updateGivenName( givenName );
@@ -6838,16 +6271,16 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		item.updateCellPhone( cellPhone );
 		item.updateSalaryAccount( salaryAccount );
 
-		
+
 		//checkParamsForAddingEmployee(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withEmployeeList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected Employee createEmployee(RetailscmUserContext userContext, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception{
+
+
+	protected Employee createEmployee(RetailscmUserContext userContext, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -6872,69 +6305,42 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		JobApplication  jobApplication = new JobApplication();
-		jobApplication.setId(jobApplicationId);		
-		employee.setJobApplication(jobApplication);		
-		ProfessionInterview  professionInterview = new ProfessionInterview();
-		professionInterview.setId(professionInterviewId);		
-		employee.setProfessionInterview(professionInterview);		
-		HrInterview  hrInterview = new HrInterview();
-		hrInterview.setId(hrInterviewId);		
-		employee.setHrInterview(hrInterview);		
-		OfferApproval  offerApproval = new OfferApproval();
-		offerApproval.setId(offerApprovalId);		
-		employee.setOfferApproval(offerApproval);		
-		OfferAcceptance  offerAcceptance = new OfferAcceptance();
-		offerAcceptance.setId(offerAcceptanceId);		
-		employee.setOfferAcceptance(offerAcceptance);		
-		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
-		employeeBoarding.setId(employeeBoardingId);		
-		employee.setEmployeeBoarding(employeeBoarding);		
-		Termination  termination = new Termination();
-		termination.setId(terminationId);		
-		employee.setTermination(termination);		
 		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
-	
-		
+
+
 	}
-	
+
 	protected Employee createIndexedEmployee(String id, int version){
 
 		Employee employee = new Employee();
 		employee.setId(id);
 		employee.setVersion(version);
-		return employee;			
-		
+		return employee;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String employeeIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String employeeIdItem: employeeIds){
-			userContext.getChecker().checkIdOfEmployee(employeeIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String employeeIdItem: employeeIds){
 			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeEmployeeList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeEmployeeList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String employeeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeList(userContext, retailStoreCountryCenterId,  employeeIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveEmployeeList(retailStoreCountryCenter, employeeIds, allTokens());
@@ -6943,65 +6349,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployee(userContext,retailStoreCountryCenterId, employeeId, employeeVersion,tokensExpr);
-		
+
 		Employee employee = createIndexedEmployee(employeeId, employeeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeEmployee( employee );		
+			retailStoreCountryCenter.removeEmployee( employee );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
 			deleteRelationInGraph(userContext, employee);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyEmployeeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyEmployeeFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployee(userContext,retailStoreCountryCenterId, employeeId, employeeVersion,tokensExpr);
-		
+
 		Employee employee = createIndexedEmployee(employeeId, employeeVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			employee.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyEmployeeFrom( employee );		
+
+			retailStoreCountryCenter.copyEmployeeFrom( employee );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
 			
 			userContext.getManagerGroup().getEmployeeManager().onNewInstanceCreated(userContext, (Employee)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -7045,32 +6451,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateEmployee(RetailscmUserContext userContext, String retailStoreCountryCenterId, String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployee(userContext, retailStoreCountryCenterId, employeeId, employeeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeList().searchEmployeeListWith(Employee.ID_PROPERTY, "eq", employeeId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeEmployee( employee );	
+			//retailStoreCountryCenter.removeEmployee( employee );
 			//make changes to AcceleraterAccount.
 			Employee employeeIndex = createIndexedEmployee(employeeId, employeeVersion);
-		
+
 			Employee employee = retailStoreCountryCenter.findTheEmployee(employeeIndex);
 			if(employee == null){
 				throw new RetailStoreCountryCenterManagerException(employee+" is NOT FOUND" );
 			}
-			
+
 			employee.changeProperty(property, newValueExpr);
 			employee.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withEmployeeList().done());
@@ -7081,12 +6487,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String familyName, String givenName, String cellPhone, String email, String introduction,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -7104,20 +6510,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String familyName, String givenName, String cellPhone, String email, String introduction, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingInstructor(userContext,retailStoreCountryCenterId,title, familyName, givenName, cellPhone, email, introduction,tokensExpr);
-		
+
 		Instructor instructor = createInstructor(userContext,title, familyName, givenName, cellPhone, email, introduction);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addInstructor( instructor );		
+			retailStoreCountryCenter.addInstructor( instructor );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInstructorList().done());
 			
 			userContext.getManagerGroup().getInstructorManager().onNewInstanceCreated(userContext, instructor);
@@ -7125,10 +6531,10 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingInstructorProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String title,String familyName,String givenName,String cellPhone,String email,String introduction,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfInstructor(id);
-		
+
 		checkerOf(userContext).checkTitleOfInstructor( title);
 		checkerOf(userContext).checkFamilyNameOfInstructor( familyName);
 		checkerOf(userContext).checkGivenNameOfInstructor( givenName);
@@ -7137,25 +6543,25 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		checkerOf(userContext).checkIntroductionOfInstructor( introduction);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateInstructorProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String title,String familyName,String givenName,String cellPhone,String email,String introduction, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingInstructorProperties(userContext,retailStoreCountryCenterId,id,title,familyName,givenName,cellPhone,email,introduction,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withInstructorListList()
 				.searchInstructorListWith(Instructor.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getInstructorList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("Instructor is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Instructor item = retailStoreCountryCenterToUpdate.getInstructorList().first();
-		
+
 		item.updateTitle( title );
 		item.updateFamilyName( familyName );
 		item.updateGivenName( givenName );
@@ -7163,15 +6569,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		item.updateEmail( email );
 		item.updateIntroduction( introduction );
 
-		
+
 		//checkParamsForAddingInstructor(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withInstructorList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected Instructor createInstructor(RetailscmUserContext userContext, String title, String familyName, String givenName, String cellPhone, String email, String introduction) throws Exception{
 
 		Instructor instructor = new Instructor();
@@ -7187,44 +6593,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return instructor;
-	
-		
+
+
 	}
-	
+
 	protected Instructor createIndexedInstructor(String id, int version){
 
 		Instructor instructor = new Instructor();
 		instructor.setId(id);
 		instructor.setVersion(version);
-		return instructor;			
-		
+		return instructor;
+
 	}
-	
-	protected void checkParamsForRemovingInstructorList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingInstructorList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String instructorIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String instructorIdItem: instructorIds){
-			userContext.getChecker().checkIdOfInstructor(instructorIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String instructorIdItem: instructorIds){
 			checkerOf(userContext).checkIdOfInstructor(instructorIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeInstructorList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeInstructorList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String instructorIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingInstructorList(userContext, retailStoreCountryCenterId,  instructorIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveInstructorList(retailStoreCountryCenter, instructorIds, allTokens());
@@ -7233,65 +6633,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String instructorId, int instructorVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfInstructor(instructorId);
 		checkerOf(userContext).checkVersionOfInstructor(instructorVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String instructorId, int instructorVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingInstructor(userContext,retailStoreCountryCenterId, instructorId, instructorVersion,tokensExpr);
-		
+
 		Instructor instructor = createIndexedInstructor(instructorId, instructorVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeInstructor( instructor );		
+			retailStoreCountryCenter.removeInstructor( instructor );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInstructorList().done());
 			deleteRelationInGraph(userContext, instructor);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String instructorId, int instructorVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfInstructor(instructorId);
 		checkerOf(userContext).checkVersionOfInstructor(instructorVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyInstructorFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyInstructorFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String instructorId, int instructorVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingInstructor(userContext,retailStoreCountryCenterId, instructorId, instructorVersion,tokensExpr);
-		
+
 		Instructor instructor = createIndexedInstructor(instructorId, instructorVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			instructor.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyInstructorFrom( instructor );		
+
+			retailStoreCountryCenter.copyInstructorFrom( instructor );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInstructorList().done());
 			
 			userContext.getManagerGroup().getInstructorManager().onNewInstanceCreated(userContext, (Instructor)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, String instructorId, int instructorVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -7327,32 +6727,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateInstructor(RetailscmUserContext userContext, String retailStoreCountryCenterId, String instructorId, int instructorVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingInstructor(userContext, retailStoreCountryCenterId, instructorId, instructorVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withInstructorList().searchInstructorListWith(Instructor.ID_PROPERTY, "eq", instructorId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeInstructor( instructor );	
+			//retailStoreCountryCenter.removeInstructor( instructor );
 			//make changes to AcceleraterAccount.
 			Instructor instructorIndex = createIndexedInstructor(instructorId, instructorVersion);
-		
+
 			Instructor instructor = retailStoreCountryCenter.findTheInstructor(instructorIndex);
 			if(instructor == null){
 				throw new RetailStoreCountryCenterManagerException(instructor+" is NOT FOUND" );
 			}
-			
+
 			instructor.changeProperty(property, newValueExpr);
 			instructor.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withInstructorList().done());
@@ -7363,12 +6763,12 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String instructorId, String trainingCourseTypeId, Date timeStart, int durationHours,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 
 		
@@ -7384,20 +6784,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
 
-	
+
 	}
 	public  RetailStoreCountryCenter addCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId, String title, String instructorId, String trainingCourseTypeId, Date timeStart, int durationHours, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingCompanyTraining(userContext,retailStoreCountryCenterId,title, instructorId, trainingCourseTypeId, timeStart, durationHours,tokensExpr);
-		
+
 		CompanyTraining companyTraining = createCompanyTraining(userContext,title, instructorId, trainingCourseTypeId, timeStart, durationHours);
-		
-		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+
+		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, emptyOptions());
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.addCompanyTraining( companyTraining );		
+			retailStoreCountryCenter.addCompanyTraining( companyTraining );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCompanyTrainingList().done());
 			
 			userContext.getManagerGroup().getCompanyTrainingManager().onNewInstanceCreated(userContext, companyTraining);
@@ -7405,47 +6805,47 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		}
 	}
 	protected void checkParamsForUpdatingCompanyTrainingProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId,String id,String title,Date timeStart,int durationHours,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfCompanyTraining(id);
-		
+
 		checkerOf(userContext).checkTitleOfCompanyTraining( title);
 		checkerOf(userContext).checkTimeStartOfCompanyTraining( timeStart);
 		checkerOf(userContext).checkDurationHoursOfCompanyTraining( durationHours);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
 	public  RetailStoreCountryCenter updateCompanyTrainingProperties(RetailscmUserContext userContext, String retailStoreCountryCenterId, String id,String title,Date timeStart,int durationHours, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingCompanyTrainingProperties(userContext,retailStoreCountryCenterId,id,title,timeStart,durationHours,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withCompanyTrainingListList()
 				.searchCompanyTrainingListWith(CompanyTraining.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCountryCenter retailStoreCountryCenterToUpdate = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, options);
-		
+
 		if(retailStoreCountryCenterToUpdate.getCompanyTrainingList().isEmpty()){
 			throw new RetailStoreCountryCenterManagerException("CompanyTraining is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		CompanyTraining item = retailStoreCountryCenterToUpdate.getCompanyTrainingList().first();
-		
+
 		item.updateTitle( title );
 		item.updateTimeStart( timeStart );
 		item.updateDurationHours( durationHours );
 
-		
+
 		//checkParamsForAddingCompanyTraining(userContext,retailStoreCountryCenterId,name, code, used,tokensExpr);
 		RetailStoreCountryCenter retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenterToUpdate, tokens().withCompanyTrainingList().done());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected CompanyTraining createCompanyTraining(RetailscmUserContext userContext, String title, String instructorId, String trainingCourseTypeId, Date timeStart, int durationHours) throws Exception{
 
 		CompanyTraining companyTraining = new CompanyTraining();
@@ -7464,44 +6864,38 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	
 		
 		return companyTraining;
-	
-		
+
+
 	}
-	
+
 	protected CompanyTraining createIndexedCompanyTraining(String id, int version){
 
 		CompanyTraining companyTraining = new CompanyTraining();
 		companyTraining.setId(id);
 		companyTraining.setVersion(version);
-		return companyTraining;			
-		
+		return companyTraining;
+
 	}
-	
-	protected void checkParamsForRemovingCompanyTrainingList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingCompanyTrainingList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String companyTrainingIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
-		for(String companyTrainingIdItem: companyTrainingIds){
-			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(retailStoreCountryCenterId);
 		for(String companyTrainingIdItem: companyTrainingIds){
 			checkerOf(userContext).checkIdOfCompanyTraining(companyTrainingIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-		
+
 	}
-	public  RetailStoreCountryCenter removeCompanyTrainingList(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeCompanyTrainingList(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 			String companyTrainingIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingCompanyTrainingList(userContext, retailStoreCountryCenterId,  companyTrainingIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-			synchronized(retailStoreCountryCenter){ 
+			synchronized(retailStoreCountryCenter){
 				//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCountryCenterDaoOf(userContext).planToRemoveCompanyTrainingList(retailStoreCountryCenter, companyTrainingIds, allTokens());
@@ -7510,65 +6904,65 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 				return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+
+	protected void checkParamsForRemovingCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfCompanyTraining(companyTrainingId);
 		checkerOf(userContext).checkVersionOfCompanyTraining(companyTrainingVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter removeCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter removeCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingCompanyTraining(userContext,retailStoreCountryCenterId, companyTrainingId, companyTrainingVersion,tokensExpr);
-		
+
 		CompanyTraining companyTraining = createIndexedCompanyTraining(companyTrainingId, companyTrainingVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCountryCenter.removeCompanyTraining( companyTraining );		
+			retailStoreCountryCenter.removeCompanyTraining( companyTraining );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCompanyTrainingList().done());
 			deleteRelationInGraph(userContext, companyTraining);
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	protected void checkParamsForCopyingCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCountryCenter( retailStoreCountryCenterId);
 		checkerOf(userContext).checkIdOfCompanyTraining(companyTrainingId);
 		checkerOf(userContext).checkVersionOfCompanyTraining(companyTrainingVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	public  RetailStoreCountryCenter copyCompanyTrainingFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId, 
+	public  RetailStoreCountryCenter copyCompanyTrainingFrom(RetailscmUserContext userContext, String retailStoreCountryCenterId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingCompanyTraining(userContext,retailStoreCountryCenterId, companyTrainingId, companyTrainingVersion,tokensExpr);
-		
+
 		CompanyTraining companyTraining = createIndexedCompanyTraining(companyTrainingId, companyTrainingVersion);
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, allTokens());
-		synchronized(retailStoreCountryCenter){ 
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			companyTraining.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCountryCenter.copyCompanyTrainingFrom( companyTraining );		
+
+			retailStoreCountryCenter.copyCompanyTrainingFrom( companyTraining );
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCompanyTrainingList().done());
 			
 			userContext.getManagerGroup().getCompanyTrainingManager().onNewInstanceCreated(userContext, (CompanyTraining)retailStoreCountryCenter.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCountryCenter, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId, String companyTrainingId, int companyTrainingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -7592,32 +6986,32 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCountryCenter updateCompanyTraining(RetailscmUserContext userContext, String retailStoreCountryCenterId, String companyTrainingId, int companyTrainingVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingCompanyTraining(userContext, retailStoreCountryCenterId, companyTrainingId, companyTrainingVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withCompanyTrainingList().searchCompanyTrainingListWith(CompanyTraining.ID_PROPERTY, "eq", companyTrainingId).done();
-		
-		
-		
+
+
+
 		RetailStoreCountryCenter retailStoreCountryCenter = loadRetailStoreCountryCenter(userContext, retailStoreCountryCenterId, loadTokens);
-		
-		synchronized(retailStoreCountryCenter){ 
+
+		synchronized(retailStoreCountryCenter){
 			//Will be good when the retailStoreCountryCenter loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCountryCenter.removeCompanyTraining( companyTraining );	
+			//retailStoreCountryCenter.removeCompanyTraining( companyTraining );
 			//make changes to AcceleraterAccount.
 			CompanyTraining companyTrainingIndex = createIndexedCompanyTraining(companyTrainingId, companyTrainingVersion);
-		
+
 			CompanyTraining companyTraining = retailStoreCountryCenter.findTheCompanyTraining(companyTrainingIndex);
 			if(companyTraining == null){
 				throw new RetailStoreCountryCenterManagerException(companyTraining+" is NOT FOUND" );
 			}
-			
+
 			companyTraining.changeProperty(property, newValueExpr);
 			companyTraining.updateLastUpdateTime(userContext.now());
 			retailStoreCountryCenter = saveRetailStoreCountryCenter(userContext, retailStoreCountryCenter, tokens().withCompanyTrainingList().done());
@@ -7628,14 +7022,20 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreCountryCenter newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

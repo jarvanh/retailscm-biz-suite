@@ -320,7 +320,9 @@ public class FormMessage extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getForm(), getLevel(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

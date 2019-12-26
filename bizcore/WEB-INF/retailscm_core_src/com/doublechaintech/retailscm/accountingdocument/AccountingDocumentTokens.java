@@ -74,10 +74,6 @@ public class AccountingDocumentTokens extends CommonTokens{
 		return start()
 			.withAccountingPeriod()
 			.withDocumentType()
-			.withCreation()
-			.withConfirmation()
-			.withAuditing()
-			.withPosting()
 			.withOriginalVoucherList()
 			.withAccountingDocumentLineList();
 	
@@ -86,11 +82,7 @@ public class AccountingDocumentTokens extends CommonTokens{
 		
 		return start()
 			.withAccountingPeriod()
-			.withDocumentType()
-			.withCreation()
-			.withConfirmation()
-			.withAuditing()
-			.withPosting();
+			.withDocumentType();
 	
 	}
 	
@@ -125,46 +117,6 @@ public class AccountingDocumentTokens extends CommonTokens{
 	}
 	public AccountingDocumentTokens withDocumentType(){		
 		addSimpleOptions(DOCUMENTTYPE);
-		return this;
-	}
-	
-	
-	protected static final String CREATION = "creation";
-	public String getCreation(){
-		return CREATION;
-	}
-	public AccountingDocumentTokens withCreation(){		
-		addSimpleOptions(CREATION);
-		return this;
-	}
-	
-	
-	protected static final String CONFIRMATION = "confirmation";
-	public String getConfirmation(){
-		return CONFIRMATION;
-	}
-	public AccountingDocumentTokens withConfirmation(){		
-		addSimpleOptions(CONFIRMATION);
-		return this;
-	}
-	
-	
-	protected static final String AUDITING = "auditing";
-	public String getAuditing(){
-		return AUDITING;
-	}
-	public AccountingDocumentTokens withAuditing(){		
-		addSimpleOptions(AUDITING);
-		return this;
-	}
-	
-	
-	protected static final String POSTING = "posting";
-	public String getPosting(){
-		return POSTING;
-	}
-	public AccountingDocumentTokens withPosting(){		
-		addSimpleOptions(POSTING);
 		return this;
 	}
 	

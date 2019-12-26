@@ -454,7 +454,9 @@ public class SupplyOrderLineItem extends BaseEntity implements  java.io.Serializ
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getBizOrder(), getSkuId(), getSkuName(), getAmount(), getQuantity(), getUnitOfMeasurement(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

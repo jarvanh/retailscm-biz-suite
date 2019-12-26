@@ -12,18 +12,13 @@ import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroup;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.consumerorderpriceadjustment.ConsumerOrderPriceAdjustment;
 import com.doublechaintech.retailscm.consumerorderpaymentgroup.ConsumerOrderPaymentGroup;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItem;
 import com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord.RetailStoreMemberGiftCardConsumeRecord;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 @JsonSerialize(using = ConsumerOrderSerializer.class)
 public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
@@ -32,11 +27,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	public static final String ID_PROPERTY                    = "id"                ;
 	public static final String TITLE_PROPERTY                 = "title"             ;
 	public static final String CONSUMER_PROPERTY              = "consumer"          ;
-	public static final String CONFIRMATION_PROPERTY          = "confirmation"      ;
-	public static final String APPROVAL_PROPERTY              = "approval"          ;
-	public static final String PROCESSING_PROPERTY            = "processing"        ;
-	public static final String SHIPMENT_PROPERTY              = "shipment"          ;
-	public static final String DELIVERY_PROPERTY              = "delivery"          ;
 	public static final String STORE_PROPERTY                 = "store"             ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
 	public static final String VERSION_PROPERTY               = "version"           ;
@@ -69,11 +59,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	protected		String              	mId                 ;
 	protected		String              	mTitle              ;
 	protected		RetailStoreMember   	mConsumer           ;
-	protected		SupplyOrderConfirmation	mConfirmation       ;
-	protected		SupplyOrderApproval 	mApproval           ;
-	protected		SupplyOrderProcessing	mProcessing         ;
-	protected		SupplyOrderShipment 	mShipment           ;
-	protected		SupplyOrderDelivery 	mDelivery           ;
 	protected		RetailStore         	mStore              ;
 	protected		DateTime            	mLastUpdateTime     ;
 	protected		int                 	mVersion            ;
@@ -102,11 +87,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setConsumer( null );
-		setConfirmation( null );
-		setApproval( null );
-		setProcessing( null );
-		setShipment( null );
-		setDelivery( null );
 		setStore( null );
 
 		this.changed = true;
@@ -169,33 +149,12 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 		if(CONSUMER_PROPERTY.equals(property)){
 			return getConsumer();
 		}
-		if(CONFIRMATION_PROPERTY.equals(property)){
-			return getConfirmation();
-		}
-		if(APPROVAL_PROPERTY.equals(property)){
-			return getApproval();
-		}
-		if(PROCESSING_PROPERTY.equals(property)){
-			return getProcessing();
-		}
-		if(SHIPMENT_PROPERTY.equals(property)){
-			return getShipment();
-		}
-		if(DELIVERY_PROPERTY.equals(property)){
-			return getDelivery();
-		}
 		if(STORE_PROPERTY.equals(property)){
 			return getStore();
 		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
 		}
-<<<<<<< HEAD
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
-		}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		if(CONSUMER_ORDER_LINE_ITEM_LIST.equals(property)){
 			List<BaseEntity> list = getConsumerOrderLineItemList().stream().map(item->item).collect(Collectors.toList());
 			return list;
@@ -280,111 +239,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public void setConfirmation(SupplyOrderConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-	}
-	public SupplyOrderConfirmation getConfirmation(){
-		return this.mConfirmation;
-	}
-	public ConsumerOrder updateConfirmation(SupplyOrderConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeConfirmation(SupplyOrderConfirmation confirmation){
-		if(confirmation != null) { setConfirmation(confirmation);}
-	}
-	
-	
-	public void clearConfirmation(){
-		setConfirmation ( null );
-		this.changed = true;
-	}
-	
-	public void setApproval(SupplyOrderApproval approval){
-		this.mApproval = approval;;
-	}
-	public SupplyOrderApproval getApproval(){
-		return this.mApproval;
-	}
-	public ConsumerOrder updateApproval(SupplyOrderApproval approval){
-		this.mApproval = approval;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeApproval(SupplyOrderApproval approval){
-		if(approval != null) { setApproval(approval);}
-	}
-	
-	
-	public void clearApproval(){
-		setApproval ( null );
-		this.changed = true;
-	}
-	
-	public void setProcessing(SupplyOrderProcessing processing){
-		this.mProcessing = processing;;
-	}
-	public SupplyOrderProcessing getProcessing(){
-		return this.mProcessing;
-	}
-	public ConsumerOrder updateProcessing(SupplyOrderProcessing processing){
-		this.mProcessing = processing;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeProcessing(SupplyOrderProcessing processing){
-		if(processing != null) { setProcessing(processing);}
-	}
-	
-	
-	public void clearProcessing(){
-		setProcessing ( null );
-		this.changed = true;
-	}
-	
-	public void setShipment(SupplyOrderShipment shipment){
-		this.mShipment = shipment;;
-	}
-	public SupplyOrderShipment getShipment(){
-		return this.mShipment;
-	}
-	public ConsumerOrder updateShipment(SupplyOrderShipment shipment){
-		this.mShipment = shipment;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeShipment(SupplyOrderShipment shipment){
-		if(shipment != null) { setShipment(shipment);}
-	}
-	
-	
-	public void clearShipment(){
-		setShipment ( null );
-		this.changed = true;
-	}
-	
-	public void setDelivery(SupplyOrderDelivery delivery){
-		this.mDelivery = delivery;;
-	}
-	public SupplyOrderDelivery getDelivery(){
-		return this.mDelivery;
-	}
-	public ConsumerOrder updateDelivery(SupplyOrderDelivery delivery){
-		this.mDelivery = delivery;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeDelivery(SupplyOrderDelivery delivery){
-		if(delivery != null) { setDelivery(delivery);}
-	}
-	
-	
-	public void clearDelivery(){
-		setDelivery ( null );
-		this.changed = true;
-	}
-	
 	public void setStore(RetailStore store){
 		this.mStore = store;;
 	}
@@ -419,25 +273,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	}
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
-<<<<<<< HEAD
-	}
-	
-	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public ConsumerOrder updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
 	
 	
@@ -996,11 +831,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 	public void collectRefercences(BaseEntity owner, List<BaseEntity> entityList, String internalType){
 
 		addToEntityList(this, entityList, getConsumer(), internalType);
-		addToEntityList(this, entityList, getConfirmation(), internalType);
-		addToEntityList(this, entityList, getApproval(), internalType);
-		addToEntityList(this, entityList, getProcessing(), internalType);
-		addToEntityList(this, entityList, getShipment(), internalType);
-		addToEntityList(this, entityList, getDelivery(), internalType);
 		addToEntityList(this, entityList, getStore(), internalType);
 
 		
@@ -1038,11 +868,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, ID_PROPERTY, getId());
 		appendKeyValuePair(result, TITLE_PROPERTY, getTitle());
 		appendKeyValuePair(result, CONSUMER_PROPERTY, getConsumer());
-		appendKeyValuePair(result, CONFIRMATION_PROPERTY, getConfirmation());
-		appendKeyValuePair(result, APPROVAL_PROPERTY, getApproval());
-		appendKeyValuePair(result, PROCESSING_PROPERTY, getProcessing());
-		appendKeyValuePair(result, SHIPMENT_PROPERTY, getShipment());
-		appendKeyValuePair(result, DELIVERY_PROPERTY, getDelivery());
 		appendKeyValuePair(result, STORE_PROPERTY, getStore());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
@@ -1088,11 +913,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 			dest.setId(getId());
 			dest.setTitle(getTitle());
 			dest.setConsumer(getConsumer());
-			dest.setConfirmation(getConfirmation());
-			dest.setApproval(getApproval());
-			dest.setProcessing(getProcessing());
-			dest.setShipment(getShipment());
-			dest.setDelivery(getDelivery());
 			dest.setStore(getStore());
 			dest.setLastUpdateTime(getLastUpdateTime());
 			dest.setVersion(getVersion());
@@ -1117,17 +937,8 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeTitle(getTitle());
 			dest.mergeConsumer(getConsumer());
-			dest.mergeConfirmation(getConfirmation());
-			dest.mergeApproval(getApproval());
-			dest.mergeProcessing(getProcessing());
-			dest.mergeShipment(getShipment());
-			dest.mergeDelivery(getDelivery());
 			dest.mergeStore(getStore());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 			dest.mergeConsumerOrderLineItemList(getConsumerOrderLineItemList());
 			dest.mergeConsumerOrderShippingGroupList(getConsumerOrderShippingGroupList());
@@ -1151,16 +962,14 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeTitle(getTitle());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getConsumer(), getStore(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -1169,21 +978,6 @@ public class ConsumerOrder extends BaseEntity implements  java.io.Serializable{
 		stringBuilder.append("\ttitle='"+getTitle()+"';");
 		if(getConsumer() != null ){
  			stringBuilder.append("\tconsumer='RetailStoreMember("+getConsumer().getId()+")';");
- 		}
-		if(getConfirmation() != null ){
- 			stringBuilder.append("\tconfirmation='SupplyOrderConfirmation("+getConfirmation().getId()+")';");
- 		}
-		if(getApproval() != null ){
- 			stringBuilder.append("\tapproval='SupplyOrderApproval("+getApproval().getId()+")';");
- 		}
-		if(getProcessing() != null ){
- 			stringBuilder.append("\tprocessing='SupplyOrderProcessing("+getProcessing().getId()+")';");
- 		}
-		if(getShipment() != null ){
- 			stringBuilder.append("\tshipment='SupplyOrderShipment("+getShipment().getId()+")';");
- 		}
-		if(getDelivery() != null ){
- 			stringBuilder.append("\tdelivery='SupplyOrderDelivery("+getDelivery().getId()+")';");
  		}
 		if(getStore() != null ){
  			stringBuilder.append("\tstore='RetailStore("+getStore().getId()+")';");

@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.goodsshelf.GoodsShelf;
@@ -28,7 +19,6 @@ import com.doublechaintech.retailscm.goodsshelf.CandidateGoodsShelf;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -42,28 +32,31 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
 
 public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager implements GoodsAllocationManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "GoodsAllocation";
 	@Override
 	public GoodsAllocationDAO daoOf(RetailscmUserContext userContext) {
 		return goodsAllocationDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws GoodsAllocationManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new GoodsAllocationManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected GoodsAllocation saveGoodsAllocation(RetailscmUserContext userContext, GoodsAllocation goodsAllocation, String [] tokensExpr) throws Exception{	
  		//return getGoodsAllocationDAO().save(goodsAllocation, tokens);
@@ -182,7 +175,7 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	public GoodsAllocation createGoodsAllocation(RetailscmUserContext userContext, String location,BigDecimal latitude,BigDecimal longitude,String goodsShelfId) throws Exception
 	//public GoodsAllocation createGoodsAllocation(RetailscmUserContext userContext,String location, BigDecimal latitude, BigDecimal longitude, String goodsShelfId) throws Exception
 	{
-		
+
 		
 
 		
@@ -210,14 +203,14 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		onNewInstanceCreated(userContext, goodsAllocation);
 		return goodsAllocation;
 
-		
+
 	}
-	protected GoodsAllocation createNewGoodsAllocation() 
+	protected GoodsAllocation createNewGoodsAllocation()
 	{
-		
-		return new GoodsAllocation();		
+
+		return new GoodsAllocation();
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsAllocation(RetailscmUserContext userContext,String goodsAllocationId, int goodsAllocationVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -241,28 +234,28 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public GoodsAllocation clone(RetailscmUserContext userContext, String fromGoodsAllocationId) throws Exception{
-		
+
 		return goodsAllocationDaoOf(userContext).clone(fromGoodsAllocationId, this.allTokens());
 	}
-	
-	public GoodsAllocation internalSaveGoodsAllocation(RetailscmUserContext userContext, GoodsAllocation goodsAllocation) throws Exception 
+
+	public GoodsAllocation internalSaveGoodsAllocation(RetailscmUserContext userContext, GoodsAllocation goodsAllocation) throws Exception
 	{
 		return internalSaveGoodsAllocation(userContext, goodsAllocation, allTokens());
 
 	}
-	public GoodsAllocation internalSaveGoodsAllocation(RetailscmUserContext userContext, GoodsAllocation goodsAllocation, Map<String,Object> options) throws Exception 
+	public GoodsAllocation internalSaveGoodsAllocation(RetailscmUserContext userContext, GoodsAllocation goodsAllocation, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingGoodsAllocation(userContext, goodsAllocationId, goodsAllocationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(goodsAllocation){ 
+
+
+		synchronized(goodsAllocation){
 			//will be good when the goodsAllocation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsAllocation.
@@ -271,23 +264,23 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 			}
 			goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, options);
 			return goodsAllocation;
-			
+
 		}
 
 	}
-	
-	public GoodsAllocation updateGoodsAllocation(RetailscmUserContext userContext,String goodsAllocationId, int goodsAllocationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsAllocation updateGoodsAllocation(RetailscmUserContext userContext,String goodsAllocationId, int goodsAllocationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsAllocation(userContext, goodsAllocationId, goodsAllocationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 		if(goodsAllocation.getVersion() != goodsAllocationVersion){
 			String message = "The target version("+goodsAllocation.getVersion()+") is not equals to version("+goodsAllocationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsAllocation){ 
+		synchronized(goodsAllocation){
 			//will be good when the goodsAllocation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsAllocation.
@@ -299,21 +292,21 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		}
 
 	}
-	
-	public GoodsAllocation updateGoodsAllocationProperty(RetailscmUserContext userContext,String goodsAllocationId, int goodsAllocationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsAllocation updateGoodsAllocationProperty(RetailscmUserContext userContext,String goodsAllocationId, int goodsAllocationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsAllocation(userContext, goodsAllocationId, goodsAllocationVersion, property, newValueExpr, tokensExpr);
-		
+
 		GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 		if(goodsAllocation.getVersion() != goodsAllocationVersion){
 			String message = "The target version("+goodsAllocation.getVersion()+") is not equals to version("+goodsAllocationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsAllocation){ 
+		synchronized(goodsAllocation){
 			//will be good when the goodsAllocation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsAllocation.
-			
+
 			goodsAllocation.changeProperty(property, newValueExpr);
 			
 			goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().done());
@@ -325,7 +318,7 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected GoodsAllocationTokens tokens(){
 		return GoodsAllocationTokens.start();
 	}
@@ -347,11 +340,11 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	
 	protected void checkParamsForTransferingAnotherGoodsShelf(RetailscmUserContext userContext, String goodsAllocationId, String anotherGoodsShelfId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
  		checkerOf(userContext).checkIdOfGoodsShelf(anotherGoodsShelfId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
- 		
+
  	}
  	public GoodsAllocation transferToAnotherGoodsShelf(RetailscmUserContext userContext, String goodsAllocationId, String anotherGoodsShelfId) throws Exception
  	{
@@ -370,10 +363,10 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateGoodsShelf requestCandidateGoodsShelf(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateGoodsShelf result = new CandidateGoodsShelf();
@@ -383,7 +376,7 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -393,42 +386,42 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected GoodsShelf loadGoodsShelf(RetailscmUserContext userContext, String newGoodsShelfId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return goodsShelfDaoOf(userContext).load(newGoodsShelfId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String goodsAllocationId, int goodsAllocationVersion) throws Exception {
-		//deleteInternal(userContext, goodsAllocationId, goodsAllocationVersion);		
+		//deleteInternal(userContext, goodsAllocationId, goodsAllocationVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String goodsAllocationId, int goodsAllocationVersion) throws Exception{
-			
+
 		goodsAllocationDaoOf(userContext).delete(goodsAllocationId, goodsAllocationVersion);
 	}
-	
+
 	public GoodsAllocation forgetByAll(RetailscmUserContext userContext, String goodsAllocationId, int goodsAllocationVersion) throws Exception {
-		return forgetByAllInternal(userContext, goodsAllocationId, goodsAllocationVersion);		
+		return forgetByAllInternal(userContext, goodsAllocationId, goodsAllocationVersion);
 	}
 	protected GoodsAllocation forgetByAllInternal(RetailscmUserContext userContext,
 			String goodsAllocationId, int goodsAllocationVersion) throws Exception{
-			
+
 		return goodsAllocationDaoOf(userContext).disconnectFromAll(goodsAllocationId, goodsAllocationVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -439,8 +432,8 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return goodsAllocationDaoOf(userContext).deleteAll();
 	}
@@ -449,15 +442,15 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with sku in Goods
 	protected GoodsAllocation breakWithGoodsBySku(RetailscmUserContext userContext, String goodsAllocationId, String skuId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithSku(goodsAllocation, skuId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -467,15 +460,15 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with receiving_space in Goods
 	protected GoodsAllocation breakWithGoodsByReceivingSpace(RetailscmUserContext userContext, String goodsAllocationId, String receivingSpaceId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithReceivingSpace(goodsAllocation, receivingSpaceId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -485,15 +478,15 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with smart_pallet in Goods
 	protected GoodsAllocation breakWithGoodsBySmartPallet(RetailscmUserContext userContext, String goodsAllocationId, String smartPalletId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithSmartPallet(goodsAllocation, smartPalletId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -503,15 +496,15 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with shipping_space in Goods
 	protected GoodsAllocation breakWithGoodsByShippingSpace(RetailscmUserContext userContext, String goodsAllocationId, String shippingSpaceId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithShippingSpace(goodsAllocation, shippingSpaceId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -521,15 +514,15 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with transport_task in Goods
 	protected GoodsAllocation breakWithGoodsByTransportTask(RetailscmUserContext userContext, String goodsAllocationId, String transportTaskId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithTransportTask(goodsAllocation, transportTaskId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -539,15 +532,15 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with retail_store in Goods
 	protected GoodsAllocation breakWithGoodsByRetailStore(RetailscmUserContext userContext, String goodsAllocationId, String retailStoreId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithRetailStore(goodsAllocation, retailStoreId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -557,15 +550,15 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with biz_order in Goods
 	protected GoodsAllocation breakWithGoodsByBizOrder(RetailscmUserContext userContext, String goodsAllocationId, String bizOrderId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithBizOrder(goodsAllocation, bizOrderId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -575,47 +568,29 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect GoodsAllocation with retail_store_order in Goods
 	protected GoodsAllocation breakWithGoodsByRetailStoreOrder(RetailscmUserContext userContext, String goodsAllocationId, String retailStoreOrderId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithRetailStoreOrder(goodsAllocation, retailStoreOrderId, this.emptyOptions());
 
 				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
 				return goodsAllocation;
 			}
 	}
-	//disconnect GoodsAllocation with packaging in Goods
-	protected GoodsAllocation breakWithGoodsByPackaging(RetailscmUserContext userContext, String goodsAllocationId, String packagingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
 
-			synchronized(goodsAllocation){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				goodsAllocationDaoOf(userContext).planToRemoveGoodsListWithPackaging(goodsAllocation, packagingId, this.emptyOptions());
 
-				goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
-				return goodsAllocation;
-			}
-	}
-	
-	
-	
-	
-	
 
-	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String goodsAllocationId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId,String [] tokensExpr) throws Exception{
-		
+
+
+
+	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String goodsAllocationId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
 
 		
@@ -644,25 +619,23 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		checkerOf(userContext).checkBizOrderIdOfGoods(bizOrderId);
 		
 		checkerOf(userContext).checkRetailStoreOrderIdOfGoods(retailStoreOrderId);
-		
-		checkerOf(userContext).checkPackagingIdOfGoods(packagingId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
 
-	
+
 	}
-	public  GoodsAllocation addGoods(RetailscmUserContext userContext, String goodsAllocationId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingGoods(userContext,goodsAllocationId,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId,tokensExpr);
-		
-		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId);
-		
-		GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
-		synchronized(goodsAllocation){ 
+	public  GoodsAllocation addGoods(RetailscmUserContext userContext, String goodsAllocationId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingGoods(userContext,goodsAllocationId,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId,tokensExpr);
+
+		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId);
+
+		GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, emptyOptions());
+		synchronized(goodsAllocation){
 			//Will be good when the goodsAllocation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsAllocation.addGoods( goods );		
+			goodsAllocation.addGoods( goods );
 			goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
 			
 			userContext.getManagerGroup().getGoodsManager().onNewInstanceCreated(userContext, goods);
@@ -670,10 +643,10 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		}
 	}
 	protected void checkParamsForUpdatingGoodsProperties(RetailscmUserContext userContext, String goodsAllocationId,String id,String name,String rfid,String uom,int maxPackage,Date expireTime,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
 		checkerOf(userContext).checkIdOfGoods(id);
-		
+
 		checkerOf(userContext).checkNameOfGoods( name);
 		checkerOf(userContext).checkRfidOfGoods( rfid);
 		checkerOf(userContext).checkUomOfGoods( uom);
@@ -681,41 +654,41 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		checkerOf(userContext).checkExpireTimeOfGoods( expireTime);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
-		
+
 	}
 	public  GoodsAllocation updateGoodsProperties(RetailscmUserContext userContext, String goodsAllocationId, String id,String name,String rfid,String uom,int maxPackage,Date expireTime, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingGoodsProperties(userContext,goodsAllocationId,id,name,rfid,uom,maxPackage,expireTime,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withGoodsListList()
 				.searchGoodsListWith(Goods.ID_PROPERTY, "is", id).done();
-		
+
 		GoodsAllocation goodsAllocationToUpdate = loadGoodsAllocation(userContext, goodsAllocationId, options);
-		
+
 		if(goodsAllocationToUpdate.getGoodsList().isEmpty()){
 			throw new GoodsAllocationManagerException("Goods is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Goods item = goodsAllocationToUpdate.getGoodsList().first();
-		
+
 		item.updateName( name );
 		item.updateRfid( rfid );
 		item.updateUom( uom );
 		item.updateMaxPackage( maxPackage );
 		item.updateExpireTime( expireTime );
 
-		
+
 		//checkParamsForAddingGoods(userContext,goodsAllocationId,name, code, used,tokensExpr);
 		GoodsAllocation goodsAllocation = saveGoodsAllocation(userContext, goodsAllocationToUpdate, tokens().withGoodsList().done());
-		synchronized(goodsAllocation){ 
+		synchronized(goodsAllocation){
 			return present(userContext,goodsAllocation, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId) throws Exception{
+
+
+	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId) throws Exception{
 
 		Goods goods = new Goods();
 		
@@ -748,51 +721,42 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		goods.setBizOrder(bizOrder);		
 		RetailStoreOrder  retailStoreOrder = new RetailStoreOrder();
 		retailStoreOrder.setId(retailStoreOrderId);		
-		goods.setRetailStoreOrder(retailStoreOrder);		
-		GoodsPackaging  packaging = new GoodsPackaging();
-		packaging.setId(packagingId);		
-		goods.setPackaging(packaging);
+		goods.setRetailStoreOrder(retailStoreOrder);
 	
 		
 		return goods;
-	
-		
+
+
 	}
-	
+
 	protected Goods createIndexedGoods(String id, int version){
 
 		Goods goods = new Goods();
 		goods.setId(id);
 		goods.setVersion(version);
-		return goods;			
-		
+		return goods;
+
 	}
-	
-	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String goodsAllocationId, 
+
+	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String goodsAllocationId,
 			String goodsIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfGoodsAllocation(goodsAllocationId);
-		for(String goodsIdItem: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
 		for(String goodsIdItem: goodsIds){
 			checkerOf(userContext).checkIdOfGoods(goodsIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
-		
+
 	}
-	public  GoodsAllocation removeGoodsList(RetailscmUserContext userContext, String goodsAllocationId, 
+	public  GoodsAllocation removeGoodsList(RetailscmUserContext userContext, String goodsAllocationId,
 			String goodsIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingGoodsList(userContext, goodsAllocationId,  goodsIds, tokensExpr);
-			
-			
+
+
 			GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
-			synchronized(goodsAllocation){ 
+			synchronized(goodsAllocation){
 				//Will be good when the goodsAllocation loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				goodsAllocationDaoOf(userContext).planToRemoveGoodsList(goodsAllocation, goodsIds, allTokens());
@@ -801,65 +765,65 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 				return present(userContext,goodsAllocation, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String goodsAllocationId, 
+
+	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String goodsAllocationId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsAllocation( goodsAllocationId);
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
-	
+
 	}
-	public  GoodsAllocation removeGoods(RetailscmUserContext userContext, String goodsAllocationId, 
+	public  GoodsAllocation removeGoods(RetailscmUserContext userContext, String goodsAllocationId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingGoods(userContext,goodsAllocationId, goodsId, goodsVersion,tokensExpr);
-		
+
 		Goods goods = createIndexedGoods(goodsId, goodsVersion);
 		GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
-		synchronized(goodsAllocation){ 
+		synchronized(goodsAllocation){
 			//Will be good when the goodsAllocation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsAllocation.removeGoods( goods );		
+			goodsAllocation.removeGoods( goods );
 			goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
 			deleteRelationInGraph(userContext, goods);
 			return present(userContext,goodsAllocation, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String goodsAllocationId, 
+	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String goodsAllocationId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsAllocation( goodsAllocationId);
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
-	
+
 	}
-	public  GoodsAllocation copyGoodsFrom(RetailscmUserContext userContext, String goodsAllocationId, 
+	public  GoodsAllocation copyGoodsFrom(RetailscmUserContext userContext, String goodsAllocationId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingGoods(userContext,goodsAllocationId, goodsId, goodsVersion,tokensExpr);
-		
+
 		Goods goods = createIndexedGoods(goodsId, goodsVersion);
 		GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, allTokens());
-		synchronized(goodsAllocation){ 
+		synchronized(goodsAllocation){
 			//Will be good when the goodsAllocation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			goodsAllocation.copyGoodsFrom( goods );		
+
+			goodsAllocation.copyGoodsFrom( goods );
 			goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
 			
 			userContext.getManagerGroup().getGoodsManager().onNewInstanceCreated(userContext, (Goods)goodsAllocation.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,goodsAllocation, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingGoods(RetailscmUserContext userContext, String goodsAllocationId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -891,32 +855,32 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsAllocationManagerException.class);
-	
+
 	}
-	
+
 	public  GoodsAllocation updateGoods(RetailscmUserContext userContext, String goodsAllocationId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingGoods(userContext, goodsAllocationId, goodsId, goodsVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withGoodsList().searchGoodsListWith(Goods.ID_PROPERTY, "eq", goodsId).done();
-		
-		
-		
+
+
+
 		GoodsAllocation goodsAllocation = loadGoodsAllocation(userContext, goodsAllocationId, loadTokens);
-		
-		synchronized(goodsAllocation){ 
+
+		synchronized(goodsAllocation){
 			//Will be good when the goodsAllocation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//goodsAllocation.removeGoods( goods );	
+			//goodsAllocation.removeGoods( goods );
 			//make changes to AcceleraterAccount.
 			Goods goodsIndex = createIndexedGoods(goodsId, goodsVersion);
-		
+
 			Goods goods = goodsAllocation.findTheGoods(goodsIndex);
 			if(goods == null){
 				throw new GoodsAllocationManagerException(goods+" is NOT FOUND" );
 			}
-			
+
 			goods.changeProperty(property, newValueExpr);
 			
 			goodsAllocation = saveGoodsAllocation(userContext, goodsAllocation, tokens().withGoodsList().done());
@@ -927,14 +891,20 @@ public class GoodsAllocationManagerImpl extends CustomRetailscmCheckerManager im
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, GoodsAllocation newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

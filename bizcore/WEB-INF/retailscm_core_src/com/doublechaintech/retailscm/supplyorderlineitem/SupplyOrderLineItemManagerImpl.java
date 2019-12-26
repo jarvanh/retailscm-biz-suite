@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.supplyorder.CandidateSupplyOrder;
 
 
 public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManager implements SupplyOrderLineItemManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "SupplyOrderLineItem";
 	@Override
 	public SupplyOrderLineItemDAO daoOf(RetailscmUserContext userContext) {
 		return supplyOrderLineItemDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws SupplyOrderLineItemManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new SupplyOrderLineItemManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected SupplyOrderLineItem saveSupplyOrderLineItem(RetailscmUserContext userContext, SupplyOrderLineItem supplyOrderLineItem, String [] tokensExpr) throws Exception{	
  		//return getSupplyOrderLineItemDAO().save(supplyOrderLineItem, tokens);
@@ -167,7 +161,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	public SupplyOrderLineItem createSupplyOrderLineItem(RetailscmUserContext userContext, String bizOrderId,String skuId,String skuName,BigDecimal amount,int quantity,String unitOfMeasurement) throws Exception
 	//public SupplyOrderLineItem createSupplyOrderLineItem(RetailscmUserContext userContext,String bizOrderId, String skuId, String skuName, BigDecimal amount, int quantity, String unitOfMeasurement) throws Exception
 	{
-		
+
 		
 
 		
@@ -199,14 +193,14 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		onNewInstanceCreated(userContext, supplyOrderLineItem);
 		return supplyOrderLineItem;
 
-		
+
 	}
-	protected SupplyOrderLineItem createNewSupplyOrderLineItem() 
+	protected SupplyOrderLineItem createNewSupplyOrderLineItem()
 	{
-		
-		return new SupplyOrderLineItem();		
+
+		return new SupplyOrderLineItem();
 	}
-	
+
 	protected void checkParamsForUpdatingSupplyOrderLineItem(RetailscmUserContext userContext,String supplyOrderLineItemId, int supplyOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -236,28 +230,28 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public SupplyOrderLineItem clone(RetailscmUserContext userContext, String fromSupplyOrderLineItemId) throws Exception{
-		
+
 		return supplyOrderLineItemDaoOf(userContext).clone(fromSupplyOrderLineItemId, this.allTokens());
 	}
-	
-	public SupplyOrderLineItem internalSaveSupplyOrderLineItem(RetailscmUserContext userContext, SupplyOrderLineItem supplyOrderLineItem) throws Exception 
+
+	public SupplyOrderLineItem internalSaveSupplyOrderLineItem(RetailscmUserContext userContext, SupplyOrderLineItem supplyOrderLineItem) throws Exception
 	{
 		return internalSaveSupplyOrderLineItem(userContext, supplyOrderLineItem, allTokens());
 
 	}
-	public SupplyOrderLineItem internalSaveSupplyOrderLineItem(RetailscmUserContext userContext, SupplyOrderLineItem supplyOrderLineItem, Map<String,Object> options) throws Exception 
+	public SupplyOrderLineItem internalSaveSupplyOrderLineItem(RetailscmUserContext userContext, SupplyOrderLineItem supplyOrderLineItem, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingSupplyOrderLineItem(userContext, supplyOrderLineItemId, supplyOrderLineItemVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(supplyOrderLineItem){ 
+
+
+		synchronized(supplyOrderLineItem){
 			//will be good when the supplyOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderLineItem.
@@ -266,23 +260,23 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 			}
 			supplyOrderLineItem = saveSupplyOrderLineItem(userContext, supplyOrderLineItem, options);
 			return supplyOrderLineItem;
-			
+
 		}
 
 	}
-	
-	public SupplyOrderLineItem updateSupplyOrderLineItem(RetailscmUserContext userContext,String supplyOrderLineItemId, int supplyOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SupplyOrderLineItem updateSupplyOrderLineItem(RetailscmUserContext userContext,String supplyOrderLineItemId, int supplyOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSupplyOrderLineItem(userContext, supplyOrderLineItemId, supplyOrderLineItemVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		SupplyOrderLineItem supplyOrderLineItem = loadSupplyOrderLineItem(userContext, supplyOrderLineItemId, allTokens());
 		if(supplyOrderLineItem.getVersion() != supplyOrderLineItemVersion){
 			String message = "The target version("+supplyOrderLineItem.getVersion()+") is not equals to version("+supplyOrderLineItemVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(supplyOrderLineItem){ 
+		synchronized(supplyOrderLineItem){
 			//will be good when the supplyOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderLineItem.
@@ -294,21 +288,21 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		}
 
 	}
-	
-	public SupplyOrderLineItem updateSupplyOrderLineItemProperty(RetailscmUserContext userContext,String supplyOrderLineItemId, int supplyOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SupplyOrderLineItem updateSupplyOrderLineItemProperty(RetailscmUserContext userContext,String supplyOrderLineItemId, int supplyOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSupplyOrderLineItem(userContext, supplyOrderLineItemId, supplyOrderLineItemVersion, property, newValueExpr, tokensExpr);
-		
+
 		SupplyOrderLineItem supplyOrderLineItem = loadSupplyOrderLineItem(userContext, supplyOrderLineItemId, allTokens());
 		if(supplyOrderLineItem.getVersion() != supplyOrderLineItemVersion){
 			String message = "The target version("+supplyOrderLineItem.getVersion()+") is not equals to version("+supplyOrderLineItemVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(supplyOrderLineItem){ 
+		synchronized(supplyOrderLineItem){
 			//will be good when the supplyOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderLineItem.
-			
+
 			supplyOrderLineItem.changeProperty(property, newValueExpr);
 			
 			supplyOrderLineItem = saveSupplyOrderLineItem(userContext, supplyOrderLineItem, tokens().done());
@@ -320,7 +314,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected SupplyOrderLineItemTokens tokens(){
 		return SupplyOrderLineItemTokens.start();
 	}
@@ -341,11 +335,11 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderLineItemId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfSupplyOrderLineItem(supplyOrderLineItemId);
  		checkerOf(userContext).checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderLineItemManagerException.class);
- 		
+
  	}
  	public SupplyOrderLineItem transferToAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderLineItemId, String anotherBizOrderId) throws Exception
  	{
@@ -364,10 +358,10 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSupplyOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSupplyOrder result = new CandidateSupplyOrder();
@@ -377,7 +371,7 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("buyer");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -387,42 +381,42 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return supplyOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String supplyOrderLineItemId, int supplyOrderLineItemVersion) throws Exception {
-		//deleteInternal(userContext, supplyOrderLineItemId, supplyOrderLineItemVersion);		
+		//deleteInternal(userContext, supplyOrderLineItemId, supplyOrderLineItemVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplyOrderLineItemId, int supplyOrderLineItemVersion) throws Exception{
-			
+
 		supplyOrderLineItemDaoOf(userContext).delete(supplyOrderLineItemId, supplyOrderLineItemVersion);
 	}
-	
+
 	public SupplyOrderLineItem forgetByAll(RetailscmUserContext userContext, String supplyOrderLineItemId, int supplyOrderLineItemVersion) throws Exception {
-		return forgetByAllInternal(userContext, supplyOrderLineItemId, supplyOrderLineItemVersion);		
+		return forgetByAllInternal(userContext, supplyOrderLineItemId, supplyOrderLineItemVersion);
 	}
 	protected SupplyOrderLineItem forgetByAllInternal(RetailscmUserContext userContext,
 			String supplyOrderLineItemId, int supplyOrderLineItemVersion) throws Exception{
-			
+
 		return supplyOrderLineItemDaoOf(userContext).disconnectFromAll(supplyOrderLineItemId, supplyOrderLineItemVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -433,23 +427,29 @@ public class SupplyOrderLineItemManagerImpl extends CustomRetailscmCheckerManage
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return supplyOrderLineItemDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SupplyOrderLineItem newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

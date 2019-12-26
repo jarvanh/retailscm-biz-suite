@@ -28,11 +28,6 @@ import com.doublechaintech.retailscm.retailstoreopening.RetailStoreOpening;
 import com.doublechaintech.retailscm.retailstoreclosing.RetailStoreClosing;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
-import com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmation;
-import com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApproval;
-import com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessing;
-import com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipment;
-import com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDelivery;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItem;
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroup;
 import com.doublechaintech.retailscm.consumerorderpaymentgroup.ConsumerOrderPaymentGroup;
@@ -49,22 +44,10 @@ import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
 import com.doublechaintech.retailscm.supplierproduct.SupplierProduct;
 import com.doublechaintech.retailscm.productsupplyduration.ProductSupplyDuration;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItem;
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroup;
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroup;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmation;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApproval;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessing;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPicking;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipment;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDelivery;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItem;
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroup;
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroup;
@@ -76,7 +59,6 @@ import com.doublechaintech.retailscm.goodsshelfstockcount.GoodsShelfStockCount;
 import com.doublechaintech.retailscm.stockcountissuetrack.StockCountIssueTrack;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
 import com.doublechaintech.retailscm.goods.Goods;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
 import com.doublechaintech.retailscm.supplierspace.SupplierSpace;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
@@ -93,14 +75,7 @@ import com.doublechaintech.retailscm.accountingsubject.AccountingSubject;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentType;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreation;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmation;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditing;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPosting;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucher;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreation;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmation;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditing;
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLine;
 import com.doublechaintech.retailscm.levelonedepartment.LevelOneDepartment;
 import com.doublechaintech.retailscm.leveltwodepartment.LevelTwoDepartment;
@@ -118,12 +93,6 @@ import com.doublechaintech.retailscm.publicholiday.PublicHoliday;
 import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.view.View;
 import com.doublechaintech.retailscm.employee.Employee;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.instructor.Instructor;
 import com.doublechaintech.retailscm.companytraining.CompanyTraining;
 import com.doublechaintech.retailscm.scoring.Scoring;
@@ -142,7 +111,6 @@ import com.doublechaintech.retailscm.payingoff.PayingOff;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
 import com.doublechaintech.retailscm.secuser.SecUser;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userapp.UserApp;
 import com.doublechaintech.retailscm.quicklink.QuickLink;
 import com.doublechaintech.retailscm.listaccess.ListAccess;
@@ -289,31 +257,6 @@ public class BeanFactoryImpl{
 	}
 
 
-	public ConsumerOrderConfirmation createConsumerOrderConfirmation(Map<String,Object> options){
-		return new ConsumerOrderConfirmation();
-	}
-
-
-	public ConsumerOrderApproval createConsumerOrderApproval(Map<String,Object> options){
-		return new ConsumerOrderApproval();
-	}
-
-
-	public ConsumerOrderProcessing createConsumerOrderProcessing(Map<String,Object> options){
-		return new ConsumerOrderProcessing();
-	}
-
-
-	public ConsumerOrderShipment createConsumerOrderShipment(Map<String,Object> options){
-		return new ConsumerOrderShipment();
-	}
-
-
-	public ConsumerOrderDelivery createConsumerOrderDelivery(Map<String,Object> options){
-		return new ConsumerOrderDelivery();
-	}
-
-
 	public ConsumerOrderLineItem createConsumerOrderLineItem(Map<String,Object> options){
 		return new ConsumerOrderLineItem();
 	}
@@ -394,36 +337,6 @@ public class BeanFactoryImpl{
 	}
 
 
-	public SupplyOrderConfirmation createSupplyOrderConfirmation(Map<String,Object> options){
-		return new SupplyOrderConfirmation();
-	}
-
-
-	public SupplyOrderApproval createSupplyOrderApproval(Map<String,Object> options){
-		return new SupplyOrderApproval();
-	}
-
-
-	public SupplyOrderProcessing createSupplyOrderProcessing(Map<String,Object> options){
-		return new SupplyOrderProcessing();
-	}
-
-
-	public SupplyOrderPicking createSupplyOrderPicking(Map<String,Object> options){
-		return new SupplyOrderPicking();
-	}
-
-
-	public SupplyOrderShipment createSupplyOrderShipment(Map<String,Object> options){
-		return new SupplyOrderShipment();
-	}
-
-
-	public SupplyOrderDelivery createSupplyOrderDelivery(Map<String,Object> options){
-		return new SupplyOrderDelivery();
-	}
-
-
 	public SupplyOrderLineItem createSupplyOrderLineItem(Map<String,Object> options){
 		return new SupplyOrderLineItem();
 	}
@@ -441,36 +354,6 @@ public class BeanFactoryImpl{
 
 	public RetailStoreOrder createRetailStoreOrder(Map<String,Object> options){
 		return new RetailStoreOrder();
-	}
-
-
-	public RetailStoreOrderConfirmation createRetailStoreOrderConfirmation(Map<String,Object> options){
-		return new RetailStoreOrderConfirmation();
-	}
-
-
-	public RetailStoreOrderApproval createRetailStoreOrderApproval(Map<String,Object> options){
-		return new RetailStoreOrderApproval();
-	}
-
-
-	public RetailStoreOrderProcessing createRetailStoreOrderProcessing(Map<String,Object> options){
-		return new RetailStoreOrderProcessing();
-	}
-
-
-	public RetailStoreOrderPicking createRetailStoreOrderPicking(Map<String,Object> options){
-		return new RetailStoreOrderPicking();
-	}
-
-
-	public RetailStoreOrderShipment createRetailStoreOrderShipment(Map<String,Object> options){
-		return new RetailStoreOrderShipment();
-	}
-
-
-	public RetailStoreOrderDelivery createRetailStoreOrderDelivery(Map<String,Object> options){
-		return new RetailStoreOrderDelivery();
 	}
 
 
@@ -526,11 +409,6 @@ public class BeanFactoryImpl{
 
 	public Goods createGoods(Map<String,Object> options){
 		return new Goods();
-	}
-
-
-	public GoodsPackaging createGoodsPackaging(Map<String,Object> options){
-		return new GoodsPackaging();
 	}
 
 
@@ -614,43 +492,8 @@ public class BeanFactoryImpl{
 	}
 
 
-	public AccountingDocumentCreation createAccountingDocumentCreation(Map<String,Object> options){
-		return new AccountingDocumentCreation();
-	}
-
-
-	public AccountingDocumentConfirmation createAccountingDocumentConfirmation(Map<String,Object> options){
-		return new AccountingDocumentConfirmation();
-	}
-
-
-	public AccountingDocumentAuditing createAccountingDocumentAuditing(Map<String,Object> options){
-		return new AccountingDocumentAuditing();
-	}
-
-
-	public AccountingDocumentPosting createAccountingDocumentPosting(Map<String,Object> options){
-		return new AccountingDocumentPosting();
-	}
-
-
 	public OriginalVoucher createOriginalVoucher(Map<String,Object> options){
 		return new OriginalVoucher();
-	}
-
-
-	public OriginalVoucherCreation createOriginalVoucherCreation(Map<String,Object> options){
-		return new OriginalVoucherCreation();
-	}
-
-
-	public OriginalVoucherConfirmation createOriginalVoucherConfirmation(Map<String,Object> options){
-		return new OriginalVoucherConfirmation();
-	}
-
-
-	public OriginalVoucherAuditing createOriginalVoucherAuditing(Map<String,Object> options){
-		return new OriginalVoucherAuditing();
 	}
 
 
@@ -736,36 +579,6 @@ public class BeanFactoryImpl{
 
 	public Employee createEmployee(Map<String,Object> options){
 		return new Employee();
-	}
-
-
-	public JobApplication createJobApplication(Map<String,Object> options){
-		return new JobApplication();
-	}
-
-
-	public ProfessionInterview createProfessionInterview(Map<String,Object> options){
-		return new ProfessionInterview();
-	}
-
-
-	public HrInterview createHrInterview(Map<String,Object> options){
-		return new HrInterview();
-	}
-
-
-	public OfferApproval createOfferApproval(Map<String,Object> options){
-		return new OfferApproval();
-	}
-
-
-	public OfferAcceptance createOfferAcceptance(Map<String,Object> options){
-		return new OfferAcceptance();
-	}
-
-
-	public EmployeeBoarding createEmployeeBoarding(Map<String,Object> options){
-		return new EmployeeBoarding();
 	}
 
 
@@ -856,11 +669,6 @@ public class BeanFactoryImpl{
 
 	public SecUser createSecUser(Map<String,Object> options){
 		return new SecUser();
-	}
-
-
-	public SecUserBlocking createSecUserBlocking(Map<String,Object> options){
-		return new SecUserBlocking();
 	}
 
 

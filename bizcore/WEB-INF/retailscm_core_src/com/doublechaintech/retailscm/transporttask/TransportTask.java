@@ -791,7 +791,9 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getStart(), getBeginTime(), getEnd(), getDriver(), getTruck(), getBelongsTo(), getLatitude(), getLongitude(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

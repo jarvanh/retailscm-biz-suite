@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.supplyorder.CandidateSupplyOrder;
 
 
 public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerManager implements SupplyOrderPaymentGroupManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "SupplyOrderPaymentGroup";
 	@Override
 	public SupplyOrderPaymentGroupDAO daoOf(RetailscmUserContext userContext) {
 		return supplyOrderPaymentGroupDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws SupplyOrderPaymentGroupManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new SupplyOrderPaymentGroupManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected SupplyOrderPaymentGroup saveSupplyOrderPaymentGroup(RetailscmUserContext userContext, SupplyOrderPaymentGroup supplyOrderPaymentGroup, String [] tokensExpr) throws Exception{	
  		//return getSupplyOrderPaymentGroupDAO().save(supplyOrderPaymentGroup, tokens);
@@ -167,7 +161,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	public SupplyOrderPaymentGroup createSupplyOrderPaymentGroup(RetailscmUserContext userContext, String name,String bizOrderId,String cardNumber) throws Exception
 	//public SupplyOrderPaymentGroup createSupplyOrderPaymentGroup(RetailscmUserContext userContext,String name, String bizOrderId, String cardNumber) throws Exception
 	{
-		
+
 		
 
 		
@@ -193,14 +187,14 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		onNewInstanceCreated(userContext, supplyOrderPaymentGroup);
 		return supplyOrderPaymentGroup;
 
-		
+
 	}
-	protected SupplyOrderPaymentGroup createNewSupplyOrderPaymentGroup() 
+	protected SupplyOrderPaymentGroup createNewSupplyOrderPaymentGroup()
 	{
-		
-		return new SupplyOrderPaymentGroup();		
+
+		return new SupplyOrderPaymentGroup();
 	}
-	
+
 	protected void checkParamsForUpdatingSupplyOrderPaymentGroup(RetailscmUserContext userContext,String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -221,28 +215,28 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public SupplyOrderPaymentGroup clone(RetailscmUserContext userContext, String fromSupplyOrderPaymentGroupId) throws Exception{
-		
+
 		return supplyOrderPaymentGroupDaoOf(userContext).clone(fromSupplyOrderPaymentGroupId, this.allTokens());
 	}
-	
-	public SupplyOrderPaymentGroup internalSaveSupplyOrderPaymentGroup(RetailscmUserContext userContext, SupplyOrderPaymentGroup supplyOrderPaymentGroup) throws Exception 
+
+	public SupplyOrderPaymentGroup internalSaveSupplyOrderPaymentGroup(RetailscmUserContext userContext, SupplyOrderPaymentGroup supplyOrderPaymentGroup) throws Exception
 	{
 		return internalSaveSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroup, allTokens());
 
 	}
-	public SupplyOrderPaymentGroup internalSaveSupplyOrderPaymentGroup(RetailscmUserContext userContext, SupplyOrderPaymentGroup supplyOrderPaymentGroup, Map<String,Object> options) throws Exception 
+	public SupplyOrderPaymentGroup internalSaveSupplyOrderPaymentGroup(RetailscmUserContext userContext, SupplyOrderPaymentGroup supplyOrderPaymentGroup, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(supplyOrderPaymentGroup){ 
+
+
+		synchronized(supplyOrderPaymentGroup){
 			//will be good when the supplyOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderPaymentGroup.
@@ -251,23 +245,23 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 			}
 			supplyOrderPaymentGroup = saveSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroup, options);
 			return supplyOrderPaymentGroup;
-			
+
 		}
 
 	}
-	
-	public SupplyOrderPaymentGroup updateSupplyOrderPaymentGroup(RetailscmUserContext userContext,String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SupplyOrderPaymentGroup updateSupplyOrderPaymentGroup(RetailscmUserContext userContext,String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		SupplyOrderPaymentGroup supplyOrderPaymentGroup = loadSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroupId, allTokens());
 		if(supplyOrderPaymentGroup.getVersion() != supplyOrderPaymentGroupVersion){
 			String message = "The target version("+supplyOrderPaymentGroup.getVersion()+") is not equals to version("+supplyOrderPaymentGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(supplyOrderPaymentGroup){ 
+		synchronized(supplyOrderPaymentGroup){
 			//will be good when the supplyOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderPaymentGroup.
@@ -279,21 +273,21 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		}
 
 	}
-	
-	public SupplyOrderPaymentGroup updateSupplyOrderPaymentGroupProperty(RetailscmUserContext userContext,String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SupplyOrderPaymentGroup updateSupplyOrderPaymentGroupProperty(RetailscmUserContext userContext,String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion, property, newValueExpr, tokensExpr);
-		
+
 		SupplyOrderPaymentGroup supplyOrderPaymentGroup = loadSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroupId, allTokens());
 		if(supplyOrderPaymentGroup.getVersion() != supplyOrderPaymentGroupVersion){
 			String message = "The target version("+supplyOrderPaymentGroup.getVersion()+") is not equals to version("+supplyOrderPaymentGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(supplyOrderPaymentGroup){ 
+		synchronized(supplyOrderPaymentGroup){
 			//will be good when the supplyOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderPaymentGroup.
-			
+
 			supplyOrderPaymentGroup.changeProperty(property, newValueExpr);
 			
 			supplyOrderPaymentGroup = saveSupplyOrderPaymentGroup(userContext, supplyOrderPaymentGroup, tokens().done());
@@ -305,7 +299,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected SupplyOrderPaymentGroupTokens tokens(){
 		return SupplyOrderPaymentGroupTokens.start();
 	}
@@ -326,11 +320,11 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfSupplyOrderPaymentGroup(supplyOrderPaymentGroupId);
  		checkerOf(userContext).checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderPaymentGroupManagerException.class);
- 		
+
  	}
  	public SupplyOrderPaymentGroup transferToAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, String anotherBizOrderId) throws Exception
  	{
@@ -349,10 +343,10 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSupplyOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSupplyOrder result = new CandidateSupplyOrder();
@@ -362,7 +356,7 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("buyer");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -372,42 +366,42 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return supplyOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion) throws Exception {
-		//deleteInternal(userContext, supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);		
+		//deleteInternal(userContext, supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion) throws Exception{
-			
+
 		supplyOrderPaymentGroupDaoOf(userContext).delete(supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
 	}
-	
+
 	public SupplyOrderPaymentGroup forgetByAll(RetailscmUserContext userContext, String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion) throws Exception {
-		return forgetByAllInternal(userContext, supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);		
+		return forgetByAllInternal(userContext, supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
 	}
 	protected SupplyOrderPaymentGroup forgetByAllInternal(RetailscmUserContext userContext,
 			String supplyOrderPaymentGroupId, int supplyOrderPaymentGroupVersion) throws Exception{
-			
+
 		return supplyOrderPaymentGroupDaoOf(userContext).disconnectFromAll(supplyOrderPaymentGroupId, supplyOrderPaymentGroupVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -418,23 +412,29 @@ public class SupplyOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerMa
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return supplyOrderPaymentGroupDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SupplyOrderPaymentGroup newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

@@ -29,9 +29,9 @@ public interface RetailStoreMemberManager extends BaseManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  ConsumerOrderManager getConsumerOrderManager(RetailscmUserContext userContext, String retailStoreMemberId, String title, String confirmationId, String approvalId, String processingId, String shipmentId, String deliveryId, String storeId ,String [] tokensExpr)  throws Exception;
+	//public  ConsumerOrderManager getConsumerOrderManager(RetailscmUserContext userContext, String retailStoreMemberId, String title, String storeId ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreMember addConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String title, String confirmationId, String approvalId, String processingId, String shipmentId, String deliveryId, String storeId , String [] tokensExpr)  throws Exception;
+	public  RetailStoreMember addConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String title, String storeId , String [] tokensExpr)  throws Exception;
 	public  RetailStoreMember removeConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String consumerOrderId, int consumerOrderVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreMember updateConsumerOrder(RetailscmUserContext userContext, String retailStoreMemberId, String consumerOrderId, int consumerOrderVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

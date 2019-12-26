@@ -116,15 +116,6 @@
 <c:if test="${param.referName ne 'belongsTo'}">
 	<th>${userContext.localeMap['original_voucher.belongs_to']}</th>
 </c:if>
-<c:if test="${param.referName ne 'creation'}">
-	<th>${userContext.localeMap['original_voucher.creation']}</th>
-</c:if>
-<c:if test="${param.referName ne 'confirmation'}">
-	<th>${userContext.localeMap['original_voucher.confirmation']}</th>
-</c:if>
-<c:if test="${param.referName ne 'auditing'}">
-	<th>${userContext.localeMap['original_voucher.auditing']}</th>
-</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -146,63 +137,6 @@
 			<a href='./accountingDocumentManager/view/${item.belongsTo.id}/'>${item.belongsTo.displayName}</a>
 			</c:if>
 			<c:if test="${empty  item.belongsTo}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'creation'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./originalVoucherManager/requestCandidateCreation/${ownerBeanName}/${item.id}/"
-			data-switch-method="./originalVoucherManager/transferToAnotherCreation/${item.id}/"
-			data-link-template="./originalVoucherCreationManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.creation}">
-			<a href='./originalVoucherCreationManager/view/${item.creation.id}/'>${item.creation.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.creation}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'confirmation'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./originalVoucherManager/requestCandidateConfirmation/${ownerBeanName}/${item.id}/"
-			data-switch-method="./originalVoucherManager/transferToAnotherConfirmation/${item.id}/"
-			data-link-template="./originalVoucherConfirmationManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.confirmation}">
-			<a href='./originalVoucherConfirmationManager/view/${item.confirmation.id}/'>${item.confirmation.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.confirmation}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'auditing'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./originalVoucherManager/requestCandidateAuditing/${ownerBeanName}/${item.id}/"
-			data-switch-method="./originalVoucherManager/transferToAnotherAuditing/${item.id}/"
-			data-link-template="./originalVoucherAuditingManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.auditing}">
-			<a href='./originalVoucherAuditingManager/view/${item.auditing.id}/'>${item.auditing.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.auditing}">
 			<a href='#'></a>
 			</c:if>
 			<button class="btn btn-link candidate-action">...</button>

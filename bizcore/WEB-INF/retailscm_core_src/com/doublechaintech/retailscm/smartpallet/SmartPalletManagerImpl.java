@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.warehouse.Warehouse;
@@ -28,7 +19,6 @@ import com.doublechaintech.retailscm.warehouse.CandidateWarehouse;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -42,28 +32,31 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
 
 public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implements SmartPalletManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "SmartPallet";
 	@Override
 	public SmartPalletDAO daoOf(RetailscmUserContext userContext) {
 		return smartPalletDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws SmartPalletManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new SmartPalletManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected SmartPallet saveSmartPallet(RetailscmUserContext userContext, SmartPallet smartPallet, String [] tokensExpr) throws Exception{	
  		//return getSmartPalletDAO().save(smartPallet, tokens);
@@ -179,10 +172,10 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-	public SmartPallet createSmartPallet(RetailscmUserContext userContext, String location,long contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String warehouseId) throws Exception
-	//public SmartPallet createSmartPallet(RetailscmUserContext userContext,String location, long contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String warehouseId) throws Exception
+	public SmartPallet createSmartPallet(RetailscmUserContext userContext, String location,String contactNumber,String totalArea,BigDecimal latitude,BigDecimal longitude,String warehouseId) throws Exception
+	//public SmartPallet createSmartPallet(RetailscmUserContext userContext,String location, String contactNumber, String totalArea, BigDecimal latitude, BigDecimal longitude, String warehouseId) throws Exception
 	{
-		
+
 		
 
 		
@@ -215,14 +208,14 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		onNewInstanceCreated(userContext, smartPallet);
 		return smartPallet;
 
-		
+
 	}
-	protected SmartPallet createNewSmartPallet() 
+	protected SmartPallet createNewSmartPallet()
 	{
-		
-		return new SmartPallet();		
+
+		return new SmartPallet();
 	}
-	
+
 	protected void checkParamsForUpdatingSmartPallet(RetailscmUserContext userContext,String smartPalletId, int smartPalletVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -237,7 +230,7 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 			checkerOf(userContext).checkLocationOfSmartPallet(parseString(newValueExpr));
 		}
 		if(SmartPallet.CONTACT_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkContactNumberOfSmartPallet(parseLong(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfSmartPallet(parseString(newValueExpr));
 		}
 		if(SmartPallet.TOTAL_AREA_PROPERTY.equals(property)){
 			checkerOf(userContext).checkTotalAreaOfSmartPallet(parseString(newValueExpr));
@@ -252,28 +245,28 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public SmartPallet clone(RetailscmUserContext userContext, String fromSmartPalletId) throws Exception{
-		
+
 		return smartPalletDaoOf(userContext).clone(fromSmartPalletId, this.allTokens());
 	}
-	
-	public SmartPallet internalSaveSmartPallet(RetailscmUserContext userContext, SmartPallet smartPallet) throws Exception 
+
+	public SmartPallet internalSaveSmartPallet(RetailscmUserContext userContext, SmartPallet smartPallet) throws Exception
 	{
 		return internalSaveSmartPallet(userContext, smartPallet, allTokens());
 
 	}
-	public SmartPallet internalSaveSmartPallet(RetailscmUserContext userContext, SmartPallet smartPallet, Map<String,Object> options) throws Exception 
+	public SmartPallet internalSaveSmartPallet(RetailscmUserContext userContext, SmartPallet smartPallet, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingSmartPallet(userContext, smartPalletId, smartPalletVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(smartPallet){ 
+
+
+		synchronized(smartPallet){
 			//will be good when the smartPallet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SmartPallet.
@@ -282,23 +275,23 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 			}
 			smartPallet = saveSmartPallet(userContext, smartPallet, options);
 			return smartPallet;
-			
+
 		}
 
 	}
-	
-	public SmartPallet updateSmartPallet(RetailscmUserContext userContext,String smartPalletId, int smartPalletVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SmartPallet updateSmartPallet(RetailscmUserContext userContext,String smartPalletId, int smartPalletVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSmartPallet(userContext, smartPalletId, smartPalletVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 		if(smartPallet.getVersion() != smartPalletVersion){
 			String message = "The target version("+smartPallet.getVersion()+") is not equals to version("+smartPalletVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(smartPallet){ 
+		synchronized(smartPallet){
 			//will be good when the smartPallet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SmartPallet.
@@ -310,21 +303,21 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		}
 
 	}
-	
-	public SmartPallet updateSmartPalletProperty(RetailscmUserContext userContext,String smartPalletId, int smartPalletVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SmartPallet updateSmartPalletProperty(RetailscmUserContext userContext,String smartPalletId, int smartPalletVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSmartPallet(userContext, smartPalletId, smartPalletVersion, property, newValueExpr, tokensExpr);
-		
+
 		SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 		if(smartPallet.getVersion() != smartPalletVersion){
 			String message = "The target version("+smartPallet.getVersion()+") is not equals to version("+smartPalletVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(smartPallet){ 
+		synchronized(smartPallet){
 			//will be good when the smartPallet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SmartPallet.
-			
+
 			smartPallet.changeProperty(property, newValueExpr);
 			smartPallet.updateLastUpdateTime(userContext.now());
 			smartPallet = saveSmartPallet(userContext, smartPallet, tokens().done());
@@ -336,7 +329,7 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected SmartPalletTokens tokens(){
 		return SmartPalletTokens.start();
 	}
@@ -358,11 +351,11 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	protected void checkParamsForTransferingAnotherWarehouse(RetailscmUserContext userContext, String smartPalletId, String anotherWarehouseId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfSmartPallet(smartPalletId);
  		checkerOf(userContext).checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
- 		
+
  	}
  	public SmartPallet transferToAnotherWarehouse(RetailscmUserContext userContext, String smartPalletId, String anotherWarehouseId) throws Exception
  	{
@@ -381,10 +374,10 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateWarehouse requestCandidateWarehouse(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateWarehouse result = new CandidateWarehouse();
@@ -394,7 +387,7 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -404,42 +397,42 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Warehouse loadWarehouse(RetailscmUserContext userContext, String newWarehouseId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return warehouseDaoOf(userContext).load(newWarehouseId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String smartPalletId, int smartPalletVersion) throws Exception {
-		//deleteInternal(userContext, smartPalletId, smartPalletVersion);		
+		//deleteInternal(userContext, smartPalletId, smartPalletVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String smartPalletId, int smartPalletVersion) throws Exception{
-			
+
 		smartPalletDaoOf(userContext).delete(smartPalletId, smartPalletVersion);
 	}
-	
+
 	public SmartPallet forgetByAll(RetailscmUserContext userContext, String smartPalletId, int smartPalletVersion) throws Exception {
-		return forgetByAllInternal(userContext, smartPalletId, smartPalletVersion);		
+		return forgetByAllInternal(userContext, smartPalletId, smartPalletVersion);
 	}
 	protected SmartPallet forgetByAllInternal(RetailscmUserContext userContext,
 			String smartPalletId, int smartPalletVersion) throws Exception{
-			
+
 		return smartPalletDaoOf(userContext).disconnectFromAll(smartPalletId, smartPalletVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -450,8 +443,8 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return smartPalletDaoOf(userContext).deleteAll();
 	}
@@ -460,15 +453,15 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with sku in Goods
 	protected SmartPallet breakWithGoodsBySku(RetailscmUserContext userContext, String smartPalletId, String skuId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithSku(smartPallet, skuId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -478,15 +471,15 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with receiving_space in Goods
 	protected SmartPallet breakWithGoodsByReceivingSpace(RetailscmUserContext userContext, String smartPalletId, String receivingSpaceId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithReceivingSpace(smartPallet, receivingSpaceId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -496,15 +489,15 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with goods_allocation in Goods
 	protected SmartPallet breakWithGoodsByGoodsAllocation(RetailscmUserContext userContext, String smartPalletId, String goodsAllocationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithGoodsAllocation(smartPallet, goodsAllocationId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -514,15 +507,15 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with shipping_space in Goods
 	protected SmartPallet breakWithGoodsByShippingSpace(RetailscmUserContext userContext, String smartPalletId, String shippingSpaceId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithShippingSpace(smartPallet, shippingSpaceId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -532,15 +525,15 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with transport_task in Goods
 	protected SmartPallet breakWithGoodsByTransportTask(RetailscmUserContext userContext, String smartPalletId, String transportTaskId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithTransportTask(smartPallet, transportTaskId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -550,15 +543,15 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with retail_store in Goods
 	protected SmartPallet breakWithGoodsByRetailStore(RetailscmUserContext userContext, String smartPalletId, String retailStoreId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithRetailStore(smartPallet, retailStoreId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -568,15 +561,15 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with biz_order in Goods
 	protected SmartPallet breakWithGoodsByBizOrder(RetailscmUserContext userContext, String smartPalletId, String bizOrderId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithBizOrder(smartPallet, bizOrderId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -586,47 +579,29 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect SmartPallet with retail_store_order in Goods
 	protected SmartPallet breakWithGoodsByRetailStoreOrder(RetailscmUserContext userContext, String smartPalletId, String retailStoreOrderId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				smartPalletDaoOf(userContext).planToRemoveGoodsListWithRetailStoreOrder(smartPallet, retailStoreOrderId, this.emptyOptions());
 
 				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
 				return smartPallet;
 			}
 	}
-	//disconnect SmartPallet with packaging in Goods
-	protected SmartPallet breakWithGoodsByPackaging(RetailscmUserContext userContext, String smartPalletId, String packagingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
 
-			synchronized(smartPallet){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				smartPalletDaoOf(userContext).planToRemoveGoodsListWithPackaging(smartPallet, packagingId, this.emptyOptions());
 
-				smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
-				return smartPallet;
-			}
-	}
-	
-	
-	
-	
-	
 
-	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String smartPalletId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId,String [] tokensExpr) throws Exception{
-		
+
+
+
+	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String smartPalletId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfSmartPallet(smartPalletId);
 
 		
@@ -655,25 +630,23 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		checkerOf(userContext).checkBizOrderIdOfGoods(bizOrderId);
 		
 		checkerOf(userContext).checkRetailStoreOrderIdOfGoods(retailStoreOrderId);
-		
-		checkerOf(userContext).checkPackagingIdOfGoods(packagingId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
 
-	
+
 	}
-	public  SmartPallet addGoods(RetailscmUserContext userContext, String smartPalletId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingGoods(userContext,smartPalletId,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, goodsAllocationId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId,tokensExpr);
-		
-		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, goodsAllocationId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId);
-		
-		SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
-		synchronized(smartPallet){ 
+	public  SmartPallet addGoods(RetailscmUserContext userContext, String smartPalletId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingGoods(userContext,smartPalletId,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, goodsAllocationId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId,tokensExpr);
+
+		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, skuId, receivingSpaceId, goodsAllocationId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId);
+
+		SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, emptyOptions());
+		synchronized(smartPallet){
 			//Will be good when the smartPallet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			smartPallet.addGoods( goods );		
+			smartPallet.addGoods( goods );
 			smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
 			
 			userContext.getManagerGroup().getGoodsManager().onNewInstanceCreated(userContext, goods);
@@ -681,10 +654,10 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		}
 	}
 	protected void checkParamsForUpdatingGoodsProperties(RetailscmUserContext userContext, String smartPalletId,String id,String name,String rfid,String uom,int maxPackage,Date expireTime,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfSmartPallet(smartPalletId);
 		checkerOf(userContext).checkIdOfGoods(id);
-		
+
 		checkerOf(userContext).checkNameOfGoods( name);
 		checkerOf(userContext).checkRfidOfGoods( rfid);
 		checkerOf(userContext).checkUomOfGoods( uom);
@@ -692,41 +665,41 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		checkerOf(userContext).checkExpireTimeOfGoods( expireTime);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
-		
+
 	}
 	public  SmartPallet updateGoodsProperties(RetailscmUserContext userContext, String smartPalletId, String id,String name,String rfid,String uom,int maxPackage,Date expireTime, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingGoodsProperties(userContext,smartPalletId,id,name,rfid,uom,maxPackage,expireTime,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withGoodsListList()
 				.searchGoodsListWith(Goods.ID_PROPERTY, "is", id).done();
-		
+
 		SmartPallet smartPalletToUpdate = loadSmartPallet(userContext, smartPalletId, options);
-		
+
 		if(smartPalletToUpdate.getGoodsList().isEmpty()){
 			throw new SmartPalletManagerException("Goods is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Goods item = smartPalletToUpdate.getGoodsList().first();
-		
+
 		item.updateName( name );
 		item.updateRfid( rfid );
 		item.updateUom( uom );
 		item.updateMaxPackage( maxPackage );
 		item.updateExpireTime( expireTime );
 
-		
+
 		//checkParamsForAddingGoods(userContext,smartPalletId,name, code, used,tokensExpr);
 		SmartPallet smartPallet = saveSmartPallet(userContext, smartPalletToUpdate, tokens().withGoodsList().done());
-		synchronized(smartPallet){ 
+		synchronized(smartPallet){
 			return present(userContext,smartPallet, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId) throws Exception{
+
+
+	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId) throws Exception{
 
 		Goods goods = new Goods();
 		
@@ -759,51 +732,42 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		goods.setBizOrder(bizOrder);		
 		RetailStoreOrder  retailStoreOrder = new RetailStoreOrder();
 		retailStoreOrder.setId(retailStoreOrderId);		
-		goods.setRetailStoreOrder(retailStoreOrder);		
-		GoodsPackaging  packaging = new GoodsPackaging();
-		packaging.setId(packagingId);		
-		goods.setPackaging(packaging);
+		goods.setRetailStoreOrder(retailStoreOrder);
 	
 		
 		return goods;
-	
-		
+
+
 	}
-	
+
 	protected Goods createIndexedGoods(String id, int version){
 
 		Goods goods = new Goods();
 		goods.setId(id);
 		goods.setVersion(version);
-		return goods;			
-		
+		return goods;
+
 	}
-	
-	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String smartPalletId, 
+
+	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String smartPalletId,
 			String goodsIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfSmartPallet(smartPalletId);
-		for(String goodsIdItem: goodsIds){
-			userContext.getChecker().checkIdOfGoods(goodsIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfSmartPallet(smartPalletId);
 		for(String goodsIdItem: goodsIds){
 			checkerOf(userContext).checkIdOfGoods(goodsIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
-		
+
 	}
-	public  SmartPallet removeGoodsList(RetailscmUserContext userContext, String smartPalletId, 
+	public  SmartPallet removeGoodsList(RetailscmUserContext userContext, String smartPalletId,
 			String goodsIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingGoodsList(userContext, smartPalletId,  goodsIds, tokensExpr);
-			
-			
+
+
 			SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
-			synchronized(smartPallet){ 
+			synchronized(smartPallet){
 				//Will be good when the smartPallet loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				smartPalletDaoOf(userContext).planToRemoveGoodsList(smartPallet, goodsIds, allTokens());
@@ -812,65 +776,65 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 				return present(userContext,smartPallet, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String smartPalletId, 
+
+	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String smartPalletId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSmartPallet( smartPalletId);
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
-	
+
 	}
-	public  SmartPallet removeGoods(RetailscmUserContext userContext, String smartPalletId, 
+	public  SmartPallet removeGoods(RetailscmUserContext userContext, String smartPalletId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingGoods(userContext,smartPalletId, goodsId, goodsVersion,tokensExpr);
-		
+
 		Goods goods = createIndexedGoods(goodsId, goodsVersion);
 		SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
-		synchronized(smartPallet){ 
+		synchronized(smartPallet){
 			//Will be good when the smartPallet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			smartPallet.removeGoods( goods );		
+			smartPallet.removeGoods( goods );
 			smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
 			deleteRelationInGraph(userContext, goods);
 			return present(userContext,smartPallet, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String smartPalletId, 
+	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String smartPalletId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSmartPallet( smartPalletId);
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
-	
+
 	}
-	public  SmartPallet copyGoodsFrom(RetailscmUserContext userContext, String smartPalletId, 
+	public  SmartPallet copyGoodsFrom(RetailscmUserContext userContext, String smartPalletId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingGoods(userContext,smartPalletId, goodsId, goodsVersion,tokensExpr);
-		
+
 		Goods goods = createIndexedGoods(goodsId, goodsVersion);
 		SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, allTokens());
-		synchronized(smartPallet){ 
+		synchronized(smartPallet){
 			//Will be good when the smartPallet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			smartPallet.copyGoodsFrom( goods );		
+
+			smartPallet.copyGoodsFrom( goods );
 			smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
 			
 			userContext.getManagerGroup().getGoodsManager().onNewInstanceCreated(userContext, (Goods)smartPallet.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,smartPallet, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingGoods(RetailscmUserContext userContext, String smartPalletId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -902,32 +866,32 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SmartPalletManagerException.class);
-	
+
 	}
-	
+
 	public  SmartPallet updateGoods(RetailscmUserContext userContext, String smartPalletId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingGoods(userContext, smartPalletId, goodsId, goodsVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withGoodsList().searchGoodsListWith(Goods.ID_PROPERTY, "eq", goodsId).done();
-		
-		
-		
+
+
+
 		SmartPallet smartPallet = loadSmartPallet(userContext, smartPalletId, loadTokens);
-		
-		synchronized(smartPallet){ 
+
+		synchronized(smartPallet){
 			//Will be good when the smartPallet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//smartPallet.removeGoods( goods );	
+			//smartPallet.removeGoods( goods );
 			//make changes to AcceleraterAccount.
 			Goods goodsIndex = createIndexedGoods(goodsId, goodsVersion);
-		
+
 			Goods goods = smartPallet.findTheGoods(goodsIndex);
 			if(goods == null){
 				throw new SmartPalletManagerException(goods+" is NOT FOUND" );
 			}
-			
+
 			goods.changeProperty(property, newValueExpr);
 			
 			smartPallet = saveSmartPallet(userContext, smartPallet, tokens().withGoodsList().done());
@@ -938,14 +902,20 @@ public class SmartPalletManagerImpl extends CustomRetailscmCheckerManager implem
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SmartPallet newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

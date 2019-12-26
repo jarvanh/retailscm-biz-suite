@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.memberwishlist.MemberWishlist;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.memberwishlist.CandidateMemberWishlist;
 
 
 public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerManager implements MemberWishlistProductManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "MemberWishlistProduct";
 	@Override
 	public MemberWishlistProductDAO daoOf(RetailscmUserContext userContext) {
 		return memberWishlistProductDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws MemberWishlistProductManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new MemberWishlistProductManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected MemberWishlistProduct saveMemberWishlistProduct(RetailscmUserContext userContext, MemberWishlistProduct memberWishlistProduct, String [] tokensExpr) throws Exception{	
  		//return getMemberWishlistProductDAO().save(memberWishlistProduct, tokens);
@@ -167,7 +161,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	public MemberWishlistProduct createMemberWishlistProduct(RetailscmUserContext userContext, String name,String ownerId) throws Exception
 	//public MemberWishlistProduct createMemberWishlistProduct(RetailscmUserContext userContext,String name, String ownerId) throws Exception
 	{
-		
+
 		
 
 		
@@ -191,14 +185,14 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		onNewInstanceCreated(userContext, memberWishlistProduct);
 		return memberWishlistProduct;
 
-		
+
 	}
-	protected MemberWishlistProduct createNewMemberWishlistProduct() 
+	protected MemberWishlistProduct createNewMemberWishlistProduct()
 	{
-		
-		return new MemberWishlistProduct();		
+
+		return new MemberWishlistProduct();
 	}
-	
+
 	protected void checkParamsForUpdatingMemberWishlistProduct(RetailscmUserContext userContext,String memberWishlistProductId, int memberWishlistProductVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -216,28 +210,28 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public MemberWishlistProduct clone(RetailscmUserContext userContext, String fromMemberWishlistProductId) throws Exception{
-		
+
 		return memberWishlistProductDaoOf(userContext).clone(fromMemberWishlistProductId, this.allTokens());
 	}
-	
-	public MemberWishlistProduct internalSaveMemberWishlistProduct(RetailscmUserContext userContext, MemberWishlistProduct memberWishlistProduct) throws Exception 
+
+	public MemberWishlistProduct internalSaveMemberWishlistProduct(RetailscmUserContext userContext, MemberWishlistProduct memberWishlistProduct) throws Exception
 	{
 		return internalSaveMemberWishlistProduct(userContext, memberWishlistProduct, allTokens());
 
 	}
-	public MemberWishlistProduct internalSaveMemberWishlistProduct(RetailscmUserContext userContext, MemberWishlistProduct memberWishlistProduct, Map<String,Object> options) throws Exception 
+	public MemberWishlistProduct internalSaveMemberWishlistProduct(RetailscmUserContext userContext, MemberWishlistProduct memberWishlistProduct, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingMemberWishlistProduct(userContext, memberWishlistProductId, memberWishlistProductVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(memberWishlistProduct){ 
+
+
+		synchronized(memberWishlistProduct){
 			//will be good when the memberWishlistProduct loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberWishlistProduct.
@@ -246,23 +240,23 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 			}
 			memberWishlistProduct = saveMemberWishlistProduct(userContext, memberWishlistProduct, options);
 			return memberWishlistProduct;
-			
+
 		}
 
 	}
-	
-	public MemberWishlistProduct updateMemberWishlistProduct(RetailscmUserContext userContext,String memberWishlistProductId, int memberWishlistProductVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public MemberWishlistProduct updateMemberWishlistProduct(RetailscmUserContext userContext,String memberWishlistProductId, int memberWishlistProductVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingMemberWishlistProduct(userContext, memberWishlistProductId, memberWishlistProductVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		MemberWishlistProduct memberWishlistProduct = loadMemberWishlistProduct(userContext, memberWishlistProductId, allTokens());
 		if(memberWishlistProduct.getVersion() != memberWishlistProductVersion){
 			String message = "The target version("+memberWishlistProduct.getVersion()+") is not equals to version("+memberWishlistProductVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(memberWishlistProduct){ 
+		synchronized(memberWishlistProduct){
 			//will be good when the memberWishlistProduct loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberWishlistProduct.
@@ -274,21 +268,21 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		}
 
 	}
-	
-	public MemberWishlistProduct updateMemberWishlistProductProperty(RetailscmUserContext userContext,String memberWishlistProductId, int memberWishlistProductVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public MemberWishlistProduct updateMemberWishlistProductProperty(RetailscmUserContext userContext,String memberWishlistProductId, int memberWishlistProductVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingMemberWishlistProduct(userContext, memberWishlistProductId, memberWishlistProductVersion, property, newValueExpr, tokensExpr);
-		
+
 		MemberWishlistProduct memberWishlistProduct = loadMemberWishlistProduct(userContext, memberWishlistProductId, allTokens());
 		if(memberWishlistProduct.getVersion() != memberWishlistProductVersion){
 			String message = "The target version("+memberWishlistProduct.getVersion()+") is not equals to version("+memberWishlistProductVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(memberWishlistProduct){ 
+		synchronized(memberWishlistProduct){
 			//will be good when the memberWishlistProduct loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberWishlistProduct.
-			
+
 			memberWishlistProduct.changeProperty(property, newValueExpr);
 			
 			memberWishlistProduct = saveMemberWishlistProduct(userContext, memberWishlistProduct, tokens().done());
@@ -300,7 +294,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected MemberWishlistProductTokens tokens(){
 		return MemberWishlistProductTokens.start();
 	}
@@ -321,11 +315,11 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 	
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String memberWishlistProductId, String anotherOwnerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfMemberWishlistProduct(memberWishlistProductId);
  		checkerOf(userContext).checkIdOfMemberWishlist(anotherOwnerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(MemberWishlistProductManagerException.class);
- 		
+
  	}
  	public MemberWishlistProduct transferToAnotherOwner(RetailscmUserContext userContext, String memberWishlistProductId, String anotherOwnerId) throws Exception
  	{
@@ -344,10 +338,10 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateMemberWishlist requestCandidateOwner(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateMemberWishlist result = new CandidateMemberWishlist();
@@ -357,7 +351,7 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -367,42 +361,42 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected MemberWishlist loadMemberWishlist(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return memberWishlistDaoOf(userContext).load(newOwnerId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String memberWishlistProductId, int memberWishlistProductVersion) throws Exception {
-		//deleteInternal(userContext, memberWishlistProductId, memberWishlistProductVersion);		
+		//deleteInternal(userContext, memberWishlistProductId, memberWishlistProductVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String memberWishlistProductId, int memberWishlistProductVersion) throws Exception{
-			
+
 		memberWishlistProductDaoOf(userContext).delete(memberWishlistProductId, memberWishlistProductVersion);
 	}
-	
+
 	public MemberWishlistProduct forgetByAll(RetailscmUserContext userContext, String memberWishlistProductId, int memberWishlistProductVersion) throws Exception {
-		return forgetByAllInternal(userContext, memberWishlistProductId, memberWishlistProductVersion);		
+		return forgetByAllInternal(userContext, memberWishlistProductId, memberWishlistProductVersion);
 	}
 	protected MemberWishlistProduct forgetByAllInternal(RetailscmUserContext userContext,
 			String memberWishlistProductId, int memberWishlistProductVersion) throws Exception{
-			
+
 		return memberWishlistProductDaoOf(userContext).disconnectFromAll(memberWishlistProductId, memberWishlistProductVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -413,23 +407,29 @@ public class MemberWishlistProductManagerImpl extends CustomRetailscmCheckerMana
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return memberWishlistProductDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, MemberWishlistProduct newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

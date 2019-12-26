@@ -262,12 +262,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		if(PAYING_OFF_PROPERTY.equals(property)){
 			return getPayingOff();
 		}
-<<<<<<< HEAD
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
-		}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
     		//other property not include here
 		return super.propertyOf(property);
@@ -470,25 +464,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public EmployeeSalarySheet updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
-	}
-	
-	
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -596,10 +571,6 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 			dest.mergeHousingFound(getHousingFound());
 			dest.mergeJobInsurance(getJobInsurance());
 			dest.mergePayingOff(getPayingOff());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
@@ -623,16 +594,14 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 			dest.mergeSocialSecurity(getSocialSecurity());
 			dest.mergeHousingFound(getHousingFound());
 			dest.mergeJobInsurance(getJobInsurance());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getEmployee(), getCurrentSalaryGrade(), getBaseSalary(), getBonus(), getReward(), getPersonalTax(), getSocialSecurity(), getHousingFound(), getJobInsurance(), getPayingOff(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

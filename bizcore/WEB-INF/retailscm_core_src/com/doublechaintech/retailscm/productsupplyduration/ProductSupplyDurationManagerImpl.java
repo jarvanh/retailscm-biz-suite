@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.supplierproduct.SupplierProduct;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.supplierproduct.CandidateSupplierProduct;
 
 
 public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerManager implements ProductSupplyDurationManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ProductSupplyDuration";
 	@Override
 	public ProductSupplyDurationDAO daoOf(RetailscmUserContext userContext) {
 		return productSupplyDurationDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ProductSupplyDurationManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ProductSupplyDurationManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ProductSupplyDuration saveProductSupplyDuration(RetailscmUserContext userContext, ProductSupplyDuration productSupplyDuration, String [] tokensExpr) throws Exception{	
  		//return getProductSupplyDurationDAO().save(productSupplyDuration, tokens);
@@ -167,7 +161,7 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 	public ProductSupplyDuration createProductSupplyDuration(RetailscmUserContext userContext, int quantity,String duration,BigDecimal price,String productId) throws Exception
 	//public ProductSupplyDuration createProductSupplyDuration(RetailscmUserContext userContext,int quantity, String duration, BigDecimal price, String productId) throws Exception
 	{
-		
+
 		
 
 		
@@ -195,14 +189,14 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 		onNewInstanceCreated(userContext, productSupplyDuration);
 		return productSupplyDuration;
 
-		
+
 	}
-	protected ProductSupplyDuration createNewProductSupplyDuration() 
+	protected ProductSupplyDuration createNewProductSupplyDuration()
 	{
-		
-		return new ProductSupplyDuration();		
+
+		return new ProductSupplyDuration();
 	}
-	
+
 	protected void checkParamsForUpdatingProductSupplyDuration(RetailscmUserContext userContext,String productSupplyDurationId, int productSupplyDurationVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,28 +220,28 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductSupplyDurationManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ProductSupplyDuration clone(RetailscmUserContext userContext, String fromProductSupplyDurationId) throws Exception{
-		
+
 		return productSupplyDurationDaoOf(userContext).clone(fromProductSupplyDurationId, this.allTokens());
 	}
-	
-	public ProductSupplyDuration internalSaveProductSupplyDuration(RetailscmUserContext userContext, ProductSupplyDuration productSupplyDuration) throws Exception 
+
+	public ProductSupplyDuration internalSaveProductSupplyDuration(RetailscmUserContext userContext, ProductSupplyDuration productSupplyDuration) throws Exception
 	{
 		return internalSaveProductSupplyDuration(userContext, productSupplyDuration, allTokens());
 
 	}
-	public ProductSupplyDuration internalSaveProductSupplyDuration(RetailscmUserContext userContext, ProductSupplyDuration productSupplyDuration, Map<String,Object> options) throws Exception 
+	public ProductSupplyDuration internalSaveProductSupplyDuration(RetailscmUserContext userContext, ProductSupplyDuration productSupplyDuration, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingProductSupplyDuration(userContext, productSupplyDurationId, productSupplyDurationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(productSupplyDuration){ 
+
+
+		synchronized(productSupplyDuration){
 			//will be good when the productSupplyDuration loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProductSupplyDuration.
@@ -256,23 +250,23 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 			}
 			productSupplyDuration = saveProductSupplyDuration(userContext, productSupplyDuration, options);
 			return productSupplyDuration;
-			
+
 		}
 
 	}
-	
-	public ProductSupplyDuration updateProductSupplyDuration(RetailscmUserContext userContext,String productSupplyDurationId, int productSupplyDurationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ProductSupplyDuration updateProductSupplyDuration(RetailscmUserContext userContext,String productSupplyDurationId, int productSupplyDurationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingProductSupplyDuration(userContext, productSupplyDurationId, productSupplyDurationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ProductSupplyDuration productSupplyDuration = loadProductSupplyDuration(userContext, productSupplyDurationId, allTokens());
 		if(productSupplyDuration.getVersion() != productSupplyDurationVersion){
 			String message = "The target version("+productSupplyDuration.getVersion()+") is not equals to version("+productSupplyDurationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(productSupplyDuration){ 
+		synchronized(productSupplyDuration){
 			//will be good when the productSupplyDuration loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProductSupplyDuration.
@@ -284,21 +278,21 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 		}
 
 	}
-	
-	public ProductSupplyDuration updateProductSupplyDurationProperty(RetailscmUserContext userContext,String productSupplyDurationId, int productSupplyDurationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ProductSupplyDuration updateProductSupplyDurationProperty(RetailscmUserContext userContext,String productSupplyDurationId, int productSupplyDurationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingProductSupplyDuration(userContext, productSupplyDurationId, productSupplyDurationVersion, property, newValueExpr, tokensExpr);
-		
+
 		ProductSupplyDuration productSupplyDuration = loadProductSupplyDuration(userContext, productSupplyDurationId, allTokens());
 		if(productSupplyDuration.getVersion() != productSupplyDurationVersion){
 			String message = "The target version("+productSupplyDuration.getVersion()+") is not equals to version("+productSupplyDurationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(productSupplyDuration){ 
+		synchronized(productSupplyDuration){
 			//will be good when the productSupplyDuration loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProductSupplyDuration.
-			
+
 			productSupplyDuration.changeProperty(property, newValueExpr);
 			
 			productSupplyDuration = saveProductSupplyDuration(userContext, productSupplyDuration, tokens().done());
@@ -310,7 +304,7 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ProductSupplyDurationTokens tokens(){
 		return ProductSupplyDurationTokens.start();
 	}
@@ -331,11 +325,11 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 	
 	protected void checkParamsForTransferingAnotherProduct(RetailscmUserContext userContext, String productSupplyDurationId, String anotherProductId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfProductSupplyDuration(productSupplyDurationId);
  		checkerOf(userContext).checkIdOfSupplierProduct(anotherProductId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ProductSupplyDurationManagerException.class);
- 		
+
  	}
  	public ProductSupplyDuration transferToAnotherProduct(RetailscmUserContext userContext, String productSupplyDurationId, String anotherProductId) throws Exception
  	{
@@ -354,10 +348,10 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSupplierProduct requestCandidateProduct(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSupplierProduct result = new CandidateSupplierProduct();
@@ -367,7 +361,7 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("productName");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -377,42 +371,42 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected SupplierProduct loadSupplierProduct(RetailscmUserContext userContext, String newProductId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return supplierProductDaoOf(userContext).load(newProductId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String productSupplyDurationId, int productSupplyDurationVersion) throws Exception {
-		//deleteInternal(userContext, productSupplyDurationId, productSupplyDurationVersion);		
+		//deleteInternal(userContext, productSupplyDurationId, productSupplyDurationVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String productSupplyDurationId, int productSupplyDurationVersion) throws Exception{
-			
+
 		productSupplyDurationDaoOf(userContext).delete(productSupplyDurationId, productSupplyDurationVersion);
 	}
-	
+
 	public ProductSupplyDuration forgetByAll(RetailscmUserContext userContext, String productSupplyDurationId, int productSupplyDurationVersion) throws Exception {
-		return forgetByAllInternal(userContext, productSupplyDurationId, productSupplyDurationVersion);		
+		return forgetByAllInternal(userContext, productSupplyDurationId, productSupplyDurationVersion);
 	}
 	protected ProductSupplyDuration forgetByAllInternal(RetailscmUserContext userContext,
 			String productSupplyDurationId, int productSupplyDurationVersion) throws Exception{
-			
+
 		return productSupplyDurationDaoOf(userContext).disconnectFromAll(productSupplyDurationId, productSupplyDurationVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -423,23 +417,29 @@ public class ProductSupplyDurationManagerImpl extends CustomRetailscmCheckerMana
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return productSupplyDurationDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ProductSupplyDuration newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

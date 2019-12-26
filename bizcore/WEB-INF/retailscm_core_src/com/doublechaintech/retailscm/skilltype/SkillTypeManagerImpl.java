@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkill;
@@ -34,28 +25,31 @@ import com.doublechaintech.retailscm.employee.Employee;
 
 
 public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implements SkillTypeManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "SkillType";
 	@Override
 	public SkillTypeDAO daoOf(RetailscmUserContext userContext) {
 		return skillTypeDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws SkillTypeManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new SkillTypeManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected SkillType saveSkillType(RetailscmUserContext userContext, SkillType skillType, String [] tokensExpr) throws Exception{	
  		//return getSkillTypeDAO().save(skillType, tokens);
@@ -174,7 +168,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	public SkillType createSkillType(RetailscmUserContext userContext, String code,String companyId,String description) throws Exception
 	//public SkillType createSkillType(RetailscmUserContext userContext,String code, String companyId, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -200,14 +194,14 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		onNewInstanceCreated(userContext, skillType);
 		return skillType;
 
-		
+
 	}
-	protected SkillType createNewSkillType() 
+	protected SkillType createNewSkillType()
 	{
-		
-		return new SkillType();		
+
+		return new SkillType();
 	}
-	
+
 	protected void checkParamsForUpdatingSkillType(RetailscmUserContext userContext,String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -228,28 +222,28 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public SkillType clone(RetailscmUserContext userContext, String fromSkillTypeId) throws Exception{
-		
+
 		return skillTypeDaoOf(userContext).clone(fromSkillTypeId, this.allTokens());
 	}
-	
-	public SkillType internalSaveSkillType(RetailscmUserContext userContext, SkillType skillType) throws Exception 
+
+	public SkillType internalSaveSkillType(RetailscmUserContext userContext, SkillType skillType) throws Exception
 	{
 		return internalSaveSkillType(userContext, skillType, allTokens());
 
 	}
-	public SkillType internalSaveSkillType(RetailscmUserContext userContext, SkillType skillType, Map<String,Object> options) throws Exception 
+	public SkillType internalSaveSkillType(RetailscmUserContext userContext, SkillType skillType, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingSkillType(userContext, skillTypeId, skillTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(skillType){ 
+
+
+		synchronized(skillType){
 			//will be good when the skillType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SkillType.
@@ -258,23 +252,23 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			}
 			skillType = saveSkillType(userContext, skillType, options);
 			return skillType;
-			
+
 		}
 
 	}
-	
-	public SkillType updateSkillType(RetailscmUserContext userContext,String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SkillType updateSkillType(RetailscmUserContext userContext,String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSkillType(userContext, skillTypeId, skillTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		SkillType skillType = loadSkillType(userContext, skillTypeId, allTokens());
 		if(skillType.getVersion() != skillTypeVersion){
 			String message = "The target version("+skillType.getVersion()+") is not equals to version("+skillTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(skillType){ 
+		synchronized(skillType){
 			//will be good when the skillType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SkillType.
@@ -286,21 +280,21 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
 	}
-	
-	public SkillType updateSkillTypeProperty(RetailscmUserContext userContext,String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SkillType updateSkillTypeProperty(RetailscmUserContext userContext,String skillTypeId, int skillTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSkillType(userContext, skillTypeId, skillTypeVersion, property, newValueExpr, tokensExpr);
-		
+
 		SkillType skillType = loadSkillType(userContext, skillTypeId, allTokens());
 		if(skillType.getVersion() != skillTypeVersion){
 			String message = "The target version("+skillType.getVersion()+") is not equals to version("+skillTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(skillType){ 
+		synchronized(skillType){
 			//will be good when the skillType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SkillType.
-			
+
 			skillType.changeProperty(property, newValueExpr);
 			
 			skillType = saveSkillType(userContext, skillType, tokens().done());
@@ -312,7 +306,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected SkillTypeTokens tokens(){
 		return SkillTypeTokens.start();
 	}
@@ -334,11 +328,11 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String skillTypeId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
- 		
+
  	}
  	public SkillType transferToAnotherCompany(RetailscmUserContext userContext, String skillTypeId, String anotherCompanyId) throws Exception
  	{
@@ -357,10 +351,10 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -370,7 +364,7 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -380,42 +374,42 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String skillTypeId, int skillTypeVersion) throws Exception {
-		//deleteInternal(userContext, skillTypeId, skillTypeVersion);		
+		//deleteInternal(userContext, skillTypeId, skillTypeVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String skillTypeId, int skillTypeVersion) throws Exception{
-			
+
 		skillTypeDaoOf(userContext).delete(skillTypeId, skillTypeVersion);
 	}
-	
+
 	public SkillType forgetByAll(RetailscmUserContext userContext, String skillTypeId, int skillTypeVersion) throws Exception {
-		return forgetByAllInternal(userContext, skillTypeId, skillTypeVersion);		
+		return forgetByAllInternal(userContext, skillTypeId, skillTypeVersion);
 	}
 	protected SkillType forgetByAllInternal(RetailscmUserContext userContext,
 			String skillTypeId, int skillTypeVersion) throws Exception{
-			
+
 		return skillTypeDaoOf(userContext).disconnectFromAll(skillTypeId, skillTypeVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -426,8 +420,8 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return skillTypeDaoOf(userContext).deleteAll();
 	}
@@ -436,29 +430,29 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	//disconnect SkillType with employee in EmployeeSkill
 	protected SkillType breakWithEmployeeSkillByEmployee(RetailscmUserContext userContext, String skillTypeId, String employeeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SkillType skillType = loadSkillType(userContext, skillTypeId, allTokens());
 
-			synchronized(skillType){ 
+			synchronized(skillType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				skillTypeDaoOf(userContext).planToRemoveEmployeeSkillListWithEmployee(skillType, employeeId, this.emptyOptions());
 
 				skillType = saveSkillType(userContext, skillType, tokens().withEmployeeSkillList().done());
 				return skillType;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, String employeeId, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfSkillType(skillTypeId);
 
 		
@@ -468,20 +462,20 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
 
-	
+
 	}
 	public  SkillType addEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, String employeeId, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeSkill(userContext,skillTypeId,employeeId, description,tokensExpr);
-		
+
 		EmployeeSkill employeeSkill = createEmployeeSkill(userContext,employeeId, description);
-		
-		SkillType skillType = loadSkillType(userContext, skillTypeId, allTokens());
-		synchronized(skillType){ 
+
+		SkillType skillType = loadSkillType(userContext, skillTypeId, emptyOptions());
+		synchronized(skillType){
 			//Will be good when the skillType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			skillType.addEmployeeSkill( employeeSkill );		
+			skillType.addEmployeeSkill( employeeSkill );
 			skillType = saveSkillType(userContext, skillType, tokens().withEmployeeSkillList().done());
 			
 			userContext.getManagerGroup().getEmployeeSkillManager().onNewInstanceCreated(userContext, employeeSkill);
@@ -489,43 +483,43 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeSkillProperties(RetailscmUserContext userContext, String skillTypeId,String id,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
 		checkerOf(userContext).checkIdOfEmployeeSkill(id);
-		
+
 		checkerOf(userContext).checkDescriptionOfEmployeeSkill( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
-		
+
 	}
 	public  SkillType updateEmployeeSkillProperties(RetailscmUserContext userContext, String skillTypeId, String id,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeSkillProperties(userContext,skillTypeId,id,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeSkillListList()
 				.searchEmployeeSkillListWith(EmployeeSkill.ID_PROPERTY, "is", id).done();
-		
+
 		SkillType skillTypeToUpdate = loadSkillType(userContext, skillTypeId, options);
-		
+
 		if(skillTypeToUpdate.getEmployeeSkillList().isEmpty()){
 			throw new SkillTypeManagerException("EmployeeSkill is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeSkill item = skillTypeToUpdate.getEmployeeSkillList().first();
-		
+
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingEmployeeSkill(userContext,skillTypeId,name, code, used,tokensExpr);
 		SkillType skillType = saveSkillType(userContext, skillTypeToUpdate, tokens().withEmployeeSkillList().done());
-		synchronized(skillType){ 
+		synchronized(skillType){
 			return present(userContext,skillType, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeSkill createEmployeeSkill(RetailscmUserContext userContext, String employeeId, String description) throws Exception{
 
 		EmployeeSkill employeeSkill = new EmployeeSkill();
@@ -538,44 +532,38 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 		
 		return employeeSkill;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeSkill createIndexedEmployeeSkill(String id, int version){
 
 		EmployeeSkill employeeSkill = new EmployeeSkill();
 		employeeSkill.setId(id);
 		employeeSkill.setVersion(version);
-		return employeeSkill;			
-		
+		return employeeSkill;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeSkillList(RetailscmUserContext userContext, String skillTypeId, 
+
+	protected void checkParamsForRemovingEmployeeSkillList(RetailscmUserContext userContext, String skillTypeId,
 			String employeeSkillIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfSkillType(skillTypeId);
-		for(String employeeSkillIdItem: employeeSkillIds){
-			userContext.getChecker().checkIdOfEmployeeSkill(employeeSkillIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfSkillType(skillTypeId);
 		for(String employeeSkillIdItem: employeeSkillIds){
 			checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
-		
+
 	}
-	public  SkillType removeEmployeeSkillList(RetailscmUserContext userContext, String skillTypeId, 
+	public  SkillType removeEmployeeSkillList(RetailscmUserContext userContext, String skillTypeId,
 			String employeeSkillIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeSkillList(userContext, skillTypeId,  employeeSkillIds, tokensExpr);
-			
-			
+
+
 			SkillType skillType = loadSkillType(userContext, skillTypeId, allTokens());
-			synchronized(skillType){ 
+			synchronized(skillType){
 				//Will be good when the skillType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				skillTypeDaoOf(userContext).planToRemoveEmployeeSkillList(skillType, employeeSkillIds, allTokens());
@@ -584,65 +572,65 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 				return present(userContext,skillType, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, 
+
+	protected void checkParamsForRemovingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSkillType( skillTypeId);
 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
 		checkerOf(userContext).checkVersionOfEmployeeSkill(employeeSkillVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
-	
+
 	}
-	public  SkillType removeEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, 
+	public  SkillType removeEmployeeSkill(RetailscmUserContext userContext, String skillTypeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeSkill(userContext,skillTypeId, employeeSkillId, employeeSkillVersion,tokensExpr);
-		
+
 		EmployeeSkill employeeSkill = createIndexedEmployeeSkill(employeeSkillId, employeeSkillVersion);
 		SkillType skillType = loadSkillType(userContext, skillTypeId, allTokens());
-		synchronized(skillType){ 
+		synchronized(skillType){
 			//Will be good when the skillType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			skillType.removeEmployeeSkill( employeeSkill );		
+			skillType.removeEmployeeSkill( employeeSkill );
 			skillType = saveSkillType(userContext, skillType, tokens().withEmployeeSkillList().done());
 			deleteRelationInGraph(userContext, employeeSkill);
 			return present(userContext,skillType, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, 
+	protected void checkParamsForCopyingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSkillType( skillTypeId);
 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
 		checkerOf(userContext).checkVersionOfEmployeeSkill(employeeSkillVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
-	
+
 	}
-	public  SkillType copyEmployeeSkillFrom(RetailscmUserContext userContext, String skillTypeId, 
+	public  SkillType copyEmployeeSkillFrom(RetailscmUserContext userContext, String skillTypeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeSkill(userContext,skillTypeId, employeeSkillId, employeeSkillVersion,tokensExpr);
-		
+
 		EmployeeSkill employeeSkill = createIndexedEmployeeSkill(employeeSkillId, employeeSkillVersion);
 		SkillType skillType = loadSkillType(userContext, skillTypeId, allTokens());
-		synchronized(skillType){ 
+		synchronized(skillType){
 			//Will be good when the skillType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			skillType.copyEmployeeSkillFrom( employeeSkill );		
+
+			skillType.copyEmployeeSkillFrom( employeeSkill );
 			skillType = saveSkillType(userContext, skillType, tokens().withEmployeeSkillList().done());
 			
 			userContext.getManagerGroup().getEmployeeSkillManager().onNewInstanceCreated(userContext, (EmployeeSkill)skillType.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,skillType, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, String employeeSkillId, int employeeSkillVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -658,32 +646,32 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SkillTypeManagerException.class);
-	
+
 	}
-	
+
 	public  SkillType updateEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, String employeeSkillId, int employeeSkillVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeSkill(userContext, skillTypeId, employeeSkillId, employeeSkillVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeSkillList().searchEmployeeSkillListWith(EmployeeSkill.ID_PROPERTY, "eq", employeeSkillId).done();
-		
-		
-		
+
+
+
 		SkillType skillType = loadSkillType(userContext, skillTypeId, loadTokens);
-		
-		synchronized(skillType){ 
+
+		synchronized(skillType){
 			//Will be good when the skillType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//skillType.removeEmployeeSkill( employeeSkill );	
+			//skillType.removeEmployeeSkill( employeeSkill );
 			//make changes to AcceleraterAccount.
 			EmployeeSkill employeeSkillIndex = createIndexedEmployeeSkill(employeeSkillId, employeeSkillVersion);
-		
+
 			EmployeeSkill employeeSkill = skillType.findTheEmployeeSkill(employeeSkillIndex);
 			if(employeeSkill == null){
 				throw new SkillTypeManagerException(employeeSkill+" is NOT FOUND" );
 			}
-			
+
 			employeeSkill.changeProperty(property, newValueExpr);
 			
 			skillType = saveSkillType(userContext, skillType, tokens().withEmployeeSkillList().done());
@@ -694,14 +682,20 @@ public class SkillTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SkillType newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

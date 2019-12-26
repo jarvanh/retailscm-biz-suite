@@ -486,7 +486,9 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getCode(), getCompany(), getBaseDescription(), getDetailDescription(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

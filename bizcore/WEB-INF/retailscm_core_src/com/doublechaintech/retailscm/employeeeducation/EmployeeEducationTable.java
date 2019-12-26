@@ -24,17 +24,8 @@ public class EmployeeEducationTable{
 	static final String COLUMN_REMARK = "remark";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_EMPLOYEE, COLUMN_COMPLETE_TIME, COLUMN_TYPE, COLUMN_REMARK, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_EMPLOYEE, COLUMN_COMPLETE_TIME, COLUMN_TYPE, COLUMN_REMARK
-		};
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_EMPLOYEE,COLUMN_COMPLETE_TIME,COLUMN_TYPE,COLUMN_REMARK,COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {COLUMN_EMPLOYEE,COLUMN_COMPLETE_TIME,COLUMN_TYPE,COLUMN_REMARK};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

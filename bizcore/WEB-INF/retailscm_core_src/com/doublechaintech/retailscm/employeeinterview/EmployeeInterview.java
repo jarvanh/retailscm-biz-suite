@@ -309,7 +309,9 @@ public class EmployeeInterview extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getEmployee(), getInterviewType(), getRemark(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

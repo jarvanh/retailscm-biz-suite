@@ -73,7 +73,6 @@ public class SecUserTokens extends CommonTokens{
 		
 		return start()
 			.withDomain()
-			.withBlocking()
 			.withUserAppList()
 			.withLoginHistoryList();
 	
@@ -81,8 +80,7 @@ public class SecUserTokens extends CommonTokens{
 	public static SecUserTokens withoutListsTokens(){
 		
 		return start()
-			.withDomain()
-			.withBlocking();
+			.withDomain();
 	
 	}
 	
@@ -107,16 +105,6 @@ public class SecUserTokens extends CommonTokens{
 	}
 	public SecUserTokens withDomain(){		
 		addSimpleOptions(DOMAIN);
-		return this;
-	}
-	
-	
-	protected static final String BLOCKING = "blocking";
-	public String getBlocking(){
-		return BLOCKING;
-	}
-	public SecUserTokens withBlocking(){		
-		addSimpleOptions(BLOCKING);
 		return this;
 	}
 	

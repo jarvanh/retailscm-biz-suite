@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
@@ -35,28 +26,31 @@ import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
 
 
 public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implements PayingOffManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "PayingOff";
 	@Override
 	public PayingOffDAO daoOf(RetailscmUserContext userContext) {
 		return payingOffDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws PayingOffManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new PayingOffManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected PayingOff savePayingOff(RetailscmUserContext userContext, PayingOff payingOff, String [] tokensExpr) throws Exception{	
  		//return getPayingOffDAO().save(payingOff, tokens);
@@ -175,7 +169,7 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	public PayingOff createPayingOff(RetailscmUserContext userContext, String who,String paidForId,Date paidTime,BigDecimal amount) throws Exception
 	//public PayingOff createPayingOff(RetailscmUserContext userContext,String who, String paidForId, Date paidTime, BigDecimal amount) throws Exception
 	{
-		
+
 		
 
 		
@@ -203,14 +197,14 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		onNewInstanceCreated(userContext, payingOff);
 		return payingOff;
 
-		
+
 	}
-	protected PayingOff createNewPayingOff() 
+	protected PayingOff createNewPayingOff()
 	{
-		
-		return new PayingOff();		
+
+		return new PayingOff();
 	}
-	
+
 	protected void checkParamsForUpdatingPayingOff(RetailscmUserContext userContext,String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -234,28 +228,28 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public PayingOff clone(RetailscmUserContext userContext, String fromPayingOffId) throws Exception{
-		
+
 		return payingOffDaoOf(userContext).clone(fromPayingOffId, this.allTokens());
 	}
-	
-	public PayingOff internalSavePayingOff(RetailscmUserContext userContext, PayingOff payingOff) throws Exception 
+
+	public PayingOff internalSavePayingOff(RetailscmUserContext userContext, PayingOff payingOff) throws Exception
 	{
 		return internalSavePayingOff(userContext, payingOff, allTokens());
 
 	}
-	public PayingOff internalSavePayingOff(RetailscmUserContext userContext, PayingOff payingOff, Map<String,Object> options) throws Exception 
+	public PayingOff internalSavePayingOff(RetailscmUserContext userContext, PayingOff payingOff, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingPayingOff(userContext, payingOffId, payingOffVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(payingOff){ 
+
+
+		synchronized(payingOff){
 			//will be good when the payingOff loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PayingOff.
@@ -264,23 +258,23 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 			}
 			payingOff = savePayingOff(userContext, payingOff, options);
 			return payingOff;
-			
+
 		}
 
 	}
-	
-	public PayingOff updatePayingOff(RetailscmUserContext userContext,String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public PayingOff updatePayingOff(RetailscmUserContext userContext,String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingPayingOff(userContext, payingOffId, payingOffVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
 		if(payingOff.getVersion() != payingOffVersion){
 			String message = "The target version("+payingOff.getVersion()+") is not equals to version("+payingOffVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(payingOff){ 
+		synchronized(payingOff){
 			//will be good when the payingOff loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PayingOff.
@@ -292,21 +286,21 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
 	}
-	
-	public PayingOff updatePayingOffProperty(RetailscmUserContext userContext,String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public PayingOff updatePayingOffProperty(RetailscmUserContext userContext,String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingPayingOff(userContext, payingOffId, payingOffVersion, property, newValueExpr, tokensExpr);
-		
+
 		PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
 		if(payingOff.getVersion() != payingOffVersion){
 			String message = "The target version("+payingOff.getVersion()+") is not equals to version("+payingOffVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(payingOff){ 
+		synchronized(payingOff){
 			//will be good when the payingOff loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PayingOff.
-			
+
 			payingOff.changeProperty(property, newValueExpr);
 			
 			payingOff = savePayingOff(userContext, payingOff, tokens().done());
@@ -318,7 +312,7 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected PayingOffTokens tokens(){
 		return PayingOffTokens.start();
 	}
@@ -340,11 +334,11 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	protected void checkParamsForTransferingAnotherPaidFor(RetailscmUserContext userContext, String payingOffId, String anotherPaidForId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfPayingOff(payingOffId);
  		checkerOf(userContext).checkIdOfEmployee(anotherPaidForId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
- 		
+
  	}
  	public PayingOff transferToAnotherPaidFor(RetailscmUserContext userContext, String payingOffId, String anotherPaidForId) throws Exception
  	{
@@ -363,10 +357,10 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateEmployee requestCandidatePaidFor(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateEmployee result = new CandidateEmployee();
@@ -376,7 +370,7 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("company");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -386,42 +380,42 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newPaidForId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return employeeDaoOf(userContext).load(newPaidForId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String payingOffId, int payingOffVersion) throws Exception {
-		//deleteInternal(userContext, payingOffId, payingOffVersion);		
+		//deleteInternal(userContext, payingOffId, payingOffVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String payingOffId, int payingOffVersion) throws Exception{
-			
+
 		payingOffDaoOf(userContext).delete(payingOffId, payingOffVersion);
 	}
-	
+
 	public PayingOff forgetByAll(RetailscmUserContext userContext, String payingOffId, int payingOffVersion) throws Exception {
-		return forgetByAllInternal(userContext, payingOffId, payingOffVersion);		
+		return forgetByAllInternal(userContext, payingOffId, payingOffVersion);
 	}
 	protected PayingOff forgetByAllInternal(RetailscmUserContext userContext,
 			String payingOffId, int payingOffVersion) throws Exception{
-			
+
 		return payingOffDaoOf(userContext).disconnectFromAll(payingOffId, payingOffVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -432,8 +426,8 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return payingOffDaoOf(userContext).deleteAll();
 	}
@@ -442,15 +436,15 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	//disconnect PayingOff with employee in EmployeeSalarySheet
 	protected PayingOff breakWithEmployeeSalarySheetByEmployee(RetailscmUserContext userContext, String payingOffId, String employeeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
 
-			synchronized(payingOff){ 
+			synchronized(payingOff){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				payingOffDaoOf(userContext).planToRemoveEmployeeSalarySheetListWithEmployee(payingOff, employeeId, this.emptyOptions());
 
 				payingOff = savePayingOff(userContext, payingOff, tokens().withEmployeeSalarySheetList().done());
@@ -460,29 +454,29 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	//disconnect PayingOff with current_salary_grade in EmployeeSalarySheet
 	protected PayingOff breakWithEmployeeSalarySheetByCurrentSalaryGrade(RetailscmUserContext userContext, String payingOffId, String currentSalaryGradeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
 
-			synchronized(payingOff){ 
+			synchronized(payingOff){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				payingOffDaoOf(userContext).planToRemoveEmployeeSalarySheetListWithCurrentSalaryGrade(payingOff, currentSalaryGradeId, this.emptyOptions());
 
 				payingOff = savePayingOff(userContext, payingOff, tokens().withEmployeeSalarySheetList().done());
 				return payingOff;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfPayingOff(payingOffId);
 
 		
@@ -506,20 +500,20 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
 
-	
+
 	}
 	public  PayingOff addEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeSalarySheet(userContext,payingOffId,employeeId, currentSalaryGradeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance,tokensExpr);
-		
+
 		EmployeeSalarySheet employeeSalarySheet = createEmployeeSalarySheet(userContext,employeeId, currentSalaryGradeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance);
-		
-		PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
-		synchronized(payingOff){ 
+
+		PayingOff payingOff = loadPayingOff(userContext, payingOffId, emptyOptions());
+		synchronized(payingOff){
 			//Will be good when the payingOff loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			payingOff.addEmployeeSalarySheet( employeeSalarySheet );		
+			payingOff.addEmployeeSalarySheet( employeeSalarySheet );
 			payingOff = savePayingOff(userContext, payingOff, tokens().withEmployeeSalarySheetList().done());
 			
 			userContext.getManagerGroup().getEmployeeSalarySheetManager().onNewInstanceCreated(userContext, employeeSalarySheet);
@@ -527,10 +521,10 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeSalarySheetProperties(RetailscmUserContext userContext, String payingOffId,String id,BigDecimal baseSalary,BigDecimal bonus,BigDecimal reward,BigDecimal personalTax,BigDecimal socialSecurity,BigDecimal housingFound,BigDecimal jobInsurance,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfPayingOff(payingOffId);
 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(id);
-		
+
 		checkerOf(userContext).checkBaseSalaryOfEmployeeSalarySheet( baseSalary);
 		checkerOf(userContext).checkBonusOfEmployeeSalarySheet( bonus);
 		checkerOf(userContext).checkRewardOfEmployeeSalarySheet( reward);
@@ -540,25 +534,25 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		checkerOf(userContext).checkJobInsuranceOfEmployeeSalarySheet( jobInsurance);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
-		
+
 	}
 	public  PayingOff updateEmployeeSalarySheetProperties(RetailscmUserContext userContext, String payingOffId, String id,BigDecimal baseSalary,BigDecimal bonus,BigDecimal reward,BigDecimal personalTax,BigDecimal socialSecurity,BigDecimal housingFound,BigDecimal jobInsurance, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeSalarySheetProperties(userContext,payingOffId,id,baseSalary,bonus,reward,personalTax,socialSecurity,housingFound,jobInsurance,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeSalarySheetListList()
 				.searchEmployeeSalarySheetListWith(EmployeeSalarySheet.ID_PROPERTY, "is", id).done();
-		
+
 		PayingOff payingOffToUpdate = loadPayingOff(userContext, payingOffId, options);
-		
+
 		if(payingOffToUpdate.getEmployeeSalarySheetList().isEmpty()){
 			throw new PayingOffManagerException("EmployeeSalarySheet is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeSalarySheet item = payingOffToUpdate.getEmployeeSalarySheetList().first();
-		
+
 		item.updateBaseSalary( baseSalary );
 		item.updateBonus( bonus );
 		item.updateReward( reward );
@@ -567,15 +561,15 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		item.updateHousingFound( housingFound );
 		item.updateJobInsurance( jobInsurance );
 
-		
+
 		//checkParamsForAddingEmployeeSalarySheet(userContext,payingOffId,name, code, used,tokensExpr);
 		PayingOff payingOff = savePayingOff(userContext, payingOffToUpdate, tokens().withEmployeeSalarySheetList().done());
-		synchronized(payingOff){ 
+		synchronized(payingOff){
 			return present(userContext,payingOff, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeSalarySheet createEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance) throws Exception{
 
 		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
@@ -597,44 +591,38 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 		
 		return employeeSalarySheet;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeSalarySheet createIndexedEmployeeSalarySheet(String id, int version){
 
 		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
 		employeeSalarySheet.setId(id);
 		employeeSalarySheet.setVersion(version);
-		return employeeSalarySheet;			
-		
+		return employeeSalarySheet;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeSalarySheetList(RetailscmUserContext userContext, String payingOffId, 
+
+	protected void checkParamsForRemovingEmployeeSalarySheetList(RetailscmUserContext userContext, String payingOffId,
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfPayingOff(payingOffId);
-		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
-			userContext.getChecker().checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfPayingOff(payingOffId);
 		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
 			checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
-		
+
 	}
-	public  PayingOff removeEmployeeSalarySheetList(RetailscmUserContext userContext, String payingOffId, 
+	public  PayingOff removeEmployeeSalarySheetList(RetailscmUserContext userContext, String payingOffId,
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeSalarySheetList(userContext, payingOffId,  employeeSalarySheetIds, tokensExpr);
-			
-			
+
+
 			PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
-			synchronized(payingOff){ 
+			synchronized(payingOff){
 				//Will be good when the payingOff loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				payingOffDaoOf(userContext).planToRemoveEmployeeSalarySheetList(payingOff, employeeSalarySheetIds, allTokens());
@@ -643,65 +631,65 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 				return present(userContext,payingOff, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId, 
+
+	protected void checkParamsForRemovingEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPayingOff( payingOffId);
 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
 		checkerOf(userContext).checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
-	
+
 	}
-	public  PayingOff removeEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId, 
+	public  PayingOff removeEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeSalarySheet(userContext,payingOffId, employeeSalarySheetId, employeeSalarySheetVersion,tokensExpr);
-		
+
 		EmployeeSalarySheet employeeSalarySheet = createIndexedEmployeeSalarySheet(employeeSalarySheetId, employeeSalarySheetVersion);
 		PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
-		synchronized(payingOff){ 
+		synchronized(payingOff){
 			//Will be good when the payingOff loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			payingOff.removeEmployeeSalarySheet( employeeSalarySheet );		
+			payingOff.removeEmployeeSalarySheet( employeeSalarySheet );
 			payingOff = savePayingOff(userContext, payingOff, tokens().withEmployeeSalarySheetList().done());
 			deleteRelationInGraph(userContext, employeeSalarySheet);
 			return present(userContext,payingOff, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId, 
+	protected void checkParamsForCopyingEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPayingOff( payingOffId);
 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
 		checkerOf(userContext).checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
-	
+
 	}
-	public  PayingOff copyEmployeeSalarySheetFrom(RetailscmUserContext userContext, String payingOffId, 
+	public  PayingOff copyEmployeeSalarySheetFrom(RetailscmUserContext userContext, String payingOffId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeSalarySheet(userContext,payingOffId, employeeSalarySheetId, employeeSalarySheetVersion,tokensExpr);
-		
+
 		EmployeeSalarySheet employeeSalarySheet = createIndexedEmployeeSalarySheet(employeeSalarySheetId, employeeSalarySheetVersion);
 		PayingOff payingOff = loadPayingOff(userContext, payingOffId, allTokens());
-		synchronized(payingOff){ 
+		synchronized(payingOff){
 			//Will be good when the payingOff loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			payingOff.copyEmployeeSalarySheetFrom( employeeSalarySheet );		
+
+			payingOff.copyEmployeeSalarySheetFrom( employeeSalarySheet );
 			payingOff = savePayingOff(userContext, payingOff, tokens().withEmployeeSalarySheetList().done());
 			
 			userContext.getManagerGroup().getEmployeeSalarySheetManager().onNewInstanceCreated(userContext, (EmployeeSalarySheet)payingOff.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,payingOff, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId, String employeeSalarySheetId, int employeeSalarySheetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -741,32 +729,32 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PayingOffManagerException.class);
-	
+
 	}
-	
+
 	public  PayingOff updateEmployeeSalarySheet(RetailscmUserContext userContext, String payingOffId, String employeeSalarySheetId, int employeeSalarySheetVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeSalarySheet(userContext, payingOffId, employeeSalarySheetId, employeeSalarySheetVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeSalarySheetList().searchEmployeeSalarySheetListWith(EmployeeSalarySheet.ID_PROPERTY, "eq", employeeSalarySheetId).done();
-		
-		
-		
+
+
+
 		PayingOff payingOff = loadPayingOff(userContext, payingOffId, loadTokens);
-		
-		synchronized(payingOff){ 
+
+		synchronized(payingOff){
 			//Will be good when the payingOff loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//payingOff.removeEmployeeSalarySheet( employeeSalarySheet );	
+			//payingOff.removeEmployeeSalarySheet( employeeSalarySheet );
 			//make changes to AcceleraterAccount.
 			EmployeeSalarySheet employeeSalarySheetIndex = createIndexedEmployeeSalarySheet(employeeSalarySheetId, employeeSalarySheetVersion);
-		
+
 			EmployeeSalarySheet employeeSalarySheet = payingOff.findTheEmployeeSalarySheet(employeeSalarySheetIndex);
 			if(employeeSalarySheet == null){
 				throw new PayingOffManagerException(employeeSalarySheet+" is NOT FOUND" );
 			}
-			
+
 			employeeSalarySheet.changeProperty(property, newValueExpr);
 			
 			payingOff = savePayingOff(userContext, payingOff, tokens().withEmployeeSalarySheetList().done());
@@ -777,14 +765,20 @@ public class PayingOffManagerImpl extends CustomRetailscmCheckerManager implemen
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, PayingOff newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

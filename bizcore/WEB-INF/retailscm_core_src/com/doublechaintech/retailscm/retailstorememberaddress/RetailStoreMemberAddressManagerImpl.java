@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.retailstoremember.CandidateRetailStoreMembe
 
 
 public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreMemberAddressManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "RetailStoreMemberAddress";
 	@Override
 	public RetailStoreMemberAddressDAO daoOf(RetailscmUserContext userContext) {
 		return retailStoreMemberAddressDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws RetailStoreMemberAddressManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new RetailStoreMemberAddressManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected RetailStoreMemberAddress saveRetailStoreMemberAddress(RetailscmUserContext userContext, RetailStoreMemberAddress retailStoreMemberAddress, String [] tokensExpr) throws Exception{	
  		//return getRetailStoreMemberAddressDAO().save(retailStoreMemberAddress, tokens);
@@ -167,7 +161,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	public RetailStoreMemberAddress createRetailStoreMemberAddress(RetailscmUserContext userContext, String name,String ownerId,String mobilePhone,String address) throws Exception
 	//public RetailStoreMemberAddress createRetailStoreMemberAddress(RetailscmUserContext userContext,String name, String ownerId, String mobilePhone, String address) throws Exception
 	{
-		
+
 		
 
 		
@@ -195,14 +189,14 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		onNewInstanceCreated(userContext, retailStoreMemberAddress);
 		return retailStoreMemberAddress;
 
-		
+
 	}
-	protected RetailStoreMemberAddress createNewRetailStoreMemberAddress() 
+	protected RetailStoreMemberAddress createNewRetailStoreMemberAddress()
 	{
-		
-		return new RetailStoreMemberAddress();		
+
+		return new RetailStoreMemberAddress();
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreMemberAddress(RetailscmUserContext userContext,String retailStoreMemberAddressId, int retailStoreMemberAddressVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,28 +220,28 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public RetailStoreMemberAddress clone(RetailscmUserContext userContext, String fromRetailStoreMemberAddressId) throws Exception{
-		
+
 		return retailStoreMemberAddressDaoOf(userContext).clone(fromRetailStoreMemberAddressId, this.allTokens());
 	}
-	
-	public RetailStoreMemberAddress internalSaveRetailStoreMemberAddress(RetailscmUserContext userContext, RetailStoreMemberAddress retailStoreMemberAddress) throws Exception 
+
+	public RetailStoreMemberAddress internalSaveRetailStoreMemberAddress(RetailscmUserContext userContext, RetailStoreMemberAddress retailStoreMemberAddress) throws Exception
 	{
 		return internalSaveRetailStoreMemberAddress(userContext, retailStoreMemberAddress, allTokens());
 
 	}
-	public RetailStoreMemberAddress internalSaveRetailStoreMemberAddress(RetailscmUserContext userContext, RetailStoreMemberAddress retailStoreMemberAddress, Map<String,Object> options) throws Exception 
+	public RetailStoreMemberAddress internalSaveRetailStoreMemberAddress(RetailscmUserContext userContext, RetailStoreMemberAddress retailStoreMemberAddress, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingRetailStoreMemberAddress(userContext, retailStoreMemberAddressId, retailStoreMemberAddressVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(retailStoreMemberAddress){ 
+
+
+		synchronized(retailStoreMemberAddress){
 			//will be good when the retailStoreMemberAddress loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberAddress.
@@ -256,23 +250,23 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 			}
 			retailStoreMemberAddress = saveRetailStoreMemberAddress(userContext, retailStoreMemberAddress, options);
 			return retailStoreMemberAddress;
-			
+
 		}
 
 	}
-	
-	public RetailStoreMemberAddress updateRetailStoreMemberAddress(RetailscmUserContext userContext,String retailStoreMemberAddressId, int retailStoreMemberAddressVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreMemberAddress updateRetailStoreMemberAddress(RetailscmUserContext userContext,String retailStoreMemberAddressId, int retailStoreMemberAddressVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreMemberAddress(userContext, retailStoreMemberAddressId, retailStoreMemberAddressVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		RetailStoreMemberAddress retailStoreMemberAddress = loadRetailStoreMemberAddress(userContext, retailStoreMemberAddressId, allTokens());
 		if(retailStoreMemberAddress.getVersion() != retailStoreMemberAddressVersion){
 			String message = "The target version("+retailStoreMemberAddress.getVersion()+") is not equals to version("+retailStoreMemberAddressVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreMemberAddress){ 
+		synchronized(retailStoreMemberAddress){
 			//will be good when the retailStoreMemberAddress loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberAddress.
@@ -284,21 +278,21 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		}
 
 	}
-	
-	public RetailStoreMemberAddress updateRetailStoreMemberAddressProperty(RetailscmUserContext userContext,String retailStoreMemberAddressId, int retailStoreMemberAddressVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreMemberAddress updateRetailStoreMemberAddressProperty(RetailscmUserContext userContext,String retailStoreMemberAddressId, int retailStoreMemberAddressVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreMemberAddress(userContext, retailStoreMemberAddressId, retailStoreMemberAddressVersion, property, newValueExpr, tokensExpr);
-		
+
 		RetailStoreMemberAddress retailStoreMemberAddress = loadRetailStoreMemberAddress(userContext, retailStoreMemberAddressId, allTokens());
 		if(retailStoreMemberAddress.getVersion() != retailStoreMemberAddressVersion){
 			String message = "The target version("+retailStoreMemberAddress.getVersion()+") is not equals to version("+retailStoreMemberAddressVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreMemberAddress){ 
+		synchronized(retailStoreMemberAddress){
 			//will be good when the retailStoreMemberAddress loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberAddress.
-			
+
 			retailStoreMemberAddress.changeProperty(property, newValueExpr);
 			
 			retailStoreMemberAddress = saveRetailStoreMemberAddress(userContext, retailStoreMemberAddress, tokens().done());
@@ -310,7 +304,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected RetailStoreMemberAddressTokens tokens(){
 		return RetailStoreMemberAddressTokens.start();
 	}
@@ -331,11 +325,11 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 	
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberAddressId, String anotherOwnerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfRetailStoreMemberAddress(retailStoreMemberAddressId);
  		checkerOf(userContext).checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberAddressManagerException.class);
- 		
+
  	}
  	public RetailStoreMemberAddress transferToAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberAddressId, String anotherOwnerId) throws Exception
  	{
@@ -354,10 +348,10 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreMember requestCandidateOwner(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreMember result = new CandidateRetailStoreMember();
@@ -367,7 +361,7 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -377,42 +371,42 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreMemberDaoOf(userContext).load(newOwnerId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String retailStoreMemberAddressId, int retailStoreMemberAddressVersion) throws Exception {
-		//deleteInternal(userContext, retailStoreMemberAddressId, retailStoreMemberAddressVersion);		
+		//deleteInternal(userContext, retailStoreMemberAddressId, retailStoreMemberAddressVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreMemberAddressId, int retailStoreMemberAddressVersion) throws Exception{
-			
+
 		retailStoreMemberAddressDaoOf(userContext).delete(retailStoreMemberAddressId, retailStoreMemberAddressVersion);
 	}
-	
+
 	public RetailStoreMemberAddress forgetByAll(RetailscmUserContext userContext, String retailStoreMemberAddressId, int retailStoreMemberAddressVersion) throws Exception {
-		return forgetByAllInternal(userContext, retailStoreMemberAddressId, retailStoreMemberAddressVersion);		
+		return forgetByAllInternal(userContext, retailStoreMemberAddressId, retailStoreMemberAddressVersion);
 	}
 	protected RetailStoreMemberAddress forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreMemberAddressId, int retailStoreMemberAddressVersion) throws Exception{
-			
+
 		return retailStoreMemberAddressDaoOf(userContext).disconnectFromAll(retailStoreMemberAddressId, retailStoreMemberAddressVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -423,23 +417,29 @@ public class RetailStoreMemberAddressManagerImpl extends CustomRetailscmCheckerM
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return retailStoreMemberAddressDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreMemberAddress newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

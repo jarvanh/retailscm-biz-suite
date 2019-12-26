@@ -443,7 +443,9 @@ public class AccountingDocumentType extends BaseEntity implements  java.io.Seria
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getDescription(), getAccountingPeriod(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

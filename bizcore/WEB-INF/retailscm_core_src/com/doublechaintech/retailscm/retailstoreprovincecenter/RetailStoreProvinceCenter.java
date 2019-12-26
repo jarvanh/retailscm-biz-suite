@@ -732,7 +732,9 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getFounded(), getCountry(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

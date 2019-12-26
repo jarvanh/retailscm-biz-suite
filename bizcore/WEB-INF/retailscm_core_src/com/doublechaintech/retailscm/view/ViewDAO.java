@@ -10,12 +10,6 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
-<<<<<<< HEAD
-
-
-public interface ViewDAO{
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 
 public interface ViewDAO extends BaseDAO{

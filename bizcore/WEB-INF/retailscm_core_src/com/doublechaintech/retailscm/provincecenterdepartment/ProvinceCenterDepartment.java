@@ -23,7 +23,7 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 	public static final String NAME_PROPERTY                  = "name"              ;
 	public static final String FOUNDED_PROPERTY               = "founded"           ;
 	public static final String PROVINCE_CENTER_PROPERTY       = "provinceCenter"    ;
-	public static final String MANAGER_NAME_PROPERTY          = "managerName"       ;
+	public static final String MANAGER_PROPERTY               = "manager"           ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String PROVINCE_CENTER_EMPLOYEE_LIST            = "provinceCenterEmployeeList";
@@ -51,7 +51,7 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 	protected		String              	mName               ;
 	protected		Date                	mFounded            ;
 	protected		RetailStoreProvinceCenter	mProvinceCenter     ;
-	protected		String              	mManagerName        ;
+	protected		String              	mManager            ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -89,8 +89,8 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 		if(FOUNDED_PROPERTY.equals(property)){
 			changeFoundedProperty(newValueExpr);
 		}
-		if(MANAGER_NAME_PROPERTY.equals(property)){
-			changeManagerNameProperty(newValueExpr);
+		if(MANAGER_PROPERTY.equals(property)){
+			changeManagerProperty(newValueExpr);
 		}
 
       
@@ -127,15 +127,15 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 			
 			
 			
-	protected void changeManagerNameProperty(String newValueExpr){
-		String oldValue = getManagerName();
+	protected void changeManagerProperty(String newValueExpr){
+		String oldValue = getManager();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
-		updateManagerName(newValue);
-		this.onChangeProperty(MANAGER_NAME_PROPERTY, oldValue, newValue);
+		updateManager(newValue);
+		this.onChangeProperty(MANAGER_PROPERTY, oldValue, newValue);
 		return;
   
 	}
@@ -156,13 +156,8 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 		if(PROVINCE_CENTER_PROPERTY.equals(property)){
 			return getProvinceCenter();
 		}
-<<<<<<< HEAD
 		if(MANAGER_PROPERTY.equals(property)){
 			return getManager();
-=======
-		if(MANAGER_NAME_PROPERTY.equals(property)){
-			return getManagerName();
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
 		if(PROVINCE_CENTER_EMPLOYEE_LIST.equals(property)){
 			List<BaseEntity> list = getProvinceCenterEmployeeList().stream().map(item->item).collect(Collectors.toList());
@@ -248,24 +243,19 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 		this.changed = true;
 	}
 	
-	public void setManagerName(String managerName){
-		this.mManagerName = trimString(managerName);;
+	public void setManager(String manager){
+		this.mManager = trimString(manager);;
 	}
-	public String getManagerName(){
-		return this.mManagerName;
+	public String getManager(){
+		return this.mManager;
 	}
-	public ProvinceCenterDepartment updateManagerName(String managerName){
-		this.mManagerName = trimString(managerName);;
+	public ProvinceCenterDepartment updateManager(String manager){
+		this.mManager = trimString(manager);;
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
 	public void mergeManager(String manager){
 		if(manager != null) { setManager(manager);}
-=======
-	public void mergeManagerName(String managerName){
-		if(managerName != null) { setManagerName(managerName);}
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -425,7 +415,7 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 		appendKeyValuePair(result, NAME_PROPERTY, getName());
 		appendKeyValuePair(result, FOUNDED_PROPERTY, getFounded());
 		appendKeyValuePair(result, PROVINCE_CENTER_PROPERTY, getProvinceCenter());
-		appendKeyValuePair(result, MANAGER_NAME_PROPERTY, getManagerName());
+		appendKeyValuePair(result, MANAGER_PROPERTY, getManager());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, PROVINCE_CENTER_EMPLOYEE_LIST, getProvinceCenterEmployeeList());
 		if(!getProvinceCenterEmployeeList().isEmpty()){
@@ -450,7 +440,7 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 			dest.setName(getName());
 			dest.setFounded(getFounded());
 			dest.setProvinceCenter(getProvinceCenter());
-			dest.setManagerName(getManagerName());
+			dest.setManager(getManager());
 			dest.setVersion(getVersion());
 			dest.setProvinceCenterEmployeeList(getProvinceCenterEmployeeList());
 
@@ -470,11 +460,7 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 			dest.mergeName(getName());
 			dest.mergeFounded(getFounded());
 			dest.mergeProvinceCenter(getProvinceCenter());
-<<<<<<< HEAD
 			dest.mergeManager(getManager());
-=======
-			dest.mergeManagerName(getManagerName());
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 			dest.mergeProvinceCenterEmployeeList(getProvinceCenterEmployeeList());
 
@@ -494,17 +480,15 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeFounded(getFounded());
-<<<<<<< HEAD
 			dest.mergeManager(getManager());
-=======
-			dest.mergeManagerName(getManagerName());
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getFounded(), getProvinceCenter(), getManager(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -515,7 +499,7 @@ public class ProvinceCenterDepartment extends BaseEntity implements  java.io.Ser
 		if(getProvinceCenter() != null ){
  			stringBuilder.append("\tprovinceCenter='RetailStoreProvinceCenter("+getProvinceCenter().getId()+")';");
  		}
-		stringBuilder.append("\tmanagerName='"+getManagerName()+"';");
+		stringBuilder.append("\tmanager='"+getManager()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
 

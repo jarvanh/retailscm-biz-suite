@@ -303,7 +303,7 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfRetailStoreList(String verb, String value){	
-		String field = "id|name|owner|description";
+		String field = "id|name|telephone|owner|description";
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -653,7 +653,7 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfWarehouseList(String verb, String value){	
-		String field = "id|location|totalArea";
+		String field = "id|location|contactNumber|totalArea";
 		addSearchMoreOptions(WAREHOUSE_LIST,warehouseListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -723,7 +723,7 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfTransportFleetList(String verb, String value){	
-		String field = "id|name";
+		String field = "id|name|contactNumber";
 		addSearchMoreOptions(TRANSPORT_FLEET_LIST,transportFleetListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -793,7 +793,7 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfAccountSetList(String verb, String value){	
-		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank";
+		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank|accountNumber";
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -863,7 +863,7 @@ public class RetailStoreCountryCenterTokens extends CommonTokens{
 	
 	
 	public RetailStoreCountryCenterTokens searchAllTextOfLevelOneDepartmentList(String verb, String value){	
-		String field = "id|name|description|managerName";
+		String field = "id|name|description|manager";
 		addSearchMoreOptions(LEVEL_ONE_DEPARTMENT_LIST,levelOneDepartmentListSearchCounter++, field, verb, value);
 		return this;
 	}

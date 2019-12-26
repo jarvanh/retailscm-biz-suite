@@ -52,7 +52,7 @@ public class StorageSpace extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mLocation           ;
-	protected		long                	mContactNumber      ;
+	protected		String              	mContactNumber      ;
 	protected		String              	mTotalArea          ;
 	protected		Warehouse           	mWarehouse          ;
 	protected		BigDecimal          	mLatitude           ;
@@ -84,21 +84,6 @@ public class StorageSpace extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public 	StorageSpace(String location, String contactNumber, String totalArea, Warehouse warehouse, BigDecimal latitude, BigDecimal longitude, DateTime lastUpdateTime)
-	{
-		setLocation(location);
-		setContactNumber(contactNumber);
-		setTotalArea(totalArea);
-		setWarehouse(warehouse);
-		setLatitude(latitude);
-		setLongitude(longitude);
-		setLastUpdateTime(lastUpdateTime);
-
-		this.mGoodsShelfList = new SmartList<GoodsShelf>();	
-	}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	
@@ -143,9 +128,9 @@ public class StorageSpace extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
-		long oldValue = getContactNumber();
-		long newValue = parseLong(newValueExpr);
-		if(equalsLong(oldValue , newValue)){
+		String oldValue = getContactNumber();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -290,24 +275,19 @@ public class StorageSpace extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setContactNumber(long contactNumber){
-		this.mContactNumber = contactNumber;;
+	public void setContactNumber(String contactNumber){
+		this.mContactNumber = trimString(contactNumber);;
 	}
-	public long getContactNumber(){
+	public String getContactNumber(){
 		return this.mContactNumber;
 	}
-	public StorageSpace updateContactNumber(long contactNumber){
-		this.mContactNumber = contactNumber;;
+	public StorageSpace updateContactNumber(String contactNumber){
+		this.mContactNumber = trimString(contactNumber);;
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
 	public void mergeContactNumber(String contactNumber){
 		if(contactNumber != null) { setContactNumber(contactNumber);}
-=======
-	public void mergeContactNumber(long contactNumber){
-		setContactNumber(contactNumber);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -635,7 +615,9 @@ public class StorageSpace extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getLocation(), getContactNumber(), getTotalArea(), getWarehouse(), getLatitude(), getLongitude(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -657,13 +639,6 @@ public class StorageSpace extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
-	
-	public void increaseContactNumber(long incContactNumber){
-		updateContactNumber(this.mContactNumber +  incContactNumber);
-	}
-	public void decreaseContactNumber(long decContactNumber){
-		updateContactNumber(this.mContactNumber - decContactNumber);
-	}
 	
 
 }

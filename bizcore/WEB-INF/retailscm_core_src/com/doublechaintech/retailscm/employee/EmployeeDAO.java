@@ -9,24 +9,17 @@ import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
 import com.doublechaintech.retailscm.employeeleave.EmployeeLeave;
 import com.doublechaintech.retailscm.employeeinterview.EmployeeInterview;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkill;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.payingoff.PayingOff;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
 import com.doublechaintech.retailscm.occupationtype.OccupationType;
 import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTraining;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
-import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.employeeattendance.EmployeeAttendance;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
 import com.doublechaintech.retailscm.employeequalifier.EmployeeQualifier;
 import com.doublechaintech.retailscm.employeeperformance.EmployeePerformance;
 import com.doublechaintech.retailscm.employeeeducation.EmployeeEducation;
@@ -34,28 +27,21 @@ import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 import com.doublechaintech.retailscm.employeeworkexperience.EmployeeWorkExperience;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAward;
 
-import com.doublechaintech.retailscm.offerapproval.OfferApprovalDAO;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheetDAO;
 import com.doublechaintech.retailscm.salarygrade.SalaryGradeDAO;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterviewDAO;
 import com.doublechaintech.retailscm.employeeworkexperience.EmployeeWorkExperienceDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityTypeDAO;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkillDAO;
 import com.doublechaintech.retailscm.employeeinterview.EmployeeInterviewDAO;
 import com.doublechaintech.retailscm.employeeperformance.EmployeePerformanceDAO;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceDAO;
 import com.doublechaintech.retailscm.employeeleave.EmployeeLeaveDAO;
 import com.doublechaintech.retailscm.occupationtype.OccupationTypeDAO;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAwardDAO;
 import com.doublechaintech.retailscm.employeeattendance.EmployeeAttendanceDAO;
 import com.doublechaintech.retailscm.employeequalifier.EmployeeQualifierDAO;
-import com.doublechaintech.retailscm.jobapplication.JobApplicationDAO;
 import com.doublechaintech.retailscm.payingoff.PayingOffDAO;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartmentDAO;
-import com.doublechaintech.retailscm.hrinterview.HrInterviewDAO;
-import com.doublechaintech.retailscm.termination.TerminationDAO;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingDAO;
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTrainingDAO;
 import com.doublechaintech.retailscm.employeeeducation.EmployeeEducationDAO;
 
@@ -243,62 +229,6 @@ public interface EmployeeDAO extends BaseDAO{
  	public Map<String, Integer> countEmployeeByCurrentSalaryGradeIds(String[] ids, Map<String,Object> options);
  	public SmartList<Employee> findEmployeeByCurrentSalaryGrade(String salaryGradeId, int start, int count, Map<String,Object> options);
  	public void analyzeEmployeeByCurrentSalaryGrade(SmartList<Employee> resultList, String salaryGradeId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Employee> findEmployeeByJobApplication(String jobApplicationId, Map<String,Object> options);
- 	public int countEmployeeByJobApplication(String jobApplicationId, Map<String,Object> options);
- 	public Map<String, Integer> countEmployeeByJobApplicationIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Employee> findEmployeeByJobApplication(String jobApplicationId, int start, int count, Map<String,Object> options);
- 	public void analyzeEmployeeByJobApplication(SmartList<Employee> resultList, String jobApplicationId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Employee> findEmployeeByProfessionInterview(String professionInterviewId, Map<String,Object> options);
- 	public int countEmployeeByProfessionInterview(String professionInterviewId, Map<String,Object> options);
- 	public Map<String, Integer> countEmployeeByProfessionInterviewIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Employee> findEmployeeByProfessionInterview(String professionInterviewId, int start, int count, Map<String,Object> options);
- 	public void analyzeEmployeeByProfessionInterview(SmartList<Employee> resultList, String professionInterviewId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Employee> findEmployeeByHrInterview(String hrInterviewId, Map<String,Object> options);
- 	public int countEmployeeByHrInterview(String hrInterviewId, Map<String,Object> options);
- 	public Map<String, Integer> countEmployeeByHrInterviewIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Employee> findEmployeeByHrInterview(String hrInterviewId, int start, int count, Map<String,Object> options);
- 	public void analyzeEmployeeByHrInterview(SmartList<Employee> resultList, String hrInterviewId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Employee> findEmployeeByOfferApproval(String offerApprovalId, Map<String,Object> options);
- 	public int countEmployeeByOfferApproval(String offerApprovalId, Map<String,Object> options);
- 	public Map<String, Integer> countEmployeeByOfferApprovalIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Employee> findEmployeeByOfferApproval(String offerApprovalId, int start, int count, Map<String,Object> options);
- 	public void analyzeEmployeeByOfferApproval(SmartList<Employee> resultList, String offerApprovalId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Employee> findEmployeeByOfferAcceptance(String offerAcceptanceId, Map<String,Object> options);
- 	public int countEmployeeByOfferAcceptance(String offerAcceptanceId, Map<String,Object> options);
- 	public Map<String, Integer> countEmployeeByOfferAcceptanceIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Employee> findEmployeeByOfferAcceptance(String offerAcceptanceId, int start, int count, Map<String,Object> options);
- 	public void analyzeEmployeeByOfferAcceptance(SmartList<Employee> resultList, String offerAcceptanceId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Employee> findEmployeeByEmployeeBoarding(String employeeBoardingId, Map<String,Object> options);
- 	public int countEmployeeByEmployeeBoarding(String employeeBoardingId, Map<String,Object> options);
- 	public Map<String, Integer> countEmployeeByEmployeeBoardingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Employee> findEmployeeByEmployeeBoarding(String employeeBoardingId, int start, int count, Map<String,Object> options);
- 	public void analyzeEmployeeByEmployeeBoarding(SmartList<Employee> resultList, String employeeBoardingId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Employee> findEmployeeByTermination(String terminationId, Map<String,Object> options);
- 	public int countEmployeeByTermination(String terminationId, Map<String,Object> options);
- 	public Map<String, Integer> countEmployeeByTerminationIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Employee> findEmployeeByTermination(String terminationId, int start, int count, Map<String,Object> options);
- 	public void analyzeEmployeeByTermination(SmartList<Employee> resultList, String terminationId, Map<String,Object> options);
 
  
  

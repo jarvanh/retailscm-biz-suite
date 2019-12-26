@@ -9,27 +9,17 @@ import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroup;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.consumerorderpriceadjustment.ConsumerOrderPriceAdjustment;
 import com.doublechaintech.retailscm.consumerorderpaymentgroup.ConsumerOrderPaymentGroup;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItem;
 import com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord.RetailStoreMemberGiftCardConsumeRecord;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroupDAO;
 import com.doublechaintech.retailscm.consumerorderpaymentgroup.ConsumerOrderPaymentGroupDAO;
 import com.doublechaintech.retailscm.consumerorderpriceadjustment.ConsumerOrderPriceAdjustmentDAO;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingDAO;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryDAO;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationDAO;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalDAO;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentDAO;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemDAO;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 import com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord.RetailStoreMemberGiftCardConsumeRecordDAO;
@@ -118,46 +108,6 @@ public interface ConsumerOrderDAO extends BaseDAO{
  	public Map<String, Integer> countConsumerOrderByConsumerIds(String[] ids, Map<String,Object> options);
  	public SmartList<ConsumerOrder> findConsumerOrderByConsumer(String retailStoreMemberId, int start, int count, Map<String,Object> options);
  	public void analyzeConsumerOrderByConsumer(SmartList<ConsumerOrder> resultList, String retailStoreMemberId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<ConsumerOrder> findConsumerOrderByConfirmation(String supplyOrderConfirmationId, Map<String,Object> options);
- 	public int countConsumerOrderByConfirmation(String supplyOrderConfirmationId, Map<String,Object> options);
- 	public Map<String, Integer> countConsumerOrderByConfirmationIds(String[] ids, Map<String,Object> options);
- 	public SmartList<ConsumerOrder> findConsumerOrderByConfirmation(String supplyOrderConfirmationId, int start, int count, Map<String,Object> options);
- 	public void analyzeConsumerOrderByConfirmation(SmartList<ConsumerOrder> resultList, String supplyOrderConfirmationId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<ConsumerOrder> findConsumerOrderByApproval(String supplyOrderApprovalId, Map<String,Object> options);
- 	public int countConsumerOrderByApproval(String supplyOrderApprovalId, Map<String,Object> options);
- 	public Map<String, Integer> countConsumerOrderByApprovalIds(String[] ids, Map<String,Object> options);
- 	public SmartList<ConsumerOrder> findConsumerOrderByApproval(String supplyOrderApprovalId, int start, int count, Map<String,Object> options);
- 	public void analyzeConsumerOrderByApproval(SmartList<ConsumerOrder> resultList, String supplyOrderApprovalId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<ConsumerOrder> findConsumerOrderByProcessing(String supplyOrderProcessingId, Map<String,Object> options);
- 	public int countConsumerOrderByProcessing(String supplyOrderProcessingId, Map<String,Object> options);
- 	public Map<String, Integer> countConsumerOrderByProcessingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<ConsumerOrder> findConsumerOrderByProcessing(String supplyOrderProcessingId, int start, int count, Map<String,Object> options);
- 	public void analyzeConsumerOrderByProcessing(SmartList<ConsumerOrder> resultList, String supplyOrderProcessingId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<ConsumerOrder> findConsumerOrderByShipment(String supplyOrderShipmentId, Map<String,Object> options);
- 	public int countConsumerOrderByShipment(String supplyOrderShipmentId, Map<String,Object> options);
- 	public Map<String, Integer> countConsumerOrderByShipmentIds(String[] ids, Map<String,Object> options);
- 	public SmartList<ConsumerOrder> findConsumerOrderByShipment(String supplyOrderShipmentId, int start, int count, Map<String,Object> options);
- 	public void analyzeConsumerOrderByShipment(SmartList<ConsumerOrder> resultList, String supplyOrderShipmentId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<ConsumerOrder> findConsumerOrderByDelivery(String supplyOrderDeliveryId, Map<String,Object> options);
- 	public int countConsumerOrderByDelivery(String supplyOrderDeliveryId, Map<String,Object> options);
- 	public Map<String, Integer> countConsumerOrderByDeliveryIds(String[] ids, Map<String,Object> options);
- 	public SmartList<ConsumerOrder> findConsumerOrderByDelivery(String supplyOrderDeliveryId, int start, int count, Map<String,Object> options);
- 	public void analyzeConsumerOrderByDelivery(SmartList<ConsumerOrder> resultList, String supplyOrderDeliveryId, Map<String,Object> options);
 
  
   

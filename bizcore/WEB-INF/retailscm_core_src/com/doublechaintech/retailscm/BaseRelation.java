@@ -163,7 +163,7 @@ public class BaseRelation{
 		String [] retailStoreMemberRelatedObjectNames = {"owner:RetailStoreCountryCenter"};
 		addRelationIndex("RetailStoreMember",retailStoreMemberRelatedObjectNames);
 
-		String [] consumerOrderRelatedObjectNames = {"consumer:RetailStoreMember","confirmation:SupplyOrderConfirmation","approval:SupplyOrderApproval","processing:SupplyOrderProcessing","shipment:SupplyOrderShipment","delivery:SupplyOrderDelivery","store:RetailStore"};
+		String [] consumerOrderRelatedObjectNames = {"consumer:RetailStoreMember","store:RetailStore"};
 		addRelationIndex("ConsumerOrder",consumerOrderRelatedObjectNames);
 
 		String [] consumerOrderLineItemRelatedObjectNames = {"biz_order:ConsumerOrder"};
@@ -211,7 +211,7 @@ public class BaseRelation{
 		String [] productSupplyDurationRelatedObjectNames = {"product:SupplierProduct"};
 		addRelationIndex("ProductSupplyDuration",productSupplyDurationRelatedObjectNames);
 
-		String [] supplyOrderRelatedObjectNames = {"buyer:RetailStoreCountryCenter","seller:GoodsSupplier","confirmation:SupplyOrderConfirmation","approval:SupplyOrderApproval","processing:SupplyOrderProcessing","picking:SupplyOrderPicking","shipment:SupplyOrderShipment","delivery:SupplyOrderDelivery"};
+		String [] supplyOrderRelatedObjectNames = {"buyer:RetailStoreCountryCenter","seller:GoodsSupplier"};
 		addRelationIndex("SupplyOrder",supplyOrderRelatedObjectNames);
 
 		String [] supplyOrderLineItemRelatedObjectNames = {"biz_order:SupplyOrder"};
@@ -223,7 +223,7 @@ public class BaseRelation{
 		String [] supplyOrderPaymentGroupRelatedObjectNames = {"biz_order:SupplyOrder"};
 		addRelationIndex("SupplyOrderPaymentGroup",supplyOrderPaymentGroupRelatedObjectNames);
 
-		String [] retailStoreOrderRelatedObjectNames = {"buyer:RetailStore","seller:RetailStoreCountryCenter","confirmation:RetailStoreOrderConfirmation","approval:RetailStoreOrderApproval","processing:RetailStoreOrderProcessing","picking:RetailStoreOrderPicking","shipment:RetailStoreOrderShipment","delivery:RetailStoreOrderDelivery"};
+		String [] retailStoreOrderRelatedObjectNames = {"buyer:RetailStore","seller:RetailStoreCountryCenter"};
 		addRelationIndex("RetailStoreOrder",retailStoreOrderRelatedObjectNames);
 
 		String [] retailStoreOrderLineItemRelatedObjectNames = {"biz_order:RetailStoreOrder"};
@@ -256,7 +256,7 @@ public class BaseRelation{
 		String [] goodsAllocationRelatedObjectNames = {"goods_shelf:GoodsShelf"};
 		addRelationIndex("GoodsAllocation",goodsAllocationRelatedObjectNames);
 
-		String [] goodsRelatedObjectNames = {"sku:Sku","receiving_space:ReceivingSpace","goods_allocation:GoodsAllocation","smart_pallet:SmartPallet","shipping_space:ShippingSpace","transport_task:TransportTask","retail_store:RetailStore","biz_order:SupplyOrder","retail_store_order:RetailStoreOrder","packaging:GoodsPackaging"};
+		String [] goodsRelatedObjectNames = {"sku:Sku","receiving_space:ReceivingSpace","goods_allocation:GoodsAllocation","smart_pallet:SmartPallet","shipping_space:ShippingSpace","transport_task:TransportTask","retail_store:RetailStore","biz_order:SupplyOrder","retail_store_order:RetailStoreOrder"};
 		addRelationIndex("Goods",goodsRelatedObjectNames);
 
 		String [] goodsMovementRelatedObjectNames = {"goods:Goods"};
@@ -304,10 +304,10 @@ public class BaseRelation{
 		String [] accountingDocumentTypeRelatedObjectNames = {"accounting_period:AccountSet"};
 		addRelationIndex("AccountingDocumentType",accountingDocumentTypeRelatedObjectNames);
 
-		String [] accountingDocumentRelatedObjectNames = {"accounting_period:AccountingPeriod","document_type:AccountingDocumentType","creation:AccountingDocumentCreation","confirmation:AccountingDocumentConfirmation","auditing:AccountingDocumentAuditing","posting:AccountingDocumentPosting"};
+		String [] accountingDocumentRelatedObjectNames = {"accounting_period:AccountingPeriod","document_type:AccountingDocumentType"};
 		addRelationIndex("AccountingDocument",accountingDocumentRelatedObjectNames);
 
-		String [] originalVoucherRelatedObjectNames = {"belongs_to:AccountingDocument","creation:OriginalVoucherCreation","confirmation:OriginalVoucherConfirmation","auditing:OriginalVoucherAuditing"};
+		String [] originalVoucherRelatedObjectNames = {"belongs_to:AccountingDocument"};
 		addRelationIndex("OriginalVoucher",originalVoucherRelatedObjectNames);
 
 		String [] accountingDocumentLineRelatedObjectNames = {"belongs_to:AccountingDocument","accounting_subject:AccountingSubject"};
@@ -355,7 +355,7 @@ public class BaseRelation{
 		String [] terminationRelatedObjectNames = {"reason:TerminationReason","type:TerminationType"};
 		addRelationIndex("Termination",terminationRelatedObjectNames);
 
-		String [] employeeRelatedObjectNames = {"company:RetailStoreCountryCenter","department:LevelThreeDepartment","occupation:OccupationType","responsible_for:ResponsibilityType","current_salary_grade:SalaryGrade","job_application:JobApplication","profession_interview:ProfessionInterview","hr_interview:HrInterview","offer_approval:OfferApproval","offer_acceptance:OfferAcceptance","employee_boarding:EmployeeBoarding","termination:Termination"};
+		String [] employeeRelatedObjectNames = {"company:RetailStoreCountryCenter","department:LevelThreeDepartment","occupation:OccupationType","responsible_for:ResponsibilityType","current_salary_grade:SalaryGrade"};
 		addRelationIndex("Employee",employeeRelatedObjectNames);
 
 		String [] instructorRelatedObjectNames = {"company:RetailStoreCountryCenter"};
@@ -403,7 +403,7 @@ public class BaseRelation{
 		String [] userWhiteListRelatedObjectNames = {"domain:UserDomain"};
 		addRelationIndex("UserWhiteList",userWhiteListRelatedObjectNames);
 
-		String [] secUserRelatedObjectNames = {"domain:UserDomain","blocking:SecUserBlocking"};
+		String [] secUserRelatedObjectNames = {"domain:UserDomain"};
 		addRelationIndex("SecUser",secUserRelatedObjectNames);
 
 		String [] userAppRelatedObjectNames = {"sec_user:SecUser"};
@@ -487,11 +487,6 @@ public class BaseRelation{
 		addGenericRelation("RetailStore"                           ,TRUST_CHAIN_READ,"closing");
 		addGenericRelation("RetailStoreMember"                     ,TRUST_CHAIN_READ,"owner");
 		addGenericRelation("ConsumerOrder"                         ,TRUST_CHAIN_READ,"consumer");
-		addGenericRelation("ConsumerOrder"                         ,TRUST_CHAIN_READ,"confirmation");
-		addGenericRelation("ConsumerOrder"                         ,TRUST_CHAIN_READ,"approval");
-		addGenericRelation("ConsumerOrder"                         ,TRUST_CHAIN_READ,"processing");
-		addGenericRelation("ConsumerOrder"                         ,TRUST_CHAIN_READ,"shipment");
-		addGenericRelation("ConsumerOrder"                         ,TRUST_CHAIN_READ,"delivery");
 		addGenericRelation("ConsumerOrder"                         ,TRUST_CHAIN_READ,"store");
 		addGenericRelation("ConsumerOrderLineItem"                 ,TRUST_CHAIN_READ,"bizOrder");
 		addGenericRelation("ConsumerOrderShippingGroup"            ,TRUST_CHAIN_READ,"bizOrder");
@@ -511,23 +506,11 @@ public class BaseRelation{
 		addGenericRelation("ProductSupplyDuration"                 ,TRUST_CHAIN_READ,"product");
 		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"buyer");
 		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"seller");
-		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"confirmation");
-		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"approval");
-		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"processing");
-		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"picking");
-		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"shipment");
-		addGenericRelation("SupplyOrder"                           ,TRUST_CHAIN_READ,"delivery");
 		addGenericRelation("SupplyOrderLineItem"                   ,TRUST_CHAIN_READ,"bizOrder");
 		addGenericRelation("SupplyOrderShippingGroup"              ,TRUST_CHAIN_READ,"bizOrder");
 		addGenericRelation("SupplyOrderPaymentGroup"               ,TRUST_CHAIN_READ,"bizOrder");
 		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"buyer");
 		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"seller");
-		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"confirmation");
-		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"approval");
-		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"processing");
-		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"picking");
-		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"shipment");
-		addGenericRelation("RetailStoreOrder"                      ,TRUST_CHAIN_READ,"delivery");
 		addGenericRelation("RetailStoreOrderLineItem"              ,TRUST_CHAIN_READ,"bizOrder");
 		addGenericRelation("RetailStoreOrderShippingGroup"         ,TRUST_CHAIN_READ,"bizOrder");
 		addGenericRelation("RetailStoreOrderPaymentGroup"          ,TRUST_CHAIN_READ,"bizOrder");
@@ -549,7 +532,6 @@ public class BaseRelation{
 		addGenericRelation("Goods"                                 ,TRUST_CHAIN_READ,"retailStore");
 		addGenericRelation("Goods"                                 ,TRUST_CHAIN_READ,"bizOrder");
 		addGenericRelation("Goods"                                 ,TRUST_CHAIN_READ,"retailStoreOrder");
-		addGenericRelation("Goods"                                 ,TRUST_CHAIN_READ,"packaging");
 		addGenericRelation("GoodsMovement"                         ,TRUST_CHAIN_READ,"goods");
 		addGenericRelation("SupplierSpace"                         ,TRUST_CHAIN_READ,"warehouse");
 		addGenericRelation("ReceivingSpace"                        ,TRUST_CHAIN_READ,"warehouse");
@@ -572,14 +554,7 @@ public class BaseRelation{
 		addGenericRelation("AccountingDocumentType"                ,TRUST_CHAIN_READ,"accountingPeriod");
 		addGenericRelation("AccountingDocument"                    ,TRUST_CHAIN_READ,"accountingPeriod");
 		addGenericRelation("AccountingDocument"                    ,TRUST_CHAIN_READ,"documentType");
-		addGenericRelation("AccountingDocument"                    ,TRUST_CHAIN_READ,"creation");
-		addGenericRelation("AccountingDocument"                    ,TRUST_CHAIN_READ,"confirmation");
-		addGenericRelation("AccountingDocument"                    ,TRUST_CHAIN_READ,"auditing");
-		addGenericRelation("AccountingDocument"                    ,TRUST_CHAIN_READ,"posting");
 		addGenericRelation("OriginalVoucher"                       ,TRUST_CHAIN_READ,"belongsTo");
-		addGenericRelation("OriginalVoucher"                       ,TRUST_CHAIN_READ,"creation");
-		addGenericRelation("OriginalVoucher"                       ,TRUST_CHAIN_READ,"confirmation");
-		addGenericRelation("OriginalVoucher"                       ,TRUST_CHAIN_READ,"auditing");
 		addGenericRelation("AccountingDocumentLine"                ,TRUST_CHAIN_READ,"belongsTo");
 		addGenericRelation("AccountingDocumentLine"                ,TRUST_CHAIN_READ,"accountingSubject");
 		addGenericRelation("LevelOneDepartment"                    ,TRUST_CHAIN_READ,"belongsTo");
@@ -602,13 +577,6 @@ public class BaseRelation{
 		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"occupation");
 		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"responsibleFor");
 		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"currentSalaryGrade");
-		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"jobApplication");
-		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"professionInterview");
-		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"hrInterview");
-		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"offerApproval");
-		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"offerAcceptance");
-		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"employeeBoarding");
-		addGenericRelation("Employee"                              ,TRUST_CHAIN_READ,"termination");
 		addGenericRelation("Instructor"                            ,TRUST_CHAIN_READ,"company");
 		addGenericRelation("CompanyTraining"                       ,TRUST_CHAIN_READ,"company");
 		addGenericRelation("CompanyTraining"                       ,TRUST_CHAIN_READ,"instructor");
@@ -634,7 +602,6 @@ public class BaseRelation{
 		addGenericRelation("PayingOff"                             ,TRUST_CHAIN_READ,"paidFor");
 		addGenericRelation("UserWhiteList"                         ,TRUST_CHAIN_READ,"domain");
 		addGenericRelation("SecUser"                               ,TRUST_CHAIN_READ,"domain");
-		addGenericRelation("SecUser"                               ,TRUST_CHAIN_READ,"blocking");
 		addGenericRelation("UserApp"                               ,TRUST_CHAIN_READ,"secUser");
 		addGenericRelation("QuickLink"                             ,TRUST_CHAIN_READ,"app");
 		addGenericRelation("ListAccess"                            ,TRUST_CHAIN_READ,"app");

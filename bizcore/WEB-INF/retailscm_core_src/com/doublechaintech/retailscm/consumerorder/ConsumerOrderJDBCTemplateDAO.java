@@ -20,27 +20,17 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroup;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.consumerorderpriceadjustment.ConsumerOrderPriceAdjustment;
 import com.doublechaintech.retailscm.consumerorderpaymentgroup.ConsumerOrderPaymentGroup;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItem;
 import com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord.RetailStoreMemberGiftCardConsumeRecord;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroupDAO;
 import com.doublechaintech.retailscm.consumerorderpaymentgroup.ConsumerOrderPaymentGroupDAO;
 import com.doublechaintech.retailscm.consumerorderpriceadjustment.ConsumerOrderPriceAdjustmentDAO;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingDAO;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryDAO;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationDAO;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalDAO;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentDAO;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemDAO;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
 import com.doublechaintech.retailscm.retailstoremembergiftcardconsumerecord.RetailStoreMemberGiftCardConsumeRecordDAO;
@@ -65,57 +55,12 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  	}
  
  	
- 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
- 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
-	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
- 	}
- 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
-	 	return this.supplyOrderProcessingDAO;
- 	}
- 
- 	
- 	private  SupplyOrderApprovalDAO  supplyOrderApprovalDAO;
- 	public void setSupplyOrderApprovalDAO(SupplyOrderApprovalDAO supplyOrderApprovalDAO){
-	 	this.supplyOrderApprovalDAO = supplyOrderApprovalDAO;
- 	}
- 	public SupplyOrderApprovalDAO getSupplyOrderApprovalDAO(){
-	 	return this.supplyOrderApprovalDAO;
- 	}
- 
- 	
  	private  RetailStoreDAO  retailStoreDAO;
  	public void setRetailStoreDAO(RetailStoreDAO retailStoreDAO){
 	 	this.retailStoreDAO = retailStoreDAO;
  	}
  	public RetailStoreDAO getRetailStoreDAO(){
 	 	return this.retailStoreDAO;
- 	}
- 
- 	
- 	private  SupplyOrderDeliveryDAO  supplyOrderDeliveryDAO;
- 	public void setSupplyOrderDeliveryDAO(SupplyOrderDeliveryDAO supplyOrderDeliveryDAO){
-	 	this.supplyOrderDeliveryDAO = supplyOrderDeliveryDAO;
- 	}
- 	public SupplyOrderDeliveryDAO getSupplyOrderDeliveryDAO(){
-	 	return this.supplyOrderDeliveryDAO;
- 	}
- 
- 	
- 	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
- 	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
-	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
- 	}
- 	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
-	 	return this.supplyOrderConfirmationDAO;
- 	}
- 
- 	
- 	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
- 	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
-	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
- 	}
- 	public SupplyOrderShipmentDAO getSupplyOrderShipmentDAO(){
-	 	return this.supplyOrderShipmentDAO;
  	}
 
 
@@ -405,76 +350,6 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  	
   
 
- 	protected boolean isExtractConfirmationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, ConsumerOrderTokens.CONFIRMATION);
- 	}
-
- 	protected boolean isSaveConfirmationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, ConsumerOrderTokens.CONFIRMATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractApprovalEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, ConsumerOrderTokens.APPROVAL);
- 	}
-
- 	protected boolean isSaveApprovalEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, ConsumerOrderTokens.APPROVAL);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractProcessingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, ConsumerOrderTokens.PROCESSING);
- 	}
-
- 	protected boolean isSaveProcessingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, ConsumerOrderTokens.PROCESSING);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractShipmentEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, ConsumerOrderTokens.SHIPMENT);
- 	}
-
- 	protected boolean isSaveShipmentEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, ConsumerOrderTokens.SHIPMENT);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractDeliveryEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, ConsumerOrderTokens.DELIVERY);
- 	}
-
- 	protected boolean isSaveDeliveryEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, ConsumerOrderTokens.DELIVERY);
- 	}
- 	
-
- 	
-  
-
  	protected boolean isExtractStoreEnabled(Map<String,Object> options){
  		
 	 	return checkOptions(options, ConsumerOrderTokens.STORE);
@@ -589,26 +464,6 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	 		extractConsumer(consumerOrder, loadOptions);
  		}
   	
- 		if(isExtractConfirmationEnabled(loadOptions)){
-	 		extractConfirmation(consumerOrder, loadOptions);
- 		}
-  	
- 		if(isExtractApprovalEnabled(loadOptions)){
-	 		extractApproval(consumerOrder, loadOptions);
- 		}
-  	
- 		if(isExtractProcessingEnabled(loadOptions)){
-	 		extractProcessing(consumerOrder, loadOptions);
- 		}
-  	
- 		if(isExtractShipmentEnabled(loadOptions)){
-	 		extractShipment(consumerOrder, loadOptions);
- 		}
-  	
- 		if(isExtractDeliveryEnabled(loadOptions)){
-	 		extractDelivery(consumerOrder, loadOptions);
- 		}
-  	
  		if(isExtractStoreEnabled(loadOptions)){
 	 		extractStore(consumerOrder, loadOptions);
  		}
@@ -672,106 +527,6 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 		RetailStoreMember consumer = getRetailStoreMemberDAO().load(consumerId,options);
 		if(consumer != null){
 			consumerOrder.setConsumer(consumer);
-		}
-		
- 		
- 		return consumerOrder;
- 	}
- 		
-  
-
- 	protected ConsumerOrder extractConfirmation(ConsumerOrder consumerOrder, Map<String,Object> options) throws Exception{
-
-		if(consumerOrder.getConfirmation() == null){
-			return consumerOrder;
-		}
-		String confirmationId = consumerOrder.getConfirmation().getId();
-		if( confirmationId == null){
-			return consumerOrder;
-		}
-		SupplyOrderConfirmation confirmation = getSupplyOrderConfirmationDAO().load(confirmationId,options);
-		if(confirmation != null){
-			consumerOrder.setConfirmation(confirmation);
-		}
-		
- 		
- 		return consumerOrder;
- 	}
- 		
-  
-
- 	protected ConsumerOrder extractApproval(ConsumerOrder consumerOrder, Map<String,Object> options) throws Exception{
-
-		if(consumerOrder.getApproval() == null){
-			return consumerOrder;
-		}
-		String approvalId = consumerOrder.getApproval().getId();
-		if( approvalId == null){
-			return consumerOrder;
-		}
-		SupplyOrderApproval approval = getSupplyOrderApprovalDAO().load(approvalId,options);
-		if(approval != null){
-			consumerOrder.setApproval(approval);
-		}
-		
- 		
- 		return consumerOrder;
- 	}
- 		
-  
-
- 	protected ConsumerOrder extractProcessing(ConsumerOrder consumerOrder, Map<String,Object> options) throws Exception{
-
-		if(consumerOrder.getProcessing() == null){
-			return consumerOrder;
-		}
-		String processingId = consumerOrder.getProcessing().getId();
-		if( processingId == null){
-			return consumerOrder;
-		}
-		SupplyOrderProcessing processing = getSupplyOrderProcessingDAO().load(processingId,options);
-		if(processing != null){
-			consumerOrder.setProcessing(processing);
-		}
-		
- 		
- 		return consumerOrder;
- 	}
- 		
-  
-
- 	protected ConsumerOrder extractShipment(ConsumerOrder consumerOrder, Map<String,Object> options) throws Exception{
-
-		if(consumerOrder.getShipment() == null){
-			return consumerOrder;
-		}
-		String shipmentId = consumerOrder.getShipment().getId();
-		if( shipmentId == null){
-			return consumerOrder;
-		}
-		SupplyOrderShipment shipment = getSupplyOrderShipmentDAO().load(shipmentId,options);
-		if(shipment != null){
-			consumerOrder.setShipment(shipment);
-		}
-		
- 		
- 		return consumerOrder;
- 	}
- 		
-  
-
- 	protected ConsumerOrder extractDelivery(ConsumerOrder consumerOrder, Map<String,Object> options) throws Exception{
-
-		if(consumerOrder.getDelivery() == null){
-			return consumerOrder;
-		}
-		String deliveryId = consumerOrder.getDelivery().getId();
-		if( deliveryId == null){
-			return consumerOrder;
-		}
-		SupplyOrderDelivery delivery = getSupplyOrderDeliveryDAO().load(deliveryId,options);
-		if(delivery != null){
-			consumerOrder.setDelivery(delivery);
 		}
 		
  		
@@ -844,21 +599,12 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			getConsumerOrderLineItemDAO().analyzeConsumerOrderLineItemByBizOrder(consumerOrderLineItemList, consumerOrder.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return consumerOrder;
 	
 	}	
 	
 		
-=======
-		
-		return consumerOrder;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceConsumerOrderShippingGroupList(SmartList<ConsumerOrderShippingGroup> consumerOrderShippingGroupList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -896,18 +642,8 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 			return consumerOrder;
 		}
 
-<<<<<<< HEAD
-=======
 		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
-		SmartList<ConsumerOrderShippingGroup> consumerOrderShippingGroupList = consumerOrder.getConsumerOrderShippingGroupList();
-		if(consumerOrderShippingGroupList != null){
-			getConsumerOrderShippingGroupDAO().analyzeConsumerOrderShippingGroupByBizOrder(consumerOrderShippingGroupList, consumerOrder.getId(), options);
-			
-		}
-		
-<<<<<<< HEAD
 		SmartList<ConsumerOrderShippingGroup> consumerOrderShippingGroupList = consumerOrder.getConsumerOrderShippingGroupList();
 		if(consumerOrderShippingGroupList != null){
 			getConsumerOrderShippingGroupDAO().analyzeConsumerOrderShippingGroupByBizOrder(consumerOrderShippingGroupList, consumerOrder.getId(), options);
@@ -919,13 +655,6 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}	
 	
 		
-=======
-		return consumerOrder;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceConsumerOrderPaymentGroupList(SmartList<ConsumerOrderPaymentGroup> consumerOrderPaymentGroupList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1128,256 +857,6 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	}
  	
   	
- 	public SmartList<ConsumerOrder> findConsumerOrderByConfirmation(String supplyOrderConfirmationId,Map<String,Object> options){
- 	
-  		SmartList<ConsumerOrder> resultList = queryWith(ConsumerOrderTable.COLUMN_CONFIRMATION, supplyOrderConfirmationId, options, getConsumerOrderMapper());
-		// analyzeConsumerOrderByConfirmation(resultList, supplyOrderConfirmationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<ConsumerOrder> findConsumerOrderByConfirmation(String supplyOrderConfirmationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<ConsumerOrder> resultList =  queryWithRange(ConsumerOrderTable.COLUMN_CONFIRMATION, supplyOrderConfirmationId, options, getConsumerOrderMapper(), start, count);
- 		//analyzeConsumerOrderByConfirmation(resultList, supplyOrderConfirmationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeConsumerOrderByConfirmation(SmartList<ConsumerOrder> resultList, String supplyOrderConfirmationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(ConsumerOrder.CONFIRMATION_PROPERTY, supplyOrderConfirmationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countConsumerOrderByConfirmation(String supplyOrderConfirmationId,Map<String,Object> options){
-
- 		return countWith(ConsumerOrderTable.COLUMN_CONFIRMATION, supplyOrderConfirmationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countConsumerOrderByConfirmationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(ConsumerOrderTable.COLUMN_CONFIRMATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<ConsumerOrder> findConsumerOrderByApproval(String supplyOrderApprovalId,Map<String,Object> options){
- 	
-  		SmartList<ConsumerOrder> resultList = queryWith(ConsumerOrderTable.COLUMN_APPROVAL, supplyOrderApprovalId, options, getConsumerOrderMapper());
-		// analyzeConsumerOrderByApproval(resultList, supplyOrderApprovalId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<ConsumerOrder> findConsumerOrderByApproval(String supplyOrderApprovalId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<ConsumerOrder> resultList =  queryWithRange(ConsumerOrderTable.COLUMN_APPROVAL, supplyOrderApprovalId, options, getConsumerOrderMapper(), start, count);
- 		//analyzeConsumerOrderByApproval(resultList, supplyOrderApprovalId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeConsumerOrderByApproval(SmartList<ConsumerOrder> resultList, String supplyOrderApprovalId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(ConsumerOrder.APPROVAL_PROPERTY, supplyOrderApprovalId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countConsumerOrderByApproval(String supplyOrderApprovalId,Map<String,Object> options){
-
- 		return countWith(ConsumerOrderTable.COLUMN_APPROVAL, supplyOrderApprovalId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countConsumerOrderByApprovalIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(ConsumerOrderTable.COLUMN_APPROVAL, ids, options);
-	}
- 	
-  	
- 	public SmartList<ConsumerOrder> findConsumerOrderByProcessing(String supplyOrderProcessingId,Map<String,Object> options){
- 	
-  		SmartList<ConsumerOrder> resultList = queryWith(ConsumerOrderTable.COLUMN_PROCESSING, supplyOrderProcessingId, options, getConsumerOrderMapper());
-		// analyzeConsumerOrderByProcessing(resultList, supplyOrderProcessingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<ConsumerOrder> findConsumerOrderByProcessing(String supplyOrderProcessingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<ConsumerOrder> resultList =  queryWithRange(ConsumerOrderTable.COLUMN_PROCESSING, supplyOrderProcessingId, options, getConsumerOrderMapper(), start, count);
- 		//analyzeConsumerOrderByProcessing(resultList, supplyOrderProcessingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeConsumerOrderByProcessing(SmartList<ConsumerOrder> resultList, String supplyOrderProcessingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(ConsumerOrder.PROCESSING_PROPERTY, supplyOrderProcessingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countConsumerOrderByProcessing(String supplyOrderProcessingId,Map<String,Object> options){
-
- 		return countWith(ConsumerOrderTable.COLUMN_PROCESSING, supplyOrderProcessingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countConsumerOrderByProcessingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(ConsumerOrderTable.COLUMN_PROCESSING, ids, options);
-	}
- 	
-  	
- 	public SmartList<ConsumerOrder> findConsumerOrderByShipment(String supplyOrderShipmentId,Map<String,Object> options){
- 	
-  		SmartList<ConsumerOrder> resultList = queryWith(ConsumerOrderTable.COLUMN_SHIPMENT, supplyOrderShipmentId, options, getConsumerOrderMapper());
-		// analyzeConsumerOrderByShipment(resultList, supplyOrderShipmentId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<ConsumerOrder> findConsumerOrderByShipment(String supplyOrderShipmentId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<ConsumerOrder> resultList =  queryWithRange(ConsumerOrderTable.COLUMN_SHIPMENT, supplyOrderShipmentId, options, getConsumerOrderMapper(), start, count);
- 		//analyzeConsumerOrderByShipment(resultList, supplyOrderShipmentId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeConsumerOrderByShipment(SmartList<ConsumerOrder> resultList, String supplyOrderShipmentId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(ConsumerOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countConsumerOrderByShipment(String supplyOrderShipmentId,Map<String,Object> options){
-
- 		return countWith(ConsumerOrderTable.COLUMN_SHIPMENT, supplyOrderShipmentId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countConsumerOrderByShipmentIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(ConsumerOrderTable.COLUMN_SHIPMENT, ids, options);
-	}
- 	
-  	
- 	public SmartList<ConsumerOrder> findConsumerOrderByDelivery(String supplyOrderDeliveryId,Map<String,Object> options){
- 	
-  		SmartList<ConsumerOrder> resultList = queryWith(ConsumerOrderTable.COLUMN_DELIVERY, supplyOrderDeliveryId, options, getConsumerOrderMapper());
-		// analyzeConsumerOrderByDelivery(resultList, supplyOrderDeliveryId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<ConsumerOrder> findConsumerOrderByDelivery(String supplyOrderDeliveryId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<ConsumerOrder> resultList =  queryWithRange(ConsumerOrderTable.COLUMN_DELIVERY, supplyOrderDeliveryId, options, getConsumerOrderMapper(), start, count);
- 		//analyzeConsumerOrderByDelivery(resultList, supplyOrderDeliveryId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeConsumerOrderByDelivery(SmartList<ConsumerOrder> resultList, String supplyOrderDeliveryId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(ConsumerOrder.DELIVERY_PROPERTY, supplyOrderDeliveryId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//ConsumerOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("消费者订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countConsumerOrderByDelivery(String supplyOrderDeliveryId,Map<String,Object> options){
-
- 		return countWith(ConsumerOrderTable.COLUMN_DELIVERY, supplyOrderDeliveryId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countConsumerOrderByDeliveryIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(ConsumerOrderTable.COLUMN_DELIVERY, ids, options);
-	}
- 	
-  	
  	public SmartList<ConsumerOrder> findConsumerOrderByStore(String retailStoreId,Map<String,Object> options){
  	
   		SmartList<ConsumerOrder> resultList = queryWith(ConsumerOrderTable.COLUMN_STORE, retailStoreId, options, getConsumerOrderMapper());
@@ -1569,46 +1048,26 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		return prepareConsumerOrderCreateParameters(consumerOrder);
  	}
  	protected Object[] prepareConsumerOrderUpdateParameters(ConsumerOrder consumerOrder){
- 		Object[] parameters = new Object[12];
+ 		Object[] parameters = new Object[7];
  
  		parameters[0] = consumerOrder.getTitle(); 	
  		if(consumerOrder.getConsumer() != null){
  			parameters[1] = consumerOrder.getConsumer().getId();
  		}
   	
- 		if(consumerOrder.getConfirmation() != null){
- 			parameters[2] = consumerOrder.getConfirmation().getId();
- 		}
-  	
- 		if(consumerOrder.getApproval() != null){
- 			parameters[3] = consumerOrder.getApproval().getId();
- 		}
-  	
- 		if(consumerOrder.getProcessing() != null){
- 			parameters[4] = consumerOrder.getProcessing().getId();
- 		}
-  	
- 		if(consumerOrder.getShipment() != null){
- 			parameters[5] = consumerOrder.getShipment().getId();
- 		}
-  	
- 		if(consumerOrder.getDelivery() != null){
- 			parameters[6] = consumerOrder.getDelivery().getId();
- 		}
-  	
  		if(consumerOrder.getStore() != null){
- 			parameters[7] = consumerOrder.getStore().getId();
+ 			parameters[2] = consumerOrder.getStore().getId();
  		}
  
- 		parameters[8] = consumerOrder.getLastUpdateTime();		
- 		parameters[9] = consumerOrder.nextVersion();
- 		parameters[10] = consumerOrder.getId();
- 		parameters[11] = consumerOrder.getVersion();
+ 		parameters[3] = consumerOrder.getLastUpdateTime();		
+ 		parameters[4] = consumerOrder.nextVersion();
+ 		parameters[5] = consumerOrder.getId();
+ 		parameters[6] = consumerOrder.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareConsumerOrderCreateParameters(ConsumerOrder consumerOrder){
-		Object[] parameters = new Object[10];
+		Object[] parameters = new Object[5];
 		String newConsumerOrderId=getNextId();
 		consumerOrder.setId(newConsumerOrderId);
 		parameters[0] =  consumerOrder.getId();
@@ -1619,37 +1078,12 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		
  		}
  		 	
- 		if(consumerOrder.getConfirmation() != null){
- 			parameters[3] = consumerOrder.getConfirmation().getId();
- 		
- 		}
- 		 	
- 		if(consumerOrder.getApproval() != null){
- 			parameters[4] = consumerOrder.getApproval().getId();
- 		
- 		}
- 		 	
- 		if(consumerOrder.getProcessing() != null){
- 			parameters[5] = consumerOrder.getProcessing().getId();
- 		
- 		}
- 		 	
- 		if(consumerOrder.getShipment() != null){
- 			parameters[6] = consumerOrder.getShipment().getId();
- 		
- 		}
- 		 	
- 		if(consumerOrder.getDelivery() != null){
- 			parameters[7] = consumerOrder.getDelivery().getId();
- 		
- 		}
- 		 	
  		if(consumerOrder.getStore() != null){
- 			parameters[8] = consumerOrder.getStore().getId();
+ 			parameters[3] = consumerOrder.getStore().getId();
  		
  		}
  		
- 		parameters[9] = consumerOrder.getLastUpdateTime();		
+ 		parameters[4] = consumerOrder.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -1660,26 +1094,6 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  	
  		if(isSaveConsumerEnabled(options)){
 	 		saveConsumer(consumerOrder, options);
- 		}
-  	
- 		if(isSaveConfirmationEnabled(options)){
-	 		saveConfirmation(consumerOrder, options);
- 		}
-  	
- 		if(isSaveApprovalEnabled(options)){
-	 		saveApproval(consumerOrder, options);
- 		}
-  	
- 		if(isSaveProcessingEnabled(options)){
-	 		saveProcessing(consumerOrder, options);
- 		}
-  	
- 		if(isSaveShipmentEnabled(options)){
-	 		saveShipment(consumerOrder, options);
- 		}
-  	
- 		if(isSaveDeliveryEnabled(options)){
-	 		saveDelivery(consumerOrder, options);
  		}
   	
  		if(isSaveStoreEnabled(options)){
@@ -1738,91 +1152,6 @@ public class ConsumerOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		}
  		
  		getRetailStoreMemberDAO().save(consumerOrder.getConsumer(),options);
- 		return consumerOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected ConsumerOrder saveConfirmation(ConsumerOrder consumerOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(consumerOrder.getConfirmation() == null){
- 			return consumerOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderConfirmationDAO().save(consumerOrder.getConfirmation(),options);
- 		return consumerOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected ConsumerOrder saveApproval(ConsumerOrder consumerOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(consumerOrder.getApproval() == null){
- 			return consumerOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderApprovalDAO().save(consumerOrder.getApproval(),options);
- 		return consumerOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected ConsumerOrder saveProcessing(ConsumerOrder consumerOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(consumerOrder.getProcessing() == null){
- 			return consumerOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderProcessingDAO().save(consumerOrder.getProcessing(),options);
- 		return consumerOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected ConsumerOrder saveShipment(ConsumerOrder consumerOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(consumerOrder.getShipment() == null){
- 			return consumerOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderShipmentDAO().save(consumerOrder.getShipment(),options);
- 		return consumerOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected ConsumerOrder saveDelivery(ConsumerOrder consumerOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(consumerOrder.getDelivery() == null){
- 			return consumerOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderDeliveryDAO().save(consumerOrder.getDelivery(),options);
  		return consumerOrder;
  		
  	}

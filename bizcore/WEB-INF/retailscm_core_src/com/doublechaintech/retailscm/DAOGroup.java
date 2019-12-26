@@ -82,21 +82,6 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberTokens;
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO;
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrderTokens;
-import com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmation;
-import com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationDAO;
-import com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationTokens;
-import com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApproval;
-import com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalDAO;
-import com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalTokens;
-import com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessing;
-import com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingDAO;
-import com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingTokens;
-import com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipment;
-import com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentDAO;
-import com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentTokens;
-import com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDelivery;
-import com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryDAO;
-import com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryTokens;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItem;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemDAO;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemTokens;
@@ -145,24 +130,6 @@ import com.doublechaintech.retailscm.productsupplyduration.ProductSupplyDuration
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderTokens;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationDAO;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationTokens;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalDAO;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalTokens;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingDAO;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingTokens;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingDAO;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingTokens;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentDAO;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentTokens;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryDAO;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryTokens;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItem;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemDAO;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemTokens;
@@ -175,24 +142,6 @@ import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentG
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderTokens;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmation;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationDAO;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationTokens;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApproval;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalDAO;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalTokens;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessing;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingDAO;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingTokens;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPicking;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingDAO;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingTokens;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipment;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentDAO;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentTokens;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDelivery;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryDAO;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryTokens;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItem;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemDAO;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemTokens;
@@ -226,9 +175,6 @@ import com.doublechaintech.retailscm.goodsallocation.GoodsAllocationTokens;
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
 import com.doublechaintech.retailscm.goods.GoodsTokens;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackagingDAO;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackagingTokens;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovementDAO;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovementTokens;
@@ -277,30 +223,9 @@ import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentTy
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentTokens;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreation;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationDAO;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationTokens;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmation;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationDAO;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationTokens;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditing;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingDAO;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingTokens;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPosting;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingDAO;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingTokens;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucher;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherTokens;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreation;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationDAO;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationTokens;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmation;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationDAO;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationTokens;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditing;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingDAO;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingTokens;
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLine;
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineDAO;
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineTokens;
@@ -352,24 +277,6 @@ import com.doublechaintech.retailscm.view.ViewTokens;
 import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.employee.EmployeeDAO;
 import com.doublechaintech.retailscm.employee.EmployeeTokens;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
-import com.doublechaintech.retailscm.jobapplication.JobApplicationDAO;
-import com.doublechaintech.retailscm.jobapplication.JobApplicationTokens;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterviewDAO;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterviewTokens;
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
-import com.doublechaintech.retailscm.hrinterview.HrInterviewDAO;
-import com.doublechaintech.retailscm.hrinterview.HrInterviewTokens;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
-import com.doublechaintech.retailscm.offerapproval.OfferApprovalDAO;
-import com.doublechaintech.retailscm.offerapproval.OfferApprovalTokens;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceDAO;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceTokens;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingDAO;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingTokens;
 import com.doublechaintech.retailscm.instructor.Instructor;
 import com.doublechaintech.retailscm.instructor.InstructorDAO;
 import com.doublechaintech.retailscm.instructor.InstructorTokens;
@@ -424,9 +331,6 @@ import com.doublechaintech.retailscm.userwhitelist.UserWhiteListTokens;
 import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.secuser.SecUserDAO;
 import com.doublechaintech.retailscm.secuser.SecUserTokens;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingDAO;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingTokens;
 import com.doublechaintech.retailscm.userapp.UserApp;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 import com.doublechaintech.retailscm.userapp.UserAppTokens;
@@ -518,16 +422,6 @@ public class DAOGroup {
 
 	protected ConsumerOrderDAO consumerOrderDAO;
 
-	protected ConsumerOrderConfirmationDAO consumerOrderConfirmationDAO;
-
-	protected ConsumerOrderApprovalDAO consumerOrderApprovalDAO;
-
-	protected ConsumerOrderProcessingDAO consumerOrderProcessingDAO;
-
-	protected ConsumerOrderShipmentDAO consumerOrderShipmentDAO;
-
-	protected ConsumerOrderDeliveryDAO consumerOrderDeliveryDAO;
-
 	protected ConsumerOrderLineItemDAO consumerOrderLineItemDAO;
 
 	protected ConsumerOrderShippingGroupDAO consumerOrderShippingGroupDAO;
@@ -560,18 +454,6 @@ public class DAOGroup {
 
 	protected SupplyOrderDAO supplyOrderDAO;
 
-	protected SupplyOrderConfirmationDAO supplyOrderConfirmationDAO;
-
-	protected SupplyOrderApprovalDAO supplyOrderApprovalDAO;
-
-	protected SupplyOrderProcessingDAO supplyOrderProcessingDAO;
-
-	protected SupplyOrderPickingDAO supplyOrderPickingDAO;
-
-	protected SupplyOrderShipmentDAO supplyOrderShipmentDAO;
-
-	protected SupplyOrderDeliveryDAO supplyOrderDeliveryDAO;
-
 	protected SupplyOrderLineItemDAO supplyOrderLineItemDAO;
 
 	protected SupplyOrderShippingGroupDAO supplyOrderShippingGroupDAO;
@@ -579,18 +461,6 @@ public class DAOGroup {
 	protected SupplyOrderPaymentGroupDAO supplyOrderPaymentGroupDAO;
 
 	protected RetailStoreOrderDAO retailStoreOrderDAO;
-
-	protected RetailStoreOrderConfirmationDAO retailStoreOrderConfirmationDAO;
-
-	protected RetailStoreOrderApprovalDAO retailStoreOrderApprovalDAO;
-
-	protected RetailStoreOrderProcessingDAO retailStoreOrderProcessingDAO;
-
-	protected RetailStoreOrderPickingDAO retailStoreOrderPickingDAO;
-
-	protected RetailStoreOrderShipmentDAO retailStoreOrderShipmentDAO;
-
-	protected RetailStoreOrderDeliveryDAO retailStoreOrderDeliveryDAO;
 
 	protected RetailStoreOrderLineItemDAO retailStoreOrderLineItemDAO;
 
@@ -613,8 +483,6 @@ public class DAOGroup {
 	protected GoodsAllocationDAO goodsAllocationDAO;
 
 	protected GoodsDAO goodsDAO;
-
-	protected GoodsPackagingDAO goodsPackagingDAO;
 
 	protected GoodsMovementDAO goodsMovementDAO;
 
@@ -648,21 +516,7 @@ public class DAOGroup {
 
 	protected AccountingDocumentDAO accountingDocumentDAO;
 
-	protected AccountingDocumentCreationDAO accountingDocumentCreationDAO;
-
-	protected AccountingDocumentConfirmationDAO accountingDocumentConfirmationDAO;
-
-	protected AccountingDocumentAuditingDAO accountingDocumentAuditingDAO;
-
-	protected AccountingDocumentPostingDAO accountingDocumentPostingDAO;
-
 	protected OriginalVoucherDAO originalVoucherDAO;
-
-	protected OriginalVoucherCreationDAO originalVoucherCreationDAO;
-
-	protected OriginalVoucherConfirmationDAO originalVoucherConfirmationDAO;
-
-	protected OriginalVoucherAuditingDAO originalVoucherAuditingDAO;
 
 	protected AccountingDocumentLineDAO accountingDocumentLineDAO;
 
@@ -697,18 +551,6 @@ public class DAOGroup {
 	protected ViewDAO viewDAO;
 
 	protected EmployeeDAO employeeDAO;
-
-	protected JobApplicationDAO jobApplicationDAO;
-
-	protected ProfessionInterviewDAO professionInterviewDAO;
-
-	protected HrInterviewDAO hrInterviewDAO;
-
-	protected OfferApprovalDAO offerApprovalDAO;
-
-	protected OfferAcceptanceDAO offerAcceptanceDAO;
-
-	protected EmployeeBoardingDAO employeeBoardingDAO;
 
 	protected InstructorDAO instructorDAO;
 
@@ -745,8 +587,6 @@ public class DAOGroup {
 	protected UserWhiteListDAO userWhiteListDAO;
 
 	protected SecUserDAO secUserDAO;
-
-	protected SecUserBlockingDAO secUserBlockingDAO;
 
 	protected UserAppDAO userAppDAO;
 
@@ -982,46 +822,6 @@ public class DAOGroup {
 	}
 
 
-	public ConsumerOrderConfirmationDAO getConsumerOrderConfirmationDAO(){
-		return this.consumerOrderConfirmationDAO;
-	}
-	public void setConsumerOrderConfirmationDAO(ConsumerOrderConfirmationDAO dao){
-		this.consumerOrderConfirmationDAO = dao;
-	}
-
-
-	public ConsumerOrderApprovalDAO getConsumerOrderApprovalDAO(){
-		return this.consumerOrderApprovalDAO;
-	}
-	public void setConsumerOrderApprovalDAO(ConsumerOrderApprovalDAO dao){
-		this.consumerOrderApprovalDAO = dao;
-	}
-
-
-	public ConsumerOrderProcessingDAO getConsumerOrderProcessingDAO(){
-		return this.consumerOrderProcessingDAO;
-	}
-	public void setConsumerOrderProcessingDAO(ConsumerOrderProcessingDAO dao){
-		this.consumerOrderProcessingDAO = dao;
-	}
-
-
-	public ConsumerOrderShipmentDAO getConsumerOrderShipmentDAO(){
-		return this.consumerOrderShipmentDAO;
-	}
-	public void setConsumerOrderShipmentDAO(ConsumerOrderShipmentDAO dao){
-		this.consumerOrderShipmentDAO = dao;
-	}
-
-
-	public ConsumerOrderDeliveryDAO getConsumerOrderDeliveryDAO(){
-		return this.consumerOrderDeliveryDAO;
-	}
-	public void setConsumerOrderDeliveryDAO(ConsumerOrderDeliveryDAO dao){
-		this.consumerOrderDeliveryDAO = dao;
-	}
-
-
 	public ConsumerOrderLineItemDAO getConsumerOrderLineItemDAO(){
 		return this.consumerOrderLineItemDAO;
 	}
@@ -1150,54 +950,6 @@ public class DAOGroup {
 	}
 
 
-	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
-		return this.supplyOrderConfirmationDAO;
-	}
-	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO dao){
-		this.supplyOrderConfirmationDAO = dao;
-	}
-
-
-	public SupplyOrderApprovalDAO getSupplyOrderApprovalDAO(){
-		return this.supplyOrderApprovalDAO;
-	}
-	public void setSupplyOrderApprovalDAO(SupplyOrderApprovalDAO dao){
-		this.supplyOrderApprovalDAO = dao;
-	}
-
-
-	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
-		return this.supplyOrderProcessingDAO;
-	}
-	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO dao){
-		this.supplyOrderProcessingDAO = dao;
-	}
-
-
-	public SupplyOrderPickingDAO getSupplyOrderPickingDAO(){
-		return this.supplyOrderPickingDAO;
-	}
-	public void setSupplyOrderPickingDAO(SupplyOrderPickingDAO dao){
-		this.supplyOrderPickingDAO = dao;
-	}
-
-
-	public SupplyOrderShipmentDAO getSupplyOrderShipmentDAO(){
-		return this.supplyOrderShipmentDAO;
-	}
-	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO dao){
-		this.supplyOrderShipmentDAO = dao;
-	}
-
-
-	public SupplyOrderDeliveryDAO getSupplyOrderDeliveryDAO(){
-		return this.supplyOrderDeliveryDAO;
-	}
-	public void setSupplyOrderDeliveryDAO(SupplyOrderDeliveryDAO dao){
-		this.supplyOrderDeliveryDAO = dao;
-	}
-
-
 	public SupplyOrderLineItemDAO getSupplyOrderLineItemDAO(){
 		return this.supplyOrderLineItemDAO;
 	}
@@ -1227,54 +979,6 @@ public class DAOGroup {
 	}
 	public void setRetailStoreOrderDAO(RetailStoreOrderDAO dao){
 		this.retailStoreOrderDAO = dao;
-	}
-
-
-	public RetailStoreOrderConfirmationDAO getRetailStoreOrderConfirmationDAO(){
-		return this.retailStoreOrderConfirmationDAO;
-	}
-	public void setRetailStoreOrderConfirmationDAO(RetailStoreOrderConfirmationDAO dao){
-		this.retailStoreOrderConfirmationDAO = dao;
-	}
-
-
-	public RetailStoreOrderApprovalDAO getRetailStoreOrderApprovalDAO(){
-		return this.retailStoreOrderApprovalDAO;
-	}
-	public void setRetailStoreOrderApprovalDAO(RetailStoreOrderApprovalDAO dao){
-		this.retailStoreOrderApprovalDAO = dao;
-	}
-
-
-	public RetailStoreOrderProcessingDAO getRetailStoreOrderProcessingDAO(){
-		return this.retailStoreOrderProcessingDAO;
-	}
-	public void setRetailStoreOrderProcessingDAO(RetailStoreOrderProcessingDAO dao){
-		this.retailStoreOrderProcessingDAO = dao;
-	}
-
-
-	public RetailStoreOrderPickingDAO getRetailStoreOrderPickingDAO(){
-		return this.retailStoreOrderPickingDAO;
-	}
-	public void setRetailStoreOrderPickingDAO(RetailStoreOrderPickingDAO dao){
-		this.retailStoreOrderPickingDAO = dao;
-	}
-
-
-	public RetailStoreOrderShipmentDAO getRetailStoreOrderShipmentDAO(){
-		return this.retailStoreOrderShipmentDAO;
-	}
-	public void setRetailStoreOrderShipmentDAO(RetailStoreOrderShipmentDAO dao){
-		this.retailStoreOrderShipmentDAO = dao;
-	}
-
-
-	public RetailStoreOrderDeliveryDAO getRetailStoreOrderDeliveryDAO(){
-		return this.retailStoreOrderDeliveryDAO;
-	}
-	public void setRetailStoreOrderDeliveryDAO(RetailStoreOrderDeliveryDAO dao){
-		this.retailStoreOrderDeliveryDAO = dao;
 	}
 
 
@@ -1363,14 +1067,6 @@ public class DAOGroup {
 	}
 	public void setGoodsDAO(GoodsDAO dao){
 		this.goodsDAO = dao;
-	}
-
-
-	public GoodsPackagingDAO getGoodsPackagingDAO(){
-		return this.goodsPackagingDAO;
-	}
-	public void setGoodsPackagingDAO(GoodsPackagingDAO dao){
-		this.goodsPackagingDAO = dao;
 	}
 
 
@@ -1502,67 +1198,11 @@ public class DAOGroup {
 	}
 
 
-	public AccountingDocumentCreationDAO getAccountingDocumentCreationDAO(){
-		return this.accountingDocumentCreationDAO;
-	}
-	public void setAccountingDocumentCreationDAO(AccountingDocumentCreationDAO dao){
-		this.accountingDocumentCreationDAO = dao;
-	}
-
-
-	public AccountingDocumentConfirmationDAO getAccountingDocumentConfirmationDAO(){
-		return this.accountingDocumentConfirmationDAO;
-	}
-	public void setAccountingDocumentConfirmationDAO(AccountingDocumentConfirmationDAO dao){
-		this.accountingDocumentConfirmationDAO = dao;
-	}
-
-
-	public AccountingDocumentAuditingDAO getAccountingDocumentAuditingDAO(){
-		return this.accountingDocumentAuditingDAO;
-	}
-	public void setAccountingDocumentAuditingDAO(AccountingDocumentAuditingDAO dao){
-		this.accountingDocumentAuditingDAO = dao;
-	}
-
-
-	public AccountingDocumentPostingDAO getAccountingDocumentPostingDAO(){
-		return this.accountingDocumentPostingDAO;
-	}
-	public void setAccountingDocumentPostingDAO(AccountingDocumentPostingDAO dao){
-		this.accountingDocumentPostingDAO = dao;
-	}
-
-
 	public OriginalVoucherDAO getOriginalVoucherDAO(){
 		return this.originalVoucherDAO;
 	}
 	public void setOriginalVoucherDAO(OriginalVoucherDAO dao){
 		this.originalVoucherDAO = dao;
-	}
-
-
-	public OriginalVoucherCreationDAO getOriginalVoucherCreationDAO(){
-		return this.originalVoucherCreationDAO;
-	}
-	public void setOriginalVoucherCreationDAO(OriginalVoucherCreationDAO dao){
-		this.originalVoucherCreationDAO = dao;
-	}
-
-
-	public OriginalVoucherConfirmationDAO getOriginalVoucherConfirmationDAO(){
-		return this.originalVoucherConfirmationDAO;
-	}
-	public void setOriginalVoucherConfirmationDAO(OriginalVoucherConfirmationDAO dao){
-		this.originalVoucherConfirmationDAO = dao;
-	}
-
-
-	public OriginalVoucherAuditingDAO getOriginalVoucherAuditingDAO(){
-		return this.originalVoucherAuditingDAO;
-	}
-	public void setOriginalVoucherAuditingDAO(OriginalVoucherAuditingDAO dao){
-		this.originalVoucherAuditingDAO = dao;
 	}
 
 
@@ -1699,54 +1339,6 @@ public class DAOGroup {
 	}
 	public void setEmployeeDAO(EmployeeDAO dao){
 		this.employeeDAO = dao;
-	}
-
-
-	public JobApplicationDAO getJobApplicationDAO(){
-		return this.jobApplicationDAO;
-	}
-	public void setJobApplicationDAO(JobApplicationDAO dao){
-		this.jobApplicationDAO = dao;
-	}
-
-
-	public ProfessionInterviewDAO getProfessionInterviewDAO(){
-		return this.professionInterviewDAO;
-	}
-	public void setProfessionInterviewDAO(ProfessionInterviewDAO dao){
-		this.professionInterviewDAO = dao;
-	}
-
-
-	public HrInterviewDAO getHrInterviewDAO(){
-		return this.hrInterviewDAO;
-	}
-	public void setHrInterviewDAO(HrInterviewDAO dao){
-		this.hrInterviewDAO = dao;
-	}
-
-
-	public OfferApprovalDAO getOfferApprovalDAO(){
-		return this.offerApprovalDAO;
-	}
-	public void setOfferApprovalDAO(OfferApprovalDAO dao){
-		this.offerApprovalDAO = dao;
-	}
-
-
-	public OfferAcceptanceDAO getOfferAcceptanceDAO(){
-		return this.offerAcceptanceDAO;
-	}
-	public void setOfferAcceptanceDAO(OfferAcceptanceDAO dao){
-		this.offerAcceptanceDAO = dao;
-	}
-
-
-	public EmployeeBoardingDAO getEmployeeBoardingDAO(){
-		return this.employeeBoardingDAO;
-	}
-	public void setEmployeeBoardingDAO(EmployeeBoardingDAO dao){
-		this.employeeBoardingDAO = dao;
 	}
 
 
@@ -1891,14 +1483,6 @@ public class DAOGroup {
 	}
 	public void setSecUserDAO(SecUserDAO dao){
 		this.secUserDAO = dao;
-	}
-
-
-	public SecUserBlockingDAO getSecUserBlockingDAO(){
-		return this.secUserBlockingDAO;
-	}
-	public void setSecUserBlockingDAO(SecUserBlockingDAO dao){
-		this.secUserBlockingDAO = dao;
 	}
 
 
@@ -2502,101 +2086,6 @@ public class DAOGroup {
 			}
 		});
 
-		internalLoaderMap.put("ConsumerOrderConfirmation", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getConsumerOrderConfirmationDAO().load(id, ConsumerOrderConfirmationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getConsumerOrderConfirmationDAO().enhanceList((List<ConsumerOrderConfirmation>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderConfirmationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderConfirmationDAO().present((ConsumerOrderConfirmation)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("ConsumerOrderApproval", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getConsumerOrderApprovalDAO().load(id, ConsumerOrderApprovalTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getConsumerOrderApprovalDAO().enhanceList((List<ConsumerOrderApproval>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderApprovalDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderApprovalDAO().present((ConsumerOrderApproval)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("ConsumerOrderProcessing", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getConsumerOrderProcessingDAO().load(id, ConsumerOrderProcessingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getConsumerOrderProcessingDAO().enhanceList((List<ConsumerOrderProcessing>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderProcessingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderProcessingDAO().present((ConsumerOrderProcessing)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("ConsumerOrderShipment", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getConsumerOrderShipmentDAO().load(id, ConsumerOrderShipmentTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getConsumerOrderShipmentDAO().enhanceList((List<ConsumerOrderShipment>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderShipmentDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderShipmentDAO().present((ConsumerOrderShipment)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("ConsumerOrderDelivery", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getConsumerOrderDeliveryDAO().load(id, ConsumerOrderDeliveryTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getConsumerOrderDeliveryDAO().enhanceList((List<ConsumerOrderDelivery>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderDeliveryDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getConsumerOrderDeliveryDAO().present((ConsumerOrderDelivery)data, tokens);
-			}
-		});
-
 		internalLoaderMap.put("ConsumerOrderLineItem", new BasicLoader() {
 			@Override
 			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
@@ -2901,120 +2390,6 @@ public class DAOGroup {
 			}
 		});
 
-		internalLoaderMap.put("SupplyOrderConfirmation", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getSupplyOrderConfirmationDAO().load(id, SupplyOrderConfirmationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getSupplyOrderConfirmationDAO().enhanceList((List<SupplyOrderConfirmation>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderConfirmationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderConfirmationDAO().present((SupplyOrderConfirmation)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("SupplyOrderApproval", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getSupplyOrderApprovalDAO().load(id, SupplyOrderApprovalTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getSupplyOrderApprovalDAO().enhanceList((List<SupplyOrderApproval>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderApprovalDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderApprovalDAO().present((SupplyOrderApproval)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("SupplyOrderProcessing", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getSupplyOrderProcessingDAO().load(id, SupplyOrderProcessingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getSupplyOrderProcessingDAO().enhanceList((List<SupplyOrderProcessing>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderProcessingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderProcessingDAO().present((SupplyOrderProcessing)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("SupplyOrderPicking", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getSupplyOrderPickingDAO().load(id, SupplyOrderPickingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getSupplyOrderPickingDAO().enhanceList((List<SupplyOrderPicking>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderPickingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderPickingDAO().present((SupplyOrderPicking)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("SupplyOrderShipment", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getSupplyOrderShipmentDAO().load(id, SupplyOrderShipmentTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getSupplyOrderShipmentDAO().enhanceList((List<SupplyOrderShipment>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderShipmentDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderShipmentDAO().present((SupplyOrderShipment)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("SupplyOrderDelivery", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getSupplyOrderDeliveryDAO().load(id, SupplyOrderDeliveryTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getSupplyOrderDeliveryDAO().enhanceList((List<SupplyOrderDelivery>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderDeliveryDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSupplyOrderDeliveryDAO().present((SupplyOrderDelivery)data, tokens);
-			}
-		});
-
 		internalLoaderMap.put("SupplyOrderLineItem", new BasicLoader() {
 			@Override
 			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
@@ -3088,120 +2463,6 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderDAO().present((RetailStoreOrder)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("RetailStoreOrderConfirmation", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getRetailStoreOrderConfirmationDAO().load(id, RetailStoreOrderConfirmationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getRetailStoreOrderConfirmationDAO().enhanceList((List<RetailStoreOrderConfirmation>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderConfirmationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderConfirmationDAO().present((RetailStoreOrderConfirmation)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("RetailStoreOrderApproval", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getRetailStoreOrderApprovalDAO().load(id, RetailStoreOrderApprovalTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getRetailStoreOrderApprovalDAO().enhanceList((List<RetailStoreOrderApproval>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderApprovalDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderApprovalDAO().present((RetailStoreOrderApproval)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("RetailStoreOrderProcessing", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getRetailStoreOrderProcessingDAO().load(id, RetailStoreOrderProcessingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getRetailStoreOrderProcessingDAO().enhanceList((List<RetailStoreOrderProcessing>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderProcessingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderProcessingDAO().present((RetailStoreOrderProcessing)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("RetailStoreOrderPicking", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getRetailStoreOrderPickingDAO().load(id, RetailStoreOrderPickingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getRetailStoreOrderPickingDAO().enhanceList((List<RetailStoreOrderPicking>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderPickingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderPickingDAO().present((RetailStoreOrderPicking)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("RetailStoreOrderShipment", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getRetailStoreOrderShipmentDAO().load(id, RetailStoreOrderShipmentTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getRetailStoreOrderShipmentDAO().enhanceList((List<RetailStoreOrderShipment>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderShipmentDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderShipmentDAO().present((RetailStoreOrderShipment)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("RetailStoreOrderDelivery", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getRetailStoreOrderDeliveryDAO().load(id, RetailStoreOrderDeliveryTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getRetailStoreOrderDeliveryDAO().enhanceList((List<RetailStoreOrderDelivery>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderDeliveryDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getRetailStoreOrderDeliveryDAO().present((RetailStoreOrderDelivery)data, tokens);
 			}
 		});
 
@@ -3411,25 +2672,6 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsDAO().present((Goods)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("GoodsPackaging", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getGoodsPackagingDAO().load(id, GoodsPackagingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getGoodsPackagingDAO().enhanceList((List<GoodsPackaging>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getGoodsPackagingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getGoodsPackagingDAO().present((GoodsPackaging)data, tokens);
 			}
 		});
 
@@ -3737,82 +2979,6 @@ public class DAOGroup {
 			}
 		});
 
-		internalLoaderMap.put("AccountingDocumentCreation", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getAccountingDocumentCreationDAO().load(id, AccountingDocumentCreationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getAccountingDocumentCreationDAO().enhanceList((List<AccountingDocumentCreation>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentCreationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentCreationDAO().present((AccountingDocumentCreation)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("AccountingDocumentConfirmation", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getAccountingDocumentConfirmationDAO().load(id, AccountingDocumentConfirmationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getAccountingDocumentConfirmationDAO().enhanceList((List<AccountingDocumentConfirmation>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentConfirmationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentConfirmationDAO().present((AccountingDocumentConfirmation)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("AccountingDocumentAuditing", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getAccountingDocumentAuditingDAO().load(id, AccountingDocumentAuditingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getAccountingDocumentAuditingDAO().enhanceList((List<AccountingDocumentAuditing>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentAuditingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentAuditingDAO().present((AccountingDocumentAuditing)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("AccountingDocumentPosting", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getAccountingDocumentPostingDAO().load(id, AccountingDocumentPostingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getAccountingDocumentPostingDAO().enhanceList((List<AccountingDocumentPosting>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentPostingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getAccountingDocumentPostingDAO().present((AccountingDocumentPosting)data, tokens);
-			}
-		});
-
 		internalLoaderMap.put("OriginalVoucher", new BasicLoader() {
 			@Override
 			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
@@ -3829,63 +2995,6 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOriginalVoucherDAO().present((OriginalVoucher)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("OriginalVoucherCreation", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getOriginalVoucherCreationDAO().load(id, OriginalVoucherCreationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getOriginalVoucherCreationDAO().enhanceList((List<OriginalVoucherCreation>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOriginalVoucherCreationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOriginalVoucherCreationDAO().present((OriginalVoucherCreation)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("OriginalVoucherConfirmation", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getOriginalVoucherConfirmationDAO().load(id, OriginalVoucherConfirmationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getOriginalVoucherConfirmationDAO().enhanceList((List<OriginalVoucherConfirmation>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOriginalVoucherConfirmationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOriginalVoucherConfirmationDAO().present((OriginalVoucherConfirmation)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("OriginalVoucherAuditing", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getOriginalVoucherAuditingDAO().load(id, OriginalVoucherAuditingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getOriginalVoucherAuditingDAO().enhanceList((List<OriginalVoucherAuditing>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOriginalVoucherAuditingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOriginalVoucherAuditingDAO().present((OriginalVoucherAuditing)data, tokens);
 			}
 		});
 
@@ -4209,120 +3318,6 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeDAO().present((Employee)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("JobApplication", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getJobApplicationDAO().load(id, JobApplicationTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getJobApplicationDAO().enhanceList((List<JobApplication>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getJobApplicationDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getJobApplicationDAO().present((JobApplication)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("ProfessionInterview", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getProfessionInterviewDAO().load(id, ProfessionInterviewTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getProfessionInterviewDAO().enhanceList((List<ProfessionInterview>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getProfessionInterviewDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getProfessionInterviewDAO().present((ProfessionInterview)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("HrInterview", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getHrInterviewDAO().load(id, HrInterviewTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getHrInterviewDAO().enhanceList((List<HrInterview>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getHrInterviewDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getHrInterviewDAO().present((HrInterview)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("OfferApproval", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getOfferApprovalDAO().load(id, OfferApprovalTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getOfferApprovalDAO().enhanceList((List<OfferApproval>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOfferApprovalDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOfferApprovalDAO().present((OfferApproval)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("OfferAcceptance", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getOfferAcceptanceDAO().load(id, OfferAcceptanceTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getOfferAcceptanceDAO().enhanceList((List<OfferAcceptance>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOfferAcceptanceDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getOfferAcceptanceDAO().present((OfferAcceptance)data, tokens);
-			}
-		});
-
-		internalLoaderMap.put("EmployeeBoarding", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getEmployeeBoardingDAO().load(id, EmployeeBoardingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getEmployeeBoardingDAO().enhanceList((List<EmployeeBoarding>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getEmployeeBoardingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getEmployeeBoardingDAO().present((EmployeeBoarding)data, tokens);
 			}
 		});
 
@@ -4668,25 +3663,6 @@ public class DAOGroup {
 			}
 		});
 
-		internalLoaderMap.put("SecUserBlocking", new BasicLoader() {
-			@Override
-			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
-				return daoGoup.getSecUserBlockingDAO().load(id, SecUserBlockingTokens.withoutLists());
-			}
-			@Override
-			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
-				daoGoup.getSecUserBlockingDAO().enhanceList((List<SecUserBlocking>)list);
-			}
-			@Override
-			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSecUserBlockingDAO().load(id, tokens);
-			}
-			@Override
-			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
-				return daoGoup.getSecUserBlockingDAO().present((SecUserBlocking)data, tokens);
-			}
-		});
-
 		internalLoaderMap.put("UserApp", new BasicLoader() {
 			@Override
 			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
@@ -4953,11 +3929,7 @@ public class DAOGroup {
 	    }
 	}
 	public <T> void enhanceList(List list, Class<T> clazz) throws Exception{
-<<<<<<< HEAD
-	    BasicLoader loader = internalLoaderMap.get(clazz.getName());
-=======
 	    BasicLoader loader = internalLoaderMap.get(clazz.getSimpleName());
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	    if (loader == null) {
 	    	return ;
 	    }

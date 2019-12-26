@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.employee.Employee;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 
 
 public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManager implements EmployeePerformanceManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "EmployeePerformance";
 	@Override
 	public EmployeePerformanceDAO daoOf(RetailscmUserContext userContext) {
 		return employeePerformanceDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EmployeePerformanceManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EmployeePerformanceManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected EmployeePerformance saveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance, String [] tokensExpr) throws Exception{	
  		//return getEmployeePerformanceDAO().save(employeePerformance, tokens);
@@ -167,7 +161,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	public EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext, String employeeId,String performanceComment) throws Exception
 	//public EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext,String employeeId, String performanceComment) throws Exception
 	{
-		
+
 		
 
 		
@@ -191,14 +185,14 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		onNewInstanceCreated(userContext, employeePerformance);
 		return employeePerformance;
 
-		
+
 	}
-	protected EmployeePerformance createNewEmployeePerformance() 
+	protected EmployeePerformance createNewEmployeePerformance()
 	{
-		
-		return new EmployeePerformance();		
+
+		return new EmployeePerformance();
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeePerformance(RetailscmUserContext userContext,String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -216,28 +210,28 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public EmployeePerformance clone(RetailscmUserContext userContext, String fromEmployeePerformanceId) throws Exception{
-		
+
 		return employeePerformanceDaoOf(userContext).clone(fromEmployeePerformanceId, this.allTokens());
 	}
-	
-	public EmployeePerformance internalSaveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance) throws Exception 
+
+	public EmployeePerformance internalSaveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance) throws Exception
 	{
 		return internalSaveEmployeePerformance(userContext, employeePerformance, allTokens());
 
 	}
-	public EmployeePerformance internalSaveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance, Map<String,Object> options) throws Exception 
+	public EmployeePerformance internalSaveEmployeePerformance(RetailscmUserContext userContext, EmployeePerformance employeePerformance, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEmployeePerformance(userContext, employeePerformanceId, employeePerformanceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(employeePerformance){ 
+
+
+		synchronized(employeePerformance){
 			//will be good when the employeePerformance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeePerformance.
@@ -246,23 +240,23 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 			}
 			employeePerformance = saveEmployeePerformance(userContext, employeePerformance, options);
 			return employeePerformance;
-			
+
 		}
 
 	}
-	
-	public EmployeePerformance updateEmployeePerformance(RetailscmUserContext userContext,String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeePerformance updateEmployeePerformance(RetailscmUserContext userContext,String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeePerformance(userContext, employeePerformanceId, employeePerformanceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		EmployeePerformance employeePerformance = loadEmployeePerformance(userContext, employeePerformanceId, allTokens());
 		if(employeePerformance.getVersion() != employeePerformanceVersion){
 			String message = "The target version("+employeePerformance.getVersion()+") is not equals to version("+employeePerformanceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeePerformance){ 
+		synchronized(employeePerformance){
 			//will be good when the employeePerformance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeePerformance.
@@ -274,21 +268,21 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		}
 
 	}
-	
-	public EmployeePerformance updateEmployeePerformanceProperty(RetailscmUserContext userContext,String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeePerformance updateEmployeePerformanceProperty(RetailscmUserContext userContext,String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeePerformance(userContext, employeePerformanceId, employeePerformanceVersion, property, newValueExpr, tokensExpr);
-		
+
 		EmployeePerformance employeePerformance = loadEmployeePerformance(userContext, employeePerformanceId, allTokens());
 		if(employeePerformance.getVersion() != employeePerformanceVersion){
 			String message = "The target version("+employeePerformance.getVersion()+") is not equals to version("+employeePerformanceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeePerformance){ 
+		synchronized(employeePerformance){
 			//will be good when the employeePerformance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeePerformance.
-			
+
 			employeePerformance.changeProperty(property, newValueExpr);
 			
 			employeePerformance = saveEmployeePerformance(userContext, employeePerformance, tokens().done());
@@ -300,7 +294,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EmployeePerformanceTokens tokens(){
 		return EmployeePerformanceTokens.start();
 	}
@@ -321,11 +315,11 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeePerformanceId, String anotherEmployeeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
  		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeePerformanceManagerException.class);
- 		
+
  	}
  	public EmployeePerformance transferToAnotherEmployee(RetailscmUserContext userContext, String employeePerformanceId, String anotherEmployeeId) throws Exception
  	{
@@ -344,10 +338,10 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateEmployee requestCandidateEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateEmployee result = new CandidateEmployee();
@@ -357,7 +351,7 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("company");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -367,42 +361,42 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String employeePerformanceId, int employeePerformanceVersion) throws Exception {
-		//deleteInternal(userContext, employeePerformanceId, employeePerformanceVersion);		
+		//deleteInternal(userContext, employeePerformanceId, employeePerformanceVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeePerformanceId, int employeePerformanceVersion) throws Exception{
-			
+
 		employeePerformanceDaoOf(userContext).delete(employeePerformanceId, employeePerformanceVersion);
 	}
-	
+
 	public EmployeePerformance forgetByAll(RetailscmUserContext userContext, String employeePerformanceId, int employeePerformanceVersion) throws Exception {
-		return forgetByAllInternal(userContext, employeePerformanceId, employeePerformanceVersion);		
+		return forgetByAllInternal(userContext, employeePerformanceId, employeePerformanceVersion);
 	}
 	protected EmployeePerformance forgetByAllInternal(RetailscmUserContext userContext,
 			String employeePerformanceId, int employeePerformanceVersion) throws Exception{
-			
+
 		return employeePerformanceDaoOf(userContext).disconnectFromAll(employeePerformanceId, employeePerformanceVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -413,23 +407,29 @@ public class EmployeePerformanceManagerImpl extends CustomRetailscmCheckerManage
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return employeePerformanceDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EmployeePerformance newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

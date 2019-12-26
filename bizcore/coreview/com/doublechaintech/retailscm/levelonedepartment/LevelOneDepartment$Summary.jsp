@@ -45,8 +45,8 @@
 <span >${result.description}</span>
 </div>
 <div class="col-xs-12 col-md-3 summary-section">
-<span class="summary-label">${userContext.localeMap['level_one_department.manager_name']}</span>
-<span >${result.managerName}</span>
+<span class="summary-label">${userContext.localeMap['level_one_department.manager']}</span>
+<span >${result.manager}</span>
 </div>
 <div class="col-xs-12 col-md-3 summary-section">
 <span class="summary-label">${userContext.localeMap['level_one_department.founded']}</span>

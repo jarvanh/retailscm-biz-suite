@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.BaseRowMapper;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 
 public class SecUserMapper extends BaseRowMapper<SecUser>{
@@ -25,7 +24,6 @@ public class SecUserMapper extends BaseRowMapper<SecUser>{
  		setVerificationCodeExpire(secUser, rs, rowNumber); 		
  		setLastLoginTime(secUser, rs, rowNumber); 		
  		setDomain(secUser, rs, rowNumber); 		
- 		setBlocking(secUser, rs, rowNumber); 		
  		setVersion(secUser, rs, rowNumber);
 
 		return secUser;
@@ -184,24 +182,6 @@ public class SecUserMapper extends BaseRowMapper<SecUser>{
  		}
  		secUser.setDomain(createEmptyDomain(userDomainId));
  	}
- 	 		
- 	protected void setBlocking(SecUser secUser, ResultSet rs, int rowNumber) throws SQLException{
- 		String secUserBlockingId = rs.getString(SecUserTable.COLUMN_BLOCKING);
- 		if( secUserBlockingId == null){
- 			return;
- 		}
- 		if( secUserBlockingId.isEmpty()){
- 			return;
- 		}
- 		SecUserBlocking secUserBlocking = secUser.getBlocking();
- 		if( secUserBlocking != null ){
- 			//if the root object 'secUser' already have the property, just set the id for it;
- 			secUserBlocking.setId(secUserBlockingId);
- 			
- 			return;
- 		}
- 		secUser.setBlocking(createEmptyBlocking(secUserBlockingId));
- 	}
  	
 	protected void setVersion(SecUser secUser, ResultSet rs, int rowNumber) throws SQLException{
 	
@@ -222,13 +202,6 @@ public class SecUserMapper extends BaseRowMapper<SecUser>{
  		userDomain.setId(userDomainId);
  		userDomain.setVersion(Integer.MAX_VALUE);
  		return userDomain;
- 	}
- 	
- 	protected SecUserBlocking  createEmptyBlocking(String secUserBlockingId){
- 		SecUserBlocking secUserBlocking = new SecUserBlocking();
- 		secUserBlocking.setId(secUserBlockingId);
- 		secUserBlocking.setVersion(Integer.MAX_VALUE);
- 		return secUserBlocking;
  	}
  	
 }

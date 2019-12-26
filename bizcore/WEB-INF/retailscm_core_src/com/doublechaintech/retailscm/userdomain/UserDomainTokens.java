@@ -211,11 +211,7 @@ public class UserDomainTokens extends CommonTokens{
 	
 	
 	public UserDomainTokens searchAllTextOfSecUserList(String verb, String value){	
-<<<<<<< HEAD
-		String field = "id|login|mobile|email|pwd|weixinOpenid|weixinAppid|accessToken|currentStatus";
-=======
 		String field = "id|login|mobile|email|pwd|weixinOpenid|weixinAppid|accessToken";
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		addSearchMoreOptions(SEC_USER_LIST,secUserListSearchCounter++, field, verb, value);
 		return this;
 	}

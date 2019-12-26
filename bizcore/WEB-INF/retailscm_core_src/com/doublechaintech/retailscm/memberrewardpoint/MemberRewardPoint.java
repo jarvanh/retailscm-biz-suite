@@ -320,7 +320,9 @@ public class MemberRewardPoint extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getPoint(), getOwner(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

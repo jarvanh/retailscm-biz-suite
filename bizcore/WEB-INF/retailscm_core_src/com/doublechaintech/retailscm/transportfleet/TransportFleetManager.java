@@ -13,7 +13,7 @@ public interface TransportFleetManager extends BaseManager{
 
 		
 
-	public TransportFleet createTransportFleet(RetailscmUserContext userContext, String name,long contactNumber,String ownerId) throws Exception;	
+	public TransportFleet createTransportFleet(RetailscmUserContext userContext, String name,String contactNumber,String ownerId) throws Exception;	
 	public TransportFleet updateTransportFleet(RetailscmUserContext userContext,String transportFleetId, int transportFleetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public TransportFleet loadTransportFleet(RetailscmUserContext userContext, String transportFleetId, String [] tokensExpr) throws Exception;
 	public TransportFleet internalSaveTransportFleet(RetailscmUserContext userContext, TransportFleet transportFleet) throws Exception;
@@ -29,9 +29,9 @@ public interface TransportFleetManager extends BaseManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  TransportTruckManager getTransportTruckManager(RetailscmUserContext userContext, String transportFleetId, String name, String plateNumber, long contactNumber, String vehicleLicenseNumber, String engineNumber, Date makeDate, String mileage, String bodyColor ,String [] tokensExpr)  throws Exception;
+	//public  TransportTruckManager getTransportTruckManager(RetailscmUserContext userContext, String transportFleetId, String name, String plateNumber, String contactNumber, String vehicleLicenseNumber, String engineNumber, Date makeDate, String mileage, String bodyColor ,String [] tokensExpr)  throws Exception;
 	
-	public  TransportFleet addTransportTruck(RetailscmUserContext userContext, String transportFleetId, String name, String plateNumber, long contactNumber, String vehicleLicenseNumber, String engineNumber, Date makeDate, String mileage, String bodyColor , String [] tokensExpr)  throws Exception;
+	public  TransportFleet addTransportTruck(RetailscmUserContext userContext, String transportFleetId, String name, String plateNumber, String contactNumber, String vehicleLicenseNumber, String engineNumber, Date makeDate, String mileage, String bodyColor , String [] tokensExpr)  throws Exception;
 	public  TransportFleet removeTransportTruck(RetailscmUserContext userContext, String transportFleetId, String transportTruckId, int transportTruckVersion,String [] tokensExpr)  throws Exception;
 	public  TransportFleet updateTransportTruck(RetailscmUserContext userContext, String transportFleetId, String transportTruckId, int transportTruckVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
@@ -39,9 +39,9 @@ public interface TransportFleetManager extends BaseManager{
 
 	*/
 
-	//public  TruckDriverManager getTruckDriverManager(RetailscmUserContext userContext, String transportFleetId, String name, long driverLicenseNumber, String contactNumber ,String [] tokensExpr)  throws Exception;
+	//public  TruckDriverManager getTruckDriverManager(RetailscmUserContext userContext, String transportFleetId, String name, String driverLicenseNumber, String contactNumber ,String [] tokensExpr)  throws Exception;
 	
-	public  TransportFleet addTruckDriver(RetailscmUserContext userContext, String transportFleetId, String name, long driverLicenseNumber, String contactNumber , String [] tokensExpr)  throws Exception;
+	public  TransportFleet addTruckDriver(RetailscmUserContext userContext, String transportFleetId, String name, String driverLicenseNumber, String contactNumber , String [] tokensExpr)  throws Exception;
 	public  TransportFleet removeTruckDriver(RetailscmUserContext userContext, String transportFleetId, String truckDriverId, int truckDriverVersion,String [] tokensExpr)  throws Exception;
 	public  TransportFleet updateTruckDriver(RetailscmUserContext userContext, String transportFleetId, String truckDriverId, int truckDriverVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

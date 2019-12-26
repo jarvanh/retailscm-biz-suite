@@ -53,7 +53,7 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mName               ;
-	protected		long                	mContactNumber      ;
+	protected		String              	mContactNumber      ;
 	protected		RetailStoreCountryCenter	mOwner              ;
 	protected		DateTime            	mLastUpdateTime     ;
 	protected		int                 	mVersion            ;
@@ -119,9 +119,9 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
-		long oldValue = getContactNumber();
-		long newValue = parseLong(newValueExpr);
-		if(equalsLong(oldValue , newValue)){
+		String oldValue = getContactNumber();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -220,24 +220,19 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setContactNumber(long contactNumber){
-		this.mContactNumber = contactNumber;;
+	public void setContactNumber(String contactNumber){
+		this.mContactNumber = trimString(contactNumber);;
 	}
-	public long getContactNumber(){
+	public String getContactNumber(){
 		return this.mContactNumber;
 	}
-	public TransportFleet updateContactNumber(long contactNumber){
-		this.mContactNumber = contactNumber;;
+	public TransportFleet updateContactNumber(String contactNumber){
+		this.mContactNumber = trimString(contactNumber);;
 		this.changed = true;
 		return this;
 	}
-<<<<<<< HEAD
 	public void mergeContactNumber(String contactNumber){
 		if(contactNumber != null) { setContactNumber(contactNumber);}
-=======
-	public void mergeContactNumber(long contactNumber){
-		setContactNumber(contactNumber);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	
 	
@@ -737,7 +732,9 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getContactNumber(), getOwner(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -756,13 +753,6 @@ public class TransportFleet extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
-	
-	public void increaseContactNumber(long incContactNumber){
-		updateContactNumber(this.mContactNumber +  incContactNumber);
-	}
-	public void decreaseContactNumber(long decContactNumber){
-		updateContactNumber(this.mContactNumber - decContactNumber);
-	}
 	
 
 }

@@ -24,17 +24,8 @@ public class CandidateElementTable{
 	static final String COLUMN_CONTAINER = "container";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_NAME, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_CONTAINER, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_NAME, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_CONTAINER
-		};
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_TYPE,COLUMN_IMAGE,COLUMN_CONTAINER,COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_TYPE,COLUMN_IMAGE,COLUMN_CONTAINER};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

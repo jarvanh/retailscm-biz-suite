@@ -855,7 +855,9 @@ public class RetailStoreCityServiceCenter extends BaseEntity implements  java.io
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getFounded(), getBelongsTo(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

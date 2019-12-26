@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.userapp.UserApp;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.userapp.CandidateUserApp;
 
 
 public class ListAccessManagerImpl extends CustomRetailscmCheckerManager implements ListAccessManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ListAccess";
 	@Override
 	public ListAccessDAO daoOf(RetailscmUserContext userContext) {
 		return listAccessDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ListAccessManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ListAccessManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ListAccess saveListAccess(RetailscmUserContext userContext, ListAccess listAccess, String [] tokensExpr) throws Exception{	
  		//return getListAccessDAO().save(listAccess, tokens);
@@ -167,7 +161,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	public ListAccess createListAccess(RetailscmUserContext userContext, String name,String internalName,boolean readPermission,boolean createPermission,boolean deletePermission,boolean updatePermission,boolean executionPermission,String appId) throws Exception
 	//public ListAccess createListAccess(RetailscmUserContext userContext,String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission, String appId) throws Exception
 	{
-		
+
 		
 
 		
@@ -203,14 +197,14 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		onNewInstanceCreated(userContext, listAccess);
 		return listAccess;
 
-		
+
 	}
-	protected ListAccess createNewListAccess() 
+	protected ListAccess createNewListAccess()
 	{
-		
-		return new ListAccess();		
+
+		return new ListAccess();
 	}
-	
+
 	protected void checkParamsForUpdatingListAccess(RetailscmUserContext userContext,String listAccessId, int listAccessVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -246,28 +240,28 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ListAccessManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ListAccess clone(RetailscmUserContext userContext, String fromListAccessId) throws Exception{
-		
+
 		return listAccessDaoOf(userContext).clone(fromListAccessId, this.allTokens());
 	}
-	
-	public ListAccess internalSaveListAccess(RetailscmUserContext userContext, ListAccess listAccess) throws Exception 
+
+	public ListAccess internalSaveListAccess(RetailscmUserContext userContext, ListAccess listAccess) throws Exception
 	{
 		return internalSaveListAccess(userContext, listAccess, allTokens());
 
 	}
-	public ListAccess internalSaveListAccess(RetailscmUserContext userContext, ListAccess listAccess, Map<String,Object> options) throws Exception 
+	public ListAccess internalSaveListAccess(RetailscmUserContext userContext, ListAccess listAccess, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingListAccess(userContext, listAccessId, listAccessVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(listAccess){ 
+
+
+		synchronized(listAccess){
 			//will be good when the listAccess loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ListAccess.
@@ -276,23 +270,23 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 			}
 			listAccess = saveListAccess(userContext, listAccess, options);
 			return listAccess;
-			
+
 		}
 
 	}
-	
-	public ListAccess updateListAccess(RetailscmUserContext userContext,String listAccessId, int listAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ListAccess updateListAccess(RetailscmUserContext userContext,String listAccessId, int listAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingListAccess(userContext, listAccessId, listAccessVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ListAccess listAccess = loadListAccess(userContext, listAccessId, allTokens());
 		if(listAccess.getVersion() != listAccessVersion){
 			String message = "The target version("+listAccess.getVersion()+") is not equals to version("+listAccessVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(listAccess){ 
+		synchronized(listAccess){
 			//will be good when the listAccess loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ListAccess.
@@ -304,21 +298,21 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
 	}
-	
-	public ListAccess updateListAccessProperty(RetailscmUserContext userContext,String listAccessId, int listAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ListAccess updateListAccessProperty(RetailscmUserContext userContext,String listAccessId, int listAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingListAccess(userContext, listAccessId, listAccessVersion, property, newValueExpr, tokensExpr);
-		
+
 		ListAccess listAccess = loadListAccess(userContext, listAccessId, allTokens());
 		if(listAccess.getVersion() != listAccessVersion){
 			String message = "The target version("+listAccess.getVersion()+") is not equals to version("+listAccessVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(listAccess){ 
+		synchronized(listAccess){
 			//will be good when the listAccess loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ListAccess.
-			
+
 			listAccess.changeProperty(property, newValueExpr);
 			
 			listAccess = saveListAccess(userContext, listAccess, tokens().done());
@@ -330,7 +324,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ListAccessTokens tokens(){
 		return ListAccessTokens.start();
 	}
@@ -351,11 +345,11 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	protected void checkParamsForTransferingAnotherApp(RetailscmUserContext userContext, String listAccessId, String anotherAppId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfListAccess(listAccessId);
  		checkerOf(userContext).checkIdOfUserApp(anotherAppId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ListAccessManagerException.class);
- 		
+
  	}
  	public ListAccess transferToAnotherApp(RetailscmUserContext userContext, String listAccessId, String anotherAppId) throws Exception
  	{
@@ -374,10 +368,10 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateUserApp requestCandidateApp(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateUserApp result = new CandidateUserApp();
@@ -387,7 +381,7 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -397,42 +391,42 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected UserApp loadUserApp(RetailscmUserContext userContext, String newAppId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return userAppDaoOf(userContext).load(newAppId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String listAccessId, int listAccessVersion) throws Exception {
-		//deleteInternal(userContext, listAccessId, listAccessVersion);		
+		//deleteInternal(userContext, listAccessId, listAccessVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String listAccessId, int listAccessVersion) throws Exception{
-			
+
 		listAccessDaoOf(userContext).delete(listAccessId, listAccessVersion);
 	}
-	
+
 	public ListAccess forgetByAll(RetailscmUserContext userContext, String listAccessId, int listAccessVersion) throws Exception {
-		return forgetByAllInternal(userContext, listAccessId, listAccessVersion);		
+		return forgetByAllInternal(userContext, listAccessId, listAccessVersion);
 	}
 	protected ListAccess forgetByAllInternal(RetailscmUserContext userContext,
 			String listAccessId, int listAccessVersion) throws Exception{
-			
+
 		return listAccessDaoOf(userContext).disconnectFromAll(listAccessId, listAccessVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -443,23 +437,29 @@ public class ListAccessManagerImpl extends CustomRetailscmCheckerManager impleme
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return listAccessDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ListAccess newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

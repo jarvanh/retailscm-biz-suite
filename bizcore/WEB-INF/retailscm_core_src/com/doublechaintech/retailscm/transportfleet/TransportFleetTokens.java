@@ -154,7 +154,7 @@ public class TransportFleetTokens extends CommonTokens{
 	
 	
 	public TransportFleetTokens searchAllTextOfTransportTruckList(String verb, String value){	
-		String field = "id|name|plateNumber|vehicleLicenseNumber|engineNumber|mileage|bodyColor";
+		String field = "id|name|plateNumber|contactNumber|vehicleLicenseNumber|engineNumber|mileage|bodyColor";
 		addSearchMoreOptions(TRANSPORT_TRUCK_LIST,transportTruckListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -224,7 +224,7 @@ public class TransportFleetTokens extends CommonTokens{
 	
 	
 	public TransportFleetTokens searchAllTextOfTruckDriverList(String verb, String value){	
-		String field = "id|name|contactNumber";
+		String field = "id|name|driverLicenseNumber|contactNumber";
 		addSearchMoreOptions(TRUCK_DRIVER_LIST,truckDriverListSearchCounter++, field, verb, value);
 		return this;
 	}

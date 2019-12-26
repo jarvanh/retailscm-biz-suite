@@ -879,7 +879,9 @@ public class FormField extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getLabel(), getLocaleKey(), getParameterName(), getType(), getForm(), getPlaceholder(), getDefaultValue(), getDescription(), getFieldGroup(), getMinimumValue(), getMaximumValue(), getRequired(), getDisabled(), getCustomRendering(), getCandidateValues(), getSuggestValues(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

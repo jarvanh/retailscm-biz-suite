@@ -8,23 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
 import com.doublechaintech.retailscm.secuser.SecUser;
 
 
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 
 
@@ -33,28 +23,31 @@ import com.doublechaintech.retailscm.userdomain.UserDomain;
 
 
 public class UserDomainManagerImpl extends CustomRetailscmCheckerManager implements UserDomainManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "UserDomain";
 	@Override
 	public UserDomainDAO daoOf(RetailscmUserContext userContext) {
 		return userDomainDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws UserDomainManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new UserDomainManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected UserDomain saveUserDomain(RetailscmUserContext userContext, UserDomain userDomain, String [] tokensExpr) throws Exception{	
  		//return getUserDomainDAO().save(userDomain, tokens);
@@ -176,7 +169,7 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	public UserDomain createUserDomain(RetailscmUserContext userContext, String name) throws Exception
 	//public UserDomain createUserDomain(RetailscmUserContext userContext,String name) throws Exception
 	{
-		
+
 		
 
 		
@@ -195,14 +188,14 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		onNewInstanceCreated(userContext, userDomain);
 		return userDomain;
 
-		
+
 	}
-	protected UserDomain createNewUserDomain() 
+	protected UserDomain createNewUserDomain()
 	{
-		
-		return new UserDomain();		
+
+		return new UserDomain();
 	}
-	
+
 	protected void checkParamsForUpdatingUserDomain(RetailscmUserContext userContext,String userDomainId, int userDomainVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -218,28 +211,28 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public UserDomain clone(RetailscmUserContext userContext, String fromUserDomainId) throws Exception{
-		
+
 		return userDomainDaoOf(userContext).clone(fromUserDomainId, this.allTokens());
 	}
-	
-	public UserDomain internalSaveUserDomain(RetailscmUserContext userContext, UserDomain userDomain) throws Exception 
+
+	public UserDomain internalSaveUserDomain(RetailscmUserContext userContext, UserDomain userDomain) throws Exception
 	{
 		return internalSaveUserDomain(userContext, userDomain, allTokens());
 
 	}
-	public UserDomain internalSaveUserDomain(RetailscmUserContext userContext, UserDomain userDomain, Map<String,Object> options) throws Exception 
+	public UserDomain internalSaveUserDomain(RetailscmUserContext userContext, UserDomain userDomain, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingUserDomain(userContext, userDomainId, userDomainVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(userDomain){ 
+
+
+		synchronized(userDomain){
 			//will be good when the userDomain loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserDomain.
@@ -248,23 +241,23 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 			}
 			userDomain = saveUserDomain(userContext, userDomain, options);
 			return userDomain;
-			
+
 		}
 
 	}
-	
-	public UserDomain updateUserDomain(RetailscmUserContext userContext,String userDomainId, int userDomainVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public UserDomain updateUserDomain(RetailscmUserContext userContext,String userDomainId, int userDomainVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingUserDomain(userContext, userDomainId, userDomainVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
 		if(userDomain.getVersion() != userDomainVersion){
 			String message = "The target version("+userDomain.getVersion()+") is not equals to version("+userDomainVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			//will be good when the userDomain loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserDomain.
@@ -276,21 +269,21 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
 	}
-	
-	public UserDomain updateUserDomainProperty(RetailscmUserContext userContext,String userDomainId, int userDomainVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public UserDomain updateUserDomainProperty(RetailscmUserContext userContext,String userDomainId, int userDomainVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingUserDomain(userContext, userDomainId, userDomainVersion, property, newValueExpr, tokensExpr);
-		
+
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
 		if(userDomain.getVersion() != userDomainVersion){
 			String message = "The target version("+userDomain.getVersion()+") is not equals to version("+userDomainVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			//will be good when the userDomain loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserDomain.
-			
+
 			userDomain.changeProperty(property, newValueExpr);
 			
 			userDomain = saveUserDomain(userContext, userDomain, tokens().done());
@@ -302,7 +295,7 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected UserDomainTokens tokens(){
 		return UserDomainTokens.start();
 	}
@@ -328,26 +321,26 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String userDomainId, int userDomainVersion) throws Exception {
-		//deleteInternal(userContext, userDomainId, userDomainVersion);		
+		//deleteInternal(userContext, userDomainId, userDomainVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String userDomainId, int userDomainVersion) throws Exception{
-			
+
 		userDomainDaoOf(userContext).delete(userDomainId, userDomainVersion);
 	}
-	
+
 	public UserDomain forgetByAll(RetailscmUserContext userContext, String userDomainId, int userDomainVersion) throws Exception {
-		return forgetByAllInternal(userContext, userDomainId, userDomainVersion);		
+		return forgetByAllInternal(userContext, userDomainId, userDomainVersion);
 	}
 	protected UserDomain forgetByAllInternal(RetailscmUserContext userContext,
 			String userDomainId, int userDomainVersion) throws Exception{
-			
+
 		return userDomainDaoOf(userContext).disconnectFromAll(userDomainId, userDomainVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -358,39 +351,21 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return userDomainDaoOf(userContext).deleteAll();
 	}
 
 
-	//disconnect UserDomain with blocking in SecUser
-	protected UserDomain breakWithSecUserByBlocking(RetailscmUserContext userContext, String userDomainId, String blockingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
 
-			synchronized(userDomain){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				userDomainDaoOf(userContext).planToRemoveSecUserListWithBlocking(userDomain, blockingId, this.emptyOptions());
 
-				userDomain = saveUserDomain(userContext, userDomain, tokens().withSecUserList().done());
-				return userDomain;
-			}
-	}
-	
-	
-	
-	
-	
+
+
+
 
 	protected void checkParamsForAddingUserWhiteList(RetailscmUserContext userContext, String userDomainId, String userIdentity, String userSpecialFunctions,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfUserDomain(userDomainId);
 
 		
@@ -400,20 +375,20 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
 
-	
+
 	}
 	public  UserDomain addUserWhiteList(RetailscmUserContext userContext, String userDomainId, String userIdentity, String userSpecialFunctions, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingUserWhiteList(userContext,userDomainId,userIdentity, userSpecialFunctions,tokensExpr);
-		
+
 		UserWhiteList userWhiteList = createUserWhiteList(userContext,userIdentity, userSpecialFunctions);
-		
-		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-		synchronized(userDomain){ 
+
+		UserDomain userDomain = loadUserDomain(userContext, userDomainId, emptyOptions());
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			userDomain.addUserWhiteList( userWhiteList );		
+			userDomain.addUserWhiteList( userWhiteList );
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withUserWhiteListList().done());
 			
 			userContext.getManagerGroup().getUserWhiteListManager().onNewInstanceCreated(userContext, userWhiteList);
@@ -421,45 +396,45 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	}
 	protected void checkParamsForUpdatingUserWhiteListProperties(RetailscmUserContext userContext, String userDomainId,String id,String userIdentity,String userSpecialFunctions,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfUserDomain(userDomainId);
 		checkerOf(userContext).checkIdOfUserWhiteList(id);
-		
+
 		checkerOf(userContext).checkUserIdentityOfUserWhiteList( userIdentity);
 		checkerOf(userContext).checkUserSpecialFunctionsOfUserWhiteList( userSpecialFunctions);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-		
+
 	}
 	public  UserDomain updateUserWhiteListProperties(RetailscmUserContext userContext, String userDomainId, String id,String userIdentity,String userSpecialFunctions, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingUserWhiteListProperties(userContext,userDomainId,id,userIdentity,userSpecialFunctions,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withUserWhiteListListList()
 				.searchUserWhiteListListWith(UserWhiteList.ID_PROPERTY, "is", id).done();
-		
+
 		UserDomain userDomainToUpdate = loadUserDomain(userContext, userDomainId, options);
-		
+
 		if(userDomainToUpdate.getUserWhiteListList().isEmpty()){
 			throw new UserDomainManagerException("UserWhiteList is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		UserWhiteList item = userDomainToUpdate.getUserWhiteListList().first();
-		
+
 		item.updateUserIdentity( userIdentity );
 		item.updateUserSpecialFunctions( userSpecialFunctions );
 
-		
+
 		//checkParamsForAddingUserWhiteList(userContext,userDomainId,name, code, used,tokensExpr);
 		UserDomain userDomain = saveUserDomain(userContext, userDomainToUpdate, tokens().withUserWhiteListList().done());
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected UserWhiteList createUserWhiteList(RetailscmUserContext userContext, String userIdentity, String userSpecialFunctions) throws Exception{
 
 		UserWhiteList userWhiteList = new UserWhiteList();
@@ -470,44 +445,38 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		
 		return userWhiteList;
-	
-		
+
+
 	}
-	
+
 	protected UserWhiteList createIndexedUserWhiteList(String id, int version){
 
 		UserWhiteList userWhiteList = new UserWhiteList();
 		userWhiteList.setId(id);
 		userWhiteList.setVersion(version);
-		return userWhiteList;			
-		
+		return userWhiteList;
+
 	}
-	
-	protected void checkParamsForRemovingUserWhiteListList(RetailscmUserContext userContext, String userDomainId, 
+
+	protected void checkParamsForRemovingUserWhiteListList(RetailscmUserContext userContext, String userDomainId,
 			String userWhiteListIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfUserDomain(userDomainId);
-		for(String userWhiteListIdItem: userWhiteListIds){
-			userContext.getChecker().checkIdOfUserWhiteList(userWhiteListIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfUserDomain(userDomainId);
 		for(String userWhiteListIdItem: userWhiteListIds){
 			checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-		
+
 	}
-	public  UserDomain removeUserWhiteListList(RetailscmUserContext userContext, String userDomainId, 
+	public  UserDomain removeUserWhiteListList(RetailscmUserContext userContext, String userDomainId,
 			String userWhiteListIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingUserWhiteListList(userContext, userDomainId,  userWhiteListIds, tokensExpr);
-			
-			
+
+
 			UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-			synchronized(userDomain){ 
+			synchronized(userDomain){
 				//Will be good when the userDomain loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				userDomainDaoOf(userContext).planToRemoveUserWhiteListList(userDomain, userWhiteListIds, allTokens());
@@ -516,65 +485,65 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 				return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingUserWhiteList(RetailscmUserContext userContext, String userDomainId, 
+
+	protected void checkParamsForRemovingUserWhiteList(RetailscmUserContext userContext, String userDomainId,
 		String userWhiteListId, int userWhiteListVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfUserDomain( userDomainId);
 		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
 		checkerOf(userContext).checkVersionOfUserWhiteList(userWhiteListVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-	
+
 	}
-	public  UserDomain removeUserWhiteList(RetailscmUserContext userContext, String userDomainId, 
+	public  UserDomain removeUserWhiteList(RetailscmUserContext userContext, String userDomainId,
 		String userWhiteListId, int userWhiteListVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingUserWhiteList(userContext,userDomainId, userWhiteListId, userWhiteListVersion,tokensExpr);
-		
+
 		UserWhiteList userWhiteList = createIndexedUserWhiteList(userWhiteListId, userWhiteListVersion);
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			userDomain.removeUserWhiteList( userWhiteList );		
+			userDomain.removeUserWhiteList( userWhiteList );
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withUserWhiteListList().done());
 			deleteRelationInGraph(userContext, userWhiteList);
 			return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingUserWhiteList(RetailscmUserContext userContext, String userDomainId, 
+	protected void checkParamsForCopyingUserWhiteList(RetailscmUserContext userContext, String userDomainId,
 		String userWhiteListId, int userWhiteListVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfUserDomain( userDomainId);
 		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
 		checkerOf(userContext).checkVersionOfUserWhiteList(userWhiteListVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-	
+
 	}
-	public  UserDomain copyUserWhiteListFrom(RetailscmUserContext userContext, String userDomainId, 
+	public  UserDomain copyUserWhiteListFrom(RetailscmUserContext userContext, String userDomainId,
 		String userWhiteListId, int userWhiteListVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingUserWhiteList(userContext,userDomainId, userWhiteListId, userWhiteListVersion,tokensExpr);
-		
+
 		UserWhiteList userWhiteList = createIndexedUserWhiteList(userWhiteListId, userWhiteListVersion);
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			userDomain.copyUserWhiteListFrom( userWhiteList );		
+
+			userDomain.copyUserWhiteListFrom( userWhiteList );
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withUserWhiteListList().done());
 			
 			userContext.getManagerGroup().getUserWhiteListManager().onNewInstanceCreated(userContext, (UserWhiteList)userDomain.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingUserWhiteList(RetailscmUserContext userContext, String userDomainId, String userWhiteListId, int userWhiteListVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -594,32 +563,32 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-	
+
 	}
-	
+
 	public  UserDomain updateUserWhiteList(RetailscmUserContext userContext, String userDomainId, String userWhiteListId, int userWhiteListVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingUserWhiteList(userContext, userDomainId, userWhiteListId, userWhiteListVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withUserWhiteListList().searchUserWhiteListListWith(UserWhiteList.ID_PROPERTY, "eq", userWhiteListId).done();
-		
-		
-		
+
+
+
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, loadTokens);
-		
-		synchronized(userDomain){ 
+
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//userDomain.removeUserWhiteList( userWhiteList );	
+			//userDomain.removeUserWhiteList( userWhiteList );
 			//make changes to AcceleraterAccount.
 			UserWhiteList userWhiteListIndex = createIndexedUserWhiteList(userWhiteListId, userWhiteListVersion);
-		
+
 			UserWhiteList userWhiteList = userDomain.findTheUserWhiteList(userWhiteListIndex);
 			if(userWhiteList == null){
 				throw new UserDomainManagerException(userWhiteList+" is NOT FOUND" );
 			}
-			
+
 			userWhiteList.changeProperty(property, newValueExpr);
 			
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withUserWhiteListList().done());
@@ -630,17 +599,12 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	/*
 
 	*/
-	
 
 
 
-<<<<<<< HEAD
+
 	protected void checkParamsForAddingSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime,String [] tokensExpr) throws Exception{
-		
-=======
-	protected void checkParamsForAddingSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String blockingId,String [] tokensExpr) throws Exception{
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
-		
+
 				checkerOf(userContext).checkIdOfUserDomain(userDomainId);
 
 		
@@ -660,47 +624,26 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 		checkerOf(userContext).checkVerificationCodeOfSecUser(verificationCode);
 		
-<<<<<<< HEAD
-		userContext.getChecker().checkWeixinOpenidOfSecUser(weixinOpenid);
-		
-		userContext.getChecker().checkWeixinAppidOfSecUser(weixinAppid);
-		
-		userContext.getChecker().checkAccessTokenOfSecUser(accessToken);
-		
-		userContext.getChecker().checkVerificationCodeOfSecUser(verificationCode);
-=======
 		checkerOf(userContext).checkVerificationCodeExpireOfSecUser(verificationCodeExpire);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		checkerOf(userContext).checkLastLoginTimeOfSecUser(lastLoginTime);
-		
-		checkerOf(userContext).checkBlockingIdOfSecUser(blockingId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
 
-	
+
 	}
-<<<<<<< HEAD
 	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingSecUser(userContext,userDomainId,login, mobile, email, pwd, weixinOpenid, weixinAppid, accessToken, verificationCode, verificationCodeExpire, lastLoginTime,tokensExpr);
-		
+
 		SecUser secUser = createSecUser(userContext,login, mobile, email, pwd, weixinOpenid, weixinAppid, accessToken, verificationCode, verificationCodeExpire, lastLoginTime);
-=======
-	public  UserDomain addSecUser(RetailscmUserContext userContext, String userDomainId, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String blockingId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingSecUser(userContext,userDomainId,login, mobile, email, pwd, weixinOpenid, weixinAppid, accessToken, verificationCode, verificationCodeExpire, lastLoginTime, blockingId,tokensExpr);
-		
-		SecUser secUser = createSecUser(userContext,login, mobile, email, pwd, weixinOpenid, weixinAppid, accessToken, verificationCode, verificationCodeExpire, lastLoginTime, blockingId);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
-		
-		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-		synchronized(userDomain){ 
+
+		UserDomain userDomain = loadUserDomain(userContext, userDomainId, emptyOptions());
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			userDomain.addSecUser( secUser );		
+			userDomain.addSecUser( secUser );
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withSecUserList().done());
 			
 			userContext.getManagerGroup().getSecUserManager().onNewInstanceCreated(userContext, secUser);
@@ -708,22 +651,10 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	}
 	protected void checkParamsForUpdatingSecUserProperties(RetailscmUserContext userContext, String userDomainId,String id,String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfUserDomain(userDomainId);
 		checkerOf(userContext).checkIdOfSecUser(id);
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkLoginOfSecUser( login);
-		userContext.getChecker().checkMobileOfSecUser( mobile);
-		userContext.getChecker().checkEmailOfSecUser( email);
-		userContext.getChecker().checkPwdOfSecUser( pwd);
-		userContext.getChecker().checkWeixinOpenidOfSecUser( weixinOpenid);
-		userContext.getChecker().checkWeixinAppidOfSecUser( weixinAppid);
-		userContext.getChecker().checkAccessTokenOfSecUser( accessToken);
-		userContext.getChecker().checkVerificationCodeOfSecUser( verificationCode);
-		userContext.getChecker().checkVerificationCodeExpireOfSecUser( verificationCodeExpire);
-		userContext.getChecker().checkLastLoginTimeOfSecUser( lastLoginTime);
-=======
+
 		checkerOf(userContext).checkLoginOfSecUser( login);
 		checkerOf(userContext).checkMobileOfSecUser( mobile);
 		checkerOf(userContext).checkEmailOfSecUser( email);
@@ -734,28 +665,27 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		checkerOf(userContext).checkVerificationCodeOfSecUser( verificationCode);
 		checkerOf(userContext).checkVerificationCodeExpireOfSecUser( verificationCodeExpire);
 		checkerOf(userContext).checkLastLoginTimeOfSecUser( lastLoginTime);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-		
+
 	}
 	public  UserDomain updateSecUserProperties(RetailscmUserContext userContext, String userDomainId, String id,String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingSecUserProperties(userContext,userDomainId,id,login,mobile,email,pwd,weixinOpenid,weixinAppid,accessToken,verificationCode,verificationCodeExpire,lastLoginTime,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withSecUserListList()
 				.searchSecUserListWith(SecUser.ID_PROPERTY, "is", id).done();
-		
+
 		UserDomain userDomainToUpdate = loadUserDomain(userContext, userDomainId, options);
-		
+
 		if(userDomainToUpdate.getSecUserList().isEmpty()){
 			throw new UserDomainManagerException("SecUser is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		SecUser item = userDomainToUpdate.getSecUserList().first();
-		
+
 		item.updateLogin( login );
 		item.updateMobile( mobile );
 		item.updateEmail( email );
@@ -767,20 +697,16 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		item.updateVerificationCodeExpire( verificationCodeExpire );
 		item.updateLastLoginTime( lastLoginTime );
 
-		
+
 		//checkParamsForAddingSecUser(userContext,userDomainId,name, code, used,tokensExpr);
 		UserDomain userDomain = saveUserDomain(userContext, userDomainToUpdate, tokens().withSecUserList().done());
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-<<<<<<< HEAD
+
+
 	protected SecUser createSecUser(RetailscmUserContext userContext, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime) throws Exception{
-=======
-	protected SecUser createSecUser(RetailscmUserContext userContext, String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String blockingId) throws Exception{
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 		SecUser secUser = new SecUser();
 		
@@ -794,51 +720,42 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		secUser.setAccessToken(accessToken);		
 		secUser.setVerificationCode(verificationCode);		
 		secUser.setVerificationCodeExpire(verificationCodeExpire);		
-		secUser.setLastLoginTime(lastLoginTime);		
-		SecUserBlocking  blocking = new SecUserBlocking();
-		blocking.setId(blockingId);		
-		secUser.setBlocking(blocking);
+		secUser.setLastLoginTime(lastLoginTime);
 	
 		
 		return secUser;
-	
-		
+
+
 	}
-	
+
 	protected SecUser createIndexedSecUser(String id, int version){
 
 		SecUser secUser = new SecUser();
 		secUser.setId(id);
 		secUser.setVersion(version);
-		return secUser;			
-		
+		return secUser;
+
 	}
-	
-	protected void checkParamsForRemovingSecUserList(RetailscmUserContext userContext, String userDomainId, 
+
+	protected void checkParamsForRemovingSecUserList(RetailscmUserContext userContext, String userDomainId,
 			String secUserIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfUserDomain(userDomainId);
-		for(String secUserIdItem: secUserIds){
-			userContext.getChecker().checkIdOfSecUser(secUserIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfUserDomain(userDomainId);
 		for(String secUserIdItem: secUserIds){
 			checkerOf(userContext).checkIdOfSecUser(secUserIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-		
+
 	}
-	public  UserDomain removeSecUserList(RetailscmUserContext userContext, String userDomainId, 
+	public  UserDomain removeSecUserList(RetailscmUserContext userContext, String userDomainId,
 			String secUserIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingSecUserList(userContext, userDomainId,  secUserIds, tokensExpr);
-			
-			
+
+
 			UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-			synchronized(userDomain){ 
+			synchronized(userDomain){
 				//Will be good when the userDomain loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				userDomainDaoOf(userContext).planToRemoveSecUserList(userDomain, secUserIds, allTokens());
@@ -847,65 +764,65 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 				return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingSecUser(RetailscmUserContext userContext, String userDomainId, 
+
+	protected void checkParamsForRemovingSecUser(RetailscmUserContext userContext, String userDomainId,
 		String secUserId, int secUserVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfUserDomain( userDomainId);
 		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		checkerOf(userContext).checkVersionOfSecUser(secUserVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-	
+
 	}
-	public  UserDomain removeSecUser(RetailscmUserContext userContext, String userDomainId, 
+	public  UserDomain removeSecUser(RetailscmUserContext userContext, String userDomainId,
 		String secUserId, int secUserVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingSecUser(userContext,userDomainId, secUserId, secUserVersion,tokensExpr);
-		
+
 		SecUser secUser = createIndexedSecUser(secUserId, secUserVersion);
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			userDomain.removeSecUser( secUser );		
+			userDomain.removeSecUser( secUser );
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withSecUserList().done());
 			deleteRelationInGraph(userContext, secUser);
 			return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingSecUser(RetailscmUserContext userContext, String userDomainId, 
+	protected void checkParamsForCopyingSecUser(RetailscmUserContext userContext, String userDomainId,
 		String secUserId, int secUserVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfUserDomain( userDomainId);
 		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		checkerOf(userContext).checkVersionOfSecUser(secUserVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-	
+
 	}
-	public  UserDomain copySecUserFrom(RetailscmUserContext userContext, String userDomainId, 
+	public  UserDomain copySecUserFrom(RetailscmUserContext userContext, String userDomainId,
 		String secUserId, int secUserVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingSecUser(userContext,userDomainId, secUserId, secUserVersion,tokensExpr);
-		
+
 		SecUser secUser = createIndexedSecUser(secUserId, secUserVersion);
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, allTokens());
-		synchronized(userDomain){ 
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			userDomain.copySecUserFrom( secUser );		
+
+			userDomain.copySecUserFrom( secUser );
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withSecUserList().done());
 			
 			userContext.getManagerGroup().getSecUserManager().onNewInstanceCreated(userContext, (SecUser)userDomain.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,userDomain, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingSecUser(RetailscmUserContext userContext, String userDomainId, String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -943,18 +860,6 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 			checkerOf(userContext).checkAccessTokenOfSecUser(parseString(newValueExpr));
 		}
 		
-		if(SecUser.WEIXIN_OPENID_PROPERTY.equals(property)){
-			userContext.getChecker().checkWeixinOpenidOfSecUser(parseString(newValueExpr));
-		}
-		
-		if(SecUser.WEIXIN_APPID_PROPERTY.equals(property)){
-			userContext.getChecker().checkWeixinAppidOfSecUser(parseString(newValueExpr));
-		}
-		
-		if(SecUser.ACCESS_TOKEN_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccessTokenOfSecUser(parseString(newValueExpr));
-		}
-		
 		if(SecUser.VERIFICATION_CODE_PROPERTY.equals(property)){
 			checkerOf(userContext).checkVerificationCodeOfSecUser(parseInt(newValueExpr));
 		}
@@ -969,32 +874,32 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(UserDomainManagerException.class);
-	
+
 	}
-	
+
 	public  UserDomain updateSecUser(RetailscmUserContext userContext, String userDomainId, String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingSecUser(userContext, userDomainId, secUserId, secUserVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withSecUserList().searchSecUserListWith(SecUser.ID_PROPERTY, "eq", secUserId).done();
-		
-		
-		
+
+
+
 		UserDomain userDomain = loadUserDomain(userContext, userDomainId, loadTokens);
-		
-		synchronized(userDomain){ 
+
+		synchronized(userDomain){
 			//Will be good when the userDomain loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//userDomain.removeSecUser( secUser );	
+			//userDomain.removeSecUser( secUser );
 			//make changes to AcceleraterAccount.
 			SecUser secUserIndex = createIndexedSecUser(secUserId, secUserVersion);
-		
+
 			SecUser secUser = userDomain.findTheSecUser(secUserIndex);
 			if(secUser == null){
 				throw new UserDomainManagerException(secUser+" is NOT FOUND" );
 			}
-			
+
 			secUser.changeProperty(property, newValueExpr);
 			
 			userDomain = saveUserDomain(userContext, userDomain, tokens().withSecUserList().done());
@@ -1005,14 +910,20 @@ public class UserDomainManagerImpl extends CustomRetailscmCheckerManager impleme
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, UserDomain newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

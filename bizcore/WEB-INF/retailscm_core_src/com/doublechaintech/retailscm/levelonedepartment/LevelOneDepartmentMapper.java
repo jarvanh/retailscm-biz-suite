@@ -16,7 +16,7 @@ public class LevelOneDepartmentMapper extends BaseRowMapper<LevelOneDepartment>{
  		setBelongsTo(levelOneDepartment, rs, rowNumber); 		
  		setName(levelOneDepartment, rs, rowNumber); 		
  		setDescription(levelOneDepartment, rs, rowNumber); 		
- 		setManagerName(levelOneDepartment, rs, rowNumber); 		
+ 		setManager(levelOneDepartment, rs, rowNumber); 		
  		setFounded(levelOneDepartment, rs, rowNumber); 		
  		setVersion(levelOneDepartment, rs, rowNumber);
 
@@ -81,16 +81,16 @@ public class LevelOneDepartmentMapper extends BaseRowMapper<LevelOneDepartment>{
 		levelOneDepartment.setDescription(description);
 	}
 		
-	protected void setManagerName(LevelOneDepartment levelOneDepartment, ResultSet rs, int rowNumber) throws SQLException{
+	protected void setManager(LevelOneDepartment levelOneDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		String managerName = rs.getString(LevelOneDepartmentTable.COLUMN_MANAGER_NAME);
-		if(managerName == null){
+		String manager = rs.getString(LevelOneDepartmentTable.COLUMN_MANAGER);
+		if(manager == null){
 			//do nothing when nothing found in database
 			return;
 		}
 		
-		levelOneDepartment.setManagerName(managerName);
+		levelOneDepartment.setManager(manager);
 	}
 		
 	protected void setFounded(LevelOneDepartment levelOneDepartment, ResultSet rs, int rowNumber) throws SQLException{

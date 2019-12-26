@@ -130,8 +130,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
 
 	public static final String  SUB_COUNT_OF_CATALOG ="catalog.sub_count";
 	public RetailscmChecker checkSubCountOfCatalog(int subCount)
@@ -150,7 +148,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_CATALOG ="catalog.version";
 	public RetailscmChecker checkVersionOfCatalog(int version)
@@ -512,11 +509,11 @@ public class RetailscmChecker extends BaseChecker{
 		return this;
 	}	
 
-	public static final String  MANAGER_NAME_OF_PROVINCE_CENTER_DEPARTMENT ="province_center_department.manager_name";
-	public RetailscmChecker checkManagerNameOfProvinceCenterDepartment(String managerName)
+	public static final String  MANAGER_OF_PROVINCE_CENTER_DEPARTMENT ="province_center_department.manager";
+	public RetailscmChecker checkManagerOfProvinceCenterDepartment(String manager)
 	{
 		
-	 	checkStringLengthRange(managerName,1, 12,MANAGER_NAME_OF_PROVINCE_CENTER_DEPARTMENT ); 		
+	 	checkStringLengthRange(manager,1, 12,MANAGER_OF_PROVINCE_CENTER_DEPARTMENT ); 		
 		
 		return this;
 	}	
@@ -1026,10 +1023,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  TELEPHONE_OF_RETAIL_STORE ="retail_store.telephone";
-	public RetailscmChecker checkTelephoneOfRetailStore(long telephone)
+	public RetailscmChecker checkTelephoneOfRetailStore(String telephone)
 	{
 		
-	 	checkLongRange(telephone,0, 02887654321,TELEPHONE_OF_RETAIL_STORE ); 		
+	 	checkStringLengthRange(telephone,4, 48,TELEPHONE_OF_RETAIL_STORE ); 		
 		
 		return this;
 	}	
@@ -1060,8 +1057,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
 
 	public static final String  CREATION_OF_RETAIL_STORE ="retail_store.creation";
 	public RetailscmChecker checkCreationIdOfRetailStore(String creationId)
@@ -1116,7 +1111,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  FOUNDED_OF_RETAIL_STORE ="retail_store.founded";
 	public RetailscmChecker checkFoundedOfRetailStore(Date founded)
@@ -1396,54 +1390,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  CONFIRMATION_OF_CONSUMER_ORDER ="consumer_order.confirmation";
-	public RetailscmChecker checkConfirmationIdOfConsumerOrder(String confirmationId)
-	{
-		
-	 	checkIdOfConsumerOrder(confirmationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPROVAL_OF_CONSUMER_ORDER ="consumer_order.approval";
-	public RetailscmChecker checkApprovalIdOfConsumerOrder(String approvalId)
-	{
-		
-	 	checkIdOfConsumerOrder(approvalId ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESSING_OF_CONSUMER_ORDER ="consumer_order.processing";
-	public RetailscmChecker checkProcessingIdOfConsumerOrder(String processingId)
-	{
-		
-	 	checkIdOfConsumerOrder(processingId ); 		
-		
-		return this;
-	}	
-
-	public static final String  SHIPMENT_OF_CONSUMER_ORDER ="consumer_order.shipment";
-	public RetailscmChecker checkShipmentIdOfConsumerOrder(String shipmentId)
-	{
-		
-	 	checkIdOfConsumerOrder(shipmentId ); 		
-		
-		return this;
-	}	
-
-	public static final String  DELIVERY_OF_CONSUMER_ORDER ="consumer_order.delivery";
-	public RetailscmChecker checkDeliveryIdOfConsumerOrder(String deliveryId)
-	{
-		
-	 	checkIdOfConsumerOrder(deliveryId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  STORE_OF_CONSUMER_ORDER ="consumer_order.store";
 	public RetailscmChecker checkStoreIdOfConsumerOrder(String storeId)
@@ -1459,186 +1405,6 @@ public class RetailscmChecker extends BaseChecker{
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CONSUMER_ORDER ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_CONSUMER_ORDER_CONFIRMATION ="consumer_order_confirmation.id";
-	public RetailscmChecker checkIdOfConsumerOrderConfirmation(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_CONSUMER_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_CONSUMER_ORDER_CONFIRMATION ="consumer_order_confirmation.who";
-	public RetailscmChecker checkWhoOfConsumerOrderConfirmation(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_CONSUMER_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  CONFIRM_TIME_OF_CONSUMER_ORDER_CONFIRMATION ="consumer_order_confirmation.confirm_time";
-	public RetailscmChecker checkConfirmTimeOfConsumerOrderConfirmation(Date confirmTime)
-	{
-		
-	 	checkDateRange(confirmTime,parseDate("1900-01-01"), parseDate("2018-07-09"),CONFIRM_TIME_OF_CONSUMER_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_CONSUMER_ORDER_CONFIRMATION ="consumer_order_confirmation.version";
-	public RetailscmChecker checkVersionOfConsumerOrderConfirmation(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CONSUMER_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_CONSUMER_ORDER_APPROVAL ="consumer_order_approval.id";
-	public RetailscmChecker checkIdOfConsumerOrderApproval(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_CONSUMER_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_CONSUMER_ORDER_APPROVAL ="consumer_order_approval.who";
-	public RetailscmChecker checkWhoOfConsumerOrderApproval(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_CONSUMER_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPROVE_TIME_OF_CONSUMER_ORDER_APPROVAL ="consumer_order_approval.approve_time";
-	public RetailscmChecker checkApproveTimeOfConsumerOrderApproval(Date approveTime)
-	{
-		
-	 	checkDateRange(approveTime,parseDate("1900-01-01"), parseDate("2018-07-09"),APPROVE_TIME_OF_CONSUMER_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_CONSUMER_ORDER_APPROVAL ="consumer_order_approval.version";
-	public RetailscmChecker checkVersionOfConsumerOrderApproval(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CONSUMER_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_CONSUMER_ORDER_PROCESSING ="consumer_order_processing.id";
-	public RetailscmChecker checkIdOfConsumerOrderProcessing(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_CONSUMER_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_CONSUMER_ORDER_PROCESSING ="consumer_order_processing.who";
-	public RetailscmChecker checkWhoOfConsumerOrderProcessing(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_CONSUMER_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESS_TIME_OF_CONSUMER_ORDER_PROCESSING ="consumer_order_processing.process_time";
-	public RetailscmChecker checkProcessTimeOfConsumerOrderProcessing(Date processTime)
-	{
-		
-	 	checkDateRange(processTime,parseDate("1900-01-01"), parseDate("2018-07-09"),PROCESS_TIME_OF_CONSUMER_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_CONSUMER_ORDER_PROCESSING ="consumer_order_processing.version";
-	public RetailscmChecker checkVersionOfConsumerOrderProcessing(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CONSUMER_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_CONSUMER_ORDER_SHIPMENT ="consumer_order_shipment.id";
-	public RetailscmChecker checkIdOfConsumerOrderShipment(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_CONSUMER_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_CONSUMER_ORDER_SHIPMENT ="consumer_order_shipment.who";
-	public RetailscmChecker checkWhoOfConsumerOrderShipment(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_CONSUMER_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  SHIP_TIME_OF_CONSUMER_ORDER_SHIPMENT ="consumer_order_shipment.ship_time";
-	public RetailscmChecker checkShipTimeOfConsumerOrderShipment(Date shipTime)
-	{
-		
-	 	checkDateRange(shipTime,parseDate("1900-01-01"), parseDate("2018-07-09"),SHIP_TIME_OF_CONSUMER_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_CONSUMER_ORDER_SHIPMENT ="consumer_order_shipment.version";
-	public RetailscmChecker checkVersionOfConsumerOrderShipment(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CONSUMER_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_CONSUMER_ORDER_DELIVERY ="consumer_order_delivery.id";
-	public RetailscmChecker checkIdOfConsumerOrderDelivery(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_CONSUMER_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_CONSUMER_ORDER_DELIVERY ="consumer_order_delivery.who";
-	public RetailscmChecker checkWhoOfConsumerOrderDelivery(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_CONSUMER_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  DELIVERY_TIME_OF_CONSUMER_ORDER_DELIVERY ="consumer_order_delivery.delivery_time";
-	public RetailscmChecker checkDeliveryTimeOfConsumerOrderDelivery(Date deliveryTime)
-	{
-		
-	 	checkDateRange(deliveryTime,parseDate("1900-01-01"), parseDate("2018-07-09"),DELIVERY_TIME_OF_CONSUMER_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_CONSUMER_ORDER_DELIVERY ="consumer_order_delivery.version";
-	public RetailscmChecker checkVersionOfConsumerOrderDelivery(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CONSUMER_ORDER_DELIVERY ); 		
 		
 		return this;
 	}	
@@ -2452,285 +2218,12 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  CONFIRMATION_OF_SUPPLY_ORDER ="supply_order.confirmation";
-	public RetailscmChecker checkConfirmationIdOfSupplyOrder(String confirmationId)
-	{
-		
-	 	checkIdOfSupplyOrder(confirmationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPROVAL_OF_SUPPLY_ORDER ="supply_order.approval";
-	public RetailscmChecker checkApprovalIdOfSupplyOrder(String approvalId)
-	{
-		
-	 	checkIdOfSupplyOrder(approvalId ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESSING_OF_SUPPLY_ORDER ="supply_order.processing";
-	public RetailscmChecker checkProcessingIdOfSupplyOrder(String processingId)
-	{
-		
-	 	checkIdOfSupplyOrder(processingId ); 		
-		
-		return this;
-	}	
-
-	public static final String  PICKING_OF_SUPPLY_ORDER ="supply_order.picking";
-	public RetailscmChecker checkPickingIdOfSupplyOrder(String pickingId)
-	{
-		
-	 	checkIdOfSupplyOrder(pickingId ); 		
-		
-		return this;
-	}	
-
-	public static final String  SHIPMENT_OF_SUPPLY_ORDER ="supply_order.shipment";
-	public RetailscmChecker checkShipmentIdOfSupplyOrder(String shipmentId)
-	{
-		
-	 	checkIdOfSupplyOrder(shipmentId ); 		
-		
-		return this;
-	}	
-
-	public static final String  DELIVERY_OF_SUPPLY_ORDER ="supply_order.delivery";
-	public RetailscmChecker checkDeliveryIdOfSupplyOrder(String deliveryId)
-	{
-		
-	 	checkIdOfSupplyOrder(deliveryId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_SUPPLY_ORDER ="supply_order.version";
 	public RetailscmChecker checkVersionOfSupplyOrder(int version)
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SUPPLY_ORDER ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_SUPPLY_ORDER_CONFIRMATION ="supply_order_confirmation.id";
-	public RetailscmChecker checkIdOfSupplyOrderConfirmation(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_SUPPLY_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_SUPPLY_ORDER_CONFIRMATION ="supply_order_confirmation.who";
-	public RetailscmChecker checkWhoOfSupplyOrderConfirmation(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_SUPPLY_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  CONFIRM_TIME_OF_SUPPLY_ORDER_CONFIRMATION ="supply_order_confirmation.confirm_time";
-	public RetailscmChecker checkConfirmTimeOfSupplyOrderConfirmation(Date confirmTime)
-	{
-		
-	 	checkDateRange(confirmTime,parseDate("1900-01-01"), parseDate("2018-07-09"),CONFIRM_TIME_OF_SUPPLY_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_SUPPLY_ORDER_CONFIRMATION ="supply_order_confirmation.version";
-	public RetailscmChecker checkVersionOfSupplyOrderConfirmation(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SUPPLY_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_SUPPLY_ORDER_APPROVAL ="supply_order_approval.id";
-	public RetailscmChecker checkIdOfSupplyOrderApproval(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_SUPPLY_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_SUPPLY_ORDER_APPROVAL ="supply_order_approval.who";
-	public RetailscmChecker checkWhoOfSupplyOrderApproval(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_SUPPLY_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPROVE_TIME_OF_SUPPLY_ORDER_APPROVAL ="supply_order_approval.approve_time";
-	public RetailscmChecker checkApproveTimeOfSupplyOrderApproval(Date approveTime)
-	{
-		
-	 	checkDateRange(approveTime,parseDate("1900-01-01"), parseDate("2018-07-09"),APPROVE_TIME_OF_SUPPLY_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_SUPPLY_ORDER_APPROVAL ="supply_order_approval.version";
-	public RetailscmChecker checkVersionOfSupplyOrderApproval(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SUPPLY_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_SUPPLY_ORDER_PROCESSING ="supply_order_processing.id";
-	public RetailscmChecker checkIdOfSupplyOrderProcessing(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_SUPPLY_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_SUPPLY_ORDER_PROCESSING ="supply_order_processing.who";
-	public RetailscmChecker checkWhoOfSupplyOrderProcessing(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_SUPPLY_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESS_TIME_OF_SUPPLY_ORDER_PROCESSING ="supply_order_processing.process_time";
-	public RetailscmChecker checkProcessTimeOfSupplyOrderProcessing(Date processTime)
-	{
-		
-	 	checkDateRange(processTime,parseDate("1900-01-01"), parseDate("2018-07-09"),PROCESS_TIME_OF_SUPPLY_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_SUPPLY_ORDER_PROCESSING ="supply_order_processing.version";
-	public RetailscmChecker checkVersionOfSupplyOrderProcessing(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SUPPLY_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_SUPPLY_ORDER_PICKING ="supply_order_picking.id";
-	public RetailscmChecker checkIdOfSupplyOrderPicking(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_SUPPLY_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_SUPPLY_ORDER_PICKING ="supply_order_picking.who";
-	public RetailscmChecker checkWhoOfSupplyOrderPicking(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_SUPPLY_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESS_TIME_OF_SUPPLY_ORDER_PICKING ="supply_order_picking.process_time";
-	public RetailscmChecker checkProcessTimeOfSupplyOrderPicking(Date processTime)
-	{
-		
-	 	checkDateRange(processTime,parseDate("1900-01-01"), parseDate("2018-07-09"),PROCESS_TIME_OF_SUPPLY_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_SUPPLY_ORDER_PICKING ="supply_order_picking.version";
-	public RetailscmChecker checkVersionOfSupplyOrderPicking(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SUPPLY_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_SUPPLY_ORDER_SHIPMENT ="supply_order_shipment.id";
-	public RetailscmChecker checkIdOfSupplyOrderShipment(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_SUPPLY_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_SUPPLY_ORDER_SHIPMENT ="supply_order_shipment.who";
-	public RetailscmChecker checkWhoOfSupplyOrderShipment(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_SUPPLY_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  SHIP_TIME_OF_SUPPLY_ORDER_SHIPMENT ="supply_order_shipment.ship_time";
-	public RetailscmChecker checkShipTimeOfSupplyOrderShipment(Date shipTime)
-	{
-		
-	 	checkDateRange(shipTime,parseDate("1900-01-01"), parseDate("2018-07-09"),SHIP_TIME_OF_SUPPLY_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_SUPPLY_ORDER_SHIPMENT ="supply_order_shipment.version";
-	public RetailscmChecker checkVersionOfSupplyOrderShipment(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SUPPLY_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_SUPPLY_ORDER_DELIVERY ="supply_order_delivery.id";
-	public RetailscmChecker checkIdOfSupplyOrderDelivery(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_SUPPLY_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_SUPPLY_ORDER_DELIVERY ="supply_order_delivery.who";
-	public RetailscmChecker checkWhoOfSupplyOrderDelivery(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_SUPPLY_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  DELIVERY_TIME_OF_SUPPLY_ORDER_DELIVERY ="supply_order_delivery.delivery_time";
-	public RetailscmChecker checkDeliveryTimeOfSupplyOrderDelivery(Date deliveryTime)
-	{
-		
-	 	checkDateRange(deliveryTime,parseDate("1900-01-01"), parseDate("2018-07-09"),DELIVERY_TIME_OF_SUPPLY_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_SUPPLY_ORDER_DELIVERY ="supply_order_delivery.version";
-	public RetailscmChecker checkVersionOfSupplyOrderDelivery(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SUPPLY_ORDER_DELIVERY ); 		
 		
 		return this;
 	}	
@@ -2941,285 +2434,12 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  CONFIRMATION_OF_RETAIL_STORE_ORDER ="retail_store_order.confirmation";
-	public RetailscmChecker checkConfirmationIdOfRetailStoreOrder(String confirmationId)
-	{
-		
-	 	checkIdOfRetailStoreOrder(confirmationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPROVAL_OF_RETAIL_STORE_ORDER ="retail_store_order.approval";
-	public RetailscmChecker checkApprovalIdOfRetailStoreOrder(String approvalId)
-	{
-		
-	 	checkIdOfRetailStoreOrder(approvalId ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESSING_OF_RETAIL_STORE_ORDER ="retail_store_order.processing";
-	public RetailscmChecker checkProcessingIdOfRetailStoreOrder(String processingId)
-	{
-		
-	 	checkIdOfRetailStoreOrder(processingId ); 		
-		
-		return this;
-	}	
-
-	public static final String  PICKING_OF_RETAIL_STORE_ORDER ="retail_store_order.picking";
-	public RetailscmChecker checkPickingIdOfRetailStoreOrder(String pickingId)
-	{
-		
-	 	checkIdOfRetailStoreOrder(pickingId ); 		
-		
-		return this;
-	}	
-
-	public static final String  SHIPMENT_OF_RETAIL_STORE_ORDER ="retail_store_order.shipment";
-	public RetailscmChecker checkShipmentIdOfRetailStoreOrder(String shipmentId)
-	{
-		
-	 	checkIdOfRetailStoreOrder(shipmentId ); 		
-		
-		return this;
-	}	
-
-	public static final String  DELIVERY_OF_RETAIL_STORE_ORDER ="retail_store_order.delivery";
-	public RetailscmChecker checkDeliveryIdOfRetailStoreOrder(String deliveryId)
-	{
-		
-	 	checkIdOfRetailStoreOrder(deliveryId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_RETAIL_STORE_ORDER ="retail_store_order.version";
 	public RetailscmChecker checkVersionOfRetailStoreOrder(int version)
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_RETAIL_STORE_ORDER ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_RETAIL_STORE_ORDER_CONFIRMATION ="retail_store_order_confirmation.id";
-	public RetailscmChecker checkIdOfRetailStoreOrderConfirmation(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_RETAIL_STORE_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_RETAIL_STORE_ORDER_CONFIRMATION ="retail_store_order_confirmation.who";
-	public RetailscmChecker checkWhoOfRetailStoreOrderConfirmation(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_RETAIL_STORE_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  CONFIRM_TIME_OF_RETAIL_STORE_ORDER_CONFIRMATION ="retail_store_order_confirmation.confirm_time";
-	public RetailscmChecker checkConfirmTimeOfRetailStoreOrderConfirmation(Date confirmTime)
-	{
-		
-	 	checkDateRange(confirmTime,parseDate("1900-01-01"), parseDate("2018-07-09"),CONFIRM_TIME_OF_RETAIL_STORE_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_RETAIL_STORE_ORDER_CONFIRMATION ="retail_store_order_confirmation.version";
-	public RetailscmChecker checkVersionOfRetailStoreOrderConfirmation(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_RETAIL_STORE_ORDER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_RETAIL_STORE_ORDER_APPROVAL ="retail_store_order_approval.id";
-	public RetailscmChecker checkIdOfRetailStoreOrderApproval(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_RETAIL_STORE_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_RETAIL_STORE_ORDER_APPROVAL ="retail_store_order_approval.who";
-	public RetailscmChecker checkWhoOfRetailStoreOrderApproval(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_RETAIL_STORE_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPROVE_TIME_OF_RETAIL_STORE_ORDER_APPROVAL ="retail_store_order_approval.approve_time";
-	public RetailscmChecker checkApproveTimeOfRetailStoreOrderApproval(Date approveTime)
-	{
-		
-	 	checkDateRange(approveTime,parseDate("1900-01-01"), parseDate("2018-07-09"),APPROVE_TIME_OF_RETAIL_STORE_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_RETAIL_STORE_ORDER_APPROVAL ="retail_store_order_approval.version";
-	public RetailscmChecker checkVersionOfRetailStoreOrderApproval(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_RETAIL_STORE_ORDER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_RETAIL_STORE_ORDER_PROCESSING ="retail_store_order_processing.id";
-	public RetailscmChecker checkIdOfRetailStoreOrderProcessing(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_RETAIL_STORE_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_RETAIL_STORE_ORDER_PROCESSING ="retail_store_order_processing.who";
-	public RetailscmChecker checkWhoOfRetailStoreOrderProcessing(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_RETAIL_STORE_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESS_TIME_OF_RETAIL_STORE_ORDER_PROCESSING ="retail_store_order_processing.process_time";
-	public RetailscmChecker checkProcessTimeOfRetailStoreOrderProcessing(Date processTime)
-	{
-		
-	 	checkDateRange(processTime,parseDate("1900-01-01"), parseDate("2018-07-09"),PROCESS_TIME_OF_RETAIL_STORE_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_RETAIL_STORE_ORDER_PROCESSING ="retail_store_order_processing.version";
-	public RetailscmChecker checkVersionOfRetailStoreOrderProcessing(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_RETAIL_STORE_ORDER_PROCESSING ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_RETAIL_STORE_ORDER_PICKING ="retail_store_order_picking.id";
-	public RetailscmChecker checkIdOfRetailStoreOrderPicking(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_RETAIL_STORE_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_RETAIL_STORE_ORDER_PICKING ="retail_store_order_picking.who";
-	public RetailscmChecker checkWhoOfRetailStoreOrderPicking(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_RETAIL_STORE_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROCESS_TIME_OF_RETAIL_STORE_ORDER_PICKING ="retail_store_order_picking.process_time";
-	public RetailscmChecker checkProcessTimeOfRetailStoreOrderPicking(Date processTime)
-	{
-		
-	 	checkDateRange(processTime,parseDate("1900-01-01"), parseDate("2018-07-09"),PROCESS_TIME_OF_RETAIL_STORE_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_RETAIL_STORE_ORDER_PICKING ="retail_store_order_picking.version";
-	public RetailscmChecker checkVersionOfRetailStoreOrderPicking(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_RETAIL_STORE_ORDER_PICKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_RETAIL_STORE_ORDER_SHIPMENT ="retail_store_order_shipment.id";
-	public RetailscmChecker checkIdOfRetailStoreOrderShipment(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_RETAIL_STORE_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_RETAIL_STORE_ORDER_SHIPMENT ="retail_store_order_shipment.who";
-	public RetailscmChecker checkWhoOfRetailStoreOrderShipment(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_RETAIL_STORE_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  SHIP_TIME_OF_RETAIL_STORE_ORDER_SHIPMENT ="retail_store_order_shipment.ship_time";
-	public RetailscmChecker checkShipTimeOfRetailStoreOrderShipment(Date shipTime)
-	{
-		
-	 	checkDateRange(shipTime,parseDate("1900-01-01"), parseDate("2018-07-09"),SHIP_TIME_OF_RETAIL_STORE_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_RETAIL_STORE_ORDER_SHIPMENT ="retail_store_order_shipment.version";
-	public RetailscmChecker checkVersionOfRetailStoreOrderShipment(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_RETAIL_STORE_ORDER_SHIPMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_RETAIL_STORE_ORDER_DELIVERY ="retail_store_order_delivery.id";
-	public RetailscmChecker checkIdOfRetailStoreOrderDelivery(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_RETAIL_STORE_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_RETAIL_STORE_ORDER_DELIVERY ="retail_store_order_delivery.who";
-	public RetailscmChecker checkWhoOfRetailStoreOrderDelivery(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_RETAIL_STORE_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  DELIVERY_TIME_OF_RETAIL_STORE_ORDER_DELIVERY ="retail_store_order_delivery.delivery_time";
-	public RetailscmChecker checkDeliveryTimeOfRetailStoreOrderDelivery(Date deliveryTime)
-	{
-		
-	 	checkDateRange(deliveryTime,parseDate("1900-01-01"), parseDate("2018-07-09"),DELIVERY_TIME_OF_RETAIL_STORE_ORDER_DELIVERY ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_RETAIL_STORE_ORDER_DELIVERY ="retail_store_order_delivery.version";
-	public RetailscmChecker checkVersionOfRetailStoreOrderDelivery(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_RETAIL_STORE_ORDER_DELIVERY ); 		
 		
 		return this;
 	}	
@@ -3405,10 +2625,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_WAREHOUSE ="warehouse.contact_number";
-	public RetailscmChecker checkContactNumberOfWarehouse(long contactNumber)
+	public RetailscmChecker checkContactNumberOfWarehouse(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_WAREHOUSE ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_WAREHOUSE ); 		
 		
 		return this;
 	}	
@@ -3477,10 +2697,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_STORAGE_SPACE ="storage_space.contact_number";
-	public RetailscmChecker checkContactNumberOfStorageSpace(long contactNumber)
+	public RetailscmChecker checkContactNumberOfStorageSpace(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_STORAGE_SPACE ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_STORAGE_SPACE ); 		
 		
 		return this;
 	}	
@@ -3549,10 +2769,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_SMART_PALLET ="smart_pallet.contact_number";
-	public RetailscmChecker checkContactNumberOfSmartPallet(long contactNumber)
+	public RetailscmChecker checkContactNumberOfSmartPallet(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_SMART_PALLET ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_SMART_PALLET ); 		
 		
 		return this;
 	}	
@@ -3952,78 +3172,12 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  PACKAGING_OF_GOODS ="goods.packaging";
-	public RetailscmChecker checkPackagingIdOfGoods(String packagingId)
-	{
-		
-	 	checkIdOfGoods(packagingId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_GOODS ="goods.version";
 	public RetailscmChecker checkVersionOfGoods(int version)
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_GOODS ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_GOODS_PACKAGING ="goods_packaging.id";
-	public RetailscmChecker checkIdOfGoodsPackaging(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_GOODS_PACKAGING ); 		
-		
-		return this;
-	}	
-
-	public static final String  PACKAGE_NAME_OF_GOODS_PACKAGING ="goods_packaging.package_name";
-	public RetailscmChecker checkPackageNameOfGoodsPackaging(String packageName)
-	{
-		
-	 	checkStringLengthRange(packageName,1, 12,PACKAGE_NAME_OF_GOODS_PACKAGING ); 		
-		
-		return this;
-	}	
-
-	public static final String  RFID_OF_GOODS_PACKAGING ="goods_packaging.rfid";
-	public RetailscmChecker checkRfidOfGoodsPackaging(String rfid)
-	{
-		
-	 	checkStringLengthRange(rfid,2, 28,RFID_OF_GOODS_PACKAGING ); 		
-		
-		return this;
-	}	
-
-	public static final String  PACKAGE_TIME_OF_GOODS_PACKAGING ="goods_packaging.package_time";
-	public RetailscmChecker checkPackageTimeOfGoodsPackaging(Date packageTime)
-	{
-		
-	 	checkDateRange(packageTime,parseDate("1900-01-01"), parseDate("2017-09-09"),PACKAGE_TIME_OF_GOODS_PACKAGING ); 		
-		
-		return this;
-	}	
-
-	public static final String  DESCRIPTION_OF_GOODS_PACKAGING ="goods_packaging.description";
-	public RetailscmChecker checkDescriptionOfGoodsPackaging(String description)
-	{
-		
-	 	checkStringLengthRange(description,3, 36,DESCRIPTION_OF_GOODS_PACKAGING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_GOODS_PACKAGING ="goods_packaging.version";
-	public RetailscmChecker checkVersionOfGoodsPackaging(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_GOODS_PACKAGING ); 		
 		
 		return this;
 	}	
@@ -4146,10 +3300,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_SUPPLIER_SPACE ="supplier_space.contact_number";
-	public RetailscmChecker checkContactNumberOfSupplierSpace(long contactNumber)
+	public RetailscmChecker checkContactNumberOfSupplierSpace(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_SUPPLIER_SPACE ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_SUPPLIER_SPACE ); 		
 		
 		return this;
 	}	
@@ -4218,10 +3372,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_RECEIVING_SPACE ="receiving_space.contact_number";
-	public RetailscmChecker checkContactNumberOfReceivingSpace(long contactNumber)
+	public RetailscmChecker checkContactNumberOfReceivingSpace(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_RECEIVING_SPACE ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_RECEIVING_SPACE ); 		
 		
 		return this;
 	}	
@@ -4299,10 +3453,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_SHIPPING_SPACE ="shipping_space.contact_number";
-	public RetailscmChecker checkContactNumberOfShippingSpace(long contactNumber)
+	public RetailscmChecker checkContactNumberOfShippingSpace(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_SHIPPING_SPACE ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_SHIPPING_SPACE ); 		
 		
 		return this;
 	}	
@@ -4380,10 +3534,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_DAMAGE_SPACE ="damage_space.contact_number";
-	public RetailscmChecker checkContactNumberOfDamageSpace(long contactNumber)
+	public RetailscmChecker checkContactNumberOfDamageSpace(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_DAMAGE_SPACE ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_DAMAGE_SPACE ); 		
 		
 		return this;
 	}	
@@ -4497,10 +3651,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_TRANSPORT_FLEET ="transport_fleet.contact_number";
-	public RetailscmChecker checkContactNumberOfTransportFleet(long contactNumber)
+	public RetailscmChecker checkContactNumberOfTransportFleet(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_TRANSPORT_FLEET ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_TRANSPORT_FLEET ); 		
 		
 		return this;
 	}	
@@ -4551,10 +3705,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  CONTACT_NUMBER_OF_TRANSPORT_TRUCK ="transport_truck.contact_number";
-	public RetailscmChecker checkContactNumberOfTransportTruck(long contactNumber)
+	public RetailscmChecker checkContactNumberOfTransportTruck(String contactNumber)
 	{
 		
-	 	checkLongRange(contactNumber,0, 02887654321,CONTACT_NUMBER_OF_TRANSPORT_TRUCK ); 		
+	 	checkStringLengthRange(contactNumber,4, 48,CONTACT_NUMBER_OF_TRANSPORT_TRUCK ); 		
 		
 		return this;
 	}	
@@ -4641,10 +3795,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  DRIVER_LICENSE_NUMBER_OF_TRUCK_DRIVER ="truck_driver.driver_license_number";
-	public RetailscmChecker checkDriverLicenseNumberOfTruckDriver(long driverLicenseNumber)
+	public RetailscmChecker checkDriverLicenseNumberOfTruckDriver(String driverLicenseNumber)
 	{
 		
-	 	checkLongRange(driverLicenseNumber,0, 51099887733,DRIVER_LICENSE_NUMBER_OF_TRUCK_DRIVER ); 		
+	 	checkStringLengthRange(driverLicenseNumber,4, 52,DRIVER_LICENSE_NUMBER_OF_TRUCK_DRIVER ); 		
 		
 		return this;
 	}	
@@ -4902,10 +4056,10 @@ public class RetailscmChecker extends BaseChecker{
 	}	
 
 	public static final String  ACCOUNT_NUMBER_OF_ACCOUNT_SET ="account_set.account_number";
-	public RetailscmChecker checkAccountNumberOfAccountSet(long accountNumber)
+	public RetailscmChecker checkAccountNumberOfAccountSet(String accountNumber)
 	{
 		
-	 	checkLongRange(accountNumber,0, 33265805054885,ACCOUNT_NUMBER_OF_ACCOUNT_SET ); 		
+	 	checkStringLengthRange(accountNumber,5, 68,ACCOUNT_NUMBER_OF_ACCOUNT_SET ); 		
 		
 		return this;
 	}	
@@ -5152,231 +4306,12 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  CREATION_OF_ACCOUNTING_DOCUMENT ="accounting_document.creation";
-	public RetailscmChecker checkCreationIdOfAccountingDocument(String creationId)
-	{
-		
-	 	checkIdOfAccountingDocument(creationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  CONFIRMATION_OF_ACCOUNTING_DOCUMENT ="accounting_document.confirmation";
-	public RetailscmChecker checkConfirmationIdOfAccountingDocument(String confirmationId)
-	{
-		
-	 	checkIdOfAccountingDocument(confirmationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  AUDITING_OF_ACCOUNTING_DOCUMENT ="accounting_document.auditing";
-	public RetailscmChecker checkAuditingIdOfAccountingDocument(String auditingId)
-	{
-		
-	 	checkIdOfAccountingDocument(auditingId ); 		
-		
-		return this;
-	}	
-
-	public static final String  POSTING_OF_ACCOUNTING_DOCUMENT ="accounting_document.posting";
-	public RetailscmChecker checkPostingIdOfAccountingDocument(String postingId)
-	{
-		
-	 	checkIdOfAccountingDocument(postingId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_ACCOUNTING_DOCUMENT ="accounting_document.version";
 	public RetailscmChecker checkVersionOfAccountingDocument(int version)
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ACCOUNTING_DOCUMENT ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_ACCOUNTING_DOCUMENT_CREATION ="accounting_document_creation.id";
-	public RetailscmChecker checkIdOfAccountingDocumentCreation(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_ACCOUNTING_DOCUMENT_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_ACCOUNTING_DOCUMENT_CREATION ="accounting_document_creation.who";
-	public RetailscmChecker checkWhoOfAccountingDocumentCreation(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 16,WHO_OF_ACCOUNTING_DOCUMENT_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_ACCOUNTING_DOCUMENT_CREATION ="accounting_document_creation.comments";
-	public RetailscmChecker checkCommentsOfAccountingDocumentCreation(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,2, 16,COMMENTS_OF_ACCOUNTING_DOCUMENT_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  MAKE_DATE_OF_ACCOUNTING_DOCUMENT_CREATION ="accounting_document_creation.make_date";
-	public RetailscmChecker checkMakeDateOfAccountingDocumentCreation(Date makeDate)
-	{
-		
-	 	checkDateRange(makeDate,parseDate("1900-01-01"), parseDate("2017-09-09"),MAKE_DATE_OF_ACCOUNTING_DOCUMENT_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_ACCOUNTING_DOCUMENT_CREATION ="accounting_document_creation.version";
-	public RetailscmChecker checkVersionOfAccountingDocumentCreation(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ACCOUNTING_DOCUMENT_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ="accounting_document_confirmation.id";
-	public RetailscmChecker checkIdOfAccountingDocumentConfirmation(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ="accounting_document_confirmation.who";
-	public RetailscmChecker checkWhoOfAccountingDocumentConfirmation(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 16,WHO_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ="accounting_document_confirmation.comments";
-	public RetailscmChecker checkCommentsOfAccountingDocumentConfirmation(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,2, 16,COMMENTS_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  MAKE_DATE_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ="accounting_document_confirmation.make_date";
-	public RetailscmChecker checkMakeDateOfAccountingDocumentConfirmation(Date makeDate)
-	{
-		
-	 	checkDateRange(makeDate,parseDate("1900-01-01"), parseDate("2017-09-09"),MAKE_DATE_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ="accounting_document_confirmation.version";
-	public RetailscmChecker checkVersionOfAccountingDocumentConfirmation(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ACCOUNTING_DOCUMENT_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_ACCOUNTING_DOCUMENT_AUDITING ="accounting_document_auditing.id";
-	public RetailscmChecker checkIdOfAccountingDocumentAuditing(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_ACCOUNTING_DOCUMENT_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_ACCOUNTING_DOCUMENT_AUDITING ="accounting_document_auditing.who";
-	public RetailscmChecker checkWhoOfAccountingDocumentAuditing(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 16,WHO_OF_ACCOUNTING_DOCUMENT_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_ACCOUNTING_DOCUMENT_AUDITING ="accounting_document_auditing.comments";
-	public RetailscmChecker checkCommentsOfAccountingDocumentAuditing(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,4, 60,COMMENTS_OF_ACCOUNTING_DOCUMENT_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  MAKE_DATE_OF_ACCOUNTING_DOCUMENT_AUDITING ="accounting_document_auditing.make_date";
-	public RetailscmChecker checkMakeDateOfAccountingDocumentAuditing(Date makeDate)
-	{
-		
-	 	checkDateRange(makeDate,parseDate("1900-01-01"), parseDate("2017-09-09"),MAKE_DATE_OF_ACCOUNTING_DOCUMENT_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_ACCOUNTING_DOCUMENT_AUDITING ="accounting_document_auditing.version";
-	public RetailscmChecker checkVersionOfAccountingDocumentAuditing(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ACCOUNTING_DOCUMENT_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_ACCOUNTING_DOCUMENT_POSTING ="accounting_document_posting.id";
-	public RetailscmChecker checkIdOfAccountingDocumentPosting(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_ACCOUNTING_DOCUMENT_POSTING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_ACCOUNTING_DOCUMENT_POSTING ="accounting_document_posting.who";
-	public RetailscmChecker checkWhoOfAccountingDocumentPosting(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 16,WHO_OF_ACCOUNTING_DOCUMENT_POSTING ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_ACCOUNTING_DOCUMENT_POSTING ="accounting_document_posting.comments";
-	public RetailscmChecker checkCommentsOfAccountingDocumentPosting(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,4, 60,COMMENTS_OF_ACCOUNTING_DOCUMENT_POSTING ); 		
-		
-		return this;
-	}	
-
-	public static final String  MAKE_DATE_OF_ACCOUNTING_DOCUMENT_POSTING ="accounting_document_posting.make_date";
-	public RetailscmChecker checkMakeDateOfAccountingDocumentPosting(Date makeDate)
-	{
-		
-	 	checkDateRange(makeDate,parseDate("1900-01-01"), parseDate("2017-09-09"),MAKE_DATE_OF_ACCOUNTING_DOCUMENT_POSTING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_ACCOUNTING_DOCUMENT_POSTING ="accounting_document_posting.version";
-	public RetailscmChecker checkVersionOfAccountingDocumentPosting(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ACCOUNTING_DOCUMENT_POSTING ); 		
 		
 		return this;
 	}	
@@ -5443,177 +4378,12 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  CREATION_OF_ORIGINAL_VOUCHER ="original_voucher.creation";
-	public RetailscmChecker checkCreationIdOfOriginalVoucher(String creationId)
-	{
-		
-	 	checkIdOfOriginalVoucher(creationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  CONFIRMATION_OF_ORIGINAL_VOUCHER ="original_voucher.confirmation";
-	public RetailscmChecker checkConfirmationIdOfOriginalVoucher(String confirmationId)
-	{
-		
-	 	checkIdOfOriginalVoucher(confirmationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  AUDITING_OF_ORIGINAL_VOUCHER ="original_voucher.auditing";
-	public RetailscmChecker checkAuditingIdOfOriginalVoucher(String auditingId)
-	{
-		
-	 	checkIdOfOriginalVoucher(auditingId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_ORIGINAL_VOUCHER ="original_voucher.version";
 	public RetailscmChecker checkVersionOfOriginalVoucher(int version)
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ORIGINAL_VOUCHER ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_ORIGINAL_VOUCHER_CREATION ="original_voucher_creation.id";
-	public RetailscmChecker checkIdOfOriginalVoucherCreation(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_ORIGINAL_VOUCHER_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_ORIGINAL_VOUCHER_CREATION ="original_voucher_creation.who";
-	public RetailscmChecker checkWhoOfOriginalVoucherCreation(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 16,WHO_OF_ORIGINAL_VOUCHER_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_ORIGINAL_VOUCHER_CREATION ="original_voucher_creation.comments";
-	public RetailscmChecker checkCommentsOfOriginalVoucherCreation(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,2, 16,COMMENTS_OF_ORIGINAL_VOUCHER_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  MAKE_DATE_OF_ORIGINAL_VOUCHER_CREATION ="original_voucher_creation.make_date";
-	public RetailscmChecker checkMakeDateOfOriginalVoucherCreation(Date makeDate)
-	{
-		
-	 	checkDateRange(makeDate,parseDate("1900-01-01"), parseDate("2017-09-09"),MAKE_DATE_OF_ORIGINAL_VOUCHER_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_ORIGINAL_VOUCHER_CREATION ="original_voucher_creation.version";
-	public RetailscmChecker checkVersionOfOriginalVoucherCreation(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ORIGINAL_VOUCHER_CREATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_ORIGINAL_VOUCHER_CONFIRMATION ="original_voucher_confirmation.id";
-	public RetailscmChecker checkIdOfOriginalVoucherConfirmation(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_ORIGINAL_VOUCHER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_ORIGINAL_VOUCHER_CONFIRMATION ="original_voucher_confirmation.who";
-	public RetailscmChecker checkWhoOfOriginalVoucherConfirmation(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 16,WHO_OF_ORIGINAL_VOUCHER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_ORIGINAL_VOUCHER_CONFIRMATION ="original_voucher_confirmation.comments";
-	public RetailscmChecker checkCommentsOfOriginalVoucherConfirmation(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,2, 16,COMMENTS_OF_ORIGINAL_VOUCHER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  MAKE_DATE_OF_ORIGINAL_VOUCHER_CONFIRMATION ="original_voucher_confirmation.make_date";
-	public RetailscmChecker checkMakeDateOfOriginalVoucherConfirmation(Date makeDate)
-	{
-		
-	 	checkDateRange(makeDate,parseDate("1900-01-01"), parseDate("2017-09-09"),MAKE_DATE_OF_ORIGINAL_VOUCHER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_ORIGINAL_VOUCHER_CONFIRMATION ="original_voucher_confirmation.version";
-	public RetailscmChecker checkVersionOfOriginalVoucherConfirmation(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ORIGINAL_VOUCHER_CONFIRMATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_ORIGINAL_VOUCHER_AUDITING ="original_voucher_auditing.id";
-	public RetailscmChecker checkIdOfOriginalVoucherAuditing(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_ORIGINAL_VOUCHER_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_ORIGINAL_VOUCHER_AUDITING ="original_voucher_auditing.who";
-	public RetailscmChecker checkWhoOfOriginalVoucherAuditing(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 16,WHO_OF_ORIGINAL_VOUCHER_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_ORIGINAL_VOUCHER_AUDITING ="original_voucher_auditing.comments";
-	public RetailscmChecker checkCommentsOfOriginalVoucherAuditing(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,4, 60,COMMENTS_OF_ORIGINAL_VOUCHER_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  MAKE_DATE_OF_ORIGINAL_VOUCHER_AUDITING ="original_voucher_auditing.make_date";
-	public RetailscmChecker checkMakeDateOfOriginalVoucherAuditing(Date makeDate)
-	{
-		
-	 	checkDateRange(makeDate,parseDate("1900-01-01"), parseDate("2017-09-09"),MAKE_DATE_OF_ORIGINAL_VOUCHER_AUDITING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_ORIGINAL_VOUCHER_AUDITING ="original_voucher_auditing.version";
-	public RetailscmChecker checkVersionOfOriginalVoucherAuditing(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_ORIGINAL_VOUCHER_AUDITING ); 		
 		
 		return this;
 	}	
@@ -5726,11 +4496,11 @@ public class RetailscmChecker extends BaseChecker{
 		return this;
 	}	
 
-	public static final String  MANAGER_NAME_OF_LEVEL_ONE_DEPARTMENT ="level_one_department.manager_name";
-	public RetailscmChecker checkManagerNameOfLevelOneDepartment(String managerName)
+	public static final String  MANAGER_OF_LEVEL_ONE_DEPARTMENT ="level_one_department.manager";
+	public RetailscmChecker checkManagerOfLevelOneDepartment(String manager)
 	{
 		
-	 	checkStringLengthRange(managerName,1, 12,MANAGER_NAME_OF_LEVEL_ONE_DEPARTMENT ); 		
+	 	checkStringLengthRange(manager,1, 12,MANAGER_OF_LEVEL_ONE_DEPARTMENT ); 		
 		
 		return this;
 	}	
@@ -6598,348 +5368,12 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  JOB_APPLICATION_OF_EMPLOYEE ="employee.job_application";
-	public RetailscmChecker checkJobApplicationIdOfEmployee(String jobApplicationId)
-	{
-		
-	 	checkIdOfEmployee(jobApplicationId ); 		
-		
-		return this;
-	}	
-
-	public static final String  PROFESSION_INTERVIEW_OF_EMPLOYEE ="employee.profession_interview";
-	public RetailscmChecker checkProfessionInterviewIdOfEmployee(String professionInterviewId)
-	{
-		
-	 	checkIdOfEmployee(professionInterviewId ); 		
-		
-		return this;
-	}	
-
-	public static final String  HR_INTERVIEW_OF_EMPLOYEE ="employee.hr_interview";
-	public RetailscmChecker checkHrInterviewIdOfEmployee(String hrInterviewId)
-	{
-		
-	 	checkIdOfEmployee(hrInterviewId ); 		
-		
-		return this;
-	}	
-
-	public static final String  OFFER_APPROVAL_OF_EMPLOYEE ="employee.offer_approval";
-	public RetailscmChecker checkOfferApprovalIdOfEmployee(String offerApprovalId)
-	{
-		
-	 	checkIdOfEmployee(offerApprovalId ); 		
-		
-		return this;
-	}	
-
-	public static final String  OFFER_ACCEPTANCE_OF_EMPLOYEE ="employee.offer_acceptance";
-	public RetailscmChecker checkOfferAcceptanceIdOfEmployee(String offerAcceptanceId)
-	{
-		
-	 	checkIdOfEmployee(offerAcceptanceId ); 		
-		
-		return this;
-	}	
-
-	public static final String  EMPLOYEE_BOARDING_OF_EMPLOYEE ="employee.employee_boarding";
-	public RetailscmChecker checkEmployeeBoardingIdOfEmployee(String employeeBoardingId)
-	{
-		
-	 	checkIdOfEmployee(employeeBoardingId ); 		
-		
-		return this;
-	}	
-
-	public static final String  TERMINATION_OF_EMPLOYEE ="employee.termination";
-	public RetailscmChecker checkTerminationIdOfEmployee(String terminationId)
-	{
-		
-	 	checkIdOfEmployee(terminationId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_EMPLOYEE ="employee.version";
 	public RetailscmChecker checkVersionOfEmployee(int version)
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_EMPLOYEE ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_JOB_APPLICATION ="job_application.id";
-	public RetailscmChecker checkIdOfJobApplication(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_JOB_APPLICATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPLICATION_TIME_OF_JOB_APPLICATION ="job_application.application_time";
-	public RetailscmChecker checkApplicationTimeOfJobApplication(Date applicationTime)
-	{
-		
-	 	checkDateRange(applicationTime,parseDate("1900-01-01"), parseDate("2018-03-04"),APPLICATION_TIME_OF_JOB_APPLICATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_JOB_APPLICATION ="job_application.who";
-	public RetailscmChecker checkWhoOfJobApplication(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 20,WHO_OF_JOB_APPLICATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_JOB_APPLICATION ="job_application.comments";
-	public RetailscmChecker checkCommentsOfJobApplication(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,8, 124,COMMENTS_OF_JOB_APPLICATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_JOB_APPLICATION ="job_application.version";
-	public RetailscmChecker checkVersionOfJobApplication(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_JOB_APPLICATION ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_PROFESSION_INTERVIEW ="profession_interview.id";
-	public RetailscmChecker checkIdOfProfessionInterview(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_PROFESSION_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_PROFESSION_INTERVIEW ="profession_interview.who";
-	public RetailscmChecker checkWhoOfProfessionInterview(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_PROFESSION_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  INTERVIEW_TIME_OF_PROFESSION_INTERVIEW ="profession_interview.interview_time";
-	public RetailscmChecker checkInterviewTimeOfProfessionInterview(Date interviewTime)
-	{
-		
-	 	checkDateRange(interviewTime,parseDate("1900-01-01"), parseDate("2018-03-04"),INTERVIEW_TIME_OF_PROFESSION_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_PROFESSION_INTERVIEW ="profession_interview.comments";
-	public RetailscmChecker checkCommentsOfProfessionInterview(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,4, 60,COMMENTS_OF_PROFESSION_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_PROFESSION_INTERVIEW ="profession_interview.version";
-	public RetailscmChecker checkVersionOfProfessionInterview(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_PROFESSION_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_HR_INTERVIEW ="hr_interview.id";
-	public RetailscmChecker checkIdOfHrInterview(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_HR_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_HR_INTERVIEW ="hr_interview.who";
-	public RetailscmChecker checkWhoOfHrInterview(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 20,WHO_OF_HR_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  INTERVIEW_TIME_OF_HR_INTERVIEW ="hr_interview.interview_time";
-	public RetailscmChecker checkInterviewTimeOfHrInterview(Date interviewTime)
-	{
-		
-	 	checkDateRange(interviewTime,parseDate("1900-01-01"), parseDate("2018-03-04"),INTERVIEW_TIME_OF_HR_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_HR_INTERVIEW ="hr_interview.comments";
-	public RetailscmChecker checkCommentsOfHrInterview(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,4, 52,COMMENTS_OF_HR_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_HR_INTERVIEW ="hr_interview.version";
-	public RetailscmChecker checkVersionOfHrInterview(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_HR_INTERVIEW ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_OFFER_APPROVAL ="offer_approval.id";
-	public RetailscmChecker checkIdOfOfferApproval(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_OFFER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_OFFER_APPROVAL ="offer_approval.who";
-	public RetailscmChecker checkWhoOfOfferApproval(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_OFFER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  APPROVE_TIME_OF_OFFER_APPROVAL ="offer_approval.approve_time";
-	public RetailscmChecker checkApproveTimeOfOfferApproval(Date approveTime)
-	{
-		
-	 	checkDateRange(approveTime,parseDate("1900-01-01"), parseDate("2018-03-04"),APPROVE_TIME_OF_OFFER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_OFFER_APPROVAL ="offer_approval.comments";
-	public RetailscmChecker checkCommentsOfOfferApproval(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,3, 40,COMMENTS_OF_OFFER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_OFFER_APPROVAL ="offer_approval.version";
-	public RetailscmChecker checkVersionOfOfferApproval(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_OFFER_APPROVAL ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_OFFER_ACCEPTANCE ="offer_acceptance.id";
-	public RetailscmChecker checkIdOfOfferAcceptance(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_OFFER_ACCEPTANCE ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_OFFER_ACCEPTANCE ="offer_acceptance.who";
-	public RetailscmChecker checkWhoOfOfferAcceptance(String who)
-	{
-		
-	 	checkStringLengthRange(who,1, 12,WHO_OF_OFFER_ACCEPTANCE ); 		
-		
-		return this;
-	}	
-
-	public static final String  ACCEPT_TIME_OF_OFFER_ACCEPTANCE ="offer_acceptance.accept_time";
-	public RetailscmChecker checkAcceptTimeOfOfferAcceptance(Date acceptTime)
-	{
-		
-	 	checkDateRange(acceptTime,parseDate("1900-01-01"), parseDate("2018-03-04"),ACCEPT_TIME_OF_OFFER_ACCEPTANCE ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_OFFER_ACCEPTANCE ="offer_acceptance.comments";
-	public RetailscmChecker checkCommentsOfOfferAcceptance(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,3, 40,COMMENTS_OF_OFFER_ACCEPTANCE ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_OFFER_ACCEPTANCE ="offer_acceptance.version";
-	public RetailscmChecker checkVersionOfOfferAcceptance(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_OFFER_ACCEPTANCE ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_EMPLOYEE_BOARDING ="employee_boarding.id";
-	public RetailscmChecker checkIdOfEmployeeBoarding(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_EMPLOYEE_BOARDING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_EMPLOYEE_BOARDING ="employee_boarding.who";
-	public RetailscmChecker checkWhoOfEmployeeBoarding(String who)
-	{
-		
-	 	checkStringLengthRange(who,2, 20,WHO_OF_EMPLOYEE_BOARDING ); 		
-		
-		return this;
-	}	
-
-	public static final String  EMPLOY_TIME_OF_EMPLOYEE_BOARDING ="employee_boarding.employ_time";
-	public RetailscmChecker checkEmployTimeOfEmployeeBoarding(Date employTime)
-	{
-		
-	 	checkDateRange(employTime,parseDate("1900-01-01"), parseDate("2018-03-04"),EMPLOY_TIME_OF_EMPLOYEE_BOARDING ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_EMPLOYEE_BOARDING ="employee_boarding.comments";
-	public RetailscmChecker checkCommentsOfEmployeeBoarding(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,3, 44,COMMENTS_OF_EMPLOYEE_BOARDING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_EMPLOYEE_BOARDING ="employee_boarding.version";
-	public RetailscmChecker checkVersionOfEmployeeBoarding(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_EMPLOYEE_BOARDING ); 		
 		
 		return this;
 	}	
@@ -7168,8 +5602,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
 
 	public static final String  SCORING_OF_EMPLOYEE_COMPANY_TRAINING ="employee_company_training.scoring";
 	public RetailscmChecker checkScoringIdOfEmployeeCompanyTraining(String scoringId)
@@ -7179,7 +5611,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_EMPLOYEE_COMPANY_TRAINING ="employee_company_training.version";
 	public RetailscmChecker checkVersionOfEmployeeCompanyTraining(int version)
@@ -7756,8 +6187,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
 
 	public static final String  PAYING_OFF_OF_EMPLOYEE_SALARY_SHEET ="employee_salary_sheet.paying_off";
 	public RetailscmChecker checkPayingOffIdOfEmployeeSalarySheet(String payingOffId)
@@ -7767,7 +6196,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_EMPLOYEE_SALARY_SHEET ="employee_salary_sheet.version";
 	public RetailscmChecker checkVersionOfEmployeeSalarySheet(int version)
@@ -8011,60 +6439,12 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
-
-	public static final String  BLOCKING_OF_SEC_USER ="sec_user.blocking";
-	public RetailscmChecker checkBlockingIdOfSecUser(String blockingId)
-	{
-		
-	 	checkIdOfSecUser(blockingId ); 		
-		
-		return this;
-	}	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static final String  VERSION_OF_SEC_USER ="sec_user.version";
 	public RetailscmChecker checkVersionOfSecUser(int version)
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SEC_USER ); 		
-		
-		return this;
-	}	
-
-	public static final String  ID_OF_SEC_USER_BLOCKING ="sec_user_blocking.id";
-	public RetailscmChecker checkIdOfSecUserBlocking(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_SEC_USER_BLOCKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  WHO_OF_SEC_USER_BLOCKING ="sec_user_blocking.who";
-	public RetailscmChecker checkWhoOfSecUserBlocking(String who)
-	{
-		
-	 	checkStringLengthRange(who,4, 52,WHO_OF_SEC_USER_BLOCKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  COMMENTS_OF_SEC_USER_BLOCKING ="sec_user_blocking.comments";
-	public RetailscmChecker checkCommentsOfSecUserBlocking(String comments)
-	{
-		
-	 	checkStringLengthRange(comments,7, 96,COMMENTS_OF_SEC_USER_BLOCKING ); 		
-		
-		return this;
-	}	
-
-	public static final String  VERSION_OF_SEC_USER_BLOCKING ="sec_user_blocking.version";
-	public RetailscmChecker checkVersionOfSecUserBlocking(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_SEC_USER_BLOCKING ); 		
 		
 		return this;
 	}	
@@ -8869,14 +7249,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-
-	public static final String  VERSION_OF_CANDIDATE_CONTAINER ="candidate_container.version";
-	public RetailscmChecker checkVersionOfCandidateContainer(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CANDIDATE_CONTAINER ); 		
-=======
 
 	public static final String  VERSION_OF_CANDIDATE_CONTAINER ="candidate_container.version";
 	public RetailscmChecker checkVersionOfCandidateContainer(int version)
@@ -8892,29 +7264,10 @@ public class RetailscmChecker extends BaseChecker{
 	{
 		
 	 	checkStringLengthRange(id,2, 64,ID_OF_CANDIDATE_ELEMENT ); 		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
 		return this;
 	}	
 
-<<<<<<< HEAD
-	public static final String  ID_OF_CANDIDATE_ELEMENT ="candidate_element.id";
-	public RetailscmChecker checkIdOfCandidateElement(String id)
-	{
-		
-	 	checkStringLengthRange(id,2, 64,ID_OF_CANDIDATE_ELEMENT ); 		
-=======
-	public static final String  NAME_OF_CANDIDATE_ELEMENT ="candidate_element.name";
-	public RetailscmChecker checkNameOfCandidateElement(String name)
-	{
-		
-	 	checkStringLengthRange(name,1, 200,NAME_OF_CANDIDATE_ELEMENT ); 		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
-		
-		return this;
-	}	
-
-<<<<<<< HEAD
 	public static final String  NAME_OF_CANDIDATE_ELEMENT ="candidate_element.name";
 	public RetailscmChecker checkNameOfCandidateElement(String name)
 	{
@@ -8924,8 +7277,6 @@ public class RetailscmChecker extends BaseChecker{
 		return this;
 	}	
 
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public static final String  TYPE_OF_CANDIDATE_ELEMENT ="candidate_element.type";
 	public RetailscmChecker checkTypeOfCandidateElement(String type)
 	{
@@ -8952,8 +7303,6 @@ public class RetailscmChecker extends BaseChecker{
 		
 		return this;
 	}	
-<<<<<<< HEAD
-=======
 
 	public static final String  VERSION_OF_CANDIDATE_ELEMENT ="candidate_element.version";
 	public RetailscmChecker checkVersionOfCandidateElement(int version)
@@ -8964,17 +7313,7 @@ public class RetailscmChecker extends BaseChecker{
 		return this;
 	}	
 }
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
-	public static final String  VERSION_OF_CANDIDATE_ELEMENT ="candidate_element.version";
-	public RetailscmChecker checkVersionOfCandidateElement(int version)
-	{
-		
-	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CANDIDATE_ELEMENT ); 		
-		
-		return this;
-	}	
-}
 
 
 

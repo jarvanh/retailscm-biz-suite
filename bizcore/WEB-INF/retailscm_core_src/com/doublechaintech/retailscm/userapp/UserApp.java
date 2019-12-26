@@ -92,24 +92,6 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public 	UserApp(String title, SecUser secUser, String appIcon, boolean fullAccess, String permission, String objectType, String objectId, String location)
-	{
-		setTitle(title);
-		setSecUser(secUser);
-		setAppIcon(appIcon);
-		setFullAccess(fullAccess);
-		setPermission(permission);
-		setObjectType(objectType);
-		setObjectId(objectId);
-		setLocation(location);
-
-		this.mQuickLinkList = new SmartList<QuickLink>();
-		this.mListAccessList = new SmartList<ListAccess>();
-		this.mObjectAccessList = new SmartList<ObjectAccess>();	
-	}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	
@@ -466,118 +448,8 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	public void mergeVersion(int version){
 		setVersion(version);
 	}
-<<<<<<< HEAD
-=======
 	
 	
-
-	public  SmartList<QuickLink> getQuickLinkList(){
-		if(this.mQuickLinkList == null){
-			this.mQuickLinkList = new SmartList<QuickLink>();
-			this.mQuickLinkList.setListInternalName (QUICK_LINK_LIST );
-			//有名字，便于做权限控制
-		}
-		
-		return this.mQuickLinkList;	
-	}
-	public  void setQuickLinkList(SmartList<QuickLink> quickLinkList){
-		for( QuickLink quickLink:quickLinkList){
-			quickLink.setApp(this);
-		}
-
-		this.mQuickLinkList = quickLinkList;
-		this.mQuickLinkList.setListInternalName (QUICK_LINK_LIST );
-		
-	}
-	
-	public  void addQuickLink(QuickLink quickLink){
-		quickLink.setApp(this);
-		getQuickLinkList().add(quickLink);
-	}
-	public  void addQuickLinkList(SmartList<QuickLink> quickLinkList){
-		for( QuickLink quickLink:quickLinkList){
-			quickLink.setApp(this);
-		}
-		getQuickLinkList().addAll(quickLinkList);
-	}
-	public  void mergeQuickLinkList(SmartList<QuickLink> quickLinkList){
-		if(quickLinkList==null){
-			return;
-		}
-		if(quickLinkList.isEmpty()){
-			return;
-		}
-		addQuickLinkList( quickLinkList );
-		
-	}
-	public  QuickLink removeQuickLink(QuickLink quickLinkIndex){
-		
-		int index = getQuickLinkList().indexOf(quickLinkIndex);
-        if(index < 0){
-        	String message = "QuickLink("+quickLinkIndex.getId()+") with version='"+quickLinkIndex.getVersion()+"' NOT found!";
-            throw new IllegalStateException(message);
-        }
-        QuickLink quickLink = getQuickLinkList().get(index);        
-        // quickLink.clearApp(); //disconnect with App
-        quickLink.clearFromAll(); //disconnect with App
-		
-		boolean result = getQuickLinkList().planToRemove(quickLink);
-        if(!result){
-        	String message = "QuickLink("+quickLinkIndex.getId()+") with version='"+quickLinkIndex.getVersion()+"' NOT found!";
-            throw new IllegalStateException(message);
-        }
-        return quickLink;
-        
-	
-	}
-	//断舍离
-	public  void breakWithQuickLink(QuickLink quickLink){
-		
-		if(quickLink == null){
-			return;
-		}
-		quickLink.setApp(null);
-		//getQuickLinkList().remove();
-	
-	}
-	
-	public  boolean hasQuickLink(QuickLink quickLink){
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
-	
-		return getQuickLinkList().contains(quickLink);
-  
-	}
-	
-	public void copyQuickLinkFrom(QuickLink quickLink) {
-
-		QuickLink quickLinkInList = findTheQuickLink(quickLink);
-		QuickLink newQuickLink = new QuickLink();
-		quickLinkInList.copyTo(newQuickLink);
-		newQuickLink.setVersion(0);//will trigger copy
-		getQuickLinkList().add(newQuickLink);
-		addItemToFlexiableObject(COPIED_CHILD, newQuickLink);
-	}
-	
-	public  QuickLink findTheQuickLink(QuickLink quickLink){
-		
-		int index =  getQuickLinkList().indexOf(quickLink);
-		//The input parameter must have the same id and version number.
-		if(index < 0){
- 			String message = "QuickLink("+quickLink.getId()+") with version='"+quickLink.getVersion()+"' NOT found!";
-			throw new IllegalStateException(message);
-		}
-		
-		return  getQuickLinkList().get(index);
-		//Performance issue when using LinkedList, but it is almost an ArrayList for sure!
-	}
-	
-	public  void cleanUpQuickLinkList(){
-		getQuickLinkList().clear();
-	}
-	
-	
-	
-
 
 	public  SmartList<QuickLink> getQuickLinkList(){
 		if(this.mQuickLinkList == null){
@@ -1037,7 +909,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getSecUser(), getAppIcon(), getFullAccess(), getPermission(), getObjectType(), getObjectId(), getLocation(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

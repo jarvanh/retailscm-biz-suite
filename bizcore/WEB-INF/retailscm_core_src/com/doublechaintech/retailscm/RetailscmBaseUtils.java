@@ -9,10 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.function.Consumer;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -25,10 +22,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.terapico.caf.form.ImageInfo;
-<<<<<<< HEAD
-=======
 import com.terapico.caf.viewcomponent.ButtonViewComponent;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import com.terapico.utils.TextUtil;
 
 
@@ -192,10 +186,7 @@ public class RetailscmBaseUtils {
 		return false;
 	}
 	
-<<<<<<< HEAD
-=======
 	static Pattern ptnVersionSegment = Pattern.compile("\\d+");
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public static int getBuildVersion(String appVersionStr) {
 		if (appVersionStr == null || appVersionStr.isEmpty()) {
 			return 0;
@@ -204,13 +195,9 @@ public class RetailscmBaseUtils {
 		if (pos < 0) {
 			return Integer.parseInt(appVersionStr);
 		}
-<<<<<<< HEAD
-		return Integer.parseInt(appVersionStr.substring(pos+1));
-=======
 		//return Integer.parseInt(appVersionStr.substring(pos+1));
 		List<String> list = TextUtil.findAllMatched(appVersionStr, ptnVersionSegment);
 		return Integer.parseInt(list.get(0));
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	}
 	public static int getAppBuildVersion(RetailscmUserContext ctx) {
 		return getBuildVersion(getRequestAppVersion(ctx));
@@ -267,8 +254,6 @@ public class RetailscmBaseUtils {
 	}
 	
 
-<<<<<<< HEAD
-=======
 	
 	public static <T extends BaseEntity> void appendLinkToUrl(RetailscmUserContext ctx, List<T> list,
 			Function<T, String> makeFunc) {
@@ -305,7 +290,6 @@ public class RetailscmBaseUtils {
 		actionBtn.setLinkToUrl(linkToUrl);
 		obj.addItemToValueMap("action", actionBtn);
 	}
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 }
 
 
@@ -314,7 +298,4 @@ public class RetailscmBaseUtils {
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe

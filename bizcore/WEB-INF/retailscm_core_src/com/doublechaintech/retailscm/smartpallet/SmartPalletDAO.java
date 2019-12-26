@@ -85,10 +85,6 @@ public interface SmartPalletDAO extends BaseDAO{
 	public SmartPallet planToRemoveGoodsListWithRetailStoreOrder(SmartPallet smartPallet, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String smartPalletId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect SmartPallet with packaging in Goods
-	public SmartPallet planToRemoveGoodsListWithPackaging(SmartPallet smartPallet, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String smartPalletId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<SmartPallet> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

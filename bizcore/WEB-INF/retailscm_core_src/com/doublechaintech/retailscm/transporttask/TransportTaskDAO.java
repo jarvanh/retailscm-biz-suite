@@ -97,10 +97,6 @@ public interface TransportTaskDAO extends BaseDAO{
 	public TransportTask planToRemoveGoodsListWithRetailStoreOrder(TransportTask transportTask, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String transportTaskId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect TransportTask with packaging in Goods
-	public TransportTask planToRemoveGoodsListWithPackaging(TransportTask transportTask, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String transportTaskId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	public TransportTask planToRemoveTransportTaskTrackList(TransportTask transportTask, String transportTaskTrackIds[], Map<String,Object> options)throws Exception;
 
 

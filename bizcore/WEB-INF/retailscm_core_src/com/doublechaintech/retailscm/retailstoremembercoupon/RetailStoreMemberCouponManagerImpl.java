@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.retailstoremember.CandidateRetailStoreMembe
 
 
 public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreMemberCouponManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "RetailStoreMemberCoupon";
 	@Override
 	public RetailStoreMemberCouponDAO daoOf(RetailscmUserContext userContext) {
 		return retailStoreMemberCouponDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws RetailStoreMemberCouponManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new RetailStoreMemberCouponManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected RetailStoreMemberCoupon saveRetailStoreMemberCoupon(RetailscmUserContext userContext, RetailStoreMemberCoupon retailStoreMemberCoupon, String [] tokensExpr) throws Exception{	
  		//return getRetailStoreMemberCouponDAO().save(retailStoreMemberCoupon, tokens);
@@ -167,7 +161,7 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 	public RetailStoreMemberCoupon createRetailStoreMemberCoupon(RetailscmUserContext userContext, String name,String ownerId,String number) throws Exception
 	//public RetailStoreMemberCoupon createRetailStoreMemberCoupon(RetailscmUserContext userContext,String name, String ownerId, String number) throws Exception
 	{
-		
+
 		
 
 		
@@ -194,14 +188,14 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 		onNewInstanceCreated(userContext, retailStoreMemberCoupon);
 		return retailStoreMemberCoupon;
 
-		
+
 	}
-	protected RetailStoreMemberCoupon createNewRetailStoreMemberCoupon() 
+	protected RetailStoreMemberCoupon createNewRetailStoreMemberCoupon()
 	{
-		
-		return new RetailStoreMemberCoupon();		
+
+		return new RetailStoreMemberCoupon();
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreMemberCoupon(RetailscmUserContext userContext,String retailStoreMemberCouponId, int retailStoreMemberCouponVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -222,28 +216,28 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberCouponManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public RetailStoreMemberCoupon clone(RetailscmUserContext userContext, String fromRetailStoreMemberCouponId) throws Exception{
-		
+
 		return retailStoreMemberCouponDaoOf(userContext).clone(fromRetailStoreMemberCouponId, this.allTokens());
 	}
-	
-	public RetailStoreMemberCoupon internalSaveRetailStoreMemberCoupon(RetailscmUserContext userContext, RetailStoreMemberCoupon retailStoreMemberCoupon) throws Exception 
+
+	public RetailStoreMemberCoupon internalSaveRetailStoreMemberCoupon(RetailscmUserContext userContext, RetailStoreMemberCoupon retailStoreMemberCoupon) throws Exception
 	{
 		return internalSaveRetailStoreMemberCoupon(userContext, retailStoreMemberCoupon, allTokens());
 
 	}
-	public RetailStoreMemberCoupon internalSaveRetailStoreMemberCoupon(RetailscmUserContext userContext, RetailStoreMemberCoupon retailStoreMemberCoupon, Map<String,Object> options) throws Exception 
+	public RetailStoreMemberCoupon internalSaveRetailStoreMemberCoupon(RetailscmUserContext userContext, RetailStoreMemberCoupon retailStoreMemberCoupon, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingRetailStoreMemberCoupon(userContext, retailStoreMemberCouponId, retailStoreMemberCouponVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(retailStoreMemberCoupon){ 
+
+
+		synchronized(retailStoreMemberCoupon){
 			//will be good when the retailStoreMemberCoupon loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberCoupon.
@@ -252,23 +246,23 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 			}
 			retailStoreMemberCoupon = saveRetailStoreMemberCoupon(userContext, retailStoreMemberCoupon, options);
 			return retailStoreMemberCoupon;
-			
+
 		}
 
 	}
-	
-	public RetailStoreMemberCoupon updateRetailStoreMemberCoupon(RetailscmUserContext userContext,String retailStoreMemberCouponId, int retailStoreMemberCouponVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreMemberCoupon updateRetailStoreMemberCoupon(RetailscmUserContext userContext,String retailStoreMemberCouponId, int retailStoreMemberCouponVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreMemberCoupon(userContext, retailStoreMemberCouponId, retailStoreMemberCouponVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		RetailStoreMemberCoupon retailStoreMemberCoupon = loadRetailStoreMemberCoupon(userContext, retailStoreMemberCouponId, allTokens());
 		if(retailStoreMemberCoupon.getVersion() != retailStoreMemberCouponVersion){
 			String message = "The target version("+retailStoreMemberCoupon.getVersion()+") is not equals to version("+retailStoreMemberCouponVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreMemberCoupon){ 
+		synchronized(retailStoreMemberCoupon){
 			//will be good when the retailStoreMemberCoupon loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberCoupon.
@@ -280,21 +274,21 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 		}
 
 	}
-	
-	public RetailStoreMemberCoupon updateRetailStoreMemberCouponProperty(RetailscmUserContext userContext,String retailStoreMemberCouponId, int retailStoreMemberCouponVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreMemberCoupon updateRetailStoreMemberCouponProperty(RetailscmUserContext userContext,String retailStoreMemberCouponId, int retailStoreMemberCouponVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreMemberCoupon(userContext, retailStoreMemberCouponId, retailStoreMemberCouponVersion, property, newValueExpr, tokensExpr);
-		
+
 		RetailStoreMemberCoupon retailStoreMemberCoupon = loadRetailStoreMemberCoupon(userContext, retailStoreMemberCouponId, allTokens());
 		if(retailStoreMemberCoupon.getVersion() != retailStoreMemberCouponVersion){
 			String message = "The target version("+retailStoreMemberCoupon.getVersion()+") is not equals to version("+retailStoreMemberCouponVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreMemberCoupon){ 
+		synchronized(retailStoreMemberCoupon){
 			//will be good when the retailStoreMemberCoupon loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreMemberCoupon.
-			
+
 			retailStoreMemberCoupon.changeProperty(property, newValueExpr);
 			retailStoreMemberCoupon.updateLastUpdateTime(userContext.now());
 			retailStoreMemberCoupon = saveRetailStoreMemberCoupon(userContext, retailStoreMemberCoupon, tokens().done());
@@ -306,7 +300,7 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected RetailStoreMemberCouponTokens tokens(){
 		return RetailStoreMemberCouponTokens.start();
 	}
@@ -327,11 +321,11 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 	
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberCouponId, String anotherOwnerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfRetailStoreMemberCoupon(retailStoreMemberCouponId);
  		checkerOf(userContext).checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreMemberCouponManagerException.class);
- 		
+
  	}
  	public RetailStoreMemberCoupon transferToAnotherOwner(RetailscmUserContext userContext, String retailStoreMemberCouponId, String anotherOwnerId) throws Exception
  	{
@@ -350,10 +344,10 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreMember requestCandidateOwner(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreMember result = new CandidateRetailStoreMember();
@@ -363,7 +357,7 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -373,42 +367,42 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreMemberDaoOf(userContext).load(newOwnerId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String retailStoreMemberCouponId, int retailStoreMemberCouponVersion) throws Exception {
-		//deleteInternal(userContext, retailStoreMemberCouponId, retailStoreMemberCouponVersion);		
+		//deleteInternal(userContext, retailStoreMemberCouponId, retailStoreMemberCouponVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreMemberCouponId, int retailStoreMemberCouponVersion) throws Exception{
-			
+
 		retailStoreMemberCouponDaoOf(userContext).delete(retailStoreMemberCouponId, retailStoreMemberCouponVersion);
 	}
-	
+
 	public RetailStoreMemberCoupon forgetByAll(RetailscmUserContext userContext, String retailStoreMemberCouponId, int retailStoreMemberCouponVersion) throws Exception {
-		return forgetByAllInternal(userContext, retailStoreMemberCouponId, retailStoreMemberCouponVersion);		
+		return forgetByAllInternal(userContext, retailStoreMemberCouponId, retailStoreMemberCouponVersion);
 	}
 	protected RetailStoreMemberCoupon forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreMemberCouponId, int retailStoreMemberCouponVersion) throws Exception{
-			
+
 		return retailStoreMemberCouponDaoOf(userContext).disconnectFromAll(retailStoreMemberCouponId, retailStoreMemberCouponVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -419,23 +413,29 @@ public class RetailStoreMemberCouponManagerImpl extends CustomRetailscmCheckerMa
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return retailStoreMemberCouponDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreMemberCoupon newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

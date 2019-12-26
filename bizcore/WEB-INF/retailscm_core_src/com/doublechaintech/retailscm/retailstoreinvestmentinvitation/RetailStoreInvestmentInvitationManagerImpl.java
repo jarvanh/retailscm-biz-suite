@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 
@@ -38,28 +29,31 @@ import com.doublechaintech.retailscm.retailstorefranchising.RetailStoreFranchisi
 
 
 public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreInvestmentInvitationManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "RetailStoreInvestmentInvitation";
 	@Override
 	public RetailStoreInvestmentInvitationDAO daoOf(RetailscmUserContext userContext) {
 		return retailStoreInvestmentInvitationDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws RetailStoreInvestmentInvitationManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new RetailStoreInvestmentInvitationManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected RetailStoreInvestmentInvitation saveRetailStoreInvestmentInvitation(RetailscmUserContext userContext, RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, String [] tokensExpr) throws Exception{	
  		//return getRetailStoreInvestmentInvitationDAO().save(retailStoreInvestmentInvitation, tokens);
@@ -177,7 +171,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	public RetailStoreInvestmentInvitation createRetailStoreInvestmentInvitation(RetailscmUserContext userContext, String comment) throws Exception
 	//public RetailStoreInvestmentInvitation createRetailStoreInvestmentInvitation(RetailscmUserContext userContext,String comment) throws Exception
 	{
-		
+
 		
 
 		
@@ -196,14 +190,14 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		onNewInstanceCreated(userContext, retailStoreInvestmentInvitation);
 		return retailStoreInvestmentInvitation;
 
-		
+
 	}
-	protected RetailStoreInvestmentInvitation createNewRetailStoreInvestmentInvitation() 
+	protected RetailStoreInvestmentInvitation createNewRetailStoreInvestmentInvitation()
 	{
-		
-		return new RetailStoreInvestmentInvitation();		
+
+		return new RetailStoreInvestmentInvitation();
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreInvestmentInvitation(RetailscmUserContext userContext,String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -219,28 +213,28 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public RetailStoreInvestmentInvitation clone(RetailscmUserContext userContext, String fromRetailStoreInvestmentInvitationId) throws Exception{
-		
+
 		return retailStoreInvestmentInvitationDaoOf(userContext).clone(fromRetailStoreInvestmentInvitationId, this.allTokens());
 	}
-	
-	public RetailStoreInvestmentInvitation internalSaveRetailStoreInvestmentInvitation(RetailscmUserContext userContext, RetailStoreInvestmentInvitation retailStoreInvestmentInvitation) throws Exception 
+
+	public RetailStoreInvestmentInvitation internalSaveRetailStoreInvestmentInvitation(RetailscmUserContext userContext, RetailStoreInvestmentInvitation retailStoreInvestmentInvitation) throws Exception
 	{
 		return internalSaveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, allTokens());
 
 	}
-	public RetailStoreInvestmentInvitation internalSaveRetailStoreInvestmentInvitation(RetailscmUserContext userContext, RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, Map<String,Object> options) throws Exception 
+	public RetailStoreInvestmentInvitation internalSaveRetailStoreInvestmentInvitation(RetailscmUserContext userContext, RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(retailStoreInvestmentInvitation){ 
+
+
+		synchronized(retailStoreInvestmentInvitation){
 			//will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreInvestmentInvitation.
@@ -249,23 +243,23 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 			}
 			retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, options);
 			return retailStoreInvestmentInvitation;
-			
+
 		}
 
 	}
-	
-	public RetailStoreInvestmentInvitation updateRetailStoreInvestmentInvitation(RetailscmUserContext userContext,String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreInvestmentInvitation updateRetailStoreInvestmentInvitation(RetailscmUserContext userContext,String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 		if(retailStoreInvestmentInvitation.getVersion() != retailStoreInvestmentInvitationVersion){
 			String message = "The target version("+retailStoreInvestmentInvitation.getVersion()+") is not equals to version("+retailStoreInvestmentInvitationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreInvestmentInvitation){ 
+		synchronized(retailStoreInvestmentInvitation){
 			//will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreInvestmentInvitation.
@@ -277,21 +271,21 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		}
 
 	}
-	
-	public RetailStoreInvestmentInvitation updateRetailStoreInvestmentInvitationProperty(RetailscmUserContext userContext,String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreInvestmentInvitation updateRetailStoreInvestmentInvitationProperty(RetailscmUserContext userContext,String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion, property, newValueExpr, tokensExpr);
-		
+
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 		if(retailStoreInvestmentInvitation.getVersion() != retailStoreInvestmentInvitationVersion){
 			String message = "The target version("+retailStoreInvestmentInvitation.getVersion()+") is not equals to version("+retailStoreInvestmentInvitationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreInvestmentInvitation){ 
+		synchronized(retailStoreInvestmentInvitation){
 			//will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreInvestmentInvitation.
-			
+
 			retailStoreInvestmentInvitation.changeProperty(property, newValueExpr);
 			
 			retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().done());
@@ -303,7 +297,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected RetailStoreInvestmentInvitationTokens tokens(){
 		return RetailStoreInvestmentInvitationTokens.start();
 	}
@@ -328,26 +322,26 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion) throws Exception {
-		//deleteInternal(userContext, retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);		
+		//deleteInternal(userContext, retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion) throws Exception{
-			
+
 		retailStoreInvestmentInvitationDaoOf(userContext).delete(retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
 	}
-	
+
 	public RetailStoreInvestmentInvitation forgetByAll(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion) throws Exception {
-		return forgetByAllInternal(userContext, retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);		
+		return forgetByAllInternal(userContext, retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
 	}
 	protected RetailStoreInvestmentInvitation forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreInvestmentInvitationId, int retailStoreInvestmentInvitationVersion) throws Exception{
-			
+
 		return retailStoreInvestmentInvitationDaoOf(userContext).disconnectFromAll(retailStoreInvestmentInvitationId, retailStoreInvestmentInvitationVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -358,8 +352,8 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return retailStoreInvestmentInvitationDaoOf(userContext).deleteAll();
 	}
@@ -368,15 +362,15 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//disconnect RetailStoreInvestmentInvitation with retail_store_country_center in RetailStore
 	protected RetailStoreInvestmentInvitation breakWithRetailStoreByRetailStoreCountryCenter(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String retailStoreCountryCenterId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithRetailStoreCountryCenter(retailStoreInvestmentInvitation, retailStoreCountryCenterId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
@@ -386,15 +380,15 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//disconnect RetailStoreInvestmentInvitation with city_service_center in RetailStore
 	protected RetailStoreInvestmentInvitation breakWithRetailStoreByCityServiceCenter(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String cityServiceCenterId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithCityServiceCenter(retailStoreInvestmentInvitation, cityServiceCenterId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
@@ -404,15 +398,15 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//disconnect RetailStoreInvestmentInvitation with creation in RetailStore
 	protected RetailStoreInvestmentInvitation breakWithRetailStoreByCreation(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String creationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithCreation(retailStoreInvestmentInvitation, creationId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
@@ -422,15 +416,15 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//disconnect RetailStoreInvestmentInvitation with franchising in RetailStore
 	protected RetailStoreInvestmentInvitation breakWithRetailStoreByFranchising(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String franchisingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithFranchising(retailStoreInvestmentInvitation, franchisingId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
@@ -440,15 +434,15 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//disconnect RetailStoreInvestmentInvitation with decoration in RetailStore
 	protected RetailStoreInvestmentInvitation breakWithRetailStoreByDecoration(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String decorationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithDecoration(retailStoreInvestmentInvitation, decorationId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
@@ -458,15 +452,15 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//disconnect RetailStoreInvestmentInvitation with opening in RetailStore
 	protected RetailStoreInvestmentInvitation breakWithRetailStoreByOpening(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String openingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithOpening(retailStoreInvestmentInvitation, openingId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
@@ -476,29 +470,29 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	//disconnect RetailStoreInvestmentInvitation with closing in RetailStore
 	protected RetailStoreInvestmentInvitation breakWithRetailStoreByClosing(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String closingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
 
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreListWithClosing(retailStoreInvestmentInvitation, closingId, this.emptyOptions());
 
 				retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
 				return retailStoreInvestmentInvitation;
 			}
 	}
-	
-	
-	
-	
-	
 
-	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
-		
+
+
+
+
+
+	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
 
 		
@@ -532,31 +526,31 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
 
-	
+
 	}
-	public  RetailStoreInvestmentInvitation addRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	public  RetailStoreInvestmentInvitation addRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
+	{
+
 		checkParamsForAddingRetailStore(userContext,retailStoreInvestmentInvitationId,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, creationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description,tokensExpr);
-		
+
 		RetailStore retailStore = createRetailStore(userContext,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, creationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description);
-		
-		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
-		synchronized(retailStoreInvestmentInvitation){ 
+
+		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, emptyOptions());
+		synchronized(retailStoreInvestmentInvitation){
 			//Will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreInvestmentInvitation.addRetailStore( retailStore );		
+			retailStoreInvestmentInvitation.addRetailStore( retailStore );
 			retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
 			
 			userContext.getManagerGroup().getRetailStoreManager().onNewInstanceCreated(userContext, retailStore);
 			return present(userContext,retailStoreInvestmentInvitation, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
 		checkerOf(userContext).checkIdOfRetailStore(id);
-		
+
 		checkerOf(userContext).checkNameOfRetailStore( name);
 		checkerOf(userContext).checkTelephoneOfRetailStore( telephone);
 		checkerOf(userContext).checkOwnerOfRetailStore( owner);
@@ -566,25 +560,25 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		checkerOf(userContext).checkDescriptionOfRetailStore( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
-		
+
 	}
-	public  RetailStoreInvestmentInvitation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
-	{	
+	public  RetailStoreInvestmentInvitation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
+	{
 		checkParamsForUpdatingRetailStoreProperties(userContext,retailStoreInvestmentInvitationId,id,name,telephone,owner,founded,latitude,longitude,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withRetailStoreListList()
 				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitationToUpdate = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, options);
-		
+
 		if(retailStoreInvestmentInvitationToUpdate.getRetailStoreList().isEmpty()){
 			throw new RetailStoreInvestmentInvitationManagerException("RetailStore is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		RetailStore item = retailStoreInvestmentInvitationToUpdate.getRetailStoreList().first();
-		
+
 		item.updateName( name );
 		item.updateTelephone( telephone );
 		item.updateOwner( owner );
@@ -593,16 +587,16 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		item.updateLongitude( longitude );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingRetailStore(userContext,retailStoreInvestmentInvitationId,name, code, used,tokensExpr);
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationToUpdate, tokens().withRetailStoreList().done());
-		synchronized(retailStoreInvestmentInvitation){ 
+		synchronized(retailStoreInvestmentInvitation){
 			return present(userContext,retailStoreInvestmentInvitation, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
+
+
+	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String creationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
 
 		RetailStore retailStore = new RetailStore();
 		
@@ -639,44 +633,38 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	
 		
 		return retailStore;
-	
-		
+
+
 	}
-	
+
 	protected RetailStore createIndexedRetailStore(String id, int version){
 
 		RetailStore retailStore = new RetailStore();
 		retailStore.setId(id);
 		retailStore.setVersion(version);
-		return retailStore;			
-		
+		return retailStore;
+
 	}
-	
-	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
+
+	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
-		for(String retailStoreIdItem: retailStoreIds){
-			userContext.getChecker().checkIdOfRetailStore(retailStoreIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation(retailStoreInvestmentInvitationId);
 		for(String retailStoreIdItem: retailStoreIds){
 			checkerOf(userContext).checkIdOfRetailStore(retailStoreIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
-		
+
 	}
-	public  RetailStoreInvestmentInvitation removeRetailStoreList(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
+	public  RetailStoreInvestmentInvitation removeRetailStoreList(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,
 			String retailStoreIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingRetailStoreList(userContext, retailStoreInvestmentInvitationId,  retailStoreIds, tokensExpr);
-			
-			
+
+
 			RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
-			synchronized(retailStoreInvestmentInvitation){ 
+			synchronized(retailStoreInvestmentInvitation){
 				//Will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreInvestmentInvitationDaoOf(userContext).planToRemoveRetailStoreList(retailStoreInvestmentInvitation, retailStoreIds, allTokens());
@@ -685,65 +673,65 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 				return present(userContext,retailStoreInvestmentInvitation, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
+
+	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationId);
 		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
 		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
-	
+
 	}
-	public  RetailStoreInvestmentInvitation removeRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
+	public  RetailStoreInvestmentInvitation removeRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingRetailStore(userContext,retailStoreInvestmentInvitationId, retailStoreId, retailStoreVersion,tokensExpr);
-		
+
 		RetailStore retailStore = createIndexedRetailStore(retailStoreId, retailStoreVersion);
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
-		synchronized(retailStoreInvestmentInvitation){ 
+		synchronized(retailStoreInvestmentInvitation){
 			//Will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreInvestmentInvitation.removeRetailStore( retailStore );		
+			retailStoreInvestmentInvitation.removeRetailStore( retailStore );
 			retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
 			deleteRelationInGraph(userContext, retailStore);
 			return present(userContext,retailStoreInvestmentInvitation, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
+	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreInvestmentInvitation( retailStoreInvestmentInvitationId);
 		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
 		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
-	
+
 	}
-	public  RetailStoreInvestmentInvitation copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, 
+	public  RetailStoreInvestmentInvitation copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingRetailStore(userContext,retailStoreInvestmentInvitationId, retailStoreId, retailStoreVersion,tokensExpr);
-		
+
 		RetailStore retailStore = createIndexedRetailStore(retailStoreId, retailStoreVersion);
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, allTokens());
-		synchronized(retailStoreInvestmentInvitation){ 
+		synchronized(retailStoreInvestmentInvitation){
 			//Will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			retailStore.updateLastUpdateTime(userContext.now());
-			
-			retailStoreInvestmentInvitation.copyRetailStoreFrom( retailStore );		
+
+			retailStoreInvestmentInvitation.copyRetailStoreFrom( retailStore );
 			retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
 			
 			userContext.getManagerGroup().getRetailStoreManager().onNewInstanceCreated(userContext, (RetailStore)retailStoreInvestmentInvitation.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreInvestmentInvitation, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -758,7 +746,7 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		}
 		
 		if(RetailStore.TELEPHONE_PROPERTY.equals(property)){
-			checkerOf(userContext).checkTelephoneOfRetailStore(parseLong(newValueExpr));
+			checkerOf(userContext).checkTelephoneOfRetailStore(parseString(newValueExpr));
 		}
 		
 		if(RetailStore.OWNER_PROPERTY.equals(property)){
@@ -783,32 +771,32 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreInvestmentInvitationManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreInvestmentInvitation updateRetailStore(RetailscmUserContext userContext, String retailStoreInvestmentInvitationId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingRetailStore(userContext, retailStoreInvestmentInvitationId, retailStoreId, retailStoreVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withRetailStoreList().searchRetailStoreListWith(RetailStore.ID_PROPERTY, "eq", retailStoreId).done();
-		
-		
-		
+
+
+
 		RetailStoreInvestmentInvitation retailStoreInvestmentInvitation = loadRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitationId, loadTokens);
-		
-		synchronized(retailStoreInvestmentInvitation){ 
+
+		synchronized(retailStoreInvestmentInvitation){
 			//Will be good when the retailStoreInvestmentInvitation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreInvestmentInvitation.removeRetailStore( retailStore );	
+			//retailStoreInvestmentInvitation.removeRetailStore( retailStore );
 			//make changes to AcceleraterAccount.
 			RetailStore retailStoreIndex = createIndexedRetailStore(retailStoreId, retailStoreVersion);
-		
+
 			RetailStore retailStore = retailStoreInvestmentInvitation.findTheRetailStore(retailStoreIndex);
 			if(retailStore == null){
 				throw new RetailStoreInvestmentInvitationManagerException(retailStore+" is NOT FOUND" );
 			}
-			
+
 			retailStore.changeProperty(property, newValueExpr);
 			retailStore.updateLastUpdateTime(userContext.now());
 			retailStoreInvestmentInvitation = saveRetailStoreInvestmentInvitation(userContext, retailStoreInvestmentInvitation, tokens().withRetailStoreList().done());
@@ -819,14 +807,20 @@ public class RetailStoreInvestmentInvitationManagerImpl extends CustomRetailscmC
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreInvestmentInvitation newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

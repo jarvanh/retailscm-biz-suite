@@ -21,21 +21,13 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLine;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPosting;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreation;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditing;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmation;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucher;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentType;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationDAO;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriodDAO;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO;
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineDAO;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingDAO;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationDAO;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingDAO;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentTypeDAO;
 
 
@@ -46,33 +38,6 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl implements AccountingDocumentDAO{
- 
- 	
- 	private  AccountingDocumentPostingDAO  accountingDocumentPostingDAO;
- 	public void setAccountingDocumentPostingDAO(AccountingDocumentPostingDAO accountingDocumentPostingDAO){
-	 	this.accountingDocumentPostingDAO = accountingDocumentPostingDAO;
- 	}
- 	public AccountingDocumentPostingDAO getAccountingDocumentPostingDAO(){
-	 	return this.accountingDocumentPostingDAO;
- 	}
- 
- 	
- 	private  AccountingDocumentConfirmationDAO  accountingDocumentConfirmationDAO;
- 	public void setAccountingDocumentConfirmationDAO(AccountingDocumentConfirmationDAO accountingDocumentConfirmationDAO){
-	 	this.accountingDocumentConfirmationDAO = accountingDocumentConfirmationDAO;
- 	}
- 	public AccountingDocumentConfirmationDAO getAccountingDocumentConfirmationDAO(){
-	 	return this.accountingDocumentConfirmationDAO;
- 	}
- 
- 	
- 	private  AccountingDocumentAuditingDAO  accountingDocumentAuditingDAO;
- 	public void setAccountingDocumentAuditingDAO(AccountingDocumentAuditingDAO accountingDocumentAuditingDAO){
-	 	this.accountingDocumentAuditingDAO = accountingDocumentAuditingDAO;
- 	}
- 	public AccountingDocumentAuditingDAO getAccountingDocumentAuditingDAO(){
-	 	return this.accountingDocumentAuditingDAO;
- 	}
  
  	
  	private  AccountingPeriodDAO  accountingPeriodDAO;
@@ -90,15 +55,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	}
  	public AccountingDocumentTypeDAO getAccountingDocumentTypeDAO(){
 	 	return this.accountingDocumentTypeDAO;
- 	}
- 
- 	
- 	private  AccountingDocumentCreationDAO  accountingDocumentCreationDAO;
- 	public void setAccountingDocumentCreationDAO(AccountingDocumentCreationDAO accountingDocumentCreationDAO){
-	 	this.accountingDocumentCreationDAO = accountingDocumentCreationDAO;
- 	}
- 	public AccountingDocumentCreationDAO getAccountingDocumentCreationDAO(){
-	 	return this.accountingDocumentCreationDAO;
  	}
 
 
@@ -322,62 +278,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	
 
  	
-  
-
- 	protected boolean isExtractCreationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, AccountingDocumentTokens.CREATION);
- 	}
-
- 	protected boolean isSaveCreationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, AccountingDocumentTokens.CREATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractConfirmationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, AccountingDocumentTokens.CONFIRMATION);
- 	}
-
- 	protected boolean isSaveConfirmationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, AccountingDocumentTokens.CONFIRMATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractAuditingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, AccountingDocumentTokens.AUDITING);
- 	}
-
- 	protected boolean isSaveAuditingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, AccountingDocumentTokens.AUDITING);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractPostingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, AccountingDocumentTokens.POSTING);
- 	}
-
- 	protected boolean isSavePostingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, AccountingDocumentTokens.POSTING);
- 	}
- 	
-
- 	
  
 		
 	
@@ -441,22 +341,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		if(isExtractDocumentTypeEnabled(loadOptions)){
 	 		extractDocumentType(accountingDocument, loadOptions);
  		}
-  	
- 		if(isExtractCreationEnabled(loadOptions)){
-	 		extractCreation(accountingDocument, loadOptions);
- 		}
-  	
- 		if(isExtractConfirmationEnabled(loadOptions)){
-	 		extractConfirmation(accountingDocument, loadOptions);
- 		}
-  	
- 		if(isExtractAuditingEnabled(loadOptions)){
-	 		extractAuditing(accountingDocument, loadOptions);
- 		}
-  	
- 		if(isExtractPostingEnabled(loadOptions)){
-	 		extractPosting(accountingDocument, loadOptions);
- 		}
  
 		
 		if(isExtractOriginalVoucherListEnabled(loadOptions)){
@@ -519,86 +403,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		return accountingDocument;
  	}
  		
-  
-
- 	protected AccountingDocument extractCreation(AccountingDocument accountingDocument, Map<String,Object> options) throws Exception{
-
-		if(accountingDocument.getCreation() == null){
-			return accountingDocument;
-		}
-		String creationId = accountingDocument.getCreation().getId();
-		if( creationId == null){
-			return accountingDocument;
-		}
-		AccountingDocumentCreation creation = getAccountingDocumentCreationDAO().load(creationId,options);
-		if(creation != null){
-			accountingDocument.setCreation(creation);
-		}
-		
- 		
- 		return accountingDocument;
- 	}
- 		
-  
-
- 	protected AccountingDocument extractConfirmation(AccountingDocument accountingDocument, Map<String,Object> options) throws Exception{
-
-		if(accountingDocument.getConfirmation() == null){
-			return accountingDocument;
-		}
-		String confirmationId = accountingDocument.getConfirmation().getId();
-		if( confirmationId == null){
-			return accountingDocument;
-		}
-		AccountingDocumentConfirmation confirmation = getAccountingDocumentConfirmationDAO().load(confirmationId,options);
-		if(confirmation != null){
-			accountingDocument.setConfirmation(confirmation);
-		}
-		
- 		
- 		return accountingDocument;
- 	}
- 		
-  
-
- 	protected AccountingDocument extractAuditing(AccountingDocument accountingDocument, Map<String,Object> options) throws Exception{
-
-		if(accountingDocument.getAuditing() == null){
-			return accountingDocument;
-		}
-		String auditingId = accountingDocument.getAuditing().getId();
-		if( auditingId == null){
-			return accountingDocument;
-		}
-		AccountingDocumentAuditing auditing = getAccountingDocumentAuditingDAO().load(auditingId,options);
-		if(auditing != null){
-			accountingDocument.setAuditing(auditing);
-		}
-		
- 		
- 		return accountingDocument;
- 	}
- 		
-  
-
- 	protected AccountingDocument extractPosting(AccountingDocument accountingDocument, Map<String,Object> options) throws Exception{
-
-		if(accountingDocument.getPosting() == null){
-			return accountingDocument;
-		}
-		String postingId = accountingDocument.getPosting().getId();
-		if( postingId == null){
-			return accountingDocument;
-		}
-		AccountingDocumentPosting posting = getAccountingDocumentPostingDAO().load(postingId,options);
-		if(posting != null){
-			accountingDocument.setPosting(posting);
-		}
-		
- 		
- 		return accountingDocument;
- 	}
- 		
  
 		
 	protected void enhanceOriginalVoucherList(SmartList<OriginalVoucher> originalVoucherList,Map<String,Object> options){
@@ -645,21 +449,12 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 			getOriginalVoucherDAO().analyzeOriginalVoucherByBelongsTo(originalVoucherList, accountingDocument.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return accountingDocument;
 	
 	}	
 	
 		
-=======
-		
-		return accountingDocument;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceAccountingDocumentLineList(SmartList<AccountingDocumentLine> accountingDocumentLineList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -795,178 +590,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	@Override
 	public Map<String, Integer> countAccountingDocumentByDocumentTypeIds(String[] ids, Map<String, Object> options) {
 		return countWithIds(AccountingDocumentTable.COLUMN_DOCUMENT_TYPE, ids, options);
-	}
- 	
-  	
- 	public SmartList<AccountingDocument> findAccountingDocumentByCreation(String accountingDocumentCreationId,Map<String,Object> options){
- 	
-  		SmartList<AccountingDocument> resultList = queryWith(AccountingDocumentTable.COLUMN_CREATION, accountingDocumentCreationId, options, getAccountingDocumentMapper());
-		// analyzeAccountingDocumentByCreation(resultList, accountingDocumentCreationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<AccountingDocument> findAccountingDocumentByCreation(String accountingDocumentCreationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<AccountingDocument> resultList =  queryWithRange(AccountingDocumentTable.COLUMN_CREATION, accountingDocumentCreationId, options, getAccountingDocumentMapper(), start, count);
- 		//analyzeAccountingDocumentByCreation(resultList, accountingDocumentCreationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeAccountingDocumentByCreation(SmartList<AccountingDocument> resultList, String accountingDocumentCreationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(AccountingDocument.CREATION_PROPERTY, accountingDocumentCreationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countAccountingDocumentByCreation(String accountingDocumentCreationId,Map<String,Object> options){
-
- 		return countWith(AccountingDocumentTable.COLUMN_CREATION, accountingDocumentCreationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countAccountingDocumentByCreationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(AccountingDocumentTable.COLUMN_CREATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<AccountingDocument> findAccountingDocumentByConfirmation(String accountingDocumentConfirmationId,Map<String,Object> options){
- 	
-  		SmartList<AccountingDocument> resultList = queryWith(AccountingDocumentTable.COLUMN_CONFIRMATION, accountingDocumentConfirmationId, options, getAccountingDocumentMapper());
-		// analyzeAccountingDocumentByConfirmation(resultList, accountingDocumentConfirmationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<AccountingDocument> findAccountingDocumentByConfirmation(String accountingDocumentConfirmationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<AccountingDocument> resultList =  queryWithRange(AccountingDocumentTable.COLUMN_CONFIRMATION, accountingDocumentConfirmationId, options, getAccountingDocumentMapper(), start, count);
- 		//analyzeAccountingDocumentByConfirmation(resultList, accountingDocumentConfirmationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeAccountingDocumentByConfirmation(SmartList<AccountingDocument> resultList, String accountingDocumentConfirmationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(AccountingDocument.CONFIRMATION_PROPERTY, accountingDocumentConfirmationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countAccountingDocumentByConfirmation(String accountingDocumentConfirmationId,Map<String,Object> options){
-
- 		return countWith(AccountingDocumentTable.COLUMN_CONFIRMATION, accountingDocumentConfirmationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countAccountingDocumentByConfirmationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(AccountingDocumentTable.COLUMN_CONFIRMATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<AccountingDocument> findAccountingDocumentByAuditing(String accountingDocumentAuditingId,Map<String,Object> options){
- 	
-  		SmartList<AccountingDocument> resultList = queryWith(AccountingDocumentTable.COLUMN_AUDITING, accountingDocumentAuditingId, options, getAccountingDocumentMapper());
-		// analyzeAccountingDocumentByAuditing(resultList, accountingDocumentAuditingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<AccountingDocument> findAccountingDocumentByAuditing(String accountingDocumentAuditingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<AccountingDocument> resultList =  queryWithRange(AccountingDocumentTable.COLUMN_AUDITING, accountingDocumentAuditingId, options, getAccountingDocumentMapper(), start, count);
- 		//analyzeAccountingDocumentByAuditing(resultList, accountingDocumentAuditingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeAccountingDocumentByAuditing(SmartList<AccountingDocument> resultList, String accountingDocumentAuditingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(AccountingDocument.AUDITING_PROPERTY, accountingDocumentAuditingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countAccountingDocumentByAuditing(String accountingDocumentAuditingId,Map<String,Object> options){
-
- 		return countWith(AccountingDocumentTable.COLUMN_AUDITING, accountingDocumentAuditingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countAccountingDocumentByAuditingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(AccountingDocumentTable.COLUMN_AUDITING, ids, options);
-	}
- 	
-  	
- 	public SmartList<AccountingDocument> findAccountingDocumentByPosting(String accountingDocumentPostingId,Map<String,Object> options){
- 	
-  		SmartList<AccountingDocument> resultList = queryWith(AccountingDocumentTable.COLUMN_POSTING, accountingDocumentPostingId, options, getAccountingDocumentMapper());
-		// analyzeAccountingDocumentByPosting(resultList, accountingDocumentPostingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<AccountingDocument> findAccountingDocumentByPosting(String accountingDocumentPostingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<AccountingDocument> resultList =  queryWithRange(AccountingDocumentTable.COLUMN_POSTING, accountingDocumentPostingId, options, getAccountingDocumentMapper(), start, count);
- 		//analyzeAccountingDocumentByPosting(resultList, accountingDocumentPostingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeAccountingDocumentByPosting(SmartList<AccountingDocument> resultList, String accountingDocumentPostingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(AccountingDocument.POSTING_PROPERTY, accountingDocumentPostingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countAccountingDocumentByPosting(String accountingDocumentPostingId,Map<String,Object> options){
-
- 		return countWith(AccountingDocumentTable.COLUMN_POSTING, accountingDocumentPostingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countAccountingDocumentByPostingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(AccountingDocumentTable.COLUMN_POSTING, ids, options);
 	}
  	
  	
@@ -1111,7 +734,7 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		return prepareAccountingDocumentCreateParameters(accountingDocument);
  	}
  	protected Object[] prepareAccountingDocumentUpdateParameters(AccountingDocument accountingDocument){
- 		Object[] parameters = new Object[11];
+ 		Object[] parameters = new Object[7];
  
  		parameters[0] = accountingDocument.getName();
  		parameters[1] = accountingDocument.getAccountingDocumentDate(); 	
@@ -1122,31 +745,15 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		if(accountingDocument.getDocumentType() != null){
  			parameters[3] = accountingDocument.getDocumentType().getId();
  		}
-  	
- 		if(accountingDocument.getCreation() != null){
- 			parameters[4] = accountingDocument.getCreation().getId();
- 		}
-  	
- 		if(accountingDocument.getConfirmation() != null){
- 			parameters[5] = accountingDocument.getConfirmation().getId();
- 		}
-  	
- 		if(accountingDocument.getAuditing() != null){
- 			parameters[6] = accountingDocument.getAuditing().getId();
- 		}
-  	
- 		if(accountingDocument.getPosting() != null){
- 			parameters[7] = accountingDocument.getPosting().getId();
- 		}
  		
- 		parameters[8] = accountingDocument.nextVersion();
- 		parameters[9] = accountingDocument.getId();
- 		parameters[10] = accountingDocument.getVersion();
+ 		parameters[4] = accountingDocument.nextVersion();
+ 		parameters[5] = accountingDocument.getId();
+ 		parameters[6] = accountingDocument.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareAccountingDocumentCreateParameters(AccountingDocument accountingDocument){
-		Object[] parameters = new Object[9];
+		Object[] parameters = new Object[5];
 		String newAccountingDocumentId=getNextId();
 		accountingDocument.setId(newAccountingDocumentId);
 		parameters[0] =  accountingDocument.getId();
@@ -1160,26 +767,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		 	
  		if(accountingDocument.getDocumentType() != null){
  			parameters[4] = accountingDocument.getDocumentType().getId();
- 		
- 		}
- 		 	
- 		if(accountingDocument.getCreation() != null){
- 			parameters[5] = accountingDocument.getCreation().getId();
- 		
- 		}
- 		 	
- 		if(accountingDocument.getConfirmation() != null){
- 			parameters[6] = accountingDocument.getConfirmation().getId();
- 		
- 		}
- 		 	
- 		if(accountingDocument.getAuditing() != null){
- 			parameters[7] = accountingDocument.getAuditing().getId();
- 		
- 		}
- 		 	
- 		if(accountingDocument.getPosting() != null){
- 			parameters[8] = accountingDocument.getPosting().getId();
  		
  		}
  				
@@ -1197,22 +784,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
   	
  		if(isSaveDocumentTypeEnabled(options)){
 	 		saveDocumentType(accountingDocument, options);
- 		}
-  	
- 		if(isSaveCreationEnabled(options)){
-	 		saveCreation(accountingDocument, options);
- 		}
-  	
- 		if(isSaveConfirmationEnabled(options)){
-	 		saveConfirmation(accountingDocument, options);
- 		}
-  	
- 		if(isSaveAuditingEnabled(options)){
-	 		saveAuditing(accountingDocument, options);
- 		}
-  	
- 		if(isSavePostingEnabled(options)){
-	 		savePosting(accountingDocument, options);
  		}
  
 		
@@ -1271,74 +842,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	
  	 
 	
-  
- 
- 	protected AccountingDocument saveCreation(AccountingDocument accountingDocument, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(accountingDocument.getCreation() == null){
- 			return accountingDocument;//do nothing when it is null
- 		}
- 		
- 		getAccountingDocumentCreationDAO().save(accountingDocument.getCreation(),options);
- 		return accountingDocument;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected AccountingDocument saveConfirmation(AccountingDocument accountingDocument, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(accountingDocument.getConfirmation() == null){
- 			return accountingDocument;//do nothing when it is null
- 		}
- 		
- 		getAccountingDocumentConfirmationDAO().save(accountingDocument.getConfirmation(),options);
- 		return accountingDocument;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected AccountingDocument saveAuditing(AccountingDocument accountingDocument, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(accountingDocument.getAuditing() == null){
- 			return accountingDocument;//do nothing when it is null
- 		}
- 		
- 		getAccountingDocumentAuditingDAO().save(accountingDocument.getAuditing(),options);
- 		return accountingDocument;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected AccountingDocument savePosting(AccountingDocument accountingDocument, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(accountingDocument.getPosting() == null){
- 			return accountingDocument;//do nothing when it is null
- 		}
- 		
- 		getAccountingDocumentPostingDAO().save(accountingDocument.getPosting(),options);
- 		return accountingDocument;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
  
 
 	
@@ -1370,138 +873,6 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	}
 
 
-	//disconnect AccountingDocument with creation in OriginalVoucher
-	public AccountingDocument planToRemoveOriginalVoucherListWithCreation(AccountingDocument accountingDocument, String creationId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-		
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocument.getId());
-		key.put(OriginalVoucher.CREATION_PROPERTY, creationId);
-		
-		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
-				findOriginalVoucherWithKey(key, options);
-		if(externalOriginalVoucherList == null){
-			return accountingDocument;
-		}
-		if(externalOriginalVoucherList.isEmpty()){
-			return accountingDocument;
-		}
-		
-		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
-			originalVoucherItem.clearCreation();
-			originalVoucherItem.clearBelongsTo();
-			
-		}
-		
-		
-		SmartList<OriginalVoucher> originalVoucherList = accountingDocument.getOriginalVoucherList();		
-		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
-		return accountingDocument;
-	}
-	
-	public int countOriginalVoucherListWithCreation(String accountingDocumentId, String creationId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocumentId);
-		key.put(OriginalVoucher.CREATION_PROPERTY, creationId);
-		
-		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
-		return count;
-	}
-	
-	//disconnect AccountingDocument with confirmation in OriginalVoucher
-	public AccountingDocument planToRemoveOriginalVoucherListWithConfirmation(AccountingDocument accountingDocument, String confirmationId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-		
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocument.getId());
-		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, confirmationId);
-		
-		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
-				findOriginalVoucherWithKey(key, options);
-		if(externalOriginalVoucherList == null){
-			return accountingDocument;
-		}
-		if(externalOriginalVoucherList.isEmpty()){
-			return accountingDocument;
-		}
-		
-		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
-			originalVoucherItem.clearConfirmation();
-			originalVoucherItem.clearBelongsTo();
-			
-		}
-		
-		
-		SmartList<OriginalVoucher> originalVoucherList = accountingDocument.getOriginalVoucherList();		
-		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
-		return accountingDocument;
-	}
-	
-	public int countOriginalVoucherListWithConfirmation(String accountingDocumentId, String confirmationId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocumentId);
-		key.put(OriginalVoucher.CONFIRMATION_PROPERTY, confirmationId);
-		
-		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
-		return count;
-	}
-	
-	//disconnect AccountingDocument with auditing in OriginalVoucher
-	public AccountingDocument planToRemoveOriginalVoucherListWithAuditing(AccountingDocument accountingDocument, String auditingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-		
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocument.getId());
-		key.put(OriginalVoucher.AUDITING_PROPERTY, auditingId);
-		
-		SmartList<OriginalVoucher> externalOriginalVoucherList = getOriginalVoucherDAO().
-				findOriginalVoucherWithKey(key, options);
-		if(externalOriginalVoucherList == null){
-			return accountingDocument;
-		}
-		if(externalOriginalVoucherList.isEmpty()){
-			return accountingDocument;
-		}
-		
-		for(OriginalVoucher originalVoucherItem: externalOriginalVoucherList){
-			originalVoucherItem.clearAuditing();
-			originalVoucherItem.clearBelongsTo();
-			
-		}
-		
-		
-		SmartList<OriginalVoucher> originalVoucherList = accountingDocument.getOriginalVoucherList();		
-		originalVoucherList.addAllToRemoveList(externalOriginalVoucherList);
-		return accountingDocument;
-	}
-	
-	public int countOriginalVoucherListWithAuditing(String accountingDocumentId, String auditingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocumentId);
-		key.put(OriginalVoucher.AUDITING_PROPERTY, auditingId);
-		
-		int count = getOriginalVoucherDAO().countOriginalVoucherWithKey(key, options);
-		return count;
-	}
-	
 	public AccountingDocument planToRemoveAccountingDocumentLineList(AccountingDocument accountingDocument, String accountingDocumentLineIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();

@@ -8,17 +8,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-<<<<<<< HEAD
-=======
 import java.util.Arrays;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
 public class RetailscmCheckerManager extends BaseManagerImpl {
-<<<<<<< HEAD
-=======
 	public SmartList<BaseEntity> requestCandidateValuesForSearch(RetailscmUserContext ctx, String ownerMemberName,
 			String ownerId, String resultMemberName, String resutlClassName, String targetClassName, String filterKey, int pageNo) {
 		return ((BaseDAO)daoOf(ctx)).requestCandidateValuesForSearch(ownerMemberName, ownerId, resultMemberName,
@@ -29,7 +24,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 		throw new UnsupportedOperationException("You must implement it in your specific Manager implementation");
 	}
 	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected RetailscmObjectChecker checkerOf(RetailscmUserContext ctx) {
 		return ctx.getChecker();
 	}
@@ -258,36 +252,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	public com.doublechaintech.retailscm.consumerorder.ConsumerOrderDAO consumerOrderDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getConsumerOrderDAO();
 	}
-	public com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationManager consumerOrderConfirmationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getConsumerOrderConfirmationManager();
-	}
-	public com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationDAO consumerOrderConfirmationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getConsumerOrderConfirmationDAO();
-	}
-	public com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalManager consumerOrderApprovalManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getConsumerOrderApprovalManager();
-	}
-	public com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalDAO consumerOrderApprovalDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getConsumerOrderApprovalDAO();
-	}
-	public com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingManager consumerOrderProcessingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getConsumerOrderProcessingManager();
-	}
-	public com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingDAO consumerOrderProcessingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getConsumerOrderProcessingDAO();
-	}
-	public com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentManager consumerOrderShipmentManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getConsumerOrderShipmentManager();
-	}
-	public com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentDAO consumerOrderShipmentDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getConsumerOrderShipmentDAO();
-	}
-	public com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryManager consumerOrderDeliveryManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getConsumerOrderDeliveryManager();
-	}
-	public com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryDAO consumerOrderDeliveryDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getConsumerOrderDeliveryDAO();
-	}
 	public com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemManager consumerOrderLineItemManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getConsumerOrderLineItemManager();
 	}
@@ -384,42 +348,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	public com.doublechaintech.retailscm.supplyorder.SupplyOrderDAO supplyOrderDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getSupplyOrderDAO();
 	}
-	public com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationManager supplyOrderConfirmationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getSupplyOrderConfirmationManager();
-	}
-	public com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationDAO supplyOrderConfirmationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getSupplyOrderConfirmationDAO();
-	}
-	public com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalManager supplyOrderApprovalManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getSupplyOrderApprovalManager();
-	}
-	public com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalDAO supplyOrderApprovalDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getSupplyOrderApprovalDAO();
-	}
-	public com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingManager supplyOrderProcessingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getSupplyOrderProcessingManager();
-	}
-	public com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingDAO supplyOrderProcessingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getSupplyOrderProcessingDAO();
-	}
-	public com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingManager supplyOrderPickingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getSupplyOrderPickingManager();
-	}
-	public com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingDAO supplyOrderPickingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getSupplyOrderPickingDAO();
-	}
-	public com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentManager supplyOrderShipmentManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getSupplyOrderShipmentManager();
-	}
-	public com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentDAO supplyOrderShipmentDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getSupplyOrderShipmentDAO();
-	}
-	public com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryManager supplyOrderDeliveryManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getSupplyOrderDeliveryManager();
-	}
-	public com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryDAO supplyOrderDeliveryDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getSupplyOrderDeliveryDAO();
-	}
 	public com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemManager supplyOrderLineItemManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getSupplyOrderLineItemManager();
 	}
@@ -443,42 +371,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	}
 	public com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO retailStoreOrderDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getRetailStoreOrderDAO();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationManager retailStoreOrderConfirmationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getRetailStoreOrderConfirmationManager();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationDAO retailStoreOrderConfirmationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getRetailStoreOrderConfirmationDAO();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalManager retailStoreOrderApprovalManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getRetailStoreOrderApprovalManager();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalDAO retailStoreOrderApprovalDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getRetailStoreOrderApprovalDAO();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingManager retailStoreOrderProcessingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getRetailStoreOrderProcessingManager();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingDAO retailStoreOrderProcessingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getRetailStoreOrderProcessingDAO();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingManager retailStoreOrderPickingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getRetailStoreOrderPickingManager();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingDAO retailStoreOrderPickingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getRetailStoreOrderPickingDAO();
-	}
-	public com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentManager retailStoreOrderShipmentManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getRetailStoreOrderShipmentManager();
-	}
-	public com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentDAO retailStoreOrderShipmentDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getRetailStoreOrderShipmentDAO();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryManager retailStoreOrderDeliveryManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getRetailStoreOrderDeliveryManager();
-	}
-	public com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryDAO retailStoreOrderDeliveryDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getRetailStoreOrderDeliveryDAO();
 	}
 	public com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemManager retailStoreOrderLineItemManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getRetailStoreOrderLineItemManager();
@@ -545,12 +437,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	}
 	public com.doublechaintech.retailscm.goods.GoodsDAO goodsDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getGoodsDAO();
-	}
-	public com.doublechaintech.retailscm.goodspackaging.GoodsPackagingManager goodsPackagingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getGoodsPackagingManager();
-	}
-	public com.doublechaintech.retailscm.goodspackaging.GoodsPackagingDAO goodsPackagingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getGoodsPackagingDAO();
 	}
 	public com.doublechaintech.retailscm.goodsmovement.GoodsMovementManager goodsMovementManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getGoodsMovementManager();
@@ -648,53 +534,11 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	public com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO accountingDocumentDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getAccountingDocumentDAO();
 	}
-	public com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationManager accountingDocumentCreationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getAccountingDocumentCreationManager();
-	}
-	public com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationDAO accountingDocumentCreationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getAccountingDocumentCreationDAO();
-	}
-	public com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationManager accountingDocumentConfirmationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getAccountingDocumentConfirmationManager();
-	}
-	public com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationDAO accountingDocumentConfirmationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getAccountingDocumentConfirmationDAO();
-	}
-	public com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingManager accountingDocumentAuditingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getAccountingDocumentAuditingManager();
-	}
-	public com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingDAO accountingDocumentAuditingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getAccountingDocumentAuditingDAO();
-	}
-	public com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingManager accountingDocumentPostingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getAccountingDocumentPostingManager();
-	}
-	public com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingDAO accountingDocumentPostingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getAccountingDocumentPostingDAO();
-	}
 	public com.doublechaintech.retailscm.originalvoucher.OriginalVoucherManager originalVoucherManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getOriginalVoucherManager();
 	}
 	public com.doublechaintech.retailscm.originalvoucher.OriginalVoucherDAO originalVoucherDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getOriginalVoucherDAO();
-	}
-	public com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationManager originalVoucherCreationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getOriginalVoucherCreationManager();
-	}
-	public com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationDAO originalVoucherCreationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getOriginalVoucherCreationDAO();
-	}
-	public com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationManager originalVoucherConfirmationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getOriginalVoucherConfirmationManager();
-	}
-	public com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationDAO originalVoucherConfirmationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getOriginalVoucherConfirmationDAO();
-	}
-	public com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingManager originalVoucherAuditingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getOriginalVoucherAuditingManager();
-	}
-	public com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingDAO originalVoucherAuditingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getOriginalVoucherAuditingDAO();
 	}
 	public com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineManager accountingDocumentLineManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getAccountingDocumentLineManager();
@@ -797,42 +641,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	}
 	public com.doublechaintech.retailscm.employee.EmployeeDAO employeeDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getEmployeeDAO();
-	}
-	public com.doublechaintech.retailscm.jobapplication.JobApplicationManager jobApplicationManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getJobApplicationManager();
-	}
-	public com.doublechaintech.retailscm.jobapplication.JobApplicationDAO jobApplicationDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getJobApplicationDAO();
-	}
-	public com.doublechaintech.retailscm.professioninterview.ProfessionInterviewManager professionInterviewManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getProfessionInterviewManager();
-	}
-	public com.doublechaintech.retailscm.professioninterview.ProfessionInterviewDAO professionInterviewDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getProfessionInterviewDAO();
-	}
-	public com.doublechaintech.retailscm.hrinterview.HrInterviewManager hrInterviewManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getHrInterviewManager();
-	}
-	public com.doublechaintech.retailscm.hrinterview.HrInterviewDAO hrInterviewDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getHrInterviewDAO();
-	}
-	public com.doublechaintech.retailscm.offerapproval.OfferApprovalManager offerApprovalManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getOfferApprovalManager();
-	}
-	public com.doublechaintech.retailscm.offerapproval.OfferApprovalDAO offerApprovalDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getOfferApprovalDAO();
-	}
-	public com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceManager offerAcceptanceManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getOfferAcceptanceManager();
-	}
-	public com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceDAO offerAcceptanceDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getOfferAcceptanceDAO();
-	}
-	public com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingManager employeeBoardingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getEmployeeBoardingManager();
-	}
-	public com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingDAO employeeBoardingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getEmployeeBoardingDAO();
 	}
 	public com.doublechaintech.retailscm.instructor.InstructorManager instructorManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getInstructorManager();
@@ -941,12 +749,6 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	}
 	public com.doublechaintech.retailscm.secuser.SecUserDAO secUserDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getSecUserDAO();
-	}
-	public com.doublechaintech.retailscm.secuserblocking.SecUserBlockingManager secUserBlockingManagerOf(RetailscmUserContext userContext){
-		return userContext.getManagerGroup().getSecUserBlockingManager();
-	}
-	public com.doublechaintech.retailscm.secuserblocking.SecUserBlockingDAO secUserBlockingDaoOf(RetailscmUserContext userContext){
-		return userContext.getDAOGroup().getSecUserBlockingDAO();
 	}
 	public com.doublechaintech.retailscm.userapp.UserAppManager userAppManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getUserAppManager();

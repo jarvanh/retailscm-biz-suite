@@ -60,10 +60,6 @@ public interface UserDomainDAO extends BaseDAO{
 	public UserDomain planToRemoveSecUserList(UserDomain userDomain, String secUserIds[], Map<String,Object> options)throws Exception;
 
 
-	//disconnect UserDomain with blocking in SecUser
-	public UserDomain planToRemoveSecUserListWithBlocking(UserDomain userDomain, String blockingId, Map<String,Object> options)throws Exception;
-	public int countSecUserListWithBlocking(String userDomainId, String blockingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<UserDomain> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

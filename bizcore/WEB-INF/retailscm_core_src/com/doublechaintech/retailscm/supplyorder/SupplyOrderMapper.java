@@ -5,14 +5,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.BaseRowMapper;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 	
@@ -24,12 +18,6 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
  		setSeller(supplyOrder, rs, rowNumber); 		
  		setTitle(supplyOrder, rs, rowNumber); 		
  		setTotalAmount(supplyOrder, rs, rowNumber); 		
- 		setConfirmation(supplyOrder, rs, rowNumber); 		
- 		setApproval(supplyOrder, rs, rowNumber); 		
- 		setProcessing(supplyOrder, rs, rowNumber); 		
- 		setPicking(supplyOrder, rs, rowNumber); 		
- 		setShipment(supplyOrder, rs, rowNumber); 		
- 		setDelivery(supplyOrder, rs, rowNumber); 		
  		setLastUpdateTime(supplyOrder, rs, rowNumber); 		
  		setVersion(supplyOrder, rs, rowNumber);
 
@@ -111,115 +99,7 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 		
 		supplyOrder.setTotalAmount(totalAmount);
 	}
-		 		
- 	protected void setConfirmation(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
- 		String supplyOrderConfirmationId = rs.getString(SupplyOrderTable.COLUMN_CONFIRMATION);
- 		if( supplyOrderConfirmationId == null){
- 			return;
- 		}
- 		if( supplyOrderConfirmationId.isEmpty()){
- 			return;
- 		}
- 		SupplyOrderConfirmation supplyOrderConfirmation = supplyOrder.getConfirmation();
- 		if( supplyOrderConfirmation != null ){
- 			//if the root object 'supplyOrder' already have the property, just set the id for it;
- 			supplyOrderConfirmation.setId(supplyOrderConfirmationId);
- 			
- 			return;
- 		}
- 		supplyOrder.setConfirmation(createEmptyConfirmation(supplyOrderConfirmationId));
- 	}
- 	 		
- 	protected void setApproval(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
- 		String supplyOrderApprovalId = rs.getString(SupplyOrderTable.COLUMN_APPROVAL);
- 		if( supplyOrderApprovalId == null){
- 			return;
- 		}
- 		if( supplyOrderApprovalId.isEmpty()){
- 			return;
- 		}
- 		SupplyOrderApproval supplyOrderApproval = supplyOrder.getApproval();
- 		if( supplyOrderApproval != null ){
- 			//if the root object 'supplyOrder' already have the property, just set the id for it;
- 			supplyOrderApproval.setId(supplyOrderApprovalId);
- 			
- 			return;
- 		}
- 		supplyOrder.setApproval(createEmptyApproval(supplyOrderApprovalId));
- 	}
- 	 		
- 	protected void setProcessing(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
- 		String supplyOrderProcessingId = rs.getString(SupplyOrderTable.COLUMN_PROCESSING);
- 		if( supplyOrderProcessingId == null){
- 			return;
- 		}
- 		if( supplyOrderProcessingId.isEmpty()){
- 			return;
- 		}
- 		SupplyOrderProcessing supplyOrderProcessing = supplyOrder.getProcessing();
- 		if( supplyOrderProcessing != null ){
- 			//if the root object 'supplyOrder' already have the property, just set the id for it;
- 			supplyOrderProcessing.setId(supplyOrderProcessingId);
- 			
- 			return;
- 		}
- 		supplyOrder.setProcessing(createEmptyProcessing(supplyOrderProcessingId));
- 	}
- 	 		
- 	protected void setPicking(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
- 		String supplyOrderPickingId = rs.getString(SupplyOrderTable.COLUMN_PICKING);
- 		if( supplyOrderPickingId == null){
- 			return;
- 		}
- 		if( supplyOrderPickingId.isEmpty()){
- 			return;
- 		}
- 		SupplyOrderPicking supplyOrderPicking = supplyOrder.getPicking();
- 		if( supplyOrderPicking != null ){
- 			//if the root object 'supplyOrder' already have the property, just set the id for it;
- 			supplyOrderPicking.setId(supplyOrderPickingId);
- 			
- 			return;
- 		}
- 		supplyOrder.setPicking(createEmptyPicking(supplyOrderPickingId));
- 	}
- 	 		
- 	protected void setShipment(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
- 		String supplyOrderShipmentId = rs.getString(SupplyOrderTable.COLUMN_SHIPMENT);
- 		if( supplyOrderShipmentId == null){
- 			return;
- 		}
- 		if( supplyOrderShipmentId.isEmpty()){
- 			return;
- 		}
- 		SupplyOrderShipment supplyOrderShipment = supplyOrder.getShipment();
- 		if( supplyOrderShipment != null ){
- 			//if the root object 'supplyOrder' already have the property, just set the id for it;
- 			supplyOrderShipment.setId(supplyOrderShipmentId);
- 			
- 			return;
- 		}
- 		supplyOrder.setShipment(createEmptyShipment(supplyOrderShipmentId));
- 	}
- 	 		
- 	protected void setDelivery(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
- 		String supplyOrderDeliveryId = rs.getString(SupplyOrderTable.COLUMN_DELIVERY);
- 		if( supplyOrderDeliveryId == null){
- 			return;
- 		}
- 		if( supplyOrderDeliveryId.isEmpty()){
- 			return;
- 		}
- 		SupplyOrderDelivery supplyOrderDelivery = supplyOrder.getDelivery();
- 		if( supplyOrderDelivery != null ){
- 			//if the root object 'supplyOrder' already have the property, just set the id for it;
- 			supplyOrderDelivery.setId(supplyOrderDeliveryId);
- 			
- 			return;
- 		}
- 		supplyOrder.setDelivery(createEmptyDelivery(supplyOrderDeliveryId));
- 	}
- 	
+		
 	protected void setLastUpdateTime(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
@@ -258,48 +138,6 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
  		goodsSupplier.setId(goodsSupplierId);
  		goodsSupplier.setVersion(Integer.MAX_VALUE);
  		return goodsSupplier;
- 	}
- 	
- 	protected SupplyOrderConfirmation  createEmptyConfirmation(String supplyOrderConfirmationId){
- 		SupplyOrderConfirmation supplyOrderConfirmation = new SupplyOrderConfirmation();
- 		supplyOrderConfirmation.setId(supplyOrderConfirmationId);
- 		supplyOrderConfirmation.setVersion(Integer.MAX_VALUE);
- 		return supplyOrderConfirmation;
- 	}
- 	
- 	protected SupplyOrderApproval  createEmptyApproval(String supplyOrderApprovalId){
- 		SupplyOrderApproval supplyOrderApproval = new SupplyOrderApproval();
- 		supplyOrderApproval.setId(supplyOrderApprovalId);
- 		supplyOrderApproval.setVersion(Integer.MAX_VALUE);
- 		return supplyOrderApproval;
- 	}
- 	
- 	protected SupplyOrderProcessing  createEmptyProcessing(String supplyOrderProcessingId){
- 		SupplyOrderProcessing supplyOrderProcessing = new SupplyOrderProcessing();
- 		supplyOrderProcessing.setId(supplyOrderProcessingId);
- 		supplyOrderProcessing.setVersion(Integer.MAX_VALUE);
- 		return supplyOrderProcessing;
- 	}
- 	
- 	protected SupplyOrderPicking  createEmptyPicking(String supplyOrderPickingId){
- 		SupplyOrderPicking supplyOrderPicking = new SupplyOrderPicking();
- 		supplyOrderPicking.setId(supplyOrderPickingId);
- 		supplyOrderPicking.setVersion(Integer.MAX_VALUE);
- 		return supplyOrderPicking;
- 	}
- 	
- 	protected SupplyOrderShipment  createEmptyShipment(String supplyOrderShipmentId){
- 		SupplyOrderShipment supplyOrderShipment = new SupplyOrderShipment();
- 		supplyOrderShipment.setId(supplyOrderShipmentId);
- 		supplyOrderShipment.setVersion(Integer.MAX_VALUE);
- 		return supplyOrderShipment;
- 	}
- 	
- 	protected SupplyOrderDelivery  createEmptyDelivery(String supplyOrderDeliveryId){
- 		SupplyOrderDelivery supplyOrderDelivery = new SupplyOrderDelivery();
- 		supplyOrderDelivery.setId(supplyOrderDeliveryId);
- 		supplyOrderDelivery.setVersion(Integer.MAX_VALUE);
- 		return supplyOrderDelivery;
  	}
  	
 }

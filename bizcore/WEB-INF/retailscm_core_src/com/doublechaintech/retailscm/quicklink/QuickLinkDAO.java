@@ -3,10 +3,7 @@ package com.doublechaintech.retailscm.quicklink;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-<<<<<<< HEAD
-=======
 import com.doublechaintech.retailscm.BaseDAO;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
@@ -17,15 +14,9 @@ import com.doublechaintech.retailscm.userapp.UserApp;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 
 
-<<<<<<< HEAD
-public interface QuickLinkDAO{
-
-	
-=======
 public interface QuickLinkDAO extends BaseDAO{
 
 	public SmartList<QuickLink> loadAll();
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public QuickLink load(String id, Map<String,Object> options) throws Exception;
 	public void enhanceList(List<QuickLink> quickLinkList);
 	public void collectAndEnhance(BaseEntity ownerEntity);

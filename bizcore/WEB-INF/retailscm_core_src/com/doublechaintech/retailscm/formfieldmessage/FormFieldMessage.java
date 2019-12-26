@@ -363,7 +363,9 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getParameterName(), getForm(), getLevel(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

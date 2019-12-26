@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.potentialcustomer.PotentialCustomer;
 import com.doublechaintech.retailscm.cityevent.CityEvent;
@@ -33,28 +24,31 @@ import com.doublechaintech.retailscm.cityevent.CandidateCityEvent;
 
 
 public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager implements EventAttendanceManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "EventAttendance";
 	@Override
 	public EventAttendanceDAO daoOf(RetailscmUserContext userContext) {
 		return eventAttendanceDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EventAttendanceManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EventAttendanceManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected EventAttendance saveEventAttendance(RetailscmUserContext userContext, EventAttendance eventAttendance, String [] tokensExpr) throws Exception{	
  		//return getEventAttendanceDAO().save(eventAttendance, tokens);
@@ -170,7 +164,7 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 	public EventAttendance createEventAttendance(RetailscmUserContext userContext, String name,String potentialCustomerId,String cityEventId,String description) throws Exception
 	//public EventAttendance createEventAttendance(RetailscmUserContext userContext,String name, String potentialCustomerId, String cityEventId, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -201,14 +195,14 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		onNewInstanceCreated(userContext, eventAttendance);
 		return eventAttendance;
 
-		
+
 	}
-	protected EventAttendance createNewEventAttendance() 
+	protected EventAttendance createNewEventAttendance()
 	{
-		
-		return new EventAttendance();		
+
+		return new EventAttendance();
 	}
-	
+
 	protected void checkParamsForUpdatingEventAttendance(RetailscmUserContext userContext,String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -231,28 +225,28 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EventAttendanceManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public EventAttendance clone(RetailscmUserContext userContext, String fromEventAttendanceId) throws Exception{
-		
+
 		return eventAttendanceDaoOf(userContext).clone(fromEventAttendanceId, this.allTokens());
 	}
-	
-	public EventAttendance internalSaveEventAttendance(RetailscmUserContext userContext, EventAttendance eventAttendance) throws Exception 
+
+	public EventAttendance internalSaveEventAttendance(RetailscmUserContext userContext, EventAttendance eventAttendance) throws Exception
 	{
 		return internalSaveEventAttendance(userContext, eventAttendance, allTokens());
 
 	}
-	public EventAttendance internalSaveEventAttendance(RetailscmUserContext userContext, EventAttendance eventAttendance, Map<String,Object> options) throws Exception 
+	public EventAttendance internalSaveEventAttendance(RetailscmUserContext userContext, EventAttendance eventAttendance, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEventAttendance(userContext, eventAttendanceId, eventAttendanceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(eventAttendance){ 
+
+
+		synchronized(eventAttendance){
 			//will be good when the eventAttendance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EventAttendance.
@@ -261,23 +255,23 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 			}
 			eventAttendance = saveEventAttendance(userContext, eventAttendance, options);
 			return eventAttendance;
-			
+
 		}
 
 	}
-	
-	public EventAttendance updateEventAttendance(RetailscmUserContext userContext,String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EventAttendance updateEventAttendance(RetailscmUserContext userContext,String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEventAttendance(userContext, eventAttendanceId, eventAttendanceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		EventAttendance eventAttendance = loadEventAttendance(userContext, eventAttendanceId, allTokens());
 		if(eventAttendance.getVersion() != eventAttendanceVersion){
 			String message = "The target version("+eventAttendance.getVersion()+") is not equals to version("+eventAttendanceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(eventAttendance){ 
+		synchronized(eventAttendance){
 			//will be good when the eventAttendance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EventAttendance.
@@ -289,21 +283,21 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		}
 
 	}
-	
-	public EventAttendance updateEventAttendanceProperty(RetailscmUserContext userContext,String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EventAttendance updateEventAttendanceProperty(RetailscmUserContext userContext,String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEventAttendance(userContext, eventAttendanceId, eventAttendanceVersion, property, newValueExpr, tokensExpr);
-		
+
 		EventAttendance eventAttendance = loadEventAttendance(userContext, eventAttendanceId, allTokens());
 		if(eventAttendance.getVersion() != eventAttendanceVersion){
 			String message = "The target version("+eventAttendance.getVersion()+") is not equals to version("+eventAttendanceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(eventAttendance){ 
+		synchronized(eventAttendance){
 			//will be good when the eventAttendance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EventAttendance.
-			
+
 			eventAttendance.changeProperty(property, newValueExpr);
 			
 			eventAttendance = saveEventAttendance(userContext, eventAttendance, tokens().done());
@@ -315,7 +309,7 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EventAttendanceTokens tokens(){
 		return EventAttendanceTokens.start();
 	}
@@ -336,11 +330,11 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 	
 	protected void checkParamsForTransferingAnotherPotentialCustomer(RetailscmUserContext userContext, String eventAttendanceId, String anotherPotentialCustomerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceId);
  		checkerOf(userContext).checkIdOfPotentialCustomer(anotherPotentialCustomerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EventAttendanceManagerException.class);
- 		
+
  	}
  	public EventAttendance transferToAnotherPotentialCustomer(RetailscmUserContext userContext, String eventAttendanceId, String anotherPotentialCustomerId) throws Exception
  	{
@@ -359,10 +353,10 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidatePotentialCustomer requestCandidatePotentialCustomer(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidatePotentialCustomer result = new CandidatePotentialCustomer();
@@ -372,7 +366,7 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -382,14 +376,14 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherCityEvent(RetailscmUserContext userContext, String eventAttendanceId, String anotherCityEventId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceId);
  		checkerOf(userContext).checkIdOfCityEvent(anotherCityEventId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EventAttendanceManagerException.class);
- 		
+
  	}
  	public EventAttendance transferToAnotherCityEvent(RetailscmUserContext userContext, String eventAttendanceId, String anotherCityEventId) throws Exception
  	{
@@ -408,10 +402,10 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateCityEvent requestCandidateCityEvent(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateCityEvent result = new CandidateCityEvent();
@@ -421,7 +415,7 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -431,60 +425,52 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected PotentialCustomer loadPotentialCustomer(RetailscmUserContext userContext, String newPotentialCustomerId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getPotentialCustomerDAO().load(newPotentialCustomerId, options);
-=======
+
  		return potentialCustomerDaoOf(userContext).load(newPotentialCustomerId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected CityEvent loadCityEvent(RetailscmUserContext userContext, String newCityEventId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getCityEventDAO().load(newCityEventId, options);
-=======
+
  		return cityEventDaoOf(userContext).load(newCityEventId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String eventAttendanceId, int eventAttendanceVersion) throws Exception {
-		//deleteInternal(userContext, eventAttendanceId, eventAttendanceVersion);		
+		//deleteInternal(userContext, eventAttendanceId, eventAttendanceVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String eventAttendanceId, int eventAttendanceVersion) throws Exception{
-			
+
 		eventAttendanceDaoOf(userContext).delete(eventAttendanceId, eventAttendanceVersion);
 	}
-	
+
 	public EventAttendance forgetByAll(RetailscmUserContext userContext, String eventAttendanceId, int eventAttendanceVersion) throws Exception {
-		return forgetByAllInternal(userContext, eventAttendanceId, eventAttendanceVersion);		
+		return forgetByAllInternal(userContext, eventAttendanceId, eventAttendanceVersion);
 	}
 	protected EventAttendance forgetByAllInternal(RetailscmUserContext userContext,
 			String eventAttendanceId, int eventAttendanceVersion) throws Exception{
-			
+
 		return eventAttendanceDaoOf(userContext).disconnectFromAll(eventAttendanceId, eventAttendanceVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -495,23 +481,29 @@ public class EventAttendanceManagerImpl extends CustomRetailscmCheckerManager im
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return eventAttendanceDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EventAttendance newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

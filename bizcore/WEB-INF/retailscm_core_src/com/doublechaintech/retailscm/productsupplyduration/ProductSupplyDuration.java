@@ -363,7 +363,9 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getQuantity(), getDuration(), getPrice(), getProduct(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

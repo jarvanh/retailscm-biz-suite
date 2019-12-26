@@ -5,10 +5,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.BaseRowMapper;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPosting;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreation;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditing;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmation;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentType;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 
@@ -22,10 +18,6 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		setAccountingDocumentDate(accountingDocument, rs, rowNumber); 		
  		setAccountingPeriod(accountingDocument, rs, rowNumber); 		
  		setDocumentType(accountingDocument, rs, rowNumber); 		
- 		setCreation(accountingDocument, rs, rowNumber); 		
- 		setConfirmation(accountingDocument, rs, rowNumber); 		
- 		setAuditing(accountingDocument, rs, rowNumber); 		
- 		setPosting(accountingDocument, rs, rowNumber); 		
  		setVersion(accountingDocument, rs, rowNumber);
 
 		return accountingDocument;
@@ -106,78 +98,6 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		}
  		accountingDocument.setDocumentType(createEmptyDocumentType(accountingDocumentTypeId));
  	}
- 	 		
- 	protected void setCreation(AccountingDocument accountingDocument, ResultSet rs, int rowNumber) throws SQLException{
- 		String accountingDocumentCreationId = rs.getString(AccountingDocumentTable.COLUMN_CREATION);
- 		if( accountingDocumentCreationId == null){
- 			return;
- 		}
- 		if( accountingDocumentCreationId.isEmpty()){
- 			return;
- 		}
- 		AccountingDocumentCreation accountingDocumentCreation = accountingDocument.getCreation();
- 		if( accountingDocumentCreation != null ){
- 			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			accountingDocumentCreation.setId(accountingDocumentCreationId);
- 			
- 			return;
- 		}
- 		accountingDocument.setCreation(createEmptyCreation(accountingDocumentCreationId));
- 	}
- 	 		
- 	protected void setConfirmation(AccountingDocument accountingDocument, ResultSet rs, int rowNumber) throws SQLException{
- 		String accountingDocumentConfirmationId = rs.getString(AccountingDocumentTable.COLUMN_CONFIRMATION);
- 		if( accountingDocumentConfirmationId == null){
- 			return;
- 		}
- 		if( accountingDocumentConfirmationId.isEmpty()){
- 			return;
- 		}
- 		AccountingDocumentConfirmation accountingDocumentConfirmation = accountingDocument.getConfirmation();
- 		if( accountingDocumentConfirmation != null ){
- 			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			accountingDocumentConfirmation.setId(accountingDocumentConfirmationId);
- 			
- 			return;
- 		}
- 		accountingDocument.setConfirmation(createEmptyConfirmation(accountingDocumentConfirmationId));
- 	}
- 	 		
- 	protected void setAuditing(AccountingDocument accountingDocument, ResultSet rs, int rowNumber) throws SQLException{
- 		String accountingDocumentAuditingId = rs.getString(AccountingDocumentTable.COLUMN_AUDITING);
- 		if( accountingDocumentAuditingId == null){
- 			return;
- 		}
- 		if( accountingDocumentAuditingId.isEmpty()){
- 			return;
- 		}
- 		AccountingDocumentAuditing accountingDocumentAuditing = accountingDocument.getAuditing();
- 		if( accountingDocumentAuditing != null ){
- 			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			accountingDocumentAuditing.setId(accountingDocumentAuditingId);
- 			
- 			return;
- 		}
- 		accountingDocument.setAuditing(createEmptyAuditing(accountingDocumentAuditingId));
- 	}
- 	 		
- 	protected void setPosting(AccountingDocument accountingDocument, ResultSet rs, int rowNumber) throws SQLException{
- 		String accountingDocumentPostingId = rs.getString(AccountingDocumentTable.COLUMN_POSTING);
- 		if( accountingDocumentPostingId == null){
- 			return;
- 		}
- 		if( accountingDocumentPostingId.isEmpty()){
- 			return;
- 		}
- 		AccountingDocumentPosting accountingDocumentPosting = accountingDocument.getPosting();
- 		if( accountingDocumentPosting != null ){
- 			//if the root object 'accountingDocument' already have the property, just set the id for it;
- 			accountingDocumentPosting.setId(accountingDocumentPostingId);
- 			
- 			return;
- 		}
- 		accountingDocument.setPosting(createEmptyPosting(accountingDocumentPostingId));
- 	}
  	
 	protected void setVersion(AccountingDocument accountingDocument, ResultSet rs, int rowNumber) throws SQLException{
 	
@@ -205,34 +125,6 @@ public class AccountingDocumentMapper extends BaseRowMapper<AccountingDocument>{
  		accountingDocumentType.setId(accountingDocumentTypeId);
  		accountingDocumentType.setVersion(Integer.MAX_VALUE);
  		return accountingDocumentType;
- 	}
- 	
- 	protected AccountingDocumentCreation  createEmptyCreation(String accountingDocumentCreationId){
- 		AccountingDocumentCreation accountingDocumentCreation = new AccountingDocumentCreation();
- 		accountingDocumentCreation.setId(accountingDocumentCreationId);
- 		accountingDocumentCreation.setVersion(Integer.MAX_VALUE);
- 		return accountingDocumentCreation;
- 	}
- 	
- 	protected AccountingDocumentConfirmation  createEmptyConfirmation(String accountingDocumentConfirmationId){
- 		AccountingDocumentConfirmation accountingDocumentConfirmation = new AccountingDocumentConfirmation();
- 		accountingDocumentConfirmation.setId(accountingDocumentConfirmationId);
- 		accountingDocumentConfirmation.setVersion(Integer.MAX_VALUE);
- 		return accountingDocumentConfirmation;
- 	}
- 	
- 	protected AccountingDocumentAuditing  createEmptyAuditing(String accountingDocumentAuditingId){
- 		AccountingDocumentAuditing accountingDocumentAuditing = new AccountingDocumentAuditing();
- 		accountingDocumentAuditing.setId(accountingDocumentAuditingId);
- 		accountingDocumentAuditing.setVersion(Integer.MAX_VALUE);
- 		return accountingDocumentAuditing;
- 	}
- 	
- 	protected AccountingDocumentPosting  createEmptyPosting(String accountingDocumentPostingId){
- 		AccountingDocumentPosting accountingDocumentPosting = new AccountingDocumentPosting();
- 		accountingDocumentPosting.setId(accountingDocumentPostingId);
- 		accountingDocumentPosting.setVersion(Integer.MAX_VALUE);
- 		return accountingDocumentPosting;
  	}
  	
 }

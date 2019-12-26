@@ -75,17 +75,6 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public 	RetailStoreMemberCoupon(String name, RetailStoreMember owner, String number, DateTime lastUpdateTime)
-	{
-		setName(name);
-		setOwner(owner);
-		setNumber(number);
-		setLastUpdateTime(lastUpdateTime);
-	
-	}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	
@@ -374,7 +363,9 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getOwner(), getNumber(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

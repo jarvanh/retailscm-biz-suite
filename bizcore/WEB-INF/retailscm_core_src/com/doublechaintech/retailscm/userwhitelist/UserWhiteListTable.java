@@ -23,17 +23,8 @@ public class UserWhiteListTable{
 	static final String COLUMN_DOMAIN = "domain";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_USER_IDENTITY, COLUMN_USER_SPECIAL_FUNCTIONS, COLUMN_DOMAIN, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_USER_IDENTITY, COLUMN_USER_SPECIAL_FUNCTIONS, COLUMN_DOMAIN
-		};
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_USER_IDENTITY,COLUMN_USER_SPECIAL_FUNCTIONS,COLUMN_DOMAIN,COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {COLUMN_USER_IDENTITY,COLUMN_USER_SPECIAL_FUNCTIONS,COLUMN_DOMAIN};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

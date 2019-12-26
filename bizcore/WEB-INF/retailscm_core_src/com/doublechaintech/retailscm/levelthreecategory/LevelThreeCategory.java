@@ -400,7 +400,9 @@ public class LevelThreeCategory extends BaseEntity implements  java.io.Serializa
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getParentCategory(), getName(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

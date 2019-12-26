@@ -8,23 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -35,7 +25,6 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 import com.doublechaintech.retailscm.retailstore.CandidateRetailStore;
 import com.doublechaintech.retailscm.supplyorder.CandidateSupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.CandidateGoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.CandidateGoodsPackaging;
 import com.doublechaintech.retailscm.sku.CandidateSku;
 import com.doublechaintech.retailscm.receivingspace.CandidateReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.CandidateSmartPallet;
@@ -51,28 +40,31 @@ import com.doublechaintech.retailscm.goods.Goods;
 
 
 public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements GoodsManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "Goods";
 	@Override
 	public GoodsDAO daoOf(RetailscmUserContext userContext) {
 		return goodsDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws GoodsManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new GoodsManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected Goods saveGoods(RetailscmUserContext userContext, Goods goods, String [] tokensExpr) throws Exception{	
  		//return getGoodsDAO().save(goods, tokens);
@@ -181,7 +173,6 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		addAction(userContext, goods, tokens,"goods.transfer_to_retail_store","transferToAnotherRetailStore","transferToAnotherRetailStore/"+goods.getId()+"/","main","primary");
 		addAction(userContext, goods, tokens,"goods.transfer_to_biz_order","transferToAnotherBizOrder","transferToAnotherBizOrder/"+goods.getId()+"/","main","primary");
 		addAction(userContext, goods, tokens,"goods.transfer_to_retail_store_order","transferToAnotherRetailStoreOrder","transferToAnotherRetailStoreOrder/"+goods.getId()+"/","main","primary");
-		addAction(userContext, goods, tokens,"goods.transfer_to_packaging","transferToAnotherPackaging","transferToAnotherPackaging/"+goods.getId()+"/","main","primary");
 		addAction(userContext, goods, tokens,"goods.addGoodsMovement","addGoodsMovement","addGoodsMovement/"+goods.getId()+"/","goodsMovementList","primary");
 		addAction(userContext, goods, tokens,"goods.removeGoodsMovement","removeGoodsMovement","removeGoodsMovement/"+goods.getId()+"/","goodsMovementList","primary");
 		addAction(userContext, goods, tokens,"goods.updateGoodsMovement","updateGoodsMovement","updateGoodsMovement/"+goods.getId()+"/","goodsMovementList","primary");
@@ -197,10 +188,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
  	
  	
 
-	public Goods createGoods(RetailscmUserContext userContext, String name,String rfid,String uom,int maxPackage,Date expireTime,String skuId,String receivingSpaceId,String goodsAllocationId,String smartPalletId,String shippingSpaceId,String transportTaskId,String retailStoreId,String bizOrderId,String retailStoreOrderId,String packagingId) throws Exception
-	//public Goods createGoods(RetailscmUserContext userContext,String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId) throws Exception
+	public Goods createGoods(RetailscmUserContext userContext, String name,String rfid,String uom,int maxPackage,Date expireTime,String skuId,String receivingSpaceId,String goodsAllocationId,String smartPalletId,String shippingSpaceId,String transportTaskId,String retailStoreId,String bizOrderId,String retailStoreOrderId) throws Exception
+	//public Goods createGoods(RetailscmUserContext userContext,String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId) throws Exception
 	{
-		
+
 		
 
 		
@@ -266,25 +257,20 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		goods.setRetailStoreOrder(retailStoreOrder);
 		
 		
-			
-		GoodsPackaging packaging = loadGoodsPackaging(userContext, packagingId,emptyOptions());
-		goods.setPackaging(packaging);
-		
-		
 
 		goods = saveGoods(userContext, goods, emptyOptions());
 		
 		onNewInstanceCreated(userContext, goods);
 		return goods;
 
-		
+
 	}
-	protected Goods createNewGoods() 
+	protected Goods createNewGoods()
 	{
-		
-		return new Goods();		
+
+		return new Goods();
 	}
-	
+
 	protected void checkParamsForUpdatingGoods(RetailscmUserContext userContext,String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -327,33 +313,31 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 
 				
 
-				
-
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public Goods clone(RetailscmUserContext userContext, String fromGoodsId) throws Exception{
-		
+
 		return goodsDaoOf(userContext).clone(fromGoodsId, this.allTokens());
 	}
-	
-	public Goods internalSaveGoods(RetailscmUserContext userContext, Goods goods) throws Exception 
+
+	public Goods internalSaveGoods(RetailscmUserContext userContext, Goods goods) throws Exception
 	{
 		return internalSaveGoods(userContext, goods, allTokens());
 
 	}
-	public Goods internalSaveGoods(RetailscmUserContext userContext, Goods goods, Map<String,Object> options) throws Exception 
+	public Goods internalSaveGoods(RetailscmUserContext userContext, Goods goods, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingGoods(userContext, goodsId, goodsVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(goods){ 
+
+
+		synchronized(goods){
 			//will be good when the goods loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Goods.
@@ -362,23 +346,23 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 			}
 			goods = saveGoods(userContext, goods, options);
 			return goods;
-			
+
 		}
 
 	}
-	
-	public Goods updateGoods(RetailscmUserContext userContext,String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Goods updateGoods(RetailscmUserContext userContext,String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoods(userContext, goodsId, goodsVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		Goods goods = loadGoods(userContext, goodsId, allTokens());
 		if(goods.getVersion() != goodsVersion){
 			String message = "The target version("+goods.getVersion()+") is not equals to version("+goodsVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goods){ 
+		synchronized(goods){
 			//will be good when the goods loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Goods.
@@ -390,21 +374,21 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
 	}
-	
-	public Goods updateGoodsProperty(RetailscmUserContext userContext,String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Goods updateGoodsProperty(RetailscmUserContext userContext,String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoods(userContext, goodsId, goodsVersion, property, newValueExpr, tokensExpr);
-		
+
 		Goods goods = loadGoods(userContext, goodsId, allTokens());
 		if(goods.getVersion() != goodsVersion){
 			String message = "The target version("+goods.getVersion()+") is not equals to version("+goodsVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goods){ 
+		synchronized(goods){
 			//will be good when the goods loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Goods.
-			
+
 			goods.changeProperty(property, newValueExpr);
 			
 			goods = saveGoods(userContext, goods, tokens().done());
@@ -416,7 +400,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected GoodsTokens tokens(){
 		return GoodsTokens.start();
 	}
@@ -438,11 +422,11 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	
 	protected void checkParamsForTransferingAnotherSku(RetailscmUserContext userContext, String goodsId, String anotherSkuId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfSku(anotherSkuId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherSku(RetailscmUserContext userContext, String goodsId, String anotherSkuId) throws Exception
  	{
@@ -461,10 +445,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSku requestCandidateSku(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSku result = new CandidateSku();
@@ -474,7 +458,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -484,14 +468,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherReceivingSpace(RetailscmUserContext userContext, String goodsId, String anotherReceivingSpaceId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfReceivingSpace(anotherReceivingSpaceId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherReceivingSpace(RetailscmUserContext userContext, String goodsId, String anotherReceivingSpaceId) throws Exception
  	{
@@ -510,10 +494,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateReceivingSpace requestCandidateReceivingSpace(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateReceivingSpace result = new CandidateReceivingSpace();
@@ -523,7 +507,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -533,14 +517,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherGoodsAllocation(RetailscmUserContext userContext, String goodsId, String anotherGoodsAllocationId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfGoodsAllocation(anotherGoodsAllocationId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherGoodsAllocation(RetailscmUserContext userContext, String goodsId, String anotherGoodsAllocationId) throws Exception
  	{
@@ -559,10 +543,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateGoodsAllocation requestCandidateGoodsAllocation(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateGoodsAllocation result = new CandidateGoodsAllocation();
@@ -572,7 +556,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -582,14 +566,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherSmartPallet(RetailscmUserContext userContext, String goodsId, String anotherSmartPalletId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfSmartPallet(anotherSmartPalletId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherSmartPallet(RetailscmUserContext userContext, String goodsId, String anotherSmartPalletId) throws Exception
  	{
@@ -608,10 +592,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSmartPallet requestCandidateSmartPallet(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSmartPallet result = new CandidateSmartPallet();
@@ -621,7 +605,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -631,14 +615,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherShippingSpace(RetailscmUserContext userContext, String goodsId, String anotherShippingSpaceId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfShippingSpace(anotherShippingSpaceId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherShippingSpace(RetailscmUserContext userContext, String goodsId, String anotherShippingSpaceId) throws Exception
  	{
@@ -657,10 +641,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateShippingSpace requestCandidateShippingSpace(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateShippingSpace result = new CandidateShippingSpace();
@@ -670,7 +654,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -680,14 +664,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherTransportTask(RetailscmUserContext userContext, String goodsId, String anotherTransportTaskId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfTransportTask(anotherTransportTaskId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherTransportTask(RetailscmUserContext userContext, String goodsId, String anotherTransportTaskId) throws Exception
  	{
@@ -706,10 +690,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateTransportTask requestCandidateTransportTask(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateTransportTask result = new CandidateTransportTask();
@@ -719,7 +703,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -729,14 +713,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherRetailStore(RetailscmUserContext userContext, String goodsId, String anotherRetailStoreId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfRetailStore(anotherRetailStoreId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherRetailStore(RetailscmUserContext userContext, String goodsId, String anotherRetailStoreId) throws Exception
  	{
@@ -755,10 +739,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStore requestCandidateRetailStore(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStore result = new CandidateRetailStore();
@@ -768,7 +752,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -778,14 +762,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String goodsId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherBizOrder(RetailscmUserContext userContext, String goodsId, String anotherBizOrderId) throws Exception
  	{
@@ -804,10 +788,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSupplyOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSupplyOrder result = new CandidateSupplyOrder();
@@ -817,7 +801,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("buyer");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -827,14 +811,14 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherRetailStoreOrder(RetailscmUserContext userContext, String goodsId, String anotherRetailStoreOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoods(goodsId);
  		checkerOf(userContext).checkIdOfRetailStoreOrder(anotherRetailStoreOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
+
  	}
  	public Goods transferToAnotherRetailStoreOrder(RetailscmUserContext userContext, String goodsId, String anotherRetailStoreOrderId) throws Exception
  	{
@@ -853,10 +837,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreOrder requestCandidateRetailStoreOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreOrder result = new CandidateRetailStoreOrder();
@@ -866,7 +850,7 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("buyer");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -876,217 +860,122 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
- 	protected void checkParamsForTransferingAnotherPackaging(RetailscmUserContext userContext, String goodsId, String anotherPackagingId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfGoods(goodsId);
- 		checkerOf(userContext).checkIdOfGoodsPackaging(anotherPackagingId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
- 		
- 	}
- 	public Goods transferToAnotherPackaging(RetailscmUserContext userContext, String goodsId, String anotherPackagingId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherPackaging(userContext, goodsId,anotherPackagingId);
- 
-		Goods goods = loadGoods(userContext, goodsId, allTokens());	
-		synchronized(goods){
-			//will be good when the goods loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			GoodsPackaging packaging = loadGoodsPackaging(userContext, anotherPackagingId, emptyOptions());		
-			goods.updatePackaging(packaging);		
-			goods = saveGoods(userContext, goods, emptyOptions());
-			
-			return present(userContext,goods, allTokens());
-			
-		}
 
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateGoodsPackaging requestCandidatePackaging(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateGoodsPackaging result = new CandidateGoodsPackaging();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("packageName");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<GoodsPackaging> candidateList = goodsPackagingDaoOf(userContext).requestCandidateGoodsPackagingForGoods(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
  //--------------------------------------------------------------
 	
-	 	
+
  	protected ReceivingSpace loadReceivingSpace(RetailscmUserContext userContext, String newReceivingSpaceId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getReceivingSpaceDAO().load(newReceivingSpaceId, options);
-=======
+
  		return receivingSpaceDaoOf(userContext).load(newReceivingSpaceId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected GoodsAllocation loadGoodsAllocation(RetailscmUserContext userContext, String newGoodsAllocationId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getGoodsAllocationDAO().load(newGoodsAllocationId, options);
-=======
+
  		return goodsAllocationDaoOf(userContext).load(newGoodsAllocationId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected SmartPallet loadSmartPallet(RetailscmUserContext userContext, String newSmartPalletId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getSmartPalletDAO().load(newSmartPalletId, options);
-=======
+
  		return smartPalletDaoOf(userContext).load(newSmartPalletId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getSupplyOrderDAO().load(newBizOrderId, options);
-=======
+
  		return supplyOrderDaoOf(userContext).load(newBizOrderId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
- 	protected GoodsPackaging loadGoodsPackaging(RetailscmUserContext userContext, String newPackagingId, Map<String,Object> options) throws Exception
- 	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getGoodsPackagingDAO().load(newPackagingId, options);
-=======
- 		return goodsPackagingDaoOf(userContext).load(newPackagingId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
- 	}
- 	
- 	
- 	
-	
-	 	
+
  	protected TransportTask loadTransportTask(RetailscmUserContext userContext, String newTransportTaskId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return transportTaskDaoOf(userContext).load(newTransportTaskId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected ShippingSpace loadShippingSpace(RetailscmUserContext userContext, String newShippingSpaceId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getShippingSpaceDAO().load(newShippingSpaceId, options);
-=======
+
  		return shippingSpaceDaoOf(userContext).load(newShippingSpaceId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected Sku loadSku(RetailscmUserContext userContext, String newSkuId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getSkuDAO().load(newSkuId, options);
-=======
+
  		return skuDaoOf(userContext).load(newSkuId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected RetailStoreOrder loadRetailStoreOrder(RetailscmUserContext userContext, String newRetailStoreOrderId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getRetailStoreOrderDAO().load(newRetailStoreOrderId, options);
-=======
+
  		return retailStoreOrderDaoOf(userContext).load(newRetailStoreOrderId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newRetailStoreId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getRetailStoreDAO().load(newRetailStoreId, options);
-=======
+
  		return retailStoreDaoOf(userContext).load(newRetailStoreId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String goodsId, int goodsVersion) throws Exception {
-		//deleteInternal(userContext, goodsId, goodsVersion);		
+		//deleteInternal(userContext, goodsId, goodsVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String goodsId, int goodsVersion) throws Exception{
-			
+
 		goodsDaoOf(userContext).delete(goodsId, goodsVersion);
 	}
-	
+
 	public Goods forgetByAll(RetailscmUserContext userContext, String goodsId, int goodsVersion) throws Exception {
-		return forgetByAllInternal(userContext, goodsId, goodsVersion);		
+		return forgetByAllInternal(userContext, goodsId, goodsVersion);
 	}
 	protected Goods forgetByAllInternal(RetailscmUserContext userContext,
 			String goodsId, int goodsVersion) throws Exception{
-			
+
 		return goodsDaoOf(userContext).disconnectFromAll(goodsId, goodsVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -1097,8 +986,8 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return goodsDaoOf(userContext).deleteAll();
 	}
@@ -1107,15 +996,15 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	//disconnect Goods with facility_id in GoodsMovement
 	protected Goods breakWithGoodsMovementByFacilityId(RetailscmUserContext userContext, String goodsId, String facilityIdId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Goods goods = loadGoods(userContext, goodsId, allTokens());
 
-			synchronized(goods){ 
+			synchronized(goods){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsDaoOf(userContext).planToRemoveGoodsMovementListWithFacilityId(goods, facilityIdId, this.emptyOptions());
 
 				goods = saveGoods(userContext, goods, tokens().withGoodsMovementList().done());
@@ -1125,29 +1014,29 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	//disconnect Goods with session_id in GoodsMovement
 	protected Goods breakWithGoodsMovementBySessionId(RetailscmUserContext userContext, String goodsId, String sessionIdId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Goods goods = loadGoods(userContext, goodsId, allTokens());
 
-			synchronized(goods){ 
+			synchronized(goods){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsDaoOf(userContext).planToRemoveGoodsMovementListWithSessionId(goods, sessionIdId, this.emptyOptions());
 
 				goods = saveGoods(userContext, goods, tokens().withGoodsMovementList().done());
 				return goods;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingGoodsMovement(RetailscmUserContext userContext, String goodsId, DateTime moveTime, String facility, String facilityId, String fromIp, String userAgent, String sessionId, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfGoods(goodsId);
 
 		
@@ -1169,20 +1058,20 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
 
-	
+
 	}
 	public  Goods addGoodsMovement(RetailscmUserContext userContext, String goodsId, DateTime moveTime, String facility, String facilityId, String fromIp, String userAgent, String sessionId, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingGoodsMovement(userContext,goodsId,moveTime, facility, facilityId, fromIp, userAgent, sessionId, latitude, longitude,tokensExpr);
-		
+
 		GoodsMovement goodsMovement = createGoodsMovement(userContext,moveTime, facility, facilityId, fromIp, userAgent, sessionId, latitude, longitude);
-		
-		Goods goods = loadGoods(userContext, goodsId, allTokens());
-		synchronized(goods){ 
+
+		Goods goods = loadGoods(userContext, goodsId, emptyOptions());
+		synchronized(goods){
 			//Will be good when the goods loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goods.addGoodsMovement( goodsMovement );		
+			goods.addGoodsMovement( goodsMovement );
 			goods = saveGoods(userContext, goods, tokens().withGoodsMovementList().done());
 			
 			userContext.getManagerGroup().getGoodsMovementManager().onNewInstanceCreated(userContext, goodsMovement);
@@ -1190,10 +1079,10 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		}
 	}
 	protected void checkParamsForUpdatingGoodsMovementProperties(RetailscmUserContext userContext, String goodsId,String id,DateTime moveTime,String facility,String facilityId,String fromIp,String userAgent,String sessionId,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		checkerOf(userContext).checkIdOfGoodsMovement(id);
-		
+
 		checkerOf(userContext).checkMoveTimeOfGoodsMovement( moveTime);
 		checkerOf(userContext).checkFacilityOfGoodsMovement( facility);
 		checkerOf(userContext).checkFacilityIdOfGoodsMovement( facilityId);
@@ -1204,25 +1093,25 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		checkerOf(userContext).checkLongitudeOfGoodsMovement( longitude);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
-		
+
 	}
 	public  Goods updateGoodsMovementProperties(RetailscmUserContext userContext, String goodsId, String id,DateTime moveTime,String facility,String facilityId,String fromIp,String userAgent,String sessionId,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingGoodsMovementProperties(userContext,goodsId,id,moveTime,facility,facilityId,fromIp,userAgent,sessionId,latitude,longitude,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withGoodsMovementListList()
 				.searchGoodsMovementListWith(GoodsMovement.ID_PROPERTY, "is", id).done();
-		
+
 		Goods goodsToUpdate = loadGoods(userContext, goodsId, options);
-		
+
 		if(goodsToUpdate.getGoodsMovementList().isEmpty()){
 			throw new GoodsManagerException("GoodsMovement is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		GoodsMovement item = goodsToUpdate.getGoodsMovementList().first();
-		
+
 		item.updateMoveTime( moveTime );
 		item.updateFacility( facility );
 		item.updateFacilityId( facilityId );
@@ -1232,15 +1121,15 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		item.updateLatitude( latitude );
 		item.updateLongitude( longitude );
 
-		
+
 		//checkParamsForAddingGoodsMovement(userContext,goodsId,name, code, used,tokensExpr);
 		Goods goods = saveGoods(userContext, goodsToUpdate, tokens().withGoodsMovementList().done());
-		synchronized(goods){ 
+		synchronized(goods){
 			return present(userContext,goods, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected GoodsMovement createGoodsMovement(RetailscmUserContext userContext, DateTime moveTime, String facility, String facilityId, String fromIp, String userAgent, String sessionId, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		GoodsMovement goodsMovement = new GoodsMovement();
@@ -1257,44 +1146,38 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	
 		
 		return goodsMovement;
-	
-		
+
+
 	}
-	
+
 	protected GoodsMovement createIndexedGoodsMovement(String id, int version){
 
 		GoodsMovement goodsMovement = new GoodsMovement();
 		goodsMovement.setId(id);
 		goodsMovement.setVersion(version);
-		return goodsMovement;			
-		
+		return goodsMovement;
+
 	}
-	
-	protected void checkParamsForRemovingGoodsMovementList(RetailscmUserContext userContext, String goodsId, 
+
+	protected void checkParamsForRemovingGoodsMovementList(RetailscmUserContext userContext, String goodsId,
 			String goodsMovementIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfGoods(goodsId);
-		for(String goodsMovementIdItem: goodsMovementIds){
-			userContext.getChecker().checkIdOfGoodsMovement(goodsMovementIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		for(String goodsMovementIdItem: goodsMovementIds){
 			checkerOf(userContext).checkIdOfGoodsMovement(goodsMovementIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
-		
+
 	}
-	public  Goods removeGoodsMovementList(RetailscmUserContext userContext, String goodsId, 
+	public  Goods removeGoodsMovementList(RetailscmUserContext userContext, String goodsId,
 			String goodsMovementIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingGoodsMovementList(userContext, goodsId,  goodsMovementIds, tokensExpr);
-			
-			
+
+
 			Goods goods = loadGoods(userContext, goodsId, allTokens());
-			synchronized(goods){ 
+			synchronized(goods){
 				//Will be good when the goods loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				goodsDaoOf(userContext).planToRemoveGoodsMovementList(goods, goodsMovementIds, allTokens());
@@ -1303,65 +1186,65 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 				return present(userContext,goods, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingGoodsMovement(RetailscmUserContext userContext, String goodsId, 
+
+	protected void checkParamsForRemovingGoodsMovement(RetailscmUserContext userContext, String goodsId,
 		String goodsMovementId, int goodsMovementVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoods( goodsId);
 		checkerOf(userContext).checkIdOfGoodsMovement(goodsMovementId);
 		checkerOf(userContext).checkVersionOfGoodsMovement(goodsMovementVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
-	
+
 	}
-	public  Goods removeGoodsMovement(RetailscmUserContext userContext, String goodsId, 
+	public  Goods removeGoodsMovement(RetailscmUserContext userContext, String goodsId,
 		String goodsMovementId, int goodsMovementVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingGoodsMovement(userContext,goodsId, goodsMovementId, goodsMovementVersion,tokensExpr);
-		
+
 		GoodsMovement goodsMovement = createIndexedGoodsMovement(goodsMovementId, goodsMovementVersion);
 		Goods goods = loadGoods(userContext, goodsId, allTokens());
-		synchronized(goods){ 
+		synchronized(goods){
 			//Will be good when the goods loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goods.removeGoodsMovement( goodsMovement );		
+			goods.removeGoodsMovement( goodsMovement );
 			goods = saveGoods(userContext, goods, tokens().withGoodsMovementList().done());
 			deleteRelationInGraph(userContext, goodsMovement);
 			return present(userContext,goods, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingGoodsMovement(RetailscmUserContext userContext, String goodsId, 
+	protected void checkParamsForCopyingGoodsMovement(RetailscmUserContext userContext, String goodsId,
 		String goodsMovementId, int goodsMovementVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoods( goodsId);
 		checkerOf(userContext).checkIdOfGoodsMovement(goodsMovementId);
 		checkerOf(userContext).checkVersionOfGoodsMovement(goodsMovementVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
-	
+
 	}
-	public  Goods copyGoodsMovementFrom(RetailscmUserContext userContext, String goodsId, 
+	public  Goods copyGoodsMovementFrom(RetailscmUserContext userContext, String goodsId,
 		String goodsMovementId, int goodsMovementVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingGoodsMovement(userContext,goodsId, goodsMovementId, goodsMovementVersion,tokensExpr);
-		
+
 		GoodsMovement goodsMovement = createIndexedGoodsMovement(goodsMovementId, goodsMovementVersion);
 		Goods goods = loadGoods(userContext, goodsId, allTokens());
-		synchronized(goods){ 
+		synchronized(goods){
 			//Will be good when the goods loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			goods.copyGoodsMovementFrom( goodsMovement );		
+
+			goods.copyGoodsMovementFrom( goodsMovement );
 			goods = saveGoods(userContext, goods, tokens().withGoodsMovementList().done());
 			
 			userContext.getManagerGroup().getGoodsMovementManager().onNewInstanceCreated(userContext, (GoodsMovement)goods.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,goods, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsMovement(RetailscmUserContext userContext, String goodsId, String goodsMovementId, int goodsMovementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1405,32 +1288,32 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsManagerException.class);
-	
+
 	}
-	
+
 	public  Goods updateGoodsMovement(RetailscmUserContext userContext, String goodsId, String goodsMovementId, int goodsMovementVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingGoodsMovement(userContext, goodsId, goodsMovementId, goodsMovementVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withGoodsMovementList().searchGoodsMovementListWith(GoodsMovement.ID_PROPERTY, "eq", goodsMovementId).done();
-		
-		
-		
+
+
+
 		Goods goods = loadGoods(userContext, goodsId, loadTokens);
-		
-		synchronized(goods){ 
+
+		synchronized(goods){
 			//Will be good when the goods loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//goods.removeGoodsMovement( goodsMovement );	
+			//goods.removeGoodsMovement( goodsMovement );
 			//make changes to AcceleraterAccount.
 			GoodsMovement goodsMovementIndex = createIndexedGoodsMovement(goodsMovementId, goodsMovementVersion);
-		
+
 			GoodsMovement goodsMovement = goods.findTheGoodsMovement(goodsMovementIndex);
 			if(goodsMovement == null){
 				throw new GoodsManagerException(goodsMovement+" is NOT FOUND" );
 			}
-			
+
 			goodsMovement.changeProperty(property, newValueExpr);
 			
 			goods = saveGoods(userContext, goods, tokens().withGoodsMovementList().done());
@@ -1441,14 +1324,20 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, Goods newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

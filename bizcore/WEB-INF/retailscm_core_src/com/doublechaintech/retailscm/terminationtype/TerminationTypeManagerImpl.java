@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
@@ -34,28 +25,31 @@ import com.doublechaintech.retailscm.terminationreason.TerminationReason;
 
 
 public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager implements TerminationTypeManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "TerminationType";
 	@Override
 	public TerminationTypeDAO daoOf(RetailscmUserContext userContext) {
 		return terminationTypeDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws TerminationTypeManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new TerminationTypeManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected TerminationType saveTerminationType(RetailscmUserContext userContext, TerminationType terminationType, String [] tokensExpr) throws Exception{	
  		//return getTerminationTypeDAO().save(terminationType, tokens);
@@ -174,7 +168,7 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 	public TerminationType createTerminationType(RetailscmUserContext userContext, String code,String companyId,String baseDescription,String detailDescription) throws Exception
 	//public TerminationType createTerminationType(RetailscmUserContext userContext,String code, String companyId, String baseDescription, String detailDescription) throws Exception
 	{
-		
+
 		
 
 		
@@ -202,14 +196,14 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		onNewInstanceCreated(userContext, terminationType);
 		return terminationType;
 
-		
+
 	}
-	protected TerminationType createNewTerminationType() 
+	protected TerminationType createNewTerminationType()
 	{
-		
-		return new TerminationType();		
+
+		return new TerminationType();
 	}
-	
+
 	protected void checkParamsForUpdatingTerminationType(RetailscmUserContext userContext,String terminationTypeId, int terminationTypeVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -233,28 +227,28 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public TerminationType clone(RetailscmUserContext userContext, String fromTerminationTypeId) throws Exception{
-		
+
 		return terminationTypeDaoOf(userContext).clone(fromTerminationTypeId, this.allTokens());
 	}
-	
-	public TerminationType internalSaveTerminationType(RetailscmUserContext userContext, TerminationType terminationType) throws Exception 
+
+	public TerminationType internalSaveTerminationType(RetailscmUserContext userContext, TerminationType terminationType) throws Exception
 	{
 		return internalSaveTerminationType(userContext, terminationType, allTokens());
 
 	}
-	public TerminationType internalSaveTerminationType(RetailscmUserContext userContext, TerminationType terminationType, Map<String,Object> options) throws Exception 
+	public TerminationType internalSaveTerminationType(RetailscmUserContext userContext, TerminationType terminationType, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingTerminationType(userContext, terminationTypeId, terminationTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(terminationType){ 
+
+
+		synchronized(terminationType){
 			//will be good when the terminationType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TerminationType.
@@ -263,23 +257,23 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 			}
 			terminationType = saveTerminationType(userContext, terminationType, options);
 			return terminationType;
-			
+
 		}
 
 	}
-	
-	public TerminationType updateTerminationType(RetailscmUserContext userContext,String terminationTypeId, int terminationTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TerminationType updateTerminationType(RetailscmUserContext userContext,String terminationTypeId, int terminationTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTerminationType(userContext, terminationTypeId, terminationTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, allTokens());
 		if(terminationType.getVersion() != terminationTypeVersion){
 			String message = "The target version("+terminationType.getVersion()+") is not equals to version("+terminationTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(terminationType){ 
+		synchronized(terminationType){
 			//will be good when the terminationType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TerminationType.
@@ -291,21 +285,21 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		}
 
 	}
-	
-	public TerminationType updateTerminationTypeProperty(RetailscmUserContext userContext,String terminationTypeId, int terminationTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TerminationType updateTerminationTypeProperty(RetailscmUserContext userContext,String terminationTypeId, int terminationTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTerminationType(userContext, terminationTypeId, terminationTypeVersion, property, newValueExpr, tokensExpr);
-		
+
 		TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, allTokens());
 		if(terminationType.getVersion() != terminationTypeVersion){
 			String message = "The target version("+terminationType.getVersion()+") is not equals to version("+terminationTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(terminationType){ 
+		synchronized(terminationType){
 			//will be good when the terminationType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TerminationType.
-			
+
 			terminationType.changeProperty(property, newValueExpr);
 			
 			terminationType = saveTerminationType(userContext, terminationType, tokens().done());
@@ -317,7 +311,7 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected TerminationTypeTokens tokens(){
 		return TerminationTypeTokens.start();
 	}
@@ -339,11 +333,11 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String terminationTypeId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfTerminationType(terminationTypeId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
- 		
+
  	}
  	public TerminationType transferToAnotherCompany(RetailscmUserContext userContext, String terminationTypeId, String anotherCompanyId) throws Exception
  	{
@@ -362,10 +356,10 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -375,7 +369,7 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -385,42 +379,42 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String terminationTypeId, int terminationTypeVersion) throws Exception {
-		//deleteInternal(userContext, terminationTypeId, terminationTypeVersion);		
+		//deleteInternal(userContext, terminationTypeId, terminationTypeVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String terminationTypeId, int terminationTypeVersion) throws Exception{
-			
+
 		terminationTypeDaoOf(userContext).delete(terminationTypeId, terminationTypeVersion);
 	}
-	
+
 	public TerminationType forgetByAll(RetailscmUserContext userContext, String terminationTypeId, int terminationTypeVersion) throws Exception {
-		return forgetByAllInternal(userContext, terminationTypeId, terminationTypeVersion);		
+		return forgetByAllInternal(userContext, terminationTypeId, terminationTypeVersion);
 	}
 	protected TerminationType forgetByAllInternal(RetailscmUserContext userContext,
 			String terminationTypeId, int terminationTypeVersion) throws Exception{
-			
+
 		return terminationTypeDaoOf(userContext).disconnectFromAll(terminationTypeId, terminationTypeVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -431,8 +425,8 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return terminationTypeDaoOf(userContext).deleteAll();
 	}
@@ -441,29 +435,29 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 	//disconnect TerminationType with reason in Termination
 	protected TerminationType breakWithTerminationByReason(RetailscmUserContext userContext, String terminationTypeId, String reasonId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, allTokens());
 
-			synchronized(terminationType){ 
+			synchronized(terminationType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				terminationTypeDaoOf(userContext).planToRemoveTerminationListWithReason(terminationType, reasonId, this.emptyOptions());
 
 				terminationType = saveTerminationType(userContext, terminationType, tokens().withTerminationList().done());
 				return terminationType;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingTermination(RetailscmUserContext userContext, String terminationTypeId, String reasonId, String comment,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfTerminationType(terminationTypeId);
 
 		
@@ -473,20 +467,20 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
 
-	
+
 	}
 	public  TerminationType addTermination(RetailscmUserContext userContext, String terminationTypeId, String reasonId, String comment, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingTermination(userContext,terminationTypeId,reasonId, comment,tokensExpr);
-		
+
 		Termination termination = createTermination(userContext,reasonId, comment);
-		
-		TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, allTokens());
-		synchronized(terminationType){ 
+
+		TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, emptyOptions());
+		synchronized(terminationType){
 			//Will be good when the terminationType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			terminationType.addTermination( termination );		
+			terminationType.addTermination( termination );
 			terminationType = saveTerminationType(userContext, terminationType, tokens().withTerminationList().done());
 			
 			userContext.getManagerGroup().getTerminationManager().onNewInstanceCreated(userContext, termination);
@@ -494,43 +488,43 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		}
 	}
 	protected void checkParamsForUpdatingTerminationProperties(RetailscmUserContext userContext, String terminationTypeId,String id,String comment,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfTerminationType(terminationTypeId);
 		checkerOf(userContext).checkIdOfTermination(id);
-		
+
 		checkerOf(userContext).checkCommentOfTermination( comment);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
-		
+
 	}
 	public  TerminationType updateTerminationProperties(RetailscmUserContext userContext, String terminationTypeId, String id,String comment, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingTerminationProperties(userContext,terminationTypeId,id,comment,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withTerminationListList()
 				.searchTerminationListWith(Termination.ID_PROPERTY, "is", id).done();
-		
+
 		TerminationType terminationTypeToUpdate = loadTerminationType(userContext, terminationTypeId, options);
-		
+
 		if(terminationTypeToUpdate.getTerminationList().isEmpty()){
 			throw new TerminationTypeManagerException("Termination is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Termination item = terminationTypeToUpdate.getTerminationList().first();
-		
+
 		item.updateComment( comment );
 
-		
+
 		//checkParamsForAddingTermination(userContext,terminationTypeId,name, code, used,tokensExpr);
 		TerminationType terminationType = saveTerminationType(userContext, terminationTypeToUpdate, tokens().withTerminationList().done());
-		synchronized(terminationType){ 
+		synchronized(terminationType){
 			return present(userContext,terminationType, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected Termination createTermination(RetailscmUserContext userContext, String reasonId, String comment) throws Exception{
 
 		Termination termination = new Termination();
@@ -543,44 +537,38 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 	
 		
 		return termination;
-	
-		
+
+
 	}
-	
+
 	protected Termination createIndexedTermination(String id, int version){
 
 		Termination termination = new Termination();
 		termination.setId(id);
 		termination.setVersion(version);
-		return termination;			
-		
+		return termination;
+
 	}
-	
-	protected void checkParamsForRemovingTerminationList(RetailscmUserContext userContext, String terminationTypeId, 
+
+	protected void checkParamsForRemovingTerminationList(RetailscmUserContext userContext, String terminationTypeId,
 			String terminationIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfTerminationType(terminationTypeId);
-		for(String terminationIdItem: terminationIds){
-			userContext.getChecker().checkIdOfTermination(terminationIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfTerminationType(terminationTypeId);
 		for(String terminationIdItem: terminationIds){
 			checkerOf(userContext).checkIdOfTermination(terminationIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
-		
+
 	}
-	public  TerminationType removeTerminationList(RetailscmUserContext userContext, String terminationTypeId, 
+	public  TerminationType removeTerminationList(RetailscmUserContext userContext, String terminationTypeId,
 			String terminationIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingTerminationList(userContext, terminationTypeId,  terminationIds, tokensExpr);
-			
-			
+
+
 			TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, allTokens());
-			synchronized(terminationType){ 
+			synchronized(terminationType){
 				//Will be good when the terminationType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				terminationTypeDaoOf(userContext).planToRemoveTerminationList(terminationType, terminationIds, allTokens());
@@ -589,65 +577,65 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 				return present(userContext,terminationType, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingTermination(RetailscmUserContext userContext, String terminationTypeId, 
+
+	protected void checkParamsForRemovingTermination(RetailscmUserContext userContext, String terminationTypeId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTerminationType( terminationTypeId);
 		checkerOf(userContext).checkIdOfTermination(terminationId);
 		checkerOf(userContext).checkVersionOfTermination(terminationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
-	
+
 	}
-	public  TerminationType removeTermination(RetailscmUserContext userContext, String terminationTypeId, 
+	public  TerminationType removeTermination(RetailscmUserContext userContext, String terminationTypeId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingTermination(userContext,terminationTypeId, terminationId, terminationVersion,tokensExpr);
-		
+
 		Termination termination = createIndexedTermination(terminationId, terminationVersion);
 		TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, allTokens());
-		synchronized(terminationType){ 
+		synchronized(terminationType){
 			//Will be good when the terminationType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			terminationType.removeTermination( termination );		
+			terminationType.removeTermination( termination );
 			terminationType = saveTerminationType(userContext, terminationType, tokens().withTerminationList().done());
 			deleteRelationInGraph(userContext, termination);
 			return present(userContext,terminationType, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingTermination(RetailscmUserContext userContext, String terminationTypeId, 
+	protected void checkParamsForCopyingTermination(RetailscmUserContext userContext, String terminationTypeId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTerminationType( terminationTypeId);
 		checkerOf(userContext).checkIdOfTermination(terminationId);
 		checkerOf(userContext).checkVersionOfTermination(terminationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
-	
+
 	}
-	public  TerminationType copyTerminationFrom(RetailscmUserContext userContext, String terminationTypeId, 
+	public  TerminationType copyTerminationFrom(RetailscmUserContext userContext, String terminationTypeId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingTermination(userContext,terminationTypeId, terminationId, terminationVersion,tokensExpr);
-		
+
 		Termination termination = createIndexedTermination(terminationId, terminationVersion);
 		TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, allTokens());
-		synchronized(terminationType){ 
+		synchronized(terminationType){
 			//Will be good when the terminationType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			terminationType.copyTerminationFrom( termination );		
+
+			terminationType.copyTerminationFrom( termination );
 			terminationType = saveTerminationType(userContext, terminationType, tokens().withTerminationList().done());
 			
 			userContext.getManagerGroup().getTerminationManager().onNewInstanceCreated(userContext, (Termination)terminationType.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,terminationType, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingTermination(RetailscmUserContext userContext, String terminationTypeId, String terminationId, int terminationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -663,32 +651,32 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationTypeManagerException.class);
-	
+
 	}
-	
+
 	public  TerminationType updateTermination(RetailscmUserContext userContext, String terminationTypeId, String terminationId, int terminationVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingTermination(userContext, terminationTypeId, terminationId, terminationVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withTerminationList().searchTerminationListWith(Termination.ID_PROPERTY, "eq", terminationId).done();
-		
-		
-		
+
+
+
 		TerminationType terminationType = loadTerminationType(userContext, terminationTypeId, loadTokens);
-		
-		synchronized(terminationType){ 
+
+		synchronized(terminationType){
 			//Will be good when the terminationType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//terminationType.removeTermination( termination );	
+			//terminationType.removeTermination( termination );
 			//make changes to AcceleraterAccount.
 			Termination terminationIndex = createIndexedTermination(terminationId, terminationVersion);
-		
+
 			Termination termination = terminationType.findTheTermination(terminationIndex);
 			if(termination == null){
 				throw new TerminationTypeManagerException(termination+" is NOT FOUND" );
 			}
-			
+
 			termination.changeProperty(property, newValueExpr);
 			
 			terminationType = saveTerminationType(userContext, terminationType, tokens().withTerminationList().done());
@@ -699,14 +687,20 @@ public class TerminationTypeManagerImpl extends CustomRetailscmCheckerManager im
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, TerminationType newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

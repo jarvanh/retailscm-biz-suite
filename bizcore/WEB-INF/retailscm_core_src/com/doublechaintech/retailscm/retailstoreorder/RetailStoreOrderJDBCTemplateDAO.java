@@ -22,27 +22,15 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApproval;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDelivery;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessing;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPicking;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmation;
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroup;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipment;
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroup;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItem;
 
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentDAO;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemDAO;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingDAO;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryDAO;
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroupDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationDAO;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingDAO;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroupDAO;
 
@@ -56,24 +44,6 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements RetailStoreOrderDAO{
  
  	
- 	private  RetailStoreOrderProcessingDAO  retailStoreOrderProcessingDAO;
- 	public void setRetailStoreOrderProcessingDAO(RetailStoreOrderProcessingDAO retailStoreOrderProcessingDAO){
-	 	this.retailStoreOrderProcessingDAO = retailStoreOrderProcessingDAO;
- 	}
- 	public RetailStoreOrderProcessingDAO getRetailStoreOrderProcessingDAO(){
-	 	return this.retailStoreOrderProcessingDAO;
- 	}
- 
- 	
- 	private  RetailStoreOrderShipmentDAO  retailStoreOrderShipmentDAO;
- 	public void setRetailStoreOrderShipmentDAO(RetailStoreOrderShipmentDAO retailStoreOrderShipmentDAO){
-	 	this.retailStoreOrderShipmentDAO = retailStoreOrderShipmentDAO;
- 	}
- 	public RetailStoreOrderShipmentDAO getRetailStoreOrderShipmentDAO(){
-	 	return this.retailStoreOrderShipmentDAO;
- 	}
- 
- 	
  	private  RetailStoreDAO  retailStoreDAO;
  	public void setRetailStoreDAO(RetailStoreDAO retailStoreDAO){
 	 	this.retailStoreDAO = retailStoreDAO;
@@ -83,48 +53,12 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  	}
  
  	
- 	private  RetailStoreOrderApprovalDAO  retailStoreOrderApprovalDAO;
- 	public void setRetailStoreOrderApprovalDAO(RetailStoreOrderApprovalDAO retailStoreOrderApprovalDAO){
-	 	this.retailStoreOrderApprovalDAO = retailStoreOrderApprovalDAO;
- 	}
- 	public RetailStoreOrderApprovalDAO getRetailStoreOrderApprovalDAO(){
-	 	return this.retailStoreOrderApprovalDAO;
- 	}
- 
- 	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
  	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
 	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
  	}
  	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
 	 	return this.retailStoreCountryCenterDAO;
- 	}
- 
- 	
- 	private  RetailStoreOrderPickingDAO  retailStoreOrderPickingDAO;
- 	public void setRetailStoreOrderPickingDAO(RetailStoreOrderPickingDAO retailStoreOrderPickingDAO){
-	 	this.retailStoreOrderPickingDAO = retailStoreOrderPickingDAO;
- 	}
- 	public RetailStoreOrderPickingDAO getRetailStoreOrderPickingDAO(){
-	 	return this.retailStoreOrderPickingDAO;
- 	}
- 
- 	
- 	private  RetailStoreOrderConfirmationDAO  retailStoreOrderConfirmationDAO;
- 	public void setRetailStoreOrderConfirmationDAO(RetailStoreOrderConfirmationDAO retailStoreOrderConfirmationDAO){
-	 	this.retailStoreOrderConfirmationDAO = retailStoreOrderConfirmationDAO;
- 	}
- 	public RetailStoreOrderConfirmationDAO getRetailStoreOrderConfirmationDAO(){
-	 	return this.retailStoreOrderConfirmationDAO;
- 	}
- 
- 	
- 	private  RetailStoreOrderDeliveryDAO  retailStoreOrderDeliveryDAO;
- 	public void setRetailStoreOrderDeliveryDAO(RetailStoreOrderDeliveryDAO retailStoreOrderDeliveryDAO){
-	 	this.retailStoreOrderDeliveryDAO = retailStoreOrderDeliveryDAO;
- 	}
- 	public RetailStoreOrderDeliveryDAO getRetailStoreOrderDeliveryDAO(){
-	 	return this.retailStoreOrderDeliveryDAO;
  	}
 
 
@@ -400,90 +334,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  	
 
  	
-  
-
- 	protected boolean isExtractConfirmationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, RetailStoreOrderTokens.CONFIRMATION);
- 	}
-
- 	protected boolean isSaveConfirmationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, RetailStoreOrderTokens.CONFIRMATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractApprovalEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, RetailStoreOrderTokens.APPROVAL);
- 	}
-
- 	protected boolean isSaveApprovalEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, RetailStoreOrderTokens.APPROVAL);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractProcessingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, RetailStoreOrderTokens.PROCESSING);
- 	}
-
- 	protected boolean isSaveProcessingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, RetailStoreOrderTokens.PROCESSING);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractPickingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, RetailStoreOrderTokens.PICKING);
- 	}
-
- 	protected boolean isSavePickingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, RetailStoreOrderTokens.PICKING);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractShipmentEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, RetailStoreOrderTokens.SHIPMENT);
- 	}
-
- 	protected boolean isSaveShipmentEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, RetailStoreOrderTokens.SHIPMENT);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractDeliveryEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, RetailStoreOrderTokens.DELIVERY);
- 	}
-
- 	protected boolean isSaveDeliveryEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, RetailStoreOrderTokens.DELIVERY);
- 	}
- 	
-
- 	
  
 		
 	
@@ -575,30 +425,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		if(isExtractSellerEnabled(loadOptions)){
 	 		extractSeller(retailStoreOrder, loadOptions);
  		}
-  	
- 		if(isExtractConfirmationEnabled(loadOptions)){
-	 		extractConfirmation(retailStoreOrder, loadOptions);
- 		}
-  	
- 		if(isExtractApprovalEnabled(loadOptions)){
-	 		extractApproval(retailStoreOrder, loadOptions);
- 		}
-  	
- 		if(isExtractProcessingEnabled(loadOptions)){
-	 		extractProcessing(retailStoreOrder, loadOptions);
- 		}
-  	
- 		if(isExtractPickingEnabled(loadOptions)){
-	 		extractPicking(retailStoreOrder, loadOptions);
- 		}
-  	
- 		if(isExtractShipmentEnabled(loadOptions)){
-	 		extractShipment(retailStoreOrder, loadOptions);
- 		}
-  	
- 		if(isExtractDeliveryEnabled(loadOptions)){
-	 		extractDelivery(retailStoreOrder, loadOptions);
- 		}
  
 		
 		if(isExtractRetailStoreOrderLineItemListEnabled(loadOptions)){
@@ -677,126 +503,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		return retailStoreOrder;
  	}
  		
-  
-
- 	protected RetailStoreOrder extractConfirmation(RetailStoreOrder retailStoreOrder, Map<String,Object> options) throws Exception{
-
-		if(retailStoreOrder.getConfirmation() == null){
-			return retailStoreOrder;
-		}
-		String confirmationId = retailStoreOrder.getConfirmation().getId();
-		if( confirmationId == null){
-			return retailStoreOrder;
-		}
-		RetailStoreOrderConfirmation confirmation = getRetailStoreOrderConfirmationDAO().load(confirmationId,options);
-		if(confirmation != null){
-			retailStoreOrder.setConfirmation(confirmation);
-		}
-		
- 		
- 		return retailStoreOrder;
- 	}
- 		
-  
-
- 	protected RetailStoreOrder extractApproval(RetailStoreOrder retailStoreOrder, Map<String,Object> options) throws Exception{
-
-		if(retailStoreOrder.getApproval() == null){
-			return retailStoreOrder;
-		}
-		String approvalId = retailStoreOrder.getApproval().getId();
-		if( approvalId == null){
-			return retailStoreOrder;
-		}
-		RetailStoreOrderApproval approval = getRetailStoreOrderApprovalDAO().load(approvalId,options);
-		if(approval != null){
-			retailStoreOrder.setApproval(approval);
-		}
-		
- 		
- 		return retailStoreOrder;
- 	}
- 		
-  
-
- 	protected RetailStoreOrder extractProcessing(RetailStoreOrder retailStoreOrder, Map<String,Object> options) throws Exception{
-
-		if(retailStoreOrder.getProcessing() == null){
-			return retailStoreOrder;
-		}
-		String processingId = retailStoreOrder.getProcessing().getId();
-		if( processingId == null){
-			return retailStoreOrder;
-		}
-		RetailStoreOrderProcessing processing = getRetailStoreOrderProcessingDAO().load(processingId,options);
-		if(processing != null){
-			retailStoreOrder.setProcessing(processing);
-		}
-		
- 		
- 		return retailStoreOrder;
- 	}
- 		
-  
-
- 	protected RetailStoreOrder extractPicking(RetailStoreOrder retailStoreOrder, Map<String,Object> options) throws Exception{
-
-		if(retailStoreOrder.getPicking() == null){
-			return retailStoreOrder;
-		}
-		String pickingId = retailStoreOrder.getPicking().getId();
-		if( pickingId == null){
-			return retailStoreOrder;
-		}
-		RetailStoreOrderPicking picking = getRetailStoreOrderPickingDAO().load(pickingId,options);
-		if(picking != null){
-			retailStoreOrder.setPicking(picking);
-		}
-		
- 		
- 		return retailStoreOrder;
- 	}
- 		
-  
-
- 	protected RetailStoreOrder extractShipment(RetailStoreOrder retailStoreOrder, Map<String,Object> options) throws Exception{
-
-		if(retailStoreOrder.getShipment() == null){
-			return retailStoreOrder;
-		}
-		String shipmentId = retailStoreOrder.getShipment().getId();
-		if( shipmentId == null){
-			return retailStoreOrder;
-		}
-		RetailStoreOrderShipment shipment = getRetailStoreOrderShipmentDAO().load(shipmentId,options);
-		if(shipment != null){
-			retailStoreOrder.setShipment(shipment);
-		}
-		
- 		
- 		return retailStoreOrder;
- 	}
- 		
-  
-
- 	protected RetailStoreOrder extractDelivery(RetailStoreOrder retailStoreOrder, Map<String,Object> options) throws Exception{
-
-		if(retailStoreOrder.getDelivery() == null){
-			return retailStoreOrder;
-		}
-		String deliveryId = retailStoreOrder.getDelivery().getId();
-		if( deliveryId == null){
-			return retailStoreOrder;
-		}
-		RetailStoreOrderDelivery delivery = getRetailStoreOrderDeliveryDAO().load(deliveryId,options);
-		if(delivery != null){
-			retailStoreOrder.setDelivery(delivery);
-		}
-		
- 		
- 		return retailStoreOrder;
- 	}
- 		
  
 		
 	protected void enhanceRetailStoreOrderLineItemList(SmartList<RetailStoreOrderLineItem> retailStoreOrderLineItemList,Map<String,Object> options){
@@ -836,24 +542,8 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 			return retailStoreOrder;
 		}
 
-<<<<<<< HEAD
 		
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
-		SmartList<RetailStoreOrderLineItem> retailStoreOrderLineItemList = retailStoreOrder.getRetailStoreOrderLineItemList();
-		if(retailStoreOrderLineItemList != null){
-			getRetailStoreOrderLineItemDAO().analyzeRetailStoreOrderLineItemByBizOrder(retailStoreOrderLineItemList, retailStoreOrder.getId(), options);
-			
-		}
-		
-<<<<<<< HEAD
-		return retailStoreOrder;
-	
-	}	
-	
-		
-=======
 		SmartList<RetailStoreOrderLineItem> retailStoreOrderLineItemList = retailStoreOrder.getRetailStoreOrderLineItemList();
 		if(retailStoreOrderLineItemList != null){
 			getRetailStoreOrderLineItemDAO().analyzeRetailStoreOrderLineItemByBizOrder(retailStoreOrderLineItemList, retailStoreOrder.getId(), options);
@@ -865,7 +555,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}	
 	
 		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceRetailStoreOrderShippingGroupList(SmartList<RetailStoreOrderShippingGroup> retailStoreOrderShippingGroupList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -910,21 +599,12 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 			getRetailStoreOrderShippingGroupDAO().analyzeRetailStoreOrderShippingGroupByBizOrder(retailStoreOrderShippingGroupList, retailStoreOrder.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return retailStoreOrder;
 	
 	}	
 	
 		
-=======
-		
-		return retailStoreOrder;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceRetailStoreOrderPaymentGroupList(SmartList<RetailStoreOrderPaymentGroup> retailStoreOrderPaymentGroupList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -962,24 +642,8 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 			return retailStoreOrder;
 		}
 
-<<<<<<< HEAD
 		
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		
-		SmartList<RetailStoreOrderPaymentGroup> retailStoreOrderPaymentGroupList = retailStoreOrder.getRetailStoreOrderPaymentGroupList();
-		if(retailStoreOrderPaymentGroupList != null){
-			getRetailStoreOrderPaymentGroupDAO().analyzeRetailStoreOrderPaymentGroupByBizOrder(retailStoreOrderPaymentGroupList, retailStoreOrder.getId(), options);
-			
-		}
-		
-<<<<<<< HEAD
-		return retailStoreOrder;
-	
-	}	
-	
-		
-=======
 		SmartList<RetailStoreOrderPaymentGroup> retailStoreOrderPaymentGroupList = retailStoreOrder.getRetailStoreOrderPaymentGroupList();
 		if(retailStoreOrderPaymentGroupList != null){
 			getRetailStoreOrderPaymentGroupDAO().analyzeRetailStoreOrderPaymentGroupByBizOrder(retailStoreOrderPaymentGroupList, retailStoreOrder.getId(), options);
@@ -991,7 +655,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	}	
 	
 		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceGoodsList(SmartList<Goods> goodsList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1143,306 +806,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 		return countWithIds(RetailStoreOrderTable.COLUMN_SELLER, ids, options);
 	}
  	
-  	
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByConfirmation(String retailStoreOrderConfirmationId,Map<String,Object> options){
- 	
-  		SmartList<RetailStoreOrder> resultList = queryWith(RetailStoreOrderTable.COLUMN_CONFIRMATION, retailStoreOrderConfirmationId, options, getRetailStoreOrderMapper());
-		// analyzeRetailStoreOrderByConfirmation(resultList, retailStoreOrderConfirmationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByConfirmation(String retailStoreOrderConfirmationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<RetailStoreOrder> resultList =  queryWithRange(RetailStoreOrderTable.COLUMN_CONFIRMATION, retailStoreOrderConfirmationId, options, getRetailStoreOrderMapper(), start, count);
- 		//analyzeRetailStoreOrderByConfirmation(resultList, retailStoreOrderConfirmationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeRetailStoreOrderByConfirmation(SmartList<RetailStoreOrder> resultList, String retailStoreOrderConfirmationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(RetailStoreOrder.CONFIRMATION_PROPERTY, retailStoreOrderConfirmationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("生超的订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countRetailStoreOrderByConfirmation(String retailStoreOrderConfirmationId,Map<String,Object> options){
-
- 		return countWith(RetailStoreOrderTable.COLUMN_CONFIRMATION, retailStoreOrderConfirmationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countRetailStoreOrderByConfirmationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(RetailStoreOrderTable.COLUMN_CONFIRMATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByApproval(String retailStoreOrderApprovalId,Map<String,Object> options){
- 	
-  		SmartList<RetailStoreOrder> resultList = queryWith(RetailStoreOrderTable.COLUMN_APPROVAL, retailStoreOrderApprovalId, options, getRetailStoreOrderMapper());
-		// analyzeRetailStoreOrderByApproval(resultList, retailStoreOrderApprovalId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByApproval(String retailStoreOrderApprovalId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<RetailStoreOrder> resultList =  queryWithRange(RetailStoreOrderTable.COLUMN_APPROVAL, retailStoreOrderApprovalId, options, getRetailStoreOrderMapper(), start, count);
- 		//analyzeRetailStoreOrderByApproval(resultList, retailStoreOrderApprovalId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeRetailStoreOrderByApproval(SmartList<RetailStoreOrder> resultList, String retailStoreOrderApprovalId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(RetailStoreOrder.APPROVAL_PROPERTY, retailStoreOrderApprovalId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("生超的订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countRetailStoreOrderByApproval(String retailStoreOrderApprovalId,Map<String,Object> options){
-
- 		return countWith(RetailStoreOrderTable.COLUMN_APPROVAL, retailStoreOrderApprovalId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countRetailStoreOrderByApprovalIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(RetailStoreOrderTable.COLUMN_APPROVAL, ids, options);
-	}
- 	
-  	
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByProcessing(String retailStoreOrderProcessingId,Map<String,Object> options){
- 	
-  		SmartList<RetailStoreOrder> resultList = queryWith(RetailStoreOrderTable.COLUMN_PROCESSING, retailStoreOrderProcessingId, options, getRetailStoreOrderMapper());
-		// analyzeRetailStoreOrderByProcessing(resultList, retailStoreOrderProcessingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByProcessing(String retailStoreOrderProcessingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<RetailStoreOrder> resultList =  queryWithRange(RetailStoreOrderTable.COLUMN_PROCESSING, retailStoreOrderProcessingId, options, getRetailStoreOrderMapper(), start, count);
- 		//analyzeRetailStoreOrderByProcessing(resultList, retailStoreOrderProcessingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeRetailStoreOrderByProcessing(SmartList<RetailStoreOrder> resultList, String retailStoreOrderProcessingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(RetailStoreOrder.PROCESSING_PROPERTY, retailStoreOrderProcessingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("生超的订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countRetailStoreOrderByProcessing(String retailStoreOrderProcessingId,Map<String,Object> options){
-
- 		return countWith(RetailStoreOrderTable.COLUMN_PROCESSING, retailStoreOrderProcessingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countRetailStoreOrderByProcessingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(RetailStoreOrderTable.COLUMN_PROCESSING, ids, options);
-	}
- 	
-  	
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByPicking(String retailStoreOrderPickingId,Map<String,Object> options){
- 	
-  		SmartList<RetailStoreOrder> resultList = queryWith(RetailStoreOrderTable.COLUMN_PICKING, retailStoreOrderPickingId, options, getRetailStoreOrderMapper());
-		// analyzeRetailStoreOrderByPicking(resultList, retailStoreOrderPickingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByPicking(String retailStoreOrderPickingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<RetailStoreOrder> resultList =  queryWithRange(RetailStoreOrderTable.COLUMN_PICKING, retailStoreOrderPickingId, options, getRetailStoreOrderMapper(), start, count);
- 		//analyzeRetailStoreOrderByPicking(resultList, retailStoreOrderPickingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeRetailStoreOrderByPicking(SmartList<RetailStoreOrder> resultList, String retailStoreOrderPickingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(RetailStoreOrder.PICKING_PROPERTY, retailStoreOrderPickingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("生超的订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countRetailStoreOrderByPicking(String retailStoreOrderPickingId,Map<String,Object> options){
-
- 		return countWith(RetailStoreOrderTable.COLUMN_PICKING, retailStoreOrderPickingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countRetailStoreOrderByPickingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(RetailStoreOrderTable.COLUMN_PICKING, ids, options);
-	}
- 	
-  	
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByShipment(String retailStoreOrderShipmentId,Map<String,Object> options){
- 	
-  		SmartList<RetailStoreOrder> resultList = queryWith(RetailStoreOrderTable.COLUMN_SHIPMENT, retailStoreOrderShipmentId, options, getRetailStoreOrderMapper());
-		// analyzeRetailStoreOrderByShipment(resultList, retailStoreOrderShipmentId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByShipment(String retailStoreOrderShipmentId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<RetailStoreOrder> resultList =  queryWithRange(RetailStoreOrderTable.COLUMN_SHIPMENT, retailStoreOrderShipmentId, options, getRetailStoreOrderMapper(), start, count);
- 		//analyzeRetailStoreOrderByShipment(resultList, retailStoreOrderShipmentId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeRetailStoreOrderByShipment(SmartList<RetailStoreOrder> resultList, String retailStoreOrderShipmentId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(RetailStoreOrder.SHIPMENT_PROPERTY, retailStoreOrderShipmentId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("生超的订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countRetailStoreOrderByShipment(String retailStoreOrderShipmentId,Map<String,Object> options){
-
- 		return countWith(RetailStoreOrderTable.COLUMN_SHIPMENT, retailStoreOrderShipmentId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countRetailStoreOrderByShipmentIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(RetailStoreOrderTable.COLUMN_SHIPMENT, ids, options);
-	}
- 	
-  	
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByDelivery(String retailStoreOrderDeliveryId,Map<String,Object> options){
- 	
-  		SmartList<RetailStoreOrder> resultList = queryWith(RetailStoreOrderTable.COLUMN_DELIVERY, retailStoreOrderDeliveryId, options, getRetailStoreOrderMapper());
-		// analyzeRetailStoreOrderByDelivery(resultList, retailStoreOrderDeliveryId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByDelivery(String retailStoreOrderDeliveryId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<RetailStoreOrder> resultList =  queryWithRange(RetailStoreOrderTable.COLUMN_DELIVERY, retailStoreOrderDeliveryId, options, getRetailStoreOrderMapper(), start, count);
- 		//analyzeRetailStoreOrderByDelivery(resultList, retailStoreOrderDeliveryId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeRetailStoreOrderByDelivery(SmartList<RetailStoreOrder> resultList, String retailStoreOrderDeliveryId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(RetailStoreOrder.DELIVERY_PROPERTY, retailStoreOrderDeliveryId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("生超的订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countRetailStoreOrderByDelivery(String retailStoreOrderDeliveryId,Map<String,Object> options){
-
- 		return countWith(RetailStoreOrderTable.COLUMN_DELIVERY, retailStoreOrderDeliveryId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countRetailStoreOrderByDeliveryIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(RetailStoreOrderTable.COLUMN_DELIVERY, ids, options);
-	}
- 	
  	
 		
 		
@@ -1585,7 +948,7 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		return prepareRetailStoreOrderCreateParameters(retailStoreOrder);
  	}
  	protected Object[] prepareRetailStoreOrderUpdateParameters(RetailStoreOrder retailStoreOrder){
- 		Object[] parameters = new Object[14];
+ 		Object[] parameters = new Object[8];
   	
  		if(retailStoreOrder.getBuyer() != null){
  			parameters[0] = retailStoreOrder.getBuyer().getId();
@@ -1596,40 +959,16 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		}
  
  		parameters[2] = retailStoreOrder.getTitle();
- 		parameters[3] = retailStoreOrder.getTotalAmount(); 	
- 		if(retailStoreOrder.getConfirmation() != null){
- 			parameters[4] = retailStoreOrder.getConfirmation().getId();
- 		}
-  	
- 		if(retailStoreOrder.getApproval() != null){
- 			parameters[5] = retailStoreOrder.getApproval().getId();
- 		}
-  	
- 		if(retailStoreOrder.getProcessing() != null){
- 			parameters[6] = retailStoreOrder.getProcessing().getId();
- 		}
-  	
- 		if(retailStoreOrder.getPicking() != null){
- 			parameters[7] = retailStoreOrder.getPicking().getId();
- 		}
-  	
- 		if(retailStoreOrder.getShipment() != null){
- 			parameters[8] = retailStoreOrder.getShipment().getId();
- 		}
-  	
- 		if(retailStoreOrder.getDelivery() != null){
- 			parameters[9] = retailStoreOrder.getDelivery().getId();
- 		}
- 
- 		parameters[10] = retailStoreOrder.getLastUpdateTime();		
- 		parameters[11] = retailStoreOrder.nextVersion();
- 		parameters[12] = retailStoreOrder.getId();
- 		parameters[13] = retailStoreOrder.getVersion();
+ 		parameters[3] = retailStoreOrder.getTotalAmount();
+ 		parameters[4] = retailStoreOrder.getLastUpdateTime();		
+ 		parameters[5] = retailStoreOrder.nextVersion();
+ 		parameters[6] = retailStoreOrder.getId();
+ 		parameters[7] = retailStoreOrder.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareRetailStoreOrderCreateParameters(RetailStoreOrder retailStoreOrder){
-		Object[] parameters = new Object[12];
+		Object[] parameters = new Object[6];
 		String newRetailStoreOrderId=getNextId();
 		retailStoreOrder.setId(newRetailStoreOrderId);
 		parameters[0] =  retailStoreOrder.getId();
@@ -1645,38 +984,8 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		}
  		
  		parameters[3] = retailStoreOrder.getTitle();
- 		parameters[4] = retailStoreOrder.getTotalAmount(); 	
- 		if(retailStoreOrder.getConfirmation() != null){
- 			parameters[5] = retailStoreOrder.getConfirmation().getId();
- 		
- 		}
- 		 	
- 		if(retailStoreOrder.getApproval() != null){
- 			parameters[6] = retailStoreOrder.getApproval().getId();
- 		
- 		}
- 		 	
- 		if(retailStoreOrder.getProcessing() != null){
- 			parameters[7] = retailStoreOrder.getProcessing().getId();
- 		
- 		}
- 		 	
- 		if(retailStoreOrder.getPicking() != null){
- 			parameters[8] = retailStoreOrder.getPicking().getId();
- 		
- 		}
- 		 	
- 		if(retailStoreOrder.getShipment() != null){
- 			parameters[9] = retailStoreOrder.getShipment().getId();
- 		
- 		}
- 		 	
- 		if(retailStoreOrder.getDelivery() != null){
- 			parameters[10] = retailStoreOrder.getDelivery().getId();
- 		
- 		}
- 		
- 		parameters[11] = retailStoreOrder.getLastUpdateTime();		
+ 		parameters[4] = retailStoreOrder.getTotalAmount();
+ 		parameters[5] = retailStoreOrder.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -1691,30 +1000,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
   	
  		if(isSaveSellerEnabled(options)){
 	 		saveSeller(retailStoreOrder, options);
- 		}
-  	
- 		if(isSaveConfirmationEnabled(options)){
-	 		saveConfirmation(retailStoreOrder, options);
- 		}
-  	
- 		if(isSaveApprovalEnabled(options)){
-	 		saveApproval(retailStoreOrder, options);
- 		}
-  	
- 		if(isSaveProcessingEnabled(options)){
-	 		saveProcessing(retailStoreOrder, options);
- 		}
-  	
- 		if(isSavePickingEnabled(options)){
-	 		savePicking(retailStoreOrder, options);
- 		}
-  	
- 		if(isSaveShipmentEnabled(options)){
-	 		saveShipment(retailStoreOrder, options);
- 		}
-  	
- 		if(isSaveDeliveryEnabled(options)){
-	 		saveDelivery(retailStoreOrder, options);
  		}
  
 		
@@ -1779,108 +1064,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		}
  		
  		getRetailStoreCountryCenterDAO().save(retailStoreOrder.getSeller(),options);
- 		return retailStoreOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected RetailStoreOrder saveConfirmation(RetailStoreOrder retailStoreOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(retailStoreOrder.getConfirmation() == null){
- 			return retailStoreOrder;//do nothing when it is null
- 		}
- 		
- 		getRetailStoreOrderConfirmationDAO().save(retailStoreOrder.getConfirmation(),options);
- 		return retailStoreOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected RetailStoreOrder saveApproval(RetailStoreOrder retailStoreOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(retailStoreOrder.getApproval() == null){
- 			return retailStoreOrder;//do nothing when it is null
- 		}
- 		
- 		getRetailStoreOrderApprovalDAO().save(retailStoreOrder.getApproval(),options);
- 		return retailStoreOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected RetailStoreOrder saveProcessing(RetailStoreOrder retailStoreOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(retailStoreOrder.getProcessing() == null){
- 			return retailStoreOrder;//do nothing when it is null
- 		}
- 		
- 		getRetailStoreOrderProcessingDAO().save(retailStoreOrder.getProcessing(),options);
- 		return retailStoreOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected RetailStoreOrder savePicking(RetailStoreOrder retailStoreOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(retailStoreOrder.getPicking() == null){
- 			return retailStoreOrder;//do nothing when it is null
- 		}
- 		
- 		getRetailStoreOrderPickingDAO().save(retailStoreOrder.getPicking(),options);
- 		return retailStoreOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected RetailStoreOrder saveShipment(RetailStoreOrder retailStoreOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(retailStoreOrder.getShipment() == null){
- 			return retailStoreOrder;//do nothing when it is null
- 		}
- 		
- 		getRetailStoreOrderShipmentDAO().save(retailStoreOrder.getShipment(),options);
- 		return retailStoreOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected RetailStoreOrder saveDelivery(RetailStoreOrder retailStoreOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(retailStoreOrder.getDelivery() == null){
- 			return retailStoreOrder;//do nothing when it is null
- 		}
- 		
- 		getRetailStoreOrderDeliveryDAO().save(retailStoreOrder.getDelivery(),options);
  		return retailStoreOrder;
  		
  	}
@@ -2395,50 +1578,6 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(Goods.RETAIL_STORE_ORDER_PROPERTY, retailStoreOrderId);
 		key.put(Goods.BIZ_ORDER_PROPERTY, bizOrderId);
-		
-		int count = getGoodsDAO().countGoodsWithKey(key, options);
-		return count;
-	}
-	
-	//disconnect RetailStoreOrder with packaging in Goods
-	public RetailStoreOrder planToRemoveGoodsListWithPackaging(RetailStoreOrder retailStoreOrder, String packagingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-		
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(Goods.RETAIL_STORE_ORDER_PROPERTY, retailStoreOrder.getId());
-		key.put(Goods.PACKAGING_PROPERTY, packagingId);
-		
-		SmartList<Goods> externalGoodsList = getGoodsDAO().
-				findGoodsWithKey(key, options);
-		if(externalGoodsList == null){
-			return retailStoreOrder;
-		}
-		if(externalGoodsList.isEmpty()){
-			return retailStoreOrder;
-		}
-		
-		for(Goods goodsItem: externalGoodsList){
-			goodsItem.clearPackaging();
-			goodsItem.clearRetailStoreOrder();
-			
-		}
-		
-		
-		SmartList<Goods> goodsList = retailStoreOrder.getGoodsList();		
-		goodsList.addAllToRemoveList(externalGoodsList);
-		return retailStoreOrder;
-	}
-	
-	public int countGoodsListWithPackaging(String retailStoreOrderId, String packagingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(Goods.RETAIL_STORE_ORDER_PROPERTY, retailStoreOrderId);
-		key.put(Goods.PACKAGING_PROPERTY, packagingId);
 		
 		int count = getGoodsDAO().countGoodsWithKey(key, options);
 		return count;

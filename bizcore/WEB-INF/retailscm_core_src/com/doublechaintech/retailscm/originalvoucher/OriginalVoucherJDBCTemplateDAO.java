@@ -21,13 +21,7 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreation;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditing;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmation;
 
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingDAO;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationDAO;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationDAO;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentDAO;
 
 
@@ -40,39 +34,12 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl implements OriginalVoucherDAO{
  
  	
- 	private  OriginalVoucherCreationDAO  originalVoucherCreationDAO;
- 	public void setOriginalVoucherCreationDAO(OriginalVoucherCreationDAO originalVoucherCreationDAO){
-	 	this.originalVoucherCreationDAO = originalVoucherCreationDAO;
- 	}
- 	public OriginalVoucherCreationDAO getOriginalVoucherCreationDAO(){
-	 	return this.originalVoucherCreationDAO;
- 	}
- 
- 	
  	private  AccountingDocumentDAO  accountingDocumentDAO;
  	public void setAccountingDocumentDAO(AccountingDocumentDAO accountingDocumentDAO){
 	 	this.accountingDocumentDAO = accountingDocumentDAO;
  	}
  	public AccountingDocumentDAO getAccountingDocumentDAO(){
 	 	return this.accountingDocumentDAO;
- 	}
- 
- 	
- 	private  OriginalVoucherConfirmationDAO  originalVoucherConfirmationDAO;
- 	public void setOriginalVoucherConfirmationDAO(OriginalVoucherConfirmationDAO originalVoucherConfirmationDAO){
-	 	this.originalVoucherConfirmationDAO = originalVoucherConfirmationDAO;
- 	}
- 	public OriginalVoucherConfirmationDAO getOriginalVoucherConfirmationDAO(){
-	 	return this.originalVoucherConfirmationDAO;
- 	}
- 
- 	
- 	private  OriginalVoucherAuditingDAO  originalVoucherAuditingDAO;
- 	public void setOriginalVoucherAuditingDAO(OriginalVoucherAuditingDAO originalVoucherAuditingDAO){
-	 	this.originalVoucherAuditingDAO = originalVoucherAuditingDAO;
- 	}
- 	public OriginalVoucherAuditingDAO getOriginalVoucherAuditingDAO(){
-	 	return this.originalVoucherAuditingDAO;
  	}
 
 
@@ -230,48 +197,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  	
 
  	
-  
-
- 	protected boolean isExtractCreationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, OriginalVoucherTokens.CREATION);
- 	}
-
- 	protected boolean isSaveCreationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, OriginalVoucherTokens.CREATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractConfirmationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, OriginalVoucherTokens.CONFIRMATION);
- 	}
-
- 	protected boolean isSaveConfirmationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, OriginalVoucherTokens.CONFIRMATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractAuditingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, OriginalVoucherTokens.AUDITING);
- 	}
-
- 	protected boolean isSaveAuditingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, OriginalVoucherTokens.AUDITING);
- 	}
- 	
-
- 	
  
 		
 
@@ -303,18 +228,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  		if(isExtractBelongsToEnabled(loadOptions)){
 	 		extractBelongsTo(originalVoucher, loadOptions);
  		}
-  	
- 		if(isExtractCreationEnabled(loadOptions)){
-	 		extractCreation(originalVoucher, loadOptions);
- 		}
-  	
- 		if(isExtractConfirmationEnabled(loadOptions)){
-	 		extractConfirmation(originalVoucher, loadOptions);
- 		}
-  	
- 		if(isExtractAuditingEnabled(loadOptions)){
-	 		extractAuditing(originalVoucher, loadOptions);
- 		}
  
 		
 		return originalVoucher;
@@ -335,66 +248,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 		AccountingDocument belongsTo = getAccountingDocumentDAO().load(belongsToId,options);
 		if(belongsTo != null){
 			originalVoucher.setBelongsTo(belongsTo);
-		}
-		
- 		
- 		return originalVoucher;
- 	}
- 		
-  
-
- 	protected OriginalVoucher extractCreation(OriginalVoucher originalVoucher, Map<String,Object> options) throws Exception{
-
-		if(originalVoucher.getCreation() == null){
-			return originalVoucher;
-		}
-		String creationId = originalVoucher.getCreation().getId();
-		if( creationId == null){
-			return originalVoucher;
-		}
-		OriginalVoucherCreation creation = getOriginalVoucherCreationDAO().load(creationId,options);
-		if(creation != null){
-			originalVoucher.setCreation(creation);
-		}
-		
- 		
- 		return originalVoucher;
- 	}
- 		
-  
-
- 	protected OriginalVoucher extractConfirmation(OriginalVoucher originalVoucher, Map<String,Object> options) throws Exception{
-
-		if(originalVoucher.getConfirmation() == null){
-			return originalVoucher;
-		}
-		String confirmationId = originalVoucher.getConfirmation().getId();
-		if( confirmationId == null){
-			return originalVoucher;
-		}
-		OriginalVoucherConfirmation confirmation = getOriginalVoucherConfirmationDAO().load(confirmationId,options);
-		if(confirmation != null){
-			originalVoucher.setConfirmation(confirmation);
-		}
-		
- 		
- 		return originalVoucher;
- 	}
- 		
-  
-
- 	protected OriginalVoucher extractAuditing(OriginalVoucher originalVoucher, Map<String,Object> options) throws Exception{
-
-		if(originalVoucher.getAuditing() == null){
-			return originalVoucher;
-		}
-		String auditingId = originalVoucher.getAuditing().getId();
-		if( auditingId == null){
-			return originalVoucher;
-		}
-		OriginalVoucherAuditing auditing = getOriginalVoucherAuditingDAO().load(auditingId,options);
-		if(auditing != null){
-			originalVoucher.setAuditing(auditing);
 		}
 		
  		
@@ -424,15 +277,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 		if(resultList==null){
 			return;//do nothing when the list is null.
 		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(OriginalVoucher.BELONGS_TO_PROPERTY, accountingDocumentId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
 
  	
  		
@@ -445,135 +289,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  	@Override
 	public Map<String, Integer> countOriginalVoucherByBelongsToIds(String[] ids, Map<String, Object> options) {
 		return countWithIds(OriginalVoucherTable.COLUMN_BELONGS_TO, ids, options);
-	}
- 	
-  	
- 	public SmartList<OriginalVoucher> findOriginalVoucherByCreation(String originalVoucherCreationId,Map<String,Object> options){
- 	
-  		SmartList<OriginalVoucher> resultList = queryWith(OriginalVoucherTable.COLUMN_CREATION, originalVoucherCreationId, options, getOriginalVoucherMapper());
-		// analyzeOriginalVoucherByCreation(resultList, originalVoucherCreationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<OriginalVoucher> findOriginalVoucherByCreation(String originalVoucherCreationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<OriginalVoucher> resultList =  queryWithRange(OriginalVoucherTable.COLUMN_CREATION, originalVoucherCreationId, options, getOriginalVoucherMapper(), start, count);
- 		//analyzeOriginalVoucherByCreation(resultList, originalVoucherCreationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeOriginalVoucherByCreation(SmartList<OriginalVoucher> resultList, String originalVoucherCreationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(OriginalVoucher.CREATION_PROPERTY, originalVoucherCreationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countOriginalVoucherByCreation(String originalVoucherCreationId,Map<String,Object> options){
-
- 		return countWith(OriginalVoucherTable.COLUMN_CREATION, originalVoucherCreationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countOriginalVoucherByCreationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(OriginalVoucherTable.COLUMN_CREATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<OriginalVoucher> findOriginalVoucherByConfirmation(String originalVoucherConfirmationId,Map<String,Object> options){
- 	
-  		SmartList<OriginalVoucher> resultList = queryWith(OriginalVoucherTable.COLUMN_CONFIRMATION, originalVoucherConfirmationId, options, getOriginalVoucherMapper());
-		// analyzeOriginalVoucherByConfirmation(resultList, originalVoucherConfirmationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<OriginalVoucher> findOriginalVoucherByConfirmation(String originalVoucherConfirmationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<OriginalVoucher> resultList =  queryWithRange(OriginalVoucherTable.COLUMN_CONFIRMATION, originalVoucherConfirmationId, options, getOriginalVoucherMapper(), start, count);
- 		//analyzeOriginalVoucherByConfirmation(resultList, originalVoucherConfirmationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeOriginalVoucherByConfirmation(SmartList<OriginalVoucher> resultList, String originalVoucherConfirmationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(OriginalVoucher.CONFIRMATION_PROPERTY, originalVoucherConfirmationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countOriginalVoucherByConfirmation(String originalVoucherConfirmationId,Map<String,Object> options){
-
- 		return countWith(OriginalVoucherTable.COLUMN_CONFIRMATION, originalVoucherConfirmationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countOriginalVoucherByConfirmationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(OriginalVoucherTable.COLUMN_CONFIRMATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<OriginalVoucher> findOriginalVoucherByAuditing(String originalVoucherAuditingId,Map<String,Object> options){
- 	
-  		SmartList<OriginalVoucher> resultList = queryWith(OriginalVoucherTable.COLUMN_AUDITING, originalVoucherAuditingId, options, getOriginalVoucherMapper());
-		// analyzeOriginalVoucherByAuditing(resultList, originalVoucherAuditingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<OriginalVoucher> findOriginalVoucherByAuditing(String originalVoucherAuditingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<OriginalVoucher> resultList =  queryWithRange(OriginalVoucherTable.COLUMN_AUDITING, originalVoucherAuditingId, options, getOriginalVoucherMapper(), start, count);
- 		//analyzeOriginalVoucherByAuditing(resultList, originalVoucherAuditingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeOriginalVoucherByAuditing(SmartList<OriginalVoucher> resultList, String originalVoucherAuditingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(OriginalVoucher.AUDITING_PROPERTY, originalVoucherAuditingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countOriginalVoucherByAuditing(String originalVoucherAuditingId,Map<String,Object> options){
-
- 		return countWith(OriginalVoucherTable.COLUMN_AUDITING, originalVoucherAuditingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countOriginalVoucherByAuditingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(OriginalVoucherTable.COLUMN_AUDITING, ids, options);
 	}
  	
  	
@@ -718,7 +433,7 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  		return prepareOriginalVoucherCreateParameters(originalVoucher);
  	}
  	protected Object[] prepareOriginalVoucherUpdateParameters(OriginalVoucher originalVoucher){
- 		Object[] parameters = new Object[12];
+ 		Object[] parameters = new Object[9];
  
  		parameters[0] = originalVoucher.getTitle();
  		parameters[1] = originalVoucher.getMadeBy();
@@ -728,27 +443,15 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  		if(originalVoucher.getBelongsTo() != null){
  			parameters[5] = originalVoucher.getBelongsTo().getId();
  		}
-  	
- 		if(originalVoucher.getCreation() != null){
- 			parameters[6] = originalVoucher.getCreation().getId();
- 		}
-  	
- 		if(originalVoucher.getConfirmation() != null){
- 			parameters[7] = originalVoucher.getConfirmation().getId();
- 		}
-  	
- 		if(originalVoucher.getAuditing() != null){
- 			parameters[8] = originalVoucher.getAuditing().getId();
- 		}
  		
- 		parameters[9] = originalVoucher.nextVersion();
- 		parameters[10] = originalVoucher.getId();
- 		parameters[11] = originalVoucher.getVersion();
+ 		parameters[6] = originalVoucher.nextVersion();
+ 		parameters[7] = originalVoucher.getId();
+ 		parameters[8] = originalVoucher.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareOriginalVoucherCreateParameters(OriginalVoucher originalVoucher){
-		Object[] parameters = new Object[10];
+		Object[] parameters = new Object[7];
 		String newOriginalVoucherId=getNextId();
 		originalVoucher.setId(newOriginalVoucherId);
 		parameters[0] =  originalVoucher.getId();
@@ -762,21 +465,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  			parameters[6] = originalVoucher.getBelongsTo().getId();
  		
  		}
- 		 	
- 		if(originalVoucher.getCreation() != null){
- 			parameters[7] = originalVoucher.getCreation().getId();
- 		
- 		}
- 		 	
- 		if(originalVoucher.getConfirmation() != null){
- 			parameters[8] = originalVoucher.getConfirmation().getId();
- 		
- 		}
- 		 	
- 		if(originalVoucher.getAuditing() != null){
- 			parameters[9] = originalVoucher.getAuditing().getId();
- 		
- 		}
  				
  				
  		return parameters;
@@ -788,18 +476,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  	
  		if(isSaveBelongsToEnabled(options)){
 	 		saveBelongsTo(originalVoucher, options);
- 		}
-  	
- 		if(isSaveCreationEnabled(options)){
-	 		saveCreation(originalVoucher, options);
- 		}
-  	
- 		if(isSaveConfirmationEnabled(options)){
-	 		saveConfirmation(originalVoucher, options);
- 		}
-  	
- 		if(isSaveAuditingEnabled(options)){
-	 		saveAuditing(originalVoucher, options);
  		}
  
 		
@@ -819,57 +495,6 @@ public class OriginalVoucherJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  		}
  		
  		getAccountingDocumentDAO().save(originalVoucher.getBelongsTo(),options);
- 		return originalVoucher;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected OriginalVoucher saveCreation(OriginalVoucher originalVoucher, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(originalVoucher.getCreation() == null){
- 			return originalVoucher;//do nothing when it is null
- 		}
- 		
- 		getOriginalVoucherCreationDAO().save(originalVoucher.getCreation(),options);
- 		return originalVoucher;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected OriginalVoucher saveConfirmation(OriginalVoucher originalVoucher, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(originalVoucher.getConfirmation() == null){
- 			return originalVoucher;//do nothing when it is null
- 		}
- 		
- 		getOriginalVoucherConfirmationDAO().save(originalVoucher.getConfirmation(),options);
- 		return originalVoucher;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected OriginalVoucher saveAuditing(OriginalVoucher originalVoucher, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(originalVoucher.getAuditing() == null){
- 			return originalVoucher;//do nothing when it is null
- 		}
- 		
- 		getOriginalVoucherAuditingDAO().save(originalVoucher.getAuditing(),options);
  		return originalVoucher;
  		
  	}

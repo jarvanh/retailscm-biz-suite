@@ -6,16 +6,10 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
-<<<<<<< HEAD
-import com.doublechaintech.retailscm.SmartList;
-
-public interface CandidateContainerManager{
-=======
 import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
 public interface CandidateContainerManager extends BaseManager{
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 		
 

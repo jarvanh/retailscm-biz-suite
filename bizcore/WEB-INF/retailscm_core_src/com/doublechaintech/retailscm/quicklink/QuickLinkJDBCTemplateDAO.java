@@ -53,14 +53,11 @@ public class QuickLinkJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Qu
 	}
 	*/
 	
-<<<<<<< HEAD
-=======
 	public SmartList<QuickLink> loadAll() {
 	    return this.loadAll(getQuickLinkMapper());
 	}
 	
 	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected String getIdFormat()
 	{
 		return getShortName(this.getName())+"%06d";

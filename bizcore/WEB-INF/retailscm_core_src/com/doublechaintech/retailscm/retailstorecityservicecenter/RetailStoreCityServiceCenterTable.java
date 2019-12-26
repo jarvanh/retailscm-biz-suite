@@ -24,17 +24,8 @@ public class RetailStoreCityServiceCenterTable{
 	static final String COLUMN_LAST_UPDATE_TIME = "last_update_time";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_NAME, COLUMN_FOUNDED, COLUMN_BELONGS_TO, COLUMN_LAST_UPDATE_TIME, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_NAME, COLUMN_FOUNDED, COLUMN_BELONGS_TO, COLUMN_LAST_UPDATE_TIME
-		};
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_FOUNDED,COLUMN_BELONGS_TO,COLUMN_LAST_UPDATE_TIME,COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_FOUNDED,COLUMN_BELONGS_TO,COLUMN_LAST_UPDATE_TIME};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

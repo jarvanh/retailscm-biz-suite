@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.consumerorder.CandidateConsumerOrder;
 
 
 public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderLineItemManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ConsumerOrderLineItem";
 	@Override
 	public ConsumerOrderLineItemDAO daoOf(RetailscmUserContext userContext) {
 		return consumerOrderLineItemDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ConsumerOrderLineItemManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ConsumerOrderLineItemManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ConsumerOrderLineItem saveConsumerOrderLineItem(RetailscmUserContext userContext, ConsumerOrderLineItem consumerOrderLineItem, String [] tokensExpr) throws Exception{	
  		//return getConsumerOrderLineItemDAO().save(consumerOrderLineItem, tokens);
@@ -167,7 +161,7 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 	public ConsumerOrderLineItem createConsumerOrderLineItem(RetailscmUserContext userContext, String bizOrderId,String skuId,String skuName,BigDecimal price,BigDecimal quantity,BigDecimal amount) throws Exception
 	//public ConsumerOrderLineItem createConsumerOrderLineItem(RetailscmUserContext userContext,String bizOrderId, String skuId, String skuName, BigDecimal price, BigDecimal quantity, BigDecimal amount) throws Exception
 	{
-		
+
 		
 
 		
@@ -200,14 +194,14 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 		onNewInstanceCreated(userContext, consumerOrderLineItem);
 		return consumerOrderLineItem;
 
-		
+
 	}
-	protected ConsumerOrderLineItem createNewConsumerOrderLineItem() 
+	protected ConsumerOrderLineItem createNewConsumerOrderLineItem()
 	{
-		
-		return new ConsumerOrderLineItem();		
+
+		return new ConsumerOrderLineItem();
 	}
-	
+
 	protected void checkParamsForUpdatingConsumerOrderLineItem(RetailscmUserContext userContext,String consumerOrderLineItemId, int consumerOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -237,28 +231,28 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderLineItemManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ConsumerOrderLineItem clone(RetailscmUserContext userContext, String fromConsumerOrderLineItemId) throws Exception{
-		
+
 		return consumerOrderLineItemDaoOf(userContext).clone(fromConsumerOrderLineItemId, this.allTokens());
 	}
-	
-	public ConsumerOrderLineItem internalSaveConsumerOrderLineItem(RetailscmUserContext userContext, ConsumerOrderLineItem consumerOrderLineItem) throws Exception 
+
+	public ConsumerOrderLineItem internalSaveConsumerOrderLineItem(RetailscmUserContext userContext, ConsumerOrderLineItem consumerOrderLineItem) throws Exception
 	{
 		return internalSaveConsumerOrderLineItem(userContext, consumerOrderLineItem, allTokens());
 
 	}
-	public ConsumerOrderLineItem internalSaveConsumerOrderLineItem(RetailscmUserContext userContext, ConsumerOrderLineItem consumerOrderLineItem, Map<String,Object> options) throws Exception 
+	public ConsumerOrderLineItem internalSaveConsumerOrderLineItem(RetailscmUserContext userContext, ConsumerOrderLineItem consumerOrderLineItem, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingConsumerOrderLineItem(userContext, consumerOrderLineItemId, consumerOrderLineItemVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(consumerOrderLineItem){ 
+
+
+		synchronized(consumerOrderLineItem){
 			//will be good when the consumerOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderLineItem.
@@ -267,23 +261,23 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 			}
 			consumerOrderLineItem = saveConsumerOrderLineItem(userContext, consumerOrderLineItem, options);
 			return consumerOrderLineItem;
-			
+
 		}
 
 	}
-	
-	public ConsumerOrderLineItem updateConsumerOrderLineItem(RetailscmUserContext userContext,String consumerOrderLineItemId, int consumerOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderLineItem updateConsumerOrderLineItem(RetailscmUserContext userContext,String consumerOrderLineItemId, int consumerOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderLineItem(userContext, consumerOrderLineItemId, consumerOrderLineItemVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ConsumerOrderLineItem consumerOrderLineItem = loadConsumerOrderLineItem(userContext, consumerOrderLineItemId, allTokens());
 		if(consumerOrderLineItem.getVersion() != consumerOrderLineItemVersion){
 			String message = "The target version("+consumerOrderLineItem.getVersion()+") is not equals to version("+consumerOrderLineItemVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderLineItem){ 
+		synchronized(consumerOrderLineItem){
 			//will be good when the consumerOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderLineItem.
@@ -295,21 +289,21 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 		}
 
 	}
-	
-	public ConsumerOrderLineItem updateConsumerOrderLineItemProperty(RetailscmUserContext userContext,String consumerOrderLineItemId, int consumerOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderLineItem updateConsumerOrderLineItemProperty(RetailscmUserContext userContext,String consumerOrderLineItemId, int consumerOrderLineItemVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderLineItem(userContext, consumerOrderLineItemId, consumerOrderLineItemVersion, property, newValueExpr, tokensExpr);
-		
+
 		ConsumerOrderLineItem consumerOrderLineItem = loadConsumerOrderLineItem(userContext, consumerOrderLineItemId, allTokens());
 		if(consumerOrderLineItem.getVersion() != consumerOrderLineItemVersion){
 			String message = "The target version("+consumerOrderLineItem.getVersion()+") is not equals to version("+consumerOrderLineItemVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderLineItem){ 
+		synchronized(consumerOrderLineItem){
 			//will be good when the consumerOrderLineItem loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderLineItem.
-			
+
 			consumerOrderLineItem.changeProperty(property, newValueExpr);
 			consumerOrderLineItem.updateLastUpdateTime(userContext.now());
 			consumerOrderLineItem = saveConsumerOrderLineItem(userContext, consumerOrderLineItem, tokens().done());
@@ -321,7 +315,7 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ConsumerOrderLineItemTokens tokens(){
 		return ConsumerOrderLineItemTokens.start();
 	}
@@ -342,11 +336,11 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderLineItemId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfConsumerOrderLineItem(consumerOrderLineItemId);
  		checkerOf(userContext).checkIdOfConsumerOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderLineItemManagerException.class);
- 		
+
  	}
  	public ConsumerOrderLineItem transferToAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderLineItemId, String anotherBizOrderId) throws Exception
  	{
@@ -365,10 +359,10 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateConsumerOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateConsumerOrder result = new CandidateConsumerOrder();
@@ -378,7 +372,7 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -388,42 +382,42 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return consumerOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String consumerOrderLineItemId, int consumerOrderLineItemVersion) throws Exception {
-		//deleteInternal(userContext, consumerOrderLineItemId, consumerOrderLineItemVersion);		
+		//deleteInternal(userContext, consumerOrderLineItemId, consumerOrderLineItemVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderLineItemId, int consumerOrderLineItemVersion) throws Exception{
-			
+
 		consumerOrderLineItemDaoOf(userContext).delete(consumerOrderLineItemId, consumerOrderLineItemVersion);
 	}
-	
+
 	public ConsumerOrderLineItem forgetByAll(RetailscmUserContext userContext, String consumerOrderLineItemId, int consumerOrderLineItemVersion) throws Exception {
-		return forgetByAllInternal(userContext, consumerOrderLineItemId, consumerOrderLineItemVersion);		
+		return forgetByAllInternal(userContext, consumerOrderLineItemId, consumerOrderLineItemVersion);
 	}
 	protected ConsumerOrderLineItem forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderLineItemId, int consumerOrderLineItemVersion) throws Exception{
-			
+
 		return consumerOrderLineItemDaoOf(userContext).disconnectFromAll(consumerOrderLineItemId, consumerOrderLineItemVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -434,23 +428,29 @@ public class ConsumerOrderLineItemManagerImpl extends CustomRetailscmCheckerMana
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return consumerOrderLineItemDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ConsumerOrderLineItem newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.provincecenterdepartment.ProvinceCenterDepartment;
 import com.doublechaintech.retailscm.retailstoreprovincecenter.RetailStoreProvinceCenter;
@@ -33,28 +24,31 @@ import com.doublechaintech.retailscm.retailstoreprovincecenter.CandidateRetailSt
 
 
 public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerManager implements ProvinceCenterEmployeeManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ProvinceCenterEmployee";
 	@Override
 	public ProvinceCenterEmployeeDAO daoOf(RetailscmUserContext userContext) {
 		return provinceCenterEmployeeDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ProvinceCenterEmployeeManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ProvinceCenterEmployeeManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ProvinceCenterEmployee saveProvinceCenterEmployee(RetailscmUserContext userContext, ProvinceCenterEmployee provinceCenterEmployee, String [] tokensExpr) throws Exception{	
  		//return getProvinceCenterEmployeeDAO().save(provinceCenterEmployee, tokens);
@@ -170,7 +164,7 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 	public ProvinceCenterEmployee createProvinceCenterEmployee(RetailscmUserContext userContext, String name,String mobile,String email,Date founded,String departmentId,String provinceCenterId) throws Exception
 	//public ProvinceCenterEmployee createProvinceCenterEmployee(RetailscmUserContext userContext,String name, String mobile, String email, Date founded, String departmentId, String provinceCenterId) throws Exception
 	{
-		
+
 		
 
 		
@@ -205,14 +199,14 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		onNewInstanceCreated(userContext, provinceCenterEmployee);
 		return provinceCenterEmployee;
 
-		
+
 	}
-	protected ProvinceCenterEmployee createNewProvinceCenterEmployee() 
+	protected ProvinceCenterEmployee createNewProvinceCenterEmployee()
 	{
-		
-		return new ProvinceCenterEmployee();		
+
+		return new ProvinceCenterEmployee();
 	}
-	
+
 	protected void checkParamsForUpdatingProvinceCenterEmployee(RetailscmUserContext userContext,String provinceCenterEmployeeId, int provinceCenterEmployeeVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -241,28 +235,28 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ProvinceCenterEmployeeManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ProvinceCenterEmployee clone(RetailscmUserContext userContext, String fromProvinceCenterEmployeeId) throws Exception{
-		
+
 		return provinceCenterEmployeeDaoOf(userContext).clone(fromProvinceCenterEmployeeId, this.allTokens());
 	}
-	
-	public ProvinceCenterEmployee internalSaveProvinceCenterEmployee(RetailscmUserContext userContext, ProvinceCenterEmployee provinceCenterEmployee) throws Exception 
+
+	public ProvinceCenterEmployee internalSaveProvinceCenterEmployee(RetailscmUserContext userContext, ProvinceCenterEmployee provinceCenterEmployee) throws Exception
 	{
 		return internalSaveProvinceCenterEmployee(userContext, provinceCenterEmployee, allTokens());
 
 	}
-	public ProvinceCenterEmployee internalSaveProvinceCenterEmployee(RetailscmUserContext userContext, ProvinceCenterEmployee provinceCenterEmployee, Map<String,Object> options) throws Exception 
+	public ProvinceCenterEmployee internalSaveProvinceCenterEmployee(RetailscmUserContext userContext, ProvinceCenterEmployee provinceCenterEmployee, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingProvinceCenterEmployee(userContext, provinceCenterEmployeeId, provinceCenterEmployeeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(provinceCenterEmployee){ 
+
+
+		synchronized(provinceCenterEmployee){
 			//will be good when the provinceCenterEmployee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProvinceCenterEmployee.
@@ -271,23 +265,23 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 			}
 			provinceCenterEmployee = saveProvinceCenterEmployee(userContext, provinceCenterEmployee, options);
 			return provinceCenterEmployee;
-			
+
 		}
 
 	}
-	
-	public ProvinceCenterEmployee updateProvinceCenterEmployee(RetailscmUserContext userContext,String provinceCenterEmployeeId, int provinceCenterEmployeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ProvinceCenterEmployee updateProvinceCenterEmployee(RetailscmUserContext userContext,String provinceCenterEmployeeId, int provinceCenterEmployeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingProvinceCenterEmployee(userContext, provinceCenterEmployeeId, provinceCenterEmployeeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ProvinceCenterEmployee provinceCenterEmployee = loadProvinceCenterEmployee(userContext, provinceCenterEmployeeId, allTokens());
 		if(provinceCenterEmployee.getVersion() != provinceCenterEmployeeVersion){
 			String message = "The target version("+provinceCenterEmployee.getVersion()+") is not equals to version("+provinceCenterEmployeeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(provinceCenterEmployee){ 
+		synchronized(provinceCenterEmployee){
 			//will be good when the provinceCenterEmployee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProvinceCenterEmployee.
@@ -299,21 +293,21 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		}
 
 	}
-	
-	public ProvinceCenterEmployee updateProvinceCenterEmployeeProperty(RetailscmUserContext userContext,String provinceCenterEmployeeId, int provinceCenterEmployeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ProvinceCenterEmployee updateProvinceCenterEmployeeProperty(RetailscmUserContext userContext,String provinceCenterEmployeeId, int provinceCenterEmployeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingProvinceCenterEmployee(userContext, provinceCenterEmployeeId, provinceCenterEmployeeVersion, property, newValueExpr, tokensExpr);
-		
+
 		ProvinceCenterEmployee provinceCenterEmployee = loadProvinceCenterEmployee(userContext, provinceCenterEmployeeId, allTokens());
 		if(provinceCenterEmployee.getVersion() != provinceCenterEmployeeVersion){
 			String message = "The target version("+provinceCenterEmployee.getVersion()+") is not equals to version("+provinceCenterEmployeeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(provinceCenterEmployee){ 
+		synchronized(provinceCenterEmployee){
 			//will be good when the provinceCenterEmployee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ProvinceCenterEmployee.
-			
+
 			provinceCenterEmployee.changeProperty(property, newValueExpr);
 			
 			provinceCenterEmployee = saveProvinceCenterEmployee(userContext, provinceCenterEmployee, tokens().done());
@@ -325,7 +319,7 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ProvinceCenterEmployeeTokens tokens(){
 		return ProvinceCenterEmployeeTokens.start();
 	}
@@ -346,11 +340,11 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 	
 	protected void checkParamsForTransferingAnotherDepartment(RetailscmUserContext userContext, String provinceCenterEmployeeId, String anotherDepartmentId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfProvinceCenterEmployee(provinceCenterEmployeeId);
  		checkerOf(userContext).checkIdOfProvinceCenterDepartment(anotherDepartmentId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ProvinceCenterEmployeeManagerException.class);
- 		
+
  	}
  	public ProvinceCenterEmployee transferToAnotherDepartment(RetailscmUserContext userContext, String provinceCenterEmployeeId, String anotherDepartmentId) throws Exception
  	{
@@ -369,10 +363,10 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateProvinceCenterDepartment requestCandidateDepartment(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateProvinceCenterDepartment result = new CandidateProvinceCenterDepartment();
@@ -382,7 +376,7 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -392,14 +386,14 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherProvinceCenter(RetailscmUserContext userContext, String provinceCenterEmployeeId, String anotherProvinceCenterId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfProvinceCenterEmployee(provinceCenterEmployeeId);
  		checkerOf(userContext).checkIdOfRetailStoreProvinceCenter(anotherProvinceCenterId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ProvinceCenterEmployeeManagerException.class);
- 		
+
  	}
  	public ProvinceCenterEmployee transferToAnotherProvinceCenter(RetailscmUserContext userContext, String provinceCenterEmployeeId, String anotherProvinceCenterId) throws Exception
  	{
@@ -418,10 +412,10 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreProvinceCenter requestCandidateProvinceCenter(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreProvinceCenter result = new CandidateRetailStoreProvinceCenter();
@@ -431,7 +425,7 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -441,60 +435,52 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected ProvinceCenterDepartment loadProvinceCenterDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getProvinceCenterDepartmentDAO().load(newDepartmentId, options);
-=======
+
  		return provinceCenterDepartmentDaoOf(userContext).load(newDepartmentId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected RetailStoreProvinceCenter loadRetailStoreProvinceCenter(RetailscmUserContext userContext, String newProvinceCenterId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getRetailStoreProvinceCenterDAO().load(newProvinceCenterId, options);
-=======
+
  		return retailStoreProvinceCenterDaoOf(userContext).load(newProvinceCenterId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String provinceCenterEmployeeId, int provinceCenterEmployeeVersion) throws Exception {
-		//deleteInternal(userContext, provinceCenterEmployeeId, provinceCenterEmployeeVersion);		
+		//deleteInternal(userContext, provinceCenterEmployeeId, provinceCenterEmployeeVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String provinceCenterEmployeeId, int provinceCenterEmployeeVersion) throws Exception{
-			
+
 		provinceCenterEmployeeDaoOf(userContext).delete(provinceCenterEmployeeId, provinceCenterEmployeeVersion);
 	}
-	
+
 	public ProvinceCenterEmployee forgetByAll(RetailscmUserContext userContext, String provinceCenterEmployeeId, int provinceCenterEmployeeVersion) throws Exception {
-		return forgetByAllInternal(userContext, provinceCenterEmployeeId, provinceCenterEmployeeVersion);		
+		return forgetByAllInternal(userContext, provinceCenterEmployeeId, provinceCenterEmployeeVersion);
 	}
 	protected ProvinceCenterEmployee forgetByAllInternal(RetailscmUserContext userContext,
 			String provinceCenterEmployeeId, int provinceCenterEmployeeVersion) throws Exception{
-			
+
 		return provinceCenterEmployeeDaoOf(userContext).disconnectFromAll(provinceCenterEmployeeId, provinceCenterEmployeeVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -505,23 +491,29 @@ public class ProvinceCenterEmployeeManagerImpl extends CustomRetailscmCheckerMan
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return provinceCenterEmployeeDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ProvinceCenterEmployee newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

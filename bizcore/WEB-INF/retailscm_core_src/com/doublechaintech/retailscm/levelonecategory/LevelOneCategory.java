@@ -400,7 +400,9 @@ public class LevelOneCategory extends BaseEntity implements  java.io.Serializabl
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getCatalog(), getName(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

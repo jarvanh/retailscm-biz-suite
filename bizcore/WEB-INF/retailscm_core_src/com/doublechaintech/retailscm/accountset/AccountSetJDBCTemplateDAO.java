@@ -548,21 +548,12 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 			getAccountingSubjectDAO().analyzeAccountingSubjectByAccountSet(accountingSubjectList, accountSet.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return accountSet;
 	
 	}	
 	
 		
-=======
-		
-		return accountSet;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceAccountingPeriodList(SmartList<AccountingPeriod> accountingPeriodList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -607,21 +598,12 @@ public class AccountSetJDBCTemplateDAO extends RetailscmBaseDAOImpl implements A
 			getAccountingPeriodDAO().analyzeAccountingPeriodByAccountSet(accountingPeriodList, accountSet.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return accountSet;
 	
 	}	
 	
 		
-=======
-		
-		return accountSet;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceAccountingDocumentTypeList(SmartList<AccountingDocumentType> accountingDocumentTypeList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;

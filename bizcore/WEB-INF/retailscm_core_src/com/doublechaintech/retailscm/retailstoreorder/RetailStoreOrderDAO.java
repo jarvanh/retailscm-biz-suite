@@ -11,27 +11,15 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApproval;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDelivery;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessing;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPicking;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmation;
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroup;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipment;
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroup;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItem;
 
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentDAO;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemDAO;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingDAO;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryDAO;
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroupDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationDAO;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingDAO;
 import com.doublechaintech.retailscm.retailstore.RetailStoreDAO;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroupDAO;
 
@@ -130,10 +118,6 @@ public interface RetailStoreOrderDAO extends BaseDAO{
 	public RetailStoreOrder planToRemoveGoodsListWithBizOrder(RetailStoreOrder retailStoreOrder, String bizOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithBizOrder(String retailStoreOrderId, String bizOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect RetailStoreOrder with packaging in Goods
-	public RetailStoreOrder planToRemoveGoodsListWithPackaging(RetailStoreOrder retailStoreOrder, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String retailStoreOrderId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<RetailStoreOrder> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
@@ -151,54 +135,6 @@ public interface RetailStoreOrderDAO extends BaseDAO{
  	public Map<String, Integer> countRetailStoreOrderBySellerIds(String[] ids, Map<String,Object> options);
  	public SmartList<RetailStoreOrder> findRetailStoreOrderBySeller(String retailStoreCountryCenterId, int start, int count, Map<String,Object> options);
  	public void analyzeRetailStoreOrderBySeller(SmartList<RetailStoreOrder> resultList, String retailStoreCountryCenterId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByConfirmation(String retailStoreOrderConfirmationId, Map<String,Object> options);
- 	public int countRetailStoreOrderByConfirmation(String retailStoreOrderConfirmationId, Map<String,Object> options);
- 	public Map<String, Integer> countRetailStoreOrderByConfirmationIds(String[] ids, Map<String,Object> options);
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByConfirmation(String retailStoreOrderConfirmationId, int start, int count, Map<String,Object> options);
- 	public void analyzeRetailStoreOrderByConfirmation(SmartList<RetailStoreOrder> resultList, String retailStoreOrderConfirmationId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByApproval(String retailStoreOrderApprovalId, Map<String,Object> options);
- 	public int countRetailStoreOrderByApproval(String retailStoreOrderApprovalId, Map<String,Object> options);
- 	public Map<String, Integer> countRetailStoreOrderByApprovalIds(String[] ids, Map<String,Object> options);
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByApproval(String retailStoreOrderApprovalId, int start, int count, Map<String,Object> options);
- 	public void analyzeRetailStoreOrderByApproval(SmartList<RetailStoreOrder> resultList, String retailStoreOrderApprovalId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByProcessing(String retailStoreOrderProcessingId, Map<String,Object> options);
- 	public int countRetailStoreOrderByProcessing(String retailStoreOrderProcessingId, Map<String,Object> options);
- 	public Map<String, Integer> countRetailStoreOrderByProcessingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByProcessing(String retailStoreOrderProcessingId, int start, int count, Map<String,Object> options);
- 	public void analyzeRetailStoreOrderByProcessing(SmartList<RetailStoreOrder> resultList, String retailStoreOrderProcessingId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByPicking(String retailStoreOrderPickingId, Map<String,Object> options);
- 	public int countRetailStoreOrderByPicking(String retailStoreOrderPickingId, Map<String,Object> options);
- 	public Map<String, Integer> countRetailStoreOrderByPickingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByPicking(String retailStoreOrderPickingId, int start, int count, Map<String,Object> options);
- 	public void analyzeRetailStoreOrderByPicking(SmartList<RetailStoreOrder> resultList, String retailStoreOrderPickingId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByShipment(String retailStoreOrderShipmentId, Map<String,Object> options);
- 	public int countRetailStoreOrderByShipment(String retailStoreOrderShipmentId, Map<String,Object> options);
- 	public Map<String, Integer> countRetailStoreOrderByShipmentIds(String[] ids, Map<String,Object> options);
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByShipment(String retailStoreOrderShipmentId, int start, int count, Map<String,Object> options);
- 	public void analyzeRetailStoreOrderByShipment(SmartList<RetailStoreOrder> resultList, String retailStoreOrderShipmentId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByDelivery(String retailStoreOrderDeliveryId, Map<String,Object> options);
- 	public int countRetailStoreOrderByDelivery(String retailStoreOrderDeliveryId, Map<String,Object> options);
- 	public Map<String, Integer> countRetailStoreOrderByDeliveryIds(String[] ids, Map<String,Object> options);
- 	public SmartList<RetailStoreOrder> findRetailStoreOrderByDelivery(String retailStoreOrderDeliveryId, int start, int count, Map<String,Object> options);
- 	public void analyzeRetailStoreOrderByDelivery(SmartList<RetailStoreOrder> resultList, String retailStoreOrderDeliveryId, Map<String,Object> options);
 
  
  

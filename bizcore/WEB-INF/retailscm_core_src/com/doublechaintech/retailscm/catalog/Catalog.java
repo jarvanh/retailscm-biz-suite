@@ -172,27 +172,6 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 
 
 	
-	public Object propertyOf(String property) {
-     	
-		if(NAME_PROPERTY.equals(property)){
-			return getName();
-		}
-		if(OWNER_PROPERTY.equals(property)){
-			return getOwner();
-		}
-		if(LEVEL_ONE_CATEGORY_LIST.equals(property)){
-			List<BaseEntity> list = getLevelOneCategoryList().stream().map(item->item).collect(Collectors.toList());
-			return list;
-		}
-
-    		//other property not include here
-		return super.propertyOf(property);
-	}
-    
-    
-
-
-	
 	
 	
 	public void setId(String id){
@@ -480,11 +459,8 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeOwner(getOwner());
-<<<<<<< HEAD
-=======
 			dest.mergeSubCount(getSubCount());
 			dest.mergeAmount(getAmount());
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 			dest.mergeLevelOneCategoryList(getLevelOneCategoryList());
 
@@ -503,17 +479,16 @@ public class Catalog extends BaseEntity implements  java.io.Serializable{
 		
 			dest.mergeId(getId());
 			dest.mergeName(getName());
-<<<<<<< HEAD
-=======
 			dest.mergeSubCount(getSubCount());
 			dest.mergeAmount(getAmount());
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getOwner(), getSubCount(), getAmount(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

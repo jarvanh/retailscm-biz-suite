@@ -13,7 +13,7 @@ public interface GoodsManager extends BaseManager{
 
 		
 
-	public Goods createGoods(RetailscmUserContext userContext, String name,String rfid,String uom,int maxPackage,Date expireTime,String skuId,String receivingSpaceId,String goodsAllocationId,String smartPalletId,String shippingSpaceId,String transportTaskId,String retailStoreId,String bizOrderId,String retailStoreOrderId,String packagingId) throws Exception;	
+	public Goods createGoods(RetailscmUserContext userContext, String name,String rfid,String uom,int maxPackage,Date expireTime,String skuId,String receivingSpaceId,String goodsAllocationId,String smartPalletId,String shippingSpaceId,String transportTaskId,String retailStoreId,String bizOrderId,String retailStoreOrderId) throws Exception;	
 	public Goods updateGoods(RetailscmUserContext userContext,String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public Goods loadGoods(RetailscmUserContext userContext, String goodsId, String [] tokensExpr) throws Exception;
 	public Goods internalSaveGoods(RetailscmUserContext userContext, Goods goods) throws Exception;
@@ -28,7 +28,6 @@ public interface GoodsManager extends BaseManager{
  	public Goods transferToAnotherRetailStore(RetailscmUserContext userContext, String goodsId, String anotherRetailStoreId)  throws Exception;
  	public Goods transferToAnotherBizOrder(RetailscmUserContext userContext, String goodsId, String anotherBizOrderId)  throws Exception;
  	public Goods transferToAnotherRetailStoreOrder(RetailscmUserContext userContext, String goodsId, String anotherRetailStoreOrderId)  throws Exception;
- 	public Goods transferToAnotherPackaging(RetailscmUserContext userContext, String goodsId, String anotherPackagingId)  throws Exception;
  
 
 	public void delete(RetailscmUserContext userContext, String goodsId, int version) throws Exception;

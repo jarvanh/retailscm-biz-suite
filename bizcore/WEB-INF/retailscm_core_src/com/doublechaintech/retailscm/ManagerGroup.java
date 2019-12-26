@@ -53,16 +53,6 @@ import com.doublechaintech.retailscm.retailstoremember.RetailStoreMemberManager;
 
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrderManager;
 
-import com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationManager;
-
-import com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalManager;
-
-import com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingManager;
-
-import com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentManager;
-
-import com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryManager;
-
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemManager;
 
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroupManager;
@@ -95,18 +85,6 @@ import com.doublechaintech.retailscm.productsupplyduration.ProductSupplyDuration
 
 import com.doublechaintech.retailscm.supplyorder.SupplyOrderManager;
 
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationManager;
-
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalManager;
-
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingManager;
-
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingManager;
-
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentManager;
-
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryManager;
-
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemManager;
 
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroupManager;
@@ -114,18 +92,6 @@ import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippin
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroupManager;
 
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderManager;
-
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationManager;
-
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalManager;
-
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingManager;
-
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingManager;
-
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentManager;
-
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryManager;
 
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemManager;
 
@@ -148,8 +114,6 @@ import com.doublechaintech.retailscm.stockcountissuetrack.StockCountIssueTrackMa
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocationManager;
 
 import com.doublechaintech.retailscm.goods.GoodsManager;
-
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackagingManager;
 
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovementManager;
 
@@ -183,21 +147,7 @@ import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentTy
 
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocumentManager;
 
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationManager;
-
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationManager;
-
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingManager;
-
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingManager;
-
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucherManager;
-
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationManager;
-
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationManager;
-
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingManager;
 
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineManager;
 
@@ -232,18 +182,6 @@ import com.doublechaintech.retailscm.termination.TerminationManager;
 import com.doublechaintech.retailscm.view.ViewManager;
 
 import com.doublechaintech.retailscm.employee.EmployeeManager;
-
-import com.doublechaintech.retailscm.jobapplication.JobApplicationManager;
-
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterviewManager;
-
-import com.doublechaintech.retailscm.hrinterview.HrInterviewManager;
-
-import com.doublechaintech.retailscm.offerapproval.OfferApprovalManager;
-
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceManager;
-
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingManager;
 
 import com.doublechaintech.retailscm.instructor.InstructorManager;
 
@@ -280,8 +218,6 @@ import com.doublechaintech.retailscm.userdomain.UserDomainManager;
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteListManager;
 
 import com.doublechaintech.retailscm.secuser.SecUserManager;
-
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingManager;
 
 import com.doublechaintech.retailscm.userapp.UserAppManager;
 
@@ -362,16 +298,6 @@ public class ManagerGroup {
 
 	protected ConsumerOrderManager consumerOrderManager;
 
-	protected ConsumerOrderConfirmationManager consumerOrderConfirmationManager;
-
-	protected ConsumerOrderApprovalManager consumerOrderApprovalManager;
-
-	protected ConsumerOrderProcessingManager consumerOrderProcessingManager;
-
-	protected ConsumerOrderShipmentManager consumerOrderShipmentManager;
-
-	protected ConsumerOrderDeliveryManager consumerOrderDeliveryManager;
-
 	protected ConsumerOrderLineItemManager consumerOrderLineItemManager;
 
 	protected ConsumerOrderShippingGroupManager consumerOrderShippingGroupManager;
@@ -404,18 +330,6 @@ public class ManagerGroup {
 
 	protected SupplyOrderManager supplyOrderManager;
 
-	protected SupplyOrderConfirmationManager supplyOrderConfirmationManager;
-
-	protected SupplyOrderApprovalManager supplyOrderApprovalManager;
-
-	protected SupplyOrderProcessingManager supplyOrderProcessingManager;
-
-	protected SupplyOrderPickingManager supplyOrderPickingManager;
-
-	protected SupplyOrderShipmentManager supplyOrderShipmentManager;
-
-	protected SupplyOrderDeliveryManager supplyOrderDeliveryManager;
-
 	protected SupplyOrderLineItemManager supplyOrderLineItemManager;
 
 	protected SupplyOrderShippingGroupManager supplyOrderShippingGroupManager;
@@ -423,18 +337,6 @@ public class ManagerGroup {
 	protected SupplyOrderPaymentGroupManager supplyOrderPaymentGroupManager;
 
 	protected RetailStoreOrderManager retailStoreOrderManager;
-
-	protected RetailStoreOrderConfirmationManager retailStoreOrderConfirmationManager;
-
-	protected RetailStoreOrderApprovalManager retailStoreOrderApprovalManager;
-
-	protected RetailStoreOrderProcessingManager retailStoreOrderProcessingManager;
-
-	protected RetailStoreOrderPickingManager retailStoreOrderPickingManager;
-
-	protected RetailStoreOrderShipmentManager retailStoreOrderShipmentManager;
-
-	protected RetailStoreOrderDeliveryManager retailStoreOrderDeliveryManager;
 
 	protected RetailStoreOrderLineItemManager retailStoreOrderLineItemManager;
 
@@ -457,8 +359,6 @@ public class ManagerGroup {
 	protected GoodsAllocationManager goodsAllocationManager;
 
 	protected GoodsManager goodsManager;
-
-	protected GoodsPackagingManager goodsPackagingManager;
 
 	protected GoodsMovementManager goodsMovementManager;
 
@@ -492,21 +392,7 @@ public class ManagerGroup {
 
 	protected AccountingDocumentManager accountingDocumentManager;
 
-	protected AccountingDocumentCreationManager accountingDocumentCreationManager;
-
-	protected AccountingDocumentConfirmationManager accountingDocumentConfirmationManager;
-
-	protected AccountingDocumentAuditingManager accountingDocumentAuditingManager;
-
-	protected AccountingDocumentPostingManager accountingDocumentPostingManager;
-
 	protected OriginalVoucherManager originalVoucherManager;
-
-	protected OriginalVoucherCreationManager originalVoucherCreationManager;
-
-	protected OriginalVoucherConfirmationManager originalVoucherConfirmationManager;
-
-	protected OriginalVoucherAuditingManager originalVoucherAuditingManager;
 
 	protected AccountingDocumentLineManager accountingDocumentLineManager;
 
@@ -541,18 +427,6 @@ public class ManagerGroup {
 	protected ViewManager viewManager;
 
 	protected EmployeeManager employeeManager;
-
-	protected JobApplicationManager jobApplicationManager;
-
-	protected ProfessionInterviewManager professionInterviewManager;
-
-	protected HrInterviewManager hrInterviewManager;
-
-	protected OfferApprovalManager offerApprovalManager;
-
-	protected OfferAcceptanceManager offerAcceptanceManager;
-
-	protected EmployeeBoardingManager employeeBoardingManager;
 
 	protected InstructorManager instructorManager;
 
@@ -589,8 +463,6 @@ public class ManagerGroup {
 	protected UserWhiteListManager userWhiteListManager;
 
 	protected SecUserManager secUserManager;
-
-	protected SecUserBlockingManager secUserBlockingManager;
 
 	protected UserAppManager userAppManager;
 
@@ -826,46 +698,6 @@ public class ManagerGroup {
 	}
 
 
-	public ConsumerOrderConfirmationManager getConsumerOrderConfirmationManager(){
-		return this.consumerOrderConfirmationManager;
-	}
-	public void setConsumerOrderConfirmationManager(ConsumerOrderConfirmationManager manager){
-		this.consumerOrderConfirmationManager = manager;
-	}
-
-
-	public ConsumerOrderApprovalManager getConsumerOrderApprovalManager(){
-		return this.consumerOrderApprovalManager;
-	}
-	public void setConsumerOrderApprovalManager(ConsumerOrderApprovalManager manager){
-		this.consumerOrderApprovalManager = manager;
-	}
-
-
-	public ConsumerOrderProcessingManager getConsumerOrderProcessingManager(){
-		return this.consumerOrderProcessingManager;
-	}
-	public void setConsumerOrderProcessingManager(ConsumerOrderProcessingManager manager){
-		this.consumerOrderProcessingManager = manager;
-	}
-
-
-	public ConsumerOrderShipmentManager getConsumerOrderShipmentManager(){
-		return this.consumerOrderShipmentManager;
-	}
-	public void setConsumerOrderShipmentManager(ConsumerOrderShipmentManager manager){
-		this.consumerOrderShipmentManager = manager;
-	}
-
-
-	public ConsumerOrderDeliveryManager getConsumerOrderDeliveryManager(){
-		return this.consumerOrderDeliveryManager;
-	}
-	public void setConsumerOrderDeliveryManager(ConsumerOrderDeliveryManager manager){
-		this.consumerOrderDeliveryManager = manager;
-	}
-
-
 	public ConsumerOrderLineItemManager getConsumerOrderLineItemManager(){
 		return this.consumerOrderLineItemManager;
 	}
@@ -994,54 +826,6 @@ public class ManagerGroup {
 	}
 
 
-	public SupplyOrderConfirmationManager getSupplyOrderConfirmationManager(){
-		return this.supplyOrderConfirmationManager;
-	}
-	public void setSupplyOrderConfirmationManager(SupplyOrderConfirmationManager manager){
-		this.supplyOrderConfirmationManager = manager;
-	}
-
-
-	public SupplyOrderApprovalManager getSupplyOrderApprovalManager(){
-		return this.supplyOrderApprovalManager;
-	}
-	public void setSupplyOrderApprovalManager(SupplyOrderApprovalManager manager){
-		this.supplyOrderApprovalManager = manager;
-	}
-
-
-	public SupplyOrderProcessingManager getSupplyOrderProcessingManager(){
-		return this.supplyOrderProcessingManager;
-	}
-	public void setSupplyOrderProcessingManager(SupplyOrderProcessingManager manager){
-		this.supplyOrderProcessingManager = manager;
-	}
-
-
-	public SupplyOrderPickingManager getSupplyOrderPickingManager(){
-		return this.supplyOrderPickingManager;
-	}
-	public void setSupplyOrderPickingManager(SupplyOrderPickingManager manager){
-		this.supplyOrderPickingManager = manager;
-	}
-
-
-	public SupplyOrderShipmentManager getSupplyOrderShipmentManager(){
-		return this.supplyOrderShipmentManager;
-	}
-	public void setSupplyOrderShipmentManager(SupplyOrderShipmentManager manager){
-		this.supplyOrderShipmentManager = manager;
-	}
-
-
-	public SupplyOrderDeliveryManager getSupplyOrderDeliveryManager(){
-		return this.supplyOrderDeliveryManager;
-	}
-	public void setSupplyOrderDeliveryManager(SupplyOrderDeliveryManager manager){
-		this.supplyOrderDeliveryManager = manager;
-	}
-
-
 	public SupplyOrderLineItemManager getSupplyOrderLineItemManager(){
 		return this.supplyOrderLineItemManager;
 	}
@@ -1071,54 +855,6 @@ public class ManagerGroup {
 	}
 	public void setRetailStoreOrderManager(RetailStoreOrderManager manager){
 		this.retailStoreOrderManager = manager;
-	}
-
-
-	public RetailStoreOrderConfirmationManager getRetailStoreOrderConfirmationManager(){
-		return this.retailStoreOrderConfirmationManager;
-	}
-	public void setRetailStoreOrderConfirmationManager(RetailStoreOrderConfirmationManager manager){
-		this.retailStoreOrderConfirmationManager = manager;
-	}
-
-
-	public RetailStoreOrderApprovalManager getRetailStoreOrderApprovalManager(){
-		return this.retailStoreOrderApprovalManager;
-	}
-	public void setRetailStoreOrderApprovalManager(RetailStoreOrderApprovalManager manager){
-		this.retailStoreOrderApprovalManager = manager;
-	}
-
-
-	public RetailStoreOrderProcessingManager getRetailStoreOrderProcessingManager(){
-		return this.retailStoreOrderProcessingManager;
-	}
-	public void setRetailStoreOrderProcessingManager(RetailStoreOrderProcessingManager manager){
-		this.retailStoreOrderProcessingManager = manager;
-	}
-
-
-	public RetailStoreOrderPickingManager getRetailStoreOrderPickingManager(){
-		return this.retailStoreOrderPickingManager;
-	}
-	public void setRetailStoreOrderPickingManager(RetailStoreOrderPickingManager manager){
-		this.retailStoreOrderPickingManager = manager;
-	}
-
-
-	public RetailStoreOrderShipmentManager getRetailStoreOrderShipmentManager(){
-		return this.retailStoreOrderShipmentManager;
-	}
-	public void setRetailStoreOrderShipmentManager(RetailStoreOrderShipmentManager manager){
-		this.retailStoreOrderShipmentManager = manager;
-	}
-
-
-	public RetailStoreOrderDeliveryManager getRetailStoreOrderDeliveryManager(){
-		return this.retailStoreOrderDeliveryManager;
-	}
-	public void setRetailStoreOrderDeliveryManager(RetailStoreOrderDeliveryManager manager){
-		this.retailStoreOrderDeliveryManager = manager;
 	}
 
 
@@ -1207,14 +943,6 @@ public class ManagerGroup {
 	}
 	public void setGoodsManager(GoodsManager manager){
 		this.goodsManager = manager;
-	}
-
-
-	public GoodsPackagingManager getGoodsPackagingManager(){
-		return this.goodsPackagingManager;
-	}
-	public void setGoodsPackagingManager(GoodsPackagingManager manager){
-		this.goodsPackagingManager = manager;
 	}
 
 
@@ -1346,67 +1074,11 @@ public class ManagerGroup {
 	}
 
 
-	public AccountingDocumentCreationManager getAccountingDocumentCreationManager(){
-		return this.accountingDocumentCreationManager;
-	}
-	public void setAccountingDocumentCreationManager(AccountingDocumentCreationManager manager){
-		this.accountingDocumentCreationManager = manager;
-	}
-
-
-	public AccountingDocumentConfirmationManager getAccountingDocumentConfirmationManager(){
-		return this.accountingDocumentConfirmationManager;
-	}
-	public void setAccountingDocumentConfirmationManager(AccountingDocumentConfirmationManager manager){
-		this.accountingDocumentConfirmationManager = manager;
-	}
-
-
-	public AccountingDocumentAuditingManager getAccountingDocumentAuditingManager(){
-		return this.accountingDocumentAuditingManager;
-	}
-	public void setAccountingDocumentAuditingManager(AccountingDocumentAuditingManager manager){
-		this.accountingDocumentAuditingManager = manager;
-	}
-
-
-	public AccountingDocumentPostingManager getAccountingDocumentPostingManager(){
-		return this.accountingDocumentPostingManager;
-	}
-	public void setAccountingDocumentPostingManager(AccountingDocumentPostingManager manager){
-		this.accountingDocumentPostingManager = manager;
-	}
-
-
 	public OriginalVoucherManager getOriginalVoucherManager(){
 		return this.originalVoucherManager;
 	}
 	public void setOriginalVoucherManager(OriginalVoucherManager manager){
 		this.originalVoucherManager = manager;
-	}
-
-
-	public OriginalVoucherCreationManager getOriginalVoucherCreationManager(){
-		return this.originalVoucherCreationManager;
-	}
-	public void setOriginalVoucherCreationManager(OriginalVoucherCreationManager manager){
-		this.originalVoucherCreationManager = manager;
-	}
-
-
-	public OriginalVoucherConfirmationManager getOriginalVoucherConfirmationManager(){
-		return this.originalVoucherConfirmationManager;
-	}
-	public void setOriginalVoucherConfirmationManager(OriginalVoucherConfirmationManager manager){
-		this.originalVoucherConfirmationManager = manager;
-	}
-
-
-	public OriginalVoucherAuditingManager getOriginalVoucherAuditingManager(){
-		return this.originalVoucherAuditingManager;
-	}
-	public void setOriginalVoucherAuditingManager(OriginalVoucherAuditingManager manager){
-		this.originalVoucherAuditingManager = manager;
 	}
 
 
@@ -1543,54 +1215,6 @@ public class ManagerGroup {
 	}
 	public void setEmployeeManager(EmployeeManager manager){
 		this.employeeManager = manager;
-	}
-
-
-	public JobApplicationManager getJobApplicationManager(){
-		return this.jobApplicationManager;
-	}
-	public void setJobApplicationManager(JobApplicationManager manager){
-		this.jobApplicationManager = manager;
-	}
-
-
-	public ProfessionInterviewManager getProfessionInterviewManager(){
-		return this.professionInterviewManager;
-	}
-	public void setProfessionInterviewManager(ProfessionInterviewManager manager){
-		this.professionInterviewManager = manager;
-	}
-
-
-	public HrInterviewManager getHrInterviewManager(){
-		return this.hrInterviewManager;
-	}
-	public void setHrInterviewManager(HrInterviewManager manager){
-		this.hrInterviewManager = manager;
-	}
-
-
-	public OfferApprovalManager getOfferApprovalManager(){
-		return this.offerApprovalManager;
-	}
-	public void setOfferApprovalManager(OfferApprovalManager manager){
-		this.offerApprovalManager = manager;
-	}
-
-
-	public OfferAcceptanceManager getOfferAcceptanceManager(){
-		return this.offerAcceptanceManager;
-	}
-	public void setOfferAcceptanceManager(OfferAcceptanceManager manager){
-		this.offerAcceptanceManager = manager;
-	}
-
-
-	public EmployeeBoardingManager getEmployeeBoardingManager(){
-		return this.employeeBoardingManager;
-	}
-	public void setEmployeeBoardingManager(EmployeeBoardingManager manager){
-		this.employeeBoardingManager = manager;
 	}
 
 
@@ -1735,14 +1359,6 @@ public class ManagerGroup {
 	}
 	public void setSecUserManager(SecUserManager manager){
 		this.secUserManager = manager;
-	}
-
-
-	public SecUserBlockingManager getSecUserBlockingManager(){
-		return this.secUserBlockingManager;
-	}
-	public void setSecUserBlockingManager(SecUserBlockingManager manager){
-		this.secUserBlockingManager = manager;
 	}
 
 

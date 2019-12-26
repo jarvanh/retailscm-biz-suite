@@ -21,20 +21,11 @@ public class ProvinceCenterDepartmentTable{
 	static final String COLUMN_NAME = "name";
 	static final String COLUMN_FOUNDED = "founded";
 	static final String COLUMN_PROVINCE_CENTER = "province_center";
-	static final String COLUMN_MANAGER_NAME = "manager_name";
+	static final String COLUMN_MANAGER = "manager";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_NAME, COLUMN_FOUNDED, COLUMN_PROVINCE_CENTER, COLUMN_MANAGER, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_NAME, COLUMN_FOUNDED, COLUMN_PROVINCE_CENTER, COLUMN_MANAGER
-		};
-=======
-	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_FOUNDED,COLUMN_PROVINCE_CENTER,COLUMN_MANAGER_NAME,COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_FOUNDED,COLUMN_PROVINCE_CENTER,COLUMN_MANAGER_NAME};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_NAME,COLUMN_FOUNDED,COLUMN_PROVINCE_CENTER,COLUMN_MANAGER,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_NAME,COLUMN_FOUNDED,COLUMN_PROVINCE_CENTER,COLUMN_MANAGER};
 	
 	
 }

@@ -70,15 +70,6 @@ public class CandidateContainer extends BaseEntity implements  java.io.Serializa
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public 	CandidateContainer(String name)
-	{
-		setName(name);
-
-		this.mCandidateElementList = new SmartList<CandidateElement>();	
-	}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	
@@ -377,7 +368,9 @@ public class CandidateContainer extends BaseEntity implements  java.io.Serializa
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

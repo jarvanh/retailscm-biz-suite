@@ -29,9 +29,9 @@ public interface AccountingPeriodManager extends BaseManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  AccountingDocumentManager getAccountingDocumentManager(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId, String creationId, String confirmationId, String auditingId, String postingId ,String [] tokensExpr)  throws Exception;
+	//public  AccountingDocumentManager getAccountingDocumentManager(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId ,String [] tokensExpr)  throws Exception;
 	
-	public  AccountingPeriod addAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId, String creationId, String confirmationId, String auditingId, String postingId , String [] tokensExpr)  throws Exception;
+	public  AccountingPeriod addAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String name, Date accountingDocumentDate, String documentTypeId , String [] tokensExpr)  throws Exception;
 	public  AccountingPeriod removeAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String accountingDocumentId, int accountingDocumentVersion,String [] tokensExpr)  throws Exception;
 	public  AccountingPeriod updateAccountingDocument(RetailscmUserContext userContext, String accountingPeriodId, String accountingDocumentId, int accountingDocumentVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

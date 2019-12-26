@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.retailstoreorder.CandidateRetailStoreOrder;
 
 
 public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreOrderShippingGroupManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "RetailStoreOrderShippingGroup";
 	@Override
 	public RetailStoreOrderShippingGroupDAO daoOf(RetailscmUserContext userContext) {
 		return retailStoreOrderShippingGroupDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws RetailStoreOrderShippingGroupManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new RetailStoreOrderShippingGroupManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected RetailStoreOrderShippingGroup saveRetailStoreOrderShippingGroup(RetailscmUserContext userContext, RetailStoreOrderShippingGroup retailStoreOrderShippingGroup, String [] tokensExpr) throws Exception{	
  		//return getRetailStoreOrderShippingGroupDAO().save(retailStoreOrderShippingGroup, tokens);
@@ -167,7 +161,7 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 	public RetailStoreOrderShippingGroup createRetailStoreOrderShippingGroup(RetailscmUserContext userContext, String name,String bizOrderId,BigDecimal amount) throws Exception
 	//public RetailStoreOrderShippingGroup createRetailStoreOrderShippingGroup(RetailscmUserContext userContext,String name, String bizOrderId, BigDecimal amount) throws Exception
 	{
-		
+
 		
 
 		
@@ -193,14 +187,14 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 		onNewInstanceCreated(userContext, retailStoreOrderShippingGroup);
 		return retailStoreOrderShippingGroup;
 
-		
+
 	}
-	protected RetailStoreOrderShippingGroup createNewRetailStoreOrderShippingGroup() 
+	protected RetailStoreOrderShippingGroup createNewRetailStoreOrderShippingGroup()
 	{
-		
-		return new RetailStoreOrderShippingGroup();		
+
+		return new RetailStoreOrderShippingGroup();
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreOrderShippingGroup(RetailscmUserContext userContext,String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -221,28 +215,28 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderShippingGroupManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public RetailStoreOrderShippingGroup clone(RetailscmUserContext userContext, String fromRetailStoreOrderShippingGroupId) throws Exception{
-		
+
 		return retailStoreOrderShippingGroupDaoOf(userContext).clone(fromRetailStoreOrderShippingGroupId, this.allTokens());
 	}
-	
-	public RetailStoreOrderShippingGroup internalSaveRetailStoreOrderShippingGroup(RetailscmUserContext userContext, RetailStoreOrderShippingGroup retailStoreOrderShippingGroup) throws Exception 
+
+	public RetailStoreOrderShippingGroup internalSaveRetailStoreOrderShippingGroup(RetailscmUserContext userContext, RetailStoreOrderShippingGroup retailStoreOrderShippingGroup) throws Exception
 	{
 		return internalSaveRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroup, allTokens());
 
 	}
-	public RetailStoreOrderShippingGroup internalSaveRetailStoreOrderShippingGroup(RetailscmUserContext userContext, RetailStoreOrderShippingGroup retailStoreOrderShippingGroup, Map<String,Object> options) throws Exception 
+	public RetailStoreOrderShippingGroup internalSaveRetailStoreOrderShippingGroup(RetailscmUserContext userContext, RetailStoreOrderShippingGroup retailStoreOrderShippingGroup, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(retailStoreOrderShippingGroup){ 
+
+
+		synchronized(retailStoreOrderShippingGroup){
 			//will be good when the retailStoreOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreOrderShippingGroup.
@@ -251,23 +245,23 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 			}
 			retailStoreOrderShippingGroup = saveRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroup, options);
 			return retailStoreOrderShippingGroup;
-			
+
 		}
 
 	}
-	
-	public RetailStoreOrderShippingGroup updateRetailStoreOrderShippingGroup(RetailscmUserContext userContext,String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreOrderShippingGroup updateRetailStoreOrderShippingGroup(RetailscmUserContext userContext,String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		RetailStoreOrderShippingGroup retailStoreOrderShippingGroup = loadRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroupId, allTokens());
 		if(retailStoreOrderShippingGroup.getVersion() != retailStoreOrderShippingGroupVersion){
 			String message = "The target version("+retailStoreOrderShippingGroup.getVersion()+") is not equals to version("+retailStoreOrderShippingGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreOrderShippingGroup){ 
+		synchronized(retailStoreOrderShippingGroup){
 			//will be good when the retailStoreOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreOrderShippingGroup.
@@ -279,21 +273,21 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 		}
 
 	}
-	
-	public RetailStoreOrderShippingGroup updateRetailStoreOrderShippingGroupProperty(RetailscmUserContext userContext,String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreOrderShippingGroup updateRetailStoreOrderShippingGroupProperty(RetailscmUserContext userContext,String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
+
 		RetailStoreOrderShippingGroup retailStoreOrderShippingGroup = loadRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroupId, allTokens());
 		if(retailStoreOrderShippingGroup.getVersion() != retailStoreOrderShippingGroupVersion){
 			String message = "The target version("+retailStoreOrderShippingGroup.getVersion()+") is not equals to version("+retailStoreOrderShippingGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreOrderShippingGroup){ 
+		synchronized(retailStoreOrderShippingGroup){
 			//will be good when the retailStoreOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreOrderShippingGroup.
-			
+
 			retailStoreOrderShippingGroup.changeProperty(property, newValueExpr);
 			
 			retailStoreOrderShippingGroup = saveRetailStoreOrderShippingGroup(userContext, retailStoreOrderShippingGroup, tokens().done());
@@ -305,7 +299,7 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected RetailStoreOrderShippingGroupTokens tokens(){
 		return RetailStoreOrderShippingGroupTokens.start();
 	}
@@ -326,11 +320,11 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String retailStoreOrderShippingGroupId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfRetailStoreOrderShippingGroup(retailStoreOrderShippingGroupId);
  		checkerOf(userContext).checkIdOfRetailStoreOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreOrderShippingGroupManagerException.class);
- 		
+
  	}
  	public RetailStoreOrderShippingGroup transferToAnotherBizOrder(RetailscmUserContext userContext, String retailStoreOrderShippingGroupId, String anotherBizOrderId) throws Exception
  	{
@@ -349,10 +343,10 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreOrder result = new CandidateRetailStoreOrder();
@@ -362,7 +356,7 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("buyer");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -372,42 +366,42 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreOrder loadRetailStoreOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion) throws Exception {
-		//deleteInternal(userContext, retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion);		
+		//deleteInternal(userContext, retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion) throws Exception{
-			
+
 		retailStoreOrderShippingGroupDaoOf(userContext).delete(retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion);
 	}
-	
+
 	public RetailStoreOrderShippingGroup forgetByAll(RetailscmUserContext userContext, String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion) throws Exception {
-		return forgetByAllInternal(userContext, retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion);		
+		return forgetByAllInternal(userContext, retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion);
 	}
 	protected RetailStoreOrderShippingGroup forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreOrderShippingGroupId, int retailStoreOrderShippingGroupVersion) throws Exception{
-			
+
 		return retailStoreOrderShippingGroupDaoOf(userContext).disconnectFromAll(retailStoreOrderShippingGroupId, retailStoreOrderShippingGroupVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -418,23 +412,29 @@ public class RetailStoreOrderShippingGroupManagerImpl extends CustomRetailscmChe
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return retailStoreOrderShippingGroupDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreOrderShippingGroup newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

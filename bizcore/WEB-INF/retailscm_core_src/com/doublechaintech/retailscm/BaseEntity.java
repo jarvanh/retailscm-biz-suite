@@ -24,8 +24,11 @@ import com.terapico.caf.RemoteInitiable;
 import com.terapico.utils.TextUtil;
 
 public class BaseEntity implements Serializable, RemoteInitiable{
-<<<<<<< HEAD
-=======
+	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getVersion()};
+	}
+	
 	private String internalType = null; // 禁止直接操作这个成员
 	public static BaseEntity pretendToBe(String classShortName, String id) {
 		BaseEntity result = new BaseEntity();
@@ -34,7 +37,6 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		result.setDisplayName(id);
 		return result;
 	}
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public  void ensureAccess(Map<String,Object> accessTokens) {
 		
 		List<SmartList<?>> allLists = this.getAllRelatedLists();
@@ -592,6 +594,9 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 	}
 	protected Integer parseInt(String intExpr){		
 		return Integer.parseInt(intExpr);
+	}
+	protected Long parseLong(String longExpr){		
+		return Long.parseLong(longExpr);
 	}
 	protected Boolean parseBoolean(String booleanExpr){		
 		return Boolean.parseBoolean(booleanExpr);

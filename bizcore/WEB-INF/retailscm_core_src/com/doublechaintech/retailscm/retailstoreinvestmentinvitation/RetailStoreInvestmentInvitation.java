@@ -368,7 +368,9 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getComment(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

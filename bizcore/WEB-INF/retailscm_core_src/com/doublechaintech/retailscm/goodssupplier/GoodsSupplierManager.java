@@ -39,9 +39,9 @@ public interface GoodsSupplierManager extends BaseManager{
 
 	*/
 
-	//public  SupplyOrderManager getSupplyOrderManager(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId ,String [] tokensExpr)  throws Exception;
+	//public  SupplyOrderManager getSupplyOrderManager(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount ,String [] tokensExpr)  throws Exception;
 	
-	public  GoodsSupplier addSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId , String [] tokensExpr)  throws Exception;
+	public  GoodsSupplier addSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount , String [] tokensExpr)  throws Exception;
 	public  GoodsSupplier removeSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String supplyOrderId, int supplyOrderVersion,String [] tokensExpr)  throws Exception;
 	public  GoodsSupplier updateSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String supplyOrderId, int supplyOrderVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 
@@ -49,9 +49,9 @@ public interface GoodsSupplierManager extends BaseManager{
 
 	*/
 
-	//public  AccountSetManager getAccountSetManager(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String countryCenterId, String retailStoreId ,String [] tokensExpr)  throws Exception;
+	//public  AccountSetManager getAccountSetManager(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String countryCenterId, String retailStoreId ,String [] tokensExpr)  throws Exception;
 	
-	public  GoodsSupplier addAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String countryCenterId, String retailStoreId , String [] tokensExpr)  throws Exception;
+	public  GoodsSupplier addAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String countryCenterId, String retailStoreId , String [] tokensExpr)  throws Exception;
 	public  GoodsSupplier removeAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String accountSetId, int accountSetVersion,String [] tokensExpr)  throws Exception;
 	public  GoodsSupplier updateAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

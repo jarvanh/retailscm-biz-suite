@@ -24,17 +24,8 @@ public class LoginHistoryTable{
 	static final String COLUMN_SEC_USER = "sec_user";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_LOGIN_TIME, COLUMN_FROM_IP, COLUMN_DESCRIPTION, COLUMN_SEC_USER, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_LOGIN_TIME, COLUMN_FROM_IP, COLUMN_DESCRIPTION, COLUMN_SEC_USER
-		};
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_LOGIN_TIME,COLUMN_FROM_IP,COLUMN_DESCRIPTION,COLUMN_SEC_USER,COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {COLUMN_LOGIN_TIME,COLUMN_FROM_IP,COLUMN_DESCRIPTION,COLUMN_SEC_USER};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

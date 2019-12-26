@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.employee.Employee;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 
 
 public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerManager implements EmployeeWorkExperienceManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "EmployeeWorkExperience";
 	@Override
 	public EmployeeWorkExperienceDAO daoOf(RetailscmUserContext userContext) {
 		return employeeWorkExperienceDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EmployeeWorkExperienceManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EmployeeWorkExperienceManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected EmployeeWorkExperience saveEmployeeWorkExperience(RetailscmUserContext userContext, EmployeeWorkExperience employeeWorkExperience, String [] tokensExpr) throws Exception{	
  		//return getEmployeeWorkExperienceDAO().save(employeeWorkExperience, tokens);
@@ -167,7 +161,7 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 	public EmployeeWorkExperience createEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId,Date start,Date end,String company,String description) throws Exception
 	//public EmployeeWorkExperience createEmployeeWorkExperience(RetailscmUserContext userContext,String employeeId, Date start, Date end, String company, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -197,14 +191,14 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 		onNewInstanceCreated(userContext, employeeWorkExperience);
 		return employeeWorkExperience;
 
-		
+
 	}
-	protected EmployeeWorkExperience createNewEmployeeWorkExperience() 
+	protected EmployeeWorkExperience createNewEmployeeWorkExperience()
 	{
-		
-		return new EmployeeWorkExperience();		
+
+		return new EmployeeWorkExperience();
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeWorkExperience(RetailscmUserContext userContext,String employeeWorkExperienceId, int employeeWorkExperienceVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -231,28 +225,28 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeWorkExperienceManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public EmployeeWorkExperience clone(RetailscmUserContext userContext, String fromEmployeeWorkExperienceId) throws Exception{
-		
+
 		return employeeWorkExperienceDaoOf(userContext).clone(fromEmployeeWorkExperienceId, this.allTokens());
 	}
-	
-	public EmployeeWorkExperience internalSaveEmployeeWorkExperience(RetailscmUserContext userContext, EmployeeWorkExperience employeeWorkExperience) throws Exception 
+
+	public EmployeeWorkExperience internalSaveEmployeeWorkExperience(RetailscmUserContext userContext, EmployeeWorkExperience employeeWorkExperience) throws Exception
 	{
 		return internalSaveEmployeeWorkExperience(userContext, employeeWorkExperience, allTokens());
 
 	}
-	public EmployeeWorkExperience internalSaveEmployeeWorkExperience(RetailscmUserContext userContext, EmployeeWorkExperience employeeWorkExperience, Map<String,Object> options) throws Exception 
+	public EmployeeWorkExperience internalSaveEmployeeWorkExperience(RetailscmUserContext userContext, EmployeeWorkExperience employeeWorkExperience, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEmployeeWorkExperience(userContext, employeeWorkExperienceId, employeeWorkExperienceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(employeeWorkExperience){ 
+
+
+		synchronized(employeeWorkExperience){
 			//will be good when the employeeWorkExperience loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeWorkExperience.
@@ -261,23 +255,23 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 			}
 			employeeWorkExperience = saveEmployeeWorkExperience(userContext, employeeWorkExperience, options);
 			return employeeWorkExperience;
-			
+
 		}
 
 	}
-	
-	public EmployeeWorkExperience updateEmployeeWorkExperience(RetailscmUserContext userContext,String employeeWorkExperienceId, int employeeWorkExperienceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeWorkExperience updateEmployeeWorkExperience(RetailscmUserContext userContext,String employeeWorkExperienceId, int employeeWorkExperienceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeWorkExperience(userContext, employeeWorkExperienceId, employeeWorkExperienceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		EmployeeWorkExperience employeeWorkExperience = loadEmployeeWorkExperience(userContext, employeeWorkExperienceId, allTokens());
 		if(employeeWorkExperience.getVersion() != employeeWorkExperienceVersion){
 			String message = "The target version("+employeeWorkExperience.getVersion()+") is not equals to version("+employeeWorkExperienceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeWorkExperience){ 
+		synchronized(employeeWorkExperience){
 			//will be good when the employeeWorkExperience loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeWorkExperience.
@@ -289,21 +283,21 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 		}
 
 	}
-	
-	public EmployeeWorkExperience updateEmployeeWorkExperienceProperty(RetailscmUserContext userContext,String employeeWorkExperienceId, int employeeWorkExperienceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeWorkExperience updateEmployeeWorkExperienceProperty(RetailscmUserContext userContext,String employeeWorkExperienceId, int employeeWorkExperienceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeWorkExperience(userContext, employeeWorkExperienceId, employeeWorkExperienceVersion, property, newValueExpr, tokensExpr);
-		
+
 		EmployeeWorkExperience employeeWorkExperience = loadEmployeeWorkExperience(userContext, employeeWorkExperienceId, allTokens());
 		if(employeeWorkExperience.getVersion() != employeeWorkExperienceVersion){
 			String message = "The target version("+employeeWorkExperience.getVersion()+") is not equals to version("+employeeWorkExperienceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeWorkExperience){ 
+		synchronized(employeeWorkExperience){
 			//will be good when the employeeWorkExperience loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeWorkExperience.
-			
+
 			employeeWorkExperience.changeProperty(property, newValueExpr);
 			
 			employeeWorkExperience = saveEmployeeWorkExperience(userContext, employeeWorkExperience, tokens().done());
@@ -315,7 +309,7 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EmployeeWorkExperienceTokens tokens(){
 		return EmployeeWorkExperienceTokens.start();
 	}
@@ -336,11 +330,11 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeWorkExperienceId, String anotherEmployeeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeWorkExperience(employeeWorkExperienceId);
  		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeWorkExperienceManagerException.class);
- 		
+
  	}
  	public EmployeeWorkExperience transferToAnotherEmployee(RetailscmUserContext userContext, String employeeWorkExperienceId, String anotherEmployeeId) throws Exception
  	{
@@ -359,10 +353,10 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateEmployee requestCandidateEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateEmployee result = new CandidateEmployee();
@@ -372,7 +366,7 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("company");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -382,42 +376,42 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String employeeWorkExperienceId, int employeeWorkExperienceVersion) throws Exception {
-		//deleteInternal(userContext, employeeWorkExperienceId, employeeWorkExperienceVersion);		
+		//deleteInternal(userContext, employeeWorkExperienceId, employeeWorkExperienceVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeWorkExperienceId, int employeeWorkExperienceVersion) throws Exception{
-			
+
 		employeeWorkExperienceDaoOf(userContext).delete(employeeWorkExperienceId, employeeWorkExperienceVersion);
 	}
-	
+
 	public EmployeeWorkExperience forgetByAll(RetailscmUserContext userContext, String employeeWorkExperienceId, int employeeWorkExperienceVersion) throws Exception {
-		return forgetByAllInternal(userContext, employeeWorkExperienceId, employeeWorkExperienceVersion);		
+		return forgetByAllInternal(userContext, employeeWorkExperienceId, employeeWorkExperienceVersion);
 	}
 	protected EmployeeWorkExperience forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeWorkExperienceId, int employeeWorkExperienceVersion) throws Exception{
-			
+
 		return employeeWorkExperienceDaoOf(userContext).disconnectFromAll(employeeWorkExperienceId, employeeWorkExperienceVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -428,23 +422,29 @@ public class EmployeeWorkExperienceManagerImpl extends CustomRetailscmCheckerMan
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return employeeWorkExperienceDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EmployeeWorkExperience newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

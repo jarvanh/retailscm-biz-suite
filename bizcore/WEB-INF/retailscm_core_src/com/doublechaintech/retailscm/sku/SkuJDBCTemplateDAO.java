@@ -997,50 +997,6 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 		return count;
 	}
 	
-	//disconnect Sku with packaging in Goods
-	public Sku planToRemoveGoodsListWithPackaging(Sku sku, String packagingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-		
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(Goods.SKU_PROPERTY, sku.getId());
-		key.put(Goods.PACKAGING_PROPERTY, packagingId);
-		
-		SmartList<Goods> externalGoodsList = getGoodsDAO().
-				findGoodsWithKey(key, options);
-		if(externalGoodsList == null){
-			return sku;
-		}
-		if(externalGoodsList.isEmpty()){
-			return sku;
-		}
-		
-		for(Goods goodsItem: externalGoodsList){
-			goodsItem.clearPackaging();
-			goodsItem.clearSku();
-			
-		}
-		
-		
-		SmartList<Goods> goodsList = sku.getGoodsList();		
-		goodsList.addAllToRemoveList(externalGoodsList);
-		return sku;
-	}
-	
-	public int countGoodsListWithPackaging(String skuId, String packagingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(Goods.SKU_PROPERTY, skuId);
-		key.put(Goods.PACKAGING_PROPERTY, packagingId);
-		
-		int count = getGoodsDAO().countGoodsWithKey(key, options);
-		return count;
-	}
-	
 
 		
 	protected Sku saveGoodsList(Sku sku, Map<String,Object> options){

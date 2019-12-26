@@ -85,10 +85,6 @@ public interface ShippingSpaceDAO extends BaseDAO{
 	public ShippingSpace planToRemoveGoodsListWithRetailStoreOrder(ShippingSpace shippingSpace, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String shippingSpaceId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect ShippingSpace with packaging in Goods
-	public ShippingSpace planToRemoveGoodsListWithPackaging(ShippingSpace shippingSpace, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String shippingSpaceId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<ShippingSpace> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

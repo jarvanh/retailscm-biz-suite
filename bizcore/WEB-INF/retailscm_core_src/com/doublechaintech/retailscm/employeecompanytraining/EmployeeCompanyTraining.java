@@ -101,12 +101,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		if(SCORING_PROPERTY.equals(property)){
 			return getScoring();
 		}
-<<<<<<< HEAD
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
-		}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
     		//other property not include here
 		return super.propertyOf(property);
@@ -197,25 +191,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public EmployeeCompanyTraining updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
-	}
-	
-	
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -302,10 +277,6 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 			dest.mergeEmployee(getEmployee());
 			dest.mergeTraining(getTraining());
 			dest.mergeScoring(getScoring());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
@@ -322,16 +293,14 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 			EmployeeCompanyTraining dest =(EmployeeCompanyTraining)baseDest;
 		
 			dest.mergeId(getId());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getEmployee(), getTraining(), getScoring(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -665,7 +665,9 @@ public class Instructor extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getFamilyName(), getGivenName(), getCellPhone(), getEmail(), getCompany(), getIntroduction(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

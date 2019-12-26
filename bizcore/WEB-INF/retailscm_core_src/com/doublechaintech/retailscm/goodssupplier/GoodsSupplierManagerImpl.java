@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
@@ -27,15 +18,9 @@ import com.doublechaintech.retailscm.accountset.AccountSet;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.CandidateRetailStoreCountryCenter;
 
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 
 
@@ -43,28 +28,31 @@ import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 
 public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager implements GoodsSupplierManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "GoodsSupplier";
 	@Override
 	public GoodsSupplierDAO daoOf(RetailscmUserContext userContext) {
 		return goodsSupplierDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws GoodsSupplierManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new GoodsSupplierManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected GoodsSupplier saveGoodsSupplier(RetailscmUserContext userContext, GoodsSupplier goodsSupplier, String [] tokensExpr) throws Exception{	
  		//return getGoodsSupplierDAO().save(goodsSupplier, tokens);
@@ -191,7 +179,7 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	public GoodsSupplier createGoodsSupplier(RetailscmUserContext userContext, String name,String supplyProduct,String belongToId,String contactNumber,String description) throws Exception
 	//public GoodsSupplier createGoodsSupplier(RetailscmUserContext userContext,String name, String supplyProduct, String belongToId, String contactNumber, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -222,14 +210,14 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		onNewInstanceCreated(userContext, goodsSupplier);
 		return goodsSupplier;
 
-		
+
 	}
-	protected GoodsSupplier createNewGoodsSupplier() 
+	protected GoodsSupplier createNewGoodsSupplier()
 	{
-		
-		return new GoodsSupplier();		
+
+		return new GoodsSupplier();
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsSupplier(RetailscmUserContext userContext,String goodsSupplierId, int goodsSupplierVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -256,28 +244,28 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public GoodsSupplier clone(RetailscmUserContext userContext, String fromGoodsSupplierId) throws Exception{
-		
+
 		return goodsSupplierDaoOf(userContext).clone(fromGoodsSupplierId, this.allTokens());
 	}
-	
-	public GoodsSupplier internalSaveGoodsSupplier(RetailscmUserContext userContext, GoodsSupplier goodsSupplier) throws Exception 
+
+	public GoodsSupplier internalSaveGoodsSupplier(RetailscmUserContext userContext, GoodsSupplier goodsSupplier) throws Exception
 	{
 		return internalSaveGoodsSupplier(userContext, goodsSupplier, allTokens());
 
 	}
-	public GoodsSupplier internalSaveGoodsSupplier(RetailscmUserContext userContext, GoodsSupplier goodsSupplier, Map<String,Object> options) throws Exception 
+	public GoodsSupplier internalSaveGoodsSupplier(RetailscmUserContext userContext, GoodsSupplier goodsSupplier, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingGoodsSupplier(userContext, goodsSupplierId, goodsSupplierVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(goodsSupplier){ 
+
+
+		synchronized(goodsSupplier){
 			//will be good when the goodsSupplier loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsSupplier.
@@ -286,23 +274,23 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 			}
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, options);
 			return goodsSupplier;
-			
+
 		}
 
 	}
-	
-	public GoodsSupplier updateGoodsSupplier(RetailscmUserContext userContext,String goodsSupplierId, int goodsSupplierVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsSupplier updateGoodsSupplier(RetailscmUserContext userContext,String goodsSupplierId, int goodsSupplierVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsSupplier(userContext, goodsSupplierId, goodsSupplierVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
 		if(goodsSupplier.getVersion() != goodsSupplierVersion){
 			String message = "The target version("+goodsSupplier.getVersion()+") is not equals to version("+goodsSupplierVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//will be good when the goodsSupplier loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsSupplier.
@@ -314,21 +302,21 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
 	}
-	
-	public GoodsSupplier updateGoodsSupplierProperty(RetailscmUserContext userContext,String goodsSupplierId, int goodsSupplierVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsSupplier updateGoodsSupplierProperty(RetailscmUserContext userContext,String goodsSupplierId, int goodsSupplierVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsSupplier(userContext, goodsSupplierId, goodsSupplierVersion, property, newValueExpr, tokensExpr);
-		
+
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
 		if(goodsSupplier.getVersion() != goodsSupplierVersion){
 			String message = "The target version("+goodsSupplier.getVersion()+") is not equals to version("+goodsSupplierVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//will be good when the goodsSupplier loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsSupplier.
-			
+
 			goodsSupplier.changeProperty(property, newValueExpr);
 			goodsSupplier.updateLastUpdateTime(userContext.now());
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().done());
@@ -340,7 +328,7 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected GoodsSupplierTokens tokens(){
 		return GoodsSupplierTokens.start();
 	}
@@ -364,11 +352,11 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	protected void checkParamsForTransferingAnotherBelongTo(RetailscmUserContext userContext, String goodsSupplierId, String anotherBelongToId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherBelongToId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
- 		
+
  	}
  	public GoodsSupplier transferToAnotherBelongTo(RetailscmUserContext userContext, String goodsSupplierId, String anotherBelongToId) throws Exception
  	{
@@ -387,10 +375,10 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateBelongTo(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -400,7 +388,7 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -410,42 +398,42 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newBelongToId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newBelongToId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String goodsSupplierId, int goodsSupplierVersion) throws Exception {
-		//deleteInternal(userContext, goodsSupplierId, goodsSupplierVersion);		
+		//deleteInternal(userContext, goodsSupplierId, goodsSupplierVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String goodsSupplierId, int goodsSupplierVersion) throws Exception{
-			
+
 		goodsSupplierDaoOf(userContext).delete(goodsSupplierId, goodsSupplierVersion);
 	}
-	
+
 	public GoodsSupplier forgetByAll(RetailscmUserContext userContext, String goodsSupplierId, int goodsSupplierVersion) throws Exception {
-		return forgetByAllInternal(userContext, goodsSupplierId, goodsSupplierVersion);		
+		return forgetByAllInternal(userContext, goodsSupplierId, goodsSupplierVersion);
 	}
 	protected GoodsSupplier forgetByAllInternal(RetailscmUserContext userContext,
 			String goodsSupplierId, int goodsSupplierVersion) throws Exception{
-			
+
 		return goodsSupplierDaoOf(userContext).disconnectFromAll(goodsSupplierId, goodsSupplierVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -456,8 +444,8 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return goodsSupplierDaoOf(userContext).deleteAll();
 	}
@@ -466,124 +454,16 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	//disconnect GoodsSupplier with buyer in SupplyOrder
 	protected GoodsSupplier breakWithSupplyOrderByBuyer(RetailscmUserContext userContext, String goodsSupplierId, String buyerId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
 
-			synchronized(goodsSupplier){ 
+			synchronized(goodsSupplier){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderListWithBuyer(goodsSupplier, buyerId, this.emptyOptions());
-
-				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
-				return goodsSupplier;
-			}
-	}
-	//disconnect GoodsSupplier with confirmation in SupplyOrder
-	protected GoodsSupplier breakWithSupplyOrderByConfirmation(RetailscmUserContext userContext, String goodsSupplierId, String confirmationId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-
-			synchronized(goodsSupplier){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderListWithConfirmation(goodsSupplier, confirmationId, this.emptyOptions());
-
-				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
-				return goodsSupplier;
-			}
-	}
-	//disconnect GoodsSupplier with approval in SupplyOrder
-	protected GoodsSupplier breakWithSupplyOrderByApproval(RetailscmUserContext userContext, String goodsSupplierId, String approvalId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-
-			synchronized(goodsSupplier){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderListWithApproval(goodsSupplier, approvalId, this.emptyOptions());
-
-				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
-				return goodsSupplier;
-			}
-	}
-	//disconnect GoodsSupplier with processing in SupplyOrder
-	protected GoodsSupplier breakWithSupplyOrderByProcessing(RetailscmUserContext userContext, String goodsSupplierId, String processingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-
-			synchronized(goodsSupplier){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderListWithProcessing(goodsSupplier, processingId, this.emptyOptions());
-
-				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
-				return goodsSupplier;
-			}
-	}
-	//disconnect GoodsSupplier with picking in SupplyOrder
-	protected GoodsSupplier breakWithSupplyOrderByPicking(RetailscmUserContext userContext, String goodsSupplierId, String pickingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-
-			synchronized(goodsSupplier){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderListWithPicking(goodsSupplier, pickingId, this.emptyOptions());
-
-				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
-				return goodsSupplier;
-			}
-	}
-	//disconnect GoodsSupplier with shipment in SupplyOrder
-	protected GoodsSupplier breakWithSupplyOrderByShipment(RetailscmUserContext userContext, String goodsSupplierId, String shipmentId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-
-			synchronized(goodsSupplier){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderListWithShipment(goodsSupplier, shipmentId, this.emptyOptions());
-
-				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
-				return goodsSupplier;
-			}
-	}
-	//disconnect GoodsSupplier with delivery in SupplyOrder
-	protected GoodsSupplier breakWithSupplyOrderByDelivery(RetailscmUserContext userContext, String goodsSupplierId, String deliveryId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-
-			synchronized(goodsSupplier){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderListWithDelivery(goodsSupplier, deliveryId, this.emptyOptions());
 
 				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
 				return goodsSupplier;
@@ -592,15 +472,15 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	//disconnect GoodsSupplier with country_center in AccountSet
 	protected GoodsSupplier breakWithAccountSetByCountryCenter(RetailscmUserContext userContext, String goodsSupplierId, String countryCenterId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
 
-			synchronized(goodsSupplier){ 
+			synchronized(goodsSupplier){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsSupplierDaoOf(userContext).planToRemoveAccountSetListWithCountryCenter(goodsSupplier, countryCenterId, this.emptyOptions());
 
 				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withAccountSetList().done());
@@ -610,29 +490,29 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	//disconnect GoodsSupplier with retail_store in AccountSet
 	protected GoodsSupplier breakWithAccountSetByRetailStore(RetailscmUserContext userContext, String goodsSupplierId, String retailStoreId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
 
-			synchronized(goodsSupplier){ 
+			synchronized(goodsSupplier){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				goodsSupplierDaoOf(userContext).planToRemoveAccountSetListWithRetailStore(goodsSupplier, retailStoreId, this.emptyOptions());
 
 				goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withAccountSetList().done());
 				return goodsSupplier;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId, String productName, String productDescription, String productUnit,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 
 		
@@ -644,20 +524,20 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
 
-	
+
 	}
 	public  GoodsSupplier addSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId, String productName, String productDescription, String productUnit, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingSupplierProduct(userContext,goodsSupplierId,productName, productDescription, productUnit,tokensExpr);
-		
+
 		SupplierProduct supplierProduct = createSupplierProduct(userContext,productName, productDescription, productUnit);
-		
-		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+
+		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, emptyOptions());
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsSupplier.addSupplierProduct( supplierProduct );		
+			goodsSupplier.addSupplierProduct( supplierProduct );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplierProductList().done());
 			
 			userContext.getManagerGroup().getSupplierProductManager().onNewInstanceCreated(userContext, supplierProduct);
@@ -665,47 +545,47 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 	}
 	protected void checkParamsForUpdatingSupplierProductProperties(RetailscmUserContext userContext, String goodsSupplierId,String id,String productName,String productDescription,String productUnit,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		checkerOf(userContext).checkIdOfSupplierProduct(id);
-		
+
 		checkerOf(userContext).checkProductNameOfSupplierProduct( productName);
 		checkerOf(userContext).checkProductDescriptionOfSupplierProduct( productDescription);
 		checkerOf(userContext).checkProductUnitOfSupplierProduct( productUnit);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-		
+
 	}
 	public  GoodsSupplier updateSupplierProductProperties(RetailscmUserContext userContext, String goodsSupplierId, String id,String productName,String productDescription,String productUnit, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingSupplierProductProperties(userContext,goodsSupplierId,id,productName,productDescription,productUnit,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withSupplierProductListList()
 				.searchSupplierProductListWith(SupplierProduct.ID_PROPERTY, "is", id).done();
-		
+
 		GoodsSupplier goodsSupplierToUpdate = loadGoodsSupplier(userContext, goodsSupplierId, options);
-		
+
 		if(goodsSupplierToUpdate.getSupplierProductList().isEmpty()){
 			throw new GoodsSupplierManagerException("SupplierProduct is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		SupplierProduct item = goodsSupplierToUpdate.getSupplierProductList().first();
-		
+
 		item.updateProductName( productName );
 		item.updateProductDescription( productDescription );
 		item.updateProductUnit( productUnit );
 
-		
+
 		//checkParamsForAddingSupplierProduct(userContext,goodsSupplierId,name, code, used,tokensExpr);
 		GoodsSupplier goodsSupplier = saveGoodsSupplier(userContext, goodsSupplierToUpdate, tokens().withSupplierProductList().done());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected SupplierProduct createSupplierProduct(RetailscmUserContext userContext, String productName, String productDescription, String productUnit) throws Exception{
 
 		SupplierProduct supplierProduct = new SupplierProduct();
@@ -717,44 +597,38 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	
 		
 		return supplierProduct;
-	
-		
+
+
 	}
-	
+
 	protected SupplierProduct createIndexedSupplierProduct(String id, int version){
 
 		SupplierProduct supplierProduct = new SupplierProduct();
 		supplierProduct.setId(id);
 		supplierProduct.setVersion(version);
-		return supplierProduct;			
-		
+		return supplierProduct;
+
 	}
-	
-	protected void checkParamsForRemovingSupplierProductList(RetailscmUserContext userContext, String goodsSupplierId, 
+
+	protected void checkParamsForRemovingSupplierProductList(RetailscmUserContext userContext, String goodsSupplierId,
 			String supplierProductIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-		for(String supplierProductIdItem: supplierProductIds){
-			userContext.getChecker().checkIdOfSupplierProduct(supplierProductIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		for(String supplierProductIdItem: supplierProductIds){
 			checkerOf(userContext).checkIdOfSupplierProduct(supplierProductIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-		
+
 	}
-	public  GoodsSupplier removeSupplierProductList(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier removeSupplierProductList(RetailscmUserContext userContext, String goodsSupplierId,
 			String supplierProductIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingSupplierProductList(userContext, goodsSupplierId,  supplierProductIds, tokensExpr);
-			
-			
+
+
 			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-			synchronized(goodsSupplier){ 
+			synchronized(goodsSupplier){
 				//Will be good when the goodsSupplier loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				goodsSupplierDaoOf(userContext).planToRemoveSupplierProductList(goodsSupplier, supplierProductIds, allTokens());
@@ -763,65 +637,65 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 				return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId, 
+
+	protected void checkParamsForRemovingSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplierProductId, int supplierProductVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsSupplier( goodsSupplierId);
 		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
 		checkerOf(userContext).checkVersionOfSupplierProduct(supplierProductVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	public  GoodsSupplier removeSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier removeSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplierProductId, int supplierProductVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingSupplierProduct(userContext,goodsSupplierId, supplierProductId, supplierProductVersion,tokensExpr);
-		
+
 		SupplierProduct supplierProduct = createIndexedSupplierProduct(supplierProductId, supplierProductVersion);
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsSupplier.removeSupplierProduct( supplierProduct );		
+			goodsSupplier.removeSupplierProduct( supplierProduct );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplierProductList().done());
 			deleteRelationInGraph(userContext, supplierProduct);
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId, 
+	protected void checkParamsForCopyingSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplierProductId, int supplierProductVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsSupplier( goodsSupplierId);
 		checkerOf(userContext).checkIdOfSupplierProduct(supplierProductId);
 		checkerOf(userContext).checkVersionOfSupplierProduct(supplierProductVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	public  GoodsSupplier copySupplierProductFrom(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier copySupplierProductFrom(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplierProductId, int supplierProductVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingSupplierProduct(userContext,goodsSupplierId, supplierProductId, supplierProductVersion,tokensExpr);
-		
+
 		SupplierProduct supplierProduct = createIndexedSupplierProduct(supplierProductId, supplierProductVersion);
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			goodsSupplier.copySupplierProductFrom( supplierProduct );		
+
+			goodsSupplier.copySupplierProductFrom( supplierProduct );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplierProductList().done());
 			
 			userContext.getManagerGroup().getSupplierProductManager().onNewInstanceCreated(userContext, (SupplierProduct)goodsSupplier.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId, String supplierProductId, int supplierProductVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -845,32 +719,32 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	
+
 	public  GoodsSupplier updateSupplierProduct(RetailscmUserContext userContext, String goodsSupplierId, String supplierProductId, int supplierProductVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingSupplierProduct(userContext, goodsSupplierId, supplierProductId, supplierProductVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withSupplierProductList().searchSupplierProductListWith(SupplierProduct.ID_PROPERTY, "eq", supplierProductId).done();
-		
-		
-		
+
+
+
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, loadTokens);
-		
-		synchronized(goodsSupplier){ 
+
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//goodsSupplier.removeSupplierProduct( supplierProduct );	
+			//goodsSupplier.removeSupplierProduct( supplierProduct );
 			//make changes to AcceleraterAccount.
 			SupplierProduct supplierProductIndex = createIndexedSupplierProduct(supplierProductId, supplierProductVersion);
-		
+
 			SupplierProduct supplierProduct = goodsSupplier.findTheSupplierProduct(supplierProductIndex);
 			if(supplierProduct == null){
 				throw new GoodsSupplierManagerException(supplierProduct+" is NOT FOUND" );
 			}
-			
+
 			supplierProduct.changeProperty(property, newValueExpr);
 			
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplierProductList().done());
@@ -881,12 +755,12 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 
 		
@@ -895,35 +769,23 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		checkerOf(userContext).checkTitleOfSupplyOrder(title);
 		
 		checkerOf(userContext).checkTotalAmountOfSupplyOrder(totalAmount);
-		
-		checkerOf(userContext).checkConfirmationIdOfSupplyOrder(confirmationId);
-		
-		checkerOf(userContext).checkApprovalIdOfSupplyOrder(approvalId);
-		
-		checkerOf(userContext).checkProcessingIdOfSupplyOrder(processingId);
-		
-		checkerOf(userContext).checkPickingIdOfSupplyOrder(pickingId);
-		
-		checkerOf(userContext).checkShipmentIdOfSupplyOrder(shipmentId);
-		
-		checkerOf(userContext).checkDeliveryIdOfSupplyOrder(deliveryId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
 
-	
+
 	}
-	public  GoodsSupplier addSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingSupplyOrder(userContext,goodsSupplierId,buyerId, title, totalAmount, confirmationId, approvalId, processingId, pickingId, shipmentId, deliveryId,tokensExpr);
-		
-		SupplyOrder supplyOrder = createSupplyOrder(userContext,buyerId, title, totalAmount, confirmationId, approvalId, processingId, pickingId, shipmentId, deliveryId);
-		
-		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+	public  GoodsSupplier addSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String buyerId, String title, BigDecimal totalAmount, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingSupplyOrder(userContext,goodsSupplierId,buyerId, title, totalAmount,tokensExpr);
+
+		SupplyOrder supplyOrder = createSupplyOrder(userContext,buyerId, title, totalAmount);
+
+		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, emptyOptions());
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsSupplier.addSupplyOrder( supplyOrder );		
+			goodsSupplier.addSupplyOrder( supplyOrder );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
 			
 			userContext.getManagerGroup().getSupplyOrderManager().onNewInstanceCreated(userContext, supplyOrder);
@@ -931,46 +793,46 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 	}
 	protected void checkParamsForUpdatingSupplyOrderProperties(RetailscmUserContext userContext, String goodsSupplierId,String id,String title,BigDecimal totalAmount,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		checkerOf(userContext).checkIdOfSupplyOrder(id);
-		
+
 		checkerOf(userContext).checkTitleOfSupplyOrder( title);
 		checkerOf(userContext).checkTotalAmountOfSupplyOrder( totalAmount);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-		
+
 	}
 	public  GoodsSupplier updateSupplyOrderProperties(RetailscmUserContext userContext, String goodsSupplierId, String id,String title,BigDecimal totalAmount, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingSupplyOrderProperties(userContext,goodsSupplierId,id,title,totalAmount,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withSupplyOrderListList()
 				.searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "is", id).done();
-		
+
 		GoodsSupplier goodsSupplierToUpdate = loadGoodsSupplier(userContext, goodsSupplierId, options);
-		
+
 		if(goodsSupplierToUpdate.getSupplyOrderList().isEmpty()){
 			throw new GoodsSupplierManagerException("SupplyOrder is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		SupplyOrder item = goodsSupplierToUpdate.getSupplyOrderList().first();
-		
+
 		item.updateTitle( title );
 		item.updateTotalAmount( totalAmount );
 
-		
+
 		//checkParamsForAddingSupplyOrder(userContext,goodsSupplierId,name, code, used,tokensExpr);
 		GoodsSupplier goodsSupplier = saveGoodsSupplier(userContext, goodsSupplierToUpdate, tokens().withSupplyOrderList().done());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId, String title, BigDecimal totalAmount, String confirmationId, String approvalId, String processingId, String pickingId, String shipmentId, String deliveryId) throws Exception{
+
+
+	protected SupplyOrder createSupplyOrder(RetailscmUserContext userContext, String buyerId, String title, BigDecimal totalAmount) throws Exception{
 
 		SupplyOrder supplyOrder = new SupplyOrder();
 		
@@ -980,66 +842,42 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		supplyOrder.setBuyer(buyer);		
 		supplyOrder.setTitle(title);		
 		supplyOrder.setTotalAmount(totalAmount);		
-		SupplyOrderConfirmation  confirmation = new SupplyOrderConfirmation();
-		confirmation.setId(confirmationId);		
-		supplyOrder.setConfirmation(confirmation);		
-		SupplyOrderApproval  approval = new SupplyOrderApproval();
-		approval.setId(approvalId);		
-		supplyOrder.setApproval(approval);		
-		SupplyOrderProcessing  processing = new SupplyOrderProcessing();
-		processing.setId(processingId);		
-		supplyOrder.setProcessing(processing);		
-		SupplyOrderPicking  picking = new SupplyOrderPicking();
-		picking.setId(pickingId);		
-		supplyOrder.setPicking(picking);		
-		SupplyOrderShipment  shipment = new SupplyOrderShipment();
-		shipment.setId(shipmentId);		
-		supplyOrder.setShipment(shipment);		
-		SupplyOrderDelivery  delivery = new SupplyOrderDelivery();
-		delivery.setId(deliveryId);		
-		supplyOrder.setDelivery(delivery);		
 		supplyOrder.setLastUpdateTime(userContext.now());
 	
 		
 		return supplyOrder;
-	
-		
+
+
 	}
-	
+
 	protected SupplyOrder createIndexedSupplyOrder(String id, int version){
 
 		SupplyOrder supplyOrder = new SupplyOrder();
 		supplyOrder.setId(id);
 		supplyOrder.setVersion(version);
-		return supplyOrder;			
-		
+		return supplyOrder;
+
 	}
-	
-	protected void checkParamsForRemovingSupplyOrderList(RetailscmUserContext userContext, String goodsSupplierId, 
+
+	protected void checkParamsForRemovingSupplyOrderList(RetailscmUserContext userContext, String goodsSupplierId,
 			String supplyOrderIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-		for(String supplyOrderIdItem: supplyOrderIds){
-			userContext.getChecker().checkIdOfSupplyOrder(supplyOrderIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		for(String supplyOrderIdItem: supplyOrderIds){
 			checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-		
+
 	}
-	public  GoodsSupplier removeSupplyOrderList(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier removeSupplyOrderList(RetailscmUserContext userContext, String goodsSupplierId,
 			String supplyOrderIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingSupplyOrderList(userContext, goodsSupplierId,  supplyOrderIds, tokensExpr);
-			
-			
+
+
 			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-			synchronized(goodsSupplier){ 
+			synchronized(goodsSupplier){
 				//Will be good when the goodsSupplier loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				goodsSupplierDaoOf(userContext).planToRemoveSupplyOrderList(goodsSupplier, supplyOrderIds, allTokens());
@@ -1048,65 +886,65 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 				return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, 
+
+	protected void checkParamsForRemovingSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsSupplier( goodsSupplierId);
 		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
 		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	public  GoodsSupplier removeSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier removeSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingSupplyOrder(userContext,goodsSupplierId, supplyOrderId, supplyOrderVersion,tokensExpr);
-		
+
 		SupplyOrder supplyOrder = createIndexedSupplyOrder(supplyOrderId, supplyOrderVersion);
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsSupplier.removeSupplyOrder( supplyOrder );		
+			goodsSupplier.removeSupplyOrder( supplyOrder );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
 			deleteRelationInGraph(userContext, supplyOrder);
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, 
+	protected void checkParamsForCopyingSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsSupplier( goodsSupplierId);
 		checkerOf(userContext).checkIdOfSupplyOrder(supplyOrderId);
 		checkerOf(userContext).checkVersionOfSupplyOrder(supplyOrderVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	public  GoodsSupplier copySupplyOrderFrom(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier copySupplyOrderFrom(RetailscmUserContext userContext, String goodsSupplierId,
 		String supplyOrderId, int supplyOrderVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingSupplyOrder(userContext,goodsSupplierId, supplyOrderId, supplyOrderVersion,tokensExpr);
-		
+
 		SupplyOrder supplyOrder = createIndexedSupplyOrder(supplyOrderId, supplyOrderVersion);
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			supplyOrder.updateLastUpdateTime(userContext.now());
-			
-			goodsSupplier.copySupplyOrderFrom( supplyOrder );		
+
+			goodsSupplier.copySupplyOrderFrom( supplyOrder );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
 			
 			userContext.getManagerGroup().getSupplyOrderManager().onNewInstanceCreated(userContext, (SupplyOrder)goodsSupplier.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String supplyOrderId, int supplyOrderVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1126,32 +964,32 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	
+
 	public  GoodsSupplier updateSupplyOrder(RetailscmUserContext userContext, String goodsSupplierId, String supplyOrderId, int supplyOrderVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingSupplyOrder(userContext, goodsSupplierId, supplyOrderId, supplyOrderVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withSupplyOrderList().searchSupplyOrderListWith(SupplyOrder.ID_PROPERTY, "eq", supplyOrderId).done();
-		
-		
-		
+
+
+
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, loadTokens);
-		
-		synchronized(goodsSupplier){ 
+
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//goodsSupplier.removeSupplyOrder( supplyOrder );	
+			//goodsSupplier.removeSupplyOrder( supplyOrder );
 			//make changes to AcceleraterAccount.
 			SupplyOrder supplyOrderIndex = createIndexedSupplyOrder(supplyOrderId, supplyOrderVersion);
-		
+
 			SupplyOrder supplyOrder = goodsSupplier.findTheSupplyOrder(supplyOrderIndex);
 			if(supplyOrder == null){
 				throw new GoodsSupplierManagerException(supplyOrder+" is NOT FOUND" );
 			}
-			
+
 			supplyOrder.changeProperty(property, newValueExpr);
 			supplyOrder.updateLastUpdateTime(userContext.now());
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withSupplyOrderList().done());
@@ -1162,12 +1000,12 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	/*
 
 	*/
-	
 
 
 
-	protected void checkParamsForAddingAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String countryCenterId, String retailStoreId,String [] tokensExpr) throws Exception{
-		
+
+	protected void checkParamsForAddingAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String countryCenterId, String retailStoreId,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 
 		
@@ -1193,31 +1031,31 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
 
-	
+
 	}
-	public  GoodsSupplier addAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String countryCenterId, String retailStoreId, String [] tokensExpr) throws Exception
-	{	
-		
+	public  GoodsSupplier addAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String countryCenterId, String retailStoreId, String [] tokensExpr) throws Exception
+	{
+
 		checkParamsForAddingAccountSet(userContext,goodsSupplierId,name, yearSet, effectiveDate, accountingSystem, domesticCurrencyCode, domesticCurrencyName, openingBank, accountNumber, countryCenterId, retailStoreId,tokensExpr);
-		
+
 		AccountSet accountSet = createAccountSet(userContext,name, yearSet, effectiveDate, accountingSystem, domesticCurrencyCode, domesticCurrencyName, openingBank, accountNumber, countryCenterId, retailStoreId);
-		
-		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+
+		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, emptyOptions());
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsSupplier.addAccountSet( accountSet );		
+			goodsSupplier.addAccountSet( accountSet );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withAccountSetList().done());
 			
 			userContext.getManagerGroup().getAccountSetManager().onNewInstanceCreated(userContext, accountSet);
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingAccountSetProperties(RetailscmUserContext userContext, String goodsSupplierId,String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,long accountNumber,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingAccountSetProperties(RetailscmUserContext userContext, String goodsSupplierId,String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,String accountNumber,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		checkerOf(userContext).checkIdOfAccountSet(id);
-		
+
 		checkerOf(userContext).checkNameOfAccountSet( name);
 		checkerOf(userContext).checkYearSetOfAccountSet( yearSet);
 		checkerOf(userContext).checkEffectiveDateOfAccountSet( effectiveDate);
@@ -1228,25 +1066,25 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		checkerOf(userContext).checkAccountNumberOfAccountSet( accountNumber);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-		
+
 	}
-	public  GoodsSupplier updateAccountSetProperties(RetailscmUserContext userContext, String goodsSupplierId, String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,long accountNumber, String [] tokensExpr) throws Exception
-	{	
+	public  GoodsSupplier updateAccountSetProperties(RetailscmUserContext userContext, String goodsSupplierId, String id,String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,String accountNumber, String [] tokensExpr) throws Exception
+	{
 		checkParamsForUpdatingAccountSetProperties(userContext,goodsSupplierId,id,name,yearSet,effectiveDate,accountingSystem,domesticCurrencyCode,domesticCurrencyName,openingBank,accountNumber,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withAccountSetListList()
 				.searchAccountSetListWith(AccountSet.ID_PROPERTY, "is", id).done();
-		
+
 		GoodsSupplier goodsSupplierToUpdate = loadGoodsSupplier(userContext, goodsSupplierId, options);
-		
+
 		if(goodsSupplierToUpdate.getAccountSetList().isEmpty()){
 			throw new GoodsSupplierManagerException("AccountSet is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		AccountSet item = goodsSupplierToUpdate.getAccountSetList().first();
-		
+
 		item.updateName( name );
 		item.updateYearSet( yearSet );
 		item.updateEffectiveDate( effectiveDate );
@@ -1256,16 +1094,16 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		item.updateOpeningBank( openingBank );
 		item.updateAccountNumber( accountNumber );
 
-		
+
 		//checkParamsForAddingAccountSet(userContext,goodsSupplierId,name, code, used,tokensExpr);
 		GoodsSupplier goodsSupplier = saveGoodsSupplier(userContext, goodsSupplierToUpdate, tokens().withAccountSetList().done());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected AccountSet createAccountSet(RetailscmUserContext userContext, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String countryCenterId, String retailStoreId) throws Exception{
+
+
+	protected AccountSet createAccountSet(RetailscmUserContext userContext, String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String countryCenterId, String retailStoreId) throws Exception{
 
 		AccountSet accountSet = new AccountSet();
 		
@@ -1288,44 +1126,38 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	
 		
 		return accountSet;
-	
-		
+
+
 	}
-	
+
 	protected AccountSet createIndexedAccountSet(String id, int version){
 
 		AccountSet accountSet = new AccountSet();
 		accountSet.setId(id);
 		accountSet.setVersion(version);
-		return accountSet;			
-		
+		return accountSet;
+
 	}
-	
-	protected void checkParamsForRemovingAccountSetList(RetailscmUserContext userContext, String goodsSupplierId, 
+
+	protected void checkParamsForRemovingAccountSetList(RetailscmUserContext userContext, String goodsSupplierId,
 			String accountSetIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfGoodsSupplier(goodsSupplierId);
-		for(String accountSetIdItem: accountSetIds){
-			userContext.getChecker().checkIdOfAccountSet(accountSetIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfGoodsSupplier(goodsSupplierId);
 		for(String accountSetIdItem: accountSetIds){
 			checkerOf(userContext).checkIdOfAccountSet(accountSetIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-		
+
 	}
-	public  GoodsSupplier removeAccountSetList(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier removeAccountSetList(RetailscmUserContext userContext, String goodsSupplierId,
 			String accountSetIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingAccountSetList(userContext, goodsSupplierId,  accountSetIds, tokensExpr);
-			
-			
+
+
 			GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-			synchronized(goodsSupplier){ 
+			synchronized(goodsSupplier){
 				//Will be good when the goodsSupplier loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				goodsSupplierDaoOf(userContext).planToRemoveAccountSetList(goodsSupplier, accountSetIds, allTokens());
@@ -1334,65 +1166,65 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 				return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingAccountSet(RetailscmUserContext userContext, String goodsSupplierId, 
+
+	protected void checkParamsForRemovingAccountSet(RetailscmUserContext userContext, String goodsSupplierId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsSupplier( goodsSupplierId);
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		checkerOf(userContext).checkVersionOfAccountSet(accountSetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	public  GoodsSupplier removeAccountSet(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier removeAccountSet(RetailscmUserContext userContext, String goodsSupplierId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingAccountSet(userContext,goodsSupplierId, accountSetId, accountSetVersion,tokensExpr);
-		
+
 		AccountSet accountSet = createIndexedAccountSet(accountSetId, accountSetVersion);
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsSupplier.removeAccountSet( accountSet );		
+			goodsSupplier.removeAccountSet( accountSet );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withAccountSetList().done());
 			deleteRelationInGraph(userContext, accountSet);
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingAccountSet(RetailscmUserContext userContext, String goodsSupplierId, 
+	protected void checkParamsForCopyingAccountSet(RetailscmUserContext userContext, String goodsSupplierId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsSupplier( goodsSupplierId);
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		checkerOf(userContext).checkVersionOfAccountSet(accountSetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	public  GoodsSupplier copyAccountSetFrom(RetailscmUserContext userContext, String goodsSupplierId, 
+	public  GoodsSupplier copyAccountSetFrom(RetailscmUserContext userContext, String goodsSupplierId,
 		String accountSetId, int accountSetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingAccountSet(userContext,goodsSupplierId, accountSetId, accountSetVersion,tokensExpr);
-		
+
 		AccountSet accountSet = createIndexedAccountSet(accountSetId, accountSetVersion);
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, allTokens());
-		synchronized(goodsSupplier){ 
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			accountSet.updateLastUpdateTime(userContext.now());
-			
-			goodsSupplier.copyAccountSetFrom( accountSet );		
+
+			goodsSupplier.copyAccountSetFrom( accountSet );
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withAccountSetList().done());
 			
 			userContext.getManagerGroup().getAccountSetManager().onNewInstanceCreated(userContext, (AccountSet)goodsSupplier.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,goodsSupplier, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1431,37 +1263,37 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 		
 		if(AccountSet.ACCOUNT_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkAccountNumberOfAccountSet(parseLong(newValueExpr));
+			checkerOf(userContext).checkAccountNumberOfAccountSet(parseString(newValueExpr));
 		}
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsSupplierManagerException.class);
-	
+
 	}
-	
+
 	public  GoodsSupplier updateAccountSet(RetailscmUserContext userContext, String goodsSupplierId, String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingAccountSet(userContext, goodsSupplierId, accountSetId, accountSetVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withAccountSetList().searchAccountSetListWith(AccountSet.ID_PROPERTY, "eq", accountSetId).done();
-		
-		
-		
+
+
+
 		GoodsSupplier goodsSupplier = loadGoodsSupplier(userContext, goodsSupplierId, loadTokens);
-		
-		synchronized(goodsSupplier){ 
+
+		synchronized(goodsSupplier){
 			//Will be good when the goodsSupplier loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//goodsSupplier.removeAccountSet( accountSet );	
+			//goodsSupplier.removeAccountSet( accountSet );
 			//make changes to AcceleraterAccount.
 			AccountSet accountSetIndex = createIndexedAccountSet(accountSetId, accountSetVersion);
-		
+
 			AccountSet accountSet = goodsSupplier.findTheAccountSet(accountSetIndex);
 			if(accountSet == null){
 				throw new GoodsSupplierManagerException(accountSet+" is NOT FOUND" );
 			}
-			
+
 			accountSet.changeProperty(property, newValueExpr);
 			accountSet.updateLastUpdateTime(userContext.now());
 			goodsSupplier = saveGoodsSupplier(userContext, goodsSupplier, tokens().withAccountSetList().done());
@@ -1472,14 +1304,20 @@ public class GoodsSupplierManagerImpl extends CustomRetailscmCheckerManager impl
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, GoodsSupplier newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

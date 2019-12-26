@@ -85,10 +85,6 @@ public interface SkuDAO extends BaseDAO{
 	public Sku planToRemoveGoodsListWithRetailStoreOrder(Sku sku, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String skuId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect Sku with packaging in Goods
-	public Sku planToRemoveGoodsListWithPackaging(Sku sku, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String skuId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<Sku> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

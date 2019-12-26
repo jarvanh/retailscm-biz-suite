@@ -8,24 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.userapp.UserApp;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 
-import com.doublechaintech.retailscm.secuserblocking.CandidateSecUserBlocking;
 import com.doublechaintech.retailscm.userdomain.CandidateUserDomain;
 
 import com.doublechaintech.retailscm.secuser.SecUser;
@@ -36,28 +25,31 @@ import com.doublechaintech.retailscm.secuser.SecUser;
 
 
 public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements SecUserManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "SecUser";
 	@Override
 	public SecUserDAO daoOf(RetailscmUserContext userContext) {
 		return secUserDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws SecUserManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new SecUserManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected SecUser saveSecUser(RetailscmUserContext userContext, SecUser secUser, String [] tokensExpr) throws Exception{	
  		//return getSecUserDAO().save(secUser, tokens);
@@ -179,7 +171,6 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		addAction(userContext, secUser, tokens,"@copy","cloneSecUser","cloneSecUser/"+secUser.getId()+"/","main","primary");
 		
 		addAction(userContext, secUser, tokens,"sec_user.transfer_to_domain","transferToAnotherDomain","transferToAnotherDomain/"+secUser.getId()+"/","main","primary");
-		addAction(userContext, secUser, tokens,"sec_user.transfer_to_blocking","transferToAnotherBlocking","transferToAnotherBlocking/"+secUser.getId()+"/","main","primary");
 		addAction(userContext, secUser, tokens,"sec_user.addUserApp","addUserApp","addUserApp/"+secUser.getId()+"/","userAppList","primary");
 		addAction(userContext, secUser, tokens,"sec_user.removeUserApp","removeUserApp","removeUserApp/"+secUser.getId()+"/","userAppList","primary");
 		addAction(userContext, secUser, tokens,"sec_user.updateUserApp","updateUserApp","updateUserApp/"+secUser.getId()+"/","userAppList","primary");
@@ -199,31 +190,14 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	
 
-<<<<<<< HEAD
-
-	public SecUser createSecUser(RetailscmUserContext userContext,String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId) throws Exception
-=======
-	public SecUser createSecUser(RetailscmUserContext userContext, String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String domainId,String blockingId) throws Exception
-	//public SecUser createSecUser(RetailscmUserContext userContext,String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId, String blockingId) throws Exception
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+	public SecUser createSecUser(RetailscmUserContext userContext, String login,String mobile,String email,String pwd,String weixinOpenid,String weixinAppid,String accessToken,int verificationCode,DateTime verificationCodeExpire,DateTime lastLoginTime,String domainId) throws Exception
+	//public SecUser createSecUser(RetailscmUserContext userContext,String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, String domainId) throws Exception
 	{
-		
-		
 
 		
 
-<<<<<<< HEAD
-		userContext.getChecker().checkLoginOfSecUser(login);
-		userContext.getChecker().checkMobileOfSecUser(mobile);
-		userContext.getChecker().checkEmailOfSecUser(email);
-		userContext.getChecker().checkPwdOfSecUser(pwd);
-		userContext.getChecker().checkWeixinOpenidOfSecUser(weixinOpenid);
-		userContext.getChecker().checkWeixinAppidOfSecUser(weixinAppid);
-		userContext.getChecker().checkAccessTokenOfSecUser(accessToken);
-		userContext.getChecker().checkVerificationCodeOfSecUser(verificationCode);
-		userContext.getChecker().checkVerificationCodeExpireOfSecUser(verificationCodeExpire);
-		userContext.getChecker().checkLastLoginTimeOfSecUser(lastLoginTime);
-=======
+		
+
 		checkerOf(userContext).checkLoginOfSecUser(login);
 		checkerOf(userContext).checkMobileOfSecUser(mobile);
 		checkerOf(userContext).checkEmailOfSecUser(email);
@@ -234,7 +208,6 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		checkerOf(userContext).checkVerificationCodeOfSecUser(verificationCode);
 		checkerOf(userContext).checkVerificationCodeExpireOfSecUser(verificationCodeExpire);
 		checkerOf(userContext).checkLastLoginTimeOfSecUser(lastLoginTime);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 
@@ -256,25 +229,20 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		secUser.setDomain(domain);
 		
 		
-			
-		SecUserBlocking blocking = loadSecUserBlocking(userContext, blockingId,emptyOptions());
-		secUser.setBlocking(blocking);
-		
-		
 
 		secUser = saveSecUser(userContext, secUser, emptyOptions());
 		
 		onNewInstanceCreated(userContext, secUser);
 		return secUser;
 
-		
+
 	}
-	protected SecUser createNewSecUser() 
+	protected SecUser createNewSecUser()
 	{
-		
-		return new SecUser();		
+
+		return new SecUser();
 	}
-	
+
 	protected void checkParamsForUpdatingSecUser(RetailscmUserContext userContext,String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -306,15 +274,6 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		if(SecUser.ACCESS_TOKEN_PROPERTY.equals(property)){
 			checkerOf(userContext).checkAccessTokenOfSecUser(parseString(newValueExpr));
 		}
-		if(SecUser.WEIXIN_OPENID_PROPERTY.equals(property)){
-			userContext.getChecker().checkWeixinOpenidOfSecUser(parseString(newValueExpr));
-		}
-		if(SecUser.WEIXIN_APPID_PROPERTY.equals(property)){
-			userContext.getChecker().checkWeixinAppidOfSecUser(parseString(newValueExpr));
-		}
-		if(SecUser.ACCESS_TOKEN_PROPERTY.equals(property)){
-			userContext.getChecker().checkAccessTokenOfSecUser(parseString(newValueExpr));
-		}
 		if(SecUser.VERIFICATION_CODE_PROPERTY.equals(property)){
 			checkerOf(userContext).checkVerificationCodeOfSecUser(parseInt(newValueExpr));
 		}
@@ -325,33 +284,31 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 			checkerOf(userContext).checkLastLoginTimeOfSecUser(parseTimestamp(newValueExpr));
 		}		
 
-				
-
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public SecUser clone(RetailscmUserContext userContext, String fromSecUserId) throws Exception{
-		
+
 		return secUserDaoOf(userContext).clone(fromSecUserId, this.allTokens());
 	}
-	
-	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser) throws Exception 
+
+	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser) throws Exception
 	{
 		return internalSaveSecUser(userContext, secUser, allTokens());
 
 	}
-	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser, Map<String,Object> options) throws Exception 
+	public SecUser internalSaveSecUser(RetailscmUserContext userContext, SecUser secUser, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingSecUser(userContext, secUserId, secUserVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(secUser){ 
+
+
+		synchronized(secUser){
 			//will be good when the secUser loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SecUser.
@@ -360,23 +317,23 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 			}
 			secUser = saveSecUser(userContext, secUser, options);
 			return secUser;
-			
+
 		}
 
 	}
-	
-	public SecUser updateSecUser(RetailscmUserContext userContext,String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SecUser updateSecUser(RetailscmUserContext userContext,String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSecUser(userContext, secUserId, secUserVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
 		if(secUser.getVersion() != secUserVersion){
 			String message = "The target version("+secUser.getVersion()+") is not equals to version("+secUserVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(secUser){ 
+		synchronized(secUser){
 			//will be good when the secUser loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SecUser.
@@ -388,21 +345,21 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 
 	}
-	
-	public SecUser updateSecUserProperty(RetailscmUserContext userContext,String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SecUser updateSecUserProperty(RetailscmUserContext userContext,String secUserId, int secUserVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSecUser(userContext, secUserId, secUserVersion, property, newValueExpr, tokensExpr);
-		
+
 		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
 		if(secUser.getVersion() != secUserVersion){
 			String message = "The target version("+secUser.getVersion()+") is not equals to version("+secUserVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(secUser){ 
+		synchronized(secUser){
 			//will be good when the secUser loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SecUser.
-			
+
 			secUser.changeProperty(property, newValueExpr);
 			
 			secUser = saveSecUser(userContext, secUser, tokens().done());
@@ -414,7 +371,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected SecUserTokens tokens(){
 		return SecUserTokens.start();
 	}
@@ -437,11 +394,11 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	protected void checkParamsForTransferingAnotherDomain(RetailscmUserContext userContext, String secUserId, String anotherDomainId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfSecUser(secUserId);
  		checkerOf(userContext).checkIdOfUserDomain(anotherDomainId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
- 		
+
  	}
  	public SecUser transferToAnotherDomain(RetailscmUserContext userContext, String secUserId, String anotherDomainId) throws Exception
  	{
@@ -460,10 +417,10 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateUserDomain requestCandidateDomain(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateUserDomain result = new CandidateUserDomain();
@@ -473,7 +430,7 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -483,109 +440,42 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
- 	protected void checkParamsForTransferingAnotherBlocking(RetailscmUserContext userContext, String secUserId, String anotherBlockingId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfSecUser(secUserId);
- 		checkerOf(userContext).checkIdOfSecUserBlocking(anotherBlockingId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
- 		
- 	}
- 	public SecUser transferToAnotherBlocking(RetailscmUserContext userContext, String secUserId, String anotherBlockingId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherBlocking(userContext, secUserId,anotherBlockingId);
- 
-		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());	
-		synchronized(secUser){
-			//will be good when the secUser loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			SecUserBlocking blocking = loadSecUserBlocking(userContext, anotherBlockingId, emptyOptions());		
-			secUser.updateBlocking(blocking);		
-			secUser = saveSecUser(userContext, secUser, emptyOptions());
-			
-			return present(userContext,secUser, allTokens());
-			
-		}
 
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateSecUserBlocking requestCandidateBlocking(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateSecUserBlocking result = new CandidateSecUserBlocking();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("who");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<SecUserBlocking> candidateList = secUserBlockingDaoOf(userContext).requestCandidateSecUserBlockingForSecUser(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
  //--------------------------------------------------------------
 	
-	 	
+
  	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
  	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getUserDomainDAO().load(newDomainId, options);
-=======
+
  		return userDomainDaoOf(userContext).load(newDomainId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
  	}
  	
- 	
- 	
-	
-	 	
- 	protected SecUserBlocking loadSecUserBlocking(RetailscmUserContext userContext, String newBlockingId, Map<String,Object> options) throws Exception
- 	{
-		
-<<<<<<< HEAD
- 		return userContext.getDAOGroup().getSecUserBlockingDAO().load(newBlockingId, options);
-=======
- 		return secUserBlockingDaoOf(userContext).load(newBlockingId, options);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
- 	}
- 	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String secUserId, int secUserVersion) throws Exception {
-		//deleteInternal(userContext, secUserId, secUserVersion);		
+		//deleteInternal(userContext, secUserId, secUserVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String secUserId, int secUserVersion) throws Exception{
-			
+
 		secUserDaoOf(userContext).delete(secUserId, secUserVersion);
 	}
-	
+
 	public SecUser forgetByAll(RetailscmUserContext userContext, String secUserId, int secUserVersion) throws Exception {
-		return forgetByAllInternal(userContext, secUserId, secUserVersion);		
+		return forgetByAllInternal(userContext, secUserId, secUserVersion);
 	}
 	protected SecUser forgetByAllInternal(RetailscmUserContext userContext,
 			String secUserId, int secUserVersion) throws Exception{
-			
+
 		return secUserDaoOf(userContext).disconnectFromAll(secUserId, secUserVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -596,8 +486,8 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return secUserDaoOf(userContext).deleteAll();
 	}
@@ -606,29 +496,29 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	//disconnect SecUser with object_id in UserApp
 	protected SecUser breakWithUserAppByObjectId(RetailscmUserContext userContext, String secUserId, String objectIdId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
 
-			synchronized(secUser){ 
+			synchronized(secUser){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				secUserDaoOf(userContext).planToRemoveUserAppListWithObjectId(secUser, objectIdId, this.emptyOptions());
 
 				secUser = saveSecUser(userContext, secUser, tokens().withUserAppList().done());
 				return secUser;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingUserApp(RetailscmUserContext userContext, String secUserId, String title, String appIcon, boolean fullAccess, String permission, String objectType, String objectId, String location,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfSecUser(secUserId);
 
 		
@@ -648,20 +538,20 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 
-	
+
 	}
 	public  SecUser addUserApp(RetailscmUserContext userContext, String secUserId, String title, String appIcon, boolean fullAccess, String permission, String objectType, String objectId, String location, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingUserApp(userContext,secUserId,title, appIcon, fullAccess, permission, objectType, objectId, location,tokensExpr);
-		
+
 		UserApp userApp = createUserApp(userContext,title, appIcon, fullAccess, permission, objectType, objectId, location);
-		
-		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-		synchronized(secUser){ 
+
+		SecUser secUser = loadSecUser(userContext, secUserId, emptyOptions());
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			secUser.addUserApp( userApp );		
+			secUser.addUserApp( userApp );
 			secUser = saveSecUser(userContext, secUser, tokens().withUserAppList().done());
 			
 			userContext.getManagerGroup().getUserAppManager().onNewInstanceCreated(userContext, userApp);
@@ -669,10 +559,10 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 	}
 	protected void checkParamsForUpdatingUserAppProperties(RetailscmUserContext userContext, String secUserId,String id,String title,String appIcon,boolean fullAccess,String permission,String objectType,String objectId,String location,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		checkerOf(userContext).checkIdOfUserApp(id);
-		
+
 		checkerOf(userContext).checkTitleOfUserApp( title);
 		checkerOf(userContext).checkAppIconOfUserApp( appIcon);
 		checkerOf(userContext).checkFullAccessOfUserApp( fullAccess);
@@ -682,25 +572,25 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		checkerOf(userContext).checkLocationOfUserApp( location);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-		
+
 	}
 	public  SecUser updateUserAppProperties(RetailscmUserContext userContext, String secUserId, String id,String title,String appIcon,boolean fullAccess,String permission,String objectType,String objectId,String location, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingUserAppProperties(userContext,secUserId,id,title,appIcon,fullAccess,permission,objectType,objectId,location,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withUserAppListList()
 				.searchUserAppListWith(UserApp.ID_PROPERTY, "is", id).done();
-		
+
 		SecUser secUserToUpdate = loadSecUser(userContext, secUserId, options);
-		
+
 		if(secUserToUpdate.getUserAppList().isEmpty()){
 			throw new SecUserManagerException("UserApp is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		UserApp item = secUserToUpdate.getUserAppList().first();
-		
+
 		item.updateTitle( title );
 		item.updateAppIcon( appIcon );
 		item.updateFullAccess( fullAccess );
@@ -709,15 +599,15 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		item.updateObjectId( objectId );
 		item.updateLocation( location );
 
-		
+
 		//checkParamsForAddingUserApp(userContext,secUserId,name, code, used,tokensExpr);
 		SecUser secUser = saveSecUser(userContext, secUserToUpdate, tokens().withUserAppList().done());
-		synchronized(secUser){ 
+		synchronized(secUser){
 			return present(userContext,secUser, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected UserApp createUserApp(RetailscmUserContext userContext, String title, String appIcon, boolean fullAccess, String permission, String objectType, String objectId, String location) throws Exception{
 
 		UserApp userApp = new UserApp();
@@ -733,44 +623,38 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		
 		return userApp;
-	
-		
+
+
 	}
-	
+
 	protected UserApp createIndexedUserApp(String id, int version){
 
 		UserApp userApp = new UserApp();
 		userApp.setId(id);
 		userApp.setVersion(version);
-		return userApp;			
-		
+		return userApp;
+
 	}
-	
-	protected void checkParamsForRemovingUserAppList(RetailscmUserContext userContext, String secUserId, 
+
+	protected void checkParamsForRemovingUserAppList(RetailscmUserContext userContext, String secUserId,
 			String userAppIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		for(String userAppIdItem: userAppIds){
-			userContext.getChecker().checkIdOfUserApp(userAppIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		for(String userAppIdItem: userAppIds){
 			checkerOf(userContext).checkIdOfUserApp(userAppIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-		
+
 	}
-	public  SecUser removeUserAppList(RetailscmUserContext userContext, String secUserId, 
+	public  SecUser removeUserAppList(RetailscmUserContext userContext, String secUserId,
 			String userAppIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingUserAppList(userContext, secUserId,  userAppIds, tokensExpr);
-			
-			
+
+
 			SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-			synchronized(secUser){ 
+			synchronized(secUser){
 				//Will be good when the secUser loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				secUserDaoOf(userContext).planToRemoveUserAppList(secUser, userAppIds, allTokens());
@@ -779,65 +663,65 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 				return present(userContext,secUser, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingUserApp(RetailscmUserContext userContext, String secUserId, 
+
+	protected void checkParamsForRemovingUserApp(RetailscmUserContext userContext, String secUserId,
 		String userAppId, int userAppVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSecUser( secUserId);
 		checkerOf(userContext).checkIdOfUserApp(userAppId);
 		checkerOf(userContext).checkVersionOfUserApp(userAppVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-	
+
 	}
-	public  SecUser removeUserApp(RetailscmUserContext userContext, String secUserId, 
+	public  SecUser removeUserApp(RetailscmUserContext userContext, String secUserId,
 		String userAppId, int userAppVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingUserApp(userContext,secUserId, userAppId, userAppVersion,tokensExpr);
-		
+
 		UserApp userApp = createIndexedUserApp(userAppId, userAppVersion);
 		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-		synchronized(secUser){ 
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			secUser.removeUserApp( userApp );		
+			secUser.removeUserApp( userApp );
 			secUser = saveSecUser(userContext, secUser, tokens().withUserAppList().done());
 			deleteRelationInGraph(userContext, userApp);
 			return present(userContext,secUser, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingUserApp(RetailscmUserContext userContext, String secUserId, 
+	protected void checkParamsForCopyingUserApp(RetailscmUserContext userContext, String secUserId,
 		String userAppId, int userAppVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSecUser( secUserId);
 		checkerOf(userContext).checkIdOfUserApp(userAppId);
 		checkerOf(userContext).checkVersionOfUserApp(userAppVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-	
+
 	}
-	public  SecUser copyUserAppFrom(RetailscmUserContext userContext, String secUserId, 
+	public  SecUser copyUserAppFrom(RetailscmUserContext userContext, String secUserId,
 		String userAppId, int userAppVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingUserApp(userContext,secUserId, userAppId, userAppVersion,tokensExpr);
-		
+
 		UserApp userApp = createIndexedUserApp(userAppId, userAppVersion);
 		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-		synchronized(secUser){ 
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			secUser.copyUserAppFrom( userApp );		
+
+			secUser.copyUserAppFrom( userApp );
 			secUser = saveSecUser(userContext, secUser, tokens().withUserAppList().done());
 			
 			userContext.getManagerGroup().getUserAppManager().onNewInstanceCreated(userContext, (UserApp)secUser.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,secUser, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingUserApp(RetailscmUserContext userContext, String secUserId, String userAppId, int userAppVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -877,32 +761,32 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-	
+
 	}
-	
+
 	public  SecUser updateUserApp(RetailscmUserContext userContext, String secUserId, String userAppId, int userAppVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingUserApp(userContext, secUserId, userAppId, userAppVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withUserAppList().searchUserAppListWith(UserApp.ID_PROPERTY, "eq", userAppId).done();
-		
-		
-		
+
+
+
 		SecUser secUser = loadSecUser(userContext, secUserId, loadTokens);
-		
-		synchronized(secUser){ 
+
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//secUser.removeUserApp( userApp );	
+			//secUser.removeUserApp( userApp );
 			//make changes to AcceleraterAccount.
 			UserApp userAppIndex = createIndexedUserApp(userAppId, userAppVersion);
-		
+
 			UserApp userApp = secUser.findTheUserApp(userAppIndex);
 			if(userApp == null){
 				throw new SecUserManagerException(userApp+" is NOT FOUND" );
 			}
-			
+
 			userApp.changeProperty(property, newValueExpr);
 			
 			secUser = saveSecUser(userContext, secUser, tokens().withUserAppList().done());
@@ -913,12 +797,12 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingLoginHistory(RetailscmUserContext userContext, String secUserId, String fromIp, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfSecUser(secUserId);
 
 		
@@ -928,20 +812,20 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
 
-	
+
 	}
 	public  SecUser addLoginHistory(RetailscmUserContext userContext, String secUserId, String fromIp, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingLoginHistory(userContext,secUserId,fromIp, description,tokensExpr);
-		
+
 		LoginHistory loginHistory = createLoginHistory(userContext,fromIp, description);
-		
-		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-		synchronized(secUser){ 
+
+		SecUser secUser = loadSecUser(userContext, secUserId, emptyOptions());
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			secUser.addLoginHistory( loginHistory );		
+			secUser.addLoginHistory( loginHistory );
 			secUser = saveSecUser(userContext, secUser, tokens().withLoginHistoryList().done());
 			
 			userContext.getManagerGroup().getLoginHistoryManager().onNewInstanceCreated(userContext, loginHistory);
@@ -949,45 +833,45 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 	}
 	protected void checkParamsForUpdatingLoginHistoryProperties(RetailscmUserContext userContext, String secUserId,String id,String fromIp,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		checkerOf(userContext).checkIdOfLoginHistory(id);
-		
+
 		checkerOf(userContext).checkFromIpOfLoginHistory( fromIp);
 		checkerOf(userContext).checkDescriptionOfLoginHistory( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-		
+
 	}
 	public  SecUser updateLoginHistoryProperties(RetailscmUserContext userContext, String secUserId, String id,String fromIp,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingLoginHistoryProperties(userContext,secUserId,id,fromIp,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withLoginHistoryListList()
 				.searchLoginHistoryListWith(LoginHistory.ID_PROPERTY, "is", id).done();
-		
+
 		SecUser secUserToUpdate = loadSecUser(userContext, secUserId, options);
-		
+
 		if(secUserToUpdate.getLoginHistoryList().isEmpty()){
 			throw new SecUserManagerException("LoginHistory is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		LoginHistory item = secUserToUpdate.getLoginHistoryList().first();
-		
+
 		item.updateFromIp( fromIp );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingLoginHistory(userContext,secUserId,name, code, used,tokensExpr);
 		SecUser secUser = saveSecUser(userContext, secUserToUpdate, tokens().withLoginHistoryList().done());
-		synchronized(secUser){ 
+		synchronized(secUser){
 			return present(userContext,secUser, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected LoginHistory createLoginHistory(RetailscmUserContext userContext, String fromIp, String description) throws Exception{
 
 		LoginHistory loginHistory = new LoginHistory();
@@ -999,44 +883,38 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		
 		return loginHistory;
-	
-		
+
+
 	}
-	
+
 	protected LoginHistory createIndexedLoginHistory(String id, int version){
 
 		LoginHistory loginHistory = new LoginHistory();
 		loginHistory.setId(id);
 		loginHistory.setVersion(version);
-		return loginHistory;			
-		
+		return loginHistory;
+
 	}
-	
-	protected void checkParamsForRemovingLoginHistoryList(RetailscmUserContext userContext, String secUserId, 
+
+	protected void checkParamsForRemovingLoginHistoryList(RetailscmUserContext userContext, String secUserId,
 			String loginHistoryIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfSecUser(secUserId);
-		for(String loginHistoryIdItem: loginHistoryIds){
-			userContext.getChecker().checkIdOfLoginHistory(loginHistoryIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfSecUser(secUserId);
 		for(String loginHistoryIdItem: loginHistoryIds){
 			checkerOf(userContext).checkIdOfLoginHistory(loginHistoryIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-		
+
 	}
-	public  SecUser removeLoginHistoryList(RetailscmUserContext userContext, String secUserId, 
+	public  SecUser removeLoginHistoryList(RetailscmUserContext userContext, String secUserId,
 			String loginHistoryIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingLoginHistoryList(userContext, secUserId,  loginHistoryIds, tokensExpr);
-			
-			
+
+
 			SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-			synchronized(secUser){ 
+			synchronized(secUser){
 				//Will be good when the secUser loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				secUserDaoOf(userContext).planToRemoveLoginHistoryList(secUser, loginHistoryIds, allTokens());
@@ -1045,65 +923,65 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 				return present(userContext,secUser, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingLoginHistory(RetailscmUserContext userContext, String secUserId, 
+
+	protected void checkParamsForRemovingLoginHistory(RetailscmUserContext userContext, String secUserId,
 		String loginHistoryId, int loginHistoryVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSecUser( secUserId);
 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
 		checkerOf(userContext).checkVersionOfLoginHistory(loginHistoryVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-	
+
 	}
-	public  SecUser removeLoginHistory(RetailscmUserContext userContext, String secUserId, 
+	public  SecUser removeLoginHistory(RetailscmUserContext userContext, String secUserId,
 		String loginHistoryId, int loginHistoryVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingLoginHistory(userContext,secUserId, loginHistoryId, loginHistoryVersion,tokensExpr);
-		
+
 		LoginHistory loginHistory = createIndexedLoginHistory(loginHistoryId, loginHistoryVersion);
 		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-		synchronized(secUser){ 
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			secUser.removeLoginHistory( loginHistory );		
+			secUser.removeLoginHistory( loginHistory );
 			secUser = saveSecUser(userContext, secUser, tokens().withLoginHistoryList().done());
 			deleteRelationInGraph(userContext, loginHistory);
 			return present(userContext,secUser, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingLoginHistory(RetailscmUserContext userContext, String secUserId, 
+	protected void checkParamsForCopyingLoginHistory(RetailscmUserContext userContext, String secUserId,
 		String loginHistoryId, int loginHistoryVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfSecUser( secUserId);
 		checkerOf(userContext).checkIdOfLoginHistory(loginHistoryId);
 		checkerOf(userContext).checkVersionOfLoginHistory(loginHistoryVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-	
+
 	}
-	public  SecUser copyLoginHistoryFrom(RetailscmUserContext userContext, String secUserId, 
+	public  SecUser copyLoginHistoryFrom(RetailscmUserContext userContext, String secUserId,
 		String loginHistoryId, int loginHistoryVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingLoginHistory(userContext,secUserId, loginHistoryId, loginHistoryVersion,tokensExpr);
-		
+
 		LoginHistory loginHistory = createIndexedLoginHistory(loginHistoryId, loginHistoryVersion);
 		SecUser secUser = loadSecUser(userContext, secUserId, allTokens());
-		synchronized(secUser){ 
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			secUser.copyLoginHistoryFrom( loginHistory );		
+
+			secUser.copyLoginHistoryFrom( loginHistory );
 			secUser = saveSecUser(userContext, secUser, tokens().withLoginHistoryList().done());
 			
 			userContext.getManagerGroup().getLoginHistoryManager().onNewInstanceCreated(userContext, (LoginHistory)secUser.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,secUser, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingLoginHistory(RetailscmUserContext userContext, String secUserId, String loginHistoryId, int loginHistoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1123,32 +1001,32 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SecUserManagerException.class);
-	
+
 	}
-	
+
 	public  SecUser updateLoginHistory(RetailscmUserContext userContext, String secUserId, String loginHistoryId, int loginHistoryVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingLoginHistory(userContext, secUserId, loginHistoryId, loginHistoryVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withLoginHistoryList().searchLoginHistoryListWith(LoginHistory.ID_PROPERTY, "eq", loginHistoryId).done();
-		
-		
-		
+
+
+
 		SecUser secUser = loadSecUser(userContext, secUserId, loadTokens);
-		
-		synchronized(secUser){ 
+
+		synchronized(secUser){
 			//Will be good when the secUser loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//secUser.removeLoginHistory( loginHistory );	
+			//secUser.removeLoginHistory( loginHistory );
 			//make changes to AcceleraterAccount.
 			LoginHistory loginHistoryIndex = createIndexedLoginHistory(loginHistoryId, loginHistoryVersion);
-		
+
 			LoginHistory loginHistory = secUser.findTheLoginHistory(loginHistoryIndex);
 			if(loginHistory == null){
 				throw new SecUserManagerException(loginHistory+" is NOT FOUND" );
 			}
-			
+
 			loginHistory.changeProperty(property, newValueExpr);
 			
 			secUser = saveSecUser(userContext, secUser, tokens().withLoginHistoryList().done());
@@ -1159,14 +1037,20 @@ public class SecUserManagerImpl extends CustomRetailscmCheckerManager implements
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SecUser newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

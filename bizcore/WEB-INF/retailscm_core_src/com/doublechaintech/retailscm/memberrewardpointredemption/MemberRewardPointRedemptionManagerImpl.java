@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.retailstoremember.CandidateRetailStoreMembe
 
 
 public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheckerManager implements MemberRewardPointRedemptionManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "MemberRewardPointRedemption";
 	@Override
 	public MemberRewardPointRedemptionDAO daoOf(RetailscmUserContext userContext) {
 		return memberRewardPointRedemptionDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws MemberRewardPointRedemptionManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new MemberRewardPointRedemptionManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected MemberRewardPointRedemption saveMemberRewardPointRedemption(RetailscmUserContext userContext, MemberRewardPointRedemption memberRewardPointRedemption, String [] tokensExpr) throws Exception{	
  		//return getMemberRewardPointRedemptionDAO().save(memberRewardPointRedemption, tokens);
@@ -167,7 +161,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	public MemberRewardPointRedemption createMemberRewardPointRedemption(RetailscmUserContext userContext, String name,int point,String ownerId) throws Exception
 	//public MemberRewardPointRedemption createMemberRewardPointRedemption(RetailscmUserContext userContext,String name, int point, String ownerId) throws Exception
 	{
-		
+
 		
 
 		
@@ -193,14 +187,14 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		onNewInstanceCreated(userContext, memberRewardPointRedemption);
 		return memberRewardPointRedemption;
 
-		
+
 	}
-	protected MemberRewardPointRedemption createNewMemberRewardPointRedemption() 
+	protected MemberRewardPointRedemption createNewMemberRewardPointRedemption()
 	{
-		
-		return new MemberRewardPointRedemption();		
+
+		return new MemberRewardPointRedemption();
 	}
-	
+
 	protected void checkParamsForUpdatingMemberRewardPointRedemption(RetailscmUserContext userContext,String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -221,28 +215,28 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public MemberRewardPointRedemption clone(RetailscmUserContext userContext, String fromMemberRewardPointRedemptionId) throws Exception{
-		
+
 		return memberRewardPointRedemptionDaoOf(userContext).clone(fromMemberRewardPointRedemptionId, this.allTokens());
 	}
-	
-	public MemberRewardPointRedemption internalSaveMemberRewardPointRedemption(RetailscmUserContext userContext, MemberRewardPointRedemption memberRewardPointRedemption) throws Exception 
+
+	public MemberRewardPointRedemption internalSaveMemberRewardPointRedemption(RetailscmUserContext userContext, MemberRewardPointRedemption memberRewardPointRedemption) throws Exception
 	{
 		return internalSaveMemberRewardPointRedemption(userContext, memberRewardPointRedemption, allTokens());
 
 	}
-	public MemberRewardPointRedemption internalSaveMemberRewardPointRedemption(RetailscmUserContext userContext, MemberRewardPointRedemption memberRewardPointRedemption, Map<String,Object> options) throws Exception 
+	public MemberRewardPointRedemption internalSaveMemberRewardPointRedemption(RetailscmUserContext userContext, MemberRewardPointRedemption memberRewardPointRedemption, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingMemberRewardPointRedemption(userContext, memberRewardPointRedemptionId, memberRewardPointRedemptionVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(memberRewardPointRedemption){ 
+
+
+		synchronized(memberRewardPointRedemption){
 			//will be good when the memberRewardPointRedemption loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberRewardPointRedemption.
@@ -251,23 +245,23 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 			}
 			memberRewardPointRedemption = saveMemberRewardPointRedemption(userContext, memberRewardPointRedemption, options);
 			return memberRewardPointRedemption;
-			
+
 		}
 
 	}
-	
-	public MemberRewardPointRedemption updateMemberRewardPointRedemption(RetailscmUserContext userContext,String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public MemberRewardPointRedemption updateMemberRewardPointRedemption(RetailscmUserContext userContext,String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingMemberRewardPointRedemption(userContext, memberRewardPointRedemptionId, memberRewardPointRedemptionVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		MemberRewardPointRedemption memberRewardPointRedemption = loadMemberRewardPointRedemption(userContext, memberRewardPointRedemptionId, allTokens());
 		if(memberRewardPointRedemption.getVersion() != memberRewardPointRedemptionVersion){
 			String message = "The target version("+memberRewardPointRedemption.getVersion()+") is not equals to version("+memberRewardPointRedemptionVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(memberRewardPointRedemption){ 
+		synchronized(memberRewardPointRedemption){
 			//will be good when the memberRewardPointRedemption loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberRewardPointRedemption.
@@ -279,21 +273,21 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		}
 
 	}
-	
-	public MemberRewardPointRedemption updateMemberRewardPointRedemptionProperty(RetailscmUserContext userContext,String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public MemberRewardPointRedemption updateMemberRewardPointRedemptionProperty(RetailscmUserContext userContext,String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingMemberRewardPointRedemption(userContext, memberRewardPointRedemptionId, memberRewardPointRedemptionVersion, property, newValueExpr, tokensExpr);
-		
+
 		MemberRewardPointRedemption memberRewardPointRedemption = loadMemberRewardPointRedemption(userContext, memberRewardPointRedemptionId, allTokens());
 		if(memberRewardPointRedemption.getVersion() != memberRewardPointRedemptionVersion){
 			String message = "The target version("+memberRewardPointRedemption.getVersion()+") is not equals to version("+memberRewardPointRedemptionVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(memberRewardPointRedemption){ 
+		synchronized(memberRewardPointRedemption){
 			//will be good when the memberRewardPointRedemption loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to MemberRewardPointRedemption.
-			
+
 			memberRewardPointRedemption.changeProperty(property, newValueExpr);
 			
 			memberRewardPointRedemption = saveMemberRewardPointRedemption(userContext, memberRewardPointRedemption, tokens().done());
@@ -305,7 +299,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected MemberRewardPointRedemptionTokens tokens(){
 		return MemberRewardPointRedemptionTokens.start();
 	}
@@ -326,11 +320,11 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 	
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String memberRewardPointRedemptionId, String anotherOwnerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfMemberRewardPointRedemption(memberRewardPointRedemptionId);
  		checkerOf(userContext).checkIdOfRetailStoreMember(anotherOwnerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(MemberRewardPointRedemptionManagerException.class);
- 		
+
  	}
  	public MemberRewardPointRedemption transferToAnotherOwner(RetailscmUserContext userContext, String memberRewardPointRedemptionId, String anotherOwnerId) throws Exception
  	{
@@ -349,10 +343,10 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreMember requestCandidateOwner(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreMember result = new CandidateRetailStoreMember();
@@ -362,7 +356,7 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -372,42 +366,42 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreMember loadRetailStoreMember(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreMemberDaoOf(userContext).load(newOwnerId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion) throws Exception {
-		//deleteInternal(userContext, memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);		
+		//deleteInternal(userContext, memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion) throws Exception{
-			
+
 		memberRewardPointRedemptionDaoOf(userContext).delete(memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
 	}
-	
+
 	public MemberRewardPointRedemption forgetByAll(RetailscmUserContext userContext, String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion) throws Exception {
-		return forgetByAllInternal(userContext, memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);		
+		return forgetByAllInternal(userContext, memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
 	}
 	protected MemberRewardPointRedemption forgetByAllInternal(RetailscmUserContext userContext,
 			String memberRewardPointRedemptionId, int memberRewardPointRedemptionVersion) throws Exception{
-			
+
 		return memberRewardPointRedemptionDaoOf(userContext).disconnectFromAll(memberRewardPointRedemptionId, memberRewardPointRedemptionVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -418,23 +412,29 @@ public class MemberRewardPointRedemptionManagerImpl extends CustomRetailscmCheck
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return memberRewardPointRedemptionDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, MemberRewardPointRedemption newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

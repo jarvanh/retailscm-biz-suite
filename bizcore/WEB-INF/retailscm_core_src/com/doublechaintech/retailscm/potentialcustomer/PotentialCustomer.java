@@ -814,7 +814,9 @@ public class PotentialCustomer extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getMobile(), getCityServiceCenter(), getCityPartner(), getDescription(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

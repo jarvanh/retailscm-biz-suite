@@ -6,15 +6,6 @@ import java.util.Map;
 import com.terapico.caf.DateTime;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
-<<<<<<< HEAD
-import com.doublechaintech.retailscm.SmartList;
-
-public interface QuickLinkManager{
-
-		
-
-	public QuickLink createQuickLink(RetailscmUserContext userContext, String name, String icon, String imagePath, String linkTarget, String appId) throws Exception;	
-=======
 import com.doublechaintech.retailscm.BaseManager;
 import com.doublechaintech.retailscm.SmartList;
 
@@ -23,7 +14,6 @@ public interface QuickLinkManager extends BaseManager{
 		
 
 	public QuickLink createQuickLink(RetailscmUserContext userContext, String name,String icon,String imagePath,String linkTarget,String appId) throws Exception;	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public QuickLink updateQuickLink(RetailscmUserContext userContext,String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public QuickLink loadQuickLink(RetailscmUserContext userContext, String quickLinkId, String [] tokensExpr) throws Exception;
 	public QuickLink internalSaveQuickLink(RetailscmUserContext userContext, QuickLink quickLink) throws Exception;

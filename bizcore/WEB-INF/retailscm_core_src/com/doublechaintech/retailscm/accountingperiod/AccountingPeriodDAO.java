@@ -57,22 +57,6 @@ public interface AccountingPeriodDAO extends BaseDAO{
 	public AccountingPeriod planToRemoveAccountingDocumentListWithDocumentType(AccountingPeriod accountingPeriod, String documentTypeId, Map<String,Object> options)throws Exception;
 	public int countAccountingDocumentListWithDocumentType(String accountingPeriodId, String documentTypeId, Map<String,Object> options)throws Exception;
 	
-	//disconnect AccountingPeriod with creation in AccountingDocument
-	public AccountingPeriod planToRemoveAccountingDocumentListWithCreation(AccountingPeriod accountingPeriod, String creationId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithCreation(String accountingPeriodId, String creationId, Map<String,Object> options)throws Exception;
-	
-	//disconnect AccountingPeriod with confirmation in AccountingDocument
-	public AccountingPeriod planToRemoveAccountingDocumentListWithConfirmation(AccountingPeriod accountingPeriod, String confirmationId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithConfirmation(String accountingPeriodId, String confirmationId, Map<String,Object> options)throws Exception;
-	
-	//disconnect AccountingPeriod with auditing in AccountingDocument
-	public AccountingPeriod planToRemoveAccountingDocumentListWithAuditing(AccountingPeriod accountingPeriod, String auditingId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithAuditing(String accountingPeriodId, String auditingId, Map<String,Object> options)throws Exception;
-	
-	//disconnect AccountingPeriod with posting in AccountingDocument
-	public AccountingPeriod planToRemoveAccountingDocumentListWithPosting(AccountingPeriod accountingPeriod, String postingId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithPosting(String accountingPeriodId, String postingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<AccountingPeriod> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

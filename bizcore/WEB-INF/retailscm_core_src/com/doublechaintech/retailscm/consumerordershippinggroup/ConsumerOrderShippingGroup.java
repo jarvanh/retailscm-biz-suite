@@ -320,7 +320,9 @@ public class ConsumerOrderShippingGroup extends BaseEntity implements  java.io.S
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getBizOrder(), getAmount(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

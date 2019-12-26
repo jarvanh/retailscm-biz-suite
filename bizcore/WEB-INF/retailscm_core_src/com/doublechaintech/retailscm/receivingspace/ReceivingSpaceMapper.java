@@ -57,7 +57,7 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setContactNumber(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		Long contactNumber = rs.getLong(ReceivingSpaceTable.COLUMN_CONTACT_NUMBER);
+		String contactNumber = rs.getString(ReceivingSpaceTable.COLUMN_CONTACT_NUMBER);
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;

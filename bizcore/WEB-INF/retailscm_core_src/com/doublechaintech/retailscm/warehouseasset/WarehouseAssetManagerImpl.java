@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.warehouse.Warehouse;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.warehouse.CandidateWarehouse;
 
 
 public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager implements WarehouseAssetManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "WarehouseAsset";
 	@Override
 	public WarehouseAssetDAO daoOf(RetailscmUserContext userContext) {
 		return warehouseAssetDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws WarehouseAssetManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new WarehouseAssetManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected WarehouseAsset saveWarehouseAsset(RetailscmUserContext userContext, WarehouseAsset warehouseAsset, String [] tokensExpr) throws Exception{	
  		//return getWarehouseAssetDAO().save(warehouseAsset, tokens);
@@ -167,7 +161,7 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 	public WarehouseAsset createWarehouseAsset(RetailscmUserContext userContext, String name,String position,String ownerId) throws Exception
 	//public WarehouseAsset createWarehouseAsset(RetailscmUserContext userContext,String name, String position, String ownerId) throws Exception
 	{
-		
+
 		
 
 		
@@ -194,14 +188,14 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 		onNewInstanceCreated(userContext, warehouseAsset);
 		return warehouseAsset;
 
-		
+
 	}
-	protected WarehouseAsset createNewWarehouseAsset() 
+	protected WarehouseAsset createNewWarehouseAsset()
 	{
-		
-		return new WarehouseAsset();		
+
+		return new WarehouseAsset();
 	}
-	
+
 	protected void checkParamsForUpdatingWarehouseAsset(RetailscmUserContext userContext,String warehouseAssetId, int warehouseAssetVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -222,28 +216,28 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseAssetManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public WarehouseAsset clone(RetailscmUserContext userContext, String fromWarehouseAssetId) throws Exception{
-		
+
 		return warehouseAssetDaoOf(userContext).clone(fromWarehouseAssetId, this.allTokens());
 	}
-	
-	public WarehouseAsset internalSaveWarehouseAsset(RetailscmUserContext userContext, WarehouseAsset warehouseAsset) throws Exception 
+
+	public WarehouseAsset internalSaveWarehouseAsset(RetailscmUserContext userContext, WarehouseAsset warehouseAsset) throws Exception
 	{
 		return internalSaveWarehouseAsset(userContext, warehouseAsset, allTokens());
 
 	}
-	public WarehouseAsset internalSaveWarehouseAsset(RetailscmUserContext userContext, WarehouseAsset warehouseAsset, Map<String,Object> options) throws Exception 
+	public WarehouseAsset internalSaveWarehouseAsset(RetailscmUserContext userContext, WarehouseAsset warehouseAsset, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingWarehouseAsset(userContext, warehouseAssetId, warehouseAssetVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(warehouseAsset){ 
+
+
+		synchronized(warehouseAsset){
 			//will be good when the warehouseAsset loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to WarehouseAsset.
@@ -252,23 +246,23 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 			}
 			warehouseAsset = saveWarehouseAsset(userContext, warehouseAsset, options);
 			return warehouseAsset;
-			
+
 		}
 
 	}
-	
-	public WarehouseAsset updateWarehouseAsset(RetailscmUserContext userContext,String warehouseAssetId, int warehouseAssetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public WarehouseAsset updateWarehouseAsset(RetailscmUserContext userContext,String warehouseAssetId, int warehouseAssetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingWarehouseAsset(userContext, warehouseAssetId, warehouseAssetVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		WarehouseAsset warehouseAsset = loadWarehouseAsset(userContext, warehouseAssetId, allTokens());
 		if(warehouseAsset.getVersion() != warehouseAssetVersion){
 			String message = "The target version("+warehouseAsset.getVersion()+") is not equals to version("+warehouseAssetVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(warehouseAsset){ 
+		synchronized(warehouseAsset){
 			//will be good when the warehouseAsset loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to WarehouseAsset.
@@ -280,21 +274,21 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 		}
 
 	}
-	
-	public WarehouseAsset updateWarehouseAssetProperty(RetailscmUserContext userContext,String warehouseAssetId, int warehouseAssetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public WarehouseAsset updateWarehouseAssetProperty(RetailscmUserContext userContext,String warehouseAssetId, int warehouseAssetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingWarehouseAsset(userContext, warehouseAssetId, warehouseAssetVersion, property, newValueExpr, tokensExpr);
-		
+
 		WarehouseAsset warehouseAsset = loadWarehouseAsset(userContext, warehouseAssetId, allTokens());
 		if(warehouseAsset.getVersion() != warehouseAssetVersion){
 			String message = "The target version("+warehouseAsset.getVersion()+") is not equals to version("+warehouseAssetVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(warehouseAsset){ 
+		synchronized(warehouseAsset){
 			//will be good when the warehouseAsset loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to WarehouseAsset.
-			
+
 			warehouseAsset.changeProperty(property, newValueExpr);
 			warehouseAsset.updateLastUpdateTime(userContext.now());
 			warehouseAsset = saveWarehouseAsset(userContext, warehouseAsset, tokens().done());
@@ -306,7 +300,7 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected WarehouseAssetTokens tokens(){
 		return WarehouseAssetTokens.start();
 	}
@@ -327,11 +321,11 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String warehouseAssetId, String anotherOwnerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfWarehouseAsset(warehouseAssetId);
  		checkerOf(userContext).checkIdOfWarehouse(anotherOwnerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseAssetManagerException.class);
- 		
+
  	}
  	public WarehouseAsset transferToAnotherOwner(RetailscmUserContext userContext, String warehouseAssetId, String anotherOwnerId) throws Exception
  	{
@@ -350,10 +344,10 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateWarehouse requestCandidateOwner(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateWarehouse result = new CandidateWarehouse();
@@ -363,7 +357,7 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -373,42 +367,42 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Warehouse loadWarehouse(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return warehouseDaoOf(userContext).load(newOwnerId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String warehouseAssetId, int warehouseAssetVersion) throws Exception {
-		//deleteInternal(userContext, warehouseAssetId, warehouseAssetVersion);		
+		//deleteInternal(userContext, warehouseAssetId, warehouseAssetVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String warehouseAssetId, int warehouseAssetVersion) throws Exception{
-			
+
 		warehouseAssetDaoOf(userContext).delete(warehouseAssetId, warehouseAssetVersion);
 	}
-	
+
 	public WarehouseAsset forgetByAll(RetailscmUserContext userContext, String warehouseAssetId, int warehouseAssetVersion) throws Exception {
-		return forgetByAllInternal(userContext, warehouseAssetId, warehouseAssetVersion);		
+		return forgetByAllInternal(userContext, warehouseAssetId, warehouseAssetVersion);
 	}
 	protected WarehouseAsset forgetByAllInternal(RetailscmUserContext userContext,
 			String warehouseAssetId, int warehouseAssetVersion) throws Exception{
-			
+
 		return warehouseAssetDaoOf(userContext).disconnectFromAll(warehouseAssetId, warehouseAssetVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -419,23 +413,29 @@ public class WarehouseAssetManagerImpl extends CustomRetailscmCheckerManager imp
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return warehouseAssetDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, WarehouseAsset newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

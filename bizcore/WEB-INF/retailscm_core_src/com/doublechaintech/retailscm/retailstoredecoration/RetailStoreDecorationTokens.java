@@ -140,7 +140,7 @@ public class RetailStoreDecorationTokens extends CommonTokens{
 	
 	
 	public RetailStoreDecorationTokens searchAllTextOfRetailStoreList(String verb, String value){	
-		String field = "id|name|owner|description";
+		String field = "id|name|telephone|owner|description";
 		addSearchMoreOptions(RETAIL_STORE_LIST,retailStoreListSearchCounter++, field, verb, value);
 		return this;
 	}

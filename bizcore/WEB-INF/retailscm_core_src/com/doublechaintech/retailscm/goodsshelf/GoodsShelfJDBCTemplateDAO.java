@@ -498,21 +498,12 @@ public class GoodsShelfJDBCTemplateDAO extends RetailscmBaseDAOImpl implements G
 			getGoodsShelfStockCountDAO().analyzeGoodsShelfStockCountByShelf(goodsShelfStockCountList, goodsShelf.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return goodsShelf;
 	
 	}	
 	
 		
-=======
-		
-		return goodsShelf;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceGoodsAllocationList(SmartList<GoodsAllocation> goodsAllocationList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;

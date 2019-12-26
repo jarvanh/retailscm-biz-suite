@@ -13,7 +13,6 @@ import com.doublechaintech.retailscm.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.doublechaintech.retailscm.userapp.UserApp;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 
@@ -33,7 +32,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	public static final String VERIFICATION_CODE_EXPIRE_PROPERTY = "verificationCodeExpire";
 	public static final String LAST_LOGIN_TIME_PROPERTY       = "lastLoginTime"     ;
 	public static final String DOMAIN_PROPERTY                = "domain"            ;
-	public static final String BLOCKING_PROPERTY              = "blocking"          ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String USER_APP_LIST                            = "userAppList"       ;
@@ -70,7 +68,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	protected		DateTime            	mVerificationCodeExpire;
 	protected		DateTime            	mLastLoginTime      ;
 	protected		UserDomain          	mDomain             ;
-	protected		SecUserBlocking     	mBlocking           ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -94,32 +91,10 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setDomain( null );
-		setBlocking( null );
 
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public 	SecUser(String login, String mobile, String email, String pwd, String weixinOpenid, String weixinAppid, String accessToken, int verificationCode, DateTime verificationCodeExpire, DateTime lastLoginTime, UserDomain domain, String currentStatus)
-	{
-		setLogin(login);
-		setMobile(mobile);
-		setEmail(email);
-		setPwd(pwd);
-		setWeixinOpenid(weixinOpenid);
-		setWeixinAppid(weixinAppid);
-		setAccessToken(accessToken);
-		setVerificationCode(verificationCode);
-		setVerificationCodeExpire(verificationCodeExpire);
-		setLastLoginTime(lastLoginTime);
-		setDomain(domain);
-		setCurrentStatus(currentStatus);
-
-		this.mUserAppList = new SmartList<UserApp>();
-		this.mLoginHistoryList = new SmartList<LoginHistory>();	
-	}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	
@@ -348,15 +323,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		if(DOMAIN_PROPERTY.equals(property)){
 			return getDomain();
 		}
-		if(BLOCKING_PROPERTY.equals(property)){
-			return getBlocking();
-		}
-<<<<<<< HEAD
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
-		}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		if(USER_APP_LIST.equals(property)){
 			List<BaseEntity> list = getUserAppList().stream().map(item->item).collect(Collectors.toList());
 			return list;
@@ -593,46 +559,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public void setBlocking(SecUserBlocking blocking){
-		this.mBlocking = blocking;;
-	}
-	public SecUserBlocking getBlocking(){
-		return this.mBlocking;
-	}
-	public SecUser updateBlocking(SecUserBlocking blocking){
-		this.mBlocking = blocking;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeBlocking(SecUserBlocking blocking){
-		if(blocking != null) { setBlocking(blocking);}
-	}
-	
-	
-	public void clearBlocking(){
-		setBlocking ( null );
-		this.changed = true;
-	}
-	
-<<<<<<< HEAD
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public SecUser updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
-	}
-	
-	
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -867,7 +793,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	public void collectRefercences(BaseEntity owner, List<BaseEntity> entityList, String internalType){
 
 		addToEntityList(this, entityList, getDomain(), internalType);
-		addToEntityList(this, entityList, getBlocking(), internalType);
 
 		
 	}
@@ -907,7 +832,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, VERIFICATION_CODE_EXPIRE_PROPERTY, getVerificationCodeExpire());
 		appendKeyValuePair(result, LAST_LOGIN_TIME_PROPERTY, getLastLoginTime());
 		appendKeyValuePair(result, DOMAIN_PROPERTY, getDomain());
-		appendKeyValuePair(result, BLOCKING_PROPERTY, getBlocking());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, USER_APP_LIST, getUserAppList());
 		if(!getUserAppList().isEmpty()){
@@ -945,7 +869,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 			dest.setVerificationCodeExpire(getVerificationCodeExpire());
 			dest.setLastLoginTime(getLastLoginTime());
 			dest.setDomain(getDomain());
-			dest.setBlocking(getBlocking());
 			dest.setVersion(getVersion());
 			dest.setUserAppList(getUserAppList());
 			dest.setLoginHistoryList(getLoginHistoryList());
@@ -974,11 +897,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 			dest.mergeVerificationCodeExpire(getVerificationCodeExpire());
 			dest.mergeLastLoginTime(getLastLoginTime());
 			dest.mergeDomain(getDomain());
-			dest.mergeBlocking(getBlocking());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 			dest.mergeUserAppList(getUserAppList());
 			dest.mergeLoginHistoryList(getLoginHistoryList());
@@ -1007,16 +925,14 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 			dest.mergeVerificationCode(getVerificationCode());
 			dest.mergeVerificationCodeExpire(getVerificationCodeExpire());
 			dest.mergeLastLoginTime(getLastLoginTime());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getLogin(), getMobile(), getEmail(), getPwd(), getWeixinOpenid(), getWeixinAppid(), getAccessToken(), getVerificationCode(), getVerificationCodeExpire(), getLastLoginTime(), getDomain(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -1034,9 +950,6 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		stringBuilder.append("\tlastLoginTime='"+getLastLoginTime()+"';");
 		if(getDomain() != null ){
  			stringBuilder.append("\tdomain='UserDomain("+getDomain().getId()+")';");
- 		}
-		if(getBlocking() != null ){
- 			stringBuilder.append("\tblocking='SecUserBlocking("+getBlocking().getId()+")';");
  		}
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

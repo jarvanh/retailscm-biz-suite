@@ -12,7 +12,6 @@ import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.terminationtype.TerminationType;
 import com.doublechaintech.retailscm.terminationreason.TerminationReason;
 
@@ -26,7 +25,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	public static final String COMMENT_PROPERTY               = "comment"           ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
-	public static final String EMPLOYEE_LIST                            = "employeeList"      ;
 
 	public static final String INTERNAL_TYPE="Termination";
 	public String getInternalType(){
@@ -54,7 +52,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
-	protected		SmartList<Employee> 	mEmployeeList       ;
 	
 		
 	public 	Termination(){
@@ -119,10 +116,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		}
 		if(COMMENT_PROPERTY.equals(property)){
 			return getComment();
-		}
-		if(EMPLOYEE_LIST.equals(property)){
-			List<BaseEntity> list = getEmployeeList().stream().map(item->item).collect(Collectors.toList());
-			return list;
 		}
 
     		//other property not include here
@@ -226,113 +219,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	
 	
 
-	public  SmartList<Employee> getEmployeeList(){
-		if(this.mEmployeeList == null){
-			this.mEmployeeList = new SmartList<Employee>();
-			this.mEmployeeList.setListInternalName (EMPLOYEE_LIST );
-			//有名字，便于做权限控制
-		}
-		
-		return this.mEmployeeList;	
-	}
-	public  void setEmployeeList(SmartList<Employee> employeeList){
-		for( Employee employee:employeeList){
-			employee.setTermination(this);
-		}
-
-		this.mEmployeeList = employeeList;
-		this.mEmployeeList.setListInternalName (EMPLOYEE_LIST );
-		
-	}
-	
-	public  void addEmployee(Employee employee){
-		employee.setTermination(this);
-		getEmployeeList().add(employee);
-	}
-	public  void addEmployeeList(SmartList<Employee> employeeList){
-		for( Employee employee:employeeList){
-			employee.setTermination(this);
-		}
-		getEmployeeList().addAll(employeeList);
-	}
-	public  void mergeEmployeeList(SmartList<Employee> employeeList){
-		if(employeeList==null){
-			return;
-		}
-		if(employeeList.isEmpty()){
-			return;
-		}
-		addEmployeeList( employeeList );
-		
-	}
-	public  Employee removeEmployee(Employee employeeIndex){
-		
-		int index = getEmployeeList().indexOf(employeeIndex);
-        if(index < 0){
-        	String message = "Employee("+employeeIndex.getId()+") with version='"+employeeIndex.getVersion()+"' NOT found!";
-            throw new IllegalStateException(message);
-        }
-        Employee employee = getEmployeeList().get(index);        
-        // employee.clearTermination(); //disconnect with Termination
-        employee.clearFromAll(); //disconnect with Termination
-		
-		boolean result = getEmployeeList().planToRemove(employee);
-        if(!result){
-        	String message = "Employee("+employeeIndex.getId()+") with version='"+employeeIndex.getVersion()+"' NOT found!";
-            throw new IllegalStateException(message);
-        }
-        return employee;
-        
-	
-	}
-	//断舍离
-	public  void breakWithEmployee(Employee employee){
-		
-		if(employee == null){
-			return;
-		}
-		employee.setTermination(null);
-		//getEmployeeList().remove();
-	
-	}
-	
-	public  boolean hasEmployee(Employee employee){
-	
-		return getEmployeeList().contains(employee);
-  
-	}
-	
-	public void copyEmployeeFrom(Employee employee) {
-
-		Employee employeeInList = findTheEmployee(employee);
-		Employee newEmployee = new Employee();
-		employeeInList.copyTo(newEmployee);
-		newEmployee.setVersion(0);//will trigger copy
-		getEmployeeList().add(newEmployee);
-		addItemToFlexiableObject(COPIED_CHILD, newEmployee);
-	}
-	
-	public  Employee findTheEmployee(Employee employee){
-		
-		int index =  getEmployeeList().indexOf(employee);
-		//The input parameter must have the same id and version number.
-		if(index < 0){
- 			String message = "Employee("+employee.getId()+") with version='"+employee.getVersion()+"' NOT found!";
-			throw new IllegalStateException(message);
-		}
-		
-		return  getEmployeeList().get(index);
-		//Performance issue when using LinkedList, but it is almost an ArrayList for sure!
-	}
-	
-	public  void cleanUpEmployeeList(){
-		getEmployeeList().clear();
-	}
-	
-	
-	
-
-
 	public void collectRefercences(BaseEntity owner, List<BaseEntity> entityList, String internalType){
 
 		addToEntityList(this, entityList, getReason(), internalType);
@@ -344,7 +230,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	public List<BaseEntity>  collectRefercencesFromLists(String internalType){
 		
 		List<BaseEntity> entityList = new ArrayList<BaseEntity>();
-		collectFromList(this, entityList, getEmployeeList(), internalType);
 
 		return entityList;
 	}
@@ -352,7 +237,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	public  List<SmartList<?>> getAllRelatedLists() {
 		List<SmartList<?>> listOfList = new ArrayList<SmartList<?>>();
 		
-		listOfList.add( getEmployeeList());
 			
 
 		return listOfList;
@@ -367,11 +251,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, TYPE_PROPERTY, getType());
 		appendKeyValuePair(result, COMMENT_PROPERTY, getComment());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
-		appendKeyValuePair(result, EMPLOYEE_LIST, getEmployeeList());
-		if(!getEmployeeList().isEmpty()){
-			appendKeyValuePair(result, "employeeCount", getEmployeeList().getTotalCount());
-			appendKeyValuePair(result, "employeeCurrentPageNumber", getEmployeeList().getCurrentPageNumber());
-		}
 
 		
 		return result;
@@ -391,7 +270,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 			dest.setType(getType());
 			dest.setComment(getComment());
 			dest.setVersion(getVersion());
-			dest.setEmployeeList(getEmployeeList());
 
 		}
 		super.copyTo(baseDest);
@@ -410,7 +288,6 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 			dest.mergeType(getType());
 			dest.mergeComment(getComment());
 			dest.mergeVersion(getVersion());
-			dest.mergeEmployeeList(getEmployeeList());
 
 		}
 		super.copyTo(baseDest);
@@ -432,7 +309,9 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getReason(), getType(), getComment(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

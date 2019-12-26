@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.companytraining.CompanyTraining;
@@ -35,28 +26,31 @@ import com.doublechaintech.retailscm.trainingcoursetype.TrainingCourseType;
 
 
 public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager implements TrainingCourseTypeManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "TrainingCourseType";
 	@Override
 	public TrainingCourseTypeDAO daoOf(RetailscmUserContext userContext) {
 		return trainingCourseTypeDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws TrainingCourseTypeManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new TrainingCourseTypeManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected TrainingCourseType saveTrainingCourseType(RetailscmUserContext userContext, TrainingCourseType trainingCourseType, String [] tokensExpr) throws Exception{	
  		//return getTrainingCourseTypeDAO().save(trainingCourseType, tokens);
@@ -175,7 +169,7 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	public TrainingCourseType createTrainingCourseType(RetailscmUserContext userContext, String code,String companyId,String name,String description) throws Exception
 	//public TrainingCourseType createTrainingCourseType(RetailscmUserContext userContext,String code, String companyId, String name, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -203,14 +197,14 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		onNewInstanceCreated(userContext, trainingCourseType);
 		return trainingCourseType;
 
-		
+
 	}
-	protected TrainingCourseType createNewTrainingCourseType() 
+	protected TrainingCourseType createNewTrainingCourseType()
 	{
-		
-		return new TrainingCourseType();		
+
+		return new TrainingCourseType();
 	}
-	
+
 	protected void checkParamsForUpdatingTrainingCourseType(RetailscmUserContext userContext,String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -234,28 +228,28 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public TrainingCourseType clone(RetailscmUserContext userContext, String fromTrainingCourseTypeId) throws Exception{
-		
+
 		return trainingCourseTypeDaoOf(userContext).clone(fromTrainingCourseTypeId, this.allTokens());
 	}
-	
-	public TrainingCourseType internalSaveTrainingCourseType(RetailscmUserContext userContext, TrainingCourseType trainingCourseType) throws Exception 
+
+	public TrainingCourseType internalSaveTrainingCourseType(RetailscmUserContext userContext, TrainingCourseType trainingCourseType) throws Exception
 	{
 		return internalSaveTrainingCourseType(userContext, trainingCourseType, allTokens());
 
 	}
-	public TrainingCourseType internalSaveTrainingCourseType(RetailscmUserContext userContext, TrainingCourseType trainingCourseType, Map<String,Object> options) throws Exception 
+	public TrainingCourseType internalSaveTrainingCourseType(RetailscmUserContext userContext, TrainingCourseType trainingCourseType, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingTrainingCourseType(userContext, trainingCourseTypeId, trainingCourseTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(trainingCourseType){ 
+
+
+		synchronized(trainingCourseType){
 			//will be good when the trainingCourseType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TrainingCourseType.
@@ -264,23 +258,23 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 			}
 			trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, options);
 			return trainingCourseType;
-			
+
 		}
 
 	}
-	
-	public TrainingCourseType updateTrainingCourseType(RetailscmUserContext userContext,String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TrainingCourseType updateTrainingCourseType(RetailscmUserContext userContext,String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTrainingCourseType(userContext, trainingCourseTypeId, trainingCourseTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
 		if(trainingCourseType.getVersion() != trainingCourseTypeVersion){
 			String message = "The target version("+trainingCourseType.getVersion()+") is not equals to version("+trainingCourseTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(trainingCourseType){ 
+		synchronized(trainingCourseType){
 			//will be good when the trainingCourseType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TrainingCourseType.
@@ -292,21 +286,21 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 
 	}
-	
-	public TrainingCourseType updateTrainingCourseTypeProperty(RetailscmUserContext userContext,String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TrainingCourseType updateTrainingCourseTypeProperty(RetailscmUserContext userContext,String trainingCourseTypeId, int trainingCourseTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTrainingCourseType(userContext, trainingCourseTypeId, trainingCourseTypeVersion, property, newValueExpr, tokensExpr);
-		
+
 		TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
 		if(trainingCourseType.getVersion() != trainingCourseTypeVersion){
 			String message = "The target version("+trainingCourseType.getVersion()+") is not equals to version("+trainingCourseTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(trainingCourseType){ 
+		synchronized(trainingCourseType){
 			//will be good when the trainingCourseType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TrainingCourseType.
-			
+
 			trainingCourseType.changeProperty(property, newValueExpr);
 			
 			trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, tokens().done());
@@ -318,7 +312,7 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected TrainingCourseTypeTokens tokens(){
 		return TrainingCourseTypeTokens.start();
 	}
@@ -340,11 +334,11 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String trainingCourseTypeId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfTrainingCourseType(trainingCourseTypeId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
- 		
+
  	}
  	public TrainingCourseType transferToAnotherCompany(RetailscmUserContext userContext, String trainingCourseTypeId, String anotherCompanyId) throws Exception
  	{
@@ -363,10 +357,10 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -376,7 +370,7 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -386,42 +380,42 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String trainingCourseTypeId, int trainingCourseTypeVersion) throws Exception {
-		//deleteInternal(userContext, trainingCourseTypeId, trainingCourseTypeVersion);		
+		//deleteInternal(userContext, trainingCourseTypeId, trainingCourseTypeVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String trainingCourseTypeId, int trainingCourseTypeVersion) throws Exception{
-			
+
 		trainingCourseTypeDaoOf(userContext).delete(trainingCourseTypeId, trainingCourseTypeVersion);
 	}
-	
+
 	public TrainingCourseType forgetByAll(RetailscmUserContext userContext, String trainingCourseTypeId, int trainingCourseTypeVersion) throws Exception {
-		return forgetByAllInternal(userContext, trainingCourseTypeId, trainingCourseTypeVersion);		
+		return forgetByAllInternal(userContext, trainingCourseTypeId, trainingCourseTypeVersion);
 	}
 	protected TrainingCourseType forgetByAllInternal(RetailscmUserContext userContext,
 			String trainingCourseTypeId, int trainingCourseTypeVersion) throws Exception{
-			
+
 		return trainingCourseTypeDaoOf(userContext).disconnectFromAll(trainingCourseTypeId, trainingCourseTypeVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -432,8 +426,8 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return trainingCourseTypeDaoOf(userContext).deleteAll();
 	}
@@ -442,15 +436,15 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	//disconnect TrainingCourseType with company in CompanyTraining
 	protected TrainingCourseType breakWithCompanyTrainingByCompany(RetailscmUserContext userContext, String trainingCourseTypeId, String companyId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
 
-			synchronized(trainingCourseType){ 
+			synchronized(trainingCourseType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				trainingCourseTypeDaoOf(userContext).planToRemoveCompanyTrainingListWithCompany(trainingCourseType, companyId, this.emptyOptions());
 
 				trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, tokens().withCompanyTrainingList().done());
@@ -460,29 +454,29 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	//disconnect TrainingCourseType with instructor in CompanyTraining
 	protected TrainingCourseType breakWithCompanyTrainingByInstructor(RetailscmUserContext userContext, String trainingCourseTypeId, String instructorId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
 
-			synchronized(trainingCourseType){ 
+			synchronized(trainingCourseType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				trainingCourseTypeDaoOf(userContext).planToRemoveCompanyTrainingListWithInstructor(trainingCourseType, instructorId, this.emptyOptions());
 
 				trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, tokens().withCompanyTrainingList().done());
 				return trainingCourseType;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId, String title, String companyId, String instructorId, Date timeStart, int durationHours,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfTrainingCourseType(trainingCourseTypeId);
 
 		
@@ -498,20 +492,20 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
 
-	
+
 	}
 	public  TrainingCourseType addCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId, String title, String companyId, String instructorId, Date timeStart, int durationHours, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingCompanyTraining(userContext,trainingCourseTypeId,title, companyId, instructorId, timeStart, durationHours,tokensExpr);
-		
+
 		CompanyTraining companyTraining = createCompanyTraining(userContext,title, companyId, instructorId, timeStart, durationHours);
-		
-		TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
-		synchronized(trainingCourseType){ 
+
+		TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, emptyOptions());
+		synchronized(trainingCourseType){
 			//Will be good when the trainingCourseType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			trainingCourseType.addCompanyTraining( companyTraining );		
+			trainingCourseType.addCompanyTraining( companyTraining );
 			trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, tokens().withCompanyTrainingList().done());
 			
 			userContext.getManagerGroup().getCompanyTrainingManager().onNewInstanceCreated(userContext, companyTraining);
@@ -519,47 +513,47 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 	}
 	protected void checkParamsForUpdatingCompanyTrainingProperties(RetailscmUserContext userContext, String trainingCourseTypeId,String id,String title,Date timeStart,int durationHours,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfTrainingCourseType(trainingCourseTypeId);
 		checkerOf(userContext).checkIdOfCompanyTraining(id);
-		
+
 		checkerOf(userContext).checkTitleOfCompanyTraining( title);
 		checkerOf(userContext).checkTimeStartOfCompanyTraining( timeStart);
 		checkerOf(userContext).checkDurationHoursOfCompanyTraining( durationHours);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
-		
+
 	}
 	public  TrainingCourseType updateCompanyTrainingProperties(RetailscmUserContext userContext, String trainingCourseTypeId, String id,String title,Date timeStart,int durationHours, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingCompanyTrainingProperties(userContext,trainingCourseTypeId,id,title,timeStart,durationHours,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withCompanyTrainingListList()
 				.searchCompanyTrainingListWith(CompanyTraining.ID_PROPERTY, "is", id).done();
-		
+
 		TrainingCourseType trainingCourseTypeToUpdate = loadTrainingCourseType(userContext, trainingCourseTypeId, options);
-		
+
 		if(trainingCourseTypeToUpdate.getCompanyTrainingList().isEmpty()){
 			throw new TrainingCourseTypeManagerException("CompanyTraining is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		CompanyTraining item = trainingCourseTypeToUpdate.getCompanyTrainingList().first();
-		
+
 		item.updateTitle( title );
 		item.updateTimeStart( timeStart );
 		item.updateDurationHours( durationHours );
 
-		
+
 		//checkParamsForAddingCompanyTraining(userContext,trainingCourseTypeId,name, code, used,tokensExpr);
 		TrainingCourseType trainingCourseType = saveTrainingCourseType(userContext, trainingCourseTypeToUpdate, tokens().withCompanyTrainingList().done());
-		synchronized(trainingCourseType){ 
+		synchronized(trainingCourseType){
 			return present(userContext,trainingCourseType, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected CompanyTraining createCompanyTraining(RetailscmUserContext userContext, String title, String companyId, String instructorId, Date timeStart, int durationHours) throws Exception{
 
 		CompanyTraining companyTraining = new CompanyTraining();
@@ -578,44 +572,38 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	
 		
 		return companyTraining;
-	
-		
+
+
 	}
-	
+
 	protected CompanyTraining createIndexedCompanyTraining(String id, int version){
 
 		CompanyTraining companyTraining = new CompanyTraining();
 		companyTraining.setId(id);
 		companyTraining.setVersion(version);
-		return companyTraining;			
-		
+		return companyTraining;
+
 	}
-	
-	protected void checkParamsForRemovingCompanyTrainingList(RetailscmUserContext userContext, String trainingCourseTypeId, 
+
+	protected void checkParamsForRemovingCompanyTrainingList(RetailscmUserContext userContext, String trainingCourseTypeId,
 			String companyTrainingIds[],String [] tokensExpr) throws Exception {
-		
-<<<<<<< HEAD
-		userContext.getChecker().checkIdOfTrainingCourseType(trainingCourseTypeId);
-		for(String companyTrainingIdItem: companyTrainingIds){
-			userContext.getChecker().checkIdOfCompanyTraining(companyTrainingIdItem);
-=======
+
 		checkerOf(userContext).checkIdOfTrainingCourseType(trainingCourseTypeId);
 		for(String companyTrainingIdItem: companyTrainingIds){
 			checkerOf(userContext).checkIdOfCompanyTraining(companyTrainingIdItem);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
-		
+
 	}
-	public  TrainingCourseType removeCompanyTrainingList(RetailscmUserContext userContext, String trainingCourseTypeId, 
+	public  TrainingCourseType removeCompanyTrainingList(RetailscmUserContext userContext, String trainingCourseTypeId,
 			String companyTrainingIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingCompanyTrainingList(userContext, trainingCourseTypeId,  companyTrainingIds, tokensExpr);
-			
-			
+
+
 			TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
-			synchronized(trainingCourseType){ 
+			synchronized(trainingCourseType){
 				//Will be good when the trainingCourseType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				trainingCourseTypeDaoOf(userContext).planToRemoveCompanyTrainingList(trainingCourseType, companyTrainingIds, allTokens());
@@ -624,65 +612,65 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 				return present(userContext,trainingCourseType, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId, 
+
+	protected void checkParamsForRemovingCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTrainingCourseType( trainingCourseTypeId);
 		checkerOf(userContext).checkIdOfCompanyTraining(companyTrainingId);
 		checkerOf(userContext).checkVersionOfCompanyTraining(companyTrainingVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
-	
+
 	}
-	public  TrainingCourseType removeCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId, 
+	public  TrainingCourseType removeCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingCompanyTraining(userContext,trainingCourseTypeId, companyTrainingId, companyTrainingVersion,tokensExpr);
-		
+
 		CompanyTraining companyTraining = createIndexedCompanyTraining(companyTrainingId, companyTrainingVersion);
 		TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
-		synchronized(trainingCourseType){ 
+		synchronized(trainingCourseType){
 			//Will be good when the trainingCourseType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			trainingCourseType.removeCompanyTraining( companyTraining );		
+			trainingCourseType.removeCompanyTraining( companyTraining );
 			trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, tokens().withCompanyTrainingList().done());
 			deleteRelationInGraph(userContext, companyTraining);
 			return present(userContext,trainingCourseType, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId, 
+	protected void checkParamsForCopyingCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTrainingCourseType( trainingCourseTypeId);
 		checkerOf(userContext).checkIdOfCompanyTraining(companyTrainingId);
 		checkerOf(userContext).checkVersionOfCompanyTraining(companyTrainingVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
-	
+
 	}
-	public  TrainingCourseType copyCompanyTrainingFrom(RetailscmUserContext userContext, String trainingCourseTypeId, 
+	public  TrainingCourseType copyCompanyTrainingFrom(RetailscmUserContext userContext, String trainingCourseTypeId,
 		String companyTrainingId, int companyTrainingVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingCompanyTraining(userContext,trainingCourseTypeId, companyTrainingId, companyTrainingVersion,tokensExpr);
-		
+
 		CompanyTraining companyTraining = createIndexedCompanyTraining(companyTrainingId, companyTrainingVersion);
 		TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, allTokens());
-		synchronized(trainingCourseType){ 
+		synchronized(trainingCourseType){
 			//Will be good when the trainingCourseType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			companyTraining.updateLastUpdateTime(userContext.now());
-			
-			trainingCourseType.copyCompanyTrainingFrom( companyTraining );		
+
+			trainingCourseType.copyCompanyTrainingFrom( companyTraining );
 			trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, tokens().withCompanyTrainingList().done());
 			
 			userContext.getManagerGroup().getCompanyTrainingManager().onNewInstanceCreated(userContext, (CompanyTraining)trainingCourseType.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,trainingCourseType, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId, String companyTrainingId, int companyTrainingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -706,32 +694,32 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TrainingCourseTypeManagerException.class);
-	
+
 	}
-	
+
 	public  TrainingCourseType updateCompanyTraining(RetailscmUserContext userContext, String trainingCourseTypeId, String companyTrainingId, int companyTrainingVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingCompanyTraining(userContext, trainingCourseTypeId, companyTrainingId, companyTrainingVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withCompanyTrainingList().searchCompanyTrainingListWith(CompanyTraining.ID_PROPERTY, "eq", companyTrainingId).done();
-		
-		
-		
+
+
+
 		TrainingCourseType trainingCourseType = loadTrainingCourseType(userContext, trainingCourseTypeId, loadTokens);
-		
-		synchronized(trainingCourseType){ 
+
+		synchronized(trainingCourseType){
 			//Will be good when the trainingCourseType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//trainingCourseType.removeCompanyTraining( companyTraining );	
+			//trainingCourseType.removeCompanyTraining( companyTraining );
 			//make changes to AcceleraterAccount.
 			CompanyTraining companyTrainingIndex = createIndexedCompanyTraining(companyTrainingId, companyTrainingVersion);
-		
+
 			CompanyTraining companyTraining = trainingCourseType.findTheCompanyTraining(companyTrainingIndex);
 			if(companyTraining == null){
 				throw new TrainingCourseTypeManagerException(companyTraining+" is NOT FOUND" );
 			}
-			
+
 			companyTraining.changeProperty(property, newValueExpr);
 			companyTraining.updateLastUpdateTime(userContext.now());
 			trainingCourseType = saveTrainingCourseType(userContext, trainingCourseType, tokens().withCompanyTrainingList().done());
@@ -742,14 +730,20 @@ public class TrainingCourseTypeManagerImpl extends CustomRetailscmCheckerManager
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, TrainingCourseType newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

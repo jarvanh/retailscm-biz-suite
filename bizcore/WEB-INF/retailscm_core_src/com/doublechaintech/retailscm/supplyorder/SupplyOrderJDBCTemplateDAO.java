@@ -22,29 +22,17 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroup;
 import com.doublechaintech.retailscm.goods.Goods;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItem;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroup;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroupDAO;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplierDAO;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingDAO;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationDAO;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalDAO;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentDAO;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemDAO;
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroupDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingDAO;
 
 
 
@@ -56,66 +44,12 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SupplyOrderDAO{
  
  	
- 	private  SupplyOrderProcessingDAO  supplyOrderProcessingDAO;
- 	public void setSupplyOrderProcessingDAO(SupplyOrderProcessingDAO supplyOrderProcessingDAO){
-	 	this.supplyOrderProcessingDAO = supplyOrderProcessingDAO;
- 	}
- 	public SupplyOrderProcessingDAO getSupplyOrderProcessingDAO(){
-	 	return this.supplyOrderProcessingDAO;
- 	}
- 
- 	
- 	private  SupplyOrderApprovalDAO  supplyOrderApprovalDAO;
- 	public void setSupplyOrderApprovalDAO(SupplyOrderApprovalDAO supplyOrderApprovalDAO){
-	 	this.supplyOrderApprovalDAO = supplyOrderApprovalDAO;
- 	}
- 	public SupplyOrderApprovalDAO getSupplyOrderApprovalDAO(){
-	 	return this.supplyOrderApprovalDAO;
- 	}
- 
- 	
- 	private  SupplyOrderDeliveryDAO  supplyOrderDeliveryDAO;
- 	public void setSupplyOrderDeliveryDAO(SupplyOrderDeliveryDAO supplyOrderDeliveryDAO){
-	 	this.supplyOrderDeliveryDAO = supplyOrderDeliveryDAO;
- 	}
- 	public SupplyOrderDeliveryDAO getSupplyOrderDeliveryDAO(){
-	 	return this.supplyOrderDeliveryDAO;
- 	}
- 
- 	
- 	private  SupplyOrderConfirmationDAO  supplyOrderConfirmationDAO;
- 	public void setSupplyOrderConfirmationDAO(SupplyOrderConfirmationDAO supplyOrderConfirmationDAO){
-	 	this.supplyOrderConfirmationDAO = supplyOrderConfirmationDAO;
- 	}
- 	public SupplyOrderConfirmationDAO getSupplyOrderConfirmationDAO(){
-	 	return this.supplyOrderConfirmationDAO;
- 	}
- 
- 	
- 	private  SupplyOrderPickingDAO  supplyOrderPickingDAO;
- 	public void setSupplyOrderPickingDAO(SupplyOrderPickingDAO supplyOrderPickingDAO){
-	 	this.supplyOrderPickingDAO = supplyOrderPickingDAO;
- 	}
- 	public SupplyOrderPickingDAO getSupplyOrderPickingDAO(){
-	 	return this.supplyOrderPickingDAO;
- 	}
- 
- 	
  	private  GoodsSupplierDAO  goodsSupplierDAO;
  	public void setGoodsSupplierDAO(GoodsSupplierDAO goodsSupplierDAO){
 	 	this.goodsSupplierDAO = goodsSupplierDAO;
  	}
  	public GoodsSupplierDAO getGoodsSupplierDAO(){
 	 	return this.goodsSupplierDAO;
- 	}
- 
- 	
- 	private  SupplyOrderShipmentDAO  supplyOrderShipmentDAO;
- 	public void setSupplyOrderShipmentDAO(SupplyOrderShipmentDAO supplyOrderShipmentDAO){
-	 	this.supplyOrderShipmentDAO = supplyOrderShipmentDAO;
- 	}
- 	public SupplyOrderShipmentDAO getSupplyOrderShipmentDAO(){
-	 	return this.supplyOrderShipmentDAO;
  	}
  
  	
@@ -400,90 +334,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  	
 
  	
-  
-
- 	protected boolean isExtractConfirmationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, SupplyOrderTokens.CONFIRMATION);
- 	}
-
- 	protected boolean isSaveConfirmationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, SupplyOrderTokens.CONFIRMATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractApprovalEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, SupplyOrderTokens.APPROVAL);
- 	}
-
- 	protected boolean isSaveApprovalEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, SupplyOrderTokens.APPROVAL);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractProcessingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, SupplyOrderTokens.PROCESSING);
- 	}
-
- 	protected boolean isSaveProcessingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, SupplyOrderTokens.PROCESSING);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractPickingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, SupplyOrderTokens.PICKING);
- 	}
-
- 	protected boolean isSavePickingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, SupplyOrderTokens.PICKING);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractShipmentEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, SupplyOrderTokens.SHIPMENT);
- 	}
-
- 	protected boolean isSaveShipmentEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, SupplyOrderTokens.SHIPMENT);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractDeliveryEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, SupplyOrderTokens.DELIVERY);
- 	}
-
- 	protected boolean isSaveDeliveryEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, SupplyOrderTokens.DELIVERY);
- 	}
- 	
-
- 	
  
 		
 	
@@ -575,30 +425,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		if(isExtractSellerEnabled(loadOptions)){
 	 		extractSeller(supplyOrder, loadOptions);
  		}
-  	
- 		if(isExtractConfirmationEnabled(loadOptions)){
-	 		extractConfirmation(supplyOrder, loadOptions);
- 		}
-  	
- 		if(isExtractApprovalEnabled(loadOptions)){
-	 		extractApproval(supplyOrder, loadOptions);
- 		}
-  	
- 		if(isExtractProcessingEnabled(loadOptions)){
-	 		extractProcessing(supplyOrder, loadOptions);
- 		}
-  	
- 		if(isExtractPickingEnabled(loadOptions)){
-	 		extractPicking(supplyOrder, loadOptions);
- 		}
-  	
- 		if(isExtractShipmentEnabled(loadOptions)){
-	 		extractShipment(supplyOrder, loadOptions);
- 		}
-  	
- 		if(isExtractDeliveryEnabled(loadOptions)){
-	 		extractDelivery(supplyOrder, loadOptions);
- 		}
  
 		
 		if(isExtractSupplyOrderLineItemListEnabled(loadOptions)){
@@ -671,126 +497,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		GoodsSupplier seller = getGoodsSupplierDAO().load(sellerId,options);
 		if(seller != null){
 			supplyOrder.setSeller(seller);
-		}
-		
- 		
- 		return supplyOrder;
- 	}
- 		
-  
-
- 	protected SupplyOrder extractConfirmation(SupplyOrder supplyOrder, Map<String,Object> options) throws Exception{
-
-		if(supplyOrder.getConfirmation() == null){
-			return supplyOrder;
-		}
-		String confirmationId = supplyOrder.getConfirmation().getId();
-		if( confirmationId == null){
-			return supplyOrder;
-		}
-		SupplyOrderConfirmation confirmation = getSupplyOrderConfirmationDAO().load(confirmationId,options);
-		if(confirmation != null){
-			supplyOrder.setConfirmation(confirmation);
-		}
-		
- 		
- 		return supplyOrder;
- 	}
- 		
-  
-
- 	protected SupplyOrder extractApproval(SupplyOrder supplyOrder, Map<String,Object> options) throws Exception{
-
-		if(supplyOrder.getApproval() == null){
-			return supplyOrder;
-		}
-		String approvalId = supplyOrder.getApproval().getId();
-		if( approvalId == null){
-			return supplyOrder;
-		}
-		SupplyOrderApproval approval = getSupplyOrderApprovalDAO().load(approvalId,options);
-		if(approval != null){
-			supplyOrder.setApproval(approval);
-		}
-		
- 		
- 		return supplyOrder;
- 	}
- 		
-  
-
- 	protected SupplyOrder extractProcessing(SupplyOrder supplyOrder, Map<String,Object> options) throws Exception{
-
-		if(supplyOrder.getProcessing() == null){
-			return supplyOrder;
-		}
-		String processingId = supplyOrder.getProcessing().getId();
-		if( processingId == null){
-			return supplyOrder;
-		}
-		SupplyOrderProcessing processing = getSupplyOrderProcessingDAO().load(processingId,options);
-		if(processing != null){
-			supplyOrder.setProcessing(processing);
-		}
-		
- 		
- 		return supplyOrder;
- 	}
- 		
-  
-
- 	protected SupplyOrder extractPicking(SupplyOrder supplyOrder, Map<String,Object> options) throws Exception{
-
-		if(supplyOrder.getPicking() == null){
-			return supplyOrder;
-		}
-		String pickingId = supplyOrder.getPicking().getId();
-		if( pickingId == null){
-			return supplyOrder;
-		}
-		SupplyOrderPicking picking = getSupplyOrderPickingDAO().load(pickingId,options);
-		if(picking != null){
-			supplyOrder.setPicking(picking);
-		}
-		
- 		
- 		return supplyOrder;
- 	}
- 		
-  
-
- 	protected SupplyOrder extractShipment(SupplyOrder supplyOrder, Map<String,Object> options) throws Exception{
-
-		if(supplyOrder.getShipment() == null){
-			return supplyOrder;
-		}
-		String shipmentId = supplyOrder.getShipment().getId();
-		if( shipmentId == null){
-			return supplyOrder;
-		}
-		SupplyOrderShipment shipment = getSupplyOrderShipmentDAO().load(shipmentId,options);
-		if(shipment != null){
-			supplyOrder.setShipment(shipment);
-		}
-		
- 		
- 		return supplyOrder;
- 	}
- 		
-  
-
- 	protected SupplyOrder extractDelivery(SupplyOrder supplyOrder, Map<String,Object> options) throws Exception{
-
-		if(supplyOrder.getDelivery() == null){
-			return supplyOrder;
-		}
-		String deliveryId = supplyOrder.getDelivery().getId();
-		if( deliveryId == null){
-			return supplyOrder;
-		}
-		SupplyOrderDelivery delivery = getSupplyOrderDeliveryDAO().load(deliveryId,options);
-		if(delivery != null){
-			supplyOrder.setDelivery(delivery);
 		}
 		
  		
@@ -893,21 +599,12 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			getSupplyOrderShippingGroupDAO().analyzeSupplyOrderShippingGroupByBizOrder(supplyOrderShippingGroupList, supplyOrder.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return supplyOrder;
 	
 	}	
 	
 		
-=======
-		
-		return supplyOrder;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceSupplyOrderPaymentGroupList(SmartList<SupplyOrderPaymentGroup> supplyOrderPaymentGroupList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -952,21 +649,12 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 			getSupplyOrderPaymentGroupDAO().analyzeSupplyOrderPaymentGroupByBizOrder(supplyOrderPaymentGroupList, supplyOrder.getId(), options);
 			
 		}
-<<<<<<< HEAD
 		
 		return supplyOrder;
 	
 	}	
 	
 		
-=======
-		
-		return supplyOrder;
-	
-	}	
-	
-		
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected void enhanceGoodsList(SmartList<Goods> goodsList,Map<String,Object> options){
 		//extract multiple list from difference sources
 		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
@@ -1118,306 +806,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		return countWithIds(SupplyOrderTable.COLUMN_SELLER, ids, options);
 	}
  	
-  	
- 	public SmartList<SupplyOrder> findSupplyOrderByConfirmation(String supplyOrderConfirmationId,Map<String,Object> options){
- 	
-  		SmartList<SupplyOrder> resultList = queryWith(SupplyOrderTable.COLUMN_CONFIRMATION, supplyOrderConfirmationId, options, getSupplyOrderMapper());
-		// analyzeSupplyOrderByConfirmation(resultList, supplyOrderConfirmationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<SupplyOrder> findSupplyOrderByConfirmation(String supplyOrderConfirmationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<SupplyOrder> resultList =  queryWithRange(SupplyOrderTable.COLUMN_CONFIRMATION, supplyOrderConfirmationId, options, getSupplyOrderMapper(), start, count);
- 		//analyzeSupplyOrderByConfirmation(resultList, supplyOrderConfirmationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeSupplyOrderByConfirmation(SmartList<SupplyOrder> resultList, String supplyOrderConfirmationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(SupplyOrder.CONFIRMATION_PROPERTY, supplyOrderConfirmationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("供应订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countSupplyOrderByConfirmation(String supplyOrderConfirmationId,Map<String,Object> options){
-
- 		return countWith(SupplyOrderTable.COLUMN_CONFIRMATION, supplyOrderConfirmationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countSupplyOrderByConfirmationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(SupplyOrderTable.COLUMN_CONFIRMATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<SupplyOrder> findSupplyOrderByApproval(String supplyOrderApprovalId,Map<String,Object> options){
- 	
-  		SmartList<SupplyOrder> resultList = queryWith(SupplyOrderTable.COLUMN_APPROVAL, supplyOrderApprovalId, options, getSupplyOrderMapper());
-		// analyzeSupplyOrderByApproval(resultList, supplyOrderApprovalId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<SupplyOrder> findSupplyOrderByApproval(String supplyOrderApprovalId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<SupplyOrder> resultList =  queryWithRange(SupplyOrderTable.COLUMN_APPROVAL, supplyOrderApprovalId, options, getSupplyOrderMapper(), start, count);
- 		//analyzeSupplyOrderByApproval(resultList, supplyOrderApprovalId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeSupplyOrderByApproval(SmartList<SupplyOrder> resultList, String supplyOrderApprovalId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(SupplyOrder.APPROVAL_PROPERTY, supplyOrderApprovalId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("供应订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countSupplyOrderByApproval(String supplyOrderApprovalId,Map<String,Object> options){
-
- 		return countWith(SupplyOrderTable.COLUMN_APPROVAL, supplyOrderApprovalId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countSupplyOrderByApprovalIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(SupplyOrderTable.COLUMN_APPROVAL, ids, options);
-	}
- 	
-  	
- 	public SmartList<SupplyOrder> findSupplyOrderByProcessing(String supplyOrderProcessingId,Map<String,Object> options){
- 	
-  		SmartList<SupplyOrder> resultList = queryWith(SupplyOrderTable.COLUMN_PROCESSING, supplyOrderProcessingId, options, getSupplyOrderMapper());
-		// analyzeSupplyOrderByProcessing(resultList, supplyOrderProcessingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<SupplyOrder> findSupplyOrderByProcessing(String supplyOrderProcessingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<SupplyOrder> resultList =  queryWithRange(SupplyOrderTable.COLUMN_PROCESSING, supplyOrderProcessingId, options, getSupplyOrderMapper(), start, count);
- 		//analyzeSupplyOrderByProcessing(resultList, supplyOrderProcessingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeSupplyOrderByProcessing(SmartList<SupplyOrder> resultList, String supplyOrderProcessingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(SupplyOrder.PROCESSING_PROPERTY, supplyOrderProcessingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("供应订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countSupplyOrderByProcessing(String supplyOrderProcessingId,Map<String,Object> options){
-
- 		return countWith(SupplyOrderTable.COLUMN_PROCESSING, supplyOrderProcessingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countSupplyOrderByProcessingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(SupplyOrderTable.COLUMN_PROCESSING, ids, options);
-	}
- 	
-  	
- 	public SmartList<SupplyOrder> findSupplyOrderByPicking(String supplyOrderPickingId,Map<String,Object> options){
- 	
-  		SmartList<SupplyOrder> resultList = queryWith(SupplyOrderTable.COLUMN_PICKING, supplyOrderPickingId, options, getSupplyOrderMapper());
-		// analyzeSupplyOrderByPicking(resultList, supplyOrderPickingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<SupplyOrder> findSupplyOrderByPicking(String supplyOrderPickingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<SupplyOrder> resultList =  queryWithRange(SupplyOrderTable.COLUMN_PICKING, supplyOrderPickingId, options, getSupplyOrderMapper(), start, count);
- 		//analyzeSupplyOrderByPicking(resultList, supplyOrderPickingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeSupplyOrderByPicking(SmartList<SupplyOrder> resultList, String supplyOrderPickingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(SupplyOrder.PICKING_PROPERTY, supplyOrderPickingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("供应订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countSupplyOrderByPicking(String supplyOrderPickingId,Map<String,Object> options){
-
- 		return countWith(SupplyOrderTable.COLUMN_PICKING, supplyOrderPickingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countSupplyOrderByPickingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(SupplyOrderTable.COLUMN_PICKING, ids, options);
-	}
- 	
-  	
- 	public SmartList<SupplyOrder> findSupplyOrderByShipment(String supplyOrderShipmentId,Map<String,Object> options){
- 	
-  		SmartList<SupplyOrder> resultList = queryWith(SupplyOrderTable.COLUMN_SHIPMENT, supplyOrderShipmentId, options, getSupplyOrderMapper());
-		// analyzeSupplyOrderByShipment(resultList, supplyOrderShipmentId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<SupplyOrder> findSupplyOrderByShipment(String supplyOrderShipmentId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<SupplyOrder> resultList =  queryWithRange(SupplyOrderTable.COLUMN_SHIPMENT, supplyOrderShipmentId, options, getSupplyOrderMapper(), start, count);
- 		//analyzeSupplyOrderByShipment(resultList, supplyOrderShipmentId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeSupplyOrderByShipment(SmartList<SupplyOrder> resultList, String supplyOrderShipmentId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(SupplyOrder.SHIPMENT_PROPERTY, supplyOrderShipmentId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("供应订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countSupplyOrderByShipment(String supplyOrderShipmentId,Map<String,Object> options){
-
- 		return countWith(SupplyOrderTable.COLUMN_SHIPMENT, supplyOrderShipmentId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countSupplyOrderByShipmentIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(SupplyOrderTable.COLUMN_SHIPMENT, ids, options);
-	}
- 	
-  	
- 	public SmartList<SupplyOrder> findSupplyOrderByDelivery(String supplyOrderDeliveryId,Map<String,Object> options){
- 	
-  		SmartList<SupplyOrder> resultList = queryWith(SupplyOrderTable.COLUMN_DELIVERY, supplyOrderDeliveryId, options, getSupplyOrderMapper());
-		// analyzeSupplyOrderByDelivery(resultList, supplyOrderDeliveryId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<SupplyOrder> findSupplyOrderByDelivery(String supplyOrderDeliveryId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<SupplyOrder> resultList =  queryWithRange(SupplyOrderTable.COLUMN_DELIVERY, supplyOrderDeliveryId, options, getSupplyOrderMapper(), start, count);
- 		//analyzeSupplyOrderByDelivery(resultList, supplyOrderDeliveryId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeSupplyOrderByDelivery(SmartList<SupplyOrder> resultList, String supplyOrderDeliveryId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(SupplyOrder.DELIVERY_PROPERTY, supplyOrderDeliveryId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//SupplyOrder.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("供应订单");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(SupplyOrder.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SupplyOrder.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countSupplyOrderByDelivery(String supplyOrderDeliveryId,Map<String,Object> options){
-
- 		return countWith(SupplyOrderTable.COLUMN_DELIVERY, supplyOrderDeliveryId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countSupplyOrderByDeliveryIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(SupplyOrderTable.COLUMN_DELIVERY, ids, options);
-	}
- 	
  	
 		
 		
@@ -1560,7 +948,7 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		return prepareSupplyOrderCreateParameters(supplyOrder);
  	}
  	protected Object[] prepareSupplyOrderUpdateParameters(SupplyOrder supplyOrder){
- 		Object[] parameters = new Object[14];
+ 		Object[] parameters = new Object[8];
   	
  		if(supplyOrder.getBuyer() != null){
  			parameters[0] = supplyOrder.getBuyer().getId();
@@ -1571,40 +959,16 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		}
  
  		parameters[2] = supplyOrder.getTitle();
- 		parameters[3] = supplyOrder.getTotalAmount(); 	
- 		if(supplyOrder.getConfirmation() != null){
- 			parameters[4] = supplyOrder.getConfirmation().getId();
- 		}
-  	
- 		if(supplyOrder.getApproval() != null){
- 			parameters[5] = supplyOrder.getApproval().getId();
- 		}
-  	
- 		if(supplyOrder.getProcessing() != null){
- 			parameters[6] = supplyOrder.getProcessing().getId();
- 		}
-  	
- 		if(supplyOrder.getPicking() != null){
- 			parameters[7] = supplyOrder.getPicking().getId();
- 		}
-  	
- 		if(supplyOrder.getShipment() != null){
- 			parameters[8] = supplyOrder.getShipment().getId();
- 		}
-  	
- 		if(supplyOrder.getDelivery() != null){
- 			parameters[9] = supplyOrder.getDelivery().getId();
- 		}
- 
- 		parameters[10] = supplyOrder.getLastUpdateTime();		
- 		parameters[11] = supplyOrder.nextVersion();
- 		parameters[12] = supplyOrder.getId();
- 		parameters[13] = supplyOrder.getVersion();
+ 		parameters[3] = supplyOrder.getTotalAmount();
+ 		parameters[4] = supplyOrder.getLastUpdateTime();		
+ 		parameters[5] = supplyOrder.nextVersion();
+ 		parameters[6] = supplyOrder.getId();
+ 		parameters[7] = supplyOrder.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareSupplyOrderCreateParameters(SupplyOrder supplyOrder){
-		Object[] parameters = new Object[12];
+		Object[] parameters = new Object[6];
 		String newSupplyOrderId=getNextId();
 		supplyOrder.setId(newSupplyOrderId);
 		parameters[0] =  supplyOrder.getId();
@@ -1620,38 +984,8 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		}
  		
  		parameters[3] = supplyOrder.getTitle();
- 		parameters[4] = supplyOrder.getTotalAmount(); 	
- 		if(supplyOrder.getConfirmation() != null){
- 			parameters[5] = supplyOrder.getConfirmation().getId();
- 		
- 		}
- 		 	
- 		if(supplyOrder.getApproval() != null){
- 			parameters[6] = supplyOrder.getApproval().getId();
- 		
- 		}
- 		 	
- 		if(supplyOrder.getProcessing() != null){
- 			parameters[7] = supplyOrder.getProcessing().getId();
- 		
- 		}
- 		 	
- 		if(supplyOrder.getPicking() != null){
- 			parameters[8] = supplyOrder.getPicking().getId();
- 		
- 		}
- 		 	
- 		if(supplyOrder.getShipment() != null){
- 			parameters[9] = supplyOrder.getShipment().getId();
- 		
- 		}
- 		 	
- 		if(supplyOrder.getDelivery() != null){
- 			parameters[10] = supplyOrder.getDelivery().getId();
- 		
- 		}
- 		
- 		parameters[11] = supplyOrder.getLastUpdateTime();		
+ 		parameters[4] = supplyOrder.getTotalAmount();
+ 		parameters[5] = supplyOrder.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -1666,30 +1000,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
   	
  		if(isSaveSellerEnabled(options)){
 	 		saveSeller(supplyOrder, options);
- 		}
-  	
- 		if(isSaveConfirmationEnabled(options)){
-	 		saveConfirmation(supplyOrder, options);
- 		}
-  	
- 		if(isSaveApprovalEnabled(options)){
-	 		saveApproval(supplyOrder, options);
- 		}
-  	
- 		if(isSaveProcessingEnabled(options)){
-	 		saveProcessing(supplyOrder, options);
- 		}
-  	
- 		if(isSavePickingEnabled(options)){
-	 		savePicking(supplyOrder, options);
- 		}
-  	
- 		if(isSaveShipmentEnabled(options)){
-	 		saveShipment(supplyOrder, options);
- 		}
-  	
- 		if(isSaveDeliveryEnabled(options)){
-	 		saveDelivery(supplyOrder, options);
  		}
  
 		
@@ -1754,108 +1064,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		}
  		
  		getGoodsSupplierDAO().save(supplyOrder.getSeller(),options);
- 		return supplyOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected SupplyOrder saveConfirmation(SupplyOrder supplyOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(supplyOrder.getConfirmation() == null){
- 			return supplyOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderConfirmationDAO().save(supplyOrder.getConfirmation(),options);
- 		return supplyOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected SupplyOrder saveApproval(SupplyOrder supplyOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(supplyOrder.getApproval() == null){
- 			return supplyOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderApprovalDAO().save(supplyOrder.getApproval(),options);
- 		return supplyOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected SupplyOrder saveProcessing(SupplyOrder supplyOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(supplyOrder.getProcessing() == null){
- 			return supplyOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderProcessingDAO().save(supplyOrder.getProcessing(),options);
- 		return supplyOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected SupplyOrder savePicking(SupplyOrder supplyOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(supplyOrder.getPicking() == null){
- 			return supplyOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderPickingDAO().save(supplyOrder.getPicking(),options);
- 		return supplyOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected SupplyOrder saveShipment(SupplyOrder supplyOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(supplyOrder.getShipment() == null){
- 			return supplyOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderShipmentDAO().save(supplyOrder.getShipment(),options);
- 		return supplyOrder;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected SupplyOrder saveDelivery(SupplyOrder supplyOrder, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(supplyOrder.getDelivery() == null){
- 			return supplyOrder;//do nothing when it is null
- 		}
- 		
- 		getSupplyOrderDeliveryDAO().save(supplyOrder.getDelivery(),options);
  		return supplyOrder;
  		
  	}
@@ -2370,50 +1578,6 @@ public class SupplyOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		MultipleAccessKey key = new MultipleAccessKey();
 		key.put(Goods.BIZ_ORDER_PROPERTY, supplyOrderId);
 		key.put(Goods.RETAIL_STORE_ORDER_PROPERTY, retailStoreOrderId);
-		
-		int count = getGoodsDAO().countGoodsWithKey(key, options);
-		return count;
-	}
-	
-	//disconnect SupplyOrder with packaging in Goods
-	public SupplyOrder planToRemoveGoodsListWithPackaging(SupplyOrder supplyOrder, String packagingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-		
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(Goods.BIZ_ORDER_PROPERTY, supplyOrder.getId());
-		key.put(Goods.PACKAGING_PROPERTY, packagingId);
-		
-		SmartList<Goods> externalGoodsList = getGoodsDAO().
-				findGoodsWithKey(key, options);
-		if(externalGoodsList == null){
-			return supplyOrder;
-		}
-		if(externalGoodsList.isEmpty()){
-			return supplyOrder;
-		}
-		
-		for(Goods goodsItem: externalGoodsList){
-			goodsItem.clearPackaging();
-			goodsItem.clearBizOrder();
-			
-		}
-		
-		
-		SmartList<Goods> goodsList = supplyOrder.getGoodsList();		
-		goodsList.addAllToRemoveList(externalGoodsList);
-		return supplyOrder;
-	}
-	
-	public int countGoodsListWithPackaging(String supplyOrderId, String packagingId, Map<String,Object> options)throws Exception{
-				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
-		//the list will not be null here, empty, maybe
-		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
-
-		MultipleAccessKey key = new MultipleAccessKey();
-		key.put(Goods.BIZ_ORDER_PROPERTY, supplyOrderId);
-		key.put(Goods.PACKAGING_PROPERTY, packagingId);
 		
 		int count = getGoodsDAO().countGoodsWithKey(key, options);
 		return count;

@@ -10,12 +10,10 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 import com.doublechaintech.retailscm.userapp.UserApp;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 
 import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingDAO;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 import com.doublechaintech.retailscm.loginhistory.LoginHistoryDAO;
 
@@ -95,14 +93,6 @@ public interface SecUserDAO extends BaseDAO{
  	public Map<String, Integer> countSecUserByDomainIds(String[] ids, Map<String,Object> options);
  	public SmartList<SecUser> findSecUserByDomain(String userDomainId, int start, int count, Map<String,Object> options);
  	public void analyzeSecUserByDomain(SmartList<SecUser> resultList, String userDomainId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<SecUser> findSecUserByBlocking(String secUserBlockingId, Map<String,Object> options);
- 	public int countSecUserByBlocking(String secUserBlockingId, Map<String,Object> options);
- 	public Map<String, Integer> countSecUserByBlockingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<SecUser> findSecUserByBlocking(String secUserBlockingId, int start, int count, Map<String,Object> options);
- 	public void analyzeSecUserByBlocking(SmartList<SecUser> resultList, String secUserBlockingId, Map<String,Object> options);
 
  
  

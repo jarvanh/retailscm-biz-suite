@@ -24,17 +24,8 @@ public class PayingOffTable{
 	static final String COLUMN_AMOUNT = "amount";
 	static final String COLUMN_VERSION = "version";
  
-<<<<<<< HEAD
-	public static final String []ALL_CLOUMNS = {COLUMN_ID, 
-		COLUMN_WHO, COLUMN_PAID_FOR, COLUMN_PAID_TIME, COLUMN_AMOUNT, 
-		COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {
-		COLUMN_WHO, COLUMN_PAID_FOR, COLUMN_PAID_TIME, COLUMN_AMOUNT
-		};
-=======
 	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_WHO,COLUMN_PAID_FOR,COLUMN_PAID_TIME,COLUMN_AMOUNT,COLUMN_VERSION};
 	public static final String []NORMAL_CLOUMNS = {COLUMN_WHO,COLUMN_PAID_FOR,COLUMN_PAID_TIME,COLUMN_AMOUNT};
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	
 }

@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.consumerorder.CandidateConsumerOrder;
 
 
 public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderShippingGroupManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ConsumerOrderShippingGroup";
 	@Override
 	public ConsumerOrderShippingGroupDAO daoOf(RetailscmUserContext userContext) {
 		return consumerOrderShippingGroupDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ConsumerOrderShippingGroupManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ConsumerOrderShippingGroupManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ConsumerOrderShippingGroup saveConsumerOrderShippingGroup(RetailscmUserContext userContext, ConsumerOrderShippingGroup consumerOrderShippingGroup, String [] tokensExpr) throws Exception{	
  		//return getConsumerOrderShippingGroupDAO().save(consumerOrderShippingGroup, tokens);
@@ -167,7 +161,7 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 	public ConsumerOrderShippingGroup createConsumerOrderShippingGroup(RetailscmUserContext userContext, String name,String bizOrderId,BigDecimal amount) throws Exception
 	//public ConsumerOrderShippingGroup createConsumerOrderShippingGroup(RetailscmUserContext userContext,String name, String bizOrderId, BigDecimal amount) throws Exception
 	{
-		
+
 		
 
 		
@@ -193,14 +187,14 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 		onNewInstanceCreated(userContext, consumerOrderShippingGroup);
 		return consumerOrderShippingGroup;
 
-		
+
 	}
-	protected ConsumerOrderShippingGroup createNewConsumerOrderShippingGroup() 
+	protected ConsumerOrderShippingGroup createNewConsumerOrderShippingGroup()
 	{
-		
-		return new ConsumerOrderShippingGroup();		
+
+		return new ConsumerOrderShippingGroup();
 	}
-	
+
 	protected void checkParamsForUpdatingConsumerOrderShippingGroup(RetailscmUserContext userContext,String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -221,28 +215,28 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderShippingGroupManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ConsumerOrderShippingGroup clone(RetailscmUserContext userContext, String fromConsumerOrderShippingGroupId) throws Exception{
-		
+
 		return consumerOrderShippingGroupDaoOf(userContext).clone(fromConsumerOrderShippingGroupId, this.allTokens());
 	}
-	
-	public ConsumerOrderShippingGroup internalSaveConsumerOrderShippingGroup(RetailscmUserContext userContext, ConsumerOrderShippingGroup consumerOrderShippingGroup) throws Exception 
+
+	public ConsumerOrderShippingGroup internalSaveConsumerOrderShippingGroup(RetailscmUserContext userContext, ConsumerOrderShippingGroup consumerOrderShippingGroup) throws Exception
 	{
 		return internalSaveConsumerOrderShippingGroup(userContext, consumerOrderShippingGroup, allTokens());
 
 	}
-	public ConsumerOrderShippingGroup internalSaveConsumerOrderShippingGroup(RetailscmUserContext userContext, ConsumerOrderShippingGroup consumerOrderShippingGroup, Map<String,Object> options) throws Exception 
+	public ConsumerOrderShippingGroup internalSaveConsumerOrderShippingGroup(RetailscmUserContext userContext, ConsumerOrderShippingGroup consumerOrderShippingGroup, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingConsumerOrderShippingGroup(userContext, consumerOrderShippingGroupId, consumerOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(consumerOrderShippingGroup){ 
+
+
+		synchronized(consumerOrderShippingGroup){
 			//will be good when the consumerOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderShippingGroup.
@@ -251,23 +245,23 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 			}
 			consumerOrderShippingGroup = saveConsumerOrderShippingGroup(userContext, consumerOrderShippingGroup, options);
 			return consumerOrderShippingGroup;
-			
+
 		}
 
 	}
-	
-	public ConsumerOrderShippingGroup updateConsumerOrderShippingGroup(RetailscmUserContext userContext,String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderShippingGroup updateConsumerOrderShippingGroup(RetailscmUserContext userContext,String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderShippingGroup(userContext, consumerOrderShippingGroupId, consumerOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ConsumerOrderShippingGroup consumerOrderShippingGroup = loadConsumerOrderShippingGroup(userContext, consumerOrderShippingGroupId, allTokens());
 		if(consumerOrderShippingGroup.getVersion() != consumerOrderShippingGroupVersion){
 			String message = "The target version("+consumerOrderShippingGroup.getVersion()+") is not equals to version("+consumerOrderShippingGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderShippingGroup){ 
+		synchronized(consumerOrderShippingGroup){
 			//will be good when the consumerOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderShippingGroup.
@@ -279,21 +273,21 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 		}
 
 	}
-	
-	public ConsumerOrderShippingGroup updateConsumerOrderShippingGroupProperty(RetailscmUserContext userContext,String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderShippingGroup updateConsumerOrderShippingGroupProperty(RetailscmUserContext userContext,String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderShippingGroup(userContext, consumerOrderShippingGroupId, consumerOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
+
 		ConsumerOrderShippingGroup consumerOrderShippingGroup = loadConsumerOrderShippingGroup(userContext, consumerOrderShippingGroupId, allTokens());
 		if(consumerOrderShippingGroup.getVersion() != consumerOrderShippingGroupVersion){
 			String message = "The target version("+consumerOrderShippingGroup.getVersion()+") is not equals to version("+consumerOrderShippingGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderShippingGroup){ 
+		synchronized(consumerOrderShippingGroup){
 			//will be good when the consumerOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderShippingGroup.
-			
+
 			consumerOrderShippingGroup.changeProperty(property, newValueExpr);
 			
 			consumerOrderShippingGroup = saveConsumerOrderShippingGroup(userContext, consumerOrderShippingGroup, tokens().done());
@@ -305,7 +299,7 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ConsumerOrderShippingGroupTokens tokens(){
 		return ConsumerOrderShippingGroupTokens.start();
 	}
@@ -326,11 +320,11 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderShippingGroupId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfConsumerOrderShippingGroup(consumerOrderShippingGroupId);
  		checkerOf(userContext).checkIdOfConsumerOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderShippingGroupManagerException.class);
- 		
+
  	}
  	public ConsumerOrderShippingGroup transferToAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderShippingGroupId, String anotherBizOrderId) throws Exception
  	{
@@ -349,10 +343,10 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateConsumerOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateConsumerOrder result = new CandidateConsumerOrder();
@@ -362,7 +356,7 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -372,42 +366,42 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return consumerOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion) throws Exception {
-		//deleteInternal(userContext, consumerOrderShippingGroupId, consumerOrderShippingGroupVersion);		
+		//deleteInternal(userContext, consumerOrderShippingGroupId, consumerOrderShippingGroupVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion) throws Exception{
-			
+
 		consumerOrderShippingGroupDaoOf(userContext).delete(consumerOrderShippingGroupId, consumerOrderShippingGroupVersion);
 	}
-	
+
 	public ConsumerOrderShippingGroup forgetByAll(RetailscmUserContext userContext, String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion) throws Exception {
-		return forgetByAllInternal(userContext, consumerOrderShippingGroupId, consumerOrderShippingGroupVersion);		
+		return forgetByAllInternal(userContext, consumerOrderShippingGroupId, consumerOrderShippingGroupVersion);
 	}
 	protected ConsumerOrderShippingGroup forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderShippingGroupId, int consumerOrderShippingGroupVersion) throws Exception{
-			
+
 		return consumerOrderShippingGroupDaoOf(userContext).disconnectFromAll(consumerOrderShippingGroupId, consumerOrderShippingGroupVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -418,23 +412,29 @@ public class ConsumerOrderShippingGroupManagerImpl extends CustomRetailscmChecke
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return consumerOrderShippingGroupDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ConsumerOrderShippingGroup newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

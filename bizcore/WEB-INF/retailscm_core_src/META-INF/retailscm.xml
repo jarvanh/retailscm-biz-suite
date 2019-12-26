@@ -7,12 +7,6 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<!-- Enable Annotation based Declarative Transaction Management -->
-<<<<<<< HEAD
-	
-	
-	
-	<!-- dbcp 2.6 https://commons.apache.org/proper/commons-dbcp/configuration.html -->
-=======
 
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -32,7 +26,6 @@
 
 
 	<!-- dbcp 2.6 https://commons.apache.org/proper/commons-dbcp/configuration.html
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	  <property name="poolName" value="retailscm_connection_pool" />
 	  <property name="dataSourceClassName" value="${app.database.dataSourceClassName}"/>
@@ -51,11 +44,8 @@
 	   </props>
 	  </property>
 	</bean>
-<<<<<<< HEAD
-=======
 	-->
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 	  <constructor-arg ref="hikariConfig" />
 	</bean>
@@ -338,7 +328,7 @@
 	
 
 	<bean id="consumerOrderDAOBase" class="com.doublechaintech.retailscm.consumerorder.ConsumerOrderJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="retailStoreMemberDAO" ref="retailStoreMemberDAO" /><property name="supplyOrderProcessingDAO" ref="supplyOrderProcessingDAO" /><property name="supplyOrderApprovalDAO" ref="supplyOrderApprovalDAO" /><property name="retailStoreDAO" ref="retailStoreDAO" /><property name="supplyOrderDeliveryDAO" ref="supplyOrderDeliveryDAO" /><property name="supplyOrderConfirmationDAO" ref="supplyOrderConfirmationDAO" /><property name="supplyOrderShipmentDAO" ref="supplyOrderShipmentDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="retailStoreMemberDAO" ref="retailStoreMemberDAO" /><property name="retailStoreDAO" ref="retailStoreDAO" />
 		<property name="consumerOrderLineItemDAO" ref="consumerOrderLineItemDAO" />
 		
 		<property name="consumerOrderShippingGroupDAO" ref="consumerOrderShippingGroupDAO" />
@@ -351,36 +341,6 @@
 		
 	</bean>
 	<bean id="consumerOrderDAO" parent="consumerOrderDAOBase"></bean>
-	
-
-	<bean id="consumerOrderConfirmationDAOBase" class="com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<bean id="consumerOrderConfirmationDAO" parent="consumerOrderConfirmationDAOBase"></bean>
-	
-
-	<bean id="consumerOrderApprovalDAOBase" class="com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<bean id="consumerOrderApprovalDAO" parent="consumerOrderApprovalDAOBase"></bean>
-	
-
-	<bean id="consumerOrderProcessingDAOBase" class="com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<bean id="consumerOrderProcessingDAO" parent="consumerOrderProcessingDAOBase"></bean>
-	
-
-	<bean id="consumerOrderShipmentDAOBase" class="com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<bean id="consumerOrderShipmentDAO" parent="consumerOrderShipmentDAOBase"></bean>
-	
-
-	<bean id="consumerOrderDeliveryDAOBase" class="com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<bean id="consumerOrderDeliveryDAO" parent="consumerOrderDeliveryDAOBase"></bean>
 	
 
 	<bean id="consumerOrderLineItemDAOBase" class="com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemJDBCTemplateDAO">
@@ -486,7 +446,7 @@
 	
 
 	<bean id="supplyOrderDAOBase" class="com.doublechaintech.retailscm.supplyorder.SupplyOrderJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="supplyOrderProcessingDAO" ref="supplyOrderProcessingDAO" /><property name="supplyOrderApprovalDAO" ref="supplyOrderApprovalDAO" /><property name="supplyOrderDeliveryDAO" ref="supplyOrderDeliveryDAO" /><property name="supplyOrderConfirmationDAO" ref="supplyOrderConfirmationDAO" /><property name="supplyOrderPickingDAO" ref="supplyOrderPickingDAO" /><property name="goodsSupplierDAO" ref="goodsSupplierDAO" /><property name="supplyOrderShipmentDAO" ref="supplyOrderShipmentDAO" /><property name="retailStoreCountryCenterDAO" ref="retailStoreCountryCenterDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="goodsSupplierDAO" ref="goodsSupplierDAO" /><property name="retailStoreCountryCenterDAO" ref="retailStoreCountryCenterDAO" />
 		<property name="supplyOrderLineItemDAO" ref="supplyOrderLineItemDAO" />
 		
 		<property name="supplyOrderShippingGroupDAO" ref="supplyOrderShippingGroupDAO" />
@@ -497,64 +457,6 @@
 		
 	</bean>
 	<bean id="supplyOrderDAO" parent="supplyOrderDAOBase"></bean>
-	
-
-	<bean id="supplyOrderConfirmationDAOBase" class="com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="consumerOrderDAO" ref="consumerOrderDAO" />
-		
-		<property name="supplyOrderDAO" ref="supplyOrderDAO" />
-		
-	</bean>
-	<bean id="supplyOrderConfirmationDAO" parent="supplyOrderConfirmationDAOBase"></bean>
-	
-
-	<bean id="supplyOrderApprovalDAOBase" class="com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="consumerOrderDAO" ref="consumerOrderDAO" />
-		
-		<property name="supplyOrderDAO" ref="supplyOrderDAO" />
-		
-	</bean>
-	<bean id="supplyOrderApprovalDAO" parent="supplyOrderApprovalDAOBase"></bean>
-	
-
-	<bean id="supplyOrderProcessingDAOBase" class="com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="consumerOrderDAO" ref="consumerOrderDAO" />
-		
-		<property name="supplyOrderDAO" ref="supplyOrderDAO" />
-		
-	</bean>
-	<bean id="supplyOrderProcessingDAO" parent="supplyOrderProcessingDAOBase"></bean>
-	
-
-	<bean id="supplyOrderPickingDAOBase" class="com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="supplyOrderDAO" ref="supplyOrderDAO" />
-		
-	</bean>
-	<bean id="supplyOrderPickingDAO" parent="supplyOrderPickingDAOBase"></bean>
-	
-
-	<bean id="supplyOrderShipmentDAOBase" class="com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="consumerOrderDAO" ref="consumerOrderDAO" />
-		
-		<property name="supplyOrderDAO" ref="supplyOrderDAO" />
-		
-	</bean>
-	<bean id="supplyOrderShipmentDAO" parent="supplyOrderShipmentDAOBase"></bean>
-	
-
-	<bean id="supplyOrderDeliveryDAOBase" class="com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="consumerOrderDAO" ref="consumerOrderDAO" />
-		
-		<property name="supplyOrderDAO" ref="supplyOrderDAO" />
-		
-	</bean>
-	<bean id="supplyOrderDeliveryDAO" parent="supplyOrderDeliveryDAOBase"></bean>
 	
 
 	<bean id="supplyOrderLineItemDAOBase" class="com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemJDBCTemplateDAO">
@@ -576,7 +478,7 @@
 	
 
 	<bean id="retailStoreOrderDAOBase" class="com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="retailStoreOrderProcessingDAO" ref="retailStoreOrderProcessingDAO" /><property name="retailStoreOrderShipmentDAO" ref="retailStoreOrderShipmentDAO" /><property name="retailStoreDAO" ref="retailStoreDAO" /><property name="retailStoreOrderApprovalDAO" ref="retailStoreOrderApprovalDAO" /><property name="retailStoreCountryCenterDAO" ref="retailStoreCountryCenterDAO" /><property name="retailStoreOrderPickingDAO" ref="retailStoreOrderPickingDAO" /><property name="retailStoreOrderConfirmationDAO" ref="retailStoreOrderConfirmationDAO" /><property name="retailStoreOrderDeliveryDAO" ref="retailStoreOrderDeliveryDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="retailStoreDAO" ref="retailStoreDAO" /><property name="retailStoreCountryCenterDAO" ref="retailStoreCountryCenterDAO" />
 		<property name="retailStoreOrderLineItemDAO" ref="retailStoreOrderLineItemDAO" />
 		
 		<property name="retailStoreOrderShippingGroupDAO" ref="retailStoreOrderShippingGroupDAO" />
@@ -587,54 +489,6 @@
 		
 	</bean>
 	<bean id="retailStoreOrderDAO" parent="retailStoreOrderDAOBase"></bean>
-	
-
-	<bean id="retailStoreOrderConfirmationDAOBase" class="com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" />
-		
-	</bean>
-	<bean id="retailStoreOrderConfirmationDAO" parent="retailStoreOrderConfirmationDAOBase"></bean>
-	
-
-	<bean id="retailStoreOrderApprovalDAOBase" class="com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" />
-		
-	</bean>
-	<bean id="retailStoreOrderApprovalDAO" parent="retailStoreOrderApprovalDAOBase"></bean>
-	
-
-	<bean id="retailStoreOrderProcessingDAOBase" class="com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" />
-		
-	</bean>
-	<bean id="retailStoreOrderProcessingDAO" parent="retailStoreOrderProcessingDAOBase"></bean>
-	
-
-	<bean id="retailStoreOrderPickingDAOBase" class="com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" />
-		
-	</bean>
-	<bean id="retailStoreOrderPickingDAO" parent="retailStoreOrderPickingDAOBase"></bean>
-	
-
-	<bean id="retailStoreOrderShipmentDAOBase" class="com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" />
-		
-	</bean>
-	<bean id="retailStoreOrderShipmentDAO" parent="retailStoreOrderShipmentDAOBase"></bean>
-	
-
-	<bean id="retailStoreOrderDeliveryDAOBase" class="com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" />
-		
-	</bean>
-	<bean id="retailStoreOrderDeliveryDAO" parent="retailStoreOrderDeliveryDAOBase"></bean>
 	
 
 	<bean id="retailStoreOrderLineItemDAOBase" class="com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemJDBCTemplateDAO">
@@ -724,19 +578,11 @@
 	
 
 	<bean id="goodsDAOBase" class="com.doublechaintech.retailscm.goods.GoodsJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="receivingSpaceDAO" ref="receivingSpaceDAO" /><property name="goodsAllocationDAO" ref="goodsAllocationDAO" /><property name="smartPalletDAO" ref="smartPalletDAO" /><property name="supplyOrderDAO" ref="supplyOrderDAO" /><property name="goodsPackagingDAO" ref="goodsPackagingDAO" /><property name="transportTaskDAO" ref="transportTaskDAO" /><property name="shippingSpaceDAO" ref="shippingSpaceDAO" /><property name="skuDAO" ref="skuDAO" /><property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" /><property name="retailStoreDAO" ref="retailStoreDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="receivingSpaceDAO" ref="receivingSpaceDAO" /><property name="goodsAllocationDAO" ref="goodsAllocationDAO" /><property name="smartPalletDAO" ref="smartPalletDAO" /><property name="supplyOrderDAO" ref="supplyOrderDAO" /><property name="transportTaskDAO" ref="transportTaskDAO" /><property name="shippingSpaceDAO" ref="shippingSpaceDAO" /><property name="skuDAO" ref="skuDAO" /><property name="retailStoreOrderDAO" ref="retailStoreOrderDAO" /><property name="retailStoreDAO" ref="retailStoreDAO" />
 		<property name="goodsMovementDAO" ref="goodsMovementDAO" />
 		
 	</bean>
 	<bean id="goodsDAO" parent="goodsDAOBase"></bean>
-	
-
-	<bean id="goodsPackagingDAOBase" class="com.doublechaintech.retailscm.goodspackaging.GoodsPackagingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="goodsDAO" ref="goodsDAO" />
-		
-	</bean>
-	<bean id="goodsPackagingDAO" parent="goodsPackagingDAOBase"></bean>
 	
 
 	<bean id="goodsMovementDAOBase" class="com.doublechaintech.retailscm.goodsmovement.GoodsMovementJDBCTemplateDAO">
@@ -864,7 +710,7 @@
 	
 
 	<bean id="accountingDocumentDAOBase" class="com.doublechaintech.retailscm.accountingdocument.AccountingDocumentJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="accountingDocumentPostingDAO" ref="accountingDocumentPostingDAO" /><property name="accountingDocumentConfirmationDAO" ref="accountingDocumentConfirmationDAO" /><property name="accountingDocumentAuditingDAO" ref="accountingDocumentAuditingDAO" /><property name="accountingPeriodDAO" ref="accountingPeriodDAO" /><property name="accountingDocumentTypeDAO" ref="accountingDocumentTypeDAO" /><property name="accountingDocumentCreationDAO" ref="accountingDocumentCreationDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="accountingPeriodDAO" ref="accountingPeriodDAO" /><property name="accountingDocumentTypeDAO" ref="accountingDocumentTypeDAO" />
 		<property name="originalVoucherDAO" ref="originalVoucherDAO" />
 		
 		<property name="accountingDocumentLineDAO" ref="accountingDocumentLineDAO" />
@@ -873,66 +719,10 @@
 	<bean id="accountingDocumentDAO" parent="accountingDocumentDAOBase"></bean>
 	
 
-	<bean id="accountingDocumentCreationDAOBase" class="com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="accountingDocumentDAO" ref="accountingDocumentDAO" />
-		
-	</bean>
-	<bean id="accountingDocumentCreationDAO" parent="accountingDocumentCreationDAOBase"></bean>
-	
-
-	<bean id="accountingDocumentConfirmationDAOBase" class="com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="accountingDocumentDAO" ref="accountingDocumentDAO" />
-		
-	</bean>
-	<bean id="accountingDocumentConfirmationDAO" parent="accountingDocumentConfirmationDAOBase"></bean>
-	
-
-	<bean id="accountingDocumentAuditingDAOBase" class="com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="accountingDocumentDAO" ref="accountingDocumentDAO" />
-		
-	</bean>
-	<bean id="accountingDocumentAuditingDAO" parent="accountingDocumentAuditingDAOBase"></bean>
-	
-
-	<bean id="accountingDocumentPostingDAOBase" class="com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="accountingDocumentDAO" ref="accountingDocumentDAO" />
-		
-	</bean>
-	<bean id="accountingDocumentPostingDAO" parent="accountingDocumentPostingDAOBase"></bean>
-	
-
 	<bean id="originalVoucherDAOBase" class="com.doublechaintech.retailscm.originalvoucher.OriginalVoucherJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="originalVoucherCreationDAO" ref="originalVoucherCreationDAO" /><property name="accountingDocumentDAO" ref="accountingDocumentDAO" /><property name="originalVoucherConfirmationDAO" ref="originalVoucherConfirmationDAO" /><property name="originalVoucherAuditingDAO" ref="originalVoucherAuditingDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="accountingDocumentDAO" ref="accountingDocumentDAO" />
 	</bean>
 	<bean id="originalVoucherDAO" parent="originalVoucherDAOBase"></bean>
-	
-
-	<bean id="originalVoucherCreationDAOBase" class="com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="originalVoucherDAO" ref="originalVoucherDAO" />
-		
-	</bean>
-	<bean id="originalVoucherCreationDAO" parent="originalVoucherCreationDAOBase"></bean>
-	
-
-	<bean id="originalVoucherConfirmationDAOBase" class="com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="originalVoucherDAO" ref="originalVoucherDAO" />
-		
-	</bean>
-	<bean id="originalVoucherConfirmationDAO" parent="originalVoucherConfirmationDAOBase"></bean>
-	
-
-	<bean id="originalVoucherAuditingDAOBase" class="com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="originalVoucherDAO" ref="originalVoucherDAO" />
-		
-	</bean>
-	<bean id="originalVoucherAuditingDAO" parent="originalVoucherAuditingDAOBase"></bean>
 	
 
 	<bean id="accountingDocumentLineDAOBase" class="com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineJDBCTemplateDAO">
@@ -1047,8 +837,6 @@
 
 	<bean id="terminationDAOBase" class="com.doublechaintech.retailscm.termination.TerminationJDBCTemplateDAO">
 		<property name="dataSource" ref="dataSource" /><property name="terminationReasonDAO" ref="terminationReasonDAO" /><property name="terminationTypeDAO" ref="terminationTypeDAO" />
-		<property name="employeeDAO" ref="employeeDAO" />
-		
 	</bean>
 	<bean id="terminationDAO" parent="terminationDAOBase"></bean>
 	
@@ -1060,7 +848,7 @@
 	
 
 	<bean id="employeeDAOBase" class="com.doublechaintech.retailscm.employee.EmployeeJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="professionInterviewDAO" ref="professionInterviewDAO" /><property name="salaryGradeDAO" ref="salaryGradeDAO" /><property name="levelThreeDepartmentDAO" ref="levelThreeDepartmentDAO" /><property name="occupationTypeDAO" ref="occupationTypeDAO" /><property name="offerAcceptanceDAO" ref="offerAcceptanceDAO" /><property name="hrInterviewDAO" ref="hrInterviewDAO" /><property name="jobApplicationDAO" ref="jobApplicationDAO" /><property name="employeeBoardingDAO" ref="employeeBoardingDAO" /><property name="offerApprovalDAO" ref="offerApprovalDAO" /><property name="retailStoreCountryCenterDAO" ref="retailStoreCountryCenterDAO" /><property name="responsibilityTypeDAO" ref="responsibilityTypeDAO" /><property name="terminationDAO" ref="terminationDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="salaryGradeDAO" ref="salaryGradeDAO" /><property name="levelThreeDepartmentDAO" ref="levelThreeDepartmentDAO" /><property name="occupationTypeDAO" ref="occupationTypeDAO" /><property name="retailStoreCountryCenterDAO" ref="retailStoreCountryCenterDAO" /><property name="responsibilityTypeDAO" ref="responsibilityTypeDAO" />
 		<property name="employeeCompanyTrainingDAO" ref="employeeCompanyTrainingDAO" />
 		
 		<property name="employeeSkillDAO" ref="employeeSkillDAO" />
@@ -1087,54 +875,6 @@
 		
 	</bean>
 	<bean id="employeeDAO" parent="employeeDAOBase"></bean>
-	
-
-	<bean id="jobApplicationDAOBase" class="com.doublechaintech.retailscm.jobapplication.JobApplicationJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="employeeDAO" ref="employeeDAO" />
-		
-	</bean>
-	<bean id="jobApplicationDAO" parent="jobApplicationDAOBase"></bean>
-	
-
-	<bean id="professionInterviewDAOBase" class="com.doublechaintech.retailscm.professioninterview.ProfessionInterviewJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="employeeDAO" ref="employeeDAO" />
-		
-	</bean>
-	<bean id="professionInterviewDAO" parent="professionInterviewDAOBase"></bean>
-	
-
-	<bean id="hrInterviewDAOBase" class="com.doublechaintech.retailscm.hrinterview.HrInterviewJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="employeeDAO" ref="employeeDAO" />
-		
-	</bean>
-	<bean id="hrInterviewDAO" parent="hrInterviewDAOBase"></bean>
-	
-
-	<bean id="offerApprovalDAOBase" class="com.doublechaintech.retailscm.offerapproval.OfferApprovalJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="employeeDAO" ref="employeeDAO" />
-		
-	</bean>
-	<bean id="offerApprovalDAO" parent="offerApprovalDAOBase"></bean>
-	
-
-	<bean id="offerAcceptanceDAOBase" class="com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="employeeDAO" ref="employeeDAO" />
-		
-	</bean>
-	<bean id="offerAcceptanceDAO" parent="offerAcceptanceDAOBase"></bean>
-	
-
-	<bean id="employeeBoardingDAOBase" class="com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="employeeDAO" ref="employeeDAO" />
-		
-	</bean>
-	<bean id="employeeBoardingDAO" parent="employeeBoardingDAOBase"></bean>
 	
 
 	<bean id="instructorDAOBase" class="com.doublechaintech.retailscm.instructor.InstructorJDBCTemplateDAO">
@@ -1252,21 +992,13 @@
 	
 
 	<bean id="secUserDAOBase" class="com.doublechaintech.retailscm.secuser.SecUserJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="userDomainDAO" ref="userDomainDAO" /><property name="secUserBlockingDAO" ref="secUserBlockingDAO" />
+		<property name="dataSource" ref="dataSource" /><property name="userDomainDAO" ref="userDomainDAO" />
 		<property name="userAppDAO" ref="userAppDAO" />
 		
 		<property name="loginHistoryDAO" ref="loginHistoryDAO" />
 		
 	</bean>
 	<bean id="secUserDAO" parent="secUserDAOBase"></bean>
-	
-
-	<bean id="secUserBlockingDAOBase" class="com.doublechaintech.retailscm.secuserblocking.SecUserBlockingJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="secUserDAO" ref="secUserDAO" />
-		
-	</bean>
-	<bean id="secUserBlockingDAO" parent="secUserBlockingDAOBase"></bean>
 	
 
 	<bean id="userAppDAOBase" class="com.doublechaintech.retailscm.userapp.UserAppJDBCTemplateDAO">
@@ -1286,16 +1018,7 @@
 	</bean>
 	<bean id="quickLinkDAO" parent="quickLinkDAOBase"></bean>
 	
-<<<<<<< HEAD
-	<bean id="quickLinkDAOBase" class="com.doublechaintech.retailscm.quicklink.QuickLinkJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="userAppDAO" ref="userAppDAO" />
-	</bean>
-	<bean id="quickLinkDAO" parent="quickLinkDAOBase"></bean>	
-	
-	
-=======
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	<bean id="listAccessDAOBase" class="com.doublechaintech.retailscm.listaccess.ListAccessJDBCTemplateDAO">
 		<property name="dataSource" ref="dataSource" /><property name="userAppDAO" ref="userAppDAO" />
 	</bean>
@@ -1365,20 +1088,6 @@
 	</bean>
 	<bean id="candidateElementDAO" parent="candidateElementDAOBase"></bean>
 	
-	
-	<bean id="candidateContainerDAOBase" class="com.doublechaintech.retailscm.candidatecontainer.CandidateContainerJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" />
-		<property name="candidateElementDAO" ref="candidateElementDAO" />
-		
-	</bean>
-	<bean id="candidateContainerDAO" parent="candidateContainerDAOBase"></bean>	
-	
-	
-	<bean id="candidateElementDAOBase" class="com.doublechaintech.retailscm.candidateelement.CandidateElementJDBCTemplateDAO">
-		<property name="dataSource" ref="dataSource" /><property name="candidateContainerDAO" ref="candidateContainerDAO" />
-	</bean>
-	<bean id="candidateElementDAO" parent="candidateElementDAOBase"></bean>	
-	
 
 
 	<bean id="DAOGroupBase" class="com.doublechaintech.retailscm.DAOGroup">
@@ -1408,11 +1117,6 @@
 		<property name="retailStoreClosingDAO" ref="retailStoreClosingDAO"/>
 		<property name="retailStoreMemberDAO" ref="retailStoreMemberDAO"/>
 		<property name="consumerOrderDAO" ref="consumerOrderDAO"/>
-		<property name="consumerOrderConfirmationDAO" ref="consumerOrderConfirmationDAO"/>
-		<property name="consumerOrderApprovalDAO" ref="consumerOrderApprovalDAO"/>
-		<property name="consumerOrderProcessingDAO" ref="consumerOrderProcessingDAO"/>
-		<property name="consumerOrderShipmentDAO" ref="consumerOrderShipmentDAO"/>
-		<property name="consumerOrderDeliveryDAO" ref="consumerOrderDeliveryDAO"/>
 		<property name="consumerOrderLineItemDAO" ref="consumerOrderLineItemDAO"/>
 		<property name="consumerOrderShippingGroupDAO" ref="consumerOrderShippingGroupDAO"/>
 		<property name="consumerOrderPaymentGroupDAO" ref="consumerOrderPaymentGroupDAO"/>
@@ -1429,22 +1133,10 @@
 		<property name="supplierProductDAO" ref="supplierProductDAO"/>
 		<property name="productSupplyDurationDAO" ref="productSupplyDurationDAO"/>
 		<property name="supplyOrderDAO" ref="supplyOrderDAO"/>
-		<property name="supplyOrderConfirmationDAO" ref="supplyOrderConfirmationDAO"/>
-		<property name="supplyOrderApprovalDAO" ref="supplyOrderApprovalDAO"/>
-		<property name="supplyOrderProcessingDAO" ref="supplyOrderProcessingDAO"/>
-		<property name="supplyOrderPickingDAO" ref="supplyOrderPickingDAO"/>
-		<property name="supplyOrderShipmentDAO" ref="supplyOrderShipmentDAO"/>
-		<property name="supplyOrderDeliveryDAO" ref="supplyOrderDeliveryDAO"/>
 		<property name="supplyOrderLineItemDAO" ref="supplyOrderLineItemDAO"/>
 		<property name="supplyOrderShippingGroupDAO" ref="supplyOrderShippingGroupDAO"/>
 		<property name="supplyOrderPaymentGroupDAO" ref="supplyOrderPaymentGroupDAO"/>
 		<property name="retailStoreOrderDAO" ref="retailStoreOrderDAO"/>
-		<property name="retailStoreOrderConfirmationDAO" ref="retailStoreOrderConfirmationDAO"/>
-		<property name="retailStoreOrderApprovalDAO" ref="retailStoreOrderApprovalDAO"/>
-		<property name="retailStoreOrderProcessingDAO" ref="retailStoreOrderProcessingDAO"/>
-		<property name="retailStoreOrderPickingDAO" ref="retailStoreOrderPickingDAO"/>
-		<property name="retailStoreOrderShipmentDAO" ref="retailStoreOrderShipmentDAO"/>
-		<property name="retailStoreOrderDeliveryDAO" ref="retailStoreOrderDeliveryDAO"/>
 		<property name="retailStoreOrderLineItemDAO" ref="retailStoreOrderLineItemDAO"/>
 		<property name="retailStoreOrderShippingGroupDAO" ref="retailStoreOrderShippingGroupDAO"/>
 		<property name="retailStoreOrderPaymentGroupDAO" ref="retailStoreOrderPaymentGroupDAO"/>
@@ -1456,7 +1148,6 @@
 		<property name="stockCountIssueTrackDAO" ref="stockCountIssueTrackDAO"/>
 		<property name="goodsAllocationDAO" ref="goodsAllocationDAO"/>
 		<property name="goodsDAO" ref="goodsDAO"/>
-		<property name="goodsPackagingDAO" ref="goodsPackagingDAO"/>
 		<property name="goodsMovementDAO" ref="goodsMovementDAO"/>
 		<property name="supplierSpaceDAO" ref="supplierSpaceDAO"/>
 		<property name="receivingSpaceDAO" ref="receivingSpaceDAO"/>
@@ -1473,14 +1164,7 @@
 		<property name="accountingPeriodDAO" ref="accountingPeriodDAO"/>
 		<property name="accountingDocumentTypeDAO" ref="accountingDocumentTypeDAO"/>
 		<property name="accountingDocumentDAO" ref="accountingDocumentDAO"/>
-		<property name="accountingDocumentCreationDAO" ref="accountingDocumentCreationDAO"/>
-		<property name="accountingDocumentConfirmationDAO" ref="accountingDocumentConfirmationDAO"/>
-		<property name="accountingDocumentAuditingDAO" ref="accountingDocumentAuditingDAO"/>
-		<property name="accountingDocumentPostingDAO" ref="accountingDocumentPostingDAO"/>
 		<property name="originalVoucherDAO" ref="originalVoucherDAO"/>
-		<property name="originalVoucherCreationDAO" ref="originalVoucherCreationDAO"/>
-		<property name="originalVoucherConfirmationDAO" ref="originalVoucherConfirmationDAO"/>
-		<property name="originalVoucherAuditingDAO" ref="originalVoucherAuditingDAO"/>
 		<property name="accountingDocumentLineDAO" ref="accountingDocumentLineDAO"/>
 		<property name="levelOneDepartmentDAO" ref="levelOneDepartmentDAO"/>
 		<property name="levelTwoDepartmentDAO" ref="levelTwoDepartmentDAO"/>
@@ -1498,12 +1182,6 @@
 		<property name="terminationDAO" ref="terminationDAO"/>
 		<property name="viewDAO" ref="viewDAO"/>
 		<property name="employeeDAO" ref="employeeDAO"/>
-		<property name="jobApplicationDAO" ref="jobApplicationDAO"/>
-		<property name="professionInterviewDAO" ref="professionInterviewDAO"/>
-		<property name="hrInterviewDAO" ref="hrInterviewDAO"/>
-		<property name="offerApprovalDAO" ref="offerApprovalDAO"/>
-		<property name="offerAcceptanceDAO" ref="offerAcceptanceDAO"/>
-		<property name="employeeBoardingDAO" ref="employeeBoardingDAO"/>
 		<property name="instructorDAO" ref="instructorDAO"/>
 		<property name="companyTrainingDAO" ref="companyTrainingDAO"/>
 		<property name="scoringDAO" ref="scoringDAO"/>
@@ -1522,7 +1200,6 @@
 		<property name="userDomainDAO" ref="userDomainDAO"/>
 		<property name="userWhiteListDAO" ref="userWhiteListDAO"/>
 		<property name="secUserDAO" ref="secUserDAO"/>
-		<property name="secUserBlockingDAO" ref="secUserBlockingDAO"/>
 		<property name="userAppDAO" ref="userAppDAO"/>
 		<property name="quickLinkDAO" ref="quickLinkDAO"/>
 		<property name="listAccessDAO" ref="listAccessDAO"/>
@@ -1542,21 +1219,12 @@
 
 
 
-<<<<<<< HEAD
-<!-- 
-
-	各种候选配置，可以选择你更为熟悉的类型
-	Creating TransactionManager Bean, since JDBC we are creating of type 
-		DataSourceTransactionManager 
-		
-=======
 <!--
 
 	各种候选配置，可以选择你更为熟悉的类型
 	Creating TransactionManager Bean, since JDBC we are creating of type
 		DataSourceTransactionManager
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	  <property name="poolName" value="mercatus_connection_pool" />
 	  <property name="dataSourceClassName" value="com.mysql.cj.jdbc.MysqlDataSource"/>
@@ -1575,15 +1243,9 @@
 	   </props>
 	  </property>
 	</bean>
-<<<<<<< HEAD
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" >
-	
-=======
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" >
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		<property name="url" value="${app.database.jdbcURL}" />
 		<property name="username" value="${app.database.username}" />
 		<property name="password" value="${app.database.password}" />
@@ -1593,33 +1255,19 @@
 
 		<property name="testOnBorrow" value="true" />
 		<property name="testWhileIdle" value="true" />
-<<<<<<< HEAD
-		<property name="validationQuery" value="SELECT 1 from sec_user_data" />       
-=======
 		<property name="validationQuery" value="SELECT 1 from sec_user_data" />
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		<property name="removeAbandonedTimeout" value="55" />
 		<property name="removeAbandonedOnBorrow" value="true"/>
 
 	</bean>
-<<<<<<< HEAD
-	
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" >
-	
-=======
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" >
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		<property name="jdbcUrl" value="${app.database.jdbcURL}" />
 		<property name="user" value="${app.database.username}" />
 		<property name="password" value="${app.database.password}" />
 		<property name="driverClass" value="${app.database.driverClass}" />
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
   		<property name="minPoolSize" value="10"/>
   		<property name="maxPoolSize" value="50"/>
   		<property name="acquireIncrement" value="1"/>
@@ -1628,15 +1276,9 @@
   		<property name="checkoutTimeout" value="60000"/>
   		<property name="initialPoolSize" value="10" />
 
-<<<<<<< HEAD
-	</bean>	
-		
-		
-=======
 	</bean>
 
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	  <property name="poolName" value="mercatus_connection_pool" />
 	  <property name="dataSourceClassName" value="${app.database.dataSourceClassName}"/>
@@ -1658,13 +1300,8 @@
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 	  <constructor-arg ref="hikariConfig" />
 	</bean>
-<<<<<<< HEAD
-		
-		
-=======
 
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 -->
 
 

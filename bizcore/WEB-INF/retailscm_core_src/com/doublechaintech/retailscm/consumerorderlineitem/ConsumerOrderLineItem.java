@@ -81,20 +81,6 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		this.changed = true;
 	}
 	
-<<<<<<< HEAD
-	public 	ConsumerOrderLineItem(ConsumerOrder bizOrder, String skuId, String skuName, BigDecimal price, BigDecimal quantity, BigDecimal amount, DateTime lastUpdateTime)
-	{
-		setBizOrder(bizOrder);
-		setSkuId(skuId);
-		setSkuName(skuName);
-		setPrice(price);
-		setQuantity(quantity);
-		setAmount(amount);
-		setLastUpdateTime(lastUpdateTime);
-	
-	}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 	//Support for changing the property
 	
@@ -511,7 +497,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getBizOrder(), getSkuId(), getSkuName(), getPrice(), getQuantity(), getAmount(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

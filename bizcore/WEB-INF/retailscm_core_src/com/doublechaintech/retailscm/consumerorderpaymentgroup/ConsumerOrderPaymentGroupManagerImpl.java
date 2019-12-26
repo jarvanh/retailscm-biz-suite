@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.consumerorder.CandidateConsumerOrder;
 
 
 public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderPaymentGroupManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ConsumerOrderPaymentGroup";
 	@Override
 	public ConsumerOrderPaymentGroupDAO daoOf(RetailscmUserContext userContext) {
 		return consumerOrderPaymentGroupDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ConsumerOrderPaymentGroupManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ConsumerOrderPaymentGroupManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ConsumerOrderPaymentGroup saveConsumerOrderPaymentGroup(RetailscmUserContext userContext, ConsumerOrderPaymentGroup consumerOrderPaymentGroup, String [] tokensExpr) throws Exception{	
  		//return getConsumerOrderPaymentGroupDAO().save(consumerOrderPaymentGroup, tokens);
@@ -167,7 +161,7 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 	public ConsumerOrderPaymentGroup createConsumerOrderPaymentGroup(RetailscmUserContext userContext, String name,String bizOrderId,String cardNumber) throws Exception
 	//public ConsumerOrderPaymentGroup createConsumerOrderPaymentGroup(RetailscmUserContext userContext,String name, String bizOrderId, String cardNumber) throws Exception
 	{
-		
+
 		
 
 		
@@ -193,14 +187,14 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 		onNewInstanceCreated(userContext, consumerOrderPaymentGroup);
 		return consumerOrderPaymentGroup;
 
-		
+
 	}
-	protected ConsumerOrderPaymentGroup createNewConsumerOrderPaymentGroup() 
+	protected ConsumerOrderPaymentGroup createNewConsumerOrderPaymentGroup()
 	{
-		
-		return new ConsumerOrderPaymentGroup();		
+
+		return new ConsumerOrderPaymentGroup();
 	}
-	
+
 	protected void checkParamsForUpdatingConsumerOrderPaymentGroup(RetailscmUserContext userContext,String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -221,28 +215,28 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderPaymentGroupManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ConsumerOrderPaymentGroup clone(RetailscmUserContext userContext, String fromConsumerOrderPaymentGroupId) throws Exception{
-		
+
 		return consumerOrderPaymentGroupDaoOf(userContext).clone(fromConsumerOrderPaymentGroupId, this.allTokens());
 	}
-	
-	public ConsumerOrderPaymentGroup internalSaveConsumerOrderPaymentGroup(RetailscmUserContext userContext, ConsumerOrderPaymentGroup consumerOrderPaymentGroup) throws Exception 
+
+	public ConsumerOrderPaymentGroup internalSaveConsumerOrderPaymentGroup(RetailscmUserContext userContext, ConsumerOrderPaymentGroup consumerOrderPaymentGroup) throws Exception
 	{
 		return internalSaveConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroup, allTokens());
 
 	}
-	public ConsumerOrderPaymentGroup internalSaveConsumerOrderPaymentGroup(RetailscmUserContext userContext, ConsumerOrderPaymentGroup consumerOrderPaymentGroup, Map<String,Object> options) throws Exception 
+	public ConsumerOrderPaymentGroup internalSaveConsumerOrderPaymentGroup(RetailscmUserContext userContext, ConsumerOrderPaymentGroup consumerOrderPaymentGroup, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(consumerOrderPaymentGroup){ 
+
+
+		synchronized(consumerOrderPaymentGroup){
 			//will be good when the consumerOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderPaymentGroup.
@@ -251,23 +245,23 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 			}
 			consumerOrderPaymentGroup = saveConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroup, options);
 			return consumerOrderPaymentGroup;
-			
+
 		}
 
 	}
-	
-	public ConsumerOrderPaymentGroup updateConsumerOrderPaymentGroup(RetailscmUserContext userContext,String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderPaymentGroup updateConsumerOrderPaymentGroup(RetailscmUserContext userContext,String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ConsumerOrderPaymentGroup consumerOrderPaymentGroup = loadConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroupId, allTokens());
 		if(consumerOrderPaymentGroup.getVersion() != consumerOrderPaymentGroupVersion){
 			String message = "The target version("+consumerOrderPaymentGroup.getVersion()+") is not equals to version("+consumerOrderPaymentGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderPaymentGroup){ 
+		synchronized(consumerOrderPaymentGroup){
 			//will be good when the consumerOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderPaymentGroup.
@@ -279,21 +273,21 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 		}
 
 	}
-	
-	public ConsumerOrderPaymentGroup updateConsumerOrderPaymentGroupProperty(RetailscmUserContext userContext,String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderPaymentGroup updateConsumerOrderPaymentGroupProperty(RetailscmUserContext userContext,String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion, property, newValueExpr, tokensExpr);
-		
+
 		ConsumerOrderPaymentGroup consumerOrderPaymentGroup = loadConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroupId, allTokens());
 		if(consumerOrderPaymentGroup.getVersion() != consumerOrderPaymentGroupVersion){
 			String message = "The target version("+consumerOrderPaymentGroup.getVersion()+") is not equals to version("+consumerOrderPaymentGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderPaymentGroup){ 
+		synchronized(consumerOrderPaymentGroup){
 			//will be good when the consumerOrderPaymentGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderPaymentGroup.
-			
+
 			consumerOrderPaymentGroup.changeProperty(property, newValueExpr);
 			
 			consumerOrderPaymentGroup = saveConsumerOrderPaymentGroup(userContext, consumerOrderPaymentGroup, tokens().done());
@@ -305,7 +299,7 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ConsumerOrderPaymentGroupTokens tokens(){
 		return ConsumerOrderPaymentGroupTokens.start();
 	}
@@ -326,11 +320,11 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderPaymentGroupId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfConsumerOrderPaymentGroup(consumerOrderPaymentGroupId);
  		checkerOf(userContext).checkIdOfConsumerOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderPaymentGroupManagerException.class);
- 		
+
  	}
  	public ConsumerOrderPaymentGroup transferToAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderPaymentGroupId, String anotherBizOrderId) throws Exception
  	{
@@ -349,10 +343,10 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateConsumerOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateConsumerOrder result = new CandidateConsumerOrder();
@@ -362,7 +356,7 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -372,42 +366,42 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return consumerOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion) throws Exception {
-		//deleteInternal(userContext, consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion);		
+		//deleteInternal(userContext, consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion) throws Exception{
-			
+
 		consumerOrderPaymentGroupDaoOf(userContext).delete(consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion);
 	}
-	
+
 	public ConsumerOrderPaymentGroup forgetByAll(RetailscmUserContext userContext, String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion) throws Exception {
-		return forgetByAllInternal(userContext, consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion);		
+		return forgetByAllInternal(userContext, consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion);
 	}
 	protected ConsumerOrderPaymentGroup forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderPaymentGroupId, int consumerOrderPaymentGroupVersion) throws Exception{
-			
+
 		return consumerOrderPaymentGroupDaoOf(userContext).disconnectFromAll(consumerOrderPaymentGroupId, consumerOrderPaymentGroupVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -418,23 +412,29 @@ public class ConsumerOrderPaymentGroupManagerImpl extends CustomRetailscmChecker
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return consumerOrderPaymentGroupDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ConsumerOrderPaymentGroup newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

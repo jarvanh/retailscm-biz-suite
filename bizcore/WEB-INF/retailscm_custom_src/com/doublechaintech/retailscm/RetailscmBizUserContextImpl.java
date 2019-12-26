@@ -8,10 +8,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 
 import com.terapico.caf.BlobObject;
-<<<<<<< HEAD
-=======
 import com.terapico.caf.baseelement.LoginParam;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import com.terapico.caf.viewcomponent.ButtonViewComponent;
 import com.terapico.caf.viewcomponent.FilterTabsViewComponent;
 import com.terapico.caf.viewcomponent.PopupViewComponent;
@@ -22,10 +19,6 @@ import com.terapico.utils.TextUtil;
 import com.doublechaintech.retailscm.secuser.SecUser;
 
 public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
-<<<<<<< HEAD
-
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	protected static final String DEFAULT_ACTION_GROUP = "default";
 	protected Map<String, List<ButtonViewComponent>> actionGroups;
 	protected String accessUrl;
@@ -51,12 +44,9 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 	protected String assignmentId;
 	protected BaseRetailscmFormProcessor inputFormData;
 	protected BaseRetailscmFormProcessor outputFormData;
-<<<<<<< HEAD
-=======
 	protected LoginParam loginParam;
 
-	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
+
 
 	public void clearFormResubmitFlag() {
 		removeFromCache(getPostMd5Key(this));
@@ -276,15 +266,12 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 	public void setAssignmentId(String assignmentId) {
 		this.assignmentId = assignmentId;
 	}
-<<<<<<< HEAD
-=======
 	public LoginParam getLoginParam() {
 		return loginParam;
 	}
 	public void setLoginParam(LoginParam loginParam) {
 		this.loginParam = loginParam;
 	}
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	@Override
 	public void sendEmail(String to, String subject, String content) throws Exception {
 		if (!isProductEnvironment()) {
@@ -292,7 +279,7 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 		}
 		super.sendEmail(to, subject, content);
 	}
-	
+
 	@Override
 	public void sendEmailWithAttachment(String to, String subject, String content, List<BlobObject> attachments)
 			throws Exception {
@@ -301,7 +288,7 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 		}
 		super.sendEmailWithAttachment(to, subject, content, attachments);
 	}
-	
+
 	@Override
 	public void sendMessage(String dest, String fromWho, String template, Map<String, String> parameters)
 			throws Exception {
@@ -311,7 +298,7 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 		}
 		super.sendMessage(dest, fromWho, template, parameters);
 	}
-	
+
 	// 这个对象仅用于在开发环境中, 用cookie来模拟react-client的 JWT header. 因为开发环境使用的是普通的浏览器,不能在A
 	// href的header中设置值.
 	protected Cookie[] cookies;

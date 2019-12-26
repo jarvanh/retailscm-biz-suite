@@ -14,14 +14,8 @@ import com.doublechaintech.retailscm.KeyValuePair;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApproval;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDelivery;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessing;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPicking;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmation;
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroup;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipment;
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroup;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItem;
 
@@ -34,12 +28,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	public static final String SELLER_PROPERTY                = "seller"            ;
 	public static final String TITLE_PROPERTY                 = "title"             ;
 	public static final String TOTAL_AMOUNT_PROPERTY          = "totalAmount"       ;
-	public static final String CONFIRMATION_PROPERTY          = "confirmation"      ;
-	public static final String APPROVAL_PROPERTY              = "approval"          ;
-	public static final String PROCESSING_PROPERTY            = "processing"        ;
-	public static final String PICKING_PROPERTY               = "picking"           ;
-	public static final String SHIPMENT_PROPERTY              = "shipment"          ;
-	public static final String DELIVERY_PROPERTY              = "delivery"          ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
@@ -72,12 +60,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	protected		RetailStoreCountryCenter	mSeller             ;
 	protected		String              	mTitle              ;
 	protected		BigDecimal          	mTotalAmount        ;
-	protected		RetailStoreOrderConfirmation	mConfirmation       ;
-	protected		RetailStoreOrderApproval	mApproval           ;
-	protected		RetailStoreOrderProcessing	mProcessing         ;
-	protected		RetailStoreOrderPicking	mPicking            ;
-	protected		RetailStoreOrderShipment	mShipment           ;
-	protected		RetailStoreOrderDelivery	mDelivery           ;
 	protected		DateTime            	mLastUpdateTime     ;
 	protected		int                 	mVersion            ;
 	
@@ -105,12 +87,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	public 	void clearFromAll(){
 		setBuyer( null );
 		setSeller( null );
-		setConfirmation( null );
-		setApproval( null );
-		setProcessing( null );
-		setPicking( null );
-		setShipment( null );
-		setDelivery( null );
 
 		this.changed = true;
 	}
@@ -196,33 +172,9 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		if(TOTAL_AMOUNT_PROPERTY.equals(property)){
 			return getTotalAmount();
 		}
-		if(CONFIRMATION_PROPERTY.equals(property)){
-			return getConfirmation();
-		}
-		if(APPROVAL_PROPERTY.equals(property)){
-			return getApproval();
-		}
-		if(PROCESSING_PROPERTY.equals(property)){
-			return getProcessing();
-		}
-		if(PICKING_PROPERTY.equals(property)){
-			return getPicking();
-		}
-		if(SHIPMENT_PROPERTY.equals(property)){
-			return getShipment();
-		}
-		if(DELIVERY_PROPERTY.equals(property)){
-			return getDelivery();
-		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
 		}
-<<<<<<< HEAD
-		if(CURRENT_STATUS_PROPERTY.equals(property)){
-			return getCurrentStatus();
-		}
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 		if(RETAIL_STORE_ORDER_LINE_ITEM_LIST.equals(property)){
 			List<BaseEntity> list = getRetailStoreOrderLineItemList().stream().map(item->item).collect(Collectors.toList());
 			return list;
@@ -340,132 +292,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	}
 	
 	
-	public void setConfirmation(RetailStoreOrderConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-	}
-	public RetailStoreOrderConfirmation getConfirmation(){
-		return this.mConfirmation;
-	}
-	public RetailStoreOrder updateConfirmation(RetailStoreOrderConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeConfirmation(RetailStoreOrderConfirmation confirmation){
-		if(confirmation != null) { setConfirmation(confirmation);}
-	}
-	
-	
-	public void clearConfirmation(){
-		setConfirmation ( null );
-		this.changed = true;
-	}
-	
-	public void setApproval(RetailStoreOrderApproval approval){
-		this.mApproval = approval;;
-	}
-	public RetailStoreOrderApproval getApproval(){
-		return this.mApproval;
-	}
-	public RetailStoreOrder updateApproval(RetailStoreOrderApproval approval){
-		this.mApproval = approval;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeApproval(RetailStoreOrderApproval approval){
-		if(approval != null) { setApproval(approval);}
-	}
-	
-	
-	public void clearApproval(){
-		setApproval ( null );
-		this.changed = true;
-	}
-	
-	public void setProcessing(RetailStoreOrderProcessing processing){
-		this.mProcessing = processing;;
-	}
-	public RetailStoreOrderProcessing getProcessing(){
-		return this.mProcessing;
-	}
-	public RetailStoreOrder updateProcessing(RetailStoreOrderProcessing processing){
-		this.mProcessing = processing;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeProcessing(RetailStoreOrderProcessing processing){
-		if(processing != null) { setProcessing(processing);}
-	}
-	
-	
-	public void clearProcessing(){
-		setProcessing ( null );
-		this.changed = true;
-	}
-	
-	public void setPicking(RetailStoreOrderPicking picking){
-		this.mPicking = picking;;
-	}
-	public RetailStoreOrderPicking getPicking(){
-		return this.mPicking;
-	}
-	public RetailStoreOrder updatePicking(RetailStoreOrderPicking picking){
-		this.mPicking = picking;;
-		this.changed = true;
-		return this;
-	}
-	public void mergePicking(RetailStoreOrderPicking picking){
-		if(picking != null) { setPicking(picking);}
-	}
-	
-	
-	public void clearPicking(){
-		setPicking ( null );
-		this.changed = true;
-	}
-	
-	public void setShipment(RetailStoreOrderShipment shipment){
-		this.mShipment = shipment;;
-	}
-	public RetailStoreOrderShipment getShipment(){
-		return this.mShipment;
-	}
-	public RetailStoreOrder updateShipment(RetailStoreOrderShipment shipment){
-		this.mShipment = shipment;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeShipment(RetailStoreOrderShipment shipment){
-		if(shipment != null) { setShipment(shipment);}
-	}
-	
-	
-	public void clearShipment(){
-		setShipment ( null );
-		this.changed = true;
-	}
-	
-	public void setDelivery(RetailStoreOrderDelivery delivery){
-		this.mDelivery = delivery;;
-	}
-	public RetailStoreOrderDelivery getDelivery(){
-		return this.mDelivery;
-	}
-	public RetailStoreOrder updateDelivery(RetailStoreOrderDelivery delivery){
-		this.mDelivery = delivery;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeDelivery(RetailStoreOrderDelivery delivery){
-		if(delivery != null) { setDelivery(delivery);}
-	}
-	
-	
-	public void clearDelivery(){
-		setDelivery ( null );
-		this.changed = true;
-	}
-	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
 		this.mLastUpdateTime = lastUpdateTime;;
 	}
@@ -479,25 +305,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 	}
 	public void mergeLastUpdateTime(DateTime lastUpdateTime){
 		setLastUpdateTime(lastUpdateTime);
-<<<<<<< HEAD
-	}
-	
-	
-	public void setCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-	}
-	public String getCurrentStatus(){
-		return this.mCurrentStatus;
-	}
-	public RetailStoreOrder updateCurrentStatus(String currentStatus){
-		this.mCurrentStatus = trimString(currentStatus);;
-		this.changed = true;
-		return this;
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
-	}
-	public void mergeCurrentStatus(String currentStatus){
-		if(currentStatus != null) { setCurrentStatus(currentStatus);}
 	}
 	
 	
@@ -950,12 +757,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 
 		addToEntityList(this, entityList, getBuyer(), internalType);
 		addToEntityList(this, entityList, getSeller(), internalType);
-		addToEntityList(this, entityList, getConfirmation(), internalType);
-		addToEntityList(this, entityList, getApproval(), internalType);
-		addToEntityList(this, entityList, getProcessing(), internalType);
-		addToEntityList(this, entityList, getPicking(), internalType);
-		addToEntityList(this, entityList, getShipment(), internalType);
-		addToEntityList(this, entityList, getDelivery(), internalType);
 
 		
 	}
@@ -992,12 +793,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 		appendKeyValuePair(result, SELLER_PROPERTY, getSeller());
 		appendKeyValuePair(result, TITLE_PROPERTY, getTitle());
 		appendKeyValuePair(result, TOTAL_AMOUNT_PROPERTY, getTotalAmount());
-		appendKeyValuePair(result, CONFIRMATION_PROPERTY, getConfirmation());
-		appendKeyValuePair(result, APPROVAL_PROPERTY, getApproval());
-		appendKeyValuePair(result, PROCESSING_PROPERTY, getProcessing());
-		appendKeyValuePair(result, PICKING_PROPERTY, getPicking());
-		appendKeyValuePair(result, SHIPMENT_PROPERTY, getShipment());
-		appendKeyValuePair(result, DELIVERY_PROPERTY, getDelivery());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, RETAIL_STORE_ORDER_LINE_ITEM_LIST, getRetailStoreOrderLineItemList());
@@ -1039,12 +834,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 			dest.setSeller(getSeller());
 			dest.setTitle(getTitle());
 			dest.setTotalAmount(getTotalAmount());
-			dest.setConfirmation(getConfirmation());
-			dest.setApproval(getApproval());
-			dest.setProcessing(getProcessing());
-			dest.setPicking(getPicking());
-			dest.setShipment(getShipment());
-			dest.setDelivery(getDelivery());
 			dest.setLastUpdateTime(getLastUpdateTime());
 			dest.setVersion(getVersion());
 			dest.setRetailStoreOrderLineItemList(getRetailStoreOrderLineItemList());
@@ -1069,17 +858,7 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 			dest.mergeSeller(getSeller());
 			dest.mergeTitle(getTitle());
 			dest.mergeTotalAmount(getTotalAmount());
-			dest.mergeConfirmation(getConfirmation());
-			dest.mergeApproval(getApproval());
-			dest.mergeProcessing(getProcessing());
-			dest.mergePicking(getPicking());
-			dest.mergeShipment(getShipment());
-			dest.mergeDelivery(getDelivery());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 			dest.mergeRetailStoreOrderLineItemList(getRetailStoreOrderLineItemList());
 			dest.mergeRetailStoreOrderShippingGroupList(getRetailStoreOrderShippingGroupList());
@@ -1103,16 +882,14 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
 			dest.mergeTitle(getTitle());
 			dest.mergeTotalAmount(getTotalAmount());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
-<<<<<<< HEAD
-			dest.mergeCurrentStatus(getCurrentStatus());
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getBuyer(), getSeller(), getTitle(), getTotalAmount(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -1126,24 +903,6 @@ public class RetailStoreOrder extends BaseEntity implements  java.io.Serializabl
  		}
 		stringBuilder.append("\ttitle='"+getTitle()+"';");
 		stringBuilder.append("\ttotalAmount='"+getTotalAmount()+"';");
-		if(getConfirmation() != null ){
- 			stringBuilder.append("\tconfirmation='RetailStoreOrderConfirmation("+getConfirmation().getId()+")';");
- 		}
-		if(getApproval() != null ){
- 			stringBuilder.append("\tapproval='RetailStoreOrderApproval("+getApproval().getId()+")';");
- 		}
-		if(getProcessing() != null ){
- 			stringBuilder.append("\tprocessing='RetailStoreOrderProcessing("+getProcessing().getId()+")';");
- 		}
-		if(getPicking() != null ){
- 			stringBuilder.append("\tpicking='RetailStoreOrderPicking("+getPicking().getId()+")';");
- 		}
-		if(getShipment() != null ){
- 			stringBuilder.append("\tshipment='RetailStoreOrderShipment("+getShipment().getId()+")';");
- 		}
-		if(getDelivery() != null ){
- 			stringBuilder.append("\tdelivery='RetailStoreOrderDelivery("+getDelivery().getId()+")';");
- 		}
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");
