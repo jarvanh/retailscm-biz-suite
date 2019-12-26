@@ -4,18 +4,12 @@ import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
-<<<<<<< HEAD
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-=======
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -134,8 +128,6 @@ public class MessageTemplateUtil {
 	protected static String getFileName() {
 		return TextUtil.getExtVariable("MESSAGE_TEMPLATE_FILE", "./message_templates.xml");
 	}
-<<<<<<< HEAD
-=======
 	
 	public static String getMessage(List<String> templateSegments, Map<String, Object> params) {
 		if (templateSegments == null || templateSegments.isEmpty()) {
@@ -202,5 +194,4 @@ public class MessageTemplateUtil {
 		return tmpSeg;
 	}
 	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 }

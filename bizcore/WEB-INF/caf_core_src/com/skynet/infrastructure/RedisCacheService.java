@@ -8,11 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.Arrays;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import java.util.List;
 
 public class RedisCacheService implements CacheService {
@@ -38,37 +36,25 @@ public class RedisCacheService implements CacheService {
     }
 
     protected Jedis getJedis() {
-<<<<<<< HEAD
-=======
     	
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
         Jedis jedis = new Jedis(host, port, timeout);
         if (StringUtils.isNotEmpty(password)) {
             jedis.auth(password);
         }
         return jedis;
     }
-<<<<<<< HEAD
-
-=======
     
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
     protected ObjectMapper getMapper() {
         ObjectMapper mapper;
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper;
-<<<<<<< HEAD
-    }
-
-=======
   
     }
     protected Class<?> classAt(Class<?>[] clazzes, int index){
     	return clazzes[index];
     }
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
     public Object[] mget(String keys[], Class<?>[] clazzes) {
         if (keys == null) {
             return new Object[0];
@@ -82,16 +68,10 @@ public class RedisCacheService implements CacheService {
             jedis = getJedis();
             log("class" + jedis.getClass());
             // ticker.tick("init getJedis();");
-<<<<<<< HEAD
-
-            List<String> values = jedis.mget(keys);
-            if (values == null) {
-=======
             
             List<String> values = jedis.mget(keys);
             if (values == null) {
             	log("jedis.mget(keys) return null!!!");
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
                 return null;
             }
             // ticker.tick("jedis.get(key);");
@@ -112,14 +92,9 @@ public class RedisCacheService implements CacheService {
             return null;
         } finally {
             closeConnection(jedis);
-<<<<<<< HEAD
-        }
-
-=======
 
         }
         
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
     }
 
     public Object get(String key, Class<?> clazz) {
@@ -146,12 +121,8 @@ public class RedisCacheService implements CacheService {
             log("getting " + clazz + " with key: " + key + " with an exception" + e.getMessage());
             return null;
         } finally {
-<<<<<<< HEAD
-            closeConnection(jedis);
-=======
 
         	closeConnection(jedis);
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
         }
 
     }
@@ -178,26 +149,17 @@ public class RedisCacheService implements CacheService {
             }
             // ticker.tick("jedis.set(key, json);jedis.expire(key, ttlInSeconds);");
 
-        } catch (JsonProcessingException e) {
+        }catch (JsonProcessingException e) {
             // is fine
+        }catch(Exception e) {
+        	String errorMessage = String.format("Redis Connection Error to server @ %s:%d -> %s", this.host,this.port,e.getMessage());
+        	throw new IllegalStateException(errorMessage);
         } finally {
-<<<<<<< HEAD
-=======
-
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
             closeConnection(jedis);
         }
-
+        
     }
 
-<<<<<<< HEAD
-    protected void closeConnection(Jedis jedis) {
-
-        if (jedis == null) {
-            return;
-        }
-        jedis.close();
-=======
 
     protected void closeConnection(Jedis jedis) {
     	
@@ -205,20 +167,19 @@ public class RedisCacheService implements CacheService {
             return;
         }
     	jedis.close();
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
     }
 
-    public void remove(String key) {
+    public void remove(String key)  {
 
         Jedis jedis = null;
         try {
             jedis = getJedis();
             jedis.del(key);
+        }catch(Exception e) {
+        	String errorMessage = String.format("Redis Connection Error to server @ %s:%d -> %s", this.host,this.port,e.getMessage());
+        	throw new IllegalStateException(errorMessage);
         } finally {
-<<<<<<< HEAD
-=======
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
             closeConnection(jedis);
         }
     }
@@ -327,17 +288,12 @@ public class RedisCacheService implements CacheService {
         try {
             return (List<T>) mapper.readValue(pS, javaType);
         } catch (IOException pE) {
-<<<<<<< HEAD
-=======
         	//closeConnection(jedis);
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
         }
         return null;
     }
 
-<<<<<<< HEAD
-=======
 	@Override
 	public List<Object> mget(List<String> keys, Class<?> clazz) {
 		Class<?>[] clazzes = new Class<?>[keys.size()];
@@ -353,6 +309,5 @@ public class RedisCacheService implements CacheService {
 		return Arrays.asList(mObjects);
 	}
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 }

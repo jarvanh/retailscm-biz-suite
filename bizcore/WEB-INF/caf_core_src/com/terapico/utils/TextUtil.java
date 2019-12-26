@@ -1,14 +1,8 @@
 package com.terapico.utils;
 
 import java.net.URI;
-<<<<<<< HEAD
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.text.DecimalFormat;
-=======
 import java.text.DecimalFormat;
 import java.util.ArrayList;
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -402,8 +396,6 @@ public class TextUtil {
 		return null;
 	}
 
-<<<<<<< HEAD
-=======
 	public static List<String> findAllMatched(String source, Pattern pattern) {
 		Matcher matcher = pattern.matcher(source);
 		List<String> list = new ArrayList<>();
@@ -413,6 +405,5 @@ public class TextUtil {
 		return list;
 
 	}
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 }

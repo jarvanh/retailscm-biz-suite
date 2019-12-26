@@ -68,7 +68,7 @@ public class AliyunOSSService implements StorageService {
             respMap.put("userHome", userHome);
             respMap.put("endpoint", "https://" + config.getEndpoint());
             respMap.put("prefix", "https://" + config.getOssBucket() + "." + config.getEndpoint());//"https://image.ycinfotech.cn");
-
+            respMap.put("uploadPrefix", "https://" + config.getOssBucket() + "." + config.getEndpoint());//"https://image.ycinfotech.cn");
 
             respMap.put("StatusCode", 200);
             respMap.put("AccessKeyId", stsResponse.getCredentials().getAccessKeyId());
@@ -78,14 +78,14 @@ public class AliyunOSSService implements StorageService {
             respMap.put("UserHome", userHome);
             respMap.put("Endpoint", "https://" + config.getEndpoint());
             respMap.put("Prefix", "https://" + config.getOssBucket() + "." + config.getEndpoint());//"https://image.ycinfotech.cn");
-
+            respMap.put("UploadPrefix", "https://" + config.getOssBucket() + "." + config.getEndpoint());//"https://image.ycinfotech.cn");
 
             //respMap.put("prefix", );
 
             respMap.put("region", config.getRegion());
 
             respMap.put("bucket", config.getOssBucket());
-
+            respMap.put("type", "aliyun");
             return respMap;
 
         } catch (ClientException e) {
@@ -100,7 +100,8 @@ public class AliyunOSSService implements StorageService {
             respMap.put("userHome", userHome);
             respMap.put("endpoint", config.getEndpoint());
             respMap.put("prefix", "https://" + config.getOssBucket() + "." + config.getEndpoint());
-
+            respMap.put("UploadPrefix", "https://" + config.getOssBucket() + "." + config.getEndpoint());
+            respMap.put("type", "aliyun");
             return respMap;
         }
 

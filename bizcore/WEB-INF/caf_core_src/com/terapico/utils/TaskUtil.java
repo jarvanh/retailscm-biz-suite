@@ -1,13 +1,6 @@
 package com.terapico.utils;
 
 import java.util.HashMap;
-<<<<<<< HEAD
-import java.util.Map;
-import java.util.function.Supplier;
-
-public class TaskUtil {
-	protected static Map<String, Boolean> runningFlags = new HashMap<>();
-=======
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -70,7 +63,6 @@ public class TaskUtil {
 			jvmLockCleanupThread.start();
 		};
 	}
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 	public static Object runSingletonTask(String taskName, Supplier<?> task) throws Exception {
 		if (checkTaskRunning(taskName)) {
@@ -110,12 +102,9 @@ public class TaskUtil {
 			return flag;
 		}
 	}
-<<<<<<< HEAD
-=======
 
 	public static void runAsync(Runnable runnable) {
 		executor.execute(runnable);
 	}
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	
 }

@@ -66,7 +66,7 @@
 		<property name="stsVersion" value="${aliyun.oss.stsVersion}"/>
 		<property name="durationSeconds" value="${aliyun.oss.durationSeconds}"/>
     </bean>
-    
+
     <bean id="messageService" class="com.skynet.infrastructure.AliyunMessageService">
         <property name="config" ref="aliyunMessageServiceConfiguration"/>
     </bean>
@@ -94,7 +94,11 @@
 	<bean id="storageService" class="com.skynet.infrastructure.AliyunOSSService">
         <property name="config" ref="aliyunOssServiceConfiguration"></property>
     </bean>
-    
+
+
+  <bean id="blockChainAdvancer" class="com.skynet.infrastructure.BlockChainAdvancer">
+
+  </bean>
     <!-- <bean id="kafkaMessageEventService" class="com.skynet.infrastructure.kafkaservice.KafkaMessageEventService">
         <property name="producerProperties">
             <props>
@@ -108,8 +112,3 @@
         </property>
     </bean> -->
 </beans>
-
-
-
-
-
