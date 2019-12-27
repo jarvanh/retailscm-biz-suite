@@ -8,11 +8,8 @@ buildscript {
     }
 }
 
-<<<<<<< HEAD
 
 apply plugin: 'war'
-=======
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -22,10 +19,6 @@ apply plugin: 'io.spring.dependency-management'
 
 group 'com.doublechaintech'
 version '1.0.0'
-<<<<<<< HEAD
-=======
-
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 
 
 [compileJava,compileTestJava,javadoc]*.options*.encoding = "UTF-8"
