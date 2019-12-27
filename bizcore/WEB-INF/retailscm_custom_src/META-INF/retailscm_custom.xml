@@ -26,22 +26,6 @@
 	 	<property name="smtpService" ref="smtpService" />
 
 	 	<!--
-<<<<<<< HEAD
-	 	
-	 	默认情况下不开图服务和kafka消息服务
-	 	
-	 	<property name="graphService" ref="graphService" />
-	 	<property name="eventService" ref="kafkaMessageEventService" />
-	 	
-	 	<property name="graphService" ref="dummygraphService" />
-	 	<property name="eventService" ref="dummyEventService" />
-	 	
-	 	
-	 	
-	 	-->
-	 	
-	 	
-=======
 
 	 	默认情况下不开图服务和kafka消息服务
 
@@ -56,7 +40,6 @@
 	 	-->
 
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
 	 	<property name="graphService" ref="dummygraphService" />
 	 	<property name="eventService" ref="dummyEventService" />
 
