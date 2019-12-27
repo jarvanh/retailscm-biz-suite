@@ -23,11 +23,8 @@ public class GenericFormCustomManagerImpl extends GenericFormManagerImpl{
 
 }
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> ea67698ef1c4e94c89147baaf9f93aa768973fbe
