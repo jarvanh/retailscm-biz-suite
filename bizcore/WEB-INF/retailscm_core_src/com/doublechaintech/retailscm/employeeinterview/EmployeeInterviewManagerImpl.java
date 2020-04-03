@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.employee.Employee;
 import com.doublechaintech.retailscm.interviewtype.InterviewType;
@@ -33,28 +24,31 @@ import com.doublechaintech.retailscm.interviewtype.CandidateInterviewType;
 
 
 public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager implements EmployeeInterviewManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "EmployeeInterview";
 	@Override
 	public EmployeeInterviewDAO daoOf(RetailscmUserContext userContext) {
 		return employeeInterviewDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EmployeeInterviewManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EmployeeInterviewManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected EmployeeInterview saveEmployeeInterview(RetailscmUserContext userContext, EmployeeInterview employeeInterview, String [] tokensExpr) throws Exception{	
  		//return getEmployeeInterviewDAO().save(employeeInterview, tokens);
@@ -170,7 +164,7 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 	public EmployeeInterview createEmployeeInterview(RetailscmUserContext userContext, String employeeId,String interviewTypeId,String remark) throws Exception
 	//public EmployeeInterview createEmployeeInterview(RetailscmUserContext userContext,String employeeId, String interviewTypeId, String remark) throws Exception
 	{
-		
+
 		
 
 		
@@ -199,14 +193,14 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		onNewInstanceCreated(userContext, employeeInterview);
 		return employeeInterview;
 
-		
+
 	}
-	protected EmployeeInterview createNewEmployeeInterview() 
+	protected EmployeeInterview createNewEmployeeInterview()
 	{
-		
-		return new EmployeeInterview();		
+
+		return new EmployeeInterview();
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeInterview(RetailscmUserContext userContext,String employeeInterviewId, int employeeInterviewVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,28 +220,28 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeInterviewManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public EmployeeInterview clone(RetailscmUserContext userContext, String fromEmployeeInterviewId) throws Exception{
-		
+
 		return employeeInterviewDaoOf(userContext).clone(fromEmployeeInterviewId, this.allTokens());
 	}
-	
-	public EmployeeInterview internalSaveEmployeeInterview(RetailscmUserContext userContext, EmployeeInterview employeeInterview) throws Exception 
+
+	public EmployeeInterview internalSaveEmployeeInterview(RetailscmUserContext userContext, EmployeeInterview employeeInterview) throws Exception
 	{
 		return internalSaveEmployeeInterview(userContext, employeeInterview, allTokens());
 
 	}
-	public EmployeeInterview internalSaveEmployeeInterview(RetailscmUserContext userContext, EmployeeInterview employeeInterview, Map<String,Object> options) throws Exception 
+	public EmployeeInterview internalSaveEmployeeInterview(RetailscmUserContext userContext, EmployeeInterview employeeInterview, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEmployeeInterview(userContext, employeeInterviewId, employeeInterviewVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(employeeInterview){ 
+
+
+		synchronized(employeeInterview){
 			//will be good when the employeeInterview loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeInterview.
@@ -256,23 +250,23 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 			}
 			employeeInterview = saveEmployeeInterview(userContext, employeeInterview, options);
 			return employeeInterview;
-			
+
 		}
 
 	}
-	
-	public EmployeeInterview updateEmployeeInterview(RetailscmUserContext userContext,String employeeInterviewId, int employeeInterviewVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeInterview updateEmployeeInterview(RetailscmUserContext userContext,String employeeInterviewId, int employeeInterviewVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeInterview(userContext, employeeInterviewId, employeeInterviewVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		EmployeeInterview employeeInterview = loadEmployeeInterview(userContext, employeeInterviewId, allTokens());
 		if(employeeInterview.getVersion() != employeeInterviewVersion){
 			String message = "The target version("+employeeInterview.getVersion()+") is not equals to version("+employeeInterviewVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeInterview){ 
+		synchronized(employeeInterview){
 			//will be good when the employeeInterview loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeInterview.
@@ -284,21 +278,21 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
 	}
-	
-	public EmployeeInterview updateEmployeeInterviewProperty(RetailscmUserContext userContext,String employeeInterviewId, int employeeInterviewVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeInterview updateEmployeeInterviewProperty(RetailscmUserContext userContext,String employeeInterviewId, int employeeInterviewVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeInterview(userContext, employeeInterviewId, employeeInterviewVersion, property, newValueExpr, tokensExpr);
-		
+
 		EmployeeInterview employeeInterview = loadEmployeeInterview(userContext, employeeInterviewId, allTokens());
 		if(employeeInterview.getVersion() != employeeInterviewVersion){
 			String message = "The target version("+employeeInterview.getVersion()+") is not equals to version("+employeeInterviewVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeInterview){ 
+		synchronized(employeeInterview){
 			//will be good when the employeeInterview loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeInterview.
-			
+
 			employeeInterview.changeProperty(property, newValueExpr);
 			
 			employeeInterview = saveEmployeeInterview(userContext, employeeInterview, tokens().done());
@@ -310,7 +304,7 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EmployeeInterviewTokens tokens(){
 		return EmployeeInterviewTokens.start();
 	}
@@ -331,11 +325,11 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeInterviewId, String anotherEmployeeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewId);
  		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeInterviewManagerException.class);
- 		
+
  	}
  	public EmployeeInterview transferToAnotherEmployee(RetailscmUserContext userContext, String employeeInterviewId, String anotherEmployeeId) throws Exception
  	{
@@ -354,10 +348,10 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateEmployee requestCandidateEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateEmployee result = new CandidateEmployee();
@@ -367,7 +361,7 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("company");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -377,14 +371,14 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherInterviewType(RetailscmUserContext userContext, String employeeInterviewId, String anotherInterviewTypeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewId);
  		checkerOf(userContext).checkIdOfInterviewType(anotherInterviewTypeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeInterviewManagerException.class);
- 		
+
  	}
  	public EmployeeInterview transferToAnotherInterviewType(RetailscmUserContext userContext, String employeeInterviewId, String anotherInterviewTypeId) throws Exception
  	{
@@ -403,10 +397,10 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateInterviewType requestCandidateInterviewType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateInterviewType result = new CandidateInterviewType();
@@ -416,7 +410,7 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("code");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -426,52 +420,52 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected InterviewType loadInterviewType(RetailscmUserContext userContext, String newInterviewTypeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return interviewTypeDaoOf(userContext).load(newInterviewTypeId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String employeeInterviewId, int employeeInterviewVersion) throws Exception {
-		//deleteInternal(userContext, employeeInterviewId, employeeInterviewVersion);		
+		//deleteInternal(userContext, employeeInterviewId, employeeInterviewVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeInterviewId, int employeeInterviewVersion) throws Exception{
-			
+
 		employeeInterviewDaoOf(userContext).delete(employeeInterviewId, employeeInterviewVersion);
 	}
-	
+
 	public EmployeeInterview forgetByAll(RetailscmUserContext userContext, String employeeInterviewId, int employeeInterviewVersion) throws Exception {
-		return forgetByAllInternal(userContext, employeeInterviewId, employeeInterviewVersion);		
+		return forgetByAllInternal(userContext, employeeInterviewId, employeeInterviewVersion);
 	}
 	protected EmployeeInterview forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeInterviewId, int employeeInterviewVersion) throws Exception{
-			
+
 		return employeeInterviewDaoOf(userContext).disconnectFromAll(employeeInterviewId, employeeInterviewVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -482,23 +476,29 @@ public class EmployeeInterviewManagerImpl extends CustomRetailscmCheckerManager 
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return employeeInterviewDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EmployeeInterview newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

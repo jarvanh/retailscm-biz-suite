@@ -23,7 +23,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	public static final String BELONGS_TO_PROPERTY            = "belongsTo"         ;
 	public static final String NAME_PROPERTY                  = "name"              ;
 	public static final String DESCRIPTION_PROPERTY           = "description"       ;
-	public static final String MANAGER_NAME_PROPERTY          = "managerName"       ;
+	public static final String MANAGER_PROPERTY               = "manager"           ;
 	public static final String FOUNDED_PROPERTY               = "founded"           ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
@@ -52,7 +52,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	protected		RetailStoreCountryCenter	mBelongsTo          ;
 	protected		String              	mName               ;
 	protected		String              	mDescription        ;
-	protected		String              	mManagerName        ;
+	protected		String              	mManager            ;
 	protected		Date                	mFounded            ;
 	protected		int                 	mVersion            ;
 	
@@ -91,8 +91,8 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		if(DESCRIPTION_PROPERTY.equals(property)){
 			changeDescriptionProperty(newValueExpr);
 		}
-		if(MANAGER_NAME_PROPERTY.equals(property)){
-			changeManagerNameProperty(newValueExpr);
+		if(MANAGER_PROPERTY.equals(property)){
+			changeManagerProperty(newValueExpr);
 		}
 		if(FOUNDED_PROPERTY.equals(property)){
 			changeFoundedProperty(newValueExpr);
@@ -132,15 +132,15 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			
 			
 			
-	protected void changeManagerNameProperty(String newValueExpr){
-		String oldValue = getManagerName();
+	protected void changeManagerProperty(String newValueExpr){
+		String oldValue = getManager();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
-		updateManagerName(newValue);
-		this.onChangeProperty(MANAGER_NAME_PROPERTY, oldValue, newValue);
+		updateManager(newValue);
+		this.onChangeProperty(MANAGER_PROPERTY, oldValue, newValue);
 		return;
   
 	}
@@ -176,8 +176,8 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		if(DESCRIPTION_PROPERTY.equals(property)){
 			return getDescription();
 		}
-		if(MANAGER_NAME_PROPERTY.equals(property)){
-			return getManagerName();
+		if(MANAGER_PROPERTY.equals(property)){
+			return getManager();
 		}
 		if(FOUNDED_PROPERTY.equals(property)){
 			return getFounded();
@@ -266,19 +266,19 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	}
 	
 	
-	public void setManagerName(String managerName){
-		this.mManagerName = trimString(managerName);;
+	public void setManager(String manager){
+		this.mManager = trimString(manager);;
 	}
-	public String getManagerName(){
-		return this.mManagerName;
+	public String getManager(){
+		return this.mManager;
 	}
-	public LevelOneDepartment updateManagerName(String managerName){
-		this.mManagerName = trimString(managerName);;
+	public LevelOneDepartment updateManager(String manager){
+		this.mManager = trimString(manager);;
 		this.changed = true;
 		return this;
 	}
-	public void mergeManagerName(String managerName){
-		if(managerName != null) { setManagerName(managerName);}
+	public void mergeManager(String manager){
+		if(manager != null) { setManager(manager);}
 	}
 	
 	
@@ -454,7 +454,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		appendKeyValuePair(result, BELONGS_TO_PROPERTY, getBelongsTo());
 		appendKeyValuePair(result, NAME_PROPERTY, getName());
 		appendKeyValuePair(result, DESCRIPTION_PROPERTY, getDescription());
-		appendKeyValuePair(result, MANAGER_NAME_PROPERTY, getManagerName());
+		appendKeyValuePair(result, MANAGER_PROPERTY, getManager());
 		appendKeyValuePair(result, FOUNDED_PROPERTY, getFounded());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, LEVEL_TWO_DEPARTMENT_LIST, getLevelTwoDepartmentList());
@@ -480,7 +480,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			dest.setBelongsTo(getBelongsTo());
 			dest.setName(getName());
 			dest.setDescription(getDescription());
-			dest.setManagerName(getManagerName());
+			dest.setManager(getManager());
 			dest.setFounded(getFounded());
 			dest.setVersion(getVersion());
 			dest.setLevelTwoDepartmentList(getLevelTwoDepartmentList());
@@ -501,7 +501,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			dest.mergeBelongsTo(getBelongsTo());
 			dest.mergeName(getName());
 			dest.mergeDescription(getDescription());
-			dest.mergeManagerName(getManagerName());
+			dest.mergeManager(getManager());
 			dest.mergeFounded(getFounded());
 			dest.mergeVersion(getVersion());
 			dest.mergeLevelTwoDepartmentList(getLevelTwoDepartmentList());
@@ -522,14 +522,16 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeDescription(getDescription());
-			dest.mergeManagerName(getManagerName());
+			dest.mergeManager(getManager());
 			dest.mergeFounded(getFounded());
 			dest.mergeVersion(getVersion());
 
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getBelongsTo(), getName(), getDescription(), getManager(), getFounded(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -540,7 +542,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
  		}
 		stringBuilder.append("\tname='"+getName()+"';");
 		stringBuilder.append("\tdescription='"+getDescription()+"';");
-		stringBuilder.append("\tmanagerName='"+getManagerName()+"';");
+		stringBuilder.append("\tmanager='"+getManager()+"';");
 		stringBuilder.append("\tfounded='"+getFounded()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

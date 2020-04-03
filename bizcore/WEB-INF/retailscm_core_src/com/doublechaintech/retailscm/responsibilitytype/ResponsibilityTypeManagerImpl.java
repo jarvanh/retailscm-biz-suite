@@ -8,35 +8,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.employee.Employee;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.CandidateRetailStoreCountryCenter;
 
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
-import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
 import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 import com.doublechaintech.retailscm.occupationtype.OccupationType;
 import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 
 
 
@@ -44,28 +28,31 @@ import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 
 
 public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager implements ResponsibilityTypeManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ResponsibilityType";
 	@Override
 	public ResponsibilityTypeDAO daoOf(RetailscmUserContext userContext) {
 		return responsibilityTypeDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ResponsibilityTypeManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ResponsibilityTypeManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ResponsibilityType saveResponsibilityType(RetailscmUserContext userContext, ResponsibilityType responsibilityType, String [] tokensExpr) throws Exception{	
  		//return getResponsibilityTypeDAO().save(responsibilityType, tokens);
@@ -184,7 +171,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	public ResponsibilityType createResponsibilityType(RetailscmUserContext userContext, String code,String companyId,String baseDescription,String detailDescription) throws Exception
 	//public ResponsibilityType createResponsibilityType(RetailscmUserContext userContext,String code, String companyId, String baseDescription, String detailDescription) throws Exception
 	{
-		
+
 		
 
 		
@@ -212,14 +199,14 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		onNewInstanceCreated(userContext, responsibilityType);
 		return responsibilityType;
 
-		
+
 	}
-	protected ResponsibilityType createNewResponsibilityType() 
+	protected ResponsibilityType createNewResponsibilityType()
 	{
-		
-		return new ResponsibilityType();		
+
+		return new ResponsibilityType();
 	}
-	
+
 	protected void checkParamsForUpdatingResponsibilityType(RetailscmUserContext userContext,String responsibilityTypeId, int responsibilityTypeVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -243,28 +230,28 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ResponsibilityType clone(RetailscmUserContext userContext, String fromResponsibilityTypeId) throws Exception{
-		
+
 		return responsibilityTypeDaoOf(userContext).clone(fromResponsibilityTypeId, this.allTokens());
 	}
-	
-	public ResponsibilityType internalSaveResponsibilityType(RetailscmUserContext userContext, ResponsibilityType responsibilityType) throws Exception 
+
+	public ResponsibilityType internalSaveResponsibilityType(RetailscmUserContext userContext, ResponsibilityType responsibilityType) throws Exception
 	{
 		return internalSaveResponsibilityType(userContext, responsibilityType, allTokens());
 
 	}
-	public ResponsibilityType internalSaveResponsibilityType(RetailscmUserContext userContext, ResponsibilityType responsibilityType, Map<String,Object> options) throws Exception 
+	public ResponsibilityType internalSaveResponsibilityType(RetailscmUserContext userContext, ResponsibilityType responsibilityType, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingResponsibilityType(userContext, responsibilityTypeId, responsibilityTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(responsibilityType){ 
+
+
+		synchronized(responsibilityType){
 			//will be good when the responsibilityType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ResponsibilityType.
@@ -273,23 +260,23 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 			}
 			responsibilityType = saveResponsibilityType(userContext, responsibilityType, options);
 			return responsibilityType;
-			
+
 		}
 
 	}
-	
-	public ResponsibilityType updateResponsibilityType(RetailscmUserContext userContext,String responsibilityTypeId, int responsibilityTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ResponsibilityType updateResponsibilityType(RetailscmUserContext userContext,String responsibilityTypeId, int responsibilityTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingResponsibilityType(userContext, responsibilityTypeId, responsibilityTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 		if(responsibilityType.getVersion() != responsibilityTypeVersion){
 			String message = "The target version("+responsibilityType.getVersion()+") is not equals to version("+responsibilityTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(responsibilityType){ 
+		synchronized(responsibilityType){
 			//will be good when the responsibilityType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ResponsibilityType.
@@ -301,21 +288,21 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 
 	}
-	
-	public ResponsibilityType updateResponsibilityTypeProperty(RetailscmUserContext userContext,String responsibilityTypeId, int responsibilityTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ResponsibilityType updateResponsibilityTypeProperty(RetailscmUserContext userContext,String responsibilityTypeId, int responsibilityTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingResponsibilityType(userContext, responsibilityTypeId, responsibilityTypeVersion, property, newValueExpr, tokensExpr);
-		
+
 		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 		if(responsibilityType.getVersion() != responsibilityTypeVersion){
 			String message = "The target version("+responsibilityType.getVersion()+") is not equals to version("+responsibilityTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(responsibilityType){ 
+		synchronized(responsibilityType){
 			//will be good when the responsibilityType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ResponsibilityType.
-			
+
 			responsibilityType.changeProperty(property, newValueExpr);
 			
 			responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().done());
@@ -327,7 +314,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ResponsibilityTypeTokens tokens(){
 		return ResponsibilityTypeTokens.start();
 	}
@@ -349,11 +336,11 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String responsibilityTypeId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
- 		
+
  	}
  	public ResponsibilityType transferToAnotherCompany(RetailscmUserContext userContext, String responsibilityTypeId, String anotherCompanyId) throws Exception
  	{
@@ -372,10 +359,10 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -385,7 +372,7 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -395,42 +382,42 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String responsibilityTypeId, int responsibilityTypeVersion) throws Exception {
-		//deleteInternal(userContext, responsibilityTypeId, responsibilityTypeVersion);		
+		//deleteInternal(userContext, responsibilityTypeId, responsibilityTypeVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String responsibilityTypeId, int responsibilityTypeVersion) throws Exception{
-			
+
 		responsibilityTypeDaoOf(userContext).delete(responsibilityTypeId, responsibilityTypeVersion);
 	}
-	
+
 	public ResponsibilityType forgetByAll(RetailscmUserContext userContext, String responsibilityTypeId, int responsibilityTypeVersion) throws Exception {
-		return forgetByAllInternal(userContext, responsibilityTypeId, responsibilityTypeVersion);		
+		return forgetByAllInternal(userContext, responsibilityTypeId, responsibilityTypeVersion);
 	}
 	protected ResponsibilityType forgetByAllInternal(RetailscmUserContext userContext,
 			String responsibilityTypeId, int responsibilityTypeVersion) throws Exception{
-			
+
 		return responsibilityTypeDaoOf(userContext).disconnectFromAll(responsibilityTypeId, responsibilityTypeVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -441,8 +428,8 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return responsibilityTypeDaoOf(userContext).deleteAll();
 	}
@@ -451,15 +438,15 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	//disconnect ResponsibilityType with company in Employee
 	protected ResponsibilityType breakWithEmployeeByCompany(RetailscmUserContext userContext, String responsibilityTypeId, String companyId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 
-			synchronized(responsibilityType){ 
+			synchronized(responsibilityType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithCompany(responsibilityType, companyId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
@@ -469,15 +456,15 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	//disconnect ResponsibilityType with department in Employee
 	protected ResponsibilityType breakWithEmployeeByDepartment(RetailscmUserContext userContext, String responsibilityTypeId, String departmentId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 
-			synchronized(responsibilityType){ 
+			synchronized(responsibilityType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithDepartment(responsibilityType, departmentId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
@@ -487,15 +474,15 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	//disconnect ResponsibilityType with occupation in Employee
 	protected ResponsibilityType breakWithEmployeeByOccupation(RetailscmUserContext userContext, String responsibilityTypeId, String occupationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 
-			synchronized(responsibilityType){ 
+			synchronized(responsibilityType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithOccupation(responsibilityType, occupationId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
@@ -505,155 +492,29 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	//disconnect ResponsibilityType with current_salary_grade in Employee
 	protected ResponsibilityType breakWithEmployeeByCurrentSalaryGrade(RetailscmUserContext userContext, String responsibilityTypeId, String currentSalaryGradeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 
-			synchronized(responsibilityType){ 
+			synchronized(responsibilityType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithCurrentSalaryGrade(responsibilityType, currentSalaryGradeId, this.emptyOptions());
 
 				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 				return responsibilityType;
 			}
 	}
-	//disconnect ResponsibilityType with job_application in Employee
-	protected ResponsibilityType breakWithEmployeeByJobApplication(RetailscmUserContext userContext, String responsibilityTypeId, String jobApplicationId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 
-			synchronized(responsibilityType){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithJobApplication(responsibilityType, jobApplicationId, this.emptyOptions());
 
-				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
-				return responsibilityType;
-			}
-	}
-	//disconnect ResponsibilityType with profession_interview in Employee
-	protected ResponsibilityType breakWithEmployeeByProfessionInterview(RetailscmUserContext userContext, String responsibilityTypeId, String professionInterviewId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 
-			synchronized(responsibilityType){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithProfessionInterview(responsibilityType, professionInterviewId, this.emptyOptions());
 
-				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
-				return responsibilityType;
-			}
-	}
-	//disconnect ResponsibilityType with hr_interview in Employee
-	protected ResponsibilityType breakWithEmployeeByHrInterview(RetailscmUserContext userContext, String responsibilityTypeId, String hrInterviewId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
 
-			synchronized(responsibilityType){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithHrInterview(responsibilityType, hrInterviewId, this.emptyOptions());
 
-				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
-				return responsibilityType;
-			}
-	}
-	//disconnect ResponsibilityType with offer_approval in Employee
-	protected ResponsibilityType breakWithEmployeeByOfferApproval(RetailscmUserContext userContext, String responsibilityTypeId, String offerApprovalId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
+	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount,String [] tokensExpr) throws Exception{
 
-			synchronized(responsibilityType){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithOfferApproval(responsibilityType, offerApprovalId, this.emptyOptions());
-
-				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
-				return responsibilityType;
-			}
-	}
-	//disconnect ResponsibilityType with offer_acceptance in Employee
-	protected ResponsibilityType breakWithEmployeeByOfferAcceptance(RetailscmUserContext userContext, String responsibilityTypeId, String offerAcceptanceId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
-
-			synchronized(responsibilityType){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithOfferAcceptance(responsibilityType, offerAcceptanceId, this.emptyOptions());
-
-				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
-				return responsibilityType;
-			}
-	}
-	//disconnect ResponsibilityType with employee_boarding in Employee
-	protected ResponsibilityType breakWithEmployeeByEmployeeBoarding(RetailscmUserContext userContext, String responsibilityTypeId, String employeeBoardingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
-
-			synchronized(responsibilityType){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithEmployeeBoarding(responsibilityType, employeeBoardingId, this.emptyOptions());
-
-				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
-				return responsibilityType;
-			}
-	}
-	//disconnect ResponsibilityType with termination in Employee
-	protected ResponsibilityType breakWithEmployeeByTermination(RetailscmUserContext userContext, String responsibilityTypeId, String terminationId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
-
-			synchronized(responsibilityType){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeListWithTermination(responsibilityType, terminationId, this.emptyOptions());
-
-				responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
-				return responsibilityType;
-			}
-	}
-	
-	
-	
-	
-	
-
-	protected void checkParamsForAddingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId,String [] tokensExpr) throws Exception{
-		
 				checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
 
 		
@@ -680,37 +541,23 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		checkerOf(userContext).checkCurrentSalaryGradeIdOfEmployee(currentSalaryGradeId);
 		
 		checkerOf(userContext).checkSalaryAccountOfEmployee(salaryAccount);
-		
-		checkerOf(userContext).checkJobApplicationIdOfEmployee(jobApplicationId);
-		
-		checkerOf(userContext).checkProfessionInterviewIdOfEmployee(professionInterviewId);
-		
-		checkerOf(userContext).checkHrInterviewIdOfEmployee(hrInterviewId);
-		
-		checkerOf(userContext).checkOfferApprovalIdOfEmployee(offerApprovalId);
-		
-		checkerOf(userContext).checkOfferAcceptanceIdOfEmployee(offerAcceptanceId);
-		
-		checkerOf(userContext).checkEmployeeBoardingIdOfEmployee(employeeBoardingId);
-		
-		checkerOf(userContext).checkTerminationIdOfEmployee(terminationId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
 
-	
+
 	}
-	public  ResponsibilityType addEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingEmployee(userContext,responsibilityTypeId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId,tokensExpr);
-		
-		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount, jobApplicationId, professionInterviewId, hrInterviewId, offerApprovalId, offerAcceptanceId, employeeBoardingId, terminationId);
-		
-		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
-		synchronized(responsibilityType){ 
+	public  ResponsibilityType addEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingEmployee(userContext,responsibilityTypeId,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount,tokensExpr);
+
+		Employee employee = createEmployee(userContext,companyId, title, departmentId, familyName, givenName, email, city, address, cellPhone, occupationId, currentSalaryGradeId, salaryAccount);
+
+		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, emptyOptions());
+		synchronized(responsibilityType){
 			//Will be good when the responsibilityType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			responsibilityType.addEmployee( employee );		
+			responsibilityType.addEmployee( employee );
 			responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 			
 			userContext.getManagerGroup().getEmployeeManager().onNewInstanceCreated(userContext, employee);
@@ -718,10 +565,10 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeProperties(RetailscmUserContext userContext, String responsibilityTypeId,String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
 		checkerOf(userContext).checkIdOfEmployee(id);
-		
+
 		checkerOf(userContext).checkTitleOfEmployee( title);
 		checkerOf(userContext).checkFamilyNameOfEmployee( familyName);
 		checkerOf(userContext).checkGivenNameOfEmployee( givenName);
@@ -732,25 +579,25 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		checkerOf(userContext).checkSalaryAccountOfEmployee( salaryAccount);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
-		
+
 	}
 	public  ResponsibilityType updateEmployeeProperties(RetailscmUserContext userContext, String responsibilityTypeId, String id,String title,String familyName,String givenName,String email,String city,String address,String cellPhone,String salaryAccount, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeProperties(userContext,responsibilityTypeId,id,title,familyName,givenName,email,city,address,cellPhone,salaryAccount,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeListList()
 				.searchEmployeeListWith(Employee.ID_PROPERTY, "is", id).done();
-		
+
 		ResponsibilityType responsibilityTypeToUpdate = loadResponsibilityType(userContext, responsibilityTypeId, options);
-		
+
 		if(responsibilityTypeToUpdate.getEmployeeList().isEmpty()){
 			throw new ResponsibilityTypeManagerException("Employee is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Employee item = responsibilityTypeToUpdate.getEmployeeList().first();
-		
+
 		item.updateTitle( title );
 		item.updateFamilyName( familyName );
 		item.updateGivenName( givenName );
@@ -760,16 +607,16 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		item.updateCellPhone( cellPhone );
 		item.updateSalaryAccount( salaryAccount );
 
-		
+
 		//checkParamsForAddingEmployee(userContext,responsibilityTypeId,name, code, used,tokensExpr);
 		ResponsibilityType responsibilityType = saveResponsibilityType(userContext, responsibilityTypeToUpdate, tokens().withEmployeeList().done());
-		synchronized(responsibilityType){ 
+		synchronized(responsibilityType){
 			return present(userContext,responsibilityType, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception{
+
+
+	protected Employee createEmployee(RetailscmUserContext userContext, String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String currentSalaryGradeId, String salaryAccount) throws Exception{
 
 		Employee employee = new Employee();
 		
@@ -794,63 +641,42 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		currentSalaryGrade.setId(currentSalaryGradeId);		
 		employee.setCurrentSalaryGrade(currentSalaryGrade);		
 		employee.setSalaryAccount(salaryAccount);		
-		JobApplication  jobApplication = new JobApplication();
-		jobApplication.setId(jobApplicationId);		
-		employee.setJobApplication(jobApplication);		
-		ProfessionInterview  professionInterview = new ProfessionInterview();
-		professionInterview.setId(professionInterviewId);		
-		employee.setProfessionInterview(professionInterview);		
-		HrInterview  hrInterview = new HrInterview();
-		hrInterview.setId(hrInterviewId);		
-		employee.setHrInterview(hrInterview);		
-		OfferApproval  offerApproval = new OfferApproval();
-		offerApproval.setId(offerApprovalId);		
-		employee.setOfferApproval(offerApproval);		
-		OfferAcceptance  offerAcceptance = new OfferAcceptance();
-		offerAcceptance.setId(offerAcceptanceId);		
-		employee.setOfferAcceptance(offerAcceptance);		
-		EmployeeBoarding  employeeBoarding = new EmployeeBoarding();
-		employeeBoarding.setId(employeeBoardingId);		
-		employee.setEmployeeBoarding(employeeBoarding);		
-		Termination  termination = new Termination();
-		termination.setId(terminationId);		
-		employee.setTermination(termination);		
 		employee.setLastUpdateTime(userContext.now());
 	
 		
 		return employee;
-	
-		
+
+
 	}
-	
+
 	protected Employee createIndexedEmployee(String id, int version){
 
 		Employee employee = new Employee();
 		employee.setId(id);
 		employee.setVersion(version);
-		return employee;			
-		
+		return employee;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String responsibilityTypeId, 
+
+	protected void checkParamsForRemovingEmployeeList(RetailscmUserContext userContext, String responsibilityTypeId,
 			String employeeIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfResponsibilityType(responsibilityTypeId);
 		for(String employeeIdItem: employeeIds){
 			checkerOf(userContext).checkIdOfEmployee(employeeIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
-		
+
 	}
-	public  ResponsibilityType removeEmployeeList(RetailscmUserContext userContext, String responsibilityTypeId, 
+	public  ResponsibilityType removeEmployeeList(RetailscmUserContext userContext, String responsibilityTypeId,
 			String employeeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeList(userContext, responsibilityTypeId,  employeeIds, tokensExpr);
-			
-			
+
+
 			ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
-			synchronized(responsibilityType){ 
+			synchronized(responsibilityType){
 				//Will be good when the responsibilityType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				responsibilityTypeDaoOf(userContext).planToRemoveEmployeeList(responsibilityType, employeeIds, allTokens());
@@ -859,65 +685,65 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 				return present(userContext,responsibilityType, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, 
+
+	protected void checkParamsForRemovingEmployee(RetailscmUserContext userContext, String responsibilityTypeId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfResponsibilityType( responsibilityTypeId);
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
-	
+
 	}
-	public  ResponsibilityType removeEmployee(RetailscmUserContext userContext, String responsibilityTypeId, 
+	public  ResponsibilityType removeEmployee(RetailscmUserContext userContext, String responsibilityTypeId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployee(userContext,responsibilityTypeId, employeeId, employeeVersion,tokensExpr);
-		
+
 		Employee employee = createIndexedEmployee(employeeId, employeeVersion);
 		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
-		synchronized(responsibilityType){ 
+		synchronized(responsibilityType){
 			//Will be good when the responsibilityType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			responsibilityType.removeEmployee( employee );		
+			responsibilityType.removeEmployee( employee );
 			responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 			deleteRelationInGraph(userContext, employee);
 			return present(userContext,responsibilityType, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, 
+	protected void checkParamsForCopyingEmployee(RetailscmUserContext userContext, String responsibilityTypeId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfResponsibilityType( responsibilityTypeId);
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkVersionOfEmployee(employeeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
-	
+
 	}
-	public  ResponsibilityType copyEmployeeFrom(RetailscmUserContext userContext, String responsibilityTypeId, 
+	public  ResponsibilityType copyEmployeeFrom(RetailscmUserContext userContext, String responsibilityTypeId,
 		String employeeId, int employeeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployee(userContext,responsibilityTypeId, employeeId, employeeVersion,tokensExpr);
-		
+
 		Employee employee = createIndexedEmployee(employeeId, employeeVersion);
 		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, allTokens());
-		synchronized(responsibilityType){ 
+		synchronized(responsibilityType){
 			//Will be good when the responsibilityType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			employee.updateLastUpdateTime(userContext.now());
-			
-			responsibilityType.copyEmployeeFrom( employee );		
+
+			responsibilityType.copyEmployeeFrom( employee );
 			responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
 			
 			userContext.getManagerGroup().getEmployeeManager().onNewInstanceCreated(userContext, (Employee)responsibilityType.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,responsibilityType, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -961,32 +787,32 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ResponsibilityTypeManagerException.class);
-	
+
 	}
-	
+
 	public  ResponsibilityType updateEmployee(RetailscmUserContext userContext, String responsibilityTypeId, String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployee(userContext, responsibilityTypeId, employeeId, employeeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeList().searchEmployeeListWith(Employee.ID_PROPERTY, "eq", employeeId).done();
-		
-		
-		
+
+
+
 		ResponsibilityType responsibilityType = loadResponsibilityType(userContext, responsibilityTypeId, loadTokens);
-		
-		synchronized(responsibilityType){ 
+
+		synchronized(responsibilityType){
 			//Will be good when the responsibilityType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//responsibilityType.removeEmployee( employee );	
+			//responsibilityType.removeEmployee( employee );
 			//make changes to AcceleraterAccount.
 			Employee employeeIndex = createIndexedEmployee(employeeId, employeeVersion);
-		
+
 			Employee employee = responsibilityType.findTheEmployee(employeeIndex);
 			if(employee == null){
 				throw new ResponsibilityTypeManagerException(employee+" is NOT FOUND" );
 			}
-			
+
 			employee.changeProperty(property, newValueExpr);
 			employee.updateLastUpdateTime(userContext.now());
 			responsibilityType = saveResponsibilityType(userContext, responsibilityType, tokens().withEmployeeList().done());
@@ -997,14 +823,20 @@ public class ResponsibilityTypeManagerImpl extends CustomRetailscmCheckerManager
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ResponsibilityType newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

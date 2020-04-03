@@ -29,9 +29,9 @@ public interface RetailStoreProvinceCenterManager extends BaseManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  ProvinceCenterDepartmentManager getProvinceCenterDepartmentManager(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String managerName ,String [] tokensExpr)  throws Exception;
+	//public  ProvinceCenterDepartmentManager getProvinceCenterDepartmentManager(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String manager ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreProvinceCenter addProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String managerName , String [] tokensExpr)  throws Exception;
+	public  RetailStoreProvinceCenter addProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String name, Date founded, String manager , String [] tokensExpr)  throws Exception;
 	public  RetailStoreProvinceCenter removeProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String provinceCenterDepartmentId, int provinceCenterDepartmentVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreProvinceCenter updateProvinceCenterDepartment(RetailscmUserContext userContext, String retailStoreProvinceCenterId, String provinceCenterDepartmentId, int provinceCenterDepartmentVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

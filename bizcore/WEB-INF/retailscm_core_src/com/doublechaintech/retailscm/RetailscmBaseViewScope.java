@@ -29,11 +29,6 @@ import com.doublechaintech.retailscm.retailstoreopening.RetailStoreOpening;
 import com.doublechaintech.retailscm.retailstoreclosing.RetailStoreClosing;
 import com.doublechaintech.retailscm.retailstoremember.RetailStoreMember;
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
-import com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmation;
-import com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApproval;
-import com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessing;
-import com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipment;
-import com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDelivery;
 import com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItem;
 import com.doublechaintech.retailscm.consumerordershippinggroup.ConsumerOrderShippingGroup;
 import com.doublechaintech.retailscm.consumerorderpaymentgroup.ConsumerOrderPaymentGroup;
@@ -50,22 +45,10 @@ import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
 import com.doublechaintech.retailscm.supplierproduct.SupplierProduct;
 import com.doublechaintech.retailscm.productsupplyduration.ProductSupplyDuration;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItem;
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroup;
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroup;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
-import com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmation;
-import com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApproval;
-import com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessing;
-import com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPicking;
-import com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipment;
-import com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDelivery;
 import com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItem;
 import com.doublechaintech.retailscm.retailstoreordershippinggroup.RetailStoreOrderShippingGroup;
 import com.doublechaintech.retailscm.retailstoreorderpaymentgroup.RetailStoreOrderPaymentGroup;
@@ -77,7 +60,6 @@ import com.doublechaintech.retailscm.goodsshelfstockcount.GoodsShelfStockCount;
 import com.doublechaintech.retailscm.stockcountissuetrack.StockCountIssueTrack;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
 import com.doublechaintech.retailscm.goods.Goods;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
 import com.doublechaintech.retailscm.supplierspace.SupplierSpace;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
@@ -94,14 +76,7 @@ import com.doublechaintech.retailscm.accountingsubject.AccountingSubject;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentType;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreation;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmation;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditing;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPosting;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucher;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreation;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmation;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditing;
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLine;
 import com.doublechaintech.retailscm.levelonedepartment.LevelOneDepartment;
 import com.doublechaintech.retailscm.leveltwodepartment.LevelTwoDepartment;
@@ -119,12 +94,6 @@ import com.doublechaintech.retailscm.publicholiday.PublicHoliday;
 import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.view.View;
 import com.doublechaintech.retailscm.employee.Employee;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.instructor.Instructor;
 import com.doublechaintech.retailscm.companytraining.CompanyTraining;
 import com.doublechaintech.retailscm.scoring.Scoring;
@@ -143,7 +112,6 @@ import com.doublechaintech.retailscm.payingoff.PayingOff;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
 import com.doublechaintech.retailscm.secuser.SecUser;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userapp.UserApp;
 import com.doublechaintech.retailscm.quicklink.QuickLink;
 import com.doublechaintech.retailscm.listaccess.ListAccess;
@@ -267,7 +235,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
-		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
 		;
 	/** 用于ProvinceCenterDepartment的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getProvinceCenterDepartmentSummaryScope() {
@@ -474,61 +442,6 @@ public class RetailscmBaseViewScope {
 		return ConsumerOrderBaseSummaryScope;
 	}
 
-	protected static SerializeScope ConsumerOrderConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderConfirmation.ID_PROPERTY)
-		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
-		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderConfirmation的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderConfirmationSummaryScope() {
-		return ConsumerOrderConfirmationBaseSummaryScope;
-	}
-
-	protected static SerializeScope ConsumerOrderApprovalBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderApproval.ID_PROPERTY)
-		.field(ConsumerOrderApproval.WHO_PROPERTY)
-		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderApproval的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderApprovalSummaryScope() {
-		return ConsumerOrderApprovalBaseSummaryScope;
-	}
-
-	protected static SerializeScope ConsumerOrderProcessingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderProcessing.ID_PROPERTY)
-		.field(ConsumerOrderProcessing.WHO_PROPERTY)
-		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderProcessing的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderProcessingSummaryScope() {
-		return ConsumerOrderProcessingBaseSummaryScope;
-	}
-
-	protected static SerializeScope ConsumerOrderShipmentBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderShipment.ID_PROPERTY)
-		.field(ConsumerOrderShipment.WHO_PROPERTY)
-		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderShipment的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderShipmentSummaryScope() {
-		return ConsumerOrderShipmentBaseSummaryScope;
-	}
-
-	protected static SerializeScope ConsumerOrderDeliveryBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderDelivery.ID_PROPERTY)
-		.field(ConsumerOrderDelivery.WHO_PROPERTY)
-		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderDelivery的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderDeliverySummaryScope() {
-		return ConsumerOrderDeliveryBaseSummaryScope;
-	}
-
 	protected static SerializeScope ConsumerOrderLineItemBaseSummaryScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderLineItem.ID_PROPERTY)
@@ -718,72 +631,6 @@ public class RetailscmBaseViewScope {
 		return SupplyOrderBaseSummaryScope;
 	}
 
-	protected static SerializeScope SupplyOrderConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderConfirmation.ID_PROPERTY)
-		.field(SupplyOrderConfirmation.WHO_PROPERTY)
-		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderConfirmation的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderConfirmationSummaryScope() {
-		return SupplyOrderConfirmationBaseSummaryScope;
-	}
-
-	protected static SerializeScope SupplyOrderApprovalBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderApproval.ID_PROPERTY)
-		.field(SupplyOrderApproval.WHO_PROPERTY)
-		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderApproval的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderApprovalSummaryScope() {
-		return SupplyOrderApprovalBaseSummaryScope;
-	}
-
-	protected static SerializeScope SupplyOrderProcessingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderProcessing.ID_PROPERTY)
-		.field(SupplyOrderProcessing.WHO_PROPERTY)
-		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderProcessing的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderProcessingSummaryScope() {
-		return SupplyOrderProcessingBaseSummaryScope;
-	}
-
-	protected static SerializeScope SupplyOrderPickingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderPicking.ID_PROPERTY)
-		.field(SupplyOrderPicking.WHO_PROPERTY)
-		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderPicking的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderPickingSummaryScope() {
-		return SupplyOrderPickingBaseSummaryScope;
-	}
-
-	protected static SerializeScope SupplyOrderShipmentBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderShipment.ID_PROPERTY)
-		.field(SupplyOrderShipment.WHO_PROPERTY)
-		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderShipment的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderShipmentSummaryScope() {
-		return SupplyOrderShipmentBaseSummaryScope;
-	}
-
-	protected static SerializeScope SupplyOrderDeliveryBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderDelivery.ID_PROPERTY)
-		.field(SupplyOrderDelivery.WHO_PROPERTY)
-		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderDelivery的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderDeliverySummaryScope() {
-		return SupplyOrderDeliveryBaseSummaryScope;
-	}
-
 	protected static SerializeScope SupplyOrderLineItemBaseSummaryScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderLineItem.ID_PROPERTY)
@@ -830,72 +677,6 @@ public class RetailscmBaseViewScope {
 	/** 用于RetailStoreOrder的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreOrderSummaryScope() {
 		return RetailStoreOrderBaseSummaryScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
-		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
-		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderConfirmation的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderConfirmationSummaryScope() {
-		return RetailStoreOrderConfirmationBaseSummaryScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderApprovalBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderApproval.ID_PROPERTY)
-		.field(RetailStoreOrderApproval.WHO_PROPERTY)
-		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderApproval的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderApprovalSummaryScope() {
-		return RetailStoreOrderApprovalBaseSummaryScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderProcessingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderProcessing.ID_PROPERTY)
-		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
-		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderProcessing的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderProcessingSummaryScope() {
-		return RetailStoreOrderProcessingBaseSummaryScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderPickingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderPicking.ID_PROPERTY)
-		.field(RetailStoreOrderPicking.WHO_PROPERTY)
-		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderPicking的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderPickingSummaryScope() {
-		return RetailStoreOrderPickingBaseSummaryScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderShipmentBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderShipment.ID_PROPERTY)
-		.field(RetailStoreOrderShipment.WHO_PROPERTY)
-		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderShipment的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderShipmentSummaryScope() {
-		return RetailStoreOrderShipmentBaseSummaryScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderDeliveryBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderDelivery.ID_PROPERTY)
-		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
-		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderDelivery的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderDeliverySummaryScope() {
-		return RetailStoreOrderDeliveryBaseSummaryScope;
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseSummaryScope = SerializeScope.INCLUDE()
@@ -1038,19 +819,6 @@ public class RetailscmBaseViewScope {
 	/** 用于Goods的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getGoodsSummaryScope() {
 		return GoodsBaseSummaryScope;
-	}
-
-	protected static SerializeScope GoodsPackagingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(GoodsPackaging.ID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
-		.field(GoodsPackaging.RFID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_TIME_PROPERTY)
-		.field(GoodsPackaging.DESCRIPTION_PROPERTY)
-		;
-	/** 用于GoodsPackaging的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getGoodsPackagingSummaryScope() {
-		return GoodsPackagingBaseSummaryScope;
 	}
 
 	protected static SerializeScope GoodsMovementBaseSummaryScope = SerializeScope.INCLUDE()
@@ -1276,54 +1044,6 @@ public class RetailscmBaseViewScope {
 		return AccountingDocumentBaseSummaryScope;
 	}
 
-	protected static SerializeScope AccountingDocumentCreationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentCreation.ID_PROPERTY)
-		.field(AccountingDocumentCreation.WHO_PROPERTY)
-		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentCreation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentCreation的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentCreationSummaryScope() {
-		return AccountingDocumentCreationBaseSummaryScope;
-	}
-
-	protected static SerializeScope AccountingDocumentConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentConfirmation.ID_PROPERTY)
-		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
-		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentConfirmation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentConfirmation的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentConfirmationSummaryScope() {
-		return AccountingDocumentConfirmationBaseSummaryScope;
-	}
-
-	protected static SerializeScope AccountingDocumentAuditingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentAuditing.ID_PROPERTY)
-		.field(AccountingDocumentAuditing.WHO_PROPERTY)
-		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
-		.field(AccountingDocumentAuditing.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentAuditing的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentAuditingSummaryScope() {
-		return AccountingDocumentAuditingBaseSummaryScope;
-	}
-
-	protected static SerializeScope AccountingDocumentPostingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentPosting.ID_PROPERTY)
-		.field(AccountingDocumentPosting.WHO_PROPERTY)
-		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
-		.field(AccountingDocumentPosting.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentPosting的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentPostingSummaryScope() {
-		return AccountingDocumentPostingBaseSummaryScope;
-	}
-
 	protected static SerializeScope OriginalVoucherBaseSummaryScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucher.ID_PROPERTY)
@@ -1336,42 +1056,6 @@ public class RetailscmBaseViewScope {
 	/** 用于OriginalVoucher的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherSummaryScope() {
 		return OriginalVoucherBaseSummaryScope;
-	}
-
-	protected static SerializeScope OriginalVoucherCreationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherCreation.ID_PROPERTY)
-		.field(OriginalVoucherCreation.WHO_PROPERTY)
-		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherCreation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于OriginalVoucherCreation的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherCreationSummaryScope() {
-		return OriginalVoucherCreationBaseSummaryScope;
-	}
-
-	protected static SerializeScope OriginalVoucherConfirmationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherConfirmation.ID_PROPERTY)
-		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
-		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherConfirmation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于OriginalVoucherConfirmation的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherConfirmationSummaryScope() {
-		return OriginalVoucherConfirmationBaseSummaryScope;
-	}
-
-	protected static SerializeScope OriginalVoucherAuditingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherAuditing.ID_PROPERTY)
-		.field(OriginalVoucherAuditing.WHO_PROPERTY)
-		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
-		.field(OriginalVoucherAuditing.MAKE_DATE_PROPERTY)
-		;
-	/** 用于OriginalVoucherAuditing的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherAuditingSummaryScope() {
-		return OriginalVoucherAuditingBaseSummaryScope;
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseSummaryScope = SerializeScope.INCLUDE()
@@ -1392,7 +1076,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		;
 	/** 用于LevelOneDepartment的子对象的详情页时需要序列化的属性列表 */
@@ -1580,78 +1264,6 @@ public class RetailscmBaseViewScope {
 	/** 用于Employee的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSummaryScope() {
 		return EmployeeBaseSummaryScope;
-	}
-
-	protected static SerializeScope JobApplicationBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(JobApplication.ID_PROPERTY)
-		.field(JobApplication.APPLICATION_TIME_PROPERTY)
-		.field(JobApplication.WHO_PROPERTY)
-		.field(JobApplication.COMMENTS_PROPERTY)
-		;
-	/** 用于JobApplication的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getJobApplicationSummaryScope() {
-		return JobApplicationBaseSummaryScope;
-	}
-
-	protected static SerializeScope ProfessionInterviewBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ProfessionInterview.ID_PROPERTY)
-		.field(ProfessionInterview.WHO_PROPERTY)
-		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
-		.field(ProfessionInterview.COMMENTS_PROPERTY)
-		;
-	/** 用于ProfessionInterview的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getProfessionInterviewSummaryScope() {
-		return ProfessionInterviewBaseSummaryScope;
-	}
-
-	protected static SerializeScope HrInterviewBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(HrInterview.ID_PROPERTY)
-		.field(HrInterview.WHO_PROPERTY)
-		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
-		.field(HrInterview.COMMENTS_PROPERTY)
-		;
-	/** 用于HrInterview的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getHrInterviewSummaryScope() {
-		return HrInterviewBaseSummaryScope;
-	}
-
-	protected static SerializeScope OfferApprovalBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferApproval.ID_PROPERTY)
-		.field(OfferApproval.WHO_PROPERTY)
-		.field(OfferApproval.APPROVE_TIME_PROPERTY)
-		.field(OfferApproval.COMMENTS_PROPERTY)
-		;
-	/** 用于OfferApproval的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOfferApprovalSummaryScope() {
-		return OfferApprovalBaseSummaryScope;
-	}
-
-	protected static SerializeScope OfferAcceptanceBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferAcceptance.ID_PROPERTY)
-		.field(OfferAcceptance.WHO_PROPERTY)
-		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
-		.field(OfferAcceptance.COMMENTS_PROPERTY)
-		;
-	/** 用于OfferAcceptance的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOfferAcceptanceSummaryScope() {
-		return OfferAcceptanceBaseSummaryScope;
-	}
-
-	protected static SerializeScope EmployeeBoardingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(EmployeeBoarding.ID_PROPERTY)
-		.field(EmployeeBoarding.WHO_PROPERTY)
-		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
-		.field(EmployeeBoarding.COMMENTS_PROPERTY)
-		;
-	/** 用于EmployeeBoarding的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getEmployeeBoardingSummaryScope() {
-		return EmployeeBoardingBaseSummaryScope;
 	}
 
 	protected static SerializeScope InstructorBaseSummaryScope = SerializeScope.INCLUDE()
@@ -1874,18 +1486,6 @@ public class RetailscmBaseViewScope {
 	/** 用于SecUser的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSecUserSummaryScope() {
 		return SecUserBaseSummaryScope;
-	}
-
-	protected static SerializeScope SecUserBlockingBaseSummaryScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SecUserBlocking.ID_PROPERTY)
-		.field(SecUserBlocking.WHO_PROPERTY)
-		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
-		.field(SecUserBlocking.COMMENTS_PROPERTY)
-		;
-	/** 用于SecUserBlocking的子对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSecUserBlockingSummaryScope() {
-		return SecUserBlockingBaseSummaryScope;
 	}
 
 	protected static SerializeScope UserAppBaseSummaryScope = SerializeScope.INCLUDE()
@@ -2167,7 +1767,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.ID_PROPERTY)
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
-		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
 		;
 	/** 用于ProvinceCenterDepartment的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getProvinceCenterDepartmentSecondaryListItemScope() {
@@ -2374,61 +1974,6 @@ public class RetailscmBaseViewScope {
 		return ConsumerOrderBaseSecondaryListItemScope;
 	}
 
-	protected static SerializeScope ConsumerOrderConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderConfirmation.ID_PROPERTY)
-		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
-		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderConfirmation的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderConfirmationSecondaryListItemScope() {
-		return ConsumerOrderConfirmationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderApproval.ID_PROPERTY)
-		.field(ConsumerOrderApproval.WHO_PROPERTY)
-		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderApproval的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderApprovalSecondaryListItemScope() {
-		return ConsumerOrderApprovalBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderProcessingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderProcessing.ID_PROPERTY)
-		.field(ConsumerOrderProcessing.WHO_PROPERTY)
-		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderProcessing的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderProcessingSecondaryListItemScope() {
-		return ConsumerOrderProcessingBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderShipmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderShipment.ID_PROPERTY)
-		.field(ConsumerOrderShipment.WHO_PROPERTY)
-		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderShipment的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderShipmentSecondaryListItemScope() {
-		return ConsumerOrderShipmentBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderDeliveryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderDelivery.ID_PROPERTY)
-		.field(ConsumerOrderDelivery.WHO_PROPERTY)
-		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderDelivery的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderDeliverySecondaryListItemScope() {
-		return ConsumerOrderDeliveryBaseSecondaryListItemScope;
-	}
-
 	protected static SerializeScope ConsumerOrderLineItemBaseSecondaryListItemScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(ConsumerOrderLineItem.ID_PROPERTY)
@@ -2618,72 +2163,6 @@ public class RetailscmBaseViewScope {
 		return SupplyOrderBaseSecondaryListItemScope;
 	}
 
-	protected static SerializeScope SupplyOrderConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderConfirmation.ID_PROPERTY)
-		.field(SupplyOrderConfirmation.WHO_PROPERTY)
-		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderConfirmation的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderConfirmationSecondaryListItemScope() {
-		return SupplyOrderConfirmationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderApproval.ID_PROPERTY)
-		.field(SupplyOrderApproval.WHO_PROPERTY)
-		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderApproval的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderApprovalSecondaryListItemScope() {
-		return SupplyOrderApprovalBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderProcessingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderProcessing.ID_PROPERTY)
-		.field(SupplyOrderProcessing.WHO_PROPERTY)
-		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderProcessing的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderProcessingSecondaryListItemScope() {
-		return SupplyOrderProcessingBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderPickingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderPicking.ID_PROPERTY)
-		.field(SupplyOrderPicking.WHO_PROPERTY)
-		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderPicking的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderPickingSecondaryListItemScope() {
-		return SupplyOrderPickingBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderShipmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderShipment.ID_PROPERTY)
-		.field(SupplyOrderShipment.WHO_PROPERTY)
-		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderShipment的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderShipmentSecondaryListItemScope() {
-		return SupplyOrderShipmentBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderDeliveryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderDelivery.ID_PROPERTY)
-		.field(SupplyOrderDelivery.WHO_PROPERTY)
-		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于SupplyOrderDelivery的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderDeliverySecondaryListItemScope() {
-		return SupplyOrderDeliveryBaseSecondaryListItemScope;
-	}
-
 	protected static SerializeScope SupplyOrderLineItemBaseSecondaryListItemScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(SupplyOrderLineItem.ID_PROPERTY)
@@ -2730,72 +2209,6 @@ public class RetailscmBaseViewScope {
 	/** 用于RetailStoreOrder的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreOrderSecondaryListItemScope() {
 		return RetailStoreOrderBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
-		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
-		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderConfirmation的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderConfirmationSecondaryListItemScope() {
-		return RetailStoreOrderConfirmationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderApproval.ID_PROPERTY)
-		.field(RetailStoreOrderApproval.WHO_PROPERTY)
-		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderApproval的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderApprovalSecondaryListItemScope() {
-		return RetailStoreOrderApprovalBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderProcessingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderProcessing.ID_PROPERTY)
-		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
-		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderProcessing的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderProcessingSecondaryListItemScope() {
-		return RetailStoreOrderProcessingBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderPickingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderPicking.ID_PROPERTY)
-		.field(RetailStoreOrderPicking.WHO_PROPERTY)
-		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderPicking的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderPickingSecondaryListItemScope() {
-		return RetailStoreOrderPickingBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderShipmentBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderShipment.ID_PROPERTY)
-		.field(RetailStoreOrderShipment.WHO_PROPERTY)
-		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderShipment的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderShipmentSecondaryListItemScope() {
-		return RetailStoreOrderShipmentBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderDeliveryBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderDelivery.ID_PROPERTY)
-		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
-		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于RetailStoreOrderDelivery的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderDeliverySecondaryListItemScope() {
-		return RetailStoreOrderDeliveryBaseSecondaryListItemScope;
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseSecondaryListItemScope = SerializeScope.INCLUDE()
@@ -2938,19 +2351,6 @@ public class RetailscmBaseViewScope {
 	/** 用于Goods的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getGoodsSecondaryListItemScope() {
 		return GoodsBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope GoodsPackagingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(GoodsPackaging.ID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
-		.field(GoodsPackaging.RFID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_TIME_PROPERTY)
-		.field(GoodsPackaging.DESCRIPTION_PROPERTY)
-		;
-	/** 用于GoodsPackaging的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getGoodsPackagingSecondaryListItemScope() {
-		return GoodsPackagingBaseSecondaryListItemScope;
 	}
 
 	protected static SerializeScope GoodsMovementBaseSecondaryListItemScope = SerializeScope.INCLUDE()
@@ -3176,54 +2576,6 @@ public class RetailscmBaseViewScope {
 		return AccountingDocumentBaseSecondaryListItemScope;
 	}
 
-	protected static SerializeScope AccountingDocumentCreationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentCreation.ID_PROPERTY)
-		.field(AccountingDocumentCreation.WHO_PROPERTY)
-		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentCreation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentCreation的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentCreationSecondaryListItemScope() {
-		return AccountingDocumentCreationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope AccountingDocumentConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentConfirmation.ID_PROPERTY)
-		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
-		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentConfirmation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentConfirmation的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentConfirmationSecondaryListItemScope() {
-		return AccountingDocumentConfirmationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope AccountingDocumentAuditingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentAuditing.ID_PROPERTY)
-		.field(AccountingDocumentAuditing.WHO_PROPERTY)
-		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
-		.field(AccountingDocumentAuditing.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentAuditing的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentAuditingSecondaryListItemScope() {
-		return AccountingDocumentAuditingBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope AccountingDocumentPostingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentPosting.ID_PROPERTY)
-		.field(AccountingDocumentPosting.WHO_PROPERTY)
-		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
-		.field(AccountingDocumentPosting.MAKE_DATE_PROPERTY)
-		;
-	/** 用于AccountingDocumentPosting的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentPostingSecondaryListItemScope() {
-		return AccountingDocumentPostingBaseSecondaryListItemScope;
-	}
-
 	protected static SerializeScope OriginalVoucherBaseSecondaryListItemScope = SerializeScope.INCLUDE()
 		.field(RetailscmBaseConstants.X_LINK_TO_URL)
 		.field(OriginalVoucher.ID_PROPERTY)
@@ -3236,42 +2588,6 @@ public class RetailscmBaseViewScope {
 	/** 用于OriginalVoucher的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherSecondaryListItemScope() {
 		return OriginalVoucherBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope OriginalVoucherCreationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherCreation.ID_PROPERTY)
-		.field(OriginalVoucherCreation.WHO_PROPERTY)
-		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherCreation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于OriginalVoucherCreation的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherCreationSecondaryListItemScope() {
-		return OriginalVoucherCreationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope OriginalVoucherConfirmationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherConfirmation.ID_PROPERTY)
-		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
-		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherConfirmation.MAKE_DATE_PROPERTY)
-		;
-	/** 用于OriginalVoucherConfirmation的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherConfirmationSecondaryListItemScope() {
-		return OriginalVoucherConfirmationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope OriginalVoucherAuditingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherAuditing.ID_PROPERTY)
-		.field(OriginalVoucherAuditing.WHO_PROPERTY)
-		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
-		.field(OriginalVoucherAuditing.MAKE_DATE_PROPERTY)
-		;
-	/** 用于OriginalVoucherAuditing的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherAuditingSecondaryListItemScope() {
-		return OriginalVoucherAuditingBaseSecondaryListItemScope;
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseSecondaryListItemScope = SerializeScope.INCLUDE()
@@ -3292,7 +2608,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.ID_PROPERTY)
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		;
 	/** 用于LevelOneDepartment的父对象的列表时需要序列化的属性列表 */
@@ -3480,78 +2796,6 @@ public class RetailscmBaseViewScope {
 	/** 用于Employee的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeSecondaryListItemScope() {
 		return EmployeeBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope JobApplicationBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(JobApplication.ID_PROPERTY)
-		.field(JobApplication.APPLICATION_TIME_PROPERTY)
-		.field(JobApplication.WHO_PROPERTY)
-		.field(JobApplication.COMMENTS_PROPERTY)
-		;
-	/** 用于JobApplication的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getJobApplicationSecondaryListItemScope() {
-		return JobApplicationBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope ProfessionInterviewBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ProfessionInterview.ID_PROPERTY)
-		.field(ProfessionInterview.WHO_PROPERTY)
-		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
-		.field(ProfessionInterview.COMMENTS_PROPERTY)
-		;
-	/** 用于ProfessionInterview的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getProfessionInterviewSecondaryListItemScope() {
-		return ProfessionInterviewBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope HrInterviewBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(HrInterview.ID_PROPERTY)
-		.field(HrInterview.WHO_PROPERTY)
-		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
-		.field(HrInterview.COMMENTS_PROPERTY)
-		;
-	/** 用于HrInterview的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getHrInterviewSecondaryListItemScope() {
-		return HrInterviewBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope OfferApprovalBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferApproval.ID_PROPERTY)
-		.field(OfferApproval.WHO_PROPERTY)
-		.field(OfferApproval.APPROVE_TIME_PROPERTY)
-		.field(OfferApproval.COMMENTS_PROPERTY)
-		;
-	/** 用于OfferApproval的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOfferApprovalSecondaryListItemScope() {
-		return OfferApprovalBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope OfferAcceptanceBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferAcceptance.ID_PROPERTY)
-		.field(OfferAcceptance.WHO_PROPERTY)
-		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
-		.field(OfferAcceptance.COMMENTS_PROPERTY)
-		;
-	/** 用于OfferAcceptance的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOfferAcceptanceSecondaryListItemScope() {
-		return OfferAcceptanceBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope EmployeeBoardingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(EmployeeBoarding.ID_PROPERTY)
-		.field(EmployeeBoarding.WHO_PROPERTY)
-		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
-		.field(EmployeeBoarding.COMMENTS_PROPERTY)
-		;
-	/** 用于EmployeeBoarding的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getEmployeeBoardingSecondaryListItemScope() {
-		return EmployeeBoardingBaseSecondaryListItemScope;
 	}
 
 	protected static SerializeScope InstructorBaseSecondaryListItemScope = SerializeScope.INCLUDE()
@@ -3774,18 +3018,6 @@ public class RetailscmBaseViewScope {
 	/** 用于SecUser的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSecUserSecondaryListItemScope() {
 		return SecUserBaseSecondaryListItemScope;
-	}
-
-	protected static SerializeScope SecUserBlockingBaseSecondaryListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SecUserBlocking.ID_PROPERTY)
-		.field(SecUserBlocking.WHO_PROPERTY)
-		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
-		.field(SecUserBlocking.COMMENTS_PROPERTY)
-		;
-	/** 用于SecUserBlocking的父对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSecUserBlockingSecondaryListItemScope() {
-		return SecUserBlockingBaseSecondaryListItemScope;
 	}
 
 	protected static SerializeScope UserAppBaseSecondaryListItemScope = SerializeScope.INCLUDE()
@@ -4108,7 +3340,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_PROPERTY, getRetailStoreProvinceCenterSummaryScope())
-		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_EMPLOYEE_LIST, getProvinceCenterEmployeeSecondaryListItemScope())
 		;
 	/** 用于ProvinceCenterDepartment对象的列表时需要序列化的属性列表 */
@@ -4361,11 +3593,6 @@ public class RetailscmBaseViewScope {
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_PROPERTY, getRetailStoreMemberSummaryScope())
-		.field(ConsumerOrder.CONFIRMATION_PROPERTY, getSupplyOrderConfirmationSummaryScope())
-		.field(ConsumerOrder.APPROVAL_PROPERTY, getSupplyOrderApprovalSummaryScope())
-		.field(ConsumerOrder.PROCESSING_PROPERTY, getSupplyOrderProcessingSummaryScope())
-		.field(ConsumerOrder.SHIPMENT_PROPERTY, getSupplyOrderShipmentSummaryScope())
-		.field(ConsumerOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(ConsumerOrder.STORE_PROPERTY, getRetailStoreSummaryScope())
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_ORDER_LINE_ITEM_LIST, getConsumerOrderLineItemSecondaryListItemScope())
@@ -4377,61 +3604,6 @@ public class RetailscmBaseViewScope {
 	/** 用于ConsumerOrder对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getConsumerOrderListItemScope() {
 		return ConsumerOrderBaseListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderConfirmationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderConfirmation.ID_PROPERTY)
-		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
-		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderConfirmation对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderConfirmationListItemScope() {
-		return ConsumerOrderConfirmationBaseListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderApprovalBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderApproval.ID_PROPERTY)
-		.field(ConsumerOrderApproval.WHO_PROPERTY)
-		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderApproval对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderApprovalListItemScope() {
-		return ConsumerOrderApprovalBaseListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderProcessingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderProcessing.ID_PROPERTY)
-		.field(ConsumerOrderProcessing.WHO_PROPERTY)
-		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderProcessing对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderProcessingListItemScope() {
-		return ConsumerOrderProcessingBaseListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderShipmentBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderShipment.ID_PROPERTY)
-		.field(ConsumerOrderShipment.WHO_PROPERTY)
-		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderShipment对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderShipmentListItemScope() {
-		return ConsumerOrderShipmentBaseListItemScope;
-	}
-
-	protected static SerializeScope ConsumerOrderDeliveryBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderDelivery.ID_PROPERTY)
-		.field(ConsumerOrderDelivery.WHO_PROPERTY)
-		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderDelivery对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderDeliveryListItemScope() {
-		return ConsumerOrderDeliveryBaseListItemScope;
 	}
 
 	protected static SerializeScope ConsumerOrderLineItemBaseListItemScope = SerializeScope.INCLUDE()
@@ -4640,12 +3812,6 @@ public class RetailscmBaseViewScope {
 		.field(SupplyOrder.SELLER_PROPERTY, getGoodsSupplierSummaryScope())
 		.field(SupplyOrder.TITLE_PROPERTY)
 		.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY)
-		.field(SupplyOrder.CONFIRMATION_PROPERTY, getSupplyOrderConfirmationSummaryScope())
-		.field(SupplyOrder.APPROVAL_PROPERTY, getSupplyOrderApprovalSummaryScope())
-		.field(SupplyOrder.PROCESSING_PROPERTY, getSupplyOrderProcessingSummaryScope())
-		.field(SupplyOrder.PICKING_PROPERTY, getSupplyOrderPickingSummaryScope())
-		.field(SupplyOrder.SHIPMENT_PROPERTY, getSupplyOrderShipmentSummaryScope())
-		.field(SupplyOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(SupplyOrder.LAST_UPDATE_TIME_PROPERTY)
 		.field(SupplyOrder.SUPPLY_ORDER_LINE_ITEM_LIST, getSupplyOrderLineItemSecondaryListItemScope())
 		.field(SupplyOrder.SUPPLY_ORDER_SHIPPING_GROUP_LIST, getSupplyOrderShippingGroupSecondaryListItemScope())
@@ -4655,83 +3821,6 @@ public class RetailscmBaseViewScope {
 	/** 用于SupplyOrder对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSupplyOrderListItemScope() {
 		return SupplyOrderBaseListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderConfirmationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderConfirmation.ID_PROPERTY)
-		.field(SupplyOrderConfirmation.WHO_PROPERTY)
-		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		.field(SupplyOrderConfirmation.CONSUMER_ORDER_LIST, getConsumerOrderSecondaryListItemScope())
-		.field(SupplyOrderConfirmation.SUPPLY_ORDER_LIST, getSupplyOrderSecondaryListItemScope())
-		;
-	/** 用于SupplyOrderConfirmation对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderConfirmationListItemScope() {
-		return SupplyOrderConfirmationBaseListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderApprovalBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderApproval.ID_PROPERTY)
-		.field(SupplyOrderApproval.WHO_PROPERTY)
-		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
-		.field(SupplyOrderApproval.CONSUMER_ORDER_LIST, getConsumerOrderSecondaryListItemScope())
-		.field(SupplyOrderApproval.SUPPLY_ORDER_LIST, getSupplyOrderSecondaryListItemScope())
-		;
-	/** 用于SupplyOrderApproval对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderApprovalListItemScope() {
-		return SupplyOrderApprovalBaseListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderProcessingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderProcessing.ID_PROPERTY)
-		.field(SupplyOrderProcessing.WHO_PROPERTY)
-		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
-		.field(SupplyOrderProcessing.CONSUMER_ORDER_LIST, getConsumerOrderSecondaryListItemScope())
-		.field(SupplyOrderProcessing.SUPPLY_ORDER_LIST, getSupplyOrderSecondaryListItemScope())
-		;
-	/** 用于SupplyOrderProcessing对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderProcessingListItemScope() {
-		return SupplyOrderProcessingBaseListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderPickingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderPicking.ID_PROPERTY)
-		.field(SupplyOrderPicking.WHO_PROPERTY)
-		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
-		.field(SupplyOrderPicking.SUPPLY_ORDER_LIST, getSupplyOrderSecondaryListItemScope())
-		;
-	/** 用于SupplyOrderPicking对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderPickingListItemScope() {
-		return SupplyOrderPickingBaseListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderShipmentBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderShipment.ID_PROPERTY)
-		.field(SupplyOrderShipment.WHO_PROPERTY)
-		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
-		.field(SupplyOrderShipment.CONSUMER_ORDER_LIST, getConsumerOrderSecondaryListItemScope())
-		.field(SupplyOrderShipment.SUPPLY_ORDER_LIST, getSupplyOrderSecondaryListItemScope())
-		;
-	/** 用于SupplyOrderShipment对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderShipmentListItemScope() {
-		return SupplyOrderShipmentBaseListItemScope;
-	}
-
-	protected static SerializeScope SupplyOrderDeliveryBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderDelivery.ID_PROPERTY)
-		.field(SupplyOrderDelivery.WHO_PROPERTY)
-		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
-		.field(SupplyOrderDelivery.CONSUMER_ORDER_LIST, getConsumerOrderSecondaryListItemScope())
-		.field(SupplyOrderDelivery.SUPPLY_ORDER_LIST, getSupplyOrderSecondaryListItemScope())
-		;
-	/** 用于SupplyOrderDelivery对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderDeliveryListItemScope() {
-		return SupplyOrderDeliveryBaseListItemScope;
 	}
 
 	protected static SerializeScope SupplyOrderLineItemBaseListItemScope = SerializeScope.INCLUDE()
@@ -4780,12 +3869,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStoreOrder.SELLER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(RetailStoreOrder.TITLE_PROPERTY)
 		.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY)
-		.field(RetailStoreOrder.CONFIRMATION_PROPERTY, getRetailStoreOrderConfirmationSummaryScope())
-		.field(RetailStoreOrder.APPROVAL_PROPERTY, getRetailStoreOrderApprovalSummaryScope())
-		.field(RetailStoreOrder.PROCESSING_PROPERTY, getRetailStoreOrderProcessingSummaryScope())
-		.field(RetailStoreOrder.PICKING_PROPERTY, getRetailStoreOrderPickingSummaryScope())
-		.field(RetailStoreOrder.SHIPMENT_PROPERTY, getRetailStoreOrderShipmentSummaryScope())
-		.field(RetailStoreOrder.DELIVERY_PROPERTY, getRetailStoreOrderDeliverySummaryScope())
 		.field(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY)
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_LINE_ITEM_LIST, getRetailStoreOrderLineItemSecondaryListItemScope())
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST, getRetailStoreOrderShippingGroupSecondaryListItemScope())
@@ -4795,78 +3878,6 @@ public class RetailscmBaseViewScope {
 	/** 用于RetailStoreOrder对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreOrderListItemScope() {
 		return RetailStoreOrderBaseListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderConfirmationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
-		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
-		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		.field(RetailStoreOrderConfirmation.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderSecondaryListItemScope())
-		;
-	/** 用于RetailStoreOrderConfirmation对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderConfirmationListItemScope() {
-		return RetailStoreOrderConfirmationBaseListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderApprovalBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderApproval.ID_PROPERTY)
-		.field(RetailStoreOrderApproval.WHO_PROPERTY)
-		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
-		.field(RetailStoreOrderApproval.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderSecondaryListItemScope())
-		;
-	/** 用于RetailStoreOrderApproval对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderApprovalListItemScope() {
-		return RetailStoreOrderApprovalBaseListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderProcessingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderProcessing.ID_PROPERTY)
-		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
-		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
-		.field(RetailStoreOrderProcessing.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderSecondaryListItemScope())
-		;
-	/** 用于RetailStoreOrderProcessing对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderProcessingListItemScope() {
-		return RetailStoreOrderProcessingBaseListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderPickingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderPicking.ID_PROPERTY)
-		.field(RetailStoreOrderPicking.WHO_PROPERTY)
-		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
-		.field(RetailStoreOrderPicking.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderSecondaryListItemScope())
-		;
-	/** 用于RetailStoreOrderPicking对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderPickingListItemScope() {
-		return RetailStoreOrderPickingBaseListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderShipmentBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderShipment.ID_PROPERTY)
-		.field(RetailStoreOrderShipment.WHO_PROPERTY)
-		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
-		.field(RetailStoreOrderShipment.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderSecondaryListItemScope())
-		;
-	/** 用于RetailStoreOrderShipment对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderShipmentListItemScope() {
-		return RetailStoreOrderShipmentBaseListItemScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderDeliveryBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderDelivery.ID_PROPERTY)
-		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
-		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
-		.field(RetailStoreOrderDelivery.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderSecondaryListItemScope())
-		;
-	/** 用于RetailStoreOrderDelivery对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderDeliveryListItemScope() {
-		return RetailStoreOrderDeliveryBaseListItemScope;
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseListItemScope = SerializeScope.INCLUDE()
@@ -5039,26 +4050,11 @@ public class RetailscmBaseViewScope {
 		.field(Goods.RETAIL_STORE_PROPERTY, getRetailStoreSummaryScope())
 		.field(Goods.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
 		.field(Goods.RETAIL_STORE_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
-		.field(Goods.PACKAGING_PROPERTY, getGoodsPackagingSummaryScope())
 		.field(Goods.GOODS_MOVEMENT_LIST, getGoodsMovementSecondaryListItemScope())
 		;
 	/** 用于Goods对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getGoodsListItemScope() {
 		return GoodsBaseListItemScope;
-	}
-
-	protected static SerializeScope GoodsPackagingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(GoodsPackaging.ID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
-		.field(GoodsPackaging.RFID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_TIME_PROPERTY)
-		.field(GoodsPackaging.DESCRIPTION_PROPERTY)
-		.field(GoodsPackaging.GOODS_LIST, getGoodsSecondaryListItemScope())
-		;
-	/** 用于GoodsPackaging对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getGoodsPackagingListItemScope() {
-		return GoodsPackagingBaseListItemScope;
 	}
 
 	protected static SerializeScope GoodsMovementBaseListItemScope = SerializeScope.INCLUDE()
@@ -5317,68 +4313,12 @@ public class RetailscmBaseViewScope {
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_PERIOD_PROPERTY, getAccountingPeriodSummaryScope())
 		.field(AccountingDocument.DOCUMENT_TYPE_PROPERTY, getAccountingDocumentTypeSummaryScope())
-		.field(AccountingDocument.CREATION_PROPERTY, getAccountingDocumentCreationSummaryScope())
-		.field(AccountingDocument.CONFIRMATION_PROPERTY, getAccountingDocumentConfirmationSummaryScope())
-		.field(AccountingDocument.AUDITING_PROPERTY, getAccountingDocumentAuditingSummaryScope())
-		.field(AccountingDocument.POSTING_PROPERTY, getAccountingDocumentPostingSummaryScope())
 		.field(AccountingDocument.ORIGINAL_VOUCHER_LIST, getOriginalVoucherSecondaryListItemScope())
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_LINE_LIST, getAccountingDocumentLineSecondaryListItemScope())
 		;
 	/** 用于AccountingDocument对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getAccountingDocumentListItemScope() {
 		return AccountingDocumentBaseListItemScope;
-	}
-
-	protected static SerializeScope AccountingDocumentCreationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentCreation.ID_PROPERTY)
-		.field(AccountingDocumentCreation.WHO_PROPERTY)
-		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentCreation.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentCreation.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentSecondaryListItemScope())
-		;
-	/** 用于AccountingDocumentCreation对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentCreationListItemScope() {
-		return AccountingDocumentCreationBaseListItemScope;
-	}
-
-	protected static SerializeScope AccountingDocumentConfirmationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentConfirmation.ID_PROPERTY)
-		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
-		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentConfirmation.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentConfirmation.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentSecondaryListItemScope())
-		;
-	/** 用于AccountingDocumentConfirmation对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentConfirmationListItemScope() {
-		return AccountingDocumentConfirmationBaseListItemScope;
-	}
-
-	protected static SerializeScope AccountingDocumentAuditingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentAuditing.ID_PROPERTY)
-		.field(AccountingDocumentAuditing.WHO_PROPERTY)
-		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
-		.field(AccountingDocumentAuditing.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentAuditing.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentSecondaryListItemScope())
-		;
-	/** 用于AccountingDocumentAuditing对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentAuditingListItemScope() {
-		return AccountingDocumentAuditingBaseListItemScope;
-	}
-
-	protected static SerializeScope AccountingDocumentPostingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentPosting.ID_PROPERTY)
-		.field(AccountingDocumentPosting.WHO_PROPERTY)
-		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
-		.field(AccountingDocumentPosting.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentPosting.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentSecondaryListItemScope())
-		;
-	/** 用于AccountingDocumentPosting对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentPostingListItemScope() {
-		return AccountingDocumentPostingBaseListItemScope;
 	}
 
 	protected static SerializeScope OriginalVoucherBaseListItemScope = SerializeScope.INCLUDE()
@@ -5390,52 +4330,10 @@ public class RetailscmBaseViewScope {
 		.field(OriginalVoucher.VOUCHER_TYPE_PROPERTY)
 		.field(OriginalVoucher.VOUCHER_IMAGE_PROPERTY)
 		.field(OriginalVoucher.BELONGS_TO_PROPERTY, getAccountingDocumentSummaryScope())
-		.field(OriginalVoucher.CREATION_PROPERTY, getOriginalVoucherCreationSummaryScope())
-		.field(OriginalVoucher.CONFIRMATION_PROPERTY, getOriginalVoucherConfirmationSummaryScope())
-		.field(OriginalVoucher.AUDITING_PROPERTY, getOriginalVoucherAuditingSummaryScope())
 		;
 	/** 用于OriginalVoucher对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherListItemScope() {
 		return OriginalVoucherBaseListItemScope;
-	}
-
-	protected static SerializeScope OriginalVoucherCreationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherCreation.ID_PROPERTY)
-		.field(OriginalVoucherCreation.WHO_PROPERTY)
-		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherCreation.MAKE_DATE_PROPERTY)
-		.field(OriginalVoucherCreation.ORIGINAL_VOUCHER_LIST, getOriginalVoucherSecondaryListItemScope())
-		;
-	/** 用于OriginalVoucherCreation对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherCreationListItemScope() {
-		return OriginalVoucherCreationBaseListItemScope;
-	}
-
-	protected static SerializeScope OriginalVoucherConfirmationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherConfirmation.ID_PROPERTY)
-		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
-		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherConfirmation.MAKE_DATE_PROPERTY)
-		.field(OriginalVoucherConfirmation.ORIGINAL_VOUCHER_LIST, getOriginalVoucherSecondaryListItemScope())
-		;
-	/** 用于OriginalVoucherConfirmation对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherConfirmationListItemScope() {
-		return OriginalVoucherConfirmationBaseListItemScope;
-	}
-
-	protected static SerializeScope OriginalVoucherAuditingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherAuditing.ID_PROPERTY)
-		.field(OriginalVoucherAuditing.WHO_PROPERTY)
-		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
-		.field(OriginalVoucherAuditing.MAKE_DATE_PROPERTY)
-		.field(OriginalVoucherAuditing.ORIGINAL_VOUCHER_LIST, getOriginalVoucherSecondaryListItemScope())
-		;
-	/** 用于OriginalVoucherAuditing对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherAuditingListItemScope() {
-		return OriginalVoucherAuditingBaseListItemScope;
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseListItemScope = SerializeScope.INCLUDE()
@@ -5459,7 +4357,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.BELONGS_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		.field(LevelOneDepartment.LEVEL_TWO_DEPARTMENT_LIST, getLevelTwoDepartmentSecondaryListItemScope())
 		;
@@ -5640,7 +4538,6 @@ public class RetailscmBaseViewScope {
 		.field(Termination.REASON_PROPERTY, getTerminationReasonSummaryScope())
 		.field(Termination.TYPE_PROPERTY, getTerminationTypeSummaryScope())
 		.field(Termination.COMMENT_PROPERTY)
-		.field(Termination.EMPLOYEE_LIST, getEmployeeSecondaryListItemScope())
 		;
 	/** 用于Termination对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getTerminationListItemScope() {
@@ -5675,13 +4572,6 @@ public class RetailscmBaseViewScope {
 		.field(Employee.RESPONSIBLE_FOR_PROPERTY, getResponsibilityTypeSummaryScope())
 		.field(Employee.CURRENT_SALARY_GRADE_PROPERTY, getSalaryGradeSummaryScope())
 		.field(Employee.SALARY_ACCOUNT_PROPERTY)
-		.field(Employee.JOB_APPLICATION_PROPERTY, getJobApplicationSummaryScope())
-		.field(Employee.PROFESSION_INTERVIEW_PROPERTY, getProfessionInterviewSummaryScope())
-		.field(Employee.HR_INTERVIEW_PROPERTY, getHrInterviewSummaryScope())
-		.field(Employee.OFFER_APPROVAL_PROPERTY, getOfferApprovalSummaryScope())
-		.field(Employee.OFFER_ACCEPTANCE_PROPERTY, getOfferAcceptanceSummaryScope())
-		.field(Employee.EMPLOYEE_BOARDING_PROPERTY, getEmployeeBoardingSummaryScope())
-		.field(Employee.TERMINATION_PROPERTY, getTerminationSummaryScope())
 		.field(Employee.LAST_UPDATE_TIME_PROPERTY)
 		.field(Employee.EMPLOYEE_COMPANY_TRAINING_LIST, getEmployeeCompanyTrainingSecondaryListItemScope())
 		.field(Employee.EMPLOYEE_SKILL_LIST, getEmployeeSkillSecondaryListItemScope())
@@ -5699,84 +4589,6 @@ public class RetailscmBaseViewScope {
 	/** 用于Employee对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeListItemScope() {
 		return EmployeeBaseListItemScope;
-	}
-
-	protected static SerializeScope JobApplicationBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(JobApplication.ID_PROPERTY)
-		.field(JobApplication.APPLICATION_TIME_PROPERTY)
-		.field(JobApplication.WHO_PROPERTY)
-		.field(JobApplication.COMMENTS_PROPERTY)
-		.field(JobApplication.EMPLOYEE_LIST, getEmployeeSecondaryListItemScope())
-		;
-	/** 用于JobApplication对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getJobApplicationListItemScope() {
-		return JobApplicationBaseListItemScope;
-	}
-
-	protected static SerializeScope ProfessionInterviewBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ProfessionInterview.ID_PROPERTY)
-		.field(ProfessionInterview.WHO_PROPERTY)
-		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
-		.field(ProfessionInterview.COMMENTS_PROPERTY)
-		.field(ProfessionInterview.EMPLOYEE_LIST, getEmployeeSecondaryListItemScope())
-		;
-	/** 用于ProfessionInterview对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getProfessionInterviewListItemScope() {
-		return ProfessionInterviewBaseListItemScope;
-	}
-
-	protected static SerializeScope HrInterviewBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(HrInterview.ID_PROPERTY)
-		.field(HrInterview.WHO_PROPERTY)
-		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
-		.field(HrInterview.COMMENTS_PROPERTY)
-		.field(HrInterview.EMPLOYEE_LIST, getEmployeeSecondaryListItemScope())
-		;
-	/** 用于HrInterview对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getHrInterviewListItemScope() {
-		return HrInterviewBaseListItemScope;
-	}
-
-	protected static SerializeScope OfferApprovalBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferApproval.ID_PROPERTY)
-		.field(OfferApproval.WHO_PROPERTY)
-		.field(OfferApproval.APPROVE_TIME_PROPERTY)
-		.field(OfferApproval.COMMENTS_PROPERTY)
-		.field(OfferApproval.EMPLOYEE_LIST, getEmployeeSecondaryListItemScope())
-		;
-	/** 用于OfferApproval对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOfferApprovalListItemScope() {
-		return OfferApprovalBaseListItemScope;
-	}
-
-	protected static SerializeScope OfferAcceptanceBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferAcceptance.ID_PROPERTY)
-		.field(OfferAcceptance.WHO_PROPERTY)
-		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
-		.field(OfferAcceptance.COMMENTS_PROPERTY)
-		.field(OfferAcceptance.EMPLOYEE_LIST, getEmployeeSecondaryListItemScope())
-		;
-	/** 用于OfferAcceptance对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getOfferAcceptanceListItemScope() {
-		return OfferAcceptanceBaseListItemScope;
-	}
-
-	protected static SerializeScope EmployeeBoardingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(EmployeeBoarding.ID_PROPERTY)
-		.field(EmployeeBoarding.WHO_PROPERTY)
-		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
-		.field(EmployeeBoarding.COMMENTS_PROPERTY)
-		.field(EmployeeBoarding.EMPLOYEE_LIST, getEmployeeSecondaryListItemScope())
-		;
-	/** 用于EmployeeBoarding对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getEmployeeBoardingListItemScope() {
-		return EmployeeBoardingBaseListItemScope;
 	}
 
 	protected static SerializeScope InstructorBaseListItemScope = SerializeScope.INCLUDE()
@@ -6026,26 +4838,12 @@ public class RetailscmBaseViewScope {
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
 		.field(SecUser.DOMAIN_PROPERTY, getUserDomainSummaryScope())
-		.field(SecUser.BLOCKING_PROPERTY, getSecUserBlockingSummaryScope())
 		.field(SecUser.USER_APP_LIST, getUserAppSecondaryListItemScope())
 		.field(SecUser.LOGIN_HISTORY_LIST, getLoginHistorySecondaryListItemScope())
 		;
 	/** 用于SecUser对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSecUserListItemScope() {
 		return SecUserBaseListItemScope;
-	}
-
-	protected static SerializeScope SecUserBlockingBaseListItemScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SecUserBlocking.ID_PROPERTY)
-		.field(SecUserBlocking.WHO_PROPERTY)
-		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
-		.field(SecUserBlocking.COMMENTS_PROPERTY)
-		.field(SecUserBlocking.SEC_USER_LIST, getSecUserSecondaryListItemScope())
-		;
-	/** 用于SecUserBlocking对象的列表时需要序列化的属性列表 */
-	public static SerializeScope getSecUserBlockingListItemScope() {
-		return SecUserBlockingBaseListItemScope;
 	}
 
 	protected static SerializeScope UserAppBaseListItemScope = SerializeScope.INCLUDE()
@@ -6386,7 +5184,7 @@ public class RetailscmBaseViewScope {
 		.field(ProvinceCenterDepartment.NAME_PROPERTY)
 		.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_PROPERTY, getRetailStoreProvinceCenterSummaryScope())
-		.field(ProvinceCenterDepartment.MANAGER_NAME_PROPERTY)
+		.field(ProvinceCenterDepartment.MANAGER_PROPERTY)
 		.field(ProvinceCenterDepartment.PROVINCE_CENTER_EMPLOYEE_LIST, getProvinceCenterEmployeeListItemScope())
 		;
 	/** 用于ProvinceCenterDepartment对象的详情页时需要序列化的属性列表 */
@@ -6639,11 +5437,6 @@ public class RetailscmBaseViewScope {
 		.field(ConsumerOrder.ID_PROPERTY)
 		.field(ConsumerOrder.TITLE_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_PROPERTY, getRetailStoreMemberSummaryScope())
-		.field(ConsumerOrder.CONFIRMATION_PROPERTY, getSupplyOrderConfirmationSummaryScope())
-		.field(ConsumerOrder.APPROVAL_PROPERTY, getSupplyOrderApprovalSummaryScope())
-		.field(ConsumerOrder.PROCESSING_PROPERTY, getSupplyOrderProcessingSummaryScope())
-		.field(ConsumerOrder.SHIPMENT_PROPERTY, getSupplyOrderShipmentSummaryScope())
-		.field(ConsumerOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(ConsumerOrder.STORE_PROPERTY, getRetailStoreSummaryScope())
 		.field(ConsumerOrder.LAST_UPDATE_TIME_PROPERTY)
 		.field(ConsumerOrder.CONSUMER_ORDER_LINE_ITEM_LIST, getConsumerOrderLineItemListItemScope())
@@ -6655,61 +5448,6 @@ public class RetailscmBaseViewScope {
 	/** 用于ConsumerOrder对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getConsumerOrderDetailScope() {
 		return ConsumerOrderBaseDetailScope;
-	}
-
-	protected static SerializeScope ConsumerOrderConfirmationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderConfirmation.ID_PROPERTY)
-		.field(ConsumerOrderConfirmation.WHO_PROPERTY)
-		.field(ConsumerOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderConfirmation对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderConfirmationDetailScope() {
-		return ConsumerOrderConfirmationBaseDetailScope;
-	}
-
-	protected static SerializeScope ConsumerOrderApprovalBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderApproval.ID_PROPERTY)
-		.field(ConsumerOrderApproval.WHO_PROPERTY)
-		.field(ConsumerOrderApproval.APPROVE_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderApproval对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderApprovalDetailScope() {
-		return ConsumerOrderApprovalBaseDetailScope;
-	}
-
-	protected static SerializeScope ConsumerOrderProcessingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderProcessing.ID_PROPERTY)
-		.field(ConsumerOrderProcessing.WHO_PROPERTY)
-		.field(ConsumerOrderProcessing.PROCESS_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderProcessing对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderProcessingDetailScope() {
-		return ConsumerOrderProcessingBaseDetailScope;
-	}
-
-	protected static SerializeScope ConsumerOrderShipmentBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderShipment.ID_PROPERTY)
-		.field(ConsumerOrderShipment.WHO_PROPERTY)
-		.field(ConsumerOrderShipment.SHIP_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderShipment对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderShipmentDetailScope() {
-		return ConsumerOrderShipmentBaseDetailScope;
-	}
-
-	protected static SerializeScope ConsumerOrderDeliveryBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ConsumerOrderDelivery.ID_PROPERTY)
-		.field(ConsumerOrderDelivery.WHO_PROPERTY)
-		.field(ConsumerOrderDelivery.DELIVERY_TIME_PROPERTY)
-		;
-	/** 用于ConsumerOrderDelivery对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getConsumerOrderDeliveryDetailScope() {
-		return ConsumerOrderDeliveryBaseDetailScope;
 	}
 
 	protected static SerializeScope ConsumerOrderLineItemBaseDetailScope = SerializeScope.INCLUDE()
@@ -6918,12 +5656,6 @@ public class RetailscmBaseViewScope {
 		.field(SupplyOrder.SELLER_PROPERTY, getGoodsSupplierSummaryScope())
 		.field(SupplyOrder.TITLE_PROPERTY)
 		.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY)
-		.field(SupplyOrder.CONFIRMATION_PROPERTY, getSupplyOrderConfirmationSummaryScope())
-		.field(SupplyOrder.APPROVAL_PROPERTY, getSupplyOrderApprovalSummaryScope())
-		.field(SupplyOrder.PROCESSING_PROPERTY, getSupplyOrderProcessingSummaryScope())
-		.field(SupplyOrder.PICKING_PROPERTY, getSupplyOrderPickingSummaryScope())
-		.field(SupplyOrder.SHIPMENT_PROPERTY, getSupplyOrderShipmentSummaryScope())
-		.field(SupplyOrder.DELIVERY_PROPERTY, getSupplyOrderDeliverySummaryScope())
 		.field(SupplyOrder.LAST_UPDATE_TIME_PROPERTY)
 		.field(SupplyOrder.SUPPLY_ORDER_LINE_ITEM_LIST, getSupplyOrderLineItemListItemScope())
 		.field(SupplyOrder.SUPPLY_ORDER_SHIPPING_GROUP_LIST, getSupplyOrderShippingGroupListItemScope())
@@ -6933,83 +5665,6 @@ public class RetailscmBaseViewScope {
 	/** 用于SupplyOrder对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSupplyOrderDetailScope() {
 		return SupplyOrderBaseDetailScope;
-	}
-
-	protected static SerializeScope SupplyOrderConfirmationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderConfirmation.ID_PROPERTY)
-		.field(SupplyOrderConfirmation.WHO_PROPERTY)
-		.field(SupplyOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		.field(SupplyOrderConfirmation.CONSUMER_ORDER_LIST, getConsumerOrderListItemScope())
-		.field(SupplyOrderConfirmation.SUPPLY_ORDER_LIST, getSupplyOrderListItemScope())
-		;
-	/** 用于SupplyOrderConfirmation对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderConfirmationDetailScope() {
-		return SupplyOrderConfirmationBaseDetailScope;
-	}
-
-	protected static SerializeScope SupplyOrderApprovalBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderApproval.ID_PROPERTY)
-		.field(SupplyOrderApproval.WHO_PROPERTY)
-		.field(SupplyOrderApproval.APPROVE_TIME_PROPERTY)
-		.field(SupplyOrderApproval.CONSUMER_ORDER_LIST, getConsumerOrderListItemScope())
-		.field(SupplyOrderApproval.SUPPLY_ORDER_LIST, getSupplyOrderListItemScope())
-		;
-	/** 用于SupplyOrderApproval对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderApprovalDetailScope() {
-		return SupplyOrderApprovalBaseDetailScope;
-	}
-
-	protected static SerializeScope SupplyOrderProcessingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderProcessing.ID_PROPERTY)
-		.field(SupplyOrderProcessing.WHO_PROPERTY)
-		.field(SupplyOrderProcessing.PROCESS_TIME_PROPERTY)
-		.field(SupplyOrderProcessing.CONSUMER_ORDER_LIST, getConsumerOrderListItemScope())
-		.field(SupplyOrderProcessing.SUPPLY_ORDER_LIST, getSupplyOrderListItemScope())
-		;
-	/** 用于SupplyOrderProcessing对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderProcessingDetailScope() {
-		return SupplyOrderProcessingBaseDetailScope;
-	}
-
-	protected static SerializeScope SupplyOrderPickingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderPicking.ID_PROPERTY)
-		.field(SupplyOrderPicking.WHO_PROPERTY)
-		.field(SupplyOrderPicking.PROCESS_TIME_PROPERTY)
-		.field(SupplyOrderPicking.SUPPLY_ORDER_LIST, getSupplyOrderListItemScope())
-		;
-	/** 用于SupplyOrderPicking对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderPickingDetailScope() {
-		return SupplyOrderPickingBaseDetailScope;
-	}
-
-	protected static SerializeScope SupplyOrderShipmentBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderShipment.ID_PROPERTY)
-		.field(SupplyOrderShipment.WHO_PROPERTY)
-		.field(SupplyOrderShipment.SHIP_TIME_PROPERTY)
-		.field(SupplyOrderShipment.CONSUMER_ORDER_LIST, getConsumerOrderListItemScope())
-		.field(SupplyOrderShipment.SUPPLY_ORDER_LIST, getSupplyOrderListItemScope())
-		;
-	/** 用于SupplyOrderShipment对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderShipmentDetailScope() {
-		return SupplyOrderShipmentBaseDetailScope;
-	}
-
-	protected static SerializeScope SupplyOrderDeliveryBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SupplyOrderDelivery.ID_PROPERTY)
-		.field(SupplyOrderDelivery.WHO_PROPERTY)
-		.field(SupplyOrderDelivery.DELIVERY_TIME_PROPERTY)
-		.field(SupplyOrderDelivery.CONSUMER_ORDER_LIST, getConsumerOrderListItemScope())
-		.field(SupplyOrderDelivery.SUPPLY_ORDER_LIST, getSupplyOrderListItemScope())
-		;
-	/** 用于SupplyOrderDelivery对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSupplyOrderDeliveryDetailScope() {
-		return SupplyOrderDeliveryBaseDetailScope;
 	}
 
 	protected static SerializeScope SupplyOrderLineItemBaseDetailScope = SerializeScope.INCLUDE()
@@ -7058,12 +5713,6 @@ public class RetailscmBaseViewScope {
 		.field(RetailStoreOrder.SELLER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(RetailStoreOrder.TITLE_PROPERTY)
 		.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY)
-		.field(RetailStoreOrder.CONFIRMATION_PROPERTY, getRetailStoreOrderConfirmationSummaryScope())
-		.field(RetailStoreOrder.APPROVAL_PROPERTY, getRetailStoreOrderApprovalSummaryScope())
-		.field(RetailStoreOrder.PROCESSING_PROPERTY, getRetailStoreOrderProcessingSummaryScope())
-		.field(RetailStoreOrder.PICKING_PROPERTY, getRetailStoreOrderPickingSummaryScope())
-		.field(RetailStoreOrder.SHIPMENT_PROPERTY, getRetailStoreOrderShipmentSummaryScope())
-		.field(RetailStoreOrder.DELIVERY_PROPERTY, getRetailStoreOrderDeliverySummaryScope())
 		.field(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY)
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_LINE_ITEM_LIST, getRetailStoreOrderLineItemListItemScope())
 		.field(RetailStoreOrder.RETAIL_STORE_ORDER_SHIPPING_GROUP_LIST, getRetailStoreOrderShippingGroupListItemScope())
@@ -7073,78 +5722,6 @@ public class RetailscmBaseViewScope {
 	/** 用于RetailStoreOrder对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getRetailStoreOrderDetailScope() {
 		return RetailStoreOrderBaseDetailScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderConfirmationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderConfirmation.ID_PROPERTY)
-		.field(RetailStoreOrderConfirmation.WHO_PROPERTY)
-		.field(RetailStoreOrderConfirmation.CONFIRM_TIME_PROPERTY)
-		.field(RetailStoreOrderConfirmation.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderListItemScope())
-		;
-	/** 用于RetailStoreOrderConfirmation对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderConfirmationDetailScope() {
-		return RetailStoreOrderConfirmationBaseDetailScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderApprovalBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderApproval.ID_PROPERTY)
-		.field(RetailStoreOrderApproval.WHO_PROPERTY)
-		.field(RetailStoreOrderApproval.APPROVE_TIME_PROPERTY)
-		.field(RetailStoreOrderApproval.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderListItemScope())
-		;
-	/** 用于RetailStoreOrderApproval对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderApprovalDetailScope() {
-		return RetailStoreOrderApprovalBaseDetailScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderProcessingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderProcessing.ID_PROPERTY)
-		.field(RetailStoreOrderProcessing.WHO_PROPERTY)
-		.field(RetailStoreOrderProcessing.PROCESS_TIME_PROPERTY)
-		.field(RetailStoreOrderProcessing.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderListItemScope())
-		;
-	/** 用于RetailStoreOrderProcessing对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderProcessingDetailScope() {
-		return RetailStoreOrderProcessingBaseDetailScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderPickingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderPicking.ID_PROPERTY)
-		.field(RetailStoreOrderPicking.WHO_PROPERTY)
-		.field(RetailStoreOrderPicking.PROCESS_TIME_PROPERTY)
-		.field(RetailStoreOrderPicking.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderListItemScope())
-		;
-	/** 用于RetailStoreOrderPicking对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderPickingDetailScope() {
-		return RetailStoreOrderPickingBaseDetailScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderShipmentBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderShipment.ID_PROPERTY)
-		.field(RetailStoreOrderShipment.WHO_PROPERTY)
-		.field(RetailStoreOrderShipment.SHIP_TIME_PROPERTY)
-		.field(RetailStoreOrderShipment.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderListItemScope())
-		;
-	/** 用于RetailStoreOrderShipment对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderShipmentDetailScope() {
-		return RetailStoreOrderShipmentBaseDetailScope;
-	}
-
-	protected static SerializeScope RetailStoreOrderDeliveryBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(RetailStoreOrderDelivery.ID_PROPERTY)
-		.field(RetailStoreOrderDelivery.WHO_PROPERTY)
-		.field(RetailStoreOrderDelivery.DELIVERY_TIME_PROPERTY)
-		.field(RetailStoreOrderDelivery.RETAIL_STORE_ORDER_LIST, getRetailStoreOrderListItemScope())
-		;
-	/** 用于RetailStoreOrderDelivery对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getRetailStoreOrderDeliveryDetailScope() {
-		return RetailStoreOrderDeliveryBaseDetailScope;
 	}
 
 	protected static SerializeScope RetailStoreOrderLineItemBaseDetailScope = SerializeScope.INCLUDE()
@@ -7317,26 +5894,11 @@ public class RetailscmBaseViewScope {
 		.field(Goods.RETAIL_STORE_PROPERTY, getRetailStoreSummaryScope())
 		.field(Goods.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
 		.field(Goods.RETAIL_STORE_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
-		.field(Goods.PACKAGING_PROPERTY, getGoodsPackagingSummaryScope())
 		.field(Goods.GOODS_MOVEMENT_LIST, getGoodsMovementListItemScope())
 		;
 	/** 用于Goods对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getGoodsDetailScope() {
 		return GoodsBaseDetailScope;
-	}
-
-	protected static SerializeScope GoodsPackagingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(GoodsPackaging.ID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_NAME_PROPERTY)
-		.field(GoodsPackaging.RFID_PROPERTY)
-		.field(GoodsPackaging.PACKAGE_TIME_PROPERTY)
-		.field(GoodsPackaging.DESCRIPTION_PROPERTY)
-		.field(GoodsPackaging.GOODS_LIST, getGoodsListItemScope())
-		;
-	/** 用于GoodsPackaging对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getGoodsPackagingDetailScope() {
-		return GoodsPackagingBaseDetailScope;
 	}
 
 	protected static SerializeScope GoodsMovementBaseDetailScope = SerializeScope.INCLUDE()
@@ -7595,68 +6157,12 @@ public class RetailscmBaseViewScope {
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY)
 		.field(AccountingDocument.ACCOUNTING_PERIOD_PROPERTY, getAccountingPeriodSummaryScope())
 		.field(AccountingDocument.DOCUMENT_TYPE_PROPERTY, getAccountingDocumentTypeSummaryScope())
-		.field(AccountingDocument.CREATION_PROPERTY, getAccountingDocumentCreationSummaryScope())
-		.field(AccountingDocument.CONFIRMATION_PROPERTY, getAccountingDocumentConfirmationSummaryScope())
-		.field(AccountingDocument.AUDITING_PROPERTY, getAccountingDocumentAuditingSummaryScope())
-		.field(AccountingDocument.POSTING_PROPERTY, getAccountingDocumentPostingSummaryScope())
 		.field(AccountingDocument.ORIGINAL_VOUCHER_LIST, getOriginalVoucherListItemScope())
 		.field(AccountingDocument.ACCOUNTING_DOCUMENT_LINE_LIST, getAccountingDocumentLineListItemScope())
 		;
 	/** 用于AccountingDocument对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getAccountingDocumentDetailScope() {
 		return AccountingDocumentBaseDetailScope;
-	}
-
-	protected static SerializeScope AccountingDocumentCreationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentCreation.ID_PROPERTY)
-		.field(AccountingDocumentCreation.WHO_PROPERTY)
-		.field(AccountingDocumentCreation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentCreation.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentCreation.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentListItemScope())
-		;
-	/** 用于AccountingDocumentCreation对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentCreationDetailScope() {
-		return AccountingDocumentCreationBaseDetailScope;
-	}
-
-	protected static SerializeScope AccountingDocumentConfirmationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentConfirmation.ID_PROPERTY)
-		.field(AccountingDocumentConfirmation.WHO_PROPERTY)
-		.field(AccountingDocumentConfirmation.COMMENTS_PROPERTY)
-		.field(AccountingDocumentConfirmation.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentConfirmation.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentListItemScope())
-		;
-	/** 用于AccountingDocumentConfirmation对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentConfirmationDetailScope() {
-		return AccountingDocumentConfirmationBaseDetailScope;
-	}
-
-	protected static SerializeScope AccountingDocumentAuditingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentAuditing.ID_PROPERTY)
-		.field(AccountingDocumentAuditing.WHO_PROPERTY)
-		.field(AccountingDocumentAuditing.COMMENTS_PROPERTY)
-		.field(AccountingDocumentAuditing.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentAuditing.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentListItemScope())
-		;
-	/** 用于AccountingDocumentAuditing对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentAuditingDetailScope() {
-		return AccountingDocumentAuditingBaseDetailScope;
-	}
-
-	protected static SerializeScope AccountingDocumentPostingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(AccountingDocumentPosting.ID_PROPERTY)
-		.field(AccountingDocumentPosting.WHO_PROPERTY)
-		.field(AccountingDocumentPosting.COMMENTS_PROPERTY)
-		.field(AccountingDocumentPosting.MAKE_DATE_PROPERTY)
-		.field(AccountingDocumentPosting.ACCOUNTING_DOCUMENT_LIST, getAccountingDocumentListItemScope())
-		;
-	/** 用于AccountingDocumentPosting对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getAccountingDocumentPostingDetailScope() {
-		return AccountingDocumentPostingBaseDetailScope;
 	}
 
 	protected static SerializeScope OriginalVoucherBaseDetailScope = SerializeScope.INCLUDE()
@@ -7668,52 +6174,10 @@ public class RetailscmBaseViewScope {
 		.field(OriginalVoucher.VOUCHER_TYPE_PROPERTY)
 		.field(OriginalVoucher.VOUCHER_IMAGE_PROPERTY)
 		.field(OriginalVoucher.BELONGS_TO_PROPERTY, getAccountingDocumentSummaryScope())
-		.field(OriginalVoucher.CREATION_PROPERTY, getOriginalVoucherCreationSummaryScope())
-		.field(OriginalVoucher.CONFIRMATION_PROPERTY, getOriginalVoucherConfirmationSummaryScope())
-		.field(OriginalVoucher.AUDITING_PROPERTY, getOriginalVoucherAuditingSummaryScope())
 		;
 	/** 用于OriginalVoucher对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getOriginalVoucherDetailScope() {
 		return OriginalVoucherBaseDetailScope;
-	}
-
-	protected static SerializeScope OriginalVoucherCreationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherCreation.ID_PROPERTY)
-		.field(OriginalVoucherCreation.WHO_PROPERTY)
-		.field(OriginalVoucherCreation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherCreation.MAKE_DATE_PROPERTY)
-		.field(OriginalVoucherCreation.ORIGINAL_VOUCHER_LIST, getOriginalVoucherListItemScope())
-		;
-	/** 用于OriginalVoucherCreation对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherCreationDetailScope() {
-		return OriginalVoucherCreationBaseDetailScope;
-	}
-
-	protected static SerializeScope OriginalVoucherConfirmationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherConfirmation.ID_PROPERTY)
-		.field(OriginalVoucherConfirmation.WHO_PROPERTY)
-		.field(OriginalVoucherConfirmation.COMMENTS_PROPERTY)
-		.field(OriginalVoucherConfirmation.MAKE_DATE_PROPERTY)
-		.field(OriginalVoucherConfirmation.ORIGINAL_VOUCHER_LIST, getOriginalVoucherListItemScope())
-		;
-	/** 用于OriginalVoucherConfirmation对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherConfirmationDetailScope() {
-		return OriginalVoucherConfirmationBaseDetailScope;
-	}
-
-	protected static SerializeScope OriginalVoucherAuditingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OriginalVoucherAuditing.ID_PROPERTY)
-		.field(OriginalVoucherAuditing.WHO_PROPERTY)
-		.field(OriginalVoucherAuditing.COMMENTS_PROPERTY)
-		.field(OriginalVoucherAuditing.MAKE_DATE_PROPERTY)
-		.field(OriginalVoucherAuditing.ORIGINAL_VOUCHER_LIST, getOriginalVoucherListItemScope())
-		;
-	/** 用于OriginalVoucherAuditing对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOriginalVoucherAuditingDetailScope() {
-		return OriginalVoucherAuditingBaseDetailScope;
 	}
 
 	protected static SerializeScope AccountingDocumentLineBaseDetailScope = SerializeScope.INCLUDE()
@@ -7737,7 +6201,7 @@ public class RetailscmBaseViewScope {
 		.field(LevelOneDepartment.BELONGS_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 		.field(LevelOneDepartment.NAME_PROPERTY)
 		.field(LevelOneDepartment.DESCRIPTION_PROPERTY)
-		.field(LevelOneDepartment.MANAGER_NAME_PROPERTY)
+		.field(LevelOneDepartment.MANAGER_PROPERTY)
 		.field(LevelOneDepartment.FOUNDED_PROPERTY)
 		.field(LevelOneDepartment.LEVEL_TWO_DEPARTMENT_LIST, getLevelTwoDepartmentListItemScope())
 		;
@@ -7918,7 +6382,6 @@ public class RetailscmBaseViewScope {
 		.field(Termination.REASON_PROPERTY, getTerminationReasonSummaryScope())
 		.field(Termination.TYPE_PROPERTY, getTerminationTypeSummaryScope())
 		.field(Termination.COMMENT_PROPERTY)
-		.field(Termination.EMPLOYEE_LIST, getEmployeeListItemScope())
 		;
 	/** 用于Termination对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getTerminationDetailScope() {
@@ -7953,13 +6416,6 @@ public class RetailscmBaseViewScope {
 		.field(Employee.RESPONSIBLE_FOR_PROPERTY, getResponsibilityTypeSummaryScope())
 		.field(Employee.CURRENT_SALARY_GRADE_PROPERTY, getSalaryGradeSummaryScope())
 		.field(Employee.SALARY_ACCOUNT_PROPERTY)
-		.field(Employee.JOB_APPLICATION_PROPERTY, getJobApplicationSummaryScope())
-		.field(Employee.PROFESSION_INTERVIEW_PROPERTY, getProfessionInterviewSummaryScope())
-		.field(Employee.HR_INTERVIEW_PROPERTY, getHrInterviewSummaryScope())
-		.field(Employee.OFFER_APPROVAL_PROPERTY, getOfferApprovalSummaryScope())
-		.field(Employee.OFFER_ACCEPTANCE_PROPERTY, getOfferAcceptanceSummaryScope())
-		.field(Employee.EMPLOYEE_BOARDING_PROPERTY, getEmployeeBoardingSummaryScope())
-		.field(Employee.TERMINATION_PROPERTY, getTerminationSummaryScope())
 		.field(Employee.LAST_UPDATE_TIME_PROPERTY)
 		.field(Employee.EMPLOYEE_COMPANY_TRAINING_LIST, getEmployeeCompanyTrainingListItemScope())
 		.field(Employee.EMPLOYEE_SKILL_LIST, getEmployeeSkillListItemScope())
@@ -7977,84 +6433,6 @@ public class RetailscmBaseViewScope {
 	/** 用于Employee对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getEmployeeDetailScope() {
 		return EmployeeBaseDetailScope;
-	}
-
-	protected static SerializeScope JobApplicationBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(JobApplication.ID_PROPERTY)
-		.field(JobApplication.APPLICATION_TIME_PROPERTY)
-		.field(JobApplication.WHO_PROPERTY)
-		.field(JobApplication.COMMENTS_PROPERTY)
-		.field(JobApplication.EMPLOYEE_LIST, getEmployeeListItemScope())
-		;
-	/** 用于JobApplication对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getJobApplicationDetailScope() {
-		return JobApplicationBaseDetailScope;
-	}
-
-	protected static SerializeScope ProfessionInterviewBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(ProfessionInterview.ID_PROPERTY)
-		.field(ProfessionInterview.WHO_PROPERTY)
-		.field(ProfessionInterview.INTERVIEW_TIME_PROPERTY)
-		.field(ProfessionInterview.COMMENTS_PROPERTY)
-		.field(ProfessionInterview.EMPLOYEE_LIST, getEmployeeListItemScope())
-		;
-	/** 用于ProfessionInterview对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getProfessionInterviewDetailScope() {
-		return ProfessionInterviewBaseDetailScope;
-	}
-
-	protected static SerializeScope HrInterviewBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(HrInterview.ID_PROPERTY)
-		.field(HrInterview.WHO_PROPERTY)
-		.field(HrInterview.INTERVIEW_TIME_PROPERTY)
-		.field(HrInterview.COMMENTS_PROPERTY)
-		.field(HrInterview.EMPLOYEE_LIST, getEmployeeListItemScope())
-		;
-	/** 用于HrInterview对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getHrInterviewDetailScope() {
-		return HrInterviewBaseDetailScope;
-	}
-
-	protected static SerializeScope OfferApprovalBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferApproval.ID_PROPERTY)
-		.field(OfferApproval.WHO_PROPERTY)
-		.field(OfferApproval.APPROVE_TIME_PROPERTY)
-		.field(OfferApproval.COMMENTS_PROPERTY)
-		.field(OfferApproval.EMPLOYEE_LIST, getEmployeeListItemScope())
-		;
-	/** 用于OfferApproval对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOfferApprovalDetailScope() {
-		return OfferApprovalBaseDetailScope;
-	}
-
-	protected static SerializeScope OfferAcceptanceBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(OfferAcceptance.ID_PROPERTY)
-		.field(OfferAcceptance.WHO_PROPERTY)
-		.field(OfferAcceptance.ACCEPT_TIME_PROPERTY)
-		.field(OfferAcceptance.COMMENTS_PROPERTY)
-		.field(OfferAcceptance.EMPLOYEE_LIST, getEmployeeListItemScope())
-		;
-	/** 用于OfferAcceptance对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getOfferAcceptanceDetailScope() {
-		return OfferAcceptanceBaseDetailScope;
-	}
-
-	protected static SerializeScope EmployeeBoardingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(EmployeeBoarding.ID_PROPERTY)
-		.field(EmployeeBoarding.WHO_PROPERTY)
-		.field(EmployeeBoarding.EMPLOY_TIME_PROPERTY)
-		.field(EmployeeBoarding.COMMENTS_PROPERTY)
-		.field(EmployeeBoarding.EMPLOYEE_LIST, getEmployeeListItemScope())
-		;
-	/** 用于EmployeeBoarding对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getEmployeeBoardingDetailScope() {
-		return EmployeeBoardingBaseDetailScope;
 	}
 
 	protected static SerializeScope InstructorBaseDetailScope = SerializeScope.INCLUDE()
@@ -8304,26 +6682,12 @@ public class RetailscmBaseViewScope {
 		.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
 		.field(SecUser.DOMAIN_PROPERTY, getUserDomainSummaryScope())
-		.field(SecUser.BLOCKING_PROPERTY, getSecUserBlockingSummaryScope())
 		.field(SecUser.USER_APP_LIST, getUserAppListItemScope())
 		.field(SecUser.LOGIN_HISTORY_LIST, getLoginHistoryListItemScope())
 		;
 	/** 用于SecUser对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSecUserDetailScope() {
 		return SecUserBaseDetailScope;
-	}
-
-	protected static SerializeScope SecUserBlockingBaseDetailScope = SerializeScope.INCLUDE()
-		.field(RetailscmBaseConstants.X_LINK_TO_URL)
-		.field(SecUserBlocking.ID_PROPERTY)
-		.field(SecUserBlocking.WHO_PROPERTY)
-		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
-		.field(SecUserBlocking.COMMENTS_PROPERTY)
-		.field(SecUserBlocking.SEC_USER_LIST, getSecUserListItemScope())
-		;
-	/** 用于SecUserBlocking对象的详情页时需要序列化的属性列表 */
-	public static SerializeScope getSecUserBlockingDetailScope() {
-		return SecUserBlockingBaseDetailScope;
 	}
 
 	protected static SerializeScope UserAppBaseDetailScope = SerializeScope.INCLUDE()

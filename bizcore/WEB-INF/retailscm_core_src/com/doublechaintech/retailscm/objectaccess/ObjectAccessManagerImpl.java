@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.userapp.UserApp;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.userapp.CandidateUserApp;
 
 
 public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager implements ObjectAccessManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ObjectAccess";
 	@Override
 	public ObjectAccessDAO daoOf(RetailscmUserContext userContext) {
 		return objectAccessDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ObjectAccessManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ObjectAccessManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ObjectAccess saveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess, String [] tokensExpr) throws Exception{	
  		//return getObjectAccessDAO().save(objectAccess, tokens);
@@ -167,7 +161,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	public ObjectAccess createObjectAccess(RetailscmUserContext userContext, String name,String objectType,String list1,String list2,String list3,String list4,String list5,String list6,String list7,String list8,String list9,String appId) throws Exception
 	//public ObjectAccess createObjectAccess(RetailscmUserContext userContext,String name, String objectType, String list1, String list2, String list3, String list4, String list5, String list6, String list7, String list8, String list9, String appId) throws Exception
 	{
-		
+
 		
 
 		
@@ -211,14 +205,14 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		onNewInstanceCreated(userContext, objectAccess);
 		return objectAccess;
 
-		
+
 	}
-	protected ObjectAccess createNewObjectAccess() 
+	protected ObjectAccess createNewObjectAccess()
 	{
-		
-		return new ObjectAccess();		
+
+		return new ObjectAccess();
 	}
-	
+
 	protected void checkParamsForUpdatingObjectAccess(RetailscmUserContext userContext,String objectAccessId, int objectAccessVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -266,28 +260,28 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ObjectAccessManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ObjectAccess clone(RetailscmUserContext userContext, String fromObjectAccessId) throws Exception{
-		
+
 		return objectAccessDaoOf(userContext).clone(fromObjectAccessId, this.allTokens());
 	}
-	
-	public ObjectAccess internalSaveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess) throws Exception 
+
+	public ObjectAccess internalSaveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess) throws Exception
 	{
 		return internalSaveObjectAccess(userContext, objectAccess, allTokens());
 
 	}
-	public ObjectAccess internalSaveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess, Map<String,Object> options) throws Exception 
+	public ObjectAccess internalSaveObjectAccess(RetailscmUserContext userContext, ObjectAccess objectAccess, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingObjectAccess(userContext, objectAccessId, objectAccessVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(objectAccess){ 
+
+
+		synchronized(objectAccess){
 			//will be good when the objectAccess loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ObjectAccess.
@@ -296,23 +290,23 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 			}
 			objectAccess = saveObjectAccess(userContext, objectAccess, options);
 			return objectAccess;
-			
+
 		}
 
 	}
-	
-	public ObjectAccess updateObjectAccess(RetailscmUserContext userContext,String objectAccessId, int objectAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ObjectAccess updateObjectAccess(RetailscmUserContext userContext,String objectAccessId, int objectAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingObjectAccess(userContext, objectAccessId, objectAccessVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ObjectAccess objectAccess = loadObjectAccess(userContext, objectAccessId, allTokens());
 		if(objectAccess.getVersion() != objectAccessVersion){
 			String message = "The target version("+objectAccess.getVersion()+") is not equals to version("+objectAccessVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(objectAccess){ 
+		synchronized(objectAccess){
 			//will be good when the objectAccess loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ObjectAccess.
@@ -324,21 +318,21 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		}
 
 	}
-	
-	public ObjectAccess updateObjectAccessProperty(RetailscmUserContext userContext,String objectAccessId, int objectAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ObjectAccess updateObjectAccessProperty(RetailscmUserContext userContext,String objectAccessId, int objectAccessVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingObjectAccess(userContext, objectAccessId, objectAccessVersion, property, newValueExpr, tokensExpr);
-		
+
 		ObjectAccess objectAccess = loadObjectAccess(userContext, objectAccessId, allTokens());
 		if(objectAccess.getVersion() != objectAccessVersion){
 			String message = "The target version("+objectAccess.getVersion()+") is not equals to version("+objectAccessVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(objectAccess){ 
+		synchronized(objectAccess){
 			//will be good when the objectAccess loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ObjectAccess.
-			
+
 			objectAccess.changeProperty(property, newValueExpr);
 			
 			objectAccess = saveObjectAccess(userContext, objectAccess, tokens().done());
@@ -350,7 +344,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ObjectAccessTokens tokens(){
 		return ObjectAccessTokens.start();
 	}
@@ -371,11 +365,11 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 	
 	protected void checkParamsForTransferingAnotherApp(RetailscmUserContext userContext, String objectAccessId, String anotherAppId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfObjectAccess(objectAccessId);
  		checkerOf(userContext).checkIdOfUserApp(anotherAppId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ObjectAccessManagerException.class);
- 		
+
  	}
  	public ObjectAccess transferToAnotherApp(RetailscmUserContext userContext, String objectAccessId, String anotherAppId) throws Exception
  	{
@@ -394,10 +388,10 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateUserApp requestCandidateApp(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateUserApp result = new CandidateUserApp();
@@ -407,7 +401,7 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -417,42 +411,42 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected UserApp loadUserApp(RetailscmUserContext userContext, String newAppId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return userAppDaoOf(userContext).load(newAppId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String objectAccessId, int objectAccessVersion) throws Exception {
-		//deleteInternal(userContext, objectAccessId, objectAccessVersion);		
+		//deleteInternal(userContext, objectAccessId, objectAccessVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String objectAccessId, int objectAccessVersion) throws Exception{
-			
+
 		objectAccessDaoOf(userContext).delete(objectAccessId, objectAccessVersion);
 	}
-	
+
 	public ObjectAccess forgetByAll(RetailscmUserContext userContext, String objectAccessId, int objectAccessVersion) throws Exception {
-		return forgetByAllInternal(userContext, objectAccessId, objectAccessVersion);		
+		return forgetByAllInternal(userContext, objectAccessId, objectAccessVersion);
 	}
 	protected ObjectAccess forgetByAllInternal(RetailscmUserContext userContext,
 			String objectAccessId, int objectAccessVersion) throws Exception{
-			
+
 		return objectAccessDaoOf(userContext).disconnectFromAll(objectAccessId, objectAccessVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -463,23 +457,29 @@ public class ObjectAccessManagerImpl extends CustomRetailscmCheckerManager imple
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return objectAccessDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ObjectAccess newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

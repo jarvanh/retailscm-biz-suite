@@ -363,7 +363,9 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTrackTime(), getLatitude(), getLongitude(), getMovement(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

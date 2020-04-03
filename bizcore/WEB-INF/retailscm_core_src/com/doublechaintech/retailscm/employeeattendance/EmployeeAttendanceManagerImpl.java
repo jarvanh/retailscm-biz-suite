@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.employee.Employee;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 
 
 public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager implements EmployeeAttendanceManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "EmployeeAttendance";
 	@Override
 	public EmployeeAttendanceDAO daoOf(RetailscmUserContext userContext) {
 		return employeeAttendanceDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EmployeeAttendanceManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EmployeeAttendanceManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected EmployeeAttendance saveEmployeeAttendance(RetailscmUserContext userContext, EmployeeAttendance employeeAttendance, String [] tokensExpr) throws Exception{	
  		//return getEmployeeAttendanceDAO().save(employeeAttendance, tokens);
@@ -167,7 +161,7 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 	public EmployeeAttendance createEmployeeAttendance(RetailscmUserContext userContext, String employeeId,Date enterTime,Date leaveTime,int durationHours,String remark) throws Exception
 	//public EmployeeAttendance createEmployeeAttendance(RetailscmUserContext userContext,String employeeId, Date enterTime, Date leaveTime, int durationHours, String remark) throws Exception
 	{
-		
+
 		
 
 		
@@ -197,14 +191,14 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 		onNewInstanceCreated(userContext, employeeAttendance);
 		return employeeAttendance;
 
-		
+
 	}
-	protected EmployeeAttendance createNewEmployeeAttendance() 
+	protected EmployeeAttendance createNewEmployeeAttendance()
 	{
-		
-		return new EmployeeAttendance();		
+
+		return new EmployeeAttendance();
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeAttendance(RetailscmUserContext userContext,String employeeAttendanceId, int employeeAttendanceVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -231,28 +225,28 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeAttendanceManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public EmployeeAttendance clone(RetailscmUserContext userContext, String fromEmployeeAttendanceId) throws Exception{
-		
+
 		return employeeAttendanceDaoOf(userContext).clone(fromEmployeeAttendanceId, this.allTokens());
 	}
-	
-	public EmployeeAttendance internalSaveEmployeeAttendance(RetailscmUserContext userContext, EmployeeAttendance employeeAttendance) throws Exception 
+
+	public EmployeeAttendance internalSaveEmployeeAttendance(RetailscmUserContext userContext, EmployeeAttendance employeeAttendance) throws Exception
 	{
 		return internalSaveEmployeeAttendance(userContext, employeeAttendance, allTokens());
 
 	}
-	public EmployeeAttendance internalSaveEmployeeAttendance(RetailscmUserContext userContext, EmployeeAttendance employeeAttendance, Map<String,Object> options) throws Exception 
+	public EmployeeAttendance internalSaveEmployeeAttendance(RetailscmUserContext userContext, EmployeeAttendance employeeAttendance, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEmployeeAttendance(userContext, employeeAttendanceId, employeeAttendanceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(employeeAttendance){ 
+
+
+		synchronized(employeeAttendance){
 			//will be good when the employeeAttendance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeAttendance.
@@ -261,23 +255,23 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 			}
 			employeeAttendance = saveEmployeeAttendance(userContext, employeeAttendance, options);
 			return employeeAttendance;
-			
+
 		}
 
 	}
-	
-	public EmployeeAttendance updateEmployeeAttendance(RetailscmUserContext userContext,String employeeAttendanceId, int employeeAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeAttendance updateEmployeeAttendance(RetailscmUserContext userContext,String employeeAttendanceId, int employeeAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeAttendance(userContext, employeeAttendanceId, employeeAttendanceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		EmployeeAttendance employeeAttendance = loadEmployeeAttendance(userContext, employeeAttendanceId, allTokens());
 		if(employeeAttendance.getVersion() != employeeAttendanceVersion){
 			String message = "The target version("+employeeAttendance.getVersion()+") is not equals to version("+employeeAttendanceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeAttendance){ 
+		synchronized(employeeAttendance){
 			//will be good when the employeeAttendance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeAttendance.
@@ -289,21 +283,21 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 		}
 
 	}
-	
-	public EmployeeAttendance updateEmployeeAttendanceProperty(RetailscmUserContext userContext,String employeeAttendanceId, int employeeAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeAttendance updateEmployeeAttendanceProperty(RetailscmUserContext userContext,String employeeAttendanceId, int employeeAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeAttendance(userContext, employeeAttendanceId, employeeAttendanceVersion, property, newValueExpr, tokensExpr);
-		
+
 		EmployeeAttendance employeeAttendance = loadEmployeeAttendance(userContext, employeeAttendanceId, allTokens());
 		if(employeeAttendance.getVersion() != employeeAttendanceVersion){
 			String message = "The target version("+employeeAttendance.getVersion()+") is not equals to version("+employeeAttendanceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeAttendance){ 
+		synchronized(employeeAttendance){
 			//will be good when the employeeAttendance loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeAttendance.
-			
+
 			employeeAttendance.changeProperty(property, newValueExpr);
 			
 			employeeAttendance = saveEmployeeAttendance(userContext, employeeAttendance, tokens().done());
@@ -315,7 +309,7 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EmployeeAttendanceTokens tokens(){
 		return EmployeeAttendanceTokens.start();
 	}
@@ -336,11 +330,11 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeAttendanceId, String anotherEmployeeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeAttendance(employeeAttendanceId);
  		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeAttendanceManagerException.class);
- 		
+
  	}
  	public EmployeeAttendance transferToAnotherEmployee(RetailscmUserContext userContext, String employeeAttendanceId, String anotherEmployeeId) throws Exception
  	{
@@ -359,10 +353,10 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateEmployee requestCandidateEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateEmployee result = new CandidateEmployee();
@@ -372,7 +366,7 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("company");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -382,42 +376,42 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String employeeAttendanceId, int employeeAttendanceVersion) throws Exception {
-		//deleteInternal(userContext, employeeAttendanceId, employeeAttendanceVersion);		
+		//deleteInternal(userContext, employeeAttendanceId, employeeAttendanceVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeAttendanceId, int employeeAttendanceVersion) throws Exception{
-			
+
 		employeeAttendanceDaoOf(userContext).delete(employeeAttendanceId, employeeAttendanceVersion);
 	}
-	
+
 	public EmployeeAttendance forgetByAll(RetailscmUserContext userContext, String employeeAttendanceId, int employeeAttendanceVersion) throws Exception {
-		return forgetByAllInternal(userContext, employeeAttendanceId, employeeAttendanceVersion);		
+		return forgetByAllInternal(userContext, employeeAttendanceId, employeeAttendanceVersion);
 	}
 	protected EmployeeAttendance forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeAttendanceId, int employeeAttendanceVersion) throws Exception{
-			
+
 		return employeeAttendanceDaoOf(userContext).disconnectFromAll(employeeAttendanceId, employeeAttendanceVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -428,23 +422,29 @@ public class EmployeeAttendanceManagerImpl extends CustomRetailscmCheckerManager
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return employeeAttendanceDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EmployeeAttendance newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

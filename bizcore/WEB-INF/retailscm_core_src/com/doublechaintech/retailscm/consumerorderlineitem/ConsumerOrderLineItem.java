@@ -497,7 +497,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getBizOrder(), getSkuId(), getSkuName(), getPrice(), getQuantity(), getAmount(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

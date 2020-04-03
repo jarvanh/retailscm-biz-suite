@@ -46,7 +46,7 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 	protected BaseRetailscmFormProcessor outputFormData;
 	protected LoginParam loginParam;
 
-	
+
 
 	public void clearFormResubmitFlag() {
 		removeFromCache(getPostMd5Key(this));
@@ -279,7 +279,7 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 		}
 		super.sendEmail(to, subject, content);
 	}
-	
+
 	@Override
 	public void sendEmailWithAttachment(String to, String subject, String content, List<BlobObject> attachments)
 			throws Exception {
@@ -288,7 +288,7 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 		}
 		super.sendEmailWithAttachment(to, subject, content, attachments);
 	}
-	
+
 	@Override
 	public void sendMessage(String dest, String fromWho, String template, Map<String, String> parameters)
 			throws Exception {
@@ -298,7 +298,7 @@ public class RetailscmBizUserContextImpl extends RetailscmUserContextImpl{
 		}
 		super.sendMessage(dest, fromWho, template, parameters);
 	}
-	
+
 	// 这个对象仅用于在开发环境中, 用cookie来模拟react-client的 JWT header. 因为开发环境使用的是普通的浏览器,不能在A
 	// href的header中设置值.
 	protected Cookie[] cookies;

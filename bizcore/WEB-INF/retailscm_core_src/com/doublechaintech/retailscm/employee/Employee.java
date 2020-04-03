@@ -12,24 +12,17 @@ import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
 import com.doublechaintech.retailscm.employeeleave.EmployeeLeave;
 import com.doublechaintech.retailscm.employeeinterview.EmployeeInterview;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkill;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.payingoff.PayingOff;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
 import com.doublechaintech.retailscm.occupationtype.OccupationType;
 import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTraining;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
-import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.employeeattendance.EmployeeAttendance;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
 import com.doublechaintech.retailscm.employeequalifier.EmployeeQualifier;
 import com.doublechaintech.retailscm.employeeperformance.EmployeePerformance;
 import com.doublechaintech.retailscm.employeeeducation.EmployeeEducation;
@@ -55,13 +48,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	public static final String RESPONSIBLE_FOR_PROPERTY       = "responsibleFor"    ;
 	public static final String CURRENT_SALARY_GRADE_PROPERTY  = "currentSalaryGrade";
 	public static final String SALARY_ACCOUNT_PROPERTY        = "salaryAccount"     ;
-	public static final String JOB_APPLICATION_PROPERTY       = "jobApplication"    ;
-	public static final String PROFESSION_INTERVIEW_PROPERTY  = "professionInterview";
-	public static final String HR_INTERVIEW_PROPERTY          = "hrInterview"       ;
-	public static final String OFFER_APPROVAL_PROPERTY        = "offerApproval"     ;
-	public static final String OFFER_ACCEPTANCE_PROPERTY      = "offerAcceptance"   ;
-	public static final String EMPLOYEE_BOARDING_PROPERTY     = "employeeBoarding"  ;
-	public static final String TERMINATION_PROPERTY           = "termination"       ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
@@ -111,13 +97,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	protected		ResponsibilityType  	mResponsibleFor     ;
 	protected		SalaryGrade         	mCurrentSalaryGrade ;
 	protected		String              	mSalaryAccount      ;
-	protected		JobApplication      	mJobApplication     ;
-	protected		ProfessionInterview 	mProfessionInterview;
-	protected		HrInterview         	mHrInterview        ;
-	protected		OfferApproval       	mOfferApproval      ;
-	protected		OfferAcceptance     	mOfferAcceptance    ;
-	protected		EmployeeBoarding    	mEmployeeBoarding   ;
-	protected		Termination         	mTermination        ;
 	protected		DateTime            	mLastUpdateTime     ;
 	protected		int                 	mVersion            ;
 	
@@ -156,13 +135,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		setOccupation( null );
 		setResponsibleFor( null );
 		setCurrentSalaryGrade( null );
-		setJobApplication( null );
-		setProfessionInterview( null );
-		setHrInterview( null );
-		setOfferApproval( null );
-		setOfferAcceptance( null );
-		setEmployeeBoarding( null );
-		setTermination( null );
 
 		this.changed = true;
 	}
@@ -382,27 +354,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		if(SALARY_ACCOUNT_PROPERTY.equals(property)){
 			return getSalaryAccount();
-		}
-		if(JOB_APPLICATION_PROPERTY.equals(property)){
-			return getJobApplication();
-		}
-		if(PROFESSION_INTERVIEW_PROPERTY.equals(property)){
-			return getProfessionInterview();
-		}
-		if(HR_INTERVIEW_PROPERTY.equals(property)){
-			return getHrInterview();
-		}
-		if(OFFER_APPROVAL_PROPERTY.equals(property)){
-			return getOfferApproval();
-		}
-		if(OFFER_ACCEPTANCE_PROPERTY.equals(property)){
-			return getOfferAcceptance();
-		}
-		if(EMPLOYEE_BOARDING_PROPERTY.equals(property)){
-			return getEmployeeBoarding();
-		}
-		if(TERMINATION_PROPERTY.equals(property)){
-			return getTermination();
 		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
@@ -721,153 +672,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		if(salaryAccount != null) { setSalaryAccount(salaryAccount);}
 	}
 	
-	
-	public void setJobApplication(JobApplication jobApplication){
-		this.mJobApplication = jobApplication;;
-	}
-	public JobApplication getJobApplication(){
-		return this.mJobApplication;
-	}
-	public Employee updateJobApplication(JobApplication jobApplication){
-		this.mJobApplication = jobApplication;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeJobApplication(JobApplication jobApplication){
-		if(jobApplication != null) { setJobApplication(jobApplication);}
-	}
-	
-	
-	public void clearJobApplication(){
-		setJobApplication ( null );
-		this.changed = true;
-	}
-	
-	public void setProfessionInterview(ProfessionInterview professionInterview){
-		this.mProfessionInterview = professionInterview;;
-	}
-	public ProfessionInterview getProfessionInterview(){
-		return this.mProfessionInterview;
-	}
-	public Employee updateProfessionInterview(ProfessionInterview professionInterview){
-		this.mProfessionInterview = professionInterview;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeProfessionInterview(ProfessionInterview professionInterview){
-		if(professionInterview != null) { setProfessionInterview(professionInterview);}
-	}
-	
-	
-	public void clearProfessionInterview(){
-		setProfessionInterview ( null );
-		this.changed = true;
-	}
-	
-	public void setHrInterview(HrInterview hrInterview){
-		this.mHrInterview = hrInterview;;
-	}
-	public HrInterview getHrInterview(){
-		return this.mHrInterview;
-	}
-	public Employee updateHrInterview(HrInterview hrInterview){
-		this.mHrInterview = hrInterview;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeHrInterview(HrInterview hrInterview){
-		if(hrInterview != null) { setHrInterview(hrInterview);}
-	}
-	
-	
-	public void clearHrInterview(){
-		setHrInterview ( null );
-		this.changed = true;
-	}
-	
-	public void setOfferApproval(OfferApproval offerApproval){
-		this.mOfferApproval = offerApproval;;
-	}
-	public OfferApproval getOfferApproval(){
-		return this.mOfferApproval;
-	}
-	public Employee updateOfferApproval(OfferApproval offerApproval){
-		this.mOfferApproval = offerApproval;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeOfferApproval(OfferApproval offerApproval){
-		if(offerApproval != null) { setOfferApproval(offerApproval);}
-	}
-	
-	
-	public void clearOfferApproval(){
-		setOfferApproval ( null );
-		this.changed = true;
-	}
-	
-	public void setOfferAcceptance(OfferAcceptance offerAcceptance){
-		this.mOfferAcceptance = offerAcceptance;;
-	}
-	public OfferAcceptance getOfferAcceptance(){
-		return this.mOfferAcceptance;
-	}
-	public Employee updateOfferAcceptance(OfferAcceptance offerAcceptance){
-		this.mOfferAcceptance = offerAcceptance;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeOfferAcceptance(OfferAcceptance offerAcceptance){
-		if(offerAcceptance != null) { setOfferAcceptance(offerAcceptance);}
-	}
-	
-	
-	public void clearOfferAcceptance(){
-		setOfferAcceptance ( null );
-		this.changed = true;
-	}
-	
-	public void setEmployeeBoarding(EmployeeBoarding employeeBoarding){
-		this.mEmployeeBoarding = employeeBoarding;;
-	}
-	public EmployeeBoarding getEmployeeBoarding(){
-		return this.mEmployeeBoarding;
-	}
-	public Employee updateEmployeeBoarding(EmployeeBoarding employeeBoarding){
-		this.mEmployeeBoarding = employeeBoarding;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeEmployeeBoarding(EmployeeBoarding employeeBoarding){
-		if(employeeBoarding != null) { setEmployeeBoarding(employeeBoarding);}
-	}
-	
-	
-	public void clearEmployeeBoarding(){
-		setEmployeeBoarding ( null );
-		this.changed = true;
-	}
-	
-	public void setTermination(Termination termination){
-		this.mTermination = termination;;
-	}
-	public Termination getTermination(){
-		return this.mTermination;
-	}
-	public Employee updateTermination(Termination termination){
-		this.mTermination = termination;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeTermination(Termination termination){
-		if(termination != null) { setTermination(termination);}
-	}
-	
-	
-	public void clearTermination(){
-		setTermination ( null );
-		this.changed = true;
-	}
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
 		this.mLastUpdateTime = lastUpdateTime;;
@@ -2193,13 +1997,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		addToEntityList(this, entityList, getOccupation(), internalType);
 		addToEntityList(this, entityList, getResponsibleFor(), internalType);
 		addToEntityList(this, entityList, getCurrentSalaryGrade(), internalType);
-		addToEntityList(this, entityList, getJobApplication(), internalType);
-		addToEntityList(this, entityList, getProfessionInterview(), internalType);
-		addToEntityList(this, entityList, getHrInterview(), internalType);
-		addToEntityList(this, entityList, getOfferApproval(), internalType);
-		addToEntityList(this, entityList, getOfferAcceptance(), internalType);
-		addToEntityList(this, entityList, getEmployeeBoarding(), internalType);
-		addToEntityList(this, entityList, getTermination(), internalType);
 
 		
 	}
@@ -2261,13 +2058,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, RESPONSIBLE_FOR_PROPERTY, getResponsibleFor());
 		appendKeyValuePair(result, CURRENT_SALARY_GRADE_PROPERTY, getCurrentSalaryGrade());
 		appendKeyValuePair(result, SALARY_ACCOUNT_PROPERTY, getSalaryAccount());
-		appendKeyValuePair(result, JOB_APPLICATION_PROPERTY, getJobApplication());
-		appendKeyValuePair(result, PROFESSION_INTERVIEW_PROPERTY, getProfessionInterview());
-		appendKeyValuePair(result, HR_INTERVIEW_PROPERTY, getHrInterview());
-		appendKeyValuePair(result, OFFER_APPROVAL_PROPERTY, getOfferApproval());
-		appendKeyValuePair(result, OFFER_ACCEPTANCE_PROPERTY, getOfferAcceptance());
-		appendKeyValuePair(result, EMPLOYEE_BOARDING_PROPERTY, getEmployeeBoarding());
-		appendKeyValuePair(result, TERMINATION_PROPERTY, getTermination());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, EMPLOYEE_COMPANY_TRAINING_LIST, getEmployeeCompanyTrainingList());
@@ -2358,13 +2148,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 			dest.setResponsibleFor(getResponsibleFor());
 			dest.setCurrentSalaryGrade(getCurrentSalaryGrade());
 			dest.setSalaryAccount(getSalaryAccount());
-			dest.setJobApplication(getJobApplication());
-			dest.setProfessionInterview(getProfessionInterview());
-			dest.setHrInterview(getHrInterview());
-			dest.setOfferApproval(getOfferApproval());
-			dest.setOfferAcceptance(getOfferAcceptance());
-			dest.setEmployeeBoarding(getEmployeeBoarding());
-			dest.setTermination(getTermination());
 			dest.setLastUpdateTime(getLastUpdateTime());
 			dest.setVersion(getVersion());
 			dest.setEmployeeCompanyTrainingList(getEmployeeCompanyTrainingList());
@@ -2406,13 +2189,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 			dest.mergeResponsibleFor(getResponsibleFor());
 			dest.mergeCurrentSalaryGrade(getCurrentSalaryGrade());
 			dest.mergeSalaryAccount(getSalaryAccount());
-			dest.mergeJobApplication(getJobApplication());
-			dest.mergeProfessionInterview(getProfessionInterview());
-			dest.mergeHrInterview(getHrInterview());
-			dest.mergeOfferApproval(getOfferApproval());
-			dest.mergeOfferAcceptance(getOfferAcceptance());
-			dest.mergeEmployeeBoarding(getEmployeeBoarding());
-			dest.mergeTermination(getTermination());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
 			dest.mergeVersion(getVersion());
 			dest.mergeEmployeeCompanyTrainingList(getEmployeeCompanyTrainingList());
@@ -2456,7 +2232,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getCompany(), getTitle(), getDepartment(), getFamilyName(), getGivenName(), getEmail(), getCity(), getAddress(), getCellPhone(), getOccupation(), getResponsibleFor(), getCurrentSalaryGrade(), getSalaryAccount(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -2485,27 +2263,6 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
  			stringBuilder.append("\tcurrentSalaryGrade='SalaryGrade("+getCurrentSalaryGrade().getId()+")';");
  		}
 		stringBuilder.append("\tsalaryAccount='"+getSalaryAccount()+"';");
-		if(getJobApplication() != null ){
- 			stringBuilder.append("\tjobApplication='JobApplication("+getJobApplication().getId()+")';");
- 		}
-		if(getProfessionInterview() != null ){
- 			stringBuilder.append("\tprofessionInterview='ProfessionInterview("+getProfessionInterview().getId()+")';");
- 		}
-		if(getHrInterview() != null ){
- 			stringBuilder.append("\thrInterview='HrInterview("+getHrInterview().getId()+")';");
- 		}
-		if(getOfferApproval() != null ){
- 			stringBuilder.append("\tofferApproval='OfferApproval("+getOfferApproval().getId()+")';");
- 		}
-		if(getOfferAcceptance() != null ){
- 			stringBuilder.append("\tofferAcceptance='OfferAcceptance("+getOfferAcceptance().getId()+")';");
- 		}
-		if(getEmployeeBoarding() != null ){
- 			stringBuilder.append("\temployeeBoarding='EmployeeBoarding("+getEmployeeBoarding().getId()+")';");
- 		}
-		if(getTermination() != null ){
- 			stringBuilder.append("\ttermination='Termination("+getTermination().getId()+")';");
- 		}
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

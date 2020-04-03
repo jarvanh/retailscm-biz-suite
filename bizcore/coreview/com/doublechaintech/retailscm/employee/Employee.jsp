@@ -159,34 +159,6 @@
 <c:set var="referName" value="(currentSalaryGrade)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/salarygrade/SalaryGrade$Info.jsp" />
 
-<c:set var="jobApplication" value="${ result.jobApplication}" scope="request" />
-<c:set var="referName" value="" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/jobapplication/JobApplication$Info.jsp" />
-
-<c:set var="professionInterview" value="${ result.professionInterview}" scope="request" />
-<c:set var="referName" value="" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/professioninterview/ProfessionInterview$Info.jsp" />
-
-<c:set var="hrInterview" value="${ result.hrInterview}" scope="request" />
-<c:set var="referName" value="" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/hrinterview/HrInterview$Info.jsp" />
-
-<c:set var="offerApproval" value="${ result.offerApproval}" scope="request" />
-<c:set var="referName" value="" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/offerapproval/OfferApproval$Info.jsp" />
-
-<c:set var="offerAcceptance" value="${ result.offerAcceptance}" scope="request" />
-<c:set var="referName" value="" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/offeracceptance/OfferAcceptance$Info.jsp" />
-
-<c:set var="employeeBoarding" value="${ result.employeeBoarding}" scope="request" />
-<c:set var="referName" value="" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/employeeboarding/EmployeeBoarding$Info.jsp" />
-
-<c:set var="termination" value="${ result.termination}" scope="request" />
-<c:set var="referName" value="" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/termination/Termination$Info.jsp" />
-
 </div>
 
 

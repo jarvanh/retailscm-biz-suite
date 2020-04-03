@@ -395,7 +395,9 @@ public class RetailStoreMemberGiftCardConsumeRecord extends BaseEntity implement
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getOccureTime(), getOwner(), getBizOrder(), getNumber(), getAmount(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

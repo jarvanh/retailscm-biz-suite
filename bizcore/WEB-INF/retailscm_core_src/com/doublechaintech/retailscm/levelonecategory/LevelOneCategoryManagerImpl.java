@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.leveltwocategory.LevelTwoCategory;
 import com.doublechaintech.retailscm.catalog.Catalog;
@@ -33,28 +24,31 @@ import com.doublechaintech.retailscm.levelonecategory.LevelOneCategory;
 
 
 public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager implements LevelOneCategoryManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "LevelOneCategory";
 	@Override
 	public LevelOneCategoryDAO daoOf(RetailscmUserContext userContext) {
 		return levelOneCategoryDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws LevelOneCategoryManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new LevelOneCategoryManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected LevelOneCategory saveLevelOneCategory(RetailscmUserContext userContext, LevelOneCategory levelOneCategory, String [] tokensExpr) throws Exception{	
  		//return getLevelOneCategoryDAO().save(levelOneCategory, tokens);
@@ -173,7 +167,7 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 	public LevelOneCategory createLevelOneCategory(RetailscmUserContext userContext, String catalogId,String name) throws Exception
 	//public LevelOneCategory createLevelOneCategory(RetailscmUserContext userContext,String catalogId, String name) throws Exception
 	{
-		
+
 		
 
 		
@@ -197,14 +191,14 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		onNewInstanceCreated(userContext, levelOneCategory);
 		return levelOneCategory;
 
-		
+
 	}
-	protected LevelOneCategory createNewLevelOneCategory() 
+	protected LevelOneCategory createNewLevelOneCategory()
 	{
-		
-		return new LevelOneCategory();		
+
+		return new LevelOneCategory();
 	}
-	
+
 	protected void checkParamsForUpdatingLevelOneCategory(RetailscmUserContext userContext,String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -222,28 +216,28 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public LevelOneCategory clone(RetailscmUserContext userContext, String fromLevelOneCategoryId) throws Exception{
-		
+
 		return levelOneCategoryDaoOf(userContext).clone(fromLevelOneCategoryId, this.allTokens());
 	}
-	
-	public LevelOneCategory internalSaveLevelOneCategory(RetailscmUserContext userContext, LevelOneCategory levelOneCategory) throws Exception 
+
+	public LevelOneCategory internalSaveLevelOneCategory(RetailscmUserContext userContext, LevelOneCategory levelOneCategory) throws Exception
 	{
 		return internalSaveLevelOneCategory(userContext, levelOneCategory, allTokens());
 
 	}
-	public LevelOneCategory internalSaveLevelOneCategory(RetailscmUserContext userContext, LevelOneCategory levelOneCategory, Map<String,Object> options) throws Exception 
+	public LevelOneCategory internalSaveLevelOneCategory(RetailscmUserContext userContext, LevelOneCategory levelOneCategory, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingLevelOneCategory(userContext, levelOneCategoryId, levelOneCategoryVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(levelOneCategory){ 
+
+
+		synchronized(levelOneCategory){
 			//will be good when the levelOneCategory loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LevelOneCategory.
@@ -252,23 +246,23 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 			}
 			levelOneCategory = saveLevelOneCategory(userContext, levelOneCategory, options);
 			return levelOneCategory;
-			
+
 		}
 
 	}
-	
-	public LevelOneCategory updateLevelOneCategory(RetailscmUserContext userContext,String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public LevelOneCategory updateLevelOneCategory(RetailscmUserContext userContext,String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingLevelOneCategory(userContext, levelOneCategoryId, levelOneCategoryVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, allTokens());
 		if(levelOneCategory.getVersion() != levelOneCategoryVersion){
 			String message = "The target version("+levelOneCategory.getVersion()+") is not equals to version("+levelOneCategoryVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(levelOneCategory){ 
+		synchronized(levelOneCategory){
 			//will be good when the levelOneCategory loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LevelOneCategory.
@@ -280,21 +274,21 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		}
 
 	}
-	
-	public LevelOneCategory updateLevelOneCategoryProperty(RetailscmUserContext userContext,String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public LevelOneCategory updateLevelOneCategoryProperty(RetailscmUserContext userContext,String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingLevelOneCategory(userContext, levelOneCategoryId, levelOneCategoryVersion, property, newValueExpr, tokensExpr);
-		
+
 		LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, allTokens());
 		if(levelOneCategory.getVersion() != levelOneCategoryVersion){
 			String message = "The target version("+levelOneCategory.getVersion()+") is not equals to version("+levelOneCategoryVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(levelOneCategory){ 
+		synchronized(levelOneCategory){
 			//will be good when the levelOneCategory loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LevelOneCategory.
-			
+
 			levelOneCategory.changeProperty(property, newValueExpr);
 			
 			levelOneCategory = saveLevelOneCategory(userContext, levelOneCategory, tokens().done());
@@ -306,7 +300,7 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected LevelOneCategoryTokens tokens(){
 		return LevelOneCategoryTokens.start();
 	}
@@ -328,11 +322,11 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 	
 	protected void checkParamsForTransferingAnotherCatalog(RetailscmUserContext userContext, String levelOneCategoryId, String anotherCatalogId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
  		checkerOf(userContext).checkIdOfCatalog(anotherCatalogId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
- 		
+
  	}
  	public LevelOneCategory transferToAnotherCatalog(RetailscmUserContext userContext, String levelOneCategoryId, String anotherCatalogId) throws Exception
  	{
@@ -351,10 +345,10 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateCatalog requestCandidateCatalog(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateCatalog result = new CandidateCatalog();
@@ -364,7 +358,7 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -374,42 +368,42 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Catalog loadCatalog(RetailscmUserContext userContext, String newCatalogId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return catalogDaoOf(userContext).load(newCatalogId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String levelOneCategoryId, int levelOneCategoryVersion) throws Exception {
-		//deleteInternal(userContext, levelOneCategoryId, levelOneCategoryVersion);		
+		//deleteInternal(userContext, levelOneCategoryId, levelOneCategoryVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String levelOneCategoryId, int levelOneCategoryVersion) throws Exception{
-			
+
 		levelOneCategoryDaoOf(userContext).delete(levelOneCategoryId, levelOneCategoryVersion);
 	}
-	
+
 	public LevelOneCategory forgetByAll(RetailscmUserContext userContext, String levelOneCategoryId, int levelOneCategoryVersion) throws Exception {
-		return forgetByAllInternal(userContext, levelOneCategoryId, levelOneCategoryVersion);		
+		return forgetByAllInternal(userContext, levelOneCategoryId, levelOneCategoryVersion);
 	}
 	protected LevelOneCategory forgetByAllInternal(RetailscmUserContext userContext,
 			String levelOneCategoryId, int levelOneCategoryVersion) throws Exception{
-			
+
 		return levelOneCategoryDaoOf(userContext).disconnectFromAll(levelOneCategoryId, levelOneCategoryVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -420,21 +414,21 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return levelOneCategoryDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId, String name,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
 
 		
@@ -442,20 +436,20 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
 
-	
+
 	}
 	public  LevelOneCategory addLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId, String name, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingLevelTwoCategory(userContext,levelOneCategoryId,name,tokensExpr);
-		
+
 		LevelTwoCategory levelTwoCategory = createLevelTwoCategory(userContext,name);
-		
-		LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, allTokens());
-		synchronized(levelOneCategory){ 
+
+		LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, emptyOptions());
+		synchronized(levelOneCategory){
 			//Will be good when the levelOneCategory loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			levelOneCategory.addLevelTwoCategory( levelTwoCategory );		
+			levelOneCategory.addLevelTwoCategory( levelTwoCategory );
 			levelOneCategory = saveLevelOneCategory(userContext, levelOneCategory, tokens().withLevelTwoCategoryList().done());
 			
 			userContext.getManagerGroup().getLevelTwoCategoryManager().onNewInstanceCreated(userContext, levelTwoCategory);
@@ -463,43 +457,43 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		}
 	}
 	protected void checkParamsForUpdatingLevelTwoCategoryProperties(RetailscmUserContext userContext, String levelOneCategoryId,String id,String name,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
 		checkerOf(userContext).checkIdOfLevelTwoCategory(id);
-		
+
 		checkerOf(userContext).checkNameOfLevelTwoCategory( name);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
-		
+
 	}
 	public  LevelOneCategory updateLevelTwoCategoryProperties(RetailscmUserContext userContext, String levelOneCategoryId, String id,String name, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingLevelTwoCategoryProperties(userContext,levelOneCategoryId,id,name,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withLevelTwoCategoryListList()
 				.searchLevelTwoCategoryListWith(LevelTwoCategory.ID_PROPERTY, "is", id).done();
-		
+
 		LevelOneCategory levelOneCategoryToUpdate = loadLevelOneCategory(userContext, levelOneCategoryId, options);
-		
+
 		if(levelOneCategoryToUpdate.getLevelTwoCategoryList().isEmpty()){
 			throw new LevelOneCategoryManagerException("LevelTwoCategory is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		LevelTwoCategory item = levelOneCategoryToUpdate.getLevelTwoCategoryList().first();
-		
+
 		item.updateName( name );
 
-		
+
 		//checkParamsForAddingLevelTwoCategory(userContext,levelOneCategoryId,name, code, used,tokensExpr);
 		LevelOneCategory levelOneCategory = saveLevelOneCategory(userContext, levelOneCategoryToUpdate, tokens().withLevelTwoCategoryList().done());
-		synchronized(levelOneCategory){ 
+		synchronized(levelOneCategory){
 			return present(userContext,levelOneCategory, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected LevelTwoCategory createLevelTwoCategory(RetailscmUserContext userContext, String name) throws Exception{
 
 		LevelTwoCategory levelTwoCategory = new LevelTwoCategory();
@@ -509,38 +503,38 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 	
 		
 		return levelTwoCategory;
-	
-		
+
+
 	}
-	
+
 	protected LevelTwoCategory createIndexedLevelTwoCategory(String id, int version){
 
 		LevelTwoCategory levelTwoCategory = new LevelTwoCategory();
 		levelTwoCategory.setId(id);
 		levelTwoCategory.setVersion(version);
-		return levelTwoCategory;			
-		
+		return levelTwoCategory;
+
 	}
-	
-	protected void checkParamsForRemovingLevelTwoCategoryList(RetailscmUserContext userContext, String levelOneCategoryId, 
+
+	protected void checkParamsForRemovingLevelTwoCategoryList(RetailscmUserContext userContext, String levelOneCategoryId,
 			String levelTwoCategoryIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
 		for(String levelTwoCategoryIdItem: levelTwoCategoryIds){
 			checkerOf(userContext).checkIdOfLevelTwoCategory(levelTwoCategoryIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
-		
+
 	}
-	public  LevelOneCategory removeLevelTwoCategoryList(RetailscmUserContext userContext, String levelOneCategoryId, 
+	public  LevelOneCategory removeLevelTwoCategoryList(RetailscmUserContext userContext, String levelOneCategoryId,
 			String levelTwoCategoryIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingLevelTwoCategoryList(userContext, levelOneCategoryId,  levelTwoCategoryIds, tokensExpr);
-			
-			
+
+
 			LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, allTokens());
-			synchronized(levelOneCategory){ 
+			synchronized(levelOneCategory){
 				//Will be good when the levelOneCategory loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				levelOneCategoryDaoOf(userContext).planToRemoveLevelTwoCategoryList(levelOneCategory, levelTwoCategoryIds, allTokens());
@@ -549,65 +543,65 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 				return present(userContext,levelOneCategory, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId, 
+
+	protected void checkParamsForRemovingLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId,
 		String levelTwoCategoryId, int levelTwoCategoryVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfLevelOneCategory( levelOneCategoryId);
 		checkerOf(userContext).checkIdOfLevelTwoCategory(levelTwoCategoryId);
 		checkerOf(userContext).checkVersionOfLevelTwoCategory(levelTwoCategoryVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
-	
+
 	}
-	public  LevelOneCategory removeLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId, 
+	public  LevelOneCategory removeLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId,
 		String levelTwoCategoryId, int levelTwoCategoryVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingLevelTwoCategory(userContext,levelOneCategoryId, levelTwoCategoryId, levelTwoCategoryVersion,tokensExpr);
-		
+
 		LevelTwoCategory levelTwoCategory = createIndexedLevelTwoCategory(levelTwoCategoryId, levelTwoCategoryVersion);
 		LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, allTokens());
-		synchronized(levelOneCategory){ 
+		synchronized(levelOneCategory){
 			//Will be good when the levelOneCategory loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			levelOneCategory.removeLevelTwoCategory( levelTwoCategory );		
+			levelOneCategory.removeLevelTwoCategory( levelTwoCategory );
 			levelOneCategory = saveLevelOneCategory(userContext, levelOneCategory, tokens().withLevelTwoCategoryList().done());
 			deleteRelationInGraph(userContext, levelTwoCategory);
 			return present(userContext,levelOneCategory, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId, 
+	protected void checkParamsForCopyingLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId,
 		String levelTwoCategoryId, int levelTwoCategoryVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfLevelOneCategory( levelOneCategoryId);
 		checkerOf(userContext).checkIdOfLevelTwoCategory(levelTwoCategoryId);
 		checkerOf(userContext).checkVersionOfLevelTwoCategory(levelTwoCategoryVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
-	
+
 	}
-	public  LevelOneCategory copyLevelTwoCategoryFrom(RetailscmUserContext userContext, String levelOneCategoryId, 
+	public  LevelOneCategory copyLevelTwoCategoryFrom(RetailscmUserContext userContext, String levelOneCategoryId,
 		String levelTwoCategoryId, int levelTwoCategoryVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingLevelTwoCategory(userContext,levelOneCategoryId, levelTwoCategoryId, levelTwoCategoryVersion,tokensExpr);
-		
+
 		LevelTwoCategory levelTwoCategory = createIndexedLevelTwoCategory(levelTwoCategoryId, levelTwoCategoryVersion);
 		LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, allTokens());
-		synchronized(levelOneCategory){ 
+		synchronized(levelOneCategory){
 			//Will be good when the levelOneCategory loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			levelOneCategory.copyLevelTwoCategoryFrom( levelTwoCategory );		
+
+			levelOneCategory.copyLevelTwoCategoryFrom( levelTwoCategory );
 			levelOneCategory = saveLevelOneCategory(userContext, levelOneCategory, tokens().withLevelTwoCategoryList().done());
 			
 			userContext.getManagerGroup().getLevelTwoCategoryManager().onNewInstanceCreated(userContext, (LevelTwoCategory)levelOneCategory.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,levelOneCategory, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId, String levelTwoCategoryId, int levelTwoCategoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -623,32 +617,32 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(LevelOneCategoryManagerException.class);
-	
+
 	}
-	
+
 	public  LevelOneCategory updateLevelTwoCategory(RetailscmUserContext userContext, String levelOneCategoryId, String levelTwoCategoryId, int levelTwoCategoryVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingLevelTwoCategory(userContext, levelOneCategoryId, levelTwoCategoryId, levelTwoCategoryVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withLevelTwoCategoryList().searchLevelTwoCategoryListWith(LevelTwoCategory.ID_PROPERTY, "eq", levelTwoCategoryId).done();
-		
-		
-		
+
+
+
 		LevelOneCategory levelOneCategory = loadLevelOneCategory(userContext, levelOneCategoryId, loadTokens);
-		
-		synchronized(levelOneCategory){ 
+
+		synchronized(levelOneCategory){
 			//Will be good when the levelOneCategory loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//levelOneCategory.removeLevelTwoCategory( levelTwoCategory );	
+			//levelOneCategory.removeLevelTwoCategory( levelTwoCategory );
 			//make changes to AcceleraterAccount.
 			LevelTwoCategory levelTwoCategoryIndex = createIndexedLevelTwoCategory(levelTwoCategoryId, levelTwoCategoryVersion);
-		
+
 			LevelTwoCategory levelTwoCategory = levelOneCategory.findTheLevelTwoCategory(levelTwoCategoryIndex);
 			if(levelTwoCategory == null){
 				throw new LevelOneCategoryManagerException(levelTwoCategory+" is NOT FOUND" );
 			}
-			
+
 			levelTwoCategory.changeProperty(property, newValueExpr);
 			
 			levelOneCategory = saveLevelOneCategory(userContext, levelOneCategory, tokens().withLevelTwoCategoryList().done());
@@ -659,14 +653,20 @@ public class LevelOneCategoryManagerImpl extends CustomRetailscmCheckerManager i
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, LevelOneCategory newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

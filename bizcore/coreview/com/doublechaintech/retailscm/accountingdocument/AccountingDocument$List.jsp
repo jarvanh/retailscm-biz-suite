@@ -110,18 +110,6 @@
 <c:if test="${param.referName ne 'documentType'}">
 	<th>${userContext.localeMap['accounting_document.document_type']}</th>
 </c:if>
-<c:if test="${param.referName ne 'creation'}">
-	<th>${userContext.localeMap['accounting_document.creation']}</th>
-</c:if>
-<c:if test="${param.referName ne 'confirmation'}">
-	<th>${userContext.localeMap['accounting_document.confirmation']}</th>
-</c:if>
-<c:if test="${param.referName ne 'auditing'}">
-	<th>${userContext.localeMap['accounting_document.auditing']}</th>
-</c:if>
-<c:if test="${param.referName ne 'posting'}">
-	<th>${userContext.localeMap['accounting_document.posting']}</th>
-</c:if>
 <th>${userContext.localeMap['@action']}</th>
 		</tr></thead>
 		<tbody>
@@ -159,82 +147,6 @@
 			<a href='./accountingDocumentTypeManager/view/${item.documentType.id}/'>${item.documentType.displayName}</a>
 			</c:if>
 			<c:if test="${empty  item.documentType}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'creation'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./accountingDocumentManager/requestCandidateCreation/${ownerBeanName}/${item.id}/"
-			data-switch-method="./accountingDocumentManager/transferToAnotherCreation/${item.id}/"
-			data-link-template="./accountingDocumentCreationManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.creation}">
-			<a href='./accountingDocumentCreationManager/view/${item.creation.id}/'>${item.creation.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.creation}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'confirmation'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./accountingDocumentManager/requestCandidateConfirmation/${ownerBeanName}/${item.id}/"
-			data-switch-method="./accountingDocumentManager/transferToAnotherConfirmation/${item.id}/"
-			data-link-template="./accountingDocumentConfirmationManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.confirmation}">
-			<a href='./accountingDocumentConfirmationManager/view/${item.confirmation.id}/'>${item.confirmation.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.confirmation}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'auditing'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./accountingDocumentManager/requestCandidateAuditing/${ownerBeanName}/${item.id}/"
-			data-switch-method="./accountingDocumentManager/transferToAnotherAuditing/${item.id}/"
-			data-link-template="./accountingDocumentAuditingManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.auditing}">
-			<a href='./accountingDocumentAuditingManager/view/${item.auditing.id}/'>${item.auditing.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.auditing}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'posting'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./accountingDocumentManager/requestCandidatePosting/${ownerBeanName}/${item.id}/"
-			data-switch-method="./accountingDocumentManager/transferToAnotherPosting/${item.id}/"
-			data-link-template="./accountingDocumentPostingManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.posting}">
-			<a href='./accountingDocumentPostingManager/view/${item.posting.id}/'>${item.posting.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.posting}">
 			<a href='#'></a>
 			</c:if>
 			<button class="btn btn-link candidate-action">...</button>

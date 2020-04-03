@@ -20,24 +20,17 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
 import com.doublechaintech.retailscm.employeeleave.EmployeeLeave;
 import com.doublechaintech.retailscm.employeeinterview.EmployeeInterview;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkill;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.payingoff.PayingOff;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
 import com.doublechaintech.retailscm.occupationtype.OccupationType;
 import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTraining;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
-import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.employeeattendance.EmployeeAttendance;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
 import com.doublechaintech.retailscm.employeequalifier.EmployeeQualifier;
 import com.doublechaintech.retailscm.employeeperformance.EmployeePerformance;
 import com.doublechaintech.retailscm.employeeeducation.EmployeeEducation;
@@ -45,28 +38,21 @@ import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 import com.doublechaintech.retailscm.employeeworkexperience.EmployeeWorkExperience;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAward;
 
-import com.doublechaintech.retailscm.offerapproval.OfferApprovalDAO;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheetDAO;
 import com.doublechaintech.retailscm.salarygrade.SalaryGradeDAO;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterviewDAO;
 import com.doublechaintech.retailscm.employeeworkexperience.EmployeeWorkExperienceDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
 import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityTypeDAO;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkillDAO;
 import com.doublechaintech.retailscm.employeeinterview.EmployeeInterviewDAO;
 import com.doublechaintech.retailscm.employeeperformance.EmployeePerformanceDAO;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceDAO;
 import com.doublechaintech.retailscm.employeeleave.EmployeeLeaveDAO;
 import com.doublechaintech.retailscm.occupationtype.OccupationTypeDAO;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAwardDAO;
 import com.doublechaintech.retailscm.employeeattendance.EmployeeAttendanceDAO;
 import com.doublechaintech.retailscm.employeequalifier.EmployeeQualifierDAO;
-import com.doublechaintech.retailscm.jobapplication.JobApplicationDAO;
 import com.doublechaintech.retailscm.payingoff.PayingOffDAO;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartmentDAO;
-import com.doublechaintech.retailscm.hrinterview.HrInterviewDAO;
-import com.doublechaintech.retailscm.termination.TerminationDAO;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingDAO;
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTrainingDAO;
 import com.doublechaintech.retailscm.employeeeducation.EmployeeEducationDAO;
 
@@ -78,15 +64,6 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements EmployeeDAO{
- 
- 	
- 	private  ProfessionInterviewDAO  professionInterviewDAO;
- 	public void setProfessionInterviewDAO(ProfessionInterviewDAO professionInterviewDAO){
-	 	this.professionInterviewDAO = professionInterviewDAO;
- 	}
- 	public ProfessionInterviewDAO getProfessionInterviewDAO(){
-	 	return this.professionInterviewDAO;
- 	}
  
  	
  	private  SalaryGradeDAO  salaryGradeDAO;
@@ -116,51 +93,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  
  	
- 	private  OfferAcceptanceDAO  offerAcceptanceDAO;
- 	public void setOfferAcceptanceDAO(OfferAcceptanceDAO offerAcceptanceDAO){
-	 	this.offerAcceptanceDAO = offerAcceptanceDAO;
- 	}
- 	public OfferAcceptanceDAO getOfferAcceptanceDAO(){
-	 	return this.offerAcceptanceDAO;
- 	}
- 
- 	
- 	private  HrInterviewDAO  hrInterviewDAO;
- 	public void setHrInterviewDAO(HrInterviewDAO hrInterviewDAO){
-	 	this.hrInterviewDAO = hrInterviewDAO;
- 	}
- 	public HrInterviewDAO getHrInterviewDAO(){
-	 	return this.hrInterviewDAO;
- 	}
- 
- 	
- 	private  JobApplicationDAO  jobApplicationDAO;
- 	public void setJobApplicationDAO(JobApplicationDAO jobApplicationDAO){
-	 	this.jobApplicationDAO = jobApplicationDAO;
- 	}
- 	public JobApplicationDAO getJobApplicationDAO(){
-	 	return this.jobApplicationDAO;
- 	}
- 
- 	
- 	private  EmployeeBoardingDAO  employeeBoardingDAO;
- 	public void setEmployeeBoardingDAO(EmployeeBoardingDAO employeeBoardingDAO){
-	 	this.employeeBoardingDAO = employeeBoardingDAO;
- 	}
- 	public EmployeeBoardingDAO getEmployeeBoardingDAO(){
-	 	return this.employeeBoardingDAO;
- 	}
- 
- 	
- 	private  OfferApprovalDAO  offerApprovalDAO;
- 	public void setOfferApprovalDAO(OfferApprovalDAO offerApprovalDAO){
-	 	this.offerApprovalDAO = offerApprovalDAO;
- 	}
- 	public OfferApprovalDAO getOfferApprovalDAO(){
-	 	return this.offerApprovalDAO;
- 	}
- 
- 	
  	private  RetailStoreCountryCenterDAO  retailStoreCountryCenterDAO;
  	public void setRetailStoreCountryCenterDAO(RetailStoreCountryCenterDAO retailStoreCountryCenterDAO){
 	 	this.retailStoreCountryCenterDAO = retailStoreCountryCenterDAO;
@@ -176,15 +108,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	}
  	public ResponsibilityTypeDAO getResponsibilityTypeDAO(){
 	 	return this.responsibilityTypeDAO;
- 	}
- 
- 	
- 	private  TerminationDAO  terminationDAO;
- 	public void setTerminationDAO(TerminationDAO terminationDAO){
-	 	this.terminationDAO = terminationDAO;
- 	}
- 	public TerminationDAO getTerminationDAO(){
-	 	return this.terminationDAO;
  	}
 
 
@@ -710,104 +633,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  	
 
  	
-  
-
- 	protected boolean isExtractJobApplicationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, EmployeeTokens.JOBAPPLICATION);
- 	}
-
- 	protected boolean isSaveJobApplicationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, EmployeeTokens.JOBAPPLICATION);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractProfessionInterviewEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, EmployeeTokens.PROFESSIONINTERVIEW);
- 	}
-
- 	protected boolean isSaveProfessionInterviewEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, EmployeeTokens.PROFESSIONINTERVIEW);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractHrInterviewEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, EmployeeTokens.HRINTERVIEW);
- 	}
-
- 	protected boolean isSaveHrInterviewEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, EmployeeTokens.HRINTERVIEW);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractOfferApprovalEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, EmployeeTokens.OFFERAPPROVAL);
- 	}
-
- 	protected boolean isSaveOfferApprovalEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, EmployeeTokens.OFFERAPPROVAL);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractOfferAcceptanceEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, EmployeeTokens.OFFERACCEPTANCE);
- 	}
-
- 	protected boolean isSaveOfferAcceptanceEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, EmployeeTokens.OFFERACCEPTANCE);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractEmployeeBoardingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, EmployeeTokens.EMPLOYEEBOARDING);
- 	}
-
- 	protected boolean isSaveEmployeeBoardingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, EmployeeTokens.EMPLOYEEBOARDING);
- 	}
- 	
-
- 	
-  
-
- 	protected boolean isExtractTerminationEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, EmployeeTokens.TERMINATION);
- 	}
-
- 	protected boolean isSaveTerminationEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, EmployeeTokens.TERMINATION);
- 	}
- 	
-
- 	
  
 		
 	
@@ -1023,34 +848,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		if(isExtractCurrentSalaryGradeEnabled(loadOptions)){
 	 		extractCurrentSalaryGrade(employee, loadOptions);
  		}
-  	
- 		if(isExtractJobApplicationEnabled(loadOptions)){
-	 		extractJobApplication(employee, loadOptions);
- 		}
-  	
- 		if(isExtractProfessionInterviewEnabled(loadOptions)){
-	 		extractProfessionInterview(employee, loadOptions);
- 		}
-  	
- 		if(isExtractHrInterviewEnabled(loadOptions)){
-	 		extractHrInterview(employee, loadOptions);
- 		}
-  	
- 		if(isExtractOfferApprovalEnabled(loadOptions)){
-	 		extractOfferApproval(employee, loadOptions);
- 		}
-  	
- 		if(isExtractOfferAcceptanceEnabled(loadOptions)){
-	 		extractOfferAcceptance(employee, loadOptions);
- 		}
-  	
- 		if(isExtractEmployeeBoardingEnabled(loadOptions)){
-	 		extractEmployeeBoarding(employee, loadOptions);
- 		}
-  	
- 		if(isExtractTerminationEnabled(loadOptions)){
-	 		extractTermination(employee, loadOptions);
- 		}
  
 		
 		if(isExtractEmployeeCompanyTrainingListEnabled(loadOptions)){
@@ -1247,146 +1044,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 		SalaryGrade currentSalaryGrade = getSalaryGradeDAO().load(currentSalaryGradeId,options);
 		if(currentSalaryGrade != null){
 			employee.setCurrentSalaryGrade(currentSalaryGrade);
-		}
-		
- 		
- 		return employee;
- 	}
- 		
-  
-
- 	protected Employee extractJobApplication(Employee employee, Map<String,Object> options) throws Exception{
-
-		if(employee.getJobApplication() == null){
-			return employee;
-		}
-		String jobApplicationId = employee.getJobApplication().getId();
-		if( jobApplicationId == null){
-			return employee;
-		}
-		JobApplication jobApplication = getJobApplicationDAO().load(jobApplicationId,options);
-		if(jobApplication != null){
-			employee.setJobApplication(jobApplication);
-		}
-		
- 		
- 		return employee;
- 	}
- 		
-  
-
- 	protected Employee extractProfessionInterview(Employee employee, Map<String,Object> options) throws Exception{
-
-		if(employee.getProfessionInterview() == null){
-			return employee;
-		}
-		String professionInterviewId = employee.getProfessionInterview().getId();
-		if( professionInterviewId == null){
-			return employee;
-		}
-		ProfessionInterview professionInterview = getProfessionInterviewDAO().load(professionInterviewId,options);
-		if(professionInterview != null){
-			employee.setProfessionInterview(professionInterview);
-		}
-		
- 		
- 		return employee;
- 	}
- 		
-  
-
- 	protected Employee extractHrInterview(Employee employee, Map<String,Object> options) throws Exception{
-
-		if(employee.getHrInterview() == null){
-			return employee;
-		}
-		String hrInterviewId = employee.getHrInterview().getId();
-		if( hrInterviewId == null){
-			return employee;
-		}
-		HrInterview hrInterview = getHrInterviewDAO().load(hrInterviewId,options);
-		if(hrInterview != null){
-			employee.setHrInterview(hrInterview);
-		}
-		
- 		
- 		return employee;
- 	}
- 		
-  
-
- 	protected Employee extractOfferApproval(Employee employee, Map<String,Object> options) throws Exception{
-
-		if(employee.getOfferApproval() == null){
-			return employee;
-		}
-		String offerApprovalId = employee.getOfferApproval().getId();
-		if( offerApprovalId == null){
-			return employee;
-		}
-		OfferApproval offerApproval = getOfferApprovalDAO().load(offerApprovalId,options);
-		if(offerApproval != null){
-			employee.setOfferApproval(offerApproval);
-		}
-		
- 		
- 		return employee;
- 	}
- 		
-  
-
- 	protected Employee extractOfferAcceptance(Employee employee, Map<String,Object> options) throws Exception{
-
-		if(employee.getOfferAcceptance() == null){
-			return employee;
-		}
-		String offerAcceptanceId = employee.getOfferAcceptance().getId();
-		if( offerAcceptanceId == null){
-			return employee;
-		}
-		OfferAcceptance offerAcceptance = getOfferAcceptanceDAO().load(offerAcceptanceId,options);
-		if(offerAcceptance != null){
-			employee.setOfferAcceptance(offerAcceptance);
-		}
-		
- 		
- 		return employee;
- 	}
- 		
-  
-
- 	protected Employee extractEmployeeBoarding(Employee employee, Map<String,Object> options) throws Exception{
-
-		if(employee.getEmployeeBoarding() == null){
-			return employee;
-		}
-		String employeeBoardingId = employee.getEmployeeBoarding().getId();
-		if( employeeBoardingId == null){
-			return employee;
-		}
-		EmployeeBoarding employeeBoarding = getEmployeeBoardingDAO().load(employeeBoardingId,options);
-		if(employeeBoarding != null){
-			employee.setEmployeeBoarding(employeeBoarding);
-		}
-		
- 		
- 		return employee;
- 	}
- 		
-  
-
- 	protected Employee extractTermination(Employee employee, Map<String,Object> options) throws Exception{
-
-		if(employee.getTermination() == null){
-			return employee;
-		}
-		String terminationId = employee.getTermination().getId();
-		if( terminationId == null){
-			return employee;
-		}
-		Termination termination = getTerminationDAO().load(terminationId,options);
-		if(termination != null){
-			employee.setTermination(termination);
 		}
 		
  		
@@ -2246,356 +1903,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 		return countWithIds(EmployeeTable.COLUMN_CURRENT_SALARY_GRADE, ids, options);
 	}
  	
-  	
- 	public SmartList<Employee> findEmployeeByJobApplication(String jobApplicationId,Map<String,Object> options){
- 	
-  		SmartList<Employee> resultList = queryWith(EmployeeTable.COLUMN_JOB_APPLICATION, jobApplicationId, options, getEmployeeMapper());
-		// analyzeEmployeeByJobApplication(resultList, jobApplicationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Employee> findEmployeeByJobApplication(String jobApplicationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Employee> resultList =  queryWithRange(EmployeeTable.COLUMN_JOB_APPLICATION, jobApplicationId, options, getEmployeeMapper(), start, count);
- 		//analyzeEmployeeByJobApplication(resultList, jobApplicationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeEmployeeByJobApplication(SmartList<Employee> resultList, String jobApplicationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Employee.JOB_APPLICATION_PROPERTY, jobApplicationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("员工");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countEmployeeByJobApplication(String jobApplicationId,Map<String,Object> options){
-
- 		return countWith(EmployeeTable.COLUMN_JOB_APPLICATION, jobApplicationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countEmployeeByJobApplicationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(EmployeeTable.COLUMN_JOB_APPLICATION, ids, options);
-	}
- 	
-  	
- 	public SmartList<Employee> findEmployeeByProfessionInterview(String professionInterviewId,Map<String,Object> options){
- 	
-  		SmartList<Employee> resultList = queryWith(EmployeeTable.COLUMN_PROFESSION_INTERVIEW, professionInterviewId, options, getEmployeeMapper());
-		// analyzeEmployeeByProfessionInterview(resultList, professionInterviewId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Employee> findEmployeeByProfessionInterview(String professionInterviewId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Employee> resultList =  queryWithRange(EmployeeTable.COLUMN_PROFESSION_INTERVIEW, professionInterviewId, options, getEmployeeMapper(), start, count);
- 		//analyzeEmployeeByProfessionInterview(resultList, professionInterviewId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeEmployeeByProfessionInterview(SmartList<Employee> resultList, String professionInterviewId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Employee.PROFESSION_INTERVIEW_PROPERTY, professionInterviewId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("员工");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countEmployeeByProfessionInterview(String professionInterviewId,Map<String,Object> options){
-
- 		return countWith(EmployeeTable.COLUMN_PROFESSION_INTERVIEW, professionInterviewId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countEmployeeByProfessionInterviewIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(EmployeeTable.COLUMN_PROFESSION_INTERVIEW, ids, options);
-	}
- 	
-  	
- 	public SmartList<Employee> findEmployeeByHrInterview(String hrInterviewId,Map<String,Object> options){
- 	
-  		SmartList<Employee> resultList = queryWith(EmployeeTable.COLUMN_HR_INTERVIEW, hrInterviewId, options, getEmployeeMapper());
-		// analyzeEmployeeByHrInterview(resultList, hrInterviewId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Employee> findEmployeeByHrInterview(String hrInterviewId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Employee> resultList =  queryWithRange(EmployeeTable.COLUMN_HR_INTERVIEW, hrInterviewId, options, getEmployeeMapper(), start, count);
- 		//analyzeEmployeeByHrInterview(resultList, hrInterviewId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeEmployeeByHrInterview(SmartList<Employee> resultList, String hrInterviewId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Employee.HR_INTERVIEW_PROPERTY, hrInterviewId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("员工");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countEmployeeByHrInterview(String hrInterviewId,Map<String,Object> options){
-
- 		return countWith(EmployeeTable.COLUMN_HR_INTERVIEW, hrInterviewId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countEmployeeByHrInterviewIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(EmployeeTable.COLUMN_HR_INTERVIEW, ids, options);
-	}
- 	
-  	
- 	public SmartList<Employee> findEmployeeByOfferApproval(String offerApprovalId,Map<String,Object> options){
- 	
-  		SmartList<Employee> resultList = queryWith(EmployeeTable.COLUMN_OFFER_APPROVAL, offerApprovalId, options, getEmployeeMapper());
-		// analyzeEmployeeByOfferApproval(resultList, offerApprovalId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Employee> findEmployeeByOfferApproval(String offerApprovalId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Employee> resultList =  queryWithRange(EmployeeTable.COLUMN_OFFER_APPROVAL, offerApprovalId, options, getEmployeeMapper(), start, count);
- 		//analyzeEmployeeByOfferApproval(resultList, offerApprovalId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeEmployeeByOfferApproval(SmartList<Employee> resultList, String offerApprovalId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Employee.OFFER_APPROVAL_PROPERTY, offerApprovalId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("员工");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countEmployeeByOfferApproval(String offerApprovalId,Map<String,Object> options){
-
- 		return countWith(EmployeeTable.COLUMN_OFFER_APPROVAL, offerApprovalId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countEmployeeByOfferApprovalIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(EmployeeTable.COLUMN_OFFER_APPROVAL, ids, options);
-	}
- 	
-  	
- 	public SmartList<Employee> findEmployeeByOfferAcceptance(String offerAcceptanceId,Map<String,Object> options){
- 	
-  		SmartList<Employee> resultList = queryWith(EmployeeTable.COLUMN_OFFER_ACCEPTANCE, offerAcceptanceId, options, getEmployeeMapper());
-		// analyzeEmployeeByOfferAcceptance(resultList, offerAcceptanceId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Employee> findEmployeeByOfferAcceptance(String offerAcceptanceId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Employee> resultList =  queryWithRange(EmployeeTable.COLUMN_OFFER_ACCEPTANCE, offerAcceptanceId, options, getEmployeeMapper(), start, count);
- 		//analyzeEmployeeByOfferAcceptance(resultList, offerAcceptanceId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeEmployeeByOfferAcceptance(SmartList<Employee> resultList, String offerAcceptanceId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Employee.OFFER_ACCEPTANCE_PROPERTY, offerAcceptanceId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("员工");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countEmployeeByOfferAcceptance(String offerAcceptanceId,Map<String,Object> options){
-
- 		return countWith(EmployeeTable.COLUMN_OFFER_ACCEPTANCE, offerAcceptanceId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countEmployeeByOfferAcceptanceIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(EmployeeTable.COLUMN_OFFER_ACCEPTANCE, ids, options);
-	}
- 	
-  	
- 	public SmartList<Employee> findEmployeeByEmployeeBoarding(String employeeBoardingId,Map<String,Object> options){
- 	
-  		SmartList<Employee> resultList = queryWith(EmployeeTable.COLUMN_EMPLOYEE_BOARDING, employeeBoardingId, options, getEmployeeMapper());
-		// analyzeEmployeeByEmployeeBoarding(resultList, employeeBoardingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Employee> findEmployeeByEmployeeBoarding(String employeeBoardingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Employee> resultList =  queryWithRange(EmployeeTable.COLUMN_EMPLOYEE_BOARDING, employeeBoardingId, options, getEmployeeMapper(), start, count);
- 		//analyzeEmployeeByEmployeeBoarding(resultList, employeeBoardingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeEmployeeByEmployeeBoarding(SmartList<Employee> resultList, String employeeBoardingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Employee.EMPLOYEE_BOARDING_PROPERTY, employeeBoardingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("员工");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countEmployeeByEmployeeBoarding(String employeeBoardingId,Map<String,Object> options){
-
- 		return countWith(EmployeeTable.COLUMN_EMPLOYEE_BOARDING, employeeBoardingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countEmployeeByEmployeeBoardingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(EmployeeTable.COLUMN_EMPLOYEE_BOARDING, ids, options);
-	}
- 	
-  	
- 	public SmartList<Employee> findEmployeeByTermination(String terminationId,Map<String,Object> options){
- 	
-  		SmartList<Employee> resultList = queryWith(EmployeeTable.COLUMN_TERMINATION, terminationId, options, getEmployeeMapper());
-		// analyzeEmployeeByTermination(resultList, terminationId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Employee> findEmployeeByTermination(String terminationId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Employee> resultList =  queryWithRange(EmployeeTable.COLUMN_TERMINATION, terminationId, options, getEmployeeMapper(), start, count);
- 		//analyzeEmployeeByTermination(resultList, terminationId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeEmployeeByTermination(SmartList<Employee> resultList, String terminationId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Employee.TERMINATION_PROPERTY, terminationId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem lastUpdateTimeStatsItem = new StatsItem();
-		//Employee.LAST_UPDATE_TIME_PROPERTY
-		lastUpdateTimeStatsItem.setDisplayName("员工");
-		lastUpdateTimeStatsItem.setInternalName(formatKeyForDateLine(Employee.LAST_UPDATE_TIME_PROPERTY));
-		lastUpdateTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Employee.LAST_UPDATE_TIME_PROPERTY),filterKey,emptyOptions));
-		info.addItem(lastUpdateTimeStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countEmployeeByTermination(String terminationId,Map<String,Object> options){
-
- 		return countWith(EmployeeTable.COLUMN_TERMINATION, terminationId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countEmployeeByTerminationIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(EmployeeTable.COLUMN_TERMINATION, ids, options);
-	}
- 	
  	
 		
 		
@@ -2738,7 +2045,7 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		return prepareEmployeeCreateParameters(employee);
  	}
  	protected Object[] prepareEmployeeUpdateParameters(Employee employee){
- 		Object[] parameters = new Object[24];
+ 		Object[] parameters = new Object[17];
   	
  		if(employee.getCompany() != null){
  			parameters[0] = employee.getCompany().getId();
@@ -2767,44 +2074,16 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  			parameters[11] = employee.getCurrentSalaryGrade().getId();
  		}
  
- 		parameters[12] = employee.getSalaryAccount(); 	
- 		if(employee.getJobApplication() != null){
- 			parameters[13] = employee.getJobApplication().getId();
- 		}
-  	
- 		if(employee.getProfessionInterview() != null){
- 			parameters[14] = employee.getProfessionInterview().getId();
- 		}
-  	
- 		if(employee.getHrInterview() != null){
- 			parameters[15] = employee.getHrInterview().getId();
- 		}
-  	
- 		if(employee.getOfferApproval() != null){
- 			parameters[16] = employee.getOfferApproval().getId();
- 		}
-  	
- 		if(employee.getOfferAcceptance() != null){
- 			parameters[17] = employee.getOfferAcceptance().getId();
- 		}
-  	
- 		if(employee.getEmployeeBoarding() != null){
- 			parameters[18] = employee.getEmployeeBoarding().getId();
- 		}
-  	
- 		if(employee.getTermination() != null){
- 			parameters[19] = employee.getTermination().getId();
- 		}
- 
- 		parameters[20] = employee.getLastUpdateTime();		
- 		parameters[21] = employee.nextVersion();
- 		parameters[22] = employee.getId();
- 		parameters[23] = employee.getVersion();
+ 		parameters[12] = employee.getSalaryAccount();
+ 		parameters[13] = employee.getLastUpdateTime();		
+ 		parameters[14] = employee.nextVersion();
+ 		parameters[15] = employee.getId();
+ 		parameters[16] = employee.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareEmployeeCreateParameters(Employee employee){
-		Object[] parameters = new Object[22];
+		Object[] parameters = new Object[15];
 		String newEmployeeId=getNextId();
 		employee.setId(newEmployeeId);
 		parameters[0] =  employee.getId();
@@ -2841,43 +2120,8 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		
  		}
  		
- 		parameters[13] = employee.getSalaryAccount(); 	
- 		if(employee.getJobApplication() != null){
- 			parameters[14] = employee.getJobApplication().getId();
- 		
- 		}
- 		 	
- 		if(employee.getProfessionInterview() != null){
- 			parameters[15] = employee.getProfessionInterview().getId();
- 		
- 		}
- 		 	
- 		if(employee.getHrInterview() != null){
- 			parameters[16] = employee.getHrInterview().getId();
- 		
- 		}
- 		 	
- 		if(employee.getOfferApproval() != null){
- 			parameters[17] = employee.getOfferApproval().getId();
- 		
- 		}
- 		 	
- 		if(employee.getOfferAcceptance() != null){
- 			parameters[18] = employee.getOfferAcceptance().getId();
- 		
- 		}
- 		 	
- 		if(employee.getEmployeeBoarding() != null){
- 			parameters[19] = employee.getEmployeeBoarding().getId();
- 		
- 		}
- 		 	
- 		if(employee.getTermination() != null){
- 			parameters[20] = employee.getTermination().getId();
- 		
- 		}
- 		
- 		parameters[21] = employee.getLastUpdateTime();		
+ 		parameters[13] = employee.getSalaryAccount();
+ 		parameters[14] = employee.getLastUpdateTime();		
  				
  		return parameters;
  	}
@@ -2904,34 +2148,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
   	
  		if(isSaveCurrentSalaryGradeEnabled(options)){
 	 		saveCurrentSalaryGrade(employee, options);
- 		}
-  	
- 		if(isSaveJobApplicationEnabled(options)){
-	 		saveJobApplication(employee, options);
- 		}
-  	
- 		if(isSaveProfessionInterviewEnabled(options)){
-	 		saveProfessionInterview(employee, options);
- 		}
-  	
- 		if(isSaveHrInterviewEnabled(options)){
-	 		saveHrInterview(employee, options);
- 		}
-  	
- 		if(isSaveOfferApprovalEnabled(options)){
-	 		saveOfferApproval(employee, options);
- 		}
-  	
- 		if(isSaveOfferAcceptanceEnabled(options)){
-	 		saveOfferAcceptance(employee, options);
- 		}
-  	
- 		if(isSaveEmployeeBoardingEnabled(options)){
-	 		saveEmployeeBoarding(employee, options);
- 		}
-  	
- 		if(isSaveTerminationEnabled(options)){
-	 		saveTermination(employee, options);
  		}
  
 		
@@ -3103,125 +2319,6 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		}
  		
  		getSalaryGradeDAO().save(employee.getCurrentSalaryGrade(),options);
- 		return employee;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Employee saveJobApplication(Employee employee, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(employee.getJobApplication() == null){
- 			return employee;//do nothing when it is null
- 		}
- 		
- 		getJobApplicationDAO().save(employee.getJobApplication(),options);
- 		return employee;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Employee saveProfessionInterview(Employee employee, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(employee.getProfessionInterview() == null){
- 			return employee;//do nothing when it is null
- 		}
- 		
- 		getProfessionInterviewDAO().save(employee.getProfessionInterview(),options);
- 		return employee;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Employee saveHrInterview(Employee employee, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(employee.getHrInterview() == null){
- 			return employee;//do nothing when it is null
- 		}
- 		
- 		getHrInterviewDAO().save(employee.getHrInterview(),options);
- 		return employee;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Employee saveOfferApproval(Employee employee, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(employee.getOfferApproval() == null){
- 			return employee;//do nothing when it is null
- 		}
- 		
- 		getOfferApprovalDAO().save(employee.getOfferApproval(),options);
- 		return employee;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Employee saveOfferAcceptance(Employee employee, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(employee.getOfferAcceptance() == null){
- 			return employee;//do nothing when it is null
- 		}
- 		
- 		getOfferAcceptanceDAO().save(employee.getOfferAcceptance(),options);
- 		return employee;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Employee saveEmployeeBoarding(Employee employee, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(employee.getEmployeeBoarding() == null){
- 			return employee;//do nothing when it is null
- 		}
- 		
- 		getEmployeeBoardingDAO().save(employee.getEmployeeBoarding(),options);
- 		return employee;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Employee saveTermination(Employee employee, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(employee.getTermination() == null){
- 			return employee;//do nothing when it is null
- 		}
- 		
- 		getTerminationDAO().save(employee.getTermination(),options);
  		return employee;
  		
  	}

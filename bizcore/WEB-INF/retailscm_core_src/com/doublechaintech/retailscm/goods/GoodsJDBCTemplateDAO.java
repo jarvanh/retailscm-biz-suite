@@ -24,7 +24,6 @@ import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -33,7 +32,6 @@ import com.doublechaintech.retailscm.transporttask.TransportTask;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
 import com.doublechaintech.retailscm.smartpallet.SmartPalletDAO;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackagingDAO;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocationDAO;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 import com.doublechaintech.retailscm.shippingspace.ShippingSpaceDAO;
@@ -87,15 +85,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	}
  	public SupplyOrderDAO getSupplyOrderDAO(){
 	 	return this.supplyOrderDAO;
- 	}
- 
- 	
- 	private  GoodsPackagingDAO  goodsPackagingDAO;
- 	public void setGoodsPackagingDAO(GoodsPackagingDAO goodsPackagingDAO){
-	 	this.goodsPackagingDAO = goodsPackagingDAO;
- 	}
- 	public GoodsPackagingDAO getGoodsPackagingDAO(){
-	 	return this.goodsPackagingDAO;
  	}
  
  	
@@ -436,20 +425,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  	
 
  	
-  
-
- 	protected boolean isExtractPackagingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, GoodsTokens.PACKAGING);
- 	}
-
- 	protected boolean isSavePackagingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, GoodsTokens.PACKAGING);
- 	}
- 	
-
- 	
  
 		
 	
@@ -526,10 +501,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
   	
  		if(isExtractRetailStoreOrderEnabled(loadOptions)){
 	 		extractRetailStoreOrder(goods, loadOptions);
- 		}
-  	
- 		if(isExtractPackagingEnabled(loadOptions)){
-	 		extractPackaging(goods, loadOptions);
  		}
  
 		
@@ -719,26 +690,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 		RetailStoreOrder retailStoreOrder = getRetailStoreOrderDAO().load(retailStoreOrderId,options);
 		if(retailStoreOrder != null){
 			goods.setRetailStoreOrder(retailStoreOrder);
-		}
-		
- 		
- 		return goods;
- 	}
- 		
-  
-
- 	protected Goods extractPackaging(Goods goods, Map<String,Object> options) throws Exception{
-
-		if(goods.getPackaging() == null){
-			return goods;
-		}
-		String packagingId = goods.getPackaging().getId();
-		if( packagingId == null){
-			return goods;
-		}
-		GoodsPackaging packaging = getGoodsPackagingDAO().load(packagingId,options);
-		if(packaging != null){
-			goods.setPackaging(packaging);
 		}
 		
  		
@@ -1185,49 +1136,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
 		return countWithIds(GoodsTable.COLUMN_RETAIL_STORE_ORDER, ids, options);
 	}
  	
-  	
- 	public SmartList<Goods> findGoodsByPackaging(String goodsPackagingId,Map<String,Object> options){
- 	
-  		SmartList<Goods> resultList = queryWith(GoodsTable.COLUMN_PACKAGING, goodsPackagingId, options, getGoodsMapper());
-		// analyzeGoodsByPackaging(resultList, goodsPackagingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<Goods> findGoodsByPackaging(String goodsPackagingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<Goods> resultList =  queryWithRange(GoodsTable.COLUMN_PACKAGING, goodsPackagingId, options, getGoodsMapper(), start, count);
- 		//analyzeGoodsByPackaging(resultList, goodsPackagingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeGoodsByPackaging(SmartList<Goods> resultList, String goodsPackagingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(Goods.PACKAGING_PROPERTY, goodsPackagingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 		
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countGoodsByPackaging(String goodsPackagingId,Map<String,Object> options){
-
- 		return countWith(GoodsTable.COLUMN_PACKAGING, goodsPackagingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countGoodsByPackagingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(GoodsTable.COLUMN_PACKAGING, ids, options);
-	}
- 	
  	
 		
 		
@@ -1370,7 +1278,7 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  		return prepareGoodsCreateParameters(goods);
  	}
  	protected Object[] prepareGoodsUpdateParameters(Goods goods){
- 		Object[] parameters = new Object[18];
+ 		Object[] parameters = new Object[17];
  
  		parameters[0] = goods.getName();
  		parameters[1] = goods.getRfid();
@@ -1412,19 +1320,15 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  		if(goods.getRetailStoreOrder() != null){
  			parameters[13] = goods.getRetailStoreOrder().getId();
  		}
-  	
- 		if(goods.getPackaging() != null){
- 			parameters[14] = goods.getPackaging().getId();
- 		}
  		
- 		parameters[15] = goods.nextVersion();
- 		parameters[16] = goods.getId();
- 		parameters[17] = goods.getVersion();
+ 		parameters[14] = goods.nextVersion();
+ 		parameters[15] = goods.getId();
+ 		parameters[16] = goods.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareGoodsCreateParameters(Goods goods){
-		Object[] parameters = new Object[16];
+		Object[] parameters = new Object[15];
 		String newGoodsId=getNextId();
 		goods.setId(newGoodsId);
 		parameters[0] =  goods.getId();
@@ -1478,11 +1382,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  			parameters[14] = goods.getRetailStoreOrder().getId();
  		
  		}
- 		 	
- 		if(goods.getPackaging() != null){
- 			parameters[15] = goods.getPackaging().getId();
- 		
- 		}
  				
  				
  		return parameters;
@@ -1526,10 +1425,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
   	
  		if(isSaveRetailStoreOrderEnabled(options)){
 	 		saveRetailStoreOrder(goods, options);
- 		}
-  	
- 		if(isSavePackagingEnabled(options)){
-	 		savePackaging(goods, options);
  		}
  
 		
@@ -1692,23 +1587,6 @@ public class GoodsJDBCTemplateDAO extends RetailscmBaseDAOImpl implements GoodsD
  		}
  		
  		getRetailStoreOrderDAO().save(goods.getRetailStoreOrder(),options);
- 		return goods;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected Goods savePackaging(Goods goods, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(goods.getPackaging() == null){
- 			return goods;//do nothing when it is null
- 		}
- 		
- 		getGoodsPackagingDAO().save(goods.getPackaging(),options);
  		return goods;
  		
  	}

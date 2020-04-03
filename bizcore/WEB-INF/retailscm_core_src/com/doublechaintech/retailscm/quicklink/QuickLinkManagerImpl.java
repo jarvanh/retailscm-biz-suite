@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.userapp.UserApp;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.userapp.CandidateUserApp;
 
 
 public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implements QuickLinkManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "QuickLink";
 	@Override
 	public QuickLinkDAO daoOf(RetailscmUserContext userContext) {
 		return quickLinkDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws QuickLinkManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new QuickLinkManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected QuickLink saveQuickLink(RetailscmUserContext userContext, QuickLink quickLink, String [] tokensExpr) throws Exception{	
  		//return getQuickLinkDAO().save(quickLink, tokens);
@@ -167,7 +161,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	public QuickLink createQuickLink(RetailscmUserContext userContext, String name,String icon,String imagePath,String linkTarget,String appId) throws Exception
 	//public QuickLink createQuickLink(RetailscmUserContext userContext,String name, String icon, String imagePath, String linkTarget, String appId) throws Exception
 	{
-		
+
 		
 
 		
@@ -198,14 +192,14 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		onNewInstanceCreated(userContext, quickLink);
 		return quickLink;
 
-		
+
 	}
-	protected QuickLink createNewQuickLink() 
+	protected QuickLink createNewQuickLink()
 	{
-		
-		return new QuickLink();		
+
+		return new QuickLink();
 	}
-	
+
 	protected void checkParamsForUpdatingQuickLink(RetailscmUserContext userContext,String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -232,28 +226,28 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(QuickLinkManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public QuickLink clone(RetailscmUserContext userContext, String fromQuickLinkId) throws Exception{
-		
+
 		return quickLinkDaoOf(userContext).clone(fromQuickLinkId, this.allTokens());
 	}
-	
-	public QuickLink internalSaveQuickLink(RetailscmUserContext userContext, QuickLink quickLink) throws Exception 
+
+	public QuickLink internalSaveQuickLink(RetailscmUserContext userContext, QuickLink quickLink) throws Exception
 	{
 		return internalSaveQuickLink(userContext, quickLink, allTokens());
 
 	}
-	public QuickLink internalSaveQuickLink(RetailscmUserContext userContext, QuickLink quickLink, Map<String,Object> options) throws Exception 
+	public QuickLink internalSaveQuickLink(RetailscmUserContext userContext, QuickLink quickLink, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingQuickLink(userContext, quickLinkId, quickLinkVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(quickLink){ 
+
+
+		synchronized(quickLink){
 			//will be good when the quickLink loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to QuickLink.
@@ -262,23 +256,23 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 			}
 			quickLink = saveQuickLink(userContext, quickLink, options);
 			return quickLink;
-			
+
 		}
 
 	}
-	
-	public QuickLink updateQuickLink(RetailscmUserContext userContext,String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public QuickLink updateQuickLink(RetailscmUserContext userContext,String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingQuickLink(userContext, quickLinkId, quickLinkVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		QuickLink quickLink = loadQuickLink(userContext, quickLinkId, allTokens());
 		if(quickLink.getVersion() != quickLinkVersion){
 			String message = "The target version("+quickLink.getVersion()+") is not equals to version("+quickLinkVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(quickLink){ 
+		synchronized(quickLink){
 			//will be good when the quickLink loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to QuickLink.
@@ -290,21 +284,21 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
 	}
-	
-	public QuickLink updateQuickLinkProperty(RetailscmUserContext userContext,String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public QuickLink updateQuickLinkProperty(RetailscmUserContext userContext,String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingQuickLink(userContext, quickLinkId, quickLinkVersion, property, newValueExpr, tokensExpr);
-		
+
 		QuickLink quickLink = loadQuickLink(userContext, quickLinkId, allTokens());
 		if(quickLink.getVersion() != quickLinkVersion){
 			String message = "The target version("+quickLink.getVersion()+") is not equals to version("+quickLinkVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(quickLink){ 
+		synchronized(quickLink){
 			//will be good when the quickLink loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to QuickLink.
-			
+
 			quickLink.changeProperty(property, newValueExpr);
 			
 			quickLink = saveQuickLink(userContext, quickLink, tokens().done());
@@ -316,7 +310,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected QuickLinkTokens tokens(){
 		return QuickLinkTokens.start();
 	}
@@ -337,11 +331,11 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	protected void checkParamsForTransferingAnotherApp(RetailscmUserContext userContext, String quickLinkId, String anotherAppId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfQuickLink(quickLinkId);
  		checkerOf(userContext).checkIdOfUserApp(anotherAppId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(QuickLinkManagerException.class);
- 		
+
  	}
  	public QuickLink transferToAnotherApp(RetailscmUserContext userContext, String quickLinkId, String anotherAppId) throws Exception
  	{
@@ -360,10 +354,10 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateUserApp requestCandidateApp(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateUserApp result = new CandidateUserApp();
@@ -373,7 +367,7 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -383,42 +377,42 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected UserApp loadUserApp(RetailscmUserContext userContext, String newAppId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return userAppDaoOf(userContext).load(newAppId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String quickLinkId, int quickLinkVersion) throws Exception {
-		//deleteInternal(userContext, quickLinkId, quickLinkVersion);		
+		//deleteInternal(userContext, quickLinkId, quickLinkVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String quickLinkId, int quickLinkVersion) throws Exception{
-			
+
 		quickLinkDaoOf(userContext).delete(quickLinkId, quickLinkVersion);
 	}
-	
+
 	public QuickLink forgetByAll(RetailscmUserContext userContext, String quickLinkId, int quickLinkVersion) throws Exception {
-		return forgetByAllInternal(userContext, quickLinkId, quickLinkVersion);		
+		return forgetByAllInternal(userContext, quickLinkId, quickLinkVersion);
 	}
 	protected QuickLink forgetByAllInternal(RetailscmUserContext userContext,
 			String quickLinkId, int quickLinkVersion) throws Exception{
-			
+
 		return quickLinkDaoOf(userContext).disconnectFromAll(quickLinkId, quickLinkVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -429,23 +423,29 @@ public class QuickLinkManagerImpl extends CustomRetailscmCheckerManager implemen
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return quickLinkDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, QuickLink newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

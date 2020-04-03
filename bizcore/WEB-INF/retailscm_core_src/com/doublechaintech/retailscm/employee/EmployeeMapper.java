@@ -5,18 +5,11 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.doublechaintech.retailscm.BaseRowMapper;
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
-import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
 import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 import com.doublechaintech.retailscm.occupationtype.OccupationType;
 import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 
 public class EmployeeMapper extends BaseRowMapper<Employee>{
 	
@@ -37,13 +30,6 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		setResponsibleFor(employee, rs, rowNumber); 		
  		setCurrentSalaryGrade(employee, rs, rowNumber); 		
  		setSalaryAccount(employee, rs, rowNumber); 		
- 		setJobApplication(employee, rs, rowNumber); 		
- 		setProfessionInterview(employee, rs, rowNumber); 		
- 		setHrInterview(employee, rs, rowNumber); 		
- 		setOfferApproval(employee, rs, rowNumber); 		
- 		setOfferAcceptance(employee, rs, rowNumber); 		
- 		setEmployeeBoarding(employee, rs, rowNumber); 		
- 		setTermination(employee, rs, rowNumber); 		
  		setLastUpdateTime(employee, rs, rowNumber); 		
  		setVersion(employee, rs, rowNumber);
 
@@ -251,133 +237,7 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 		
 		employee.setSalaryAccount(salaryAccount);
 	}
-		 		
- 	protected void setJobApplication(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
- 		String jobApplicationId = rs.getString(EmployeeTable.COLUMN_JOB_APPLICATION);
- 		if( jobApplicationId == null){
- 			return;
- 		}
- 		if( jobApplicationId.isEmpty()){
- 			return;
- 		}
- 		JobApplication jobApplication = employee.getJobApplication();
- 		if( jobApplication != null ){
- 			//if the root object 'employee' already have the property, just set the id for it;
- 			jobApplication.setId(jobApplicationId);
- 			
- 			return;
- 		}
- 		employee.setJobApplication(createEmptyJobApplication(jobApplicationId));
- 	}
- 	 		
- 	protected void setProfessionInterview(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
- 		String professionInterviewId = rs.getString(EmployeeTable.COLUMN_PROFESSION_INTERVIEW);
- 		if( professionInterviewId == null){
- 			return;
- 		}
- 		if( professionInterviewId.isEmpty()){
- 			return;
- 		}
- 		ProfessionInterview professionInterview = employee.getProfessionInterview();
- 		if( professionInterview != null ){
- 			//if the root object 'employee' already have the property, just set the id for it;
- 			professionInterview.setId(professionInterviewId);
- 			
- 			return;
- 		}
- 		employee.setProfessionInterview(createEmptyProfessionInterview(professionInterviewId));
- 	}
- 	 		
- 	protected void setHrInterview(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
- 		String hrInterviewId = rs.getString(EmployeeTable.COLUMN_HR_INTERVIEW);
- 		if( hrInterviewId == null){
- 			return;
- 		}
- 		if( hrInterviewId.isEmpty()){
- 			return;
- 		}
- 		HrInterview hrInterview = employee.getHrInterview();
- 		if( hrInterview != null ){
- 			//if the root object 'employee' already have the property, just set the id for it;
- 			hrInterview.setId(hrInterviewId);
- 			
- 			return;
- 		}
- 		employee.setHrInterview(createEmptyHrInterview(hrInterviewId));
- 	}
- 	 		
- 	protected void setOfferApproval(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
- 		String offerApprovalId = rs.getString(EmployeeTable.COLUMN_OFFER_APPROVAL);
- 		if( offerApprovalId == null){
- 			return;
- 		}
- 		if( offerApprovalId.isEmpty()){
- 			return;
- 		}
- 		OfferApproval offerApproval = employee.getOfferApproval();
- 		if( offerApproval != null ){
- 			//if the root object 'employee' already have the property, just set the id for it;
- 			offerApproval.setId(offerApprovalId);
- 			
- 			return;
- 		}
- 		employee.setOfferApproval(createEmptyOfferApproval(offerApprovalId));
- 	}
- 	 		
- 	protected void setOfferAcceptance(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
- 		String offerAcceptanceId = rs.getString(EmployeeTable.COLUMN_OFFER_ACCEPTANCE);
- 		if( offerAcceptanceId == null){
- 			return;
- 		}
- 		if( offerAcceptanceId.isEmpty()){
- 			return;
- 		}
- 		OfferAcceptance offerAcceptance = employee.getOfferAcceptance();
- 		if( offerAcceptance != null ){
- 			//if the root object 'employee' already have the property, just set the id for it;
- 			offerAcceptance.setId(offerAcceptanceId);
- 			
- 			return;
- 		}
- 		employee.setOfferAcceptance(createEmptyOfferAcceptance(offerAcceptanceId));
- 	}
- 	 		
- 	protected void setEmployeeBoarding(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
- 		String employeeBoardingId = rs.getString(EmployeeTable.COLUMN_EMPLOYEE_BOARDING);
- 		if( employeeBoardingId == null){
- 			return;
- 		}
- 		if( employeeBoardingId.isEmpty()){
- 			return;
- 		}
- 		EmployeeBoarding employeeBoarding = employee.getEmployeeBoarding();
- 		if( employeeBoarding != null ){
- 			//if the root object 'employee' already have the property, just set the id for it;
- 			employeeBoarding.setId(employeeBoardingId);
- 			
- 			return;
- 		}
- 		employee.setEmployeeBoarding(createEmptyEmployeeBoarding(employeeBoardingId));
- 	}
- 	 		
- 	protected void setTermination(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
- 		String terminationId = rs.getString(EmployeeTable.COLUMN_TERMINATION);
- 		if( terminationId == null){
- 			return;
- 		}
- 		if( terminationId.isEmpty()){
- 			return;
- 		}
- 		Termination termination = employee.getTermination();
- 		if( termination != null ){
- 			//if the root object 'employee' already have the property, just set the id for it;
- 			termination.setId(terminationId);
- 			
- 			return;
- 		}
- 		employee.setTermination(createEmptyTermination(terminationId));
- 	}
- 	
+		
 	protected void setLastUpdateTime(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
@@ -437,55 +297,6 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
  		salaryGrade.setId(salaryGradeId);
  		salaryGrade.setVersion(Integer.MAX_VALUE);
  		return salaryGrade;
- 	}
- 	
- 	protected JobApplication  createEmptyJobApplication(String jobApplicationId){
- 		JobApplication jobApplication = new JobApplication();
- 		jobApplication.setId(jobApplicationId);
- 		jobApplication.setVersion(Integer.MAX_VALUE);
- 		return jobApplication;
- 	}
- 	
- 	protected ProfessionInterview  createEmptyProfessionInterview(String professionInterviewId){
- 		ProfessionInterview professionInterview = new ProfessionInterview();
- 		professionInterview.setId(professionInterviewId);
- 		professionInterview.setVersion(Integer.MAX_VALUE);
- 		return professionInterview;
- 	}
- 	
- 	protected HrInterview  createEmptyHrInterview(String hrInterviewId){
- 		HrInterview hrInterview = new HrInterview();
- 		hrInterview.setId(hrInterviewId);
- 		hrInterview.setVersion(Integer.MAX_VALUE);
- 		return hrInterview;
- 	}
- 	
- 	protected OfferApproval  createEmptyOfferApproval(String offerApprovalId){
- 		OfferApproval offerApproval = new OfferApproval();
- 		offerApproval.setId(offerApprovalId);
- 		offerApproval.setVersion(Integer.MAX_VALUE);
- 		return offerApproval;
- 	}
- 	
- 	protected OfferAcceptance  createEmptyOfferAcceptance(String offerAcceptanceId){
- 		OfferAcceptance offerAcceptance = new OfferAcceptance();
- 		offerAcceptance.setId(offerAcceptanceId);
- 		offerAcceptance.setVersion(Integer.MAX_VALUE);
- 		return offerAcceptance;
- 	}
- 	
- 	protected EmployeeBoarding  createEmptyEmployeeBoarding(String employeeBoardingId){
- 		EmployeeBoarding employeeBoarding = new EmployeeBoarding();
- 		employeeBoarding.setId(employeeBoardingId);
- 		employeeBoarding.setVersion(Integer.MAX_VALUE);
- 		return employeeBoarding;
- 	}
- 	
- 	protected Termination  createEmptyTermination(String terminationId){
- 		Termination termination = new Termination();
- 		termination.setId(terminationId);
- 		termination.setVersion(Integer.MAX_VALUE);
- 		return termination;
  	}
  	
 }

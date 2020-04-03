@@ -363,7 +363,9 @@ public class StockCountIssueTrack extends BaseEntity implements  java.io.Seriali
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getCountTime(), getSummary(), getStockCount(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

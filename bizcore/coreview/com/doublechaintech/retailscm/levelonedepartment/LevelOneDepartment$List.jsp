@@ -107,8 +107,8 @@
 <c:if test="${param.referName ne 'description'}">
 	<th>${userContext.localeMap['level_one_department.description']}</th>
 </c:if>
-<c:if test="${param.referName ne 'managerName'}">
-	<th>${userContext.localeMap['level_one_department.manager_name']}</th>
+<c:if test="${param.referName ne 'manager'}">
+	<th>${userContext.localeMap['level_one_department.manager']}</th>
 </c:if>
 <c:if test="${param.referName ne 'founded'}">
 	<th>${userContext.localeMap['level_one_department.founded']}</th>
@@ -140,7 +140,7 @@
 </c:if>
 <c:if test="${param.referName ne 'name'}">	<td contenteditable='true' class='edit-value'  propertyToChange='name' storedCellValue='${item.name}' prefix='${ownerBeanName}Manager/updateLevelOneDepartment/${result.id}/${item.id}/'>${item.name}</td>
 </c:if><c:if test="${param.referName ne 'description'}">	<td contenteditable='true' class='edit-value'  propertyToChange='description' storedCellValue='${item.description}' prefix='${ownerBeanName}Manager/updateLevelOneDepartment/${result.id}/${item.id}/'>${item.description}</td>
-</c:if><c:if test="${param.referName ne 'managerName'}">	<td contenteditable='true' class='edit-value'  propertyToChange='managerName' storedCellValue='${item.managerName}' prefix='${ownerBeanName}Manager/updateLevelOneDepartment/${result.id}/${item.id}/'>${item.managerName}</td>
+</c:if><c:if test="${param.referName ne 'manager'}">	<td contenteditable='true' class='edit-value'  propertyToChange='manager' storedCellValue='${item.manager}' prefix='${ownerBeanName}Manager/updateLevelOneDepartment/${result.id}/${item.id}/'>${item.manager}</td>
 </c:if><c:if test="${param.referName ne 'founded'}">	<td contenteditable='true' class='edit-value'  propertyToChange='founded' storedCellValue='${item.founded}' prefix='${ownerBeanName}Manager/updateLevelOneDepartment/${result.id}/${item.id}/'><fmt:formatDate pattern="yyyy-MM-dd" value="${item.founded}" /></td>
 </c:if>
 				<td>

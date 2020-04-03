@@ -139,30 +139,6 @@
 <c:set var="referName" value="(seller)" scope="request" />
 <sky:include page="com/doublechaintech/retailscm/goodssupplier/GoodsSupplier$Info.jsp" />
 
-<c:set var="supplyOrderConfirmation" value="${ result.confirmation}" scope="request" />
-<c:set var="referName" value="(confirmation)" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/supplyorderconfirmation/SupplyOrderConfirmation$Info.jsp" />
-
-<c:set var="supplyOrderApproval" value="${ result.approval}" scope="request" />
-<c:set var="referName" value="(approval)" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/supplyorderapproval/SupplyOrderApproval$Info.jsp" />
-
-<c:set var="supplyOrderProcessing" value="${ result.processing}" scope="request" />
-<c:set var="referName" value="(processing)" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/supplyorderprocessing/SupplyOrderProcessing$Info.jsp" />
-
-<c:set var="supplyOrderPicking" value="${ result.picking}" scope="request" />
-<c:set var="referName" value="(picking)" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/supplyorderpicking/SupplyOrderPicking$Info.jsp" />
-
-<c:set var="supplyOrderShipment" value="${ result.shipment}" scope="request" />
-<c:set var="referName" value="(shipment)" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/supplyordershipment/SupplyOrderShipment$Info.jsp" />
-
-<c:set var="supplyOrderDelivery" value="${ result.delivery}" scope="request" />
-<c:set var="referName" value="(delivery)" scope="request" />
-<sky:include page="com/doublechaintech/retailscm/supplyorderdelivery/SupplyOrderDelivery$Info.jsp" />
-
 </div>
 
 

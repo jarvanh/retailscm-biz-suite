@@ -1188,7 +1188,9 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getMobilePhone(), getOwner(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

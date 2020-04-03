@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.goods.Goods;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.goods.CandidateGoods;
 
 
 public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager implements GoodsMovementManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "GoodsMovement";
 	@Override
 	public GoodsMovementDAO daoOf(RetailscmUserContext userContext) {
 		return goodsMovementDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws GoodsMovementManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new GoodsMovementManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected GoodsMovement saveGoodsMovement(RetailscmUserContext userContext, GoodsMovement goodsMovement, String [] tokensExpr) throws Exception{	
  		//return getGoodsMovementDAO().save(goodsMovement, tokens);
@@ -167,7 +161,7 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 	public GoodsMovement createGoodsMovement(RetailscmUserContext userContext, DateTime moveTime,String facility,String facilityId,String fromIp,String userAgent,String sessionId,BigDecimal latitude,BigDecimal longitude,String goodsId) throws Exception
 	//public GoodsMovement createGoodsMovement(RetailscmUserContext userContext,DateTime moveTime, String facility, String facilityId, String fromIp, String userAgent, String sessionId, BigDecimal latitude, BigDecimal longitude, String goodsId) throws Exception
 	{
-		
+
 		
 
 		
@@ -205,14 +199,14 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 		onNewInstanceCreated(userContext, goodsMovement);
 		return goodsMovement;
 
-		
+
 	}
-	protected GoodsMovement createNewGoodsMovement() 
+	protected GoodsMovement createNewGoodsMovement()
 	{
-		
-		return new GoodsMovement();		
+
+		return new GoodsMovement();
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsMovement(RetailscmUserContext userContext,String goodsMovementId, int goodsMovementVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -251,28 +245,28 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsMovementManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public GoodsMovement clone(RetailscmUserContext userContext, String fromGoodsMovementId) throws Exception{
-		
+
 		return goodsMovementDaoOf(userContext).clone(fromGoodsMovementId, this.allTokens());
 	}
-	
-	public GoodsMovement internalSaveGoodsMovement(RetailscmUserContext userContext, GoodsMovement goodsMovement) throws Exception 
+
+	public GoodsMovement internalSaveGoodsMovement(RetailscmUserContext userContext, GoodsMovement goodsMovement) throws Exception
 	{
 		return internalSaveGoodsMovement(userContext, goodsMovement, allTokens());
 
 	}
-	public GoodsMovement internalSaveGoodsMovement(RetailscmUserContext userContext, GoodsMovement goodsMovement, Map<String,Object> options) throws Exception 
+	public GoodsMovement internalSaveGoodsMovement(RetailscmUserContext userContext, GoodsMovement goodsMovement, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingGoodsMovement(userContext, goodsMovementId, goodsMovementVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(goodsMovement){ 
+
+
+		synchronized(goodsMovement){
 			//will be good when the goodsMovement loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsMovement.
@@ -281,23 +275,23 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 			}
 			goodsMovement = saveGoodsMovement(userContext, goodsMovement, options);
 			return goodsMovement;
-			
+
 		}
 
 	}
-	
-	public GoodsMovement updateGoodsMovement(RetailscmUserContext userContext,String goodsMovementId, int goodsMovementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsMovement updateGoodsMovement(RetailscmUserContext userContext,String goodsMovementId, int goodsMovementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsMovement(userContext, goodsMovementId, goodsMovementVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		GoodsMovement goodsMovement = loadGoodsMovement(userContext, goodsMovementId, allTokens());
 		if(goodsMovement.getVersion() != goodsMovementVersion){
 			String message = "The target version("+goodsMovement.getVersion()+") is not equals to version("+goodsMovementVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsMovement){ 
+		synchronized(goodsMovement){
 			//will be good when the goodsMovement loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsMovement.
@@ -309,21 +303,21 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
 	}
-	
-	public GoodsMovement updateGoodsMovementProperty(RetailscmUserContext userContext,String goodsMovementId, int goodsMovementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsMovement updateGoodsMovementProperty(RetailscmUserContext userContext,String goodsMovementId, int goodsMovementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsMovement(userContext, goodsMovementId, goodsMovementVersion, property, newValueExpr, tokensExpr);
-		
+
 		GoodsMovement goodsMovement = loadGoodsMovement(userContext, goodsMovementId, allTokens());
 		if(goodsMovement.getVersion() != goodsMovementVersion){
 			String message = "The target version("+goodsMovement.getVersion()+") is not equals to version("+goodsMovementVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsMovement){ 
+		synchronized(goodsMovement){
 			//will be good when the goodsMovement loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsMovement.
-			
+
 			goodsMovement.changeProperty(property, newValueExpr);
 			
 			goodsMovement = saveGoodsMovement(userContext, goodsMovement, tokens().done());
@@ -335,7 +329,7 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected GoodsMovementTokens tokens(){
 		return GoodsMovementTokens.start();
 	}
@@ -356,11 +350,11 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	protected void checkParamsForTransferingAnotherGoods(RetailscmUserContext userContext, String goodsMovementId, String anotherGoodsId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoodsMovement(goodsMovementId);
  		checkerOf(userContext).checkIdOfGoods(anotherGoodsId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsMovementManagerException.class);
- 		
+
  	}
  	public GoodsMovement transferToAnotherGoods(RetailscmUserContext userContext, String goodsMovementId, String anotherGoodsId) throws Exception
  	{
@@ -379,10 +373,10 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateGoods requestCandidateGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateGoods result = new CandidateGoods();
@@ -392,7 +386,7 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -402,42 +396,42 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Goods loadGoods(RetailscmUserContext userContext, String newGoodsId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return goodsDaoOf(userContext).load(newGoodsId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String goodsMovementId, int goodsMovementVersion) throws Exception {
-		//deleteInternal(userContext, goodsMovementId, goodsMovementVersion);		
+		//deleteInternal(userContext, goodsMovementId, goodsMovementVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String goodsMovementId, int goodsMovementVersion) throws Exception{
-			
+
 		goodsMovementDaoOf(userContext).delete(goodsMovementId, goodsMovementVersion);
 	}
-	
+
 	public GoodsMovement forgetByAll(RetailscmUserContext userContext, String goodsMovementId, int goodsMovementVersion) throws Exception {
-		return forgetByAllInternal(userContext, goodsMovementId, goodsMovementVersion);		
+		return forgetByAllInternal(userContext, goodsMovementId, goodsMovementVersion);
 	}
 	protected GoodsMovement forgetByAllInternal(RetailscmUserContext userContext,
 			String goodsMovementId, int goodsMovementVersion) throws Exception{
-			
+
 		return goodsMovementDaoOf(userContext).disconnectFromAll(goodsMovementId, goodsMovementVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -448,23 +442,29 @@ public class GoodsMovementManagerImpl extends CustomRetailscmCheckerManager impl
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return goodsMovementDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, GoodsMovement newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

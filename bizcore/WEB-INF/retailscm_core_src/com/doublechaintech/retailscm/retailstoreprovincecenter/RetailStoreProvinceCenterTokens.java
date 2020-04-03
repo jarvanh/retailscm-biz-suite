@@ -154,7 +154,7 @@ public class RetailStoreProvinceCenterTokens extends CommonTokens{
 	
 	
 	public RetailStoreProvinceCenterTokens searchAllTextOfProvinceCenterDepartmentList(String verb, String value){	
-		String field = "id|name|managerName";
+		String field = "id|name|manager";
 		addSearchMoreOptions(PROVINCE_CENTER_DEPARTMENT_LIST,provinceCenterDepartmentListSearchCounter++, field, verb, value);
 		return this;
 	}

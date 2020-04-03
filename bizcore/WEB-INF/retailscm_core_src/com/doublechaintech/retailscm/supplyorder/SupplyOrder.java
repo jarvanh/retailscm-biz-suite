@@ -14,16 +14,10 @@ import com.doublechaintech.retailscm.KeyValuePair;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroup;
 import com.doublechaintech.retailscm.goods.Goods;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItem;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroup;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 @JsonSerialize(using = SupplyOrderSerializer.class)
 public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
@@ -34,12 +28,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	public static final String SELLER_PROPERTY                = "seller"            ;
 	public static final String TITLE_PROPERTY                 = "title"             ;
 	public static final String TOTAL_AMOUNT_PROPERTY          = "totalAmount"       ;
-	public static final String CONFIRMATION_PROPERTY          = "confirmation"      ;
-	public static final String APPROVAL_PROPERTY              = "approval"          ;
-	public static final String PROCESSING_PROPERTY            = "processing"        ;
-	public static final String PICKING_PROPERTY               = "picking"           ;
-	public static final String SHIPMENT_PROPERTY              = "shipment"          ;
-	public static final String DELIVERY_PROPERTY              = "delivery"          ;
 	public static final String LAST_UPDATE_TIME_PROPERTY      = "lastUpdateTime"    ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
@@ -72,12 +60,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	protected		GoodsSupplier       	mSeller             ;
 	protected		String              	mTitle              ;
 	protected		BigDecimal          	mTotalAmount        ;
-	protected		SupplyOrderConfirmation	mConfirmation       ;
-	protected		SupplyOrderApproval 	mApproval           ;
-	protected		SupplyOrderProcessing	mProcessing         ;
-	protected		SupplyOrderPicking  	mPicking            ;
-	protected		SupplyOrderShipment 	mShipment           ;
-	protected		SupplyOrderDelivery 	mDelivery           ;
 	protected		DateTime            	mLastUpdateTime     ;
 	protected		int                 	mVersion            ;
 	
@@ -105,12 +87,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	public 	void clearFromAll(){
 		setBuyer( null );
 		setSeller( null );
-		setConfirmation( null );
-		setApproval( null );
-		setProcessing( null );
-		setPicking( null );
-		setShipment( null );
-		setDelivery( null );
 
 		this.changed = true;
 	}
@@ -195,24 +171,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		if(TOTAL_AMOUNT_PROPERTY.equals(property)){
 			return getTotalAmount();
-		}
-		if(CONFIRMATION_PROPERTY.equals(property)){
-			return getConfirmation();
-		}
-		if(APPROVAL_PROPERTY.equals(property)){
-			return getApproval();
-		}
-		if(PROCESSING_PROPERTY.equals(property)){
-			return getProcessing();
-		}
-		if(PICKING_PROPERTY.equals(property)){
-			return getPicking();
-		}
-		if(SHIPMENT_PROPERTY.equals(property)){
-			return getShipment();
-		}
-		if(DELIVERY_PROPERTY.equals(property)){
-			return getDelivery();
 		}
 		if(LAST_UPDATE_TIME_PROPERTY.equals(property)){
 			return getLastUpdateTime();
@@ -333,132 +291,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		setTotalAmount(totalAmount);
 	}
 	
-	
-	public void setConfirmation(SupplyOrderConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-	}
-	public SupplyOrderConfirmation getConfirmation(){
-		return this.mConfirmation;
-	}
-	public SupplyOrder updateConfirmation(SupplyOrderConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeConfirmation(SupplyOrderConfirmation confirmation){
-		if(confirmation != null) { setConfirmation(confirmation);}
-	}
-	
-	
-	public void clearConfirmation(){
-		setConfirmation ( null );
-		this.changed = true;
-	}
-	
-	public void setApproval(SupplyOrderApproval approval){
-		this.mApproval = approval;;
-	}
-	public SupplyOrderApproval getApproval(){
-		return this.mApproval;
-	}
-	public SupplyOrder updateApproval(SupplyOrderApproval approval){
-		this.mApproval = approval;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeApproval(SupplyOrderApproval approval){
-		if(approval != null) { setApproval(approval);}
-	}
-	
-	
-	public void clearApproval(){
-		setApproval ( null );
-		this.changed = true;
-	}
-	
-	public void setProcessing(SupplyOrderProcessing processing){
-		this.mProcessing = processing;;
-	}
-	public SupplyOrderProcessing getProcessing(){
-		return this.mProcessing;
-	}
-	public SupplyOrder updateProcessing(SupplyOrderProcessing processing){
-		this.mProcessing = processing;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeProcessing(SupplyOrderProcessing processing){
-		if(processing != null) { setProcessing(processing);}
-	}
-	
-	
-	public void clearProcessing(){
-		setProcessing ( null );
-		this.changed = true;
-	}
-	
-	public void setPicking(SupplyOrderPicking picking){
-		this.mPicking = picking;;
-	}
-	public SupplyOrderPicking getPicking(){
-		return this.mPicking;
-	}
-	public SupplyOrder updatePicking(SupplyOrderPicking picking){
-		this.mPicking = picking;;
-		this.changed = true;
-		return this;
-	}
-	public void mergePicking(SupplyOrderPicking picking){
-		if(picking != null) { setPicking(picking);}
-	}
-	
-	
-	public void clearPicking(){
-		setPicking ( null );
-		this.changed = true;
-	}
-	
-	public void setShipment(SupplyOrderShipment shipment){
-		this.mShipment = shipment;;
-	}
-	public SupplyOrderShipment getShipment(){
-		return this.mShipment;
-	}
-	public SupplyOrder updateShipment(SupplyOrderShipment shipment){
-		this.mShipment = shipment;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeShipment(SupplyOrderShipment shipment){
-		if(shipment != null) { setShipment(shipment);}
-	}
-	
-	
-	public void clearShipment(){
-		setShipment ( null );
-		this.changed = true;
-	}
-	
-	public void setDelivery(SupplyOrderDelivery delivery){
-		this.mDelivery = delivery;;
-	}
-	public SupplyOrderDelivery getDelivery(){
-		return this.mDelivery;
-	}
-	public SupplyOrder updateDelivery(SupplyOrderDelivery delivery){
-		this.mDelivery = delivery;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeDelivery(SupplyOrderDelivery delivery){
-		if(delivery != null) { setDelivery(delivery);}
-	}
-	
-	
-	public void clearDelivery(){
-		setDelivery ( null );
-		this.changed = true;
-	}
 	
 	public void setLastUpdateTime(DateTime lastUpdateTime){
 		this.mLastUpdateTime = lastUpdateTime;;
@@ -925,12 +757,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 
 		addToEntityList(this, entityList, getBuyer(), internalType);
 		addToEntityList(this, entityList, getSeller(), internalType);
-		addToEntityList(this, entityList, getConfirmation(), internalType);
-		addToEntityList(this, entityList, getApproval(), internalType);
-		addToEntityList(this, entityList, getProcessing(), internalType);
-		addToEntityList(this, entityList, getPicking(), internalType);
-		addToEntityList(this, entityList, getShipment(), internalType);
-		addToEntityList(this, entityList, getDelivery(), internalType);
 
 		
 	}
@@ -967,12 +793,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, SELLER_PROPERTY, getSeller());
 		appendKeyValuePair(result, TITLE_PROPERTY, getTitle());
 		appendKeyValuePair(result, TOTAL_AMOUNT_PROPERTY, getTotalAmount());
-		appendKeyValuePair(result, CONFIRMATION_PROPERTY, getConfirmation());
-		appendKeyValuePair(result, APPROVAL_PROPERTY, getApproval());
-		appendKeyValuePair(result, PROCESSING_PROPERTY, getProcessing());
-		appendKeyValuePair(result, PICKING_PROPERTY, getPicking());
-		appendKeyValuePair(result, SHIPMENT_PROPERTY, getShipment());
-		appendKeyValuePair(result, DELIVERY_PROPERTY, getDelivery());
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, SUPPLY_ORDER_LINE_ITEM_LIST, getSupplyOrderLineItemList());
@@ -1014,12 +834,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 			dest.setSeller(getSeller());
 			dest.setTitle(getTitle());
 			dest.setTotalAmount(getTotalAmount());
-			dest.setConfirmation(getConfirmation());
-			dest.setApproval(getApproval());
-			dest.setProcessing(getProcessing());
-			dest.setPicking(getPicking());
-			dest.setShipment(getShipment());
-			dest.setDelivery(getDelivery());
 			dest.setLastUpdateTime(getLastUpdateTime());
 			dest.setVersion(getVersion());
 			dest.setSupplyOrderLineItemList(getSupplyOrderLineItemList());
@@ -1044,12 +858,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 			dest.mergeSeller(getSeller());
 			dest.mergeTitle(getTitle());
 			dest.mergeTotalAmount(getTotalAmount());
-			dest.mergeConfirmation(getConfirmation());
-			dest.mergeApproval(getApproval());
-			dest.mergeProcessing(getProcessing());
-			dest.mergePicking(getPicking());
-			dest.mergeShipment(getShipment());
-			dest.mergeDelivery(getDelivery());
 			dest.mergeLastUpdateTime(getLastUpdateTime());
 			dest.mergeVersion(getVersion());
 			dest.mergeSupplyOrderLineItemList(getSupplyOrderLineItemList());
@@ -1079,7 +887,9 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getBuyer(), getSeller(), getTitle(), getTotalAmount(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -1093,24 +903,6 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
  		}
 		stringBuilder.append("\ttitle='"+getTitle()+"';");
 		stringBuilder.append("\ttotalAmount='"+getTotalAmount()+"';");
-		if(getConfirmation() != null ){
- 			stringBuilder.append("\tconfirmation='SupplyOrderConfirmation("+getConfirmation().getId()+")';");
- 		}
-		if(getApproval() != null ){
- 			stringBuilder.append("\tapproval='SupplyOrderApproval("+getApproval().getId()+")';");
- 		}
-		if(getProcessing() != null ){
- 			stringBuilder.append("\tprocessing='SupplyOrderProcessing("+getProcessing().getId()+")';");
- 		}
-		if(getPicking() != null ){
- 			stringBuilder.append("\tpicking='SupplyOrderPicking("+getPicking().getId()+")';");
- 		}
-		if(getShipment() != null ){
- 			stringBuilder.append("\tshipment='SupplyOrderShipment("+getShipment().getId()+")';");
- 		}
-		if(getDelivery() != null ){
- 			stringBuilder.append("\tdelivery='SupplyOrderDelivery("+getDelivery().getId()+")';");
- 		}
 		stringBuilder.append("\tlastUpdateTime='"+getLastUpdateTime()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

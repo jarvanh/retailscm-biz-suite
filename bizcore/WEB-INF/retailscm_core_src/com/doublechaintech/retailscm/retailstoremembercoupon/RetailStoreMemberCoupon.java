@@ -363,7 +363,9 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getOwner(), getNumber(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

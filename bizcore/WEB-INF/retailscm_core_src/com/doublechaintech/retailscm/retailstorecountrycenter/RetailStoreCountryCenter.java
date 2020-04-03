@@ -3498,7 +3498,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getServiceNumber(), getFounded(), getWebSite(), getAddress(), getOperatedBy(), getLegalRepresentative(), getDescription(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

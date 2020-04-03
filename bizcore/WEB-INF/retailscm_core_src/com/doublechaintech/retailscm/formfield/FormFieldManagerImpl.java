@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.genericform.GenericForm;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.genericform.CandidateGenericForm;
 
 
 public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implements FormFieldManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "FormField";
 	@Override
 	public FormFieldDAO daoOf(RetailscmUserContext userContext) {
 		return formFieldDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws FormFieldManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new FormFieldManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected FormField saveFormField(RetailscmUserContext userContext, FormField formField, String [] tokensExpr) throws Exception{	
  		//return getFormFieldDAO().save(formField, tokens);
@@ -167,7 +161,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	public FormField createFormField(RetailscmUserContext userContext, String label,String localeKey,String parameterName,String type,String formId,String placeholder,String defaultValue,String description,String fieldGroup,String minimumValue,String maximumValue,boolean required,boolean disabled,boolean customRendering,String candidateValues,String suggestValues) throws Exception
 	//public FormField createFormField(RetailscmUserContext userContext,String label, String localeKey, String parameterName, String type, String formId, String placeholder, String defaultValue, String description, String fieldGroup, String minimumValue, String maximumValue, boolean required, boolean disabled, boolean customRendering, String candidateValues, String suggestValues) throws Exception
 	{
-		
+
 		
 
 		
@@ -219,14 +213,14 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		onNewInstanceCreated(userContext, formField);
 		return formField;
 
-		
+
 	}
-	protected FormField createNewFormField() 
+	protected FormField createNewFormField()
 	{
-		
-		return new FormField();		
+
+		return new FormField();
 	}
-	
+
 	protected void checkParamsForUpdatingFormField(RetailscmUserContext userContext,String formFieldId, int formFieldVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -286,28 +280,28 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public FormField clone(RetailscmUserContext userContext, String fromFormFieldId) throws Exception{
-		
+
 		return formFieldDaoOf(userContext).clone(fromFormFieldId, this.allTokens());
 	}
-	
-	public FormField internalSaveFormField(RetailscmUserContext userContext, FormField formField) throws Exception 
+
+	public FormField internalSaveFormField(RetailscmUserContext userContext, FormField formField) throws Exception
 	{
 		return internalSaveFormField(userContext, formField, allTokens());
 
 	}
-	public FormField internalSaveFormField(RetailscmUserContext userContext, FormField formField, Map<String,Object> options) throws Exception 
+	public FormField internalSaveFormField(RetailscmUserContext userContext, FormField formField, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingFormField(userContext, formFieldId, formFieldVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(formField){ 
+
+
+		synchronized(formField){
 			//will be good when the formField loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to FormField.
@@ -316,23 +310,23 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 			}
 			formField = saveFormField(userContext, formField, options);
 			return formField;
-			
+
 		}
 
 	}
-	
-	public FormField updateFormField(RetailscmUserContext userContext,String formFieldId, int formFieldVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public FormField updateFormField(RetailscmUserContext userContext,String formFieldId, int formFieldVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingFormField(userContext, formFieldId, formFieldVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		FormField formField = loadFormField(userContext, formFieldId, allTokens());
 		if(formField.getVersion() != formFieldVersion){
 			String message = "The target version("+formField.getVersion()+") is not equals to version("+formFieldVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(formField){ 
+		synchronized(formField){
 			//will be good when the formField loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to FormField.
@@ -344,21 +338,21 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
 	}
-	
-	public FormField updateFormFieldProperty(RetailscmUserContext userContext,String formFieldId, int formFieldVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public FormField updateFormFieldProperty(RetailscmUserContext userContext,String formFieldId, int formFieldVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingFormField(userContext, formFieldId, formFieldVersion, property, newValueExpr, tokensExpr);
-		
+
 		FormField formField = loadFormField(userContext, formFieldId, allTokens());
 		if(formField.getVersion() != formFieldVersion){
 			String message = "The target version("+formField.getVersion()+") is not equals to version("+formFieldVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(formField){ 
+		synchronized(formField){
 			//will be good when the formField loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to FormField.
-			
+
 			formField.changeProperty(property, newValueExpr);
 			
 			formField = saveFormField(userContext, formField, tokens().done());
@@ -370,7 +364,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected FormFieldTokens tokens(){
 		return FormFieldTokens.start();
 	}
@@ -391,11 +385,11 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	protected void checkParamsForTransferingAnotherForm(RetailscmUserContext userContext, String formFieldId, String anotherFormId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfFormField(formFieldId);
  		checkerOf(userContext).checkIdOfGenericForm(anotherFormId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(FormFieldManagerException.class);
- 		
+
  	}
  	public FormField transferToAnotherForm(RetailscmUserContext userContext, String formFieldId, String anotherFormId) throws Exception
  	{
@@ -414,10 +408,10 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateGenericForm requestCandidateForm(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateGenericForm result = new CandidateGenericForm();
@@ -427,7 +421,7 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -437,42 +431,42 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected GenericForm loadGenericForm(RetailscmUserContext userContext, String newFormId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return genericFormDaoOf(userContext).load(newFormId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String formFieldId, int formFieldVersion) throws Exception {
-		//deleteInternal(userContext, formFieldId, formFieldVersion);		
+		//deleteInternal(userContext, formFieldId, formFieldVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String formFieldId, int formFieldVersion) throws Exception{
-			
+
 		formFieldDaoOf(userContext).delete(formFieldId, formFieldVersion);
 	}
-	
+
 	public FormField forgetByAll(RetailscmUserContext userContext, String formFieldId, int formFieldVersion) throws Exception {
-		return forgetByAllInternal(userContext, formFieldId, formFieldVersion);		
+		return forgetByAllInternal(userContext, formFieldId, formFieldVersion);
 	}
 	protected FormField forgetByAllInternal(RetailscmUserContext userContext,
 			String formFieldId, int formFieldVersion) throws Exception{
-			
+
 		return formFieldDaoOf(userContext).disconnectFromAll(formFieldId, formFieldVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -483,23 +477,29 @@ public class FormFieldManagerImpl extends CustomRetailscmCheckerManager implemen
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return formFieldDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, FormField newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

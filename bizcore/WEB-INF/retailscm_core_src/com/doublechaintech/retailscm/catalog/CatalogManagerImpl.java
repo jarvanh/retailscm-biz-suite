@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.levelonecategory.LevelOneCategory;
@@ -33,28 +24,31 @@ import com.doublechaintech.retailscm.catalog.Catalog;
 
 
 public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements CatalogManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "Catalog";
 	@Override
 	public CatalogDAO daoOf(RetailscmUserContext userContext) {
 		return catalogDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws CatalogManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new CatalogManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected Catalog saveCatalog(RetailscmUserContext userContext, Catalog catalog, String [] tokensExpr) throws Exception{	
  		//return getCatalogDAO().save(catalog, tokens);
@@ -173,7 +167,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	public Catalog createCatalog(RetailscmUserContext userContext, String name,String ownerId,int subCount,BigDecimal amount) throws Exception
 	//public Catalog createCatalog(RetailscmUserContext userContext,String name, String ownerId, int subCount, BigDecimal amount) throws Exception
 	{
-		
+
 		
 
 		
@@ -201,14 +195,14 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		onNewInstanceCreated(userContext, catalog);
 		return catalog;
 
-		
+
 	}
-	protected Catalog createNewCatalog() 
+	protected Catalog createNewCatalog()
 	{
-		
-		return new Catalog();		
+
+		return new Catalog();
 	}
-	
+
 	protected void checkParamsForUpdatingCatalog(RetailscmUserContext userContext,String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -232,28 +226,28 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public Catalog clone(RetailscmUserContext userContext, String fromCatalogId) throws Exception{
-		
+
 		return catalogDaoOf(userContext).clone(fromCatalogId, this.allTokens());
 	}
-	
-	public Catalog internalSaveCatalog(RetailscmUserContext userContext, Catalog catalog) throws Exception 
+
+	public Catalog internalSaveCatalog(RetailscmUserContext userContext, Catalog catalog) throws Exception
 	{
 		return internalSaveCatalog(userContext, catalog, allTokens());
 
 	}
-	public Catalog internalSaveCatalog(RetailscmUserContext userContext, Catalog catalog, Map<String,Object> options) throws Exception 
+	public Catalog internalSaveCatalog(RetailscmUserContext userContext, Catalog catalog, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingCatalog(userContext, catalogId, catalogVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(catalog){ 
+
+
+		synchronized(catalog){
 			//will be good when the catalog loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Catalog.
@@ -262,23 +256,23 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 			}
 			catalog = saveCatalog(userContext, catalog, options);
 			return catalog;
-			
+
 		}
 
 	}
-	
-	public Catalog updateCatalog(RetailscmUserContext userContext,String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Catalog updateCatalog(RetailscmUserContext userContext,String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingCatalog(userContext, catalogId, catalogVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		Catalog catalog = loadCatalog(userContext, catalogId, allTokens());
 		if(catalog.getVersion() != catalogVersion){
 			String message = "The target version("+catalog.getVersion()+") is not equals to version("+catalogVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(catalog){ 
+		synchronized(catalog){
 			//will be good when the catalog loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Catalog.
@@ -290,21 +284,21 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 
 	}
-	
-	public Catalog updateCatalogProperty(RetailscmUserContext userContext,String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Catalog updateCatalogProperty(RetailscmUserContext userContext,String catalogId, int catalogVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingCatalog(userContext, catalogId, catalogVersion, property, newValueExpr, tokensExpr);
-		
+
 		Catalog catalog = loadCatalog(userContext, catalogId, allTokens());
 		if(catalog.getVersion() != catalogVersion){
 			String message = "The target version("+catalog.getVersion()+") is not equals to version("+catalogVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(catalog){ 
+		synchronized(catalog){
 			//will be good when the catalog loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Catalog.
-			
+
 			catalog.changeProperty(property, newValueExpr);
 			
 			catalog = saveCatalog(userContext, catalog, tokens().done());
@@ -316,7 +310,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected CatalogTokens tokens(){
 		return CatalogTokens.start();
 	}
@@ -338,11 +332,11 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	protected void checkParamsForTransferingAnotherOwner(RetailscmUserContext userContext, String catalogId, String anotherOwnerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfCatalog(catalogId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherOwnerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
- 		
+
  	}
  	public Catalog transferToAnotherOwner(RetailscmUserContext userContext, String catalogId, String anotherOwnerId) throws Exception
  	{
@@ -361,10 +355,10 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateOwner(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -374,7 +368,7 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -384,42 +378,42 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newOwnerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newOwnerId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String catalogId, int catalogVersion) throws Exception {
-		//deleteInternal(userContext, catalogId, catalogVersion);		
+		//deleteInternal(userContext, catalogId, catalogVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String catalogId, int catalogVersion) throws Exception{
-			
+
 		catalogDaoOf(userContext).delete(catalogId, catalogVersion);
 	}
-	
+
 	public Catalog forgetByAll(RetailscmUserContext userContext, String catalogId, int catalogVersion) throws Exception {
-		return forgetByAllInternal(userContext, catalogId, catalogVersion);		
+		return forgetByAllInternal(userContext, catalogId, catalogVersion);
 	}
 	protected Catalog forgetByAllInternal(RetailscmUserContext userContext,
 			String catalogId, int catalogVersion) throws Exception{
-			
+
 		return catalogDaoOf(userContext).disconnectFromAll(catalogId, catalogVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -430,21 +424,21 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return catalogDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingLevelOneCategory(RetailscmUserContext userContext, String catalogId, String name,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfCatalog(catalogId);
 
 		
@@ -452,20 +446,20 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
 
-	
+
 	}
 	public  Catalog addLevelOneCategory(RetailscmUserContext userContext, String catalogId, String name, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingLevelOneCategory(userContext,catalogId,name,tokensExpr);
-		
+
 		LevelOneCategory levelOneCategory = createLevelOneCategory(userContext,name);
-		
-		Catalog catalog = loadCatalog(userContext, catalogId, allTokens());
-		synchronized(catalog){ 
+
+		Catalog catalog = loadCatalog(userContext, catalogId, emptyOptions());
+		synchronized(catalog){
 			//Will be good when the catalog loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			catalog.addLevelOneCategory( levelOneCategory );		
+			catalog.addLevelOneCategory( levelOneCategory );
 			catalog = saveCatalog(userContext, catalog, tokens().withLevelOneCategoryList().done());
 			
 			userContext.getManagerGroup().getLevelOneCategoryManager().onNewInstanceCreated(userContext, levelOneCategory);
@@ -473,43 +467,43 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 	}
 	protected void checkParamsForUpdatingLevelOneCategoryProperties(RetailscmUserContext userContext, String catalogId,String id,String name,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfCatalog(catalogId);
 		checkerOf(userContext).checkIdOfLevelOneCategory(id);
-		
+
 		checkerOf(userContext).checkNameOfLevelOneCategory( name);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
-		
+
 	}
 	public  Catalog updateLevelOneCategoryProperties(RetailscmUserContext userContext, String catalogId, String id,String name, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingLevelOneCategoryProperties(userContext,catalogId,id,name,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withLevelOneCategoryListList()
 				.searchLevelOneCategoryListWith(LevelOneCategory.ID_PROPERTY, "is", id).done();
-		
+
 		Catalog catalogToUpdate = loadCatalog(userContext, catalogId, options);
-		
+
 		if(catalogToUpdate.getLevelOneCategoryList().isEmpty()){
 			throw new CatalogManagerException("LevelOneCategory is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		LevelOneCategory item = catalogToUpdate.getLevelOneCategoryList().first();
-		
+
 		item.updateName( name );
 
-		
+
 		//checkParamsForAddingLevelOneCategory(userContext,catalogId,name, code, used,tokensExpr);
 		Catalog catalog = saveCatalog(userContext, catalogToUpdate, tokens().withLevelOneCategoryList().done());
-		synchronized(catalog){ 
+		synchronized(catalog){
 			return present(userContext,catalog, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected LevelOneCategory createLevelOneCategory(RetailscmUserContext userContext, String name) throws Exception{
 
 		LevelOneCategory levelOneCategory = new LevelOneCategory();
@@ -519,38 +513,38 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		
 		return levelOneCategory;
-	
-		
+
+
 	}
-	
+
 	protected LevelOneCategory createIndexedLevelOneCategory(String id, int version){
 
 		LevelOneCategory levelOneCategory = new LevelOneCategory();
 		levelOneCategory.setId(id);
 		levelOneCategory.setVersion(version);
-		return levelOneCategory;			
-		
+		return levelOneCategory;
+
 	}
-	
-	protected void checkParamsForRemovingLevelOneCategoryList(RetailscmUserContext userContext, String catalogId, 
+
+	protected void checkParamsForRemovingLevelOneCategoryList(RetailscmUserContext userContext, String catalogId,
 			String levelOneCategoryIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfCatalog(catalogId);
 		for(String levelOneCategoryIdItem: levelOneCategoryIds){
 			checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
-		
+
 	}
-	public  Catalog removeLevelOneCategoryList(RetailscmUserContext userContext, String catalogId, 
+	public  Catalog removeLevelOneCategoryList(RetailscmUserContext userContext, String catalogId,
 			String levelOneCategoryIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingLevelOneCategoryList(userContext, catalogId,  levelOneCategoryIds, tokensExpr);
-			
-			
+
+
 			Catalog catalog = loadCatalog(userContext, catalogId, allTokens());
-			synchronized(catalog){ 
+			synchronized(catalog){
 				//Will be good when the catalog loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				catalogDaoOf(userContext).planToRemoveLevelOneCategoryList(catalog, levelOneCategoryIds, allTokens());
@@ -559,65 +553,65 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 				return present(userContext,catalog, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingLevelOneCategory(RetailscmUserContext userContext, String catalogId, 
+
+	protected void checkParamsForRemovingLevelOneCategory(RetailscmUserContext userContext, String catalogId,
 		String levelOneCategoryId, int levelOneCategoryVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfCatalog( catalogId);
 		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
 		checkerOf(userContext).checkVersionOfLevelOneCategory(levelOneCategoryVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
-	
+
 	}
-	public  Catalog removeLevelOneCategory(RetailscmUserContext userContext, String catalogId, 
+	public  Catalog removeLevelOneCategory(RetailscmUserContext userContext, String catalogId,
 		String levelOneCategoryId, int levelOneCategoryVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingLevelOneCategory(userContext,catalogId, levelOneCategoryId, levelOneCategoryVersion,tokensExpr);
-		
+
 		LevelOneCategory levelOneCategory = createIndexedLevelOneCategory(levelOneCategoryId, levelOneCategoryVersion);
 		Catalog catalog = loadCatalog(userContext, catalogId, allTokens());
-		synchronized(catalog){ 
+		synchronized(catalog){
 			//Will be good when the catalog loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			catalog.removeLevelOneCategory( levelOneCategory );		
+			catalog.removeLevelOneCategory( levelOneCategory );
 			catalog = saveCatalog(userContext, catalog, tokens().withLevelOneCategoryList().done());
 			deleteRelationInGraph(userContext, levelOneCategory);
 			return present(userContext,catalog, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingLevelOneCategory(RetailscmUserContext userContext, String catalogId, 
+	protected void checkParamsForCopyingLevelOneCategory(RetailscmUserContext userContext, String catalogId,
 		String levelOneCategoryId, int levelOneCategoryVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfCatalog( catalogId);
 		checkerOf(userContext).checkIdOfLevelOneCategory(levelOneCategoryId);
 		checkerOf(userContext).checkVersionOfLevelOneCategory(levelOneCategoryVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
-	
+
 	}
-	public  Catalog copyLevelOneCategoryFrom(RetailscmUserContext userContext, String catalogId, 
+	public  Catalog copyLevelOneCategoryFrom(RetailscmUserContext userContext, String catalogId,
 		String levelOneCategoryId, int levelOneCategoryVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingLevelOneCategory(userContext,catalogId, levelOneCategoryId, levelOneCategoryVersion,tokensExpr);
-		
+
 		LevelOneCategory levelOneCategory = createIndexedLevelOneCategory(levelOneCategoryId, levelOneCategoryVersion);
 		Catalog catalog = loadCatalog(userContext, catalogId, allTokens());
-		synchronized(catalog){ 
+		synchronized(catalog){
 			//Will be good when the catalog loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			catalog.copyLevelOneCategoryFrom( levelOneCategory );		
+
+			catalog.copyLevelOneCategoryFrom( levelOneCategory );
 			catalog = saveCatalog(userContext, catalog, tokens().withLevelOneCategoryList().done());
 			
 			userContext.getManagerGroup().getLevelOneCategoryManager().onNewInstanceCreated(userContext, (LevelOneCategory)catalog.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,catalog, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingLevelOneCategory(RetailscmUserContext userContext, String catalogId, String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -633,32 +627,32 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(CatalogManagerException.class);
-	
+
 	}
-	
+
 	public  Catalog updateLevelOneCategory(RetailscmUserContext userContext, String catalogId, String levelOneCategoryId, int levelOneCategoryVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingLevelOneCategory(userContext, catalogId, levelOneCategoryId, levelOneCategoryVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withLevelOneCategoryList().searchLevelOneCategoryListWith(LevelOneCategory.ID_PROPERTY, "eq", levelOneCategoryId).done();
-		
-		
-		
+
+
+
 		Catalog catalog = loadCatalog(userContext, catalogId, loadTokens);
-		
-		synchronized(catalog){ 
+
+		synchronized(catalog){
 			//Will be good when the catalog loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//catalog.removeLevelOneCategory( levelOneCategory );	
+			//catalog.removeLevelOneCategory( levelOneCategory );
 			//make changes to AcceleraterAccount.
 			LevelOneCategory levelOneCategoryIndex = createIndexedLevelOneCategory(levelOneCategoryId, levelOneCategoryVersion);
-		
+
 			LevelOneCategory levelOneCategory = catalog.findTheLevelOneCategory(levelOneCategoryIndex);
 			if(levelOneCategory == null){
 				throw new CatalogManagerException(levelOneCategory+" is NOT FOUND" );
 			}
-			
+
 			levelOneCategory.changeProperty(property, newValueExpr);
 			
 			catalog = saveCatalog(userContext, catalog, tokens().withLevelOneCategoryList().done());
@@ -669,14 +663,20 @@ public class CatalogManagerImpl extends CustomRetailscmCheckerManager implements
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, Catalog newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

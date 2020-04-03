@@ -298,7 +298,9 @@ public class EmployeeCompanyTraining extends BaseEntity implements  java.io.Seri
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getEmployee(), getTraining(), getScoring(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

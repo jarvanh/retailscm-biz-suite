@@ -86,21 +86,6 @@
 	<bean id="consumerOrderManagerBase" class="com.doublechaintech.retailscm.consumerorder.ConsumerOrderManagerImpl"/>
 	<bean id="consumerOrderManager" class="com.doublechaintech.retailscm.consumerorder.ConsumerOrderCustomManagerImpl" parent="consumerOrderManagerBase" ></bean>
 	
-	<bean id="consumerOrderConfirmationManagerBase" class="com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationManagerImpl"/>
-	<bean id="consumerOrderConfirmationManager" class="com.doublechaintech.retailscm.consumerorderconfirmation.ConsumerOrderConfirmationCustomManagerImpl" parent="consumerOrderConfirmationManagerBase" ></bean>
-	
-	<bean id="consumerOrderApprovalManagerBase" class="com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalManagerImpl"/>
-	<bean id="consumerOrderApprovalManager" class="com.doublechaintech.retailscm.consumerorderapproval.ConsumerOrderApprovalCustomManagerImpl" parent="consumerOrderApprovalManagerBase" ></bean>
-	
-	<bean id="consumerOrderProcessingManagerBase" class="com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingManagerImpl"/>
-	<bean id="consumerOrderProcessingManager" class="com.doublechaintech.retailscm.consumerorderprocessing.ConsumerOrderProcessingCustomManagerImpl" parent="consumerOrderProcessingManagerBase" ></bean>
-	
-	<bean id="consumerOrderShipmentManagerBase" class="com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentManagerImpl"/>
-	<bean id="consumerOrderShipmentManager" class="com.doublechaintech.retailscm.consumerordershipment.ConsumerOrderShipmentCustomManagerImpl" parent="consumerOrderShipmentManagerBase" ></bean>
-	
-	<bean id="consumerOrderDeliveryManagerBase" class="com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryManagerImpl"/>
-	<bean id="consumerOrderDeliveryManager" class="com.doublechaintech.retailscm.consumerorderdelivery.ConsumerOrderDeliveryCustomManagerImpl" parent="consumerOrderDeliveryManagerBase" ></bean>
-	
 	<bean id="consumerOrderLineItemManagerBase" class="com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemManagerImpl"/>
 	<bean id="consumerOrderLineItemManager" class="com.doublechaintech.retailscm.consumerorderlineitem.ConsumerOrderLineItemManagerImpl" parent="consumerOrderLineItemManagerBase" ></bean>
 	
@@ -149,24 +134,6 @@
 	<bean id="supplyOrderManagerBase" class="com.doublechaintech.retailscm.supplyorder.SupplyOrderManagerImpl"/>
 	<bean id="supplyOrderManager" class="com.doublechaintech.retailscm.supplyorder.SupplyOrderCustomManagerImpl" parent="supplyOrderManagerBase" ></bean>
 	
-	<bean id="supplyOrderConfirmationManagerBase" class="com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationManagerImpl"/>
-	<bean id="supplyOrderConfirmationManager" class="com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationCustomManagerImpl" parent="supplyOrderConfirmationManagerBase" ></bean>
-	
-	<bean id="supplyOrderApprovalManagerBase" class="com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalManagerImpl"/>
-	<bean id="supplyOrderApprovalManager" class="com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalCustomManagerImpl" parent="supplyOrderApprovalManagerBase" ></bean>
-	
-	<bean id="supplyOrderProcessingManagerBase" class="com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingManagerImpl"/>
-	<bean id="supplyOrderProcessingManager" class="com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingCustomManagerImpl" parent="supplyOrderProcessingManagerBase" ></bean>
-	
-	<bean id="supplyOrderPickingManagerBase" class="com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingManagerImpl"/>
-	<bean id="supplyOrderPickingManager" class="com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingCustomManagerImpl" parent="supplyOrderPickingManagerBase" ></bean>
-	
-	<bean id="supplyOrderShipmentManagerBase" class="com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentManagerImpl"/>
-	<bean id="supplyOrderShipmentManager" class="com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentCustomManagerImpl" parent="supplyOrderShipmentManagerBase" ></bean>
-	
-	<bean id="supplyOrderDeliveryManagerBase" class="com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryManagerImpl"/>
-	<bean id="supplyOrderDeliveryManager" class="com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryCustomManagerImpl" parent="supplyOrderDeliveryManagerBase" ></bean>
-	
 	<bean id="supplyOrderLineItemManagerBase" class="com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemManagerImpl"/>
 	<bean id="supplyOrderLineItemManager" class="com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemManagerImpl" parent="supplyOrderLineItemManagerBase" ></bean>
 	
@@ -178,24 +145,6 @@
 	
 	<bean id="retailStoreOrderManagerBase" class="com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderManagerImpl"/>
 	<bean id="retailStoreOrderManager" class="com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderCustomManagerImpl" parent="retailStoreOrderManagerBase" ></bean>
-	
-	<bean id="retailStoreOrderConfirmationManagerBase" class="com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationManagerImpl"/>
-	<bean id="retailStoreOrderConfirmationManager" class="com.doublechaintech.retailscm.retailstoreorderconfirmation.RetailStoreOrderConfirmationCustomManagerImpl" parent="retailStoreOrderConfirmationManagerBase" ></bean>
-	
-	<bean id="retailStoreOrderApprovalManagerBase" class="com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalManagerImpl"/>
-	<bean id="retailStoreOrderApprovalManager" class="com.doublechaintech.retailscm.retailstoreorderapproval.RetailStoreOrderApprovalCustomManagerImpl" parent="retailStoreOrderApprovalManagerBase" ></bean>
-	
-	<bean id="retailStoreOrderProcessingManagerBase" class="com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingManagerImpl"/>
-	<bean id="retailStoreOrderProcessingManager" class="com.doublechaintech.retailscm.retailstoreorderprocessing.RetailStoreOrderProcessingCustomManagerImpl" parent="retailStoreOrderProcessingManagerBase" ></bean>
-	
-	<bean id="retailStoreOrderPickingManagerBase" class="com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingManagerImpl"/>
-	<bean id="retailStoreOrderPickingManager" class="com.doublechaintech.retailscm.retailstoreorderpicking.RetailStoreOrderPickingCustomManagerImpl" parent="retailStoreOrderPickingManagerBase" ></bean>
-	
-	<bean id="retailStoreOrderShipmentManagerBase" class="com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentManagerImpl"/>
-	<bean id="retailStoreOrderShipmentManager" class="com.doublechaintech.retailscm.retailstoreordershipment.RetailStoreOrderShipmentCustomManagerImpl" parent="retailStoreOrderShipmentManagerBase" ></bean>
-	
-	<bean id="retailStoreOrderDeliveryManagerBase" class="com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryManagerImpl"/>
-	<bean id="retailStoreOrderDeliveryManager" class="com.doublechaintech.retailscm.retailstoreorderdelivery.RetailStoreOrderDeliveryCustomManagerImpl" parent="retailStoreOrderDeliveryManagerBase" ></bean>
 	
 	<bean id="retailStoreOrderLineItemManagerBase" class="com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemManagerImpl"/>
 	<bean id="retailStoreOrderLineItemManager" class="com.doublechaintech.retailscm.retailstoreorderlineitem.RetailStoreOrderLineItemManagerImpl" parent="retailStoreOrderLineItemManagerBase" ></bean>
@@ -229,9 +178,6 @@
 	
 	<bean id="goodsManagerBase" class="com.doublechaintech.retailscm.goods.GoodsManagerImpl"/>
 	<bean id="goodsManager" class="com.doublechaintech.retailscm.goods.GoodsManagerImpl" parent="goodsManagerBase" ></bean>
-	
-	<bean id="goodsPackagingManagerBase" class="com.doublechaintech.retailscm.goodspackaging.GoodsPackagingManagerImpl"/>
-	<bean id="goodsPackagingManager" class="com.doublechaintech.retailscm.goodspackaging.GoodsPackagingCustomManagerImpl" parent="goodsPackagingManagerBase" ></bean>
 	
 	<bean id="goodsMovementManagerBase" class="com.doublechaintech.retailscm.goodsmovement.GoodsMovementManagerImpl"/>
 	<bean id="goodsMovementManager" class="com.doublechaintech.retailscm.goodsmovement.GoodsMovementManagerImpl" parent="goodsMovementManagerBase" ></bean>
@@ -281,29 +227,8 @@
 	<bean id="accountingDocumentManagerBase" class="com.doublechaintech.retailscm.accountingdocument.AccountingDocumentManagerImpl"/>
 	<bean id="accountingDocumentManager" class="com.doublechaintech.retailscm.accountingdocument.AccountingDocumentCustomManagerImpl" parent="accountingDocumentManagerBase" ></bean>
 	
-	<bean id="accountingDocumentCreationManagerBase" class="com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationManagerImpl"/>
-	<bean id="accountingDocumentCreationManager" class="com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreationCustomManagerImpl" parent="accountingDocumentCreationManagerBase" ></bean>
-	
-	<bean id="accountingDocumentConfirmationManagerBase" class="com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationManagerImpl"/>
-	<bean id="accountingDocumentConfirmationManager" class="com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmationCustomManagerImpl" parent="accountingDocumentConfirmationManagerBase" ></bean>
-	
-	<bean id="accountingDocumentAuditingManagerBase" class="com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingManagerImpl"/>
-	<bean id="accountingDocumentAuditingManager" class="com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditingCustomManagerImpl" parent="accountingDocumentAuditingManagerBase" ></bean>
-	
-	<bean id="accountingDocumentPostingManagerBase" class="com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingManagerImpl"/>
-	<bean id="accountingDocumentPostingManager" class="com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPostingCustomManagerImpl" parent="accountingDocumentPostingManagerBase" ></bean>
-	
 	<bean id="originalVoucherManagerBase" class="com.doublechaintech.retailscm.originalvoucher.OriginalVoucherManagerImpl"/>
 	<bean id="originalVoucherManager" class="com.doublechaintech.retailscm.originalvoucher.OriginalVoucherManagerImpl" parent="originalVoucherManagerBase" ></bean>
-	
-	<bean id="originalVoucherCreationManagerBase" class="com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationManagerImpl"/>
-	<bean id="originalVoucherCreationManager" class="com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreationCustomManagerImpl" parent="originalVoucherCreationManagerBase" ></bean>
-	
-	<bean id="originalVoucherConfirmationManagerBase" class="com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationManagerImpl"/>
-	<bean id="originalVoucherConfirmationManager" class="com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmationCustomManagerImpl" parent="originalVoucherConfirmationManagerBase" ></bean>
-	
-	<bean id="originalVoucherAuditingManagerBase" class="com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingManagerImpl"/>
-	<bean id="originalVoucherAuditingManager" class="com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditingCustomManagerImpl" parent="originalVoucherAuditingManagerBase" ></bean>
 	
 	<bean id="accountingDocumentLineManagerBase" class="com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineManagerImpl"/>
 	<bean id="accountingDocumentLineManager" class="com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLineManagerImpl" parent="accountingDocumentLineManagerBase" ></bean>
@@ -355,24 +280,6 @@
 	
 	<bean id="employeeManagerBase" class="com.doublechaintech.retailscm.employee.EmployeeManagerImpl"/>
 	<bean id="employeeManager" class="com.doublechaintech.retailscm.employee.EmployeeCustomManagerImpl" parent="employeeManagerBase" ></bean>
-	
-	<bean id="jobApplicationManagerBase" class="com.doublechaintech.retailscm.jobapplication.JobApplicationManagerImpl"/>
-	<bean id="jobApplicationManager" class="com.doublechaintech.retailscm.jobapplication.JobApplicationCustomManagerImpl" parent="jobApplicationManagerBase" ></bean>
-	
-	<bean id="professionInterviewManagerBase" class="com.doublechaintech.retailscm.professioninterview.ProfessionInterviewManagerImpl"/>
-	<bean id="professionInterviewManager" class="com.doublechaintech.retailscm.professioninterview.ProfessionInterviewCustomManagerImpl" parent="professionInterviewManagerBase" ></bean>
-	
-	<bean id="hrInterviewManagerBase" class="com.doublechaintech.retailscm.hrinterview.HrInterviewManagerImpl"/>
-	<bean id="hrInterviewManager" class="com.doublechaintech.retailscm.hrinterview.HrInterviewCustomManagerImpl" parent="hrInterviewManagerBase" ></bean>
-	
-	<bean id="offerApprovalManagerBase" class="com.doublechaintech.retailscm.offerapproval.OfferApprovalManagerImpl"/>
-	<bean id="offerApprovalManager" class="com.doublechaintech.retailscm.offerapproval.OfferApprovalCustomManagerImpl" parent="offerApprovalManagerBase" ></bean>
-	
-	<bean id="offerAcceptanceManagerBase" class="com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceManagerImpl"/>
-	<bean id="offerAcceptanceManager" class="com.doublechaintech.retailscm.offeracceptance.OfferAcceptanceCustomManagerImpl" parent="offerAcceptanceManagerBase" ></bean>
-	
-	<bean id="employeeBoardingManagerBase" class="com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingManagerImpl"/>
-	<bean id="employeeBoardingManager" class="com.doublechaintech.retailscm.employeeboarding.EmployeeBoardingCustomManagerImpl" parent="employeeBoardingManagerBase" ></bean>
 	
 	<bean id="instructorManagerBase" class="com.doublechaintech.retailscm.instructor.InstructorManagerImpl"/>
 	<bean id="instructorManager" class="com.doublechaintech.retailscm.instructor.InstructorManagerImpl" parent="instructorManagerBase" ></bean>
@@ -427,9 +334,6 @@
 	
 	<bean id="secUserManagerBase" class="com.doublechaintech.retailscm.secuser.SecUserManagerImpl"/>
 	<bean id="secUserManager" class="com.doublechaintech.retailscm.secuser.SecUserCustomManagerImpl" parent="secUserManagerBase" ></bean>
-	
-	<bean id="secUserBlockingManagerBase" class="com.doublechaintech.retailscm.secuserblocking.SecUserBlockingManagerImpl"/>
-	<bean id="secUserBlockingManager" class="com.doublechaintech.retailscm.secuserblocking.SecUserBlockingManagerImpl" parent="secUserBlockingManagerBase" ></bean>
 	
 	<bean id="userAppManagerBase" class="com.doublechaintech.retailscm.userapp.UserAppManagerImpl"/>
 	<bean id="userAppManager" class="com.doublechaintech.retailscm.userapp.UserAppCustomManagerImpl" parent="userAppManagerBase" ></bean>
@@ -495,11 +399,6 @@
 		<property name="retailStoreClosingManager" ref="retailStoreClosingManager"/>
 		<property name="retailStoreMemberManager" ref="retailStoreMemberManager"/>
 		<property name="consumerOrderManager" ref="consumerOrderManager"/>
-		<property name="consumerOrderConfirmationManager" ref="consumerOrderConfirmationManager"/>
-		<property name="consumerOrderApprovalManager" ref="consumerOrderApprovalManager"/>
-		<property name="consumerOrderProcessingManager" ref="consumerOrderProcessingManager"/>
-		<property name="consumerOrderShipmentManager" ref="consumerOrderShipmentManager"/>
-		<property name="consumerOrderDeliveryManager" ref="consumerOrderDeliveryManager"/>
 		<property name="consumerOrderLineItemManager" ref="consumerOrderLineItemManager"/>
 		<property name="consumerOrderShippingGroupManager" ref="consumerOrderShippingGroupManager"/>
 		<property name="consumerOrderPaymentGroupManager" ref="consumerOrderPaymentGroupManager"/>
@@ -516,22 +415,10 @@
 		<property name="supplierProductManager" ref="supplierProductManager"/>
 		<property name="productSupplyDurationManager" ref="productSupplyDurationManager"/>
 		<property name="supplyOrderManager" ref="supplyOrderManager"/>
-		<property name="supplyOrderConfirmationManager" ref="supplyOrderConfirmationManager"/>
-		<property name="supplyOrderApprovalManager" ref="supplyOrderApprovalManager"/>
-		<property name="supplyOrderProcessingManager" ref="supplyOrderProcessingManager"/>
-		<property name="supplyOrderPickingManager" ref="supplyOrderPickingManager"/>
-		<property name="supplyOrderShipmentManager" ref="supplyOrderShipmentManager"/>
-		<property name="supplyOrderDeliveryManager" ref="supplyOrderDeliveryManager"/>
 		<property name="supplyOrderLineItemManager" ref="supplyOrderLineItemManager"/>
 		<property name="supplyOrderShippingGroupManager" ref="supplyOrderShippingGroupManager"/>
 		<property name="supplyOrderPaymentGroupManager" ref="supplyOrderPaymentGroupManager"/>
 		<property name="retailStoreOrderManager" ref="retailStoreOrderManager"/>
-		<property name="retailStoreOrderConfirmationManager" ref="retailStoreOrderConfirmationManager"/>
-		<property name="retailStoreOrderApprovalManager" ref="retailStoreOrderApprovalManager"/>
-		<property name="retailStoreOrderProcessingManager" ref="retailStoreOrderProcessingManager"/>
-		<property name="retailStoreOrderPickingManager" ref="retailStoreOrderPickingManager"/>
-		<property name="retailStoreOrderShipmentManager" ref="retailStoreOrderShipmentManager"/>
-		<property name="retailStoreOrderDeliveryManager" ref="retailStoreOrderDeliveryManager"/>
 		<property name="retailStoreOrderLineItemManager" ref="retailStoreOrderLineItemManager"/>
 		<property name="retailStoreOrderShippingGroupManager" ref="retailStoreOrderShippingGroupManager"/>
 		<property name="retailStoreOrderPaymentGroupManager" ref="retailStoreOrderPaymentGroupManager"/>
@@ -543,7 +430,6 @@
 		<property name="stockCountIssueTrackManager" ref="stockCountIssueTrackManager"/>
 		<property name="goodsAllocationManager" ref="goodsAllocationManager"/>
 		<property name="goodsManager" ref="goodsManager"/>
-		<property name="goodsPackagingManager" ref="goodsPackagingManager"/>
 		<property name="goodsMovementManager" ref="goodsMovementManager"/>
 		<property name="supplierSpaceManager" ref="supplierSpaceManager"/>
 		<property name="receivingSpaceManager" ref="receivingSpaceManager"/>
@@ -560,14 +446,7 @@
 		<property name="accountingPeriodManager" ref="accountingPeriodManager"/>
 		<property name="accountingDocumentTypeManager" ref="accountingDocumentTypeManager"/>
 		<property name="accountingDocumentManager" ref="accountingDocumentManager"/>
-		<property name="accountingDocumentCreationManager" ref="accountingDocumentCreationManager"/>
-		<property name="accountingDocumentConfirmationManager" ref="accountingDocumentConfirmationManager"/>
-		<property name="accountingDocumentAuditingManager" ref="accountingDocumentAuditingManager"/>
-		<property name="accountingDocumentPostingManager" ref="accountingDocumentPostingManager"/>
 		<property name="originalVoucherManager" ref="originalVoucherManager"/>
-		<property name="originalVoucherCreationManager" ref="originalVoucherCreationManager"/>
-		<property name="originalVoucherConfirmationManager" ref="originalVoucherConfirmationManager"/>
-		<property name="originalVoucherAuditingManager" ref="originalVoucherAuditingManager"/>
 		<property name="accountingDocumentLineManager" ref="accountingDocumentLineManager"/>
 		<property name="levelOneDepartmentManager" ref="levelOneDepartmentManager"/>
 		<property name="levelTwoDepartmentManager" ref="levelTwoDepartmentManager"/>
@@ -585,12 +464,6 @@
 		<property name="terminationManager" ref="terminationManager"/>
 		<property name="viewManager" ref="viewManager"/>
 		<property name="employeeManager" ref="employeeManager"/>
-		<property name="jobApplicationManager" ref="jobApplicationManager"/>
-		<property name="professionInterviewManager" ref="professionInterviewManager"/>
-		<property name="hrInterviewManager" ref="hrInterviewManager"/>
-		<property name="offerApprovalManager" ref="offerApprovalManager"/>
-		<property name="offerAcceptanceManager" ref="offerAcceptanceManager"/>
-		<property name="employeeBoardingManager" ref="employeeBoardingManager"/>
 		<property name="instructorManager" ref="instructorManager"/>
 		<property name="companyTrainingManager" ref="companyTrainingManager"/>
 		<property name="scoringManager" ref="scoringManager"/>
@@ -609,7 +482,6 @@
 		<property name="userDomainManager" ref="userDomainManager"/>
 		<property name="userWhiteListManager" ref="userWhiteListManager"/>
 		<property name="secUserManager" ref="secUserManager"/>
-		<property name="secUserBlockingManager" ref="secUserBlockingManager"/>
 		<property name="userAppManager" ref="userAppManager"/>
 		<property name="quickLinkManager" ref="quickLinkManager"/>
 		<property name="listAccessManager" ref="listAccessManager"/>

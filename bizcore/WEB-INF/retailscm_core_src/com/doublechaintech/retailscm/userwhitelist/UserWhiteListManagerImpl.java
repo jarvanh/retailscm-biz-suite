@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.userdomain.CandidateUserDomain;
 
 
 public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager implements UserWhiteListManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "UserWhiteList";
 	@Override
 	public UserWhiteListDAO daoOf(RetailscmUserContext userContext) {
 		return userWhiteListDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws UserWhiteListManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new UserWhiteListManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected UserWhiteList saveUserWhiteList(RetailscmUserContext userContext, UserWhiteList userWhiteList, String [] tokensExpr) throws Exception{	
  		//return getUserWhiteListDAO().save(userWhiteList, tokens);
@@ -167,7 +161,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	public UserWhiteList createUserWhiteList(RetailscmUserContext userContext, String userIdentity,String userSpecialFunctions,String domainId) throws Exception
 	//public UserWhiteList createUserWhiteList(RetailscmUserContext userContext,String userIdentity, String userSpecialFunctions, String domainId) throws Exception
 	{
-		
+
 		
 
 		
@@ -193,14 +187,14 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		onNewInstanceCreated(userContext, userWhiteList);
 		return userWhiteList;
 
-		
+
 	}
-	protected UserWhiteList createNewUserWhiteList() 
+	protected UserWhiteList createNewUserWhiteList()
 	{
-		
-		return new UserWhiteList();		
+
+		return new UserWhiteList();
 	}
-	
+
 	protected void checkParamsForUpdatingUserWhiteList(RetailscmUserContext userContext,String userWhiteListId, int userWhiteListVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -221,28 +215,28 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(UserWhiteListManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public UserWhiteList clone(RetailscmUserContext userContext, String fromUserWhiteListId) throws Exception{
-		
+
 		return userWhiteListDaoOf(userContext).clone(fromUserWhiteListId, this.allTokens());
 	}
-	
-	public UserWhiteList internalSaveUserWhiteList(RetailscmUserContext userContext, UserWhiteList userWhiteList) throws Exception 
+
+	public UserWhiteList internalSaveUserWhiteList(RetailscmUserContext userContext, UserWhiteList userWhiteList) throws Exception
 	{
 		return internalSaveUserWhiteList(userContext, userWhiteList, allTokens());
 
 	}
-	public UserWhiteList internalSaveUserWhiteList(RetailscmUserContext userContext, UserWhiteList userWhiteList, Map<String,Object> options) throws Exception 
+	public UserWhiteList internalSaveUserWhiteList(RetailscmUserContext userContext, UserWhiteList userWhiteList, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingUserWhiteList(userContext, userWhiteListId, userWhiteListVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(userWhiteList){ 
+
+
+		synchronized(userWhiteList){
 			//will be good when the userWhiteList loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserWhiteList.
@@ -251,23 +245,23 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 			}
 			userWhiteList = saveUserWhiteList(userContext, userWhiteList, options);
 			return userWhiteList;
-			
+
 		}
 
 	}
-	
-	public UserWhiteList updateUserWhiteList(RetailscmUserContext userContext,String userWhiteListId, int userWhiteListVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public UserWhiteList updateUserWhiteList(RetailscmUserContext userContext,String userWhiteListId, int userWhiteListVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingUserWhiteList(userContext, userWhiteListId, userWhiteListVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		UserWhiteList userWhiteList = loadUserWhiteList(userContext, userWhiteListId, allTokens());
 		if(userWhiteList.getVersion() != userWhiteListVersion){
 			String message = "The target version("+userWhiteList.getVersion()+") is not equals to version("+userWhiteListVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(userWhiteList){ 
+		synchronized(userWhiteList){
 			//will be good when the userWhiteList loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserWhiteList.
@@ -279,21 +273,21 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
 	}
-	
-	public UserWhiteList updateUserWhiteListProperty(RetailscmUserContext userContext,String userWhiteListId, int userWhiteListVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public UserWhiteList updateUserWhiteListProperty(RetailscmUserContext userContext,String userWhiteListId, int userWhiteListVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingUserWhiteList(userContext, userWhiteListId, userWhiteListVersion, property, newValueExpr, tokensExpr);
-		
+
 		UserWhiteList userWhiteList = loadUserWhiteList(userContext, userWhiteListId, allTokens());
 		if(userWhiteList.getVersion() != userWhiteListVersion){
 			String message = "The target version("+userWhiteList.getVersion()+") is not equals to version("+userWhiteListVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(userWhiteList){ 
+		synchronized(userWhiteList){
 			//will be good when the userWhiteList loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to UserWhiteList.
-			
+
 			userWhiteList.changeProperty(property, newValueExpr);
 			
 			userWhiteList = saveUserWhiteList(userContext, userWhiteList, tokens().done());
@@ -305,7 +299,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected UserWhiteListTokens tokens(){
 		return UserWhiteListTokens.start();
 	}
@@ -326,11 +320,11 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	protected void checkParamsForTransferingAnotherDomain(RetailscmUserContext userContext, String userWhiteListId, String anotherDomainId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfUserWhiteList(userWhiteListId);
  		checkerOf(userContext).checkIdOfUserDomain(anotherDomainId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(UserWhiteListManagerException.class);
- 		
+
  	}
  	public UserWhiteList transferToAnotherDomain(RetailscmUserContext userContext, String userWhiteListId, String anotherDomainId) throws Exception
  	{
@@ -349,10 +343,10 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateUserDomain requestCandidateDomain(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateUserDomain result = new CandidateUserDomain();
@@ -362,7 +356,7 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -372,42 +366,42 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected UserDomain loadUserDomain(RetailscmUserContext userContext, String newDomainId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return userDomainDaoOf(userContext).load(newDomainId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String userWhiteListId, int userWhiteListVersion) throws Exception {
-		//deleteInternal(userContext, userWhiteListId, userWhiteListVersion);		
+		//deleteInternal(userContext, userWhiteListId, userWhiteListVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String userWhiteListId, int userWhiteListVersion) throws Exception{
-			
+
 		userWhiteListDaoOf(userContext).delete(userWhiteListId, userWhiteListVersion);
 	}
-	
+
 	public UserWhiteList forgetByAll(RetailscmUserContext userContext, String userWhiteListId, int userWhiteListVersion) throws Exception {
-		return forgetByAllInternal(userContext, userWhiteListId, userWhiteListVersion);		
+		return forgetByAllInternal(userContext, userWhiteListId, userWhiteListVersion);
 	}
 	protected UserWhiteList forgetByAllInternal(RetailscmUserContext userContext,
 			String userWhiteListId, int userWhiteListVersion) throws Exception{
-			
+
 		return userWhiteListDaoOf(userContext).disconnectFromAll(userWhiteListId, userWhiteListVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -418,23 +412,29 @@ public class UserWhiteListManagerImpl extends CustomRetailscmCheckerManager impl
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return userWhiteListDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, UserWhiteList newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

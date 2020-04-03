@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.supplierspace.SupplierSpace;
 import com.doublechaintech.retailscm.damagespace.DamageSpace;
@@ -38,28 +29,31 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelf;
 
 
 public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager implements GoodsShelfManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "GoodsShelf";
 	@Override
 	public GoodsShelfDAO daoOf(RetailscmUserContext userContext) {
 		return goodsShelfDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws GoodsShelfManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new GoodsShelfManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected GoodsShelf saveGoodsShelf(RetailscmUserContext userContext, GoodsShelf goodsShelf, String [] tokensExpr) throws Exception{	
  		//return getGoodsShelfDAO().save(goodsShelf, tokens);
@@ -184,7 +178,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	public GoodsShelf createGoodsShelf(RetailscmUserContext userContext, String location,String storageSpaceId,String supplierSpaceId,String damageSpaceId) throws Exception
 	//public GoodsShelf createGoodsShelf(RetailscmUserContext userContext,String location, String storageSpaceId, String supplierSpaceId, String damageSpaceId) throws Exception
 	{
-		
+
 		
 
 		
@@ -219,14 +213,14 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		onNewInstanceCreated(userContext, goodsShelf);
 		return goodsShelf;
 
-		
+
 	}
-	protected GoodsShelf createNewGoodsShelf() 
+	protected GoodsShelf createNewGoodsShelf()
 	{
-		
-		return new GoodsShelf();		
+
+		return new GoodsShelf();
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsShelf(RetailscmUserContext userContext,String goodsShelfId, int goodsShelfVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -248,28 +242,28 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public GoodsShelf clone(RetailscmUserContext userContext, String fromGoodsShelfId) throws Exception{
-		
+
 		return goodsShelfDaoOf(userContext).clone(fromGoodsShelfId, this.allTokens());
 	}
-	
-	public GoodsShelf internalSaveGoodsShelf(RetailscmUserContext userContext, GoodsShelf goodsShelf) throws Exception 
+
+	public GoodsShelf internalSaveGoodsShelf(RetailscmUserContext userContext, GoodsShelf goodsShelf) throws Exception
 	{
 		return internalSaveGoodsShelf(userContext, goodsShelf, allTokens());
 
 	}
-	public GoodsShelf internalSaveGoodsShelf(RetailscmUserContext userContext, GoodsShelf goodsShelf, Map<String,Object> options) throws Exception 
+	public GoodsShelf internalSaveGoodsShelf(RetailscmUserContext userContext, GoodsShelf goodsShelf, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingGoodsShelf(userContext, goodsShelfId, goodsShelfVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(goodsShelf){ 
+
+
+		synchronized(goodsShelf){
 			//will be good when the goodsShelf loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsShelf.
@@ -278,23 +272,23 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 			}
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, options);
 			return goodsShelf;
-			
+
 		}
 
 	}
-	
-	public GoodsShelf updateGoodsShelf(RetailscmUserContext userContext,String goodsShelfId, int goodsShelfVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsShelf updateGoodsShelf(RetailscmUserContext userContext,String goodsShelfId, int goodsShelfVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsShelf(userContext, goodsShelfId, goodsShelfVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
 		if(goodsShelf.getVersion() != goodsShelfVersion){
 			String message = "The target version("+goodsShelf.getVersion()+") is not equals to version("+goodsShelfVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			//will be good when the goodsShelf loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsShelf.
@@ -306,21 +300,21 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
 	}
-	
-	public GoodsShelf updateGoodsShelfProperty(RetailscmUserContext userContext,String goodsShelfId, int goodsShelfVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public GoodsShelf updateGoodsShelfProperty(RetailscmUserContext userContext,String goodsShelfId, int goodsShelfVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingGoodsShelf(userContext, goodsShelfId, goodsShelfVersion, property, newValueExpr, tokensExpr);
-		
+
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
 		if(goodsShelf.getVersion() != goodsShelfVersion){
 			String message = "The target version("+goodsShelf.getVersion()+") is not equals to version("+goodsShelfVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			//will be good when the goodsShelf loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to GoodsShelf.
-			
+
 			goodsShelf.changeProperty(property, newValueExpr);
 			goodsShelf.updateLastUpdateTime(userContext.now());
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().done());
@@ -332,7 +326,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected GoodsShelfTokens tokens(){
 		return GoodsShelfTokens.start();
 	}
@@ -355,11 +349,11 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	protected void checkParamsForTransferingAnotherStorageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherStorageSpaceId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
  		checkerOf(userContext).checkIdOfStorageSpace(anotherStorageSpaceId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
- 		
+
  	}
  	public GoodsShelf transferToAnotherStorageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherStorageSpaceId) throws Exception
  	{
@@ -378,10 +372,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateStorageSpace requestCandidateStorageSpace(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateStorageSpace result = new CandidateStorageSpace();
@@ -391,7 +385,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -401,14 +395,14 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherSupplierSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherSupplierSpaceId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
  		checkerOf(userContext).checkIdOfSupplierSpace(anotherSupplierSpaceId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
- 		
+
  	}
  	public GoodsShelf transferToAnotherSupplierSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherSupplierSpaceId) throws Exception
  	{
@@ -427,10 +421,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSupplierSpace requestCandidateSupplierSpace(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSupplierSpace result = new CandidateSupplierSpace();
@@ -440,7 +434,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -450,14 +444,14 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherDamageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherDamageSpaceId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
  		checkerOf(userContext).checkIdOfDamageSpace(anotherDamageSpaceId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
- 		
+
  	}
  	public GoodsShelf transferToAnotherDamageSpace(RetailscmUserContext userContext, String goodsShelfId, String anotherDamageSpaceId) throws Exception
  	{
@@ -476,10 +470,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateDamageSpace requestCandidateDamageSpace(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateDamageSpace result = new CandidateDamageSpace();
@@ -489,7 +483,7 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -499,62 +493,62 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected SupplierSpace loadSupplierSpace(RetailscmUserContext userContext, String newSupplierSpaceId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return supplierSpaceDaoOf(userContext).load(newSupplierSpaceId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected DamageSpace loadDamageSpace(RetailscmUserContext userContext, String newDamageSpaceId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return damageSpaceDaoOf(userContext).load(newDamageSpaceId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected StorageSpace loadStorageSpace(RetailscmUserContext userContext, String newStorageSpaceId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return storageSpaceDaoOf(userContext).load(newStorageSpaceId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String goodsShelfId, int goodsShelfVersion) throws Exception {
-		//deleteInternal(userContext, goodsShelfId, goodsShelfVersion);		
+		//deleteInternal(userContext, goodsShelfId, goodsShelfVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String goodsShelfId, int goodsShelfVersion) throws Exception{
-			
+
 		goodsShelfDaoOf(userContext).delete(goodsShelfId, goodsShelfVersion);
 	}
-	
+
 	public GoodsShelf forgetByAll(RetailscmUserContext userContext, String goodsShelfId, int goodsShelfVersion) throws Exception {
-		return forgetByAllInternal(userContext, goodsShelfId, goodsShelfVersion);		
+		return forgetByAllInternal(userContext, goodsShelfId, goodsShelfVersion);
 	}
 	protected GoodsShelf forgetByAllInternal(RetailscmUserContext userContext,
 			String goodsShelfId, int goodsShelfVersion) throws Exception{
-			
+
 		return goodsShelfDaoOf(userContext).disconnectFromAll(goodsShelfId, goodsShelfVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -565,21 +559,21 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return goodsShelfDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, String title, Date countTime, String summary,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 
 		
@@ -591,20 +585,20 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 
-	
+
 	}
 	public  GoodsShelf addGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, String title, Date countTime, String summary, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingGoodsShelfStockCount(userContext,goodsShelfId,title, countTime, summary,tokensExpr);
-		
+
 		GoodsShelfStockCount goodsShelfStockCount = createGoodsShelfStockCount(userContext,title, countTime, summary);
-		
-		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-		synchronized(goodsShelf){ 
+
+		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, emptyOptions());
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsShelf.addGoodsShelfStockCount( goodsShelfStockCount );		
+			goodsShelf.addGoodsShelfStockCount( goodsShelfStockCount );
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsShelfStockCountList().done());
 			
 			userContext.getManagerGroup().getGoodsShelfStockCountManager().onNewInstanceCreated(userContext, goodsShelfStockCount);
@@ -612,47 +606,47 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	}
 	protected void checkParamsForUpdatingGoodsShelfStockCountProperties(RetailscmUserContext userContext, String goodsShelfId,String id,String title,Date countTime,String summary,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 		checkerOf(userContext).checkIdOfGoodsShelfStockCount(id);
-		
+
 		checkerOf(userContext).checkTitleOfGoodsShelfStockCount( title);
 		checkerOf(userContext).checkCountTimeOfGoodsShelfStockCount( countTime);
 		checkerOf(userContext).checkSummaryOfGoodsShelfStockCount( summary);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-		
+
 	}
 	public  GoodsShelf updateGoodsShelfStockCountProperties(RetailscmUserContext userContext, String goodsShelfId, String id,String title,Date countTime,String summary, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingGoodsShelfStockCountProperties(userContext,goodsShelfId,id,title,countTime,summary,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withGoodsShelfStockCountListList()
 				.searchGoodsShelfStockCountListWith(GoodsShelfStockCount.ID_PROPERTY, "is", id).done();
-		
+
 		GoodsShelf goodsShelfToUpdate = loadGoodsShelf(userContext, goodsShelfId, options);
-		
+
 		if(goodsShelfToUpdate.getGoodsShelfStockCountList().isEmpty()){
 			throw new GoodsShelfManagerException("GoodsShelfStockCount is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		GoodsShelfStockCount item = goodsShelfToUpdate.getGoodsShelfStockCountList().first();
-		
+
 		item.updateTitle( title );
 		item.updateCountTime( countTime );
 		item.updateSummary( summary );
 
-		
+
 		//checkParamsForAddingGoodsShelfStockCount(userContext,goodsShelfId,name, code, used,tokensExpr);
 		GoodsShelf goodsShelf = saveGoodsShelf(userContext, goodsShelfToUpdate, tokens().withGoodsShelfStockCountList().done());
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected GoodsShelfStockCount createGoodsShelfStockCount(RetailscmUserContext userContext, String title, Date countTime, String summary) throws Exception{
 
 		GoodsShelfStockCount goodsShelfStockCount = new GoodsShelfStockCount();
@@ -664,38 +658,38 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		
 		return goodsShelfStockCount;
-	
-		
+
+
 	}
-	
+
 	protected GoodsShelfStockCount createIndexedGoodsShelfStockCount(String id, int version){
 
 		GoodsShelfStockCount goodsShelfStockCount = new GoodsShelfStockCount();
 		goodsShelfStockCount.setId(id);
 		goodsShelfStockCount.setVersion(version);
-		return goodsShelfStockCount;			
-		
+		return goodsShelfStockCount;
+
 	}
-	
-	protected void checkParamsForRemovingGoodsShelfStockCountList(RetailscmUserContext userContext, String goodsShelfId, 
+
+	protected void checkParamsForRemovingGoodsShelfStockCountList(RetailscmUserContext userContext, String goodsShelfId,
 			String goodsShelfStockCountIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 		for(String goodsShelfStockCountIdItem: goodsShelfStockCountIds){
 			checkerOf(userContext).checkIdOfGoodsShelfStockCount(goodsShelfStockCountIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-		
+
 	}
-	public  GoodsShelf removeGoodsShelfStockCountList(RetailscmUserContext userContext, String goodsShelfId, 
+	public  GoodsShelf removeGoodsShelfStockCountList(RetailscmUserContext userContext, String goodsShelfId,
 			String goodsShelfStockCountIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingGoodsShelfStockCountList(userContext, goodsShelfId,  goodsShelfStockCountIds, tokensExpr);
-			
-			
+
+
 			GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-			synchronized(goodsShelf){ 
+			synchronized(goodsShelf){
 				//Will be good when the goodsShelf loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				goodsShelfDaoOf(userContext).planToRemoveGoodsShelfStockCountList(goodsShelf, goodsShelfStockCountIds, allTokens());
@@ -704,65 +698,65 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 				return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, 
+
+	protected void checkParamsForRemovingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsShelfStockCountId, int goodsShelfStockCountVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
 		checkerOf(userContext).checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
 		checkerOf(userContext).checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-	
+
 	}
-	public  GoodsShelf removeGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, 
+	public  GoodsShelf removeGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsShelfStockCountId, int goodsShelfStockCountVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingGoodsShelfStockCount(userContext,goodsShelfId, goodsShelfStockCountId, goodsShelfStockCountVersion,tokensExpr);
-		
+
 		GoodsShelfStockCount goodsShelfStockCount = createIndexedGoodsShelfStockCount(goodsShelfStockCountId, goodsShelfStockCountVersion);
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsShelf.removeGoodsShelfStockCount( goodsShelfStockCount );		
+			goodsShelf.removeGoodsShelfStockCount( goodsShelfStockCount );
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsShelfStockCountList().done());
 			deleteRelationInGraph(userContext, goodsShelfStockCount);
 			return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, 
+	protected void checkParamsForCopyingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsShelfStockCountId, int goodsShelfStockCountVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
 		checkerOf(userContext).checkIdOfGoodsShelfStockCount(goodsShelfStockCountId);
 		checkerOf(userContext).checkVersionOfGoodsShelfStockCount(goodsShelfStockCountVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-	
+
 	}
-	public  GoodsShelf copyGoodsShelfStockCountFrom(RetailscmUserContext userContext, String goodsShelfId, 
+	public  GoodsShelf copyGoodsShelfStockCountFrom(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsShelfStockCountId, int goodsShelfStockCountVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingGoodsShelfStockCount(userContext,goodsShelfId, goodsShelfStockCountId, goodsShelfStockCountVersion,tokensExpr);
-		
+
 		GoodsShelfStockCount goodsShelfStockCount = createIndexedGoodsShelfStockCount(goodsShelfStockCountId, goodsShelfStockCountVersion);
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			goodsShelf.copyGoodsShelfStockCountFrom( goodsShelfStockCount );		
+
+			goodsShelf.copyGoodsShelfStockCountFrom( goodsShelfStockCount );
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsShelfStockCountList().done());
 			
 			userContext.getManagerGroup().getGoodsShelfStockCountManager().onNewInstanceCreated(userContext, (GoodsShelfStockCount)goodsShelf.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, String goodsShelfStockCountId, int goodsShelfStockCountVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -786,32 +780,32 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-	
+
 	}
-	
+
 	public  GoodsShelf updateGoodsShelfStockCount(RetailscmUserContext userContext, String goodsShelfId, String goodsShelfStockCountId, int goodsShelfStockCountVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingGoodsShelfStockCount(userContext, goodsShelfId, goodsShelfStockCountId, goodsShelfStockCountVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withGoodsShelfStockCountList().searchGoodsShelfStockCountListWith(GoodsShelfStockCount.ID_PROPERTY, "eq", goodsShelfStockCountId).done();
-		
-		
-		
+
+
+
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, loadTokens);
-		
-		synchronized(goodsShelf){ 
+
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//goodsShelf.removeGoodsShelfStockCount( goodsShelfStockCount );	
+			//goodsShelf.removeGoodsShelfStockCount( goodsShelfStockCount );
 			//make changes to AcceleraterAccount.
 			GoodsShelfStockCount goodsShelfStockCountIndex = createIndexedGoodsShelfStockCount(goodsShelfStockCountId, goodsShelfStockCountVersion);
-		
+
 			GoodsShelfStockCount goodsShelfStockCount = goodsShelf.findTheGoodsShelfStockCount(goodsShelfStockCountIndex);
 			if(goodsShelfStockCount == null){
 				throw new GoodsShelfManagerException(goodsShelfStockCount+" is NOT FOUND" );
 			}
-			
+
 			goodsShelfStockCount.changeProperty(property, newValueExpr);
 			
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsShelfStockCountList().done());
@@ -822,12 +816,12 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, String location, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 
 		
@@ -839,20 +833,20 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
 
-	
+
 	}
 	public  GoodsShelf addGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, String location, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingGoodsAllocation(userContext,goodsShelfId,location, latitude, longitude,tokensExpr);
-		
+
 		GoodsAllocation goodsAllocation = createGoodsAllocation(userContext,location, latitude, longitude);
-		
-		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-		synchronized(goodsShelf){ 
+
+		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, emptyOptions());
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsShelf.addGoodsAllocation( goodsAllocation );		
+			goodsShelf.addGoodsAllocation( goodsAllocation );
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsAllocationList().done());
 			
 			userContext.getManagerGroup().getGoodsAllocationManager().onNewInstanceCreated(userContext, goodsAllocation);
@@ -860,47 +854,47 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	}
 	protected void checkParamsForUpdatingGoodsAllocationProperties(RetailscmUserContext userContext, String goodsShelfId,String id,String location,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 		checkerOf(userContext).checkIdOfGoodsAllocation(id);
-		
+
 		checkerOf(userContext).checkLocationOfGoodsAllocation( location);
 		checkerOf(userContext).checkLatitudeOfGoodsAllocation( latitude);
 		checkerOf(userContext).checkLongitudeOfGoodsAllocation( longitude);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-		
+
 	}
 	public  GoodsShelf updateGoodsAllocationProperties(RetailscmUserContext userContext, String goodsShelfId, String id,String location,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingGoodsAllocationProperties(userContext,goodsShelfId,id,location,latitude,longitude,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withGoodsAllocationListList()
 				.searchGoodsAllocationListWith(GoodsAllocation.ID_PROPERTY, "is", id).done();
-		
+
 		GoodsShelf goodsShelfToUpdate = loadGoodsShelf(userContext, goodsShelfId, options);
-		
+
 		if(goodsShelfToUpdate.getGoodsAllocationList().isEmpty()){
 			throw new GoodsShelfManagerException("GoodsAllocation is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		GoodsAllocation item = goodsShelfToUpdate.getGoodsAllocationList().first();
-		
+
 		item.updateLocation( location );
 		item.updateLatitude( latitude );
 		item.updateLongitude( longitude );
 
-		
+
 		//checkParamsForAddingGoodsAllocation(userContext,goodsShelfId,name, code, used,tokensExpr);
 		GoodsShelf goodsShelf = saveGoodsShelf(userContext, goodsShelfToUpdate, tokens().withGoodsAllocationList().done());
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected GoodsAllocation createGoodsAllocation(RetailscmUserContext userContext, String location, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		GoodsAllocation goodsAllocation = new GoodsAllocation();
@@ -912,38 +906,38 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		
 		return goodsAllocation;
-	
-		
+
+
 	}
-	
+
 	protected GoodsAllocation createIndexedGoodsAllocation(String id, int version){
 
 		GoodsAllocation goodsAllocation = new GoodsAllocation();
 		goodsAllocation.setId(id);
 		goodsAllocation.setVersion(version);
-		return goodsAllocation;			
-		
+		return goodsAllocation;
+
 	}
-	
-	protected void checkParamsForRemovingGoodsAllocationList(RetailscmUserContext userContext, String goodsShelfId, 
+
+	protected void checkParamsForRemovingGoodsAllocationList(RetailscmUserContext userContext, String goodsShelfId,
 			String goodsAllocationIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfGoodsShelf(goodsShelfId);
 		for(String goodsAllocationIdItem: goodsAllocationIds){
 			checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-		
+
 	}
-	public  GoodsShelf removeGoodsAllocationList(RetailscmUserContext userContext, String goodsShelfId, 
+	public  GoodsShelf removeGoodsAllocationList(RetailscmUserContext userContext, String goodsShelfId,
 			String goodsAllocationIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingGoodsAllocationList(userContext, goodsShelfId,  goodsAllocationIds, tokensExpr);
-			
-			
+
+
 			GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-			synchronized(goodsShelf){ 
+			synchronized(goodsShelf){
 				//Will be good when the goodsShelf loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				goodsShelfDaoOf(userContext).planToRemoveGoodsAllocationList(goodsShelf, goodsAllocationIds, allTokens());
@@ -952,65 +946,65 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 				return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, 
+
+	protected void checkParamsForRemovingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsAllocationId, int goodsAllocationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
 		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
 		checkerOf(userContext).checkVersionOfGoodsAllocation(goodsAllocationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-	
+
 	}
-	public  GoodsShelf removeGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, 
+	public  GoodsShelf removeGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsAllocationId, int goodsAllocationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingGoodsAllocation(userContext,goodsShelfId, goodsAllocationId, goodsAllocationVersion,tokensExpr);
-		
+
 		GoodsAllocation goodsAllocation = createIndexedGoodsAllocation(goodsAllocationId, goodsAllocationVersion);
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			goodsShelf.removeGoodsAllocation( goodsAllocation );		
+			goodsShelf.removeGoodsAllocation( goodsAllocation );
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsAllocationList().done());
 			deleteRelationInGraph(userContext, goodsAllocation);
 			return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, 
+	protected void checkParamsForCopyingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsAllocationId, int goodsAllocationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfGoodsShelf( goodsShelfId);
 		checkerOf(userContext).checkIdOfGoodsAllocation(goodsAllocationId);
 		checkerOf(userContext).checkVersionOfGoodsAllocation(goodsAllocationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-	
+
 	}
-	public  GoodsShelf copyGoodsAllocationFrom(RetailscmUserContext userContext, String goodsShelfId, 
+	public  GoodsShelf copyGoodsAllocationFrom(RetailscmUserContext userContext, String goodsShelfId,
 		String goodsAllocationId, int goodsAllocationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingGoodsAllocation(userContext,goodsShelfId, goodsAllocationId, goodsAllocationVersion,tokensExpr);
-		
+
 		GoodsAllocation goodsAllocation = createIndexedGoodsAllocation(goodsAllocationId, goodsAllocationVersion);
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, allTokens());
-		synchronized(goodsShelf){ 
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			goodsShelf.copyGoodsAllocationFrom( goodsAllocation );		
+
+			goodsShelf.copyGoodsAllocationFrom( goodsAllocation );
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsAllocationList().done());
 			
 			userContext.getManagerGroup().getGoodsAllocationManager().onNewInstanceCreated(userContext, (GoodsAllocation)goodsShelf.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,goodsShelf, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, String goodsAllocationId, int goodsAllocationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1034,32 +1028,32 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GoodsShelfManagerException.class);
-	
+
 	}
-	
+
 	public  GoodsShelf updateGoodsAllocation(RetailscmUserContext userContext, String goodsShelfId, String goodsAllocationId, int goodsAllocationVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingGoodsAllocation(userContext, goodsShelfId, goodsAllocationId, goodsAllocationVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withGoodsAllocationList().searchGoodsAllocationListWith(GoodsAllocation.ID_PROPERTY, "eq", goodsAllocationId).done();
-		
-		
-		
+
+
+
 		GoodsShelf goodsShelf = loadGoodsShelf(userContext, goodsShelfId, loadTokens);
-		
-		synchronized(goodsShelf){ 
+
+		synchronized(goodsShelf){
 			//Will be good when the goodsShelf loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//goodsShelf.removeGoodsAllocation( goodsAllocation );	
+			//goodsShelf.removeGoodsAllocation( goodsAllocation );
 			//make changes to AcceleraterAccount.
 			GoodsAllocation goodsAllocationIndex = createIndexedGoodsAllocation(goodsAllocationId, goodsAllocationVersion);
-		
+
 			GoodsAllocation goodsAllocation = goodsShelf.findTheGoodsAllocation(goodsAllocationIndex);
 			if(goodsAllocation == null){
 				throw new GoodsShelfManagerException(goodsAllocation+" is NOT FOUND" );
 			}
-			
+
 			goodsAllocation.changeProperty(property, newValueExpr);
 			
 			goodsShelf = saveGoodsShelf(userContext, goodsShelf, tokens().withGoodsAllocationList().done());
@@ -1070,14 +1064,20 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, GoodsShelf newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

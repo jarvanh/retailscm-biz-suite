@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.transportfleet.TransportFleet;
 import com.doublechaintech.retailscm.transporttask.TransportTask;
@@ -36,28 +27,31 @@ import com.doublechaintech.retailscm.transportfleet.TransportFleet;
 
 
 public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implements TruckDriverManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "TruckDriver";
 	@Override
 	public TruckDriverDAO daoOf(RetailscmUserContext userContext) {
 		return truckDriverDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws TruckDriverManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new TruckDriverManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected TruckDriver saveTruckDriver(RetailscmUserContext userContext, TruckDriver truckDriver, String [] tokensExpr) throws Exception{	
  		//return getTruckDriverDAO().save(truckDriver, tokens);
@@ -173,10 +167,10 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
  	
  	
 
-	public TruckDriver createTruckDriver(RetailscmUserContext userContext, String name,long driverLicenseNumber,String contactNumber,String belongsToId) throws Exception
-	//public TruckDriver createTruckDriver(RetailscmUserContext userContext,String name, long driverLicenseNumber, String contactNumber, String belongsToId) throws Exception
+	public TruckDriver createTruckDriver(RetailscmUserContext userContext, String name,String driverLicenseNumber,String contactNumber,String belongsToId) throws Exception
+	//public TruckDriver createTruckDriver(RetailscmUserContext userContext,String name, String driverLicenseNumber, String contactNumber, String belongsToId) throws Exception
 	{
-		
+
 		
 
 		
@@ -204,14 +198,14 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		onNewInstanceCreated(userContext, truckDriver);
 		return truckDriver;
 
-		
+
 	}
-	protected TruckDriver createNewTruckDriver() 
+	protected TruckDriver createNewTruckDriver()
 	{
-		
-		return new TruckDriver();		
+
+		return new TruckDriver();
 	}
-	
+
 	protected void checkParamsForUpdatingTruckDriver(RetailscmUserContext userContext,String truckDriverId, int truckDriverVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,7 +220,7 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 			checkerOf(userContext).checkNameOfTruckDriver(parseString(newValueExpr));
 		}
 		if(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkDriverLicenseNumberOfTruckDriver(parseLong(newValueExpr));
+			checkerOf(userContext).checkDriverLicenseNumberOfTruckDriver(parseString(newValueExpr));
 		}
 		if(TruckDriver.CONTACT_NUMBER_PROPERTY.equals(property)){
 			checkerOf(userContext).checkContactNumberOfTruckDriver(parseString(newValueExpr));
@@ -235,28 +229,28 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public TruckDriver clone(RetailscmUserContext userContext, String fromTruckDriverId) throws Exception{
-		
+
 		return truckDriverDaoOf(userContext).clone(fromTruckDriverId, this.allTokens());
 	}
-	
-	public TruckDriver internalSaveTruckDriver(RetailscmUserContext userContext, TruckDriver truckDriver) throws Exception 
+
+	public TruckDriver internalSaveTruckDriver(RetailscmUserContext userContext, TruckDriver truckDriver) throws Exception
 	{
 		return internalSaveTruckDriver(userContext, truckDriver, allTokens());
 
 	}
-	public TruckDriver internalSaveTruckDriver(RetailscmUserContext userContext, TruckDriver truckDriver, Map<String,Object> options) throws Exception 
+	public TruckDriver internalSaveTruckDriver(RetailscmUserContext userContext, TruckDriver truckDriver, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingTruckDriver(userContext, truckDriverId, truckDriverVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(truckDriver){ 
+
+
+		synchronized(truckDriver){
 			//will be good when the truckDriver loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TruckDriver.
@@ -265,23 +259,23 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 			}
 			truckDriver = saveTruckDriver(userContext, truckDriver, options);
 			return truckDriver;
-			
+
 		}
 
 	}
-	
-	public TruckDriver updateTruckDriver(RetailscmUserContext userContext,String truckDriverId, int truckDriverVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TruckDriver updateTruckDriver(RetailscmUserContext userContext,String truckDriverId, int truckDriverVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTruckDriver(userContext, truckDriverId, truckDriverVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
 		if(truckDriver.getVersion() != truckDriverVersion){
 			String message = "The target version("+truckDriver.getVersion()+") is not equals to version("+truckDriverVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(truckDriver){ 
+		synchronized(truckDriver){
 			//will be good when the truckDriver loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TruckDriver.
@@ -293,21 +287,21 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		}
 
 	}
-	
-	public TruckDriver updateTruckDriverProperty(RetailscmUserContext userContext,String truckDriverId, int truckDriverVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TruckDriver updateTruckDriverProperty(RetailscmUserContext userContext,String truckDriverId, int truckDriverVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTruckDriver(userContext, truckDriverId, truckDriverVersion, property, newValueExpr, tokensExpr);
-		
+
 		TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
 		if(truckDriver.getVersion() != truckDriverVersion){
 			String message = "The target version("+truckDriver.getVersion()+") is not equals to version("+truckDriverVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(truckDriver){ 
+		synchronized(truckDriver){
 			//will be good when the truckDriver loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TruckDriver.
-			
+
 			truckDriver.changeProperty(property, newValueExpr);
 			
 			truckDriver = saveTruckDriver(userContext, truckDriver, tokens().done());
@@ -319,7 +313,7 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected TruckDriverTokens tokens(){
 		return TruckDriverTokens.start();
 	}
@@ -341,11 +335,11 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	
 	protected void checkParamsForTransferingAnotherBelongsTo(RetailscmUserContext userContext, String truckDriverId, String anotherBelongsToId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfTruckDriver(truckDriverId);
  		checkerOf(userContext).checkIdOfTransportFleet(anotherBelongsToId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
- 		
+
  	}
  	public TruckDriver transferToAnotherBelongsTo(RetailscmUserContext userContext, String truckDriverId, String anotherBelongsToId) throws Exception
  	{
@@ -364,10 +358,10 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateTransportFleet requestCandidateBelongsTo(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateTransportFleet result = new CandidateTransportFleet();
@@ -377,7 +371,7 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -387,42 +381,42 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected TransportFleet loadTransportFleet(RetailscmUserContext userContext, String newBelongsToId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return transportFleetDaoOf(userContext).load(newBelongsToId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String truckDriverId, int truckDriverVersion) throws Exception {
-		//deleteInternal(userContext, truckDriverId, truckDriverVersion);		
+		//deleteInternal(userContext, truckDriverId, truckDriverVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String truckDriverId, int truckDriverVersion) throws Exception{
-			
+
 		truckDriverDaoOf(userContext).delete(truckDriverId, truckDriverVersion);
 	}
-	
+
 	public TruckDriver forgetByAll(RetailscmUserContext userContext, String truckDriverId, int truckDriverVersion) throws Exception {
-		return forgetByAllInternal(userContext, truckDriverId, truckDriverVersion);		
+		return forgetByAllInternal(userContext, truckDriverId, truckDriverVersion);
 	}
 	protected TruckDriver forgetByAllInternal(RetailscmUserContext userContext,
 			String truckDriverId, int truckDriverVersion) throws Exception{
-			
+
 		return truckDriverDaoOf(userContext).disconnectFromAll(truckDriverId, truckDriverVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -433,8 +427,8 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return truckDriverDaoOf(userContext).deleteAll();
 	}
@@ -443,15 +437,15 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect TruckDriver with end in TransportTask
 	protected TruckDriver breakWithTransportTaskByEnd(RetailscmUserContext userContext, String truckDriverId, String endId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
 
-			synchronized(truckDriver){ 
+			synchronized(truckDriver){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				truckDriverDaoOf(userContext).planToRemoveTransportTaskListWithEnd(truckDriver, endId, this.emptyOptions());
 
 				truckDriver = saveTruckDriver(userContext, truckDriver, tokens().withTransportTaskList().done());
@@ -461,15 +455,15 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect TruckDriver with truck in TransportTask
 	protected TruckDriver breakWithTransportTaskByTruck(RetailscmUserContext userContext, String truckDriverId, String truckId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
 
-			synchronized(truckDriver){ 
+			synchronized(truckDriver){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				truckDriverDaoOf(userContext).planToRemoveTransportTaskListWithTruck(truckDriver, truckId, this.emptyOptions());
 
 				truckDriver = saveTruckDriver(userContext, truckDriver, tokens().withTransportTaskList().done());
@@ -479,29 +473,29 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	//disconnect TruckDriver with belongs_to in TransportTask
 	protected TruckDriver breakWithTransportTaskByBelongsTo(RetailscmUserContext userContext, String truckDriverId, String belongsToId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
 
-			synchronized(truckDriver){ 
+			synchronized(truckDriver){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				truckDriverDaoOf(userContext).planToRemoveTransportTaskListWithBelongsTo(truckDriver, belongsToId, this.emptyOptions());
 
 				truckDriver = saveTruckDriver(userContext, truckDriver, tokens().withTransportTaskList().done());
 				return truckDriver;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingTransportTask(RetailscmUserContext userContext, String truckDriverId, String name, String start, Date beginTime, String endId, String truckId, String belongsToId, BigDecimal latitude, BigDecimal longitude,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfTruckDriver(truckDriverId);
 
 		
@@ -523,20 +517,20 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
 
-	
+
 	}
 	public  TruckDriver addTransportTask(RetailscmUserContext userContext, String truckDriverId, String name, String start, Date beginTime, String endId, String truckId, String belongsToId, BigDecimal latitude, BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingTransportTask(userContext,truckDriverId,name, start, beginTime, endId, truckId, belongsToId, latitude, longitude,tokensExpr);
-		
+
 		TransportTask transportTask = createTransportTask(userContext,name, start, beginTime, endId, truckId, belongsToId, latitude, longitude);
-		
-		TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
-		synchronized(truckDriver){ 
+
+		TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, emptyOptions());
+		synchronized(truckDriver){
 			//Will be good when the truckDriver loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			truckDriver.addTransportTask( transportTask );		
+			truckDriver.addTransportTask( transportTask );
 			truckDriver = saveTruckDriver(userContext, truckDriver, tokens().withTransportTaskList().done());
 			
 			userContext.getManagerGroup().getTransportTaskManager().onNewInstanceCreated(userContext, transportTask);
@@ -544,10 +538,10 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		}
 	}
 	protected void checkParamsForUpdatingTransportTaskProperties(RetailscmUserContext userContext, String truckDriverId,String id,String name,String start,Date beginTime,BigDecimal latitude,BigDecimal longitude,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfTruckDriver(truckDriverId);
 		checkerOf(userContext).checkIdOfTransportTask(id);
-		
+
 		checkerOf(userContext).checkNameOfTransportTask( name);
 		checkerOf(userContext).checkStartOfTransportTask( start);
 		checkerOf(userContext).checkBeginTimeOfTransportTask( beginTime);
@@ -555,40 +549,40 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		checkerOf(userContext).checkLongitudeOfTransportTask( longitude);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
-		
+
 	}
 	public  TruckDriver updateTransportTaskProperties(RetailscmUserContext userContext, String truckDriverId, String id,String name,String start,Date beginTime,BigDecimal latitude,BigDecimal longitude, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingTransportTaskProperties(userContext,truckDriverId,id,name,start,beginTime,latitude,longitude,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withTransportTaskListList()
 				.searchTransportTaskListWith(TransportTask.ID_PROPERTY, "is", id).done();
-		
+
 		TruckDriver truckDriverToUpdate = loadTruckDriver(userContext, truckDriverId, options);
-		
+
 		if(truckDriverToUpdate.getTransportTaskList().isEmpty()){
 			throw new TruckDriverManagerException("TransportTask is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		TransportTask item = truckDriverToUpdate.getTransportTaskList().first();
-		
+
 		item.updateName( name );
 		item.updateStart( start );
 		item.updateBeginTime( beginTime );
 		item.updateLatitude( latitude );
 		item.updateLongitude( longitude );
 
-		
+
 		//checkParamsForAddingTransportTask(userContext,truckDriverId,name, code, used,tokensExpr);
 		TruckDriver truckDriver = saveTruckDriver(userContext, truckDriverToUpdate, tokens().withTransportTaskList().done());
-		synchronized(truckDriver){ 
+		synchronized(truckDriver){
 			return present(userContext,truckDriver, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected TransportTask createTransportTask(RetailscmUserContext userContext, String name, String start, Date beginTime, String endId, String truckId, String belongsToId, BigDecimal latitude, BigDecimal longitude) throws Exception{
 
 		TransportTask transportTask = new TransportTask();
@@ -611,38 +605,38 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	
 		
 		return transportTask;
-	
-		
+
+
 	}
-	
+
 	protected TransportTask createIndexedTransportTask(String id, int version){
 
 		TransportTask transportTask = new TransportTask();
 		transportTask.setId(id);
 		transportTask.setVersion(version);
-		return transportTask;			
-		
+		return transportTask;
+
 	}
-	
-	protected void checkParamsForRemovingTransportTaskList(RetailscmUserContext userContext, String truckDriverId, 
+
+	protected void checkParamsForRemovingTransportTaskList(RetailscmUserContext userContext, String truckDriverId,
 			String transportTaskIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfTruckDriver(truckDriverId);
 		for(String transportTaskIdItem: transportTaskIds){
 			checkerOf(userContext).checkIdOfTransportTask(transportTaskIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
-		
+
 	}
-	public  TruckDriver removeTransportTaskList(RetailscmUserContext userContext, String truckDriverId, 
+	public  TruckDriver removeTransportTaskList(RetailscmUserContext userContext, String truckDriverId,
 			String transportTaskIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingTransportTaskList(userContext, truckDriverId,  transportTaskIds, tokensExpr);
-			
-			
+
+
 			TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
-			synchronized(truckDriver){ 
+			synchronized(truckDriver){
 				//Will be good when the truckDriver loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				truckDriverDaoOf(userContext).planToRemoveTransportTaskList(truckDriver, transportTaskIds, allTokens());
@@ -651,65 +645,65 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 				return present(userContext,truckDriver, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingTransportTask(RetailscmUserContext userContext, String truckDriverId, 
+
+	protected void checkParamsForRemovingTransportTask(RetailscmUserContext userContext, String truckDriverId,
 		String transportTaskId, int transportTaskVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTruckDriver( truckDriverId);
 		checkerOf(userContext).checkIdOfTransportTask(transportTaskId);
 		checkerOf(userContext).checkVersionOfTransportTask(transportTaskVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
-	
+
 	}
-	public  TruckDriver removeTransportTask(RetailscmUserContext userContext, String truckDriverId, 
+	public  TruckDriver removeTransportTask(RetailscmUserContext userContext, String truckDriverId,
 		String transportTaskId, int transportTaskVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingTransportTask(userContext,truckDriverId, transportTaskId, transportTaskVersion,tokensExpr);
-		
+
 		TransportTask transportTask = createIndexedTransportTask(transportTaskId, transportTaskVersion);
 		TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
-		synchronized(truckDriver){ 
+		synchronized(truckDriver){
 			//Will be good when the truckDriver loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			truckDriver.removeTransportTask( transportTask );		
+			truckDriver.removeTransportTask( transportTask );
 			truckDriver = saveTruckDriver(userContext, truckDriver, tokens().withTransportTaskList().done());
 			deleteRelationInGraph(userContext, transportTask);
 			return present(userContext,truckDriver, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingTransportTask(RetailscmUserContext userContext, String truckDriverId, 
+	protected void checkParamsForCopyingTransportTask(RetailscmUserContext userContext, String truckDriverId,
 		String transportTaskId, int transportTaskVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTruckDriver( truckDriverId);
 		checkerOf(userContext).checkIdOfTransportTask(transportTaskId);
 		checkerOf(userContext).checkVersionOfTransportTask(transportTaskVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
-	
+
 	}
-	public  TruckDriver copyTransportTaskFrom(RetailscmUserContext userContext, String truckDriverId, 
+	public  TruckDriver copyTransportTaskFrom(RetailscmUserContext userContext, String truckDriverId,
 		String transportTaskId, int transportTaskVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingTransportTask(userContext,truckDriverId, transportTaskId, transportTaskVersion,tokensExpr);
-		
+
 		TransportTask transportTask = createIndexedTransportTask(transportTaskId, transportTaskVersion);
 		TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, allTokens());
-		synchronized(truckDriver){ 
+		synchronized(truckDriver){
 			//Will be good when the truckDriver loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			truckDriver.copyTransportTaskFrom( transportTask );		
+
+			truckDriver.copyTransportTaskFrom( transportTask );
 			truckDriver = saveTruckDriver(userContext, truckDriver, tokens().withTransportTaskList().done());
 			
 			userContext.getManagerGroup().getTransportTaskManager().onNewInstanceCreated(userContext, (TransportTask)truckDriver.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,truckDriver, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingTransportTask(RetailscmUserContext userContext, String truckDriverId, String transportTaskId, int transportTaskVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -741,32 +735,32 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TruckDriverManagerException.class);
-	
+
 	}
-	
+
 	public  TruckDriver updateTransportTask(RetailscmUserContext userContext, String truckDriverId, String transportTaskId, int transportTaskVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingTransportTask(userContext, truckDriverId, transportTaskId, transportTaskVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withTransportTaskList().searchTransportTaskListWith(TransportTask.ID_PROPERTY, "eq", transportTaskId).done();
-		
-		
-		
+
+
+
 		TruckDriver truckDriver = loadTruckDriver(userContext, truckDriverId, loadTokens);
-		
-		synchronized(truckDriver){ 
+
+		synchronized(truckDriver){
 			//Will be good when the truckDriver loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//truckDriver.removeTransportTask( transportTask );	
+			//truckDriver.removeTransportTask( transportTask );
 			//make changes to AcceleraterAccount.
 			TransportTask transportTaskIndex = createIndexedTransportTask(transportTaskId, transportTaskVersion);
-		
+
 			TransportTask transportTask = truckDriver.findTheTransportTask(transportTaskIndex);
 			if(transportTask == null){
 				throw new TruckDriverManagerException(transportTask+" is NOT FOUND" );
 			}
-			
+
 			transportTask.changeProperty(property, newValueExpr);
 			
 			truckDriver = saveTruckDriver(userContext, truckDriver, tokens().withTransportTaskList().done());
@@ -777,14 +771,20 @@ public class TruckDriverManagerImpl extends CustomRetailscmCheckerManager implem
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, TruckDriver newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

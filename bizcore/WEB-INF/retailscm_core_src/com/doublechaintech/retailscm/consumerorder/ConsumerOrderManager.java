@@ -13,18 +13,13 @@ public interface ConsumerOrderManager extends BaseManager{
 
 		
 
-	public ConsumerOrder createConsumerOrder(RetailscmUserContext userContext, String title,String consumerId,String confirmationId,String approvalId,String processingId,String shipmentId,String deliveryId,String storeId) throws Exception;	
+	public ConsumerOrder createConsumerOrder(RetailscmUserContext userContext, String title,String consumerId,String storeId) throws Exception;	
 	public ConsumerOrder updateConsumerOrder(RetailscmUserContext userContext,String consumerOrderId, int consumerOrderVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String consumerOrderId, String [] tokensExpr) throws Exception;
 	public ConsumerOrder internalSaveConsumerOrder(RetailscmUserContext userContext, ConsumerOrder consumerOrder) throws Exception;
 	public ConsumerOrder internalSaveConsumerOrder(RetailscmUserContext userContext, ConsumerOrder consumerOrder,Map<String,Object>option) throws Exception;
 	
 	public ConsumerOrder transferToAnotherConsumer(RetailscmUserContext userContext, String consumerOrderId, String anotherConsumerId)  throws Exception;
- 	public ConsumerOrder transferToAnotherConfirmation(RetailscmUserContext userContext, String consumerOrderId, String anotherConfirmationId)  throws Exception;
- 	public ConsumerOrder transferToAnotherApproval(RetailscmUserContext userContext, String consumerOrderId, String anotherApprovalId)  throws Exception;
- 	public ConsumerOrder transferToAnotherProcessing(RetailscmUserContext userContext, String consumerOrderId, String anotherProcessingId)  throws Exception;
- 	public ConsumerOrder transferToAnotherShipment(RetailscmUserContext userContext, String consumerOrderId, String anotherShipmentId)  throws Exception;
- 	public ConsumerOrder transferToAnotherDelivery(RetailscmUserContext userContext, String consumerOrderId, String anotherDeliveryId)  throws Exception;
  	public ConsumerOrder transferToAnotherStore(RetailscmUserContext userContext, String consumerOrderId, String anotherStoreId)  throws Exception;
  
 

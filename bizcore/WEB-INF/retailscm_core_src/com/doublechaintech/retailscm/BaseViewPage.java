@@ -249,7 +249,7 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 
 		}
 		if (value.getClass().isArray()) {
-			return doRenderingList(fieldScope, Arrays.asList(value), path, resultMap, key);
+			return doRenderingList(fieldScope, Arrays.asList((Object[])value), path, resultMap, key);
 		}
 		if (value instanceof List) {
 			return doRenderingList(fieldScope, (List) value, path, resultMap, key);

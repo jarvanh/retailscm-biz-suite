@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.eventattendance.EventAttendance;
 import com.doublechaintech.retailscm.potentialcustomercontact.PotentialCustomerContact;
@@ -40,28 +31,31 @@ import com.doublechaintech.retailscm.potentialcustomercontactperson.PotentialCus
 
 
 public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager implements PotentialCustomerManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "PotentialCustomer";
 	@Override
 	public PotentialCustomerDAO daoOf(RetailscmUserContext userContext) {
 		return potentialCustomerDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws PotentialCustomerManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new PotentialCustomerManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected PotentialCustomer savePotentialCustomer(RetailscmUserContext userContext, PotentialCustomer potentialCustomer, String [] tokensExpr) throws Exception{	
  		//return getPotentialCustomerDAO().save(potentialCustomer, tokens);
@@ -189,7 +183,7 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	public PotentialCustomer createPotentialCustomer(RetailscmUserContext userContext, String name,String mobile,String cityServiceCenterId,String cityPartnerId,String description) throws Exception
 	//public PotentialCustomer createPotentialCustomer(RetailscmUserContext userContext,String name, String mobile, String cityServiceCenterId, String cityPartnerId, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -223,14 +217,14 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		onNewInstanceCreated(userContext, potentialCustomer);
 		return potentialCustomer;
 
-		
+
 	}
-	protected PotentialCustomer createNewPotentialCustomer() 
+	protected PotentialCustomer createNewPotentialCustomer()
 	{
-		
-		return new PotentialCustomer();		
+
+		return new PotentialCustomer();
 	}
-	
+
 	protected void checkParamsForUpdatingPotentialCustomer(RetailscmUserContext userContext,String potentialCustomerId, int potentialCustomerVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -256,28 +250,28 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public PotentialCustomer clone(RetailscmUserContext userContext, String fromPotentialCustomerId) throws Exception{
-		
+
 		return potentialCustomerDaoOf(userContext).clone(fromPotentialCustomerId, this.allTokens());
 	}
-	
-	public PotentialCustomer internalSavePotentialCustomer(RetailscmUserContext userContext, PotentialCustomer potentialCustomer) throws Exception 
+
+	public PotentialCustomer internalSavePotentialCustomer(RetailscmUserContext userContext, PotentialCustomer potentialCustomer) throws Exception
 	{
 		return internalSavePotentialCustomer(userContext, potentialCustomer, allTokens());
 
 	}
-	public PotentialCustomer internalSavePotentialCustomer(RetailscmUserContext userContext, PotentialCustomer potentialCustomer, Map<String,Object> options) throws Exception 
+	public PotentialCustomer internalSavePotentialCustomer(RetailscmUserContext userContext, PotentialCustomer potentialCustomer, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingPotentialCustomer(userContext, potentialCustomerId, potentialCustomerVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(potentialCustomer){ 
+
+
+		synchronized(potentialCustomer){
 			//will be good when the potentialCustomer loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PotentialCustomer.
@@ -286,23 +280,23 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 			}
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, options);
 			return potentialCustomer;
-			
+
 		}
 
 	}
-	
-	public PotentialCustomer updatePotentialCustomer(RetailscmUserContext userContext,String potentialCustomerId, int potentialCustomerVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public PotentialCustomer updatePotentialCustomer(RetailscmUserContext userContext,String potentialCustomerId, int potentialCustomerVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingPotentialCustomer(userContext, potentialCustomerId, potentialCustomerVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
 		if(potentialCustomer.getVersion() != potentialCustomerVersion){
 			String message = "The target version("+potentialCustomer.getVersion()+") is not equals to version("+potentialCustomerVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//will be good when the potentialCustomer loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PotentialCustomer.
@@ -314,21 +308,21 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
 	}
-	
-	public PotentialCustomer updatePotentialCustomerProperty(RetailscmUserContext userContext,String potentialCustomerId, int potentialCustomerVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public PotentialCustomer updatePotentialCustomerProperty(RetailscmUserContext userContext,String potentialCustomerId, int potentialCustomerVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingPotentialCustomer(userContext, potentialCustomerId, potentialCustomerVersion, property, newValueExpr, tokensExpr);
-		
+
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
 		if(potentialCustomer.getVersion() != potentialCustomerVersion){
 			String message = "The target version("+potentialCustomer.getVersion()+") is not equals to version("+potentialCustomerVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//will be good when the potentialCustomer loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PotentialCustomer.
-			
+
 			potentialCustomer.changeProperty(property, newValueExpr);
 			potentialCustomer.updateLastUpdateTime(userContext.now());
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().done());
@@ -340,7 +334,7 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected PotentialCustomerTokens tokens(){
 		return PotentialCustomerTokens.start();
 	}
@@ -364,11 +358,11 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	
 	protected void checkParamsForTransferingAnotherCityServiceCenter(RetailscmUserContext userContext, String potentialCustomerId, String anotherCityServiceCenterId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
  		checkerOf(userContext).checkIdOfRetailStoreCityServiceCenter(anotherCityServiceCenterId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
- 		
+
  	}
  	public PotentialCustomer transferToAnotherCityServiceCenter(RetailscmUserContext userContext, String potentialCustomerId, String anotherCityServiceCenterId) throws Exception
  	{
@@ -387,10 +381,10 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCityServiceCenter requestCandidateCityServiceCenter(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCityServiceCenter result = new CandidateRetailStoreCityServiceCenter();
@@ -400,7 +394,7 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -410,14 +404,14 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherCityPartner(RetailscmUserContext userContext, String potentialCustomerId, String anotherCityPartnerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
  		checkerOf(userContext).checkIdOfCityPartner(anotherCityPartnerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
- 		
+
  	}
  	public PotentialCustomer transferToAnotherCityPartner(RetailscmUserContext userContext, String potentialCustomerId, String anotherCityPartnerId) throws Exception
  	{
@@ -436,10 +430,10 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateCityPartner requestCandidateCityPartner(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateCityPartner result = new CandidateCityPartner();
@@ -449,7 +443,7 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -459,52 +453,52 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected CityPartner loadCityPartner(RetailscmUserContext userContext, String newCityPartnerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return cityPartnerDaoOf(userContext).load(newCityPartnerId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected RetailStoreCityServiceCenter loadRetailStoreCityServiceCenter(RetailscmUserContext userContext, String newCityServiceCenterId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCityServiceCenterDaoOf(userContext).load(newCityServiceCenterId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String potentialCustomerId, int potentialCustomerVersion) throws Exception {
-		//deleteInternal(userContext, potentialCustomerId, potentialCustomerVersion);		
+		//deleteInternal(userContext, potentialCustomerId, potentialCustomerVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String potentialCustomerId, int potentialCustomerVersion) throws Exception{
-			
+
 		potentialCustomerDaoOf(userContext).delete(potentialCustomerId, potentialCustomerVersion);
 	}
-	
+
 	public PotentialCustomer forgetByAll(RetailscmUserContext userContext, String potentialCustomerId, int potentialCustomerVersion) throws Exception {
-		return forgetByAllInternal(userContext, potentialCustomerId, potentialCustomerVersion);		
+		return forgetByAllInternal(userContext, potentialCustomerId, potentialCustomerVersion);
 	}
 	protected PotentialCustomer forgetByAllInternal(RetailscmUserContext userContext,
 			String potentialCustomerId, int potentialCustomerVersion) throws Exception{
-			
+
 		return potentialCustomerDaoOf(userContext).disconnectFromAll(potentialCustomerId, potentialCustomerVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -515,8 +509,8 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return potentialCustomerDaoOf(userContext).deleteAll();
 	}
@@ -525,15 +519,15 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	//disconnect PotentialCustomer with city_partner in PotentialCustomerContact
 	protected PotentialCustomer breakWithPotentialCustomerContactByCityPartner(RetailscmUserContext userContext, String potentialCustomerId, String cityPartnerId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
 
-			synchronized(potentialCustomer){ 
+			synchronized(potentialCustomer){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				potentialCustomerDaoOf(userContext).planToRemovePotentialCustomerContactListWithCityPartner(potentialCustomer, cityPartnerId, this.emptyOptions());
 
 				potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactList().done());
@@ -543,15 +537,15 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	//disconnect PotentialCustomer with contact_to in PotentialCustomerContact
 	protected PotentialCustomer breakWithPotentialCustomerContactByContactTo(RetailscmUserContext userContext, String potentialCustomerId, String contactToId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
 
-			synchronized(potentialCustomer){ 
+			synchronized(potentialCustomer){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				potentialCustomerDaoOf(userContext).planToRemovePotentialCustomerContactListWithContactTo(potentialCustomer, contactToId, this.emptyOptions());
 
 				potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactList().done());
@@ -561,29 +555,29 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	//disconnect PotentialCustomer with city_event in EventAttendance
 	protected PotentialCustomer breakWithEventAttendanceByCityEvent(RetailscmUserContext userContext, String potentialCustomerId, String cityEventId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
 
-			synchronized(potentialCustomer){ 
+			synchronized(potentialCustomer){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				potentialCustomerDaoOf(userContext).planToRemoveEventAttendanceListWithCityEvent(potentialCustomer, cityEventId, this.emptyOptions());
 
 				potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withEventAttendanceList().done());
 				return potentialCustomer;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId, String name, String mobile, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 
 		
@@ -595,20 +589,20 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
 
-	
+
 	}
 	public  PotentialCustomer addPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId, String name, String mobile, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingPotentialCustomerContactPerson(userContext,potentialCustomerId,name, mobile, description,tokensExpr);
-		
+
 		PotentialCustomerContactPerson potentialCustomerContactPerson = createPotentialCustomerContactPerson(userContext,name, mobile, description);
-		
-		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+
+		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, emptyOptions());
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			potentialCustomer.addPotentialCustomerContactPerson( potentialCustomerContactPerson );		
+			potentialCustomer.addPotentialCustomerContactPerson( potentialCustomerContactPerson );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactPersonList().done());
 			
 			userContext.getManagerGroup().getPotentialCustomerContactPersonManager().onNewInstanceCreated(userContext, potentialCustomerContactPerson);
@@ -616,47 +610,47 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	}
 	protected void checkParamsForUpdatingPotentialCustomerContactPersonProperties(RetailscmUserContext userContext, String potentialCustomerId,String id,String name,String mobile,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 		checkerOf(userContext).checkIdOfPotentialCustomerContactPerson(id);
-		
+
 		checkerOf(userContext).checkNameOfPotentialCustomerContactPerson( name);
 		checkerOf(userContext).checkMobileOfPotentialCustomerContactPerson( mobile);
 		checkerOf(userContext).checkDescriptionOfPotentialCustomerContactPerson( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-		
+
 	}
 	public  PotentialCustomer updatePotentialCustomerContactPersonProperties(RetailscmUserContext userContext, String potentialCustomerId, String id,String name,String mobile,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingPotentialCustomerContactPersonProperties(userContext,potentialCustomerId,id,name,mobile,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withPotentialCustomerContactPersonListList()
 				.searchPotentialCustomerContactPersonListWith(PotentialCustomerContactPerson.ID_PROPERTY, "is", id).done();
-		
+
 		PotentialCustomer potentialCustomerToUpdate = loadPotentialCustomer(userContext, potentialCustomerId, options);
-		
+
 		if(potentialCustomerToUpdate.getPotentialCustomerContactPersonList().isEmpty()){
 			throw new PotentialCustomerManagerException("PotentialCustomerContactPerson is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		PotentialCustomerContactPerson item = potentialCustomerToUpdate.getPotentialCustomerContactPersonList().first();
-		
+
 		item.updateName( name );
 		item.updateMobile( mobile );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingPotentialCustomerContactPerson(userContext,potentialCustomerId,name, code, used,tokensExpr);
 		PotentialCustomer potentialCustomer = savePotentialCustomer(userContext, potentialCustomerToUpdate, tokens().withPotentialCustomerContactPersonList().done());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected PotentialCustomerContactPerson createPotentialCustomerContactPerson(RetailscmUserContext userContext, String name, String mobile, String description) throws Exception{
 
 		PotentialCustomerContactPerson potentialCustomerContactPerson = new PotentialCustomerContactPerson();
@@ -668,38 +662,38 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	
 		
 		return potentialCustomerContactPerson;
-	
-		
+
+
 	}
-	
+
 	protected PotentialCustomerContactPerson createIndexedPotentialCustomerContactPerson(String id, int version){
 
 		PotentialCustomerContactPerson potentialCustomerContactPerson = new PotentialCustomerContactPerson();
 		potentialCustomerContactPerson.setId(id);
 		potentialCustomerContactPerson.setVersion(version);
-		return potentialCustomerContactPerson;			
-		
+		return potentialCustomerContactPerson;
+
 	}
-	
-	protected void checkParamsForRemovingPotentialCustomerContactPersonList(RetailscmUserContext userContext, String potentialCustomerId, 
+
+	protected void checkParamsForRemovingPotentialCustomerContactPersonList(RetailscmUserContext userContext, String potentialCustomerId,
 			String potentialCustomerContactPersonIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 		for(String potentialCustomerContactPersonIdItem: potentialCustomerContactPersonIds){
 			checkerOf(userContext).checkIdOfPotentialCustomerContactPerson(potentialCustomerContactPersonIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-		
+
 	}
-	public  PotentialCustomer removePotentialCustomerContactPersonList(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer removePotentialCustomerContactPersonList(RetailscmUserContext userContext, String potentialCustomerId,
 			String potentialCustomerContactPersonIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingPotentialCustomerContactPersonList(userContext, potentialCustomerId,  potentialCustomerContactPersonIds, tokensExpr);
-			
-			
+
+
 			PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-			synchronized(potentialCustomer){ 
+			synchronized(potentialCustomer){
 				//Will be good when the potentialCustomer loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				potentialCustomerDaoOf(userContext).planToRemovePotentialCustomerContactPersonList(potentialCustomer, potentialCustomerContactPersonIds, allTokens());
@@ -708,65 +702,65 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 				return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId, 
+
+	protected void checkParamsForRemovingPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactPersonId, int potentialCustomerContactPersonVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPotentialCustomer( potentialCustomerId);
 		checkerOf(userContext).checkIdOfPotentialCustomerContactPerson(potentialCustomerContactPersonId);
 		checkerOf(userContext).checkVersionOfPotentialCustomerContactPerson(potentialCustomerContactPersonVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	public  PotentialCustomer removePotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer removePotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactPersonId, int potentialCustomerContactPersonVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingPotentialCustomerContactPerson(userContext,potentialCustomerId, potentialCustomerContactPersonId, potentialCustomerContactPersonVersion,tokensExpr);
-		
+
 		PotentialCustomerContactPerson potentialCustomerContactPerson = createIndexedPotentialCustomerContactPerson(potentialCustomerContactPersonId, potentialCustomerContactPersonVersion);
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			potentialCustomer.removePotentialCustomerContactPerson( potentialCustomerContactPerson );		
+			potentialCustomer.removePotentialCustomerContactPerson( potentialCustomerContactPerson );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactPersonList().done());
 			deleteRelationInGraph(userContext, potentialCustomerContactPerson);
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId, 
+	protected void checkParamsForCopyingPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactPersonId, int potentialCustomerContactPersonVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPotentialCustomer( potentialCustomerId);
 		checkerOf(userContext).checkIdOfPotentialCustomerContactPerson(potentialCustomerContactPersonId);
 		checkerOf(userContext).checkVersionOfPotentialCustomerContactPerson(potentialCustomerContactPersonVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	public  PotentialCustomer copyPotentialCustomerContactPersonFrom(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer copyPotentialCustomerContactPersonFrom(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactPersonId, int potentialCustomerContactPersonVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingPotentialCustomerContactPerson(userContext,potentialCustomerId, potentialCustomerContactPersonId, potentialCustomerContactPersonVersion,tokensExpr);
-		
+
 		PotentialCustomerContactPerson potentialCustomerContactPerson = createIndexedPotentialCustomerContactPerson(potentialCustomerContactPersonId, potentialCustomerContactPersonVersion);
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			potentialCustomer.copyPotentialCustomerContactPersonFrom( potentialCustomerContactPerson );		
+
+			potentialCustomer.copyPotentialCustomerContactPersonFrom( potentialCustomerContactPerson );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactPersonList().done());
 			
 			userContext.getManagerGroup().getPotentialCustomerContactPersonManager().onNewInstanceCreated(userContext, (PotentialCustomerContactPerson)potentialCustomer.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingPotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId, String potentialCustomerContactPersonId, int potentialCustomerContactPersonVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -790,32 +784,32 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	
+
 	public  PotentialCustomer updatePotentialCustomerContactPerson(RetailscmUserContext userContext, String potentialCustomerId, String potentialCustomerContactPersonId, int potentialCustomerContactPersonVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingPotentialCustomerContactPerson(userContext, potentialCustomerId, potentialCustomerContactPersonId, potentialCustomerContactPersonVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withPotentialCustomerContactPersonList().searchPotentialCustomerContactPersonListWith(PotentialCustomerContactPerson.ID_PROPERTY, "eq", potentialCustomerContactPersonId).done();
-		
-		
-		
+
+
+
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, loadTokens);
-		
-		synchronized(potentialCustomer){ 
+
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//potentialCustomer.removePotentialCustomerContactPerson( potentialCustomerContactPerson );	
+			//potentialCustomer.removePotentialCustomerContactPerson( potentialCustomerContactPerson );
 			//make changes to AcceleraterAccount.
 			PotentialCustomerContactPerson potentialCustomerContactPersonIndex = createIndexedPotentialCustomerContactPerson(potentialCustomerContactPersonId, potentialCustomerContactPersonVersion);
-		
+
 			PotentialCustomerContactPerson potentialCustomerContactPerson = potentialCustomer.findThePotentialCustomerContactPerson(potentialCustomerContactPersonIndex);
 			if(potentialCustomerContactPerson == null){
 				throw new PotentialCustomerManagerException(potentialCustomerContactPerson+" is NOT FOUND" );
 			}
-			
+
 			potentialCustomerContactPerson.changeProperty(property, newValueExpr);
 			
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactPersonList().done());
@@ -826,12 +820,12 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId, String name, Date contactDate, String contactMethod, String cityPartnerId, String contactToId, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 
 		
@@ -849,20 +843,20 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
 
-	
+
 	}
 	public  PotentialCustomer addPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId, String name, Date contactDate, String contactMethod, String cityPartnerId, String contactToId, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingPotentialCustomerContact(userContext,potentialCustomerId,name, contactDate, contactMethod, cityPartnerId, contactToId, description,tokensExpr);
-		
+
 		PotentialCustomerContact potentialCustomerContact = createPotentialCustomerContact(userContext,name, contactDate, contactMethod, cityPartnerId, contactToId, description);
-		
-		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+
+		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, emptyOptions());
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			potentialCustomer.addPotentialCustomerContact( potentialCustomerContact );		
+			potentialCustomer.addPotentialCustomerContact( potentialCustomerContact );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactList().done());
 			
 			userContext.getManagerGroup().getPotentialCustomerContactManager().onNewInstanceCreated(userContext, potentialCustomerContact);
@@ -870,49 +864,49 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	}
 	protected void checkParamsForUpdatingPotentialCustomerContactProperties(RetailscmUserContext userContext, String potentialCustomerId,String id,String name,Date contactDate,String contactMethod,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 		checkerOf(userContext).checkIdOfPotentialCustomerContact(id);
-		
+
 		checkerOf(userContext).checkNameOfPotentialCustomerContact( name);
 		checkerOf(userContext).checkContactDateOfPotentialCustomerContact( contactDate);
 		checkerOf(userContext).checkContactMethodOfPotentialCustomerContact( contactMethod);
 		checkerOf(userContext).checkDescriptionOfPotentialCustomerContact( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-		
+
 	}
 	public  PotentialCustomer updatePotentialCustomerContactProperties(RetailscmUserContext userContext, String potentialCustomerId, String id,String name,Date contactDate,String contactMethod,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingPotentialCustomerContactProperties(userContext,potentialCustomerId,id,name,contactDate,contactMethod,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withPotentialCustomerContactListList()
 				.searchPotentialCustomerContactListWith(PotentialCustomerContact.ID_PROPERTY, "is", id).done();
-		
+
 		PotentialCustomer potentialCustomerToUpdate = loadPotentialCustomer(userContext, potentialCustomerId, options);
-		
+
 		if(potentialCustomerToUpdate.getPotentialCustomerContactList().isEmpty()){
 			throw new PotentialCustomerManagerException("PotentialCustomerContact is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		PotentialCustomerContact item = potentialCustomerToUpdate.getPotentialCustomerContactList().first();
-		
+
 		item.updateName( name );
 		item.updateContactDate( contactDate );
 		item.updateContactMethod( contactMethod );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingPotentialCustomerContact(userContext,potentialCustomerId,name, code, used,tokensExpr);
 		PotentialCustomer potentialCustomer = savePotentialCustomer(userContext, potentialCustomerToUpdate, tokens().withPotentialCustomerContactList().done());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected PotentialCustomerContact createPotentialCustomerContact(RetailscmUserContext userContext, String name, Date contactDate, String contactMethod, String cityPartnerId, String contactToId, String description) throws Exception{
 
 		PotentialCustomerContact potentialCustomerContact = new PotentialCustomerContact();
@@ -932,38 +926,38 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	
 		
 		return potentialCustomerContact;
-	
-		
+
+
 	}
-	
+
 	protected PotentialCustomerContact createIndexedPotentialCustomerContact(String id, int version){
 
 		PotentialCustomerContact potentialCustomerContact = new PotentialCustomerContact();
 		potentialCustomerContact.setId(id);
 		potentialCustomerContact.setVersion(version);
-		return potentialCustomerContact;			
-		
+		return potentialCustomerContact;
+
 	}
-	
-	protected void checkParamsForRemovingPotentialCustomerContactList(RetailscmUserContext userContext, String potentialCustomerId, 
+
+	protected void checkParamsForRemovingPotentialCustomerContactList(RetailscmUserContext userContext, String potentialCustomerId,
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 		for(String potentialCustomerContactIdItem: potentialCustomerContactIds){
 			checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-		
+
 	}
-	public  PotentialCustomer removePotentialCustomerContactList(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer removePotentialCustomerContactList(RetailscmUserContext userContext, String potentialCustomerId,
 			String potentialCustomerContactIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingPotentialCustomerContactList(userContext, potentialCustomerId,  potentialCustomerContactIds, tokensExpr);
-			
-			
+
+
 			PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-			synchronized(potentialCustomer){ 
+			synchronized(potentialCustomer){
 				//Will be good when the potentialCustomer loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				potentialCustomerDaoOf(userContext).planToRemovePotentialCustomerContactList(potentialCustomer, potentialCustomerContactIds, allTokens());
@@ -972,65 +966,65 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 				return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId, 
+
+	protected void checkParamsForRemovingPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactId, int potentialCustomerContactVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPotentialCustomer( potentialCustomerId);
 		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
 		checkerOf(userContext).checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	public  PotentialCustomer removePotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer removePotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactId, int potentialCustomerContactVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingPotentialCustomerContact(userContext,potentialCustomerId, potentialCustomerContactId, potentialCustomerContactVersion,tokensExpr);
-		
+
 		PotentialCustomerContact potentialCustomerContact = createIndexedPotentialCustomerContact(potentialCustomerContactId, potentialCustomerContactVersion);
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			potentialCustomer.removePotentialCustomerContact( potentialCustomerContact );		
+			potentialCustomer.removePotentialCustomerContact( potentialCustomerContact );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactList().done());
 			deleteRelationInGraph(userContext, potentialCustomerContact);
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId, 
+	protected void checkParamsForCopyingPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactId, int potentialCustomerContactVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPotentialCustomer( potentialCustomerId);
 		checkerOf(userContext).checkIdOfPotentialCustomerContact(potentialCustomerContactId);
 		checkerOf(userContext).checkVersionOfPotentialCustomerContact(potentialCustomerContactVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	public  PotentialCustomer copyPotentialCustomerContactFrom(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer copyPotentialCustomerContactFrom(RetailscmUserContext userContext, String potentialCustomerId,
 		String potentialCustomerContactId, int potentialCustomerContactVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingPotentialCustomerContact(userContext,potentialCustomerId, potentialCustomerContactId, potentialCustomerContactVersion,tokensExpr);
-		
+
 		PotentialCustomerContact potentialCustomerContact = createIndexedPotentialCustomerContact(potentialCustomerContactId, potentialCustomerContactVersion);
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			potentialCustomerContact.updateLastUpdateTime(userContext.now());
-			
-			potentialCustomer.copyPotentialCustomerContactFrom( potentialCustomerContact );		
+
+			potentialCustomer.copyPotentialCustomerContactFrom( potentialCustomerContact );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactList().done());
 			
 			userContext.getManagerGroup().getPotentialCustomerContactManager().onNewInstanceCreated(userContext, (PotentialCustomerContact)potentialCustomer.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingPotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId, String potentialCustomerContactId, int potentialCustomerContactVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1058,32 +1052,32 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	
+
 	public  PotentialCustomer updatePotentialCustomerContact(RetailscmUserContext userContext, String potentialCustomerId, String potentialCustomerContactId, int potentialCustomerContactVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingPotentialCustomerContact(userContext, potentialCustomerId, potentialCustomerContactId, potentialCustomerContactVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withPotentialCustomerContactList().searchPotentialCustomerContactListWith(PotentialCustomerContact.ID_PROPERTY, "eq", potentialCustomerContactId).done();
-		
-		
-		
+
+
+
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, loadTokens);
-		
-		synchronized(potentialCustomer){ 
+
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//potentialCustomer.removePotentialCustomerContact( potentialCustomerContact );	
+			//potentialCustomer.removePotentialCustomerContact( potentialCustomerContact );
 			//make changes to AcceleraterAccount.
 			PotentialCustomerContact potentialCustomerContactIndex = createIndexedPotentialCustomerContact(potentialCustomerContactId, potentialCustomerContactVersion);
-		
+
 			PotentialCustomerContact potentialCustomerContact = potentialCustomer.findThePotentialCustomerContact(potentialCustomerContactIndex);
 			if(potentialCustomerContact == null){
 				throw new PotentialCustomerManagerException(potentialCustomerContact+" is NOT FOUND" );
 			}
-			
+
 			potentialCustomerContact.changeProperty(property, newValueExpr);
 			potentialCustomerContact.updateLastUpdateTime(userContext.now());
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withPotentialCustomerContactList().done());
@@ -1094,12 +1088,12 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEventAttendance(RetailscmUserContext userContext, String potentialCustomerId, String name, String cityEventId, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 
 		
@@ -1111,20 +1105,20 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
 
-	
+
 	}
 	public  PotentialCustomer addEventAttendance(RetailscmUserContext userContext, String potentialCustomerId, String name, String cityEventId, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEventAttendance(userContext,potentialCustomerId,name, cityEventId, description,tokensExpr);
-		
+
 		EventAttendance eventAttendance = createEventAttendance(userContext,name, cityEventId, description);
-		
-		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+
+		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, emptyOptions());
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			potentialCustomer.addEventAttendance( eventAttendance );		
+			potentialCustomer.addEventAttendance( eventAttendance );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withEventAttendanceList().done());
 			
 			userContext.getManagerGroup().getEventAttendanceManager().onNewInstanceCreated(userContext, eventAttendance);
@@ -1132,45 +1126,45 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	}
 	protected void checkParamsForUpdatingEventAttendanceProperties(RetailscmUserContext userContext, String potentialCustomerId,String id,String name,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 		checkerOf(userContext).checkIdOfEventAttendance(id);
-		
+
 		checkerOf(userContext).checkNameOfEventAttendance( name);
 		checkerOf(userContext).checkDescriptionOfEventAttendance( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-		
+
 	}
 	public  PotentialCustomer updateEventAttendanceProperties(RetailscmUserContext userContext, String potentialCustomerId, String id,String name,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEventAttendanceProperties(userContext,potentialCustomerId,id,name,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEventAttendanceListList()
 				.searchEventAttendanceListWith(EventAttendance.ID_PROPERTY, "is", id).done();
-		
+
 		PotentialCustomer potentialCustomerToUpdate = loadPotentialCustomer(userContext, potentialCustomerId, options);
-		
+
 		if(potentialCustomerToUpdate.getEventAttendanceList().isEmpty()){
 			throw new PotentialCustomerManagerException("EventAttendance is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EventAttendance item = potentialCustomerToUpdate.getEventAttendanceList().first();
-		
+
 		item.updateName( name );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingEventAttendance(userContext,potentialCustomerId,name, code, used,tokensExpr);
 		PotentialCustomer potentialCustomer = savePotentialCustomer(userContext, potentialCustomerToUpdate, tokens().withEventAttendanceList().done());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EventAttendance createEventAttendance(RetailscmUserContext userContext, String name, String cityEventId, String description) throws Exception{
 
 		EventAttendance eventAttendance = new EventAttendance();
@@ -1184,38 +1178,38 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	
 		
 		return eventAttendance;
-	
-		
+
+
 	}
-	
+
 	protected EventAttendance createIndexedEventAttendance(String id, int version){
 
 		EventAttendance eventAttendance = new EventAttendance();
 		eventAttendance.setId(id);
 		eventAttendance.setVersion(version);
-		return eventAttendance;			
-		
+		return eventAttendance;
+
 	}
-	
-	protected void checkParamsForRemovingEventAttendanceList(RetailscmUserContext userContext, String potentialCustomerId, 
+
+	protected void checkParamsForRemovingEventAttendanceList(RetailscmUserContext userContext, String potentialCustomerId,
 			String eventAttendanceIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfPotentialCustomer(potentialCustomerId);
 		for(String eventAttendanceIdItem: eventAttendanceIds){
 			checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-		
+
 	}
-	public  PotentialCustomer removeEventAttendanceList(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer removeEventAttendanceList(RetailscmUserContext userContext, String potentialCustomerId,
 			String eventAttendanceIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEventAttendanceList(userContext, potentialCustomerId,  eventAttendanceIds, tokensExpr);
-			
-			
+
+
 			PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-			synchronized(potentialCustomer){ 
+			synchronized(potentialCustomer){
 				//Will be good when the potentialCustomer loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				potentialCustomerDaoOf(userContext).planToRemoveEventAttendanceList(potentialCustomer, eventAttendanceIds, allTokens());
@@ -1224,65 +1218,65 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 				return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEventAttendance(RetailscmUserContext userContext, String potentialCustomerId, 
+
+	protected void checkParamsForRemovingEventAttendance(RetailscmUserContext userContext, String potentialCustomerId,
 		String eventAttendanceId, int eventAttendanceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPotentialCustomer( potentialCustomerId);
 		checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceId);
 		checkerOf(userContext).checkVersionOfEventAttendance(eventAttendanceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	public  PotentialCustomer removeEventAttendance(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer removeEventAttendance(RetailscmUserContext userContext, String potentialCustomerId,
 		String eventAttendanceId, int eventAttendanceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEventAttendance(userContext,potentialCustomerId, eventAttendanceId, eventAttendanceVersion,tokensExpr);
-		
+
 		EventAttendance eventAttendance = createIndexedEventAttendance(eventAttendanceId, eventAttendanceVersion);
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			potentialCustomer.removeEventAttendance( eventAttendance );		
+			potentialCustomer.removeEventAttendance( eventAttendance );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withEventAttendanceList().done());
 			deleteRelationInGraph(userContext, eventAttendance);
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEventAttendance(RetailscmUserContext userContext, String potentialCustomerId, 
+	protected void checkParamsForCopyingEventAttendance(RetailscmUserContext userContext, String potentialCustomerId,
 		String eventAttendanceId, int eventAttendanceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfPotentialCustomer( potentialCustomerId);
 		checkerOf(userContext).checkIdOfEventAttendance(eventAttendanceId);
 		checkerOf(userContext).checkVersionOfEventAttendance(eventAttendanceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	public  PotentialCustomer copyEventAttendanceFrom(RetailscmUserContext userContext, String potentialCustomerId, 
+	public  PotentialCustomer copyEventAttendanceFrom(RetailscmUserContext userContext, String potentialCustomerId,
 		String eventAttendanceId, int eventAttendanceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEventAttendance(userContext,potentialCustomerId, eventAttendanceId, eventAttendanceVersion,tokensExpr);
-		
+
 		EventAttendance eventAttendance = createIndexedEventAttendance(eventAttendanceId, eventAttendanceVersion);
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, allTokens());
-		synchronized(potentialCustomer){ 
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			potentialCustomer.copyEventAttendanceFrom( eventAttendance );		
+
+			potentialCustomer.copyEventAttendanceFrom( eventAttendance );
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withEventAttendanceList().done());
 			
 			userContext.getManagerGroup().getEventAttendanceManager().onNewInstanceCreated(userContext, (EventAttendance)potentialCustomer.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,potentialCustomer, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEventAttendance(RetailscmUserContext userContext, String potentialCustomerId, String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1302,32 +1296,32 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PotentialCustomerManagerException.class);
-	
+
 	}
-	
+
 	public  PotentialCustomer updateEventAttendance(RetailscmUserContext userContext, String potentialCustomerId, String eventAttendanceId, int eventAttendanceVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEventAttendance(userContext, potentialCustomerId, eventAttendanceId, eventAttendanceVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEventAttendanceList().searchEventAttendanceListWith(EventAttendance.ID_PROPERTY, "eq", eventAttendanceId).done();
-		
-		
-		
+
+
+
 		PotentialCustomer potentialCustomer = loadPotentialCustomer(userContext, potentialCustomerId, loadTokens);
-		
-		synchronized(potentialCustomer){ 
+
+		synchronized(potentialCustomer){
 			//Will be good when the potentialCustomer loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//potentialCustomer.removeEventAttendance( eventAttendance );	
+			//potentialCustomer.removeEventAttendance( eventAttendance );
 			//make changes to AcceleraterAccount.
 			EventAttendance eventAttendanceIndex = createIndexedEventAttendance(eventAttendanceId, eventAttendanceVersion);
-		
+
 			EventAttendance eventAttendance = potentialCustomer.findTheEventAttendance(eventAttendanceIndex);
 			if(eventAttendance == null){
 				throw new PotentialCustomerManagerException(eventAttendance+" is NOT FOUND" );
 			}
-			
+
 			eventAttendance.changeProperty(property, newValueExpr);
 			
 			potentialCustomer = savePotentialCustomer(userContext, potentialCustomer, tokens().withEventAttendanceList().done());
@@ -1338,14 +1332,20 @@ public class PotentialCustomerManagerImpl extends CustomRetailscmCheckerManager 
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, PotentialCustomer newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

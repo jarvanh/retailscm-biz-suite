@@ -24,6 +24,11 @@ import com.terapico.caf.RemoteInitiable;
 import com.terapico.utils.TextUtil;
 
 public class BaseEntity implements Serializable, RemoteInitiable{
+	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getVersion()};
+	}
+	
 	private String internalType = null; // 禁止直接操作这个成员
 	public static BaseEntity pretendToBe(String classShortName, String id) {
 		BaseEntity result = new BaseEntity();
@@ -589,6 +594,9 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 	}
 	protected Integer parseInt(String intExpr){		
 		return Integer.parseInt(intExpr);
+	}
+	protected Long parseLong(String longExpr){		
+		return Long.parseLong(longExpr);
 	}
 	protected Boolean parseBoolean(String booleanExpr){		
 		return Boolean.parseBoolean(booleanExpr);

@@ -73,11 +73,6 @@ public class ConsumerOrderTokens extends CommonTokens{
 		
 		return start()
 			.withConsumer()
-			.withConfirmation()
-			.withApproval()
-			.withProcessing()
-			.withShipment()
-			.withDelivery()
 			.withStore()
 			.withConsumerOrderLineItemList()
 			.withConsumerOrderShippingGroupList()
@@ -90,11 +85,6 @@ public class ConsumerOrderTokens extends CommonTokens{
 		
 		return start()
 			.withConsumer()
-			.withConfirmation()
-			.withApproval()
-			.withProcessing()
-			.withShipment()
-			.withDelivery()
 			.withStore();
 	
 	}
@@ -120,56 +110,6 @@ public class ConsumerOrderTokens extends CommonTokens{
 	}
 	public ConsumerOrderTokens withConsumer(){		
 		addSimpleOptions(CONSUMER);
-		return this;
-	}
-	
-	
-	protected static final String CONFIRMATION = "confirmation";
-	public String getConfirmation(){
-		return CONFIRMATION;
-	}
-	public ConsumerOrderTokens withConfirmation(){		
-		addSimpleOptions(CONFIRMATION);
-		return this;
-	}
-	
-	
-	protected static final String APPROVAL = "approval";
-	public String getApproval(){
-		return APPROVAL;
-	}
-	public ConsumerOrderTokens withApproval(){		
-		addSimpleOptions(APPROVAL);
-		return this;
-	}
-	
-	
-	protected static final String PROCESSING = "processing";
-	public String getProcessing(){
-		return PROCESSING;
-	}
-	public ConsumerOrderTokens withProcessing(){		
-		addSimpleOptions(PROCESSING);
-		return this;
-	}
-	
-	
-	protected static final String SHIPMENT = "shipment";
-	public String getShipment(){
-		return SHIPMENT;
-	}
-	public ConsumerOrderTokens withShipment(){		
-		addSimpleOptions(SHIPMENT);
-		return this;
-	}
-	
-	
-	protected static final String DELIVERY = "delivery";
-	public String getDelivery(){
-		return DELIVERY;
-	}
-	public ConsumerOrderTokens withDelivery(){		
-		addSimpleOptions(DELIVERY);
 		return this;
 	}
 	

@@ -44,7 +44,17 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 			throw new IllegalStateException("Not able to get a context from");
 		}
 		UserContext userContext = (UserContext)baseUserContext;
-		return (UserApp) userContext.getCachedObject(this.getCurrentAppKey(userContext), UserApp.class);
+		
+		String currentUserAppKey = this.getCurrentAppKey(userContext);
+		
+		Object localCachedUserApp = userContext.getFromContextLocalStorage(currentUserAppKey);
+		
+		if(localCachedUserApp!=null) {
+			return (UserApp)localCachedUserApp;
+		}
+		Object remoteObject = userContext.getCachedObject(this.getCurrentAppKey(userContext), UserApp.class);
+		userContext.putIntoContextLocalStorage(currentUserAppKey, remoteObject);
+		return (UserApp) remoteObject;
 		
 	}
 	public static String getSystemInternalName() {
@@ -159,14 +169,9 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		UserContext userContext = (UserContext)baseUserContext;
 		logCall(userContext, methodName, parameters);
 		
-		String xauth = userContext.getRequestHeader("X-Auth");
-		if(xauth!=null) {
-			return accessOK(); //for temporary use， security leak for demo only
-		}
 		
 		//如果来自本地IP，则放开访问
-		UserApp app =(UserApp) userContext.getCachedObject(this.getCurrentAppKey(userContext), UserApp.class);
-		
+		UserApp app = this.currentApp(baseUserContext);
 		if(app == null){
 			userContext.log("app is null!");
 			return accessFail("没有选择App");

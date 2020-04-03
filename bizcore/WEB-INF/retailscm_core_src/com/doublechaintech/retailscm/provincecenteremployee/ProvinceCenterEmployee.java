@@ -445,7 +445,9 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getMobile(), getEmail(), getFounded(), getDepartment(), getProvinceCenter(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

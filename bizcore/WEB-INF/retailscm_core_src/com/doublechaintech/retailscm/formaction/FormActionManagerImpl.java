@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.genericform.GenericForm;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.genericform.CandidateGenericForm;
 
 
 public class FormActionManagerImpl extends CustomRetailscmCheckerManager implements FormActionManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "FormAction";
 	@Override
 	public FormActionDAO daoOf(RetailscmUserContext userContext) {
 		return formActionDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws FormActionManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new FormActionManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected FormAction saveFormAction(RetailscmUserContext userContext, FormAction formAction, String [] tokensExpr) throws Exception{	
  		//return getFormActionDAO().save(formAction, tokens);
@@ -167,7 +161,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	public FormAction createFormAction(RetailscmUserContext userContext, String label,String localeKey,String actionKey,String level,String url,String formId) throws Exception
 	//public FormAction createFormAction(RetailscmUserContext userContext,String label, String localeKey, String actionKey, String level, String url, String formId) throws Exception
 	{
-		
+
 		
 
 		
@@ -199,14 +193,14 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		onNewInstanceCreated(userContext, formAction);
 		return formAction;
 
-		
+
 	}
-	protected FormAction createNewFormAction() 
+	protected FormAction createNewFormAction()
 	{
-		
-		return new FormAction();		
+
+		return new FormAction();
 	}
-	
+
 	protected void checkParamsForUpdatingFormAction(RetailscmUserContext userContext,String formActionId, int formActionVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -236,28 +230,28 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(FormActionManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public FormAction clone(RetailscmUserContext userContext, String fromFormActionId) throws Exception{
-		
+
 		return formActionDaoOf(userContext).clone(fromFormActionId, this.allTokens());
 	}
-	
-	public FormAction internalSaveFormAction(RetailscmUserContext userContext, FormAction formAction) throws Exception 
+
+	public FormAction internalSaveFormAction(RetailscmUserContext userContext, FormAction formAction) throws Exception
 	{
 		return internalSaveFormAction(userContext, formAction, allTokens());
 
 	}
-	public FormAction internalSaveFormAction(RetailscmUserContext userContext, FormAction formAction, Map<String,Object> options) throws Exception 
+	public FormAction internalSaveFormAction(RetailscmUserContext userContext, FormAction formAction, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingFormAction(userContext, formActionId, formActionVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(formAction){ 
+
+
+		synchronized(formAction){
 			//will be good when the formAction loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to FormAction.
@@ -266,23 +260,23 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 			}
 			formAction = saveFormAction(userContext, formAction, options);
 			return formAction;
-			
+
 		}
 
 	}
-	
-	public FormAction updateFormAction(RetailscmUserContext userContext,String formActionId, int formActionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public FormAction updateFormAction(RetailscmUserContext userContext,String formActionId, int formActionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingFormAction(userContext, formActionId, formActionVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		FormAction formAction = loadFormAction(userContext, formActionId, allTokens());
 		if(formAction.getVersion() != formActionVersion){
 			String message = "The target version("+formAction.getVersion()+") is not equals to version("+formActionVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(formAction){ 
+		synchronized(formAction){
 			//will be good when the formAction loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to FormAction.
@@ -294,21 +288,21 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
 	}
-	
-	public FormAction updateFormActionProperty(RetailscmUserContext userContext,String formActionId, int formActionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public FormAction updateFormActionProperty(RetailscmUserContext userContext,String formActionId, int formActionVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingFormAction(userContext, formActionId, formActionVersion, property, newValueExpr, tokensExpr);
-		
+
 		FormAction formAction = loadFormAction(userContext, formActionId, allTokens());
 		if(formAction.getVersion() != formActionVersion){
 			String message = "The target version("+formAction.getVersion()+") is not equals to version("+formActionVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(formAction){ 
+		synchronized(formAction){
 			//will be good when the formAction loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to FormAction.
-			
+
 			formAction.changeProperty(property, newValueExpr);
 			
 			formAction = saveFormAction(userContext, formAction, tokens().done());
@@ -320,7 +314,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected FormActionTokens tokens(){
 		return FormActionTokens.start();
 	}
@@ -341,11 +335,11 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	protected void checkParamsForTransferingAnotherForm(RetailscmUserContext userContext, String formActionId, String anotherFormId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfFormAction(formActionId);
  		checkerOf(userContext).checkIdOfGenericForm(anotherFormId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(FormActionManagerException.class);
- 		
+
  	}
  	public FormAction transferToAnotherForm(RetailscmUserContext userContext, String formActionId, String anotherFormId) throws Exception
  	{
@@ -364,10 +358,10 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateGenericForm requestCandidateForm(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateGenericForm result = new CandidateGenericForm();
@@ -377,7 +371,7 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -387,42 +381,42 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected GenericForm loadGenericForm(RetailscmUserContext userContext, String newFormId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return genericFormDaoOf(userContext).load(newFormId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String formActionId, int formActionVersion) throws Exception {
-		//deleteInternal(userContext, formActionId, formActionVersion);		
+		//deleteInternal(userContext, formActionId, formActionVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String formActionId, int formActionVersion) throws Exception{
-			
+
 		formActionDaoOf(userContext).delete(formActionId, formActionVersion);
 	}
-	
+
 	public FormAction forgetByAll(RetailscmUserContext userContext, String formActionId, int formActionVersion) throws Exception {
-		return forgetByAllInternal(userContext, formActionId, formActionVersion);		
+		return forgetByAllInternal(userContext, formActionId, formActionVersion);
 	}
 	protected FormAction forgetByAllInternal(RetailscmUserContext userContext,
 			String formActionId, int formActionVersion) throws Exception{
-			
+
 		return formActionDaoOf(userContext).disconnectFromAll(formActionId, formActionVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -433,23 +427,29 @@ public class FormActionManagerImpl extends CustomRetailscmCheckerManager impleme
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return formActionDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, FormAction newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

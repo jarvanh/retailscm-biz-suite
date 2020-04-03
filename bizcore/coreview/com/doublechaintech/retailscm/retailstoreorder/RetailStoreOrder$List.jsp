@@ -110,24 +110,6 @@
 <c:if test="${param.referName ne 'totalAmount'}">
 	<th>${userContext.localeMap['retail_store_order.total_amount']}</th>
 </c:if>
-<c:if test="${param.referName ne 'confirmation'}">
-	<th>${userContext.localeMap['retail_store_order.confirmation']}</th>
-</c:if>
-<c:if test="${param.referName ne 'approval'}">
-	<th>${userContext.localeMap['retail_store_order.approval']}</th>
-</c:if>
-<c:if test="${param.referName ne 'processing'}">
-	<th>${userContext.localeMap['retail_store_order.processing']}</th>
-</c:if>
-<c:if test="${param.referName ne 'picking'}">
-	<th>${userContext.localeMap['retail_store_order.picking']}</th>
-</c:if>
-<c:if test="${param.referName ne 'shipment'}">
-	<th>${userContext.localeMap['retail_store_order.shipment']}</th>
-</c:if>
-<c:if test="${param.referName ne 'delivery'}">
-	<th>${userContext.localeMap['retail_store_order.delivery']}</th>
-</c:if>
 <c:if test="${param.referName ne 'lastUpdateTime'}">
 	<th>${userContext.localeMap['retail_store_order.last_update_time']}</th>
 </c:if>
@@ -177,121 +159,7 @@
 </c:if>
 <c:if test="${param.referName ne 'title'}">	<td contenteditable='true' class='edit-value'  propertyToChange='title' storedCellValue='${item.title}' prefix='${ownerBeanName}Manager/updateRetailStoreOrder/${result.id}/${item.id}/'>${item.title}</td>
 </c:if><c:if test="${param.referName ne 'totalAmount'}">	<td contenteditable='true' class='edit-value money'  propertyToChange='totalAmount' storedCellValue='${item.totalAmount}' prefix='${ownerBeanName}Manager/updateRetailStoreOrder/${result.id}/${item.id}/'><fmt:formatNumber type="currency"  value="${item.totalAmount}" /></td>
-</c:if><c:if test="${param.referName ne 'confirmation'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./retailStoreOrderManager/requestCandidateConfirmation/${ownerBeanName}/${item.id}/"
-			data-switch-method="./retailStoreOrderManager/transferToAnotherConfirmation/${item.id}/"
-			data-link-template="./retailStoreOrderConfirmationManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.confirmation}">
-			<a href='./retailStoreOrderConfirmationManager/view/${item.confirmation.id}/'>${item.confirmation.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.confirmation}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'approval'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./retailStoreOrderManager/requestCandidateApproval/${ownerBeanName}/${item.id}/"
-			data-switch-method="./retailStoreOrderManager/transferToAnotherApproval/${item.id}/"
-			data-link-template="./retailStoreOrderApprovalManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.approval}">
-			<a href='./retailStoreOrderApprovalManager/view/${item.approval.id}/'>${item.approval.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.approval}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'processing'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./retailStoreOrderManager/requestCandidateProcessing/${ownerBeanName}/${item.id}/"
-			data-switch-method="./retailStoreOrderManager/transferToAnotherProcessing/${item.id}/"
-			data-link-template="./retailStoreOrderProcessingManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.processing}">
-			<a href='./retailStoreOrderProcessingManager/view/${item.processing.id}/'>${item.processing.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.processing}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'picking'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./retailStoreOrderManager/requestCandidatePicking/${ownerBeanName}/${item.id}/"
-			data-switch-method="./retailStoreOrderManager/transferToAnotherPicking/${item.id}/"
-			data-link-template="./retailStoreOrderPickingManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.picking}">
-			<a href='./retailStoreOrderPickingManager/view/${item.picking.id}/'>${item.picking.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.picking}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'shipment'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./retailStoreOrderManager/requestCandidateShipment/${ownerBeanName}/${item.id}/"
-			data-switch-method="./retailStoreOrderManager/transferToAnotherShipment/${item.id}/"
-			data-link-template="./retailStoreOrderShipmentManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.shipment}">
-			<a href='./retailStoreOrderShipmentManager/view/${item.shipment.id}/'>${item.shipment.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.shipment}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'delivery'}">
-	<td class="select_candidate_td"
-			data-candidate-method="./retailStoreOrderManager/requestCandidateDelivery/${ownerBeanName}/${item.id}/"
-			data-switch-method="./retailStoreOrderManager/transferToAnotherDelivery/${item.id}/"
-			data-link-template="./retailStoreOrderDeliveryManager/view/${'$'}{ID}/">
-		<span class="display_span">
-			<c:if test="${not empty  item.delivery}">
-			<a href='./retailStoreOrderDeliveryManager/view/${item.delivery.id}/'>${item.delivery.displayName}</a>
-			</c:if>
-			<c:if test="${empty  item.delivery}">
-			<a href='#'></a>
-			</c:if>
-			<button class="btn btn-link candidate-action">...</button>
-		</span>
-		<div class="candidate_span" style="display:none;">
-			<input type="text" data-provide="typeahead" class="input-sm form-control candidate-filter-input" autocomplete="off" />
-		</div>
-	</td>
-</c:if>
-<c:if test="${param.referName ne 'lastUpdateTime'}">	<td contenteditable='true' class='edit-value'  propertyToChange='lastUpdateTime' storedCellValue='${item.lastUpdateTime}' prefix='${ownerBeanName}Manager/updateRetailStoreOrder/${result.id}/${item.id}/'><fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm:ss" value="${item.lastUpdateTime}" /></td>
+</c:if><c:if test="${param.referName ne 'lastUpdateTime'}">	<td contenteditable='true' class='edit-value'  propertyToChange='lastUpdateTime' storedCellValue='${item.lastUpdateTime}' prefix='${ownerBeanName}Manager/updateRetailStoreOrder/${result.id}/${item.id}/'><fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm:ss" value="${item.lastUpdateTime}" /></td>
 </c:if>
 				<td>
 

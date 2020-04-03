@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.warehouse.Warehouse;
@@ -28,7 +19,6 @@ import com.doublechaintech.retailscm.warehouse.CandidateWarehouse;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -42,28 +32,31 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
 
 public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager implements ReceivingSpaceManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ReceivingSpace";
 	@Override
 	public ReceivingSpaceDAO daoOf(RetailscmUserContext userContext) {
 		return receivingSpaceDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ReceivingSpaceManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ReceivingSpaceManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ReceivingSpace saveReceivingSpace(RetailscmUserContext userContext, ReceivingSpace receivingSpace, String [] tokensExpr) throws Exception{	
  		//return getReceivingSpaceDAO().save(receivingSpace, tokens);
@@ -179,10 +172,10 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
  	
  	
 
-	public ReceivingSpace createReceivingSpace(RetailscmUserContext userContext, String location,long contactNumber,String description,String totalArea,String warehouseId,BigDecimal latitude,BigDecimal longitude) throws Exception
-	//public ReceivingSpace createReceivingSpace(RetailscmUserContext userContext,String location, long contactNumber, String description, String totalArea, String warehouseId, BigDecimal latitude, BigDecimal longitude) throws Exception
+	public ReceivingSpace createReceivingSpace(RetailscmUserContext userContext, String location,String contactNumber,String description,String totalArea,String warehouseId,BigDecimal latitude,BigDecimal longitude) throws Exception
+	//public ReceivingSpace createReceivingSpace(RetailscmUserContext userContext,String location, String contactNumber, String description, String totalArea, String warehouseId, BigDecimal latitude, BigDecimal longitude) throws Exception
 	{
-		
+
 		
 
 		
@@ -217,14 +210,14 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		onNewInstanceCreated(userContext, receivingSpace);
 		return receivingSpace;
 
-		
+
 	}
-	protected ReceivingSpace createNewReceivingSpace() 
+	protected ReceivingSpace createNewReceivingSpace()
 	{
-		
-		return new ReceivingSpace();		
+
+		return new ReceivingSpace();
 	}
-	
+
 	protected void checkParamsForUpdatingReceivingSpace(RetailscmUserContext userContext,String receivingSpaceId, int receivingSpaceVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -239,7 +232,7 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 			checkerOf(userContext).checkLocationOfReceivingSpace(parseString(newValueExpr));
 		}
 		if(ReceivingSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkContactNumberOfReceivingSpace(parseLong(newValueExpr));
+			checkerOf(userContext).checkContactNumberOfReceivingSpace(parseString(newValueExpr));
 		}
 		if(ReceivingSpace.DESCRIPTION_PROPERTY.equals(property)){
 			checkerOf(userContext).checkDescriptionOfReceivingSpace(parseString(newValueExpr));
@@ -257,28 +250,28 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ReceivingSpace clone(RetailscmUserContext userContext, String fromReceivingSpaceId) throws Exception{
-		
+
 		return receivingSpaceDaoOf(userContext).clone(fromReceivingSpaceId, this.allTokens());
 	}
-	
-	public ReceivingSpace internalSaveReceivingSpace(RetailscmUserContext userContext, ReceivingSpace receivingSpace) throws Exception 
+
+	public ReceivingSpace internalSaveReceivingSpace(RetailscmUserContext userContext, ReceivingSpace receivingSpace) throws Exception
 	{
 		return internalSaveReceivingSpace(userContext, receivingSpace, allTokens());
 
 	}
-	public ReceivingSpace internalSaveReceivingSpace(RetailscmUserContext userContext, ReceivingSpace receivingSpace, Map<String,Object> options) throws Exception 
+	public ReceivingSpace internalSaveReceivingSpace(RetailscmUserContext userContext, ReceivingSpace receivingSpace, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingReceivingSpace(userContext, receivingSpaceId, receivingSpaceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(receivingSpace){ 
+
+
+		synchronized(receivingSpace){
 			//will be good when the receivingSpace loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ReceivingSpace.
@@ -287,23 +280,23 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 			}
 			receivingSpace = saveReceivingSpace(userContext, receivingSpace, options);
 			return receivingSpace;
-			
+
 		}
 
 	}
-	
-	public ReceivingSpace updateReceivingSpace(RetailscmUserContext userContext,String receivingSpaceId, int receivingSpaceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ReceivingSpace updateReceivingSpace(RetailscmUserContext userContext,String receivingSpaceId, int receivingSpaceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingReceivingSpace(userContext, receivingSpaceId, receivingSpaceVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 		if(receivingSpace.getVersion() != receivingSpaceVersion){
 			String message = "The target version("+receivingSpace.getVersion()+") is not equals to version("+receivingSpaceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(receivingSpace){ 
+		synchronized(receivingSpace){
 			//will be good when the receivingSpace loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ReceivingSpace.
@@ -315,21 +308,21 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		}
 
 	}
-	
-	public ReceivingSpace updateReceivingSpaceProperty(RetailscmUserContext userContext,String receivingSpaceId, int receivingSpaceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ReceivingSpace updateReceivingSpaceProperty(RetailscmUserContext userContext,String receivingSpaceId, int receivingSpaceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingReceivingSpace(userContext, receivingSpaceId, receivingSpaceVersion, property, newValueExpr, tokensExpr);
-		
+
 		ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 		if(receivingSpace.getVersion() != receivingSpaceVersion){
 			String message = "The target version("+receivingSpace.getVersion()+") is not equals to version("+receivingSpaceVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(receivingSpace){ 
+		synchronized(receivingSpace){
 			//will be good when the receivingSpace loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ReceivingSpace.
-			
+
 			receivingSpace.changeProperty(property, newValueExpr);
 			receivingSpace.updateLastUpdateTime(userContext.now());
 			receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().done());
@@ -341,7 +334,7 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ReceivingSpaceTokens tokens(){
 		return ReceivingSpaceTokens.start();
 	}
@@ -363,11 +356,11 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	
 	protected void checkParamsForTransferingAnotherWarehouse(RetailscmUserContext userContext, String receivingSpaceId, String anotherWarehouseId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceId);
  		checkerOf(userContext).checkIdOfWarehouse(anotherWarehouseId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
- 		
+
  	}
  	public ReceivingSpace transferToAnotherWarehouse(RetailscmUserContext userContext, String receivingSpaceId, String anotherWarehouseId) throws Exception
  	{
@@ -386,10 +379,10 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateWarehouse requestCandidateWarehouse(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateWarehouse result = new CandidateWarehouse();
@@ -399,7 +392,7 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("location");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -409,42 +402,42 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Warehouse loadWarehouse(RetailscmUserContext userContext, String newWarehouseId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return warehouseDaoOf(userContext).load(newWarehouseId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String receivingSpaceId, int receivingSpaceVersion) throws Exception {
-		//deleteInternal(userContext, receivingSpaceId, receivingSpaceVersion);		
+		//deleteInternal(userContext, receivingSpaceId, receivingSpaceVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String receivingSpaceId, int receivingSpaceVersion) throws Exception{
-			
+
 		receivingSpaceDaoOf(userContext).delete(receivingSpaceId, receivingSpaceVersion);
 	}
-	
+
 	public ReceivingSpace forgetByAll(RetailscmUserContext userContext, String receivingSpaceId, int receivingSpaceVersion) throws Exception {
-		return forgetByAllInternal(userContext, receivingSpaceId, receivingSpaceVersion);		
+		return forgetByAllInternal(userContext, receivingSpaceId, receivingSpaceVersion);
 	}
 	protected ReceivingSpace forgetByAllInternal(RetailscmUserContext userContext,
 			String receivingSpaceId, int receivingSpaceVersion) throws Exception{
-			
+
 		return receivingSpaceDaoOf(userContext).disconnectFromAll(receivingSpaceId, receivingSpaceVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -455,8 +448,8 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return receivingSpaceDaoOf(userContext).deleteAll();
 	}
@@ -465,15 +458,15 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with sku in Goods
 	protected ReceivingSpace breakWithGoodsBySku(RetailscmUserContext userContext, String receivingSpaceId, String skuId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithSku(receivingSpace, skuId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -483,15 +476,15 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with goods_allocation in Goods
 	protected ReceivingSpace breakWithGoodsByGoodsAllocation(RetailscmUserContext userContext, String receivingSpaceId, String goodsAllocationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithGoodsAllocation(receivingSpace, goodsAllocationId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -501,15 +494,15 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with smart_pallet in Goods
 	protected ReceivingSpace breakWithGoodsBySmartPallet(RetailscmUserContext userContext, String receivingSpaceId, String smartPalletId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithSmartPallet(receivingSpace, smartPalletId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -519,15 +512,15 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with shipping_space in Goods
 	protected ReceivingSpace breakWithGoodsByShippingSpace(RetailscmUserContext userContext, String receivingSpaceId, String shippingSpaceId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithShippingSpace(receivingSpace, shippingSpaceId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -537,15 +530,15 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with transport_task in Goods
 	protected ReceivingSpace breakWithGoodsByTransportTask(RetailscmUserContext userContext, String receivingSpaceId, String transportTaskId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithTransportTask(receivingSpace, transportTaskId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -555,15 +548,15 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with retail_store in Goods
 	protected ReceivingSpace breakWithGoodsByRetailStore(RetailscmUserContext userContext, String receivingSpaceId, String retailStoreId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithRetailStore(receivingSpace, retailStoreId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -573,15 +566,15 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with biz_order in Goods
 	protected ReceivingSpace breakWithGoodsByBizOrder(RetailscmUserContext userContext, String receivingSpaceId, String bizOrderId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithBizOrder(receivingSpace, bizOrderId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -591,47 +584,29 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	//disconnect ReceivingSpace with retail_store_order in Goods
 	protected ReceivingSpace breakWithGoodsByRetailStoreOrder(RetailscmUserContext userContext, String receivingSpaceId, String retailStoreOrderId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithRetailStoreOrder(receivingSpace, retailStoreOrderId, this.emptyOptions());
 
 				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
 				return receivingSpace;
 			}
 	}
-	//disconnect ReceivingSpace with packaging in Goods
-	protected ReceivingSpace breakWithGoodsByPackaging(RetailscmUserContext userContext, String receivingSpaceId, String packagingId,  String [] tokensExpr)
-		 throws Exception{
-			
-			//TODO add check code here
-			
-			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
 
-			synchronized(receivingSpace){ 
-				//Will be good when the thread loaded from this JVM process cache.
-				//Also good when there is a RAM based DAO implementation
-				
-				receivingSpaceDaoOf(userContext).planToRemoveGoodsListWithPackaging(receivingSpace, packagingId, this.emptyOptions());
 
-				receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
-				return receivingSpace;
-			}
-	}
-	
-	
-	
-	
-	
 
-	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId,String [] tokensExpr) throws Exception{
-		
+
+
+
+	protected void checkParamsForAddingGoods(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceId);
 
 		
@@ -660,25 +635,23 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		checkerOf(userContext).checkBizOrderIdOfGoods(bizOrderId);
 		
 		checkerOf(userContext).checkRetailStoreOrderIdOfGoods(retailStoreOrderId);
-		
-		checkerOf(userContext).checkPackagingIdOfGoods(packagingId);
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
 
-	
+
 	}
-	public  ReceivingSpace addGoods(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId, String [] tokensExpr) throws Exception
-	{	
-		
-		checkParamsForAddingGoods(userContext,receivingSpaceId,name, rfid, uom, maxPackage, expireTime, skuId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId,tokensExpr);
-		
-		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, skuId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId, packagingId);
-		
-		ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
-		synchronized(receivingSpace){ 
+	public  ReceivingSpace addGoods(RetailscmUserContext userContext, String receivingSpaceId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String [] tokensExpr) throws Exception
+	{
+
+		checkParamsForAddingGoods(userContext,receivingSpaceId,name, rfid, uom, maxPackage, expireTime, skuId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId,tokensExpr);
+
+		Goods goods = createGoods(userContext,name, rfid, uom, maxPackage, expireTime, skuId, goodsAllocationId, smartPalletId, shippingSpaceId, transportTaskId, retailStoreId, bizOrderId, retailStoreOrderId);
+
+		ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, emptyOptions());
+		synchronized(receivingSpace){
 			//Will be good when the receivingSpace loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			receivingSpace.addGoods( goods );		
+			receivingSpace.addGoods( goods );
 			receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
 			
 			userContext.getManagerGroup().getGoodsManager().onNewInstanceCreated(userContext, goods);
@@ -686,10 +659,10 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		}
 	}
 	protected void checkParamsForUpdatingGoodsProperties(RetailscmUserContext userContext, String receivingSpaceId,String id,String name,String rfid,String uom,int maxPackage,Date expireTime,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceId);
 		checkerOf(userContext).checkIdOfGoods(id);
-		
+
 		checkerOf(userContext).checkNameOfGoods( name);
 		checkerOf(userContext).checkRfidOfGoods( rfid);
 		checkerOf(userContext).checkUomOfGoods( uom);
@@ -697,41 +670,41 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		checkerOf(userContext).checkExpireTimeOfGoods( expireTime);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
-		
+
 	}
 	public  ReceivingSpace updateGoodsProperties(RetailscmUserContext userContext, String receivingSpaceId, String id,String name,String rfid,String uom,int maxPackage,Date expireTime, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingGoodsProperties(userContext,receivingSpaceId,id,name,rfid,uom,maxPackage,expireTime,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withGoodsListList()
 				.searchGoodsListWith(Goods.ID_PROPERTY, "is", id).done();
-		
+
 		ReceivingSpace receivingSpaceToUpdate = loadReceivingSpace(userContext, receivingSpaceId, options);
-		
+
 		if(receivingSpaceToUpdate.getGoodsList().isEmpty()){
 			throw new ReceivingSpaceManagerException("Goods is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Goods item = receivingSpaceToUpdate.getGoodsList().first();
-		
+
 		item.updateName( name );
 		item.updateRfid( rfid );
 		item.updateUom( uom );
 		item.updateMaxPackage( maxPackage );
 		item.updateExpireTime( expireTime );
 
-		
+
 		//checkParamsForAddingGoods(userContext,receivingSpaceId,name, code, used,tokensExpr);
 		ReceivingSpace receivingSpace = saveReceivingSpace(userContext, receivingSpaceToUpdate, tokens().withGoodsList().done());
-		synchronized(receivingSpace){ 
+		synchronized(receivingSpace){
 			return present(userContext,receivingSpace, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId, String packagingId) throws Exception{
+
+
+	protected Goods createGoods(RetailscmUserContext userContext, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String retailStoreOrderId) throws Exception{
 
 		Goods goods = new Goods();
 		
@@ -764,45 +737,42 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		goods.setBizOrder(bizOrder);		
 		RetailStoreOrder  retailStoreOrder = new RetailStoreOrder();
 		retailStoreOrder.setId(retailStoreOrderId);		
-		goods.setRetailStoreOrder(retailStoreOrder);		
-		GoodsPackaging  packaging = new GoodsPackaging();
-		packaging.setId(packagingId);		
-		goods.setPackaging(packaging);
+		goods.setRetailStoreOrder(retailStoreOrder);
 	
 		
 		return goods;
-	
-		
+
+
 	}
-	
+
 	protected Goods createIndexedGoods(String id, int version){
 
 		Goods goods = new Goods();
 		goods.setId(id);
 		goods.setVersion(version);
-		return goods;			
-		
+		return goods;
+
 	}
-	
-	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String receivingSpaceId, 
+
+	protected void checkParamsForRemovingGoodsList(RetailscmUserContext userContext, String receivingSpaceId,
 			String goodsIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfReceivingSpace(receivingSpaceId);
 		for(String goodsIdItem: goodsIds){
 			checkerOf(userContext).checkIdOfGoods(goodsIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
-		
+
 	}
-	public  ReceivingSpace removeGoodsList(RetailscmUserContext userContext, String receivingSpaceId, 
+	public  ReceivingSpace removeGoodsList(RetailscmUserContext userContext, String receivingSpaceId,
 			String goodsIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingGoodsList(userContext, receivingSpaceId,  goodsIds, tokensExpr);
-			
-			
+
+
 			ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
-			synchronized(receivingSpace){ 
+			synchronized(receivingSpace){
 				//Will be good when the receivingSpace loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				receivingSpaceDaoOf(userContext).planToRemoveGoodsList(receivingSpace, goodsIds, allTokens());
@@ -811,65 +781,65 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 				return present(userContext,receivingSpace, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String receivingSpaceId, 
+
+	protected void checkParamsForRemovingGoods(RetailscmUserContext userContext, String receivingSpaceId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfReceivingSpace( receivingSpaceId);
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
-	
+
 	}
-	public  ReceivingSpace removeGoods(RetailscmUserContext userContext, String receivingSpaceId, 
+	public  ReceivingSpace removeGoods(RetailscmUserContext userContext, String receivingSpaceId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingGoods(userContext,receivingSpaceId, goodsId, goodsVersion,tokensExpr);
-		
+
 		Goods goods = createIndexedGoods(goodsId, goodsVersion);
 		ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
-		synchronized(receivingSpace){ 
+		synchronized(receivingSpace){
 			//Will be good when the receivingSpace loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			receivingSpace.removeGoods( goods );		
+			receivingSpace.removeGoods( goods );
 			receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
 			deleteRelationInGraph(userContext, goods);
 			return present(userContext,receivingSpace, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String receivingSpaceId, 
+	protected void checkParamsForCopyingGoods(RetailscmUserContext userContext, String receivingSpaceId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfReceivingSpace( receivingSpaceId);
 		checkerOf(userContext).checkIdOfGoods(goodsId);
 		checkerOf(userContext).checkVersionOfGoods(goodsVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
-	
+
 	}
-	public  ReceivingSpace copyGoodsFrom(RetailscmUserContext userContext, String receivingSpaceId, 
+	public  ReceivingSpace copyGoodsFrom(RetailscmUserContext userContext, String receivingSpaceId,
 		String goodsId, int goodsVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingGoods(userContext,receivingSpaceId, goodsId, goodsVersion,tokensExpr);
-		
+
 		Goods goods = createIndexedGoods(goodsId, goodsVersion);
 		ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, allTokens());
-		synchronized(receivingSpace){ 
+		synchronized(receivingSpace){
 			//Will be good when the receivingSpace loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			receivingSpace.copyGoodsFrom( goods );		
+
+			receivingSpace.copyGoodsFrom( goods );
 			receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
 			
 			userContext.getManagerGroup().getGoodsManager().onNewInstanceCreated(userContext, (Goods)receivingSpace.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,receivingSpace, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingGoods(RetailscmUserContext userContext, String receivingSpaceId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -901,32 +871,32 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ReceivingSpaceManagerException.class);
-	
+
 	}
-	
+
 	public  ReceivingSpace updateGoods(RetailscmUserContext userContext, String receivingSpaceId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingGoods(userContext, receivingSpaceId, goodsId, goodsVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withGoodsList().searchGoodsListWith(Goods.ID_PROPERTY, "eq", goodsId).done();
-		
-		
-		
+
+
+
 		ReceivingSpace receivingSpace = loadReceivingSpace(userContext, receivingSpaceId, loadTokens);
-		
-		synchronized(receivingSpace){ 
+
+		synchronized(receivingSpace){
 			//Will be good when the receivingSpace loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//receivingSpace.removeGoods( goods );	
+			//receivingSpace.removeGoods( goods );
 			//make changes to AcceleraterAccount.
 			Goods goodsIndex = createIndexedGoods(goodsId, goodsVersion);
-		
+
 			Goods goods = receivingSpace.findTheGoods(goodsIndex);
 			if(goods == null){
 				throw new ReceivingSpaceManagerException(goods+" is NOT FOUND" );
 			}
-			
+
 			goods.changeProperty(property, newValueExpr);
 			
 			receivingSpace = saveReceivingSpace(userContext, receivingSpace, tokens().withGoodsList().done());
@@ -937,14 +907,20 @@ public class ReceivingSpaceManagerImpl extends CustomRetailscmCheckerManager imp
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ReceivingSpace newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

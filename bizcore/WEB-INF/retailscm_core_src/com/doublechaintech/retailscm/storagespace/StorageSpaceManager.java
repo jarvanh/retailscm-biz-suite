@@ -13,7 +13,7 @@ public interface StorageSpaceManager extends BaseManager{
 
 		
 
-	public StorageSpace createStorageSpace(RetailscmUserContext userContext, String location,long contactNumber,String totalArea,String warehouseId,BigDecimal latitude,BigDecimal longitude) throws Exception;	
+	public StorageSpace createStorageSpace(RetailscmUserContext userContext, String location,String contactNumber,String totalArea,String warehouseId,BigDecimal latitude,BigDecimal longitude) throws Exception;	
 	public StorageSpace updateStorageSpace(RetailscmUserContext userContext,String storageSpaceId, int storageSpaceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public StorageSpace loadStorageSpace(RetailscmUserContext userContext, String storageSpaceId, String [] tokensExpr) throws Exception;
 	public StorageSpace internalSaveStorageSpace(RetailscmUserContext userContext, StorageSpace storageSpace) throws Exception;

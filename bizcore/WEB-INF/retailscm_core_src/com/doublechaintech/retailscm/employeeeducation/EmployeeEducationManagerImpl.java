@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.employee.Employee;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.employee.CandidateEmployee;
 
 
 public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager implements EmployeeEducationManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "EmployeeEducation";
 	@Override
 	public EmployeeEducationDAO daoOf(RetailscmUserContext userContext) {
 		return employeeEducationDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EmployeeEducationManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EmployeeEducationManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected EmployeeEducation saveEmployeeEducation(RetailscmUserContext userContext, EmployeeEducation employeeEducation, String [] tokensExpr) throws Exception{	
  		//return getEmployeeEducationDAO().save(employeeEducation, tokens);
@@ -167,7 +161,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	public EmployeeEducation createEmployeeEducation(RetailscmUserContext userContext, String employeeId,Date completeTime,String type,String remark) throws Exception
 	//public EmployeeEducation createEmployeeEducation(RetailscmUserContext userContext,String employeeId, Date completeTime, String type, String remark) throws Exception
 	{
-		
+
 		
 
 		
@@ -195,14 +189,14 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		onNewInstanceCreated(userContext, employeeEducation);
 		return employeeEducation;
 
-		
+
 	}
-	protected EmployeeEducation createNewEmployeeEducation() 
+	protected EmployeeEducation createNewEmployeeEducation()
 	{
-		
-		return new EmployeeEducation();		
+
+		return new EmployeeEducation();
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeEducation(RetailscmUserContext userContext,String employeeEducationId, int employeeEducationVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,28 +220,28 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public EmployeeEducation clone(RetailscmUserContext userContext, String fromEmployeeEducationId) throws Exception{
-		
+
 		return employeeEducationDaoOf(userContext).clone(fromEmployeeEducationId, this.allTokens());
 	}
-	
-	public EmployeeEducation internalSaveEmployeeEducation(RetailscmUserContext userContext, EmployeeEducation employeeEducation) throws Exception 
+
+	public EmployeeEducation internalSaveEmployeeEducation(RetailscmUserContext userContext, EmployeeEducation employeeEducation) throws Exception
 	{
 		return internalSaveEmployeeEducation(userContext, employeeEducation, allTokens());
 
 	}
-	public EmployeeEducation internalSaveEmployeeEducation(RetailscmUserContext userContext, EmployeeEducation employeeEducation, Map<String,Object> options) throws Exception 
+	public EmployeeEducation internalSaveEmployeeEducation(RetailscmUserContext userContext, EmployeeEducation employeeEducation, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEmployeeEducation(userContext, employeeEducationId, employeeEducationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(employeeEducation){ 
+
+
+		synchronized(employeeEducation){
 			//will be good when the employeeEducation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeEducation.
@@ -256,23 +250,23 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 			}
 			employeeEducation = saveEmployeeEducation(userContext, employeeEducation, options);
 			return employeeEducation;
-			
+
 		}
 
 	}
-	
-	public EmployeeEducation updateEmployeeEducation(RetailscmUserContext userContext,String employeeEducationId, int employeeEducationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeEducation updateEmployeeEducation(RetailscmUserContext userContext,String employeeEducationId, int employeeEducationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeEducation(userContext, employeeEducationId, employeeEducationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		EmployeeEducation employeeEducation = loadEmployeeEducation(userContext, employeeEducationId, allTokens());
 		if(employeeEducation.getVersion() != employeeEducationVersion){
 			String message = "The target version("+employeeEducation.getVersion()+") is not equals to version("+employeeEducationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeEducation){ 
+		synchronized(employeeEducation){
 			//will be good when the employeeEducation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeEducation.
@@ -284,21 +278,21 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
 	}
-	
-	public EmployeeEducation updateEmployeeEducationProperty(RetailscmUserContext userContext,String employeeEducationId, int employeeEducationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeEducation updateEmployeeEducationProperty(RetailscmUserContext userContext,String employeeEducationId, int employeeEducationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeEducation(userContext, employeeEducationId, employeeEducationVersion, property, newValueExpr, tokensExpr);
-		
+
 		EmployeeEducation employeeEducation = loadEmployeeEducation(userContext, employeeEducationId, allTokens());
 		if(employeeEducation.getVersion() != employeeEducationVersion){
 			String message = "The target version("+employeeEducation.getVersion()+") is not equals to version("+employeeEducationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeEducation){ 
+		synchronized(employeeEducation){
 			//will be good when the employeeEducation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeEducation.
-			
+
 			employeeEducation.changeProperty(property, newValueExpr);
 			
 			employeeEducation = saveEmployeeEducation(userContext, employeeEducation, tokens().done());
@@ -310,7 +304,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EmployeeEducationTokens tokens(){
 		return EmployeeEducationTokens.start();
 	}
@@ -331,11 +325,11 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeEducationId, String anotherEmployeeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
  		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeEducationManagerException.class);
- 		
+
  	}
  	public EmployeeEducation transferToAnotherEmployee(RetailscmUserContext userContext, String employeeEducationId, String anotherEmployeeId) throws Exception
  	{
@@ -354,10 +348,10 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateEmployee requestCandidateEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateEmployee result = new CandidateEmployee();
@@ -367,7 +361,7 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("company");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -377,42 +371,42 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String employeeEducationId, int employeeEducationVersion) throws Exception {
-		//deleteInternal(userContext, employeeEducationId, employeeEducationVersion);		
+		//deleteInternal(userContext, employeeEducationId, employeeEducationVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeEducationId, int employeeEducationVersion) throws Exception{
-			
+
 		employeeEducationDaoOf(userContext).delete(employeeEducationId, employeeEducationVersion);
 	}
-	
+
 	public EmployeeEducation forgetByAll(RetailscmUserContext userContext, String employeeEducationId, int employeeEducationVersion) throws Exception {
-		return forgetByAllInternal(userContext, employeeEducationId, employeeEducationVersion);		
+		return forgetByAllInternal(userContext, employeeEducationId, employeeEducationVersion);
 	}
 	protected EmployeeEducation forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeEducationId, int employeeEducationVersion) throws Exception{
-			
+
 		return employeeEducationDaoOf(userContext).disconnectFromAll(employeeEducationId, employeeEducationVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -423,23 +417,29 @@ public class EmployeeEducationManagerImpl extends CustomRetailscmCheckerManager 
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return employeeEducationDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EmployeeEducation newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

@@ -438,7 +438,9 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getCode(), getDirect(), getAmount(), getBelongsTo(), getAccountingSubject(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

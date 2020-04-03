@@ -101,7 +101,6 @@
 	  <li class="active"><a data-toggle="tab" href="#summary" class="disabled"><i class="fa  fa-home"></i> ${userContext.localeMap['@summary']}</a></li>
 	 
 	<% Termination result = (Termination)request.getAttribute("result");  %>
-			<li><a data-toggle="tab" href="#employeeList" class="disabled"> ${userContext.localeMap['employee']}</a></li>
  
 	</ul>
 	</div>
@@ -155,15 +154,7 @@
 
 	
 
-		<c:if test='${not empty userContext.accessTokens["employeeList"] or ignoreListAccessControl}'>
-		<c:set var="employeeList" value="${result.employeeList}" scope="request"/>
-		<c:set var="employeeListName" value="employeeList" scope="request"/>
-		<div id="employeeList" class="tab-pane fade sublist" refer-name="termination">
-			<sky:include page="com/doublechaintech/retailscm/employee/Employee$List.jsp"
-					referName="termination"/>
-		</div>
-	</c:if>
-
+	
 	
 
 </div><!--<div class="tab-content" style="padding-top: 10px">-->

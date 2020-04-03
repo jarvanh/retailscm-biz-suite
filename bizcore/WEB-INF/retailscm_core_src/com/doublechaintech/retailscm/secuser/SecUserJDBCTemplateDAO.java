@@ -21,12 +21,10 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
 import com.doublechaintech.retailscm.userapp.UserApp;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlocking;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 
 import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
-import com.doublechaintech.retailscm.secuserblocking.SecUserBlockingDAO;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 import com.doublechaintech.retailscm.loginhistory.LoginHistoryDAO;
 
@@ -46,15 +44,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  	}
  	public UserDomainDAO getUserDomainDAO(){
 	 	return this.userDomainDAO;
- 	}
- 
- 	
- 	private  SecUserBlockingDAO  secUserBlockingDAO;
- 	public void setSecUserBlockingDAO(SecUserBlockingDAO secUserBlockingDAO){
-	 	this.secUserBlockingDAO = secUserBlockingDAO;
- 	}
- 	public SecUserBlockingDAO getSecUserBlockingDAO(){
-	 	return this.secUserBlockingDAO;
  	}
 
 
@@ -294,20 +283,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  	
 
  	
-  
-
- 	protected boolean isExtractBlockingEnabled(Map<String,Object> options){
- 		
-	 	return checkOptions(options, SecUserTokens.BLOCKING);
- 	}
-
- 	protected boolean isSaveBlockingEnabled(Map<String,Object> options){
-	 	
- 		return checkOptions(options, SecUserTokens.BLOCKING);
- 	}
- 	
-
- 	
  
 		
 	
@@ -367,10 +342,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		if(isExtractDomainEnabled(loadOptions)){
 	 		extractDomain(secUser, loadOptions);
  		}
-  	
- 		if(isExtractBlockingEnabled(loadOptions)){
-	 		extractBlocking(secUser, loadOptions);
- 		}
  
 		
 		if(isExtractUserAppListEnabled(loadOptions)){
@@ -407,26 +378,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 		UserDomain domain = getUserDomainDAO().load(domainId,options);
 		if(domain != null){
 			secUser.setDomain(domain);
-		}
-		
- 		
- 		return secUser;
- 	}
- 		
-  
-
- 	protected SecUser extractBlocking(SecUser secUser, Map<String,Object> options) throws Exception{
-
-		if(secUser.getBlocking() == null){
-			return secUser;
-		}
-		String blockingId = secUser.getBlocking().getId();
-		if( blockingId == null){
-			return secUser;
-		}
-		SecUserBlocking blocking = getSecUserBlockingDAO().load(blockingId,options);
-		if(blocking != null){
-			secUser.setBlocking(blocking);
 		}
 		
  		
@@ -586,56 +537,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 		return countWithIds(SecUserTable.COLUMN_DOMAIN, ids, options);
 	}
  	
-  	
- 	public SmartList<SecUser> findSecUserByBlocking(String secUserBlockingId,Map<String,Object> options){
- 	
-  		SmartList<SecUser> resultList = queryWith(SecUserTable.COLUMN_BLOCKING, secUserBlockingId, options, getSecUserMapper());
-		// analyzeSecUserByBlocking(resultList, secUserBlockingId, options);
-		return resultList;
- 	}
- 	 
- 
- 	public SmartList<SecUser> findSecUserByBlocking(String secUserBlockingId, int start, int count,Map<String,Object> options){
- 		
- 		SmartList<SecUser> resultList =  queryWithRange(SecUserTable.COLUMN_BLOCKING, secUserBlockingId, options, getSecUserMapper(), start, count);
- 		//analyzeSecUserByBlocking(resultList, secUserBlockingId, options);
- 		return resultList;
- 		
- 	}
- 	public void analyzeSecUserByBlocking(SmartList<SecUser> resultList, String secUserBlockingId, Map<String,Object> options){
-		if(resultList==null){
-			return;//do nothing when the list is null.
-		}
-		
- 		MultipleAccessKey filterKey = new MultipleAccessKey();
- 		filterKey.put(SecUser.BLOCKING_PROPERTY, secUserBlockingId);
- 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
- 		
- 		StatsInfo info = new StatsInfo();
- 		
- 
-		StatsItem verificationCodeExpireStatsItem = new StatsItem();
-		//SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY
-		verificationCodeExpireStatsItem.setDisplayName("SEC的用户");
-		verificationCodeExpireStatsItem.setInternalName(formatKeyForDateLine(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY));
-		verificationCodeExpireStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY),filterKey,emptyOptions));
-		info.addItem(verificationCodeExpireStatsItem);
- 				
- 		resultList.setStatsInfo(info);
-
- 	
- 		
- 	}
- 	@Override
- 	public int countSecUserByBlocking(String secUserBlockingId,Map<String,Object> options){
-
- 		return countWith(SecUserTable.COLUMN_BLOCKING, secUserBlockingId, options);
- 	}
- 	@Override
-	public Map<String, Integer> countSecUserByBlockingIds(String[] ids, Map<String, Object> options) {
-		return countWithIds(SecUserTable.COLUMN_BLOCKING, ids, options);
-	}
- 	
  	
 		
 		
@@ -778,7 +679,7 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		return prepareSecUserCreateParameters(secUser);
  	}
  	protected Object[] prepareSecUserUpdateParameters(SecUser secUser){
- 		Object[] parameters = new Object[15];
+ 		Object[] parameters = new Object[14];
  
  		parameters[0] = secUser.getLogin();
  		parameters[1] = secUser.getMobile();
@@ -793,19 +694,15 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		if(secUser.getDomain() != null){
  			parameters[10] = secUser.getDomain().getId();
  		}
-  	
- 		if(secUser.getBlocking() != null){
- 			parameters[11] = secUser.getBlocking().getId();
- 		}
  		
- 		parameters[12] = secUser.nextVersion();
- 		parameters[13] = secUser.getId();
- 		parameters[14] = secUser.getVersion();
+ 		parameters[11] = secUser.nextVersion();
+ 		parameters[12] = secUser.getId();
+ 		parameters[13] = secUser.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareSecUserCreateParameters(SecUser secUser){
-		Object[] parameters = new Object[13];
+		Object[] parameters = new Object[12];
 		String newSecUserId=getNextId();
 		secUser.setId(newSecUserId);
 		parameters[0] =  secUser.getId();
@@ -824,11 +721,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  			parameters[11] = secUser.getDomain().getId();
  		
  		}
- 		 	
- 		if(secUser.getBlocking() != null){
- 			parameters[12] = secUser.getBlocking().getId();
- 		
- 		}
  				
  				
  		return parameters;
@@ -840,10 +732,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  	
  		if(isSaveDomainEnabled(options)){
 	 		saveDomain(secUser, options);
- 		}
-  	
- 		if(isSaveBlockingEnabled(options)){
-	 		saveBlocking(secUser, options);
  		}
  
 		
@@ -877,23 +765,6 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		}
  		
  		getUserDomainDAO().save(secUser.getDomain(),options);
- 		return secUser;
- 		
- 	}
- 	
- 	
- 	
- 	 
-	
-  
- 
- 	protected SecUser saveBlocking(SecUser secUser, Map<String,Object> options){
- 		//Call inject DAO to execute this method
- 		if(secUser.getBlocking() == null){
- 			return secUser;//do nothing when it is null
- 		}
- 		
- 		getSecUserBlockingDAO().save(secUser.getBlocking(),options);
  		return secUser;
  		
  	}

@@ -11,29 +11,17 @@ import com.doublechaintech.retailscm.RetailscmUserContext;
 
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroup;
 import com.doublechaintech.retailscm.goods.Goods;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApproval;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItem;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDelivery;
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroup;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPicking;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessing;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmation;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipment;
 
 import com.doublechaintech.retailscm.supplyorderpaymentgroup.SupplyOrderPaymentGroupDAO;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplierDAO;
-import com.doublechaintech.retailscm.supplyorderprocessing.SupplyOrderProcessingDAO;
-import com.doublechaintech.retailscm.supplyorderdelivery.SupplyOrderDeliveryDAO;
 import com.doublechaintech.retailscm.goods.GoodsDAO;
-import com.doublechaintech.retailscm.supplyorderconfirmation.SupplyOrderConfirmationDAO;
-import com.doublechaintech.retailscm.supplyorderapproval.SupplyOrderApprovalDAO;
-import com.doublechaintech.retailscm.supplyordershipment.SupplyOrderShipmentDAO;
 import com.doublechaintech.retailscm.supplyorderlineitem.SupplyOrderLineItemDAO;
 import com.doublechaintech.retailscm.supplyordershippinggroup.SupplyOrderShippingGroupDAO;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
-import com.doublechaintech.retailscm.supplyorderpicking.SupplyOrderPickingDAO;
 
 
 public interface SupplyOrderDAO extends BaseDAO{
@@ -130,10 +118,6 @@ public interface SupplyOrderDAO extends BaseDAO{
 	public SupplyOrder planToRemoveGoodsListWithRetailStoreOrder(SupplyOrder supplyOrder, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String supplyOrderId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect SupplyOrder with packaging in Goods
-	public SupplyOrder planToRemoveGoodsListWithPackaging(SupplyOrder supplyOrder, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String supplyOrderId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<SupplyOrder> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
@@ -151,54 +135,6 @@ public interface SupplyOrderDAO extends BaseDAO{
  	public Map<String, Integer> countSupplyOrderBySellerIds(String[] ids, Map<String,Object> options);
  	public SmartList<SupplyOrder> findSupplyOrderBySeller(String goodsSupplierId, int start, int count, Map<String,Object> options);
  	public void analyzeSupplyOrderBySeller(SmartList<SupplyOrder> resultList, String goodsSupplierId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<SupplyOrder> findSupplyOrderByConfirmation(String supplyOrderConfirmationId, Map<String,Object> options);
- 	public int countSupplyOrderByConfirmation(String supplyOrderConfirmationId, Map<String,Object> options);
- 	public Map<String, Integer> countSupplyOrderByConfirmationIds(String[] ids, Map<String,Object> options);
- 	public SmartList<SupplyOrder> findSupplyOrderByConfirmation(String supplyOrderConfirmationId, int start, int count, Map<String,Object> options);
- 	public void analyzeSupplyOrderByConfirmation(SmartList<SupplyOrder> resultList, String supplyOrderConfirmationId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<SupplyOrder> findSupplyOrderByApproval(String supplyOrderApprovalId, Map<String,Object> options);
- 	public int countSupplyOrderByApproval(String supplyOrderApprovalId, Map<String,Object> options);
- 	public Map<String, Integer> countSupplyOrderByApprovalIds(String[] ids, Map<String,Object> options);
- 	public SmartList<SupplyOrder> findSupplyOrderByApproval(String supplyOrderApprovalId, int start, int count, Map<String,Object> options);
- 	public void analyzeSupplyOrderByApproval(SmartList<SupplyOrder> resultList, String supplyOrderApprovalId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<SupplyOrder> findSupplyOrderByProcessing(String supplyOrderProcessingId, Map<String,Object> options);
- 	public int countSupplyOrderByProcessing(String supplyOrderProcessingId, Map<String,Object> options);
- 	public Map<String, Integer> countSupplyOrderByProcessingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<SupplyOrder> findSupplyOrderByProcessing(String supplyOrderProcessingId, int start, int count, Map<String,Object> options);
- 	public void analyzeSupplyOrderByProcessing(SmartList<SupplyOrder> resultList, String supplyOrderProcessingId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<SupplyOrder> findSupplyOrderByPicking(String supplyOrderPickingId, Map<String,Object> options);
- 	public int countSupplyOrderByPicking(String supplyOrderPickingId, Map<String,Object> options);
- 	public Map<String, Integer> countSupplyOrderByPickingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<SupplyOrder> findSupplyOrderByPicking(String supplyOrderPickingId, int start, int count, Map<String,Object> options);
- 	public void analyzeSupplyOrderByPicking(SmartList<SupplyOrder> resultList, String supplyOrderPickingId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<SupplyOrder> findSupplyOrderByShipment(String supplyOrderShipmentId, Map<String,Object> options);
- 	public int countSupplyOrderByShipment(String supplyOrderShipmentId, Map<String,Object> options);
- 	public Map<String, Integer> countSupplyOrderByShipmentIds(String[] ids, Map<String,Object> options);
- 	public SmartList<SupplyOrder> findSupplyOrderByShipment(String supplyOrderShipmentId, int start, int count, Map<String,Object> options);
- 	public void analyzeSupplyOrderByShipment(SmartList<SupplyOrder> resultList, String supplyOrderShipmentId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<SupplyOrder> findSupplyOrderByDelivery(String supplyOrderDeliveryId, Map<String,Object> options);
- 	public int countSupplyOrderByDelivery(String supplyOrderDeliveryId, Map<String,Object> options);
- 	public Map<String, Integer> countSupplyOrderByDeliveryIds(String[] ids, Map<String,Object> options);
- 	public SmartList<SupplyOrder> findSupplyOrderByDelivery(String supplyOrderDeliveryId, int start, int count, Map<String,Object> options);
- 	public void analyzeSupplyOrderByDelivery(SmartList<SupplyOrder> resultList, String supplyOrderDeliveryId, Map<String,Object> options);
 
  
  

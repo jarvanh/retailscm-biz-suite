@@ -406,7 +406,9 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getEmployee(), getStart(), getEnd(), getCompany(), getDescription(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

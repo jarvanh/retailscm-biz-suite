@@ -57,22 +57,6 @@ public interface AccountingDocumentTypeDAO extends BaseDAO{
 	public AccountingDocumentType planToRemoveAccountingDocumentListWithAccountingPeriod(AccountingDocumentType accountingDocumentType, String accountingPeriodId, Map<String,Object> options)throws Exception;
 	public int countAccountingDocumentListWithAccountingPeriod(String accountingDocumentTypeId, String accountingPeriodId, Map<String,Object> options)throws Exception;
 	
-	//disconnect AccountingDocumentType with creation in AccountingDocument
-	public AccountingDocumentType planToRemoveAccountingDocumentListWithCreation(AccountingDocumentType accountingDocumentType, String creationId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithCreation(String accountingDocumentTypeId, String creationId, Map<String,Object> options)throws Exception;
-	
-	//disconnect AccountingDocumentType with confirmation in AccountingDocument
-	public AccountingDocumentType planToRemoveAccountingDocumentListWithConfirmation(AccountingDocumentType accountingDocumentType, String confirmationId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithConfirmation(String accountingDocumentTypeId, String confirmationId, Map<String,Object> options)throws Exception;
-	
-	//disconnect AccountingDocumentType with auditing in AccountingDocument
-	public AccountingDocumentType planToRemoveAccountingDocumentListWithAuditing(AccountingDocumentType accountingDocumentType, String auditingId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithAuditing(String accountingDocumentTypeId, String auditingId, Map<String,Object> options)throws Exception;
-	
-	//disconnect AccountingDocumentType with posting in AccountingDocument
-	public AccountingDocumentType planToRemoveAccountingDocumentListWithPosting(AccountingDocumentType accountingDocumentType, String postingId, Map<String,Object> options)throws Exception;
-	public int countAccountingDocumentListWithPosting(String accountingDocumentTypeId, String postingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<AccountingDocumentType> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

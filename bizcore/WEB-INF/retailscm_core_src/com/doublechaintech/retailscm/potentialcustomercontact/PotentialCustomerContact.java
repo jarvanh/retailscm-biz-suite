@@ -513,7 +513,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getContactDate(), getContactMethod(), getPotentialCustomer(), getCityPartner(), getContactTo(), getDescription(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

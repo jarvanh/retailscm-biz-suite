@@ -49,7 +49,7 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mName               ;
-	protected		long                	mDriverLicenseNumber;
+	protected		String              	mDriverLicenseNumber;
 	protected		String              	mContactNumber      ;
 	protected		TransportFleet      	mBelongsTo          ;
 	protected		int                 	mVersion            ;
@@ -113,9 +113,9 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeDriverLicenseNumberProperty(String newValueExpr){
-		long oldValue = getDriverLicenseNumber();
-		long newValue = parseLong(newValueExpr);
-		if(equalsLong(oldValue , newValue)){
+		String oldValue = getDriverLicenseNumber();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -206,19 +206,19 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setDriverLicenseNumber(long driverLicenseNumber){
-		this.mDriverLicenseNumber = driverLicenseNumber;;
+	public void setDriverLicenseNumber(String driverLicenseNumber){
+		this.mDriverLicenseNumber = trimString(driverLicenseNumber);;
 	}
-	public long getDriverLicenseNumber(){
+	public String getDriverLicenseNumber(){
 		return this.mDriverLicenseNumber;
 	}
-	public TruckDriver updateDriverLicenseNumber(long driverLicenseNumber){
-		this.mDriverLicenseNumber = driverLicenseNumber;;
+	public TruckDriver updateDriverLicenseNumber(String driverLicenseNumber){
+		this.mDriverLicenseNumber = trimString(driverLicenseNumber);;
 		this.changed = true;
 		return this;
 	}
-	public void mergeDriverLicenseNumber(long driverLicenseNumber){
-		setDriverLicenseNumber(driverLicenseNumber);
+	public void mergeDriverLicenseNumber(String driverLicenseNumber){
+		if(driverLicenseNumber != null) { setDriverLicenseNumber(driverLicenseNumber);}
 	}
 	
 	
@@ -493,7 +493,9 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getDriverLicenseNumber(), getContactNumber(), getBelongsTo(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -512,13 +514,6 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
-	
-	public void increaseDriverLicenseNumber(long incDriverLicenseNumber){
-		updateDriverLicenseNumber(this.mDriverLicenseNumber +  incDriverLicenseNumber);
-	}
-	public void decreaseDriverLicenseNumber(long decDriverLicenseNumber){
-		updateDriverLicenseNumber(this.mDriverLicenseNumber - decDriverLicenseNumber);
-	}
 	
 
 }

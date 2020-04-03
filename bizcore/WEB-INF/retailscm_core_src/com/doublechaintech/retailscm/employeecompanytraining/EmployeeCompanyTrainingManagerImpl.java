@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.scoring.Scoring;
 import com.doublechaintech.retailscm.employee.Employee;
@@ -35,28 +26,31 @@ import com.doublechaintech.retailscm.companytraining.CandidateCompanyTraining;
 
 
 public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerManager implements EmployeeCompanyTrainingManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "EmployeeCompanyTraining";
 	@Override
 	public EmployeeCompanyTrainingDAO daoOf(RetailscmUserContext userContext) {
 		return employeeCompanyTrainingDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EmployeeCompanyTrainingManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EmployeeCompanyTrainingManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected EmployeeCompanyTraining saveEmployeeCompanyTraining(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining, String [] tokensExpr) throws Exception{	
  		//return getEmployeeCompanyTrainingDAO().save(employeeCompanyTraining, tokens);
@@ -173,7 +167,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	public EmployeeCompanyTraining createEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId,String trainingId,String scoringId) throws Exception
 	//public EmployeeCompanyTraining createEmployeeCompanyTraining(RetailscmUserContext userContext,String employeeId, String trainingId, String scoringId) throws Exception
 	{
-		
+
 		
 
 		
@@ -205,14 +199,14 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		onNewInstanceCreated(userContext, employeeCompanyTraining);
 		return employeeCompanyTraining;
 
-		
+
 	}
-	protected EmployeeCompanyTraining createNewEmployeeCompanyTraining() 
+	protected EmployeeCompanyTraining createNewEmployeeCompanyTraining()
 	{
-		
-		return new EmployeeCompanyTraining();		
+
+		return new EmployeeCompanyTraining();
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeCompanyTraining(RetailscmUserContext userContext,String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -231,28 +225,28 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public EmployeeCompanyTraining clone(RetailscmUserContext userContext, String fromEmployeeCompanyTrainingId) throws Exception{
-		
+
 		return employeeCompanyTrainingDaoOf(userContext).clone(fromEmployeeCompanyTrainingId, this.allTokens());
 	}
-	
-	public EmployeeCompanyTraining internalSaveEmployeeCompanyTraining(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining) throws Exception 
+
+	public EmployeeCompanyTraining internalSaveEmployeeCompanyTraining(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining) throws Exception
 	{
 		return internalSaveEmployeeCompanyTraining(userContext, employeeCompanyTraining, allTokens());
 
 	}
-	public EmployeeCompanyTraining internalSaveEmployeeCompanyTraining(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining, Map<String,Object> options) throws Exception 
+	public EmployeeCompanyTraining internalSaveEmployeeCompanyTraining(RetailscmUserContext userContext, EmployeeCompanyTraining employeeCompanyTraining, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEmployeeCompanyTraining(userContext, employeeCompanyTrainingId, employeeCompanyTrainingVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(employeeCompanyTraining){ 
+
+
+		synchronized(employeeCompanyTraining){
 			//will be good when the employeeCompanyTraining loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeCompanyTraining.
@@ -261,23 +255,23 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 			}
 			employeeCompanyTraining = saveEmployeeCompanyTraining(userContext, employeeCompanyTraining, options);
 			return employeeCompanyTraining;
-			
+
 		}
 
 	}
-	
-	public EmployeeCompanyTraining updateEmployeeCompanyTraining(RetailscmUserContext userContext,String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeCompanyTraining updateEmployeeCompanyTraining(RetailscmUserContext userContext,String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeCompanyTraining(userContext, employeeCompanyTrainingId, employeeCompanyTrainingVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		EmployeeCompanyTraining employeeCompanyTraining = loadEmployeeCompanyTraining(userContext, employeeCompanyTrainingId, allTokens());
 		if(employeeCompanyTraining.getVersion() != employeeCompanyTrainingVersion){
 			String message = "The target version("+employeeCompanyTraining.getVersion()+") is not equals to version("+employeeCompanyTrainingVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeCompanyTraining){ 
+		synchronized(employeeCompanyTraining){
 			//will be good when the employeeCompanyTraining loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeCompanyTraining.
@@ -289,21 +283,21 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		}
 
 	}
-	
-	public EmployeeCompanyTraining updateEmployeeCompanyTrainingProperty(RetailscmUserContext userContext,String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public EmployeeCompanyTraining updateEmployeeCompanyTrainingProperty(RetailscmUserContext userContext,String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployeeCompanyTraining(userContext, employeeCompanyTrainingId, employeeCompanyTrainingVersion, property, newValueExpr, tokensExpr);
-		
+
 		EmployeeCompanyTraining employeeCompanyTraining = loadEmployeeCompanyTraining(userContext, employeeCompanyTrainingId, allTokens());
 		if(employeeCompanyTraining.getVersion() != employeeCompanyTrainingVersion){
 			String message = "The target version("+employeeCompanyTraining.getVersion()+") is not equals to version("+employeeCompanyTrainingVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employeeCompanyTraining){ 
+		synchronized(employeeCompanyTraining){
 			//will be good when the employeeCompanyTraining loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to EmployeeCompanyTraining.
-			
+
 			employeeCompanyTraining.changeProperty(property, newValueExpr);
 			
 			employeeCompanyTraining = saveEmployeeCompanyTraining(userContext, employeeCompanyTraining, tokens().done());
@@ -315,7 +309,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EmployeeCompanyTrainingTokens tokens(){
 		return EmployeeCompanyTrainingTokens.start();
 	}
@@ -336,11 +330,11 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 	
 	protected void checkParamsForTransferingAnotherEmployee(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherEmployeeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
  		checkerOf(userContext).checkIdOfEmployee(anotherEmployeeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
- 		
+
  	}
  	public EmployeeCompanyTraining transferToAnotherEmployee(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherEmployeeId) throws Exception
  	{
@@ -359,10 +353,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateEmployee requestCandidateEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateEmployee result = new CandidateEmployee();
@@ -372,7 +366,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("company");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -382,14 +376,14 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherTraining(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherTrainingId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
  		checkerOf(userContext).checkIdOfCompanyTraining(anotherTrainingId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
- 		
+
  	}
  	public EmployeeCompanyTraining transferToAnotherTraining(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherTrainingId) throws Exception
  	{
@@ -408,10 +402,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateCompanyTraining requestCandidateTraining(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateCompanyTraining result = new CandidateCompanyTraining();
@@ -421,7 +415,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -431,14 +425,14 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherScoring(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherScoringId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
  		checkerOf(userContext).checkIdOfScoring(anotherScoringId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeCompanyTrainingManagerException.class);
- 		
+
  	}
  	public EmployeeCompanyTraining transferToAnotherScoring(RetailscmUserContext userContext, String employeeCompanyTrainingId, String anotherScoringId) throws Exception
  	{
@@ -457,10 +451,10 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateScoring requestCandidateScoring(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateScoring result = new CandidateScoring();
@@ -470,7 +464,7 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("scoredBy");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -480,62 +474,62 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected Employee loadEmployee(RetailscmUserContext userContext, String newEmployeeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return employeeDaoOf(userContext).load(newEmployeeId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected Scoring loadScoring(RetailscmUserContext userContext, String newScoringId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return scoringDaoOf(userContext).load(newScoringId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected CompanyTraining loadCompanyTraining(RetailscmUserContext userContext, String newTrainingId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return companyTrainingDaoOf(userContext).load(newTrainingId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String employeeCompanyTrainingId, int employeeCompanyTrainingVersion) throws Exception {
-		//deleteInternal(userContext, employeeCompanyTrainingId, employeeCompanyTrainingVersion);		
+		//deleteInternal(userContext, employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeCompanyTrainingId, int employeeCompanyTrainingVersion) throws Exception{
-			
+
 		employeeCompanyTrainingDaoOf(userContext).delete(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 	}
-	
+
 	public EmployeeCompanyTraining forgetByAll(RetailscmUserContext userContext, String employeeCompanyTrainingId, int employeeCompanyTrainingVersion) throws Exception {
-		return forgetByAllInternal(userContext, employeeCompanyTrainingId, employeeCompanyTrainingVersion);		
+		return forgetByAllInternal(userContext, employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 	}
 	protected EmployeeCompanyTraining forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeCompanyTrainingId, int employeeCompanyTrainingVersion) throws Exception{
-			
+
 		return employeeCompanyTrainingDaoOf(userContext).disconnectFromAll(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -546,23 +540,29 @@ public class EmployeeCompanyTrainingManagerImpl extends CustomRetailscmCheckerMa
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return employeeCompanyTrainingDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, EmployeeCompanyTraining newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

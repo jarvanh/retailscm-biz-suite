@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.employeeleave.EmployeeLeave;
@@ -34,28 +25,31 @@ import com.doublechaintech.retailscm.leavetype.LeaveType;
 
 
 public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implements LeaveTypeManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "LeaveType";
 	@Override
 	public LeaveTypeDAO daoOf(RetailscmUserContext userContext) {
 		return leaveTypeDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws LeaveTypeManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new LeaveTypeManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected LeaveType saveLeaveType(RetailscmUserContext userContext, LeaveType leaveType, String [] tokensExpr) throws Exception{	
  		//return getLeaveTypeDAO().save(leaveType, tokens);
@@ -174,7 +168,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	public LeaveType createLeaveType(RetailscmUserContext userContext, String code,String companyId,String description,String detailDescription) throws Exception
 	//public LeaveType createLeaveType(RetailscmUserContext userContext,String code, String companyId, String description, String detailDescription) throws Exception
 	{
-		
+
 		
 
 		
@@ -202,14 +196,14 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		onNewInstanceCreated(userContext, leaveType);
 		return leaveType;
 
-		
+
 	}
-	protected LeaveType createNewLeaveType() 
+	protected LeaveType createNewLeaveType()
 	{
-		
-		return new LeaveType();		
+
+		return new LeaveType();
 	}
-	
+
 	protected void checkParamsForUpdatingLeaveType(RetailscmUserContext userContext,String leaveTypeId, int leaveTypeVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -233,28 +227,28 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public LeaveType clone(RetailscmUserContext userContext, String fromLeaveTypeId) throws Exception{
-		
+
 		return leaveTypeDaoOf(userContext).clone(fromLeaveTypeId, this.allTokens());
 	}
-	
-	public LeaveType internalSaveLeaveType(RetailscmUserContext userContext, LeaveType leaveType) throws Exception 
+
+	public LeaveType internalSaveLeaveType(RetailscmUserContext userContext, LeaveType leaveType) throws Exception
 	{
 		return internalSaveLeaveType(userContext, leaveType, allTokens());
 
 	}
-	public LeaveType internalSaveLeaveType(RetailscmUserContext userContext, LeaveType leaveType, Map<String,Object> options) throws Exception 
+	public LeaveType internalSaveLeaveType(RetailscmUserContext userContext, LeaveType leaveType, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingLeaveType(userContext, leaveTypeId, leaveTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(leaveType){ 
+
+
+		synchronized(leaveType){
 			//will be good when the leaveType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LeaveType.
@@ -263,23 +257,23 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 			}
 			leaveType = saveLeaveType(userContext, leaveType, options);
 			return leaveType;
-			
+
 		}
 
 	}
-	
-	public LeaveType updateLeaveType(RetailscmUserContext userContext,String leaveTypeId, int leaveTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public LeaveType updateLeaveType(RetailscmUserContext userContext,String leaveTypeId, int leaveTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingLeaveType(userContext, leaveTypeId, leaveTypeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, allTokens());
 		if(leaveType.getVersion() != leaveTypeVersion){
 			String message = "The target version("+leaveType.getVersion()+") is not equals to version("+leaveTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(leaveType){ 
+		synchronized(leaveType){
 			//will be good when the leaveType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LeaveType.
@@ -291,21 +285,21 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
 	}
-	
-	public LeaveType updateLeaveTypeProperty(RetailscmUserContext userContext,String leaveTypeId, int leaveTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public LeaveType updateLeaveTypeProperty(RetailscmUserContext userContext,String leaveTypeId, int leaveTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingLeaveType(userContext, leaveTypeId, leaveTypeVersion, property, newValueExpr, tokensExpr);
-		
+
 		LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, allTokens());
 		if(leaveType.getVersion() != leaveTypeVersion){
 			String message = "The target version("+leaveType.getVersion()+") is not equals to version("+leaveTypeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(leaveType){ 
+		synchronized(leaveType){
 			//will be good when the leaveType loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to LeaveType.
-			
+
 			leaveType.changeProperty(property, newValueExpr);
 			
 			leaveType = saveLeaveType(userContext, leaveType, tokens().done());
@@ -317,7 +311,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected LeaveTypeTokens tokens(){
 		return LeaveTypeTokens.start();
 	}
@@ -339,11 +333,11 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String leaveTypeId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
- 		
+
  	}
  	public LeaveType transferToAnotherCompany(RetailscmUserContext userContext, String leaveTypeId, String anotherCompanyId) throws Exception
  	{
@@ -362,10 +356,10 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -375,7 +369,7 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -385,42 +379,42 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String leaveTypeId, int leaveTypeVersion) throws Exception {
-		//deleteInternal(userContext, leaveTypeId, leaveTypeVersion);		
+		//deleteInternal(userContext, leaveTypeId, leaveTypeVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String leaveTypeId, int leaveTypeVersion) throws Exception{
-			
+
 		leaveTypeDaoOf(userContext).delete(leaveTypeId, leaveTypeVersion);
 	}
-	
+
 	public LeaveType forgetByAll(RetailscmUserContext userContext, String leaveTypeId, int leaveTypeVersion) throws Exception {
-		return forgetByAllInternal(userContext, leaveTypeId, leaveTypeVersion);		
+		return forgetByAllInternal(userContext, leaveTypeId, leaveTypeVersion);
 	}
 	protected LeaveType forgetByAllInternal(RetailscmUserContext userContext,
 			String leaveTypeId, int leaveTypeVersion) throws Exception{
-			
+
 		return leaveTypeDaoOf(userContext).disconnectFromAll(leaveTypeId, leaveTypeVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -431,8 +425,8 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return leaveTypeDaoOf(userContext).deleteAll();
 	}
@@ -441,29 +435,29 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	//disconnect LeaveType with who in EmployeeLeave
 	protected LeaveType breakWithEmployeeLeaveByWho(RetailscmUserContext userContext, String leaveTypeId, String whoId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, allTokens());
 
-			synchronized(leaveType){ 
+			synchronized(leaveType){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				leaveTypeDaoOf(userContext).planToRemoveEmployeeLeaveListWithWho(leaveType, whoId, this.emptyOptions());
 
 				leaveType = saveLeaveType(userContext, leaveType, tokens().withEmployeeLeaveList().done());
 				return leaveType;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, String whoId, int leaveDurationHour, String remark,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
 
 		
@@ -475,20 +469,20 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
 
-	
+
 	}
 	public  LeaveType addEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, String whoId, int leaveDurationHour, String remark, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeLeave(userContext,leaveTypeId,whoId, leaveDurationHour, remark,tokensExpr);
-		
+
 		EmployeeLeave employeeLeave = createEmployeeLeave(userContext,whoId, leaveDurationHour, remark);
-		
-		LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, allTokens());
-		synchronized(leaveType){ 
+
+		LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, emptyOptions());
+		synchronized(leaveType){
 			//Will be good when the leaveType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			leaveType.addEmployeeLeave( employeeLeave );		
+			leaveType.addEmployeeLeave( employeeLeave );
 			leaveType = saveLeaveType(userContext, leaveType, tokens().withEmployeeLeaveList().done());
 			
 			userContext.getManagerGroup().getEmployeeLeaveManager().onNewInstanceCreated(userContext, employeeLeave);
@@ -496,45 +490,45 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeLeaveProperties(RetailscmUserContext userContext, String leaveTypeId,String id,int leaveDurationHour,String remark,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
 		checkerOf(userContext).checkIdOfEmployeeLeave(id);
-		
+
 		checkerOf(userContext).checkLeaveDurationHourOfEmployeeLeave( leaveDurationHour);
 		checkerOf(userContext).checkRemarkOfEmployeeLeave( remark);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
-		
+
 	}
 	public  LeaveType updateEmployeeLeaveProperties(RetailscmUserContext userContext, String leaveTypeId, String id,int leaveDurationHour,String remark, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeLeaveProperties(userContext,leaveTypeId,id,leaveDurationHour,remark,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeLeaveListList()
 				.searchEmployeeLeaveListWith(EmployeeLeave.ID_PROPERTY, "is", id).done();
-		
+
 		LeaveType leaveTypeToUpdate = loadLeaveType(userContext, leaveTypeId, options);
-		
+
 		if(leaveTypeToUpdate.getEmployeeLeaveList().isEmpty()){
 			throw new LeaveTypeManagerException("EmployeeLeave is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeLeave item = leaveTypeToUpdate.getEmployeeLeaveList().first();
-		
+
 		item.updateLeaveDurationHour( leaveDurationHour );
 		item.updateRemark( remark );
 
-		
+
 		//checkParamsForAddingEmployeeLeave(userContext,leaveTypeId,name, code, used,tokensExpr);
 		LeaveType leaveType = saveLeaveType(userContext, leaveTypeToUpdate, tokens().withEmployeeLeaveList().done());
-		synchronized(leaveType){ 
+		synchronized(leaveType){
 			return present(userContext,leaveType, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeLeave createEmployeeLeave(RetailscmUserContext userContext, String whoId, int leaveDurationHour, String remark) throws Exception{
 
 		EmployeeLeave employeeLeave = new EmployeeLeave();
@@ -548,38 +542,38 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	
 		
 		return employeeLeave;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeLeave createIndexedEmployeeLeave(String id, int version){
 
 		EmployeeLeave employeeLeave = new EmployeeLeave();
 		employeeLeave.setId(id);
 		employeeLeave.setVersion(version);
-		return employeeLeave;			
-		
+		return employeeLeave;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeLeaveList(RetailscmUserContext userContext, String leaveTypeId, 
+
+	protected void checkParamsForRemovingEmployeeLeaveList(RetailscmUserContext userContext, String leaveTypeId,
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfLeaveType(leaveTypeId);
 		for(String employeeLeaveIdItem: employeeLeaveIds){
 			checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
-		
+
 	}
-	public  LeaveType removeEmployeeLeaveList(RetailscmUserContext userContext, String leaveTypeId, 
+	public  LeaveType removeEmployeeLeaveList(RetailscmUserContext userContext, String leaveTypeId,
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeLeaveList(userContext, leaveTypeId,  employeeLeaveIds, tokensExpr);
-			
-			
+
+
 			LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, allTokens());
-			synchronized(leaveType){ 
+			synchronized(leaveType){
 				//Will be good when the leaveType loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				leaveTypeDaoOf(userContext).planToRemoveEmployeeLeaveList(leaveType, employeeLeaveIds, allTokens());
@@ -588,65 +582,65 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 				return present(userContext,leaveType, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, 
+
+	protected void checkParamsForRemovingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfLeaveType( leaveTypeId);
 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
 		checkerOf(userContext).checkVersionOfEmployeeLeave(employeeLeaveVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
-	
+
 	}
-	public  LeaveType removeEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, 
+	public  LeaveType removeEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeLeave(userContext,leaveTypeId, employeeLeaveId, employeeLeaveVersion,tokensExpr);
-		
+
 		EmployeeLeave employeeLeave = createIndexedEmployeeLeave(employeeLeaveId, employeeLeaveVersion);
 		LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, allTokens());
-		synchronized(leaveType){ 
+		synchronized(leaveType){
 			//Will be good when the leaveType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			leaveType.removeEmployeeLeave( employeeLeave );		
+			leaveType.removeEmployeeLeave( employeeLeave );
 			leaveType = saveLeaveType(userContext, leaveType, tokens().withEmployeeLeaveList().done());
 			deleteRelationInGraph(userContext, employeeLeave);
 			return present(userContext,leaveType, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, 
+	protected void checkParamsForCopyingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfLeaveType( leaveTypeId);
 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
 		checkerOf(userContext).checkVersionOfEmployeeLeave(employeeLeaveVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
-	
+
 	}
-	public  LeaveType copyEmployeeLeaveFrom(RetailscmUserContext userContext, String leaveTypeId, 
+	public  LeaveType copyEmployeeLeaveFrom(RetailscmUserContext userContext, String leaveTypeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeLeave(userContext,leaveTypeId, employeeLeaveId, employeeLeaveVersion,tokensExpr);
-		
+
 		EmployeeLeave employeeLeave = createIndexedEmployeeLeave(employeeLeaveId, employeeLeaveVersion);
 		LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, allTokens());
-		synchronized(leaveType){ 
+		synchronized(leaveType){
 			//Will be good when the leaveType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			leaveType.copyEmployeeLeaveFrom( employeeLeave );		
+
+			leaveType.copyEmployeeLeaveFrom( employeeLeave );
 			leaveType = saveLeaveType(userContext, leaveType, tokens().withEmployeeLeaveList().done());
 			
 			userContext.getManagerGroup().getEmployeeLeaveManager().onNewInstanceCreated(userContext, (EmployeeLeave)leaveType.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,leaveType, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, String employeeLeaveId, int employeeLeaveVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -666,32 +660,32 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(LeaveTypeManagerException.class);
-	
+
 	}
-	
+
 	public  LeaveType updateEmployeeLeave(RetailscmUserContext userContext, String leaveTypeId, String employeeLeaveId, int employeeLeaveVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeLeave(userContext, leaveTypeId, employeeLeaveId, employeeLeaveVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeLeaveList().searchEmployeeLeaveListWith(EmployeeLeave.ID_PROPERTY, "eq", employeeLeaveId).done();
-		
-		
-		
+
+
+
 		LeaveType leaveType = loadLeaveType(userContext, leaveTypeId, loadTokens);
-		
-		synchronized(leaveType){ 
+
+		synchronized(leaveType){
 			//Will be good when the leaveType loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//leaveType.removeEmployeeLeave( employeeLeave );	
+			//leaveType.removeEmployeeLeave( employeeLeave );
 			//make changes to AcceleraterAccount.
 			EmployeeLeave employeeLeaveIndex = createIndexedEmployeeLeave(employeeLeaveId, employeeLeaveVersion);
-		
+
 			EmployeeLeave employeeLeave = leaveType.findTheEmployeeLeave(employeeLeaveIndex);
 			if(employeeLeave == null){
 				throw new LeaveTypeManagerException(employeeLeave+" is NOT FOUND" );
 			}
-			
+
 			employeeLeave.changeProperty(property, newValueExpr);
 			
 			leaveType = saveLeaveType(userContext, leaveType, tokens().withEmployeeLeaveList().done());
@@ -702,14 +696,20 @@ public class LeaveTypeManagerImpl extends CustomRetailscmCheckerManager implemen
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, LeaveType newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

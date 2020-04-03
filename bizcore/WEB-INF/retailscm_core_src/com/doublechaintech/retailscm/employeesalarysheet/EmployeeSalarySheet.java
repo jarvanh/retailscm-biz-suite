@@ -599,7 +599,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getEmployee(), getCurrentSalaryGrade(), getBaseSalary(), getBonus(), getReward(), getPersonalTax(), getSocialSecurity(), getHousingFound(), getJobInsurance(), getPayingOff(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

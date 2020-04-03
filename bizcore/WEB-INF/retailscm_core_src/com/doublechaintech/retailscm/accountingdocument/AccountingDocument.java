@@ -13,10 +13,6 @@ import com.doublechaintech.retailscm.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.doublechaintech.retailscm.accountingdocumentline.AccountingDocumentLine;
-import com.doublechaintech.retailscm.accountingdocumentposting.AccountingDocumentPosting;
-import com.doublechaintech.retailscm.accountingdocumentcreation.AccountingDocumentCreation;
-import com.doublechaintech.retailscm.accountingdocumentauditing.AccountingDocumentAuditing;
-import com.doublechaintech.retailscm.accountingdocumentconfirmation.AccountingDocumentConfirmation;
 import com.doublechaintech.retailscm.originalvoucher.OriginalVoucher;
 import com.doublechaintech.retailscm.accountingdocumenttype.AccountingDocumentType;
 import com.doublechaintech.retailscm.accountingperiod.AccountingPeriod;
@@ -30,10 +26,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	public static final String ACCOUNTING_DOCUMENT_DATE_PROPERTY = "accountingDocumentDate";
 	public static final String ACCOUNTING_PERIOD_PROPERTY     = "accountingPeriod"  ;
 	public static final String DOCUMENT_TYPE_PROPERTY         = "documentType"      ;
-	public static final String CREATION_PROPERTY              = "creation"          ;
-	public static final String CONFIRMATION_PROPERTY          = "confirmation"      ;
-	public static final String AUDITING_PROPERTY              = "auditing"          ;
-	public static final String POSTING_PROPERTY               = "posting"           ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String ORIGINAL_VOUCHER_LIST                    = "originalVoucherList";
@@ -63,10 +55,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	protected		Date                	mAccountingDocumentDate;
 	protected		AccountingPeriod    	mAccountingPeriod   ;
 	protected		AccountingDocumentType	mDocumentType       ;
-	protected		AccountingDocumentCreation	mCreation           ;
-	protected		AccountingDocumentConfirmation	mConfirmation       ;
-	protected		AccountingDocumentAuditing	mAuditing           ;
-	protected		AccountingDocumentPosting	mPosting            ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -91,10 +79,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	public 	void clearFromAll(){
 		setAccountingPeriod( null );
 		setDocumentType( null );
-		setCreation( null );
-		setConfirmation( null );
-		setAuditing( null );
-		setPosting( null );
 
 		this.changed = true;
 	}
@@ -161,18 +145,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		}
 		if(DOCUMENT_TYPE_PROPERTY.equals(property)){
 			return getDocumentType();
-		}
-		if(CREATION_PROPERTY.equals(property)){
-			return getCreation();
-		}
-		if(CONFIRMATION_PROPERTY.equals(property)){
-			return getConfirmation();
-		}
-		if(AUDITING_PROPERTY.equals(property)){
-			return getAuditing();
-		}
-		if(POSTING_PROPERTY.equals(property)){
-			return getPosting();
 		}
 		if(ORIGINAL_VOUCHER_LIST.equals(property)){
 			List<BaseEntity> list = getOriginalVoucherList().stream().map(item->item).collect(Collectors.toList());
@@ -280,90 +252,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	
 	public void clearDocumentType(){
 		setDocumentType ( null );
-		this.changed = true;
-	}
-	
-	public void setCreation(AccountingDocumentCreation creation){
-		this.mCreation = creation;;
-	}
-	public AccountingDocumentCreation getCreation(){
-		return this.mCreation;
-	}
-	public AccountingDocument updateCreation(AccountingDocumentCreation creation){
-		this.mCreation = creation;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCreation(AccountingDocumentCreation creation){
-		if(creation != null) { setCreation(creation);}
-	}
-	
-	
-	public void clearCreation(){
-		setCreation ( null );
-		this.changed = true;
-	}
-	
-	public void setConfirmation(AccountingDocumentConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-	}
-	public AccountingDocumentConfirmation getConfirmation(){
-		return this.mConfirmation;
-	}
-	public AccountingDocument updateConfirmation(AccountingDocumentConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeConfirmation(AccountingDocumentConfirmation confirmation){
-		if(confirmation != null) { setConfirmation(confirmation);}
-	}
-	
-	
-	public void clearConfirmation(){
-		setConfirmation ( null );
-		this.changed = true;
-	}
-	
-	public void setAuditing(AccountingDocumentAuditing auditing){
-		this.mAuditing = auditing;;
-	}
-	public AccountingDocumentAuditing getAuditing(){
-		return this.mAuditing;
-	}
-	public AccountingDocument updateAuditing(AccountingDocumentAuditing auditing){
-		this.mAuditing = auditing;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeAuditing(AccountingDocumentAuditing auditing){
-		if(auditing != null) { setAuditing(auditing);}
-	}
-	
-	
-	public void clearAuditing(){
-		setAuditing ( null );
-		this.changed = true;
-	}
-	
-	public void setPosting(AccountingDocumentPosting posting){
-		this.mPosting = posting;;
-	}
-	public AccountingDocumentPosting getPosting(){
-		return this.mPosting;
-	}
-	public AccountingDocument updatePosting(AccountingDocumentPosting posting){
-		this.mPosting = posting;;
-		this.changed = true;
-		return this;
-	}
-	public void mergePosting(AccountingDocumentPosting posting){
-		if(posting != null) { setPosting(posting);}
-	}
-	
-	
-	public void clearPosting(){
-		setPosting ( null );
 		this.changed = true;
 	}
 	
@@ -602,10 +490,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 
 		addToEntityList(this, entityList, getAccountingPeriod(), internalType);
 		addToEntityList(this, entityList, getDocumentType(), internalType);
-		addToEntityList(this, entityList, getCreation(), internalType);
-		addToEntityList(this, entityList, getConfirmation(), internalType);
-		addToEntityList(this, entityList, getAuditing(), internalType);
-		addToEntityList(this, entityList, getPosting(), internalType);
 
 		
 	}
@@ -638,10 +522,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		appendKeyValuePair(result, ACCOUNTING_DOCUMENT_DATE_PROPERTY, getAccountingDocumentDate());
 		appendKeyValuePair(result, ACCOUNTING_PERIOD_PROPERTY, getAccountingPeriod());
 		appendKeyValuePair(result, DOCUMENT_TYPE_PROPERTY, getDocumentType());
-		appendKeyValuePair(result, CREATION_PROPERTY, getCreation());
-		appendKeyValuePair(result, CONFIRMATION_PROPERTY, getConfirmation());
-		appendKeyValuePair(result, AUDITING_PROPERTY, getAuditing());
-		appendKeyValuePair(result, POSTING_PROPERTY, getPosting());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, ORIGINAL_VOUCHER_LIST, getOriginalVoucherList());
 		if(!getOriginalVoucherList().isEmpty()){
@@ -672,10 +552,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 			dest.setAccountingDocumentDate(getAccountingDocumentDate());
 			dest.setAccountingPeriod(getAccountingPeriod());
 			dest.setDocumentType(getDocumentType());
-			dest.setCreation(getCreation());
-			dest.setConfirmation(getConfirmation());
-			dest.setAuditing(getAuditing());
-			dest.setPosting(getPosting());
 			dest.setVersion(getVersion());
 			dest.setOriginalVoucherList(getOriginalVoucherList());
 			dest.setAccountingDocumentLineList(getAccountingDocumentLineList());
@@ -697,10 +573,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 			dest.mergeAccountingDocumentDate(getAccountingDocumentDate());
 			dest.mergeAccountingPeriod(getAccountingPeriod());
 			dest.mergeDocumentType(getDocumentType());
-			dest.mergeCreation(getCreation());
-			dest.mergeConfirmation(getConfirmation());
-			dest.mergeAuditing(getAuditing());
-			dest.mergePosting(getPosting());
 			dest.mergeVersion(getVersion());
 			dest.mergeOriginalVoucherList(getOriginalVoucherList());
 			dest.mergeAccountingDocumentLineList(getAccountingDocumentLineList());
@@ -726,7 +598,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getAccountingDocumentDate(), getAccountingPeriod(), getDocumentType(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -739,18 +613,6 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
  		}
 		if(getDocumentType() != null ){
  			stringBuilder.append("\tdocumentType='AccountingDocumentType("+getDocumentType().getId()+")';");
- 		}
-		if(getCreation() != null ){
- 			stringBuilder.append("\tcreation='AccountingDocumentCreation("+getCreation().getId()+")';");
- 		}
-		if(getConfirmation() != null ){
- 			stringBuilder.append("\tconfirmation='AccountingDocumentConfirmation("+getConfirmation().getId()+")';");
- 		}
-		if(getAuditing() != null ){
- 			stringBuilder.append("\tauditing='AccountingDocumentAuditing("+getAuditing().getId()+")';");
- 		}
-		if(getPosting() != null ){
- 			stringBuilder.append("\tposting='AccountingDocumentPosting("+getPosting().getId()+")';");
  		}
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

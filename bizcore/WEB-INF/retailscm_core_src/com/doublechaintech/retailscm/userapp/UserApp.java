@@ -909,7 +909,9 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getSecUser(), getAppIcon(), getFullAccess(), getPermission(), getObjectType(), getObjectId(), getLocation(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

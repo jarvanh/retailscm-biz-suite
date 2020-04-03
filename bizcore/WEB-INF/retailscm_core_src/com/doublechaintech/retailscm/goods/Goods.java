@@ -16,7 +16,6 @@ import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -43,7 +42,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 	public static final String RETAIL_STORE_PROPERTY          = "retailStore"       ;
 	public static final String BIZ_ORDER_PROPERTY             = "bizOrder"          ;
 	public static final String RETAIL_STORE_ORDER_PROPERTY    = "retailStoreOrder"  ;
-	public static final String PACKAGING_PROPERTY             = "packaging"         ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 	public static final String GOODS_MOVEMENT_LIST                      = "goodsMovementList" ;
@@ -82,7 +80,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 	protected		RetailStore         	mRetailStore        ;
 	protected		SupplyOrder         	mBizOrder           ;
 	protected		RetailStoreOrder    	mRetailStoreOrder   ;
-	protected		GoodsPackaging      	mPackaging          ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -113,7 +110,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		setRetailStore( null );
 		setBizOrder( null );
 		setRetailStoreOrder( null );
-		setPackaging( null );
 
 		this.changed = true;
 	}
@@ -264,9 +260,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		}
 		if(RETAIL_STORE_ORDER_PROPERTY.equals(property)){
 			return getRetailStoreOrder();
-		}
-		if(PACKAGING_PROPERTY.equals(property)){
-			return getPackaging();
 		}
 		if(GOODS_MOVEMENT_LIST.equals(property)){
 			List<BaseEntity> list = getGoodsMovementList().stream().map(item->item).collect(Collectors.toList());
@@ -568,27 +561,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public void setPackaging(GoodsPackaging packaging){
-		this.mPackaging = packaging;;
-	}
-	public GoodsPackaging getPackaging(){
-		return this.mPackaging;
-	}
-	public Goods updatePackaging(GoodsPackaging packaging){
-		this.mPackaging = packaging;;
-		this.changed = true;
-		return this;
-	}
-	public void mergePackaging(GoodsPackaging packaging){
-		if(packaging != null) { setPackaging(packaging);}
-	}
-	
-	
-	public void clearPackaging(){
-		setPackaging ( null );
-		this.changed = true;
-	}
-	
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -724,7 +696,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		addToEntityList(this, entityList, getRetailStore(), internalType);
 		addToEntityList(this, entityList, getBizOrder(), internalType);
 		addToEntityList(this, entityList, getRetailStoreOrder(), internalType);
-		addToEntityList(this, entityList, getPackaging(), internalType);
 
 		
 	}
@@ -765,7 +736,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, RETAIL_STORE_PROPERTY, getRetailStore());
 		appendKeyValuePair(result, BIZ_ORDER_PROPERTY, getBizOrder());
 		appendKeyValuePair(result, RETAIL_STORE_ORDER_PROPERTY, getRetailStoreOrder());
-		appendKeyValuePair(result, PACKAGING_PROPERTY, getPackaging());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, GOODS_MOVEMENT_LIST, getGoodsMovementList());
 		if(!getGoodsMovementList().isEmpty()){
@@ -801,7 +771,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 			dest.setRetailStore(getRetailStore());
 			dest.setBizOrder(getBizOrder());
 			dest.setRetailStoreOrder(getRetailStoreOrder());
-			dest.setPackaging(getPackaging());
 			dest.setVersion(getVersion());
 			dest.setGoodsMovementList(getGoodsMovementList());
 
@@ -832,7 +801,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 			dest.mergeRetailStore(getRetailStore());
 			dest.mergeBizOrder(getBizOrder());
 			dest.mergeRetailStoreOrder(getRetailStoreOrder());
-			dest.mergePackaging(getPackaging());
 			dest.mergeVersion(getVersion());
 			dest.mergeGoodsMovementList(getGoodsMovementList());
 
@@ -860,7 +828,9 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getRfid(), getUom(), getMaxPackage(), getExpireTime(), getSku(), getReceivingSpace(), getGoodsAllocation(), getSmartPallet(), getShippingSpace(), getTransportTask(), getRetailStore(), getBizOrder(), getRetailStoreOrder(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -897,9 +867,6 @@ public class Goods extends BaseEntity implements  java.io.Serializable{
  		}
 		if(getRetailStoreOrder() != null ){
  			stringBuilder.append("\tretailStoreOrder='RetailStoreOrder("+getRetailStoreOrder().getId()+")';");
- 		}
-		if(getPackaging() != null ){
- 			stringBuilder.append("\tpackaging='GoodsPackaging("+getPackaging().getId()+")';");
  		}
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

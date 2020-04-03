@@ -277,7 +277,9 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getEmployee(), getPerformanceComment(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

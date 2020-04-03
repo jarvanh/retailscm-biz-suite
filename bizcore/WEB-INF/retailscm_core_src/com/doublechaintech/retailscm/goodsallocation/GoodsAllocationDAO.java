@@ -85,10 +85,6 @@ public interface GoodsAllocationDAO extends BaseDAO{
 	public GoodsAllocation planToRemoveGoodsListWithRetailStoreOrder(GoodsAllocation goodsAllocation, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String goodsAllocationId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect GoodsAllocation with packaging in Goods
-	public GoodsAllocation planToRemoveGoodsListWithPackaging(GoodsAllocation goodsAllocation, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String goodsAllocationId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<GoodsAllocation> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

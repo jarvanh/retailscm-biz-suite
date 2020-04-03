@@ -299,7 +299,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"name",this::checkNameOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"founded",this::checkFoundedOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"provinceCenter",this::checkProvinceCenterOfProvinceCenterDepartment);
-		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"managerName",this::checkManagerNameOfProvinceCenterDepartment);
+		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"manager",this::checkManagerOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"version",this::checkVersionOfProvinceCenterDepartment);
 		commonObjectPropertyCheck(provinceCenterDepartmentAsBaseEntity,"provinceCenterEmployeeList",this::checkProvinceCenterEmployeeListOfProvinceCenterDepartment);
 		return this;
@@ -603,11 +603,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"id",this::checkIdOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"title",this::checkTitleOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"consumer",this::checkConsumerOfConsumerOrder);
-		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"confirmation",this::checkConfirmationOfConsumerOrder);
-		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"approval",this::checkApprovalOfConsumerOrder);
-		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"processing",this::checkProcessingOfConsumerOrder);
-		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"shipment",this::checkShipmentOfConsumerOrder);
-		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"delivery",this::checkDeliveryOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"store",this::checkStoreOfConsumerOrder);
 		commonObjectPropertyAssign(consumerOrderAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"version",this::checkVersionOfConsumerOrder);
@@ -616,76 +611,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"consumerOrderPaymentGroupList",this::checkConsumerOrderPaymentGroupListOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"consumerOrderPriceAdjustmentList",this::checkConsumerOrderPriceAdjustmentListOfConsumerOrder);
 		commonObjectPropertyCheck(consumerOrderAsBaseEntity,"retailStoreMemberGiftCardConsumeRecordList",this::checkRetailStoreMemberGiftCardConsumeRecordListOfConsumerOrder);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixConsumerOrderConfirmation(BaseEntity consumerOrderConfirmationAsBaseEntity){
-
-		if( isChecked(consumerOrderConfirmationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(consumerOrderConfirmationAsBaseEntity);
-		commonObjectPropertyCheck(consumerOrderConfirmationAsBaseEntity,"id",this::checkIdOfConsumerOrderConfirmation);
-		commonObjectPropertyCheck(consumerOrderConfirmationAsBaseEntity,"who",this::checkWhoOfConsumerOrderConfirmation);
-		commonObjectPropertyCheck(consumerOrderConfirmationAsBaseEntity,"confirmTime",this::checkConfirmTimeOfConsumerOrderConfirmation);
-		commonObjectPropertyCheck(consumerOrderConfirmationAsBaseEntity,"version",this::checkVersionOfConsumerOrderConfirmation);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixConsumerOrderApproval(BaseEntity consumerOrderApprovalAsBaseEntity){
-
-		if( isChecked(consumerOrderApprovalAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(consumerOrderApprovalAsBaseEntity);
-		commonObjectPropertyCheck(consumerOrderApprovalAsBaseEntity,"id",this::checkIdOfConsumerOrderApproval);
-		commonObjectPropertyCheck(consumerOrderApprovalAsBaseEntity,"who",this::checkWhoOfConsumerOrderApproval);
-		commonObjectPropertyCheck(consumerOrderApprovalAsBaseEntity,"approveTime",this::checkApproveTimeOfConsumerOrderApproval);
-		commonObjectPropertyCheck(consumerOrderApprovalAsBaseEntity,"version",this::checkVersionOfConsumerOrderApproval);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixConsumerOrderProcessing(BaseEntity consumerOrderProcessingAsBaseEntity){
-
-		if( isChecked(consumerOrderProcessingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(consumerOrderProcessingAsBaseEntity);
-		commonObjectPropertyCheck(consumerOrderProcessingAsBaseEntity,"id",this::checkIdOfConsumerOrderProcessing);
-		commonObjectPropertyCheck(consumerOrderProcessingAsBaseEntity,"who",this::checkWhoOfConsumerOrderProcessing);
-		commonObjectPropertyCheck(consumerOrderProcessingAsBaseEntity,"processTime",this::checkProcessTimeOfConsumerOrderProcessing);
-		commonObjectPropertyCheck(consumerOrderProcessingAsBaseEntity,"version",this::checkVersionOfConsumerOrderProcessing);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixConsumerOrderShipment(BaseEntity consumerOrderShipmentAsBaseEntity){
-
-		if( isChecked(consumerOrderShipmentAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(consumerOrderShipmentAsBaseEntity);
-		commonObjectPropertyCheck(consumerOrderShipmentAsBaseEntity,"id",this::checkIdOfConsumerOrderShipment);
-		commonObjectPropertyCheck(consumerOrderShipmentAsBaseEntity,"who",this::checkWhoOfConsumerOrderShipment);
-		commonObjectPropertyCheck(consumerOrderShipmentAsBaseEntity,"shipTime",this::checkShipTimeOfConsumerOrderShipment);
-		commonObjectPropertyCheck(consumerOrderShipmentAsBaseEntity,"version",this::checkVersionOfConsumerOrderShipment);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixConsumerOrderDelivery(BaseEntity consumerOrderDeliveryAsBaseEntity){
-
-		if( isChecked(consumerOrderDeliveryAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(consumerOrderDeliveryAsBaseEntity);
-		commonObjectPropertyCheck(consumerOrderDeliveryAsBaseEntity,"id",this::checkIdOfConsumerOrderDelivery);
-		commonObjectPropertyCheck(consumerOrderDeliveryAsBaseEntity,"who",this::checkWhoOfConsumerOrderDelivery);
-		commonObjectPropertyCheck(consumerOrderDeliveryAsBaseEntity,"deliveryTime",this::checkDeliveryTimeOfConsumerOrderDelivery);
-		commonObjectPropertyCheck(consumerOrderDeliveryAsBaseEntity,"version",this::checkVersionOfConsumerOrderDelivery);
 		return this;
 
 	}
@@ -945,113 +870,12 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"seller",this::checkSellerOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"title",this::checkTitleOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"totalAmount",this::checkTotalAmountOfSupplyOrder);
-		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"confirmation",this::checkConfirmationOfSupplyOrder);
-		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"approval",this::checkApprovalOfSupplyOrder);
-		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"processing",this::checkProcessingOfSupplyOrder);
-		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"picking",this::checkPickingOfSupplyOrder);
-		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"shipment",this::checkShipmentOfSupplyOrder);
-		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"delivery",this::checkDeliveryOfSupplyOrder);
 		commonObjectPropertyAssign(supplyOrderAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"version",this::checkVersionOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"supplyOrderLineItemList",this::checkSupplyOrderLineItemListOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"supplyOrderShippingGroupList",this::checkSupplyOrderShippingGroupListOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"supplyOrderPaymentGroupList",this::checkSupplyOrderPaymentGroupListOfSupplyOrder);
 		commonObjectPropertyCheck(supplyOrderAsBaseEntity,"goodsList",this::checkGoodsListOfSupplyOrder);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixSupplyOrderConfirmation(BaseEntity supplyOrderConfirmationAsBaseEntity){
-
-		if( isChecked(supplyOrderConfirmationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(supplyOrderConfirmationAsBaseEntity);
-		commonObjectPropertyCheck(supplyOrderConfirmationAsBaseEntity,"id",this::checkIdOfSupplyOrderConfirmation);
-		commonObjectPropertyCheck(supplyOrderConfirmationAsBaseEntity,"who",this::checkWhoOfSupplyOrderConfirmation);
-		commonObjectPropertyCheck(supplyOrderConfirmationAsBaseEntity,"confirmTime",this::checkConfirmTimeOfSupplyOrderConfirmation);
-		commonObjectPropertyCheck(supplyOrderConfirmationAsBaseEntity,"version",this::checkVersionOfSupplyOrderConfirmation);
-		commonObjectPropertyCheck(supplyOrderConfirmationAsBaseEntity,"consumerOrderList",this::checkConsumerOrderListOfSupplyOrderConfirmation);
-		commonObjectPropertyCheck(supplyOrderConfirmationAsBaseEntity,"supplyOrderList",this::checkSupplyOrderListOfSupplyOrderConfirmation);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixSupplyOrderApproval(BaseEntity supplyOrderApprovalAsBaseEntity){
-
-		if( isChecked(supplyOrderApprovalAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(supplyOrderApprovalAsBaseEntity);
-		commonObjectPropertyCheck(supplyOrderApprovalAsBaseEntity,"id",this::checkIdOfSupplyOrderApproval);
-		commonObjectPropertyCheck(supplyOrderApprovalAsBaseEntity,"who",this::checkWhoOfSupplyOrderApproval);
-		commonObjectPropertyCheck(supplyOrderApprovalAsBaseEntity,"approveTime",this::checkApproveTimeOfSupplyOrderApproval);
-		commonObjectPropertyCheck(supplyOrderApprovalAsBaseEntity,"version",this::checkVersionOfSupplyOrderApproval);
-		commonObjectPropertyCheck(supplyOrderApprovalAsBaseEntity,"consumerOrderList",this::checkConsumerOrderListOfSupplyOrderApproval);
-		commonObjectPropertyCheck(supplyOrderApprovalAsBaseEntity,"supplyOrderList",this::checkSupplyOrderListOfSupplyOrderApproval);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixSupplyOrderProcessing(BaseEntity supplyOrderProcessingAsBaseEntity){
-
-		if( isChecked(supplyOrderProcessingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(supplyOrderProcessingAsBaseEntity);
-		commonObjectPropertyCheck(supplyOrderProcessingAsBaseEntity,"id",this::checkIdOfSupplyOrderProcessing);
-		commonObjectPropertyCheck(supplyOrderProcessingAsBaseEntity,"who",this::checkWhoOfSupplyOrderProcessing);
-		commonObjectPropertyCheck(supplyOrderProcessingAsBaseEntity,"processTime",this::checkProcessTimeOfSupplyOrderProcessing);
-		commonObjectPropertyCheck(supplyOrderProcessingAsBaseEntity,"version",this::checkVersionOfSupplyOrderProcessing);
-		commonObjectPropertyCheck(supplyOrderProcessingAsBaseEntity,"consumerOrderList",this::checkConsumerOrderListOfSupplyOrderProcessing);
-		commonObjectPropertyCheck(supplyOrderProcessingAsBaseEntity,"supplyOrderList",this::checkSupplyOrderListOfSupplyOrderProcessing);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixSupplyOrderPicking(BaseEntity supplyOrderPickingAsBaseEntity){
-
-		if( isChecked(supplyOrderPickingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(supplyOrderPickingAsBaseEntity);
-		commonObjectPropertyCheck(supplyOrderPickingAsBaseEntity,"id",this::checkIdOfSupplyOrderPicking);
-		commonObjectPropertyCheck(supplyOrderPickingAsBaseEntity,"who",this::checkWhoOfSupplyOrderPicking);
-		commonObjectPropertyCheck(supplyOrderPickingAsBaseEntity,"processTime",this::checkProcessTimeOfSupplyOrderPicking);
-		commonObjectPropertyCheck(supplyOrderPickingAsBaseEntity,"version",this::checkVersionOfSupplyOrderPicking);
-		commonObjectPropertyCheck(supplyOrderPickingAsBaseEntity,"supplyOrderList",this::checkSupplyOrderListOfSupplyOrderPicking);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixSupplyOrderShipment(BaseEntity supplyOrderShipmentAsBaseEntity){
-
-		if( isChecked(supplyOrderShipmentAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(supplyOrderShipmentAsBaseEntity);
-		commonObjectPropertyCheck(supplyOrderShipmentAsBaseEntity,"id",this::checkIdOfSupplyOrderShipment);
-		commonObjectPropertyCheck(supplyOrderShipmentAsBaseEntity,"who",this::checkWhoOfSupplyOrderShipment);
-		commonObjectPropertyCheck(supplyOrderShipmentAsBaseEntity,"shipTime",this::checkShipTimeOfSupplyOrderShipment);
-		commonObjectPropertyCheck(supplyOrderShipmentAsBaseEntity,"version",this::checkVersionOfSupplyOrderShipment);
-		commonObjectPropertyCheck(supplyOrderShipmentAsBaseEntity,"consumerOrderList",this::checkConsumerOrderListOfSupplyOrderShipment);
-		commonObjectPropertyCheck(supplyOrderShipmentAsBaseEntity,"supplyOrderList",this::checkSupplyOrderListOfSupplyOrderShipment);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixSupplyOrderDelivery(BaseEntity supplyOrderDeliveryAsBaseEntity){
-
-		if( isChecked(supplyOrderDeliveryAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(supplyOrderDeliveryAsBaseEntity);
-		commonObjectPropertyCheck(supplyOrderDeliveryAsBaseEntity,"id",this::checkIdOfSupplyOrderDelivery);
-		commonObjectPropertyCheck(supplyOrderDeliveryAsBaseEntity,"who",this::checkWhoOfSupplyOrderDelivery);
-		commonObjectPropertyCheck(supplyOrderDeliveryAsBaseEntity,"deliveryTime",this::checkDeliveryTimeOfSupplyOrderDelivery);
-		commonObjectPropertyCheck(supplyOrderDeliveryAsBaseEntity,"version",this::checkVersionOfSupplyOrderDelivery);
-		commonObjectPropertyCheck(supplyOrderDeliveryAsBaseEntity,"consumerOrderList",this::checkConsumerOrderListOfSupplyOrderDelivery);
-		commonObjectPropertyCheck(supplyOrderDeliveryAsBaseEntity,"supplyOrderList",this::checkSupplyOrderListOfSupplyOrderDelivery);
 		return this;
 
 	}
@@ -1115,108 +939,12 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"seller",this::checkSellerOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"title",this::checkTitleOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"totalAmount",this::checkTotalAmountOfRetailStoreOrder);
-		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"confirmation",this::checkConfirmationOfRetailStoreOrder);
-		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"approval",this::checkApprovalOfRetailStoreOrder);
-		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"processing",this::checkProcessingOfRetailStoreOrder);
-		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"picking",this::checkPickingOfRetailStoreOrder);
-		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"shipment",this::checkShipmentOfRetailStoreOrder);
-		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"delivery",this::checkDeliveryOfRetailStoreOrder);
 		commonObjectPropertyAssign(retailStoreOrderAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"version",this::checkVersionOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"retailStoreOrderLineItemList",this::checkRetailStoreOrderLineItemListOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"retailStoreOrderShippingGroupList",this::checkRetailStoreOrderShippingGroupListOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"retailStoreOrderPaymentGroupList",this::checkRetailStoreOrderPaymentGroupListOfRetailStoreOrder);
 		commonObjectPropertyCheck(retailStoreOrderAsBaseEntity,"goodsList",this::checkGoodsListOfRetailStoreOrder);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixRetailStoreOrderConfirmation(BaseEntity retailStoreOrderConfirmationAsBaseEntity){
-
-		if( isChecked(retailStoreOrderConfirmationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(retailStoreOrderConfirmationAsBaseEntity);
-		commonObjectPropertyCheck(retailStoreOrderConfirmationAsBaseEntity,"id",this::checkIdOfRetailStoreOrderConfirmation);
-		commonObjectPropertyCheck(retailStoreOrderConfirmationAsBaseEntity,"who",this::checkWhoOfRetailStoreOrderConfirmation);
-		commonObjectPropertyCheck(retailStoreOrderConfirmationAsBaseEntity,"confirmTime",this::checkConfirmTimeOfRetailStoreOrderConfirmation);
-		commonObjectPropertyCheck(retailStoreOrderConfirmationAsBaseEntity,"version",this::checkVersionOfRetailStoreOrderConfirmation);
-		commonObjectPropertyCheck(retailStoreOrderConfirmationAsBaseEntity,"retailStoreOrderList",this::checkRetailStoreOrderListOfRetailStoreOrderConfirmation);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixRetailStoreOrderApproval(BaseEntity retailStoreOrderApprovalAsBaseEntity){
-
-		if( isChecked(retailStoreOrderApprovalAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(retailStoreOrderApprovalAsBaseEntity);
-		commonObjectPropertyCheck(retailStoreOrderApprovalAsBaseEntity,"id",this::checkIdOfRetailStoreOrderApproval);
-		commonObjectPropertyCheck(retailStoreOrderApprovalAsBaseEntity,"who",this::checkWhoOfRetailStoreOrderApproval);
-		commonObjectPropertyCheck(retailStoreOrderApprovalAsBaseEntity,"approveTime",this::checkApproveTimeOfRetailStoreOrderApproval);
-		commonObjectPropertyCheck(retailStoreOrderApprovalAsBaseEntity,"version",this::checkVersionOfRetailStoreOrderApproval);
-		commonObjectPropertyCheck(retailStoreOrderApprovalAsBaseEntity,"retailStoreOrderList",this::checkRetailStoreOrderListOfRetailStoreOrderApproval);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixRetailStoreOrderProcessing(BaseEntity retailStoreOrderProcessingAsBaseEntity){
-
-		if( isChecked(retailStoreOrderProcessingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(retailStoreOrderProcessingAsBaseEntity);
-		commonObjectPropertyCheck(retailStoreOrderProcessingAsBaseEntity,"id",this::checkIdOfRetailStoreOrderProcessing);
-		commonObjectPropertyCheck(retailStoreOrderProcessingAsBaseEntity,"who",this::checkWhoOfRetailStoreOrderProcessing);
-		commonObjectPropertyCheck(retailStoreOrderProcessingAsBaseEntity,"processTime",this::checkProcessTimeOfRetailStoreOrderProcessing);
-		commonObjectPropertyCheck(retailStoreOrderProcessingAsBaseEntity,"version",this::checkVersionOfRetailStoreOrderProcessing);
-		commonObjectPropertyCheck(retailStoreOrderProcessingAsBaseEntity,"retailStoreOrderList",this::checkRetailStoreOrderListOfRetailStoreOrderProcessing);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixRetailStoreOrderPicking(BaseEntity retailStoreOrderPickingAsBaseEntity){
-
-		if( isChecked(retailStoreOrderPickingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(retailStoreOrderPickingAsBaseEntity);
-		commonObjectPropertyCheck(retailStoreOrderPickingAsBaseEntity,"id",this::checkIdOfRetailStoreOrderPicking);
-		commonObjectPropertyCheck(retailStoreOrderPickingAsBaseEntity,"who",this::checkWhoOfRetailStoreOrderPicking);
-		commonObjectPropertyCheck(retailStoreOrderPickingAsBaseEntity,"processTime",this::checkProcessTimeOfRetailStoreOrderPicking);
-		commonObjectPropertyCheck(retailStoreOrderPickingAsBaseEntity,"version",this::checkVersionOfRetailStoreOrderPicking);
-		commonObjectPropertyCheck(retailStoreOrderPickingAsBaseEntity,"retailStoreOrderList",this::checkRetailStoreOrderListOfRetailStoreOrderPicking);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixRetailStoreOrderShipment(BaseEntity retailStoreOrderShipmentAsBaseEntity){
-
-		if( isChecked(retailStoreOrderShipmentAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(retailStoreOrderShipmentAsBaseEntity);
-		commonObjectPropertyCheck(retailStoreOrderShipmentAsBaseEntity,"id",this::checkIdOfRetailStoreOrderShipment);
-		commonObjectPropertyCheck(retailStoreOrderShipmentAsBaseEntity,"who",this::checkWhoOfRetailStoreOrderShipment);
-		commonObjectPropertyCheck(retailStoreOrderShipmentAsBaseEntity,"shipTime",this::checkShipTimeOfRetailStoreOrderShipment);
-		commonObjectPropertyCheck(retailStoreOrderShipmentAsBaseEntity,"version",this::checkVersionOfRetailStoreOrderShipment);
-		commonObjectPropertyCheck(retailStoreOrderShipmentAsBaseEntity,"retailStoreOrderList",this::checkRetailStoreOrderListOfRetailStoreOrderShipment);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixRetailStoreOrderDelivery(BaseEntity retailStoreOrderDeliveryAsBaseEntity){
-
-		if( isChecked(retailStoreOrderDeliveryAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(retailStoreOrderDeliveryAsBaseEntity);
-		commonObjectPropertyCheck(retailStoreOrderDeliveryAsBaseEntity,"id",this::checkIdOfRetailStoreOrderDelivery);
-		commonObjectPropertyCheck(retailStoreOrderDeliveryAsBaseEntity,"who",this::checkWhoOfRetailStoreOrderDelivery);
-		commonObjectPropertyCheck(retailStoreOrderDeliveryAsBaseEntity,"deliveryTime",this::checkDeliveryTimeOfRetailStoreOrderDelivery);
-		commonObjectPropertyCheck(retailStoreOrderDeliveryAsBaseEntity,"version",this::checkVersionOfRetailStoreOrderDelivery);
-		commonObjectPropertyCheck(retailStoreOrderDeliveryAsBaseEntity,"retailStoreOrderList",this::checkRetailStoreOrderListOfRetailStoreOrderDelivery);
 		return this;
 
 	}
@@ -1425,26 +1153,8 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(goodsAsBaseEntity,"retailStore",this::checkRetailStoreOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"bizOrder",this::checkBizOrderOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"retailStoreOrder",this::checkRetailStoreOrderOfGoods);
-		commonObjectPropertyCheck(goodsAsBaseEntity,"packaging",this::checkPackagingOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"version",this::checkVersionOfGoods);
 		commonObjectPropertyCheck(goodsAsBaseEntity,"goodsMovementList",this::checkGoodsMovementListOfGoods);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixGoodsPackaging(BaseEntity goodsPackagingAsBaseEntity){
-
-		if( isChecked(goodsPackagingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(goodsPackagingAsBaseEntity);
-		commonObjectPropertyCheck(goodsPackagingAsBaseEntity,"id",this::checkIdOfGoodsPackaging);
-		commonObjectPropertyCheck(goodsPackagingAsBaseEntity,"packageName",this::checkPackageNameOfGoodsPackaging);
-		commonObjectPropertyCheck(goodsPackagingAsBaseEntity,"rfid",this::checkRfidOfGoodsPackaging);
-		commonObjectPropertyCheck(goodsPackagingAsBaseEntity,"packageTime",this::checkPackageTimeOfGoodsPackaging);
-		commonObjectPropertyCheck(goodsPackagingAsBaseEntity,"description",this::checkDescriptionOfGoodsPackaging);
-		commonObjectPropertyCheck(goodsPackagingAsBaseEntity,"version",this::checkVersionOfGoodsPackaging);
-		commonObjectPropertyCheck(goodsPackagingAsBaseEntity,"goodsList",this::checkGoodsListOfGoodsPackaging);
 		return this;
 
 	}
@@ -1754,77 +1464,9 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"accountingDocumentDate",this::checkAccountingDocumentDateOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"accountingPeriod",this::checkAccountingPeriodOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"documentType",this::checkDocumentTypeOfAccountingDocument);
-		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"creation",this::checkCreationOfAccountingDocument);
-		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"confirmation",this::checkConfirmationOfAccountingDocument);
-		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"auditing",this::checkAuditingOfAccountingDocument);
-		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"posting",this::checkPostingOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"version",this::checkVersionOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"originalVoucherList",this::checkOriginalVoucherListOfAccountingDocument);
 		commonObjectPropertyCheck(accountingDocumentAsBaseEntity,"accountingDocumentLineList",this::checkAccountingDocumentLineListOfAccountingDocument);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixAccountingDocumentCreation(BaseEntity accountingDocumentCreationAsBaseEntity){
-
-		if( isChecked(accountingDocumentCreationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(accountingDocumentCreationAsBaseEntity);
-		commonObjectPropertyCheck(accountingDocumentCreationAsBaseEntity,"id",this::checkIdOfAccountingDocumentCreation);
-		commonObjectPropertyCheck(accountingDocumentCreationAsBaseEntity,"who",this::checkWhoOfAccountingDocumentCreation);
-		commonObjectPropertyCheck(accountingDocumentCreationAsBaseEntity,"comments",this::checkCommentsOfAccountingDocumentCreation);
-		commonObjectPropertyCheck(accountingDocumentCreationAsBaseEntity,"makeDate",this::checkMakeDateOfAccountingDocumentCreation);
-		commonObjectPropertyCheck(accountingDocumentCreationAsBaseEntity,"version",this::checkVersionOfAccountingDocumentCreation);
-		commonObjectPropertyCheck(accountingDocumentCreationAsBaseEntity,"accountingDocumentList",this::checkAccountingDocumentListOfAccountingDocumentCreation);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixAccountingDocumentConfirmation(BaseEntity accountingDocumentConfirmationAsBaseEntity){
-
-		if( isChecked(accountingDocumentConfirmationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(accountingDocumentConfirmationAsBaseEntity);
-		commonObjectPropertyCheck(accountingDocumentConfirmationAsBaseEntity,"id",this::checkIdOfAccountingDocumentConfirmation);
-		commonObjectPropertyCheck(accountingDocumentConfirmationAsBaseEntity,"who",this::checkWhoOfAccountingDocumentConfirmation);
-		commonObjectPropertyCheck(accountingDocumentConfirmationAsBaseEntity,"comments",this::checkCommentsOfAccountingDocumentConfirmation);
-		commonObjectPropertyCheck(accountingDocumentConfirmationAsBaseEntity,"makeDate",this::checkMakeDateOfAccountingDocumentConfirmation);
-		commonObjectPropertyCheck(accountingDocumentConfirmationAsBaseEntity,"version",this::checkVersionOfAccountingDocumentConfirmation);
-		commonObjectPropertyCheck(accountingDocumentConfirmationAsBaseEntity,"accountingDocumentList",this::checkAccountingDocumentListOfAccountingDocumentConfirmation);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixAccountingDocumentAuditing(BaseEntity accountingDocumentAuditingAsBaseEntity){
-
-		if( isChecked(accountingDocumentAuditingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(accountingDocumentAuditingAsBaseEntity);
-		commonObjectPropertyCheck(accountingDocumentAuditingAsBaseEntity,"id",this::checkIdOfAccountingDocumentAuditing);
-		commonObjectPropertyCheck(accountingDocumentAuditingAsBaseEntity,"who",this::checkWhoOfAccountingDocumentAuditing);
-		commonObjectPropertyCheck(accountingDocumentAuditingAsBaseEntity,"comments",this::checkCommentsOfAccountingDocumentAuditing);
-		commonObjectPropertyCheck(accountingDocumentAuditingAsBaseEntity,"makeDate",this::checkMakeDateOfAccountingDocumentAuditing);
-		commonObjectPropertyCheck(accountingDocumentAuditingAsBaseEntity,"version",this::checkVersionOfAccountingDocumentAuditing);
-		commonObjectPropertyCheck(accountingDocumentAuditingAsBaseEntity,"accountingDocumentList",this::checkAccountingDocumentListOfAccountingDocumentAuditing);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixAccountingDocumentPosting(BaseEntity accountingDocumentPostingAsBaseEntity){
-
-		if( isChecked(accountingDocumentPostingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(accountingDocumentPostingAsBaseEntity);
-		commonObjectPropertyCheck(accountingDocumentPostingAsBaseEntity,"id",this::checkIdOfAccountingDocumentPosting);
-		commonObjectPropertyCheck(accountingDocumentPostingAsBaseEntity,"who",this::checkWhoOfAccountingDocumentPosting);
-		commonObjectPropertyCheck(accountingDocumentPostingAsBaseEntity,"comments",this::checkCommentsOfAccountingDocumentPosting);
-		commonObjectPropertyCheck(accountingDocumentPostingAsBaseEntity,"makeDate",this::checkMakeDateOfAccountingDocumentPosting);
-		commonObjectPropertyCheck(accountingDocumentPostingAsBaseEntity,"version",this::checkVersionOfAccountingDocumentPosting);
-		commonObjectPropertyCheck(accountingDocumentPostingAsBaseEntity,"accountingDocumentList",this::checkAccountingDocumentListOfAccountingDocumentPosting);
 		return this;
 
 	}
@@ -1842,58 +1484,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"voucherType",this::checkVoucherTypeOfOriginalVoucher);
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"voucherImage",this::checkVoucherImageOfOriginalVoucher);
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"belongsTo",this::checkBelongsToOfOriginalVoucher);
-		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"creation",this::checkCreationOfOriginalVoucher);
-		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"confirmation",this::checkConfirmationOfOriginalVoucher);
-		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"auditing",this::checkAuditingOfOriginalVoucher);
 		commonObjectPropertyCheck(originalVoucherAsBaseEntity,"version",this::checkVersionOfOriginalVoucher);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixOriginalVoucherCreation(BaseEntity originalVoucherCreationAsBaseEntity){
-
-		if( isChecked(originalVoucherCreationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(originalVoucherCreationAsBaseEntity);
-		commonObjectPropertyCheck(originalVoucherCreationAsBaseEntity,"id",this::checkIdOfOriginalVoucherCreation);
-		commonObjectPropertyCheck(originalVoucherCreationAsBaseEntity,"who",this::checkWhoOfOriginalVoucherCreation);
-		commonObjectPropertyCheck(originalVoucherCreationAsBaseEntity,"comments",this::checkCommentsOfOriginalVoucherCreation);
-		commonObjectPropertyCheck(originalVoucherCreationAsBaseEntity,"makeDate",this::checkMakeDateOfOriginalVoucherCreation);
-		commonObjectPropertyCheck(originalVoucherCreationAsBaseEntity,"version",this::checkVersionOfOriginalVoucherCreation);
-		commonObjectPropertyCheck(originalVoucherCreationAsBaseEntity,"originalVoucherList",this::checkOriginalVoucherListOfOriginalVoucherCreation);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixOriginalVoucherConfirmation(BaseEntity originalVoucherConfirmationAsBaseEntity){
-
-		if( isChecked(originalVoucherConfirmationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(originalVoucherConfirmationAsBaseEntity);
-		commonObjectPropertyCheck(originalVoucherConfirmationAsBaseEntity,"id",this::checkIdOfOriginalVoucherConfirmation);
-		commonObjectPropertyCheck(originalVoucherConfirmationAsBaseEntity,"who",this::checkWhoOfOriginalVoucherConfirmation);
-		commonObjectPropertyCheck(originalVoucherConfirmationAsBaseEntity,"comments",this::checkCommentsOfOriginalVoucherConfirmation);
-		commonObjectPropertyCheck(originalVoucherConfirmationAsBaseEntity,"makeDate",this::checkMakeDateOfOriginalVoucherConfirmation);
-		commonObjectPropertyCheck(originalVoucherConfirmationAsBaseEntity,"version",this::checkVersionOfOriginalVoucherConfirmation);
-		commonObjectPropertyCheck(originalVoucherConfirmationAsBaseEntity,"originalVoucherList",this::checkOriginalVoucherListOfOriginalVoucherConfirmation);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixOriginalVoucherAuditing(BaseEntity originalVoucherAuditingAsBaseEntity){
-
-		if( isChecked(originalVoucherAuditingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(originalVoucherAuditingAsBaseEntity);
-		commonObjectPropertyCheck(originalVoucherAuditingAsBaseEntity,"id",this::checkIdOfOriginalVoucherAuditing);
-		commonObjectPropertyCheck(originalVoucherAuditingAsBaseEntity,"who",this::checkWhoOfOriginalVoucherAuditing);
-		commonObjectPropertyCheck(originalVoucherAuditingAsBaseEntity,"comments",this::checkCommentsOfOriginalVoucherAuditing);
-		commonObjectPropertyCheck(originalVoucherAuditingAsBaseEntity,"makeDate",this::checkMakeDateOfOriginalVoucherAuditing);
-		commonObjectPropertyCheck(originalVoucherAuditingAsBaseEntity,"version",this::checkVersionOfOriginalVoucherAuditing);
-		commonObjectPropertyCheck(originalVoucherAuditingAsBaseEntity,"originalVoucherList",this::checkOriginalVoucherListOfOriginalVoucherAuditing);
 		return this;
 
 	}
@@ -1926,7 +1517,7 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"belongsTo",this::checkBelongsToOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"name",this::checkNameOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"description",this::checkDescriptionOfLevelOneDepartment);
-		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"managerName",this::checkManagerNameOfLevelOneDepartment);
+		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"manager",this::checkManagerOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"founded",this::checkFoundedOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"version",this::checkVersionOfLevelOneDepartment);
 		commonObjectPropertyCheck(levelOneDepartmentAsBaseEntity,"levelTwoDepartmentList",this::checkLevelTwoDepartmentListOfLevelOneDepartment);
@@ -2147,7 +1738,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(terminationAsBaseEntity,"type",this::checkTypeOfTermination);
 		commonObjectPropertyCheck(terminationAsBaseEntity,"comment",this::checkCommentOfTermination);
 		commonObjectPropertyCheck(terminationAsBaseEntity,"version",this::checkVersionOfTermination);
-		commonObjectPropertyCheck(terminationAsBaseEntity,"employeeList",this::checkEmployeeListOfTermination);
 		return this;
 
 	}
@@ -2187,13 +1777,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(employeeAsBaseEntity,"responsibleFor",this::checkResponsibleForOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"currentSalaryGrade",this::checkCurrentSalaryGradeOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"salaryAccount",this::checkSalaryAccountOfEmployee);
-		commonObjectPropertyCheck(employeeAsBaseEntity,"jobApplication",this::checkJobApplicationOfEmployee);
-		commonObjectPropertyCheck(employeeAsBaseEntity,"professionInterview",this::checkProfessionInterviewOfEmployee);
-		commonObjectPropertyCheck(employeeAsBaseEntity,"hrInterview",this::checkHrInterviewOfEmployee);
-		commonObjectPropertyCheck(employeeAsBaseEntity,"offerApproval",this::checkOfferApprovalOfEmployee);
-		commonObjectPropertyCheck(employeeAsBaseEntity,"offerAcceptance",this::checkOfferAcceptanceOfEmployee);
-		commonObjectPropertyCheck(employeeAsBaseEntity,"employeeBoarding",this::checkEmployeeBoardingOfEmployee);
-		commonObjectPropertyCheck(employeeAsBaseEntity,"termination",this::checkTerminationOfEmployee);
 		commonObjectPropertyAssign(employeeAsBaseEntity,"lastUpdateTime",this::assignLastUpdateTimeOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"version",this::checkVersionOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"employeeCompanyTrainingList",this::checkEmployeeCompanyTrainingListOfEmployee);
@@ -2208,102 +1791,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(employeeAsBaseEntity,"employeeAwardList",this::checkEmployeeAwardListOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"employeeSalarySheetList",this::checkEmployeeSalarySheetListOfEmployee);
 		commonObjectPropertyCheck(employeeAsBaseEntity,"payingOffList",this::checkPayingOffListOfEmployee);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixJobApplication(BaseEntity jobApplicationAsBaseEntity){
-
-		if( isChecked(jobApplicationAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(jobApplicationAsBaseEntity);
-		commonObjectPropertyCheck(jobApplicationAsBaseEntity,"id",this::checkIdOfJobApplication);
-		commonObjectPropertyCheck(jobApplicationAsBaseEntity,"applicationTime",this::checkApplicationTimeOfJobApplication);
-		commonObjectPropertyCheck(jobApplicationAsBaseEntity,"who",this::checkWhoOfJobApplication);
-		commonObjectPropertyCheck(jobApplicationAsBaseEntity,"comments",this::checkCommentsOfJobApplication);
-		commonObjectPropertyCheck(jobApplicationAsBaseEntity,"version",this::checkVersionOfJobApplication);
-		commonObjectPropertyCheck(jobApplicationAsBaseEntity,"employeeList",this::checkEmployeeListOfJobApplication);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixProfessionInterview(BaseEntity professionInterviewAsBaseEntity){
-
-		if( isChecked(professionInterviewAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(professionInterviewAsBaseEntity);
-		commonObjectPropertyCheck(professionInterviewAsBaseEntity,"id",this::checkIdOfProfessionInterview);
-		commonObjectPropertyCheck(professionInterviewAsBaseEntity,"who",this::checkWhoOfProfessionInterview);
-		commonObjectPropertyCheck(professionInterviewAsBaseEntity,"interviewTime",this::checkInterviewTimeOfProfessionInterview);
-		commonObjectPropertyCheck(professionInterviewAsBaseEntity,"comments",this::checkCommentsOfProfessionInterview);
-		commonObjectPropertyCheck(professionInterviewAsBaseEntity,"version",this::checkVersionOfProfessionInterview);
-		commonObjectPropertyCheck(professionInterviewAsBaseEntity,"employeeList",this::checkEmployeeListOfProfessionInterview);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixHrInterview(BaseEntity hrInterviewAsBaseEntity){
-
-		if( isChecked(hrInterviewAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(hrInterviewAsBaseEntity);
-		commonObjectPropertyCheck(hrInterviewAsBaseEntity,"id",this::checkIdOfHrInterview);
-		commonObjectPropertyCheck(hrInterviewAsBaseEntity,"who",this::checkWhoOfHrInterview);
-		commonObjectPropertyCheck(hrInterviewAsBaseEntity,"interviewTime",this::checkInterviewTimeOfHrInterview);
-		commonObjectPropertyCheck(hrInterviewAsBaseEntity,"comments",this::checkCommentsOfHrInterview);
-		commonObjectPropertyCheck(hrInterviewAsBaseEntity,"version",this::checkVersionOfHrInterview);
-		commonObjectPropertyCheck(hrInterviewAsBaseEntity,"employeeList",this::checkEmployeeListOfHrInterview);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixOfferApproval(BaseEntity offerApprovalAsBaseEntity){
-
-		if( isChecked(offerApprovalAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(offerApprovalAsBaseEntity);
-		commonObjectPropertyCheck(offerApprovalAsBaseEntity,"id",this::checkIdOfOfferApproval);
-		commonObjectPropertyCheck(offerApprovalAsBaseEntity,"who",this::checkWhoOfOfferApproval);
-		commonObjectPropertyCheck(offerApprovalAsBaseEntity,"approveTime",this::checkApproveTimeOfOfferApproval);
-		commonObjectPropertyCheck(offerApprovalAsBaseEntity,"comments",this::checkCommentsOfOfferApproval);
-		commonObjectPropertyCheck(offerApprovalAsBaseEntity,"version",this::checkVersionOfOfferApproval);
-		commonObjectPropertyCheck(offerApprovalAsBaseEntity,"employeeList",this::checkEmployeeListOfOfferApproval);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixOfferAcceptance(BaseEntity offerAcceptanceAsBaseEntity){
-
-		if( isChecked(offerAcceptanceAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(offerAcceptanceAsBaseEntity);
-		commonObjectPropertyCheck(offerAcceptanceAsBaseEntity,"id",this::checkIdOfOfferAcceptance);
-		commonObjectPropertyCheck(offerAcceptanceAsBaseEntity,"who",this::checkWhoOfOfferAcceptance);
-		commonObjectPropertyCheck(offerAcceptanceAsBaseEntity,"acceptTime",this::checkAcceptTimeOfOfferAcceptance);
-		commonObjectPropertyCheck(offerAcceptanceAsBaseEntity,"comments",this::checkCommentsOfOfferAcceptance);
-		commonObjectPropertyCheck(offerAcceptanceAsBaseEntity,"version",this::checkVersionOfOfferAcceptance);
-		commonObjectPropertyCheck(offerAcceptanceAsBaseEntity,"employeeList",this::checkEmployeeListOfOfferAcceptance);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixEmployeeBoarding(BaseEntity employeeBoardingAsBaseEntity){
-
-		if( isChecked(employeeBoardingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(employeeBoardingAsBaseEntity);
-		commonObjectPropertyCheck(employeeBoardingAsBaseEntity,"id",this::checkIdOfEmployeeBoarding);
-		commonObjectPropertyCheck(employeeBoardingAsBaseEntity,"who",this::checkWhoOfEmployeeBoarding);
-		commonObjectPropertyCheck(employeeBoardingAsBaseEntity,"employTime",this::checkEmployTimeOfEmployeeBoarding);
-		commonObjectPropertyCheck(employeeBoardingAsBaseEntity,"comments",this::checkCommentsOfEmployeeBoarding);
-		commonObjectPropertyCheck(employeeBoardingAsBaseEntity,"version",this::checkVersionOfEmployeeBoarding);
-		commonObjectPropertyCheck(employeeBoardingAsBaseEntity,"employeeList",this::checkEmployeeListOfEmployeeBoarding);
 		return this;
 
 	}
@@ -2610,26 +2097,9 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(secUserAsBaseEntity,"verificationCodeExpire",this::checkVerificationCodeExpireOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"lastLoginTime",this::checkLastLoginTimeOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"domain",this::checkDomainOfSecUser);
-		commonObjectPropertyCheck(secUserAsBaseEntity,"blocking",this::checkBlockingOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"version",this::checkVersionOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"userAppList",this::checkUserAppListOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"loginHistoryList",this::checkLoginHistoryListOfSecUser);
-		return this;
-
-	}
-
-	public RetailscmObjectChecker checkAndFixSecUserBlocking(BaseEntity secUserBlockingAsBaseEntity){
-
-		if( isChecked(secUserBlockingAsBaseEntity) ){
-			return this;
-		}
-		markAsChecked(secUserBlockingAsBaseEntity);
-		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"id",this::checkIdOfSecUserBlocking);
-		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"who",this::checkWhoOfSecUserBlocking);
-		commonObjectPropertyAssign(secUserBlockingAsBaseEntity,"blockTime",this::assignBlockTimeOfSecUserBlocking);
-		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"comments",this::checkCommentsOfSecUserBlocking);
-		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"version",this::checkVersionOfSecUserBlocking);
-		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"secUserList",this::checkSecUserListOfSecUserBlocking);
 		return this;
 
 	}
@@ -3771,76 +3241,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 	}
 
 
-	public static final String CONFIRMATION_OF_CONSUMER_ORDER = "consumer_order.confirmation";
-
-
-	public RetailscmObjectChecker checkConfirmationOfConsumerOrder(BaseEntity confirmationAsBaseEntity){
-
-		if(confirmationAsBaseEntity == null){
-			checkBaseEntityReference(confirmationAsBaseEntity,true,CONFIRMATION_OF_CONSUMER_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderConfirmation(confirmationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String APPROVAL_OF_CONSUMER_ORDER = "consumer_order.approval";
-
-
-	public RetailscmObjectChecker checkApprovalOfConsumerOrder(BaseEntity approvalAsBaseEntity){
-
-		if(approvalAsBaseEntity == null){
-			checkBaseEntityReference(approvalAsBaseEntity,true,APPROVAL_OF_CONSUMER_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderApproval(approvalAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String PROCESSING_OF_CONSUMER_ORDER = "consumer_order.processing";
-
-
-	public RetailscmObjectChecker checkProcessingOfConsumerOrder(BaseEntity processingAsBaseEntity){
-
-		if(processingAsBaseEntity == null){
-			checkBaseEntityReference(processingAsBaseEntity,true,PROCESSING_OF_CONSUMER_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderProcessing(processingAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String SHIPMENT_OF_CONSUMER_ORDER = "consumer_order.shipment";
-
-
-	public RetailscmObjectChecker checkShipmentOfConsumerOrder(BaseEntity shipmentAsBaseEntity){
-
-		if(shipmentAsBaseEntity == null){
-			checkBaseEntityReference(shipmentAsBaseEntity,true,SHIPMENT_OF_CONSUMER_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderShipment(shipmentAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String DELIVERY_OF_CONSUMER_ORDER = "consumer_order.delivery";
-
-
-	public RetailscmObjectChecker checkDeliveryOfConsumerOrder(BaseEntity deliveryAsBaseEntity){
-
-		if(deliveryAsBaseEntity == null){
-			checkBaseEntityReference(deliveryAsBaseEntity,true,DELIVERY_OF_CONSUMER_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderDelivery(deliveryAsBaseEntity);
-		return this;
-	}
-
-
 	public static final String STORE_OF_CONSUMER_ORDER = "consumer_order.store";
 
 
@@ -4177,167 +3577,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 	}
 
 
-	public static final String CONFIRMATION_OF_SUPPLY_ORDER = "supply_order.confirmation";
-
-
-	public RetailscmObjectChecker checkConfirmationOfSupplyOrder(BaseEntity confirmationAsBaseEntity){
-
-		if(confirmationAsBaseEntity == null){
-			checkBaseEntityReference(confirmationAsBaseEntity,true,CONFIRMATION_OF_SUPPLY_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderConfirmation(confirmationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String APPROVAL_OF_SUPPLY_ORDER = "supply_order.approval";
-
-
-	public RetailscmObjectChecker checkApprovalOfSupplyOrder(BaseEntity approvalAsBaseEntity){
-
-		if(approvalAsBaseEntity == null){
-			checkBaseEntityReference(approvalAsBaseEntity,true,APPROVAL_OF_SUPPLY_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderApproval(approvalAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String PROCESSING_OF_SUPPLY_ORDER = "supply_order.processing";
-
-
-	public RetailscmObjectChecker checkProcessingOfSupplyOrder(BaseEntity processingAsBaseEntity){
-
-		if(processingAsBaseEntity == null){
-			checkBaseEntityReference(processingAsBaseEntity,true,PROCESSING_OF_SUPPLY_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderProcessing(processingAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String PICKING_OF_SUPPLY_ORDER = "supply_order.picking";
-
-
-	public RetailscmObjectChecker checkPickingOfSupplyOrder(BaseEntity pickingAsBaseEntity){
-
-		if(pickingAsBaseEntity == null){
-			checkBaseEntityReference(pickingAsBaseEntity,true,PICKING_OF_SUPPLY_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderPicking(pickingAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String SHIPMENT_OF_SUPPLY_ORDER = "supply_order.shipment";
-
-
-	public RetailscmObjectChecker checkShipmentOfSupplyOrder(BaseEntity shipmentAsBaseEntity){
-
-		if(shipmentAsBaseEntity == null){
-			checkBaseEntityReference(shipmentAsBaseEntity,true,SHIPMENT_OF_SUPPLY_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderShipment(shipmentAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String DELIVERY_OF_SUPPLY_ORDER = "supply_order.delivery";
-
-
-	public RetailscmObjectChecker checkDeliveryOfSupplyOrder(BaseEntity deliveryAsBaseEntity){
-
-		if(deliveryAsBaseEntity == null){
-			checkBaseEntityReference(deliveryAsBaseEntity,true,DELIVERY_OF_SUPPLY_ORDER);
-			return this;
-		}
-		checkAndFixSupplyOrderDelivery(deliveryAsBaseEntity);
-		return this;
-	}
-
-
-	public RetailscmObjectChecker checkConsumerOrderListOfSupplyOrderConfirmation(List<BaseEntity> consumerOrderList){
-		AtomicInteger index = new AtomicInteger();
-		consumerOrderList.stream().forEach(consumerOrder->
-			commonObjectElementCheck(consumerOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixConsumerOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkSupplyOrderListOfSupplyOrderConfirmation(List<BaseEntity> supplyOrderList){
-		AtomicInteger index = new AtomicInteger();
-		supplyOrderList.stream().forEach(supplyOrder->
-			commonObjectElementCheck(supplyOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSupplyOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkConsumerOrderListOfSupplyOrderApproval(List<BaseEntity> consumerOrderList){
-		AtomicInteger index = new AtomicInteger();
-		consumerOrderList.stream().forEach(consumerOrder->
-			commonObjectElementCheck(consumerOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixConsumerOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkSupplyOrderListOfSupplyOrderApproval(List<BaseEntity> supplyOrderList){
-		AtomicInteger index = new AtomicInteger();
-		supplyOrderList.stream().forEach(supplyOrder->
-			commonObjectElementCheck(supplyOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSupplyOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkConsumerOrderListOfSupplyOrderProcessing(List<BaseEntity> consumerOrderList){
-		AtomicInteger index = new AtomicInteger();
-		consumerOrderList.stream().forEach(consumerOrder->
-			commonObjectElementCheck(consumerOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixConsumerOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkSupplyOrderListOfSupplyOrderProcessing(List<BaseEntity> supplyOrderList){
-		AtomicInteger index = new AtomicInteger();
-		supplyOrderList.stream().forEach(supplyOrder->
-			commonObjectElementCheck(supplyOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSupplyOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkSupplyOrderListOfSupplyOrderPicking(List<BaseEntity> supplyOrderList){
-		AtomicInteger index = new AtomicInteger();
-		supplyOrderList.stream().forEach(supplyOrder->
-			commonObjectElementCheck(supplyOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSupplyOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkConsumerOrderListOfSupplyOrderShipment(List<BaseEntity> consumerOrderList){
-		AtomicInteger index = new AtomicInteger();
-		consumerOrderList.stream().forEach(consumerOrder->
-			commonObjectElementCheck(consumerOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixConsumerOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkSupplyOrderListOfSupplyOrderShipment(List<BaseEntity> supplyOrderList){
-		AtomicInteger index = new AtomicInteger();
-		supplyOrderList.stream().forEach(supplyOrder->
-			commonObjectElementCheck(supplyOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSupplyOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkConsumerOrderListOfSupplyOrderDelivery(List<BaseEntity> consumerOrderList){
-		AtomicInteger index = new AtomicInteger();
-		consumerOrderList.stream().forEach(consumerOrder->
-			commonObjectElementCheck(consumerOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixConsumerOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkSupplyOrderListOfSupplyOrderDelivery(List<BaseEntity> supplyOrderList){
-		AtomicInteger index = new AtomicInteger();
-		supplyOrderList.stream().forEach(supplyOrder->
-			commonObjectElementCheck(supplyOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSupplyOrder));
-		return this;
-	}
-
 	public static final String BIZ_ORDER_OF_SUPPLY_ORDER_LINE_ITEM = "supply_order_line_item.biz_order";
 
 
@@ -4435,132 +3674,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		return this;
 	}
 
-
-	public static final String CONFIRMATION_OF_RETAIL_STORE_ORDER = "retail_store_order.confirmation";
-
-
-	public RetailscmObjectChecker checkConfirmationOfRetailStoreOrder(BaseEntity confirmationAsBaseEntity){
-
-		if(confirmationAsBaseEntity == null){
-			checkBaseEntityReference(confirmationAsBaseEntity,true,CONFIRMATION_OF_RETAIL_STORE_ORDER);
-			return this;
-		}
-		checkAndFixRetailStoreOrderConfirmation(confirmationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String APPROVAL_OF_RETAIL_STORE_ORDER = "retail_store_order.approval";
-
-
-	public RetailscmObjectChecker checkApprovalOfRetailStoreOrder(BaseEntity approvalAsBaseEntity){
-
-		if(approvalAsBaseEntity == null){
-			checkBaseEntityReference(approvalAsBaseEntity,true,APPROVAL_OF_RETAIL_STORE_ORDER);
-			return this;
-		}
-		checkAndFixRetailStoreOrderApproval(approvalAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String PROCESSING_OF_RETAIL_STORE_ORDER = "retail_store_order.processing";
-
-
-	public RetailscmObjectChecker checkProcessingOfRetailStoreOrder(BaseEntity processingAsBaseEntity){
-
-		if(processingAsBaseEntity == null){
-			checkBaseEntityReference(processingAsBaseEntity,true,PROCESSING_OF_RETAIL_STORE_ORDER);
-			return this;
-		}
-		checkAndFixRetailStoreOrderProcessing(processingAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String PICKING_OF_RETAIL_STORE_ORDER = "retail_store_order.picking";
-
-
-	public RetailscmObjectChecker checkPickingOfRetailStoreOrder(BaseEntity pickingAsBaseEntity){
-
-		if(pickingAsBaseEntity == null){
-			checkBaseEntityReference(pickingAsBaseEntity,true,PICKING_OF_RETAIL_STORE_ORDER);
-			return this;
-		}
-		checkAndFixRetailStoreOrderPicking(pickingAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String SHIPMENT_OF_RETAIL_STORE_ORDER = "retail_store_order.shipment";
-
-
-	public RetailscmObjectChecker checkShipmentOfRetailStoreOrder(BaseEntity shipmentAsBaseEntity){
-
-		if(shipmentAsBaseEntity == null){
-			checkBaseEntityReference(shipmentAsBaseEntity,true,SHIPMENT_OF_RETAIL_STORE_ORDER);
-			return this;
-		}
-		checkAndFixRetailStoreOrderShipment(shipmentAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String DELIVERY_OF_RETAIL_STORE_ORDER = "retail_store_order.delivery";
-
-
-	public RetailscmObjectChecker checkDeliveryOfRetailStoreOrder(BaseEntity deliveryAsBaseEntity){
-
-		if(deliveryAsBaseEntity == null){
-			checkBaseEntityReference(deliveryAsBaseEntity,true,DELIVERY_OF_RETAIL_STORE_ORDER);
-			return this;
-		}
-		checkAndFixRetailStoreOrderDelivery(deliveryAsBaseEntity);
-		return this;
-	}
-
-
-	public RetailscmObjectChecker checkRetailStoreOrderListOfRetailStoreOrderConfirmation(List<BaseEntity> retailStoreOrderList){
-		AtomicInteger index = new AtomicInteger();
-		retailStoreOrderList.stream().forEach(retailStoreOrder->
-			commonObjectElementCheck(retailStoreOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixRetailStoreOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkRetailStoreOrderListOfRetailStoreOrderApproval(List<BaseEntity> retailStoreOrderList){
-		AtomicInteger index = new AtomicInteger();
-		retailStoreOrderList.stream().forEach(retailStoreOrder->
-			commonObjectElementCheck(retailStoreOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixRetailStoreOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkRetailStoreOrderListOfRetailStoreOrderProcessing(List<BaseEntity> retailStoreOrderList){
-		AtomicInteger index = new AtomicInteger();
-		retailStoreOrderList.stream().forEach(retailStoreOrder->
-			commonObjectElementCheck(retailStoreOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixRetailStoreOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkRetailStoreOrderListOfRetailStoreOrderPicking(List<BaseEntity> retailStoreOrderList){
-		AtomicInteger index = new AtomicInteger();
-		retailStoreOrderList.stream().forEach(retailStoreOrder->
-			commonObjectElementCheck(retailStoreOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixRetailStoreOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkRetailStoreOrderListOfRetailStoreOrderShipment(List<BaseEntity> retailStoreOrderList){
-		AtomicInteger index = new AtomicInteger();
-		retailStoreOrderList.stream().forEach(retailStoreOrder->
-			commonObjectElementCheck(retailStoreOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixRetailStoreOrder));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkRetailStoreOrderListOfRetailStoreOrderDelivery(List<BaseEntity> retailStoreOrderList){
-		AtomicInteger index = new AtomicInteger();
-		retailStoreOrderList.stream().forEach(retailStoreOrder->
-			commonObjectElementCheck(retailStoreOrder,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixRetailStoreOrder));
-		return this;
-	}
 
 	public static final String BIZ_ORDER_OF_RETAIL_STORE_ORDER_LINE_ITEM = "retail_store_order_line_item.biz_order";
 
@@ -4953,27 +4066,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		return this;
 	}
 
-
-	public static final String PACKAGING_OF_GOODS = "goods.packaging";
-
-
-	public RetailscmObjectChecker checkPackagingOfGoods(BaseEntity packagingAsBaseEntity){
-
-		if(packagingAsBaseEntity == null){
-			checkBaseEntityReference(packagingAsBaseEntity,true,PACKAGING_OF_GOODS);
-			return this;
-		}
-		checkAndFixGoodsPackaging(packagingAsBaseEntity);
-		return this;
-	}
-
-
-	public RetailscmObjectChecker checkGoodsListOfGoodsPackaging(List<BaseEntity> goodsList){
-		AtomicInteger index = new AtomicInteger();
-		goodsList.stream().forEach(goods->
-			commonObjectElementCheck(goods,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixGoods));
-		return this;
-	}
 
 	public static final String GOODS_OF_GOODS_MOVEMENT = "goods_movement.goods";
 
@@ -5416,90 +4508,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 	}
 
 
-	public static final String CREATION_OF_ACCOUNTING_DOCUMENT = "accounting_document.creation";
-
-
-	public RetailscmObjectChecker checkCreationOfAccountingDocument(BaseEntity creationAsBaseEntity){
-
-		if(creationAsBaseEntity == null){
-			checkBaseEntityReference(creationAsBaseEntity,true,CREATION_OF_ACCOUNTING_DOCUMENT);
-			return this;
-		}
-		checkAndFixAccountingDocumentCreation(creationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String CONFIRMATION_OF_ACCOUNTING_DOCUMENT = "accounting_document.confirmation";
-
-
-	public RetailscmObjectChecker checkConfirmationOfAccountingDocument(BaseEntity confirmationAsBaseEntity){
-
-		if(confirmationAsBaseEntity == null){
-			checkBaseEntityReference(confirmationAsBaseEntity,true,CONFIRMATION_OF_ACCOUNTING_DOCUMENT);
-			return this;
-		}
-		checkAndFixAccountingDocumentConfirmation(confirmationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String AUDITING_OF_ACCOUNTING_DOCUMENT = "accounting_document.auditing";
-
-
-	public RetailscmObjectChecker checkAuditingOfAccountingDocument(BaseEntity auditingAsBaseEntity){
-
-		if(auditingAsBaseEntity == null){
-			checkBaseEntityReference(auditingAsBaseEntity,true,AUDITING_OF_ACCOUNTING_DOCUMENT);
-			return this;
-		}
-		checkAndFixAccountingDocumentAuditing(auditingAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String POSTING_OF_ACCOUNTING_DOCUMENT = "accounting_document.posting";
-
-
-	public RetailscmObjectChecker checkPostingOfAccountingDocument(BaseEntity postingAsBaseEntity){
-
-		if(postingAsBaseEntity == null){
-			checkBaseEntityReference(postingAsBaseEntity,true,POSTING_OF_ACCOUNTING_DOCUMENT);
-			return this;
-		}
-		checkAndFixAccountingDocumentPosting(postingAsBaseEntity);
-		return this;
-	}
-
-
-	public RetailscmObjectChecker checkAccountingDocumentListOfAccountingDocumentCreation(List<BaseEntity> accountingDocumentList){
-		AtomicInteger index = new AtomicInteger();
-		accountingDocumentList.stream().forEach(accountingDocument->
-			commonObjectElementCheck(accountingDocument,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixAccountingDocument));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkAccountingDocumentListOfAccountingDocumentConfirmation(List<BaseEntity> accountingDocumentList){
-		AtomicInteger index = new AtomicInteger();
-		accountingDocumentList.stream().forEach(accountingDocument->
-			commonObjectElementCheck(accountingDocument,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixAccountingDocument));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkAccountingDocumentListOfAccountingDocumentAuditing(List<BaseEntity> accountingDocumentList){
-		AtomicInteger index = new AtomicInteger();
-		accountingDocumentList.stream().forEach(accountingDocument->
-			commonObjectElementCheck(accountingDocument,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixAccountingDocument));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkAccountingDocumentListOfAccountingDocumentPosting(List<BaseEntity> accountingDocumentList){
-		AtomicInteger index = new AtomicInteger();
-		accountingDocumentList.stream().forEach(accountingDocument->
-			commonObjectElementCheck(accountingDocument,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixAccountingDocument));
-		return this;
-	}
-
 	public static final String BELONGS_TO_OF_ORIGINAL_VOUCHER = "original_voucher.belongs_to";
 
 
@@ -5513,69 +4521,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		return this;
 	}
 
-
-	public static final String CREATION_OF_ORIGINAL_VOUCHER = "original_voucher.creation";
-
-
-	public RetailscmObjectChecker checkCreationOfOriginalVoucher(BaseEntity creationAsBaseEntity){
-
-		if(creationAsBaseEntity == null){
-			checkBaseEntityReference(creationAsBaseEntity,true,CREATION_OF_ORIGINAL_VOUCHER);
-			return this;
-		}
-		checkAndFixOriginalVoucherCreation(creationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String CONFIRMATION_OF_ORIGINAL_VOUCHER = "original_voucher.confirmation";
-
-
-	public RetailscmObjectChecker checkConfirmationOfOriginalVoucher(BaseEntity confirmationAsBaseEntity){
-
-		if(confirmationAsBaseEntity == null){
-			checkBaseEntityReference(confirmationAsBaseEntity,true,CONFIRMATION_OF_ORIGINAL_VOUCHER);
-			return this;
-		}
-		checkAndFixOriginalVoucherConfirmation(confirmationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String AUDITING_OF_ORIGINAL_VOUCHER = "original_voucher.auditing";
-
-
-	public RetailscmObjectChecker checkAuditingOfOriginalVoucher(BaseEntity auditingAsBaseEntity){
-
-		if(auditingAsBaseEntity == null){
-			checkBaseEntityReference(auditingAsBaseEntity,true,AUDITING_OF_ORIGINAL_VOUCHER);
-			return this;
-		}
-		checkAndFixOriginalVoucherAuditing(auditingAsBaseEntity);
-		return this;
-	}
-
-
-	public RetailscmObjectChecker checkOriginalVoucherListOfOriginalVoucherCreation(List<BaseEntity> originalVoucherList){
-		AtomicInteger index = new AtomicInteger();
-		originalVoucherList.stream().forEach(originalVoucher->
-			commonObjectElementCheck(originalVoucher,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixOriginalVoucher));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkOriginalVoucherListOfOriginalVoucherConfirmation(List<BaseEntity> originalVoucherList){
-		AtomicInteger index = new AtomicInteger();
-		originalVoucherList.stream().forEach(originalVoucher->
-			commonObjectElementCheck(originalVoucher,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixOriginalVoucher));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkOriginalVoucherListOfOriginalVoucherAuditing(List<BaseEntity> originalVoucherList){
-		AtomicInteger index = new AtomicInteger();
-		originalVoucherList.stream().forEach(originalVoucher->
-			commonObjectElementCheck(originalVoucher,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixOriginalVoucher));
-		return this;
-	}
 
 	public static final String BELONGS_TO_OF_ACCOUNTING_DOCUMENT_LINE = "accounting_document_line.belongs_to";
 
@@ -5878,13 +4823,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 	}
 
 
-	public RetailscmObjectChecker checkEmployeeListOfTermination(List<BaseEntity> employeeList){
-		AtomicInteger index = new AtomicInteger();
-		employeeList.stream().forEach(employee->
-			commonObjectElementCheck(employee,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixEmployee));
-		return this;
-	}
-
 	public static final String REASON_OF_TERMINATION = "termination.reason";
 
 
@@ -6066,146 +5004,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		return this;
 	}
 
-
-	public static final String JOB_APPLICATION_OF_EMPLOYEE = "employee.job_application";
-
-
-	public RetailscmObjectChecker checkJobApplicationOfEmployee(BaseEntity jobApplicationAsBaseEntity){
-
-		if(jobApplicationAsBaseEntity == null){
-			checkBaseEntityReference(jobApplicationAsBaseEntity,true,JOB_APPLICATION_OF_EMPLOYEE);
-			return this;
-		}
-		checkAndFixJobApplication(jobApplicationAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String PROFESSION_INTERVIEW_OF_EMPLOYEE = "employee.profession_interview";
-
-
-	public RetailscmObjectChecker checkProfessionInterviewOfEmployee(BaseEntity professionInterviewAsBaseEntity){
-
-		if(professionInterviewAsBaseEntity == null){
-			checkBaseEntityReference(professionInterviewAsBaseEntity,true,PROFESSION_INTERVIEW_OF_EMPLOYEE);
-			return this;
-		}
-		checkAndFixProfessionInterview(professionInterviewAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String HR_INTERVIEW_OF_EMPLOYEE = "employee.hr_interview";
-
-
-	public RetailscmObjectChecker checkHrInterviewOfEmployee(BaseEntity hrInterviewAsBaseEntity){
-
-		if(hrInterviewAsBaseEntity == null){
-			checkBaseEntityReference(hrInterviewAsBaseEntity,true,HR_INTERVIEW_OF_EMPLOYEE);
-			return this;
-		}
-		checkAndFixHrInterview(hrInterviewAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String OFFER_APPROVAL_OF_EMPLOYEE = "employee.offer_approval";
-
-
-	public RetailscmObjectChecker checkOfferApprovalOfEmployee(BaseEntity offerApprovalAsBaseEntity){
-
-		if(offerApprovalAsBaseEntity == null){
-			checkBaseEntityReference(offerApprovalAsBaseEntity,true,OFFER_APPROVAL_OF_EMPLOYEE);
-			return this;
-		}
-		checkAndFixOfferApproval(offerApprovalAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String OFFER_ACCEPTANCE_OF_EMPLOYEE = "employee.offer_acceptance";
-
-
-	public RetailscmObjectChecker checkOfferAcceptanceOfEmployee(BaseEntity offerAcceptanceAsBaseEntity){
-
-		if(offerAcceptanceAsBaseEntity == null){
-			checkBaseEntityReference(offerAcceptanceAsBaseEntity,true,OFFER_ACCEPTANCE_OF_EMPLOYEE);
-			return this;
-		}
-		checkAndFixOfferAcceptance(offerAcceptanceAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String EMPLOYEE_BOARDING_OF_EMPLOYEE = "employee.employee_boarding";
-
-
-	public RetailscmObjectChecker checkEmployeeBoardingOfEmployee(BaseEntity employeeBoardingAsBaseEntity){
-
-		if(employeeBoardingAsBaseEntity == null){
-			checkBaseEntityReference(employeeBoardingAsBaseEntity,true,EMPLOYEE_BOARDING_OF_EMPLOYEE);
-			return this;
-		}
-		checkAndFixEmployeeBoarding(employeeBoardingAsBaseEntity);
-		return this;
-	}
-
-
-	public static final String TERMINATION_OF_EMPLOYEE = "employee.termination";
-
-
-	public RetailscmObjectChecker checkTerminationOfEmployee(BaseEntity terminationAsBaseEntity){
-
-		if(terminationAsBaseEntity == null){
-			checkBaseEntityReference(terminationAsBaseEntity,true,TERMINATION_OF_EMPLOYEE);
-			return this;
-		}
-		checkAndFixTermination(terminationAsBaseEntity);
-		return this;
-	}
-
-
-	public RetailscmObjectChecker checkEmployeeListOfJobApplication(List<BaseEntity> employeeList){
-		AtomicInteger index = new AtomicInteger();
-		employeeList.stream().forEach(employee->
-			commonObjectElementCheck(employee,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixEmployee));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkEmployeeListOfProfessionInterview(List<BaseEntity> employeeList){
-		AtomicInteger index = new AtomicInteger();
-		employeeList.stream().forEach(employee->
-			commonObjectElementCheck(employee,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixEmployee));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkEmployeeListOfHrInterview(List<BaseEntity> employeeList){
-		AtomicInteger index = new AtomicInteger();
-		employeeList.stream().forEach(employee->
-			commonObjectElementCheck(employee,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixEmployee));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkEmployeeListOfOfferApproval(List<BaseEntity> employeeList){
-		AtomicInteger index = new AtomicInteger();
-		employeeList.stream().forEach(employee->
-			commonObjectElementCheck(employee,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixEmployee));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkEmployeeListOfOfferAcceptance(List<BaseEntity> employeeList){
-		AtomicInteger index = new AtomicInteger();
-		employeeList.stream().forEach(employee->
-			commonObjectElementCheck(employee,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixEmployee));
-		return this;
-	}
-
-	public RetailscmObjectChecker checkEmployeeListOfEmployeeBoarding(List<BaseEntity> employeeList){
-		AtomicInteger index = new AtomicInteger();
-		employeeList.stream().forEach(employee->
-			commonObjectElementCheck(employee,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixEmployee));
-		return this;
-	}
 
 	public RetailscmObjectChecker checkCompanyTrainingListOfInstructor(List<BaseEntity> companyTrainingList){
 		AtomicInteger index = new AtomicInteger();
@@ -6613,27 +5411,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 	}
 
 
-	public static final String BLOCKING_OF_SEC_USER = "sec_user.blocking";
-
-
-	public RetailscmObjectChecker checkBlockingOfSecUser(BaseEntity blockingAsBaseEntity){
-
-		if(blockingAsBaseEntity == null){
-			checkBaseEntityReference(blockingAsBaseEntity,true,BLOCKING_OF_SEC_USER);
-			return this;
-		}
-		checkAndFixSecUserBlocking(blockingAsBaseEntity);
-		return this;
-	}
-
-
-	public RetailscmObjectChecker checkSecUserListOfSecUserBlocking(List<BaseEntity> secUserList){
-		AtomicInteger index = new AtomicInteger();
-		secUserList.stream().forEach(secUser->
-			commonObjectElementCheck(secUser,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSecUser));
-		return this;
-	}
-
 	public RetailscmObjectChecker checkQuickLinkListOfUserApp(List<BaseEntity> quickLinkList){
 		AtomicInteger index = new AtomicInteger();
 		quickLinkList.stream().forEach(quickLink->
@@ -7023,16 +5800,6 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 			return this;
 		}
 		setEntityProperty(targetEntity,"lastUpdateTime",userContext.now());
-		return this;
-	}
-	public RetailscmObjectChecker assignBlockTimeOfSecUserBlocking(BaseEntity targetEntity){
-		if(!isObjectForCreate(targetEntity)){
-			return this;
-		}
-		if(userContext==null){
-			return this;
-		}
-		setEntityProperty(targetEntity,"blockTime",userContext.now());
 		return this;
 	}
 	public RetailscmObjectChecker assignCreateTimeOfQuickLink(BaseEntity targetEntity){

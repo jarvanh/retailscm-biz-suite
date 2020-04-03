@@ -520,7 +520,7 @@ public class RetailStoreTokens extends CommonTokens{
 	
 	
 	public RetailStoreTokens searchAllTextOfAccountSetList(String verb, String value){	
-		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank";
+		String field = "id|name|yearSet|accountingSystem|domesticCurrencyCode|domesticCurrencyName|openingBank|accountNumber";
 		addSearchMoreOptions(ACCOUNT_SET_LIST,accountSetListSearchCounter++, field, verb, value);
 		return this;
 	}

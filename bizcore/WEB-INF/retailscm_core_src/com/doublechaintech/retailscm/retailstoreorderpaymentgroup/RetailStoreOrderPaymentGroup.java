@@ -320,7 +320,9 @@ public class RetailStoreOrderPaymentGroup extends BaseEntity implements  java.io
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getBizOrder(), getCardNumber(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

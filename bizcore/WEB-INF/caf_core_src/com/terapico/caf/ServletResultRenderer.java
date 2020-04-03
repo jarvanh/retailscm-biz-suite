@@ -7,8 +7,6 @@ import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -40,6 +38,7 @@ public class ServletResultRenderer {
 		response.addHeader("X-Env-Name", result.getEnvName());
 		response.setCharacterEncoding(null);
 		response.setContentType(blob.getMimeType());
+		blob.getHeaders().forEach((k, v) -> response.setHeader(k, v));
 		response.getOutputStream().write(blob.getData());
 
 	}
@@ -243,9 +242,6 @@ public class ServletResultRenderer {
 			}
 		}
 
-		
-		
-		
 		// Gson gson = new Gson();
 		ObjectMapper mapper = getObjectMapper();
 		// Type t=new TypeToken<weather.WeatherResponse>().getType();
@@ -254,20 +250,19 @@ public class ServletResultRenderer {
 		/*
 		 * Order
 		 * order=(Order)OrdreJsonTool.prepareForJson((Order)result.getActualResult());
-		 * 
+		 *
 		 */
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		mapper.setSerializationInclusion(Include.NON_NULL);
-		
-		if(result.getActualResult() instanceof BeanCreationException) {
-			Message message =  constructionBeanCreateMessage();
+
+		if (result.getActualResult() instanceof BeanCreationException) {
+			Message message = constructionBeanCreateMessage();
 			String json = mapper.writeValueAsString(message);
 			response.setContentLength(json.getBytes(StandardCharsets.UTF_8).length);
 			response.getWriter().print(json);
 			return;
 		}
-		
-		
+
 		String json = mapper.writeValueAsString(result.getActualResult());
 		log("Render JSON result with size: " + json.length());
 		// log("Render JSON result: "+ json);
@@ -279,11 +274,11 @@ public class ServletResultRenderer {
 	}
 
 	protected Message constructionBeanCreateMessage() {
-		Message message =  new Message();
+		Message message = new Message();
 		message.setLevel("fatal");
 		message.setSourcePosition("spring configuration xml files");
 		message.setBody("Bean Creation Error, please check it from server side");
-		
+
 		return message;
 	}
 

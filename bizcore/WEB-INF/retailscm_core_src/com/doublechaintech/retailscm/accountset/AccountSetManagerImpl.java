@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
@@ -39,28 +30,31 @@ import com.doublechaintech.retailscm.accountset.AccountSet;
 
 
 public class AccountSetManagerImpl extends CustomRetailscmCheckerManager implements AccountSetManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "AccountSet";
 	@Override
 	public AccountSetDAO daoOf(RetailscmUserContext userContext) {
 		return accountSetDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws AccountSetManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new AccountSetManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected AccountSet saveAccountSet(RetailscmUserContext userContext, AccountSet accountSet, String [] tokensExpr) throws Exception{	
  		//return getAccountSetDAO().save(accountSet, tokens);
@@ -186,10 +180,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
  	
  	
 
-	public AccountSet createAccountSet(RetailscmUserContext userContext, String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,long accountNumber,String countryCenterId,String retailStoreId,String goodsSupplierId) throws Exception
-	//public AccountSet createAccountSet(RetailscmUserContext userContext,String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, long accountNumber, String countryCenterId, String retailStoreId, String goodsSupplierId) throws Exception
+	public AccountSet createAccountSet(RetailscmUserContext userContext, String name,String yearSet,Date effectiveDate,String accountingSystem,String domesticCurrencyCode,String domesticCurrencyName,String openingBank,String accountNumber,String countryCenterId,String retailStoreId,String goodsSupplierId) throws Exception
+	//public AccountSet createAccountSet(RetailscmUserContext userContext,String name, String yearSet, Date effectiveDate, String accountingSystem, String domesticCurrencyCode, String domesticCurrencyName, String openingBank, String accountNumber, String countryCenterId, String retailStoreId, String goodsSupplierId) throws Exception
 	{
-		
+
 		
 
 		
@@ -238,14 +232,14 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		onNewInstanceCreated(userContext, accountSet);
 		return accountSet;
 
-		
+
 	}
-	protected AccountSet createNewAccountSet() 
+	protected AccountSet createNewAccountSet()
 	{
-		
-		return new AccountSet();		
+
+		return new AccountSet();
 	}
-	
+
 	protected void checkParamsForUpdatingAccountSet(RetailscmUserContext userContext,String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -278,7 +272,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			checkerOf(userContext).checkOpeningBankOfAccountSet(parseString(newValueExpr));
 		}
 		if(AccountSet.ACCOUNT_NUMBER_PROPERTY.equals(property)){
-			checkerOf(userContext).checkAccountNumberOfAccountSet(parseLong(newValueExpr));
+			checkerOf(userContext).checkAccountNumberOfAccountSet(parseString(newValueExpr));
 		}		
 
 				
@@ -288,28 +282,28 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public AccountSet clone(RetailscmUserContext userContext, String fromAccountSetId) throws Exception{
-		
+
 		return accountSetDaoOf(userContext).clone(fromAccountSetId, this.allTokens());
 	}
-	
-	public AccountSet internalSaveAccountSet(RetailscmUserContext userContext, AccountSet accountSet) throws Exception 
+
+	public AccountSet internalSaveAccountSet(RetailscmUserContext userContext, AccountSet accountSet) throws Exception
 	{
 		return internalSaveAccountSet(userContext, accountSet, allTokens());
 
 	}
-	public AccountSet internalSaveAccountSet(RetailscmUserContext userContext, AccountSet accountSet, Map<String,Object> options) throws Exception 
+	public AccountSet internalSaveAccountSet(RetailscmUserContext userContext, AccountSet accountSet, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingAccountSet(userContext, accountSetId, accountSetVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(accountSet){ 
+
+
+		synchronized(accountSet){
 			//will be good when the accountSet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountSet.
@@ -318,23 +312,23 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 			}
 			accountSet = saveAccountSet(userContext, accountSet, options);
 			return accountSet;
-			
+
 		}
 
 	}
-	
-	public AccountSet updateAccountSet(RetailscmUserContext userContext,String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public AccountSet updateAccountSet(RetailscmUserContext userContext,String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingAccountSet(userContext, accountSetId, accountSetVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
 		if(accountSet.getVersion() != accountSetVersion){
 			String message = "The target version("+accountSet.getVersion()+") is not equals to version("+accountSetVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//will be good when the accountSet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountSet.
@@ -346,21 +340,21 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
 	}
-	
-	public AccountSet updateAccountSetProperty(RetailscmUserContext userContext,String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public AccountSet updateAccountSetProperty(RetailscmUserContext userContext,String accountSetId, int accountSetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingAccountSet(userContext, accountSetId, accountSetVersion, property, newValueExpr, tokensExpr);
-		
+
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
 		if(accountSet.getVersion() != accountSetVersion){
 			String message = "The target version("+accountSet.getVersion()+") is not equals to version("+accountSetVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//will be good when the accountSet loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to AccountSet.
-			
+
 			accountSet.changeProperty(property, newValueExpr);
 			accountSet.updateLastUpdateTime(userContext.now());
 			accountSet = saveAccountSet(userContext, accountSet, tokens().done());
@@ -372,7 +366,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected AccountSetTokens tokens(){
 		return AccountSetTokens.start();
 	}
@@ -396,11 +390,11 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 	protected void checkParamsForTransferingAnotherCountryCenter(RetailscmUserContext userContext, String accountSetId, String anotherCountryCenterId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCountryCenterId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
- 		
+
  	}
  	public AccountSet transferToAnotherCountryCenter(RetailscmUserContext userContext, String accountSetId, String anotherCountryCenterId) throws Exception
  	{
@@ -419,10 +413,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCountryCenter(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -432,7 +426,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -442,14 +436,14 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherRetailStore(RetailscmUserContext userContext, String accountSetId, String anotherRetailStoreId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
  		checkerOf(userContext).checkIdOfRetailStore(anotherRetailStoreId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
- 		
+
  	}
  	public AccountSet transferToAnotherRetailStore(RetailscmUserContext userContext, String accountSetId, String anotherRetailStoreId) throws Exception
  	{
@@ -468,10 +462,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStore requestCandidateRetailStore(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStore result = new CandidateRetailStore();
@@ -481,7 +475,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -491,14 +485,14 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherGoodsSupplier(RetailscmUserContext userContext, String accountSetId, String anotherGoodsSupplierId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
  		checkerOf(userContext).checkIdOfGoodsSupplier(anotherGoodsSupplierId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
- 		
+
  	}
  	public AccountSet transferToAnotherGoodsSupplier(RetailscmUserContext userContext, String accountSetId, String anotherGoodsSupplierId) throws Exception
  	{
@@ -517,10 +511,10 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateGoodsSupplier requestCandidateGoodsSupplier(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateGoodsSupplier result = new CandidateGoodsSupplier();
@@ -530,7 +524,7 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -540,62 +534,62 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCountryCenterId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCountryCenterId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected GoodsSupplier loadGoodsSupplier(RetailscmUserContext userContext, String newGoodsSupplierId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return goodsSupplierDaoOf(userContext).load(newGoodsSupplierId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected RetailStore loadRetailStore(RetailscmUserContext userContext, String newRetailStoreId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreDaoOf(userContext).load(newRetailStoreId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String accountSetId, int accountSetVersion) throws Exception {
-		//deleteInternal(userContext, accountSetId, accountSetVersion);		
+		//deleteInternal(userContext, accountSetId, accountSetVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String accountSetId, int accountSetVersion) throws Exception{
-			
+
 		accountSetDaoOf(userContext).delete(accountSetId, accountSetVersion);
 	}
-	
+
 	public AccountSet forgetByAll(RetailscmUserContext userContext, String accountSetId, int accountSetVersion) throws Exception {
-		return forgetByAllInternal(userContext, accountSetId, accountSetVersion);		
+		return forgetByAllInternal(userContext, accountSetId, accountSetVersion);
 	}
 	protected AccountSet forgetByAllInternal(RetailscmUserContext userContext,
 			String accountSetId, int accountSetVersion) throws Exception{
-			
+
 		return accountSetDaoOf(userContext).disconnectFromAll(accountSetId, accountSetVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -606,21 +600,21 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return accountSetDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingAccountingSubject(RetailscmUserContext userContext, String accountSetId, String accountingSubjectCode, String accountingSubjectName, int accountingSubjectClassCode, String accountingSubjectClassName,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 
 		
@@ -634,20 +628,20 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 
-	
+
 	}
 	public  AccountSet addAccountingSubject(RetailscmUserContext userContext, String accountSetId, String accountingSubjectCode, String accountingSubjectName, int accountingSubjectClassCode, String accountingSubjectClassName, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingAccountingSubject(userContext,accountSetId,accountingSubjectCode, accountingSubjectName, accountingSubjectClassCode, accountingSubjectClassName,tokensExpr);
-		
+
 		AccountingSubject accountingSubject = createAccountingSubject(userContext,accountingSubjectCode, accountingSubjectName, accountingSubjectClassCode, accountingSubjectClassName);
-		
-		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+
+		AccountSet accountSet = loadAccountSet(userContext, accountSetId, emptyOptions());
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			accountSet.addAccountingSubject( accountingSubject );		
+			accountSet.addAccountingSubject( accountingSubject );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingSubjectList().done());
 			
 			userContext.getManagerGroup().getAccountingSubjectManager().onNewInstanceCreated(userContext, accountingSubject);
@@ -655,49 +649,49 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	}
 	protected void checkParamsForUpdatingAccountingSubjectProperties(RetailscmUserContext userContext, String accountSetId,String id,String accountingSubjectCode,String accountingSubjectName,int accountingSubjectClassCode,String accountingSubjectClassName,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		checkerOf(userContext).checkIdOfAccountingSubject(id);
-		
+
 		checkerOf(userContext).checkAccountingSubjectCodeOfAccountingSubject( accountingSubjectCode);
 		checkerOf(userContext).checkAccountingSubjectNameOfAccountingSubject( accountingSubjectName);
 		checkerOf(userContext).checkAccountingSubjectClassCodeOfAccountingSubject( accountingSubjectClassCode);
 		checkerOf(userContext).checkAccountingSubjectClassNameOfAccountingSubject( accountingSubjectClassName);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-		
+
 	}
 	public  AccountSet updateAccountingSubjectProperties(RetailscmUserContext userContext, String accountSetId, String id,String accountingSubjectCode,String accountingSubjectName,int accountingSubjectClassCode,String accountingSubjectClassName, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingAccountingSubjectProperties(userContext,accountSetId,id,accountingSubjectCode,accountingSubjectName,accountingSubjectClassCode,accountingSubjectClassName,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withAccountingSubjectListList()
 				.searchAccountingSubjectListWith(AccountingSubject.ID_PROPERTY, "is", id).done();
-		
+
 		AccountSet accountSetToUpdate = loadAccountSet(userContext, accountSetId, options);
-		
+
 		if(accountSetToUpdate.getAccountingSubjectList().isEmpty()){
 			throw new AccountSetManagerException("AccountingSubject is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		AccountingSubject item = accountSetToUpdate.getAccountingSubjectList().first();
-		
+
 		item.updateAccountingSubjectCode( accountingSubjectCode );
 		item.updateAccountingSubjectName( accountingSubjectName );
 		item.updateAccountingSubjectClassCode( accountingSubjectClassCode );
 		item.updateAccountingSubjectClassName( accountingSubjectClassName );
 
-		
+
 		//checkParamsForAddingAccountingSubject(userContext,accountSetId,name, code, used,tokensExpr);
 		AccountSet accountSet = saveAccountSet(userContext, accountSetToUpdate, tokens().withAccountingSubjectList().done());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected AccountingSubject createAccountingSubject(RetailscmUserContext userContext, String accountingSubjectCode, String accountingSubjectName, int accountingSubjectClassCode, String accountingSubjectClassName) throws Exception{
 
 		AccountingSubject accountingSubject = new AccountingSubject();
@@ -710,38 +704,38 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		
 		return accountingSubject;
-	
-		
+
+
 	}
-	
+
 	protected AccountingSubject createIndexedAccountingSubject(String id, int version){
 
 		AccountingSubject accountingSubject = new AccountingSubject();
 		accountingSubject.setId(id);
 		accountingSubject.setVersion(version);
-		return accountingSubject;			
-		
+		return accountingSubject;
+
 	}
-	
-	protected void checkParamsForRemovingAccountingSubjectList(RetailscmUserContext userContext, String accountSetId, 
+
+	protected void checkParamsForRemovingAccountingSubjectList(RetailscmUserContext userContext, String accountSetId,
 			String accountingSubjectIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		for(String accountingSubjectIdItem: accountingSubjectIds){
 			checkerOf(userContext).checkIdOfAccountingSubject(accountingSubjectIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-		
+
 	}
-	public  AccountSet removeAccountingSubjectList(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet removeAccountingSubjectList(RetailscmUserContext userContext, String accountSetId,
 			String accountingSubjectIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingAccountingSubjectList(userContext, accountSetId,  accountingSubjectIds, tokensExpr);
-			
-			
+
+
 			AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-			synchronized(accountSet){ 
+			synchronized(accountSet){
 				//Will be good when the accountSet loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				accountSetDaoOf(userContext).planToRemoveAccountingSubjectList(accountSet, accountingSubjectIds, allTokens());
@@ -750,65 +744,65 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 				return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingAccountingSubject(RetailscmUserContext userContext, String accountSetId, 
+
+	protected void checkParamsForRemovingAccountingSubject(RetailscmUserContext userContext, String accountSetId,
 		String accountingSubjectId, int accountingSubjectVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
 		checkerOf(userContext).checkIdOfAccountingSubject(accountingSubjectId);
 		checkerOf(userContext).checkVersionOfAccountingSubject(accountingSubjectVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	public  AccountSet removeAccountingSubject(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet removeAccountingSubject(RetailscmUserContext userContext, String accountSetId,
 		String accountingSubjectId, int accountingSubjectVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingAccountingSubject(userContext,accountSetId, accountingSubjectId, accountingSubjectVersion,tokensExpr);
-		
+
 		AccountingSubject accountingSubject = createIndexedAccountingSubject(accountingSubjectId, accountingSubjectVersion);
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			accountSet.removeAccountingSubject( accountingSubject );		
+			accountSet.removeAccountingSubject( accountingSubject );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingSubjectList().done());
 			deleteRelationInGraph(userContext, accountingSubject);
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingAccountingSubject(RetailscmUserContext userContext, String accountSetId, 
+	protected void checkParamsForCopyingAccountingSubject(RetailscmUserContext userContext, String accountSetId,
 		String accountingSubjectId, int accountingSubjectVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
 		checkerOf(userContext).checkIdOfAccountingSubject(accountingSubjectId);
 		checkerOf(userContext).checkVersionOfAccountingSubject(accountingSubjectVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	public  AccountSet copyAccountingSubjectFrom(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet copyAccountingSubjectFrom(RetailscmUserContext userContext, String accountSetId,
 		String accountingSubjectId, int accountingSubjectVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingAccountingSubject(userContext,accountSetId, accountingSubjectId, accountingSubjectVersion,tokensExpr);
-		
+
 		AccountingSubject accountingSubject = createIndexedAccountingSubject(accountingSubjectId, accountingSubjectVersion);
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			accountSet.copyAccountingSubjectFrom( accountingSubject );		
+
+			accountSet.copyAccountingSubjectFrom( accountingSubject );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingSubjectList().done());
 			
 			userContext.getManagerGroup().getAccountingSubjectManager().onNewInstanceCreated(userContext, (AccountingSubject)accountSet.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingAccountingSubject(RetailscmUserContext userContext, String accountSetId, String accountingSubjectId, int accountingSubjectVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -836,32 +830,32 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	
+
 	public  AccountSet updateAccountingSubject(RetailscmUserContext userContext, String accountSetId, String accountingSubjectId, int accountingSubjectVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingAccountingSubject(userContext, accountSetId, accountingSubjectId, accountingSubjectVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withAccountingSubjectList().searchAccountingSubjectListWith(AccountingSubject.ID_PROPERTY, "eq", accountingSubjectId).done();
-		
-		
-		
+
+
+
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, loadTokens);
-		
-		synchronized(accountSet){ 
+
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//accountSet.removeAccountingSubject( accountingSubject );	
+			//accountSet.removeAccountingSubject( accountingSubject );
 			//make changes to AcceleraterAccount.
 			AccountingSubject accountingSubjectIndex = createIndexedAccountingSubject(accountingSubjectId, accountingSubjectVersion);
-		
+
 			AccountingSubject accountingSubject = accountSet.findTheAccountingSubject(accountingSubjectIndex);
 			if(accountingSubject == null){
 				throw new AccountSetManagerException(accountingSubject+" is NOT FOUND" );
 			}
-			
+
 			accountingSubject.changeProperty(property, newValueExpr);
 			
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingSubjectList().done());
@@ -872,12 +866,12 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingAccountingPeriod(RetailscmUserContext userContext, String accountSetId, String name, Date startDate, Date endDate,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 
 		
@@ -889,20 +883,20 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 
-	
+
 	}
 	public  AccountSet addAccountingPeriod(RetailscmUserContext userContext, String accountSetId, String name, Date startDate, Date endDate, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingAccountingPeriod(userContext,accountSetId,name, startDate, endDate,tokensExpr);
-		
+
 		AccountingPeriod accountingPeriod = createAccountingPeriod(userContext,name, startDate, endDate);
-		
-		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+
+		AccountSet accountSet = loadAccountSet(userContext, accountSetId, emptyOptions());
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			accountSet.addAccountingPeriod( accountingPeriod );		
+			accountSet.addAccountingPeriod( accountingPeriod );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingPeriodList().done());
 			
 			userContext.getManagerGroup().getAccountingPeriodManager().onNewInstanceCreated(userContext, accountingPeriod);
@@ -910,47 +904,47 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	}
 	protected void checkParamsForUpdatingAccountingPeriodProperties(RetailscmUserContext userContext, String accountSetId,String id,String name,Date startDate,Date endDate,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		checkerOf(userContext).checkIdOfAccountingPeriod(id);
-		
+
 		checkerOf(userContext).checkNameOfAccountingPeriod( name);
 		checkerOf(userContext).checkStartDateOfAccountingPeriod( startDate);
 		checkerOf(userContext).checkEndDateOfAccountingPeriod( endDate);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-		
+
 	}
 	public  AccountSet updateAccountingPeriodProperties(RetailscmUserContext userContext, String accountSetId, String id,String name,Date startDate,Date endDate, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingAccountingPeriodProperties(userContext,accountSetId,id,name,startDate,endDate,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withAccountingPeriodListList()
 				.searchAccountingPeriodListWith(AccountingPeriod.ID_PROPERTY, "is", id).done();
-		
+
 		AccountSet accountSetToUpdate = loadAccountSet(userContext, accountSetId, options);
-		
+
 		if(accountSetToUpdate.getAccountingPeriodList().isEmpty()){
 			throw new AccountSetManagerException("AccountingPeriod is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		AccountingPeriod item = accountSetToUpdate.getAccountingPeriodList().first();
-		
+
 		item.updateName( name );
 		item.updateStartDate( startDate );
 		item.updateEndDate( endDate );
 
-		
+
 		//checkParamsForAddingAccountingPeriod(userContext,accountSetId,name, code, used,tokensExpr);
 		AccountSet accountSet = saveAccountSet(userContext, accountSetToUpdate, tokens().withAccountingPeriodList().done());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected AccountingPeriod createAccountingPeriod(RetailscmUserContext userContext, String name, Date startDate, Date endDate) throws Exception{
 
 		AccountingPeriod accountingPeriod = new AccountingPeriod();
@@ -962,38 +956,38 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		
 		return accountingPeriod;
-	
-		
+
+
 	}
-	
+
 	protected AccountingPeriod createIndexedAccountingPeriod(String id, int version){
 
 		AccountingPeriod accountingPeriod = new AccountingPeriod();
 		accountingPeriod.setId(id);
 		accountingPeriod.setVersion(version);
-		return accountingPeriod;			
-		
+		return accountingPeriod;
+
 	}
-	
-	protected void checkParamsForRemovingAccountingPeriodList(RetailscmUserContext userContext, String accountSetId, 
+
+	protected void checkParamsForRemovingAccountingPeriodList(RetailscmUserContext userContext, String accountSetId,
 			String accountingPeriodIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		for(String accountingPeriodIdItem: accountingPeriodIds){
 			checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-		
+
 	}
-	public  AccountSet removeAccountingPeriodList(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet removeAccountingPeriodList(RetailscmUserContext userContext, String accountSetId,
 			String accountingPeriodIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingAccountingPeriodList(userContext, accountSetId,  accountingPeriodIds, tokensExpr);
-			
-			
+
+
 			AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-			synchronized(accountSet){ 
+			synchronized(accountSet){
 				//Will be good when the accountSet loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				accountSetDaoOf(userContext).planToRemoveAccountingPeriodList(accountSet, accountingPeriodIds, allTokens());
@@ -1002,65 +996,65 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 				return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingAccountingPeriod(RetailscmUserContext userContext, String accountSetId, 
+
+	protected void checkParamsForRemovingAccountingPeriod(RetailscmUserContext userContext, String accountSetId,
 		String accountingPeriodId, int accountingPeriodVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
 		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
 		checkerOf(userContext).checkVersionOfAccountingPeriod(accountingPeriodVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	public  AccountSet removeAccountingPeriod(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet removeAccountingPeriod(RetailscmUserContext userContext, String accountSetId,
 		String accountingPeriodId, int accountingPeriodVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingAccountingPeriod(userContext,accountSetId, accountingPeriodId, accountingPeriodVersion,tokensExpr);
-		
+
 		AccountingPeriod accountingPeriod = createIndexedAccountingPeriod(accountingPeriodId, accountingPeriodVersion);
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			accountSet.removeAccountingPeriod( accountingPeriod );		
+			accountSet.removeAccountingPeriod( accountingPeriod );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingPeriodList().done());
 			deleteRelationInGraph(userContext, accountingPeriod);
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingAccountingPeriod(RetailscmUserContext userContext, String accountSetId, 
+	protected void checkParamsForCopyingAccountingPeriod(RetailscmUserContext userContext, String accountSetId,
 		String accountingPeriodId, int accountingPeriodVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
 		checkerOf(userContext).checkIdOfAccountingPeriod(accountingPeriodId);
 		checkerOf(userContext).checkVersionOfAccountingPeriod(accountingPeriodVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	public  AccountSet copyAccountingPeriodFrom(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet copyAccountingPeriodFrom(RetailscmUserContext userContext, String accountSetId,
 		String accountingPeriodId, int accountingPeriodVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingAccountingPeriod(userContext,accountSetId, accountingPeriodId, accountingPeriodVersion,tokensExpr);
-		
+
 		AccountingPeriod accountingPeriod = createIndexedAccountingPeriod(accountingPeriodId, accountingPeriodVersion);
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			accountSet.copyAccountingPeriodFrom( accountingPeriod );		
+
+			accountSet.copyAccountingPeriodFrom( accountingPeriod );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingPeriodList().done());
 			
 			userContext.getManagerGroup().getAccountingPeriodManager().onNewInstanceCreated(userContext, (AccountingPeriod)accountSet.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingAccountingPeriod(RetailscmUserContext userContext, String accountSetId, String accountingPeriodId, int accountingPeriodVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1084,32 +1078,32 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	
+
 	public  AccountSet updateAccountingPeriod(RetailscmUserContext userContext, String accountSetId, String accountingPeriodId, int accountingPeriodVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingAccountingPeriod(userContext, accountSetId, accountingPeriodId, accountingPeriodVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withAccountingPeriodList().searchAccountingPeriodListWith(AccountingPeriod.ID_PROPERTY, "eq", accountingPeriodId).done();
-		
-		
-		
+
+
+
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, loadTokens);
-		
-		synchronized(accountSet){ 
+
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//accountSet.removeAccountingPeriod( accountingPeriod );	
+			//accountSet.removeAccountingPeriod( accountingPeriod );
 			//make changes to AcceleraterAccount.
 			AccountingPeriod accountingPeriodIndex = createIndexedAccountingPeriod(accountingPeriodId, accountingPeriodVersion);
-		
+
 			AccountingPeriod accountingPeriod = accountSet.findTheAccountingPeriod(accountingPeriodIndex);
 			if(accountingPeriod == null){
 				throw new AccountSetManagerException(accountingPeriod+" is NOT FOUND" );
 			}
-			
+
 			accountingPeriod.changeProperty(property, newValueExpr);
 			
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingPeriodList().done());
@@ -1120,12 +1114,12 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, String name, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 
 		
@@ -1135,20 +1129,20 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
 
-	
+
 	}
 	public  AccountSet addAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, String name, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingAccountingDocumentType(userContext,accountSetId,name, description,tokensExpr);
-		
+
 		AccountingDocumentType accountingDocumentType = createAccountingDocumentType(userContext,name, description);
-		
-		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+
+		AccountSet accountSet = loadAccountSet(userContext, accountSetId, emptyOptions());
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			accountSet.addAccountingDocumentType( accountingDocumentType );		
+			accountSet.addAccountingDocumentType( accountingDocumentType );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingDocumentTypeList().done());
 			
 			userContext.getManagerGroup().getAccountingDocumentTypeManager().onNewInstanceCreated(userContext, accountingDocumentType);
@@ -1156,45 +1150,45 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		}
 	}
 	protected void checkParamsForUpdatingAccountingDocumentTypeProperties(RetailscmUserContext userContext, String accountSetId,String id,String name,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		checkerOf(userContext).checkIdOfAccountingDocumentType(id);
-		
+
 		checkerOf(userContext).checkNameOfAccountingDocumentType( name);
 		checkerOf(userContext).checkDescriptionOfAccountingDocumentType( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-		
+
 	}
 	public  AccountSet updateAccountingDocumentTypeProperties(RetailscmUserContext userContext, String accountSetId, String id,String name,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingAccountingDocumentTypeProperties(userContext,accountSetId,id,name,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withAccountingDocumentTypeListList()
 				.searchAccountingDocumentTypeListWith(AccountingDocumentType.ID_PROPERTY, "is", id).done();
-		
+
 		AccountSet accountSetToUpdate = loadAccountSet(userContext, accountSetId, options);
-		
+
 		if(accountSetToUpdate.getAccountingDocumentTypeList().isEmpty()){
 			throw new AccountSetManagerException("AccountingDocumentType is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		AccountingDocumentType item = accountSetToUpdate.getAccountingDocumentTypeList().first();
-		
+
 		item.updateName( name );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingAccountingDocumentType(userContext,accountSetId,name, code, used,tokensExpr);
 		AccountSet accountSet = saveAccountSet(userContext, accountSetToUpdate, tokens().withAccountingDocumentTypeList().done());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected AccountingDocumentType createAccountingDocumentType(RetailscmUserContext userContext, String name, String description) throws Exception{
 
 		AccountingDocumentType accountingDocumentType = new AccountingDocumentType();
@@ -1205,38 +1199,38 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	
 		
 		return accountingDocumentType;
-	
-		
+
+
 	}
-	
+
 	protected AccountingDocumentType createIndexedAccountingDocumentType(String id, int version){
 
 		AccountingDocumentType accountingDocumentType = new AccountingDocumentType();
 		accountingDocumentType.setId(id);
 		accountingDocumentType.setVersion(version);
-		return accountingDocumentType;			
-		
+		return accountingDocumentType;
+
 	}
-	
-	protected void checkParamsForRemovingAccountingDocumentTypeList(RetailscmUserContext userContext, String accountSetId, 
+
+	protected void checkParamsForRemovingAccountingDocumentTypeList(RetailscmUserContext userContext, String accountSetId,
 			String accountingDocumentTypeIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfAccountSet(accountSetId);
 		for(String accountingDocumentTypeIdItem: accountingDocumentTypeIds){
 			checkerOf(userContext).checkIdOfAccountingDocumentType(accountingDocumentTypeIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-		
+
 	}
-	public  AccountSet removeAccountingDocumentTypeList(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet removeAccountingDocumentTypeList(RetailscmUserContext userContext, String accountSetId,
 			String accountingDocumentTypeIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingAccountingDocumentTypeList(userContext, accountSetId,  accountingDocumentTypeIds, tokensExpr);
-			
-			
+
+
 			AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-			synchronized(accountSet){ 
+			synchronized(accountSet){
 				//Will be good when the accountSet loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				accountSetDaoOf(userContext).planToRemoveAccountingDocumentTypeList(accountSet, accountingDocumentTypeIds, allTokens());
@@ -1245,65 +1239,65 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 				return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, 
+
+	protected void checkParamsForRemovingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId,
 		String accountingDocumentTypeId, int accountingDocumentTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
 		checkerOf(userContext).checkIdOfAccountingDocumentType(accountingDocumentTypeId);
 		checkerOf(userContext).checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	public  AccountSet removeAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet removeAccountingDocumentType(RetailscmUserContext userContext, String accountSetId,
 		String accountingDocumentTypeId, int accountingDocumentTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingAccountingDocumentType(userContext,accountSetId, accountingDocumentTypeId, accountingDocumentTypeVersion,tokensExpr);
-		
+
 		AccountingDocumentType accountingDocumentType = createIndexedAccountingDocumentType(accountingDocumentTypeId, accountingDocumentTypeVersion);
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			accountSet.removeAccountingDocumentType( accountingDocumentType );		
+			accountSet.removeAccountingDocumentType( accountingDocumentType );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingDocumentTypeList().done());
 			deleteRelationInGraph(userContext, accountingDocumentType);
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, 
+	protected void checkParamsForCopyingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId,
 		String accountingDocumentTypeId, int accountingDocumentTypeVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfAccountSet( accountSetId);
 		checkerOf(userContext).checkIdOfAccountingDocumentType(accountingDocumentTypeId);
 		checkerOf(userContext).checkVersionOfAccountingDocumentType(accountingDocumentTypeVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	public  AccountSet copyAccountingDocumentTypeFrom(RetailscmUserContext userContext, String accountSetId, 
+	public  AccountSet copyAccountingDocumentTypeFrom(RetailscmUserContext userContext, String accountSetId,
 		String accountingDocumentTypeId, int accountingDocumentTypeVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingAccountingDocumentType(userContext,accountSetId, accountingDocumentTypeId, accountingDocumentTypeVersion,tokensExpr);
-		
+
 		AccountingDocumentType accountingDocumentType = createIndexedAccountingDocumentType(accountingDocumentTypeId, accountingDocumentTypeVersion);
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, allTokens());
-		synchronized(accountSet){ 
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			accountSet.copyAccountingDocumentTypeFrom( accountingDocumentType );		
+
+			accountSet.copyAccountingDocumentTypeFrom( accountingDocumentType );
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingDocumentTypeList().done());
 			
 			userContext.getManagerGroup().getAccountingDocumentTypeManager().onNewInstanceCreated(userContext, (AccountingDocumentType)accountSet.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,accountSet, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, String accountingDocumentTypeId, int accountingDocumentTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1323,32 +1317,32 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(AccountSetManagerException.class);
-	
+
 	}
-	
+
 	public  AccountSet updateAccountingDocumentType(RetailscmUserContext userContext, String accountSetId, String accountingDocumentTypeId, int accountingDocumentTypeVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingAccountingDocumentType(userContext, accountSetId, accountingDocumentTypeId, accountingDocumentTypeVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withAccountingDocumentTypeList().searchAccountingDocumentTypeListWith(AccountingDocumentType.ID_PROPERTY, "eq", accountingDocumentTypeId).done();
-		
-		
-		
+
+
+
 		AccountSet accountSet = loadAccountSet(userContext, accountSetId, loadTokens);
-		
-		synchronized(accountSet){ 
+
+		synchronized(accountSet){
 			//Will be good when the accountSet loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//accountSet.removeAccountingDocumentType( accountingDocumentType );	
+			//accountSet.removeAccountingDocumentType( accountingDocumentType );
 			//make changes to AcceleraterAccount.
 			AccountingDocumentType accountingDocumentTypeIndex = createIndexedAccountingDocumentType(accountingDocumentTypeId, accountingDocumentTypeVersion);
-		
+
 			AccountingDocumentType accountingDocumentType = accountSet.findTheAccountingDocumentType(accountingDocumentTypeIndex);
 			if(accountingDocumentType == null){
 				throw new AccountSetManagerException(accountingDocumentType+" is NOT FOUND" );
 			}
-			
+
 			accountingDocumentType.changeProperty(property, newValueExpr);
 			
 			accountSet = saveAccountSet(userContext, accountSet, tokens().withAccountingDocumentTypeList().done());
@@ -1359,14 +1353,20 @@ public class AccountSetManagerImpl extends CustomRetailscmCheckerManager impleme
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, AccountSet newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

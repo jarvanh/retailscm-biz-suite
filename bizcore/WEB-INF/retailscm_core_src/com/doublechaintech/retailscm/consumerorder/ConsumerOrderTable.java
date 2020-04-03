@@ -20,17 +20,12 @@ public class ConsumerOrderTable{
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_TITLE = "title";
 	static final String COLUMN_CONSUMER = "consumer";
-	static final String COLUMN_CONFIRMATION = "confirmation";
-	static final String COLUMN_APPROVAL = "approval";
-	static final String COLUMN_PROCESSING = "processing";
-	static final String COLUMN_SHIPMENT = "shipment";
-	static final String COLUMN_DELIVERY = "delivery";
 	static final String COLUMN_STORE = "store";
 	static final String COLUMN_LAST_UPDATE_TIME = "last_update_time";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_TITLE,COLUMN_CONSUMER,COLUMN_CONFIRMATION,COLUMN_APPROVAL,COLUMN_PROCESSING,COLUMN_SHIPMENT,COLUMN_DELIVERY,COLUMN_STORE,COLUMN_LAST_UPDATE_TIME,COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {COLUMN_TITLE,COLUMN_CONSUMER,COLUMN_CONFIRMATION,COLUMN_APPROVAL,COLUMN_PROCESSING,COLUMN_SHIPMENT,COLUMN_DELIVERY,COLUMN_STORE,COLUMN_LAST_UPDATE_TIME};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_TITLE,COLUMN_CONSUMER,COLUMN_STORE,COLUMN_LAST_UPDATE_TIME,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_TITLE,COLUMN_CONSUMER,COLUMN_STORE,COLUMN_LAST_UPDATE_TIME};
 	
 	
 }

@@ -73,8 +73,7 @@ public class TerminationTokens extends CommonTokens{
 		
 		return start()
 			.withReason()
-			.withType()
-			.withEmployeeList();
+			.withType();
 	
 	}
 	public static TerminationTokens withoutListsTokens(){
@@ -120,80 +119,9 @@ public class TerminationTokens extends CommonTokens{
 	}
 	
 	
-	protected static final String EMPLOYEE_LIST = "employeeList";
-	public String getEmployeeList(){
-		return EMPLOYEE_LIST;
-	}
-	public TerminationTokens withEmployeeList(){		
-		addSimpleOptions(EMPLOYEE_LIST);
-		return this;
-	}
-	public TerminationTokens analyzeEmployeeList(){		
-		addSimpleOptions(EMPLOYEE_LIST+".anaylze");
-		return this;
-	}
-	public boolean analyzeEmployeeListEnabled(){		
-		
-		if(checkOptions(this.options(), EMPLOYEE_LIST+".anaylze")){
-			return true; //most of the case, should call here
-		}
-		//if not true, then query for global setting
-		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
-	}
-	public TerminationTokens extractMoreFromEmployeeList(String idsSeperatedWithComma){		
-		addSimpleOptions(EMPLOYEE_LIST+".extractIds", idsSeperatedWithComma);
-		return this;
-	}
-	
-	
-	
-	
-	private int employeeListSortCounter = 0;
-	public TerminationTokens sortEmployeeListWith(String field, String descOrAsc){		
-		addSortMoreOptions(EMPLOYEE_LIST,employeeListSortCounter++, field, descOrAsc);
-		return this;
-	}
-	private int employeeListSearchCounter = 0;
-	public TerminationTokens searchEmployeeListWith(String field, String verb, String value){		
-		
-		withEmployeeList();
-		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
-		return this;
-	}
-	
-	
-	
-	public TerminationTokens searchAllTextOfEmployeeList(String verb, String value){	
-		String field = "id|title|familyName|givenName|email|city|address|cellPhone|salaryAccount";
-		addSearchMoreOptions(EMPLOYEE_LIST,employeeListSearchCounter++, field, verb, value);
-		return this;
-	}
-	
-	
-	
-	public TerminationTokens rowsPerPageOfEmployeeList(int rowsPerPage){		
-		addSimpleOptions(EMPLOYEE_LIST+"RowsPerPage",rowsPerPage);
-		return this;
-	}
-	public TerminationTokens currentPageNumberOfEmployeeList(int currentPageNumber){		
-		addSimpleOptions(EMPLOYEE_LIST+"CurrentPage",currentPageNumber);
-		return this;
-	}
-	public TerminationTokens retainColumnsOfEmployeeList(String[] columns){		
-		addSimpleOptions(EMPLOYEE_LIST+"RetainColumns",columns);
-		return this;
-	}
-	public TerminationTokens excludeColumnsOfEmployeeList(String[] columns){		
-		addSimpleOptions(EMPLOYEE_LIST+"ExcludeColumns",columns);
-		return this;
-	}
-	
-	
-		
 	
 	public  TerminationTokens searchEntireObjectText(String verb, String value){
 		
-		searchAllTextOfEmployeeList(verb, value);	
 		return this;
 	}
 }

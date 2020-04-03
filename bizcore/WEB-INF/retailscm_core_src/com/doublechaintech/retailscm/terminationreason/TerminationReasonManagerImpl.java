@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
@@ -34,28 +25,31 @@ import com.doublechaintech.retailscm.terminationreason.TerminationReason;
 
 
 public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager implements TerminationReasonManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "TerminationReason";
 	@Override
 	public TerminationReasonDAO daoOf(RetailscmUserContext userContext) {
 		return terminationReasonDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws TerminationReasonManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new TerminationReasonManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected TerminationReason saveTerminationReason(RetailscmUserContext userContext, TerminationReason terminationReason, String [] tokensExpr) throws Exception{	
  		//return getTerminationReasonDAO().save(terminationReason, tokens);
@@ -174,7 +168,7 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 	public TerminationReason createTerminationReason(RetailscmUserContext userContext, String code,String companyId,String description) throws Exception
 	//public TerminationReason createTerminationReason(RetailscmUserContext userContext,String code, String companyId, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -200,14 +194,14 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		onNewInstanceCreated(userContext, terminationReason);
 		return terminationReason;
 
-		
+
 	}
-	protected TerminationReason createNewTerminationReason() 
+	protected TerminationReason createNewTerminationReason()
 	{
-		
-		return new TerminationReason();		
+
+		return new TerminationReason();
 	}
-	
+
 	protected void checkParamsForUpdatingTerminationReason(RetailscmUserContext userContext,String terminationReasonId, int terminationReasonVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -228,28 +222,28 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public TerminationReason clone(RetailscmUserContext userContext, String fromTerminationReasonId) throws Exception{
-		
+
 		return terminationReasonDaoOf(userContext).clone(fromTerminationReasonId, this.allTokens());
 	}
-	
-	public TerminationReason internalSaveTerminationReason(RetailscmUserContext userContext, TerminationReason terminationReason) throws Exception 
+
+	public TerminationReason internalSaveTerminationReason(RetailscmUserContext userContext, TerminationReason terminationReason) throws Exception
 	{
 		return internalSaveTerminationReason(userContext, terminationReason, allTokens());
 
 	}
-	public TerminationReason internalSaveTerminationReason(RetailscmUserContext userContext, TerminationReason terminationReason, Map<String,Object> options) throws Exception 
+	public TerminationReason internalSaveTerminationReason(RetailscmUserContext userContext, TerminationReason terminationReason, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingTerminationReason(userContext, terminationReasonId, terminationReasonVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(terminationReason){ 
+
+
+		synchronized(terminationReason){
 			//will be good when the terminationReason loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TerminationReason.
@@ -258,23 +252,23 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 			}
 			terminationReason = saveTerminationReason(userContext, terminationReason, options);
 			return terminationReason;
-			
+
 		}
 
 	}
-	
-	public TerminationReason updateTerminationReason(RetailscmUserContext userContext,String terminationReasonId, int terminationReasonVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TerminationReason updateTerminationReason(RetailscmUserContext userContext,String terminationReasonId, int terminationReasonVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTerminationReason(userContext, terminationReasonId, terminationReasonVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, allTokens());
 		if(terminationReason.getVersion() != terminationReasonVersion){
 			String message = "The target version("+terminationReason.getVersion()+") is not equals to version("+terminationReasonVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(terminationReason){ 
+		synchronized(terminationReason){
 			//will be good when the terminationReason loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TerminationReason.
@@ -286,21 +280,21 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
 	}
-	
-	public TerminationReason updateTerminationReasonProperty(RetailscmUserContext userContext,String terminationReasonId, int terminationReasonVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public TerminationReason updateTerminationReasonProperty(RetailscmUserContext userContext,String terminationReasonId, int terminationReasonVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingTerminationReason(userContext, terminationReasonId, terminationReasonVersion, property, newValueExpr, tokensExpr);
-		
+
 		TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, allTokens());
 		if(terminationReason.getVersion() != terminationReasonVersion){
 			String message = "The target version("+terminationReason.getVersion()+") is not equals to version("+terminationReasonVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(terminationReason){ 
+		synchronized(terminationReason){
 			//will be good when the terminationReason loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to TerminationReason.
-			
+
 			terminationReason.changeProperty(property, newValueExpr);
 			
 			terminationReason = saveTerminationReason(userContext, terminationReason, tokens().done());
@@ -312,7 +306,7 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected TerminationReasonTokens tokens(){
 		return TerminationReasonTokens.start();
 	}
@@ -334,11 +328,11 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String terminationReasonId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfTerminationReason(terminationReasonId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
- 		
+
  	}
  	public TerminationReason transferToAnotherCompany(RetailscmUserContext userContext, String terminationReasonId, String anotherCompanyId) throws Exception
  	{
@@ -357,10 +351,10 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -370,7 +364,7 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -380,42 +374,42 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String terminationReasonId, int terminationReasonVersion) throws Exception {
-		//deleteInternal(userContext, terminationReasonId, terminationReasonVersion);		
+		//deleteInternal(userContext, terminationReasonId, terminationReasonVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String terminationReasonId, int terminationReasonVersion) throws Exception{
-			
+
 		terminationReasonDaoOf(userContext).delete(terminationReasonId, terminationReasonVersion);
 	}
-	
+
 	public TerminationReason forgetByAll(RetailscmUserContext userContext, String terminationReasonId, int terminationReasonVersion) throws Exception {
-		return forgetByAllInternal(userContext, terminationReasonId, terminationReasonVersion);		
+		return forgetByAllInternal(userContext, terminationReasonId, terminationReasonVersion);
 	}
 	protected TerminationReason forgetByAllInternal(RetailscmUserContext userContext,
 			String terminationReasonId, int terminationReasonVersion) throws Exception{
-			
+
 		return terminationReasonDaoOf(userContext).disconnectFromAll(terminationReasonId, terminationReasonVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -426,8 +420,8 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return terminationReasonDaoOf(userContext).deleteAll();
 	}
@@ -436,29 +430,29 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 	//disconnect TerminationReason with type in Termination
 	protected TerminationReason breakWithTerminationByType(RetailscmUserContext userContext, String terminationReasonId, String typeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, allTokens());
 
-			synchronized(terminationReason){ 
+			synchronized(terminationReason){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				terminationReasonDaoOf(userContext).planToRemoveTerminationListWithType(terminationReason, typeId, this.emptyOptions());
 
 				terminationReason = saveTerminationReason(userContext, terminationReason, tokens().withTerminationList().done());
 				return terminationReason;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingTermination(RetailscmUserContext userContext, String terminationReasonId, String typeId, String comment,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfTerminationReason(terminationReasonId);
 
 		
@@ -468,20 +462,20 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
 
-	
+
 	}
 	public  TerminationReason addTermination(RetailscmUserContext userContext, String terminationReasonId, String typeId, String comment, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingTermination(userContext,terminationReasonId,typeId, comment,tokensExpr);
-		
+
 		Termination termination = createTermination(userContext,typeId, comment);
-		
-		TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, allTokens());
-		synchronized(terminationReason){ 
+
+		TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, emptyOptions());
+		synchronized(terminationReason){
 			//Will be good when the terminationReason loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			terminationReason.addTermination( termination );		
+			terminationReason.addTermination( termination );
 			terminationReason = saveTerminationReason(userContext, terminationReason, tokens().withTerminationList().done());
 			
 			userContext.getManagerGroup().getTerminationManager().onNewInstanceCreated(userContext, termination);
@@ -489,43 +483,43 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		}
 	}
 	protected void checkParamsForUpdatingTerminationProperties(RetailscmUserContext userContext, String terminationReasonId,String id,String comment,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfTerminationReason(terminationReasonId);
 		checkerOf(userContext).checkIdOfTermination(id);
-		
+
 		checkerOf(userContext).checkCommentOfTermination( comment);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
-		
+
 	}
 	public  TerminationReason updateTerminationProperties(RetailscmUserContext userContext, String terminationReasonId, String id,String comment, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingTerminationProperties(userContext,terminationReasonId,id,comment,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withTerminationListList()
 				.searchTerminationListWith(Termination.ID_PROPERTY, "is", id).done();
-		
+
 		TerminationReason terminationReasonToUpdate = loadTerminationReason(userContext, terminationReasonId, options);
-		
+
 		if(terminationReasonToUpdate.getTerminationList().isEmpty()){
 			throw new TerminationReasonManagerException("Termination is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Termination item = terminationReasonToUpdate.getTerminationList().first();
-		
+
 		item.updateComment( comment );
 
-		
+
 		//checkParamsForAddingTermination(userContext,terminationReasonId,name, code, used,tokensExpr);
 		TerminationReason terminationReason = saveTerminationReason(userContext, terminationReasonToUpdate, tokens().withTerminationList().done());
-		synchronized(terminationReason){ 
+		synchronized(terminationReason){
 			return present(userContext,terminationReason, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected Termination createTermination(RetailscmUserContext userContext, String typeId, String comment) throws Exception{
 
 		Termination termination = new Termination();
@@ -538,38 +532,38 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 	
 		
 		return termination;
-	
-		
+
+
 	}
-	
+
 	protected Termination createIndexedTermination(String id, int version){
 
 		Termination termination = new Termination();
 		termination.setId(id);
 		termination.setVersion(version);
-		return termination;			
-		
+		return termination;
+
 	}
-	
-	protected void checkParamsForRemovingTerminationList(RetailscmUserContext userContext, String terminationReasonId, 
+
+	protected void checkParamsForRemovingTerminationList(RetailscmUserContext userContext, String terminationReasonId,
 			String terminationIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfTerminationReason(terminationReasonId);
 		for(String terminationIdItem: terminationIds){
 			checkerOf(userContext).checkIdOfTermination(terminationIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
-		
+
 	}
-	public  TerminationReason removeTerminationList(RetailscmUserContext userContext, String terminationReasonId, 
+	public  TerminationReason removeTerminationList(RetailscmUserContext userContext, String terminationReasonId,
 			String terminationIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingTerminationList(userContext, terminationReasonId,  terminationIds, tokensExpr);
-			
-			
+
+
 			TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, allTokens());
-			synchronized(terminationReason){ 
+			synchronized(terminationReason){
 				//Will be good when the terminationReason loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				terminationReasonDaoOf(userContext).planToRemoveTerminationList(terminationReason, terminationIds, allTokens());
@@ -578,65 +572,65 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 				return present(userContext,terminationReason, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingTermination(RetailscmUserContext userContext, String terminationReasonId, 
+
+	protected void checkParamsForRemovingTermination(RetailscmUserContext userContext, String terminationReasonId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTerminationReason( terminationReasonId);
 		checkerOf(userContext).checkIdOfTermination(terminationId);
 		checkerOf(userContext).checkVersionOfTermination(terminationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
-	
+
 	}
-	public  TerminationReason removeTermination(RetailscmUserContext userContext, String terminationReasonId, 
+	public  TerminationReason removeTermination(RetailscmUserContext userContext, String terminationReasonId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingTermination(userContext,terminationReasonId, terminationId, terminationVersion,tokensExpr);
-		
+
 		Termination termination = createIndexedTermination(terminationId, terminationVersion);
 		TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, allTokens());
-		synchronized(terminationReason){ 
+		synchronized(terminationReason){
 			//Will be good when the terminationReason loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			terminationReason.removeTermination( termination );		
+			terminationReason.removeTermination( termination );
 			terminationReason = saveTerminationReason(userContext, terminationReason, tokens().withTerminationList().done());
 			deleteRelationInGraph(userContext, termination);
 			return present(userContext,terminationReason, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingTermination(RetailscmUserContext userContext, String terminationReasonId, 
+	protected void checkParamsForCopyingTermination(RetailscmUserContext userContext, String terminationReasonId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfTerminationReason( terminationReasonId);
 		checkerOf(userContext).checkIdOfTermination(terminationId);
 		checkerOf(userContext).checkVersionOfTermination(terminationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
-	
+
 	}
-	public  TerminationReason copyTerminationFrom(RetailscmUserContext userContext, String terminationReasonId, 
+	public  TerminationReason copyTerminationFrom(RetailscmUserContext userContext, String terminationReasonId,
 		String terminationId, int terminationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingTermination(userContext,terminationReasonId, terminationId, terminationVersion,tokensExpr);
-		
+
 		Termination termination = createIndexedTermination(terminationId, terminationVersion);
 		TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, allTokens());
-		synchronized(terminationReason){ 
+		synchronized(terminationReason){
 			//Will be good when the terminationReason loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			terminationReason.copyTerminationFrom( termination );		
+
+			terminationReason.copyTerminationFrom( termination );
 			terminationReason = saveTerminationReason(userContext, terminationReason, tokens().withTerminationList().done());
 			
 			userContext.getManagerGroup().getTerminationManager().onNewInstanceCreated(userContext, (Termination)terminationReason.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,terminationReason, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingTermination(RetailscmUserContext userContext, String terminationReasonId, String terminationId, int terminationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -652,32 +646,32 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(TerminationReasonManagerException.class);
-	
+
 	}
-	
+
 	public  TerminationReason updateTermination(RetailscmUserContext userContext, String terminationReasonId, String terminationId, int terminationVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingTermination(userContext, terminationReasonId, terminationId, terminationVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withTerminationList().searchTerminationListWith(Termination.ID_PROPERTY, "eq", terminationId).done();
-		
-		
-		
+
+
+
 		TerminationReason terminationReason = loadTerminationReason(userContext, terminationReasonId, loadTokens);
-		
-		synchronized(terminationReason){ 
+
+		synchronized(terminationReason){
 			//Will be good when the terminationReason loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//terminationReason.removeTermination( termination );	
+			//terminationReason.removeTermination( termination );
 			//make changes to AcceleraterAccount.
 			Termination terminationIndex = createIndexedTermination(terminationId, terminationVersion);
-		
+
 			Termination termination = terminationReason.findTheTermination(terminationIndex);
 			if(termination == null){
 				throw new TerminationReasonManagerException(termination+" is NOT FOUND" );
 			}
-			
+
 			termination.changeProperty(property, newValueExpr);
 			
 			terminationReason = saveTerminationReason(userContext, terminationReason, tokens().withTerminationList().done());
@@ -688,14 +682,20 @@ public class TerminationReasonManagerImpl extends CustomRetailscmCheckerManager 
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, TerminationReason newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

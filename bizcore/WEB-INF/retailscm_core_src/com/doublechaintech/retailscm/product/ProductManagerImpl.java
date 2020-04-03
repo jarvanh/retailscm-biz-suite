@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.levelthreecategory.LevelThreeCategory;
 import com.doublechaintech.retailscm.sku.Sku;
@@ -33,28 +24,31 @@ import com.doublechaintech.retailscm.product.Product;
 
 
 public class ProductManagerImpl extends CustomRetailscmCheckerManager implements ProductManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "Product";
 	@Override
 	public ProductDAO daoOf(RetailscmUserContext userContext) {
 		return productDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ProductManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ProductManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected Product saveProduct(RetailscmUserContext userContext, Product product, String [] tokensExpr) throws Exception{	
  		//return getProductDAO().save(product, tokens);
@@ -173,7 +167,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	public Product createProduct(RetailscmUserContext userContext, String name,String parentCategoryId,String origin,String remark,String brand,String picture) throws Exception
 	//public Product createProduct(RetailscmUserContext userContext,String name, String parentCategoryId, String origin, String remark, String brand, String picture) throws Exception
 	{
-		
+
 		
 
 		
@@ -206,14 +200,14 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		onNewInstanceCreated(userContext, product);
 		return product;
 
-		
+
 	}
-	protected Product createNewProduct() 
+	protected Product createNewProduct()
 	{
-		
-		return new Product();		
+
+		return new Product();
 	}
-	
+
 	protected void checkParamsForUpdatingProduct(RetailscmUserContext userContext,String productId, int productVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -243,28 +237,28 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public Product clone(RetailscmUserContext userContext, String fromProductId) throws Exception{
-		
+
 		return productDaoOf(userContext).clone(fromProductId, this.allTokens());
 	}
-	
-	public Product internalSaveProduct(RetailscmUserContext userContext, Product product) throws Exception 
+
+	public Product internalSaveProduct(RetailscmUserContext userContext, Product product) throws Exception
 	{
 		return internalSaveProduct(userContext, product, allTokens());
 
 	}
-	public Product internalSaveProduct(RetailscmUserContext userContext, Product product, Map<String,Object> options) throws Exception 
+	public Product internalSaveProduct(RetailscmUserContext userContext, Product product, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingProduct(userContext, productId, productVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(product){ 
+
+
+		synchronized(product){
 			//will be good when the product loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Product.
@@ -273,23 +267,23 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 			}
 			product = saveProduct(userContext, product, options);
 			return product;
-			
+
 		}
 
 	}
-	
-	public Product updateProduct(RetailscmUserContext userContext,String productId, int productVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Product updateProduct(RetailscmUserContext userContext,String productId, int productVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingProduct(userContext, productId, productVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		Product product = loadProduct(userContext, productId, allTokens());
 		if(product.getVersion() != productVersion){
 			String message = "The target version("+product.getVersion()+") is not equals to version("+productVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(product){ 
+		synchronized(product){
 			//will be good when the product loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Product.
@@ -301,21 +295,21 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 
 	}
-	
-	public Product updateProductProperty(RetailscmUserContext userContext,String productId, int productVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Product updateProductProperty(RetailscmUserContext userContext,String productId, int productVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingProduct(userContext, productId, productVersion, property, newValueExpr, tokensExpr);
-		
+
 		Product product = loadProduct(userContext, productId, allTokens());
 		if(product.getVersion() != productVersion){
 			String message = "The target version("+product.getVersion()+") is not equals to version("+productVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(product){ 
+		synchronized(product){
 			//will be good when the product loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Product.
-			
+
 			product.changeProperty(property, newValueExpr);
 			product.updateLastUpdateTime(userContext.now());
 			product = saveProduct(userContext, product, tokens().done());
@@ -327,7 +321,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ProductTokens tokens(){
 		return ProductTokens.start();
 	}
@@ -349,11 +343,11 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	
 	protected void checkParamsForTransferingAnotherParentCategory(RetailscmUserContext userContext, String productId, String anotherParentCategoryId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfProduct(productId);
  		checkerOf(userContext).checkIdOfLevelThreeCategory(anotherParentCategoryId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
- 		
+
  	}
  	public Product transferToAnotherParentCategory(RetailscmUserContext userContext, String productId, String anotherParentCategoryId) throws Exception
  	{
@@ -372,10 +366,10 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateLevelThreeCategory requestCandidateParentCategory(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateLevelThreeCategory result = new CandidateLevelThreeCategory();
@@ -385,7 +379,7 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("parentCategory");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -395,42 +389,42 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected LevelThreeCategory loadLevelThreeCategory(RetailscmUserContext userContext, String newParentCategoryId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return levelThreeCategoryDaoOf(userContext).load(newParentCategoryId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String productId, int productVersion) throws Exception {
-		//deleteInternal(userContext, productId, productVersion);		
+		//deleteInternal(userContext, productId, productVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String productId, int productVersion) throws Exception{
-			
+
 		productDaoOf(userContext).delete(productId, productVersion);
 	}
-	
+
 	public Product forgetByAll(RetailscmUserContext userContext, String productId, int productVersion) throws Exception {
-		return forgetByAllInternal(userContext, productId, productVersion);		
+		return forgetByAllInternal(userContext, productId, productVersion);
 	}
 	protected Product forgetByAllInternal(RetailscmUserContext userContext,
 			String productId, int productVersion) throws Exception{
-			
+
 		return productDaoOf(userContext).disconnectFromAll(productId, productVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -441,21 +435,21 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return productDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingSku(RetailscmUserContext userContext, String productId, String name, String size, String barcode, String packageType, String netContent, BigDecimal price, String picture,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfProduct(productId);
 
 		
@@ -475,20 +469,20 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
 
-	
+
 	}
 	public  Product addSku(RetailscmUserContext userContext, String productId, String name, String size, String barcode, String packageType, String netContent, BigDecimal price, String picture, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingSku(userContext,productId,name, size, barcode, packageType, netContent, price, picture,tokensExpr);
-		
+
 		Sku sku = createSku(userContext,name, size, barcode, packageType, netContent, price, picture);
-		
-		Product product = loadProduct(userContext, productId, allTokens());
-		synchronized(product){ 
+
+		Product product = loadProduct(userContext, productId, emptyOptions());
+		synchronized(product){
 			//Will be good when the product loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			product.addSku( sku );		
+			product.addSku( sku );
 			product = saveProduct(userContext, product, tokens().withSkuList().done());
 			
 			userContext.getManagerGroup().getSkuManager().onNewInstanceCreated(userContext, sku);
@@ -496,10 +490,10 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		}
 	}
 	protected void checkParamsForUpdatingSkuProperties(RetailscmUserContext userContext, String productId,String id,String name,String size,String barcode,String packageType,String netContent,BigDecimal price,String picture,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfProduct(productId);
 		checkerOf(userContext).checkIdOfSku(id);
-		
+
 		checkerOf(userContext).checkNameOfSku( name);
 		checkerOf(userContext).checkSizeOfSku( size);
 		checkerOf(userContext).checkBarcodeOfSku( barcode);
@@ -509,25 +503,25 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		checkerOf(userContext).checkPictureOfSku( picture);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
-		
+
 	}
 	public  Product updateSkuProperties(RetailscmUserContext userContext, String productId, String id,String name,String size,String barcode,String packageType,String netContent,BigDecimal price,String picture, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingSkuProperties(userContext,productId,id,name,size,barcode,packageType,netContent,price,picture,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withSkuListList()
 				.searchSkuListWith(Sku.ID_PROPERTY, "is", id).done();
-		
+
 		Product productToUpdate = loadProduct(userContext, productId, options);
-		
+
 		if(productToUpdate.getSkuList().isEmpty()){
 			throw new ProductManagerException("Sku is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		Sku item = productToUpdate.getSkuList().first();
-		
+
 		item.updateName( name );
 		item.updateSize( size );
 		item.updateBarcode( barcode );
@@ -536,15 +530,15 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		item.updatePrice( price );
 		item.updatePicture( picture );
 
-		
+
 		//checkParamsForAddingSku(userContext,productId,name, code, used,tokensExpr);
 		Product product = saveProduct(userContext, productToUpdate, tokens().withSkuList().done());
-		synchronized(product){ 
+		synchronized(product){
 			return present(userContext,product, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected Sku createSku(RetailscmUserContext userContext, String name, String size, String barcode, String packageType, String netContent, BigDecimal price, String picture) throws Exception{
 
 		Sku sku = new Sku();
@@ -560,38 +554,38 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	
 		
 		return sku;
-	
-		
+
+
 	}
-	
+
 	protected Sku createIndexedSku(String id, int version){
 
 		Sku sku = new Sku();
 		sku.setId(id);
 		sku.setVersion(version);
-		return sku;			
-		
+		return sku;
+
 	}
-	
-	protected void checkParamsForRemovingSkuList(RetailscmUserContext userContext, String productId, 
+
+	protected void checkParamsForRemovingSkuList(RetailscmUserContext userContext, String productId,
 			String skuIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfProduct(productId);
 		for(String skuIdItem: skuIds){
 			checkerOf(userContext).checkIdOfSku(skuIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
-		
+
 	}
-	public  Product removeSkuList(RetailscmUserContext userContext, String productId, 
+	public  Product removeSkuList(RetailscmUserContext userContext, String productId,
 			String skuIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingSkuList(userContext, productId,  skuIds, tokensExpr);
-			
-			
+
+
 			Product product = loadProduct(userContext, productId, allTokens());
-			synchronized(product){ 
+			synchronized(product){
 				//Will be good when the product loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				productDaoOf(userContext).planToRemoveSkuList(product, skuIds, allTokens());
@@ -600,65 +594,65 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 				return present(userContext,product, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingSku(RetailscmUserContext userContext, String productId, 
+
+	protected void checkParamsForRemovingSku(RetailscmUserContext userContext, String productId,
 		String skuId, int skuVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfProduct( productId);
 		checkerOf(userContext).checkIdOfSku(skuId);
 		checkerOf(userContext).checkVersionOfSku(skuVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
-	
+
 	}
-	public  Product removeSku(RetailscmUserContext userContext, String productId, 
+	public  Product removeSku(RetailscmUserContext userContext, String productId,
 		String skuId, int skuVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingSku(userContext,productId, skuId, skuVersion,tokensExpr);
-		
+
 		Sku sku = createIndexedSku(skuId, skuVersion);
 		Product product = loadProduct(userContext, productId, allTokens());
-		synchronized(product){ 
+		synchronized(product){
 			//Will be good when the product loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			product.removeSku( sku );		
+			product.removeSku( sku );
 			product = saveProduct(userContext, product, tokens().withSkuList().done());
 			deleteRelationInGraph(userContext, sku);
 			return present(userContext,product, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingSku(RetailscmUserContext userContext, String productId, 
+	protected void checkParamsForCopyingSku(RetailscmUserContext userContext, String productId,
 		String skuId, int skuVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfProduct( productId);
 		checkerOf(userContext).checkIdOfSku(skuId);
 		checkerOf(userContext).checkVersionOfSku(skuVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
-	
+
 	}
-	public  Product copySkuFrom(RetailscmUserContext userContext, String productId, 
+	public  Product copySkuFrom(RetailscmUserContext userContext, String productId,
 		String skuId, int skuVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingSku(userContext,productId, skuId, skuVersion,tokensExpr);
-		
+
 		Sku sku = createIndexedSku(skuId, skuVersion);
 		Product product = loadProduct(userContext, productId, allTokens());
-		synchronized(product){ 
+		synchronized(product){
 			//Will be good when the product loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			product.copySkuFrom( sku );		
+
+			product.copySkuFrom( sku );
 			product = saveProduct(userContext, product, tokens().withSkuList().done());
 			
 			userContext.getManagerGroup().getSkuManager().onNewInstanceCreated(userContext, (Sku)product.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,product, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingSku(RetailscmUserContext userContext, String productId, String skuId, int skuVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -698,32 +692,32 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ProductManagerException.class);
-	
+
 	}
-	
+
 	public  Product updateSku(RetailscmUserContext userContext, String productId, String skuId, int skuVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingSku(userContext, productId, skuId, skuVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withSkuList().searchSkuListWith(Sku.ID_PROPERTY, "eq", skuId).done();
-		
-		
-		
+
+
+
 		Product product = loadProduct(userContext, productId, loadTokens);
-		
-		synchronized(product){ 
+
+		synchronized(product){
 			//Will be good when the product loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//product.removeSku( sku );	
+			//product.removeSku( sku );
 			//make changes to AcceleraterAccount.
 			Sku skuIndex = createIndexedSku(skuId, skuVersion);
-		
+
 			Sku sku = product.findTheSku(skuIndex);
 			if(sku == null){
 				throw new ProductManagerException(sku+" is NOT FOUND" );
 			}
-			
+
 			sku.changeProperty(property, newValueExpr);
 			
 			product = saveProduct(userContext, product, tokens().withSkuList().done());
@@ -734,14 +728,20 @@ public class ProductManagerImpl extends CustomRetailscmCheckerManager implements
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, Product newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

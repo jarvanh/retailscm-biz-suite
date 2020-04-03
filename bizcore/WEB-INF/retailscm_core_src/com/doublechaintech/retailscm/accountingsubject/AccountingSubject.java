@@ -529,7 +529,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getAccountingSubjectCode(), getAccountingSubjectName(), getAccountingSubjectClassCode(), getAccountingSubjectClassName(), getAccountSet(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

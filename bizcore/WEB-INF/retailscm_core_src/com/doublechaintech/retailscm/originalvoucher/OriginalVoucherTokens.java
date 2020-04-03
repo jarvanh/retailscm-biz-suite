@@ -72,19 +72,13 @@ public class OriginalVoucherTokens extends CommonTokens{
 	protected static OriginalVoucherTokens allTokens(){
 		
 		return start()
-			.withBelongsTo()
-			.withCreation()
-			.withConfirmation()
-			.withAuditing();
+			.withBelongsTo();
 	
 	}
 	public static OriginalVoucherTokens withoutListsTokens(){
 		
 		return start()
-			.withBelongsTo()
-			.withCreation()
-			.withConfirmation()
-			.withAuditing();
+			.withBelongsTo();
 	
 	}
 	
@@ -109,36 +103,6 @@ public class OriginalVoucherTokens extends CommonTokens{
 	}
 	public OriginalVoucherTokens withBelongsTo(){		
 		addSimpleOptions(BELONGSTO);
-		return this;
-	}
-	
-	
-	protected static final String CREATION = "creation";
-	public String getCreation(){
-		return CREATION;
-	}
-	public OriginalVoucherTokens withCreation(){		
-		addSimpleOptions(CREATION);
-		return this;
-	}
-	
-	
-	protected static final String CONFIRMATION = "confirmation";
-	public String getConfirmation(){
-		return CONFIRMATION;
-	}
-	public OriginalVoucherTokens withConfirmation(){		
-		addSimpleOptions(CONFIRMATION);
-		return this;
-	}
-	
-	
-	protected static final String AUDITING = "auditing";
-	public String getAuditing(){
-		return AUDITING;
-	}
-	public OriginalVoucherTokens withAuditing(){		
-		addSimpleOptions(AUDITING);
 		return this;
 	}
 	

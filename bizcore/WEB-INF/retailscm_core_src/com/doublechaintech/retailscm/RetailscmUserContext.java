@@ -5,7 +5,7 @@ public interface RetailscmUserContext extends UserContext{
 	String getLocaleKey(String subject);
 	void setChecker(RetailscmObjectChecker checker);
 	RetailscmObjectChecker getChecker();
-	
+
 	void saveAccessInfo(String beanName, String methodName, Object[] parameters);
 	void addFootprint(FootprintProducer helper) throws Exception;
 	Object getPreviousViewPage() throws Exception;

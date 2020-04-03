@@ -658,7 +658,9 @@ public class Sku extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getSize(), getProduct(), getBarcode(), getPackageType(), getNetContent(), getPrice(), getPicture(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 
@@ -38,28 +29,31 @@ import com.doublechaintech.retailscm.retailstorefranchising.RetailStoreFranchisi
 
 
 public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreCreationManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "RetailStoreCreation";
 	@Override
 	public RetailStoreCreationDAO daoOf(RetailscmUserContext userContext) {
 		return retailStoreCreationDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws RetailStoreCreationManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new RetailStoreCreationManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected RetailStoreCreation saveRetailStoreCreation(RetailscmUserContext userContext, RetailStoreCreation retailStoreCreation, String [] tokensExpr) throws Exception{	
  		//return getRetailStoreCreationDAO().save(retailStoreCreation, tokens);
@@ -177,7 +171,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	public RetailStoreCreation createRetailStoreCreation(RetailscmUserContext userContext, String comment) throws Exception
 	//public RetailStoreCreation createRetailStoreCreation(RetailscmUserContext userContext,String comment) throws Exception
 	{
-		
+
 		
 
 		
@@ -196,14 +190,14 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		onNewInstanceCreated(userContext, retailStoreCreation);
 		return retailStoreCreation;
 
-		
+
 	}
-	protected RetailStoreCreation createNewRetailStoreCreation() 
+	protected RetailStoreCreation createNewRetailStoreCreation()
 	{
-		
-		return new RetailStoreCreation();		
+
+		return new RetailStoreCreation();
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStoreCreation(RetailscmUserContext userContext,String retailStoreCreationId, int retailStoreCreationVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -219,28 +213,28 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public RetailStoreCreation clone(RetailscmUserContext userContext, String fromRetailStoreCreationId) throws Exception{
-		
+
 		return retailStoreCreationDaoOf(userContext).clone(fromRetailStoreCreationId, this.allTokens());
 	}
-	
-	public RetailStoreCreation internalSaveRetailStoreCreation(RetailscmUserContext userContext, RetailStoreCreation retailStoreCreation) throws Exception 
+
+	public RetailStoreCreation internalSaveRetailStoreCreation(RetailscmUserContext userContext, RetailStoreCreation retailStoreCreation) throws Exception
 	{
 		return internalSaveRetailStoreCreation(userContext, retailStoreCreation, allTokens());
 
 	}
-	public RetailStoreCreation internalSaveRetailStoreCreation(RetailscmUserContext userContext, RetailStoreCreation retailStoreCreation, Map<String,Object> options) throws Exception 
+	public RetailStoreCreation internalSaveRetailStoreCreation(RetailscmUserContext userContext, RetailStoreCreation retailStoreCreation, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingRetailStoreCreation(userContext, retailStoreCreationId, retailStoreCreationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(retailStoreCreation){ 
+
+
+		synchronized(retailStoreCreation){
 			//will be good when the retailStoreCreation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCreation.
@@ -249,23 +243,23 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 			}
 			retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, options);
 			return retailStoreCreation;
-			
+
 		}
 
 	}
-	
-	public RetailStoreCreation updateRetailStoreCreation(RetailscmUserContext userContext,String retailStoreCreationId, int retailStoreCreationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreCreation updateRetailStoreCreation(RetailscmUserContext userContext,String retailStoreCreationId, int retailStoreCreationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreCreation(userContext, retailStoreCreationId, retailStoreCreationVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 		if(retailStoreCreation.getVersion() != retailStoreCreationVersion){
 			String message = "The target version("+retailStoreCreation.getVersion()+") is not equals to version("+retailStoreCreationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreCreation){ 
+		synchronized(retailStoreCreation){
 			//will be good when the retailStoreCreation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCreation.
@@ -277,21 +271,21 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		}
 
 	}
-	
-	public RetailStoreCreation updateRetailStoreCreationProperty(RetailscmUserContext userContext,String retailStoreCreationId, int retailStoreCreationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public RetailStoreCreation updateRetailStoreCreationProperty(RetailscmUserContext userContext,String retailStoreCreationId, int retailStoreCreationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingRetailStoreCreation(userContext, retailStoreCreationId, retailStoreCreationVersion, property, newValueExpr, tokensExpr);
-		
+
 		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 		if(retailStoreCreation.getVersion() != retailStoreCreationVersion){
 			String message = "The target version("+retailStoreCreation.getVersion()+") is not equals to version("+retailStoreCreationVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(retailStoreCreation){ 
+		synchronized(retailStoreCreation){
 			//will be good when the retailStoreCreation loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to RetailStoreCreation.
-			
+
 			retailStoreCreation.changeProperty(property, newValueExpr);
 			
 			retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().done());
@@ -303,7 +297,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected RetailStoreCreationTokens tokens(){
 		return RetailStoreCreationTokens.start();
 	}
@@ -328,26 +322,26 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String retailStoreCreationId, int retailStoreCreationVersion) throws Exception {
-		//deleteInternal(userContext, retailStoreCreationId, retailStoreCreationVersion);		
+		//deleteInternal(userContext, retailStoreCreationId, retailStoreCreationVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String retailStoreCreationId, int retailStoreCreationVersion) throws Exception{
-			
+
 		retailStoreCreationDaoOf(userContext).delete(retailStoreCreationId, retailStoreCreationVersion);
 	}
-	
+
 	public RetailStoreCreation forgetByAll(RetailscmUserContext userContext, String retailStoreCreationId, int retailStoreCreationVersion) throws Exception {
-		return forgetByAllInternal(userContext, retailStoreCreationId, retailStoreCreationVersion);		
+		return forgetByAllInternal(userContext, retailStoreCreationId, retailStoreCreationVersion);
 	}
 	protected RetailStoreCreation forgetByAllInternal(RetailscmUserContext userContext,
 			String retailStoreCreationId, int retailStoreCreationVersion) throws Exception{
-			
+
 		return retailStoreCreationDaoOf(userContext).disconnectFromAll(retailStoreCreationId, retailStoreCreationVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -358,8 +352,8 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return retailStoreCreationDaoOf(userContext).deleteAll();
 	}
@@ -368,15 +362,15 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//disconnect RetailStoreCreation with retail_store_country_center in RetailStore
 	protected RetailStoreCreation breakWithRetailStoreByRetailStoreCountryCenter(RetailscmUserContext userContext, String retailStoreCreationId, String retailStoreCountryCenterId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithRetailStoreCountryCenter(retailStoreCreation, retailStoreCountryCenterId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
@@ -386,15 +380,15 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//disconnect RetailStoreCreation with city_service_center in RetailStore
 	protected RetailStoreCreation breakWithRetailStoreByCityServiceCenter(RetailscmUserContext userContext, String retailStoreCreationId, String cityServiceCenterId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithCityServiceCenter(retailStoreCreation, cityServiceCenterId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
@@ -404,15 +398,15 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//disconnect RetailStoreCreation with investment_invitation in RetailStore
 	protected RetailStoreCreation breakWithRetailStoreByInvestmentInvitation(RetailscmUserContext userContext, String retailStoreCreationId, String investmentInvitationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithInvestmentInvitation(retailStoreCreation, investmentInvitationId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
@@ -422,15 +416,15 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//disconnect RetailStoreCreation with franchising in RetailStore
 	protected RetailStoreCreation breakWithRetailStoreByFranchising(RetailscmUserContext userContext, String retailStoreCreationId, String franchisingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithFranchising(retailStoreCreation, franchisingId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
@@ -440,15 +434,15 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//disconnect RetailStoreCreation with decoration in RetailStore
 	protected RetailStoreCreation breakWithRetailStoreByDecoration(RetailscmUserContext userContext, String retailStoreCreationId, String decorationId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithDecoration(retailStoreCreation, decorationId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
@@ -458,15 +452,15 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//disconnect RetailStoreCreation with opening in RetailStore
 	protected RetailStoreCreation breakWithRetailStoreByOpening(RetailscmUserContext userContext, String retailStoreCreationId, String openingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithOpening(retailStoreCreation, openingId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
@@ -476,29 +470,29 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	//disconnect RetailStoreCreation with closing in RetailStore
 	protected RetailStoreCreation breakWithRetailStoreByClosing(RetailscmUserContext userContext, String retailStoreCreationId, String closingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
 
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreListWithClosing(retailStoreCreation, closingId, this.emptyOptions());
 
 				retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
 				return retailStoreCreation;
 			}
 	}
-	
-	
-	
-	
-	
 
-	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
-		
+
+
+
+
+
+	protected void checkParamsForAddingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description,String [] tokensExpr) throws Exception{
+
 				checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
 
 		
@@ -532,31 +526,31 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
 
-	
+
 	}
-	public  RetailStoreCreation addRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	public  RetailStoreCreation addRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description, String [] tokensExpr) throws Exception
+	{
+
 		checkParamsForAddingRetailStore(userContext,retailStoreCreationId,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, investmentInvitationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description,tokensExpr);
-		
+
 		RetailStore retailStore = createRetailStore(userContext,name, telephone, owner, retailStoreCountryCenterId, cityServiceCenterId, investmentInvitationId, franchisingId, decorationId, openingId, closingId, founded, latitude, longitude, description);
-		
-		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
-		synchronized(retailStoreCreation){ 
+
+		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, emptyOptions());
+		synchronized(retailStoreCreation){
 			//Will be good when the retailStoreCreation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCreation.addRetailStore( retailStore );		
+			retailStoreCreation.addRetailStore( retailStore );
 			retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
 			
 			userContext.getManagerGroup().getRetailStoreManager().onNewInstanceCreated(userContext, retailStore);
 			return present(userContext,retailStoreCreation, mergedAllTokens(tokensExpr));
 		}
 	}
-	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId,String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
-		
+	protected void checkParamsForUpdatingRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId,String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description,String [] tokensExpr) throws Exception {
+
 		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
 		checkerOf(userContext).checkIdOfRetailStore(id);
-		
+
 		checkerOf(userContext).checkNameOfRetailStore( name);
 		checkerOf(userContext).checkTelephoneOfRetailStore( telephone);
 		checkerOf(userContext).checkOwnerOfRetailStore( owner);
@@ -566,25 +560,25 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		checkerOf(userContext).checkDescriptionOfRetailStore( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
-		
+
 	}
-	public  RetailStoreCreation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId, String id,String name,long telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
-	{	
+	public  RetailStoreCreation updateRetailStoreProperties(RetailscmUserContext userContext, String retailStoreCreationId, String id,String name,String telephone,String owner,Date founded,BigDecimal latitude,BigDecimal longitude,String description, String [] tokensExpr) throws Exception
+	{
 		checkParamsForUpdatingRetailStoreProperties(userContext,retailStoreCreationId,id,name,telephone,owner,founded,latitude,longitude,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withRetailStoreListList()
 				.searchRetailStoreListWith(RetailStore.ID_PROPERTY, "is", id).done();
-		
+
 		RetailStoreCreation retailStoreCreationToUpdate = loadRetailStoreCreation(userContext, retailStoreCreationId, options);
-		
+
 		if(retailStoreCreationToUpdate.getRetailStoreList().isEmpty()){
 			throw new RetailStoreCreationManagerException("RetailStore is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		RetailStore item = retailStoreCreationToUpdate.getRetailStoreList().first();
-		
+
 		item.updateName( name );
 		item.updateTelephone( telephone );
 		item.updateOwner( owner );
@@ -593,16 +587,16 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		item.updateLongitude( longitude );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingRetailStore(userContext,retailStoreCreationId,name, code, used,tokensExpr);
 		RetailStoreCreation retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreationToUpdate, tokens().withRetailStoreList().done());
-		synchronized(retailStoreCreation){ 
+		synchronized(retailStoreCreation){
 			return present(userContext,retailStoreCreation, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
-	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, long telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
+
+
+	protected RetailStore createRetailStore(RetailscmUserContext userContext, String name, String telephone, String owner, String retailStoreCountryCenterId, String cityServiceCenterId, String investmentInvitationId, String franchisingId, String decorationId, String openingId, String closingId, Date founded, BigDecimal latitude, BigDecimal longitude, String description) throws Exception{
 
 		RetailStore retailStore = new RetailStore();
 		
@@ -639,38 +633,38 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	
 		
 		return retailStore;
-	
-		
+
+
 	}
-	
+
 	protected RetailStore createIndexedRetailStore(String id, int version){
 
 		RetailStore retailStore = new RetailStore();
 		retailStore.setId(id);
 		retailStore.setVersion(version);
-		return retailStore;			
-		
+		return retailStore;
+
 	}
-	
-	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreCreationId, 
+
+	protected void checkParamsForRemovingRetailStoreList(RetailscmUserContext userContext, String retailStoreCreationId,
 			String retailStoreIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfRetailStoreCreation(retailStoreCreationId);
 		for(String retailStoreIdItem: retailStoreIds){
 			checkerOf(userContext).checkIdOfRetailStore(retailStoreIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
-		
+
 	}
-	public  RetailStoreCreation removeRetailStoreList(RetailscmUserContext userContext, String retailStoreCreationId, 
+	public  RetailStoreCreation removeRetailStoreList(RetailscmUserContext userContext, String retailStoreCreationId,
 			String retailStoreIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingRetailStoreList(userContext, retailStoreCreationId,  retailStoreIds, tokensExpr);
-			
-			
+
+
 			RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
-			synchronized(retailStoreCreation){ 
+			synchronized(retailStoreCreation){
 				//Will be good when the retailStoreCreation loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				retailStoreCreationDaoOf(userContext).planToRemoveRetailStoreList(retailStoreCreation, retailStoreIds, allTokens());
@@ -679,65 +673,65 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 				return present(userContext,retailStoreCreation, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, 
+
+	protected void checkParamsForRemovingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCreation( retailStoreCreationId);
 		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
 		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
-	
+
 	}
-	public  RetailStoreCreation removeRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, 
+	public  RetailStoreCreation removeRetailStore(RetailscmUserContext userContext, String retailStoreCreationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingRetailStore(userContext,retailStoreCreationId, retailStoreId, retailStoreVersion,tokensExpr);
-		
+
 		RetailStore retailStore = createIndexedRetailStore(retailStoreId, retailStoreVersion);
 		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
-		synchronized(retailStoreCreation){ 
+		synchronized(retailStoreCreation){
 			//Will be good when the retailStoreCreation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			retailStoreCreation.removeRetailStore( retailStore );		
+			retailStoreCreation.removeRetailStore( retailStore );
 			retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
 			deleteRelationInGraph(userContext, retailStore);
 			return present(userContext,retailStoreCreation, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, 
+	protected void checkParamsForCopyingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfRetailStoreCreation( retailStoreCreationId);
 		checkerOf(userContext).checkIdOfRetailStore(retailStoreId);
 		checkerOf(userContext).checkVersionOfRetailStore(retailStoreVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
-	
+
 	}
-	public  RetailStoreCreation copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreCreationId, 
+	public  RetailStoreCreation copyRetailStoreFrom(RetailscmUserContext userContext, String retailStoreCreationId,
 		String retailStoreId, int retailStoreVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingRetailStore(userContext,retailStoreCreationId, retailStoreId, retailStoreVersion,tokensExpr);
-		
+
 		RetailStore retailStore = createIndexedRetailStore(retailStoreId, retailStoreVersion);
 		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, allTokens());
-		synchronized(retailStoreCreation){ 
+		synchronized(retailStoreCreation){
 			//Will be good when the retailStoreCreation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			
+
 			retailStore.updateLastUpdateTime(userContext.now());
-			
-			retailStoreCreation.copyRetailStoreFrom( retailStore );		
+
+			retailStoreCreation.copyRetailStoreFrom( retailStore );
 			retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
 			
 			userContext.getManagerGroup().getRetailStoreManager().onNewInstanceCreated(userContext, (RetailStore)retailStoreCreation.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,retailStoreCreation, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -752,7 +746,7 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		}
 		
 		if(RetailStore.TELEPHONE_PROPERTY.equals(property)){
-			checkerOf(userContext).checkTelephoneOfRetailStore(parseLong(newValueExpr));
+			checkerOf(userContext).checkTelephoneOfRetailStore(parseString(newValueExpr));
 		}
 		
 		if(RetailStore.OWNER_PROPERTY.equals(property)){
@@ -777,32 +771,32 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCreationManagerException.class);
-	
+
 	}
-	
+
 	public  RetailStoreCreation updateRetailStore(RetailscmUserContext userContext, String retailStoreCreationId, String retailStoreId, int retailStoreVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingRetailStore(userContext, retailStoreCreationId, retailStoreId, retailStoreVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withRetailStoreList().searchRetailStoreListWith(RetailStore.ID_PROPERTY, "eq", retailStoreId).done();
-		
-		
-		
+
+
+
 		RetailStoreCreation retailStoreCreation = loadRetailStoreCreation(userContext, retailStoreCreationId, loadTokens);
-		
-		synchronized(retailStoreCreation){ 
+
+		synchronized(retailStoreCreation){
 			//Will be good when the retailStoreCreation loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//retailStoreCreation.removeRetailStore( retailStore );	
+			//retailStoreCreation.removeRetailStore( retailStore );
 			//make changes to AcceleraterAccount.
 			RetailStore retailStoreIndex = createIndexedRetailStore(retailStoreId, retailStoreVersion);
-		
+
 			RetailStore retailStore = retailStoreCreation.findTheRetailStore(retailStoreIndex);
 			if(retailStore == null){
 				throw new RetailStoreCreationManagerException(retailStore+" is NOT FOUND" );
 			}
-			
+
 			retailStore.changeProperty(property, newValueExpr);
 			retailStore.updateLastUpdateTime(userContext.now());
 			retailStoreCreation = saveRetailStoreCreation(userContext, retailStoreCreation, tokens().withRetailStoreList().done());
@@ -813,14 +807,20 @@ public class RetailStoreCreationManagerImpl extends CustomRetailscmCheckerManage
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, RetailStoreCreation newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

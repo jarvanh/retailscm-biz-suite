@@ -158,7 +158,7 @@ public class WarehouseTokens extends CommonTokens{
 	
 	
 	public WarehouseTokens searchAllTextOfStorageSpaceList(String verb, String value){	
-		String field = "id|location|totalArea";
+		String field = "id|location|contactNumber|totalArea";
 		addSearchMoreOptions(STORAGE_SPACE_LIST,storageSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -228,7 +228,7 @@ public class WarehouseTokens extends CommonTokens{
 	
 	
 	public WarehouseTokens searchAllTextOfSmartPalletList(String verb, String value){	
-		String field = "id|location|totalArea";
+		String field = "id|location|contactNumber|totalArea";
 		addSearchMoreOptions(SMART_PALLET_LIST,smartPalletListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -298,7 +298,7 @@ public class WarehouseTokens extends CommonTokens{
 	
 	
 	public WarehouseTokens searchAllTextOfSupplierSpaceList(String verb, String value){	
-		String field = "id|location|totalArea";
+		String field = "id|location|contactNumber|totalArea";
 		addSearchMoreOptions(SUPPLIER_SPACE_LIST,supplierSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -368,7 +368,7 @@ public class WarehouseTokens extends CommonTokens{
 	
 	
 	public WarehouseTokens searchAllTextOfReceivingSpaceList(String verb, String value){	
-		String field = "id|location|description|totalArea";
+		String field = "id|location|contactNumber|description|totalArea";
 		addSearchMoreOptions(RECEIVING_SPACE_LIST,receivingSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -438,7 +438,7 @@ public class WarehouseTokens extends CommonTokens{
 	
 	
 	public WarehouseTokens searchAllTextOfShippingSpaceList(String verb, String value){	
-		String field = "id|location|totalArea|description";
+		String field = "id|location|contactNumber|totalArea|description";
 		addSearchMoreOptions(SHIPPING_SPACE_LIST,shippingSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}
@@ -508,7 +508,7 @@ public class WarehouseTokens extends CommonTokens{
 	
 	
 	public WarehouseTokens searchAllTextOfDamageSpaceList(String verb, String value){	
-		String field = "id|location|totalArea";
+		String field = "id|location|contactNumber|totalArea";
 		addSearchMoreOptions(DAMAGE_SPACE_LIST,damageSpaceListSearchCounter++, field, verb, value);
 		return this;
 	}

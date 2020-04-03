@@ -363,7 +363,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getBizOrder(), getAmount(), getProvider(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

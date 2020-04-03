@@ -69,34 +69,6 @@ public interface OccupationTypeDAO extends BaseDAO{
 	public OccupationType planToRemoveEmployeeListWithCurrentSalaryGrade(OccupationType occupationType, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	public int countEmployeeListWithCurrentSalaryGrade(String occupationTypeId, String currentSalaryGradeId, Map<String,Object> options)throws Exception;
 	
-	//disconnect OccupationType with job_application in Employee
-	public OccupationType planToRemoveEmployeeListWithJobApplication(OccupationType occupationType, String jobApplicationId, Map<String,Object> options)throws Exception;
-	public int countEmployeeListWithJobApplication(String occupationTypeId, String jobApplicationId, Map<String,Object> options)throws Exception;
-	
-	//disconnect OccupationType with profession_interview in Employee
-	public OccupationType planToRemoveEmployeeListWithProfessionInterview(OccupationType occupationType, String professionInterviewId, Map<String,Object> options)throws Exception;
-	public int countEmployeeListWithProfessionInterview(String occupationTypeId, String professionInterviewId, Map<String,Object> options)throws Exception;
-	
-	//disconnect OccupationType with hr_interview in Employee
-	public OccupationType planToRemoveEmployeeListWithHrInterview(OccupationType occupationType, String hrInterviewId, Map<String,Object> options)throws Exception;
-	public int countEmployeeListWithHrInterview(String occupationTypeId, String hrInterviewId, Map<String,Object> options)throws Exception;
-	
-	//disconnect OccupationType with offer_approval in Employee
-	public OccupationType planToRemoveEmployeeListWithOfferApproval(OccupationType occupationType, String offerApprovalId, Map<String,Object> options)throws Exception;
-	public int countEmployeeListWithOfferApproval(String occupationTypeId, String offerApprovalId, Map<String,Object> options)throws Exception;
-	
-	//disconnect OccupationType with offer_acceptance in Employee
-	public OccupationType planToRemoveEmployeeListWithOfferAcceptance(OccupationType occupationType, String offerAcceptanceId, Map<String,Object> options)throws Exception;
-	public int countEmployeeListWithOfferAcceptance(String occupationTypeId, String offerAcceptanceId, Map<String,Object> options)throws Exception;
-	
-	//disconnect OccupationType with employee_boarding in Employee
-	public OccupationType planToRemoveEmployeeListWithEmployeeBoarding(OccupationType occupationType, String employeeBoardingId, Map<String,Object> options)throws Exception;
-	public int countEmployeeListWithEmployeeBoarding(String occupationTypeId, String employeeBoardingId, Map<String,Object> options)throws Exception;
-	
-	//disconnect OccupationType with termination in Employee
-	public OccupationType planToRemoveEmployeeListWithTermination(OccupationType occupationType, String terminationId, Map<String,Object> options)throws Exception;
-	public int countEmployeeListWithTermination(String occupationTypeId, String terminationId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<OccupationType> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

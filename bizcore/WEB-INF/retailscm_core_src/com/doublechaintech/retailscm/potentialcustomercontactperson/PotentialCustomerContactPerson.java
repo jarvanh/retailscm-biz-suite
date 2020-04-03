@@ -493,7 +493,9 @@ public class PotentialCustomerContactPerson extends BaseEntity implements  java.
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getMobile(), getPotentialCustomer(), getDescription(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

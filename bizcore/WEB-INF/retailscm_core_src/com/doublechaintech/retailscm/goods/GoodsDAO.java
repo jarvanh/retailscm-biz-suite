@@ -13,7 +13,6 @@ import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -22,7 +21,6 @@ import com.doublechaintech.retailscm.transporttask.TransportTask;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
 import com.doublechaintech.retailscm.smartpallet.SmartPalletDAO;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackagingDAO;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocationDAO;
 import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrderDAO;
 import com.doublechaintech.retailscm.shippingspace.ShippingSpaceDAO;
@@ -152,14 +150,6 @@ public interface GoodsDAO extends BaseDAO{
  	public Map<String, Integer> countGoodsByRetailStoreOrderIds(String[] ids, Map<String,Object> options);
  	public SmartList<Goods> findGoodsByRetailStoreOrder(String retailStoreOrderId, int start, int count, Map<String,Object> options);
  	public void analyzeGoodsByRetailStoreOrder(SmartList<Goods> resultList, String retailStoreOrderId, Map<String,Object> options);
-
- 
-  
- 	public SmartList<Goods> findGoodsByPackaging(String goodsPackagingId, Map<String,Object> options);
- 	public int countGoodsByPackaging(String goodsPackagingId, Map<String,Object> options);
- 	public Map<String, Integer> countGoodsByPackagingIds(String[] ids, Map<String,Object> options);
- 	public SmartList<Goods> findGoodsByPackaging(String goodsPackagingId, int start, int count, Map<String,Object> options);
- 	public void analyzeGoodsByPackaging(SmartList<Goods> resultList, String goodsPackagingId, Map<String,Object> options);
 
  
  

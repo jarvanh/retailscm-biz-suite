@@ -449,7 +449,9 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getLabel(), getLocaleKey(), getActionKey(), getLevel(), getUrl(), getForm(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 

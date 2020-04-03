@@ -72,7 +72,7 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setTelephone(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
-		Long telephone = rs.getLong(RetailStoreTable.COLUMN_TELEPHONE);
+		String telephone = rs.getString(RetailStoreTable.COLUMN_TELEPHONE);
 		if(telephone == null){
 			//do nothing when nothing found in database
 			return;

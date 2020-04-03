@@ -298,6 +298,32 @@ public class SerializeScope {
 		return this;
 	}
 	
-	
+	public static SerializeScope me() {
+		return SerializeScope.INCLUDE()
+				.field("title")
+				.field("popup")
+				.field("toast", SerializeScope.EXCLUDE())
+				.field("refreshAction")
+				.field("actions", SerializeScope.EXCLUDE())
+				.field("actionList")
+				.field("id")
+				.field("name")
+				.field("brief")
+				.field("imageUrl")
+				.field("boxNavigatorList", SerializeScope.INCLUDE()
+						.field("code")
+						.field("imageUrl")
+						.field("title")
+						.field("linkToUrl")
+					  ).noListMeta()
+				.field("lineItemNavigatorList", SerializeScope.INCLUDE()
+						.field("code")
+						.field("imageUrl")
+						.field("title")
+						.field("linkToUrl")
+						.field("brief")
+					  ).noListMeta()
+				;
+	}
 	
 }

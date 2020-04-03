@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.consumerorder.ConsumerOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.consumerorder.CandidateConsumerOrder;
 
 
 public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmCheckerManager implements ConsumerOrderPriceAdjustmentManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "ConsumerOrderPriceAdjustment";
 	@Override
 	public ConsumerOrderPriceAdjustmentDAO daoOf(RetailscmUserContext userContext) {
 		return consumerOrderPriceAdjustmentDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws ConsumerOrderPriceAdjustmentManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new ConsumerOrderPriceAdjustmentManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected ConsumerOrderPriceAdjustment saveConsumerOrderPriceAdjustment(RetailscmUserContext userContext, ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, String [] tokensExpr) throws Exception{	
  		//return getConsumerOrderPriceAdjustmentDAO().save(consumerOrderPriceAdjustment, tokens);
@@ -167,7 +161,7 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 	public ConsumerOrderPriceAdjustment createConsumerOrderPriceAdjustment(RetailscmUserContext userContext, String name,String bizOrderId,BigDecimal amount,String provider) throws Exception
 	//public ConsumerOrderPriceAdjustment createConsumerOrderPriceAdjustment(RetailscmUserContext userContext,String name, String bizOrderId, BigDecimal amount, String provider) throws Exception
 	{
-		
+
 		
 
 		
@@ -195,14 +189,14 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 		onNewInstanceCreated(userContext, consumerOrderPriceAdjustment);
 		return consumerOrderPriceAdjustment;
 
-		
+
 	}
-	protected ConsumerOrderPriceAdjustment createNewConsumerOrderPriceAdjustment() 
+	protected ConsumerOrderPriceAdjustment createNewConsumerOrderPriceAdjustment()
 	{
-		
-		return new ConsumerOrderPriceAdjustment();		
+
+		return new ConsumerOrderPriceAdjustment();
 	}
-	
+
 	protected void checkParamsForUpdatingConsumerOrderPriceAdjustment(RetailscmUserContext userContext,String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,28 +220,28 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderPriceAdjustmentManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public ConsumerOrderPriceAdjustment clone(RetailscmUserContext userContext, String fromConsumerOrderPriceAdjustmentId) throws Exception{
-		
+
 		return consumerOrderPriceAdjustmentDaoOf(userContext).clone(fromConsumerOrderPriceAdjustmentId, this.allTokens());
 	}
-	
-	public ConsumerOrderPriceAdjustment internalSaveConsumerOrderPriceAdjustment(RetailscmUserContext userContext, ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment) throws Exception 
+
+	public ConsumerOrderPriceAdjustment internalSaveConsumerOrderPriceAdjustment(RetailscmUserContext userContext, ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment) throws Exception
 	{
 		return internalSaveConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustment, allTokens());
 
 	}
-	public ConsumerOrderPriceAdjustment internalSaveConsumerOrderPriceAdjustment(RetailscmUserContext userContext, ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, Map<String,Object> options) throws Exception 
+	public ConsumerOrderPriceAdjustment internalSaveConsumerOrderPriceAdjustment(RetailscmUserContext userContext, ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(consumerOrderPriceAdjustment){ 
+
+
+		synchronized(consumerOrderPriceAdjustment){
 			//will be good when the consumerOrderPriceAdjustment loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderPriceAdjustment.
@@ -256,23 +250,23 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 			}
 			consumerOrderPriceAdjustment = saveConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustment, options);
 			return consumerOrderPriceAdjustment;
-			
+
 		}
 
 	}
-	
-	public ConsumerOrderPriceAdjustment updateConsumerOrderPriceAdjustment(RetailscmUserContext userContext,String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderPriceAdjustment updateConsumerOrderPriceAdjustment(RetailscmUserContext userContext,String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment = loadConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustmentId, allTokens());
 		if(consumerOrderPriceAdjustment.getVersion() != consumerOrderPriceAdjustmentVersion){
 			String message = "The target version("+consumerOrderPriceAdjustment.getVersion()+") is not equals to version("+consumerOrderPriceAdjustmentVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderPriceAdjustment){ 
+		synchronized(consumerOrderPriceAdjustment){
 			//will be good when the consumerOrderPriceAdjustment loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderPriceAdjustment.
@@ -284,21 +278,21 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 		}
 
 	}
-	
-	public ConsumerOrderPriceAdjustment updateConsumerOrderPriceAdjustmentProperty(RetailscmUserContext userContext,String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public ConsumerOrderPriceAdjustment updateConsumerOrderPriceAdjustmentProperty(RetailscmUserContext userContext,String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion, property, newValueExpr, tokensExpr);
-		
+
 		ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment = loadConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustmentId, allTokens());
 		if(consumerOrderPriceAdjustment.getVersion() != consumerOrderPriceAdjustmentVersion){
 			String message = "The target version("+consumerOrderPriceAdjustment.getVersion()+") is not equals to version("+consumerOrderPriceAdjustmentVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(consumerOrderPriceAdjustment){ 
+		synchronized(consumerOrderPriceAdjustment){
 			//will be good when the consumerOrderPriceAdjustment loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ConsumerOrderPriceAdjustment.
-			
+
 			consumerOrderPriceAdjustment.changeProperty(property, newValueExpr);
 			
 			consumerOrderPriceAdjustment = saveConsumerOrderPriceAdjustment(userContext, consumerOrderPriceAdjustment, tokens().done());
@@ -310,7 +304,7 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected ConsumerOrderPriceAdjustmentTokens tokens(){
 		return ConsumerOrderPriceAdjustmentTokens.start();
 	}
@@ -331,11 +325,11 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderPriceAdjustmentId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfConsumerOrderPriceAdjustment(consumerOrderPriceAdjustmentId);
  		checkerOf(userContext).checkIdOfConsumerOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(ConsumerOrderPriceAdjustmentManagerException.class);
- 		
+
  	}
  	public ConsumerOrderPriceAdjustment transferToAnotherBizOrder(RetailscmUserContext userContext, String consumerOrderPriceAdjustmentId, String anotherBizOrderId) throws Exception
  	{
@@ -354,10 +348,10 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateConsumerOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateConsumerOrder result = new CandidateConsumerOrder();
@@ -367,7 +361,7 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("title");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -377,42 +371,42 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected ConsumerOrder loadConsumerOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return consumerOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion) throws Exception {
-		//deleteInternal(userContext, consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion);		
+		//deleteInternal(userContext, consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion) throws Exception{
-			
+
 		consumerOrderPriceAdjustmentDaoOf(userContext).delete(consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion);
 	}
-	
+
 	public ConsumerOrderPriceAdjustment forgetByAll(RetailscmUserContext userContext, String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion) throws Exception {
-		return forgetByAllInternal(userContext, consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion);		
+		return forgetByAllInternal(userContext, consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion);
 	}
 	protected ConsumerOrderPriceAdjustment forgetByAllInternal(RetailscmUserContext userContext,
 			String consumerOrderPriceAdjustmentId, int consumerOrderPriceAdjustmentVersion) throws Exception{
-			
+
 		return consumerOrderPriceAdjustmentDaoOf(userContext).disconnectFromAll(consumerOrderPriceAdjustmentId, consumerOrderPriceAdjustmentVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -423,23 +417,29 @@ public class ConsumerOrderPriceAdjustmentManagerImpl extends CustomRetailscmChec
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return consumerOrderPriceAdjustmentDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, ConsumerOrderPriceAdjustment newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

@@ -13,9 +13,6 @@ import com.doublechaintech.retailscm.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.doublechaintech.retailscm.accountingdocument.AccountingDocument;
-import com.doublechaintech.retailscm.originalvouchercreation.OriginalVoucherCreation;
-import com.doublechaintech.retailscm.originalvoucherauditing.OriginalVoucherAuditing;
-import com.doublechaintech.retailscm.originalvoucherconfirmation.OriginalVoucherConfirmation;
 
 @JsonSerialize(using = OriginalVoucherSerializer.class)
 public class OriginalVoucher extends BaseEntity implements  java.io.Serializable{
@@ -28,9 +25,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	public static final String VOUCHER_TYPE_PROPERTY          = "voucherType"       ;
 	public static final String VOUCHER_IMAGE_PROPERTY         = "voucherImage"      ;
 	public static final String BELONGS_TO_PROPERTY            = "belongsTo"         ;
-	public static final String CREATION_PROPERTY              = "creation"          ;
-	public static final String CONFIRMATION_PROPERTY          = "confirmation"      ;
-	public static final String AUDITING_PROPERTY              = "auditing"          ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
 
@@ -60,9 +54,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	protected		String              	mVoucherType        ;
 	protected		String              	mVoucherImage       ;
 	protected		AccountingDocument  	mBelongsTo          ;
-	protected		OriginalVoucherCreation	mCreation           ;
-	protected		OriginalVoucherConfirmation	mConfirmation       ;
-	protected		OriginalVoucherAuditing	mAuditing           ;
 	protected		int                 	mVersion            ;
 	
 	
@@ -84,9 +75,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setBelongsTo( null );
-		setCreation( null );
-		setConfirmation( null );
-		setAuditing( null );
 
 		this.changed = true;
 	}
@@ -213,15 +201,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		}
 		if(BELONGS_TO_PROPERTY.equals(property)){
 			return getBelongsTo();
-		}
-		if(CREATION_PROPERTY.equals(property)){
-			return getCreation();
-		}
-		if(CONFIRMATION_PROPERTY.equals(property)){
-			return getConfirmation();
-		}
-		if(AUDITING_PROPERTY.equals(property)){
-			return getAuditing();
 		}
 
     		//other property not include here
@@ -351,69 +330,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		this.changed = true;
 	}
 	
-	public void setCreation(OriginalVoucherCreation creation){
-		this.mCreation = creation;;
-	}
-	public OriginalVoucherCreation getCreation(){
-		return this.mCreation;
-	}
-	public OriginalVoucher updateCreation(OriginalVoucherCreation creation){
-		this.mCreation = creation;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeCreation(OriginalVoucherCreation creation){
-		if(creation != null) { setCreation(creation);}
-	}
-	
-	
-	public void clearCreation(){
-		setCreation ( null );
-		this.changed = true;
-	}
-	
-	public void setConfirmation(OriginalVoucherConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-	}
-	public OriginalVoucherConfirmation getConfirmation(){
-		return this.mConfirmation;
-	}
-	public OriginalVoucher updateConfirmation(OriginalVoucherConfirmation confirmation){
-		this.mConfirmation = confirmation;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeConfirmation(OriginalVoucherConfirmation confirmation){
-		if(confirmation != null) { setConfirmation(confirmation);}
-	}
-	
-	
-	public void clearConfirmation(){
-		setConfirmation ( null );
-		this.changed = true;
-	}
-	
-	public void setAuditing(OriginalVoucherAuditing auditing){
-		this.mAuditing = auditing;;
-	}
-	public OriginalVoucherAuditing getAuditing(){
-		return this.mAuditing;
-	}
-	public OriginalVoucher updateAuditing(OriginalVoucherAuditing auditing){
-		this.mAuditing = auditing;;
-		this.changed = true;
-		return this;
-	}
-	public void mergeAuditing(OriginalVoucherAuditing auditing){
-		if(auditing != null) { setAuditing(auditing);}
-	}
-	
-	
-	public void clearAuditing(){
-		setAuditing ( null );
-		this.changed = true;
-	}
-	
 	public void setVersion(int version){
 		this.mVersion = version;;
 	}
@@ -434,9 +350,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	public void collectRefercences(BaseEntity owner, List<BaseEntity> entityList, String internalType){
 
 		addToEntityList(this, entityList, getBelongsTo(), internalType);
-		addToEntityList(this, entityList, getCreation(), internalType);
-		addToEntityList(this, entityList, getConfirmation(), internalType);
-		addToEntityList(this, entityList, getAuditing(), internalType);
 
 		
 	}
@@ -467,9 +380,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		appendKeyValuePair(result, VOUCHER_TYPE_PROPERTY, getVoucherType());
 		appendKeyValuePair(result, VOUCHER_IMAGE_PROPERTY, getVoucherImage());
 		appendKeyValuePair(result, BELONGS_TO_PROPERTY, getBelongsTo());
-		appendKeyValuePair(result, CREATION_PROPERTY, getCreation());
-		appendKeyValuePair(result, CONFIRMATION_PROPERTY, getConfirmation());
-		appendKeyValuePair(result, AUDITING_PROPERTY, getAuditing());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
 		
@@ -492,9 +402,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 			dest.setVoucherType(getVoucherType());
 			dest.setVoucherImage(getVoucherImage());
 			dest.setBelongsTo(getBelongsTo());
-			dest.setCreation(getCreation());
-			dest.setConfirmation(getConfirmation());
-			dest.setAuditing(getAuditing());
 			dest.setVersion(getVersion());
 
 		}
@@ -516,9 +423,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 			dest.mergeVoucherType(getVoucherType());
 			dest.mergeVoucherImage(getVoucherImage());
 			dest.mergeBelongsTo(getBelongsTo());
-			dest.mergeCreation(getCreation());
-			dest.mergeConfirmation(getConfirmation());
-			dest.mergeAuditing(getAuditing());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -545,7 +449,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getMadeBy(), getReceivedBy(), getVoucherType(), getVoucherImage(), getBelongsTo(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -558,15 +464,6 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		stringBuilder.append("\tvoucherImage='"+getVoucherImage()+"';");
 		if(getBelongsTo() != null ){
  			stringBuilder.append("\tbelongsTo='AccountingDocument("+getBelongsTo().getId()+")';");
- 		}
-		if(getCreation() != null ){
- 			stringBuilder.append("\tcreation='OriginalVoucherCreation("+getCreation().getId()+")';");
- 		}
-		if(getConfirmation() != null ){
- 			stringBuilder.append("\tconfirmation='OriginalVoucherConfirmation("+getConfirmation().getId()+")';");
- 		}
-		if(getAuditing() != null ){
- 			stringBuilder.append("\tauditing='OriginalVoucherAuditing("+getAuditing().getId()+")';");
  		}
 		stringBuilder.append("\tversion='"+getVersion()+"';");
 		stringBuilder.append("}");

@@ -81,7 +81,6 @@ public class GoodsTokens extends CommonTokens{
 			.withRetailStore()
 			.withBizOrder()
 			.withRetailStoreOrder()
-			.withPackaging()
 			.withGoodsMovementList();
 	
 	}
@@ -96,8 +95,7 @@ public class GoodsTokens extends CommonTokens{
 			.withTransportTask()
 			.withRetailStore()
 			.withBizOrder()
-			.withRetailStoreOrder()
-			.withPackaging();
+			.withRetailStoreOrder();
 	
 	}
 	
@@ -202,16 +200,6 @@ public class GoodsTokens extends CommonTokens{
 	}
 	public GoodsTokens withRetailStoreOrder(){		
 		addSimpleOptions(RETAILSTOREORDER);
-		return this;
-	}
-	
-	
-	protected static final String PACKAGING = "packaging";
-	public String getPackaging(){
-		return PACKAGING;
-	}
-	public GoodsTokens withPackaging(){		
-		addSimpleOptions(PACKAGING);
 		return this;
 	}
 	

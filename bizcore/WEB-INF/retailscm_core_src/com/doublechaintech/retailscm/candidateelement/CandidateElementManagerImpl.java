@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.candidatecontainer.CandidateCandidateContai
 
 
 public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager implements CandidateElementManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "CandidateElement";
 	@Override
 	public CandidateElementDAO daoOf(RetailscmUserContext userContext) {
 		return candidateElementDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws CandidateElementManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new CandidateElementManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected CandidateElement saveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement, String [] tokensExpr) throws Exception{	
  		//return getCandidateElementDAO().save(candidateElement, tokens);
@@ -167,7 +161,7 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 	public CandidateElement createCandidateElement(RetailscmUserContext userContext, String name,String type,String image,String containerId) throws Exception
 	//public CandidateElement createCandidateElement(RetailscmUserContext userContext,String name, String type, String image, String containerId) throws Exception
 	{
-		
+
 		
 
 		
@@ -195,14 +189,14 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 		onNewInstanceCreated(userContext, candidateElement);
 		return candidateElement;
 
-		
+
 	}
-	protected CandidateElement createNewCandidateElement() 
+	protected CandidateElement createNewCandidateElement()
 	{
-		
-		return new CandidateElement();		
+
+		return new CandidateElement();
 	}
-	
+
 	protected void checkParamsForUpdatingCandidateElement(RetailscmUserContext userContext,String candidateElementId, int candidateElementVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,28 +220,28 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(CandidateElementManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public CandidateElement clone(RetailscmUserContext userContext, String fromCandidateElementId) throws Exception{
-		
+
 		return candidateElementDaoOf(userContext).clone(fromCandidateElementId, this.allTokens());
 	}
-	
-	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement) throws Exception 
+
+	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement) throws Exception
 	{
 		return internalSaveCandidateElement(userContext, candidateElement, allTokens());
 
 	}
-	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement, Map<String,Object> options) throws Exception 
+	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingCandidateElement(userContext, candidateElementId, candidateElementVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(candidateElement){ 
+
+
+		synchronized(candidateElement){
 			//will be good when the candidateElement loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to CandidateElement.
@@ -256,23 +250,23 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 			}
 			candidateElement = saveCandidateElement(userContext, candidateElement, options);
 			return candidateElement;
-			
+
 		}
 
 	}
-	
-	public CandidateElement updateCandidateElement(RetailscmUserContext userContext,String candidateElementId, int candidateElementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public CandidateElement updateCandidateElement(RetailscmUserContext userContext,String candidateElementId, int candidateElementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingCandidateElement(userContext, candidateElementId, candidateElementVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		CandidateElement candidateElement = loadCandidateElement(userContext, candidateElementId, allTokens());
 		if(candidateElement.getVersion() != candidateElementVersion){
 			String message = "The target version("+candidateElement.getVersion()+") is not equals to version("+candidateElementVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(candidateElement){ 
+		synchronized(candidateElement){
 			//will be good when the candidateElement loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to CandidateElement.
@@ -284,21 +278,21 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 		}
 
 	}
-	
-	public CandidateElement updateCandidateElementProperty(RetailscmUserContext userContext,String candidateElementId, int candidateElementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public CandidateElement updateCandidateElementProperty(RetailscmUserContext userContext,String candidateElementId, int candidateElementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingCandidateElement(userContext, candidateElementId, candidateElementVersion, property, newValueExpr, tokensExpr);
-		
+
 		CandidateElement candidateElement = loadCandidateElement(userContext, candidateElementId, allTokens());
 		if(candidateElement.getVersion() != candidateElementVersion){
 			String message = "The target version("+candidateElement.getVersion()+") is not equals to version("+candidateElementVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(candidateElement){ 
+		synchronized(candidateElement){
 			//will be good when the candidateElement loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to CandidateElement.
-			
+
 			candidateElement.changeProperty(property, newValueExpr);
 			
 			candidateElement = saveCandidateElement(userContext, candidateElement, tokens().done());
@@ -310,7 +304,7 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected CandidateElementTokens tokens(){
 		return CandidateElementTokens.start();
 	}
@@ -331,11 +325,11 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 	
 	protected void checkParamsForTransferingAnotherContainer(RetailscmUserContext userContext, String candidateElementId, String anotherContainerId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfCandidateElement(candidateElementId);
  		checkerOf(userContext).checkIdOfCandidateContainer(anotherContainerId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(CandidateElementManagerException.class);
- 		
+
  	}
  	public CandidateElement transferToAnotherContainer(RetailscmUserContext userContext, String candidateElementId, String anotherContainerId) throws Exception
  	{
@@ -354,10 +348,10 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateCandidateContainer requestCandidateContainer(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateCandidateContainer result = new CandidateCandidateContainer();
@@ -367,7 +361,7 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -377,42 +371,42 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected CandidateContainer loadCandidateContainer(RetailscmUserContext userContext, String newContainerId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return candidateContainerDaoOf(userContext).load(newContainerId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String candidateElementId, int candidateElementVersion) throws Exception {
-		//deleteInternal(userContext, candidateElementId, candidateElementVersion);		
+		//deleteInternal(userContext, candidateElementId, candidateElementVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String candidateElementId, int candidateElementVersion) throws Exception{
-			
+
 		candidateElementDaoOf(userContext).delete(candidateElementId, candidateElementVersion);
 	}
-	
+
 	public CandidateElement forgetByAll(RetailscmUserContext userContext, String candidateElementId, int candidateElementVersion) throws Exception {
-		return forgetByAllInternal(userContext, candidateElementId, candidateElementVersion);		
+		return forgetByAllInternal(userContext, candidateElementId, candidateElementVersion);
 	}
 	protected CandidateElement forgetByAllInternal(RetailscmUserContext userContext,
 			String candidateElementId, int candidateElementVersion) throws Exception{
-			
+
 		return candidateElementDaoOf(userContext).disconnectFromAll(candidateElementId, candidateElementVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -423,23 +417,29 @@ public class CandidateElementManagerImpl extends CustomRetailscmCheckerManager i
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return candidateElementDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, CandidateElement newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

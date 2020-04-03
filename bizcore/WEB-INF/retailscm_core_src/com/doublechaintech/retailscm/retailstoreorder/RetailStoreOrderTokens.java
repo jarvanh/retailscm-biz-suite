@@ -74,12 +74,6 @@ public class RetailStoreOrderTokens extends CommonTokens{
 		return start()
 			.withBuyer()
 			.withSeller()
-			.withConfirmation()
-			.withApproval()
-			.withProcessing()
-			.withPicking()
-			.withShipment()
-			.withDelivery()
 			.withRetailStoreOrderLineItemList()
 			.withRetailStoreOrderShippingGroupList()
 			.withRetailStoreOrderPaymentGroupList()
@@ -90,13 +84,7 @@ public class RetailStoreOrderTokens extends CommonTokens{
 		
 		return start()
 			.withBuyer()
-			.withSeller()
-			.withConfirmation()
-			.withApproval()
-			.withProcessing()
-			.withPicking()
-			.withShipment()
-			.withDelivery();
+			.withSeller();
 	
 	}
 	
@@ -131,66 +119,6 @@ public class RetailStoreOrderTokens extends CommonTokens{
 	}
 	public RetailStoreOrderTokens withSeller(){		
 		addSimpleOptions(SELLER);
-		return this;
-	}
-	
-	
-	protected static final String CONFIRMATION = "confirmation";
-	public String getConfirmation(){
-		return CONFIRMATION;
-	}
-	public RetailStoreOrderTokens withConfirmation(){		
-		addSimpleOptions(CONFIRMATION);
-		return this;
-	}
-	
-	
-	protected static final String APPROVAL = "approval";
-	public String getApproval(){
-		return APPROVAL;
-	}
-	public RetailStoreOrderTokens withApproval(){		
-		addSimpleOptions(APPROVAL);
-		return this;
-	}
-	
-	
-	protected static final String PROCESSING = "processing";
-	public String getProcessing(){
-		return PROCESSING;
-	}
-	public RetailStoreOrderTokens withProcessing(){		
-		addSimpleOptions(PROCESSING);
-		return this;
-	}
-	
-	
-	protected static final String PICKING = "picking";
-	public String getPicking(){
-		return PICKING;
-	}
-	public RetailStoreOrderTokens withPicking(){		
-		addSimpleOptions(PICKING);
-		return this;
-	}
-	
-	
-	protected static final String SHIPMENT = "shipment";
-	public String getShipment(){
-		return SHIPMENT;
-	}
-	public RetailStoreOrderTokens withShipment(){		
-		addSimpleOptions(SHIPMENT);
-		return this;
-	}
-	
-	
-	protected static final String DELIVERY = "delivery";
-	public String getDelivery(){
-		return DELIVERY;
-	}
-	public RetailStoreOrderTokens withDelivery(){		
-		addSimpleOptions(DELIVERY);
 		return this;
 	}
 	

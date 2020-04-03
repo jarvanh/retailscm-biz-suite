@@ -8,7 +8,6 @@ import com.doublechaintech.retailscm.BaseRowMapper;
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 import com.doublechaintech.retailscm.goodsallocation.GoodsAllocation;
-import com.doublechaintech.retailscm.goodspackaging.GoodsPackaging;
 import com.doublechaintech.retailscm.sku.Sku;
 import com.doublechaintech.retailscm.receivingspace.ReceivingSpace;
 import com.doublechaintech.retailscm.smartpallet.SmartPallet;
@@ -36,7 +35,6 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		setRetailStore(goods, rs, rowNumber); 		
  		setBizOrder(goods, rs, rowNumber); 		
  		setRetailStoreOrder(goods, rs, rowNumber); 		
- 		setPackaging(goods, rs, rowNumber); 		
  		setVersion(goods, rs, rowNumber);
 
 		return goods;
@@ -279,24 +277,6 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		}
  		goods.setRetailStoreOrder(createEmptyRetailStoreOrder(retailStoreOrderId));
  	}
- 	 		
- 	protected void setPackaging(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
- 		String goodsPackagingId = rs.getString(GoodsTable.COLUMN_PACKAGING);
- 		if( goodsPackagingId == null){
- 			return;
- 		}
- 		if( goodsPackagingId.isEmpty()){
- 			return;
- 		}
- 		GoodsPackaging goodsPackaging = goods.getPackaging();
- 		if( goodsPackaging != null ){
- 			//if the root object 'goods' already have the property, just set the id for it;
- 			goodsPackaging.setId(goodsPackagingId);
- 			
- 			return;
- 		}
- 		goods.setPackaging(createEmptyPackaging(goodsPackagingId));
- 	}
  	
 	protected void setVersion(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
@@ -373,13 +353,6 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
  		retailStoreOrder.setId(retailStoreOrderId);
  		retailStoreOrder.setVersion(Integer.MAX_VALUE);
  		return retailStoreOrder;
- 	}
- 	
- 	protected GoodsPackaging  createEmptyPackaging(String goodsPackagingId){
- 		GoodsPackaging goodsPackaging = new GoodsPackaging();
- 		goodsPackaging.setId(goodsPackagingId);
- 		goodsPackaging.setVersion(Integer.MAX_VALUE);
- 		return goodsPackaging;
  	}
  	
 }

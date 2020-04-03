@@ -76,7 +76,7 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 
 	protected		String              	mId                 ;
 	protected		String              	mName               ;
-	protected		long                	mTelephone          ;
+	protected		String              	mTelephone          ;
 	protected		String              	mOwner              ;
 	protected		RetailStoreCountryCenter	mRetailStoreCountryCenter;
 	protected		RetailStoreCityServiceCenter	mCityServiceCenter  ;
@@ -178,9 +178,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 			
 			
 	protected void changeTelephoneProperty(String newValueExpr){
-		long oldValue = getTelephone();
-		long newValue = parseLong(newValueExpr);
-		if(equalsLong(oldValue , newValue)){
+		String oldValue = getTelephone();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
 			return;//they can be both null, or exact the same object, this is much faster than equals function
 		}
 		//they are surely different each other
@@ -398,19 +398,19 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
-	public void setTelephone(long telephone){
-		this.mTelephone = telephone;;
+	public void setTelephone(String telephone){
+		this.mTelephone = trimString(telephone);;
 	}
-	public long getTelephone(){
+	public String getTelephone(){
 		return this.mTelephone;
 	}
-	public RetailStore updateTelephone(long telephone){
-		this.mTelephone = telephone;;
+	public RetailStore updateTelephone(String telephone){
+		this.mTelephone = trimString(telephone);;
 		this.changed = true;
 		return this;
 	}
-	public void mergeTelephone(long telephone){
-		setTelephone(telephone);
+	public void mergeTelephone(String telephone){
+		if(telephone != null) { setTelephone(telephone);}
 	}
 	
 	
@@ -1417,7 +1417,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getName(), getTelephone(), getOwner(), getRetailStoreCountryCenter(), getCityServiceCenter(), getCreation(), getInvestmentInvitation(), getFranchising(), getDecoration(), getOpening(), getClosing(), getFounded(), getLatitude(), getLongitude(), getDescription(), getLastUpdateTime(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
@@ -1462,13 +1464,6 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	//provide number calculation function
-	
-	public void increaseTelephone(long incTelephone){
-		updateTelephone(this.mTelephone +  incTelephone);
-	}
-	public void decreaseTelephone(long decTelephone){
-		updateTelephone(this.mTelephone - decTelephone);
-	}
 	
 
 }

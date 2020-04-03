@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.supplyorder.SupplyOrder;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.supplyorder.CandidateSupplyOrder;
 
 
 public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerManager implements SupplyOrderShippingGroupManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "SupplyOrderShippingGroup";
 	@Override
 	public SupplyOrderShippingGroupDAO daoOf(RetailscmUserContext userContext) {
 		return supplyOrderShippingGroupDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws SupplyOrderShippingGroupManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new SupplyOrderShippingGroupManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected SupplyOrderShippingGroup saveSupplyOrderShippingGroup(RetailscmUserContext userContext, SupplyOrderShippingGroup supplyOrderShippingGroup, String [] tokensExpr) throws Exception{	
  		//return getSupplyOrderShippingGroupDAO().save(supplyOrderShippingGroup, tokens);
@@ -167,7 +161,7 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 	public SupplyOrderShippingGroup createSupplyOrderShippingGroup(RetailscmUserContext userContext, String name,String bizOrderId,BigDecimal amount) throws Exception
 	//public SupplyOrderShippingGroup createSupplyOrderShippingGroup(RetailscmUserContext userContext,String name, String bizOrderId, BigDecimal amount) throws Exception
 	{
-		
+
 		
 
 		
@@ -193,14 +187,14 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 		onNewInstanceCreated(userContext, supplyOrderShippingGroup);
 		return supplyOrderShippingGroup;
 
-		
+
 	}
-	protected SupplyOrderShippingGroup createNewSupplyOrderShippingGroup() 
+	protected SupplyOrderShippingGroup createNewSupplyOrderShippingGroup()
 	{
-		
-		return new SupplyOrderShippingGroup();		
+
+		return new SupplyOrderShippingGroup();
 	}
-	
+
 	protected void checkParamsForUpdatingSupplyOrderShippingGroup(RetailscmUserContext userContext,String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -221,28 +215,28 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderShippingGroupManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public SupplyOrderShippingGroup clone(RetailscmUserContext userContext, String fromSupplyOrderShippingGroupId) throws Exception{
-		
+
 		return supplyOrderShippingGroupDaoOf(userContext).clone(fromSupplyOrderShippingGroupId, this.allTokens());
 	}
-	
-	public SupplyOrderShippingGroup internalSaveSupplyOrderShippingGroup(RetailscmUserContext userContext, SupplyOrderShippingGroup supplyOrderShippingGroup) throws Exception 
+
+	public SupplyOrderShippingGroup internalSaveSupplyOrderShippingGroup(RetailscmUserContext userContext, SupplyOrderShippingGroup supplyOrderShippingGroup) throws Exception
 	{
 		return internalSaveSupplyOrderShippingGroup(userContext, supplyOrderShippingGroup, allTokens());
 
 	}
-	public SupplyOrderShippingGroup internalSaveSupplyOrderShippingGroup(RetailscmUserContext userContext, SupplyOrderShippingGroup supplyOrderShippingGroup, Map<String,Object> options) throws Exception 
+	public SupplyOrderShippingGroup internalSaveSupplyOrderShippingGroup(RetailscmUserContext userContext, SupplyOrderShippingGroup supplyOrderShippingGroup, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingSupplyOrderShippingGroup(userContext, supplyOrderShippingGroupId, supplyOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(supplyOrderShippingGroup){ 
+
+
+		synchronized(supplyOrderShippingGroup){
 			//will be good when the supplyOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderShippingGroup.
@@ -251,23 +245,23 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 			}
 			supplyOrderShippingGroup = saveSupplyOrderShippingGroup(userContext, supplyOrderShippingGroup, options);
 			return supplyOrderShippingGroup;
-			
+
 		}
 
 	}
-	
-	public SupplyOrderShippingGroup updateSupplyOrderShippingGroup(RetailscmUserContext userContext,String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SupplyOrderShippingGroup updateSupplyOrderShippingGroup(RetailscmUserContext userContext,String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSupplyOrderShippingGroup(userContext, supplyOrderShippingGroupId, supplyOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		SupplyOrderShippingGroup supplyOrderShippingGroup = loadSupplyOrderShippingGroup(userContext, supplyOrderShippingGroupId, allTokens());
 		if(supplyOrderShippingGroup.getVersion() != supplyOrderShippingGroupVersion){
 			String message = "The target version("+supplyOrderShippingGroup.getVersion()+") is not equals to version("+supplyOrderShippingGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(supplyOrderShippingGroup){ 
+		synchronized(supplyOrderShippingGroup){
 			//will be good when the supplyOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderShippingGroup.
@@ -279,21 +273,21 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 		}
 
 	}
-	
-	public SupplyOrderShippingGroup updateSupplyOrderShippingGroupProperty(RetailscmUserContext userContext,String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public SupplyOrderShippingGroup updateSupplyOrderShippingGroupProperty(RetailscmUserContext userContext,String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingSupplyOrderShippingGroup(userContext, supplyOrderShippingGroupId, supplyOrderShippingGroupVersion, property, newValueExpr, tokensExpr);
-		
+
 		SupplyOrderShippingGroup supplyOrderShippingGroup = loadSupplyOrderShippingGroup(userContext, supplyOrderShippingGroupId, allTokens());
 		if(supplyOrderShippingGroup.getVersion() != supplyOrderShippingGroupVersion){
 			String message = "The target version("+supplyOrderShippingGroup.getVersion()+") is not equals to version("+supplyOrderShippingGroupVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(supplyOrderShippingGroup){ 
+		synchronized(supplyOrderShippingGroup){
 			//will be good when the supplyOrderShippingGroup loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to SupplyOrderShippingGroup.
-			
+
 			supplyOrderShippingGroup.changeProperty(property, newValueExpr);
 			
 			supplyOrderShippingGroup = saveSupplyOrderShippingGroup(userContext, supplyOrderShippingGroup, tokens().done());
@@ -305,7 +299,7 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected SupplyOrderShippingGroupTokens tokens(){
 		return SupplyOrderShippingGroupTokens.start();
 	}
@@ -326,11 +320,11 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 	
 	protected void checkParamsForTransferingAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderShippingGroupId, String anotherBizOrderId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfSupplyOrderShippingGroup(supplyOrderShippingGroupId);
  		checkerOf(userContext).checkIdOfSupplyOrder(anotherBizOrderId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(SupplyOrderShippingGroupManagerException.class);
- 		
+
  	}
  	public SupplyOrderShippingGroup transferToAnotherBizOrder(RetailscmUserContext userContext, String supplyOrderShippingGroupId, String anotherBizOrderId) throws Exception
  	{
@@ -349,10 +343,10 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSupplyOrder requestCandidateBizOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSupplyOrder result = new CandidateSupplyOrder();
@@ -362,7 +356,7 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("buyer");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -372,42 +366,42 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected SupplyOrder loadSupplyOrder(RetailscmUserContext userContext, String newBizOrderId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return supplyOrderDaoOf(userContext).load(newBizOrderId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion) throws Exception {
-		//deleteInternal(userContext, supplyOrderShippingGroupId, supplyOrderShippingGroupVersion);		
+		//deleteInternal(userContext, supplyOrderShippingGroupId, supplyOrderShippingGroupVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion) throws Exception{
-			
+
 		supplyOrderShippingGroupDaoOf(userContext).delete(supplyOrderShippingGroupId, supplyOrderShippingGroupVersion);
 	}
-	
+
 	public SupplyOrderShippingGroup forgetByAll(RetailscmUserContext userContext, String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion) throws Exception {
-		return forgetByAllInternal(userContext, supplyOrderShippingGroupId, supplyOrderShippingGroupVersion);		
+		return forgetByAllInternal(userContext, supplyOrderShippingGroupId, supplyOrderShippingGroupVersion);
 	}
 	protected SupplyOrderShippingGroup forgetByAllInternal(RetailscmUserContext userContext,
 			String supplyOrderShippingGroupId, int supplyOrderShippingGroupVersion) throws Exception{
-			
+
 		return supplyOrderShippingGroupDaoOf(userContext).disconnectFromAll(supplyOrderShippingGroupId, supplyOrderShippingGroupVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -418,23 +412,29 @@ public class SupplyOrderShippingGroupManagerImpl extends CustomRetailscmCheckerM
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return supplyOrderShippingGroupDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, SupplyOrderShippingGroup newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

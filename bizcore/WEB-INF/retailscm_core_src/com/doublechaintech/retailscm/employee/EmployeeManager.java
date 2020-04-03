@@ -13,7 +13,7 @@ public interface EmployeeManager extends BaseManager{
 
 		
 
-	public Employee createEmployee(RetailscmUserContext userContext, String companyId,String title,String departmentId,String familyName,String givenName,String email,String city,String address,String cellPhone,String occupationId,String responsibleForId,String currentSalaryGradeId,String salaryAccount,String jobApplicationId,String professionInterviewId,String hrInterviewId,String offerApprovalId,String offerAcceptanceId,String employeeBoardingId,String terminationId) throws Exception;	
+	public Employee createEmployee(RetailscmUserContext userContext, String companyId,String title,String departmentId,String familyName,String givenName,String email,String city,String address,String cellPhone,String occupationId,String responsibleForId,String currentSalaryGradeId,String salaryAccount) throws Exception;	
 	public Employee updateEmployee(RetailscmUserContext userContext,String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public Employee loadEmployee(RetailscmUserContext userContext, String employeeId, String [] tokensExpr) throws Exception;
 	public Employee internalSaveEmployee(RetailscmUserContext userContext, Employee employee) throws Exception;
@@ -24,13 +24,6 @@ public interface EmployeeManager extends BaseManager{
  	public Employee transferToAnotherOccupation(RetailscmUserContext userContext, String employeeId, String anotherOccupationId)  throws Exception;
  	public Employee transferToAnotherResponsibleFor(RetailscmUserContext userContext, String employeeId, String anotherResponsibleForId)  throws Exception;
  	public Employee transferToAnotherCurrentSalaryGrade(RetailscmUserContext userContext, String employeeId, String anotherCurrentSalaryGradeId)  throws Exception;
- 	public Employee transferToAnotherJobApplication(RetailscmUserContext userContext, String employeeId, String anotherJobApplicationId)  throws Exception;
- 	public Employee transferToAnotherProfessionInterview(RetailscmUserContext userContext, String employeeId, String anotherProfessionInterviewId)  throws Exception;
- 	public Employee transferToAnotherHrInterview(RetailscmUserContext userContext, String employeeId, String anotherHrInterviewId)  throws Exception;
- 	public Employee transferToAnotherOfferApproval(RetailscmUserContext userContext, String employeeId, String anotherOfferApprovalId)  throws Exception;
- 	public Employee transferToAnotherOfferAcceptance(RetailscmUserContext userContext, String employeeId, String anotherOfferAcceptanceId)  throws Exception;
- 	public Employee transferToAnotherEmployeeBoarding(RetailscmUserContext userContext, String employeeId, String anotherEmployeeBoardingId)  throws Exception;
- 	public Employee transferToAnotherTermination(RetailscmUserContext userContext, String employeeId, String anotherTerminationId)  throws Exception;
  
 
 	public void delete(RetailscmUserContext userContext, String employeeId, int version) throws Exception;

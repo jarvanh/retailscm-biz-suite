@@ -85,10 +85,6 @@ public interface ReceivingSpaceDAO extends BaseDAO{
 	public ReceivingSpace planToRemoveGoodsListWithRetailStoreOrder(ReceivingSpace receivingSpace, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	public int countGoodsListWithRetailStoreOrder(String receivingSpaceId, String retailStoreOrderId, Map<String,Object> options)throws Exception;
 	
-	//disconnect ReceivingSpace with packaging in Goods
-	public ReceivingSpace planToRemoveGoodsListWithPackaging(ReceivingSpace receivingSpace, String packagingId, Map<String,Object> options)throws Exception;
-	public int countGoodsListWithPackaging(String receivingSpaceId, String packagingId, Map<String,Object> options)throws Exception;
-	
 	
 	public SmartList<ReceivingSpace> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);

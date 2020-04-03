@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
-
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
+import com.doublechaintech.retailscm.*;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 
@@ -31,28 +22,31 @@ import com.doublechaintech.retailscm.retailstorecountrycenter.CandidateRetailSto
 
 
 public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager implements PublicHolidayManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "PublicHoliday";
 	@Override
 	public PublicHolidayDAO daoOf(RetailscmUserContext userContext) {
 		return publicHolidayDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws PublicHolidayManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new PublicHolidayManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected PublicHoliday savePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday, String [] tokensExpr) throws Exception{	
  		//return getPublicHolidayDAO().save(publicHoliday, tokens);
@@ -167,7 +161,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	public PublicHoliday createPublicHoliday(RetailscmUserContext userContext, String code,String companyId,String name,String description) throws Exception
 	//public PublicHoliday createPublicHoliday(RetailscmUserContext userContext,String code, String companyId, String name, String description) throws Exception
 	{
-		
+
 		
 
 		
@@ -195,14 +189,14 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		onNewInstanceCreated(userContext, publicHoliday);
 		return publicHoliday;
 
-		
+
 	}
-	protected PublicHoliday createNewPublicHoliday() 
+	protected PublicHoliday createNewPublicHoliday()
 	{
-		
-		return new PublicHoliday();		
+
+		return new PublicHoliday();
 	}
-	
+
 	protected void checkParamsForUpdatingPublicHoliday(RetailscmUserContext userContext,String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -226,28 +220,28 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(PublicHolidayManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public PublicHoliday clone(RetailscmUserContext userContext, String fromPublicHolidayId) throws Exception{
-		
+
 		return publicHolidayDaoOf(userContext).clone(fromPublicHolidayId, this.allTokens());
 	}
-	
-	public PublicHoliday internalSavePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday) throws Exception 
+
+	public PublicHoliday internalSavePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday) throws Exception
 	{
 		return internalSavePublicHoliday(userContext, publicHoliday, allTokens());
 
 	}
-	public PublicHoliday internalSavePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday, Map<String,Object> options) throws Exception 
+	public PublicHoliday internalSavePublicHoliday(RetailscmUserContext userContext, PublicHoliday publicHoliday, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingPublicHoliday(userContext, publicHolidayId, publicHolidayVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(publicHoliday){ 
+
+
+		synchronized(publicHoliday){
 			//will be good when the publicHoliday loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PublicHoliday.
@@ -256,23 +250,23 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 			}
 			publicHoliday = savePublicHoliday(userContext, publicHoliday, options);
 			return publicHoliday;
-			
+
 		}
 
 	}
-	
-	public PublicHoliday updatePublicHoliday(RetailscmUserContext userContext,String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public PublicHoliday updatePublicHoliday(RetailscmUserContext userContext,String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingPublicHoliday(userContext, publicHolidayId, publicHolidayVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		PublicHoliday publicHoliday = loadPublicHoliday(userContext, publicHolidayId, allTokens());
 		if(publicHoliday.getVersion() != publicHolidayVersion){
 			String message = "The target version("+publicHoliday.getVersion()+") is not equals to version("+publicHolidayVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(publicHoliday){ 
+		synchronized(publicHoliday){
 			//will be good when the publicHoliday loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PublicHoliday.
@@ -284,21 +278,21 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
 	}
-	
-	public PublicHoliday updatePublicHolidayProperty(RetailscmUserContext userContext,String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public PublicHoliday updatePublicHolidayProperty(RetailscmUserContext userContext,String publicHolidayId, int publicHolidayVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingPublicHoliday(userContext, publicHolidayId, publicHolidayVersion, property, newValueExpr, tokensExpr);
-		
+
 		PublicHoliday publicHoliday = loadPublicHoliday(userContext, publicHolidayId, allTokens());
 		if(publicHoliday.getVersion() != publicHolidayVersion){
 			String message = "The target version("+publicHoliday.getVersion()+") is not equals to version("+publicHolidayVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(publicHoliday){ 
+		synchronized(publicHoliday){
 			//will be good when the publicHoliday loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to PublicHoliday.
-			
+
 			publicHoliday.changeProperty(property, newValueExpr);
 			
 			publicHoliday = savePublicHoliday(userContext, publicHoliday, tokens().done());
@@ -310,7 +304,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected PublicHolidayTokens tokens(){
 		return PublicHolidayTokens.start();
 	}
@@ -331,11 +325,11 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String publicHolidayId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfPublicHoliday(publicHolidayId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(PublicHolidayManagerException.class);
- 		
+
  	}
  	public PublicHoliday transferToAnotherCompany(RetailscmUserContext userContext, String publicHolidayId, String anotherCompanyId) throws Exception
  	{
@@ -354,10 +348,10 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -367,7 +361,7 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -377,42 +371,42 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  //--------------------------------------------------------------
 	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String publicHolidayId, int publicHolidayVersion) throws Exception {
-		//deleteInternal(userContext, publicHolidayId, publicHolidayVersion);		
+		//deleteInternal(userContext, publicHolidayId, publicHolidayVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String publicHolidayId, int publicHolidayVersion) throws Exception{
-			
+
 		publicHolidayDaoOf(userContext).delete(publicHolidayId, publicHolidayVersion);
 	}
-	
+
 	public PublicHoliday forgetByAll(RetailscmUserContext userContext, String publicHolidayId, int publicHolidayVersion) throws Exception {
-		return forgetByAllInternal(userContext, publicHolidayId, publicHolidayVersion);		
+		return forgetByAllInternal(userContext, publicHolidayId, publicHolidayVersion);
 	}
 	protected PublicHoliday forgetByAllInternal(RetailscmUserContext userContext,
 			String publicHolidayId, int publicHolidayVersion) throws Exception{
-			
+
 		return publicHolidayDaoOf(userContext).disconnectFromAll(publicHolidayId, publicHolidayVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -423,23 +417,29 @@ public class PublicHolidayManagerImpl extends CustomRetailscmCheckerManager impl
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return publicHolidayDaoOf(userContext).deleteAll();
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, PublicHoliday newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

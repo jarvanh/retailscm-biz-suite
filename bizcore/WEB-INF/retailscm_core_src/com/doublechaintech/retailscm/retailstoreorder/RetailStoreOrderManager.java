@@ -13,7 +13,7 @@ public interface RetailStoreOrderManager extends BaseManager{
 
 		
 
-	public RetailStoreOrder createRetailStoreOrder(RetailscmUserContext userContext, String buyerId,String sellerId,String title,BigDecimal totalAmount,String confirmationId,String approvalId,String processingId,String pickingId,String shipmentId,String deliveryId) throws Exception;	
+	public RetailStoreOrder createRetailStoreOrder(RetailscmUserContext userContext, String buyerId,String sellerId,String title,BigDecimal totalAmount) throws Exception;	
 	public RetailStoreOrder updateRetailStoreOrder(RetailscmUserContext userContext,String retailStoreOrderId, int retailStoreOrderVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public RetailStoreOrder loadRetailStoreOrder(RetailscmUserContext userContext, String retailStoreOrderId, String [] tokensExpr) throws Exception;
 	public RetailStoreOrder internalSaveRetailStoreOrder(RetailscmUserContext userContext, RetailStoreOrder retailStoreOrder) throws Exception;
@@ -21,12 +21,6 @@ public interface RetailStoreOrderManager extends BaseManager{
 	
 	public RetailStoreOrder transferToAnotherBuyer(RetailscmUserContext userContext, String retailStoreOrderId, String anotherBuyerId)  throws Exception;
  	public RetailStoreOrder transferToAnotherSeller(RetailscmUserContext userContext, String retailStoreOrderId, String anotherSellerId)  throws Exception;
- 	public RetailStoreOrder transferToAnotherConfirmation(RetailscmUserContext userContext, String retailStoreOrderId, String anotherConfirmationId)  throws Exception;
- 	public RetailStoreOrder transferToAnotherApproval(RetailscmUserContext userContext, String retailStoreOrderId, String anotherApprovalId)  throws Exception;
- 	public RetailStoreOrder transferToAnotherProcessing(RetailscmUserContext userContext, String retailStoreOrderId, String anotherProcessingId)  throws Exception;
- 	public RetailStoreOrder transferToAnotherPicking(RetailscmUserContext userContext, String retailStoreOrderId, String anotherPickingId)  throws Exception;
- 	public RetailStoreOrder transferToAnotherShipment(RetailscmUserContext userContext, String retailStoreOrderId, String anotherShipmentId)  throws Exception;
- 	public RetailStoreOrder transferToAnotherDelivery(RetailscmUserContext userContext, String retailStoreOrderId, String anotherDeliveryId)  throws Exception;
  
 
 	public void delete(RetailscmUserContext userContext, String retailStoreOrderId, int version) throws Exception;
@@ -66,9 +60,9 @@ public interface RetailStoreOrderManager extends BaseManager{
 
 	*/
 
-	//public  GoodsManager getGoodsManager(RetailscmUserContext userContext, String retailStoreOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String packagingId ,String [] tokensExpr)  throws Exception;
+	//public  GoodsManager getGoodsManager(RetailscmUserContext userContext, String retailStoreOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId ,String [] tokensExpr)  throws Exception;
 	
-	public  RetailStoreOrder addGoods(RetailscmUserContext userContext, String retailStoreOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId, String packagingId , String [] tokensExpr)  throws Exception;
+	public  RetailStoreOrder addGoods(RetailscmUserContext userContext, String retailStoreOrderId, String name, String rfid, String uom, int maxPackage, Date expireTime, String skuId, String receivingSpaceId, String goodsAllocationId, String smartPalletId, String shippingSpaceId, String transportTaskId, String retailStoreId, String bizOrderId , String [] tokensExpr)  throws Exception;
 	public  RetailStoreOrder removeGoods(RetailscmUserContext userContext, String retailStoreOrderId, String goodsId, int goodsVersion,String [] tokensExpr)  throws Exception;
 	public  RetailStoreOrder updateGoods(RetailscmUserContext userContext, String retailStoreOrderId, String goodsId, int goodsVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

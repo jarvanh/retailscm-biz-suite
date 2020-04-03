@@ -8,36 +8,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import com.doublechaintech.retailscm.BaseEntity;
 
+import com.doublechaintech.retailscm.*;
 
-import com.doublechaintech.retailscm.Message;
-import com.doublechaintech.retailscm.SmartList;
-import com.doublechaintech.retailscm.MultipleAccessKey;
-
-import com.doublechaintech.retailscm.RetailscmUserContext;
-//import com.doublechaintech.retailscm.BaseManagerImpl;
-import com.doublechaintech.retailscm.RetailscmCheckerManager;
-import com.doublechaintech.retailscm.CustomRetailscmCheckerManager;
-
-import com.doublechaintech.retailscm.hrinterview.HrInterview;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
-import com.doublechaintech.retailscm.professioninterview.ProfessionInterview;
 import com.doublechaintech.retailscm.employeeleave.EmployeeLeave;
 import com.doublechaintech.retailscm.employeeinterview.EmployeeInterview;
-import com.doublechaintech.retailscm.offeracceptance.OfferAcceptance;
 import com.doublechaintech.retailscm.employeeskill.EmployeeSkill;
-import com.doublechaintech.retailscm.employeeboarding.EmployeeBoarding;
 import com.doublechaintech.retailscm.payingoff.PayingOff;
 import com.doublechaintech.retailscm.levelthreedepartment.LevelThreeDepartment;
 import com.doublechaintech.retailscm.occupationtype.OccupationType;
 import com.doublechaintech.retailscm.salarygrade.SalaryGrade;
 import com.doublechaintech.retailscm.employeecompanytraining.EmployeeCompanyTraining;
-import com.doublechaintech.retailscm.offerapproval.OfferApproval;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
-import com.doublechaintech.retailscm.termination.Termination;
 import com.doublechaintech.retailscm.employeeattendance.EmployeeAttendance;
-import com.doublechaintech.retailscm.jobapplication.JobApplication;
 import com.doublechaintech.retailscm.employeequalifier.EmployeeQualifier;
 import com.doublechaintech.retailscm.employeeperformance.EmployeePerformance;
 import com.doublechaintech.retailscm.employeeeducation.EmployeeEducation;
@@ -45,18 +29,11 @@ import com.doublechaintech.retailscm.responsibilitytype.ResponsibilityType;
 import com.doublechaintech.retailscm.employeeworkexperience.EmployeeWorkExperience;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAward;
 
-import com.doublechaintech.retailscm.hrinterview.CandidateHrInterview;
-import com.doublechaintech.retailscm.termination.CandidateTermination;
 import com.doublechaintech.retailscm.retailstorecountrycenter.CandidateRetailStoreCountryCenter;
-import com.doublechaintech.retailscm.jobapplication.CandidateJobApplication;
-import com.doublechaintech.retailscm.professioninterview.CandidateProfessionInterview;
-import com.doublechaintech.retailscm.offeracceptance.CandidateOfferAcceptance;
-import com.doublechaintech.retailscm.employeeboarding.CandidateEmployeeBoarding;
 import com.doublechaintech.retailscm.levelthreedepartment.CandidateLevelThreeDepartment;
 import com.doublechaintech.retailscm.responsibilitytype.CandidateResponsibilityType;
 import com.doublechaintech.retailscm.occupationtype.CandidateOccupationType;
 import com.doublechaintech.retailscm.salarygrade.CandidateSalaryGrade;
-import com.doublechaintech.retailscm.offerapproval.CandidateOfferApproval;
 
 import com.doublechaintech.retailscm.skilltype.SkillType;
 import com.doublechaintech.retailscm.scoring.Scoring;
@@ -73,28 +50,31 @@ import com.doublechaintech.retailscm.leavetype.LeaveType;
 
 
 public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implements EmployeeManager {
-	
+
+  
+
+
 	private static final String SERVICE_TYPE = "Employee";
 	@Override
 	public EmployeeDAO daoOf(RetailscmUserContext userContext) {
 		return employeeDaoOf(userContext);
 	}
-	
+
 	@Override
 	public String serviceFor(){
 		return SERVICE_TYPE;
 	}
-	
-	
+
+
 	protected void throwExceptionWithMessage(String value) throws EmployeeManagerException{
-	
+
 		Message message = new Message();
 		message.setBody(value);
 		throw new EmployeeManagerException(message);
 
 	}
-	
-	
+
+
 
  	protected Employee saveEmployee(RetailscmUserContext userContext, Employee employee, String [] tokensExpr) throws Exception{	
  		//return getEmployeeDAO().save(employee, tokens);
@@ -199,13 +179,6 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		addAction(userContext, employee, tokens,"employee.transfer_to_occupation","transferToAnotherOccupation","transferToAnotherOccupation/"+employee.getId()+"/","main","primary");
 		addAction(userContext, employee, tokens,"employee.transfer_to_responsible_for","transferToAnotherResponsibleFor","transferToAnotherResponsibleFor/"+employee.getId()+"/","main","primary");
 		addAction(userContext, employee, tokens,"employee.transfer_to_current_salary_grade","transferToAnotherCurrentSalaryGrade","transferToAnotherCurrentSalaryGrade/"+employee.getId()+"/","main","primary");
-		addAction(userContext, employee, tokens,"employee.transfer_to_job_application","transferToAnotherJobApplication","transferToAnotherJobApplication/"+employee.getId()+"/","main","primary");
-		addAction(userContext, employee, tokens,"employee.transfer_to_profession_interview","transferToAnotherProfessionInterview","transferToAnotherProfessionInterview/"+employee.getId()+"/","main","primary");
-		addAction(userContext, employee, tokens,"employee.transfer_to_hr_interview","transferToAnotherHrInterview","transferToAnotherHrInterview/"+employee.getId()+"/","main","primary");
-		addAction(userContext, employee, tokens,"employee.transfer_to_offer_approval","transferToAnotherOfferApproval","transferToAnotherOfferApproval/"+employee.getId()+"/","main","primary");
-		addAction(userContext, employee, tokens,"employee.transfer_to_offer_acceptance","transferToAnotherOfferAcceptance","transferToAnotherOfferAcceptance/"+employee.getId()+"/","main","primary");
-		addAction(userContext, employee, tokens,"employee.transfer_to_employee_boarding","transferToAnotherEmployeeBoarding","transferToAnotherEmployeeBoarding/"+employee.getId()+"/","main","primary");
-		addAction(userContext, employee, tokens,"employee.transfer_to_termination","transferToAnotherTermination","transferToAnotherTermination/"+employee.getId()+"/","main","primary");
 		addAction(userContext, employee, tokens,"employee.addEmployeeCompanyTraining","addEmployeeCompanyTraining","addEmployeeCompanyTraining/"+employee.getId()+"/","employeeCompanyTrainingList","primary");
 		addAction(userContext, employee, tokens,"employee.removeEmployeeCompanyTraining","removeEmployeeCompanyTraining","removeEmployeeCompanyTraining/"+employee.getId()+"/","employeeCompanyTrainingList","primary");
 		addAction(userContext, employee, tokens,"employee.updateEmployeeCompanyTraining","updateEmployeeCompanyTraining","updateEmployeeCompanyTraining/"+employee.getId()+"/","employeeCompanyTrainingList","primary");
@@ -265,10 +238,10 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
  	
  	
 
-	public Employee createEmployee(RetailscmUserContext userContext, String companyId,String title,String departmentId,String familyName,String givenName,String email,String city,String address,String cellPhone,String occupationId,String responsibleForId,String currentSalaryGradeId,String salaryAccount,String jobApplicationId,String professionInterviewId,String hrInterviewId,String offerApprovalId,String offerAcceptanceId,String employeeBoardingId,String terminationId) throws Exception
-	//public Employee createEmployee(RetailscmUserContext userContext,String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount, String jobApplicationId, String professionInterviewId, String hrInterviewId, String offerApprovalId, String offerAcceptanceId, String employeeBoardingId, String terminationId) throws Exception
+	public Employee createEmployee(RetailscmUserContext userContext, String companyId,String title,String departmentId,String familyName,String givenName,String email,String city,String address,String cellPhone,String occupationId,String responsibleForId,String currentSalaryGradeId,String salaryAccount) throws Exception
+	//public Employee createEmployee(RetailscmUserContext userContext,String companyId, String title, String departmentId, String familyName, String givenName, String email, String city, String address, String cellPhone, String occupationId, String responsibleForId, String currentSalaryGradeId, String salaryAccount) throws Exception
 	{
-		
+
 		
 
 		
@@ -320,41 +293,6 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 		
 		employee.setSalaryAccount(salaryAccount);
-			
-		JobApplication jobApplication = loadJobApplication(userContext, jobApplicationId,emptyOptions());
-		employee.setJobApplication(jobApplication);
-		
-		
-			
-		ProfessionInterview professionInterview = loadProfessionInterview(userContext, professionInterviewId,emptyOptions());
-		employee.setProfessionInterview(professionInterview);
-		
-		
-			
-		HrInterview hrInterview = loadHrInterview(userContext, hrInterviewId,emptyOptions());
-		employee.setHrInterview(hrInterview);
-		
-		
-			
-		OfferApproval offerApproval = loadOfferApproval(userContext, offerApprovalId,emptyOptions());
-		employee.setOfferApproval(offerApproval);
-		
-		
-			
-		OfferAcceptance offerAcceptance = loadOfferAcceptance(userContext, offerAcceptanceId,emptyOptions());
-		employee.setOfferAcceptance(offerAcceptance);
-		
-		
-			
-		EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, employeeBoardingId,emptyOptions());
-		employee.setEmployeeBoarding(employeeBoarding);
-		
-		
-			
-		Termination termination = loadTermination(userContext, terminationId,emptyOptions());
-		employee.setTermination(termination);
-		
-		
 		employee.setLastUpdateTime(userContext.now());
 
 		employee = saveEmployee(userContext, employee, emptyOptions());
@@ -362,14 +300,14 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		onNewInstanceCreated(userContext, employee);
 		return employee;
 
-		
+
 	}
-	protected Employee createNewEmployee() 
+	protected Employee createNewEmployee()
 	{
-		
-		return new Employee();		
+
+		return new Employee();
 	}
-	
+
 	protected void checkParamsForUpdatingEmployee(RetailscmUserContext userContext,String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr)throws Exception
 	{
 		
@@ -413,45 +351,31 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
 			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
-		}		
-
-				
-
-				
-
-				
-
-				
-
-				
-
-				
-
-		
+		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
-		
+
+
 	}
-	
-	
-	
+
+
+
 	public Employee clone(RetailscmUserContext userContext, String fromEmployeeId) throws Exception{
-		
+
 		return employeeDaoOf(userContext).clone(fromEmployeeId, this.allTokens());
 	}
-	
-	public Employee internalSaveEmployee(RetailscmUserContext userContext, Employee employee) throws Exception 
+
+	public Employee internalSaveEmployee(RetailscmUserContext userContext, Employee employee) throws Exception
 	{
 		return internalSaveEmployee(userContext, employee, allTokens());
 
 	}
-	public Employee internalSaveEmployee(RetailscmUserContext userContext, Employee employee, Map<String,Object> options) throws Exception 
+	public Employee internalSaveEmployee(RetailscmUserContext userContext, Employee employee, Map<String,Object> options) throws Exception
 	{
 		//checkParamsForUpdatingEmployee(userContext, employeeId, employeeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		synchronized(employee){ 
+
+
+		synchronized(employee){
 			//will be good when the employee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Employee.
@@ -460,23 +384,23 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 			}
 			employee = saveEmployee(userContext, employee, options);
 			return employee;
-			
+
 		}
 
 	}
-	
-	public Employee updateEmployee(RetailscmUserContext userContext,String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Employee updateEmployee(RetailscmUserContext userContext,String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployee(userContext, employeeId, employeeVersion, property, newValueExpr, tokensExpr);
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
 		if(employee.getVersion() != employeeVersion){
 			String message = "The target version("+employee.getVersion()+") is not equals to version("+employeeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employee){ 
+		synchronized(employee){
 			//will be good when the employee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Employee.
@@ -488,21 +412,21 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 
 	}
-	
-	public Employee updateEmployeeProperty(RetailscmUserContext userContext,String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception 
+
+	public Employee updateEmployeeProperty(RetailscmUserContext userContext,String employeeId, int employeeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception
 	{
 		checkParamsForUpdatingEmployee(userContext, employeeId, employeeVersion, property, newValueExpr, tokensExpr);
-		
+
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
 		if(employee.getVersion() != employeeVersion){
 			String message = "The target version("+employee.getVersion()+") is not equals to version("+employeeVersion+") provided";
 			throwExceptionWithMessage(message);
 		}
-		synchronized(employee){ 
+		synchronized(employee){
 			//will be good when the employee loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Employee.
-			
+
 			employee.changeProperty(property, newValueExpr);
 			employee.updateLastUpdateTime(userContext.now());
 			employee = saveEmployee(userContext, employee, tokens().done());
@@ -514,7 +438,7 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	protected Map<String,Object> emptyOptions(){
 		return tokens().done();
 	}
-	
+
 	protected EmployeeTokens tokens(){
 		return EmployeeTokens.start();
 	}
@@ -547,11 +471,11 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 	protected void checkParamsForTransferingAnotherCompany(RetailscmUserContext userContext, String employeeId, String anotherCompanyId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployee(employeeId);
  		checkerOf(userContext).checkIdOfRetailStoreCountryCenter(anotherCompanyId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
+
  	}
  	public Employee transferToAnotherCompany(RetailscmUserContext userContext, String employeeId, String anotherCompanyId) throws Exception
  	{
@@ -570,10 +494,10 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateRetailStoreCountryCenter requestCandidateCompany(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
@@ -583,7 +507,7 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("name");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -593,14 +517,14 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherDepartment(RetailscmUserContext userContext, String employeeId, String anotherDepartmentId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployee(employeeId);
  		checkerOf(userContext).checkIdOfLevelThreeDepartment(anotherDepartmentId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
+
  	}
  	public Employee transferToAnotherDepartment(RetailscmUserContext userContext, String employeeId, String anotherDepartmentId) throws Exception
  	{
@@ -619,10 +543,10 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateLevelThreeDepartment requestCandidateDepartment(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateLevelThreeDepartment result = new CandidateLevelThreeDepartment();
@@ -632,7 +556,7 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("belongsTo");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -642,14 +566,14 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherOccupation(RetailscmUserContext userContext, String employeeId, String anotherOccupationId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployee(employeeId);
  		checkerOf(userContext).checkIdOfOccupationType(anotherOccupationId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
+
  	}
  	public Employee transferToAnotherOccupation(RetailscmUserContext userContext, String employeeId, String anotherOccupationId) throws Exception
  	{
@@ -668,10 +592,10 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateOccupationType requestCandidateOccupation(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateOccupationType result = new CandidateOccupationType();
@@ -681,7 +605,7 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("code");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -691,14 +615,14 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherResponsibleFor(RetailscmUserContext userContext, String employeeId, String anotherResponsibleForId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployee(employeeId);
  		checkerOf(userContext).checkIdOfResponsibilityType(anotherResponsibleForId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
+
  	}
  	public Employee transferToAnotherResponsibleFor(RetailscmUserContext userContext, String employeeId, String anotherResponsibleForId) throws Exception
  	{
@@ -717,10 +641,10 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateResponsibilityType requestCandidateResponsibleFor(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateResponsibilityType result = new CandidateResponsibilityType();
@@ -730,7 +654,7 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("code");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -740,14 +664,14 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
+
  	protected void checkParamsForTransferingAnotherCurrentSalaryGrade(RetailscmUserContext userContext, String employeeId, String anotherCurrentSalaryGradeId) throws Exception
  	{
- 		
+
  		checkerOf(userContext).checkIdOfEmployee(employeeId);
  		checkerOf(userContext).checkIdOfSalaryGrade(anotherCurrentSalaryGradeId);//check for optional reference
  		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
+
  	}
  	public Employee transferToAnotherCurrentSalaryGrade(RetailscmUserContext userContext, String employeeId, String anotherCurrentSalaryGradeId) throws Exception
  	{
@@ -766,10 +690,10 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 
  	}
- 	
-	 	
- 	
- 	
+
+	
+
+
 	public CandidateSalaryGrade requestCandidateCurrentSalaryGrade(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
 
 		CandidateSalaryGrade result = new CandidateSalaryGrade();
@@ -779,7 +703,7 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setPageNo(pageNo);
 		result.setValueFieldName("id");
 		result.setDisplayFieldName("code");
-		
+
 		pageNo = Math.max(1, pageNo);
 		int pageSize = 20;
 		//requestCandidateProductForSkuAsOwner
@@ -789,495 +713,82 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
 		return result;
 	}
- 	
- 	protected void checkParamsForTransferingAnotherJobApplication(RetailscmUserContext userContext, String employeeId, String anotherJobApplicationId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfEmployee(employeeId);
- 		checkerOf(userContext).checkIdOfJobApplication(anotherJobApplicationId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
- 	}
- 	public Employee transferToAnotherJobApplication(RetailscmUserContext userContext, String employeeId, String anotherJobApplicationId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherJobApplication(userContext, employeeId,anotherJobApplicationId);
- 
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());	
-		synchronized(employee){
-			//will be good when the employee loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			JobApplication jobApplication = loadJobApplication(userContext, anotherJobApplicationId, emptyOptions());		
-			employee.updateJobApplication(jobApplication);		
-			employee = saveEmployee(userContext, employee, emptyOptions());
-			
-			return present(userContext,employee, allTokens());
-			
-		}
 
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateJobApplication requestCandidateJobApplication(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateJobApplication result = new CandidateJobApplication();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("applicationTime");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<JobApplication> candidateList = jobApplicationDaoOf(userContext).requestCandidateJobApplicationForEmployee(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
- 	protected void checkParamsForTransferingAnotherProfessionInterview(RetailscmUserContext userContext, String employeeId, String anotherProfessionInterviewId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfEmployee(employeeId);
- 		checkerOf(userContext).checkIdOfProfessionInterview(anotherProfessionInterviewId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
- 	}
- 	public Employee transferToAnotherProfessionInterview(RetailscmUserContext userContext, String employeeId, String anotherProfessionInterviewId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherProfessionInterview(userContext, employeeId,anotherProfessionInterviewId);
- 
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());	
-		synchronized(employee){
-			//will be good when the employee loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			ProfessionInterview professionInterview = loadProfessionInterview(userContext, anotherProfessionInterviewId, emptyOptions());		
-			employee.updateProfessionInterview(professionInterview);		
-			employee = saveEmployee(userContext, employee, emptyOptions());
-			
-			return present(userContext,employee, allTokens());
-			
-		}
-
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateProfessionInterview requestCandidateProfessionInterview(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateProfessionInterview result = new CandidateProfessionInterview();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("who");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<ProfessionInterview> candidateList = professionInterviewDaoOf(userContext).requestCandidateProfessionInterviewForEmployee(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
- 	protected void checkParamsForTransferingAnotherHrInterview(RetailscmUserContext userContext, String employeeId, String anotherHrInterviewId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfEmployee(employeeId);
- 		checkerOf(userContext).checkIdOfHrInterview(anotherHrInterviewId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
- 	}
- 	public Employee transferToAnotherHrInterview(RetailscmUserContext userContext, String employeeId, String anotherHrInterviewId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherHrInterview(userContext, employeeId,anotherHrInterviewId);
- 
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());	
-		synchronized(employee){
-			//will be good when the employee loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			HrInterview hrInterview = loadHrInterview(userContext, anotherHrInterviewId, emptyOptions());		
-			employee.updateHrInterview(hrInterview);		
-			employee = saveEmployee(userContext, employee, emptyOptions());
-			
-			return present(userContext,employee, allTokens());
-			
-		}
-
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateHrInterview requestCandidateHrInterview(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateHrInterview result = new CandidateHrInterview();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("who");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<HrInterview> candidateList = hrInterviewDaoOf(userContext).requestCandidateHrInterviewForEmployee(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
- 	protected void checkParamsForTransferingAnotherOfferApproval(RetailscmUserContext userContext, String employeeId, String anotherOfferApprovalId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfEmployee(employeeId);
- 		checkerOf(userContext).checkIdOfOfferApproval(anotherOfferApprovalId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
- 	}
- 	public Employee transferToAnotherOfferApproval(RetailscmUserContext userContext, String employeeId, String anotherOfferApprovalId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherOfferApproval(userContext, employeeId,anotherOfferApprovalId);
- 
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());	
-		synchronized(employee){
-			//will be good when the employee loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			OfferApproval offerApproval = loadOfferApproval(userContext, anotherOfferApprovalId, emptyOptions());		
-			employee.updateOfferApproval(offerApproval);		
-			employee = saveEmployee(userContext, employee, emptyOptions());
-			
-			return present(userContext,employee, allTokens());
-			
-		}
-
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateOfferApproval requestCandidateOfferApproval(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateOfferApproval result = new CandidateOfferApproval();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("who");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<OfferApproval> candidateList = offerApprovalDaoOf(userContext).requestCandidateOfferApprovalForEmployee(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
- 	protected void checkParamsForTransferingAnotherOfferAcceptance(RetailscmUserContext userContext, String employeeId, String anotherOfferAcceptanceId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfEmployee(employeeId);
- 		checkerOf(userContext).checkIdOfOfferAcceptance(anotherOfferAcceptanceId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
- 	}
- 	public Employee transferToAnotherOfferAcceptance(RetailscmUserContext userContext, String employeeId, String anotherOfferAcceptanceId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherOfferAcceptance(userContext, employeeId,anotherOfferAcceptanceId);
- 
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());	
-		synchronized(employee){
-			//will be good when the employee loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			OfferAcceptance offerAcceptance = loadOfferAcceptance(userContext, anotherOfferAcceptanceId, emptyOptions());		
-			employee.updateOfferAcceptance(offerAcceptance);		
-			employee = saveEmployee(userContext, employee, emptyOptions());
-			
-			return present(userContext,employee, allTokens());
-			
-		}
-
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateOfferAcceptance requestCandidateOfferAcceptance(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateOfferAcceptance result = new CandidateOfferAcceptance();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("who");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<OfferAcceptance> candidateList = offerAcceptanceDaoOf(userContext).requestCandidateOfferAcceptanceForEmployee(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
- 	protected void checkParamsForTransferingAnotherEmployeeBoarding(RetailscmUserContext userContext, String employeeId, String anotherEmployeeBoardingId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfEmployee(employeeId);
- 		checkerOf(userContext).checkIdOfEmployeeBoarding(anotherEmployeeBoardingId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
- 	}
- 	public Employee transferToAnotherEmployeeBoarding(RetailscmUserContext userContext, String employeeId, String anotherEmployeeBoardingId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherEmployeeBoarding(userContext, employeeId,anotherEmployeeBoardingId);
- 
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());	
-		synchronized(employee){
-			//will be good when the employee loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			EmployeeBoarding employeeBoarding = loadEmployeeBoarding(userContext, anotherEmployeeBoardingId, emptyOptions());		
-			employee.updateEmployeeBoarding(employeeBoarding);		
-			employee = saveEmployee(userContext, employee, emptyOptions());
-			
-			return present(userContext,employee, allTokens());
-			
-		}
-
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateEmployeeBoarding requestCandidateEmployeeBoarding(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateEmployeeBoarding result = new CandidateEmployeeBoarding();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("who");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<EmployeeBoarding> candidateList = employeeBoardingDaoOf(userContext).requestCandidateEmployeeBoardingForEmployee(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
- 	protected void checkParamsForTransferingAnotherTermination(RetailscmUserContext userContext, String employeeId, String anotherTerminationId) throws Exception
- 	{
- 		
- 		checkerOf(userContext).checkIdOfEmployee(employeeId);
- 		checkerOf(userContext).checkIdOfTermination(anotherTerminationId);//check for optional reference
- 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
- 		
- 	}
- 	public Employee transferToAnotherTermination(RetailscmUserContext userContext, String employeeId, String anotherTerminationId) throws Exception
- 	{
- 		checkParamsForTransferingAnotherTermination(userContext, employeeId,anotherTerminationId);
- 
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());	
-		synchronized(employee){
-			//will be good when the employee loaded from this JVM process cache.
-			//also good when there is a ram based DAO implementation
-			Termination termination = loadTermination(userContext, anotherTerminationId, emptyOptions());		
-			employee.updateTermination(termination);		
-			employee = saveEmployee(userContext, employee, emptyOptions());
-			
-			return present(userContext,employee, allTokens());
-			
-		}
-
- 	}
- 	
-	 	
- 	
- 	
-	public CandidateTermination requestCandidateTermination(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
-
-		CandidateTermination result = new CandidateTermination();
-		result.setOwnerClass(ownerClass);
-		result.setOwnerId(id);
-		result.setFilterKey(filterKey==null?"":filterKey.trim());
-		result.setPageNo(pageNo);
-		result.setValueFieldName("id");
-		result.setDisplayFieldName("reason");
-		
-		pageNo = Math.max(1, pageNo);
-		int pageSize = 20;
-		//requestCandidateProductForSkuAsOwner
-		SmartList<Termination> candidateList = terminationDaoOf(userContext).requestCandidateTerminationForEmployee(userContext,ownerClass, id, filterKey, pageNo, pageSize);
-		result.setCandidates(candidateList);
-		int totalCount = candidateList.getTotalCount();
-		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
-		return result;
-	}
- 	
  //--------------------------------------------------------------
 	
-	 	
- 	protected ProfessionInterview loadProfessionInterview(RetailscmUserContext userContext, String newProfessionInterviewId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return professionInterviewDaoOf(userContext).load(newProfessionInterviewId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
+
  	protected SalaryGrade loadSalaryGrade(RetailscmUserContext userContext, String newCurrentSalaryGradeId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return salaryGradeDaoOf(userContext).load(newCurrentSalaryGradeId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected LevelThreeDepartment loadLevelThreeDepartment(RetailscmUserContext userContext, String newDepartmentId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return levelThreeDepartmentDaoOf(userContext).load(newDepartmentId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected OccupationType loadOccupationType(RetailscmUserContext userContext, String newOccupationId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return occupationTypeDaoOf(userContext).load(newOccupationId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
- 	protected OfferAcceptance loadOfferAcceptance(RetailscmUserContext userContext, String newOfferAcceptanceId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return offerAcceptanceDaoOf(userContext).load(newOfferAcceptanceId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected HrInterview loadHrInterview(RetailscmUserContext userContext, String newHrInterviewId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return hrInterviewDaoOf(userContext).load(newHrInterviewId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected JobApplication loadJobApplication(RetailscmUserContext userContext, String newJobApplicationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return jobApplicationDaoOf(userContext).load(newJobApplicationId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected EmployeeBoarding loadEmployeeBoarding(RetailscmUserContext userContext, String newEmployeeBoardingId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return employeeBoardingDaoOf(userContext).load(newEmployeeBoardingId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
- 	protected OfferApproval loadOfferApproval(RetailscmUserContext userContext, String newOfferApprovalId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return offerApprovalDaoOf(userContext).load(newOfferApprovalId, options);
- 	}
- 	
- 	
- 	
-	
-	 	
+
  	protected RetailStoreCountryCenter loadRetailStoreCountryCenter(RetailscmUserContext userContext, String newCompanyId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return retailStoreCountryCenterDaoOf(userContext).load(newCompanyId, options);
  	}
  	
- 	
- 	
+
+
 	
-	 	
+
  	protected ResponsibilityType loadResponsibilityType(RetailscmUserContext userContext, String newResponsibleForId, Map<String,Object> options) throws Exception
  	{
-		
+
  		return responsibilityTypeDaoOf(userContext).load(newResponsibleForId, options);
  	}
  	
- 	
- 	
-	
-	 	
- 	protected Termination loadTermination(RetailscmUserContext userContext, String newTerminationId, Map<String,Object> options) throws Exception
- 	{
-		
- 		return terminationDaoOf(userContext).load(newTerminationId, options);
- 	}
- 	
- 	
- 	
+
+
 	
 	//--------------------------------------------------------------
 
 	public void delete(RetailscmUserContext userContext, String employeeId, int employeeVersion) throws Exception {
-		//deleteInternal(userContext, employeeId, employeeVersion);		
+		//deleteInternal(userContext, employeeId, employeeVersion);
 	}
 	protected void deleteInternal(RetailscmUserContext userContext,
 			String employeeId, int employeeVersion) throws Exception{
-			
+
 		employeeDaoOf(userContext).delete(employeeId, employeeVersion);
 	}
-	
+
 	public Employee forgetByAll(RetailscmUserContext userContext, String employeeId, int employeeVersion) throws Exception {
-		return forgetByAllInternal(userContext, employeeId, employeeVersion);		
+		return forgetByAllInternal(userContext, employeeId, employeeVersion);
 	}
 	protected Employee forgetByAllInternal(RetailscmUserContext userContext,
 			String employeeId, int employeeVersion) throws Exception{
-			
+
 		return employeeDaoOf(userContext).disconnectFromAll(employeeId, employeeVersion);
 	}
-	
-	
 
-	
+
+
+
 	public int deleteAll(RetailscmUserContext userContext, String secureCode) throws Exception
 	{
 		/*
@@ -1288,8 +799,8 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		*/
 		return 0;
 	}
-	
-	
+
+
 	protected int deleteAllInternal(RetailscmUserContext userContext) throws Exception{
 		return employeeDaoOf(userContext).deleteAll();
 	}
@@ -1298,15 +809,15 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	//disconnect Employee with training in EmployeeCompanyTraining
 	protected Employee breakWithEmployeeCompanyTrainingByTraining(RetailscmUserContext userContext, String employeeId, String trainingId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
 
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				employeeDaoOf(userContext).planToRemoveEmployeeCompanyTrainingListWithTraining(employee, trainingId, this.emptyOptions());
 
 				employee = saveEmployee(userContext, employee, tokens().withEmployeeCompanyTrainingList().done());
@@ -1316,15 +827,15 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	//disconnect Employee with scoring in EmployeeCompanyTraining
 	protected Employee breakWithEmployeeCompanyTrainingByScoring(RetailscmUserContext userContext, String employeeId, String scoringId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
 
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				employeeDaoOf(userContext).planToRemoveEmployeeCompanyTrainingListWithScoring(employee, scoringId, this.emptyOptions());
 
 				employee = saveEmployee(userContext, employee, tokens().withEmployeeCompanyTrainingList().done());
@@ -1334,15 +845,15 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	//disconnect Employee with skill_type in EmployeeSkill
 	protected Employee breakWithEmployeeSkillBySkillType(RetailscmUserContext userContext, String employeeId, String skillTypeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
 
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				employeeDaoOf(userContext).planToRemoveEmployeeSkillListWithSkillType(employee, skillTypeId, this.emptyOptions());
 
 				employee = saveEmployee(userContext, employee, tokens().withEmployeeSkillList().done());
@@ -1352,15 +863,15 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	//disconnect Employee with type in EmployeeLeave
 	protected Employee breakWithEmployeeLeaveByType(RetailscmUserContext userContext, String employeeId, String typeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
 
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				employeeDaoOf(userContext).planToRemoveEmployeeLeaveListWithType(employee, typeId, this.emptyOptions());
 
 				employee = saveEmployee(userContext, employee, tokens().withEmployeeLeaveList().done());
@@ -1370,15 +881,15 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	//disconnect Employee with interview_type in EmployeeInterview
 	protected Employee breakWithEmployeeInterviewByInterviewType(RetailscmUserContext userContext, String employeeId, String interviewTypeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
 
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				employeeDaoOf(userContext).planToRemoveEmployeeInterviewListWithInterviewType(employee, interviewTypeId, this.emptyOptions());
 
 				employee = saveEmployee(userContext, employee, tokens().withEmployeeInterviewList().done());
@@ -1388,15 +899,15 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	//disconnect Employee with current_salary_grade in EmployeeSalarySheet
 	protected Employee breakWithEmployeeSalarySheetByCurrentSalaryGrade(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
 
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				employeeDaoOf(userContext).planToRemoveEmployeeSalarySheetListWithCurrentSalaryGrade(employee, currentSalaryGradeId, this.emptyOptions());
 
 				employee = saveEmployee(userContext, employee, tokens().withEmployeeSalarySheetList().done());
@@ -1406,29 +917,29 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	//disconnect Employee with paying_off in EmployeeSalarySheet
 	protected Employee breakWithEmployeeSalarySheetByPayingOff(RetailscmUserContext userContext, String employeeId, String payingOffId,  String [] tokensExpr)
 		 throws Exception{
-			
+
 			//TODO add check code here
-			
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
 
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the thread loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
-				
+
 				employeeDaoOf(userContext).planToRemoveEmployeeSalarySheetListWithPayingOff(employee, payingOffId, this.emptyOptions());
 
 				employee = saveEmployee(userContext, employee, tokens().withEmployeeSalarySheetList().done());
 				return employee;
 			}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	protected void checkParamsForAddingEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String trainingId, String scoringId,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -1438,20 +949,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String trainingId, String scoringId, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeCompanyTraining(userContext,employeeId,trainingId, scoringId,tokensExpr);
-		
+
 		EmployeeCompanyTraining employeeCompanyTraining = createEmployeeCompanyTraining(userContext,trainingId, scoringId);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeCompanyTraining( employeeCompanyTraining );		
+			employee.addEmployeeCompanyTraining( employeeCompanyTraining );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeCompanyTrainingList().done());
 			
 			userContext.getManagerGroup().getEmployeeCompanyTrainingManager().onNewInstanceCreated(userContext, employeeCompanyTraining);
@@ -1459,41 +970,41 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeCompanyTrainingProperties(RetailscmUserContext userContext, String employeeId,String id,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(id);
-		
+
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeCompanyTrainingProperties(RetailscmUserContext userContext, String employeeId, String id, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeCompanyTrainingProperties(userContext,employeeId,id,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeCompanyTrainingListList()
 				.searchEmployeeCompanyTrainingListWith(EmployeeCompanyTraining.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeCompanyTrainingList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeCompanyTraining is NOT FOUND with id: '"+id+"'");
 		}
-		
-		EmployeeCompanyTraining item = employeeToUpdate.getEmployeeCompanyTrainingList().first();
-		
 
-		
+		EmployeeCompanyTraining item = employeeToUpdate.getEmployeeCompanyTrainingList().first();
+
+
+
 		//checkParamsForAddingEmployeeCompanyTraining(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeCompanyTrainingList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeCompanyTraining createEmployeeCompanyTraining(RetailscmUserContext userContext, String trainingId, String scoringId) throws Exception{
 
 		EmployeeCompanyTraining employeeCompanyTraining = new EmployeeCompanyTraining();
@@ -1508,38 +1019,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeCompanyTraining;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeCompanyTraining createIndexedEmployeeCompanyTraining(String id, int version){
 
 		EmployeeCompanyTraining employeeCompanyTraining = new EmployeeCompanyTraining();
 		employeeCompanyTraining.setId(id);
 		employeeCompanyTraining.setVersion(version);
-		return employeeCompanyTraining;			
-		
+		return employeeCompanyTraining;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeCompanyTrainingList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeCompanyTrainingList(RetailscmUserContext userContext, String employeeId,
 			String employeeCompanyTrainingIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeCompanyTrainingIdItem: employeeCompanyTrainingIds){
 			checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeCompanyTrainingList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeCompanyTrainingList(RetailscmUserContext userContext, String employeeId,
 			String employeeCompanyTrainingIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeCompanyTrainingList(userContext, employeeId,  employeeCompanyTrainingIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeCompanyTrainingList(employee, employeeCompanyTrainingIds, allTokens());
@@ -1548,65 +1059,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId,
 		String employeeCompanyTrainingId, int employeeCompanyTrainingVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
 		checkerOf(userContext).checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId,
 		String employeeCompanyTrainingId, int employeeCompanyTrainingVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeCompanyTraining(userContext,employeeId, employeeCompanyTrainingId, employeeCompanyTrainingVersion,tokensExpr);
-		
+
 		EmployeeCompanyTraining employeeCompanyTraining = createIndexedEmployeeCompanyTraining(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeCompanyTraining( employeeCompanyTraining );		
+			employee.removeEmployeeCompanyTraining( employeeCompanyTraining );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeCompanyTrainingList().done());
 			deleteRelationInGraph(userContext, employeeCompanyTraining);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId,
 		String employeeCompanyTrainingId, int employeeCompanyTrainingVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeCompanyTraining(employeeCompanyTrainingId);
 		checkerOf(userContext).checkVersionOfEmployeeCompanyTraining(employeeCompanyTrainingVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeCompanyTrainingFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeCompanyTrainingFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeCompanyTrainingId, int employeeCompanyTrainingVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeCompanyTraining(userContext,employeeId, employeeCompanyTrainingId, employeeCompanyTrainingVersion,tokensExpr);
-		
+
 		EmployeeCompanyTraining employeeCompanyTraining = createIndexedEmployeeCompanyTraining(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeCompanyTrainingFrom( employeeCompanyTraining );		
+
+			employee.copyEmployeeCompanyTrainingFrom( employeeCompanyTraining );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeCompanyTrainingList().done());
 			
 			userContext.getManagerGroup().getEmployeeCompanyTrainingManager().onNewInstanceCreated(userContext, (EmployeeCompanyTraining)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1618,32 +1129,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeCompanyTraining(RetailscmUserContext userContext, String employeeId, String employeeCompanyTrainingId, int employeeCompanyTrainingVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeCompanyTraining(userContext, employeeId, employeeCompanyTrainingId, employeeCompanyTrainingVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeCompanyTrainingList().searchEmployeeCompanyTrainingListWith(EmployeeCompanyTraining.ID_PROPERTY, "eq", employeeCompanyTrainingId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeCompanyTraining( employeeCompanyTraining );	
+			//employee.removeEmployeeCompanyTraining( employeeCompanyTraining );
 			//make changes to AcceleraterAccount.
 			EmployeeCompanyTraining employeeCompanyTrainingIndex = createIndexedEmployeeCompanyTraining(employeeCompanyTrainingId, employeeCompanyTrainingVersion);
-		
+
 			EmployeeCompanyTraining employeeCompanyTraining = employee.findTheEmployeeCompanyTraining(employeeCompanyTrainingIndex);
 			if(employeeCompanyTraining == null){
 				throw new EmployeeManagerException(employeeCompanyTraining+" is NOT FOUND" );
 			}
-			
+
 			employeeCompanyTraining.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeCompanyTrainingList().done());
@@ -1654,12 +1165,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeSkill(RetailscmUserContext userContext, String employeeId, String skillTypeId, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -1669,20 +1180,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeSkill(RetailscmUserContext userContext, String employeeId, String skillTypeId, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeSkill(userContext,employeeId,skillTypeId, description,tokensExpr);
-		
+
 		EmployeeSkill employeeSkill = createEmployeeSkill(userContext,skillTypeId, description);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeSkill( employeeSkill );		
+			employee.addEmployeeSkill( employeeSkill );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSkillList().done());
 			
 			userContext.getManagerGroup().getEmployeeSkillManager().onNewInstanceCreated(userContext, employeeSkill);
@@ -1690,43 +1201,43 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeSkillProperties(RetailscmUserContext userContext, String employeeId,String id,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeSkill(id);
-		
+
 		checkerOf(userContext).checkDescriptionOfEmployeeSkill( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeSkillProperties(RetailscmUserContext userContext, String employeeId, String id,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeSkillProperties(userContext,employeeId,id,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeSkillListList()
 				.searchEmployeeSkillListWith(EmployeeSkill.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeSkillList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeSkill is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeSkill item = employeeToUpdate.getEmployeeSkillList().first();
-		
+
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingEmployeeSkill(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeSkillList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeSkill createEmployeeSkill(RetailscmUserContext userContext, String skillTypeId, String description) throws Exception{
 
 		EmployeeSkill employeeSkill = new EmployeeSkill();
@@ -1739,38 +1250,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeSkill;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeSkill createIndexedEmployeeSkill(String id, int version){
 
 		EmployeeSkill employeeSkill = new EmployeeSkill();
 		employeeSkill.setId(id);
 		employeeSkill.setVersion(version);
-		return employeeSkill;			
-		
+		return employeeSkill;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeSkillList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeSkillList(RetailscmUserContext userContext, String employeeId,
 			String employeeSkillIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeSkillIdItem: employeeSkillIds){
 			checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeSkillList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeSkillList(RetailscmUserContext userContext, String employeeId,
 			String employeeSkillIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeSkillList(userContext, employeeId,  employeeSkillIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeSkillList(employee, employeeSkillIds, allTokens());
@@ -1779,65 +1290,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeSkill(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeSkill(RetailscmUserContext userContext, String employeeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
 		checkerOf(userContext).checkVersionOfEmployeeSkill(employeeSkillVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeSkill(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeSkill(RetailscmUserContext userContext, String employeeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeSkill(userContext,employeeId, employeeSkillId, employeeSkillVersion,tokensExpr);
-		
+
 		EmployeeSkill employeeSkill = createIndexedEmployeeSkill(employeeSkillId, employeeSkillVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeSkill( employeeSkill );		
+			employee.removeEmployeeSkill( employeeSkill );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSkillList().done());
 			deleteRelationInGraph(userContext, employeeSkill);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeSkill(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeSkill(RetailscmUserContext userContext, String employeeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeSkill(employeeSkillId);
 		checkerOf(userContext).checkVersionOfEmployeeSkill(employeeSkillVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeSkillFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeSkillFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeSkillId, int employeeSkillVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeSkill(userContext,employeeId, employeeSkillId, employeeSkillVersion,tokensExpr);
-		
+
 		EmployeeSkill employeeSkill = createIndexedEmployeeSkill(employeeSkillId, employeeSkillVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeSkillFrom( employeeSkill );		
+
+			employee.copyEmployeeSkillFrom( employeeSkill );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSkillList().done());
 			
 			userContext.getManagerGroup().getEmployeeSkillManager().onNewInstanceCreated(userContext, (EmployeeSkill)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeSkill(RetailscmUserContext userContext, String employeeId, String employeeSkillId, int employeeSkillVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -1853,32 +1364,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeSkill(RetailscmUserContext userContext, String employeeId, String employeeSkillId, int employeeSkillVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeSkill(userContext, employeeId, employeeSkillId, employeeSkillVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeSkillList().searchEmployeeSkillListWith(EmployeeSkill.ID_PROPERTY, "eq", employeeSkillId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeSkill( employeeSkill );	
+			//employee.removeEmployeeSkill( employeeSkill );
 			//make changes to AcceleraterAccount.
 			EmployeeSkill employeeSkillIndex = createIndexedEmployeeSkill(employeeSkillId, employeeSkillVersion);
-		
+
 			EmployeeSkill employeeSkill = employee.findTheEmployeeSkill(employeeSkillIndex);
 			if(employeeSkill == null){
 				throw new EmployeeManagerException(employeeSkill+" is NOT FOUND" );
 			}
-			
+
 			employeeSkill.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSkillList().done());
@@ -1889,12 +1400,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeePerformance(RetailscmUserContext userContext, String employeeId, String performanceComment,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -1902,20 +1413,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeePerformance(RetailscmUserContext userContext, String employeeId, String performanceComment, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeePerformance(userContext,employeeId,performanceComment,tokensExpr);
-		
+
 		EmployeePerformance employeePerformance = createEmployeePerformance(userContext,performanceComment);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeePerformance( employeePerformance );		
+			employee.addEmployeePerformance( employeePerformance );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeePerformanceList().done());
 			
 			userContext.getManagerGroup().getEmployeePerformanceManager().onNewInstanceCreated(userContext, employeePerformance);
@@ -1923,43 +1434,43 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeePerformanceProperties(RetailscmUserContext userContext, String employeeId,String id,String performanceComment,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeePerformance(id);
-		
+
 		checkerOf(userContext).checkPerformanceCommentOfEmployeePerformance( performanceComment);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeePerformanceProperties(RetailscmUserContext userContext, String employeeId, String id,String performanceComment, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeePerformanceProperties(userContext,employeeId,id,performanceComment,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeePerformanceListList()
 				.searchEmployeePerformanceListWith(EmployeePerformance.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeePerformanceList().isEmpty()){
 			throw new EmployeeManagerException("EmployeePerformance is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeePerformance item = employeeToUpdate.getEmployeePerformanceList().first();
-		
+
 		item.updatePerformanceComment( performanceComment );
 
-		
+
 		//checkParamsForAddingEmployeePerformance(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeePerformanceList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeePerformance createEmployeePerformance(RetailscmUserContext userContext, String performanceComment) throws Exception{
 
 		EmployeePerformance employeePerformance = new EmployeePerformance();
@@ -1969,38 +1480,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeePerformance;
-	
-		
+
+
 	}
-	
+
 	protected EmployeePerformance createIndexedEmployeePerformance(String id, int version){
 
 		EmployeePerformance employeePerformance = new EmployeePerformance();
 		employeePerformance.setId(id);
 		employeePerformance.setVersion(version);
-		return employeePerformance;			
-		
+		return employeePerformance;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeePerformanceList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeePerformanceList(RetailscmUserContext userContext, String employeeId,
 			String employeePerformanceIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeePerformanceIdItem: employeePerformanceIds){
 			checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeePerformanceList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeePerformanceList(RetailscmUserContext userContext, String employeeId,
 			String employeePerformanceIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeePerformanceList(userContext, employeeId,  employeePerformanceIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeePerformanceList(employee, employeePerformanceIds, allTokens());
@@ -2009,65 +1520,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeePerformance(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeePerformance(RetailscmUserContext userContext, String employeeId,
 		String employeePerformanceId, int employeePerformanceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
 		checkerOf(userContext).checkVersionOfEmployeePerformance(employeePerformanceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeePerformance(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeePerformance(RetailscmUserContext userContext, String employeeId,
 		String employeePerformanceId, int employeePerformanceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeePerformance(userContext,employeeId, employeePerformanceId, employeePerformanceVersion,tokensExpr);
-		
+
 		EmployeePerformance employeePerformance = createIndexedEmployeePerformance(employeePerformanceId, employeePerformanceVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeePerformance( employeePerformance );		
+			employee.removeEmployeePerformance( employeePerformance );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeePerformanceList().done());
 			deleteRelationInGraph(userContext, employeePerformance);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeePerformance(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeePerformance(RetailscmUserContext userContext, String employeeId,
 		String employeePerformanceId, int employeePerformanceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeePerformance(employeePerformanceId);
 		checkerOf(userContext).checkVersionOfEmployeePerformance(employeePerformanceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeePerformanceFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeePerformanceFrom(RetailscmUserContext userContext, String employeeId,
 		String employeePerformanceId, int employeePerformanceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeePerformance(userContext,employeeId, employeePerformanceId, employeePerformanceVersion,tokensExpr);
-		
+
 		EmployeePerformance employeePerformance = createIndexedEmployeePerformance(employeePerformanceId, employeePerformanceVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeePerformanceFrom( employeePerformance );		
+
+			employee.copyEmployeePerformanceFrom( employeePerformance );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeePerformanceList().done());
 			
 			userContext.getManagerGroup().getEmployeePerformanceManager().onNewInstanceCreated(userContext, (EmployeePerformance)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeePerformance(RetailscmUserContext userContext, String employeeId, String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -2083,32 +1594,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeePerformance(RetailscmUserContext userContext, String employeeId, String employeePerformanceId, int employeePerformanceVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeePerformance(userContext, employeeId, employeePerformanceId, employeePerformanceVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeePerformanceList().searchEmployeePerformanceListWith(EmployeePerformance.ID_PROPERTY, "eq", employeePerformanceId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeePerformance( employeePerformance );	
+			//employee.removeEmployeePerformance( employeePerformance );
 			//make changes to AcceleraterAccount.
 			EmployeePerformance employeePerformanceIndex = createIndexedEmployeePerformance(employeePerformanceId, employeePerformanceVersion);
-		
+
 			EmployeePerformance employeePerformance = employee.findTheEmployeePerformance(employeePerformanceIndex);
 			if(employeePerformance == null){
 				throw new EmployeeManagerException(employeePerformance+" is NOT FOUND" );
 			}
-			
+
 			employeePerformance.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeePerformanceList().done());
@@ -2119,12 +1630,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId, Date start, Date end, String company, String description,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -2138,20 +1649,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId, Date start, Date end, String company, String description, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeWorkExperience(userContext,employeeId,start, end, company, description,tokensExpr);
-		
+
 		EmployeeWorkExperience employeeWorkExperience = createEmployeeWorkExperience(userContext,start, end, company, description);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeWorkExperience( employeeWorkExperience );		
+			employee.addEmployeeWorkExperience( employeeWorkExperience );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeWorkExperienceList().done());
 			
 			userContext.getManagerGroup().getEmployeeWorkExperienceManager().onNewInstanceCreated(userContext, employeeWorkExperience);
@@ -2159,49 +1670,49 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeWorkExperienceProperties(RetailscmUserContext userContext, String employeeId,String id,Date start,Date end,String company,String description,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeWorkExperience(id);
-		
+
 		checkerOf(userContext).checkStartOfEmployeeWorkExperience( start);
 		checkerOf(userContext).checkEndOfEmployeeWorkExperience( end);
 		checkerOf(userContext).checkCompanyOfEmployeeWorkExperience( company);
 		checkerOf(userContext).checkDescriptionOfEmployeeWorkExperience( description);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeWorkExperienceProperties(RetailscmUserContext userContext, String employeeId, String id,Date start,Date end,String company,String description, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeWorkExperienceProperties(userContext,employeeId,id,start,end,company,description,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeWorkExperienceListList()
 				.searchEmployeeWorkExperienceListWith(EmployeeWorkExperience.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeWorkExperienceList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeWorkExperience is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeWorkExperience item = employeeToUpdate.getEmployeeWorkExperienceList().first();
-		
+
 		item.updateStart( start );
 		item.updateEnd( end );
 		item.updateCompany( company );
 		item.updateDescription( description );
 
-		
+
 		//checkParamsForAddingEmployeeWorkExperience(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeWorkExperienceList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeWorkExperience createEmployeeWorkExperience(RetailscmUserContext userContext, Date start, Date end, String company, String description) throws Exception{
 
 		EmployeeWorkExperience employeeWorkExperience = new EmployeeWorkExperience();
@@ -2214,38 +1725,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeWorkExperience;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeWorkExperience createIndexedEmployeeWorkExperience(String id, int version){
 
 		EmployeeWorkExperience employeeWorkExperience = new EmployeeWorkExperience();
 		employeeWorkExperience.setId(id);
 		employeeWorkExperience.setVersion(version);
-		return employeeWorkExperience;			
-		
+		return employeeWorkExperience;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeWorkExperienceList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeWorkExperienceList(RetailscmUserContext userContext, String employeeId,
 			String employeeWorkExperienceIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeWorkExperienceIdItem: employeeWorkExperienceIds){
 			checkerOf(userContext).checkIdOfEmployeeWorkExperience(employeeWorkExperienceIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeWorkExperienceList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeWorkExperienceList(RetailscmUserContext userContext, String employeeId,
 			String employeeWorkExperienceIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeWorkExperienceList(userContext, employeeId,  employeeWorkExperienceIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeWorkExperienceList(employee, employeeWorkExperienceIds, allTokens());
@@ -2254,65 +1765,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId,
 		String employeeWorkExperienceId, int employeeWorkExperienceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeWorkExperience(employeeWorkExperienceId);
 		checkerOf(userContext).checkVersionOfEmployeeWorkExperience(employeeWorkExperienceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId,
 		String employeeWorkExperienceId, int employeeWorkExperienceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeWorkExperience(userContext,employeeId, employeeWorkExperienceId, employeeWorkExperienceVersion,tokensExpr);
-		
+
 		EmployeeWorkExperience employeeWorkExperience = createIndexedEmployeeWorkExperience(employeeWorkExperienceId, employeeWorkExperienceVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeWorkExperience( employeeWorkExperience );		
+			employee.removeEmployeeWorkExperience( employeeWorkExperience );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeWorkExperienceList().done());
 			deleteRelationInGraph(userContext, employeeWorkExperience);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId,
 		String employeeWorkExperienceId, int employeeWorkExperienceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeWorkExperience(employeeWorkExperienceId);
 		checkerOf(userContext).checkVersionOfEmployeeWorkExperience(employeeWorkExperienceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeWorkExperienceFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeWorkExperienceFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeWorkExperienceId, int employeeWorkExperienceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeWorkExperience(userContext,employeeId, employeeWorkExperienceId, employeeWorkExperienceVersion,tokensExpr);
-		
+
 		EmployeeWorkExperience employeeWorkExperience = createIndexedEmployeeWorkExperience(employeeWorkExperienceId, employeeWorkExperienceVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeWorkExperienceFrom( employeeWorkExperience );		
+
+			employee.copyEmployeeWorkExperienceFrom( employeeWorkExperience );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeWorkExperienceList().done());
 			
 			userContext.getManagerGroup().getEmployeeWorkExperienceManager().onNewInstanceCreated(userContext, (EmployeeWorkExperience)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId, String employeeWorkExperienceId, int employeeWorkExperienceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -2340,32 +1851,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeWorkExperience(RetailscmUserContext userContext, String employeeId, String employeeWorkExperienceId, int employeeWorkExperienceVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeWorkExperience(userContext, employeeId, employeeWorkExperienceId, employeeWorkExperienceVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeWorkExperienceList().searchEmployeeWorkExperienceListWith(EmployeeWorkExperience.ID_PROPERTY, "eq", employeeWorkExperienceId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeWorkExperience( employeeWorkExperience );	
+			//employee.removeEmployeeWorkExperience( employeeWorkExperience );
 			//make changes to AcceleraterAccount.
 			EmployeeWorkExperience employeeWorkExperienceIndex = createIndexedEmployeeWorkExperience(employeeWorkExperienceId, employeeWorkExperienceVersion);
-		
+
 			EmployeeWorkExperience employeeWorkExperience = employee.findTheEmployeeWorkExperience(employeeWorkExperienceIndex);
 			if(employeeWorkExperience == null){
 				throw new EmployeeManagerException(employeeWorkExperience+" is NOT FOUND" );
 			}
-			
+
 			employeeWorkExperience.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeWorkExperienceList().done());
@@ -2376,12 +1887,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeLeave(RetailscmUserContext userContext, String employeeId, String typeId, int leaveDurationHour, String remark,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -2393,20 +1904,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeLeave(RetailscmUserContext userContext, String employeeId, String typeId, int leaveDurationHour, String remark, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeLeave(userContext,employeeId,typeId, leaveDurationHour, remark,tokensExpr);
-		
+
 		EmployeeLeave employeeLeave = createEmployeeLeave(userContext,typeId, leaveDurationHour, remark);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeLeave( employeeLeave );		
+			employee.addEmployeeLeave( employeeLeave );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeLeaveList().done());
 			
 			userContext.getManagerGroup().getEmployeeLeaveManager().onNewInstanceCreated(userContext, employeeLeave);
@@ -2414,45 +1925,45 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeLeaveProperties(RetailscmUserContext userContext, String employeeId,String id,int leaveDurationHour,String remark,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeLeave(id);
-		
+
 		checkerOf(userContext).checkLeaveDurationHourOfEmployeeLeave( leaveDurationHour);
 		checkerOf(userContext).checkRemarkOfEmployeeLeave( remark);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeLeaveProperties(RetailscmUserContext userContext, String employeeId, String id,int leaveDurationHour,String remark, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeLeaveProperties(userContext,employeeId,id,leaveDurationHour,remark,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeLeaveListList()
 				.searchEmployeeLeaveListWith(EmployeeLeave.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeLeaveList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeLeave is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeLeave item = employeeToUpdate.getEmployeeLeaveList().first();
-		
+
 		item.updateLeaveDurationHour( leaveDurationHour );
 		item.updateRemark( remark );
 
-		
+
 		//checkParamsForAddingEmployeeLeave(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeLeaveList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeLeave createEmployeeLeave(RetailscmUserContext userContext, String typeId, int leaveDurationHour, String remark) throws Exception{
 
 		EmployeeLeave employeeLeave = new EmployeeLeave();
@@ -2466,38 +1977,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeLeave;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeLeave createIndexedEmployeeLeave(String id, int version){
 
 		EmployeeLeave employeeLeave = new EmployeeLeave();
 		employeeLeave.setId(id);
 		employeeLeave.setVersion(version);
-		return employeeLeave;			
-		
+		return employeeLeave;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeLeaveList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeLeaveList(RetailscmUserContext userContext, String employeeId,
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeLeaveIdItem: employeeLeaveIds){
 			checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeLeaveList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeLeaveList(RetailscmUserContext userContext, String employeeId,
 			String employeeLeaveIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeLeaveList(userContext, employeeId,  employeeLeaveIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeLeaveList(employee, employeeLeaveIds, allTokens());
@@ -2506,65 +2017,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeLeave(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeLeave(RetailscmUserContext userContext, String employeeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
 		checkerOf(userContext).checkVersionOfEmployeeLeave(employeeLeaveVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeLeave(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeLeave(RetailscmUserContext userContext, String employeeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeLeave(userContext,employeeId, employeeLeaveId, employeeLeaveVersion,tokensExpr);
-		
+
 		EmployeeLeave employeeLeave = createIndexedEmployeeLeave(employeeLeaveId, employeeLeaveVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeLeave( employeeLeave );		
+			employee.removeEmployeeLeave( employeeLeave );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeLeaveList().done());
 			deleteRelationInGraph(userContext, employeeLeave);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeLeave(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeLeave(RetailscmUserContext userContext, String employeeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeLeave(employeeLeaveId);
 		checkerOf(userContext).checkVersionOfEmployeeLeave(employeeLeaveVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeLeaveFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeLeaveFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeLeaveId, int employeeLeaveVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeLeave(userContext,employeeId, employeeLeaveId, employeeLeaveVersion,tokensExpr);
-		
+
 		EmployeeLeave employeeLeave = createIndexedEmployeeLeave(employeeLeaveId, employeeLeaveVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeLeaveFrom( employeeLeave );		
+
+			employee.copyEmployeeLeaveFrom( employeeLeave );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeLeaveList().done());
 			
 			userContext.getManagerGroup().getEmployeeLeaveManager().onNewInstanceCreated(userContext, (EmployeeLeave)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeLeave(RetailscmUserContext userContext, String employeeId, String employeeLeaveId, int employeeLeaveVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -2584,32 +2095,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeLeave(RetailscmUserContext userContext, String employeeId, String employeeLeaveId, int employeeLeaveVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeLeave(userContext, employeeId, employeeLeaveId, employeeLeaveVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeLeaveList().searchEmployeeLeaveListWith(EmployeeLeave.ID_PROPERTY, "eq", employeeLeaveId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeLeave( employeeLeave );	
+			//employee.removeEmployeeLeave( employeeLeave );
 			//make changes to AcceleraterAccount.
 			EmployeeLeave employeeLeaveIndex = createIndexedEmployeeLeave(employeeLeaveId, employeeLeaveVersion);
-		
+
 			EmployeeLeave employeeLeave = employee.findTheEmployeeLeave(employeeLeaveIndex);
 			if(employeeLeave == null){
 				throw new EmployeeManagerException(employeeLeave+" is NOT FOUND" );
 			}
-			
+
 			employeeLeave.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeLeaveList().done());
@@ -2620,12 +2131,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeInterview(RetailscmUserContext userContext, String employeeId, String interviewTypeId, String remark,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -2635,20 +2146,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeInterview(RetailscmUserContext userContext, String employeeId, String interviewTypeId, String remark, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeInterview(userContext,employeeId,interviewTypeId, remark,tokensExpr);
-		
+
 		EmployeeInterview employeeInterview = createEmployeeInterview(userContext,interviewTypeId, remark);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeInterview( employeeInterview );		
+			employee.addEmployeeInterview( employeeInterview );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeInterviewList().done());
 			
 			userContext.getManagerGroup().getEmployeeInterviewManager().onNewInstanceCreated(userContext, employeeInterview);
@@ -2656,43 +2167,43 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeInterviewProperties(RetailscmUserContext userContext, String employeeId,String id,String remark,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeInterview(id);
-		
+
 		checkerOf(userContext).checkRemarkOfEmployeeInterview( remark);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeInterviewProperties(RetailscmUserContext userContext, String employeeId, String id,String remark, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeInterviewProperties(userContext,employeeId,id,remark,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeInterviewListList()
 				.searchEmployeeInterviewListWith(EmployeeInterview.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeInterviewList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeInterview is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeInterview item = employeeToUpdate.getEmployeeInterviewList().first();
-		
+
 		item.updateRemark( remark );
 
-		
+
 		//checkParamsForAddingEmployeeInterview(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeInterviewList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeInterview createEmployeeInterview(RetailscmUserContext userContext, String interviewTypeId, String remark) throws Exception{
 
 		EmployeeInterview employeeInterview = new EmployeeInterview();
@@ -2705,38 +2216,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeInterview;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeInterview createIndexedEmployeeInterview(String id, int version){
 
 		EmployeeInterview employeeInterview = new EmployeeInterview();
 		employeeInterview.setId(id);
 		employeeInterview.setVersion(version);
-		return employeeInterview;			
-		
+		return employeeInterview;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeInterviewList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeInterviewList(RetailscmUserContext userContext, String employeeId,
 			String employeeInterviewIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeInterviewIdItem: employeeInterviewIds){
 			checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeInterviewList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeInterviewList(RetailscmUserContext userContext, String employeeId,
 			String employeeInterviewIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeInterviewList(userContext, employeeId,  employeeInterviewIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeInterviewList(employee, employeeInterviewIds, allTokens());
@@ -2745,65 +2256,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeInterview(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeInterview(RetailscmUserContext userContext, String employeeId,
 		String employeeInterviewId, int employeeInterviewVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewId);
 		checkerOf(userContext).checkVersionOfEmployeeInterview(employeeInterviewVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeInterview(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeInterview(RetailscmUserContext userContext, String employeeId,
 		String employeeInterviewId, int employeeInterviewVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeInterview(userContext,employeeId, employeeInterviewId, employeeInterviewVersion,tokensExpr);
-		
+
 		EmployeeInterview employeeInterview = createIndexedEmployeeInterview(employeeInterviewId, employeeInterviewVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeInterview( employeeInterview );		
+			employee.removeEmployeeInterview( employeeInterview );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeInterviewList().done());
 			deleteRelationInGraph(userContext, employeeInterview);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeInterview(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeInterview(RetailscmUserContext userContext, String employeeId,
 		String employeeInterviewId, int employeeInterviewVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeInterview(employeeInterviewId);
 		checkerOf(userContext).checkVersionOfEmployeeInterview(employeeInterviewVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeInterviewFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeInterviewFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeInterviewId, int employeeInterviewVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeInterview(userContext,employeeId, employeeInterviewId, employeeInterviewVersion,tokensExpr);
-		
+
 		EmployeeInterview employeeInterview = createIndexedEmployeeInterview(employeeInterviewId, employeeInterviewVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeInterviewFrom( employeeInterview );		
+
+			employee.copyEmployeeInterviewFrom( employeeInterview );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeInterviewList().done());
 			
 			userContext.getManagerGroup().getEmployeeInterviewManager().onNewInstanceCreated(userContext, (EmployeeInterview)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeInterview(RetailscmUserContext userContext, String employeeId, String employeeInterviewId, int employeeInterviewVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -2819,32 +2330,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeInterview(RetailscmUserContext userContext, String employeeId, String employeeInterviewId, int employeeInterviewVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeInterview(userContext, employeeId, employeeInterviewId, employeeInterviewVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeInterviewList().searchEmployeeInterviewListWith(EmployeeInterview.ID_PROPERTY, "eq", employeeInterviewId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeInterview( employeeInterview );	
+			//employee.removeEmployeeInterview( employeeInterview );
 			//make changes to AcceleraterAccount.
 			EmployeeInterview employeeInterviewIndex = createIndexedEmployeeInterview(employeeInterviewId, employeeInterviewVersion);
-		
+
 			EmployeeInterview employeeInterview = employee.findTheEmployeeInterview(employeeInterviewIndex);
 			if(employeeInterview == null){
 				throw new EmployeeManagerException(employeeInterview+" is NOT FOUND" );
 			}
-			
+
 			employeeInterview.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeInterviewList().done());
@@ -2855,12 +2366,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeAttendance(RetailscmUserContext userContext, String employeeId, Date enterTime, Date leaveTime, int durationHours, String remark,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -2874,20 +2385,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeAttendance(RetailscmUserContext userContext, String employeeId, Date enterTime, Date leaveTime, int durationHours, String remark, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeAttendance(userContext,employeeId,enterTime, leaveTime, durationHours, remark,tokensExpr);
-		
+
 		EmployeeAttendance employeeAttendance = createEmployeeAttendance(userContext,enterTime, leaveTime, durationHours, remark);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeAttendance( employeeAttendance );		
+			employee.addEmployeeAttendance( employeeAttendance );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAttendanceList().done());
 			
 			userContext.getManagerGroup().getEmployeeAttendanceManager().onNewInstanceCreated(userContext, employeeAttendance);
@@ -2895,49 +2406,49 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeAttendanceProperties(RetailscmUserContext userContext, String employeeId,String id,Date enterTime,Date leaveTime,int durationHours,String remark,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeAttendance(id);
-		
+
 		checkerOf(userContext).checkEnterTimeOfEmployeeAttendance( enterTime);
 		checkerOf(userContext).checkLeaveTimeOfEmployeeAttendance( leaveTime);
 		checkerOf(userContext).checkDurationHoursOfEmployeeAttendance( durationHours);
 		checkerOf(userContext).checkRemarkOfEmployeeAttendance( remark);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeAttendanceProperties(RetailscmUserContext userContext, String employeeId, String id,Date enterTime,Date leaveTime,int durationHours,String remark, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeAttendanceProperties(userContext,employeeId,id,enterTime,leaveTime,durationHours,remark,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeAttendanceListList()
 				.searchEmployeeAttendanceListWith(EmployeeAttendance.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeAttendanceList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeAttendance is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeAttendance item = employeeToUpdate.getEmployeeAttendanceList().first();
-		
+
 		item.updateEnterTime( enterTime );
 		item.updateLeaveTime( leaveTime );
 		item.updateDurationHours( durationHours );
 		item.updateRemark( remark );
 
-		
+
 		//checkParamsForAddingEmployeeAttendance(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeAttendanceList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeAttendance createEmployeeAttendance(RetailscmUserContext userContext, Date enterTime, Date leaveTime, int durationHours, String remark) throws Exception{
 
 		EmployeeAttendance employeeAttendance = new EmployeeAttendance();
@@ -2950,38 +2461,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeAttendance;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeAttendance createIndexedEmployeeAttendance(String id, int version){
 
 		EmployeeAttendance employeeAttendance = new EmployeeAttendance();
 		employeeAttendance.setId(id);
 		employeeAttendance.setVersion(version);
-		return employeeAttendance;			
-		
+		return employeeAttendance;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeAttendanceList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeAttendanceList(RetailscmUserContext userContext, String employeeId,
 			String employeeAttendanceIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeAttendanceIdItem: employeeAttendanceIds){
 			checkerOf(userContext).checkIdOfEmployeeAttendance(employeeAttendanceIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeAttendanceList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeAttendanceList(RetailscmUserContext userContext, String employeeId,
 			String employeeAttendanceIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeAttendanceList(userContext, employeeId,  employeeAttendanceIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeAttendanceList(employee, employeeAttendanceIds, allTokens());
@@ -2990,65 +2501,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeAttendance(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeAttendance(RetailscmUserContext userContext, String employeeId,
 		String employeeAttendanceId, int employeeAttendanceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeAttendance(employeeAttendanceId);
 		checkerOf(userContext).checkVersionOfEmployeeAttendance(employeeAttendanceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeAttendance(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeAttendance(RetailscmUserContext userContext, String employeeId,
 		String employeeAttendanceId, int employeeAttendanceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeAttendance(userContext,employeeId, employeeAttendanceId, employeeAttendanceVersion,tokensExpr);
-		
+
 		EmployeeAttendance employeeAttendance = createIndexedEmployeeAttendance(employeeAttendanceId, employeeAttendanceVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeAttendance( employeeAttendance );		
+			employee.removeEmployeeAttendance( employeeAttendance );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAttendanceList().done());
 			deleteRelationInGraph(userContext, employeeAttendance);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeAttendance(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeAttendance(RetailscmUserContext userContext, String employeeId,
 		String employeeAttendanceId, int employeeAttendanceVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeAttendance(employeeAttendanceId);
 		checkerOf(userContext).checkVersionOfEmployeeAttendance(employeeAttendanceVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeAttendanceFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeAttendanceFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeAttendanceId, int employeeAttendanceVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeAttendance(userContext,employeeId, employeeAttendanceId, employeeAttendanceVersion,tokensExpr);
-		
+
 		EmployeeAttendance employeeAttendance = createIndexedEmployeeAttendance(employeeAttendanceId, employeeAttendanceVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeAttendanceFrom( employeeAttendance );		
+
+			employee.copyEmployeeAttendanceFrom( employeeAttendance );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAttendanceList().done());
 			
 			userContext.getManagerGroup().getEmployeeAttendanceManager().onNewInstanceCreated(userContext, (EmployeeAttendance)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeAttendance(RetailscmUserContext userContext, String employeeId, String employeeAttendanceId, int employeeAttendanceVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3076,32 +2587,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeAttendance(RetailscmUserContext userContext, String employeeId, String employeeAttendanceId, int employeeAttendanceVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeAttendance(userContext, employeeId, employeeAttendanceId, employeeAttendanceVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeAttendanceList().searchEmployeeAttendanceListWith(EmployeeAttendance.ID_PROPERTY, "eq", employeeAttendanceId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeAttendance( employeeAttendance );	
+			//employee.removeEmployeeAttendance( employeeAttendance );
 			//make changes to AcceleraterAccount.
 			EmployeeAttendance employeeAttendanceIndex = createIndexedEmployeeAttendance(employeeAttendanceId, employeeAttendanceVersion);
-		
+
 			EmployeeAttendance employeeAttendance = employee.findTheEmployeeAttendance(employeeAttendanceIndex);
 			if(employeeAttendance == null){
 				throw new EmployeeManagerException(employeeAttendance+" is NOT FOUND" );
 			}
-			
+
 			employeeAttendance.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAttendanceList().done());
@@ -3112,12 +2623,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeQualifier(RetailscmUserContext userContext, String employeeId, Date qualifiedTime, String type, String level, String remark,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -3131,20 +2642,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeQualifier(RetailscmUserContext userContext, String employeeId, Date qualifiedTime, String type, String level, String remark, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeQualifier(userContext,employeeId,qualifiedTime, type, level, remark,tokensExpr);
-		
+
 		EmployeeQualifier employeeQualifier = createEmployeeQualifier(userContext,qualifiedTime, type, level, remark);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeQualifier( employeeQualifier );		
+			employee.addEmployeeQualifier( employeeQualifier );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeQualifierList().done());
 			
 			userContext.getManagerGroup().getEmployeeQualifierManager().onNewInstanceCreated(userContext, employeeQualifier);
@@ -3152,49 +2663,49 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeQualifierProperties(RetailscmUserContext userContext, String employeeId,String id,Date qualifiedTime,String type,String level,String remark,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeQualifier(id);
-		
+
 		checkerOf(userContext).checkQualifiedTimeOfEmployeeQualifier( qualifiedTime);
 		checkerOf(userContext).checkTypeOfEmployeeQualifier( type);
 		checkerOf(userContext).checkLevelOfEmployeeQualifier( level);
 		checkerOf(userContext).checkRemarkOfEmployeeQualifier( remark);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeQualifierProperties(RetailscmUserContext userContext, String employeeId, String id,Date qualifiedTime,String type,String level,String remark, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeQualifierProperties(userContext,employeeId,id,qualifiedTime,type,level,remark,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeQualifierListList()
 				.searchEmployeeQualifierListWith(EmployeeQualifier.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeQualifierList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeQualifier is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeQualifier item = employeeToUpdate.getEmployeeQualifierList().first();
-		
+
 		item.updateQualifiedTime( qualifiedTime );
 		item.updateType( type );
 		item.updateLevel( level );
 		item.updateRemark( remark );
 
-		
+
 		//checkParamsForAddingEmployeeQualifier(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeQualifierList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeQualifier createEmployeeQualifier(RetailscmUserContext userContext, Date qualifiedTime, String type, String level, String remark) throws Exception{
 
 		EmployeeQualifier employeeQualifier = new EmployeeQualifier();
@@ -3207,38 +2718,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeQualifier;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeQualifier createIndexedEmployeeQualifier(String id, int version){
 
 		EmployeeQualifier employeeQualifier = new EmployeeQualifier();
 		employeeQualifier.setId(id);
 		employeeQualifier.setVersion(version);
-		return employeeQualifier;			
-		
+		return employeeQualifier;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeQualifierList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeQualifierList(RetailscmUserContext userContext, String employeeId,
 			String employeeQualifierIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeQualifierIdItem: employeeQualifierIds){
 			checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeQualifierList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeQualifierList(RetailscmUserContext userContext, String employeeId,
 			String employeeQualifierIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeQualifierList(userContext, employeeId,  employeeQualifierIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeQualifierList(employee, employeeQualifierIds, allTokens());
@@ -3247,65 +2758,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeQualifier(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeQualifier(RetailscmUserContext userContext, String employeeId,
 		String employeeQualifierId, int employeeQualifierVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierId);
 		checkerOf(userContext).checkVersionOfEmployeeQualifier(employeeQualifierVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeQualifier(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeQualifier(RetailscmUserContext userContext, String employeeId,
 		String employeeQualifierId, int employeeQualifierVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeQualifier(userContext,employeeId, employeeQualifierId, employeeQualifierVersion,tokensExpr);
-		
+
 		EmployeeQualifier employeeQualifier = createIndexedEmployeeQualifier(employeeQualifierId, employeeQualifierVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeQualifier( employeeQualifier );		
+			employee.removeEmployeeQualifier( employeeQualifier );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeQualifierList().done());
 			deleteRelationInGraph(userContext, employeeQualifier);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeQualifier(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeQualifier(RetailscmUserContext userContext, String employeeId,
 		String employeeQualifierId, int employeeQualifierVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeQualifier(employeeQualifierId);
 		checkerOf(userContext).checkVersionOfEmployeeQualifier(employeeQualifierVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeQualifierFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeQualifierFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeQualifierId, int employeeQualifierVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeQualifier(userContext,employeeId, employeeQualifierId, employeeQualifierVersion,tokensExpr);
-		
+
 		EmployeeQualifier employeeQualifier = createIndexedEmployeeQualifier(employeeQualifierId, employeeQualifierVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeQualifierFrom( employeeQualifier );		
+
+			employee.copyEmployeeQualifierFrom( employeeQualifier );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeQualifierList().done());
 			
 			userContext.getManagerGroup().getEmployeeQualifierManager().onNewInstanceCreated(userContext, (EmployeeQualifier)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeQualifier(RetailscmUserContext userContext, String employeeId, String employeeQualifierId, int employeeQualifierVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3333,32 +2844,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeQualifier(RetailscmUserContext userContext, String employeeId, String employeeQualifierId, int employeeQualifierVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeQualifier(userContext, employeeId, employeeQualifierId, employeeQualifierVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeQualifierList().searchEmployeeQualifierListWith(EmployeeQualifier.ID_PROPERTY, "eq", employeeQualifierId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeQualifier( employeeQualifier );	
+			//employee.removeEmployeeQualifier( employeeQualifier );
 			//make changes to AcceleraterAccount.
 			EmployeeQualifier employeeQualifierIndex = createIndexedEmployeeQualifier(employeeQualifierId, employeeQualifierVersion);
-		
+
 			EmployeeQualifier employeeQualifier = employee.findTheEmployeeQualifier(employeeQualifierIndex);
 			if(employeeQualifier == null){
 				throw new EmployeeManagerException(employeeQualifier+" is NOT FOUND" );
 			}
-			
+
 			employeeQualifier.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeQualifierList().done());
@@ -3369,12 +2880,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeEducation(RetailscmUserContext userContext, String employeeId, Date completeTime, String type, String remark,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -3386,20 +2897,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeEducation(RetailscmUserContext userContext, String employeeId, Date completeTime, String type, String remark, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeEducation(userContext,employeeId,completeTime, type, remark,tokensExpr);
-		
+
 		EmployeeEducation employeeEducation = createEmployeeEducation(userContext,completeTime, type, remark);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeEducation( employeeEducation );		
+			employee.addEmployeeEducation( employeeEducation );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeEducationList().done());
 			
 			userContext.getManagerGroup().getEmployeeEducationManager().onNewInstanceCreated(userContext, employeeEducation);
@@ -3407,47 +2918,47 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeEducationProperties(RetailscmUserContext userContext, String employeeId,String id,Date completeTime,String type,String remark,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeEducation(id);
-		
+
 		checkerOf(userContext).checkCompleteTimeOfEmployeeEducation( completeTime);
 		checkerOf(userContext).checkTypeOfEmployeeEducation( type);
 		checkerOf(userContext).checkRemarkOfEmployeeEducation( remark);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeEducationProperties(RetailscmUserContext userContext, String employeeId, String id,Date completeTime,String type,String remark, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeEducationProperties(userContext,employeeId,id,completeTime,type,remark,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeEducationListList()
 				.searchEmployeeEducationListWith(EmployeeEducation.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeEducationList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeEducation is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeEducation item = employeeToUpdate.getEmployeeEducationList().first();
-		
+
 		item.updateCompleteTime( completeTime );
 		item.updateType( type );
 		item.updateRemark( remark );
 
-		
+
 		//checkParamsForAddingEmployeeEducation(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeEducationList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeEducation createEmployeeEducation(RetailscmUserContext userContext, Date completeTime, String type, String remark) throws Exception{
 
 		EmployeeEducation employeeEducation = new EmployeeEducation();
@@ -3459,38 +2970,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeEducation;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeEducation createIndexedEmployeeEducation(String id, int version){
 
 		EmployeeEducation employeeEducation = new EmployeeEducation();
 		employeeEducation.setId(id);
 		employeeEducation.setVersion(version);
-		return employeeEducation;			
-		
+		return employeeEducation;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeEducationList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeEducationList(RetailscmUserContext userContext, String employeeId,
 			String employeeEducationIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeEducationIdItem: employeeEducationIds){
 			checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeEducationList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeEducationList(RetailscmUserContext userContext, String employeeId,
 			String employeeEducationIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeEducationList(userContext, employeeId,  employeeEducationIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeEducationList(employee, employeeEducationIds, allTokens());
@@ -3499,65 +3010,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeEducation(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeEducation(RetailscmUserContext userContext, String employeeId,
 		String employeeEducationId, int employeeEducationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
 		checkerOf(userContext).checkVersionOfEmployeeEducation(employeeEducationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeEducation(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeEducation(RetailscmUserContext userContext, String employeeId,
 		String employeeEducationId, int employeeEducationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeEducation(userContext,employeeId, employeeEducationId, employeeEducationVersion,tokensExpr);
-		
+
 		EmployeeEducation employeeEducation = createIndexedEmployeeEducation(employeeEducationId, employeeEducationVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeEducation( employeeEducation );		
+			employee.removeEmployeeEducation( employeeEducation );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeEducationList().done());
 			deleteRelationInGraph(userContext, employeeEducation);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeEducation(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeEducation(RetailscmUserContext userContext, String employeeId,
 		String employeeEducationId, int employeeEducationVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeEducation(employeeEducationId);
 		checkerOf(userContext).checkVersionOfEmployeeEducation(employeeEducationVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeEducationFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeEducationFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeEducationId, int employeeEducationVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeEducation(userContext,employeeId, employeeEducationId, employeeEducationVersion,tokensExpr);
-		
+
 		EmployeeEducation employeeEducation = createIndexedEmployeeEducation(employeeEducationId, employeeEducationVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeEducationFrom( employeeEducation );		
+
+			employee.copyEmployeeEducationFrom( employeeEducation );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeEducationList().done());
 			
 			userContext.getManagerGroup().getEmployeeEducationManager().onNewInstanceCreated(userContext, (EmployeeEducation)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeEducation(RetailscmUserContext userContext, String employeeId, String employeeEducationId, int employeeEducationVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3581,32 +3092,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeEducation(RetailscmUserContext userContext, String employeeId, String employeeEducationId, int employeeEducationVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeEducation(userContext, employeeId, employeeEducationId, employeeEducationVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeEducationList().searchEmployeeEducationListWith(EmployeeEducation.ID_PROPERTY, "eq", employeeEducationId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeEducation( employeeEducation );	
+			//employee.removeEmployeeEducation( employeeEducation );
 			//make changes to AcceleraterAccount.
 			EmployeeEducation employeeEducationIndex = createIndexedEmployeeEducation(employeeEducationId, employeeEducationVersion);
-		
+
 			EmployeeEducation employeeEducation = employee.findTheEmployeeEducation(employeeEducationIndex);
 			if(employeeEducation == null){
 				throw new EmployeeManagerException(employeeEducation+" is NOT FOUND" );
 			}
-			
+
 			employeeEducation.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeEducationList().done());
@@ -3617,12 +3128,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeAward(RetailscmUserContext userContext, String employeeId, Date completeTime, String type, String remark,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -3634,20 +3145,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeAward(RetailscmUserContext userContext, String employeeId, Date completeTime, String type, String remark, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeAward(userContext,employeeId,completeTime, type, remark,tokensExpr);
-		
+
 		EmployeeAward employeeAward = createEmployeeAward(userContext,completeTime, type, remark);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeAward( employeeAward );		
+			employee.addEmployeeAward( employeeAward );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAwardList().done());
 			
 			userContext.getManagerGroup().getEmployeeAwardManager().onNewInstanceCreated(userContext, employeeAward);
@@ -3655,47 +3166,47 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeAwardProperties(RetailscmUserContext userContext, String employeeId,String id,Date completeTime,String type,String remark,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeAward(id);
-		
+
 		checkerOf(userContext).checkCompleteTimeOfEmployeeAward( completeTime);
 		checkerOf(userContext).checkTypeOfEmployeeAward( type);
 		checkerOf(userContext).checkRemarkOfEmployeeAward( remark);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeAwardProperties(RetailscmUserContext userContext, String employeeId, String id,Date completeTime,String type,String remark, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeAwardProperties(userContext,employeeId,id,completeTime,type,remark,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeAwardListList()
 				.searchEmployeeAwardListWith(EmployeeAward.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeAwardList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeAward is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeAward item = employeeToUpdate.getEmployeeAwardList().first();
-		
+
 		item.updateCompleteTime( completeTime );
 		item.updateType( type );
 		item.updateRemark( remark );
 
-		
+
 		//checkParamsForAddingEmployeeAward(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeAwardList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeAward createEmployeeAward(RetailscmUserContext userContext, Date completeTime, String type, String remark) throws Exception{
 
 		EmployeeAward employeeAward = new EmployeeAward();
@@ -3707,38 +3218,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeAward;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeAward createIndexedEmployeeAward(String id, int version){
 
 		EmployeeAward employeeAward = new EmployeeAward();
 		employeeAward.setId(id);
 		employeeAward.setVersion(version);
-		return employeeAward;			
-		
+		return employeeAward;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeAwardList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeAwardList(RetailscmUserContext userContext, String employeeId,
 			String employeeAwardIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeAwardIdItem: employeeAwardIds){
 			checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeAwardList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeAwardList(RetailscmUserContext userContext, String employeeId,
 			String employeeAwardIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeAwardList(userContext, employeeId,  employeeAwardIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeAwardList(employee, employeeAwardIds, allTokens());
@@ -3747,65 +3258,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeAward(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeAward(RetailscmUserContext userContext, String employeeId,
 		String employeeAwardId, int employeeAwardVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardId);
 		checkerOf(userContext).checkVersionOfEmployeeAward(employeeAwardVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeAward(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeAward(RetailscmUserContext userContext, String employeeId,
 		String employeeAwardId, int employeeAwardVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeAward(userContext,employeeId, employeeAwardId, employeeAwardVersion,tokensExpr);
-		
+
 		EmployeeAward employeeAward = createIndexedEmployeeAward(employeeAwardId, employeeAwardVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeAward( employeeAward );		
+			employee.removeEmployeeAward( employeeAward );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAwardList().done());
 			deleteRelationInGraph(userContext, employeeAward);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeAward(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeAward(RetailscmUserContext userContext, String employeeId,
 		String employeeAwardId, int employeeAwardVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeAward(employeeAwardId);
 		checkerOf(userContext).checkVersionOfEmployeeAward(employeeAwardVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeAwardFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeAwardFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeAwardId, int employeeAwardVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeAward(userContext,employeeId, employeeAwardId, employeeAwardVersion,tokensExpr);
-		
+
 		EmployeeAward employeeAward = createIndexedEmployeeAward(employeeAwardId, employeeAwardVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeAwardFrom( employeeAward );		
+
+			employee.copyEmployeeAwardFrom( employeeAward );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAwardList().done());
 			
 			userContext.getManagerGroup().getEmployeeAwardManager().onNewInstanceCreated(userContext, (EmployeeAward)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeAward(RetailscmUserContext userContext, String employeeId, String employeeAwardId, int employeeAwardVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -3829,32 +3340,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeAward(RetailscmUserContext userContext, String employeeId, String employeeAwardId, int employeeAwardVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeAward(userContext, employeeId, employeeAwardId, employeeAwardVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeAwardList().searchEmployeeAwardListWith(EmployeeAward.ID_PROPERTY, "eq", employeeAwardId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeAward( employeeAward );	
+			//employee.removeEmployeeAward( employeeAward );
 			//make changes to AcceleraterAccount.
 			EmployeeAward employeeAwardIndex = createIndexedEmployeeAward(employeeAwardId, employeeAwardVersion);
-		
+
 			EmployeeAward employeeAward = employee.findTheEmployeeAward(employeeAwardIndex);
 			if(employeeAward == null){
 				throw new EmployeeManagerException(employeeAward+" is NOT FOUND" );
 			}
-			
+
 			employeeAward.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeAwardList().done());
@@ -3865,12 +3376,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -3894,20 +3405,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingEmployeeSalarySheet(userContext,employeeId,currentSalaryGradeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance, payingOffId,tokensExpr);
-		
+
 		EmployeeSalarySheet employeeSalarySheet = createEmployeeSalarySheet(userContext,currentSalaryGradeId, baseSalary, bonus, reward, personalTax, socialSecurity, housingFound, jobInsurance, payingOffId);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addEmployeeSalarySheet( employeeSalarySheet );		
+			employee.addEmployeeSalarySheet( employeeSalarySheet );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSalarySheetList().done());
 			
 			userContext.getManagerGroup().getEmployeeSalarySheetManager().onNewInstanceCreated(userContext, employeeSalarySheet);
@@ -3915,10 +3426,10 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingEmployeeSalarySheetProperties(RetailscmUserContext userContext, String employeeId,String id,BigDecimal baseSalary,BigDecimal bonus,BigDecimal reward,BigDecimal personalTax,BigDecimal socialSecurity,BigDecimal housingFound,BigDecimal jobInsurance,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(id);
-		
+
 		checkerOf(userContext).checkBaseSalaryOfEmployeeSalarySheet( baseSalary);
 		checkerOf(userContext).checkBonusOfEmployeeSalarySheet( bonus);
 		checkerOf(userContext).checkRewardOfEmployeeSalarySheet( reward);
@@ -3928,25 +3439,25 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		checkerOf(userContext).checkJobInsuranceOfEmployeeSalarySheet( jobInsurance);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updateEmployeeSalarySheetProperties(RetailscmUserContext userContext, String employeeId, String id,BigDecimal baseSalary,BigDecimal bonus,BigDecimal reward,BigDecimal personalTax,BigDecimal socialSecurity,BigDecimal housingFound,BigDecimal jobInsurance, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingEmployeeSalarySheetProperties(userContext,employeeId,id,baseSalary,bonus,reward,personalTax,socialSecurity,housingFound,jobInsurance,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withEmployeeSalarySheetListList()
 				.searchEmployeeSalarySheetListWith(EmployeeSalarySheet.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getEmployeeSalarySheetList().isEmpty()){
 			throw new EmployeeManagerException("EmployeeSalarySheet is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		EmployeeSalarySheet item = employeeToUpdate.getEmployeeSalarySheetList().first();
-		
+
 		item.updateBaseSalary( baseSalary );
 		item.updateBonus( bonus );
 		item.updateReward( reward );
@@ -3955,15 +3466,15 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		item.updateHousingFound( housingFound );
 		item.updateJobInsurance( jobInsurance );
 
-		
+
 		//checkParamsForAddingEmployeeSalarySheet(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withEmployeeSalarySheetList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected EmployeeSalarySheet createEmployeeSalarySheet(RetailscmUserContext userContext, String currentSalaryGradeId, BigDecimal baseSalary, BigDecimal bonus, BigDecimal reward, BigDecimal personalTax, BigDecimal socialSecurity, BigDecimal housingFound, BigDecimal jobInsurance, String payingOffId) throws Exception{
 
 		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
@@ -3985,38 +3496,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return employeeSalarySheet;
-	
-		
+
+
 	}
-	
+
 	protected EmployeeSalarySheet createIndexedEmployeeSalarySheet(String id, int version){
 
 		EmployeeSalarySheet employeeSalarySheet = new EmployeeSalarySheet();
 		employeeSalarySheet.setId(id);
 		employeeSalarySheet.setVersion(version);
-		return employeeSalarySheet;			
-		
+		return employeeSalarySheet;
+
 	}
-	
-	protected void checkParamsForRemovingEmployeeSalarySheetList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeSalarySheetList(RetailscmUserContext userContext, String employeeId,
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String employeeSalarySheetIdItem: employeeSalarySheetIds){
 			checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removeEmployeeSalarySheetList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeSalarySheetList(RetailscmUserContext userContext, String employeeId,
 			String employeeSalarySheetIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingEmployeeSalarySheetList(userContext, employeeId,  employeeSalarySheetIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemoveEmployeeSalarySheetList(employee, employeeSalarySheetIds, allTokens());
@@ -4025,65 +3536,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
 		checkerOf(userContext).checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removeEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removeEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingEmployeeSalarySheet(userContext,employeeId, employeeSalarySheetId, employeeSalarySheetVersion,tokensExpr);
-		
+
 		EmployeeSalarySheet employeeSalarySheet = createIndexedEmployeeSalarySheet(employeeSalarySheetId, employeeSalarySheetVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removeEmployeeSalarySheet( employeeSalarySheet );		
+			employee.removeEmployeeSalarySheet( employeeSalarySheet );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSalarySheetList().done());
 			deleteRelationInGraph(userContext, employeeSalarySheet);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfEmployeeSalarySheet(employeeSalarySheetId);
 		checkerOf(userContext).checkVersionOfEmployeeSalarySheet(employeeSalarySheetVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyEmployeeSalarySheetFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyEmployeeSalarySheetFrom(RetailscmUserContext userContext, String employeeId,
 		String employeeSalarySheetId, int employeeSalarySheetVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingEmployeeSalarySheet(userContext,employeeId, employeeSalarySheetId, employeeSalarySheetVersion,tokensExpr);
-		
+
 		EmployeeSalarySheet employeeSalarySheet = createIndexedEmployeeSalarySheet(employeeSalarySheetId, employeeSalarySheetVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyEmployeeSalarySheetFrom( employeeSalarySheet );		
+
+			employee.copyEmployeeSalarySheetFrom( employeeSalarySheet );
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSalarySheetList().done());
 			
 			userContext.getManagerGroup().getEmployeeSalarySheetManager().onNewInstanceCreated(userContext, (EmployeeSalarySheet)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String employeeSalarySheetId, int employeeSalarySheetVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -4123,32 +3634,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updateEmployeeSalarySheet(RetailscmUserContext userContext, String employeeId, String employeeSalarySheetId, int employeeSalarySheetVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingEmployeeSalarySheet(userContext, employeeId, employeeSalarySheetId, employeeSalarySheetVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withEmployeeSalarySheetList().searchEmployeeSalarySheetListWith(EmployeeSalarySheet.ID_PROPERTY, "eq", employeeSalarySheetId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removeEmployeeSalarySheet( employeeSalarySheet );	
+			//employee.removeEmployeeSalarySheet( employeeSalarySheet );
 			//make changes to AcceleraterAccount.
 			EmployeeSalarySheet employeeSalarySheetIndex = createIndexedEmployeeSalarySheet(employeeSalarySheetId, employeeSalarySheetVersion);
-		
+
 			EmployeeSalarySheet employeeSalarySheet = employee.findTheEmployeeSalarySheet(employeeSalarySheetIndex);
 			if(employeeSalarySheet == null){
 				throw new EmployeeManagerException(employeeSalarySheet+" is NOT FOUND" );
 			}
-			
+
 			employeeSalarySheet.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withEmployeeSalarySheetList().done());
@@ -4159,12 +3670,12 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	protected void checkParamsForAddingPayingOff(RetailscmUserContext userContext, String employeeId, String who, Date paidTime, BigDecimal amount,String [] tokensExpr) throws Exception{
-		
+
 				checkerOf(userContext).checkIdOfEmployee(employeeId);
 
 		
@@ -4176,20 +3687,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
 
-	
+
 	}
 	public  Employee addPayingOff(RetailscmUserContext userContext, String employeeId, String who, Date paidTime, BigDecimal amount, String [] tokensExpr) throws Exception
-	{	
-		
+	{
+
 		checkParamsForAddingPayingOff(userContext,employeeId,who, paidTime, amount,tokensExpr);
-		
+
 		PayingOff payingOff = createPayingOff(userContext,who, paidTime, amount);
-		
-		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+
+		Employee employee = loadEmployee(userContext, employeeId, emptyOptions());
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.addPayingOff( payingOff );		
+			employee.addPayingOff( payingOff );
 			employee = saveEmployee(userContext, employee, tokens().withPayingOffList().done());
 			
 			userContext.getManagerGroup().getPayingOffManager().onNewInstanceCreated(userContext, payingOff);
@@ -4197,47 +3708,47 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		}
 	}
 	protected void checkParamsForUpdatingPayingOffProperties(RetailscmUserContext userContext, String employeeId,String id,String who,Date paidTime,BigDecimal amount,String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		checkerOf(userContext).checkIdOfPayingOff(id);
-		
+
 		checkerOf(userContext).checkWhoOfPayingOff( who);
 		checkerOf(userContext).checkPaidTimeOfPayingOff( paidTime);
 		checkerOf(userContext).checkAmountOfPayingOff( amount);
 
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
 	public  Employee updatePayingOffProperties(RetailscmUserContext userContext, String employeeId, String id,String who,Date paidTime,BigDecimal amount, String [] tokensExpr) throws Exception
-	{	
+	{
 		checkParamsForUpdatingPayingOffProperties(userContext,employeeId,id,who,paidTime,amount,tokensExpr);
 
 		Map<String, Object> options = tokens()
 				.allTokens()
 				//.withPayingOffListList()
 				.searchPayingOffListWith(PayingOff.ID_PROPERTY, "is", id).done();
-		
+
 		Employee employeeToUpdate = loadEmployee(userContext, employeeId, options);
-		
+
 		if(employeeToUpdate.getPayingOffList().isEmpty()){
 			throw new EmployeeManagerException("PayingOff is NOT FOUND with id: '"+id+"'");
 		}
-		
+
 		PayingOff item = employeeToUpdate.getPayingOffList().first();
-		
+
 		item.updateWho( who );
 		item.updatePaidTime( paidTime );
 		item.updateAmount( amount );
 
-		
+
 		//checkParamsForAddingPayingOff(userContext,employeeId,name, code, used,tokensExpr);
 		Employee employee = saveEmployee(userContext, employeeToUpdate, tokens().withPayingOffList().done());
-		synchronized(employee){ 
+		synchronized(employee){
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
 	}
-	
-	
+
+
 	protected PayingOff createPayingOff(RetailscmUserContext userContext, String who, Date paidTime, BigDecimal amount) throws Exception{
 
 		PayingOff payingOff = new PayingOff();
@@ -4249,38 +3760,38 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	
 		
 		return payingOff;
-	
-		
+
+
 	}
-	
+
 	protected PayingOff createIndexedPayingOff(String id, int version){
 
 		PayingOff payingOff = new PayingOff();
 		payingOff.setId(id);
 		payingOff.setVersion(version);
-		return payingOff;			
-		
+		return payingOff;
+
 	}
-	
-	protected void checkParamsForRemovingPayingOffList(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingPayingOffList(RetailscmUserContext userContext, String employeeId,
 			String payingOffIds[],String [] tokensExpr) throws Exception {
-		
+
 		checkerOf(userContext).checkIdOfEmployee(employeeId);
 		for(String payingOffIdItem: payingOffIds){
 			checkerOf(userContext).checkIdOfPayingOff(payingOffIdItem);
 		}
-		
+
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-		
+
 	}
-	public  Employee removePayingOffList(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removePayingOffList(RetailscmUserContext userContext, String employeeId,
 			String payingOffIds[],String [] tokensExpr) throws Exception{
-			
+
 			checkParamsForRemovingPayingOffList(userContext, employeeId,  payingOffIds, tokensExpr);
-			
-			
+
+
 			Employee employee = loadEmployee(userContext, employeeId, allTokens());
-			synchronized(employee){ 
+			synchronized(employee){
 				//Will be good when the employee loaded from this JVM process cache.
 				//Also good when there is a RAM based DAO implementation
 				employeeDaoOf(userContext).planToRemovePayingOffList(employee, payingOffIds, allTokens());
@@ -4289,65 +3800,65 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 				return present(userContext,employee, mergedAllTokens(tokensExpr));
 			}
 	}
-	
-	protected void checkParamsForRemovingPayingOff(RetailscmUserContext userContext, String employeeId, 
+
+	protected void checkParamsForRemovingPayingOff(RetailscmUserContext userContext, String employeeId,
 		String payingOffId, int payingOffVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfPayingOff(payingOffId);
 		checkerOf(userContext).checkVersionOfPayingOff(payingOffVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee removePayingOff(RetailscmUserContext userContext, String employeeId, 
+	public  Employee removePayingOff(RetailscmUserContext userContext, String employeeId,
 		String payingOffId, int payingOffVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForRemovingPayingOff(userContext,employeeId, payingOffId, payingOffVersion,tokensExpr);
-		
+
 		PayingOff payingOff = createIndexedPayingOff(payingOffId, payingOffVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			employee.removePayingOff( payingOff );		
+			employee.removePayingOff( payingOff );
 			employee = saveEmployee(userContext, employee, tokens().withPayingOffList().done());
 			deleteRelationInGraph(userContext, payingOff);
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
-		
+
+
 	}
-	protected void checkParamsForCopyingPayingOff(RetailscmUserContext userContext, String employeeId, 
+	protected void checkParamsForCopyingPayingOff(RetailscmUserContext userContext, String employeeId,
 		String payingOffId, int payingOffVersion,String [] tokensExpr) throws Exception{
 		
 		checkerOf(userContext).checkIdOfEmployee( employeeId);
 		checkerOf(userContext).checkIdOfPayingOff(payingOffId);
 		checkerOf(userContext).checkVersionOfPayingOff(payingOffVersion);
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	public  Employee copyPayingOffFrom(RetailscmUserContext userContext, String employeeId, 
+	public  Employee copyPayingOffFrom(RetailscmUserContext userContext, String employeeId,
 		String payingOffId, int payingOffVersion,String [] tokensExpr) throws Exception{
-		
+
 		checkParamsForCopyingPayingOff(userContext,employeeId, payingOffId, payingOffVersion,tokensExpr);
-		
+
 		PayingOff payingOff = createIndexedPayingOff(payingOffId, payingOffVersion);
 		Employee employee = loadEmployee(userContext, employeeId, allTokens());
-		synchronized(employee){ 
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
+
 			
-			
-			
-			employee.copyPayingOffFrom( payingOff );		
+
+			employee.copyPayingOffFrom( payingOff );
 			employee = saveEmployee(userContext, employee, tokens().withPayingOffList().done());
 			
 			userContext.getManagerGroup().getPayingOffManager().onNewInstanceCreated(userContext, (PayingOff)employee.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
 			return present(userContext,employee, mergedAllTokens(tokensExpr));
 		}
-		
+
 	}
-	
+
 	protected void checkParamsForUpdatingPayingOff(RetailscmUserContext userContext, String employeeId, String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
 		
 
@@ -4371,32 +3882,32 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 		
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(EmployeeManagerException.class);
-	
+
 	}
-	
+
 	public  Employee updatePayingOff(RetailscmUserContext userContext, String employeeId, String payingOffId, int payingOffVersion, String property, String newValueExpr,String [] tokensExpr)
 			throws Exception{
-		
+
 		checkParamsForUpdatingPayingOff(userContext, employeeId, payingOffId, payingOffVersion, property, newValueExpr,  tokensExpr);
-		
+
 		Map<String,Object> loadTokens = this.tokens().withPayingOffList().searchPayingOffListWith(PayingOff.ID_PROPERTY, "eq", payingOffId).done();
-		
-		
-		
+
+
+
 		Employee employee = loadEmployee(userContext, employeeId, loadTokens);
-		
-		synchronized(employee){ 
+
+		synchronized(employee){
 			//Will be good when the employee loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
-			//employee.removePayingOff( payingOff );	
+			//employee.removePayingOff( payingOff );
 			//make changes to AcceleraterAccount.
 			PayingOff payingOffIndex = createIndexedPayingOff(payingOffId, payingOffVersion);
-		
+
 			PayingOff payingOff = employee.findThePayingOff(payingOffIndex);
 			if(payingOff == null){
 				throw new EmployeeManagerException(payingOff+" is NOT FOUND" );
 			}
-			
+
 			payingOff.changeProperty(property, newValueExpr);
 			
 			employee = saveEmployee(userContext, employee, tokens().withPayingOffList().done());
@@ -4407,14 +3918,20 @@ public class EmployeeManagerImpl extends CustomRetailscmCheckerManager implement
 	/*
 
 	*/
-	
+
 
 
 
 	public void onNewInstanceCreated(RetailscmUserContext userContext, Employee newCreated) throws Exception{
 		ensureRelationInGraph(userContext, newCreated);
 		sendCreationEvent(userContext, newCreated);
+
+    
 	}
+
+  
+  
+
 
 }
 

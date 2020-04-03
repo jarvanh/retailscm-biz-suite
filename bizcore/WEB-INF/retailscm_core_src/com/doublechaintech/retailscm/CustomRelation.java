@@ -32,6 +32,12 @@ public class CustomRelation extends BaseRelation{
 		//replaceGenericRelation("EventAttendance"                       , BaseRelation.TRUST_CHAIN_ALL, "cityEvent");
 		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "retailStoreCountryCenter");
 		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "cityServiceCenter");
+		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "creation");
+		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "investmentInvitation");
+		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "franchising");
+		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "decoration");
+		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "opening");
+		//replaceGenericRelation("RetailStore"                           , BaseRelation.TRUST_CHAIN_ALL, "closing");
 		//replaceGenericRelation("RetailStoreMember"                     , BaseRelation.TRUST_CHAIN_ALL, "owner");
 		//replaceGenericRelation("ConsumerOrder"                         , BaseRelation.TRUST_CHAIN_ALL, "consumer");
 		//replaceGenericRelation("ConsumerOrder"                         , BaseRelation.TRUST_CHAIN_ALL, "store");
@@ -130,6 +136,7 @@ public class CustomRelation extends BaseRelation{
 		//replaceGenericRelation("CompanyTraining"                       , BaseRelation.TRUST_CHAIN_ALL, "trainingCourseType");
 		//replaceGenericRelation("EmployeeCompanyTraining"               , BaseRelation.TRUST_CHAIN_ALL, "employee");
 		//replaceGenericRelation("EmployeeCompanyTraining"               , BaseRelation.TRUST_CHAIN_ALL, "training");
+		//replaceGenericRelation("EmployeeCompanyTraining"               , BaseRelation.TRUST_CHAIN_ALL, "scoring");
 		//replaceGenericRelation("EmployeeSkill"                         , BaseRelation.TRUST_CHAIN_ALL, "employee");
 		//replaceGenericRelation("EmployeeSkill"                         , BaseRelation.TRUST_CHAIN_ALL, "skillType");
 		//replaceGenericRelation("EmployeePerformance"                   , BaseRelation.TRUST_CHAIN_ALL, "employee");
@@ -144,6 +151,7 @@ public class CustomRelation extends BaseRelation{
 		//replaceGenericRelation("EmployeeAward"                         , BaseRelation.TRUST_CHAIN_ALL, "employee");
 		//replaceGenericRelation("EmployeeSalarySheet"                   , BaseRelation.TRUST_CHAIN_ALL, "employee");
 		//replaceGenericRelation("EmployeeSalarySheet"                   , BaseRelation.TRUST_CHAIN_ALL, "currentSalaryGrade");
+		//replaceGenericRelation("EmployeeSalarySheet"                   , BaseRelation.TRUST_CHAIN_ALL, "payingOff");
 		//replaceGenericRelation("PayingOff"                             , BaseRelation.TRUST_CHAIN_ALL, "paidFor");
 		//replaceGenericRelation("UserWhiteList"                         , BaseRelation.TRUST_CHAIN_ALL, "domain");
 		//replaceGenericRelation("SecUser"                               , BaseRelation.TRUST_CHAIN_ALL, "domain");
@@ -217,7 +225,7 @@ public class CustomRelation extends BaseRelation{
 		//String [] eventAttendanceRelatedObjectNames = {"potential_customer:PotentialCustomer","city_event:CityEvent"};
 		//replaceRelationIndex("EventAttendance",eventAttendanceRelatedObjectNames);
 
-		//String [] retailStoreRelatedObjectNames = {"retail_store_country_center:RetailStoreCountryCenter","city_service_center:RetailStoreCityServiceCenter"};
+		//String [] retailStoreRelatedObjectNames = {"retail_store_country_center:RetailStoreCountryCenter","city_service_center:RetailStoreCityServiceCenter","creation:RetailStoreCreation","investment_invitation:RetailStoreInvestmentInvitation","franchising:RetailStoreFranchising","decoration:RetailStoreDecoration","opening:RetailStoreOpening","closing:RetailStoreClosing"};
 		//replaceRelationIndex("RetailStore",retailStoreRelatedObjectNames);
 
 		//String [] retailStoreMemberRelatedObjectNames = {"owner:RetailStoreCountryCenter"};
@@ -424,7 +432,7 @@ public class CustomRelation extends BaseRelation{
 		//String [] companyTrainingRelatedObjectNames = {"company:RetailStoreCountryCenter","instructor:Instructor","training_course_type:TrainingCourseType"};
 		//replaceRelationIndex("CompanyTraining",companyTrainingRelatedObjectNames);
 
-		//String [] employeeCompanyTrainingRelatedObjectNames = {"employee:Employee","training:CompanyTraining"};
+		//String [] employeeCompanyTrainingRelatedObjectNames = {"employee:Employee","training:CompanyTraining","scoring:Scoring"};
 		//replaceRelationIndex("EmployeeCompanyTraining",employeeCompanyTrainingRelatedObjectNames);
 
 		//String [] employeeSkillRelatedObjectNames = {"employee:Employee","skill_type:SkillType"};
@@ -454,7 +462,7 @@ public class CustomRelation extends BaseRelation{
 		//String [] employeeAwardRelatedObjectNames = {"employee:Employee"};
 		//replaceRelationIndex("EmployeeAward",employeeAwardRelatedObjectNames);
 
-		//String [] employeeSalarySheetRelatedObjectNames = {"employee:Employee","current_salary_grade:SalaryGrade"};
+		//String [] employeeSalarySheetRelatedObjectNames = {"employee:Employee","current_salary_grade:SalaryGrade","paying_off:PayingOff"};
 		//replaceRelationIndex("EmployeeSalarySheet",employeeSalarySheetRelatedObjectNames);
 
 		//String [] payingOffRelatedObjectNames = {"paid_for:Employee"};

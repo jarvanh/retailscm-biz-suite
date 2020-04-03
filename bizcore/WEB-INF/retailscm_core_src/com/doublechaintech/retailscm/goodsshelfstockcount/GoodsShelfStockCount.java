@@ -486,7 +486,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		}
 		return baseDest;
 	}
-	
+	public Object[] toFlatArray(){
+		return new Object[]{getId(), getTitle(), getCountTime(), getSummary(), getShelf(), getVersion()};
+	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
 
