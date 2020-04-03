@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -72,6 +73,7 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 	
 	protected		SmartList<Goods>    	mGoodsList          ;
 	protected		SmartList<TransportTaskTrack>	mTransportTaskTrackList;
+
 	
 		
 	public 	TransportTask(){
@@ -123,6 +125,7 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -132,12 +135,13 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeStartProperty(String newValueExpr){
+	
 		String oldValue = getStart();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -147,12 +151,13 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 		updateStart(newValue);
 		this.onChangeProperty(START_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeBeginTimeProperty(String newValueExpr){
+	
 		Date oldValue = getBeginTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -162,12 +167,13 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 		updateBeginTime(newValue);
 		this.onChangeProperty(BEGIN_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLatitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLatitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -177,12 +183,13 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 		updateLatitude(newValue);
 		this.onChangeProperty(LATITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLongitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLongitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -192,7 +199,7 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 		updateLongitude(newValue);
 		this.onChangeProperty(LONGITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -714,7 +721,9 @@ public class TransportTask extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "transportTaskTrackCurrentPageNumber", getTransportTaskTrackList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

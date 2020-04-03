@@ -53,6 +53,7 @@ public class TreeNode extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	TreeNode(){
@@ -322,7 +323,9 @@ public class TreeNode extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, RIGHT_VALUE_PROPERTY, getRightValue());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	
@@ -420,6 +423,15 @@ public class TreeNode extends BaseEntity implements  java.io.Serializable{
 	
 
 }
+
+
+
+
+
+
+
+
+
 
 
 

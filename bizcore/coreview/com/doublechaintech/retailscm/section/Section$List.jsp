@@ -104,6 +104,12 @@
 <c:if test="${param.referName ne 'brief'}">
 	<th>${userContext.localeMap['section.brief']}</th>
 </c:if>
+<c:if test="${param.referName ne 'icon'}">
+	<th>${userContext.localeMap['section.icon']}</th>
+</c:if>
+<c:if test="${param.referName ne 'viewGroup'}">
+	<th>${userContext.localeMap['section.view_group']}</th>
+</c:if>
 <c:if test="${param.referName ne 'linkToUrl'}">
 	<th>${userContext.localeMap['section.link_to_url']}</th>
 </c:if>
@@ -118,6 +124,8 @@
 				<tr currentVersion='${item.version}' id="section-${item.id}" ><td><a class="link-action-removed" href="./sectionManager/view/${item.id}/"> ${item.id}</a></td>
 <c:if test="${param.referName ne 'title'}">	<td contenteditable='true' class='edit-value'  propertyToChange='title' storedCellValue='${item.title}' prefix='${ownerBeanName}Manager/updateSection/${result.id}/${item.id}/'>${item.title}</td>
 </c:if><c:if test="${param.referName ne 'brief'}">	<td contenteditable='true' class='edit-value'  propertyToChange='brief' storedCellValue='${item.brief}' prefix='${ownerBeanName}Manager/updateSection/${result.id}/${item.id}/'>${item.brief}</td>
+</c:if><c:if test="${param.referName ne 'icon'}">	<td contenteditable='true' class='edit-value'  propertyToChange='icon' storedCellValue='${item.icon}' prefix='${ownerBeanName}Manager/updateSection/${result.id}/${item.id}/'>${item.icon}</td>
+</c:if><c:if test="${param.referName ne 'viewGroup'}">	<td contenteditable='true' class='edit-value'  propertyToChange='viewGroup' storedCellValue='${item.viewGroup}' prefix='${ownerBeanName}Manager/updateSection/${result.id}/${item.id}/'>${item.viewGroup}</td>
 </c:if><c:if test="${param.referName ne 'linkToUrl'}">	<td contenteditable='true' class='edit-value'  propertyToChange='linkToUrl' storedCellValue='${item.linkToUrl}' prefix='${ownerBeanName}Manager/updateSection/${result.id}/${item.id}/'>${item.linkToUrl}</td>
 </c:if><c:if test="${param.referName ne 'page'}">	<td contenteditable='true' class='edit-value'  propertyToChange='page' storedCellValue='${item.page}' prefix='${ownerBeanName}Manager/updateSection/${result.id}/${item.id}/'>${item.page}</td>
 </c:if>

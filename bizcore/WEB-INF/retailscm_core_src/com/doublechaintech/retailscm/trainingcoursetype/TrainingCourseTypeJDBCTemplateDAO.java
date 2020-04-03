@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,13 +539,19 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	protected Object[] prepareTrainingCourseTypeUpdateParameters(TrainingCourseType trainingCourseType){
  		Object[] parameters = new Object[7];
  
- 		parameters[0] = trainingCourseType.getCode(); 	
+ 		
+ 		parameters[0] = trainingCourseType.getCode();
+ 		 	
  		if(trainingCourseType.getCompany() != null){
  			parameters[1] = trainingCourseType.getCompany().getId();
  		}
  
+ 		
  		parameters[2] = trainingCourseType.getName();
- 		parameters[3] = trainingCourseType.getDescription();		
+ 		
+ 		
+ 		parameters[3] = trainingCourseType.getDescription();
+ 				
  		parameters[4] = trainingCourseType.nextVersion();
  		parameters[5] = trainingCourseType.getId();
  		parameters[6] = trainingCourseType.getVersion();
@@ -554,14 +564,20 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 		trainingCourseType.setId(newTrainingCourseTypeId);
 		parameters[0] =  trainingCourseType.getId();
  
- 		parameters[1] = trainingCourseType.getCode(); 	
+ 		
+ 		parameters[1] = trainingCourseType.getCode();
+ 		 	
  		if(trainingCourseType.getCompany() != null){
  			parameters[2] = trainingCourseType.getCompany().getId();
  		
  		}
  		
+ 		
  		parameters[3] = trainingCourseType.getName();
- 		parameters[4] = trainingCourseType.getDescription();		
+ 		
+ 		
+ 		parameters[4] = trainingCourseType.getDescription();
+ 				
  				
  		return parameters;
  	}
@@ -827,7 +843,7 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
     public SmartList<TrainingCourseType> requestCandidateTrainingCourseTypeForCompanyTraining(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(TrainingCourseTypeTable.COLUMN_CODE, filterKey, pageNo, pageSize, getTrainingCourseTypeMapper());
+		return findAllCandidateByFilter(TrainingCourseTypeTable.COLUMN_CODE, TrainingCourseTypeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getTrainingCourseTypeMapper());
     }
 		
 
@@ -901,6 +917,30 @@ public class TrainingCourseTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateTrainingCourseType executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateTrainingCourseType result = new CandidateTrainingCourseType();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

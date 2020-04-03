@@ -32,7 +32,9 @@ public class ProvinceCenterEmployeeMapper extends BaseRowMapper<ProvinceCenterEm
 	protected void setId(ProvinceCenterEmployee provinceCenterEmployee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ProvinceCenterEmployeeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class ProvinceCenterEmployeeMapper extends BaseRowMapper<ProvinceCenterEm
 	protected void setName(ProvinceCenterEmployee provinceCenterEmployee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(ProvinceCenterEmployeeTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -56,7 +60,9 @@ public class ProvinceCenterEmployeeMapper extends BaseRowMapper<ProvinceCenterEm
 	protected void setMobile(ProvinceCenterEmployee provinceCenterEmployee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String mobile = rs.getString(ProvinceCenterEmployeeTable.COLUMN_MOBILE);
+		
 		if(mobile == null){
 			//do nothing when nothing found in database
 			return;
@@ -68,7 +74,9 @@ public class ProvinceCenterEmployeeMapper extends BaseRowMapper<ProvinceCenterEm
 	protected void setEmail(ProvinceCenterEmployee provinceCenterEmployee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String email = rs.getString(ProvinceCenterEmployeeTable.COLUMN_EMAIL);
+		
 		if(email == null){
 			//do nothing when nothing found in database
 			return;
@@ -80,7 +88,9 @@ public class ProvinceCenterEmployeeMapper extends BaseRowMapper<ProvinceCenterEm
 	protected void setFounded(ProvinceCenterEmployee provinceCenterEmployee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date founded = rs.getDate(ProvinceCenterEmployeeTable.COLUMN_FOUNDED);
+		
 		if(founded == null){
 			//do nothing when nothing found in database
 			return;
@@ -128,7 +138,9 @@ public class ProvinceCenterEmployeeMapper extends BaseRowMapper<ProvinceCenterEm
 	protected void setVersion(ProvinceCenterEmployee provinceCenterEmployee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ProvinceCenterEmployeeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

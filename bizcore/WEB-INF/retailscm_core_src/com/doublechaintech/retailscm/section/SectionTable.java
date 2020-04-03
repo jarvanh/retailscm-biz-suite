@@ -20,12 +20,14 @@ public class SectionTable{
 	static final String COLUMN_ID = "id";
 	static final String COLUMN_TITLE = "title";
 	static final String COLUMN_BRIEF = "brief";
+	static final String COLUMN_ICON = "icon";
+	static final String COLUMN_VIEW_GROUP = "view_group";
 	static final String COLUMN_LINK_TO_URL = "link_to_url";
 	static final String COLUMN_PAGE = "page";
 	static final String COLUMN_VERSION = "version";
  
-	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_TITLE,COLUMN_BRIEF,COLUMN_LINK_TO_URL,COLUMN_PAGE,COLUMN_VERSION};
-	public static final String []NORMAL_CLOUMNS = {COLUMN_TITLE,COLUMN_BRIEF,COLUMN_LINK_TO_URL,COLUMN_PAGE};
+	public static final String []ALL_CLOUMNS = {COLUMN_ID,COLUMN_TITLE,COLUMN_BRIEF,COLUMN_ICON,COLUMN_VIEW_GROUP,COLUMN_LINK_TO_URL,COLUMN_PAGE,COLUMN_VERSION};
+	public static final String []NORMAL_CLOUMNS = {COLUMN_TITLE,COLUMN_BRIEF,COLUMN_ICON,COLUMN_VIEW_GROUP,COLUMN_LINK_TO_URL,COLUMN_PAGE};
 	
 	
 }

@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -551,16 +555,28 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
  	protected Object[] prepareStorageSpaceUpdateParameters(StorageSpace storageSpace){
  		Object[] parameters = new Object[10];
  
+ 		
  		parameters[0] = storageSpace.getLocation();
+ 		
+ 		
  		parameters[1] = storageSpace.getContactNumber();
- 		parameters[2] = storageSpace.getTotalArea(); 	
+ 		
+ 		
+ 		parameters[2] = storageSpace.getTotalArea();
+ 		 	
  		if(storageSpace.getWarehouse() != null){
  			parameters[3] = storageSpace.getWarehouse().getId();
  		}
  
+ 		
  		parameters[4] = storageSpace.getLatitude();
+ 		
+ 		
  		parameters[5] = storageSpace.getLongitude();
- 		parameters[6] = storageSpace.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[6] = storageSpace.getLastUpdateTime();
+ 				
  		parameters[7] = storageSpace.nextVersion();
  		parameters[8] = storageSpace.getId();
  		parameters[9] = storageSpace.getVersion();
@@ -573,17 +589,29 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 		storageSpace.setId(newStorageSpaceId);
 		parameters[0] =  storageSpace.getId();
  
+ 		
  		parameters[1] = storageSpace.getLocation();
+ 		
+ 		
  		parameters[2] = storageSpace.getContactNumber();
- 		parameters[3] = storageSpace.getTotalArea(); 	
+ 		
+ 		
+ 		parameters[3] = storageSpace.getTotalArea();
+ 		 	
  		if(storageSpace.getWarehouse() != null){
  			parameters[4] = storageSpace.getWarehouse().getId();
  		
  		}
  		
+ 		
  		parameters[5] = storageSpace.getLatitude();
+ 		
+ 		
  		parameters[6] = storageSpace.getLongitude();
- 		parameters[7] = storageSpace.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[7] = storageSpace.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -849,7 +877,7 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
     public SmartList<StorageSpace> requestCandidateStorageSpaceForGoodsShelf(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(StorageSpaceTable.COLUMN_LOCATION, filterKey, pageNo, pageSize, getStorageSpaceMapper());
+		return findAllCandidateByFilter(StorageSpaceTable.COLUMN_LOCATION, StorageSpaceTable.COLUMN_WAREHOUSE, filterKey, pageNo, pageSize, getStorageSpaceMapper());
     }
 		
 
@@ -923,6 +951,30 @@ public class StorageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateStorageSpace executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateStorageSpace result = new CandidateStorageSpace();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

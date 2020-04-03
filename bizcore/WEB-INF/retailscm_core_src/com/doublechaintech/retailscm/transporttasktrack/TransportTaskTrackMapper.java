@@ -29,7 +29,9 @@ public class TransportTaskTrackMapper extends BaseRowMapper<TransportTaskTrack>{
 	protected void setId(TransportTaskTrack transportTaskTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TransportTaskTrackTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class TransportTaskTrackMapper extends BaseRowMapper<TransportTaskTrack>{
 	protected void setTrackTime(TransportTaskTrack transportTaskTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date trackTime = rs.getDate(TransportTaskTrackTable.COLUMN_TRACK_TIME);
+		
 		if(trackTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class TransportTaskTrackMapper extends BaseRowMapper<TransportTaskTrack>{
 	protected void setLatitude(TransportTaskTrack transportTaskTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(TransportTaskTrackTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class TransportTaskTrackMapper extends BaseRowMapper<TransportTaskTrack>{
 	protected void setLongitude(TransportTaskTrack transportTaskTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(TransportTaskTrackTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class TransportTaskTrackMapper extends BaseRowMapper<TransportTaskTrack>{
 	protected void setVersion(TransportTaskTrack transportTaskTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TransportTaskTrackTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

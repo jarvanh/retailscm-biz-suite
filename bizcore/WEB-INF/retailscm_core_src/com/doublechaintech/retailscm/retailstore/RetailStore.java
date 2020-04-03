@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -99,6 +100,7 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 	protected		SmartList<Goods>    	mGoodsList          ;
 	protected		SmartList<TransportTask>	mTransportTaskList  ;
 	protected		SmartList<AccountSet>	mAccountSetList     ;
+
 	
 		
 	public 	RetailStore(){
@@ -163,6 +165,7 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -172,12 +175,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeTelephoneProperty(String newValueExpr){
+	
 		String oldValue = getTelephone();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -187,12 +191,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateTelephone(newValue);
 		this.onChangeProperty(TELEPHONE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeOwnerProperty(String newValueExpr){
+	
 		String oldValue = getOwner();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -202,12 +207,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateOwner(newValue);
 		this.onChangeProperty(OWNER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFoundedProperty(String newValueExpr){
+	
 		Date oldValue = getFounded();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -217,12 +223,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateFounded(newValue);
 		this.onChangeProperty(FOUNDED_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLatitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLatitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -232,12 +239,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateLatitude(newValue);
 		this.onChangeProperty(LATITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLongitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLongitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -247,12 +255,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateLongitude(newValue);
 		this.onChangeProperty(LONGITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -262,12 +271,13 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateDescription(newValue);
 		this.onChangeProperty(DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -277,7 +287,7 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -1317,7 +1327,9 @@ public class RetailStore extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "accountSetCurrentPageNumber", getAccountSetList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

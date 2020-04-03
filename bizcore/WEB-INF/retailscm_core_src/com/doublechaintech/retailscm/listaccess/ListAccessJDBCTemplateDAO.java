@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -435,13 +439,27 @@ public class ListAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements L
  	protected Object[] prepareListAccessUpdateParameters(ListAccess listAccess){
  		Object[] parameters = new Object[11];
  
+ 		
  		parameters[0] = listAccess.getName();
+ 		
+ 		
  		parameters[1] = listAccess.getInternalName();
+ 		
+ 		
  		parameters[2] = listAccess.getReadPermission();
+ 		
+ 		
  		parameters[3] = listAccess.getCreatePermission();
+ 		
+ 		
  		parameters[4] = listAccess.getDeletePermission();
+ 		
+ 		
  		parameters[5] = listAccess.getUpdatePermission();
- 		parameters[6] = listAccess.getExecutionPermission(); 	
+ 		
+ 		
+ 		parameters[6] = listAccess.getExecutionPermission();
+ 		 	
  		if(listAccess.getApp() != null){
  			parameters[7] = listAccess.getApp().getId();
  		}
@@ -458,13 +476,27 @@ public class ListAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements L
 		listAccess.setId(newListAccessId);
 		parameters[0] =  listAccess.getId();
  
+ 		
  		parameters[1] = listAccess.getName();
+ 		
+ 		
  		parameters[2] = listAccess.getInternalName();
+ 		
+ 		
  		parameters[3] = listAccess.getReadPermission();
+ 		
+ 		
  		parameters[4] = listAccess.getCreatePermission();
+ 		
+ 		
  		parameters[5] = listAccess.getDeletePermission();
+ 		
+ 		
  		parameters[6] = listAccess.getUpdatePermission();
- 		parameters[7] = listAccess.getExecutionPermission(); 	
+ 		
+ 		
+ 		parameters[7] = listAccess.getExecutionPermission();
+ 		 	
  		if(listAccess.getApp() != null){
  			parameters[8] = listAccess.getApp().getId();
  		
@@ -570,6 +602,30 @@ public class ListAccessJDBCTemplateDAO extends RetailscmBaseDAOImpl implements L
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateListAccess executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateListAccess result = new CandidateListAccess();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

@@ -34,7 +34,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setId(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(GoodsMovementTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -46,7 +48,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setMoveTime(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date moveTime = rs.getTimestamp(GoodsMovementTable.COLUMN_MOVE_TIME);
+		
 		if(moveTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -58,7 +62,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setFacility(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String facility = rs.getString(GoodsMovementTable.COLUMN_FACILITY);
+		
 		if(facility == null){
 			//do nothing when nothing found in database
 			return;
@@ -70,7 +76,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setFacilityId(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String facilityId = rs.getString(GoodsMovementTable.COLUMN_FACILITY_ID);
+		
 		if(facilityId == null){
 			//do nothing when nothing found in database
 			return;
@@ -82,7 +90,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setFromIp(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String fromIp = rs.getString(GoodsMovementTable.COLUMN_FROM_IP);
+		
 		if(fromIp == null){
 			//do nothing when nothing found in database
 			return;
@@ -94,7 +104,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setUserAgent(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String userAgent = rs.getString(GoodsMovementTable.COLUMN_USER_AGENT);
+		
 		if(userAgent == null){
 			//do nothing when nothing found in database
 			return;
@@ -106,7 +118,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setSessionId(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String sessionId = rs.getString(GoodsMovementTable.COLUMN_SESSION_ID);
+		
 		if(sessionId == null){
 			//do nothing when nothing found in database
 			return;
@@ -118,7 +132,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setLatitude(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(GoodsMovementTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -130,7 +146,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setLongitude(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(GoodsMovementTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -160,7 +178,9 @@ public class GoodsMovementMapper extends BaseRowMapper<GoodsMovement>{
 	protected void setVersion(GoodsMovement goodsMovement, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(GoodsMovementTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

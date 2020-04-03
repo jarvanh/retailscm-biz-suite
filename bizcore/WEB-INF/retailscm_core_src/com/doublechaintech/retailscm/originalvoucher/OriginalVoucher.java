@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -57,6 +58,7 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	OriginalVoucher(){
@@ -105,6 +107,7 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
     
     
 	protected void changeTitleProperty(String newValueExpr){
+	
 		String oldValue = getTitle();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -114,12 +117,13 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		updateTitle(newValue);
 		this.onChangeProperty(TITLE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeMadeByProperty(String newValueExpr){
+	
 		String oldValue = getMadeBy();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -129,12 +133,13 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		updateMadeBy(newValue);
 		this.onChangeProperty(MADE_BY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeReceivedByProperty(String newValueExpr){
+	
 		String oldValue = getReceivedBy();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -144,12 +149,13 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		updateReceivedBy(newValue);
 		this.onChangeProperty(RECEIVED_BY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeVoucherTypeProperty(String newValueExpr){
+	
 		String oldValue = getVoucherType();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -159,12 +165,13 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		updateVoucherType(newValue);
 		this.onChangeProperty(VOUCHER_TYPE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeVoucherImageProperty(String newValueExpr){
+	
 		String oldValue = getVoucherImage();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -174,7 +181,7 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		updateVoucherImage(newValue);
 		this.onChangeProperty(VOUCHER_IMAGE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -382,7 +389,9 @@ public class OriginalVoucher extends BaseEntity implements  java.io.Serializable
 		appendKeyValuePair(result, BELONGS_TO_PROPERTY, getBelongsTo());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

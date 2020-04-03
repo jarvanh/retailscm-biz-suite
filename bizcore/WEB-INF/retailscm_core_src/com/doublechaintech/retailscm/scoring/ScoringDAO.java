@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.scoring;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -62,6 +63,7 @@ public interface ScoringDAO extends BaseDAO{
 	
 	public SmartList<Scoring> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateScoring executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
 
 	// 需要一个加载引用我的对象的enhance方法:EmployeeCompanyTraining的scoring的EmployeeCompanyTrainingList
 	public SmartList<EmployeeCompanyTraining> loadOurEmployeeCompanyTrainingList(RetailscmUserContext userContext, List<Scoring> us, Map<String,Object> options) throws Exception;

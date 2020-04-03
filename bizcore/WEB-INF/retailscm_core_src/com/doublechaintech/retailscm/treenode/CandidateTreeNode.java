@@ -17,3 +17,12 @@ public class CandidateTreeNode extends BaseCandidateEntity<TreeNode>{
 
 
 
+
+
+
+
+
+
+
+
+

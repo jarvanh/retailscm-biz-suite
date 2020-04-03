@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,14 +539,30 @@ public class TransportTruckJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
  	protected Object[] prepareTransportTruckUpdateParameters(TransportTruck transportTruck){
  		Object[] parameters = new Object[12];
  
+ 		
  		parameters[0] = transportTruck.getName();
+ 		
+ 		
  		parameters[1] = transportTruck.getPlateNumber();
+ 		
+ 		
  		parameters[2] = transportTruck.getContactNumber();
+ 		
+ 		
  		parameters[3] = transportTruck.getVehicleLicenseNumber();
+ 		
+ 		
  		parameters[4] = transportTruck.getEngineNumber();
+ 		
+ 		
  		parameters[5] = transportTruck.getMakeDate();
+ 		
+ 		
  		parameters[6] = transportTruck.getMileage();
- 		parameters[7] = transportTruck.getBodyColor(); 	
+ 		
+ 		
+ 		parameters[7] = transportTruck.getBodyColor();
+ 		 	
  		if(transportTruck.getOwner() != null){
  			parameters[8] = transportTruck.getOwner().getId();
  		}
@@ -559,14 +579,30 @@ public class TransportTruckJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 		transportTruck.setId(newTransportTruckId);
 		parameters[0] =  transportTruck.getId();
  
+ 		
  		parameters[1] = transportTruck.getName();
+ 		
+ 		
  		parameters[2] = transportTruck.getPlateNumber();
+ 		
+ 		
  		parameters[3] = transportTruck.getContactNumber();
+ 		
+ 		
  		parameters[4] = transportTruck.getVehicleLicenseNumber();
+ 		
+ 		
  		parameters[5] = transportTruck.getEngineNumber();
+ 		
+ 		
  		parameters[6] = transportTruck.getMakeDate();
+ 		
+ 		
  		parameters[7] = transportTruck.getMileage();
- 		parameters[8] = transportTruck.getBodyColor(); 	
+ 		
+ 		
+ 		parameters[8] = transportTruck.getBodyColor();
+ 		 	
  		if(transportTruck.getOwner() != null){
  			parameters[9] = transportTruck.getOwner().getId();
  		
@@ -881,7 +917,7 @@ public class TransportTruckJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
     public SmartList<TransportTruck> requestCandidateTransportTruckForTransportTask(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(TransportTruckTable.COLUMN_NAME, filterKey, pageNo, pageSize, getTransportTruckMapper());
+		return findAllCandidateByFilter(TransportTruckTable.COLUMN_NAME, TransportTruckTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getTransportTruckMapper());
     }
 		
 
@@ -955,6 +991,30 @@ public class TransportTruckJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateTransportTruck executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateTransportTruck result = new CandidateTransportTruck();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

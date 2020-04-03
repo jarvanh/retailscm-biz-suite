@@ -48,7 +48,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setId(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(RetailStoreTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -60,7 +62,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setName(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(RetailStoreTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -72,7 +76,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setTelephone(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String telephone = rs.getString(RetailStoreTable.COLUMN_TELEPHONE);
+		
 		if(telephone == null){
 			//do nothing when nothing found in database
 			return;
@@ -84,7 +90,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setOwner(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String owner = rs.getString(RetailStoreTable.COLUMN_OWNER);
+		
 		if(owner == null){
 			//do nothing when nothing found in database
 			return;
@@ -240,7 +248,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setFounded(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date founded = rs.getDate(RetailStoreTable.COLUMN_FOUNDED);
+		
 		if(founded == null){
 			//do nothing when nothing found in database
 			return;
@@ -252,7 +262,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setLatitude(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(RetailStoreTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -264,7 +276,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setLongitude(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(RetailStoreTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -276,7 +290,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setDescription(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(RetailStoreTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -288,7 +304,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setLastUpdateTime(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(RetailStoreTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -300,7 +318,9 @@ public class RetailStoreMapper extends BaseRowMapper<RetailStore>{
 	protected void setVersion(RetailStore retailStore, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(RetailStoreTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

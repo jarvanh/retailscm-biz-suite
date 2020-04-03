@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -551,14 +555,22 @@ public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Ci
  	protected Object[] prepareCityEventUpdateParameters(CityEvent cityEvent){
  		Object[] parameters = new Object[8];
  
+ 		
  		parameters[0] = cityEvent.getName();
- 		parameters[1] = cityEvent.getMobile(); 	
+ 		
+ 		
+ 		parameters[1] = cityEvent.getMobile();
+ 		 	
  		if(cityEvent.getCityServiceCenter() != null){
  			parameters[2] = cityEvent.getCityServiceCenter().getId();
  		}
  
+ 		
  		parameters[3] = cityEvent.getDescription();
- 		parameters[4] = cityEvent.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[4] = cityEvent.getLastUpdateTime();
+ 				
  		parameters[5] = cityEvent.nextVersion();
  		parameters[6] = cityEvent.getId();
  		parameters[7] = cityEvent.getVersion();
@@ -571,15 +583,23 @@ public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Ci
 		cityEvent.setId(newCityEventId);
 		parameters[0] =  cityEvent.getId();
  
+ 		
  		parameters[1] = cityEvent.getName();
- 		parameters[2] = cityEvent.getMobile(); 	
+ 		
+ 		
+ 		parameters[2] = cityEvent.getMobile();
+ 		 	
  		if(cityEvent.getCityServiceCenter() != null){
  			parameters[3] = cityEvent.getCityServiceCenter().getId();
  		
  		}
  		
+ 		
  		parameters[4] = cityEvent.getDescription();
- 		parameters[5] = cityEvent.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[5] = cityEvent.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -801,7 +821,7 @@ public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Ci
     public SmartList<CityEvent> requestCandidateCityEventForEventAttendance(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(CityEventTable.COLUMN_NAME, filterKey, pageNo, pageSize, getCityEventMapper());
+		return findAllCandidateByFilter(CityEventTable.COLUMN_NAME, CityEventTable.COLUMN_CITY_SERVICE_CENTER, filterKey, pageNo, pageSize, getCityEventMapper());
     }
 		
 
@@ -875,6 +895,30 @@ public class CityEventJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Ci
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateCityEvent executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateCityEvent result = new CandidateCityEvent();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

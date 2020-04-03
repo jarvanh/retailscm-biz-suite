@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -539,9 +543,15 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  			parameters[0] = levelTwoDepartment.getBelongsTo().getId();
  		}
  
+ 		
  		parameters[1] = levelTwoDepartment.getName();
+ 		
+ 		
  		parameters[2] = levelTwoDepartment.getDescription();
- 		parameters[3] = levelTwoDepartment.getFounded();		
+ 		
+ 		
+ 		parameters[3] = levelTwoDepartment.getFounded();
+ 				
  		parameters[4] = levelTwoDepartment.nextVersion();
  		parameters[5] = levelTwoDepartment.getId();
  		parameters[6] = levelTwoDepartment.getVersion();
@@ -559,9 +569,15 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		
  		}
  		
+ 		
  		parameters[2] = levelTwoDepartment.getName();
+ 		
+ 		
  		parameters[3] = levelTwoDepartment.getDescription();
- 		parameters[4] = levelTwoDepartment.getFounded();		
+ 		
+ 		
+ 		parameters[4] = levelTwoDepartment.getFounded();
+ 				
  				
  		return parameters;
  	}
@@ -739,7 +755,7 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
     public SmartList<LevelTwoDepartment> requestCandidateLevelTwoDepartmentForLevelThreeDepartment(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(LevelTwoDepartmentTable.COLUMN_BELONGS_TO, filterKey, pageNo, pageSize, getLevelTwoDepartmentMapper());
+		return findAllCandidateByFilter(LevelTwoDepartmentTable.COLUMN_BELONGS_TO, LevelTwoDepartmentTable.COLUMN_BELONGS_TO, filterKey, pageNo, pageSize, getLevelTwoDepartmentMapper());
     }
 		
 
@@ -813,6 +829,30 @@ public class LevelTwoDepartmentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateLevelTwoDepartment executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateLevelTwoDepartment result = new CandidateLevelTwoDepartment();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

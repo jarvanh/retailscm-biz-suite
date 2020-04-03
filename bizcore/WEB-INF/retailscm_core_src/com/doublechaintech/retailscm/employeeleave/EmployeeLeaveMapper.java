@@ -30,7 +30,9 @@ public class EmployeeLeaveMapper extends BaseRowMapper<EmployeeLeave>{
 	protected void setId(EmployeeLeave employeeLeave, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeLeaveTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -78,7 +80,9 @@ public class EmployeeLeaveMapper extends BaseRowMapper<EmployeeLeave>{
 	protected void setLeaveDurationHour(EmployeeLeave employeeLeave, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer leaveDurationHour = rs.getInt(EmployeeLeaveTable.COLUMN_LEAVE_DURATION_HOUR);
+		
 		if(leaveDurationHour == null){
 			//do nothing when nothing found in database
 			return;
@@ -90,7 +94,9 @@ public class EmployeeLeaveMapper extends BaseRowMapper<EmployeeLeave>{
 	protected void setRemark(EmployeeLeave employeeLeave, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String remark = rs.getString(EmployeeLeaveTable.COLUMN_REMARK);
+		
 		if(remark == null){
 			//do nothing when nothing found in database
 			return;
@@ -102,7 +108,9 @@ public class EmployeeLeaveMapper extends BaseRowMapper<EmployeeLeave>{
 	protected void setVersion(EmployeeLeave employeeLeave, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeLeaveTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

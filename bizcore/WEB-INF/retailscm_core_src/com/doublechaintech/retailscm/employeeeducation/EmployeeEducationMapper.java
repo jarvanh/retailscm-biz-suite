@@ -29,7 +29,9 @@ public class EmployeeEducationMapper extends BaseRowMapper<EmployeeEducation>{
 	protected void setId(EmployeeEducation employeeEducation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeEducationTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -59,7 +61,9 @@ public class EmployeeEducationMapper extends BaseRowMapper<EmployeeEducation>{
 	protected void setCompleteTime(EmployeeEducation employeeEducation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date completeTime = rs.getDate(EmployeeEducationTable.COLUMN_COMPLETE_TIME);
+		
 		if(completeTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class EmployeeEducationMapper extends BaseRowMapper<EmployeeEducation>{
 	protected void setType(EmployeeEducation employeeEducation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String type = rs.getString(EmployeeEducationTable.COLUMN_TYPE);
+		
 		if(type == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class EmployeeEducationMapper extends BaseRowMapper<EmployeeEducation>{
 	protected void setRemark(EmployeeEducation employeeEducation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String remark = rs.getString(EmployeeEducationTable.COLUMN_REMARK);
+		
 		if(remark == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class EmployeeEducationMapper extends BaseRowMapper<EmployeeEducation>{
 	protected void setVersion(EmployeeEducation employeeEducation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeEducationTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -132,6 +133,7 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 	protected		SmartList<Employee> 	mEmployeeList       ;
 	protected		SmartList<Instructor>	mInstructorList     ;
 	protected		SmartList<CompanyTraining>	mCompanyTrainingList;
+
 	
 		
 	public 	RetailStoreCountryCenter(){
@@ -188,6 +190,7 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -197,12 +200,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeServiceNumberProperty(String newValueExpr){
+	
 		String oldValue = getServiceNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -212,12 +216,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateServiceNumber(newValue);
 		this.onChangeProperty(SERVICE_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFoundedProperty(String newValueExpr){
+	
 		Date oldValue = getFounded();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -227,12 +232,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateFounded(newValue);
 		this.onChangeProperty(FOUNDED_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeWebSiteProperty(String newValueExpr){
+	
 		String oldValue = getWebSite();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -242,12 +248,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateWebSite(newValue);
 		this.onChangeProperty(WEB_SITE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAddressProperty(String newValueExpr){
+	
 		String oldValue = getAddress();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -257,12 +264,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateAddress(newValue);
 		this.onChangeProperty(ADDRESS_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeOperatedByProperty(String newValueExpr){
+	
 		String oldValue = getOperatedBy();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -272,12 +280,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateOperatedBy(newValue);
 		this.onChangeProperty(OPERATED_BY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLegalRepresentativeProperty(String newValueExpr){
+	
 		String oldValue = getLegalRepresentative();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -287,12 +296,13 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateLegalRepresentative(newValue);
 		this.onChangeProperty(LEGAL_REPRESENTATIVE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -302,7 +312,7 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 		updateDescription(newValue);
 		this.onChangeProperty(DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -3376,7 +3386,9 @@ public class RetailStoreCountryCenter extends BaseEntity implements  java.io.Ser
 			appendKeyValuePair(result, "companyTrainingCurrentPageNumber", getCompanyTrainingList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

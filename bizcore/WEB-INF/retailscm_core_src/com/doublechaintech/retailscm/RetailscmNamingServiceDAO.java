@@ -125,6 +125,12 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("EmployeeAward", new String[]{"employee_award_data","type"});
 		namingTableMap.put("EmployeeSalarySheet", new String[]{"employee_salary_sheet_data","id"});
 		namingTableMap.put("PayingOff", new String[]{"paying_off_data","who"});
+		namingTableMap.put("MobileApp", new String[]{"mobile_app_data","name"});
+		namingTableMap.put("Page", new String[]{"page_data","page_title"});
+		namingTableMap.put("PageType", new String[]{"page_type_data","name"});
+		namingTableMap.put("Slide", new String[]{"slide_data","name"});
+		namingTableMap.put("UiAction", new String[]{"ui_action_data","code"});
+		namingTableMap.put("Section", new String[]{"section_data","title"});
 		namingTableMap.put("UserDomain", new String[]{"user_domain_data","name"});
 		namingTableMap.put("UserWhiteList", new String[]{"user_white_list_data","user_identity"});
 		namingTableMap.put("SecUser", new String[]{"sec_user_data","login"});
@@ -140,6 +146,9 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("FormAction", new String[]{"form_action_data","label"});
 		namingTableMap.put("CandidateContainer", new String[]{"candidate_container_data","name"});
 		namingTableMap.put("CandidateElement", new String[]{"candidate_element_data","name"});
+		namingTableMap.put("WechatWorkappIdentify", new String[]{"wechat_workapp_identify_data","corp_id"});
+		namingTableMap.put("WechatMiniappIdentify", new String[]{"wechat_miniapp_identify_data","open_id"});
+		namingTableMap.put("TreeNode", new String[]{"tree_node_data","node_id"});
 		
 
 		
@@ -458,7 +467,25 @@ public class RetailscmNamingServiceDAO extends CommonJDBCTemplateDAO {
 		}
 		return internalFieldBuffer.toString();
 	}
+	
+	public static String getDisplayNameColumnName(String modelName) {
+    	String[] sqlInfo=namingTableMap.get(modelName);
+    	if (sqlInfo == null || sqlInfo.length < 2) {
+    		return null;
+    	}
+    	return sqlInfo[1];
+    }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

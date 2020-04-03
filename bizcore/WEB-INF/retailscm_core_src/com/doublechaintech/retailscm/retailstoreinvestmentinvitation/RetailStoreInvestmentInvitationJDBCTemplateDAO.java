@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -452,7 +456,9 @@ public class RetailStoreInvestmentInvitationJDBCTemplateDAO extends RetailscmBas
  	protected Object[] prepareRetailStoreInvestmentInvitationUpdateParameters(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation){
  		Object[] parameters = new Object[4];
  
- 		parameters[0] = retailStoreInvestmentInvitation.getComment();		
+ 		
+ 		parameters[0] = retailStoreInvestmentInvitation.getComment();
+ 				
  		parameters[1] = retailStoreInvestmentInvitation.nextVersion();
  		parameters[2] = retailStoreInvestmentInvitation.getId();
  		parameters[3] = retailStoreInvestmentInvitation.getVersion();
@@ -465,7 +471,9 @@ public class RetailStoreInvestmentInvitationJDBCTemplateDAO extends RetailscmBas
 		retailStoreInvestmentInvitation.setId(newRetailStoreInvestmentInvitationId);
 		parameters[0] =  retailStoreInvestmentInvitation.getId();
  
- 		parameters[1] = retailStoreInvestmentInvitation.getComment();		
+ 		
+ 		parameters[1] = retailStoreInvestmentInvitation.getComment();
+ 				
  				
  		return parameters;
  	}
@@ -930,7 +938,7 @@ public class RetailStoreInvestmentInvitationJDBCTemplateDAO extends RetailscmBas
     public SmartList<RetailStoreInvestmentInvitation> requestCandidateRetailStoreInvestmentInvitationForRetailStore(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreInvestmentInvitationTable.COLUMN_COMMENT, filterKey, pageNo, pageSize, getRetailStoreInvestmentInvitationMapper());
+		return findAllCandidateByFilter(RetailStoreInvestmentInvitationTable.COLUMN_COMMENT, null, filterKey, pageNo, pageSize, getRetailStoreInvestmentInvitationMapper());
     }
 		
 
@@ -1004,6 +1012,30 @@ public class RetailStoreInvestmentInvitationJDBCTemplateDAO extends RetailscmBas
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreInvestmentInvitation executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreInvestmentInvitation result = new CandidateRetailStoreInvestmentInvitation();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

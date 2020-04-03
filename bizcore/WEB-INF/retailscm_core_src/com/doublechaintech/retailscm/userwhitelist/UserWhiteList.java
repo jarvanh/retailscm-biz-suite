@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -51,6 +52,7 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	UserWhiteList(){
@@ -90,6 +92,7 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeUserIdentityProperty(String newValueExpr){
+	
 		String oldValue = getUserIdentity();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -99,12 +102,13 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		updateUserIdentity(newValue);
 		this.onChangeProperty(USER_IDENTITY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeUserSpecialFunctionsProperty(String newValueExpr){
+	
 		String oldValue = getUserSpecialFunctions();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -114,7 +118,7 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		updateUserSpecialFunctions(newValue);
 		this.onChangeProperty(USER_SPECIAL_FUNCTIONS_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -262,7 +266,9 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, DOMAIN_PROPERTY, getDomain());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

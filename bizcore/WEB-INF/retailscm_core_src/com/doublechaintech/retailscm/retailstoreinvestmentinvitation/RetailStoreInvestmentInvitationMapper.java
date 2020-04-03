@@ -25,7 +25,9 @@ public class RetailStoreInvestmentInvitationMapper extends BaseRowMapper<RetailS
 	protected void setId(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(RetailStoreInvestmentInvitationTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -37,7 +39,9 @@ public class RetailStoreInvestmentInvitationMapper extends BaseRowMapper<RetailS
 	protected void setComment(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String comment = rs.getString(RetailStoreInvestmentInvitationTable.COLUMN_COMMENT);
+		
 		if(comment == null){
 			//do nothing when nothing found in database
 			return;
@@ -49,7 +53,9 @@ public class RetailStoreInvestmentInvitationMapper extends BaseRowMapper<RetailS
 	protected void setVersion(RetailStoreInvestmentInvitation retailStoreInvestmentInvitation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(RetailStoreInvestmentInvitationTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

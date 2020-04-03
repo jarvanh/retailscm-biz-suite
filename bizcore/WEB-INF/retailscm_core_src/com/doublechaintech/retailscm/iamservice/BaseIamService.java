@@ -285,6 +285,29 @@ public abstract class BaseIamService {
 			throw new RuntimeException("加载用户出错:"+e.getMessage(), e);
 		}
 	}
+	/** 当checkAccess() 没有找到secUser时调用 
+	 * @param loginInfo2 */
+	public void onCheckAccessWhenAnonymousFound(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo) {
+		if (loginInfo != null && loginInfo.get("tokenKey") != null) {
+			return;
+		}
+		// 选一个token key
+		String tokenKey = userContext.tokenId();
+		if (!isLoginClientSupportSession(userContext, null, null, null)) {
+			tokenKey = "token_" + RandomUtil.randomNumAndChars(20);
+			((UserContextImpl) userContext).setTokenId(tokenKey);
+		}
+		// 生成 anonymous jwtToken
+		String userId = "anonymous";
+		String userUploadHome = makeUserUploadHomeWhenLogged(null, null);
+		String envType = userContext.isProductEnvironment() ? "product" : userContext.getEnvironmentName();
+		String jToken = JWTUtil.getJwtToken(userId, userUploadHome, envType, tokenKey);
+		// cache
+		loginInfo = MapUtil.put("tokenKey", tokenKey).into_map();
+		userContext.putToCache(getLoginInfoCacheKey(userContext), loginInfo, getUserTtlInSecond());
+		// set to header
+		userContext.setResponseHeader(JWTUtil.HEADER_NAME, jToken);
+	}
 	
 //	// //////////////////////////////////////////////////
 //	// 登录用的例子
@@ -437,6 +460,15 @@ public abstract class BaseIamService {
 //		return null;
 //	}
 }
+
+
+
+
+
+
+
+
+
 
 
 

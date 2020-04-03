@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.transportfleet;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.transporttruck.TransportTruck;
@@ -28,7 +45,7 @@ import com.doublechaintech.retailscm.truckdriver.TruckDriver;
 
 
 
-public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager implements TransportFleetManager {
+public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager implements TransportFleetManager, BusinessHandler{
 
   
 
@@ -226,10 +243,16 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 		
 
 		if(TransportFleet.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfTransportFleet(parseString(newValueExpr));
+		
+			
 		}
 		if(TransportFleet.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfTransportFleet(parseString(newValueExpr));
+		
+			
 		}		
 
 		
@@ -722,35 +745,51 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 		
 
 		if(TransportTruck.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfTransportTruck(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTruck.PLATE_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkPlateNumberOfTransportTruck(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTruck.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfTransportTruck(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTruck.VEHICLE_LICENSE_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkVehicleLicenseNumberOfTransportTruck(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTruck.ENGINE_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkEngineNumberOfTransportTruck(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTruck.MAKE_DATE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMakeDateOfTransportTruck(parseDate(newValueExpr));
+		
 		}
 		
 		if(TransportTruck.MILEAGE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMileageOfTransportTruck(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTruck.BODY_COLOR_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkBodyColorOfTransportTruck(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -990,15 +1029,21 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 		
 
 		if(TruckDriver.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfTruckDriver(parseString(newValueExpr));
+		
 		}
 		
 		if(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDriverLicenseNumberOfTruckDriver(parseString(newValueExpr));
+		
 		}
 		
 		if(TruckDriver.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfTruckDriver(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1263,23 +1308,33 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
 		
 
 		if(TransportTask.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfTransportTask(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTask.START_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkStartOfTransportTask(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportTask.BEGIN_TIME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkBeginTimeOfTransportTask(parseDate(newValueExpr));
+		
 		}
 		
 		if(TransportTask.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfTransportTask(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(TransportTask.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfTransportTask(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -1334,6 +1389,324 @@ public class TransportFleetManagerImpl extends CustomRetailscmCheckerManager imp
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   TransportFleet newTransportFleet = this.createTransportFleet(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newTransportFleet
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, TransportFleet.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<TransportFleet> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+		List<RetailStoreCountryCenter> ownerList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, RetailStoreCountryCenter.class);
+		userContext.getDAOGroup().enhanceList(ownerList, RetailStoreCountryCenter.class);
+
+
+    }
+	
+	public Object listByOwner(RetailscmUserContext userContext,String ownerId) throws Exception {
+		return listPageByOwner(userContext, ownerId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByOwner(RetailscmUserContext userContext,String ownerId, int start, int count) throws Exception {
+		SmartList<TransportFleet> list = transportFleetDaoOf(userContext).findTransportFleetByOwner(ownerId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(TransportFleet.class);
+		page.setContainerObject(RetailStoreCountryCenter.withId(ownerId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("运输车队列表");
+		page.setRequestName("listByOwner");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByOwner/%s/",  getBeanName(), ownerId)));
+
+		page.assemblerContent(userContext, "listByOwner");
+		return page.doRender(userContext);
+	}
+  
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String transportFleetId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getTransportFleetDetailScope().clone();
+		TransportFleet merchantObj = (TransportFleet) this.view(userContext, transportFleetId);
+    String merchantObjId = transportFleetId;
+    String linkToUrl =	"transportFleetManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "运输车队"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-name")
+				    .put("fieldName", "name")
+				    .put("label", "名称")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("name", merchantObj.getName());
+
+		propList.add(
+				MapUtil.put("id", "3-contactNumber")
+				    .put("fieldName", "contactNumber")
+				    .put("label", "联系电话")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("contactNumber", merchantObj.getContactNumber());
+
+		propList.add(
+				MapUtil.put("id", "4-owner")
+				    .put("fieldName", "owner")
+				    .put("label", "业主")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "retailStoreCountryCenterManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("owner", merchantObj.getOwner());
+
+		propList.add(
+				MapUtil.put("id", "5-lastUpdateTime")
+				    .put("fieldName", "lastUpdateTime")
+				    .put("label", "最后更新时间")
+				    .put("type", "date")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("lastUpdateTime", merchantObj.getLastUpdateTime());
+
+		//处理 sectionList
+
+		//处理Section：transportTruckListSection
+		Map transportTruckListSection = ListofUtils.buildSection(
+		    "transportTruckListSection",
+		    "运输卡车列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "transportTruckManager/listByOwner/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(transportTruckListSection);
+
+		result.put("transportTruckListSection", ListofUtils.toShortList(merchantObj.getTransportTruckList(), "transportTruck"));
+		vscope.field("transportTruckListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( TransportTruck.class.getName(), null));
+
+		//处理Section：truckDriverListSection
+		Map truckDriverListSection = ListofUtils.buildSection(
+		    "truckDriverListSection",
+		    "卡车司机列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "truckDriverManager/listByBelongsTo/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(truckDriverListSection);
+
+		result.put("truckDriverListSection", ListofUtils.toShortList(merchantObj.getTruckDriverList(), "truckDriver"));
+		vscope.field("truckDriverListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( TruckDriver.class.getName(), null));
+
+		//处理Section：transportTaskListSection
+		Map transportTaskListSection = ListofUtils.buildSection(
+		    "transportTaskListSection",
+		    "运输任务列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "transportTaskManager/listByBelongsTo/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(transportTaskListSection);
+
+		result.put("transportTaskListSection", ListofUtils.toShortList(merchantObj.getTransportTaskList(), "transportTask"));
+		vscope.field("transportTaskListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( TransportTask.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

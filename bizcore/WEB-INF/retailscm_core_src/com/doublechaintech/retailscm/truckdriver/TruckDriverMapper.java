@@ -29,7 +29,9 @@ public class TruckDriverMapper extends BaseRowMapper<TruckDriver>{
 	protected void setId(TruckDriver truckDriver, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TruckDriverTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class TruckDriverMapper extends BaseRowMapper<TruckDriver>{
 	protected void setName(TruckDriver truckDriver, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(TruckDriverTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class TruckDriverMapper extends BaseRowMapper<TruckDriver>{
 	protected void setDriverLicenseNumber(TruckDriver truckDriver, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String driverLicenseNumber = rs.getString(TruckDriverTable.COLUMN_DRIVER_LICENSE_NUMBER);
+		
 		if(driverLicenseNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class TruckDriverMapper extends BaseRowMapper<TruckDriver>{
 	protected void setContactNumber(TruckDriver truckDriver, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(TruckDriverTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class TruckDriverMapper extends BaseRowMapper<TruckDriver>{
 	protected void setVersion(TruckDriver truckDriver, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TruckDriverTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

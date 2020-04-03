@@ -61,6 +61,7 @@ public class Page extends BaseEntity implements  java.io.Serializable{
 	
 	protected		SmartList<Slide>    	mSlideList          ;
 	protected		SmartList<UiAction> 	mUiActionList       ;
+
 	
 		
 	public 	Page(){
@@ -537,7 +538,9 @@ public class Page extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "uiActionCurrentPageNumber", getUiActionList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

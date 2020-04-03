@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -439,10 +443,18 @@ public class EmployeeAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  			parameters[0] = employeeAttendance.getEmployee().getId();
  		}
  
+ 		
  		parameters[1] = employeeAttendance.getEnterTime();
+ 		
+ 		
  		parameters[2] = employeeAttendance.getLeaveTime();
+ 		
+ 		
  		parameters[3] = employeeAttendance.getDurationHours();
- 		parameters[4] = employeeAttendance.getRemark();		
+ 		
+ 		
+ 		parameters[4] = employeeAttendance.getRemark();
+ 				
  		parameters[5] = employeeAttendance.nextVersion();
  		parameters[6] = employeeAttendance.getId();
  		parameters[7] = employeeAttendance.getVersion();
@@ -460,10 +472,18 @@ public class EmployeeAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  		
  		}
  		
+ 		
  		parameters[2] = employeeAttendance.getEnterTime();
+ 		
+ 		
  		parameters[3] = employeeAttendance.getLeaveTime();
+ 		
+ 		
  		parameters[4] = employeeAttendance.getDurationHours();
- 		parameters[5] = employeeAttendance.getRemark();		
+ 		
+ 		
+ 		parameters[5] = employeeAttendance.getRemark();
+ 				
  				
  		return parameters;
  	}
@@ -564,6 +584,30 @@ public class EmployeeAttendanceJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateEmployeeAttendance executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateEmployeeAttendance result = new CandidateEmployeeAttendance();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

@@ -29,7 +29,9 @@ public class EmployeeInterviewMapper extends BaseRowMapper<EmployeeInterview>{
 	protected void setId(EmployeeInterview employeeInterview, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeInterviewTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -77,7 +79,9 @@ public class EmployeeInterviewMapper extends BaseRowMapper<EmployeeInterview>{
 	protected void setRemark(EmployeeInterview employeeInterview, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String remark = rs.getString(EmployeeInterviewTable.COLUMN_REMARK);
+		
 		if(remark == null){
 			//do nothing when nothing found in database
 			return;
@@ -89,7 +93,9 @@ public class EmployeeInterviewMapper extends BaseRowMapper<EmployeeInterview>{
 	protected void setVersion(EmployeeInterview employeeInterview, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeInterviewTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

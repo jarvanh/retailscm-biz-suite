@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.BaseManager;
@@ -13,12 +14,12 @@ public interface FormFieldManager extends BaseManager{
 
 		
 
-	public FormField createFormField(RetailscmUserContext userContext, String label,String localeKey,String parameterName,String type,String formId,String placeholder,String defaultValue,String description,String fieldGroup,String minimumValue,String maximumValue,boolean required,boolean disabled,boolean customRendering,String candidateValues,String suggestValues) throws Exception;	
+	public FormField createFormField(RetailscmUserContext userContext, String label,String localeKey,String parameterName,String type,String formId,String placeholder,String defaultValue,String description,String fieldGroup,String minimumValue,String maximumValue,boolean required,boolean disabled,boolean customRendering,String candidateValues,String suggestValues) throws Exception;
 	public FormField updateFormField(RetailscmUserContext userContext,String formFieldId, int formFieldVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public FormField loadFormField(RetailscmUserContext userContext, String formFieldId, String [] tokensExpr) throws Exception;
 	public FormField internalSaveFormField(RetailscmUserContext userContext, FormField formField) throws Exception;
 	public FormField internalSaveFormField(RetailscmUserContext userContext, FormField formField,Map<String,Object>option) throws Exception;
-	
+
 	public FormField transferToAnotherForm(RetailscmUserContext userContext, String formFieldId, String anotherFormId)  throws Exception;
  
 
@@ -27,9 +28,12 @@ public interface FormFieldManager extends BaseManager{
 	public void onNewInstanceCreated(RetailscmUserContext userContext, FormField newCreated)throws Exception;
 
 	/*======================================================DATA MAINTENANCE===========================================================*/
-	
 
 
+
+	public Object listByForm(RetailscmUserContext userContext,String formId) throws Exception;
+	public Object listPageByForm(RetailscmUserContext userContext,String formId, int start, int count) throws Exception;
+  
 
 }
 

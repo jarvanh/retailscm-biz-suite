@@ -30,7 +30,9 @@ public class EventAttendanceMapper extends BaseRowMapper<EventAttendance>{
 	protected void setId(EventAttendance eventAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EventAttendanceTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -42,7 +44,9 @@ public class EventAttendanceMapper extends BaseRowMapper<EventAttendance>{
 	protected void setName(EventAttendance eventAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(EventAttendanceTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -90,7 +94,9 @@ public class EventAttendanceMapper extends BaseRowMapper<EventAttendance>{
 	protected void setDescription(EventAttendance eventAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(EventAttendanceTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -102,7 +108,9 @@ public class EventAttendanceMapper extends BaseRowMapper<EventAttendance>{
 	protected void setVersion(EventAttendance eventAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EventAttendanceTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

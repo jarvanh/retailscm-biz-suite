@@ -3,19 +3,24 @@ package com.doublechaintech.retailscm.secuser;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentify;
 import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentify;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyDAO;
 import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 import com.doublechaintech.retailscm.loginhistory.LoginHistoryDAO;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyDAO;
 
 
 public interface SecUserDAO extends BaseDAO{
@@ -68,10 +73,18 @@ public interface SecUserDAO extends BaseDAO{
 		
 	public LoginHistoryDAO getLoginHistoryDAO();
 		
+	public WechatWorkappIdentifyDAO getWechatWorkappIdentifyDAO();
+		
+	public WechatMiniappIdentifyDAO getWechatMiniappIdentifyDAO();
+		
 	
  	public SmartList<SecUser> requestCandidateSecUserForUserApp(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
  	public SmartList<SecUser> requestCandidateSecUserForLoginHistory(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
+		
+ 	public SmartList<SecUser> requestCandidateSecUserForWechatWorkappIdentify(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
+		
+ 	public SmartList<SecUser> requestCandidateSecUserForWechatMiniappIdentify(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
 	
 	public SecUser planToRemoveUserAppList(SecUser secUser, String userAppIds[], Map<String,Object> options)throws Exception;
@@ -84,9 +97,32 @@ public interface SecUserDAO extends BaseDAO{
 	public SecUser planToRemoveLoginHistoryList(SecUser secUser, String loginHistoryIds[], Map<String,Object> options)throws Exception;
 
 
+	public SecUser planToRemoveWechatWorkappIdentifyList(SecUser secUser, String wechatWorkappIdentifyIds[], Map<String,Object> options)throws Exception;
+
+
+	//disconnect SecUser with corp_id in WechatWorkappIdentify
+	public SecUser planToRemoveWechatWorkappIdentifyListWithCorpId(SecUser secUser, String corpIdId, Map<String,Object> options)throws Exception;
+	public int countWechatWorkappIdentifyListWithCorpId(String secUserId, String corpIdId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SecUser with user_id in WechatWorkappIdentify
+	public SecUser planToRemoveWechatWorkappIdentifyListWithUserId(SecUser secUser, String userIdId, Map<String,Object> options)throws Exception;
+	public int countWechatWorkappIdentifyListWithUserId(String secUserId, String userIdId, Map<String,Object> options)throws Exception;
+	
+	public SecUser planToRemoveWechatMiniappIdentifyList(SecUser secUser, String wechatMiniappIdentifyIds[], Map<String,Object> options)throws Exception;
+
+
+	//disconnect SecUser with open_id in WechatMiniappIdentify
+	public SecUser planToRemoveWechatMiniappIdentifyListWithOpenId(SecUser secUser, String openIdId, Map<String,Object> options)throws Exception;
+	public int countWechatMiniappIdentifyListWithOpenId(String secUserId, String openIdId, Map<String,Object> options)throws Exception;
+	
+	//disconnect SecUser with app_id in WechatMiniappIdentify
+	public SecUser planToRemoveWechatMiniappIdentifyListWithAppId(SecUser secUser, String appIdId, Map<String,Object> options)throws Exception;
+	public int countWechatMiniappIdentifyListWithAppId(String secUserId, String appIdId, Map<String,Object> options)throws Exception;
+	
 	
 	public SmartList<SecUser> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateSecUser executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<SecUser> findSecUserByDomain(String userDomainId, Map<String,Object> options);
  	public int countSecUserByDomain(String userDomainId, Map<String,Object> options);
@@ -101,6 +137,12 @@ public interface SecUserDAO extends BaseDAO{
 	
 	// 需要一个加载引用我的对象的enhance方法:LoginHistory的secUser的LoginHistoryList
 	public SmartList<LoginHistory> loadOurLoginHistoryList(RetailscmUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:WechatWorkappIdentify的secUser的WechatWorkappIdentifyList
+	public SmartList<WechatWorkappIdentify> loadOurWechatWorkappIdentifyList(RetailscmUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:WechatMiniappIdentify的secUser的WechatMiniappIdentifyList
+	public SmartList<WechatMiniappIdentify> loadOurWechatMiniappIdentifyList(RetailscmUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception;
 	
 }
 

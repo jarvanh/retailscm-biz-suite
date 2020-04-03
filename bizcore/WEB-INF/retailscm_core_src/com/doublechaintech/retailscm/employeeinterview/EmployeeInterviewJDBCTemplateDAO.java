@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -544,7 +548,9 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
  			parameters[1] = employeeInterview.getInterviewType().getId();
  		}
  
- 		parameters[2] = employeeInterview.getRemark();		
+ 		
+ 		parameters[2] = employeeInterview.getRemark();
+ 				
  		parameters[3] = employeeInterview.nextVersion();
  		parameters[4] = employeeInterview.getId();
  		parameters[5] = employeeInterview.getVersion();
@@ -567,7 +573,9 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
  		
  		}
  		
- 		parameters[3] = employeeInterview.getRemark();		
+ 		
+ 		parameters[3] = employeeInterview.getRemark();
+ 				
  				
  		return parameters;
  	}
@@ -689,6 +697,30 @@ public class EmployeeInterviewJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateEmployeeInterview executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateEmployeeInterview result = new CandidateEmployeeInterview();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -53,6 +54,7 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	TransportTaskTrack(){
@@ -95,6 +97,7 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
     
     
 	protected void changeTrackTimeProperty(String newValueExpr){
+	
 		Date oldValue = getTrackTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -104,12 +107,13 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		updateTrackTime(newValue);
 		this.onChangeProperty(TRACK_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLatitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLatitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -119,12 +123,13 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		updateLatitude(newValue);
 		this.onChangeProperty(LATITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLongitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLongitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -134,7 +139,7 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		updateLongitude(newValue);
 		this.onChangeProperty(LONGITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -302,7 +307,9 @@ public class TransportTaskTrack extends BaseEntity implements  java.io.Serializa
 		appendKeyValuePair(result, MOVEMENT_PROPERTY, getMovement());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

@@ -147,7 +147,14 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		if (shouldMoveUp(scope, fieldValue)) {
 			owner.putAll((Map) fieldValue);
 		}else {
-			owner.put(fieldName, fieldValue);
+			Object finalValue = fieldValue;
+			if (scope != null && scope.getPrefix() != null) {
+				finalValue = scope.getPrefix() + finalValue;
+			}
+			if (scope != null && scope.getPostfix() != null) {
+				finalValue = finalValue + scope.getPostfix();
+			}
+			owner.put(fieldName, finalValue);
 		}
 	}
 	protected boolean shouldMoveUp(SerializeScope scope, Object fieldValue) {
@@ -549,6 +556,16 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		userContext.forceResponseXClassHeader("com.terapico.appview.ListOfPage");
 	}
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

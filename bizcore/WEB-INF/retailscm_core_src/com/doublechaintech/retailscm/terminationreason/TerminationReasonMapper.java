@@ -28,7 +28,9 @@ public class TerminationReasonMapper extends BaseRowMapper<TerminationReason>{
 	protected void setId(TerminationReason terminationReason, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TerminationReasonTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -40,7 +42,9 @@ public class TerminationReasonMapper extends BaseRowMapper<TerminationReason>{
 	protected void setCode(TerminationReason terminationReason, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(TerminationReasonTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -70,7 +74,9 @@ public class TerminationReasonMapper extends BaseRowMapper<TerminationReason>{
 	protected void setDescription(TerminationReason terminationReason, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(TerminationReasonTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -82,7 +88,9 @@ public class TerminationReasonMapper extends BaseRowMapper<TerminationReason>{
 	protected void setVersion(TerminationReason terminationReason, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TerminationReasonTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

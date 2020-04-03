@@ -53,6 +53,7 @@ public class MobileApp extends BaseEntity implements  java.io.Serializable{
 	
 	protected		SmartList<Page>     	mPageList           ;
 	protected		SmartList<PageType> 	mPageTypeList       ;
+
 	
 		
 	public 	MobileApp(){
@@ -436,7 +437,9 @@ public class MobileApp extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "pageTypeCurrentPageNumber", getPageTypeList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

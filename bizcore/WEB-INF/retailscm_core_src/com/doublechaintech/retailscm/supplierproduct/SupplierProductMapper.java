@@ -29,7 +29,9 @@ public class SupplierProductMapper extends BaseRowMapper<SupplierProduct>{
 	protected void setId(SupplierProduct supplierProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(SupplierProductTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class SupplierProductMapper extends BaseRowMapper<SupplierProduct>{
 	protected void setProductName(SupplierProduct supplierProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String productName = rs.getString(SupplierProductTable.COLUMN_PRODUCT_NAME);
+		
 		if(productName == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class SupplierProductMapper extends BaseRowMapper<SupplierProduct>{
 	protected void setProductDescription(SupplierProduct supplierProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String productDescription = rs.getString(SupplierProductTable.COLUMN_PRODUCT_DESCRIPTION);
+		
 		if(productDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class SupplierProductMapper extends BaseRowMapper<SupplierProduct>{
 	protected void setProductUnit(SupplierProduct supplierProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String productUnit = rs.getString(SupplierProductTable.COLUMN_PRODUCT_UNIT);
+		
 		if(productUnit == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class SupplierProductMapper extends BaseRowMapper<SupplierProduct>{
 	protected void setVersion(SupplierProduct supplierProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(SupplierProductTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

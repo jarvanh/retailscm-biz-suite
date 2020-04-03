@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.consumerorderpaymentgroup;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface ConsumerOrderPaymentGroupDAO extends BaseDAO{
 	
 	public SmartList<ConsumerOrderPaymentGroup> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateConsumerOrderPaymentGroup executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<ConsumerOrderPaymentGroup> findConsumerOrderPaymentGroupByBizOrder(String consumerOrderId, Map<String,Object> options);
  	public int countConsumerOrderPaymentGroupByBizOrder(String consumerOrderId, Map<String,Object> options);

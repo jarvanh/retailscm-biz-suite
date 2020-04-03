@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,9 +539,15 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  	protected Object[] prepareSupplierProductUpdateParameters(SupplierProduct supplierProduct){
  		Object[] parameters = new Object[7];
  
+ 		
  		parameters[0] = supplierProduct.getProductName();
+ 		
+ 		
  		parameters[1] = supplierProduct.getProductDescription();
- 		parameters[2] = supplierProduct.getProductUnit(); 	
+ 		
+ 		
+ 		parameters[2] = supplierProduct.getProductUnit();
+ 		 	
  		if(supplierProduct.getSupplier() != null){
  			parameters[3] = supplierProduct.getSupplier().getId();
  		}
@@ -554,9 +564,15 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 		supplierProduct.setId(newSupplierProductId);
 		parameters[0] =  supplierProduct.getId();
  
+ 		
  		parameters[1] = supplierProduct.getProductName();
+ 		
+ 		
  		parameters[2] = supplierProduct.getProductDescription();
- 		parameters[3] = supplierProduct.getProductUnit(); 	
+ 		
+ 		
+ 		parameters[3] = supplierProduct.getProductUnit();
+ 		 	
  		if(supplierProduct.getSupplier() != null){
  			parameters[4] = supplierProduct.getSupplier().getId();
  		
@@ -739,7 +755,7 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
     public SmartList<SupplierProduct> requestCandidateSupplierProductForProductSupplyDuration(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(SupplierProductTable.COLUMN_PRODUCT_NAME, filterKey, pageNo, pageSize, getSupplierProductMapper());
+		return findAllCandidateByFilter(SupplierProductTable.COLUMN_PRODUCT_NAME, SupplierProductTable.COLUMN_SUPPLIER, filterKey, pageNo, pageSize, getSupplierProductMapper());
     }
 		
 
@@ -813,6 +829,30 @@ public class SupplierProductJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateSupplierProduct executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateSupplierProduct result = new CandidateSupplierProduct();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

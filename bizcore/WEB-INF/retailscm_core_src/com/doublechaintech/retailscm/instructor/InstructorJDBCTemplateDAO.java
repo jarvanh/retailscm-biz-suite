@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -551,17 +555,31 @@ public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements I
  	protected Object[] prepareInstructorUpdateParameters(Instructor instructor){
  		Object[] parameters = new Object[11];
  
+ 		
  		parameters[0] = instructor.getTitle();
+ 		
+ 		
  		parameters[1] = instructor.getFamilyName();
+ 		
+ 		
  		parameters[2] = instructor.getGivenName();
+ 		
+ 		
  		parameters[3] = instructor.getCellPhone();
- 		parameters[4] = instructor.getEmail(); 	
+ 		
+ 		
+ 		parameters[4] = instructor.getEmail();
+ 		 	
  		if(instructor.getCompany() != null){
  			parameters[5] = instructor.getCompany().getId();
  		}
  
+ 		
  		parameters[6] = instructor.getIntroduction();
- 		parameters[7] = instructor.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[7] = instructor.getLastUpdateTime();
+ 				
  		parameters[8] = instructor.nextVersion();
  		parameters[9] = instructor.getId();
  		parameters[10] = instructor.getVersion();
@@ -574,18 +592,32 @@ public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements I
 		instructor.setId(newInstructorId);
 		parameters[0] =  instructor.getId();
  
+ 		
  		parameters[1] = instructor.getTitle();
+ 		
+ 		
  		parameters[2] = instructor.getFamilyName();
+ 		
+ 		
  		parameters[3] = instructor.getGivenName();
+ 		
+ 		
  		parameters[4] = instructor.getCellPhone();
- 		parameters[5] = instructor.getEmail(); 	
+ 		
+ 		
+ 		parameters[5] = instructor.getEmail();
+ 		 	
  		if(instructor.getCompany() != null){
  			parameters[6] = instructor.getCompany().getId();
  		
  		}
  		
+ 		
  		parameters[7] = instructor.getIntroduction();
- 		parameters[8] = instructor.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[8] = instructor.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -851,7 +883,7 @@ public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements I
     public SmartList<Instructor> requestCandidateInstructorForCompanyTraining(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(InstructorTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getInstructorMapper());
+		return findAllCandidateByFilter(InstructorTable.COLUMN_TITLE, InstructorTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getInstructorMapper());
     }
 		
 
@@ -925,6 +957,30 @@ public class InstructorJDBCTemplateDAO extends RetailscmBaseDAOImpl implements I
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateInstructor executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateInstructor result = new CandidateInstructor();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

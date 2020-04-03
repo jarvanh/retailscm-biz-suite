@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -749,7 +753,9 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  	protected Object[] prepareCompanyTrainingUpdateParameters(CompanyTraining companyTraining){
  		Object[] parameters = new Object[10];
  
- 		parameters[0] = companyTraining.getTitle(); 	
+ 		
+ 		parameters[0] = companyTraining.getTitle();
+ 		 	
  		if(companyTraining.getCompany() != null){
  			parameters[1] = companyTraining.getCompany().getId();
  		}
@@ -762,9 +768,15 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  			parameters[3] = companyTraining.getTrainingCourseType().getId();
  		}
  
+ 		
  		parameters[4] = companyTraining.getTimeStart();
+ 		
+ 		
  		parameters[5] = companyTraining.getDurationHours();
- 		parameters[6] = companyTraining.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[6] = companyTraining.getLastUpdateTime();
+ 				
  		parameters[7] = companyTraining.nextVersion();
  		parameters[8] = companyTraining.getId();
  		parameters[9] = companyTraining.getVersion();
@@ -777,7 +789,9 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 		companyTraining.setId(newCompanyTrainingId);
 		parameters[0] =  companyTraining.getId();
  
- 		parameters[1] = companyTraining.getTitle(); 	
+ 		
+ 		parameters[1] = companyTraining.getTitle();
+ 		 	
  		if(companyTraining.getCompany() != null){
  			parameters[2] = companyTraining.getCompany().getId();
  		
@@ -793,9 +807,15 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  		
  		}
  		
+ 		
  		parameters[5] = companyTraining.getTimeStart();
+ 		
+ 		
  		parameters[6] = companyTraining.getDurationHours();
- 		parameters[7] = companyTraining.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[7] = companyTraining.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -1103,7 +1123,7 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
     public SmartList<CompanyTraining> requestCandidateCompanyTrainingForEmployeeCompanyTraining(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(CompanyTrainingTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getCompanyTrainingMapper());
+		return findAllCandidateByFilter(CompanyTrainingTable.COLUMN_TITLE, CompanyTrainingTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getCompanyTrainingMapper());
     }
 		
 
@@ -1177,6 +1197,30 @@ public class CompanyTrainingJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateCompanyTraining executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateCompanyTraining result = new CandidateCompanyTraining();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

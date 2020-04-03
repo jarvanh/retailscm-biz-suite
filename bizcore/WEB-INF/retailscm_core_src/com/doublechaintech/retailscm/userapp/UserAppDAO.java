@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.userapp;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -74,6 +75,7 @@ public interface UserAppDAO extends BaseDAO{
 	
 	public SmartList<UserApp> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateUserApp executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<UserApp> findUserAppBySecUser(String secUserId, Map<String,Object> options);
  	public int countUserAppBySecUser(String secUserId, Map<String,Object> options);

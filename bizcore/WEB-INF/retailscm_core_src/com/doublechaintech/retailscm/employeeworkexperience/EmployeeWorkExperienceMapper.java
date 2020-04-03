@@ -30,7 +30,9 @@ public class EmployeeWorkExperienceMapper extends BaseRowMapper<EmployeeWorkExpe
 	protected void setId(EmployeeWorkExperience employeeWorkExperience, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeWorkExperienceTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -60,7 +62,9 @@ public class EmployeeWorkExperienceMapper extends BaseRowMapper<EmployeeWorkExpe
 	protected void setStart(EmployeeWorkExperience employeeWorkExperience, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date start = rs.getDate(EmployeeWorkExperienceTable.COLUMN_START);
+		
 		if(start == null){
 			//do nothing when nothing found in database
 			return;
@@ -72,7 +76,9 @@ public class EmployeeWorkExperienceMapper extends BaseRowMapper<EmployeeWorkExpe
 	protected void setEnd(EmployeeWorkExperience employeeWorkExperience, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date end = rs.getDate(EmployeeWorkExperienceTable.COLUMN_END);
+		
 		if(end == null){
 			//do nothing when nothing found in database
 			return;
@@ -84,7 +90,9 @@ public class EmployeeWorkExperienceMapper extends BaseRowMapper<EmployeeWorkExpe
 	protected void setCompany(EmployeeWorkExperience employeeWorkExperience, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String company = rs.getString(EmployeeWorkExperienceTable.COLUMN_COMPANY);
+		
 		if(company == null){
 			//do nothing when nothing found in database
 			return;
@@ -96,7 +104,9 @@ public class EmployeeWorkExperienceMapper extends BaseRowMapper<EmployeeWorkExpe
 	protected void setDescription(EmployeeWorkExperience employeeWorkExperience, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(EmployeeWorkExperienceTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -108,7 +118,9 @@ public class EmployeeWorkExperienceMapper extends BaseRowMapper<EmployeeWorkExpe
 	protected void setVersion(EmployeeWorkExperience employeeWorkExperience, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeWorkExperienceTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

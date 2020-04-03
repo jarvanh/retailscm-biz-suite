@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -551,16 +555,28 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  	protected Object[] prepareDamageSpaceUpdateParameters(DamageSpace damageSpace){
  		Object[] parameters = new Object[10];
  
+ 		
  		parameters[0] = damageSpace.getLocation();
+ 		
+ 		
  		parameters[1] = damageSpace.getContactNumber();
+ 		
+ 		
  		parameters[2] = damageSpace.getTotalArea();
+ 		
+ 		
  		parameters[3] = damageSpace.getLatitude();
- 		parameters[4] = damageSpace.getLongitude(); 	
+ 		
+ 		
+ 		parameters[4] = damageSpace.getLongitude();
+ 		 	
  		if(damageSpace.getWarehouse() != null){
  			parameters[5] = damageSpace.getWarehouse().getId();
  		}
  
- 		parameters[6] = damageSpace.getLastUpdateTime();		
+ 		
+ 		parameters[6] = damageSpace.getLastUpdateTime();
+ 				
  		parameters[7] = damageSpace.nextVersion();
  		parameters[8] = damageSpace.getId();
  		parameters[9] = damageSpace.getVersion();
@@ -573,17 +589,29 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		damageSpace.setId(newDamageSpaceId);
 		parameters[0] =  damageSpace.getId();
  
+ 		
  		parameters[1] = damageSpace.getLocation();
+ 		
+ 		
  		parameters[2] = damageSpace.getContactNumber();
+ 		
+ 		
  		parameters[3] = damageSpace.getTotalArea();
+ 		
+ 		
  		parameters[4] = damageSpace.getLatitude();
- 		parameters[5] = damageSpace.getLongitude(); 	
+ 		
+ 		
+ 		parameters[5] = damageSpace.getLongitude();
+ 		 	
  		if(damageSpace.getWarehouse() != null){
  			parameters[6] = damageSpace.getWarehouse().getId();
  		
  		}
  		
- 		parameters[7] = damageSpace.getLastUpdateTime();		
+ 		
+ 		parameters[7] = damageSpace.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -849,7 +877,7 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
     public SmartList<DamageSpace> requestCandidateDamageSpaceForGoodsShelf(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(DamageSpaceTable.COLUMN_LOCATION, filterKey, pageNo, pageSize, getDamageSpaceMapper());
+		return findAllCandidateByFilter(DamageSpaceTable.COLUMN_LOCATION, DamageSpaceTable.COLUMN_WAREHOUSE, filterKey, pageNo, pageSize, getDamageSpaceMapper());
     }
 		
 
@@ -923,6 +951,30 @@ public class DamageSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateDamageSpace executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateDamageSpace result = new CandidateDamageSpace();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

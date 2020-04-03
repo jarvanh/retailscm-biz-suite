@@ -29,7 +29,9 @@ public class TerminationMapper extends BaseRowMapper<Termination>{
 	protected void setId(Termination termination, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TerminationTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -77,7 +79,9 @@ public class TerminationMapper extends BaseRowMapper<Termination>{
 	protected void setComment(Termination termination, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String comment = rs.getString(TerminationTable.COLUMN_COMMENT);
+		
 		if(comment == null){
 			//do nothing when nothing found in database
 			return;
@@ -89,7 +93,9 @@ public class TerminationMapper extends BaseRowMapper<Termination>{
 	protected void setVersion(Termination termination, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TerminationTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

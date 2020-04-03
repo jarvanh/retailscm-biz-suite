@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -55,6 +56,7 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	EmployeeQualifier(){
@@ -100,6 +102,7 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
     
     
 	protected void changeQualifiedTimeProperty(String newValueExpr){
+	
 		Date oldValue = getQualifiedTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -109,12 +112,13 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		updateQualifiedTime(newValue);
 		this.onChangeProperty(QUALIFIED_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeTypeProperty(String newValueExpr){
+	
 		String oldValue = getType();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -124,12 +128,13 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		updateType(newValue);
 		this.onChangeProperty(TYPE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLevelProperty(String newValueExpr){
+	
 		String oldValue = getLevel();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -139,12 +144,13 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		updateLevel(newValue);
 		this.onChangeProperty(LEVEL_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeRemarkProperty(String newValueExpr){
+	
 		String oldValue = getRemark();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -154,7 +160,7 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		updateRemark(newValue);
 		this.onChangeProperty(REMARK_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -342,7 +348,9 @@ public class EmployeeQualifier extends BaseEntity implements  java.io.Serializab
 		appendKeyValuePair(result, REMARK_PROPERTY, getRemark());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

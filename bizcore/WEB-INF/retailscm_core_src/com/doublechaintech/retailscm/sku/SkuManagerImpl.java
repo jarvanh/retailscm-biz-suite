@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.sku;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.goods.Goods;
 import com.doublechaintech.retailscm.product.Product;
@@ -31,7 +48,7 @@ import com.doublechaintech.retailscm.retailstoreorder.RetailStoreOrder;
 
 
 
-public class SkuManagerImpl extends CustomRetailscmCheckerManager implements SkuManager {
+public class SkuManagerImpl extends CustomRetailscmCheckerManager implements SkuManager, BusinessHandler{
 
   
 
@@ -230,27 +247,48 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 		
 
 		if(Sku.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfSku(parseString(newValueExpr));
+		
+			
 		}
 		if(Sku.SIZE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkSizeOfSku(parseString(newValueExpr));
+		
+			
 		}		
 
 		
 		if(Sku.BARCODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkBarcodeOfSku(parseString(newValueExpr));
+		
+			
 		}
 		if(Sku.PACKAGE_TYPE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkPackageTypeOfSku(parseString(newValueExpr));
+		
+			
 		}
 		if(Sku.NET_CONTENT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNetContentOfSku(parseString(newValueExpr));
+		
+			
 		}
 		if(Sku.PRICE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkPriceOfSku(parseBigDecimal(newValueExpr));
+		
+			
 		}
 		if(Sku.PICTURE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkPictureOfSku(parseString(newValueExpr));
+		
+			
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(SkuManagerException.class);
@@ -854,23 +892,33 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
 		
 
 		if(Goods.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfGoods(parseString(newValueExpr));
+		
 		}
 		
 		if(Goods.RFID_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkRfidOfGoods(parseString(newValueExpr));
+		
 		}
 		
 		if(Goods.UOM_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkUomOfGoods(parseString(newValueExpr));
+		
 		}
 		
 		if(Goods.MAX_PACKAGE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMaxPackageOfGoods(parseInt(newValueExpr));
+		
 		}
 		
 		if(Goods.EXPIRE_TIME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkExpireTimeOfGoods(parseDate(newValueExpr));
+		
 		}
 		
 	
@@ -925,6 +973,336 @@ public class SkuManagerImpl extends CustomRetailscmCheckerManager implements Sku
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   Sku newSku = this.createSku(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newSku
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, Sku.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<Sku> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+		List<Product> productList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, Product.class);
+		userContext.getDAOGroup().enhanceList(productList, Product.class);
+
+
+    }
+	
+	public Object listByProduct(RetailscmUserContext userContext,String productId) throws Exception {
+		return listPageByProduct(userContext, productId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByProduct(RetailscmUserContext userContext,String productId, int start, int count) throws Exception {
+		SmartList<Sku> list = skuDaoOf(userContext).findSkuByProduct(productId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Sku.class);
+		page.setContainerObject(Product.withId(productId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("SKU列表");
+		page.setRequestName("listByProduct");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("product");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByProduct/%s/",  getBeanName(), productId)));
+
+		page.assemblerContent(userContext, "listByProduct");
+		return page.doRender(userContext);
+	}
+  
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String skuId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getSkuDetailScope().clone();
+		Sku merchantObj = (Sku) this.view(userContext, skuId);
+    String merchantObjId = skuId;
+    String linkToUrl =	"skuManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "SKU"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-name")
+				    .put("fieldName", "name")
+				    .put("label", "名称")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("name", merchantObj.getName());
+
+		propList.add(
+				MapUtil.put("id", "3-size")
+				    .put("fieldName", "size")
+				    .put("label", "大小")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("size", merchantObj.getSize());
+
+		propList.add(
+				MapUtil.put("id", "4-product")
+				    .put("fieldName", "product")
+				    .put("label", "产品")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "productManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("product", merchantObj.getProduct());
+
+		propList.add(
+				MapUtil.put("id", "5-barcode")
+				    .put("fieldName", "barcode")
+				    .put("label", "条码")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("barcode", merchantObj.getBarcode());
+
+		propList.add(
+				MapUtil.put("id", "6-packageType")
+				    .put("fieldName", "packageType")
+				    .put("label", "包装类型")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("packageType", merchantObj.getPackageType());
+
+		propList.add(
+				MapUtil.put("id", "7-netContent")
+				    .put("fieldName", "netContent")
+				    .put("label", "净含量")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("netContent", merchantObj.getNetContent());
+
+		propList.add(
+				MapUtil.put("id", "8-price")
+				    .put("fieldName", "price")
+				    .put("label", "价格")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("price", merchantObj.getPrice());
+
+		propList.add(
+				MapUtil.put("id", "9-picture")
+				    .put("fieldName", "picture")
+				    .put("label", "图片")
+				    .put("type", "image")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("picture", merchantObj.getPicture());
+
+		//处理 sectionList
+
+		//处理Section：goodsListSection
+		Map goodsListSection = ListofUtils.buildSection(
+		    "goodsListSection",
+		    "商品列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "goodsManager/listBySku/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(goodsListSection);
+
+		result.put("goodsListSection", ListofUtils.toShortList(merchantObj.getGoodsList(), "goods"));
+		vscope.field("goodsListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( Goods.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -53,6 +54,7 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	ProductSupplyDuration(){
@@ -95,6 +97,7 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
     
     
 	protected void changeQuantityProperty(String newValueExpr){
+	
 		int oldValue = getQuantity();
 		int newValue = parseInt(newValueExpr);
 		if(equalsInt(oldValue , newValue)){
@@ -104,12 +107,13 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		updateQuantity(newValue);
 		this.onChangeProperty(QUANTITY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDurationProperty(String newValueExpr){
+	
 		String oldValue = getDuration();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -119,12 +123,13 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		updateDuration(newValue);
 		this.onChangeProperty(DURATION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changePriceProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getPrice();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -134,7 +139,7 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		updatePrice(newValue);
 		this.onChangeProperty(PRICE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -302,7 +307,9 @@ public class ProductSupplyDuration extends BaseEntity implements  java.io.Serial
 		appendKeyValuePair(result, PRODUCT_PROPERTY, getProduct());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

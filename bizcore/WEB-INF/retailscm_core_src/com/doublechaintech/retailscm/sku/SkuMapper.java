@@ -33,7 +33,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setId(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(SkuTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -45,7 +47,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setName(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(SkuTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -57,7 +61,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setSize(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String size = rs.getString(SkuTable.COLUMN_SIZE);
+		
 		if(size == null){
 			//do nothing when nothing found in database
 			return;
@@ -87,7 +93,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setBarcode(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String barcode = rs.getString(SkuTable.COLUMN_BARCODE);
+		
 		if(barcode == null){
 			//do nothing when nothing found in database
 			return;
@@ -99,7 +107,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setPackageType(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String packageType = rs.getString(SkuTable.COLUMN_PACKAGE_TYPE);
+		
 		if(packageType == null){
 			//do nothing when nothing found in database
 			return;
@@ -111,7 +121,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setNetContent(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String netContent = rs.getString(SkuTable.COLUMN_NET_CONTENT);
+		
 		if(netContent == null){
 			//do nothing when nothing found in database
 			return;
@@ -123,7 +135,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setPrice(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal price = rs.getBigDecimal(SkuTable.COLUMN_PRICE);
+		
 		if(price == null){
 			//do nothing when nothing found in database
 			return;
@@ -135,7 +149,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setPicture(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String picture = rs.getString(SkuTable.COLUMN_PICTURE);
+		
 		if(picture == null){
 			//do nothing when nothing found in database
 			return;
@@ -147,7 +163,9 @@ public class SkuMapper extends BaseRowMapper<Sku>{
 	protected void setVersion(Sku sku, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(SkuTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

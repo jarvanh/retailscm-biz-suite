@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -435,8 +439,12 @@ public class MemberRewardPointJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
  	protected Object[] prepareMemberRewardPointUpdateParameters(MemberRewardPoint memberRewardPoint){
  		Object[] parameters = new Object[6];
  
+ 		
  		parameters[0] = memberRewardPoint.getName();
- 		parameters[1] = memberRewardPoint.getPoint(); 	
+ 		
+ 		
+ 		parameters[1] = memberRewardPoint.getPoint();
+ 		 	
  		if(memberRewardPoint.getOwner() != null){
  			parameters[2] = memberRewardPoint.getOwner().getId();
  		}
@@ -453,8 +461,12 @@ public class MemberRewardPointJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 		memberRewardPoint.setId(newMemberRewardPointId);
 		parameters[0] =  memberRewardPoint.getId();
  
+ 		
  		parameters[1] = memberRewardPoint.getName();
- 		parameters[2] = memberRewardPoint.getPoint(); 	
+ 		
+ 		
+ 		parameters[2] = memberRewardPoint.getPoint();
+ 		 	
  		if(memberRewardPoint.getOwner() != null){
  			parameters[3] = memberRewardPoint.getOwner().getId();
  		
@@ -560,6 +572,30 @@ public class MemberRewardPointJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateMemberRewardPoint executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateMemberRewardPoint result = new CandidateMemberRewardPoint();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

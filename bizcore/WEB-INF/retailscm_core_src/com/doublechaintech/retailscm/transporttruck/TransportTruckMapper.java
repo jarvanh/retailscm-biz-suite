@@ -34,7 +34,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setId(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TransportTruckTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -46,7 +48,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setName(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(TransportTruckTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -58,7 +62,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setPlateNumber(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String plateNumber = rs.getString(TransportTruckTable.COLUMN_PLATE_NUMBER);
+		
 		if(plateNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -70,7 +76,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setContactNumber(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(TransportTruckTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -82,7 +90,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setVehicleLicenseNumber(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String vehicleLicenseNumber = rs.getString(TransportTruckTable.COLUMN_VEHICLE_LICENSE_NUMBER);
+		
 		if(vehicleLicenseNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -94,7 +104,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setEngineNumber(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String engineNumber = rs.getString(TransportTruckTable.COLUMN_ENGINE_NUMBER);
+		
 		if(engineNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -106,7 +118,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setMakeDate(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date makeDate = rs.getDate(TransportTruckTable.COLUMN_MAKE_DATE);
+		
 		if(makeDate == null){
 			//do nothing when nothing found in database
 			return;
@@ -118,7 +132,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setMileage(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String mileage = rs.getString(TransportTruckTable.COLUMN_MILEAGE);
+		
 		if(mileage == null){
 			//do nothing when nothing found in database
 			return;
@@ -130,7 +146,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setBodyColor(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String bodyColor = rs.getString(TransportTruckTable.COLUMN_BODY_COLOR);
+		
 		if(bodyColor == null){
 			//do nothing when nothing found in database
 			return;
@@ -160,7 +178,9 @@ public class TransportTruckMapper extends BaseRowMapper<TransportTruck>{
 	protected void setVersion(TransportTruck transportTruck, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TransportTruckTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

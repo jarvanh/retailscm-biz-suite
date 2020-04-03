@@ -30,7 +30,9 @@ public class CityEventMapper extends BaseRowMapper<CityEvent>{
 	protected void setId(CityEvent cityEvent, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(CityEventTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -42,7 +44,9 @@ public class CityEventMapper extends BaseRowMapper<CityEvent>{
 	protected void setName(CityEvent cityEvent, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(CityEventTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -54,7 +58,9 @@ public class CityEventMapper extends BaseRowMapper<CityEvent>{
 	protected void setMobile(CityEvent cityEvent, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String mobile = rs.getString(CityEventTable.COLUMN_MOBILE);
+		
 		if(mobile == null){
 			//do nothing when nothing found in database
 			return;
@@ -84,7 +90,9 @@ public class CityEventMapper extends BaseRowMapper<CityEvent>{
 	protected void setDescription(CityEvent cityEvent, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(CityEventTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -96,7 +104,9 @@ public class CityEventMapper extends BaseRowMapper<CityEvent>{
 	protected void setLastUpdateTime(CityEvent cityEvent, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(CityEventTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -108,7 +118,9 @@ public class CityEventMapper extends BaseRowMapper<CityEvent>{
 	protected void setVersion(CityEvent cityEvent, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(CityEventTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

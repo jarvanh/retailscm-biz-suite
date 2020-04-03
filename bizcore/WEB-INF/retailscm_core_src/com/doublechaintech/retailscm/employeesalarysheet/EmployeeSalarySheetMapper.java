@@ -37,7 +37,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setId(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeSalarySheetTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -85,7 +87,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setBaseSalary(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal baseSalary = rs.getBigDecimal(EmployeeSalarySheetTable.COLUMN_BASE_SALARY);
+		
 		if(baseSalary == null){
 			//do nothing when nothing found in database
 			return;
@@ -97,7 +101,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setBonus(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal bonus = rs.getBigDecimal(EmployeeSalarySheetTable.COLUMN_BONUS);
+		
 		if(bonus == null){
 			//do nothing when nothing found in database
 			return;
@@ -109,7 +115,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setReward(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal reward = rs.getBigDecimal(EmployeeSalarySheetTable.COLUMN_REWARD);
+		
 		if(reward == null){
 			//do nothing when nothing found in database
 			return;
@@ -121,7 +129,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setPersonalTax(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal personalTax = rs.getBigDecimal(EmployeeSalarySheetTable.COLUMN_PERSONAL_TAX);
+		
 		if(personalTax == null){
 			//do nothing when nothing found in database
 			return;
@@ -133,7 +143,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setSocialSecurity(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal socialSecurity = rs.getBigDecimal(EmployeeSalarySheetTable.COLUMN_SOCIAL_SECURITY);
+		
 		if(socialSecurity == null){
 			//do nothing when nothing found in database
 			return;
@@ -145,7 +157,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setHousingFound(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal housingFound = rs.getBigDecimal(EmployeeSalarySheetTable.COLUMN_HOUSING_FOUND);
+		
 		if(housingFound == null){
 			//do nothing when nothing found in database
 			return;
@@ -157,7 +171,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setJobInsurance(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal jobInsurance = rs.getBigDecimal(EmployeeSalarySheetTable.COLUMN_JOB_INSURANCE);
+		
 		if(jobInsurance == null){
 			//do nothing when nothing found in database
 			return;
@@ -187,7 +203,9 @@ public class EmployeeSalarySheetMapper extends BaseRowMapper<EmployeeSalarySheet
 	protected void setVersion(EmployeeSalarySheet employeeSalarySheet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeSalarySheetTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

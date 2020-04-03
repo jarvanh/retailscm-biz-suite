@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -66,6 +67,7 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 	
 	
 	protected		SmartList<TransportTask>	mTransportTaskList  ;
+
 	
 		
 	public 	TransportTruck(){
@@ -123,6 +125,7 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -132,12 +135,13 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changePlateNumberProperty(String newValueExpr){
+	
 		String oldValue = getPlateNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -147,12 +151,13 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updatePlateNumber(newValue);
 		this.onChangeProperty(PLATE_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
+	
 		String oldValue = getContactNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -162,12 +167,13 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updateContactNumber(newValue);
 		this.onChangeProperty(CONTACT_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeVehicleLicenseNumberProperty(String newValueExpr){
+	
 		String oldValue = getVehicleLicenseNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -177,12 +183,13 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updateVehicleLicenseNumber(newValue);
 		this.onChangeProperty(VEHICLE_LICENSE_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeEngineNumberProperty(String newValueExpr){
+	
 		String oldValue = getEngineNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -192,12 +199,13 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updateEngineNumber(newValue);
 		this.onChangeProperty(ENGINE_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeMakeDateProperty(String newValueExpr){
+	
 		Date oldValue = getMakeDate();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -207,12 +215,13 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updateMakeDate(newValue);
 		this.onChangeProperty(MAKE_DATE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeMileageProperty(String newValueExpr){
+	
 		String oldValue = getMileage();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -222,12 +231,13 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updateMileage(newValue);
 		this.onChangeProperty(MILEAGE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeBodyColorProperty(String newValueExpr){
+	
 		String oldValue = getBodyColor();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -237,7 +247,7 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 		updateBodyColor(newValue);
 		this.onChangeProperty(BODY_COLOR_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -623,7 +633,9 @@ public class TransportTruck extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "transportTaskCurrentPageNumber", getTransportTaskList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

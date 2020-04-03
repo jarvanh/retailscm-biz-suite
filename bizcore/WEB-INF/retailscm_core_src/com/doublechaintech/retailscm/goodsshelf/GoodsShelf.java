@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -63,6 +64,7 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 	
 	protected		SmartList<GoodsShelfStockCount>	mGoodsShelfStockCountList;
 	protected		SmartList<GoodsAllocation>	mGoodsAllocationList;
+
 	
 		
 	public 	GoodsShelf(){
@@ -104,6 +106,7 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeLocationProperty(String newValueExpr){
+	
 		String oldValue = getLocation();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -113,12 +116,13 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 		updateLocation(newValue);
 		this.onChangeProperty(LOCATION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -128,7 +132,7 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -564,7 +568,9 @@ public class GoodsShelf extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "goodsAllocationCurrentPageNumber", getGoodsAllocationList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

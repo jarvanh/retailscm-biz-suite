@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -455,12 +459,24 @@ public class ConsumerOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl i
  			parameters[0] = consumerOrderLineItem.getBizOrder().getId();
  		}
  
+ 		
  		parameters[1] = consumerOrderLineItem.getSkuId();
+ 		
+ 		
  		parameters[2] = consumerOrderLineItem.getSkuName();
+ 		
+ 		
  		parameters[3] = consumerOrderLineItem.getPrice();
+ 		
+ 		
  		parameters[4] = consumerOrderLineItem.getQuantity();
+ 		
+ 		
  		parameters[5] = consumerOrderLineItem.getAmount();
- 		parameters[6] = consumerOrderLineItem.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[6] = consumerOrderLineItem.getLastUpdateTime();
+ 				
  		parameters[7] = consumerOrderLineItem.nextVersion();
  		parameters[8] = consumerOrderLineItem.getId();
  		parameters[9] = consumerOrderLineItem.getVersion();
@@ -478,12 +494,24 @@ public class ConsumerOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl i
  		
  		}
  		
+ 		
  		parameters[2] = consumerOrderLineItem.getSkuId();
+ 		
+ 		
  		parameters[3] = consumerOrderLineItem.getSkuName();
+ 		
+ 		
  		parameters[4] = consumerOrderLineItem.getPrice();
+ 		
+ 		
  		parameters[5] = consumerOrderLineItem.getQuantity();
+ 		
+ 		
  		parameters[6] = consumerOrderLineItem.getAmount();
- 		parameters[7] = consumerOrderLineItem.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[7] = consumerOrderLineItem.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -584,6 +612,30 @@ public class ConsumerOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateConsumerOrderLineItem executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateConsumerOrderLineItem result = new CandidateConsumerOrderLineItem();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

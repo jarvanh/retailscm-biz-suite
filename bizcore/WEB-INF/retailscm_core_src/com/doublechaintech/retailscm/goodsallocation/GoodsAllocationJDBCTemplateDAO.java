@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,9 +539,15 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
  	protected Object[] prepareGoodsAllocationUpdateParameters(GoodsAllocation goodsAllocation){
  		Object[] parameters = new Object[7];
  
+ 		
  		parameters[0] = goodsAllocation.getLocation();
+ 		
+ 		
  		parameters[1] = goodsAllocation.getLatitude();
- 		parameters[2] = goodsAllocation.getLongitude(); 	
+ 		
+ 		
+ 		parameters[2] = goodsAllocation.getLongitude();
+ 		 	
  		if(goodsAllocation.getGoodsShelf() != null){
  			parameters[3] = goodsAllocation.getGoodsShelf().getId();
  		}
@@ -554,9 +564,15 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 		goodsAllocation.setId(newGoodsAllocationId);
 		parameters[0] =  goodsAllocation.getId();
  
+ 		
  		parameters[1] = goodsAllocation.getLocation();
+ 		
+ 		
  		parameters[2] = goodsAllocation.getLatitude();
- 		parameters[3] = goodsAllocation.getLongitude(); 	
+ 		
+ 		
+ 		parameters[3] = goodsAllocation.getLongitude();
+ 		 	
  		if(goodsAllocation.getGoodsShelf() != null){
  			parameters[4] = goodsAllocation.getGoodsShelf().getId();
  		
@@ -1091,7 +1107,7 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
     public SmartList<GoodsAllocation> requestCandidateGoodsAllocationForGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GoodsAllocationTable.COLUMN_LOCATION, filterKey, pageNo, pageSize, getGoodsAllocationMapper());
+		return findAllCandidateByFilter(GoodsAllocationTable.COLUMN_LOCATION, GoodsAllocationTable.COLUMN_GOODS_SHELF, filterKey, pageNo, pageSize, getGoodsAllocationMapper());
     }
 		
 
@@ -1165,6 +1181,30 @@ public class GoodsAllocationJDBCTemplateDAO extends RetailscmBaseDAOImpl impleme
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateGoodsAllocation executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateGoodsAllocation result = new CandidateGoodsAllocation();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

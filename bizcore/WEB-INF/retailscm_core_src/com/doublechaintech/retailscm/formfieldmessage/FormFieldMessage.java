@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -53,6 +54,7 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	FormFieldMessage(){
@@ -95,6 +97,7 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
     
     
 	protected void changeTitleProperty(String newValueExpr){
+	
 		String oldValue = getTitle();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -104,12 +107,13 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 		updateTitle(newValue);
 		this.onChangeProperty(TITLE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeParameterNameProperty(String newValueExpr){
+	
 		String oldValue = getParameterName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -119,12 +123,13 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 		updateParameterName(newValue);
 		this.onChangeProperty(PARAMETER_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLevelProperty(String newValueExpr){
+	
 		String oldValue = getLevel();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -134,7 +139,7 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 		updateLevel(newValue);
 		this.onChangeProperty(LEVEL_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -302,7 +307,9 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 		appendKeyValuePair(result, LEVEL_PROPERTY, getLevel());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.formfieldmessage;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface FormFieldMessageDAO extends BaseDAO{
 	
 	public SmartList<FormFieldMessage> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateFormFieldMessage executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<FormFieldMessage> findFormFieldMessageByForm(String genericFormId, Map<String,Object> options);
  	public int countFormFieldMessageByForm(String genericFormId, Map<String,Object> options);

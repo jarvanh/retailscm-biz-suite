@@ -29,7 +29,9 @@ public class StockCountIssueTrackMapper extends BaseRowMapper<StockCountIssueTra
 	protected void setId(StockCountIssueTrack stockCountIssueTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(StockCountIssueTrackTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class StockCountIssueTrackMapper extends BaseRowMapper<StockCountIssueTra
 	protected void setTitle(StockCountIssueTrack stockCountIssueTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(StockCountIssueTrackTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class StockCountIssueTrackMapper extends BaseRowMapper<StockCountIssueTra
 	protected void setCountTime(StockCountIssueTrack stockCountIssueTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date countTime = rs.getDate(StockCountIssueTrackTable.COLUMN_COUNT_TIME);
+		
 		if(countTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class StockCountIssueTrackMapper extends BaseRowMapper<StockCountIssueTra
 	protected void setSummary(StockCountIssueTrack stockCountIssueTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String summary = rs.getString(StockCountIssueTrackTable.COLUMN_SUMMARY);
+		
 		if(summary == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class StockCountIssueTrackMapper extends BaseRowMapper<StockCountIssueTra
 	protected void setVersion(StockCountIssueTrack stockCountIssueTrack, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(StockCountIssueTrackTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

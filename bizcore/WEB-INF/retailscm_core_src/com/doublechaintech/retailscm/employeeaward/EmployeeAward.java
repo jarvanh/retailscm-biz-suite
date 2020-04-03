@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -53,6 +54,7 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	EmployeeAward(){
@@ -95,6 +97,7 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeCompleteTimeProperty(String newValueExpr){
+	
 		Date oldValue = getCompleteTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -104,12 +107,13 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 		updateCompleteTime(newValue);
 		this.onChangeProperty(COMPLETE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeTypeProperty(String newValueExpr){
+	
 		String oldValue = getType();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -119,12 +123,13 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 		updateType(newValue);
 		this.onChangeProperty(TYPE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeRemarkProperty(String newValueExpr){
+	
 		String oldValue = getRemark();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -134,7 +139,7 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 		updateRemark(newValue);
 		this.onChangeProperty(REMARK_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -302,7 +307,9 @@ public class EmployeeAward extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, REMARK_PROPERTY, getRemark());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

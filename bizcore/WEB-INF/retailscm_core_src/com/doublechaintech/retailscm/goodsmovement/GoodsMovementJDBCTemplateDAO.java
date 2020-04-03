@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -451,14 +455,30 @@ public class GoodsMovementJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  	protected Object[] prepareGoodsMovementUpdateParameters(GoodsMovement goodsMovement){
  		Object[] parameters = new Object[12];
  
+ 		
  		parameters[0] = goodsMovement.getMoveTime();
+ 		
+ 		
  		parameters[1] = goodsMovement.getFacility();
+ 		
+ 		
  		parameters[2] = goodsMovement.getFacilityId();
+ 		
+ 		
  		parameters[3] = goodsMovement.getFromIp();
+ 		
+ 		
  		parameters[4] = goodsMovement.getUserAgent();
+ 		
+ 		
  		parameters[5] = goodsMovement.getSessionId();
+ 		
+ 		
  		parameters[6] = goodsMovement.getLatitude();
- 		parameters[7] = goodsMovement.getLongitude(); 	
+ 		
+ 		
+ 		parameters[7] = goodsMovement.getLongitude();
+ 		 	
  		if(goodsMovement.getGoods() != null){
  			parameters[8] = goodsMovement.getGoods().getId();
  		}
@@ -475,14 +495,30 @@ public class GoodsMovementJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 		goodsMovement.setId(newGoodsMovementId);
 		parameters[0] =  goodsMovement.getId();
  
+ 		
  		parameters[1] = goodsMovement.getMoveTime();
+ 		
+ 		
  		parameters[2] = goodsMovement.getFacility();
+ 		
+ 		
  		parameters[3] = goodsMovement.getFacilityId();
+ 		
+ 		
  		parameters[4] = goodsMovement.getFromIp();
+ 		
+ 		
  		parameters[5] = goodsMovement.getUserAgent();
+ 		
+ 		
  		parameters[6] = goodsMovement.getSessionId();
+ 		
+ 		
  		parameters[7] = goodsMovement.getLatitude();
- 		parameters[8] = goodsMovement.getLongitude(); 	
+ 		
+ 		
+ 		parameters[8] = goodsMovement.getLongitude();
+ 		 	
  		if(goodsMovement.getGoods() != null){
  			parameters[9] = goodsMovement.getGoods().getId();
  		
@@ -588,6 +624,30 @@ public class GoodsMovementJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateGoodsMovement executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateGoodsMovement result = new CandidateGoodsMovement();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

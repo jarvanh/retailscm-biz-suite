@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -57,6 +58,7 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	QuickLink(){
@@ -105,6 +107,7 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -114,12 +117,13 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeIconProperty(String newValueExpr){
+	
 		String oldValue = getIcon();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -129,12 +133,13 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 		updateIcon(newValue);
 		this.onChangeProperty(ICON_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeImagePathProperty(String newValueExpr){
+	
 		String oldValue = getImagePath();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -144,12 +149,13 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 		updateImagePath(newValue);
 		this.onChangeProperty(IMAGE_PATH_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLinkTargetProperty(String newValueExpr){
+	
 		String oldValue = getLinkTarget();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -159,12 +165,13 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 		updateLinkTarget(newValue);
 		this.onChangeProperty(LINK_TARGET_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeCreateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getCreateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -174,7 +181,7 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 		updateCreateTime(newValue);
 		this.onChangeProperty(CREATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -382,7 +389,9 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, APP_PROPERTY, getApp());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

@@ -74,6 +74,7 @@ public class PageType extends BaseEntity implements  java.io.Serializable{
 	
 	
 	protected		SmartList<Page>     	mPageList           ;
+
 	
 		
 	public 	PageType(){
@@ -444,7 +445,9 @@ public class PageType extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "pageCurrentPageNumber", getPageList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

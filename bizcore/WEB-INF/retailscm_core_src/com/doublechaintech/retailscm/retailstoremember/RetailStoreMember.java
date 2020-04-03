@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -72,6 +73,7 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 	protected		SmartList<MemberRewardPointRedemption>	mMemberRewardPointRedemptionList;
 	protected		SmartList<RetailStoreMemberAddress>	mRetailStoreMemberAddressList;
 	protected		SmartList<RetailStoreMemberGiftCard>	mRetailStoreMemberGiftCardList;
+
 	
 		
 	public 	RetailStoreMember(){
@@ -111,6 +113,7 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -120,12 +123,13 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeMobilePhoneProperty(String newValueExpr){
+	
 		String oldValue = getMobilePhone();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -135,7 +139,7 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 		updateMobilePhone(newValue);
 		this.onChangeProperty(MOBILE_PHONE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -1116,7 +1120,9 @@ public class RetailStoreMember extends BaseEntity implements  java.io.Serializab
 			appendKeyValuePair(result, "retailStoreMemberGiftCardCurrentPageNumber", getRetailStoreMemberGiftCardList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

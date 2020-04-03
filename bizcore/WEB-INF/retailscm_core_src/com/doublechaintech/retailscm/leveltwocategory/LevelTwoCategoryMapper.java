@@ -27,7 +27,9 @@ public class LevelTwoCategoryMapper extends BaseRowMapper<LevelTwoCategory>{
 	protected void setId(LevelTwoCategory levelTwoCategory, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(LevelTwoCategoryTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -57,7 +59,9 @@ public class LevelTwoCategoryMapper extends BaseRowMapper<LevelTwoCategory>{
 	protected void setName(LevelTwoCategory levelTwoCategory, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(LevelTwoCategoryTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -69,7 +73,9 @@ public class LevelTwoCategoryMapper extends BaseRowMapper<LevelTwoCategory>{
 	protected void setVersion(LevelTwoCategory levelTwoCategory, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(LevelTwoCategoryTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

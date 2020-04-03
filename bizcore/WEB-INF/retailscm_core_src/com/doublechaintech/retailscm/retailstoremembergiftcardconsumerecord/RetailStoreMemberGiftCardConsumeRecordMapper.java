@@ -31,7 +31,9 @@ public class RetailStoreMemberGiftCardConsumeRecordMapper extends BaseRowMapper<
 	protected void setId(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(RetailStoreMemberGiftCardConsumeRecordTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -43,7 +45,9 @@ public class RetailStoreMemberGiftCardConsumeRecordMapper extends BaseRowMapper<
 	protected void setOccureTime(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date occureTime = rs.getDate(RetailStoreMemberGiftCardConsumeRecordTable.COLUMN_OCCURE_TIME);
+		
 		if(occureTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -91,7 +95,9 @@ public class RetailStoreMemberGiftCardConsumeRecordMapper extends BaseRowMapper<
 	protected void setNumber(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String number = rs.getString(RetailStoreMemberGiftCardConsumeRecordTable.COLUMN_NUMBER);
+		
 		if(number == null){
 			//do nothing when nothing found in database
 			return;
@@ -103,7 +109,9 @@ public class RetailStoreMemberGiftCardConsumeRecordMapper extends BaseRowMapper<
 	protected void setAmount(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal amount = rs.getBigDecimal(RetailStoreMemberGiftCardConsumeRecordTable.COLUMN_AMOUNT);
+		
 		if(amount == null){
 			//do nothing when nothing found in database
 			return;
@@ -115,7 +123,9 @@ public class RetailStoreMemberGiftCardConsumeRecordMapper extends BaseRowMapper<
 	protected void setVersion(RetailStoreMemberGiftCardConsumeRecord retailStoreMemberGiftCardConsumeRecord, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(RetailStoreMemberGiftCardConsumeRecordTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

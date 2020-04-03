@@ -31,7 +31,9 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
 	protected void setId(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(OriginalVoucherTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -43,7 +45,9 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
 	protected void setTitle(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(OriginalVoucherTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -55,7 +59,9 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
 	protected void setMadeBy(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String madeBy = rs.getString(OriginalVoucherTable.COLUMN_MADE_BY);
+		
 		if(madeBy == null){
 			//do nothing when nothing found in database
 			return;
@@ -67,7 +73,9 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
 	protected void setReceivedBy(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String receivedBy = rs.getString(OriginalVoucherTable.COLUMN_RECEIVED_BY);
+		
 		if(receivedBy == null){
 			//do nothing when nothing found in database
 			return;
@@ -79,7 +87,9 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
 	protected void setVoucherType(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String voucherType = rs.getString(OriginalVoucherTable.COLUMN_VOUCHER_TYPE);
+		
 		if(voucherType == null){
 			//do nothing when nothing found in database
 			return;
@@ -91,7 +101,9 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
 	protected void setVoucherImage(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String voucherImage = rs.getString(OriginalVoucherTable.COLUMN_VOUCHER_IMAGE);
+		
 		if(voucherImage == null){
 			//do nothing when nothing found in database
 			return;
@@ -121,7 +133,9 @@ public class OriginalVoucherMapper extends BaseRowMapper<OriginalVoucher>{
 	protected void setVersion(OriginalVoucher originalVoucher, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(OriginalVoucherTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -57,6 +58,7 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	RetailStoreOrderLineItem(){
@@ -105,6 +107,7 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
     
     
 	protected void changeSkuIdProperty(String newValueExpr){
+	
 		String oldValue = getSkuId();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -114,12 +117,13 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		updateSkuId(newValue);
 		this.onChangeProperty(SKU_ID_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeSkuNameProperty(String newValueExpr){
+	
 		String oldValue = getSkuName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -129,12 +133,13 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		updateSkuName(newValue);
 		this.onChangeProperty(SKU_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAmountProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getAmount();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -144,12 +149,13 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		updateAmount(newValue);
 		this.onChangeProperty(AMOUNT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeQuantityProperty(String newValueExpr){
+	
 		int oldValue = getQuantity();
 		int newValue = parseInt(newValueExpr);
 		if(equalsInt(oldValue , newValue)){
@@ -159,12 +165,13 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		updateQuantity(newValue);
 		this.onChangeProperty(QUANTITY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeUnitOfMeasurementProperty(String newValueExpr){
+	
 		String oldValue = getUnitOfMeasurement();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -174,7 +181,7 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		updateUnitOfMeasurement(newValue);
 		this.onChangeProperty(UNIT_OF_MEASUREMENT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -387,7 +394,9 @@ public class RetailStoreOrderLineItem extends BaseEntity implements  java.io.Ser
 		appendKeyValuePair(result, UNIT_OF_MEASUREMENT_PROPERTY, getUnitOfMeasurement());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

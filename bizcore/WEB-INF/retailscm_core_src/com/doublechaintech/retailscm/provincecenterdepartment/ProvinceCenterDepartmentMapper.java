@@ -29,7 +29,9 @@ public class ProvinceCenterDepartmentMapper extends BaseRowMapper<ProvinceCenter
 	protected void setId(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ProvinceCenterDepartmentTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class ProvinceCenterDepartmentMapper extends BaseRowMapper<ProvinceCenter
 	protected void setName(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(ProvinceCenterDepartmentTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class ProvinceCenterDepartmentMapper extends BaseRowMapper<ProvinceCenter
 	protected void setFounded(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date founded = rs.getDate(ProvinceCenterDepartmentTable.COLUMN_FOUNDED);
+		
 		if(founded == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class ProvinceCenterDepartmentMapper extends BaseRowMapper<ProvinceCenter
 	protected void setManager(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String manager = rs.getString(ProvinceCenterDepartmentTable.COLUMN_MANAGER);
+		
 		if(manager == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class ProvinceCenterDepartmentMapper extends BaseRowMapper<ProvinceCenter
 	protected void setVersion(ProvinceCenterDepartment provinceCenterDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ProvinceCenterDepartmentTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

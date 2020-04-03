@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -49,6 +50,7 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
 	
 	
 	protected		SmartList<RetailStore>	mRetailStoreList    ;
+
 	
 		
 	public 	RetailStoreInvestmentInvitation(){
@@ -84,6 +86,7 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
     
     
 	protected void changeCommentProperty(String newValueExpr){
+	
 		String oldValue = getComment();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -93,7 +96,7 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
 		updateComment(newValue);
 		this.onChangeProperty(COMMENT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -313,7 +316,9 @@ public class RetailStoreInvestmentInvitation extends BaseEntity implements  java
 			appendKeyValuePair(result, "retailStoreCurrentPageNumber", getRetailStoreList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

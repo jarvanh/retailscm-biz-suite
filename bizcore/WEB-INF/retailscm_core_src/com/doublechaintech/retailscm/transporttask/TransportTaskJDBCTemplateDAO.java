@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -920,9 +924,15 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  	protected Object[] prepareTransportTaskUpdateParameters(TransportTask transportTask){
  		Object[] parameters = new Object[12];
  
+ 		
  		parameters[0] = transportTask.getName();
+ 		
+ 		
  		parameters[1] = transportTask.getStart();
- 		parameters[2] = transportTask.getBeginTime(); 	
+ 		
+ 		
+ 		parameters[2] = transportTask.getBeginTime();
+ 		 	
  		if(transportTask.getEnd() != null){
  			parameters[3] = transportTask.getEnd().getId();
  		}
@@ -939,8 +949,12 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  			parameters[6] = transportTask.getBelongsTo().getId();
  		}
  
+ 		
  		parameters[7] = transportTask.getLatitude();
- 		parameters[8] = transportTask.getLongitude();		
+ 		
+ 		
+ 		parameters[8] = transportTask.getLongitude();
+ 				
  		parameters[9] = transportTask.nextVersion();
  		parameters[10] = transportTask.getId();
  		parameters[11] = transportTask.getVersion();
@@ -953,9 +967,15 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 		transportTask.setId(newTransportTaskId);
 		parameters[0] =  transportTask.getId();
  
+ 		
  		parameters[1] = transportTask.getName();
+ 		
+ 		
  		parameters[2] = transportTask.getStart();
- 		parameters[3] = transportTask.getBeginTime(); 	
+ 		
+ 		
+ 		parameters[3] = transportTask.getBeginTime();
+ 		 	
  		if(transportTask.getEnd() != null){
  			parameters[4] = transportTask.getEnd().getId();
  		
@@ -976,8 +996,12 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  		
  		}
  		
+ 		
  		parameters[8] = transportTask.getLatitude();
- 		parameters[9] = transportTask.getLongitude();		
+ 		
+ 		
+ 		parameters[9] = transportTask.getLongitude();
+ 				
  				
  		return parameters;
  	}
@@ -1692,13 +1716,13 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
     public SmartList<TransportTask> requestCandidateTransportTaskForGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(TransportTaskTable.COLUMN_NAME, filterKey, pageNo, pageSize, getTransportTaskMapper());
+		return findAllCandidateByFilter(TransportTaskTable.COLUMN_NAME, TransportTaskTable.COLUMN_END, filterKey, pageNo, pageSize, getTransportTaskMapper());
     }
 		
     public SmartList<TransportTask> requestCandidateTransportTaskForTransportTaskTrack(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(TransportTaskTable.COLUMN_NAME, filterKey, pageNo, pageSize, getTransportTaskMapper());
+		return findAllCandidateByFilter(TransportTaskTable.COLUMN_NAME, TransportTaskTable.COLUMN_END, filterKey, pageNo, pageSize, getTransportTaskMapper());
     }
 		
 
@@ -1795,6 +1819,30 @@ public class TransportTaskJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateTransportTask executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateTransportTask result = new CandidateTransportTask();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

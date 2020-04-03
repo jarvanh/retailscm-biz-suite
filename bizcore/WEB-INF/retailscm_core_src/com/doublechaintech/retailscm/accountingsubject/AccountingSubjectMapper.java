@@ -30,7 +30,9 @@ public class AccountingSubjectMapper extends BaseRowMapper<AccountingSubject>{
 	protected void setId(AccountingSubject accountingSubject, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(AccountingSubjectTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -42,7 +44,9 @@ public class AccountingSubjectMapper extends BaseRowMapper<AccountingSubject>{
 	protected void setAccountingSubjectCode(AccountingSubject accountingSubject, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String accountingSubjectCode = rs.getString(AccountingSubjectTable.COLUMN_ACCOUNTING_SUBJECT_CODE);
+		
 		if(accountingSubjectCode == null){
 			//do nothing when nothing found in database
 			return;
@@ -54,7 +58,9 @@ public class AccountingSubjectMapper extends BaseRowMapper<AccountingSubject>{
 	protected void setAccountingSubjectName(AccountingSubject accountingSubject, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String accountingSubjectName = rs.getString(AccountingSubjectTable.COLUMN_ACCOUNTING_SUBJECT_NAME);
+		
 		if(accountingSubjectName == null){
 			//do nothing when nothing found in database
 			return;
@@ -66,7 +72,9 @@ public class AccountingSubjectMapper extends BaseRowMapper<AccountingSubject>{
 	protected void setAccountingSubjectClassCode(AccountingSubject accountingSubject, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer accountingSubjectClassCode = rs.getInt(AccountingSubjectTable.COLUMN_ACCOUNTING_SUBJECT_CLASS_CODE);
+		
 		if(accountingSubjectClassCode == null){
 			//do nothing when nothing found in database
 			return;
@@ -78,7 +86,9 @@ public class AccountingSubjectMapper extends BaseRowMapper<AccountingSubject>{
 	protected void setAccountingSubjectClassName(AccountingSubject accountingSubject, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String accountingSubjectClassName = rs.getString(AccountingSubjectTable.COLUMN_ACCOUNTING_SUBJECT_CLASS_NAME);
+		
 		if(accountingSubjectClassName == null){
 			//do nothing when nothing found in database
 			return;
@@ -108,7 +118,9 @@ public class AccountingSubjectMapper extends BaseRowMapper<AccountingSubject>{
 	protected void setVersion(AccountingSubject accountingSubject, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(AccountingSubjectTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

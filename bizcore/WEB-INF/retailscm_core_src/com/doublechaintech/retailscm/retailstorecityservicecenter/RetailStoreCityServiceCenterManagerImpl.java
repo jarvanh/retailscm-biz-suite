@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.retailstorecityservicecenter;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.retailstoreprovincecenter.RetailStoreProvinceCenter;
@@ -34,7 +51,7 @@ import com.doublechaintech.retailscm.retailstorefranchising.RetailStoreFranchisi
 
 
 
-public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreCityServiceCenterManager {
+public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreCityServiceCenterManager, BusinessHandler{
 
   
 
@@ -236,10 +253,16 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 		
 
 		if(RetailStoreCityServiceCenter.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfRetailStoreCityServiceCenter(parseString(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCityServiceCenter.FOUNDED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFoundedOfRetailStoreCityServiceCenter(parseDate(newValueExpr));
+		
+			
 		}		
 
 		
@@ -799,15 +822,21 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 		
 
 		if(CityPartner.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfCityPartner(parseString(newValueExpr));
+		
 		}
 		
 		if(CityPartner.MOBILE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMobileOfCityPartner(parseString(newValueExpr));
+		
 		}
 		
 		if(CityPartner.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfCityPartner(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1053,15 +1082,21 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 		
 
 		if(PotentialCustomer.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfPotentialCustomer(parseString(newValueExpr));
+		
 		}
 		
 		if(PotentialCustomer.MOBILE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMobileOfPotentialCustomer(parseString(newValueExpr));
+		
 		}
 		
 		if(PotentialCustomer.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfPotentialCustomer(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1302,15 +1337,21 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 		
 
 		if(CityEvent.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfCityEvent(parseString(newValueExpr));
+		
 		}
 		
 		if(CityEvent.MOBILE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMobileOfCityEvent(parseString(newValueExpr));
+		
 		}
 		
 		if(CityEvent.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfCityEvent(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1606,31 +1647,45 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
 		
 
 		if(RetailStore.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStore.TELEPHONE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTelephoneOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStore.OWNER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkOwnerOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStore.FOUNDED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFoundedOfRetailStore(parseDate(newValueExpr));
+		
 		}
 		
 		if(RetailStore.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfRetailStore(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(RetailStore.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfRetailStore(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(RetailStore.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1685,6 +1740,340 @@ public class RetailStoreCityServiceCenterManagerImpl extends CustomRetailscmChec
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   RetailStoreCityServiceCenter newRetailStoreCityServiceCenter = this.createRetailStoreCityServiceCenter(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newRetailStoreCityServiceCenter
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, RetailStoreCityServiceCenter.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<RetailStoreCityServiceCenter> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+		List<RetailStoreProvinceCenter> belongsToList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, RetailStoreProvinceCenter.class);
+		userContext.getDAOGroup().enhanceList(belongsToList, RetailStoreProvinceCenter.class);
+
+
+    }
+	
+	public Object listByBelongsTo(RetailscmUserContext userContext,String belongsToId) throws Exception {
+		return listPageByBelongsTo(userContext, belongsToId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByBelongsTo(RetailscmUserContext userContext,String belongsToId, int start, int count) throws Exception {
+		SmartList<RetailStoreCityServiceCenter> list = retailStoreCityServiceCenterDaoOf(userContext).findRetailStoreCityServiceCenterByBelongsTo(belongsToId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(RetailStoreCityServiceCenter.class);
+		page.setContainerObject(RetailStoreProvinceCenter.withId(belongsToId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("双链小超城市服务中心列表");
+		page.setRequestName("listByBelongsTo");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByBelongsTo/%s/",  getBeanName(), belongsToId)));
+
+		page.assemblerContent(userContext, "listByBelongsTo");
+		return page.doRender(userContext);
+	}
+  
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String retailStoreCityServiceCenterId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getRetailStoreCityServiceCenterDetailScope().clone();
+		RetailStoreCityServiceCenter merchantObj = (RetailStoreCityServiceCenter) this.view(userContext, retailStoreCityServiceCenterId);
+    String merchantObjId = retailStoreCityServiceCenterId;
+    String linkToUrl =	"retailStoreCityServiceCenterManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "双链小超城市服务中心"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-name")
+				    .put("fieldName", "name")
+				    .put("label", "名称")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("name", merchantObj.getName());
+
+		propList.add(
+				MapUtil.put("id", "3-founded")
+				    .put("fieldName", "founded")
+				    .put("label", "成立")
+				    .put("type", "date")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("founded", merchantObj.getFounded());
+
+		propList.add(
+				MapUtil.put("id", "4-belongsTo")
+				    .put("fieldName", "belongsTo")
+				    .put("label", "属于")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "retailStoreProvinceCenterManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("belongsTo", merchantObj.getBelongsTo());
+
+		propList.add(
+				MapUtil.put("id", "5-lastUpdateTime")
+				    .put("fieldName", "lastUpdateTime")
+				    .put("label", "最后更新时间")
+				    .put("type", "date")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("lastUpdateTime", merchantObj.getLastUpdateTime());
+
+		//处理 sectionList
+
+		//处理Section：cityPartnerListSection
+		Map cityPartnerListSection = ListofUtils.buildSection(
+		    "cityPartnerListSection",
+		    "城市的合作伙伴名单",
+		    null,
+		    "",
+		    "__no_group",
+		    "cityPartnerManager/listByCityServiceCenter/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(cityPartnerListSection);
+
+		result.put("cityPartnerListSection", ListofUtils.toShortList(merchantObj.getCityPartnerList(), "cityPartner"));
+		vscope.field("cityPartnerListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( CityPartner.class.getName(), null));
+
+		//处理Section：potentialCustomerListSection
+		Map potentialCustomerListSection = ListofUtils.buildSection(
+		    "potentialCustomerListSection",
+		    "潜在客户列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "potentialCustomerManager/listByCityServiceCenter/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(potentialCustomerListSection);
+
+		result.put("potentialCustomerListSection", ListofUtils.toShortList(merchantObj.getPotentialCustomerList(), "potentialCustomer"));
+		vscope.field("potentialCustomerListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( PotentialCustomer.class.getName(), null));
+
+		//处理Section：cityEventListSection
+		Map cityEventListSection = ListofUtils.buildSection(
+		    "cityEventListSection",
+		    "城市事件列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "cityEventManager/listByCityServiceCenter/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(cityEventListSection);
+
+		result.put("cityEventListSection", ListofUtils.toShortList(merchantObj.getCityEventList(), "cityEvent"));
+		vscope.field("cityEventListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( CityEvent.class.getName(), null));
+
+		//处理Section：retailStoreListSection
+		Map retailStoreListSection = ListofUtils.buildSection(
+		    "retailStoreListSection",
+		    "零售门店列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "retailStoreManager/listByCityServiceCenter/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(retailStoreListSection);
+
+		result.put("retailStoreListSection", ListofUtils.toShortList(merchantObj.getRetailStoreList(), "retailStore"));
+		vscope.field("retailStoreListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( RetailStore.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

@@ -29,7 +29,9 @@ public class PotentialCustomerContactPersonMapper extends BaseRowMapper<Potentia
 	protected void setId(PotentialCustomerContactPerson potentialCustomerContactPerson, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(PotentialCustomerContactPersonTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class PotentialCustomerContactPersonMapper extends BaseRowMapper<Potentia
 	protected void setName(PotentialCustomerContactPerson potentialCustomerContactPerson, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(PotentialCustomerContactPersonTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class PotentialCustomerContactPersonMapper extends BaseRowMapper<Potentia
 	protected void setMobile(PotentialCustomerContactPerson potentialCustomerContactPerson, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String mobile = rs.getString(PotentialCustomerContactPersonTable.COLUMN_MOBILE);
+		
 		if(mobile == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class PotentialCustomerContactPersonMapper extends BaseRowMapper<Potentia
 	protected void setDescription(PotentialCustomerContactPerson potentialCustomerContactPerson, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(PotentialCustomerContactPersonTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class PotentialCustomerContactPersonMapper extends BaseRowMapper<Potentia
 	protected void setVersion(PotentialCustomerContactPerson potentialCustomerContactPerson, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(PotentialCustomerContactPersonTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

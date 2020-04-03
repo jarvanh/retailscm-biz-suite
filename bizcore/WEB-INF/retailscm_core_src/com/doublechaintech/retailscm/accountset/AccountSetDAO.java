@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountset;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -78,6 +79,7 @@ public interface AccountSetDAO extends BaseDAO{
 	
 	public SmartList<AccountSet> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateAccountSet executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<AccountSet> findAccountSetByCountryCenter(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countAccountSetByCountryCenter(String retailStoreCountryCenterId, Map<String,Object> options);

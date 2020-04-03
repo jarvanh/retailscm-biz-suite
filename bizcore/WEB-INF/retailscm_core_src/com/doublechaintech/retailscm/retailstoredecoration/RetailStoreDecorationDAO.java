@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.retailstoredecoration;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -82,6 +83,7 @@ public interface RetailStoreDecorationDAO extends BaseDAO{
 	
 	public SmartList<RetailStoreDecoration> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateRetailStoreDecoration executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
 
 	// 需要一个加载引用我的对象的enhance方法:RetailStore的decoration的RetailStoreList
 	public SmartList<RetailStore> loadOurRetailStoreList(RetailscmUserContext userContext, List<RetailStoreDecoration> us, Map<String,Object> options) throws Exception;

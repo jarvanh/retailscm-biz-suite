@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,13 +539,19 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
  	protected Object[] prepareOccupationTypeUpdateParameters(OccupationType occupationType){
  		Object[] parameters = new Object[7];
  
- 		parameters[0] = occupationType.getCode(); 	
+ 		
+ 		parameters[0] = occupationType.getCode();
+ 		 	
  		if(occupationType.getCompany() != null){
  			parameters[1] = occupationType.getCompany().getId();
  		}
  
+ 		
  		parameters[2] = occupationType.getDescription();
- 		parameters[3] = occupationType.getDetailDescription();		
+ 		
+ 		
+ 		parameters[3] = occupationType.getDetailDescription();
+ 				
  		parameters[4] = occupationType.nextVersion();
  		parameters[5] = occupationType.getId();
  		parameters[6] = occupationType.getVersion();
@@ -554,14 +564,20 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 		occupationType.setId(newOccupationTypeId);
 		parameters[0] =  occupationType.getId();
  
- 		parameters[1] = occupationType.getCode(); 	
+ 		
+ 		parameters[1] = occupationType.getCode();
+ 		 	
  		if(occupationType.getCompany() != null){
  			parameters[2] = occupationType.getCompany().getId();
  		
  		}
  		
+ 		
  		parameters[3] = occupationType.getDescription();
- 		parameters[4] = occupationType.getDetailDescription();		
+ 		
+ 		
+ 		parameters[4] = occupationType.getDetailDescription();
+ 				
  				
  		return parameters;
  	}
@@ -915,7 +931,7 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
     public SmartList<OccupationType> requestCandidateOccupationTypeForEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(OccupationTypeTable.COLUMN_CODE, filterKey, pageNo, pageSize, getOccupationTypeMapper());
+		return findAllCandidateByFilter(OccupationTypeTable.COLUMN_CODE, OccupationTypeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getOccupationTypeMapper());
     }
 		
 
@@ -989,6 +1005,30 @@ public class OccupationTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl implemen
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateOccupationType executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateOccupationType result = new CandidateOccupationType();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

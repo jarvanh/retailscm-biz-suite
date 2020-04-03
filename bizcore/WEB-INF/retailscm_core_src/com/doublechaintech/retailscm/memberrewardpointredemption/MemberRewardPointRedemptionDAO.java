@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.memberrewardpointredemption;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface MemberRewardPointRedemptionDAO extends BaseDAO{
 	
 	public SmartList<MemberRewardPointRedemption> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateMemberRewardPointRedemption executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<MemberRewardPointRedemption> findMemberRewardPointRedemptionByOwner(String retailStoreMemberId, Map<String,Object> options);
  	public int countMemberRewardPointRedemptionByOwner(String retailStoreMemberId, Map<String,Object> options);

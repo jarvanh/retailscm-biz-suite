@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.terapico.caf.Images;
 import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
 import com.doublechaintech.retailscm.tree.*;
@@ -20,6 +24,7 @@ import com.doublechaintech.retailscm.iamservice.*;
 import com.doublechaintech.retailscm.services.IamService;
 import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
 import com.terapico.uccaf.BaseUserContext;
 
 
@@ -167,8 +172,8 @@ public class SectionManagerImpl extends CustomRetailscmCheckerManager implements
  	
  	
 
-	public Section createSection(RetailscmUserContext userContext, String title,String brief,String linkToUrl,String page) throws Exception
-	//public Section createSection(RetailscmUserContext userContext,String title, String brief, String linkToUrl, String page) throws Exception
+	public Section createSection(RetailscmUserContext userContext, String title,String brief,String icon,String viewGroup,String linkToUrl,String page) throws Exception
+	//public Section createSection(RetailscmUserContext userContext,String title, String brief, String icon, String viewGroup, String linkToUrl, String page) throws Exception
 	{
 
 		
@@ -177,6 +182,8 @@ public class SectionManagerImpl extends CustomRetailscmCheckerManager implements
 
 		checkerOf(userContext).checkTitleOfSection(title);
 		checkerOf(userContext).checkBriefOfSection(brief);
+		checkerOf(userContext).checkIconOfSection(icon);
+		checkerOf(userContext).checkViewGroupOfSection(viewGroup);
 		checkerOf(userContext).checkLinkToUrlOfSection(linkToUrl);
 		checkerOf(userContext).checkPageOfSection(page);
 	
@@ -187,6 +194,8 @@ public class SectionManagerImpl extends CustomRetailscmCheckerManager implements
 
 		section.setTitle(title);
 		section.setBrief(brief);
+		section.setIcon(icon);
+		section.setViewGroup(viewGroup);
 		section.setLinkToUrl(linkToUrl);
 		section.setPage(page);
 
@@ -222,6 +231,18 @@ public class SectionManagerImpl extends CustomRetailscmCheckerManager implements
 		if(Section.BRIEF_PROPERTY.equals(property)){
 		
 			checkerOf(userContext).checkBriefOfSection(parseString(newValueExpr));
+		
+			
+		}
+		if(Section.ICON_PROPERTY.equals(property)){
+		
+			checkerOf(userContext).checkIconOfSection(parseString(newValueExpr));
+		
+			
+		}
+		if(Section.VIEW_GROUP_PROPERTY.equals(property)){
+		
+			checkerOf(userContext).checkViewGroupOfSection(parseString(newValueExpr));
 		
 			
 		}
@@ -471,6 +492,9 @@ public class SectionManagerImpl extends CustomRetailscmCheckerManager implements
 		if (userApp != null) {
 			userApp.setSecUser(secUser);
 		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
 		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
 		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
 			return accessOK();
@@ -508,11 +532,23 @@ public class SectionManagerImpl extends CustomRetailscmCheckerManager implements
 			throws Exception {
 		// by default, failed is failed, nothing can do
 	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
 	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
 			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
 			throws Exception {
-		// by default, should create a account and bind with sec user, BUT, I don't know how to
-		// create new object as of generate this method. It depends on business logical. So,
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   Section newSection = this.createSection(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newSection
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
 		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
 	}
 	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
@@ -543,7 +579,116 @@ public class SectionManagerImpl extends CustomRetailscmCheckerManager implements
 
     }
 	
-  // -----------------------------------\\ list-of-view 处理 //-----------------------------------
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String sectionId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getSectionDetailScope().clone();
+		Section merchantObj = (Section) this.view(userContext, sectionId);
+    String merchantObjId = sectionId;
+    String linkToUrl =	"sectionManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "板块"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-title")
+				    .put("fieldName", "title")
+				    .put("label", "头衔")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("title", merchantObj.getTitle());
+
+		propList.add(
+				MapUtil.put("id", "3-brief")
+				    .put("fieldName", "brief")
+				    .put("label", "短暂的")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("brief", merchantObj.getBrief());
+
+		propList.add(
+				MapUtil.put("id", "4-icon")
+				    .put("fieldName", "icon")
+				    .put("label", "图标")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("icon", merchantObj.getIcon());
+
+		propList.add(
+				MapUtil.put("id", "5-viewGroup")
+				    .put("fieldName", "viewGroup")
+				    .put("label", "视图组")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("viewGroup", merchantObj.getViewGroup());
+
+		propList.add(
+				MapUtil.put("id", "6-linkToUrl")
+				    .put("fieldName", "linkToUrl")
+				    .put("label", "链接网址")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("linkToUrl", merchantObj.getLinkToUrl());
+
+		propList.add(
+				MapUtil.put("id", "7-page")
+				    .put("fieldName", "page")
+				    .put("label", "页面")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("page", merchantObj.getPage());
+
+		//处理 sectionList
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
+
 }
 
 

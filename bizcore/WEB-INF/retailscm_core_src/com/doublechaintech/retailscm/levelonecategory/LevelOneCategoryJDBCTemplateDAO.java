@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -539,7 +543,9 @@ public class LevelOneCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  			parameters[0] = levelOneCategory.getCatalog().getId();
  		}
  
- 		parameters[1] = levelOneCategory.getName();		
+ 		
+ 		parameters[1] = levelOneCategory.getName();
+ 				
  		parameters[2] = levelOneCategory.nextVersion();
  		parameters[3] = levelOneCategory.getId();
  		parameters[4] = levelOneCategory.getVersion();
@@ -557,7 +563,9 @@ public class LevelOneCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		
  		}
  		
- 		parameters[2] = levelOneCategory.getName();		
+ 		
+ 		parameters[2] = levelOneCategory.getName();
+ 				
  				
  		return parameters;
  	}
@@ -735,7 +743,7 @@ public class LevelOneCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
     public SmartList<LevelOneCategory> requestCandidateLevelOneCategoryForLevelTwoCategory(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(LevelOneCategoryTable.COLUMN_CATALOG, filterKey, pageNo, pageSize, getLevelOneCategoryMapper());
+		return findAllCandidateByFilter(LevelOneCategoryTable.COLUMN_CATALOG, LevelOneCategoryTable.COLUMN_CATALOG, filterKey, pageNo, pageSize, getLevelOneCategoryMapper());
     }
 		
 
@@ -809,6 +817,30 @@ public class LevelOneCategoryJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateLevelOneCategory executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateLevelOneCategory result = new CandidateLevelOneCategory();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

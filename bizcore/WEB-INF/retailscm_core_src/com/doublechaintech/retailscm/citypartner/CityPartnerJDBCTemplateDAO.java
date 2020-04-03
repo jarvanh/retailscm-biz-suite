@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -651,14 +655,22 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  	protected Object[] prepareCityPartnerUpdateParameters(CityPartner cityPartner){
  		Object[] parameters = new Object[8];
  
+ 		
  		parameters[0] = cityPartner.getName();
- 		parameters[1] = cityPartner.getMobile(); 	
+ 		
+ 		
+ 		parameters[1] = cityPartner.getMobile();
+ 		 	
  		if(cityPartner.getCityServiceCenter() != null){
  			parameters[2] = cityPartner.getCityServiceCenter().getId();
  		}
  
+ 		
  		parameters[3] = cityPartner.getDescription();
- 		parameters[4] = cityPartner.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[4] = cityPartner.getLastUpdateTime();
+ 				
  		parameters[5] = cityPartner.nextVersion();
  		parameters[6] = cityPartner.getId();
  		parameters[7] = cityPartner.getVersion();
@@ -671,15 +683,23 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		cityPartner.setId(newCityPartnerId);
 		parameters[0] =  cityPartner.getId();
  
+ 		
  		parameters[1] = cityPartner.getName();
- 		parameters[2] = cityPartner.getMobile(); 	
+ 		
+ 		
+ 		parameters[2] = cityPartner.getMobile();
+ 		 	
  		if(cityPartner.getCityServiceCenter() != null){
  			parameters[3] = cityPartner.getCityServiceCenter().getId();
  		
  		}
  		
+ 		
  		parameters[4] = cityPartner.getDescription();
- 		parameters[5] = cityPartner.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[5] = cityPartner.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -1111,13 +1131,13 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
     public SmartList<CityPartner> requestCandidateCityPartnerForPotentialCustomer(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(CityPartnerTable.COLUMN_NAME, filterKey, pageNo, pageSize, getCityPartnerMapper());
+		return findAllCandidateByFilter(CityPartnerTable.COLUMN_NAME, CityPartnerTable.COLUMN_CITY_SERVICE_CENTER, filterKey, pageNo, pageSize, getCityPartnerMapper());
     }
 		
     public SmartList<CityPartner> requestCandidateCityPartnerForPotentialCustomerContact(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(CityPartnerTable.COLUMN_NAME, filterKey, pageNo, pageSize, getCityPartnerMapper());
+		return findAllCandidateByFilter(CityPartnerTable.COLUMN_NAME, CityPartnerTable.COLUMN_CITY_SERVICE_CENTER, filterKey, pageNo, pageSize, getCityPartnerMapper());
     }
 		
 
@@ -1214,6 +1234,30 @@ public class CityPartnerJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateCityPartner executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateCityPartner result = new CandidateCityPartner();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

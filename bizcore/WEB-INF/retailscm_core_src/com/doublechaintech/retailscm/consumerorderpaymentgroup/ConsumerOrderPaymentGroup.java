@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -51,6 +52,7 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	ConsumerOrderPaymentGroup(){
@@ -90,6 +92,7 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -99,12 +102,13 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeCardNumberProperty(String newValueExpr){
+	
 		String oldValue = getCardNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -114,7 +118,7 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		updateCardNumber(newValue);
 		this.onChangeProperty(CARD_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -262,7 +266,9 @@ public class ConsumerOrderPaymentGroup extends BaseEntity implements  java.io.Se
 		appendKeyValuePair(result, CARD_NUMBER_PROPERTY, getCardNumber());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

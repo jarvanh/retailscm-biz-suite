@@ -27,7 +27,9 @@ public class ScoringMapper extends BaseRowMapper<Scoring>{
 	protected void setId(Scoring scoring, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ScoringTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -39,7 +41,9 @@ public class ScoringMapper extends BaseRowMapper<Scoring>{
 	protected void setScoredBy(Scoring scoring, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String scoredBy = rs.getString(ScoringTable.COLUMN_SCORED_BY);
+		
 		if(scoredBy == null){
 			//do nothing when nothing found in database
 			return;
@@ -51,7 +55,9 @@ public class ScoringMapper extends BaseRowMapper<Scoring>{
 	protected void setScore(Scoring scoring, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer score = rs.getInt(ScoringTable.COLUMN_SCORE);
+		
 		if(score == null){
 			//do nothing when nothing found in database
 			return;
@@ -63,7 +69,9 @@ public class ScoringMapper extends BaseRowMapper<Scoring>{
 	protected void setComment(Scoring scoring, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String comment = rs.getString(ScoringTable.COLUMN_COMMENT);
+		
 		if(comment == null){
 			//do nothing when nothing found in database
 			return;
@@ -75,7 +83,9 @@ public class ScoringMapper extends BaseRowMapper<Scoring>{
 	protected void setVersion(Scoring scoring, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ScoringTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -52,6 +53,7 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
 	
 	
 	protected		SmartList<LevelThreeCategory>	mLevelThreeCategoryList;
+
 	
 		
 	public 	LevelTwoCategory(){
@@ -88,6 +90,7 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -97,7 +100,7 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -343,7 +346,9 @@ public class LevelTwoCategory extends BaseEntity implements  java.io.Serializabl
 			appendKeyValuePair(result, "levelThreeCategoryCurrentPageNumber", getLevelThreeCategoryList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

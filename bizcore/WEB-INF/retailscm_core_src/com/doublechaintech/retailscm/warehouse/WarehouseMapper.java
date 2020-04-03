@@ -32,7 +32,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setId(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(WarehouseTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setLocation(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String location = rs.getString(WarehouseTable.COLUMN_LOCATION);
+		
 		if(location == null){
 			//do nothing when nothing found in database
 			return;
@@ -56,7 +60,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setContactNumber(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(WarehouseTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -68,7 +74,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setTotalArea(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String totalArea = rs.getString(WarehouseTable.COLUMN_TOTAL_AREA);
+		
 		if(totalArea == null){
 			//do nothing when nothing found in database
 			return;
@@ -98,7 +106,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setLatitude(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(WarehouseTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -110,7 +120,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setLongitude(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(WarehouseTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -122,7 +134,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setLastUpdateTime(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(WarehouseTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -134,7 +148,9 @@ public class WarehouseMapper extends BaseRowMapper<Warehouse>{
 	protected void setVersion(Warehouse warehouse, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(WarehouseTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

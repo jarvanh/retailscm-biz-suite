@@ -29,7 +29,9 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
 	protected void setId(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(CatalogTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
 	protected void setName(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(CatalogTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
 	protected void setSubCount(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer subCount = rs.getInt(CatalogTable.COLUMN_SUB_COUNT);
+		
 		if(subCount == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
 	protected void setAmount(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal amount = rs.getBigDecimal(CatalogTable.COLUMN_AMOUNT);
+		
 		if(amount == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class CatalogMapper extends BaseRowMapper<Catalog>{
 	protected void setVersion(Catalog catalog, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(CatalogTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

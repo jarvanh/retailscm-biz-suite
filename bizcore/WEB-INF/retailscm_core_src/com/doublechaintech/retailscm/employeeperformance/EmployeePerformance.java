@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -49,6 +50,7 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	EmployeePerformance(){
@@ -85,6 +87,7 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
     
     
 	protected void changePerformanceCommentProperty(String newValueExpr){
+	
 		String oldValue = getPerformanceComment();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -94,7 +97,7 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		updatePerformanceComment(newValue);
 		this.onChangeProperty(PERFORMANCE_COMMENT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -222,7 +225,9 @@ public class EmployeePerformance extends BaseEntity implements  java.io.Serializ
 		appendKeyValuePair(result, PERFORMANCE_COMMENT_PROPERTY, getPerformanceComment());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

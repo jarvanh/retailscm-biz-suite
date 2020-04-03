@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -69,6 +70,7 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	ObjectAccess(){
@@ -135,6 +137,7 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -144,12 +147,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeObjectTypeProperty(String newValueExpr){
+	
 		String oldValue = getObjectType();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -159,12 +163,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateObjectType(newValue);
 		this.onChangeProperty(OBJECT_TYPE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList1Property(String newValueExpr){
+	
 		String oldValue = getList1();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -174,12 +179,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList1(newValue);
 		this.onChangeProperty(LIST1_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList2Property(String newValueExpr){
+	
 		String oldValue = getList2();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -189,12 +195,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList2(newValue);
 		this.onChangeProperty(LIST2_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList3Property(String newValueExpr){
+	
 		String oldValue = getList3();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -204,12 +211,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList3(newValue);
 		this.onChangeProperty(LIST3_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList4Property(String newValueExpr){
+	
 		String oldValue = getList4();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -219,12 +227,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList4(newValue);
 		this.onChangeProperty(LIST4_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList5Property(String newValueExpr){
+	
 		String oldValue = getList5();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -234,12 +243,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList5(newValue);
 		this.onChangeProperty(LIST5_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList6Property(String newValueExpr){
+	
 		String oldValue = getList6();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -249,12 +259,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList6(newValue);
 		this.onChangeProperty(LIST6_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList7Property(String newValueExpr){
+	
 		String oldValue = getList7();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -264,12 +275,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList7(newValue);
 		this.onChangeProperty(LIST7_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList8Property(String newValueExpr){
+	
 		String oldValue = getList8();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -279,12 +291,13 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList8(newValue);
 		this.onChangeProperty(LIST8_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeList9Property(String newValueExpr){
+	
 		String oldValue = getList9();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -294,7 +307,7 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		updateList9(newValue);
 		this.onChangeProperty(LIST9_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -622,7 +635,9 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, APP_PROPERTY, getApp());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

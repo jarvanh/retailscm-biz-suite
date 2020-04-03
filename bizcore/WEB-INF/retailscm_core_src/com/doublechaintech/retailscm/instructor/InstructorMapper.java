@@ -33,7 +33,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setId(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(InstructorTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -45,7 +47,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setTitle(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(InstructorTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -57,7 +61,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setFamilyName(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String familyName = rs.getString(InstructorTable.COLUMN_FAMILY_NAME);
+		
 		if(familyName == null){
 			//do nothing when nothing found in database
 			return;
@@ -69,7 +75,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setGivenName(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String givenName = rs.getString(InstructorTable.COLUMN_GIVEN_NAME);
+		
 		if(givenName == null){
 			//do nothing when nothing found in database
 			return;
@@ -81,7 +89,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setCellPhone(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String cellPhone = rs.getString(InstructorTable.COLUMN_CELL_PHONE);
+		
 		if(cellPhone == null){
 			//do nothing when nothing found in database
 			return;
@@ -93,7 +103,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setEmail(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String email = rs.getString(InstructorTable.COLUMN_EMAIL);
+		
 		if(email == null){
 			//do nothing when nothing found in database
 			return;
@@ -123,7 +135,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setIntroduction(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String introduction = rs.getString(InstructorTable.COLUMN_INTRODUCTION);
+		
 		if(introduction == null){
 			//do nothing when nothing found in database
 			return;
@@ -135,7 +149,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setLastUpdateTime(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(InstructorTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -147,7 +163,9 @@ public class InstructorMapper extends BaseRowMapper<Instructor>{
 	protected void setVersion(Instructor instructor, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(InstructorTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

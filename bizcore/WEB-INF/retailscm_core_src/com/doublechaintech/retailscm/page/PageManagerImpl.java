@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.terapico.caf.Images;
 import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
 import com.doublechaintech.retailscm.tree.*;
@@ -20,6 +24,7 @@ import com.doublechaintech.retailscm.iamservice.*;
 import com.doublechaintech.retailscm.services.IamService;
 import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
 import com.terapico.uccaf.BaseUserContext;
 
 
@@ -1214,6 +1219,9 @@ public class PageManagerImpl extends CustomRetailscmCheckerManager implements Pa
 		if (userApp != null) {
 			userApp.setSecUser(secUser);
 		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
 		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
 		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
 			return accessOK();
@@ -1251,11 +1259,23 @@ public class PageManagerImpl extends CustomRetailscmCheckerManager implements Pa
 			throws Exception {
 		// by default, failed is failed, nothing can do
 	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
 	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
 			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
 			throws Exception {
-		// by default, should create a account and bind with sec user, BUT, I don't know how to
-		// create new object as of generate this method. It depends on business logical. So,
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   Page newPage = this.createPage(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newPage
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
 		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
 	}
 	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
@@ -1302,11 +1322,12 @@ public class PageManagerImpl extends CustomRetailscmCheckerManager implements Pa
 		page.setContainerObject(PageType.withId(pageTypeId));
 		page.setRequestBeanName(this.getBeanName());
 		page.setDataList((SmartList)list);
-		page.setPageTitle("页面类型列表");
+		page.setPageTitle("页面列表");
 		page.setRequestName("listByPageType");
 		page.setRequestOffset(start);
 		page.setRequestLimit(count);
 		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByPageType/%s/",  getBeanName(), pageTypeId)));
 
 		page.assemblerContent(userContext, "listByPageType");
 		return page.doRender(userContext);
@@ -1324,17 +1345,137 @@ public class PageManagerImpl extends CustomRetailscmCheckerManager implements Pa
 		page.setContainerObject(MobileApp.withId(mobileAppId));
 		page.setRequestBeanName(this.getBeanName());
 		page.setDataList((SmartList)list);
-		page.setPageTitle("手机应用程序列表");
+		page.setPageTitle("页面列表");
 		page.setRequestName("listByMobileApp");
 		page.setRequestOffset(start);
 		page.setRequestLimit(count);
 		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByMobileApp/%s/",  getBeanName(), mobileAppId)));
 
 		page.assemblerContent(userContext, "listByMobileApp");
 		return page.doRender(userContext);
 	}
   
-  // -----------------------------------\\ list-of-view 处理 //-----------------------------------
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String pageId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getPageDetailScope().clone();
+		Page merchantObj = (Page) this.view(userContext, pageId);
+    String merchantObjId = pageId;
+    String linkToUrl =	"pageManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "页面"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-pageTitle")
+				    .put("fieldName", "pageTitle")
+				    .put("label", "页面标题")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("pageTitle", merchantObj.getPageTitle());
+
+		propList.add(
+				MapUtil.put("id", "3-linkToUrl")
+				    .put("fieldName", "linkToUrl")
+				    .put("label", "链接网址")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("linkToUrl", merchantObj.getLinkToUrl());
+
+		propList.add(
+				MapUtil.put("id", "4-pageType")
+				    .put("fieldName", "pageType")
+				    .put("label", "页面类型")
+				    .put("type", "status")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("pageType", merchantObj.getPageType());
+
+		propList.add(
+				MapUtil.put("id", "5-mobileApp")
+				    .put("fieldName", "mobileApp")
+				    .put("label", "手机应用程序")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "mobileAppManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("mobileApp", merchantObj.getMobileApp());
+
+		//处理 sectionList
+
+		//处理Section：slideListSection
+		Map slideListSection = ListofUtils.buildSection(
+		    "slideListSection",
+		    "幻灯片列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "slideManager/listByPage/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(slideListSection);
+
+		result.put("slideListSection", ListofUtils.toShortList(merchantObj.getSlideList(), "slide"));
+		vscope.field("slideListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( Slide.class.getName(), null));
+
+		//处理Section：uiActionListSection
+		Map uiActionListSection = ListofUtils.buildSection(
+		    "uiActionListSection",
+		    "Ui动作列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "uiActionManager/listByPage/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(uiActionListSection);
+
+		result.put("uiActionListSection", ListofUtils.toShortList(merchantObj.getUiActionList(), "uiAction"));
+		vscope.field("uiActionListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( UiAction.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
+
 }
 
 

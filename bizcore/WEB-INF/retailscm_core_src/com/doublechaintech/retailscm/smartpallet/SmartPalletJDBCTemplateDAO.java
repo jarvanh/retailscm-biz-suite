@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -551,16 +555,28 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  	protected Object[] prepareSmartPalletUpdateParameters(SmartPallet smartPallet){
  		Object[] parameters = new Object[10];
  
+ 		
  		parameters[0] = smartPallet.getLocation();
+ 		
+ 		
  		parameters[1] = smartPallet.getContactNumber();
+ 		
+ 		
  		parameters[2] = smartPallet.getTotalArea();
+ 		
+ 		
  		parameters[3] = smartPallet.getLatitude();
- 		parameters[4] = smartPallet.getLongitude(); 	
+ 		
+ 		
+ 		parameters[4] = smartPallet.getLongitude();
+ 		 	
  		if(smartPallet.getWarehouse() != null){
  			parameters[5] = smartPallet.getWarehouse().getId();
  		}
  
- 		parameters[6] = smartPallet.getLastUpdateTime();		
+ 		
+ 		parameters[6] = smartPallet.getLastUpdateTime();
+ 				
  		parameters[7] = smartPallet.nextVersion();
  		parameters[8] = smartPallet.getId();
  		parameters[9] = smartPallet.getVersion();
@@ -573,17 +589,29 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		smartPallet.setId(newSmartPalletId);
 		parameters[0] =  smartPallet.getId();
  
+ 		
  		parameters[1] = smartPallet.getLocation();
+ 		
+ 		
  		parameters[2] = smartPallet.getContactNumber();
+ 		
+ 		
  		parameters[3] = smartPallet.getTotalArea();
+ 		
+ 		
  		parameters[4] = smartPallet.getLatitude();
- 		parameters[5] = smartPallet.getLongitude(); 	
+ 		
+ 		
+ 		parameters[5] = smartPallet.getLongitude();
+ 		 	
  		if(smartPallet.getWarehouse() != null){
  			parameters[6] = smartPallet.getWarehouse().getId();
  		
  		}
  		
- 		parameters[7] = smartPallet.getLastUpdateTime();		
+ 		
+ 		parameters[7] = smartPallet.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -1113,7 +1141,7 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
     public SmartList<SmartPallet> requestCandidateSmartPalletForGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(SmartPalletTable.COLUMN_LOCATION, filterKey, pageNo, pageSize, getSmartPalletMapper());
+		return findAllCandidateByFilter(SmartPalletTable.COLUMN_LOCATION, SmartPalletTable.COLUMN_WAREHOUSE, filterKey, pageNo, pageSize, getSmartPalletMapper());
     }
 		
 
@@ -1187,6 +1215,30 @@ public class SmartPalletJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateSmartPallet executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateSmartPallet result = new CandidateSmartPallet();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

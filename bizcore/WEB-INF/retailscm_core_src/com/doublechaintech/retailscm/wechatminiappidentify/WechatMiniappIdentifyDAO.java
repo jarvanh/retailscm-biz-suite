@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.wechatminiappidentify;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface WechatMiniappIdentifyDAO extends BaseDAO{
 	
 	public SmartList<WechatMiniappIdentify> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateWechatMiniappIdentify executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<WechatMiniappIdentify> findWechatMiniappIdentifyBySecUser(String secUserId, Map<String,Object> options);
  	public int countWechatMiniappIdentifyBySecUser(String secUserId, Map<String,Object> options);

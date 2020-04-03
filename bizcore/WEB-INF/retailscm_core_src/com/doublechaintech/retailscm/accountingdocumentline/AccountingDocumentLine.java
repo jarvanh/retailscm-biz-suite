@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -58,6 +59,7 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	AccountingDocumentLine(){
@@ -104,6 +106,7 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -113,12 +116,13 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeCodeProperty(String newValueExpr){
+	
 		String oldValue = getCode();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -128,12 +132,13 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		updateCode(newValue);
 		this.onChangeProperty(CODE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDirectProperty(String newValueExpr){
+	
 		String oldValue = getDirect();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -143,12 +148,13 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		updateDirect(newValue);
 		this.onChangeProperty(DIRECT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAmountProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getAmount();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -158,7 +164,7 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		updateAmount(newValue);
 		this.onChangeProperty(AMOUNT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -372,7 +378,9 @@ public class AccountingDocumentLine extends BaseEntity implements  java.io.Seria
 		appendKeyValuePair(result, ACCOUNTING_SUBJECT_PROPERTY, getAccountingSubject());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

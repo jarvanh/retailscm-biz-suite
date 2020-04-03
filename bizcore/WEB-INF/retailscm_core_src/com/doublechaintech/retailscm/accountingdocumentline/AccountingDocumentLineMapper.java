@@ -32,7 +32,9 @@ public class AccountingDocumentLineMapper extends BaseRowMapper<AccountingDocume
 	protected void setId(AccountingDocumentLine accountingDocumentLine, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(AccountingDocumentLineTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class AccountingDocumentLineMapper extends BaseRowMapper<AccountingDocume
 	protected void setName(AccountingDocumentLine accountingDocumentLine, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(AccountingDocumentLineTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -56,7 +60,9 @@ public class AccountingDocumentLineMapper extends BaseRowMapper<AccountingDocume
 	protected void setCode(AccountingDocumentLine accountingDocumentLine, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(AccountingDocumentLineTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -68,7 +74,9 @@ public class AccountingDocumentLineMapper extends BaseRowMapper<AccountingDocume
 	protected void setDirect(AccountingDocumentLine accountingDocumentLine, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String direct = rs.getString(AccountingDocumentLineTable.COLUMN_DIRECT);
+		
 		if(direct == null){
 			//do nothing when nothing found in database
 			return;
@@ -80,7 +88,9 @@ public class AccountingDocumentLineMapper extends BaseRowMapper<AccountingDocume
 	protected void setAmount(AccountingDocumentLine accountingDocumentLine, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal amount = rs.getBigDecimal(AccountingDocumentLineTable.COLUMN_AMOUNT);
+		
 		if(amount == null){
 			//do nothing when nothing found in database
 			return;
@@ -128,7 +138,9 @@ public class AccountingDocumentLineMapper extends BaseRowMapper<AccountingDocume
 	protected void setVersion(AccountingDocumentLine accountingDocumentLine, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(AccountingDocumentLineTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

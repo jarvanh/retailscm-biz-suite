@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -67,6 +68,7 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	EmployeeSalarySheet(){
@@ -123,6 +125,7 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
     
     
 	protected void changeBaseSalaryProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getBaseSalary();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -132,12 +135,13 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		updateBaseSalary(newValue);
 		this.onChangeProperty(BASE_SALARY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeBonusProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getBonus();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -147,12 +151,13 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		updateBonus(newValue);
 		this.onChangeProperty(BONUS_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeRewardProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getReward();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -162,12 +167,13 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		updateReward(newValue);
 		this.onChangeProperty(REWARD_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changePersonalTaxProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getPersonalTax();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -177,12 +183,13 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		updatePersonalTax(newValue);
 		this.onChangeProperty(PERSONAL_TAX_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeSocialSecurityProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getSocialSecurity();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -192,12 +199,13 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		updateSocialSecurity(newValue);
 		this.onChangeProperty(SOCIAL_SECURITY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeHousingFoundProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getHousingFound();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -207,12 +215,13 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		updateHousingFound(newValue);
 		this.onChangeProperty(HOUSING_FOUND_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeJobInsuranceProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getJobInsurance();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -222,7 +231,7 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		updateJobInsurance(newValue);
 		this.onChangeProperty(JOB_INSURANCE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -522,7 +531,9 @@ public class EmployeeSalarySheet extends BaseEntity implements  java.io.Serializ
 		appendKeyValuePair(result, PAYING_OFF_PROPERTY, getPayingOff());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

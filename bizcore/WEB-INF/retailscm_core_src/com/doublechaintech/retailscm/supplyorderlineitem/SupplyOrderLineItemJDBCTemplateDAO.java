@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -439,11 +443,21 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  			parameters[0] = supplyOrderLineItem.getBizOrder().getId();
  		}
  
+ 		
  		parameters[1] = supplyOrderLineItem.getSkuId();
+ 		
+ 		
  		parameters[2] = supplyOrderLineItem.getSkuName();
+ 		
+ 		
  		parameters[3] = supplyOrderLineItem.getAmount();
+ 		
+ 		
  		parameters[4] = supplyOrderLineItem.getQuantity();
- 		parameters[5] = supplyOrderLineItem.getUnitOfMeasurement();		
+ 		
+ 		
+ 		parameters[5] = supplyOrderLineItem.getUnitOfMeasurement();
+ 				
  		parameters[6] = supplyOrderLineItem.nextVersion();
  		parameters[7] = supplyOrderLineItem.getId();
  		parameters[8] = supplyOrderLineItem.getVersion();
@@ -461,11 +475,21 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  		
  		}
  		
+ 		
  		parameters[2] = supplyOrderLineItem.getSkuId();
+ 		
+ 		
  		parameters[3] = supplyOrderLineItem.getSkuName();
+ 		
+ 		
  		parameters[4] = supplyOrderLineItem.getAmount();
+ 		
+ 		
  		parameters[5] = supplyOrderLineItem.getQuantity();
- 		parameters[6] = supplyOrderLineItem.getUnitOfMeasurement();		
+ 		
+ 		
+ 		parameters[6] = supplyOrderLineItem.getUnitOfMeasurement();
+ 				
  				
  		return parameters;
  	}
@@ -566,6 +590,30 @@ public class SupplyOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateSupplyOrderLineItem executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateSupplyOrderLineItem result = new CandidateSupplyOrderLineItem();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

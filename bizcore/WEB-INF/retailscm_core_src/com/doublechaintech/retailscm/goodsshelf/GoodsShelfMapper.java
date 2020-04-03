@@ -32,7 +32,9 @@ public class GoodsShelfMapper extends BaseRowMapper<GoodsShelf>{
 	protected void setId(GoodsShelf goodsShelf, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(GoodsShelfTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class GoodsShelfMapper extends BaseRowMapper<GoodsShelf>{
 	protected void setLocation(GoodsShelf goodsShelf, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String location = rs.getString(GoodsShelfTable.COLUMN_LOCATION);
+		
 		if(location == null){
 			//do nothing when nothing found in database
 			return;
@@ -110,7 +114,9 @@ public class GoodsShelfMapper extends BaseRowMapper<GoodsShelf>{
 	protected void setLastUpdateTime(GoodsShelf goodsShelf, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(GoodsShelfTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -122,7 +128,9 @@ public class GoodsShelfMapper extends BaseRowMapper<GoodsShelf>{
 	protected void setVersion(GoodsShelf goodsShelf, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(GoodsShelfTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

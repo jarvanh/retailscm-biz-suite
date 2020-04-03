@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,17 +539,31 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
  	protected Object[] prepareSkuUpdateParameters(Sku sku){
  		Object[] parameters = new Object[11];
  
+ 		
  		parameters[0] = sku.getName();
- 		parameters[1] = sku.getSize(); 	
+ 		
+ 		
+ 		parameters[1] = sku.getSize();
+ 		 	
  		if(sku.getProduct() != null){
  			parameters[2] = sku.getProduct().getId();
  		}
  
+ 		
  		parameters[3] = sku.getBarcode();
+ 		
+ 		
  		parameters[4] = sku.getPackageType();
+ 		
+ 		
  		parameters[5] = sku.getNetContent();
+ 		
+ 		
  		parameters[6] = sku.getPrice();
- 		parameters[7] = sku.getPicture();		
+ 		
+ 		
+ 		parameters[7] = sku.getPicture();
+ 				
  		parameters[8] = sku.nextVersion();
  		parameters[9] = sku.getId();
  		parameters[10] = sku.getVersion();
@@ -558,18 +576,32 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 		sku.setId(newSkuId);
 		parameters[0] =  sku.getId();
  
+ 		
  		parameters[1] = sku.getName();
- 		parameters[2] = sku.getSize(); 	
+ 		
+ 		
+ 		parameters[2] = sku.getSize();
+ 		 	
  		if(sku.getProduct() != null){
  			parameters[3] = sku.getProduct().getId();
  		
  		}
  		
+ 		
  		parameters[4] = sku.getBarcode();
+ 		
+ 		
  		parameters[5] = sku.getPackageType();
+ 		
+ 		
  		parameters[6] = sku.getNetContent();
+ 		
+ 		
  		parameters[7] = sku.getPrice();
- 		parameters[8] = sku.getPicture();		
+ 		
+ 		
+ 		parameters[8] = sku.getPicture();
+ 				
  				
  		return parameters;
  	}
@@ -1099,7 +1131,7 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
     public SmartList<Sku> requestCandidateSkuForGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(SkuTable.COLUMN_NAME, filterKey, pageNo, pageSize, getSkuMapper());
+		return findAllCandidateByFilter(SkuTable.COLUMN_NAME, SkuTable.COLUMN_PRODUCT, filterKey, pageNo, pageSize, getSkuMapper());
     }
 		
 
@@ -1173,6 +1205,30 @@ public class SkuJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SkuDAO{
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateSku executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateSku result = new CandidateSku();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

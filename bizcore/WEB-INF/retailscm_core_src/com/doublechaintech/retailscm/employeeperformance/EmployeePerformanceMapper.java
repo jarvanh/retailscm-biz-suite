@@ -27,7 +27,9 @@ public class EmployeePerformanceMapper extends BaseRowMapper<EmployeePerformance
 	protected void setId(EmployeePerformance employeePerformance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeePerformanceTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -57,7 +59,9 @@ public class EmployeePerformanceMapper extends BaseRowMapper<EmployeePerformance
 	protected void setPerformanceComment(EmployeePerformance employeePerformance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String performanceComment = rs.getString(EmployeePerformanceTable.COLUMN_PERFORMANCE_COMMENT);
+		
 		if(performanceComment == null){
 			//do nothing when nothing found in database
 			return;
@@ -69,7 +73,9 @@ public class EmployeePerformanceMapper extends BaseRowMapper<EmployeePerformance
 	protected void setVersion(EmployeePerformance employeePerformance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeePerformanceTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

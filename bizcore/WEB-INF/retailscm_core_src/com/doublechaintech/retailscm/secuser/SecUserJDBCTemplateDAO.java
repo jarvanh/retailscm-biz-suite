@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -20,13 +24,17 @@ import com.doublechaintech.retailscm.MultipleAccessKey;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 
 
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentify;
 import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentify;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyDAO;
 import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
 import com.doublechaintech.retailscm.userapp.UserAppDAO;
 import com.doublechaintech.retailscm.loginhistory.LoginHistoryDAO;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyDAO;
 
 
 
@@ -83,6 +91,44 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		}
  		
 	 	return this.loginHistoryDAO;
+ 	}	
+ 	
+			
+		
+	
+  	private  WechatWorkappIdentifyDAO  wechatWorkappIdentifyDAO;
+ 	public void setWechatWorkappIdentifyDAO(WechatWorkappIdentifyDAO pWechatWorkappIdentifyDAO){
+ 	
+ 		if(pWechatWorkappIdentifyDAO == null){
+ 			throw new IllegalStateException("Do not try to set wechatWorkappIdentifyDAO to null.");
+ 		}
+	 	this.wechatWorkappIdentifyDAO = pWechatWorkappIdentifyDAO;
+ 	}
+ 	public WechatWorkappIdentifyDAO getWechatWorkappIdentifyDAO(){
+ 		if(this.wechatWorkappIdentifyDAO == null){
+ 			throw new IllegalStateException("The wechatWorkappIdentifyDAO is not configured yet, please config it some where.");
+ 		}
+ 		
+	 	return this.wechatWorkappIdentifyDAO;
+ 	}	
+ 	
+			
+		
+	
+  	private  WechatMiniappIdentifyDAO  wechatMiniappIdentifyDAO;
+ 	public void setWechatMiniappIdentifyDAO(WechatMiniappIdentifyDAO pWechatMiniappIdentifyDAO){
+ 	
+ 		if(pWechatMiniappIdentifyDAO == null){
+ 			throw new IllegalStateException("Do not try to set wechatMiniappIdentifyDAO to null.");
+ 		}
+	 	this.wechatMiniappIdentifyDAO = pWechatMiniappIdentifyDAO;
+ 	}
+ 	public WechatMiniappIdentifyDAO getWechatMiniappIdentifyDAO(){
+ 		if(this.wechatMiniappIdentifyDAO == null){
+ 			throw new IllegalStateException("The wechatMiniappIdentifyDAO is not configured yet, please config it some where.");
+ 		}
+ 		
+	 	return this.wechatMiniappIdentifyDAO;
  	}	
  	
 			
@@ -161,6 +207,20 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		
  		if(isSaveLoginHistoryListEnabled(options)){
  			for(LoginHistory item: newSecUser.getLoginHistoryList()){
+ 				item.setVersion(0);
+ 			}
+ 		}
+		
+ 		
+ 		if(isSaveWechatWorkappIdentifyListEnabled(options)){
+ 			for(WechatWorkappIdentify item: newSecUser.getWechatWorkappIdentifyList()){
+ 				item.setVersion(0);
+ 			}
+ 		}
+		
+ 		
+ 		if(isSaveWechatMiniappIdentifyListEnabled(options)){
+ 			for(WechatMiniappIdentify item: newSecUser.getWechatMiniappIdentifyList()){
  				item.setVersion(0);
  			}
  		}
@@ -313,6 +373,34 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  	}
  	
 		
+	
+	protected boolean isExtractWechatWorkappIdentifyListEnabled(Map<String,Object> options){		
+ 		return checkOptions(options,SecUserTokens.WECHAT_WORKAPP_IDENTIFY_LIST);
+ 	}
+ 	protected boolean isAnalyzeWechatWorkappIdentifyListEnabled(Map<String,Object> options){		 		
+ 		return SecUserTokens.of(options).analyzeWechatWorkappIdentifyListEnabled();
+ 	}
+	
+	protected boolean isSaveWechatWorkappIdentifyListEnabled(Map<String,Object> options){
+		return checkOptions(options, SecUserTokens.WECHAT_WORKAPP_IDENTIFY_LIST);
+		
+ 	}
+ 	
+		
+	
+	protected boolean isExtractWechatMiniappIdentifyListEnabled(Map<String,Object> options){		
+ 		return checkOptions(options,SecUserTokens.WECHAT_MINIAPP_IDENTIFY_LIST);
+ 	}
+ 	protected boolean isAnalyzeWechatMiniappIdentifyListEnabled(Map<String,Object> options){		 		
+ 		return SecUserTokens.of(options).analyzeWechatMiniappIdentifyListEnabled();
+ 	}
+	
+	protected boolean isSaveWechatMiniappIdentifyListEnabled(Map<String,Object> options){
+		return checkOptions(options, SecUserTokens.WECHAT_MINIAPP_IDENTIFY_LIST);
+		
+ 	}
+ 	
+		
 
 	
 
@@ -357,6 +445,22 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  		}	
  		if(isAnalyzeLoginHistoryListEnabled(loadOptions)){
 	 		analyzeLoginHistoryList(secUser, loadOptions);
+ 		}
+ 		
+		
+		if(isExtractWechatWorkappIdentifyListEnabled(loadOptions)){
+	 		extractWechatWorkappIdentifyList(secUser, loadOptions);
+ 		}	
+ 		if(isAnalyzeWechatWorkappIdentifyListEnabled(loadOptions)){
+	 		analyzeWechatWorkappIdentifyList(secUser, loadOptions);
+ 		}
+ 		
+		
+		if(isExtractWechatMiniappIdentifyListEnabled(loadOptions)){
+	 		extractWechatMiniappIdentifyList(secUser, loadOptions);
+ 		}	
+ 		if(isAnalyzeWechatMiniappIdentifyListEnabled(loadOptions)){
+	 		analyzeWechatMiniappIdentifyList(secUser, loadOptions);
  		}
  		
 		
@@ -478,6 +582,106 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 		SmartList<LoginHistory> loginHistoryList = secUser.getLoginHistoryList();
 		if(loginHistoryList != null){
 			getLoginHistoryDAO().analyzeLoginHistoryBySecUser(loginHistoryList, secUser.getId(), options);
+			
+		}
+		
+		return secUser;
+	
+	}	
+	
+		
+	protected void enhanceWechatWorkappIdentifyList(SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList,Map<String,Object> options){
+		//extract multiple list from difference sources
+		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
+	}
+	
+	protected SecUser extractWechatWorkappIdentifyList(SecUser secUser, Map<String,Object> options){
+		
+		
+		if(secUser == null){
+			return null;
+		}
+		if(secUser.getId() == null){
+			return secUser;
+		}
+
+		
+		
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = getWechatWorkappIdentifyDAO().findWechatWorkappIdentifyBySecUser(secUser.getId(),options);
+		if(wechatWorkappIdentifyList != null){
+			enhanceWechatWorkappIdentifyList(wechatWorkappIdentifyList,options);
+			secUser.setWechatWorkappIdentifyList(wechatWorkappIdentifyList);
+		}
+		
+		return secUser;
+	
+	}	
+	
+	protected SecUser analyzeWechatWorkappIdentifyList(SecUser secUser, Map<String,Object> options){
+		
+		
+		if(secUser == null){
+			return null;
+		}
+		if(secUser.getId() == null){
+			return secUser;
+		}
+
+		
+		
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = secUser.getWechatWorkappIdentifyList();
+		if(wechatWorkappIdentifyList != null){
+			getWechatWorkappIdentifyDAO().analyzeWechatWorkappIdentifyBySecUser(wechatWorkappIdentifyList, secUser.getId(), options);
+			
+		}
+		
+		return secUser;
+	
+	}	
+	
+		
+	protected void enhanceWechatMiniappIdentifyList(SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList,Map<String,Object> options){
+		//extract multiple list from difference sources
+		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
+	}
+	
+	protected SecUser extractWechatMiniappIdentifyList(SecUser secUser, Map<String,Object> options){
+		
+		
+		if(secUser == null){
+			return null;
+		}
+		if(secUser.getId() == null){
+			return secUser;
+		}
+
+		
+		
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = getWechatMiniappIdentifyDAO().findWechatMiniappIdentifyBySecUser(secUser.getId(),options);
+		if(wechatMiniappIdentifyList != null){
+			enhanceWechatMiniappIdentifyList(wechatMiniappIdentifyList,options);
+			secUser.setWechatMiniappIdentifyList(wechatMiniappIdentifyList);
+		}
+		
+		return secUser;
+	
+	}	
+	
+	protected SecUser analyzeWechatMiniappIdentifyList(SecUser secUser, Map<String,Object> options){
+		
+		
+		if(secUser == null){
+			return null;
+		}
+		if(secUser.getId() == null){
+			return secUser;
+		}
+
+		
+		
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = secUser.getWechatMiniappIdentifyList();
+		if(wechatMiniappIdentifyList != null){
+			getWechatMiniappIdentifyDAO().analyzeWechatMiniappIdentifyBySecUser(wechatMiniappIdentifyList, secUser.getId(), options);
 			
 		}
 		
@@ -681,16 +885,36 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
  	protected Object[] prepareSecUserUpdateParameters(SecUser secUser){
  		Object[] parameters = new Object[14];
  
+ 		
  		parameters[0] = secUser.getLogin();
+ 		
+ 		
  		parameters[1] = secUser.getMobile();
+ 		
+ 		
  		parameters[2] = secUser.getEmail();
+ 		
+ 		
  		parameters[3] = secUser.getPwd();
+ 		
+ 		
  		parameters[4] = secUser.getWeixinOpenid();
+ 		
+ 		
  		parameters[5] = secUser.getWeixinAppid();
+ 		
+ 		
  		parameters[6] = secUser.getAccessToken();
+ 		
+ 		
  		parameters[7] = secUser.getVerificationCode();
+ 		
+ 		
  		parameters[8] = secUser.getVerificationCodeExpire();
- 		parameters[9] = secUser.getLastLoginTime(); 	
+ 		
+ 		
+ 		parameters[9] = secUser.getLastLoginTime();
+ 		 	
  		if(secUser.getDomain() != null){
  			parameters[10] = secUser.getDomain().getId();
  		}
@@ -707,16 +931,36 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 		secUser.setId(newSecUserId);
 		parameters[0] =  secUser.getId();
  
+ 		
  		parameters[1] = secUser.getLogin();
+ 		
+ 		
  		parameters[2] = secUser.getMobile();
+ 		
+ 		
  		parameters[3] = secUser.getEmail();
+ 		
+ 		
  		parameters[4] = secUser.getPwd();
+ 		
+ 		
  		parameters[5] = secUser.getWeixinOpenid();
+ 		
+ 		
  		parameters[6] = secUser.getWeixinAppid();
+ 		
+ 		
  		parameters[7] = secUser.getAccessToken();
+ 		
+ 		
  		parameters[8] = secUser.getVerificationCode();
+ 		
+ 		
  		parameters[9] = secUser.getVerificationCodeExpire();
- 		parameters[10] = secUser.getLastLoginTime(); 	
+ 		
+ 		
+ 		parameters[10] = secUser.getLastLoginTime();
+ 		 	
  		if(secUser.getDomain() != null){
  			parameters[11] = secUser.getDomain().getId();
  		
@@ -745,6 +989,20 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 		if(isSaveLoginHistoryListEnabled(options)){
 	 		saveLoginHistoryList(secUser, options);
 	 		//removeLoginHistoryList(secUser, options);
+	 		//Not delete the record
+	 		
+ 		}		
+		
+		if(isSaveWechatWorkappIdentifyListEnabled(options)){
+	 		saveWechatWorkappIdentifyList(secUser, options);
+	 		//removeWechatWorkappIdentifyList(secUser, options);
+	 		//Not delete the record
+	 		
+ 		}		
+		
+		if(isSaveWechatMiniappIdentifyListEnabled(options)){
+	 		saveWechatMiniappIdentifyList(secUser, options);
+	 		//removeWechatMiniappIdentifyList(secUser, options);
 	 		//Not delete the record
 	 		
  		}		
@@ -876,6 +1134,238 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	}
 
 
+	public SecUser planToRemoveWechatWorkappIdentifyList(SecUser secUser, String wechatWorkappIdentifyIds[], Map<String,Object> options)throws Exception{
+	
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatWorkappIdentify.SEC_USER_PROPERTY, secUser.getId());
+		key.put(WechatWorkappIdentify.ID_PROPERTY, wechatWorkappIdentifyIds);
+		
+		SmartList<WechatWorkappIdentify> externalWechatWorkappIdentifyList = getWechatWorkappIdentifyDAO().
+				findWechatWorkappIdentifyWithKey(key, options);
+		if(externalWechatWorkappIdentifyList == null){
+			return secUser;
+		}
+		if(externalWechatWorkappIdentifyList.isEmpty()){
+			return secUser;
+		}
+		
+		for(WechatWorkappIdentify wechatWorkappIdentifyItem: externalWechatWorkappIdentifyList){
+
+			wechatWorkappIdentifyItem.clearFromAll();
+		}
+		
+		
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = secUser.getWechatWorkappIdentifyList();		
+		wechatWorkappIdentifyList.addAllToRemoveList(externalWechatWorkappIdentifyList);
+		return secUser;	
+	
+	}
+
+
+	//disconnect SecUser with corp_id in WechatWorkappIdentify
+	public SecUser planToRemoveWechatWorkappIdentifyListWithCorpId(SecUser secUser, String corpIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatWorkappIdentify.SEC_USER_PROPERTY, secUser.getId());
+		key.put(WechatWorkappIdentify.CORP_ID_PROPERTY, corpIdId);
+		
+		SmartList<WechatWorkappIdentify> externalWechatWorkappIdentifyList = getWechatWorkappIdentifyDAO().
+				findWechatWorkappIdentifyWithKey(key, options);
+		if(externalWechatWorkappIdentifyList == null){
+			return secUser;
+		}
+		if(externalWechatWorkappIdentifyList.isEmpty()){
+			return secUser;
+		}
+		
+		for(WechatWorkappIdentify wechatWorkappIdentifyItem: externalWechatWorkappIdentifyList){
+			wechatWorkappIdentifyItem.clearCorpId();
+			wechatWorkappIdentifyItem.clearSecUser();
+			
+		}
+		
+		
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = secUser.getWechatWorkappIdentifyList();		
+		wechatWorkappIdentifyList.addAllToRemoveList(externalWechatWorkappIdentifyList);
+		return secUser;
+	}
+	
+	public int countWechatWorkappIdentifyListWithCorpId(String secUserId, String corpIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatWorkappIdentify.SEC_USER_PROPERTY, secUserId);
+		key.put(WechatWorkappIdentify.CORP_ID_PROPERTY, corpIdId);
+		
+		int count = getWechatWorkappIdentifyDAO().countWechatWorkappIdentifyWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SecUser with user_id in WechatWorkappIdentify
+	public SecUser planToRemoveWechatWorkappIdentifyListWithUserId(SecUser secUser, String userIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatWorkappIdentify.SEC_USER_PROPERTY, secUser.getId());
+		key.put(WechatWorkappIdentify.USER_ID_PROPERTY, userIdId);
+		
+		SmartList<WechatWorkappIdentify> externalWechatWorkappIdentifyList = getWechatWorkappIdentifyDAO().
+				findWechatWorkappIdentifyWithKey(key, options);
+		if(externalWechatWorkappIdentifyList == null){
+			return secUser;
+		}
+		if(externalWechatWorkappIdentifyList.isEmpty()){
+			return secUser;
+		}
+		
+		for(WechatWorkappIdentify wechatWorkappIdentifyItem: externalWechatWorkappIdentifyList){
+			wechatWorkappIdentifyItem.clearUserId();
+			wechatWorkappIdentifyItem.clearSecUser();
+			
+		}
+		
+		
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = secUser.getWechatWorkappIdentifyList();		
+		wechatWorkappIdentifyList.addAllToRemoveList(externalWechatWorkappIdentifyList);
+		return secUser;
+	}
+	
+	public int countWechatWorkappIdentifyListWithUserId(String secUserId, String userIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatWorkappIdentify.SEC_USER_PROPERTY, secUserId);
+		key.put(WechatWorkappIdentify.USER_ID_PROPERTY, userIdId);
+		
+		int count = getWechatWorkappIdentifyDAO().countWechatWorkappIdentifyWithKey(key, options);
+		return count;
+	}
+	
+	public SecUser planToRemoveWechatMiniappIdentifyList(SecUser secUser, String wechatMiniappIdentifyIds[], Map<String,Object> options)throws Exception{
+	
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatMiniappIdentify.SEC_USER_PROPERTY, secUser.getId());
+		key.put(WechatMiniappIdentify.ID_PROPERTY, wechatMiniappIdentifyIds);
+		
+		SmartList<WechatMiniappIdentify> externalWechatMiniappIdentifyList = getWechatMiniappIdentifyDAO().
+				findWechatMiniappIdentifyWithKey(key, options);
+		if(externalWechatMiniappIdentifyList == null){
+			return secUser;
+		}
+		if(externalWechatMiniappIdentifyList.isEmpty()){
+			return secUser;
+		}
+		
+		for(WechatMiniappIdentify wechatMiniappIdentifyItem: externalWechatMiniappIdentifyList){
+
+			wechatMiniappIdentifyItem.clearFromAll();
+		}
+		
+		
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = secUser.getWechatMiniappIdentifyList();		
+		wechatMiniappIdentifyList.addAllToRemoveList(externalWechatMiniappIdentifyList);
+		return secUser;	
+	
+	}
+
+
+	//disconnect SecUser with open_id in WechatMiniappIdentify
+	public SecUser planToRemoveWechatMiniappIdentifyListWithOpenId(SecUser secUser, String openIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatMiniappIdentify.SEC_USER_PROPERTY, secUser.getId());
+		key.put(WechatMiniappIdentify.OPEN_ID_PROPERTY, openIdId);
+		
+		SmartList<WechatMiniappIdentify> externalWechatMiniappIdentifyList = getWechatMiniappIdentifyDAO().
+				findWechatMiniappIdentifyWithKey(key, options);
+		if(externalWechatMiniappIdentifyList == null){
+			return secUser;
+		}
+		if(externalWechatMiniappIdentifyList.isEmpty()){
+			return secUser;
+		}
+		
+		for(WechatMiniappIdentify wechatMiniappIdentifyItem: externalWechatMiniappIdentifyList){
+			wechatMiniappIdentifyItem.clearOpenId();
+			wechatMiniappIdentifyItem.clearSecUser();
+			
+		}
+		
+		
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = secUser.getWechatMiniappIdentifyList();		
+		wechatMiniappIdentifyList.addAllToRemoveList(externalWechatMiniappIdentifyList);
+		return secUser;
+	}
+	
+	public int countWechatMiniappIdentifyListWithOpenId(String secUserId, String openIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatMiniappIdentify.SEC_USER_PROPERTY, secUserId);
+		key.put(WechatMiniappIdentify.OPEN_ID_PROPERTY, openIdId);
+		
+		int count = getWechatMiniappIdentifyDAO().countWechatMiniappIdentifyWithKey(key, options);
+		return count;
+	}
+	
+	//disconnect SecUser with app_id in WechatMiniappIdentify
+	public SecUser planToRemoveWechatMiniappIdentifyListWithAppId(SecUser secUser, String appIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatMiniappIdentify.SEC_USER_PROPERTY, secUser.getId());
+		key.put(WechatMiniappIdentify.APP_ID_PROPERTY, appIdId);
+		
+		SmartList<WechatMiniappIdentify> externalWechatMiniappIdentifyList = getWechatMiniappIdentifyDAO().
+				findWechatMiniappIdentifyWithKey(key, options);
+		if(externalWechatMiniappIdentifyList == null){
+			return secUser;
+		}
+		if(externalWechatMiniappIdentifyList.isEmpty()){
+			return secUser;
+		}
+		
+		for(WechatMiniappIdentify wechatMiniappIdentifyItem: externalWechatMiniappIdentifyList){
+			wechatMiniappIdentifyItem.clearAppId();
+			wechatMiniappIdentifyItem.clearSecUser();
+			
+		}
+		
+		
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = secUser.getWechatMiniappIdentifyList();		
+		wechatMiniappIdentifyList.addAllToRemoveList(externalWechatMiniappIdentifyList);
+		return secUser;
+	}
+	
+	public int countWechatMiniappIdentifyListWithAppId(String secUserId, String appIdId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatMiniappIdentify.SEC_USER_PROPERTY, secUserId);
+		key.put(WechatMiniappIdentify.APP_ID_PROPERTY, appIdId);
+		
+		int count = getWechatMiniappIdentifyDAO().countWechatMiniappIdentifyWithKey(key, options);
+		return count;
+	}
+	
 
 		
 	protected SecUser saveUserAppList(SecUser secUser, Map<String,Object> options){
@@ -1010,11 +1500,145 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	
 	
 		
+	protected SecUser saveWechatWorkappIdentifyList(SecUser secUser, Map<String,Object> options){
+		
+		
+		
+		
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = secUser.getWechatWorkappIdentifyList();
+		if(wechatWorkappIdentifyList == null){
+			//null list means nothing
+			return secUser;
+		}
+		SmartList<WechatWorkappIdentify> mergedUpdateWechatWorkappIdentifyList = new SmartList<WechatWorkappIdentify>();
+		
+		
+		mergedUpdateWechatWorkappIdentifyList.addAll(wechatWorkappIdentifyList); 
+		if(wechatWorkappIdentifyList.getToRemoveList() != null){
+			//ensures the toRemoveList is not null
+			mergedUpdateWechatWorkappIdentifyList.addAll(wechatWorkappIdentifyList.getToRemoveList());
+			wechatWorkappIdentifyList.removeAll(wechatWorkappIdentifyList.getToRemoveList());
+			//OK for now, need fix later
+		}
+
+		//adding new size can improve performance
+	
+		getWechatWorkappIdentifyDAO().saveWechatWorkappIdentifyList(mergedUpdateWechatWorkappIdentifyList,options);
+		
+		if(wechatWorkappIdentifyList.getToRemoveList() != null){
+			wechatWorkappIdentifyList.removeAll(wechatWorkappIdentifyList.getToRemoveList());
+		}
+		
+		
+		return secUser;
+	
+	}
+	
+	protected SecUser removeWechatWorkappIdentifyList(SecUser secUser, Map<String,Object> options){
+	
+	
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = secUser.getWechatWorkappIdentifyList();
+		if(wechatWorkappIdentifyList == null){
+			return secUser;
+		}	
+	
+		SmartList<WechatWorkappIdentify> toRemoveWechatWorkappIdentifyList = wechatWorkappIdentifyList.getToRemoveList();
+		
+		if(toRemoveWechatWorkappIdentifyList == null){
+			return secUser;
+		}
+		if(toRemoveWechatWorkappIdentifyList.isEmpty()){
+			return secUser;// Does this mean delete all from the parent object?
+		}
+		//Call DAO to remove the list
+		
+		getWechatWorkappIdentifyDAO().removeWechatWorkappIdentifyList(toRemoveWechatWorkappIdentifyList,options);
+		
+		return secUser;
+	
+	}
+	
+	
+
+ 	
+ 	
+	
+	
+	
+		
+	protected SecUser saveWechatMiniappIdentifyList(SecUser secUser, Map<String,Object> options){
+		
+		
+		
+		
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = secUser.getWechatMiniappIdentifyList();
+		if(wechatMiniappIdentifyList == null){
+			//null list means nothing
+			return secUser;
+		}
+		SmartList<WechatMiniappIdentify> mergedUpdateWechatMiniappIdentifyList = new SmartList<WechatMiniappIdentify>();
+		
+		
+		mergedUpdateWechatMiniappIdentifyList.addAll(wechatMiniappIdentifyList); 
+		if(wechatMiniappIdentifyList.getToRemoveList() != null){
+			//ensures the toRemoveList is not null
+			mergedUpdateWechatMiniappIdentifyList.addAll(wechatMiniappIdentifyList.getToRemoveList());
+			wechatMiniappIdentifyList.removeAll(wechatMiniappIdentifyList.getToRemoveList());
+			//OK for now, need fix later
+		}
+
+		//adding new size can improve performance
+	
+		getWechatMiniappIdentifyDAO().saveWechatMiniappIdentifyList(mergedUpdateWechatMiniappIdentifyList,options);
+		
+		if(wechatMiniappIdentifyList.getToRemoveList() != null){
+			wechatMiniappIdentifyList.removeAll(wechatMiniappIdentifyList.getToRemoveList());
+		}
+		
+		
+		return secUser;
+	
+	}
+	
+	protected SecUser removeWechatMiniappIdentifyList(SecUser secUser, Map<String,Object> options){
+	
+	
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = secUser.getWechatMiniappIdentifyList();
+		if(wechatMiniappIdentifyList == null){
+			return secUser;
+		}	
+	
+		SmartList<WechatMiniappIdentify> toRemoveWechatMiniappIdentifyList = wechatMiniappIdentifyList.getToRemoveList();
+		
+		if(toRemoveWechatMiniappIdentifyList == null){
+			return secUser;
+		}
+		if(toRemoveWechatMiniappIdentifyList.isEmpty()){
+			return secUser;// Does this mean delete all from the parent object?
+		}
+		//Call DAO to remove the list
+		
+		getWechatMiniappIdentifyDAO().removeWechatMiniappIdentifyList(toRemoveWechatMiniappIdentifyList,options);
+		
+		return secUser;
+	
+	}
+	
+	
+
+ 	
+ 	
+	
+	
+	
+		
 
 	public SecUser present(SecUser secUser,Map<String, Object> options){
 	
 		presentUserAppList(secUser,options);
 		presentLoginHistoryList(secUser,options);
+		presentWechatWorkappIdentifyList(secUser,options);
+		presentWechatMiniappIdentifyList(secUser,options);
 
 		return secUser;
 	
@@ -1060,18 +1684,70 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 		return secUser;
 	}			
 		
+	//Using java8 feature to reduce the code significantly
+ 	protected SecUser presentWechatWorkappIdentifyList(
+			SecUser secUser,
+			Map<String, Object> options) {
+
+		SmartList<WechatWorkappIdentify> wechatWorkappIdentifyList = secUser.getWechatWorkappIdentifyList();		
+				SmartList<WechatWorkappIdentify> newList= presentSubList(secUser.getId(),
+				wechatWorkappIdentifyList,
+				options,
+				getWechatWorkappIdentifyDAO()::countWechatWorkappIdentifyBySecUser,
+				getWechatWorkappIdentifyDAO()::findWechatWorkappIdentifyBySecUser
+				);
+
+		
+		secUser.setWechatWorkappIdentifyList(newList);
+		
+
+		return secUser;
+	}			
+		
+	//Using java8 feature to reduce the code significantly
+ 	protected SecUser presentWechatMiniappIdentifyList(
+			SecUser secUser,
+			Map<String, Object> options) {
+
+		SmartList<WechatMiniappIdentify> wechatMiniappIdentifyList = secUser.getWechatMiniappIdentifyList();		
+				SmartList<WechatMiniappIdentify> newList= presentSubList(secUser.getId(),
+				wechatMiniappIdentifyList,
+				options,
+				getWechatMiniappIdentifyDAO()::countWechatMiniappIdentifyBySecUser,
+				getWechatMiniappIdentifyDAO()::findWechatMiniappIdentifyBySecUser
+				);
+
+		
+		secUser.setWechatMiniappIdentifyList(newList);
+		
+
+		return secUser;
+	}			
+		
 
 	
     public SmartList<SecUser> requestCandidateSecUserForUserApp(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(SecUserTable.COLUMN_LOGIN, filterKey, pageNo, pageSize, getSecUserMapper());
+		return findAllCandidateByFilter(SecUserTable.COLUMN_LOGIN, SecUserTable.COLUMN_DOMAIN, filterKey, pageNo, pageSize, getSecUserMapper());
     }
 		
     public SmartList<SecUser> requestCandidateSecUserForLoginHistory(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(SecUserTable.COLUMN_LOGIN, filterKey, pageNo, pageSize, getSecUserMapper());
+		return findAllCandidateByFilter(SecUserTable.COLUMN_LOGIN, SecUserTable.COLUMN_DOMAIN, filterKey, pageNo, pageSize, getSecUserMapper());
+    }
+		
+    public SmartList<SecUser> requestCandidateSecUserForWechatWorkappIdentify(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
+        // NOTE: by default, ignore owner info, just return all by filter key.
+		// You need override this method if you have different candidate-logic
+		return findAllCandidateByFilter(SecUserTable.COLUMN_LOGIN, SecUserTable.COLUMN_DOMAIN, filterKey, pageNo, pageSize, getSecUserMapper());
+    }
+		
+    public SmartList<SecUser> requestCandidateSecUserForWechatMiniappIdentify(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
+        // NOTE: by default, ignore owner info, just return all by filter key.
+		// You need override this method if you have different candidate-logic
+		return findAllCandidateByFilter(SecUserTable.COLUMN_LOGIN, SecUserTable.COLUMN_DOMAIN, filterKey, pageNo, pageSize, getSecUserMapper());
     }
 		
 
@@ -1132,6 +1808,52 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 		return loadedObjs;
 	}
 	
+	// 需要一个加载引用我的对象的enhance方法:WechatWorkappIdentify的secUser的WechatWorkappIdentifyList
+	public SmartList<WechatWorkappIdentify> loadOurWechatWorkappIdentifyList(RetailscmUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatWorkappIdentify.SEC_USER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<WechatWorkappIdentify> loadedObjs = userContext.getDAOGroup().getWechatWorkappIdentifyDAO().findWechatWorkappIdentifyWithKey(key, options);
+		Map<String, List<WechatWorkappIdentify>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getSecUser().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<WechatWorkappIdentify> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<WechatWorkappIdentify> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setWechatWorkappIdentifyList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
+	// 需要一个加载引用我的对象的enhance方法:WechatMiniappIdentify的secUser的WechatMiniappIdentifyList
+	public SmartList<WechatMiniappIdentify> loadOurWechatMiniappIdentifyList(RetailscmUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(WechatMiniappIdentify.SEC_USER_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<WechatMiniappIdentify> loadedObjs = userContext.getDAOGroup().getWechatMiniappIdentifyDAO().findWechatMiniappIdentifyWithKey(key, options);
+		Map<String, List<WechatMiniappIdentify>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getSecUser().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<WechatMiniappIdentify> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<WechatMiniappIdentify> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setWechatMiniappIdentifyList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
+	
 	
 	@Override
 	public void collectAndEnhance(BaseEntity ownerEntity) {
@@ -1168,6 +1890,30 @@ public class SecUserJDBCTemplateDAO extends RetailscmBaseDAOImpl implements SecU
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateSecUser executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateSecUser result = new CandidateSecUser();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

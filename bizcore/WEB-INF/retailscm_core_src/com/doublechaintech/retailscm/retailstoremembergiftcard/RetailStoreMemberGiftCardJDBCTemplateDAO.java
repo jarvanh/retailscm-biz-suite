@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,13 +539,19 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOIm
  	protected Object[] prepareRetailStoreMemberGiftCardUpdateParameters(RetailStoreMemberGiftCard retailStoreMemberGiftCard){
  		Object[] parameters = new Object[7];
  
- 		parameters[0] = retailStoreMemberGiftCard.getName(); 	
+ 		
+ 		parameters[0] = retailStoreMemberGiftCard.getName();
+ 		 	
  		if(retailStoreMemberGiftCard.getOwner() != null){
  			parameters[1] = retailStoreMemberGiftCard.getOwner().getId();
  		}
  
+ 		
  		parameters[2] = retailStoreMemberGiftCard.getNumber();
- 		parameters[3] = retailStoreMemberGiftCard.getRemain();		
+ 		
+ 		
+ 		parameters[3] = retailStoreMemberGiftCard.getRemain();
+ 				
  		parameters[4] = retailStoreMemberGiftCard.nextVersion();
  		parameters[5] = retailStoreMemberGiftCard.getId();
  		parameters[6] = retailStoreMemberGiftCard.getVersion();
@@ -554,14 +564,20 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOIm
 		retailStoreMemberGiftCard.setId(newRetailStoreMemberGiftCardId);
 		parameters[0] =  retailStoreMemberGiftCard.getId();
  
- 		parameters[1] = retailStoreMemberGiftCard.getName(); 	
+ 		
+ 		parameters[1] = retailStoreMemberGiftCard.getName();
+ 		 	
  		if(retailStoreMemberGiftCard.getOwner() != null){
  			parameters[2] = retailStoreMemberGiftCard.getOwner().getId();
  		
  		}
  		
+ 		
  		parameters[3] = retailStoreMemberGiftCard.getNumber();
- 		parameters[4] = retailStoreMemberGiftCard.getRemain();		
+ 		
+ 		
+ 		parameters[4] = retailStoreMemberGiftCard.getRemain();
+ 				
  				
  		return parameters;
  	}
@@ -783,7 +799,7 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOIm
     public SmartList<RetailStoreMemberGiftCard> requestCandidateRetailStoreMemberGiftCardForRetailStoreMemberGiftCardConsumeRecord(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberGiftCardTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberGiftCardMapper());
+		return findAllCandidateByFilter(RetailStoreMemberGiftCardTable.COLUMN_NAME, RetailStoreMemberGiftCardTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberGiftCardMapper());
     }
 		
 
@@ -857,6 +873,30 @@ public class RetailStoreMemberGiftCardJDBCTemplateDAO extends RetailscmBaseDAOIm
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreMemberGiftCard executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreMemberGiftCard result = new CandidateRetailStoreMemberGiftCard();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

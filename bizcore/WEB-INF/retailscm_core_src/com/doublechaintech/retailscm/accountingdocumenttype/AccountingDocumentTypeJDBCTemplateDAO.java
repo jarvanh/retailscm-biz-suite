@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,8 +539,12 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl 
  	protected Object[] prepareAccountingDocumentTypeUpdateParameters(AccountingDocumentType accountingDocumentType){
  		Object[] parameters = new Object[6];
  
+ 		
  		parameters[0] = accountingDocumentType.getName();
- 		parameters[1] = accountingDocumentType.getDescription(); 	
+ 		
+ 		
+ 		parameters[1] = accountingDocumentType.getDescription();
+ 		 	
  		if(accountingDocumentType.getAccountingPeriod() != null){
  			parameters[2] = accountingDocumentType.getAccountingPeriod().getId();
  		}
@@ -553,8 +561,12 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 		accountingDocumentType.setId(newAccountingDocumentTypeId);
 		parameters[0] =  accountingDocumentType.getId();
  
+ 		
  		parameters[1] = accountingDocumentType.getName();
- 		parameters[2] = accountingDocumentType.getDescription(); 	
+ 		
+ 		
+ 		parameters[2] = accountingDocumentType.getDescription();
+ 		 	
  		if(accountingDocumentType.getAccountingPeriod() != null){
  			parameters[3] = accountingDocumentType.getAccountingPeriod().getId();
  		
@@ -781,7 +793,7 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl 
     public SmartList<AccountingDocumentType> requestCandidateAccountingDocumentTypeForAccountingDocument(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(AccountingDocumentTypeTable.COLUMN_NAME, filterKey, pageNo, pageSize, getAccountingDocumentTypeMapper());
+		return findAllCandidateByFilter(AccountingDocumentTypeTable.COLUMN_NAME, AccountingDocumentTypeTable.COLUMN_ACCOUNTING_PERIOD, filterKey, pageNo, pageSize, getAccountingDocumentTypeMapper());
     }
 		
 
@@ -855,6 +867,30 @@ public class AccountingDocumentTypeJDBCTemplateDAO extends RetailscmBaseDAOImpl 
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateAccountingDocumentType executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateAccountingDocumentType result = new CandidateAccountingDocumentType();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

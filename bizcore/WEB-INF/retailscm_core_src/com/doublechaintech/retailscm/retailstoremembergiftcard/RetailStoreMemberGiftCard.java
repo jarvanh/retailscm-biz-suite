@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 	
 	
 	protected		SmartList<RetailStoreMemberGiftCardConsumeRecord>	mRetailStoreMemberGiftCardConsumeRecordList;
+
 	
 		
 	public 	RetailStoreMemberGiftCard(){
@@ -98,6 +100,7 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeNumberProperty(String newValueExpr){
+	
 		String oldValue = getNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		updateNumber(newValue);
 		this.onChangeProperty(NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeRemainProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getRemain();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 		updateRemain(newValue);
 		this.onChangeProperty(REMAIN_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -423,7 +428,9 @@ public class RetailStoreMemberGiftCard extends BaseEntity implements  java.io.Se
 			appendKeyValuePair(result, "retailStoreMemberGiftCardConsumeRecordCurrentPageNumber", getRetailStoreMemberGiftCardConsumeRecordList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

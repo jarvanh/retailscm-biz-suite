@@ -32,7 +32,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setId(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(StorageSpaceTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setLocation(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String location = rs.getString(StorageSpaceTable.COLUMN_LOCATION);
+		
 		if(location == null){
 			//do nothing when nothing found in database
 			return;
@@ -56,7 +60,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setContactNumber(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(StorageSpaceTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -68,7 +74,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setTotalArea(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String totalArea = rs.getString(StorageSpaceTable.COLUMN_TOTAL_AREA);
+		
 		if(totalArea == null){
 			//do nothing when nothing found in database
 			return;
@@ -98,7 +106,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setLatitude(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(StorageSpaceTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -110,7 +120,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setLongitude(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(StorageSpaceTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -122,7 +134,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setLastUpdateTime(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(StorageSpaceTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -134,7 +148,9 @@ public class StorageSpaceMapper extends BaseRowMapper<StorageSpace>{
 	protected void setVersion(StorageSpace storageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(StorageSpaceTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

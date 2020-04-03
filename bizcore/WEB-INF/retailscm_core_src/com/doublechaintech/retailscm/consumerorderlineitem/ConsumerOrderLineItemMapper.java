@@ -32,7 +32,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setId(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ConsumerOrderLineItemTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -62,7 +64,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setSkuId(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String skuId = rs.getString(ConsumerOrderLineItemTable.COLUMN_SKU_ID);
+		
 		if(skuId == null){
 			//do nothing when nothing found in database
 			return;
@@ -74,7 +78,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setSkuName(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String skuName = rs.getString(ConsumerOrderLineItemTable.COLUMN_SKU_NAME);
+		
 		if(skuName == null){
 			//do nothing when nothing found in database
 			return;
@@ -86,7 +92,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setPrice(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal price = rs.getBigDecimal(ConsumerOrderLineItemTable.COLUMN_PRICE);
+		
 		if(price == null){
 			//do nothing when nothing found in database
 			return;
@@ -98,7 +106,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setQuantity(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal quantity = rs.getBigDecimal(ConsumerOrderLineItemTable.COLUMN_QUANTITY);
+		
 		if(quantity == null){
 			//do nothing when nothing found in database
 			return;
@@ -110,7 +120,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setAmount(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal amount = rs.getBigDecimal(ConsumerOrderLineItemTable.COLUMN_AMOUNT);
+		
 		if(amount == null){
 			//do nothing when nothing found in database
 			return;
@@ -122,7 +134,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setLastUpdateTime(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(ConsumerOrderLineItemTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -134,7 +148,9 @@ public class ConsumerOrderLineItemMapper extends BaseRowMapper<ConsumerOrderLine
 	protected void setVersion(ConsumerOrderLineItem consumerOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ConsumerOrderLineItemTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

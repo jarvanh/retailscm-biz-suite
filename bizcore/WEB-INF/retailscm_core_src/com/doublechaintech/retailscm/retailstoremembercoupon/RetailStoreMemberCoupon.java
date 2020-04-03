@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -53,6 +54,7 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	RetailStoreMemberCoupon(){
@@ -95,6 +97,7 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -104,12 +107,13 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeNumberProperty(String newValueExpr){
+	
 		String oldValue = getNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -119,12 +123,13 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		updateNumber(newValue);
 		this.onChangeProperty(NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -134,7 +139,7 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -302,7 +307,9 @@ public class RetailStoreMemberCoupon extends BaseEntity implements  java.io.Seri
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

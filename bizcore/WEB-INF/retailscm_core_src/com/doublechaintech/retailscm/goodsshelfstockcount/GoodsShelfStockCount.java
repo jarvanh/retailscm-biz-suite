@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 	
 	
 	protected		SmartList<StockCountIssueTrack>	mStockCountIssueTrackList;
+
 	
 		
 	public 	GoodsShelfStockCount(){
@@ -98,6 +100,7 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
     
     
 	protected void changeTitleProperty(String newValueExpr){
+	
 		String oldValue = getTitle();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		updateTitle(newValue);
 		this.onChangeProperty(TITLE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeCountTimeProperty(String newValueExpr){
+	
 		Date oldValue = getCountTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		updateCountTime(newValue);
 		this.onChangeProperty(COUNT_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeSummaryProperty(String newValueExpr){
+	
 		String oldValue = getSummary();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 		updateSummary(newValue);
 		this.onChangeProperty(SUMMARY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -423,7 +428,9 @@ public class GoodsShelfStockCount extends BaseEntity implements  java.io.Seriali
 			appendKeyValuePair(result, "stockCountIssueTrackCurrentPageNumber", getStockCountIssueTrackList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

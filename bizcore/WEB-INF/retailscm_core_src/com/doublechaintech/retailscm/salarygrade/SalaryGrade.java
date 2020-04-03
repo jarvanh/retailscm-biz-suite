@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -59,6 +60,7 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
 	
 	protected		SmartList<Employee> 	mEmployeeList       ;
 	protected		SmartList<EmployeeSalarySheet>	mEmployeeSalarySheetList;
+
 	
 		
 	public 	SalaryGrade(){
@@ -101,6 +103,7 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeCodeProperty(String newValueExpr){
+	
 		String oldValue = getCode();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -110,12 +113,13 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
 		updateCode(newValue);
 		this.onChangeProperty(CODE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -125,12 +129,13 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDetailDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDetailDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -140,7 +145,7 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
 		updateDetailDescription(newValue);
 		this.onChangeProperty(DETAIL_DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -544,7 +549,9 @@ public class SalaryGrade extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "employeeSalarySheetCurrentPageNumber", getEmployeeSalarySheetList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

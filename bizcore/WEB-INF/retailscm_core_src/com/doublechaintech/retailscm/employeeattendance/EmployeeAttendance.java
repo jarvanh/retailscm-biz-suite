@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -55,6 +56,7 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	EmployeeAttendance(){
@@ -100,6 +102,7 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
     
     
 	protected void changeEnterTimeProperty(String newValueExpr){
+	
 		Date oldValue = getEnterTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -109,12 +112,13 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 		updateEnterTime(newValue);
 		this.onChangeProperty(ENTER_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLeaveTimeProperty(String newValueExpr){
+	
 		Date oldValue = getLeaveTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -124,12 +128,13 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 		updateLeaveTime(newValue);
 		this.onChangeProperty(LEAVE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDurationHoursProperty(String newValueExpr){
+	
 		int oldValue = getDurationHours();
 		int newValue = parseInt(newValueExpr);
 		if(equalsInt(oldValue , newValue)){
@@ -139,12 +144,13 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 		updateDurationHours(newValue);
 		this.onChangeProperty(DURATION_HOURS_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeRemarkProperty(String newValueExpr){
+	
 		String oldValue = getRemark();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -154,7 +160,7 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 		updateRemark(newValue);
 		this.onChangeProperty(REMARK_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -342,7 +348,9 @@ public class EmployeeAttendance extends BaseEntity implements  java.io.Serializa
 		appendKeyValuePair(result, REMARK_PROPERTY, getRemark());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

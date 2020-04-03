@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 	
 	
 	protected		SmartList<Employee> 	mEmployeeList       ;
+
 	
 		
 	public 	ResponsibilityType(){
@@ -98,6 +100,7 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
     
     
 	protected void changeCodeProperty(String newValueExpr){
+	
 		String oldValue = getCode();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		updateCode(newValue);
 		this.onChangeProperty(CODE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeBaseDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getBaseDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		updateBaseDescription(newValue);
 		this.onChangeProperty(BASE_DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDetailDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDetailDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 		updateDetailDescription(newValue);
 		this.onChangeProperty(DETAIL_DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -423,7 +428,9 @@ public class ResponsibilityType extends BaseEntity implements  java.io.Serializa
 			appendKeyValuePair(result, "employeeCurrentPageNumber", getEmployeeList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

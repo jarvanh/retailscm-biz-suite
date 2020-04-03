@@ -28,7 +28,9 @@ public class AccountingDocumentTypeMapper extends BaseRowMapper<AccountingDocume
 	protected void setId(AccountingDocumentType accountingDocumentType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(AccountingDocumentTypeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -40,7 +42,9 @@ public class AccountingDocumentTypeMapper extends BaseRowMapper<AccountingDocume
 	protected void setName(AccountingDocumentType accountingDocumentType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(AccountingDocumentTypeTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -52,7 +56,9 @@ public class AccountingDocumentTypeMapper extends BaseRowMapper<AccountingDocume
 	protected void setDescription(AccountingDocumentType accountingDocumentType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(AccountingDocumentTypeTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -82,7 +88,9 @@ public class AccountingDocumentTypeMapper extends BaseRowMapper<AccountingDocume
 	protected void setVersion(AccountingDocumentType accountingDocumentType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(AccountingDocumentTypeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

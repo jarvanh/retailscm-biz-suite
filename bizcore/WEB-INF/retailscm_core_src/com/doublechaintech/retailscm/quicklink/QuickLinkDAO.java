@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.quicklink;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface QuickLinkDAO extends BaseDAO{
 	
 	public SmartList<QuickLink> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateQuickLink executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<QuickLink> findQuickLinkByApp(String userAppId, Map<String,Object> options);
  	public int countQuickLinkByApp(String userAppId, Map<String,Object> options);

@@ -29,7 +29,9 @@ public class TransportFleetMapper extends BaseRowMapper<TransportFleet>{
 	protected void setId(TransportFleet transportFleet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TransportFleetTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class TransportFleetMapper extends BaseRowMapper<TransportFleet>{
 	protected void setName(TransportFleet transportFleet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(TransportFleetTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class TransportFleetMapper extends BaseRowMapper<TransportFleet>{
 	protected void setContactNumber(TransportFleet transportFleet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(TransportFleetTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class TransportFleetMapper extends BaseRowMapper<TransportFleet>{
 	protected void setLastUpdateTime(TransportFleet transportFleet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(TransportFleetTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class TransportFleetMapper extends BaseRowMapper<TransportFleet>{
 	protected void setVersion(TransportFleet transportFleet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TransportFleetTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

@@ -43,7 +43,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setId(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -73,7 +75,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setTitle(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(EmployeeTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -103,7 +107,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setFamilyName(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String familyName = rs.getString(EmployeeTable.COLUMN_FAMILY_NAME);
+		
 		if(familyName == null){
 			//do nothing when nothing found in database
 			return;
@@ -115,7 +121,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setGivenName(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String givenName = rs.getString(EmployeeTable.COLUMN_GIVEN_NAME);
+		
 		if(givenName == null){
 			//do nothing when nothing found in database
 			return;
@@ -127,7 +135,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setEmail(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String email = rs.getString(EmployeeTable.COLUMN_EMAIL);
+		
 		if(email == null){
 			//do nothing when nothing found in database
 			return;
@@ -139,7 +149,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setCity(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String city = rs.getString(EmployeeTable.COLUMN_CITY);
+		
 		if(city == null){
 			//do nothing when nothing found in database
 			return;
@@ -151,7 +163,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setAddress(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String address = rs.getString(EmployeeTable.COLUMN_ADDRESS);
+		
 		if(address == null){
 			//do nothing when nothing found in database
 			return;
@@ -163,7 +177,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setCellPhone(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String cellPhone = rs.getString(EmployeeTable.COLUMN_CELL_PHONE);
+		
 		if(cellPhone == null){
 			//do nothing when nothing found in database
 			return;
@@ -229,7 +245,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setSalaryAccount(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String salaryAccount = rs.getString(EmployeeTable.COLUMN_SALARY_ACCOUNT);
+		
 		if(salaryAccount == null){
 			//do nothing when nothing found in database
 			return;
@@ -241,7 +259,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setLastUpdateTime(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(EmployeeTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -253,7 +273,9 @@ public class EmployeeMapper extends BaseRowMapper<Employee>{
 	protected void setVersion(Employee employee, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

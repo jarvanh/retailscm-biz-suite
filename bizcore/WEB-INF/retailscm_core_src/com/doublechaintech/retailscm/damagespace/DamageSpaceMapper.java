@@ -32,7 +32,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setId(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(DamageSpaceTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setLocation(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String location = rs.getString(DamageSpaceTable.COLUMN_LOCATION);
+		
 		if(location == null){
 			//do nothing when nothing found in database
 			return;
@@ -56,7 +60,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setContactNumber(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(DamageSpaceTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -68,7 +74,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setTotalArea(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String totalArea = rs.getString(DamageSpaceTable.COLUMN_TOTAL_AREA);
+		
 		if(totalArea == null){
 			//do nothing when nothing found in database
 			return;
@@ -80,7 +88,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setLatitude(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(DamageSpaceTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -92,7 +102,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setLongitude(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(DamageSpaceTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -122,7 +134,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setLastUpdateTime(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(DamageSpaceTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -134,7 +148,9 @@ public class DamageSpaceMapper extends BaseRowMapper<DamageSpace>{
 	protected void setVersion(DamageSpace damageSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(DamageSpaceTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

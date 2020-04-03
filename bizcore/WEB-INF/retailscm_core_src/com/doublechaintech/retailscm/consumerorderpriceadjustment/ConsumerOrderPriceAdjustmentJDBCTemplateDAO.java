@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -435,13 +439,19 @@ public class ConsumerOrderPriceAdjustmentJDBCTemplateDAO extends RetailscmBaseDA
  	protected Object[] prepareConsumerOrderPriceAdjustmentUpdateParameters(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment){
  		Object[] parameters = new Object[7];
  
- 		parameters[0] = consumerOrderPriceAdjustment.getName(); 	
+ 		
+ 		parameters[0] = consumerOrderPriceAdjustment.getName();
+ 		 	
  		if(consumerOrderPriceAdjustment.getBizOrder() != null){
  			parameters[1] = consumerOrderPriceAdjustment.getBizOrder().getId();
  		}
  
+ 		
  		parameters[2] = consumerOrderPriceAdjustment.getAmount();
- 		parameters[3] = consumerOrderPriceAdjustment.getProvider();		
+ 		
+ 		
+ 		parameters[3] = consumerOrderPriceAdjustment.getProvider();
+ 				
  		parameters[4] = consumerOrderPriceAdjustment.nextVersion();
  		parameters[5] = consumerOrderPriceAdjustment.getId();
  		parameters[6] = consumerOrderPriceAdjustment.getVersion();
@@ -454,14 +464,20 @@ public class ConsumerOrderPriceAdjustmentJDBCTemplateDAO extends RetailscmBaseDA
 		consumerOrderPriceAdjustment.setId(newConsumerOrderPriceAdjustmentId);
 		parameters[0] =  consumerOrderPriceAdjustment.getId();
  
- 		parameters[1] = consumerOrderPriceAdjustment.getName(); 	
+ 		
+ 		parameters[1] = consumerOrderPriceAdjustment.getName();
+ 		 	
  		if(consumerOrderPriceAdjustment.getBizOrder() != null){
  			parameters[2] = consumerOrderPriceAdjustment.getBizOrder().getId();
  		
  		}
  		
+ 		
  		parameters[3] = consumerOrderPriceAdjustment.getAmount();
- 		parameters[4] = consumerOrderPriceAdjustment.getProvider();		
+ 		
+ 		
+ 		parameters[4] = consumerOrderPriceAdjustment.getProvider();
+ 				
  				
  		return parameters;
  	}
@@ -562,6 +578,30 @@ public class ConsumerOrderPriceAdjustmentJDBCTemplateDAO extends RetailscmBaseDA
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateConsumerOrderPriceAdjustment executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateConsumerOrderPriceAdjustment result = new CandidateConsumerOrderPriceAdjustment();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

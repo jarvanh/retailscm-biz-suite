@@ -20,6 +20,8 @@
 	<li><span>${userContext.localeMap['section.id']}</span> ${section.id}</li>
 <li><span>${userContext.localeMap['section.title']}</span> ${section.title}</li>
 <li><span>${userContext.localeMap['section.brief']}</span> ${section.brief}</li>
+<li><span>${userContext.localeMap['section.icon']}</span> ${section.icon}</li>
+<li><span>${userContext.localeMap['section.view_group']}</span> ${section.viewGroup}</li>
 <li><span>${userContext.localeMap['section.link_to_url']}</span> ${section.linkToUrl}</li>
 <li><span>${userContext.localeMap['section.page']}</span> ${section.page}</li>
 

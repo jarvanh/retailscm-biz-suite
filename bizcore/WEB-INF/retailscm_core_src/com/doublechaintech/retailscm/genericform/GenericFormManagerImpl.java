@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.genericform;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.formaction.FormAction;
 import com.doublechaintech.retailscm.formmessage.FormMessage;
@@ -24,7 +41,7 @@ import com.doublechaintech.retailscm.genericform.GenericForm;
 
 
 
-public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implements GenericFormManager {
+public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implements GenericFormManager, BusinessHandler{
 
   
 
@@ -219,10 +236,16 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		if(GenericForm.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfGenericForm(parseString(newValueExpr));
+		
+			
 		}
 		if(GenericForm.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfGenericForm(parseString(newValueExpr));
+		
+			
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(GenericFormManagerException.class);
@@ -571,11 +594,15 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		if(FormMessage.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfFormMessage(parseString(newValueExpr));
+		
 		}
 		
 		if(FormMessage.LEVEL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLevelOfFormMessage(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -815,15 +842,21 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		if(FormFieldMessage.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfFormFieldMessage(parseString(newValueExpr));
+		
 		}
 		
 		if(FormFieldMessage.PARAMETER_NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkParameterNameOfFormFieldMessage(parseString(newValueExpr));
+		
 		}
 		
 		if(FormFieldMessage.LEVEL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLevelOfFormFieldMessage(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1123,63 +1156,93 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		if(FormField.LABEL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLabelOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.LOCALE_KEY_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocaleKeyOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.PARAMETER_NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkParameterNameOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.TYPE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTypeOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.PLACEHOLDER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkPlaceholderOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.DEFAULT_VALUE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDefaultValueOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.FIELD_GROUP_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFieldGroupOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.MINIMUM_VALUE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMinimumValueOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.MAXIMUM_VALUE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMaximumValueOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.REQUIRED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkRequiredOfFormField(parseBoolean(newValueExpr));
+		
 		}
 		
 		if(FormField.DISABLED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDisabledOfFormField(parseBoolean(newValueExpr));
+		
 		}
 		
 		if(FormField.CUSTOM_RENDERING_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCustomRenderingOfFormField(parseBoolean(newValueExpr));
+		
 		}
 		
 		if(FormField.CANDIDATE_VALUES_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCandidateValuesOfFormField(parseString(newValueExpr));
+		
 		}
 		
 		if(FormField.SUGGEST_VALUES_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkSuggestValuesOfFormField(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1429,23 +1492,33 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
 		
 
 		if(FormAction.LABEL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLabelOfFormAction(parseString(newValueExpr));
+		
 		}
 		
 		if(FormAction.LOCALE_KEY_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocaleKeyOfFormAction(parseString(newValueExpr));
+		
 		}
 		
 		if(FormAction.ACTION_KEY_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkActionKeyOfFormAction(parseString(newValueExpr));
+		
 		}
 		
 		if(FormAction.LEVEL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLevelOfFormAction(parseString(newValueExpr));
+		
 		}
 		
 		if(FormAction.URL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkUrlOfFormAction(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1500,6 +1573,293 @@ public class GenericFormManagerImpl extends CustomRetailscmCheckerManager implem
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   GenericForm newGenericForm = this.createGenericForm(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newGenericForm
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, GenericForm.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<GenericForm> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+
+
+    }
+	
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String genericFormId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getGenericFormDetailScope().clone();
+		GenericForm merchantObj = (GenericForm) this.view(userContext, genericFormId);
+    String merchantObjId = genericFormId;
+    String linkToUrl =	"genericFormManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "通用的形式"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-title")
+				    .put("fieldName", "title")
+				    .put("label", "头衔")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("title", merchantObj.getTitle());
+
+		propList.add(
+				MapUtil.put("id", "3-description")
+				    .put("fieldName", "description")
+				    .put("label", "描述")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("description", merchantObj.getDescription());
+
+		//处理 sectionList
+
+		//处理Section：formMessageListSection
+		Map formMessageListSection = ListofUtils.buildSection(
+		    "formMessageListSection",
+		    "消息列表形式",
+		    null,
+		    "",
+		    "__no_group",
+		    "formMessageManager/listByForm/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(formMessageListSection);
+
+		result.put("formMessageListSection", ListofUtils.toShortList(merchantObj.getFormMessageList(), "formMessage"));
+		vscope.field("formMessageListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( FormMessage.class.getName(), null));
+
+		//处理Section：formFieldMessageListSection
+		Map formFieldMessageListSection = ListofUtils.buildSection(
+		    "formFieldMessageListSection",
+		    "表单字段消息列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "formFieldMessageManager/listByForm/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(formFieldMessageListSection);
+
+		result.put("formFieldMessageListSection", ListofUtils.toShortList(merchantObj.getFormFieldMessageList(), "formFieldMessage"));
+		vscope.field("formFieldMessageListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( FormFieldMessage.class.getName(), null));
+
+		//处理Section：formFieldListSection
+		Map formFieldListSection = ListofUtils.buildSection(
+		    "formFieldListSection",
+		    "表单字段列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "formFieldManager/listByForm/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(formFieldListSection);
+
+		result.put("formFieldListSection", ListofUtils.toShortList(merchantObj.getFormFieldList(), "formField"));
+		vscope.field("formFieldListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( FormField.class.getName(), null));
+
+		//处理Section：formActionListSection
+		Map formActionListSection = ListofUtils.buildSection(
+		    "formActionListSection",
+		    "表单动作列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "formActionManager/listByForm/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(formActionListSection);
+
+		result.put("formActionListSection", ListofUtils.toShortList(merchantObj.getFormActionList(), "formAction"));
+		vscope.field("formActionListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( FormAction.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

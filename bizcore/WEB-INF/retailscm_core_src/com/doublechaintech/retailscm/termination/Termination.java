@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -52,6 +53,7 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	Termination(){
@@ -89,6 +91,7 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeCommentProperty(String newValueExpr){
+	
 		String oldValue = getComment();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -98,7 +101,7 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		updateComment(newValue);
 		this.onChangeProperty(COMMENT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -252,7 +255,9 @@ public class Termination extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, COMMENT_PROPERTY, getComment());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

@@ -28,7 +28,9 @@ public class MemberRewardPointMapper extends BaseRowMapper<MemberRewardPoint>{
 	protected void setId(MemberRewardPoint memberRewardPoint, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(MemberRewardPointTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -40,7 +42,9 @@ public class MemberRewardPointMapper extends BaseRowMapper<MemberRewardPoint>{
 	protected void setName(MemberRewardPoint memberRewardPoint, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(MemberRewardPointTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -52,7 +56,9 @@ public class MemberRewardPointMapper extends BaseRowMapper<MemberRewardPoint>{
 	protected void setPoint(MemberRewardPoint memberRewardPoint, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer point = rs.getInt(MemberRewardPointTable.COLUMN_POINT);
+		
 		if(point == null){
 			//do nothing when nothing found in database
 			return;
@@ -82,7 +88,9 @@ public class MemberRewardPointMapper extends BaseRowMapper<MemberRewardPoint>{
 	protected void setVersion(MemberRewardPoint memberRewardPoint, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(MemberRewardPointTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

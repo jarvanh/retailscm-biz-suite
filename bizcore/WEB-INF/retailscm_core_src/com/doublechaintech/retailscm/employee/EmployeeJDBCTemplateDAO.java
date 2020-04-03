@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -2051,17 +2055,31 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  			parameters[0] = employee.getCompany().getId();
  		}
  
- 		parameters[1] = employee.getTitle(); 	
+ 		
+ 		parameters[1] = employee.getTitle();
+ 		 	
  		if(employee.getDepartment() != null){
  			parameters[2] = employee.getDepartment().getId();
  		}
  
+ 		
  		parameters[3] = employee.getFamilyName();
+ 		
+ 		
  		parameters[4] = employee.getGivenName();
+ 		
+ 		
  		parameters[5] = employee.getEmail();
+ 		
+ 		
  		parameters[6] = employee.getCity();
+ 		
+ 		
  		parameters[7] = employee.getAddress();
- 		parameters[8] = employee.getCellPhone(); 	
+ 		
+ 		
+ 		parameters[8] = employee.getCellPhone();
+ 		 	
  		if(employee.getOccupation() != null){
  			parameters[9] = employee.getOccupation().getId();
  		}
@@ -2074,8 +2092,12 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  			parameters[11] = employee.getCurrentSalaryGrade().getId();
  		}
  
+ 		
  		parameters[12] = employee.getSalaryAccount();
- 		parameters[13] = employee.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[13] = employee.getLastUpdateTime();
+ 				
  		parameters[14] = employee.nextVersion();
  		parameters[15] = employee.getId();
  		parameters[16] = employee.getVersion();
@@ -2093,18 +2115,32 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		
  		}
  		
- 		parameters[2] = employee.getTitle(); 	
+ 		
+ 		parameters[2] = employee.getTitle();
+ 		 	
  		if(employee.getDepartment() != null){
  			parameters[3] = employee.getDepartment().getId();
  		
  		}
  		
+ 		
  		parameters[4] = employee.getFamilyName();
+ 		
+ 		
  		parameters[5] = employee.getGivenName();
+ 		
+ 		
  		parameters[6] = employee.getEmail();
+ 		
+ 		
  		parameters[7] = employee.getCity();
+ 		
+ 		
  		parameters[8] = employee.getAddress();
- 		parameters[9] = employee.getCellPhone(); 	
+ 		
+ 		
+ 		parameters[9] = employee.getCellPhone();
+ 		 	
  		if(employee.getOccupation() != null){
  			parameters[10] = employee.getOccupation().getId();
  		
@@ -2120,8 +2156,12 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
  		
  		}
  		
+ 		
  		parameters[13] = employee.getSalaryAccount();
- 		parameters[14] = employee.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[14] = employee.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -4033,73 +4073,73 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
     public SmartList<Employee> requestCandidateEmployeeForEmployeeCompanyTraining(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeSkill(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeePerformance(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeWorkExperience(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeLeave(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeInterview(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeAttendance(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeQualifier(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeEducation(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeAward(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForEmployeeSalarySheet(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
     public SmartList<Employee> requestCandidateEmployeeForPayingOff(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
+		return findAllCandidateByFilter(EmployeeTable.COLUMN_COMPANY, EmployeeTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getEmployeeMapper());
     }
 		
 
@@ -4426,6 +4466,30 @@ public class EmployeeJDBCTemplateDAO extends RetailscmBaseDAOImpl implements Emp
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateEmployee executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateEmployee result = new CandidateEmployee();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

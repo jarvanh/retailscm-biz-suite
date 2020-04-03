@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -435,13 +439,19 @@ public class RetailStoreMemberAddressJDBCTemplateDAO extends RetailscmBaseDAOImp
  	protected Object[] prepareRetailStoreMemberAddressUpdateParameters(RetailStoreMemberAddress retailStoreMemberAddress){
  		Object[] parameters = new Object[7];
  
- 		parameters[0] = retailStoreMemberAddress.getName(); 	
+ 		
+ 		parameters[0] = retailStoreMemberAddress.getName();
+ 		 	
  		if(retailStoreMemberAddress.getOwner() != null){
  			parameters[1] = retailStoreMemberAddress.getOwner().getId();
  		}
  
+ 		
  		parameters[2] = retailStoreMemberAddress.getMobilePhone();
- 		parameters[3] = retailStoreMemberAddress.getAddress();		
+ 		
+ 		
+ 		parameters[3] = retailStoreMemberAddress.getAddress();
+ 				
  		parameters[4] = retailStoreMemberAddress.nextVersion();
  		parameters[5] = retailStoreMemberAddress.getId();
  		parameters[6] = retailStoreMemberAddress.getVersion();
@@ -454,14 +464,20 @@ public class RetailStoreMemberAddressJDBCTemplateDAO extends RetailscmBaseDAOImp
 		retailStoreMemberAddress.setId(newRetailStoreMemberAddressId);
 		parameters[0] =  retailStoreMemberAddress.getId();
  
- 		parameters[1] = retailStoreMemberAddress.getName(); 	
+ 		
+ 		parameters[1] = retailStoreMemberAddress.getName();
+ 		 	
  		if(retailStoreMemberAddress.getOwner() != null){
  			parameters[2] = retailStoreMemberAddress.getOwner().getId();
  		
  		}
  		
+ 		
  		parameters[3] = retailStoreMemberAddress.getMobilePhone();
- 		parameters[4] = retailStoreMemberAddress.getAddress();		
+ 		
+ 		
+ 		parameters[4] = retailStoreMemberAddress.getAddress();
+ 				
  				
  		return parameters;
  	}
@@ -562,6 +578,30 @@ public class RetailStoreMemberAddressJDBCTemplateDAO extends RetailscmBaseDAOImp
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreMemberAddress executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreMemberAddress result = new CandidateRetailStoreMemberAddress();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

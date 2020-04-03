@@ -29,7 +29,9 @@ public class RetailStoreMemberCouponMapper extends BaseRowMapper<RetailStoreMemb
 	protected void setId(RetailStoreMemberCoupon retailStoreMemberCoupon, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(RetailStoreMemberCouponTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class RetailStoreMemberCouponMapper extends BaseRowMapper<RetailStoreMemb
 	protected void setName(RetailStoreMemberCoupon retailStoreMemberCoupon, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(RetailStoreMemberCouponTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class RetailStoreMemberCouponMapper extends BaseRowMapper<RetailStoreMemb
 	protected void setNumber(RetailStoreMemberCoupon retailStoreMemberCoupon, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String number = rs.getString(RetailStoreMemberCouponTable.COLUMN_NUMBER);
+		
 		if(number == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class RetailStoreMemberCouponMapper extends BaseRowMapper<RetailStoreMemb
 	protected void setLastUpdateTime(RetailStoreMemberCoupon retailStoreMemberCoupon, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(RetailStoreMemberCouponTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class RetailStoreMemberCouponMapper extends BaseRowMapper<RetailStoreMemb
 	protected void setVersion(RetailStoreMemberCoupon retailStoreMemberCoupon, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(RetailStoreMemberCouponTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

@@ -326,6 +326,24 @@
 	<bean id="payingOffManagerBase" class="com.doublechaintech.retailscm.payingoff.PayingOffManagerImpl"/>
 	<bean id="payingOffManager" class="com.doublechaintech.retailscm.payingoff.PayingOffManagerImpl" parent="payingOffManagerBase" ></bean>
 	
+	<bean id="mobileAppManagerBase" class="com.doublechaintech.retailscm.mobileapp.MobileAppManagerImpl"/>
+	<bean id="mobileAppManager" class="com.doublechaintech.retailscm.mobileapp.MobileAppCustomManagerImpl" parent="mobileAppManagerBase" ></bean>
+	
+	<bean id="pageManagerBase" class="com.doublechaintech.retailscm.page.PageManagerImpl"/>
+	<bean id="pageManager" class="com.doublechaintech.retailscm.page.PageCustomManagerImpl" parent="pageManagerBase" ></bean>
+	
+	<bean id="pageTypeManagerBase" class="com.doublechaintech.retailscm.pagetype.PageTypeManagerImpl"/>
+	<bean id="pageTypeManager" class="com.doublechaintech.retailscm.pagetype.PageTypeManagerImpl" parent="pageTypeManagerBase" ></bean>
+	
+	<bean id="slideManagerBase" class="com.doublechaintech.retailscm.slide.SlideManagerImpl"/>
+	<bean id="slideManager" class="com.doublechaintech.retailscm.slide.SlideManagerImpl" parent="slideManagerBase" ></bean>
+	
+	<bean id="uiActionManagerBase" class="com.doublechaintech.retailscm.uiaction.UiActionManagerImpl"/>
+	<bean id="uiActionManager" class="com.doublechaintech.retailscm.uiaction.UiActionManagerImpl" parent="uiActionManagerBase" ></bean>
+	
+	<bean id="sectionManagerBase" class="com.doublechaintech.retailscm.section.SectionManagerImpl"/>
+	<bean id="sectionManager" class="com.doublechaintech.retailscm.section.SectionCustomManagerImpl" parent="sectionManagerBase" ></bean>
+	
 	<bean id="userDomainManagerBase" class="com.doublechaintech.retailscm.userdomain.UserDomainManagerImpl"/>
 	<bean id="userDomainManager" class="com.doublechaintech.retailscm.userdomain.UserDomainCustomManagerImpl" parent="userDomainManagerBase" ></bean>
 	
@@ -370,6 +388,15 @@
 	
 	<bean id="candidateElementManagerBase" class="com.doublechaintech.retailscm.candidateelement.CandidateElementManagerImpl"/>
 	<bean id="candidateElementManager" class="com.doublechaintech.retailscm.candidateelement.CandidateElementManagerImpl" parent="candidateElementManagerBase" ></bean>
+	
+	<bean id="wechatWorkappIdentifyManagerBase" class="com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyManagerImpl"/>
+	<bean id="wechatWorkappIdentifyManager" class="com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyManagerImpl" parent="wechatWorkappIdentifyManagerBase" ></bean>
+	
+	<bean id="wechatMiniappIdentifyManagerBase" class="com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyManagerImpl"/>
+	<bean id="wechatMiniappIdentifyManager" class="com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyManagerImpl" parent="wechatMiniappIdentifyManagerBase" ></bean>
+	
+	<bean id="treeNodeManagerBase" class="com.doublechaintech.retailscm.treenode.TreeNodeManagerImpl"/>
+	<bean id="treeNodeManager" class="com.doublechaintech.retailscm.treenode.TreeNodeCustomManagerImpl" parent="treeNodeManagerBase" ></bean>
 	
 
 	<bean id="managerGroupBase" class="com.doublechaintech.retailscm.ManagerGroup">
@@ -479,6 +506,12 @@
 		<property name="employeeAwardManager" ref="employeeAwardManager"/>
 		<property name="employeeSalarySheetManager" ref="employeeSalarySheetManager"/>
 		<property name="payingOffManager" ref="payingOffManager"/>
+		<property name="mobileAppManager" ref="mobileAppManager"/>
+		<property name="pageManager" ref="pageManager"/>
+		<property name="pageTypeManager" ref="pageTypeManager"/>
+		<property name="slideManager" ref="slideManager"/>
+		<property name="uiActionManager" ref="uiActionManager"/>
+		<property name="sectionManager" ref="sectionManager"/>
 		<property name="userDomainManager" ref="userDomainManager"/>
 		<property name="userWhiteListManager" ref="userWhiteListManager"/>
 		<property name="secUserManager" ref="secUserManager"/>
@@ -494,12 +527,25 @@
 		<property name="formActionManager" ref="formActionManager"/>
 		<property name="candidateContainerManager" ref="candidateContainerManager"/>
 		<property name="candidateElementManager" ref="candidateElementManager"/>
+		<property name="wechatWorkappIdentifyManager" ref="wechatWorkappIdentifyManager"/>
+		<property name="wechatMiniappIdentifyManager" ref="wechatMiniappIdentifyManager"/>
+		<property name="treeNodeManager" ref="treeNodeManager"/>
 	</bean>
 	<bean id="managerGroup" parent="managerGroupBase"></bean>
 	
 
 
 </beans>
+
+
+
+
+
+
+
+
+
+
 
 
 

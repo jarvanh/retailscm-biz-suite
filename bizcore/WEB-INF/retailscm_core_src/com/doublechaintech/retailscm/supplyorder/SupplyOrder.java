@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -68,6 +69,7 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 	protected		SmartList<SupplyOrderShippingGroup>	mSupplyOrderShippingGroupList;
 	protected		SmartList<SupplyOrderPaymentGroup>	mSupplyOrderPaymentGroupList;
 	protected		SmartList<Goods>    	mGoodsList          ;
+
 	
 		
 	public 	SupplyOrder(){
@@ -111,6 +113,7 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeTitleProperty(String newValueExpr){
+	
 		String oldValue = getTitle();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -120,12 +123,13 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		updateTitle(newValue);
 		this.onChangeProperty(TITLE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeTotalAmountProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getTotalAmount();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -135,12 +139,13 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		updateTotalAmount(newValue);
 		this.onChangeProperty(TOTAL_AMOUNT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -150,7 +155,7 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -816,7 +821,9 @@ public class SupplyOrder extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "goodsCurrentPageNumber", getGoodsList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

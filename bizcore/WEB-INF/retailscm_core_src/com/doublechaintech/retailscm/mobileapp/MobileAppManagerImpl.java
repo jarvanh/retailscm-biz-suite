@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
 import com.terapico.caf.Images;
 import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
 import com.doublechaintech.retailscm.tree.*;
@@ -20,6 +24,7 @@ import com.doublechaintech.retailscm.iamservice.*;
 import com.doublechaintech.retailscm.services.IamService;
 import com.doublechaintech.retailscm.secuser.SecUser;
 import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
 import com.terapico.uccaf.BaseUserContext;
 
 
@@ -981,6 +986,9 @@ public class MobileAppManagerImpl extends CustomRetailscmCheckerManager implemen
 		if (userApp != null) {
 			userApp.setSecUser(secUser);
 		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
 		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
 		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
 			return accessOK();
@@ -1018,11 +1026,23 @@ public class MobileAppManagerImpl extends CustomRetailscmCheckerManager implemen
 			throws Exception {
 		// by default, failed is failed, nothing can do
 	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
 	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
 			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
 			throws Exception {
-		// by default, should create a account and bind with sec user, BUT, I don't know how to
-		// create new object as of generate this method. It depends on business logical. So,
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   MobileApp newMobileApp = this.createMobileApp(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newMobileApp
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
 		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
 	}
 	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
@@ -1053,7 +1073,77 @@ public class MobileAppManagerImpl extends CustomRetailscmCheckerManager implemen
 
     }
 	
-  // -----------------------------------\\ list-of-view 处理 //-----------------------------------
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String mobileAppId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getMobileAppDetailScope().clone();
+		MobileApp merchantObj = (MobileApp) this.view(userContext, mobileAppId);
+    String merchantObjId = mobileAppId;
+    String linkToUrl =	"mobileAppManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "手机应用程序"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-name")
+				    .put("fieldName", "name")
+				    .put("label", "名称")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("name", merchantObj.getName());
+
+		//处理 sectionList
+
+		//处理Section：pageListSection
+		Map pageListSection = ListofUtils.buildSection(
+		    "pageListSection",
+		    "页面列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "pageManager/listByMobileApp/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(pageListSection);
+
+		result.put("pageListSection", ListofUtils.toShortList(merchantObj.getPageList(), "page"));
+		vscope.field("pageListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( Page.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
+
 }
 
 

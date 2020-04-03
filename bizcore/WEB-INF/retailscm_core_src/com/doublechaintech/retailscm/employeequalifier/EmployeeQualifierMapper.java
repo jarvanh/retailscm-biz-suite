@@ -30,7 +30,9 @@ public class EmployeeQualifierMapper extends BaseRowMapper<EmployeeQualifier>{
 	protected void setId(EmployeeQualifier employeeQualifier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeQualifierTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -60,7 +62,9 @@ public class EmployeeQualifierMapper extends BaseRowMapper<EmployeeQualifier>{
 	protected void setQualifiedTime(EmployeeQualifier employeeQualifier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date qualifiedTime = rs.getDate(EmployeeQualifierTable.COLUMN_QUALIFIED_TIME);
+		
 		if(qualifiedTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -72,7 +76,9 @@ public class EmployeeQualifierMapper extends BaseRowMapper<EmployeeQualifier>{
 	protected void setType(EmployeeQualifier employeeQualifier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String type = rs.getString(EmployeeQualifierTable.COLUMN_TYPE);
+		
 		if(type == null){
 			//do nothing when nothing found in database
 			return;
@@ -84,7 +90,9 @@ public class EmployeeQualifierMapper extends BaseRowMapper<EmployeeQualifier>{
 	protected void setLevel(EmployeeQualifier employeeQualifier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String level = rs.getString(EmployeeQualifierTable.COLUMN_LEVEL);
+		
 		if(level == null){
 			//do nothing when nothing found in database
 			return;
@@ -96,7 +104,9 @@ public class EmployeeQualifierMapper extends BaseRowMapper<EmployeeQualifier>{
 	protected void setRemark(EmployeeQualifier employeeQualifier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String remark = rs.getString(EmployeeQualifierTable.COLUMN_REMARK);
+		
 		if(remark == null){
 			//do nothing when nothing found in database
 			return;
@@ -108,7 +118,9 @@ public class EmployeeQualifierMapper extends BaseRowMapper<EmployeeQualifier>{
 	protected void setVersion(EmployeeQualifier employeeQualifier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeQualifierTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

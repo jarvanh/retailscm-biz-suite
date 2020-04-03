@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -113,6 +114,7 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 	protected		SmartList<EmployeeAward>	mEmployeeAwardList  ;
 	protected		SmartList<EmployeeSalarySheet>	mEmployeeSalarySheetList;
 	protected		SmartList<PayingOff>	mPayingOffList      ;
+
 	
 		
 	public 	Employee(){
@@ -177,6 +179,7 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeTitleProperty(String newValueExpr){
+	
 		String oldValue = getTitle();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -186,12 +189,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateTitle(newValue);
 		this.onChangeProperty(TITLE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFamilyNameProperty(String newValueExpr){
+	
 		String oldValue = getFamilyName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -201,12 +205,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateFamilyName(newValue);
 		this.onChangeProperty(FAMILY_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeGivenNameProperty(String newValueExpr){
+	
 		String oldValue = getGivenName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -216,12 +221,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateGivenName(newValue);
 		this.onChangeProperty(GIVEN_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeEmailProperty(String newValueExpr){
+	
 		String oldValue = getEmail();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -231,12 +237,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateEmail(newValue);
 		this.onChangeProperty(EMAIL_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeCityProperty(String newValueExpr){
+	
 		String oldValue = getCity();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -246,12 +253,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateCity(newValue);
 		this.onChangeProperty(CITY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAddressProperty(String newValueExpr){
+	
 		String oldValue = getAddress();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -261,12 +269,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateAddress(newValue);
 		this.onChangeProperty(ADDRESS_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeCellPhoneProperty(String newValueExpr){
+	
 		String oldValue = getCellPhone();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -276,12 +285,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateCellPhone(newValue);
 		this.onChangeProperty(CELL_PHONE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeSalaryAccountProperty(String newValueExpr){
+	
 		String oldValue = getSalaryAccount();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -291,12 +301,13 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateSalaryAccount(newValue);
 		this.onChangeProperty(SALARY_ACCOUNT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -306,7 +317,7 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -2121,7 +2132,9 @@ public class Employee extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "payingOffCurrentPageNumber", getPayingOffList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

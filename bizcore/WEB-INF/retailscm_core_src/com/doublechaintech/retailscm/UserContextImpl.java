@@ -5,7 +5,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.Cookie;
+
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.skynet.infrastructure.CacheService;
 import com.skynet.infrastructure.ESClient;
 import com.skynet.infrastructure.GraphService;
@@ -16,12 +20,14 @@ import com.terapico.caf.BeanFactory;
 import com.terapico.caf.BlobObject;
 import com.terapico.caf.InvocationResult;
 import com.skynet.infrastructure.MessageService;
+import com.doublechaintech.retailscm.tree.*;
 //Default implementation
 public class UserContextImpl implements UserContext{
 	protected CacheService cacheService;
 	protected BlockChainAdvancer blockChainAdvancer;
 	protected ESClient esClient;
 	protected SMTPService smtpService;
+	protected TreeServiceImpl treeService;
 	protected String remoteIP;
 	protected String tokenId;
 	protected String userAgent;
@@ -39,7 +45,22 @@ public class UserContextImpl implements UserContext{
     protected Boolean productEnvironment;
     protected DAOGroup daoGroup;
     protected ManagerGroup managerGroup;
+	protected Cookie[] requestCookies;
 
+    public Cookie[] getRequestCookies() {
+		return requestCookies;
+	}
+	public TreeServiceImpl getTreeService(){
+	  return treeService;
+	}
+
+	public void setTreeService(TreeServiceImpl treeService){
+	  this.treeService = treeService;
+	}
+
+	public void setRequestCookies(Cookie[] requestCookies) {
+		this.requestCookies = requestCookies;
+	}
     public Map<String, String> getResponseHeaders() {
 		return responseHeaders;
 	}

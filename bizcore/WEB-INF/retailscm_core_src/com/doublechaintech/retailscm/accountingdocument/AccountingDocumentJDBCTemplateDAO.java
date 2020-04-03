@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -736,8 +740,12 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
  	protected Object[] prepareAccountingDocumentUpdateParameters(AccountingDocument accountingDocument){
  		Object[] parameters = new Object[7];
  
+ 		
  		parameters[0] = accountingDocument.getName();
- 		parameters[1] = accountingDocument.getAccountingDocumentDate(); 	
+ 		
+ 		
+ 		parameters[1] = accountingDocument.getAccountingDocumentDate();
+ 		 	
  		if(accountingDocument.getAccountingPeriod() != null){
  			parameters[2] = accountingDocument.getAccountingPeriod().getId();
  		}
@@ -758,8 +766,12 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 		accountingDocument.setId(newAccountingDocumentId);
 		parameters[0] =  accountingDocument.getId();
  
+ 		
  		parameters[1] = accountingDocument.getName();
- 		parameters[2] = accountingDocument.getAccountingDocumentDate(); 	
+ 		
+ 		
+ 		parameters[2] = accountingDocument.getAccountingDocumentDate();
+ 		 	
  		if(accountingDocument.getAccountingPeriod() != null){
  			parameters[3] = accountingDocument.getAccountingPeriod().getId();
  		
@@ -1134,13 +1146,13 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
     public SmartList<AccountingDocument> requestCandidateAccountingDocumentForOriginalVoucher(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(AccountingDocumentTable.COLUMN_NAME, filterKey, pageNo, pageSize, getAccountingDocumentMapper());
+		return findAllCandidateByFilter(AccountingDocumentTable.COLUMN_NAME, AccountingDocumentTable.COLUMN_ACCOUNTING_PERIOD, filterKey, pageNo, pageSize, getAccountingDocumentMapper());
     }
 		
     public SmartList<AccountingDocument> requestCandidateAccountingDocumentForAccountingDocumentLine(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(AccountingDocumentTable.COLUMN_NAME, filterKey, pageNo, pageSize, getAccountingDocumentMapper());
+		return findAllCandidateByFilter(AccountingDocumentTable.COLUMN_NAME, AccountingDocumentTable.COLUMN_ACCOUNTING_PERIOD, filterKey, pageNo, pageSize, getAccountingDocumentMapper());
     }
 		
 
@@ -1237,6 +1249,30 @@ public class AccountingDocumentJDBCTemplateDAO extends RetailscmBaseDAOImpl impl
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateAccountingDocument executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateAccountingDocument result = new CandidateAccountingDocument();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

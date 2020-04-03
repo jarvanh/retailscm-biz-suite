@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -64,6 +65,7 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 	
 	
 	protected		SmartList<EmployeeCompanyTraining>	mEmployeeCompanyTrainingList;
+
 	
 		
 	public 	CompanyTraining(){
@@ -111,6 +113,7 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
     
     
 	protected void changeTitleProperty(String newValueExpr){
+	
 		String oldValue = getTitle();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -120,12 +123,13 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 		updateTitle(newValue);
 		this.onChangeProperty(TITLE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeTimeStartProperty(String newValueExpr){
+	
 		Date oldValue = getTimeStart();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -135,12 +139,13 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 		updateTimeStart(newValue);
 		this.onChangeProperty(TIME_START_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDurationHoursProperty(String newValueExpr){
+	
 		int oldValue = getDurationHours();
 		int newValue = parseInt(newValueExpr);
 		if(equalsInt(oldValue , newValue)){
@@ -150,12 +155,13 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 		updateDurationHours(newValue);
 		this.onChangeProperty(DURATION_HOURS_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -165,7 +171,7 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -523,7 +529,9 @@ public class CompanyTraining extends BaseEntity implements  java.io.Serializable
 			appendKeyValuePair(result, "employeeCompanyTrainingCurrentPageNumber", getEmployeeCompanyTrainingList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

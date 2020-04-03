@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 public class RetailscmObjectChecker extends RetailscmChecker{
 
 	Set<BaseEntity> checkedObjectSet;
@@ -2049,6 +2050,112 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 
 	}
 
+	public RetailscmObjectChecker checkAndFixMobileApp(BaseEntity mobileAppAsBaseEntity){
+
+		if( isChecked(mobileAppAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(mobileAppAsBaseEntity);
+		commonObjectPropertyCheck(mobileAppAsBaseEntity,"id",this::checkIdOfMobileApp);
+		commonObjectPropertyCheck(mobileAppAsBaseEntity,"name",this::checkNameOfMobileApp);
+		commonObjectPropertyCheck(mobileAppAsBaseEntity,"version",this::checkVersionOfMobileApp);
+		commonObjectPropertyCheck(mobileAppAsBaseEntity,"pageList",this::checkPageListOfMobileApp);
+		commonObjectPropertyCheck(mobileAppAsBaseEntity,"pageTypeList",this::checkPageTypeListOfMobileApp);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixPage(BaseEntity pageAsBaseEntity){
+
+		if( isChecked(pageAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(pageAsBaseEntity);
+		commonObjectPropertyCheck(pageAsBaseEntity,"id",this::checkIdOfPage);
+		commonObjectPropertyCheck(pageAsBaseEntity,"pageTitle",this::checkPageTitleOfPage);
+		commonObjectPropertyCheck(pageAsBaseEntity,"linkToUrl",this::checkLinkToUrlOfPage);
+		commonObjectPropertyCheck(pageAsBaseEntity,"pageType",this::checkPageTypeOfPage);
+		commonObjectPropertyCheck(pageAsBaseEntity,"mobileApp",this::checkMobileAppOfPage);
+		commonObjectPropertyCheck(pageAsBaseEntity,"version",this::checkVersionOfPage);
+		commonObjectPropertyCheck(pageAsBaseEntity,"slideList",this::checkSlideListOfPage);
+		commonObjectPropertyCheck(pageAsBaseEntity,"uiActionList",this::checkUiActionListOfPage);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixPageType(BaseEntity pageTypeAsBaseEntity){
+
+		if( isChecked(pageTypeAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(pageTypeAsBaseEntity);
+		commonObjectPropertyCheck(pageTypeAsBaseEntity,"id",this::checkIdOfPageType);
+		commonObjectPropertyCheck(pageTypeAsBaseEntity,"name",this::checkNameOfPageType);
+		commonObjectPropertyCheck(pageTypeAsBaseEntity,"code",this::checkCodeOfPageType);
+		commonObjectPropertyCheck(pageTypeAsBaseEntity,"mobileApp",this::checkMobileAppOfPageType);
+		commonObjectPropertyCheck(pageTypeAsBaseEntity,"footerTab",this::checkFooterTabOfPageType);
+		commonObjectPropertyCheck(pageTypeAsBaseEntity,"version",this::checkVersionOfPageType);
+		commonObjectPropertyCheck(pageTypeAsBaseEntity,"pageList",this::checkPageListOfPageType);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixSlide(BaseEntity slideAsBaseEntity){
+
+		if( isChecked(slideAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(slideAsBaseEntity);
+		commonObjectPropertyCheck(slideAsBaseEntity,"id",this::checkIdOfSlide);
+		commonObjectPropertyCheck(slideAsBaseEntity,"displayOrder",this::checkDisplayOrderOfSlide);
+		commonObjectPropertyCheck(slideAsBaseEntity,"name",this::checkNameOfSlide);
+		commonObjectPropertyCheck(slideAsBaseEntity,"imageUrl",this::checkImageUrlOfSlide);
+		commonObjectPropertyCheck(slideAsBaseEntity,"videoUrl",this::checkVideoUrlOfSlide);
+		commonObjectPropertyCheck(slideAsBaseEntity,"linkToUrl",this::checkLinkToUrlOfSlide);
+		commonObjectPropertyCheck(slideAsBaseEntity,"page",this::checkPageOfSlide);
+		commonObjectPropertyCheck(slideAsBaseEntity,"version",this::checkVersionOfSlide);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixUiAction(BaseEntity uiActionAsBaseEntity){
+
+		if( isChecked(uiActionAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(uiActionAsBaseEntity);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"id",this::checkIdOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"code",this::checkCodeOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"icon",this::checkIconOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"title",this::checkTitleOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"brief",this::checkBriefOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"imageUrl",this::checkImageUrlOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"linkToUrl",this::checkLinkToUrlOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"extraData",this::checkExtraDataOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"page",this::checkPageOfUiAction);
+		commonObjectPropertyCheck(uiActionAsBaseEntity,"version",this::checkVersionOfUiAction);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixSection(BaseEntity sectionAsBaseEntity){
+
+		if( isChecked(sectionAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(sectionAsBaseEntity);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"id",this::checkIdOfSection);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"title",this::checkTitleOfSection);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"brief",this::checkBriefOfSection);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"icon",this::checkIconOfSection);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"viewGroup",this::checkViewGroupOfSection);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"linkToUrl",this::checkLinkToUrlOfSection);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"page",this::checkPageOfSection);
+		commonObjectPropertyCheck(sectionAsBaseEntity,"version",this::checkVersionOfSection);
+		return this;
+
+	}
+
 	public RetailscmObjectChecker checkAndFixUserDomain(BaseEntity userDomainAsBaseEntity){
 
 		if( isChecked(userDomainAsBaseEntity) ){
@@ -2100,6 +2207,8 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(secUserAsBaseEntity,"version",this::checkVersionOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"userAppList",this::checkUserAppListOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"loginHistoryList",this::checkLoginHistoryListOfSecUser);
+		commonObjectPropertyCheck(secUserAsBaseEntity,"wechatWorkappIdentifyList",this::checkWechatWorkappIdentifyListOfSecUser);
+		commonObjectPropertyCheck(secUserAsBaseEntity,"wechatMiniappIdentifyList",this::checkWechatMiniappIdentifyListOfSecUser);
 		return this;
 
 	}
@@ -2326,6 +2435,56 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		commonObjectPropertyCheck(candidateElementAsBaseEntity,"image",this::checkImageOfCandidateElement);
 		commonObjectPropertyCheck(candidateElementAsBaseEntity,"container",this::checkContainerOfCandidateElement);
 		commonObjectPropertyCheck(candidateElementAsBaseEntity,"version",this::checkVersionOfCandidateElement);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixWechatWorkappIdentify(BaseEntity wechatWorkappIdentifyAsBaseEntity){
+
+		if( isChecked(wechatWorkappIdentifyAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(wechatWorkappIdentifyAsBaseEntity);
+		commonObjectPropertyCheck(wechatWorkappIdentifyAsBaseEntity,"id",this::checkIdOfWechatWorkappIdentify);
+		commonObjectPropertyCheck(wechatWorkappIdentifyAsBaseEntity,"corpId",this::checkCorpIdOfWechatWorkappIdentify);
+		commonObjectPropertyCheck(wechatWorkappIdentifyAsBaseEntity,"userId",this::checkUserIdOfWechatWorkappIdentify);
+		commonObjectPropertyCheck(wechatWorkappIdentifyAsBaseEntity,"secUser",this::checkSecUserOfWechatWorkappIdentify);
+		commonObjectPropertyAssign(wechatWorkappIdentifyAsBaseEntity,"createTime",this::assignCreateTimeOfWechatWorkappIdentify);
+		commonObjectPropertyCheck(wechatWorkappIdentifyAsBaseEntity,"lastLoginTime",this::checkLastLoginTimeOfWechatWorkappIdentify);
+		commonObjectPropertyCheck(wechatWorkappIdentifyAsBaseEntity,"version",this::checkVersionOfWechatWorkappIdentify);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixWechatMiniappIdentify(BaseEntity wechatMiniappIdentifyAsBaseEntity){
+
+		if( isChecked(wechatMiniappIdentifyAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(wechatMiniappIdentifyAsBaseEntity);
+		commonObjectPropertyCheck(wechatMiniappIdentifyAsBaseEntity,"id",this::checkIdOfWechatMiniappIdentify);
+		commonObjectPropertyCheck(wechatMiniappIdentifyAsBaseEntity,"openId",this::checkOpenIdOfWechatMiniappIdentify);
+		commonObjectPropertyCheck(wechatMiniappIdentifyAsBaseEntity,"appId",this::checkAppIdOfWechatMiniappIdentify);
+		commonObjectPropertyCheck(wechatMiniappIdentifyAsBaseEntity,"secUser",this::checkSecUserOfWechatMiniappIdentify);
+		commonObjectPropertyAssign(wechatMiniappIdentifyAsBaseEntity,"createTime",this::assignCreateTimeOfWechatMiniappIdentify);
+		commonObjectPropertyCheck(wechatMiniappIdentifyAsBaseEntity,"lastLoginTime",this::checkLastLoginTimeOfWechatMiniappIdentify);
+		commonObjectPropertyCheck(wechatMiniappIdentifyAsBaseEntity,"version",this::checkVersionOfWechatMiniappIdentify);
+		return this;
+
+	}
+
+	public RetailscmObjectChecker checkAndFixTreeNode(BaseEntity treeNodeAsBaseEntity){
+
+		if( isChecked(treeNodeAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(treeNodeAsBaseEntity);
+		commonObjectPropertyCheck(treeNodeAsBaseEntity,"id",this::checkIdOfTreeNode);
+		commonObjectPropertyCheck(treeNodeAsBaseEntity,"nodeId",this::checkNodeIdOfTreeNode);
+		commonObjectPropertyCheck(treeNodeAsBaseEntity,"nodeType",this::checkNodeTypeOfTreeNode);
+		commonObjectPropertyCheck(treeNodeAsBaseEntity,"leftValue",this::checkLeftValueOfTreeNode);
+		commonObjectPropertyCheck(treeNodeAsBaseEntity,"rightValue",this::checkRightValueOfTreeNode);
+		commonObjectPropertyCheck(treeNodeAsBaseEntity,"version",this::checkVersionOfTreeNode);
 		return this;
 
 	}
@@ -5355,6 +5514,111 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 	}
 
 
+	public RetailscmObjectChecker checkPageListOfMobileApp(List<BaseEntity> pageList){
+		AtomicInteger index = new AtomicInteger();
+		pageList.stream().forEach(page->
+			commonObjectElementCheck(page,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixPage));
+		return this;
+	}
+
+	public RetailscmObjectChecker checkPageTypeListOfMobileApp(List<BaseEntity> pageTypeList){
+		AtomicInteger index = new AtomicInteger();
+		pageTypeList.stream().forEach(pageType->
+			commonObjectElementCheck(pageType,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixPageType));
+		return this;
+	}
+
+	public RetailscmObjectChecker checkSlideListOfPage(List<BaseEntity> slideList){
+		AtomicInteger index = new AtomicInteger();
+		slideList.stream().forEach(slide->
+			commonObjectElementCheck(slide,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSlide));
+		return this;
+	}
+
+	public RetailscmObjectChecker checkUiActionListOfPage(List<BaseEntity> uiActionList){
+		AtomicInteger index = new AtomicInteger();
+		uiActionList.stream().forEach(uiAction->
+			commonObjectElementCheck(uiAction,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixUiAction));
+		return this;
+	}
+
+	public static final String PAGE_TYPE_OF_PAGE = "page.page_type";
+
+
+	public RetailscmObjectChecker checkPageTypeOfPage(BaseEntity pageTypeAsBaseEntity){
+
+		if(pageTypeAsBaseEntity == null){
+			checkBaseEntityReference(pageTypeAsBaseEntity,true,PAGE_TYPE_OF_PAGE);
+			return this;
+		}
+		checkAndFixPageType(pageTypeAsBaseEntity);
+		return this;
+	}
+
+
+	public static final String MOBILE_APP_OF_PAGE = "page.mobile_app";
+
+
+	public RetailscmObjectChecker checkMobileAppOfPage(BaseEntity mobileAppAsBaseEntity){
+
+		if(mobileAppAsBaseEntity == null){
+			checkBaseEntityReference(mobileAppAsBaseEntity,true,MOBILE_APP_OF_PAGE);
+			return this;
+		}
+		checkAndFixMobileApp(mobileAppAsBaseEntity);
+		return this;
+	}
+
+
+	public RetailscmObjectChecker checkPageListOfPageType(List<BaseEntity> pageList){
+		AtomicInteger index = new AtomicInteger();
+		pageList.stream().forEach(page->
+			commonObjectElementCheck(page,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixPage));
+		return this;
+	}
+
+	public static final String MOBILE_APP_OF_PAGE_TYPE = "page_type.mobile_app";
+
+
+	public RetailscmObjectChecker checkMobileAppOfPageType(BaseEntity mobileAppAsBaseEntity){
+
+		if(mobileAppAsBaseEntity == null){
+			checkBaseEntityReference(mobileAppAsBaseEntity,true,MOBILE_APP_OF_PAGE_TYPE);
+			return this;
+		}
+		checkAndFixMobileApp(mobileAppAsBaseEntity);
+		return this;
+	}
+
+
+	public static final String PAGE_OF_SLIDE = "slide.page";
+
+
+	public RetailscmObjectChecker checkPageOfSlide(BaseEntity pageAsBaseEntity){
+
+		if(pageAsBaseEntity == null){
+			checkBaseEntityReference(pageAsBaseEntity,true,PAGE_OF_SLIDE);
+			return this;
+		}
+		checkAndFixPage(pageAsBaseEntity);
+		return this;
+	}
+
+
+	public static final String PAGE_OF_UI_ACTION = "ui_action.page";
+
+
+	public RetailscmObjectChecker checkPageOfUiAction(BaseEntity pageAsBaseEntity){
+
+		if(pageAsBaseEntity == null){
+			checkBaseEntityReference(pageAsBaseEntity,true,PAGE_OF_UI_ACTION);
+			return this;
+		}
+		checkAndFixPage(pageAsBaseEntity);
+		return this;
+	}
+
+
 	public RetailscmObjectChecker checkUserWhiteListListOfUserDomain(List<BaseEntity> userWhiteListList){
 		AtomicInteger index = new AtomicInteger();
 		userWhiteListList.stream().forEach(userWhiteList->
@@ -5394,6 +5658,20 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 		AtomicInteger index = new AtomicInteger();
 		loginHistoryList.stream().forEach(loginHistory->
 			commonObjectElementCheck(loginHistory,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixLoginHistory));
+		return this;
+	}
+
+	public RetailscmObjectChecker checkWechatWorkappIdentifyListOfSecUser(List<BaseEntity> wechatWorkappIdentifyList){
+		AtomicInteger index = new AtomicInteger();
+		wechatWorkappIdentifyList.stream().forEach(wechatWorkappIdentify->
+			commonObjectElementCheck(wechatWorkappIdentify,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixWechatWorkappIdentify));
+		return this;
+	}
+
+	public RetailscmObjectChecker checkWechatMiniappIdentifyListOfSecUser(List<BaseEntity> wechatMiniappIdentifyList){
+		AtomicInteger index = new AtomicInteger();
+		wechatMiniappIdentifyList.stream().forEach(wechatMiniappIdentify->
+			commonObjectElementCheck(wechatMiniappIdentify,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixWechatMiniappIdentify));
 		return this;
 	}
 
@@ -5603,6 +5881,34 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 			return this;
 		}
 		checkAndFixCandidateContainer(containerAsBaseEntity);
+		return this;
+	}
+
+
+	public static final String SEC_USER_OF_WECHAT_WORKAPP_IDENTIFY = "wechat_workapp_identify.sec_user";
+
+
+	public RetailscmObjectChecker checkSecUserOfWechatWorkappIdentify(BaseEntity secUserAsBaseEntity){
+
+		if(secUserAsBaseEntity == null){
+			checkBaseEntityReference(secUserAsBaseEntity,true,SEC_USER_OF_WECHAT_WORKAPP_IDENTIFY);
+			return this;
+		}
+		checkAndFixSecUser(secUserAsBaseEntity);
+		return this;
+	}
+
+
+	public static final String SEC_USER_OF_WECHAT_MINIAPP_IDENTIFY = "wechat_miniapp_identify.sec_user";
+
+
+	public RetailscmObjectChecker checkSecUserOfWechatMiniappIdentify(BaseEntity secUserAsBaseEntity){
+
+		if(secUserAsBaseEntity == null){
+			checkBaseEntityReference(secUserAsBaseEntity,true,SEC_USER_OF_WECHAT_MINIAPP_IDENTIFY);
+			return this;
+		}
+		checkAndFixSecUser(secUserAsBaseEntity);
 		return this;
 	}
 
@@ -5820,6 +6126,26 @@ public class RetailscmObjectChecker extends RetailscmChecker{
 			return this;
 		}
 		setEntityProperty(targetEntity,"loginTime",userContext.now());
+		return this;
+	}
+	public RetailscmObjectChecker assignCreateTimeOfWechatWorkappIdentify(BaseEntity targetEntity){
+		if(!isObjectForCreate(targetEntity)){
+			return this;
+		}
+		if(userContext==null){
+			return this;
+		}
+		setEntityProperty(targetEntity,"createTime",userContext.now());
+		return this;
+	}
+	public RetailscmObjectChecker assignCreateTimeOfWechatMiniappIdentify(BaseEntity targetEntity){
+		if(!isObjectForCreate(targetEntity)){
+			return this;
+		}
+		if(userContext==null){
+			return this;
+		}
+		setEntityProperty(targetEntity,"createTime",userContext.now());
 		return this;
 	}
 

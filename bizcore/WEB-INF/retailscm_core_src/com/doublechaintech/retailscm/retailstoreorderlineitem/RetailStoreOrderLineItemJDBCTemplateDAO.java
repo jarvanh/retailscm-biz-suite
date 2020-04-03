@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -439,11 +443,21 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImp
  			parameters[0] = retailStoreOrderLineItem.getBizOrder().getId();
  		}
  
+ 		
  		parameters[1] = retailStoreOrderLineItem.getSkuId();
+ 		
+ 		
  		parameters[2] = retailStoreOrderLineItem.getSkuName();
+ 		
+ 		
  		parameters[3] = retailStoreOrderLineItem.getAmount();
+ 		
+ 		
  		parameters[4] = retailStoreOrderLineItem.getQuantity();
- 		parameters[5] = retailStoreOrderLineItem.getUnitOfMeasurement();		
+ 		
+ 		
+ 		parameters[5] = retailStoreOrderLineItem.getUnitOfMeasurement();
+ 				
  		parameters[6] = retailStoreOrderLineItem.nextVersion();
  		parameters[7] = retailStoreOrderLineItem.getId();
  		parameters[8] = retailStoreOrderLineItem.getVersion();
@@ -461,11 +475,21 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImp
  		
  		}
  		
+ 		
  		parameters[2] = retailStoreOrderLineItem.getSkuId();
+ 		
+ 		
  		parameters[3] = retailStoreOrderLineItem.getSkuName();
+ 		
+ 		
  		parameters[4] = retailStoreOrderLineItem.getAmount();
+ 		
+ 		
  		parameters[5] = retailStoreOrderLineItem.getQuantity();
- 		parameters[6] = retailStoreOrderLineItem.getUnitOfMeasurement();		
+ 		
+ 		
+ 		parameters[6] = retailStoreOrderLineItem.getUnitOfMeasurement();
+ 				
  				
  		return parameters;
  	}
@@ -566,6 +590,30 @@ public class RetailStoreOrderLineItemJDBCTemplateDAO extends RetailscmBaseDAOImp
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreOrderLineItem executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreOrderLineItem result = new CandidateRetailStoreOrderLineItem();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

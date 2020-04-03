@@ -108,6 +108,12 @@ import com.doublechaintech.retailscm.employeeeducation.EmployeeEducation;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAward;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
 import com.doublechaintech.retailscm.payingoff.PayingOff;
+import com.doublechaintech.retailscm.mobileapp.MobileApp;
+import com.doublechaintech.retailscm.page.Page;
+import com.doublechaintech.retailscm.pagetype.PageType;
+import com.doublechaintech.retailscm.slide.Slide;
+import com.doublechaintech.retailscm.uiaction.UiAction;
+import com.doublechaintech.retailscm.section.Section;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
 import com.doublechaintech.retailscm.secuser.SecUser;
@@ -123,6 +129,9 @@ import com.doublechaintech.retailscm.formfield.FormField;
 import com.doublechaintech.retailscm.formaction.FormAction;
 import com.doublechaintech.retailscm.candidatecontainer.CandidateContainer;
 import com.doublechaintech.retailscm.candidateelement.CandidateElement;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentify;
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentify;
+import com.doublechaintech.retailscm.treenode.TreeNode;
 
 public class BeanFactoryImpl{
 
@@ -657,6 +666,36 @@ public class BeanFactoryImpl{
 	}
 
 
+	public MobileApp createMobileApp(Map<String,Object> options){
+		return new MobileApp();
+	}
+
+
+	public Page createPage(Map<String,Object> options){
+		return new Page();
+	}
+
+
+	public PageType createPageType(Map<String,Object> options){
+		return new PageType();
+	}
+
+
+	public Slide createSlide(Map<String,Object> options){
+		return new Slide();
+	}
+
+
+	public UiAction createUiAction(Map<String,Object> options){
+		return new UiAction();
+	}
+
+
+	public Section createSection(Map<String,Object> options){
+		return new Section();
+	}
+
+
 	public UserDomain createUserDomain(Map<String,Object> options){
 		return new UserDomain();
 	}
@@ -732,10 +771,35 @@ public class BeanFactoryImpl{
 	}
 
 
+	public WechatWorkappIdentify createWechatWorkappIdentify(Map<String,Object> options){
+		return new WechatWorkappIdentify();
+	}
+
+
+	public WechatMiniappIdentify createWechatMiniappIdentify(Map<String,Object> options){
+		return new WechatMiniappIdentify();
+	}
+
+
+	public TreeNode createTreeNode(Map<String,Object> options){
+		return new TreeNode();
+	}
+
+
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

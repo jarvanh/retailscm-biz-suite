@@ -8,7 +8,7 @@
 
 	<!-- Enable Annotation based Declarative Transaction Management -->
 
-
+  <bean id="modelService" class="com.doublechaintech.retailscm.ModelService"/>
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
   	  <property name="poolName" value="retailscm_connection_pool" />
   	  <property name="dataSourceClassName" value="${app.database.dataSourceClassName}"/>
@@ -975,6 +975,52 @@
 	<bean id="payingOffDAO" parent="payingOffDAOBase"></bean>
 	
 
+	<bean id="mobileAppDAOBase" class="com.doublechaintech.retailscm.mobileapp.MobileAppJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" />
+		<property name="pageDAO" ref="pageDAO" />
+		
+		<property name="pageTypeDAO" ref="pageTypeDAO" />
+		
+	</bean>
+	<bean id="mobileAppDAO" parent="mobileAppDAOBase"></bean>
+	
+
+	<bean id="pageDAOBase" class="com.doublechaintech.retailscm.page.PageJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="pageTypeDAO" ref="pageTypeDAO" /><property name="mobileAppDAO" ref="mobileAppDAO" />
+		<property name="slideDAO" ref="slideDAO" />
+		
+		<property name="uiActionDAO" ref="uiActionDAO" />
+		
+	</bean>
+	<bean id="pageDAO" parent="pageDAOBase"></bean>
+	
+
+	<bean id="pageTypeDAOBase" class="com.doublechaintech.retailscm.pagetype.PageTypeJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="mobileAppDAO" ref="mobileAppDAO" />
+		<property name="pageDAO" ref="pageDAO" />
+		
+	</bean>
+	<bean id="pageTypeDAO" parent="pageTypeDAOBase"></bean>
+	
+
+	<bean id="slideDAOBase" class="com.doublechaintech.retailscm.slide.SlideJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="pageDAO" ref="pageDAO" />
+	</bean>
+	<bean id="slideDAO" parent="slideDAOBase"></bean>
+	
+
+	<bean id="uiActionDAOBase" class="com.doublechaintech.retailscm.uiaction.UiActionJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="pageDAO" ref="pageDAO" />
+	</bean>
+	<bean id="uiActionDAO" parent="uiActionDAOBase"></bean>
+	
+
+	<bean id="sectionDAOBase" class="com.doublechaintech.retailscm.section.SectionJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="sectionDAO" parent="sectionDAOBase"></bean>
+	
+
 	<bean id="userDomainDAOBase" class="com.doublechaintech.retailscm.userdomain.UserDomainJDBCTemplateDAO">
 		<property name="dataSource" ref="dataSource" />
 		<property name="userWhiteListDAO" ref="userWhiteListDAO" />
@@ -996,6 +1042,10 @@
 		<property name="userAppDAO" ref="userAppDAO" />
 		
 		<property name="loginHistoryDAO" ref="loginHistoryDAO" />
+		
+		<property name="wechatWorkappIdentifyDAO" ref="wechatWorkappIdentifyDAO" />
+		
+		<property name="wechatMiniappIdentifyDAO" ref="wechatMiniappIdentifyDAO" />
 		
 	</bean>
 	<bean id="secUserDAO" parent="secUserDAOBase"></bean>
@@ -1087,6 +1137,24 @@
 		<property name="dataSource" ref="dataSource" /><property name="candidateContainerDAO" ref="candidateContainerDAO" />
 	</bean>
 	<bean id="candidateElementDAO" parent="candidateElementDAOBase"></bean>
+	
+
+	<bean id="wechatWorkappIdentifyDAOBase" class="com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="secUserDAO" ref="secUserDAO" />
+	</bean>
+	<bean id="wechatWorkappIdentifyDAO" parent="wechatWorkappIdentifyDAOBase"></bean>
+	
+
+	<bean id="wechatMiniappIdentifyDAOBase" class="com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="secUserDAO" ref="secUserDAO" />
+	</bean>
+	<bean id="wechatMiniappIdentifyDAO" parent="wechatMiniappIdentifyDAOBase"></bean>
+	
+
+	<bean id="treeNodeDAOBase" class="com.doublechaintech.retailscm.treenode.TreeNodeJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="treeNodeDAO" parent="treeNodeDAOBase"></bean>
 	
 
 
@@ -1197,6 +1265,12 @@
 		<property name="employeeAwardDAO" ref="employeeAwardDAO"/>
 		<property name="employeeSalarySheetDAO" ref="employeeSalarySheetDAO"/>
 		<property name="payingOffDAO" ref="payingOffDAO"/>
+		<property name="mobileAppDAO" ref="mobileAppDAO"/>
+		<property name="pageDAO" ref="pageDAO"/>
+		<property name="pageTypeDAO" ref="pageTypeDAO"/>
+		<property name="slideDAO" ref="slideDAO"/>
+		<property name="uiActionDAO" ref="uiActionDAO"/>
+		<property name="sectionDAO" ref="sectionDAO"/>
 		<property name="userDomainDAO" ref="userDomainDAO"/>
 		<property name="userWhiteListDAO" ref="userWhiteListDAO"/>
 		<property name="secUserDAO" ref="secUserDAO"/>
@@ -1212,6 +1286,9 @@
 		<property name="formActionDAO" ref="formActionDAO"/>
 		<property name="candidateContainerDAO" ref="candidateContainerDAO"/>
 		<property name="candidateElementDAO" ref="candidateElementDAO"/>
+		<property name="wechatWorkappIdentifyDAO" ref="wechatWorkappIdentifyDAO"/>
+		<property name="wechatMiniappIdentifyDAO" ref="wechatMiniappIdentifyDAO"/>
+		<property name="treeNodeDAO" ref="treeNodeDAO"/>
 	</bean>
 	<bean id="DAOGroup" parent="DAOGroupBase"></bean>
 </beans>
@@ -1303,6 +1380,16 @@
 
 
 -->
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -50,6 +51,7 @@ public class View extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	View(){
@@ -91,6 +93,7 @@ public class View extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeWhoProperty(String newValueExpr){
+	
 		String oldValue = getWho();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -100,12 +103,13 @@ public class View extends BaseEntity implements  java.io.Serializable{
 		updateWho(newValue);
 		this.onChangeProperty(WHO_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAssessmentProperty(String newValueExpr){
+	
 		String oldValue = getAssessment();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -115,12 +119,13 @@ public class View extends BaseEntity implements  java.io.Serializable{
 		updateAssessment(newValue);
 		this.onChangeProperty(ASSESSMENT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeInterviewTimeProperty(String newValueExpr){
+	
 		Date oldValue = getInterviewTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -130,7 +135,7 @@ public class View extends BaseEntity implements  java.io.Serializable{
 		updateInterviewTime(newValue);
 		this.onChangeProperty(INTERVIEW_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -272,7 +277,9 @@ public class View extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, INTERVIEW_TIME_PROPERTY, getInterviewTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

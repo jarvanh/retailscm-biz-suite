@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.eventattendance;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -49,6 +50,7 @@ public interface EventAttendanceDAO extends BaseDAO{
 	
 	public SmartList<EventAttendance> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateEventAttendance executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<EventAttendance> findEventAttendanceByPotentialCustomer(String potentialCustomerId, Map<String,Object> options);
  	public int countEventAttendanceByPotentialCustomer(String potentialCustomerId, Map<String,Object> options);

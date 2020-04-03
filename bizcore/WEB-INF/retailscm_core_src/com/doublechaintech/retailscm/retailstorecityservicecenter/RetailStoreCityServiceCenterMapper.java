@@ -29,7 +29,9 @@ public class RetailStoreCityServiceCenterMapper extends BaseRowMapper<RetailStor
 	protected void setId(RetailStoreCityServiceCenter retailStoreCityServiceCenter, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(RetailStoreCityServiceCenterTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class RetailStoreCityServiceCenterMapper extends BaseRowMapper<RetailStor
 	protected void setName(RetailStoreCityServiceCenter retailStoreCityServiceCenter, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(RetailStoreCityServiceCenterTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class RetailStoreCityServiceCenterMapper extends BaseRowMapper<RetailStor
 	protected void setFounded(RetailStoreCityServiceCenter retailStoreCityServiceCenter, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date founded = rs.getDate(RetailStoreCityServiceCenterTable.COLUMN_FOUNDED);
+		
 		if(founded == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class RetailStoreCityServiceCenterMapper extends BaseRowMapper<RetailStor
 	protected void setLastUpdateTime(RetailStoreCityServiceCenter retailStoreCityServiceCenter, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(RetailStoreCityServiceCenterTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class RetailStoreCityServiceCenterMapper extends BaseRowMapper<RetailStor
 	protected void setVersion(RetailStoreCityServiceCenter retailStoreCityServiceCenter, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(RetailStoreCityServiceCenterTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

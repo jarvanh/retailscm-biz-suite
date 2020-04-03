@@ -21,6 +21,8 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 	public static final String ID_PROPERTY                    = "id"                ;
 	public static final String TITLE_PROPERTY                 = "title"             ;
 	public static final String BRIEF_PROPERTY                 = "brief"             ;
+	public static final String ICON_PROPERTY                  = "icon"              ;
+	public static final String VIEW_GROUP_PROPERTY            = "viewGroup"         ;
 	public static final String LINK_TO_URL_PROPERTY           = "linkToUrl"         ;
 	public static final String PAGE_PROPERTY                  = "page"              ;
 	public static final String VERSION_PROPERTY               = "version"           ;
@@ -48,11 +50,14 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 	protected		String              	mId                 ;
 	protected		String              	mTitle              ;
 	protected		String              	mBrief              ;
+	protected		String              	mIcon               ;
+	protected		String              	mViewGroup          ;
 	protected		String              	mLinkToUrl          ;
 	protected		String              	mPage               ;
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	Section(){
@@ -84,6 +89,12 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 		}
 		if(BRIEF_PROPERTY.equals(property)){
 			changeBriefProperty(newValueExpr);
+		}
+		if(ICON_PROPERTY.equals(property)){
+			changeIconProperty(newValueExpr);
+		}
+		if(VIEW_GROUP_PROPERTY.equals(property)){
+			changeViewGroupProperty(newValueExpr);
 		}
 		if(LINK_TO_URL_PROPERTY.equals(property)){
 			changeLinkToUrlProperty(newValueExpr);
@@ -122,6 +133,38 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 		//they are surely different each other
 		updateBrief(newValue);
 		this.onChangeProperty(BRIEF_PROPERTY, oldValue, newValue);
+		return;
+   
+	}
+			
+			
+			
+	protected void changeIconProperty(String newValueExpr){
+	
+		String oldValue = getIcon();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateIcon(newValue);
+		this.onChangeProperty(ICON_PROPERTY, oldValue, newValue);
+		return;
+   
+	}
+			
+			
+			
+	protected void changeViewGroupProperty(String newValueExpr){
+	
+		String oldValue = getViewGroup();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateViewGroup(newValue);
+		this.onChangeProperty(VIEW_GROUP_PROPERTY, oldValue, newValue);
 		return;
    
 	}
@@ -170,6 +213,12 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 		}
 		if(BRIEF_PROPERTY.equals(property)){
 			return getBrief();
+		}
+		if(ICON_PROPERTY.equals(property)){
+			return getIcon();
+		}
+		if(VIEW_GROUP_PROPERTY.equals(property)){
+			return getViewGroup();
 		}
 		if(LINK_TO_URL_PROPERTY.equals(property)){
 			return getLinkToUrl();
@@ -233,6 +282,38 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 	}
 	public void mergeBrief(String brief){
 		if(brief != null) { setBrief(brief);}
+	}
+	
+	
+	public void setIcon(String icon){
+		this.mIcon = trimString(icon);;
+	}
+	public String getIcon(){
+		return this.mIcon;
+	}
+	public Section updateIcon(String icon){
+		this.mIcon = trimString(icon);;
+		this.changed = true;
+		return this;
+	}
+	public void mergeIcon(String icon){
+		if(icon != null) { setIcon(icon);}
+	}
+	
+	
+	public void setViewGroup(String viewGroup){
+		this.mViewGroup = trimString(viewGroup);;
+	}
+	public String getViewGroup(){
+		return this.mViewGroup;
+	}
+	public Section updateViewGroup(String viewGroup){
+		this.mViewGroup = trimString(viewGroup);;
+		this.changed = true;
+		return this;
+	}
+	public void mergeViewGroup(String viewGroup){
+		if(viewGroup != null) { setViewGroup(viewGroup);}
 	}
 	
 	
@@ -313,11 +394,15 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, ID_PROPERTY, getId());
 		appendKeyValuePair(result, TITLE_PROPERTY, getTitle());
 		appendKeyValuePair(result, BRIEF_PROPERTY, getBrief());
+		appendKeyValuePair(result, ICON_PROPERTY, getIcon());
+		appendKeyValuePair(result, VIEW_GROUP_PROPERTY, getViewGroup());
 		appendKeyValuePair(result, LINK_TO_URL_PROPERTY, getLinkToUrl());
 		appendKeyValuePair(result, PAGE_PROPERTY, getPage());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	
@@ -333,6 +418,8 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 			dest.setId(getId());
 			dest.setTitle(getTitle());
 			dest.setBrief(getBrief());
+			dest.setIcon(getIcon());
+			dest.setViewGroup(getViewGroup());
 			dest.setLinkToUrl(getLinkToUrl());
 			dest.setPage(getPage());
 			dest.setVersion(getVersion());
@@ -352,6 +439,8 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeTitle(getTitle());
 			dest.mergeBrief(getBrief());
+			dest.mergeIcon(getIcon());
+			dest.mergeViewGroup(getViewGroup());
 			dest.mergeLinkToUrl(getLinkToUrl());
 			dest.mergePage(getPage());
 			dest.mergeVersion(getVersion());
@@ -372,6 +461,8 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeTitle(getTitle());
 			dest.mergeBrief(getBrief());
+			dest.mergeIcon(getIcon());
+			dest.mergeViewGroup(getViewGroup());
 			dest.mergeLinkToUrl(getLinkToUrl());
 			dest.mergePage(getPage());
 			dest.mergeVersion(getVersion());
@@ -380,7 +471,7 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 		return baseDest;
 	}
 	public Object[] toFlatArray(){
-		return new Object[]{getId(), getTitle(), getBrief(), getLinkToUrl(), getPage(), getVersion()};
+		return new Object[]{getId(), getTitle(), getBrief(), getIcon(), getViewGroup(), getLinkToUrl(), getPage(), getVersion()};
 	}
 	public String toString(){
 		StringBuilder stringBuilder=new StringBuilder(128);
@@ -389,6 +480,8 @@ public class Section extends BaseEntity implements  java.io.Serializable{
 		stringBuilder.append("\tid='"+getId()+"';");
 		stringBuilder.append("\ttitle='"+getTitle()+"';");
 		stringBuilder.append("\tbrief='"+getBrief()+"';");
+		stringBuilder.append("\ticon='"+getIcon()+"';");
+		stringBuilder.append("\tviewGroup='"+getViewGroup()+"';");
 		stringBuilder.append("\tlinkToUrl='"+getLinkToUrl()+"';");
 		stringBuilder.append("\tpage='"+getPage()+"';");
 		stringBuilder.append("\tversion='"+getVersion()+"';");

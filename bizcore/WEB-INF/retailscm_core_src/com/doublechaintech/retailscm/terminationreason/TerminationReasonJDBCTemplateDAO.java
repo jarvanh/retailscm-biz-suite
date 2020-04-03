@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,12 +539,16 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
  	protected Object[] prepareTerminationReasonUpdateParameters(TerminationReason terminationReason){
  		Object[] parameters = new Object[6];
  
- 		parameters[0] = terminationReason.getCode(); 	
+ 		
+ 		parameters[0] = terminationReason.getCode();
+ 		 	
  		if(terminationReason.getCompany() != null){
  			parameters[1] = terminationReason.getCompany().getId();
  		}
  
- 		parameters[2] = terminationReason.getDescription();		
+ 		
+ 		parameters[2] = terminationReason.getDescription();
+ 				
  		parameters[3] = terminationReason.nextVersion();
  		parameters[4] = terminationReason.getId();
  		parameters[5] = terminationReason.getVersion();
@@ -553,13 +561,17 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 		terminationReason.setId(newTerminationReasonId);
 		parameters[0] =  terminationReason.getId();
  
- 		parameters[1] = terminationReason.getCode(); 	
+ 		
+ 		parameters[1] = terminationReason.getCode();
+ 		 	
  		if(terminationReason.getCompany() != null){
  			parameters[2] = terminationReason.getCompany().getId();
  		
  		}
  		
- 		parameters[3] = terminationReason.getDescription();		
+ 		
+ 		parameters[3] = terminationReason.getDescription();
+ 				
  				
  		return parameters;
  	}
@@ -781,7 +793,7 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
     public SmartList<TerminationReason> requestCandidateTerminationReasonForTermination(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(TerminationReasonTable.COLUMN_CODE, filterKey, pageNo, pageSize, getTerminationReasonMapper());
+		return findAllCandidateByFilter(TerminationReasonTable.COLUMN_CODE, TerminationReasonTable.COLUMN_COMPANY, filterKey, pageNo, pageSize, getTerminationReasonMapper());
     }
 		
 
@@ -855,6 +867,30 @@ public class TerminationReasonJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateTerminationReason executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateTerminationReason result = new CandidateTerminationReason();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

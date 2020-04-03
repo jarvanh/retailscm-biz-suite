@@ -213,6 +213,18 @@ import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheetMana
 
 import com.doublechaintech.retailscm.payingoff.PayingOffManager;
 
+import com.doublechaintech.retailscm.mobileapp.MobileAppManager;
+
+import com.doublechaintech.retailscm.page.PageManager;
+
+import com.doublechaintech.retailscm.pagetype.PageTypeManager;
+
+import com.doublechaintech.retailscm.slide.SlideManager;
+
+import com.doublechaintech.retailscm.uiaction.UiActionManager;
+
+import com.doublechaintech.retailscm.section.SectionManager;
+
 import com.doublechaintech.retailscm.userdomain.UserDomainManager;
 
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteListManager;
@@ -242,6 +254,12 @@ import com.doublechaintech.retailscm.formaction.FormActionManager;
 import com.doublechaintech.retailscm.candidatecontainer.CandidateContainerManager;
 
 import com.doublechaintech.retailscm.candidateelement.CandidateElementManager;
+
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyManager;
+
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyManager;
+
+import com.doublechaintech.retailscm.treenode.TreeNodeManager;
 
 
 public class ManagerGroup {
@@ -458,6 +476,18 @@ public class ManagerGroup {
 
 	protected PayingOffManager payingOffManager;
 
+	protected MobileAppManager mobileAppManager;
+
+	protected PageManager pageManager;
+
+	protected PageTypeManager pageTypeManager;
+
+	protected SlideManager slideManager;
+
+	protected UiActionManager uiActionManager;
+
+	protected SectionManager sectionManager;
+
 	protected UserDomainManager userDomainManager;
 
 	protected UserWhiteListManager userWhiteListManager;
@@ -488,7 +518,13 @@ public class ManagerGroup {
 
 	protected CandidateElementManager candidateElementManager;
 
-	
+	protected WechatWorkappIdentifyManager wechatWorkappIdentifyManager;
+
+	protected WechatMiniappIdentifyManager wechatMiniappIdentifyManager;
+
+	protected TreeNodeManager treeNodeManager;
+
+
 
 	public RetailStoreCountryCenterManager getRetailStoreCountryCenterManager(){
 		return this.retailStoreCountryCenterManager;
@@ -1338,6 +1374,54 @@ public class ManagerGroup {
 	}
 
 
+	public MobileAppManager getMobileAppManager(){
+		return this.mobileAppManager;
+	}
+	public void setMobileAppManager(MobileAppManager manager){
+		this.mobileAppManager = manager;
+	}
+
+
+	public PageManager getPageManager(){
+		return this.pageManager;
+	}
+	public void setPageManager(PageManager manager){
+		this.pageManager = manager;
+	}
+
+
+	public PageTypeManager getPageTypeManager(){
+		return this.pageTypeManager;
+	}
+	public void setPageTypeManager(PageTypeManager manager){
+		this.pageTypeManager = manager;
+	}
+
+
+	public SlideManager getSlideManager(){
+		return this.slideManager;
+	}
+	public void setSlideManager(SlideManager manager){
+		this.slideManager = manager;
+	}
+
+
+	public UiActionManager getUiActionManager(){
+		return this.uiActionManager;
+	}
+	public void setUiActionManager(UiActionManager manager){
+		this.uiActionManager = manager;
+	}
+
+
+	public SectionManager getSectionManager(){
+		return this.sectionManager;
+	}
+	public void setSectionManager(SectionManager manager){
+		this.sectionManager = manager;
+	}
+
+
 	public UserDomainManager getUserDomainManager(){
 		return this.userDomainManager;
 	}
@@ -1458,7 +1542,41 @@ public class ManagerGroup {
 	}
 
 
+	public WechatWorkappIdentifyManager getWechatWorkappIdentifyManager(){
+		return this.wechatWorkappIdentifyManager;
+	}
+	public void setWechatWorkappIdentifyManager(WechatWorkappIdentifyManager manager){
+		this.wechatWorkappIdentifyManager = manager;
+	}
+
+
+	public WechatMiniappIdentifyManager getWechatMiniappIdentifyManager(){
+		return this.wechatMiniappIdentifyManager;
+	}
+	public void setWechatMiniappIdentifyManager(WechatMiniappIdentifyManager manager){
+		this.wechatMiniappIdentifyManager = manager;
+	}
+
+
+	public TreeNodeManager getTreeNodeManager(){
+		return this.treeNodeManager;
+	}
+	public void setTreeNodeManager(TreeNodeManager manager){
+		this.treeNodeManager = manager;
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

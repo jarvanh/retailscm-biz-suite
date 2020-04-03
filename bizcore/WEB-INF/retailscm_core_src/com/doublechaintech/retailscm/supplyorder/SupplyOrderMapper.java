@@ -31,7 +31,9 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 	protected void setId(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(SupplyOrderTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -79,7 +81,9 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 	protected void setTitle(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(SupplyOrderTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -91,7 +95,9 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 	protected void setTotalAmount(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal totalAmount = rs.getBigDecimal(SupplyOrderTable.COLUMN_TOTAL_AMOUNT);
+		
 		if(totalAmount == null){
 			//do nothing when nothing found in database
 			return;
@@ -103,7 +109,9 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 	protected void setLastUpdateTime(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(SupplyOrderTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -115,7 +123,9 @@ public class SupplyOrderMapper extends BaseRowMapper<SupplyOrder>{
 	protected void setVersion(SupplyOrder supplyOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(SupplyOrderTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

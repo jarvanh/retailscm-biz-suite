@@ -29,7 +29,9 @@ public class TrainingCourseTypeMapper extends BaseRowMapper<TrainingCourseType>{
 	protected void setId(TrainingCourseType trainingCourseType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TrainingCourseTypeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class TrainingCourseTypeMapper extends BaseRowMapper<TrainingCourseType>{
 	protected void setCode(TrainingCourseType trainingCourseType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(TrainingCourseTypeTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class TrainingCourseTypeMapper extends BaseRowMapper<TrainingCourseType>{
 	protected void setName(TrainingCourseType trainingCourseType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(TrainingCourseTypeTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class TrainingCourseTypeMapper extends BaseRowMapper<TrainingCourseType>{
 	protected void setDescription(TrainingCourseType trainingCourseType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(TrainingCourseTypeTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class TrainingCourseTypeMapper extends BaseRowMapper<TrainingCourseType>{
 	protected void setVersion(TrainingCourseType trainingCourseType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TrainingCourseTypeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

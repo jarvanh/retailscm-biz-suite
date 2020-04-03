@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.accountingperiod;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -60,6 +61,7 @@ public interface AccountingPeriodDAO extends BaseDAO{
 	
 	public SmartList<AccountingPeriod> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateAccountingPeriod executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<AccountingPeriod> findAccountingPeriodByAccountSet(String accountSetId, Map<String,Object> options);
  	public int countAccountingPeriodByAccountSet(String accountSetId, Map<String,Object> options);

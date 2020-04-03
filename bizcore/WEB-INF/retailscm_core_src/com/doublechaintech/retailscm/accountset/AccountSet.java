@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -80,6 +81,7 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 	protected		SmartList<AccountingSubject>	mAccountingSubjectList;
 	protected		SmartList<AccountingPeriod>	mAccountingPeriodList;
 	protected		SmartList<AccountingDocumentType>	mAccountingDocumentTypeList;
+
 	
 		
 	public 	AccountSet(){
@@ -142,6 +144,7 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -151,12 +154,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeYearSetProperty(String newValueExpr){
+	
 		String oldValue = getYearSet();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -166,12 +170,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateYearSet(newValue);
 		this.onChangeProperty(YEAR_SET_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeEffectiveDateProperty(String newValueExpr){
+	
 		Date oldValue = getEffectiveDate();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -181,12 +186,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateEffectiveDate(newValue);
 		this.onChangeProperty(EFFECTIVE_DATE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAccountingSystemProperty(String newValueExpr){
+	
 		String oldValue = getAccountingSystem();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -196,12 +202,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateAccountingSystem(newValue);
 		this.onChangeProperty(ACCOUNTING_SYSTEM_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDomesticCurrencyCodeProperty(String newValueExpr){
+	
 		String oldValue = getDomesticCurrencyCode();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -211,12 +218,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateDomesticCurrencyCode(newValue);
 		this.onChangeProperty(DOMESTIC_CURRENCY_CODE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDomesticCurrencyNameProperty(String newValueExpr){
+	
 		String oldValue = getDomesticCurrencyName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -226,12 +234,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateDomesticCurrencyName(newValue);
 		this.onChangeProperty(DOMESTIC_CURRENCY_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeOpeningBankProperty(String newValueExpr){
+	
 		String oldValue = getOpeningBank();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -241,12 +250,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateOpeningBank(newValue);
 		this.onChangeProperty(OPENING_BANK_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAccountNumberProperty(String newValueExpr){
+	
 		String oldValue = getAccountNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -256,12 +266,13 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateAccountNumber(newValue);
 		this.onChangeProperty(ACCOUNT_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -271,7 +282,7 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -965,7 +976,9 @@ public class AccountSet extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "accountingDocumentTypeCurrentPageNumber", getAccountingDocumentTypeList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 	
 	
 	protected		SmartList<Termination>	mTerminationList    ;
+
 	
 		
 	public 	TerminationType(){
@@ -98,6 +100,7 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
     
     
 	protected void changeCodeProperty(String newValueExpr){
+	
 		String oldValue = getCode();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		updateCode(newValue);
 		this.onChangeProperty(CODE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeBaseDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getBaseDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		updateBaseDescription(newValue);
 		this.onChangeProperty(BASE_DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDetailDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDetailDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 		updateDetailDescription(newValue);
 		this.onChangeProperty(DETAIL_DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -423,7 +428,9 @@ public class TerminationType extends BaseEntity implements  java.io.Serializable
 			appendKeyValuePair(result, "terminationCurrentPageNumber", getTerminationList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

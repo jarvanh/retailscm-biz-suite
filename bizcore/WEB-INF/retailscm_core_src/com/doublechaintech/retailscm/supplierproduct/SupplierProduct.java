@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 	
 	
 	protected		SmartList<ProductSupplyDuration>	mProductSupplyDurationList;
+
 	
 		
 	public 	SupplierProduct(){
@@ -98,6 +100,7 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
     
     
 	protected void changeProductNameProperty(String newValueExpr){
+	
 		String oldValue = getProductName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 		updateProductName(newValue);
 		this.onChangeProperty(PRODUCT_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeProductDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getProductDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 		updateProductDescription(newValue);
 		this.onChangeProperty(PRODUCT_DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeProductUnitProperty(String newValueExpr){
+	
 		String oldValue = getProductUnit();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 		updateProductUnit(newValue);
 		this.onChangeProperty(PRODUCT_UNIT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -423,7 +428,9 @@ public class SupplierProduct extends BaseEntity implements  java.io.Serializable
 			appendKeyValuePair(result, "productSupplyDurationCurrentPageNumber", getProductSupplyDurationList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

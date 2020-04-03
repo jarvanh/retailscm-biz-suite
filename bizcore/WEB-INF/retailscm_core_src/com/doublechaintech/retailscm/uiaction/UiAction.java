@@ -62,6 +62,7 @@ public class UiAction extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	UiAction(){
@@ -470,7 +471,9 @@ public class UiAction extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, PAGE_PROPERTY, getPage());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

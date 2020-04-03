@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -439,10 +443,18 @@ public class EmployeeQualifierJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
  			parameters[0] = employeeQualifier.getEmployee().getId();
  		}
  
+ 		
  		parameters[1] = employeeQualifier.getQualifiedTime();
+ 		
+ 		
  		parameters[2] = employeeQualifier.getType();
+ 		
+ 		
  		parameters[3] = employeeQualifier.getLevel();
- 		parameters[4] = employeeQualifier.getRemark();		
+ 		
+ 		
+ 		parameters[4] = employeeQualifier.getRemark();
+ 				
  		parameters[5] = employeeQualifier.nextVersion();
  		parameters[6] = employeeQualifier.getId();
  		parameters[7] = employeeQualifier.getVersion();
@@ -460,10 +472,18 @@ public class EmployeeQualifierJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
  		
  		}
  		
+ 		
  		parameters[2] = employeeQualifier.getQualifiedTime();
+ 		
+ 		
  		parameters[3] = employeeQualifier.getType();
+ 		
+ 		
  		parameters[4] = employeeQualifier.getLevel();
- 		parameters[5] = employeeQualifier.getRemark();		
+ 		
+ 		
+ 		parameters[5] = employeeQualifier.getRemark();
+ 				
  				
  		return parameters;
  	}
@@ -564,6 +584,30 @@ public class EmployeeQualifierJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateEmployeeQualifier executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateEmployeeQualifier result = new CandidateEmployeeQualifier();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

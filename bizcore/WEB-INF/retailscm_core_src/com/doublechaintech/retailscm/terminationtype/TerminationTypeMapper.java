@@ -29,7 +29,9 @@ public class TerminationTypeMapper extends BaseRowMapper<TerminationType>{
 	protected void setId(TerminationType terminationType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TerminationTypeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class TerminationTypeMapper extends BaseRowMapper<TerminationType>{
 	protected void setCode(TerminationType terminationType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(TerminationTypeTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class TerminationTypeMapper extends BaseRowMapper<TerminationType>{
 	protected void setBaseDescription(TerminationType terminationType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String baseDescription = rs.getString(TerminationTypeTable.COLUMN_BASE_DESCRIPTION);
+		
 		if(baseDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class TerminationTypeMapper extends BaseRowMapper<TerminationType>{
 	protected void setDetailDescription(TerminationType terminationType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String detailDescription = rs.getString(TerminationTypeTable.COLUMN_DETAIL_DESCRIPTION);
+		
 		if(detailDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class TerminationTypeMapper extends BaseRowMapper<TerminationType>{
 	protected void setVersion(TerminationType terminationType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TerminationTypeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

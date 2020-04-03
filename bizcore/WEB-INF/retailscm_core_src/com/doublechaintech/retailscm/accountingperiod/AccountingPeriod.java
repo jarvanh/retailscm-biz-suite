@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
 	
 	
 	protected		SmartList<AccountingDocument>	mAccountingDocumentList;
+
 	
 		
 	public 	AccountingPeriod(){
@@ -98,6 +100,7 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeStartDateProperty(String newValueExpr){
+	
 		Date oldValue = getStartDate();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
 		updateStartDate(newValue);
 		this.onChangeProperty(START_DATE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeEndDateProperty(String newValueExpr){
+	
 		Date oldValue = getEndDate();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
 		updateEndDate(newValue);
 		this.onChangeProperty(END_DATE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -423,7 +428,9 @@ public class AccountingPeriod extends BaseEntity implements  java.io.Serializabl
 			appendKeyValuePair(result, "accountingDocumentCurrentPageNumber", getAccountingDocumentList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

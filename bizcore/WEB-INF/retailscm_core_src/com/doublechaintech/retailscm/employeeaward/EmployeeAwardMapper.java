@@ -29,7 +29,9 @@ public class EmployeeAwardMapper extends BaseRowMapper<EmployeeAward>{
 	protected void setId(EmployeeAward employeeAward, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeAwardTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -59,7 +61,9 @@ public class EmployeeAwardMapper extends BaseRowMapper<EmployeeAward>{
 	protected void setCompleteTime(EmployeeAward employeeAward, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date completeTime = rs.getDate(EmployeeAwardTable.COLUMN_COMPLETE_TIME);
+		
 		if(completeTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class EmployeeAwardMapper extends BaseRowMapper<EmployeeAward>{
 	protected void setType(EmployeeAward employeeAward, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String type = rs.getString(EmployeeAwardTable.COLUMN_TYPE);
+		
 		if(type == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class EmployeeAwardMapper extends BaseRowMapper<EmployeeAward>{
 	protected void setRemark(EmployeeAward employeeAward, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String remark = rs.getString(EmployeeAwardTable.COLUMN_REMARK);
+		
 		if(remark == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class EmployeeAwardMapper extends BaseRowMapper<EmployeeAward>{
 	protected void setVersion(EmployeeAward employeeAward, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeAwardTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

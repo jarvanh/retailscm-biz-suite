@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -62,6 +63,7 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 	protected		SmartList<ProvinceCenterDepartment>	mProvinceCenterDepartmentList;
 	protected		SmartList<ProvinceCenterEmployee>	mProvinceCenterEmployeeList;
 	protected		SmartList<RetailStoreCityServiceCenter>	mRetailStoreCityServiceCenterList;
+
 	
 		
 	public 	RetailStoreProvinceCenter(){
@@ -104,6 +106,7 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -113,12 +116,13 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFoundedProperty(String newValueExpr){
+	
 		Date oldValue = getFounded();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -128,12 +132,13 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 		updateFounded(newValue);
 		this.onChangeProperty(FOUNDED_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -143,7 +148,7 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -665,7 +670,9 @@ public class RetailStoreProvinceCenter extends BaseEntity implements  java.io.Se
 			appendKeyValuePair(result, "retailStoreCityServiceCenterCurrentPageNumber", getRetailStoreCityServiceCenterList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

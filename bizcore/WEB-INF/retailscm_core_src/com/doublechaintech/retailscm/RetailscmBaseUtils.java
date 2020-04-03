@@ -25,6 +25,7 @@ import com.terapico.caf.form.ImageInfo;
 import com.terapico.caf.viewcomponent.ButtonViewComponent;
 import com.terapico.utils.TextUtil;
 
+import com.doublechaintech.retailscm.pagetype.PageType;
 
 public class RetailscmBaseUtils {
 	protected static final Map<String, Object> emptyOptions = new HashMap<>();
@@ -51,19 +52,10 @@ public class RetailscmBaseUtils {
 		}
 	}
 	
-	private static final Pattern ptnChnMobile = Pattern.compile("1[3-9]\\d{9}");
 	public static String formatChinaMobile(String mobile) {
-		String num = TextUtil.onlyNumber(mobile);
-		if (num.startsWith("86") || num.startsWith("086") || num.startsWith("0086")) {
-			int pos = num.indexOf("86");
-			num = num.substring(pos+2);
-		}
-		Matcher m = ptnChnMobile.matcher(num);
-		if (m.matches()) {
-			return num;
-		}
-		return null;
+		return TextUtil.formatChinaMobile(mobile);
 	}
+	
 	public static String checkChinaMobile(String mobile) throws Exception {
 		String cleanMobile = formatChinaMobile(mobile);
 		if (cleanMobile == null) {
@@ -234,6 +226,18 @@ public class RetailscmBaseUtils {
 		return exRateFormat.format(amount);
 	}
 
+
+	public static PageType getPageType(RetailscmUserContext userContext, String code) throws Exception {
+		String key = "enum:" + PageType.INTERNAL_TYPE + ":" + code;
+		PageType data = (PageType) userContext.getFromContextLocalStorage(key);
+		if (data != null) {
+			return data;
+		}
+		data = userContext.getDAOGroup().getPageTypeDAO().loadByCode(code, emptyOptions);
+		userContext.putIntoContextLocalStorage(key, data);
+		return data;
+	}
+
 	public static <T> T loadBaseEntityById(RetailscmUserContext ctx, String type, String id) throws Exception {
 		return loadBaseEntityById(ctx, type, id, null);
 	}
@@ -291,6 +295,14 @@ public class RetailscmBaseUtils {
 		obj.addItemToValueMap("action", actionBtn);
 	}
 }
+
+
+
+
+
+
+
+
 
 
 

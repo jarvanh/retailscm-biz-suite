@@ -1,5 +1,7 @@
 package com.doublechaintech.retailscm;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.terapico.uccaf.BaseUserContext;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -22,6 +24,19 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	
 	protected Object daoOf(RetailscmUserContext ctx) {
 		throw new UnsupportedOperationException("You must implement it in your specific Manager implementation");
+	}
+	
+	
+	public Object queryCandidates(RetailscmUserContext userContext, CandidateQuery query) throws Exception {
+		return new CandidatesUtil().queryCandidates(userContext, query);
+	}
+	
+	public Object queryCandidatesForAssign(RetailscmUserContext userContext, CandidateQuery query) throws Exception {
+		return new CandidatesUtil().queryCandidatesForAssign(userContext, query);
+	}
+
+	public Object queryCandidatesForSearch(RetailscmUserContext userContext, CandidateQuery query) throws Exception {
+		return new CandidatesUtil().queryCandidatesForSearch(userContext, query);
 	}
 	
 	protected RetailscmObjectChecker checkerOf(RetailscmUserContext ctx) {
@@ -732,6 +747,42 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	public com.doublechaintech.retailscm.payingoff.PayingOffDAO payingOffDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getPayingOffDAO();
 	}
+	public com.doublechaintech.retailscm.mobileapp.MobileAppManager mobileAppManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getMobileAppManager();
+	}
+	public com.doublechaintech.retailscm.mobileapp.MobileAppDAO mobileAppDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getMobileAppDAO();
+	}
+	public com.doublechaintech.retailscm.page.PageManager pageManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getPageManager();
+	}
+	public com.doublechaintech.retailscm.page.PageDAO pageDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getPageDAO();
+	}
+	public com.doublechaintech.retailscm.pagetype.PageTypeManager pageTypeManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getPageTypeManager();
+	}
+	public com.doublechaintech.retailscm.pagetype.PageTypeDAO pageTypeDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getPageTypeDAO();
+	}
+	public com.doublechaintech.retailscm.slide.SlideManager slideManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getSlideManager();
+	}
+	public com.doublechaintech.retailscm.slide.SlideDAO slideDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getSlideDAO();
+	}
+	public com.doublechaintech.retailscm.uiaction.UiActionManager uiActionManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getUiActionManager();
+	}
+	public com.doublechaintech.retailscm.uiaction.UiActionDAO uiActionDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getUiActionDAO();
+	}
+	public com.doublechaintech.retailscm.section.SectionManager sectionManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getSectionManager();
+	}
+	public com.doublechaintech.retailscm.section.SectionDAO sectionDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getSectionDAO();
+	}
 	public com.doublechaintech.retailscm.userdomain.UserDomainManager userDomainManagerOf(RetailscmUserContext userContext){
 		return userContext.getManagerGroup().getUserDomainManager();
 	}
@@ -822,6 +873,24 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	public com.doublechaintech.retailscm.candidateelement.CandidateElementDAO candidateElementDaoOf(RetailscmUserContext userContext){
 		return userContext.getDAOGroup().getCandidateElementDAO();
 	}
+	public com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyManager wechatWorkappIdentifyManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getWechatWorkappIdentifyManager();
+	}
+	public com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyDAO wechatWorkappIdentifyDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getWechatWorkappIdentifyDAO();
+	}
+	public com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyManager wechatMiniappIdentifyManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getWechatMiniappIdentifyManager();
+	}
+	public com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyDAO wechatMiniappIdentifyDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getWechatMiniappIdentifyDAO();
+	}
+	public com.doublechaintech.retailscm.treenode.TreeNodeManager treeNodeManagerOf(RetailscmUserContext userContext){
+		return userContext.getManagerGroup().getTreeNodeManager();
+	}
+	public com.doublechaintech.retailscm.treenode.TreeNodeDAO treeNodeDaoOf(RetailscmUserContext userContext){
+		return userContext.getDAOGroup().getTreeNodeDAO();
+	}
 	
 	
 	
@@ -869,6 +938,16 @@ public class RetailscmCheckerManager extends BaseManagerImpl {
 	}
     
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

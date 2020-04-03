@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -649,9 +653,15 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
  	protected Object[] preparePotentialCustomerContactUpdateParameters(PotentialCustomerContact potentialCustomerContact){
  		Object[] parameters = new Object[11];
  
+ 		
  		parameters[0] = potentialCustomerContact.getName();
+ 		
+ 		
  		parameters[1] = potentialCustomerContact.getContactDate();
- 		parameters[2] = potentialCustomerContact.getContactMethod(); 	
+ 		
+ 		
+ 		parameters[2] = potentialCustomerContact.getContactMethod();
+ 		 	
  		if(potentialCustomerContact.getPotentialCustomer() != null){
  			parameters[3] = potentialCustomerContact.getPotentialCustomer().getId();
  		}
@@ -664,8 +674,12 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
  			parameters[5] = potentialCustomerContact.getContactTo().getId();
  		}
  
+ 		
  		parameters[6] = potentialCustomerContact.getDescription();
- 		parameters[7] = potentialCustomerContact.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[7] = potentialCustomerContact.getLastUpdateTime();
+ 				
  		parameters[8] = potentialCustomerContact.nextVersion();
  		parameters[9] = potentialCustomerContact.getId();
  		parameters[10] = potentialCustomerContact.getVersion();
@@ -678,9 +692,15 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
 		potentialCustomerContact.setId(newPotentialCustomerContactId);
 		parameters[0] =  potentialCustomerContact.getId();
  
+ 		
  		parameters[1] = potentialCustomerContact.getName();
+ 		
+ 		
  		parameters[2] = potentialCustomerContact.getContactDate();
- 		parameters[3] = potentialCustomerContact.getContactMethod(); 	
+ 		
+ 		
+ 		parameters[3] = potentialCustomerContact.getContactMethod();
+ 		 	
  		if(potentialCustomerContact.getPotentialCustomer() != null){
  			parameters[4] = potentialCustomerContact.getPotentialCustomer().getId();
  		
@@ -696,8 +716,12 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
  		
  		}
  		
+ 		
  		parameters[7] = potentialCustomerContact.getDescription();
- 		parameters[8] = potentialCustomerContact.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[8] = potentialCustomerContact.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -840,6 +864,30 @@ public class PotentialCustomerContactJDBCTemplateDAO extends RetailscmBaseDAOImp
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidatePotentialCustomerContact executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidatePotentialCustomerContact result = new CandidatePotentialCustomerContact();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

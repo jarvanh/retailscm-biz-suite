@@ -32,7 +32,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setId(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(SmartPalletTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setLocation(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String location = rs.getString(SmartPalletTable.COLUMN_LOCATION);
+		
 		if(location == null){
 			//do nothing when nothing found in database
 			return;
@@ -56,7 +60,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setContactNumber(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(SmartPalletTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -68,7 +74,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setTotalArea(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String totalArea = rs.getString(SmartPalletTable.COLUMN_TOTAL_AREA);
+		
 		if(totalArea == null){
 			//do nothing when nothing found in database
 			return;
@@ -80,7 +88,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setLatitude(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(SmartPalletTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -92,7 +102,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setLongitude(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(SmartPalletTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -122,7 +134,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setLastUpdateTime(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(SmartPalletTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -134,7 +148,9 @@ public class SmartPalletMapper extends BaseRowMapper<SmartPallet>{
 	protected void setVersion(SmartPallet smartPallet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(SmartPalletTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

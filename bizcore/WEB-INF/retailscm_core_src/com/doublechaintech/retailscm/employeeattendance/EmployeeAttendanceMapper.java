@@ -30,7 +30,9 @@ public class EmployeeAttendanceMapper extends BaseRowMapper<EmployeeAttendance>{
 	protected void setId(EmployeeAttendance employeeAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(EmployeeAttendanceTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -60,7 +62,9 @@ public class EmployeeAttendanceMapper extends BaseRowMapper<EmployeeAttendance>{
 	protected void setEnterTime(EmployeeAttendance employeeAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date enterTime = rs.getDate(EmployeeAttendanceTable.COLUMN_ENTER_TIME);
+		
 		if(enterTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -72,7 +76,9 @@ public class EmployeeAttendanceMapper extends BaseRowMapper<EmployeeAttendance>{
 	protected void setLeaveTime(EmployeeAttendance employeeAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date leaveTime = rs.getDate(EmployeeAttendanceTable.COLUMN_LEAVE_TIME);
+		
 		if(leaveTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -84,7 +90,9 @@ public class EmployeeAttendanceMapper extends BaseRowMapper<EmployeeAttendance>{
 	protected void setDurationHours(EmployeeAttendance employeeAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer durationHours = rs.getInt(EmployeeAttendanceTable.COLUMN_DURATION_HOURS);
+		
 		if(durationHours == null){
 			//do nothing when nothing found in database
 			return;
@@ -96,7 +104,9 @@ public class EmployeeAttendanceMapper extends BaseRowMapper<EmployeeAttendance>{
 	protected void setRemark(EmployeeAttendance employeeAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String remark = rs.getString(EmployeeAttendanceTable.COLUMN_REMARK);
+		
 		if(remark == null){
 			//do nothing when nothing found in database
 			return;
@@ -108,7 +118,9 @@ public class EmployeeAttendanceMapper extends BaseRowMapper<EmployeeAttendance>{
 	protected void setVersion(EmployeeAttendance employeeAttendance, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(EmployeeAttendanceTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

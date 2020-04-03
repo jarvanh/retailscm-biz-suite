@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -551,17 +555,31 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  	protected Object[] prepareShippingSpaceUpdateParameters(ShippingSpace shippingSpace){
  		Object[] parameters = new Object[11];
  
+ 		
  		parameters[0] = shippingSpace.getLocation();
+ 		
+ 		
  		parameters[1] = shippingSpace.getContactNumber();
- 		parameters[2] = shippingSpace.getTotalArea(); 	
+ 		
+ 		
+ 		parameters[2] = shippingSpace.getTotalArea();
+ 		 	
  		if(shippingSpace.getWarehouse() != null){
  			parameters[3] = shippingSpace.getWarehouse().getId();
  		}
  
+ 		
  		parameters[4] = shippingSpace.getLatitude();
+ 		
+ 		
  		parameters[5] = shippingSpace.getLongitude();
+ 		
+ 		
  		parameters[6] = shippingSpace.getDescription();
- 		parameters[7] = shippingSpace.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[7] = shippingSpace.getLastUpdateTime();
+ 				
  		parameters[8] = shippingSpace.nextVersion();
  		parameters[9] = shippingSpace.getId();
  		parameters[10] = shippingSpace.getVersion();
@@ -574,18 +592,32 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 		shippingSpace.setId(newShippingSpaceId);
 		parameters[0] =  shippingSpace.getId();
  
+ 		
  		parameters[1] = shippingSpace.getLocation();
+ 		
+ 		
  		parameters[2] = shippingSpace.getContactNumber();
- 		parameters[3] = shippingSpace.getTotalArea(); 	
+ 		
+ 		
+ 		parameters[3] = shippingSpace.getTotalArea();
+ 		 	
  		if(shippingSpace.getWarehouse() != null){
  			parameters[4] = shippingSpace.getWarehouse().getId();
  		
  		}
  		
+ 		
  		parameters[5] = shippingSpace.getLatitude();
+ 		
+ 		
  		parameters[6] = shippingSpace.getLongitude();
+ 		
+ 		
  		parameters[7] = shippingSpace.getDescription();
- 		parameters[8] = shippingSpace.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[8] = shippingSpace.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -1115,7 +1147,7 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
     public SmartList<ShippingSpace> requestCandidateShippingSpaceForGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(ShippingSpaceTable.COLUMN_LOCATION, filterKey, pageNo, pageSize, getShippingSpaceMapper());
+		return findAllCandidateByFilter(ShippingSpaceTable.COLUMN_LOCATION, ShippingSpaceTable.COLUMN_WAREHOUSE, filterKey, pageNo, pageSize, getShippingSpaceMapper());
     }
 		
 
@@ -1189,6 +1221,30 @@ public class ShippingSpaceJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateShippingSpace executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateShippingSpace result = new CandidateShippingSpace();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

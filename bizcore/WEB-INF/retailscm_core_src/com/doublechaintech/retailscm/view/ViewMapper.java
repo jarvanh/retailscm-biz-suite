@@ -27,7 +27,9 @@ public class ViewMapper extends BaseRowMapper<View>{
 	protected void setId(View view, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ViewTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -39,7 +41,9 @@ public class ViewMapper extends BaseRowMapper<View>{
 	protected void setWho(View view, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String who = rs.getString(ViewTable.COLUMN_WHO);
+		
 		if(who == null){
 			//do nothing when nothing found in database
 			return;
@@ -51,7 +55,9 @@ public class ViewMapper extends BaseRowMapper<View>{
 	protected void setAssessment(View view, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String assessment = rs.getString(ViewTable.COLUMN_ASSESSMENT);
+		
 		if(assessment == null){
 			//do nothing when nothing found in database
 			return;
@@ -63,7 +69,9 @@ public class ViewMapper extends BaseRowMapper<View>{
 	protected void setInterviewTime(View view, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date interviewTime = rs.getDate(ViewTable.COLUMN_INTERVIEW_TIME);
+		
 		if(interviewTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -75,7 +83,9 @@ public class ViewMapper extends BaseRowMapper<View>{
 	protected void setVersion(View view, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ViewTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

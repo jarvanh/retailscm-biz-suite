@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -63,6 +64,7 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	GoodsMovement(){
@@ -120,6 +122,7 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeMoveTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getMoveTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -129,12 +132,13 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateMoveTime(newValue);
 		this.onChangeProperty(MOVE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFacilityProperty(String newValueExpr){
+	
 		String oldValue = getFacility();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -144,12 +148,13 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateFacility(newValue);
 		this.onChangeProperty(FACILITY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFacilityIdProperty(String newValueExpr){
+	
 		String oldValue = getFacilityId();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -159,12 +164,13 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateFacilityId(newValue);
 		this.onChangeProperty(FACILITY_ID_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFromIpProperty(String newValueExpr){
+	
 		String oldValue = getFromIp();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -174,12 +180,13 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateFromIp(newValue);
 		this.onChangeProperty(FROM_IP_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeUserAgentProperty(String newValueExpr){
+	
 		String oldValue = getUserAgent();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -189,12 +196,13 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateUserAgent(newValue);
 		this.onChangeProperty(USER_AGENT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeSessionIdProperty(String newValueExpr){
+	
 		String oldValue = getSessionId();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -204,12 +212,13 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateSessionId(newValue);
 		this.onChangeProperty(SESSION_ID_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLatitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLatitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -219,12 +228,13 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateLatitude(newValue);
 		this.onChangeProperty(LATITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLongitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLongitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -234,7 +244,7 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		updateLongitude(newValue);
 		this.onChangeProperty(LONGITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -512,7 +522,9 @@ public class GoodsMovement extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, GOODS_PROPERTY, getGoods());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

@@ -35,7 +35,9 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
 	protected void setId(PotentialCustomerContact potentialCustomerContact, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(PotentialCustomerContactTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -47,7 +49,9 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
 	protected void setName(PotentialCustomerContact potentialCustomerContact, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(PotentialCustomerContactTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -59,7 +63,9 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
 	protected void setContactDate(PotentialCustomerContact potentialCustomerContact, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date contactDate = rs.getDate(PotentialCustomerContactTable.COLUMN_CONTACT_DATE);
+		
 		if(contactDate == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +77,9 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
 	protected void setContactMethod(PotentialCustomerContact potentialCustomerContact, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactMethod = rs.getString(PotentialCustomerContactTable.COLUMN_CONTACT_METHOD);
+		
 		if(contactMethod == null){
 			//do nothing when nothing found in database
 			return;
@@ -137,7 +145,9 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
 	protected void setDescription(PotentialCustomerContact potentialCustomerContact, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(PotentialCustomerContactTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -149,7 +159,9 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
 	protected void setLastUpdateTime(PotentialCustomerContact potentialCustomerContact, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(PotentialCustomerContactTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -161,7 +173,9 @@ public class PotentialCustomerContactMapper extends BaseRowMapper<PotentialCusto
 	protected void setVersion(PotentialCustomerContact potentialCustomerContact, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(PotentialCustomerContactTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

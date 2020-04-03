@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.storagespace;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -64,6 +65,7 @@ public interface StorageSpaceDAO extends BaseDAO{
 	
 	public SmartList<StorageSpace> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateStorageSpace executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<StorageSpace> findStorageSpaceByWarehouse(String warehouseId, Map<String,Object> options);
  	public int countStorageSpaceByWarehouse(String warehouseId, Map<String,Object> options);

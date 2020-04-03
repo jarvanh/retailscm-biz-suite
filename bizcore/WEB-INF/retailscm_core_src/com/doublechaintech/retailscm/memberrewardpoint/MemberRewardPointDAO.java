@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.memberrewardpoint;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface MemberRewardPointDAO extends BaseDAO{
 	
 	public SmartList<MemberRewardPoint> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateMemberRewardPoint executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<MemberRewardPoint> findMemberRewardPointByOwner(String retailStoreMemberId, Map<String,Object> options);
  	public int countMemberRewardPointByOwner(String retailStoreMemberId, Map<String,Object> options);

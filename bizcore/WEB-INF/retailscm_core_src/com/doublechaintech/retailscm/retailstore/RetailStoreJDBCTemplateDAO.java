@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -1644,9 +1648,15 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  	protected Object[] prepareRetailStoreUpdateParameters(RetailStore retailStore){
  		Object[] parameters = new Object[19];
  
+ 		
  		parameters[0] = retailStore.getName();
+ 		
+ 		
  		parameters[1] = retailStore.getTelephone();
- 		parameters[2] = retailStore.getOwner(); 	
+ 		
+ 		
+ 		parameters[2] = retailStore.getOwner();
+ 		 	
  		if(retailStore.getRetailStoreCountryCenter() != null){
  			parameters[3] = retailStore.getRetailStoreCountryCenter().getId();
  		}
@@ -1679,11 +1689,21 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  			parameters[10] = retailStore.getClosing().getId();
  		}
  
+ 		
  		parameters[11] = retailStore.getFounded();
+ 		
+ 		
  		parameters[12] = retailStore.getLatitude();
+ 		
+ 		
  		parameters[13] = retailStore.getLongitude();
+ 		
+ 		
  		parameters[14] = retailStore.getDescription();
- 		parameters[15] = retailStore.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[15] = retailStore.getLastUpdateTime();
+ 				
  		parameters[16] = retailStore.nextVersion();
  		parameters[17] = retailStore.getId();
  		parameters[18] = retailStore.getVersion();
@@ -1696,9 +1716,15 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		retailStore.setId(newRetailStoreId);
 		parameters[0] =  retailStore.getId();
  
+ 		
  		parameters[1] = retailStore.getName();
+ 		
+ 		
  		parameters[2] = retailStore.getTelephone();
- 		parameters[3] = retailStore.getOwner(); 	
+ 		
+ 		
+ 		parameters[3] = retailStore.getOwner();
+ 		 	
  		if(retailStore.getRetailStoreCountryCenter() != null){
  			parameters[4] = retailStore.getRetailStoreCountryCenter().getId();
  		
@@ -1739,11 +1765,21 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  		
  		}
  		
+ 		
  		parameters[12] = retailStore.getFounded();
+ 		
+ 		
  		parameters[13] = retailStore.getLatitude();
+ 		
+ 		
  		parameters[14] = retailStore.getLongitude();
+ 		
+ 		
  		parameters[15] = retailStore.getDescription();
- 		parameters[16] = retailStore.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[16] = retailStore.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -3216,31 +3252,31 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
     public SmartList<RetailStore> requestCandidateRetailStoreForConsumerOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMapper());
+		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, RetailStoreTable.COLUMN_RETAIL_STORE_COUNTRY_CENTER, filterKey, pageNo, pageSize, getRetailStoreMapper());
     }
 		
     public SmartList<RetailStore> requestCandidateRetailStoreForRetailStoreOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMapper());
+		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, RetailStoreTable.COLUMN_RETAIL_STORE_COUNTRY_CENTER, filterKey, pageNo, pageSize, getRetailStoreMapper());
     }
 		
     public SmartList<RetailStore> requestCandidateRetailStoreForGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMapper());
+		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, RetailStoreTable.COLUMN_RETAIL_STORE_COUNTRY_CENTER, filterKey, pageNo, pageSize, getRetailStoreMapper());
     }
 		
     public SmartList<RetailStore> requestCandidateRetailStoreForTransportTask(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMapper());
+		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, RetailStoreTable.COLUMN_RETAIL_STORE_COUNTRY_CENTER, filterKey, pageNo, pageSize, getRetailStoreMapper());
     }
 		
     public SmartList<RetailStore> requestCandidateRetailStoreForAccountSet(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMapper());
+		return findAllCandidateByFilter(RetailStoreTable.COLUMN_NAME, RetailStoreTable.COLUMN_RETAIL_STORE_COUNTRY_CENTER, filterKey, pageNo, pageSize, getRetailStoreMapper());
     }
 		
 
@@ -3406,6 +3442,30 @@ public class RetailStoreJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStore executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStore result = new CandidateRetailStore();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

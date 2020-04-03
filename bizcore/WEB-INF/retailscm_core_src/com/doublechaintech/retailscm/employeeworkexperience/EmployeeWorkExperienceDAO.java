@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employeeworkexperience;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface EmployeeWorkExperienceDAO extends BaseDAO{
 	
 	public SmartList<EmployeeWorkExperience> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateEmployeeWorkExperience executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<EmployeeWorkExperience> findEmployeeWorkExperienceByEmployee(String employeeId, Map<String,Object> options);
  	public int countEmployeeWorkExperienceByEmployee(String employeeId, Map<String,Object> options);

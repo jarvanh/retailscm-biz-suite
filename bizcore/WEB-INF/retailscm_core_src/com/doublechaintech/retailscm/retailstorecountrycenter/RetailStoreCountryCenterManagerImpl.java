@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.retailstorecountrycenter;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.goodssupplier.GoodsSupplier;
 import com.doublechaintech.retailscm.warehouse.Warehouse;
@@ -59,7 +76,7 @@ import com.doublechaintech.retailscm.retailstorecityservicecenter.RetailStoreCit
 
 
 
-public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreCountryCenterManager {
+public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerManager implements RetailStoreCountryCenterManager, BusinessHandler{
 
   
 
@@ -346,28 +363,52 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(RetailStoreCountryCenter.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfRetailStoreCountryCenter(parseString(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCountryCenter.SERVICE_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkServiceNumberOfRetailStoreCountryCenter(parseString(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCountryCenter.FOUNDED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFoundedOfRetailStoreCountryCenter(parseDate(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCountryCenter.WEB_SITE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkWebSiteOfRetailStoreCountryCenter(parseString(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCountryCenter.ADDRESS_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkAddressOfRetailStoreCountryCenter(parseString(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCountryCenter.OPERATED_BY_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkOperatedByOfRetailStoreCountryCenter(parseString(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCountryCenter.LEGAL_REPRESENTATIVE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLegalRepresentativeOfRetailStoreCountryCenter(parseString(newValueExpr));
+		
+			
 		}
 		if(RetailStoreCountryCenter.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfRetailStoreCountryCenter(parseString(newValueExpr));
+		
+			
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(RetailStoreCountryCenterManagerException.class);
@@ -1047,15 +1088,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(Catalog.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfCatalog(parseString(newValueExpr));
+		
 		}
 		
 		if(Catalog.SUB_COUNT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkSubCountOfCatalog(parseInt(newValueExpr));
+		
 		}
 		
 		if(Catalog.AMOUNT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkAmountOfCatalog(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -1291,11 +1338,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(RetailStoreProvinceCenter.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfRetailStoreProvinceCenter(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStoreProvinceCenter.FOUNDED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFoundedOfRetailStoreProvinceCenter(parseDate(newValueExpr));
+		
 		}
 		
 	
@@ -1591,31 +1642,45 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(RetailStore.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStore.TELEPHONE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTelephoneOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStore.OWNER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkOwnerOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStore.FOUNDED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFoundedOfRetailStore(parseDate(newValueExpr));
+		
 		}
 		
 		if(RetailStore.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfRetailStore(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(RetailStore.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfRetailStore(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(RetailStore.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfRetailStore(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1850,11 +1915,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(RetailStoreMember.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfRetailStoreMember(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStoreMember.MOBILE_PHONE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMobilePhoneOfRetailStoreMember(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -2100,19 +2169,27 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(GoodsSupplier.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfGoodsSupplier(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsSupplier.SUPPLY_PRODUCT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkSupplyProductOfGoodsSupplier(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsSupplier.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfGoodsSupplier(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsSupplier.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfGoodsSupplier(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -2353,11 +2430,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(SupplyOrder.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfSupplyOrder(parseString(newValueExpr));
+		
 		}
 		
 		if(SupplyOrder.TOTAL_AMOUNT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAmountOfSupplyOrder(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -2598,11 +2679,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(RetailStoreOrder.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfRetailStoreOrder(parseString(newValueExpr));
+		
 		}
 		
 		if(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAmountOfRetailStoreOrder(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -2853,23 +2938,33 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(Warehouse.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfWarehouse(parseString(newValueExpr));
+		
 		}
 		
 		if(Warehouse.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfWarehouse(parseString(newValueExpr));
+		
 		}
 		
 		if(Warehouse.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfWarehouse(parseString(newValueExpr));
+		
 		}
 		
 		if(Warehouse.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfWarehouse(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(Warehouse.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfWarehouse(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -3105,11 +3200,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(TransportFleet.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfTransportFleet(parseString(newValueExpr));
+		
 		}
 		
 		if(TransportFleet.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfTransportFleet(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -3385,35 +3484,51 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(AccountSet.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfAccountSet(parseString(newValueExpr));
+		
 		}
 		
 		if(AccountSet.YEAR_SET_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkYearSetOfAccountSet(parseString(newValueExpr));
+		
 		}
 		
 		if(AccountSet.EFFECTIVE_DATE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkEffectiveDateOfAccountSet(parseDate(newValueExpr));
+		
 		}
 		
 		if(AccountSet.ACCOUNTING_SYSTEM_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkAccountingSystemOfAccountSet(parseString(newValueExpr));
+		
 		}
 		
 		if(AccountSet.DOMESTIC_CURRENCY_CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDomesticCurrencyCodeOfAccountSet(parseString(newValueExpr));
+		
 		}
 		
 		if(AccountSet.DOMESTIC_CURRENCY_NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDomesticCurrencyNameOfAccountSet(parseString(newValueExpr));
+		
 		}
 		
 		if(AccountSet.OPENING_BANK_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkOpeningBankOfAccountSet(parseString(newValueExpr));
+		
 		}
 		
 		if(AccountSet.ACCOUNT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkAccountNumberOfAccountSet(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -3658,19 +3773,27 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(LevelOneDepartment.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfLevelOneDepartment(parseString(newValueExpr));
+		
 		}
 		
 		if(LevelOneDepartment.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfLevelOneDepartment(parseString(newValueExpr));
+		
 		}
 		
 		if(LevelOneDepartment.MANAGER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkManagerOfLevelOneDepartment(parseString(newValueExpr));
+		
 		}
 		
 		if(LevelOneDepartment.FOUNDED_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFoundedOfLevelOneDepartment(parseDate(newValueExpr));
+		
 		}
 		
 	
@@ -3905,11 +4028,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(SkillType.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfSkillType(parseString(newValueExpr));
+		
 		}
 		
 		if(SkillType.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfSkillType(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -4149,15 +4276,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(ResponsibilityType.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfResponsibilityType(parseString(newValueExpr));
+		
 		}
 		
 		if(ResponsibilityType.BASE_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkBaseDescriptionOfResponsibilityType(parseString(newValueExpr));
+		
 		}
 		
 		if(ResponsibilityType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDetailDescriptionOfResponsibilityType(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -4392,11 +4525,15 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(TerminationReason.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfTerminationReason(parseString(newValueExpr));
+		
 		}
 		
 		if(TerminationReason.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfTerminationReason(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -4636,15 +4773,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(TerminationType.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfTerminationType(parseString(newValueExpr));
+		
 		}
 		
 		if(TerminationType.BASE_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkBaseDescriptionOfTerminationType(parseString(newValueExpr));
+		
 		}
 		
 		if(TerminationType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDetailDescriptionOfTerminationType(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -4884,15 +5027,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(OccupationType.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfOccupationType(parseString(newValueExpr));
+		
 		}
 		
 		if(OccupationType.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfOccupationType(parseString(newValueExpr));
+		
 		}
 		
 		if(OccupationType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDetailDescriptionOfOccupationType(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -5132,15 +5281,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(LeaveType.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfLeaveType(parseString(newValueExpr));
+		
 		}
 		
 		if(LeaveType.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfLeaveType(parseString(newValueExpr));
+		
 		}
 		
 		if(LeaveType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDetailDescriptionOfLeaveType(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -5380,15 +5535,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(SalaryGrade.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfSalaryGrade(parseString(newValueExpr));
+		
 		}
 		
 		if(SalaryGrade.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfSalaryGrade(parseString(newValueExpr));
+		
 		}
 		
 		if(SalaryGrade.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDetailDescriptionOfSalaryGrade(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -5628,15 +5789,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(InterviewType.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfInterviewType(parseString(newValueExpr));
+		
 		}
 		
 		if(InterviewType.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfInterviewType(parseString(newValueExpr));
+		
 		}
 		
 		if(InterviewType.DETAIL_DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDetailDescriptionOfInterviewType(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -5876,15 +6043,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(TrainingCourseType.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfTrainingCourseType(parseString(newValueExpr));
+		
 		}
 		
 		if(TrainingCourseType.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfTrainingCourseType(parseString(newValueExpr));
+		
 		}
 		
 		if(TrainingCourseType.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfTrainingCourseType(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -6124,15 +6297,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(PublicHoliday.CODE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCodeOfPublicHoliday(parseString(newValueExpr));
+		
 		}
 		
 		if(PublicHoliday.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfPublicHoliday(parseString(newValueExpr));
+		
 		}
 		
 		if(PublicHoliday.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfPublicHoliday(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -6418,35 +6597,51 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(Employee.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 		if(Employee.FAMILY_NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFamilyNameOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 		if(Employee.GIVEN_NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkGivenNameOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 		if(Employee.EMAIL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkEmailOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 		if(Employee.CITY_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCityOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 		if(Employee.ADDRESS_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkAddressOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 		if(Employee.CELL_PHONE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCellPhoneOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 		if(Employee.SALARY_ACCOUNT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkSalaryAccountOfEmployee(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -6702,27 +6897,39 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(Instructor.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfInstructor(parseString(newValueExpr));
+		
 		}
 		
 		if(Instructor.FAMILY_NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFamilyNameOfInstructor(parseString(newValueExpr));
+		
 		}
 		
 		if(Instructor.GIVEN_NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkGivenNameOfInstructor(parseString(newValueExpr));
+		
 		}
 		
 		if(Instructor.CELL_PHONE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCellPhoneOfInstructor(parseString(newValueExpr));
+		
 		}
 		
 		if(Instructor.EMAIL_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkEmailOfInstructor(parseString(newValueExpr));
+		
 		}
 		
 		if(Instructor.INTRODUCTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkIntroductionOfInstructor(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -6973,15 +7180,21 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
 		
 
 		if(CompanyTraining.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfCompanyTraining(parseString(newValueExpr));
+		
 		}
 		
 		if(CompanyTraining.TIME_START_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTimeStartOfCompanyTraining(parseDate(newValueExpr));
+		
 		}
 		
 		if(CompanyTraining.DURATION_HOURS_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDurationHoursOfCompanyTraining(parseInt(newValueExpr));
+		
 		}
 		
 	
@@ -7036,6 +7249,519 @@ public class RetailStoreCountryCenterManagerImpl extends CustomRetailscmCheckerM
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   RetailStoreCountryCenter newRetailStoreCountryCenter = this.createRetailStoreCountryCenter(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newRetailStoreCountryCenter
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, RetailStoreCountryCenter.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<RetailStoreCountryCenter> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+
+
+    }
+	
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String retailStoreCountryCenterId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getRetailStoreCountryCenterDetailScope().clone();
+		RetailStoreCountryCenter merchantObj = (RetailStoreCountryCenter) this.view(userContext, retailStoreCountryCenterId);
+    String merchantObjId = retailStoreCountryCenterId;
+    String linkToUrl =	"retailStoreCountryCenterManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "双链小超全国运营中心"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-name")
+				    .put("fieldName", "name")
+				    .put("label", "名称")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("name", merchantObj.getName());
+
+		propList.add(
+				MapUtil.put("id", "3-serviceNumber")
+				    .put("fieldName", "serviceNumber")
+				    .put("label", "服务号码")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("serviceNumber", merchantObj.getServiceNumber());
+
+		propList.add(
+				MapUtil.put("id", "4-founded")
+				    .put("fieldName", "founded")
+				    .put("label", "成立")
+				    .put("type", "date")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("founded", merchantObj.getFounded());
+
+		propList.add(
+				MapUtil.put("id", "5-webSite")
+				    .put("fieldName", "webSite")
+				    .put("label", "网站")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("webSite", merchantObj.getWebSite());
+
+		propList.add(
+				MapUtil.put("id", "6-address")
+				    .put("fieldName", "address")
+				    .put("label", "地址")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("address", merchantObj.getAddress());
+
+		propList.add(
+				MapUtil.put("id", "7-operatedBy")
+				    .put("fieldName", "operatedBy")
+				    .put("label", "由")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("operatedBy", merchantObj.getOperatedBy());
+
+		propList.add(
+				MapUtil.put("id", "8-legalRepresentative")
+				    .put("fieldName", "legalRepresentative")
+				    .put("label", "法定代表人")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("legalRepresentative", merchantObj.getLegalRepresentative());
+
+		propList.add(
+				MapUtil.put("id", "9-description")
+				    .put("fieldName", "description")
+				    .put("label", "描述")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("description", merchantObj.getDescription());
+
+		//处理 sectionList
+
+		//处理Section：catalogListSection
+		Map catalogListSection = ListofUtils.buildSection(
+		    "catalogListSection",
+		    "目录列表",
+		    null,
+		    "",
+		    "产品管理",
+		    "catalogManager/listByOwner/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(catalogListSection);
+
+		result.put("catalogListSection", ListofUtils.toShortList(merchantObj.getCatalogList(), "catalog"));
+		vscope.field("catalogListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( Catalog.class.getName(), null));
+
+		//处理Section：retailStoreProvinceCenterListSection
+		Map retailStoreProvinceCenterListSection = ListofUtils.buildSection(
+		    "retailStoreProvinceCenterListSection",
+		    "零售门店省中心名单",
+		    null,
+		    "",
+		    "组织机构",
+		    "retailStoreProvinceCenterManager/listByCountry/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(retailStoreProvinceCenterListSection);
+
+		result.put("retailStoreProvinceCenterListSection", ListofUtils.toShortList(merchantObj.getRetailStoreProvinceCenterList(), "retailStoreProvinceCenter"));
+		vscope.field("retailStoreProvinceCenterListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( RetailStoreProvinceCenter.class.getName(), null));
+
+		//处理Section：retailStoreListSection
+		Map retailStoreListSection = ListofUtils.buildSection(
+		    "retailStoreListSection",
+		    "零售门店列表",
+		    null,
+		    "",
+		    "加盟管理",
+		    "retailStoreManager/listByRetailStoreCountryCenter/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(retailStoreListSection);
+
+		result.put("retailStoreListSection", ListofUtils.toShortList(merchantObj.getRetailStoreList(), "retailStore"));
+		vscope.field("retailStoreListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( RetailStore.class.getName(), null));
+
+		//处理Section：retailStoreMemberListSection
+		Map retailStoreMemberListSection = ListofUtils.buildSection(
+		    "retailStoreMemberListSection",
+		    "零售店会员名单",
+		    null,
+		    "",
+		    "会员管理",
+		    "retailStoreMemberManager/listByOwner/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(retailStoreMemberListSection);
+
+		result.put("retailStoreMemberListSection", ListofUtils.toShortList(merchantObj.getRetailStoreMemberList(), "retailStoreMember"));
+		vscope.field("retailStoreMemberListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( RetailStoreMember.class.getName(), null));
+
+		//处理Section：goodsSupplierListSection
+		Map goodsSupplierListSection = ListofUtils.buildSection(
+		    "goodsSupplierListSection",
+		    "货物供应商列表",
+		    null,
+		    "",
+		    "供应管理",
+		    "goodsSupplierManager/listByBelongTo/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(goodsSupplierListSection);
+
+		result.put("goodsSupplierListSection", ListofUtils.toShortList(merchantObj.getGoodsSupplierList(), "goodsSupplier"));
+		vscope.field("goodsSupplierListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( GoodsSupplier.class.getName(), null));
+
+		//处理Section：supplyOrderListSection
+		Map supplyOrderListSection = ListofUtils.buildSection(
+		    "supplyOrderListSection",
+		    "供应订单列表",
+		    null,
+		    "",
+		    "供应管理",
+		    "supplyOrderManager/listByBuyer/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(supplyOrderListSection);
+
+		result.put("supplyOrderListSection", ListofUtils.toShortList(merchantObj.getSupplyOrderList(), "supplyOrder"));
+		vscope.field("supplyOrderListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( SupplyOrder.class.getName(), null));
+
+		//处理Section：retailStoreOrderListSection
+		Map retailStoreOrderListSection = ListofUtils.buildSection(
+		    "retailStoreOrderListSection",
+		    "零售店订购单",
+		    null,
+		    "",
+		    "销售管理",
+		    "retailStoreOrderManager/listBySeller/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(retailStoreOrderListSection);
+
+		result.put("retailStoreOrderListSection", ListofUtils.toShortList(merchantObj.getRetailStoreOrderList(), "retailStoreOrder"));
+		vscope.field("retailStoreOrderListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( RetailStoreOrder.class.getName(), null));
+
+		//处理Section：warehouseListSection
+		Map warehouseListSection = ListofUtils.buildSection(
+		    "warehouseListSection",
+		    "仓库列表",
+		    null,
+		    "",
+		    "仓配运一体化",
+		    "warehouseManager/listByOwner/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(warehouseListSection);
+
+		result.put("warehouseListSection", ListofUtils.toShortList(merchantObj.getWarehouseList(), "warehouse"));
+		vscope.field("warehouseListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( Warehouse.class.getName(), null));
+
+		//处理Section：transportFleetListSection
+		Map transportFleetListSection = ListofUtils.buildSection(
+		    "transportFleetListSection",
+		    "运输舰队列表",
+		    null,
+		    "",
+		    "仓配运一体化",
+		    "transportFleetManager/listByOwner/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(transportFleetListSection);
+
+		result.put("transportFleetListSection", ListofUtils.toShortList(merchantObj.getTransportFleetList(), "transportFleet"));
+		vscope.field("transportFleetListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( TransportFleet.class.getName(), null));
+
+		//处理Section：accountSetListSection
+		Map accountSetListSection = ListofUtils.buildSection(
+		    "accountSetListSection",
+		    "帐户设置列表",
+		    null,
+		    "",
+		    "财务管理",
+		    "accountSetManager/listByCountryCenter/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(accountSetListSection);
+
+		result.put("accountSetListSection", ListofUtils.toShortList(merchantObj.getAccountSetList(), "accountSet"));
+		vscope.field("accountSetListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( AccountSet.class.getName(), null));
+
+		//处理Section：levelOneDepartmentListSection
+		Map levelOneDepartmentListSection = ListofUtils.buildSection(
+		    "levelOneDepartmentListSection",
+		    "一级部门名单",
+		    null,
+		    "",
+		    "组织机构",
+		    "levelOneDepartmentManager/listByBelongsTo/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(levelOneDepartmentListSection);
+
+		result.put("levelOneDepartmentListSection", ListofUtils.toShortList(merchantObj.getLevelOneDepartmentList(), "levelOneDepartment"));
+		vscope.field("levelOneDepartmentListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( LevelOneDepartment.class.getName(), null));
+
+		//处理Section：employeeListSection
+		Map employeeListSection = ListofUtils.buildSection(
+		    "employeeListSection",
+		    "员工列表",
+		    null,
+		    "",
+		    "人力资源",
+		    "employeeManager/listByCompany/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(employeeListSection);
+
+		result.put("employeeListSection", ListofUtils.toShortList(merchantObj.getEmployeeList(), "employee"));
+		vscope.field("employeeListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( Employee.class.getName(), null));
+
+		//处理Section：instructorListSection
+		Map instructorListSection = ListofUtils.buildSection(
+		    "instructorListSection",
+		    "导师名单",
+		    null,
+		    "",
+		    "人力资源",
+		    "instructorManager/listByCompany/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(instructorListSection);
+
+		result.put("instructorListSection", ListofUtils.toShortList(merchantObj.getInstructorList(), "instructor"));
+		vscope.field("instructorListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( Instructor.class.getName(), null));
+
+		//处理Section：companyTrainingListSection
+		Map companyTrainingListSection = ListofUtils.buildSection(
+		    "companyTrainingListSection",
+		    "公司培训名单",
+		    null,
+		    "",
+		    "人力资源",
+		    "companyTrainingManager/listByCompany/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(companyTrainingListSection);
+
+		result.put("companyTrainingListSection", ListofUtils.toShortList(merchantObj.getCompanyTrainingList(), "companyTraining"));
+		vscope.field("companyTrainingListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( CompanyTraining.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

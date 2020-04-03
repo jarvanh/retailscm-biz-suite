@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -1135,8 +1139,12 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
  	protected Object[] prepareRetailStoreMemberUpdateParameters(RetailStoreMember retailStoreMember){
  		Object[] parameters = new Object[6];
  
+ 		
  		parameters[0] = retailStoreMember.getName();
- 		parameters[1] = retailStoreMember.getMobilePhone(); 	
+ 		
+ 		
+ 		parameters[1] = retailStoreMember.getMobilePhone();
+ 		 	
  		if(retailStoreMember.getOwner() != null){
  			parameters[2] = retailStoreMember.getOwner().getId();
  		}
@@ -1153,8 +1161,12 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 		retailStoreMember.setId(newRetailStoreMemberId);
 		parameters[0] =  retailStoreMember.getId();
  
+ 		
  		parameters[1] = retailStoreMember.getName();
- 		parameters[2] = retailStoreMember.getMobilePhone(); 	
+ 		
+ 		
+ 		parameters[2] = retailStoreMember.getMobilePhone();
+ 		 	
  		if(retailStoreMember.getOwner() != null){
  			parameters[3] = retailStoreMember.getOwner().getId();
  		
@@ -2113,43 +2125,43 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
     public SmartList<RetailStoreMember> requestCandidateRetailStoreMemberForConsumerOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
+		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, RetailStoreMemberTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
     }
 		
     public SmartList<RetailStoreMember> requestCandidateRetailStoreMemberForRetailStoreMemberCoupon(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
+		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, RetailStoreMemberTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
     }
 		
     public SmartList<RetailStoreMember> requestCandidateRetailStoreMemberForMemberWishlist(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
+		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, RetailStoreMemberTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
     }
 		
     public SmartList<RetailStoreMember> requestCandidateRetailStoreMemberForMemberRewardPoint(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
+		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, RetailStoreMemberTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
     }
 		
     public SmartList<RetailStoreMember> requestCandidateRetailStoreMemberForMemberRewardPointRedemption(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
+		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, RetailStoreMemberTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
     }
 		
     public SmartList<RetailStoreMember> requestCandidateRetailStoreMemberForRetailStoreMemberAddress(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
+		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, RetailStoreMemberTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
     }
 		
     public SmartList<RetailStoreMember> requestCandidateRetailStoreMemberForRetailStoreMemberGiftCard(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
+		return findAllCandidateByFilter(RetailStoreMemberTable.COLUMN_NAME, RetailStoreMemberTable.COLUMN_OWNER, filterKey, pageNo, pageSize, getRetailStoreMemberMapper());
     }
 		
 
@@ -2361,6 +2373,30 @@ public class RetailStoreMemberJDBCTemplateDAO extends RetailscmBaseDAOImpl imple
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreMember executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreMember result = new CandidateRetailStoreMember();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

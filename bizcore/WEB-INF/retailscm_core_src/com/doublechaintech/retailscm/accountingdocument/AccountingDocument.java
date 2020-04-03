@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -60,6 +61,7 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 	
 	protected		SmartList<OriginalVoucher>	mOriginalVoucherList;
 	protected		SmartList<AccountingDocumentLine>	mAccountingDocumentLineList;
+
 	
 		
 	public 	AccountingDocument(){
@@ -100,6 +102,7 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -109,12 +112,13 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAccountingDocumentDateProperty(String newValueExpr){
+	
 		Date oldValue = getAccountingDocumentDate();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -124,7 +128,7 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 		updateAccountingDocumentDate(newValue);
 		this.onChangeProperty(ACCOUNTING_DOCUMENT_DATE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -534,7 +538,9 @@ public class AccountingDocument extends BaseEntity implements  java.io.Serializa
 			appendKeyValuePair(result, "accountingDocumentLineCurrentPageNumber", getAccountingDocumentLineList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

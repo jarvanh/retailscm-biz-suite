@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -63,6 +64,7 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	PotentialCustomerContact(){
@@ -113,6 +115,7 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +125,13 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeContactDateProperty(String newValueExpr){
+	
 		Date oldValue = getContactDate();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -137,12 +141,13 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		updateContactDate(newValue);
 		this.onChangeProperty(CONTACT_DATE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeContactMethodProperty(String newValueExpr){
+	
 		String oldValue = getContactMethod();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -152,12 +157,13 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		updateContactMethod(newValue);
 		this.onChangeProperty(CONTACT_METHOD_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -167,12 +173,13 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		updateDescription(newValue);
 		this.onChangeProperty(DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -182,7 +189,7 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -442,7 +449,9 @@ public class PotentialCustomerContact extends BaseEntity implements  java.io.Ser
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

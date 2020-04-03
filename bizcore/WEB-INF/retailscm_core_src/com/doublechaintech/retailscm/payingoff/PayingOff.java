@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 	
 	
 	protected		SmartList<EmployeeSalarySheet>	mEmployeeSalarySheetList;
+
 	
 		
 	public 	PayingOff(){
@@ -98,6 +100,7 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeWhoProperty(String newValueExpr){
+	
 		String oldValue = getWho();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		updateWho(newValue);
 		this.onChangeProperty(WHO_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changePaidTimeProperty(String newValueExpr){
+	
 		Date oldValue = getPaidTime();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		updatePaidTime(newValue);
 		this.onChangeProperty(PAID_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAmountProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getAmount();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 		updateAmount(newValue);
 		this.onChangeProperty(AMOUNT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -423,7 +428,9 @@ public class PayingOff extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "employeeSalarySheetCurrentPageNumber", getEmployeeSalarySheetList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

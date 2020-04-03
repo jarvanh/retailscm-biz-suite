@@ -29,7 +29,9 @@ public class LevelTwoDepartmentMapper extends BaseRowMapper<LevelTwoDepartment>{
 	protected void setId(LevelTwoDepartment levelTwoDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(LevelTwoDepartmentTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -59,7 +61,9 @@ public class LevelTwoDepartmentMapper extends BaseRowMapper<LevelTwoDepartment>{
 	protected void setName(LevelTwoDepartment levelTwoDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(LevelTwoDepartmentTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class LevelTwoDepartmentMapper extends BaseRowMapper<LevelTwoDepartment>{
 	protected void setDescription(LevelTwoDepartment levelTwoDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(LevelTwoDepartmentTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class LevelTwoDepartmentMapper extends BaseRowMapper<LevelTwoDepartment>{
 	protected void setFounded(LevelTwoDepartment levelTwoDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date founded = rs.getDate(LevelTwoDepartmentTable.COLUMN_FOUNDED);
+		
 		if(founded == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class LevelTwoDepartmentMapper extends BaseRowMapper<LevelTwoDepartment>{
 	protected void setVersion(LevelTwoDepartment levelTwoDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(LevelTwoDepartmentTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

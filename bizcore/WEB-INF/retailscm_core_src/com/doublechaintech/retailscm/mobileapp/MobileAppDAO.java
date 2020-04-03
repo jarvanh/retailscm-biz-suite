@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.mobileapp;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -67,6 +68,7 @@ public interface MobileAppDAO extends BaseDAO{
 	
 	public SmartList<MobileApp> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateMobileApp executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
 
 	// 需要一个加载引用我的对象的enhance方法:Page的mobileApp的PageList
 	public SmartList<Page> loadOurPageList(RetailscmUserContext userContext, List<MobileApp> us, Map<String,Object> options) throws Exception;

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.RetailscmUserContext;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.BaseManager;
@@ -13,12 +14,12 @@ public interface CandidateElementManager extends BaseManager{
 
 		
 
-	public CandidateElement createCandidateElement(RetailscmUserContext userContext, String name,String type,String image,String containerId) throws Exception;	
+	public CandidateElement createCandidateElement(RetailscmUserContext userContext, String name,String type,String image,String containerId) throws Exception;
 	public CandidateElement updateCandidateElement(RetailscmUserContext userContext,String candidateElementId, int candidateElementVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public CandidateElement loadCandidateElement(RetailscmUserContext userContext, String candidateElementId, String [] tokensExpr) throws Exception;
 	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement) throws Exception;
 	public CandidateElement internalSaveCandidateElement(RetailscmUserContext userContext, CandidateElement candidateElement,Map<String,Object>option) throws Exception;
-	
+
 	public CandidateElement transferToAnotherContainer(RetailscmUserContext userContext, String candidateElementId, String anotherContainerId)  throws Exception;
  
 
@@ -27,19 +28,13 @@ public interface CandidateElementManager extends BaseManager{
 	public void onNewInstanceCreated(RetailscmUserContext userContext, CandidateElement newCreated)throws Exception;
 
 	/*======================================================DATA MAINTENANCE===========================================================*/
-	
 
 
+
+	public Object listByContainer(RetailscmUserContext userContext,String containerId) throws Exception;
+	public Object listPageByContainer(RetailscmUserContext userContext,String containerId, int start, int count) throws Exception;
+  
 
 }
-
-
-
-
-
-
-
-
-
 
 

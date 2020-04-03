@@ -31,7 +31,9 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
 	protected void setId(GoodsSupplier goodsSupplier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(GoodsSupplierTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -43,7 +45,9 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
 	protected void setName(GoodsSupplier goodsSupplier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(GoodsSupplierTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -55,7 +59,9 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
 	protected void setSupplyProduct(GoodsSupplier goodsSupplier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String supplyProduct = rs.getString(GoodsSupplierTable.COLUMN_SUPPLY_PRODUCT);
+		
 		if(supplyProduct == null){
 			//do nothing when nothing found in database
 			return;
@@ -85,7 +91,9 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
 	protected void setContactNumber(GoodsSupplier goodsSupplier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(GoodsSupplierTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -97,7 +105,9 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
 	protected void setDescription(GoodsSupplier goodsSupplier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(GoodsSupplierTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -109,7 +119,9 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
 	protected void setLastUpdateTime(GoodsSupplier goodsSupplier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(GoodsSupplierTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -121,7 +133,9 @@ public class GoodsSupplierMapper extends BaseRowMapper<GoodsSupplier>{
 	protected void setVersion(GoodsSupplier goodsSupplier, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(GoodsSupplierTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

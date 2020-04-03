@@ -27,7 +27,9 @@ public class MemberWishlistProductMapper extends BaseRowMapper<MemberWishlistPro
 	protected void setId(MemberWishlistProduct memberWishlistProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(MemberWishlistProductTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -39,7 +41,9 @@ public class MemberWishlistProductMapper extends BaseRowMapper<MemberWishlistPro
 	protected void setName(MemberWishlistProduct memberWishlistProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(MemberWishlistProductTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -69,7 +73,9 @@ public class MemberWishlistProductMapper extends BaseRowMapper<MemberWishlistPro
 	protected void setVersion(MemberWishlistProduct memberWishlistProduct, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(MemberWishlistProductTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

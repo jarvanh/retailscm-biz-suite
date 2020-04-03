@@ -29,7 +29,9 @@ public class PublicHolidayMapper extends BaseRowMapper<PublicHoliday>{
 	protected void setId(PublicHoliday publicHoliday, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(PublicHolidayTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class PublicHolidayMapper extends BaseRowMapper<PublicHoliday>{
 	protected void setCode(PublicHoliday publicHoliday, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(PublicHolidayTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class PublicHolidayMapper extends BaseRowMapper<PublicHoliday>{
 	protected void setName(PublicHoliday publicHoliday, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(PublicHolidayTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class PublicHolidayMapper extends BaseRowMapper<PublicHoliday>{
 	protected void setDescription(PublicHoliday publicHoliday, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(PublicHolidayTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class PublicHolidayMapper extends BaseRowMapper<PublicHoliday>{
 	protected void setVersion(PublicHoliday publicHoliday, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(PublicHolidayTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

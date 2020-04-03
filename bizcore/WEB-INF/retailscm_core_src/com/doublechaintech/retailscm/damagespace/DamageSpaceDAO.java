@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.damagespace;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -64,6 +65,7 @@ public interface DamageSpaceDAO extends BaseDAO{
 	
 	public SmartList<DamageSpace> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateDamageSpace executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<DamageSpace> findDamageSpaceByWarehouse(String warehouseId, Map<String,Object> options);
  	public int countDamageSpaceByWarehouse(String warehouseId, Map<String,Object> options);

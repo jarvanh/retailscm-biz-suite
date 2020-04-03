@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -751,13 +755,19 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
  	protected Object[] prepareRetailStoreProvinceCenterUpdateParameters(RetailStoreProvinceCenter retailStoreProvinceCenter){
  		Object[] parameters = new Object[7];
  
+ 		
  		parameters[0] = retailStoreProvinceCenter.getName();
- 		parameters[1] = retailStoreProvinceCenter.getFounded(); 	
+ 		
+ 		
+ 		parameters[1] = retailStoreProvinceCenter.getFounded();
+ 		 	
  		if(retailStoreProvinceCenter.getCountry() != null){
  			parameters[2] = retailStoreProvinceCenter.getCountry().getId();
  		}
  
- 		parameters[3] = retailStoreProvinceCenter.getLastUpdateTime();		
+ 		
+ 		parameters[3] = retailStoreProvinceCenter.getLastUpdateTime();
+ 				
  		parameters[4] = retailStoreProvinceCenter.nextVersion();
  		parameters[5] = retailStoreProvinceCenter.getId();
  		parameters[6] = retailStoreProvinceCenter.getVersion();
@@ -770,14 +780,20 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
 		retailStoreProvinceCenter.setId(newRetailStoreProvinceCenterId);
 		parameters[0] =  retailStoreProvinceCenter.getId();
  
+ 		
  		parameters[1] = retailStoreProvinceCenter.getName();
- 		parameters[2] = retailStoreProvinceCenter.getFounded(); 	
+ 		
+ 		
+ 		parameters[2] = retailStoreProvinceCenter.getFounded();
+ 		 	
  		if(retailStoreProvinceCenter.getCountry() != null){
  			parameters[3] = retailStoreProvinceCenter.getCountry().getId();
  		
  		}
  		
- 		parameters[4] = retailStoreProvinceCenter.getLastUpdateTime();		
+ 		
+ 		parameters[4] = retailStoreProvinceCenter.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -1243,19 +1259,19 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
     public SmartList<RetailStoreProvinceCenter> requestCandidateRetailStoreProvinceCenterForProvinceCenterDepartment(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreProvinceCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreProvinceCenterMapper());
+		return findAllCandidateByFilter(RetailStoreProvinceCenterTable.COLUMN_NAME, RetailStoreProvinceCenterTable.COLUMN_COUNTRY, filterKey, pageNo, pageSize, getRetailStoreProvinceCenterMapper());
     }
 		
     public SmartList<RetailStoreProvinceCenter> requestCandidateRetailStoreProvinceCenterForProvinceCenterEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreProvinceCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreProvinceCenterMapper());
+		return findAllCandidateByFilter(RetailStoreProvinceCenterTable.COLUMN_NAME, RetailStoreProvinceCenterTable.COLUMN_COUNTRY, filterKey, pageNo, pageSize, getRetailStoreProvinceCenterMapper());
     }
 		
     public SmartList<RetailStoreProvinceCenter> requestCandidateRetailStoreProvinceCenterForRetailStoreCityServiceCenter(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreProvinceCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreProvinceCenterMapper());
+		return findAllCandidateByFilter(RetailStoreProvinceCenterTable.COLUMN_NAME, RetailStoreProvinceCenterTable.COLUMN_COUNTRY, filterKey, pageNo, pageSize, getRetailStoreProvinceCenterMapper());
     }
 		
 
@@ -1375,6 +1391,30 @@ public class RetailStoreProvinceCenterJDBCTemplateDAO extends RetailscmBaseDAOIm
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreProvinceCenter executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreProvinceCenter result = new CandidateRetailStoreProvinceCenter();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

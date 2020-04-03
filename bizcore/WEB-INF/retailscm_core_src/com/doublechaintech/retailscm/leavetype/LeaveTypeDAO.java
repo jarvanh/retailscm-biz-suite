@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.leavetype;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -60,6 +61,7 @@ public interface LeaveTypeDAO extends BaseDAO{
 	
 	public SmartList<LeaveType> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateLeaveType executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<LeaveType> findLeaveTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countLeaveTypeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

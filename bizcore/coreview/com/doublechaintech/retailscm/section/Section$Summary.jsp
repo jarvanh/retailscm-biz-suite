@@ -45,6 +45,14 @@
 <span >${result.brief}</span>
 </div>
 <div class="col-xs-12 col-md-3 summary-section">
+<span class="summary-label">${userContext.localeMap['section.icon']}</span>
+<span >${result.icon}</span>
+</div>
+<div class="col-xs-12 col-md-3 summary-section">
+<span class="summary-label">${userContext.localeMap['section.view_group']}</span>
+<span >${result.viewGroup}</span>
+</div>
+<div class="col-xs-12 col-md-3 summary-section">
 <span class="summary-label">${userContext.localeMap['section.link_to_url']}</span>
 <span >${result.linkToUrl}</span>
 </div>

@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.warehouse;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.supplierspace.SupplierSpace;
 import com.doublechaintech.retailscm.warehouseasset.WarehouseAsset;
@@ -29,7 +46,7 @@ import com.doublechaintech.retailscm.warehouse.Warehouse;
 
 
 
-public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implements WarehouseManager {
+public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implements WarehouseManager, BusinessHandler{
 
   
 
@@ -249,21 +266,36 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(Warehouse.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfWarehouse(parseString(newValueExpr));
+		
+			
 		}
 		if(Warehouse.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfWarehouse(parseString(newValueExpr));
+		
+			
 		}
 		if(Warehouse.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfWarehouse(parseString(newValueExpr));
+		
+			
 		}		
 
 		
 		if(Warehouse.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfWarehouse(parseBigDecimal(newValueExpr));
+		
+			
 		}
 		if(Warehouse.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfWarehouse(parseBigDecimal(newValueExpr));
+		
+			
 		}
 	
 		checkerOf(userContext).throwExceptionIfHasErrors(WarehouseManagerException.class);
@@ -690,23 +722,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(StorageSpace.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfStorageSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(StorageSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfStorageSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(StorageSpace.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfStorageSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(StorageSpace.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfStorageSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(StorageSpace.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfStorageSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -957,23 +999,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(SmartPallet.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfSmartPallet(parseString(newValueExpr));
+		
 		}
 		
 		if(SmartPallet.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfSmartPallet(parseString(newValueExpr));
+		
 		}
 		
 		if(SmartPallet.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfSmartPallet(parseString(newValueExpr));
+		
 		}
 		
 		if(SmartPallet.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfSmartPallet(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(SmartPallet.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfSmartPallet(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -1224,23 +1276,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(SupplierSpace.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfSupplierSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(SupplierSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfSupplierSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(SupplierSpace.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfSupplierSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(SupplierSpace.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(SupplierSpace.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfSupplierSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -1496,27 +1558,39 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(ReceivingSpace.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfReceivingSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(ReceivingSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfReceivingSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(ReceivingSpace.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfReceivingSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(ReceivingSpace.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfReceivingSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(ReceivingSpace.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfReceivingSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(ReceivingSpace.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfReceivingSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -1772,27 +1846,39 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(ShippingSpace.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfShippingSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(ShippingSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfShippingSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(ShippingSpace.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfShippingSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(ShippingSpace.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfShippingSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(ShippingSpace.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfShippingSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(ShippingSpace.DESCRIPTION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkDescriptionOfShippingSpace(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -2043,23 +2129,33 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(DamageSpace.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfDamageSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(DamageSpace.CONTACT_NUMBER_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkContactNumberOfDamageSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(DamageSpace.TOTAL_AREA_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTotalAreaOfDamageSpace(parseString(newValueExpr));
+		
 		}
 		
 		if(DamageSpace.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfDamageSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(DamageSpace.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfDamageSpace(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -2295,11 +2391,15 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
 		
 
 		if(WarehouseAsset.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfWarehouseAsset(parseString(newValueExpr));
+		
 		}
 		
 		if(WarehouseAsset.POSITION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkPositionOfWarehouseAsset(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -2354,6 +2454,421 @@ public class WarehouseManagerImpl extends CustomRetailscmCheckerManager implemen
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   Warehouse newWarehouse = this.createWarehouse(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newWarehouse
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, Warehouse.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<Warehouse> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+		List<RetailStoreCountryCenter> ownerList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, RetailStoreCountryCenter.class);
+		userContext.getDAOGroup().enhanceList(ownerList, RetailStoreCountryCenter.class);
+
+
+    }
+	
+	public Object listByOwner(RetailscmUserContext userContext,String ownerId) throws Exception {
+		return listPageByOwner(userContext, ownerId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByOwner(RetailscmUserContext userContext,String ownerId, int start, int count) throws Exception {
+		SmartList<Warehouse> list = warehouseDaoOf(userContext).findWarehouseByOwner(ownerId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Warehouse.class);
+		page.setContainerObject(RetailStoreCountryCenter.withId(ownerId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("仓库列表");
+		page.setRequestName("listByOwner");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByOwner/%s/",  getBeanName(), ownerId)));
+
+		page.assemblerContent(userContext, "listByOwner");
+		return page.doRender(userContext);
+	}
+  
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String warehouseId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getWarehouseDetailScope().clone();
+		Warehouse merchantObj = (Warehouse) this.view(userContext, warehouseId);
+    String merchantObjId = warehouseId;
+    String linkToUrl =	"warehouseManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "仓库"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-location")
+				    .put("fieldName", "location")
+				    .put("label", "位置")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("location", merchantObj.getLocation());
+
+		propList.add(
+				MapUtil.put("id", "3-contactNumber")
+				    .put("fieldName", "contactNumber")
+				    .put("label", "联系电话")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("contactNumber", merchantObj.getContactNumber());
+
+		propList.add(
+				MapUtil.put("id", "4-totalArea")
+				    .put("fieldName", "totalArea")
+				    .put("label", "总面积")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("totalArea", merchantObj.getTotalArea());
+
+		propList.add(
+				MapUtil.put("id", "5-owner")
+				    .put("fieldName", "owner")
+				    .put("label", "业主")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "retailStoreCountryCenterManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("owner", merchantObj.getOwner());
+
+		propList.add(
+				MapUtil.put("id", "6-latitude")
+				    .put("fieldName", "latitude")
+				    .put("label", "纬度")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("latitude", merchantObj.getLatitude());
+
+		propList.add(
+				MapUtil.put("id", "7-longitude")
+				    .put("fieldName", "longitude")
+				    .put("label", "经度")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("longitude", merchantObj.getLongitude());
+
+		propList.add(
+				MapUtil.put("id", "8-lastUpdateTime")
+				    .put("fieldName", "lastUpdateTime")
+				    .put("label", "最后更新时间")
+				    .put("type", "date")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("lastUpdateTime", merchantObj.getLastUpdateTime());
+
+		//处理 sectionList
+
+		//处理Section：storageSpaceListSection
+		Map storageSpaceListSection = ListofUtils.buildSection(
+		    "storageSpaceListSection",
+		    "存储空间列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "storageSpaceManager/listByWarehouse/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(storageSpaceListSection);
+
+		result.put("storageSpaceListSection", ListofUtils.toShortList(merchantObj.getStorageSpaceList(), "storageSpace"));
+		vscope.field("storageSpaceListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( StorageSpace.class.getName(), null));
+
+		//处理Section：smartPalletListSection
+		Map smartPalletListSection = ListofUtils.buildSection(
+		    "smartPalletListSection",
+		    "智能托盘清单",
+		    null,
+		    "",
+		    "__no_group",
+		    "smartPalletManager/listByWarehouse/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(smartPalletListSection);
+
+		result.put("smartPalletListSection", ListofUtils.toShortList(merchantObj.getSmartPalletList(), "smartPallet"));
+		vscope.field("smartPalletListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( SmartPallet.class.getName(), null));
+
+		//处理Section：supplierSpaceListSection
+		Map supplierSpaceListSection = ListofUtils.buildSection(
+		    "supplierSpaceListSection",
+		    "供应商空间列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "supplierSpaceManager/listByWarehouse/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(supplierSpaceListSection);
+
+		result.put("supplierSpaceListSection", ListofUtils.toShortList(merchantObj.getSupplierSpaceList(), "supplierSpace"));
+		vscope.field("supplierSpaceListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( SupplierSpace.class.getName(), null));
+
+		//处理Section：receivingSpaceListSection
+		Map receivingSpaceListSection = ListofUtils.buildSection(
+		    "receivingSpaceListSection",
+		    "接收空间列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "receivingSpaceManager/listByWarehouse/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(receivingSpaceListSection);
+
+		result.put("receivingSpaceListSection", ListofUtils.toShortList(merchantObj.getReceivingSpaceList(), "receivingSpace"));
+		vscope.field("receivingSpaceListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( ReceivingSpace.class.getName(), null));
+
+		//处理Section：shippingSpaceListSection
+		Map shippingSpaceListSection = ListofUtils.buildSection(
+		    "shippingSpaceListSection",
+		    "舱位列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "shippingSpaceManager/listByWarehouse/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(shippingSpaceListSection);
+
+		result.put("shippingSpaceListSection", ListofUtils.toShortList(merchantObj.getShippingSpaceList(), "shippingSpace"));
+		vscope.field("shippingSpaceListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( ShippingSpace.class.getName(), null));
+
+		//处理Section：damageSpaceListSection
+		Map damageSpaceListSection = ListofUtils.buildSection(
+		    "damageSpaceListSection",
+		    "破坏空间列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "damageSpaceManager/listByWarehouse/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(damageSpaceListSection);
+
+		result.put("damageSpaceListSection", ListofUtils.toShortList(merchantObj.getDamageSpaceList(), "damageSpace"));
+		vscope.field("damageSpaceListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( DamageSpace.class.getName(), null));
+
+		//处理Section：warehouseAssetListSection
+		Map warehouseAssetListSection = ListofUtils.buildSection(
+		    "warehouseAssetListSection",
+		    "仓库资产列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "warehouseAssetManager/listByOwner/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(warehouseAssetListSection);
+
+		result.put("warehouseAssetListSection", ListofUtils.toShortList(merchantObj.getWarehouseAssetList(), "warehouseAsset"));
+		vscope.field("warehouseAssetListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( WarehouseAsset.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -49,6 +50,7 @@ public class MemberWishlistProduct extends BaseEntity implements  java.io.Serial
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	MemberWishlistProduct(){
@@ -85,6 +87,7 @@ public class MemberWishlistProduct extends BaseEntity implements  java.io.Serial
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -94,7 +97,7 @@ public class MemberWishlistProduct extends BaseEntity implements  java.io.Serial
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -222,7 +225,9 @@ public class MemberWishlistProduct extends BaseEntity implements  java.io.Serial
 		appendKeyValuePair(result, OWNER_PROPERTY, getOwner());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

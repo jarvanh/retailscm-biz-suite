@@ -29,7 +29,9 @@ public class ConsumerOrderPriceAdjustmentMapper extends BaseRowMapper<ConsumerOr
 	protected void setId(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ConsumerOrderPriceAdjustmentTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class ConsumerOrderPriceAdjustmentMapper extends BaseRowMapper<ConsumerOr
 	protected void setName(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(ConsumerOrderPriceAdjustmentTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class ConsumerOrderPriceAdjustmentMapper extends BaseRowMapper<ConsumerOr
 	protected void setAmount(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal amount = rs.getBigDecimal(ConsumerOrderPriceAdjustmentTable.COLUMN_AMOUNT);
+		
 		if(amount == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class ConsumerOrderPriceAdjustmentMapper extends BaseRowMapper<ConsumerOr
 	protected void setProvider(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String provider = rs.getString(ConsumerOrderPriceAdjustmentTable.COLUMN_PROVIDER);
+		
 		if(provider == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class ConsumerOrderPriceAdjustmentMapper extends BaseRowMapper<ConsumerOr
 	protected void setVersion(ConsumerOrderPriceAdjustment consumerOrderPriceAdjustment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ConsumerOrderPriceAdjustmentTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

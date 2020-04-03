@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.formfield;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface FormFieldDAO extends BaseDAO{
 	
 	public SmartList<FormField> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateFormField executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<FormField> findFormFieldByForm(String genericFormId, Map<String,Object> options);
  	public int countFormFieldByForm(String genericFormId, Map<String,Object> options);

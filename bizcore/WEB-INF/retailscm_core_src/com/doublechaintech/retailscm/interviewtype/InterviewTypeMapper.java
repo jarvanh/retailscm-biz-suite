@@ -29,7 +29,9 @@ public class InterviewTypeMapper extends BaseRowMapper<InterviewType>{
 	protected void setId(InterviewType interviewType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(InterviewTypeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class InterviewTypeMapper extends BaseRowMapper<InterviewType>{
 	protected void setCode(InterviewType interviewType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(InterviewTypeTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class InterviewTypeMapper extends BaseRowMapper<InterviewType>{
 	protected void setDescription(InterviewType interviewType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(InterviewTypeTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class InterviewTypeMapper extends BaseRowMapper<InterviewType>{
 	protected void setDetailDescription(InterviewType interviewType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String detailDescription = rs.getString(InterviewTypeTable.COLUMN_DETAIL_DESCRIPTION);
+		
 		if(detailDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class InterviewTypeMapper extends BaseRowMapper<InterviewType>{
 	protected void setVersion(InterviewType interviewType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(InterviewTypeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

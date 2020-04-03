@@ -47,7 +47,9 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
 	protected void setId(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(GoodsTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -59,7 +61,9 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
 	protected void setName(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(GoodsTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
 	protected void setRfid(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String rfid = rs.getString(GoodsTable.COLUMN_RFID);
+		
 		if(rfid == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
 	protected void setUom(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String uom = rs.getString(GoodsTable.COLUMN_UOM);
+		
 		if(uom == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
 	protected void setMaxPackage(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer maxPackage = rs.getInt(GoodsTable.COLUMN_MAX_PACKAGE);
+		
 		if(maxPackage == null){
 			//do nothing when nothing found in database
 			return;
@@ -107,7 +117,9 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
 	protected void setExpireTime(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date expireTime = rs.getDate(GoodsTable.COLUMN_EXPIRE_TIME);
+		
 		if(expireTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -281,7 +293,9 @@ public class GoodsMapper extends BaseRowMapper<Goods>{
 	protected void setVersion(Goods goods, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(GoodsTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

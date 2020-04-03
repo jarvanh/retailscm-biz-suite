@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.publicholiday;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface PublicHolidayDAO extends BaseDAO{
 	
 	public SmartList<PublicHoliday> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidatePublicHoliday executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<PublicHoliday> findPublicHolidayByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countPublicHolidayByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

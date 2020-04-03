@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -435,12 +439,16 @@ public class ConsumerOrderPaymentGroupJDBCTemplateDAO extends RetailscmBaseDAOIm
  	protected Object[] prepareConsumerOrderPaymentGroupUpdateParameters(ConsumerOrderPaymentGroup consumerOrderPaymentGroup){
  		Object[] parameters = new Object[6];
  
- 		parameters[0] = consumerOrderPaymentGroup.getName(); 	
+ 		
+ 		parameters[0] = consumerOrderPaymentGroup.getName();
+ 		 	
  		if(consumerOrderPaymentGroup.getBizOrder() != null){
  			parameters[1] = consumerOrderPaymentGroup.getBizOrder().getId();
  		}
  
- 		parameters[2] = consumerOrderPaymentGroup.getCardNumber();		
+ 		
+ 		parameters[2] = consumerOrderPaymentGroup.getCardNumber();
+ 				
  		parameters[3] = consumerOrderPaymentGroup.nextVersion();
  		parameters[4] = consumerOrderPaymentGroup.getId();
  		parameters[5] = consumerOrderPaymentGroup.getVersion();
@@ -453,13 +461,17 @@ public class ConsumerOrderPaymentGroupJDBCTemplateDAO extends RetailscmBaseDAOIm
 		consumerOrderPaymentGroup.setId(newConsumerOrderPaymentGroupId);
 		parameters[0] =  consumerOrderPaymentGroup.getId();
  
- 		parameters[1] = consumerOrderPaymentGroup.getName(); 	
+ 		
+ 		parameters[1] = consumerOrderPaymentGroup.getName();
+ 		 	
  		if(consumerOrderPaymentGroup.getBizOrder() != null){
  			parameters[2] = consumerOrderPaymentGroup.getBizOrder().getId();
  		
  		}
  		
- 		parameters[3] = consumerOrderPaymentGroup.getCardNumber();		
+ 		
+ 		parameters[3] = consumerOrderPaymentGroup.getCardNumber();
+ 				
  				
  		return parameters;
  	}
@@ -560,6 +572,30 @@ public class ConsumerOrderPaymentGroupJDBCTemplateDAO extends RetailscmBaseDAOIm
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateConsumerOrderPaymentGroup executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateConsumerOrderPaymentGroup result = new CandidateConsumerOrderPaymentGroup();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

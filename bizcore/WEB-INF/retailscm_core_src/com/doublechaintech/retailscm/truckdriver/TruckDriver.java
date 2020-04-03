@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -56,6 +57,7 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 	
 	
 	protected		SmartList<TransportTask>	mTransportTaskList  ;
+
 	
 		
 	public 	TruckDriver(){
@@ -98,6 +100,7 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -107,12 +110,13 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDriverLicenseNumberProperty(String newValueExpr){
+	
 		String oldValue = getDriverLicenseNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +126,13 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		updateDriverLicenseNumber(newValue);
 		this.onChangeProperty(DRIVER_LICENSE_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
+	
 		String oldValue = getContactNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -137,7 +142,7 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 		updateContactNumber(newValue);
 		this.onChangeProperty(CONTACT_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -430,7 +435,9 @@ public class TruckDriver extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "transportTaskCurrentPageNumber", getTransportTaskList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

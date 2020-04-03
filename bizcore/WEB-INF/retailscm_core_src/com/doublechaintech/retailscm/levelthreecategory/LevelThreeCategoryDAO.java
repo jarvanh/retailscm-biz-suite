@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.levelthreecategory;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -56,6 +57,7 @@ public interface LevelThreeCategoryDAO extends BaseDAO{
 	
 	public SmartList<LevelThreeCategory> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateLevelThreeCategory executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<LevelThreeCategory> findLevelThreeCategoryByParentCategory(String levelTwoCategoryId, Map<String,Object> options);
  	public int countLevelThreeCategoryByParentCategory(String levelTwoCategoryId, Map<String,Object> options);

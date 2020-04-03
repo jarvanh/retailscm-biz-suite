@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -535,9 +539,15 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmBaseDAOImpl im
  	protected Object[] prepareGoodsShelfStockCountUpdateParameters(GoodsShelfStockCount goodsShelfStockCount){
  		Object[] parameters = new Object[7];
  
+ 		
  		parameters[0] = goodsShelfStockCount.getTitle();
+ 		
+ 		
  		parameters[1] = goodsShelfStockCount.getCountTime();
- 		parameters[2] = goodsShelfStockCount.getSummary(); 	
+ 		
+ 		
+ 		parameters[2] = goodsShelfStockCount.getSummary();
+ 		 	
  		if(goodsShelfStockCount.getShelf() != null){
  			parameters[3] = goodsShelfStockCount.getShelf().getId();
  		}
@@ -554,9 +564,15 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmBaseDAOImpl im
 		goodsShelfStockCount.setId(newGoodsShelfStockCountId);
 		parameters[0] =  goodsShelfStockCount.getId();
  
+ 		
  		parameters[1] = goodsShelfStockCount.getTitle();
+ 		
+ 		
  		parameters[2] = goodsShelfStockCount.getCountTime();
- 		parameters[3] = goodsShelfStockCount.getSummary(); 	
+ 		
+ 		
+ 		parameters[3] = goodsShelfStockCount.getSummary();
+ 		 	
  		if(goodsShelfStockCount.getShelf() != null){
  			parameters[4] = goodsShelfStockCount.getShelf().getId();
  		
@@ -739,7 +755,7 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmBaseDAOImpl im
     public SmartList<GoodsShelfStockCount> requestCandidateGoodsShelfStockCountForStockCountIssueTrack(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GoodsShelfStockCountTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getGoodsShelfStockCountMapper());
+		return findAllCandidateByFilter(GoodsShelfStockCountTable.COLUMN_TITLE, GoodsShelfStockCountTable.COLUMN_SHELF, filterKey, pageNo, pageSize, getGoodsShelfStockCountMapper());
     }
 		
 
@@ -813,6 +829,30 @@ public class GoodsShelfStockCountJDBCTemplateDAO extends RetailscmBaseDAOImpl im
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateGoodsShelfStockCount executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateGoodsShelfStockCount result = new CandidateGoodsShelfStockCount();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

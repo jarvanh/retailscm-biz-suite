@@ -33,7 +33,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setId(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ReceivingSpaceTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -45,7 +47,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setLocation(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String location = rs.getString(ReceivingSpaceTable.COLUMN_LOCATION);
+		
 		if(location == null){
 			//do nothing when nothing found in database
 			return;
@@ -57,7 +61,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setContactNumber(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String contactNumber = rs.getString(ReceivingSpaceTable.COLUMN_CONTACT_NUMBER);
+		
 		if(contactNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -69,7 +75,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setDescription(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(ReceivingSpaceTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -81,7 +89,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setTotalArea(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String totalArea = rs.getString(ReceivingSpaceTable.COLUMN_TOTAL_AREA);
+		
 		if(totalArea == null){
 			//do nothing when nothing found in database
 			return;
@@ -111,7 +121,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setLatitude(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(ReceivingSpaceTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -123,7 +135,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setLongitude(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(ReceivingSpaceTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -135,7 +149,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setLastUpdateTime(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(ReceivingSpaceTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -147,7 +163,9 @@ public class ReceivingSpaceMapper extends BaseRowMapper<ReceivingSpace>{
 	protected void setVersion(ReceivingSpace receivingSpace, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ReceivingSpaceTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

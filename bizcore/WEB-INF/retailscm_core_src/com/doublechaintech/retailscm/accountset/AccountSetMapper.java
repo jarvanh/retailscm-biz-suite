@@ -39,7 +39,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setId(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(AccountSetTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -51,7 +53,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setName(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(AccountSetTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -63,7 +67,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setYearSet(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String yearSet = rs.getString(AccountSetTable.COLUMN_YEAR_SET);
+		
 		if(yearSet == null){
 			//do nothing when nothing found in database
 			return;
@@ -75,7 +81,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setEffectiveDate(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date effectiveDate = rs.getDate(AccountSetTable.COLUMN_EFFECTIVE_DATE);
+		
 		if(effectiveDate == null){
 			//do nothing when nothing found in database
 			return;
@@ -87,7 +95,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setAccountingSystem(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String accountingSystem = rs.getString(AccountSetTable.COLUMN_ACCOUNTING_SYSTEM);
+		
 		if(accountingSystem == null){
 			//do nothing when nothing found in database
 			return;
@@ -99,7 +109,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setDomesticCurrencyCode(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String domesticCurrencyCode = rs.getString(AccountSetTable.COLUMN_DOMESTIC_CURRENCY_CODE);
+		
 		if(domesticCurrencyCode == null){
 			//do nothing when nothing found in database
 			return;
@@ -111,7 +123,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setDomesticCurrencyName(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String domesticCurrencyName = rs.getString(AccountSetTable.COLUMN_DOMESTIC_CURRENCY_NAME);
+		
 		if(domesticCurrencyName == null){
 			//do nothing when nothing found in database
 			return;
@@ -123,7 +137,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setOpeningBank(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String openingBank = rs.getString(AccountSetTable.COLUMN_OPENING_BANK);
+		
 		if(openingBank == null){
 			//do nothing when nothing found in database
 			return;
@@ -135,7 +151,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setAccountNumber(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String accountNumber = rs.getString(AccountSetTable.COLUMN_ACCOUNT_NUMBER);
+		
 		if(accountNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -201,7 +219,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setLastUpdateTime(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(AccountSetTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -213,7 +233,9 @@ public class AccountSetMapper extends BaseRowMapper<AccountSet>{
 	protected void setVersion(AccountSet accountSet, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(AccountSetTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

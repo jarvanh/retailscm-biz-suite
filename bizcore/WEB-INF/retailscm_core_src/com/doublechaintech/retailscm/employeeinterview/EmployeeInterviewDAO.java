@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employeeinterview;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -49,6 +50,7 @@ public interface EmployeeInterviewDAO extends BaseDAO{
 	
 	public SmartList<EmployeeInterview> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateEmployeeInterview executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<EmployeeInterview> findEmployeeInterviewByEmployee(String employeeId, Map<String,Object> options);
  	public int countEmployeeInterviewByEmployee(String employeeId, Map<String,Object> options);

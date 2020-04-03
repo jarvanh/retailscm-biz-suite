@@ -3,9 +3,14 @@ package com.doublechaintech.retailscm;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
+import javax.servlet.http.Cookie;
 import com.skynet.infrastructure.ESClient;
 import com.terapico.uccaf.BaseUserContext;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+
+import com.doublechaintech.retailscm.tree.TreeServiceImpl;
+
 public interface UserContext extends BaseUserContext{
 	public DateTime now();
 	public String currentUserName();
@@ -42,7 +47,9 @@ public interface UserContext extends BaseUserContext{
 	public void setResponseHeader(String name, String value);
 	public String getResponseHeadder(String name);
 	public void forceResponseXClassHeader(String clazzName);
+	public Cookie[] getRequestCookies();
 	public <T> List<T> getCachedObjectsWithOneType(List<String> keys, Class<T> clazz);
+	public TreeServiceImpl getTreeService();
 
 }
 

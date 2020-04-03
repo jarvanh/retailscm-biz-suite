@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -435,9 +439,15 @@ public class ProductSupplyDurationJDBCTemplateDAO extends RetailscmBaseDAOImpl i
  	protected Object[] prepareProductSupplyDurationUpdateParameters(ProductSupplyDuration productSupplyDuration){
  		Object[] parameters = new Object[7];
  
+ 		
  		parameters[0] = productSupplyDuration.getQuantity();
+ 		
+ 		
  		parameters[1] = productSupplyDuration.getDuration();
- 		parameters[2] = productSupplyDuration.getPrice(); 	
+ 		
+ 		
+ 		parameters[2] = productSupplyDuration.getPrice();
+ 		 	
  		if(productSupplyDuration.getProduct() != null){
  			parameters[3] = productSupplyDuration.getProduct().getId();
  		}
@@ -454,9 +464,15 @@ public class ProductSupplyDurationJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 		productSupplyDuration.setId(newProductSupplyDurationId);
 		parameters[0] =  productSupplyDuration.getId();
  
+ 		
  		parameters[1] = productSupplyDuration.getQuantity();
+ 		
+ 		
  		parameters[2] = productSupplyDuration.getDuration();
- 		parameters[3] = productSupplyDuration.getPrice(); 	
+ 		
+ 		
+ 		parameters[3] = productSupplyDuration.getPrice();
+ 		 	
  		if(productSupplyDuration.getProduct() != null){
  			parameters[4] = productSupplyDuration.getProduct().getId();
  		
@@ -562,6 +578,30 @@ public class ProductSupplyDurationJDBCTemplateDAO extends RetailscmBaseDAOImpl i
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateProductSupplyDuration executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateProductSupplyDuration result = new CandidateProductSupplyDuration();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

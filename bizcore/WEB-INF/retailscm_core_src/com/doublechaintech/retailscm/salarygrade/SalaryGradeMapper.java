@@ -29,7 +29,9 @@ public class SalaryGradeMapper extends BaseRowMapper<SalaryGrade>{
 	protected void setId(SalaryGrade salaryGrade, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(SalaryGradeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class SalaryGradeMapper extends BaseRowMapper<SalaryGrade>{
 	protected void setCode(SalaryGrade salaryGrade, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(SalaryGradeTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class SalaryGradeMapper extends BaseRowMapper<SalaryGrade>{
 	protected void setName(SalaryGrade salaryGrade, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(SalaryGradeTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class SalaryGradeMapper extends BaseRowMapper<SalaryGrade>{
 	protected void setDetailDescription(SalaryGrade salaryGrade, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String detailDescription = rs.getString(SalaryGradeTable.COLUMN_DETAIL_DESCRIPTION);
+		
 		if(detailDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class SalaryGradeMapper extends BaseRowMapper<SalaryGrade>{
 	protected void setVersion(SalaryGrade salaryGrade, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(SalaryGradeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

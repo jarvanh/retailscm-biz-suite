@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -636,13 +640,27 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  			parameters[1] = employeeSalarySheet.getCurrentSalaryGrade().getId();
  		}
  
+ 		
  		parameters[2] = employeeSalarySheet.getBaseSalary();
+ 		
+ 		
  		parameters[3] = employeeSalarySheet.getBonus();
+ 		
+ 		
  		parameters[4] = employeeSalarySheet.getReward();
+ 		
+ 		
  		parameters[5] = employeeSalarySheet.getPersonalTax();
+ 		
+ 		
  		parameters[6] = employeeSalarySheet.getSocialSecurity();
+ 		
+ 		
  		parameters[7] = employeeSalarySheet.getHousingFound();
- 		parameters[8] = employeeSalarySheet.getJobInsurance(); 	
+ 		
+ 		
+ 		parameters[8] = employeeSalarySheet.getJobInsurance();
+ 		 	
  		if(employeeSalarySheet.getPayingOff() != null){
  			parameters[9] = employeeSalarySheet.getPayingOff().getId();
  		}
@@ -669,13 +687,27 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
  		
  		}
  		
+ 		
  		parameters[3] = employeeSalarySheet.getBaseSalary();
+ 		
+ 		
  		parameters[4] = employeeSalarySheet.getBonus();
+ 		
+ 		
  		parameters[5] = employeeSalarySheet.getReward();
+ 		
+ 		
  		parameters[6] = employeeSalarySheet.getPersonalTax();
+ 		
+ 		
  		parameters[7] = employeeSalarySheet.getSocialSecurity();
+ 		
+ 		
  		parameters[8] = employeeSalarySheet.getHousingFound();
- 		parameters[9] = employeeSalarySheet.getJobInsurance(); 	
+ 		
+ 		
+ 		parameters[9] = employeeSalarySheet.getJobInsurance();
+ 		 	
  		if(employeeSalarySheet.getPayingOff() != null){
  			parameters[10] = employeeSalarySheet.getPayingOff().getId();
  		
@@ -823,6 +855,30 @@ public class EmployeeSalarySheetJDBCTemplateDAO extends RetailscmBaseDAOImpl imp
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateEmployeeSalarySheet executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateEmployeeSalarySheet result = new CandidateEmployeeSalarySheet();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

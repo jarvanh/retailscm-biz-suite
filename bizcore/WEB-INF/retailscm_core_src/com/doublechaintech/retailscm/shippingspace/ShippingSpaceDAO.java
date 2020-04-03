@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.shippingspace;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -88,6 +89,7 @@ public interface ShippingSpaceDAO extends BaseDAO{
 	
 	public SmartList<ShippingSpace> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateShippingSpace executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<ShippingSpace> findShippingSpaceByWarehouse(String warehouseId, Map<String,Object> options);
  	public int countShippingSpaceByWarehouse(String warehouseId, Map<String,Object> options);

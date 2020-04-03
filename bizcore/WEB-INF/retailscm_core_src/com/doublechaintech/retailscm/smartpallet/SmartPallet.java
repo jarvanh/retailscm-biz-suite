@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -62,6 +63,7 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 	
 	
 	protected		SmartList<Goods>    	mGoodsList          ;
+
 	
 		
 	public 	SmartPallet(){
@@ -113,6 +115,7 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeLocationProperty(String newValueExpr){
+	
 		String oldValue = getLocation();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +125,13 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 		updateLocation(newValue);
 		this.onChangeProperty(LOCATION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeContactNumberProperty(String newValueExpr){
+	
 		String oldValue = getContactNumber();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -137,12 +141,13 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 		updateContactNumber(newValue);
 		this.onChangeProperty(CONTACT_NUMBER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeTotalAreaProperty(String newValueExpr){
+	
 		String oldValue = getTotalArea();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -152,12 +157,13 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 		updateTotalArea(newValue);
 		this.onChangeProperty(TOTAL_AREA_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLatitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLatitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -167,12 +173,13 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 		updateLatitude(newValue);
 		this.onChangeProperty(LATITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLongitudeProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getLongitude();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -182,12 +189,13 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 		updateLongitude(newValue);
 		this.onChangeProperty(LONGITUDE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -197,7 +205,7 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -543,7 +551,9 @@ public class SmartPallet extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "goodsCurrentPageNumber", getGoodsList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

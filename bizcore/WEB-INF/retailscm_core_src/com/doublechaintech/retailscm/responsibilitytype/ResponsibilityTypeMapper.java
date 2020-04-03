@@ -29,7 +29,9 @@ public class ResponsibilityTypeMapper extends BaseRowMapper<ResponsibilityType>{
 	protected void setId(ResponsibilityType responsibilityType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ResponsibilityTypeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class ResponsibilityTypeMapper extends BaseRowMapper<ResponsibilityType>{
 	protected void setCode(ResponsibilityType responsibilityType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(ResponsibilityTypeTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class ResponsibilityTypeMapper extends BaseRowMapper<ResponsibilityType>{
 	protected void setBaseDescription(ResponsibilityType responsibilityType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String baseDescription = rs.getString(ResponsibilityTypeTable.COLUMN_BASE_DESCRIPTION);
+		
 		if(baseDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class ResponsibilityTypeMapper extends BaseRowMapper<ResponsibilityType>{
 	protected void setDetailDescription(ResponsibilityType responsibilityType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String detailDescription = rs.getString(ResponsibilityTypeTable.COLUMN_DETAIL_DESCRIPTION);
+		
 		if(detailDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class ResponsibilityTypeMapper extends BaseRowMapper<ResponsibilityType>{
 	protected void setVersion(ResponsibilityType responsibilityType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ResponsibilityTypeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

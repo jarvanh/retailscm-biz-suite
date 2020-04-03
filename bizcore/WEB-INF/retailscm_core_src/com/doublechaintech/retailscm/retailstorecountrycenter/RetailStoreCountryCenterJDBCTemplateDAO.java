@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -2752,14 +2756,30 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
  	protected Object[] prepareRetailStoreCountryCenterUpdateParameters(RetailStoreCountryCenter retailStoreCountryCenter){
  		Object[] parameters = new Object[11];
  
+ 		
  		parameters[0] = retailStoreCountryCenter.getName();
+ 		
+ 		
  		parameters[1] = retailStoreCountryCenter.getServiceNumber();
+ 		
+ 		
  		parameters[2] = retailStoreCountryCenter.getFounded();
+ 		
+ 		
  		parameters[3] = retailStoreCountryCenter.getWebSite();
+ 		
+ 		
  		parameters[4] = retailStoreCountryCenter.getAddress();
+ 		
+ 		
  		parameters[5] = retailStoreCountryCenter.getOperatedBy();
+ 		
+ 		
  		parameters[6] = retailStoreCountryCenter.getLegalRepresentative();
- 		parameters[7] = retailStoreCountryCenter.getDescription();		
+ 		
+ 		
+ 		parameters[7] = retailStoreCountryCenter.getDescription();
+ 				
  		parameters[8] = retailStoreCountryCenter.nextVersion();
  		parameters[9] = retailStoreCountryCenter.getId();
  		parameters[10] = retailStoreCountryCenter.getVersion();
@@ -2772,14 +2792,30 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 		retailStoreCountryCenter.setId(newRetailStoreCountryCenterId);
 		parameters[0] =  retailStoreCountryCenter.getId();
  
+ 		
  		parameters[1] = retailStoreCountryCenter.getName();
+ 		
+ 		
  		parameters[2] = retailStoreCountryCenter.getServiceNumber();
+ 		
+ 		
  		parameters[3] = retailStoreCountryCenter.getFounded();
+ 		
+ 		
  		parameters[4] = retailStoreCountryCenter.getWebSite();
+ 		
+ 		
  		parameters[5] = retailStoreCountryCenter.getAddress();
+ 		
+ 		
  		parameters[6] = retailStoreCountryCenter.getOperatedBy();
+ 		
+ 		
  		parameters[7] = retailStoreCountryCenter.getLegalRepresentative();
- 		parameters[8] = retailStoreCountryCenter.getDescription();		
+ 		
+ 		
+ 		parameters[8] = retailStoreCountryCenter.getDescription();
+ 				
  				
  		return parameters;
  	}
@@ -6490,145 +6526,145 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForCatalog(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForRetailStoreProvinceCenter(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForRetailStore(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForRetailStoreMember(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForGoodsSupplier(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForSupplyOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForRetailStoreOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForWarehouse(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForTransportFleet(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForAccountSet(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForLevelOneDepartment(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForSkillType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForResponsibilityType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForTerminationReason(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForTerminationType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForOccupationType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForLeaveType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForSalaryGrade(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForInterviewType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForTrainingCourseType(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForPublicHoliday(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForEmployee(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForInstructor(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
     public SmartList<RetailStoreCountryCenter> requestCandidateRetailStoreCountryCenterForCompanyTraining(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
+		return findAllCandidateByFilter(RetailStoreCountryCenterTable.COLUMN_NAME, null, filterKey, pageNo, pageSize, getRetailStoreCountryCenterMapper());
     }
 		
 
@@ -7231,6 +7267,30 @@ public class RetailStoreCountryCenterJDBCTemplateDAO extends RetailscmBaseDAOImp
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreCountryCenter executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreCountryCenter result = new CandidateRetailStoreCountryCenter();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

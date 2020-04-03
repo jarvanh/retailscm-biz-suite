@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -59,6 +60,7 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	ConsumerOrderLineItem(){
@@ -110,6 +112,7 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
     
     
 	protected void changeSkuIdProperty(String newValueExpr){
+	
 		String oldValue = getSkuId();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -119,12 +122,13 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		updateSkuId(newValue);
 		this.onChangeProperty(SKU_ID_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeSkuNameProperty(String newValueExpr){
+	
 		String oldValue = getSkuName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -134,12 +138,13 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		updateSkuName(newValue);
 		this.onChangeProperty(SKU_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changePriceProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getPrice();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -149,12 +154,13 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		updatePrice(newValue);
 		this.onChangeProperty(PRICE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeQuantityProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getQuantity();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -164,12 +170,13 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		updateQuantity(newValue);
 		this.onChangeProperty(QUANTITY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAmountProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getAmount();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -179,12 +186,13 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		updateAmount(newValue);
 		this.onChangeProperty(AMOUNT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -194,7 +202,7 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -427,7 +435,9 @@ public class ConsumerOrderLineItem extends BaseEntity implements  java.io.Serial
 		appendKeyValuePair(result, LAST_UPDATE_TIME_PROPERTY, getLastUpdateTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

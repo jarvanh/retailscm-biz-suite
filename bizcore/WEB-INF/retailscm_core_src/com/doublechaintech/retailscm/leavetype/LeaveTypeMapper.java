@@ -29,7 +29,9 @@ public class LeaveTypeMapper extends BaseRowMapper<LeaveType>{
 	protected void setId(LeaveType leaveType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(LeaveTypeTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class LeaveTypeMapper extends BaseRowMapper<LeaveType>{
 	protected void setCode(LeaveType leaveType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String code = rs.getString(LeaveTypeTable.COLUMN_CODE);
+		
 		if(code == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class LeaveTypeMapper extends BaseRowMapper<LeaveType>{
 	protected void setDescription(LeaveType leaveType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(LeaveTypeTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class LeaveTypeMapper extends BaseRowMapper<LeaveType>{
 	protected void setDetailDescription(LeaveType leaveType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String detailDescription = rs.getString(LeaveTypeTable.COLUMN_DETAIL_DESCRIPTION);
+		
 		if(detailDescription == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class LeaveTypeMapper extends BaseRowMapper<LeaveType>{
 	protected void setVersion(LeaveType leaveType, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(LeaveTypeTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

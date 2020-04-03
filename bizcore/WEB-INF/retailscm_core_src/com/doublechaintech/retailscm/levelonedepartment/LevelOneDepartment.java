@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -58,6 +59,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 	
 	
 	protected		SmartList<LevelTwoDepartment>	mLevelTwoDepartmentList;
+
 	
 		
 	public 	LevelOneDepartment(){
@@ -103,6 +105,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -112,12 +115,13 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -127,12 +131,13 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		updateDescription(newValue);
 		this.onChangeProperty(DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeManagerProperty(String newValueExpr){
+	
 		String oldValue = getManager();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -142,12 +147,13 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		updateManager(newValue);
 		this.onChangeProperty(MANAGER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFoundedProperty(String newValueExpr){
+	
 		Date oldValue = getFounded();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -157,7 +163,7 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 		updateFounded(newValue);
 		this.onChangeProperty(FOUNDED_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -463,7 +469,9 @@ public class LevelOneDepartment extends BaseEntity implements  java.io.Serializa
 			appendKeyValuePair(result, "levelTwoDepartmentCurrentPageNumber", getLevelTwoDepartmentList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

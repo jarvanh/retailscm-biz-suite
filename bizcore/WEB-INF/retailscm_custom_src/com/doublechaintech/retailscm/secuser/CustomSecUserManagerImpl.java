@@ -33,14 +33,16 @@ import com.doublechaintech.retailscm.objectaccess.*;
 import com.doublechaintech.retailscm.RetailscmObjectChecker;
 import com.doublechaintech.retailscm.loginhistory.LoginHistory;
 import com.doublechaintech.retailscm.Message;
-
-
+import com.doublechaintech.retailscm.CustomRetailscmUserContextImpl;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.tree.*;
 
 import com.terapico.uccaf.BaseUserContext;
 import com.terapico.uccaf.UserContextProvider;
 import com.terapico.caf.BeanFactory;
 import com.terapico.caf.Password;
 import com.terapico.utils.TextUtil;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,6 +53,13 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         UserContextProvider {
     protected StorageService storageService;
     protected BlockChainAdvancer blockChainAdvancer;
+    protected TreeServiceImpl mTreeService;
+    public TreeServiceImpl getTreeService(){
+        return mTreeService;
+    }
+    public void setTreeService(TreeServiceImpl treeService){
+        mTreeService = treeService;
+    }
     protected String environmentName;
     protected Boolean productEnvironment;
     protected DAOGroup daoGroup;
@@ -449,6 +458,8 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 		userContext.addAccessTokens(tokens);
 
 		userContext.putToCache(getUserKey(userContext), user, 100000);
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		iamService.onLoginSecUserInternalSuccess((RetailscmUserContextImpl) userContext, user);
 
 		CustomSecUser customUser = new CustomSecUser();
 		user.copyTo(customUser);
@@ -588,9 +599,11 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         userContext.setPublicMediaServicePrefix(getPublicMediaServicePrefix());
 
         userContext.setRequestParameters((Map)request.getParameterMap());
+        userContext.setRequestCookies(request.getCookies());
         userContext.setDaoGroup(getDaoGroup());
         userContext.setEventService(this.getEventService());
         userContext.setManagerGroup(getManagerGroup());
+        userContext.setTreeService(getTreeService());
         // 原则上不要自己读取request的内容. 特殊情况下读取, 请注明原因. 以下为读取POST的body的例子.
 		//        ServletInputStream ins;
 		//        try {
@@ -634,7 +647,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 
     protected RetailscmUserContextImpl createNewConext(String path) {
 
-        return new RetailscmUserContextImpl();
+        return new CustomRetailscmUserContextImpl();
 
     }
 
@@ -950,6 +963,16 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

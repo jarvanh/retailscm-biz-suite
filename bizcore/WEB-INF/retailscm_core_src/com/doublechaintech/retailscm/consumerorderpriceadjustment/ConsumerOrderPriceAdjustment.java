@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -53,6 +54,7 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	ConsumerOrderPriceAdjustment(){
@@ -95,6 +97,7 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -104,12 +107,13 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAmountProperty(String newValueExpr){
+	
 		BigDecimal oldValue = getAmount();
 		BigDecimal newValue = parseBigDecimal(newValueExpr);
 		if(equalsBigDecimal(oldValue , newValue)){
@@ -119,12 +123,13 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		updateAmount(newValue);
 		this.onChangeProperty(AMOUNT_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeProviderProperty(String newValueExpr){
+	
 		String oldValue = getProvider();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -134,7 +139,7 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		updateProvider(newValue);
 		this.onChangeProperty(PROVIDER_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -302,7 +307,9 @@ public class ConsumerOrderPriceAdjustment extends BaseEntity implements  java.io
 		appendKeyValuePair(result, PROVIDER_PROPERTY, getProvider());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

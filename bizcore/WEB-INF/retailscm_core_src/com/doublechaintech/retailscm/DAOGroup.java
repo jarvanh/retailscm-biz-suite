@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenter;
 import com.doublechaintech.retailscm.retailstorecountrycenter.RetailStoreCountryCenterDAO;
@@ -322,6 +323,24 @@ import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheetToke
 import com.doublechaintech.retailscm.payingoff.PayingOff;
 import com.doublechaintech.retailscm.payingoff.PayingOffDAO;
 import com.doublechaintech.retailscm.payingoff.PayingOffTokens;
+import com.doublechaintech.retailscm.mobileapp.MobileApp;
+import com.doublechaintech.retailscm.mobileapp.MobileAppDAO;
+import com.doublechaintech.retailscm.mobileapp.MobileAppTokens;
+import com.doublechaintech.retailscm.page.Page;
+import com.doublechaintech.retailscm.page.PageDAO;
+import com.doublechaintech.retailscm.page.PageTokens;
+import com.doublechaintech.retailscm.pagetype.PageType;
+import com.doublechaintech.retailscm.pagetype.PageTypeDAO;
+import com.doublechaintech.retailscm.pagetype.PageTypeTokens;
+import com.doublechaintech.retailscm.slide.Slide;
+import com.doublechaintech.retailscm.slide.SlideDAO;
+import com.doublechaintech.retailscm.slide.SlideTokens;
+import com.doublechaintech.retailscm.uiaction.UiAction;
+import com.doublechaintech.retailscm.uiaction.UiActionDAO;
+import com.doublechaintech.retailscm.uiaction.UiActionTokens;
+import com.doublechaintech.retailscm.section.Section;
+import com.doublechaintech.retailscm.section.SectionDAO;
+import com.doublechaintech.retailscm.section.SectionTokens;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.userdomain.UserDomainDAO;
 import com.doublechaintech.retailscm.userdomain.UserDomainTokens;
@@ -367,6 +386,15 @@ import com.doublechaintech.retailscm.candidatecontainer.CandidateContainerTokens
 import com.doublechaintech.retailscm.candidateelement.CandidateElement;
 import com.doublechaintech.retailscm.candidateelement.CandidateElementDAO;
 import com.doublechaintech.retailscm.candidateelement.CandidateElementTokens;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentify;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyDAO;
+import com.doublechaintech.retailscm.wechatworkappidentify.WechatWorkappIdentifyTokens;
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentify;
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyDAO;
+import com.doublechaintech.retailscm.wechatminiappidentify.WechatMiniappIdentifyTokens;
+import com.doublechaintech.retailscm.treenode.TreeNode;
+import com.doublechaintech.retailscm.treenode.TreeNodeDAO;
+import com.doublechaintech.retailscm.treenode.TreeNodeTokens;
 
 public class DAOGroup {
 
@@ -582,6 +610,18 @@ public class DAOGroup {
 
 	protected PayingOffDAO payingOffDAO;
 
+	protected MobileAppDAO mobileAppDAO;
+
+	protected PageDAO pageDAO;
+
+	protected PageTypeDAO pageTypeDAO;
+
+	protected SlideDAO slideDAO;
+
+	protected UiActionDAO uiActionDAO;
+
+	protected SectionDAO sectionDAO;
+
 	protected UserDomainDAO userDomainDAO;
 
 	protected UserWhiteListDAO userWhiteListDAO;
@@ -612,7 +652,13 @@ public class DAOGroup {
 
 	protected CandidateElementDAO candidateElementDAO;
 
-	
+	protected WechatWorkappIdentifyDAO wechatWorkappIdentifyDAO;
+
+	protected WechatMiniappIdentifyDAO wechatMiniappIdentifyDAO;
+
+	protected TreeNodeDAO treeNodeDAO;
+
+
 
 	public RetailStoreCountryCenterDAO getRetailStoreCountryCenterDAO(){
 		return this.retailStoreCountryCenterDAO;
@@ -1462,6 +1508,54 @@ public class DAOGroup {
 	}
 
 
+	public MobileAppDAO getMobileAppDAO(){
+		return this.mobileAppDAO;
+	}
+	public void setMobileAppDAO(MobileAppDAO dao){
+		this.mobileAppDAO = dao;
+	}
+
+
+	public PageDAO getPageDAO(){
+		return this.pageDAO;
+	}
+	public void setPageDAO(PageDAO dao){
+		this.pageDAO = dao;
+	}
+
+
+	public PageTypeDAO getPageTypeDAO(){
+		return this.pageTypeDAO;
+	}
+	public void setPageTypeDAO(PageTypeDAO dao){
+		this.pageTypeDAO = dao;
+	}
+
+
+	public SlideDAO getSlideDAO(){
+		return this.slideDAO;
+	}
+	public void setSlideDAO(SlideDAO dao){
+		this.slideDAO = dao;
+	}
+
+
+	public UiActionDAO getUiActionDAO(){
+		return this.uiActionDAO;
+	}
+	public void setUiActionDAO(UiActionDAO dao){
+		this.uiActionDAO = dao;
+	}
+
+
+	public SectionDAO getSectionDAO(){
+		return this.sectionDAO;
+	}
+	public void setSectionDAO(SectionDAO dao){
+		this.sectionDAO = dao;
+	}
+
+
 	public UserDomainDAO getUserDomainDAO(){
 		return this.userDomainDAO;
 	}
@@ -1582,11 +1676,37 @@ public class DAOGroup {
 	}
 
 
+	public WechatWorkappIdentifyDAO getWechatWorkappIdentifyDAO(){
+		return this.wechatWorkappIdentifyDAO;
+	}
+	public void setWechatWorkappIdentifyDAO(WechatWorkappIdentifyDAO dao){
+		this.wechatWorkappIdentifyDAO = dao;
+	}
+
+
+	public WechatMiniappIdentifyDAO getWechatMiniappIdentifyDAO(){
+		return this.wechatMiniappIdentifyDAO;
+	}
+	public void setWechatMiniappIdentifyDAO(WechatMiniappIdentifyDAO dao){
+		this.wechatMiniappIdentifyDAO = dao;
+	}
+
+
+	public TreeNodeDAO getTreeNodeDAO(){
+		return this.treeNodeDAO;
+	}
+	public void setTreeNodeDAO(TreeNodeDAO dao){
+		this.treeNodeDAO = dao;
+	}
+
+
 	private interface BasicLoader{
 	    BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception;
 	    void enhanceList(DAOGroup daoGoup, List list) throws Exception;
+	    List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> list) throws Exception;
 	    BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception;
 	    BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception;
+	    SmartList<? extends BaseEntity> queryList(DAOGroup daoGoup, String sql, Object... parmeters) throws Exception;
 	}
 	private static Map<String, BasicLoader> internalLoaderMap;
 	static {
@@ -1609,6 +1729,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreCountryCenterDAO().present((RetailStoreCountryCenter)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreCountryCenter> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreCountryCenterDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreCountryCenter.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("Catalog", new BasicLoader() {
@@ -1627,6 +1755,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCatalogDAO().present((Catalog)data, tokens);
+			}
+			@Override
+			public SmartList<Catalog> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getCatalogDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Catalog.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1647,6 +1783,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelOneCategoryDAO().present((LevelOneCategory)data, tokens);
 			}
+			@Override
+			public SmartList<LevelOneCategory> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLevelOneCategoryDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LevelOneCategory.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("LevelTwoCategory", new BasicLoader() {
@@ -1665,6 +1809,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelTwoCategoryDAO().present((LevelTwoCategory)data, tokens);
+			}
+			@Override
+			public SmartList<LevelTwoCategory> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLevelTwoCategoryDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LevelTwoCategory.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1685,6 +1837,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelThreeCategoryDAO().present((LevelThreeCategory)data, tokens);
 			}
+			@Override
+			public SmartList<LevelThreeCategory> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLevelThreeCategoryDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LevelThreeCategory.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("Product", new BasicLoader() {
@@ -1703,6 +1863,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProductDAO().present((Product)data, tokens);
+			}
+			@Override
+			public SmartList<Product> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getProductDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Product.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1723,6 +1891,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSkuDAO().present((Sku)data, tokens);
 			}
+			@Override
+			public SmartList<Sku> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSkuDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Sku.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreProvinceCenter", new BasicLoader() {
@@ -1741,6 +1917,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreProvinceCenterDAO().present((RetailStoreProvinceCenter)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreProvinceCenter> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreProvinceCenterDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreProvinceCenter.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1761,6 +1945,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProvinceCenterDepartmentDAO().present((ProvinceCenterDepartment)data, tokens);
 			}
+			@Override
+			public SmartList<ProvinceCenterDepartment> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getProvinceCenterDepartmentDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ProvinceCenterDepartment.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("ProvinceCenterEmployee", new BasicLoader() {
@@ -1779,6 +1971,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProvinceCenterEmployeeDAO().present((ProvinceCenterEmployee)data, tokens);
+			}
+			@Override
+			public SmartList<ProvinceCenterEmployee> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getProvinceCenterEmployeeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ProvinceCenterEmployee.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1799,6 +1999,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreCityServiceCenterDAO().present((RetailStoreCityServiceCenter)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreCityServiceCenter> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreCityServiceCenterDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreCityServiceCenter.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("CityPartner", new BasicLoader() {
@@ -1817,6 +2025,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCityPartnerDAO().present((CityPartner)data, tokens);
+			}
+			@Override
+			public SmartList<CityPartner> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getCityPartnerDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)CityPartner.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1837,6 +2053,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPotentialCustomerDAO().present((PotentialCustomer)data, tokens);
 			}
+			@Override
+			public SmartList<PotentialCustomer> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getPotentialCustomerDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)PotentialCustomer.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("PotentialCustomerContactPerson", new BasicLoader() {
@@ -1855,6 +2079,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPotentialCustomerContactPersonDAO().present((PotentialCustomerContactPerson)data, tokens);
+			}
+			@Override
+			public SmartList<PotentialCustomerContactPerson> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getPotentialCustomerContactPersonDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)PotentialCustomerContactPerson.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1875,6 +2107,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPotentialCustomerContactDAO().present((PotentialCustomerContact)data, tokens);
 			}
+			@Override
+			public SmartList<PotentialCustomerContact> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getPotentialCustomerContactDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)PotentialCustomerContact.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("CityEvent", new BasicLoader() {
@@ -1893,6 +2133,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCityEventDAO().present((CityEvent)data, tokens);
+			}
+			@Override
+			public SmartList<CityEvent> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getCityEventDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)CityEvent.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1913,6 +2161,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEventAttendanceDAO().present((EventAttendance)data, tokens);
 			}
+			@Override
+			public SmartList<EventAttendance> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEventAttendanceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EventAttendance.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStore", new BasicLoader() {
@@ -1931,6 +2187,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreDAO().present((RetailStore)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStore> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStore.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1951,6 +2215,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreCreationDAO().present((RetailStoreCreation)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreCreation> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreCreationDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreCreation.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreInvestmentInvitation", new BasicLoader() {
@@ -1969,6 +2241,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreInvestmentInvitationDAO().present((RetailStoreInvestmentInvitation)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreInvestmentInvitation> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreInvestmentInvitationDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreInvestmentInvitation.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -1989,6 +2269,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreFranchisingDAO().present((RetailStoreFranchising)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreFranchising> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreFranchisingDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreFranchising.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreDecoration", new BasicLoader() {
@@ -2007,6 +2295,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreDecorationDAO().present((RetailStoreDecoration)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreDecoration> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreDecorationDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreDecoration.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2027,6 +2323,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOpeningDAO().present((RetailStoreOpening)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreOpening> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreOpeningDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreOpening.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreClosing", new BasicLoader() {
@@ -2045,6 +2349,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreClosingDAO().present((RetailStoreClosing)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreClosing> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreClosingDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreClosing.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2065,6 +2377,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberDAO().present((RetailStoreMember)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreMember> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreMemberDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreMember.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("ConsumerOrder", new BasicLoader() {
@@ -2083,6 +2403,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderDAO().present((ConsumerOrder)data, tokens);
+			}
+			@Override
+			public SmartList<ConsumerOrder> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getConsumerOrderDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ConsumerOrder.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2103,6 +2431,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderLineItemDAO().present((ConsumerOrderLineItem)data, tokens);
 			}
+			@Override
+			public SmartList<ConsumerOrderLineItem> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getConsumerOrderLineItemDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ConsumerOrderLineItem.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("ConsumerOrderShippingGroup", new BasicLoader() {
@@ -2121,6 +2457,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderShippingGroupDAO().present((ConsumerOrderShippingGroup)data, tokens);
+			}
+			@Override
+			public SmartList<ConsumerOrderShippingGroup> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getConsumerOrderShippingGroupDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ConsumerOrderShippingGroup.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2141,6 +2485,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderPaymentGroupDAO().present((ConsumerOrderPaymentGroup)data, tokens);
 			}
+			@Override
+			public SmartList<ConsumerOrderPaymentGroup> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getConsumerOrderPaymentGroupDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ConsumerOrderPaymentGroup.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("ConsumerOrderPriceAdjustment", new BasicLoader() {
@@ -2159,6 +2511,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getConsumerOrderPriceAdjustmentDAO().present((ConsumerOrderPriceAdjustment)data, tokens);
+			}
+			@Override
+			public SmartList<ConsumerOrderPriceAdjustment> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getConsumerOrderPriceAdjustmentDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ConsumerOrderPriceAdjustment.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2179,6 +2539,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberCouponDAO().present((RetailStoreMemberCoupon)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreMemberCoupon> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreMemberCouponDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreMemberCoupon.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("MemberWishlist", new BasicLoader() {
@@ -2197,6 +2565,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberWishlistDAO().present((MemberWishlist)data, tokens);
+			}
+			@Override
+			public SmartList<MemberWishlist> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getMemberWishlistDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)MemberWishlist.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2217,6 +2593,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberRewardPointDAO().present((MemberRewardPoint)data, tokens);
 			}
+			@Override
+			public SmartList<MemberRewardPoint> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getMemberRewardPointDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)MemberRewardPoint.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("MemberRewardPointRedemption", new BasicLoader() {
@@ -2235,6 +2619,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberRewardPointRedemptionDAO().present((MemberRewardPointRedemption)data, tokens);
+			}
+			@Override
+			public SmartList<MemberRewardPointRedemption> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getMemberRewardPointRedemptionDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)MemberRewardPointRedemption.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2255,6 +2647,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getMemberWishlistProductDAO().present((MemberWishlistProduct)data, tokens);
 			}
+			@Override
+			public SmartList<MemberWishlistProduct> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getMemberWishlistProductDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)MemberWishlistProduct.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreMemberAddress", new BasicLoader() {
@@ -2273,6 +2673,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberAddressDAO().present((RetailStoreMemberAddress)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreMemberAddress> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreMemberAddressDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreMemberAddress.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2293,6 +2701,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberGiftCardDAO().present((RetailStoreMemberGiftCard)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreMemberGiftCard> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreMemberGiftCardDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreMemberGiftCard.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreMemberGiftCardConsumeRecord", new BasicLoader() {
@@ -2311,6 +2727,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreMemberGiftCardConsumeRecordDAO().present((RetailStoreMemberGiftCardConsumeRecord)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreMemberGiftCardConsumeRecord> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreMemberGiftCardConsumeRecordDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreMemberGiftCardConsumeRecord.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2331,6 +2755,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsSupplierDAO().present((GoodsSupplier)data, tokens);
 			}
+			@Override
+			public SmartList<GoodsSupplier> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getGoodsSupplierDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)GoodsSupplier.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("SupplierProduct", new BasicLoader() {
@@ -2349,6 +2781,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplierProductDAO().present((SupplierProduct)data, tokens);
+			}
+			@Override
+			public SmartList<SupplierProduct> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSupplierProductDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SupplierProduct.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2369,6 +2809,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getProductSupplyDurationDAO().present((ProductSupplyDuration)data, tokens);
 			}
+			@Override
+			public SmartList<ProductSupplyDuration> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getProductSupplyDurationDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ProductSupplyDuration.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("SupplyOrder", new BasicLoader() {
@@ -2387,6 +2835,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderDAO().present((SupplyOrder)data, tokens);
+			}
+			@Override
+			public SmartList<SupplyOrder> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSupplyOrderDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SupplyOrder.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2407,6 +2863,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderLineItemDAO().present((SupplyOrderLineItem)data, tokens);
 			}
+			@Override
+			public SmartList<SupplyOrderLineItem> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSupplyOrderLineItemDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SupplyOrderLineItem.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("SupplyOrderShippingGroup", new BasicLoader() {
@@ -2425,6 +2889,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderShippingGroupDAO().present((SupplyOrderShippingGroup)data, tokens);
+			}
+			@Override
+			public SmartList<SupplyOrderShippingGroup> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSupplyOrderShippingGroupDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SupplyOrderShippingGroup.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2445,6 +2917,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplyOrderPaymentGroupDAO().present((SupplyOrderPaymentGroup)data, tokens);
 			}
+			@Override
+			public SmartList<SupplyOrderPaymentGroup> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSupplyOrderPaymentGroupDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SupplyOrderPaymentGroup.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreOrder", new BasicLoader() {
@@ -2463,6 +2943,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderDAO().present((RetailStoreOrder)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreOrder> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreOrderDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreOrder.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2483,6 +2971,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderLineItemDAO().present((RetailStoreOrderLineItem)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreOrderLineItem> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreOrderLineItemDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreOrderLineItem.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("RetailStoreOrderShippingGroup", new BasicLoader() {
@@ -2501,6 +2997,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderShippingGroupDAO().present((RetailStoreOrderShippingGroup)data, tokens);
+			}
+			@Override
+			public SmartList<RetailStoreOrderShippingGroup> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreOrderShippingGroupDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreOrderShippingGroup.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2521,6 +3025,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getRetailStoreOrderPaymentGroupDAO().present((RetailStoreOrderPaymentGroup)data, tokens);
 			}
+			@Override
+			public SmartList<RetailStoreOrderPaymentGroup> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getRetailStoreOrderPaymentGroupDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)RetailStoreOrderPaymentGroup.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("Warehouse", new BasicLoader() {
@@ -2539,6 +3051,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getWarehouseDAO().present((Warehouse)data, tokens);
+			}
+			@Override
+			public SmartList<Warehouse> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getWarehouseDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Warehouse.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2559,6 +3079,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getStorageSpaceDAO().present((StorageSpace)data, tokens);
 			}
+			@Override
+			public SmartList<StorageSpace> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getStorageSpaceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)StorageSpace.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("SmartPallet", new BasicLoader() {
@@ -2577,6 +3105,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSmartPalletDAO().present((SmartPallet)data, tokens);
+			}
+			@Override
+			public SmartList<SmartPallet> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSmartPalletDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SmartPallet.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2597,6 +3133,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsShelfDAO().present((GoodsShelf)data, tokens);
 			}
+			@Override
+			public SmartList<GoodsShelf> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getGoodsShelfDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)GoodsShelf.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("GoodsShelfStockCount", new BasicLoader() {
@@ -2615,6 +3159,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsShelfStockCountDAO().present((GoodsShelfStockCount)data, tokens);
+			}
+			@Override
+			public SmartList<GoodsShelfStockCount> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getGoodsShelfStockCountDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)GoodsShelfStockCount.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2635,6 +3187,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getStockCountIssueTrackDAO().present((StockCountIssueTrack)data, tokens);
 			}
+			@Override
+			public SmartList<StockCountIssueTrack> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getStockCountIssueTrackDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)StockCountIssueTrack.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("GoodsAllocation", new BasicLoader() {
@@ -2653,6 +3213,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsAllocationDAO().present((GoodsAllocation)data, tokens);
+			}
+			@Override
+			public SmartList<GoodsAllocation> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getGoodsAllocationDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)GoodsAllocation.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2673,6 +3241,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsDAO().present((Goods)data, tokens);
 			}
+			@Override
+			public SmartList<Goods> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getGoodsDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Goods.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("GoodsMovement", new BasicLoader() {
@@ -2691,6 +3267,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGoodsMovementDAO().present((GoodsMovement)data, tokens);
+			}
+			@Override
+			public SmartList<GoodsMovement> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getGoodsMovementDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)GoodsMovement.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2711,6 +3295,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSupplierSpaceDAO().present((SupplierSpace)data, tokens);
 			}
+			@Override
+			public SmartList<SupplierSpace> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSupplierSpaceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SupplierSpace.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("ReceivingSpace", new BasicLoader() {
@@ -2729,6 +3321,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getReceivingSpaceDAO().present((ReceivingSpace)data, tokens);
+			}
+			@Override
+			public SmartList<ReceivingSpace> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getReceivingSpaceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ReceivingSpace.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2749,6 +3349,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getShippingSpaceDAO().present((ShippingSpace)data, tokens);
 			}
+			@Override
+			public SmartList<ShippingSpace> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getShippingSpaceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ShippingSpace.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("DamageSpace", new BasicLoader() {
@@ -2767,6 +3375,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getDamageSpaceDAO().present((DamageSpace)data, tokens);
+			}
+			@Override
+			public SmartList<DamageSpace> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getDamageSpaceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)DamageSpace.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2787,6 +3403,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getWarehouseAssetDAO().present((WarehouseAsset)data, tokens);
 			}
+			@Override
+			public SmartList<WarehouseAsset> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getWarehouseAssetDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)WarehouseAsset.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("TransportFleet", new BasicLoader() {
@@ -2805,6 +3429,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportFleetDAO().present((TransportFleet)data, tokens);
+			}
+			@Override
+			public SmartList<TransportFleet> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTransportFleetDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TransportFleet.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2825,6 +3457,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportTruckDAO().present((TransportTruck)data, tokens);
 			}
+			@Override
+			public SmartList<TransportTruck> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTransportTruckDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TransportTruck.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("TruckDriver", new BasicLoader() {
@@ -2843,6 +3483,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTruckDriverDAO().present((TruckDriver)data, tokens);
+			}
+			@Override
+			public SmartList<TruckDriver> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTruckDriverDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TruckDriver.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2863,6 +3511,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportTaskDAO().present((TransportTask)data, tokens);
 			}
+			@Override
+			public SmartList<TransportTask> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTransportTaskDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TransportTask.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("TransportTaskTrack", new BasicLoader() {
@@ -2881,6 +3537,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTransportTaskTrackDAO().present((TransportTaskTrack)data, tokens);
+			}
+			@Override
+			public SmartList<TransportTaskTrack> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTransportTaskTrackDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TransportTaskTrack.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2901,6 +3565,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountSetDAO().present((AccountSet)data, tokens);
 			}
+			@Override
+			public SmartList<AccountSet> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getAccountSetDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)AccountSet.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("AccountingSubject", new BasicLoader() {
@@ -2919,6 +3591,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingSubjectDAO().present((AccountingSubject)data, tokens);
+			}
+			@Override
+			public SmartList<AccountingSubject> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getAccountingSubjectDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)AccountingSubject.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2939,6 +3619,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingPeriodDAO().present((AccountingPeriod)data, tokens);
 			}
+			@Override
+			public SmartList<AccountingPeriod> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getAccountingPeriodDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)AccountingPeriod.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("AccountingDocumentType", new BasicLoader() {
@@ -2957,6 +3645,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentTypeDAO().present((AccountingDocumentType)data, tokens);
+			}
+			@Override
+			public SmartList<AccountingDocumentType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getAccountingDocumentTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)AccountingDocumentType.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -2977,6 +3673,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentDAO().present((AccountingDocument)data, tokens);
 			}
+			@Override
+			public SmartList<AccountingDocument> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getAccountingDocumentDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)AccountingDocument.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("OriginalVoucher", new BasicLoader() {
@@ -2995,6 +3699,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOriginalVoucherDAO().present((OriginalVoucher)data, tokens);
+			}
+			@Override
+			public SmartList<OriginalVoucher> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getOriginalVoucherDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)OriginalVoucher.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3015,6 +3727,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getAccountingDocumentLineDAO().present((AccountingDocumentLine)data, tokens);
 			}
+			@Override
+			public SmartList<AccountingDocumentLine> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getAccountingDocumentLineDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)AccountingDocumentLine.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("LevelOneDepartment", new BasicLoader() {
@@ -3033,6 +3753,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelOneDepartmentDAO().present((LevelOneDepartment)data, tokens);
+			}
+			@Override
+			public SmartList<LevelOneDepartment> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLevelOneDepartmentDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LevelOneDepartment.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3053,6 +3781,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelTwoDepartmentDAO().present((LevelTwoDepartment)data, tokens);
 			}
+			@Override
+			public SmartList<LevelTwoDepartment> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLevelTwoDepartmentDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LevelTwoDepartment.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("LevelThreeDepartment", new BasicLoader() {
@@ -3071,6 +3807,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLevelThreeDepartmentDAO().present((LevelThreeDepartment)data, tokens);
+			}
+			@Override
+			public SmartList<LevelThreeDepartment> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLevelThreeDepartmentDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LevelThreeDepartment.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3091,6 +3835,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSkillTypeDAO().present((SkillType)data, tokens);
 			}
+			@Override
+			public SmartList<SkillType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSkillTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SkillType.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("ResponsibilityType", new BasicLoader() {
@@ -3109,6 +3861,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getResponsibilityTypeDAO().present((ResponsibilityType)data, tokens);
+			}
+			@Override
+			public SmartList<ResponsibilityType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getResponsibilityTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ResponsibilityType.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3129,6 +3889,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTerminationReasonDAO().present((TerminationReason)data, tokens);
 			}
+			@Override
+			public SmartList<TerminationReason> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTerminationReasonDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TerminationReason.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("TerminationType", new BasicLoader() {
@@ -3147,6 +3915,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTerminationTypeDAO().present((TerminationType)data, tokens);
+			}
+			@Override
+			public SmartList<TerminationType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTerminationTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TerminationType.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3167,6 +3943,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getOccupationTypeDAO().present((OccupationType)data, tokens);
 			}
+			@Override
+			public SmartList<OccupationType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getOccupationTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)OccupationType.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("LeaveType", new BasicLoader() {
@@ -3185,6 +3969,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLeaveTypeDAO().present((LeaveType)data, tokens);
+			}
+			@Override
+			public SmartList<LeaveType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLeaveTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LeaveType.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3205,6 +3997,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSalaryGradeDAO().present((SalaryGrade)data, tokens);
 			}
+			@Override
+			public SmartList<SalaryGrade> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSalaryGradeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SalaryGrade.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("InterviewType", new BasicLoader() {
@@ -3223,6 +4023,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getInterviewTypeDAO().present((InterviewType)data, tokens);
+			}
+			@Override
+			public SmartList<InterviewType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getInterviewTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)InterviewType.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3243,6 +4051,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTrainingCourseTypeDAO().present((TrainingCourseType)data, tokens);
 			}
+			@Override
+			public SmartList<TrainingCourseType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTrainingCourseTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TrainingCourseType.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("PublicHoliday", new BasicLoader() {
@@ -3261,6 +4077,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPublicHolidayDAO().present((PublicHoliday)data, tokens);
+			}
+			@Override
+			public SmartList<PublicHoliday> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getPublicHolidayDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)PublicHoliday.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3281,6 +4105,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getTerminationDAO().present((Termination)data, tokens);
 			}
+			@Override
+			public SmartList<Termination> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTerminationDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Termination.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("View", new BasicLoader() {
@@ -3299,6 +4131,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getViewDAO().present((View)data, tokens);
+			}
+			@Override
+			public SmartList<View> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getViewDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)View.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3319,6 +4159,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeDAO().present((Employee)data, tokens);
 			}
+			@Override
+			public SmartList<Employee> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Employee.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("Instructor", new BasicLoader() {
@@ -3337,6 +4185,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getInstructorDAO().present((Instructor)data, tokens);
+			}
+			@Override
+			public SmartList<Instructor> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getInstructorDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Instructor.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3357,6 +4213,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCompanyTrainingDAO().present((CompanyTraining)data, tokens);
 			}
+			@Override
+			public SmartList<CompanyTraining> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getCompanyTrainingDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)CompanyTraining.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("Scoring", new BasicLoader() {
@@ -3375,6 +4239,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getScoringDAO().present((Scoring)data, tokens);
+			}
+			@Override
+			public SmartList<Scoring> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getScoringDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Scoring.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3395,6 +4267,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeCompanyTrainingDAO().present((EmployeeCompanyTraining)data, tokens);
 			}
+			@Override
+			public SmartList<EmployeeCompanyTraining> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeCompanyTrainingDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeCompanyTraining.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("EmployeeSkill", new BasicLoader() {
@@ -3413,6 +4293,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeSkillDAO().present((EmployeeSkill)data, tokens);
+			}
+			@Override
+			public SmartList<EmployeeSkill> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeSkillDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeSkill.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3433,6 +4321,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeePerformanceDAO().present((EmployeePerformance)data, tokens);
 			}
+			@Override
+			public SmartList<EmployeePerformance> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeePerformanceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeePerformance.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("EmployeeWorkExperience", new BasicLoader() {
@@ -3451,6 +4347,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeWorkExperienceDAO().present((EmployeeWorkExperience)data, tokens);
+			}
+			@Override
+			public SmartList<EmployeeWorkExperience> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeWorkExperienceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeWorkExperience.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3471,6 +4375,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeLeaveDAO().present((EmployeeLeave)data, tokens);
 			}
+			@Override
+			public SmartList<EmployeeLeave> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeLeaveDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeLeave.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("EmployeeInterview", new BasicLoader() {
@@ -3489,6 +4401,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeInterviewDAO().present((EmployeeInterview)data, tokens);
+			}
+			@Override
+			public SmartList<EmployeeInterview> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeInterviewDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeInterview.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3509,6 +4429,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeAttendanceDAO().present((EmployeeAttendance)data, tokens);
 			}
+			@Override
+			public SmartList<EmployeeAttendance> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeAttendanceDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeAttendance.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("EmployeeQualifier", new BasicLoader() {
@@ -3527,6 +4455,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeQualifierDAO().present((EmployeeQualifier)data, tokens);
+			}
+			@Override
+			public SmartList<EmployeeQualifier> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeQualifierDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeQualifier.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3547,6 +4483,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeEducationDAO().present((EmployeeEducation)data, tokens);
 			}
+			@Override
+			public SmartList<EmployeeEducation> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeEducationDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeEducation.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("EmployeeAward", new BasicLoader() {
@@ -3565,6 +4509,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeAwardDAO().present((EmployeeAward)data, tokens);
+			}
+			@Override
+			public SmartList<EmployeeAward> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeAwardDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeAward.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3585,6 +4537,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getEmployeeSalarySheetDAO().present((EmployeeSalarySheet)data, tokens);
 			}
+			@Override
+			public SmartList<EmployeeSalarySheet> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getEmployeeSalarySheetDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)EmployeeSalarySheet.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("PayingOff", new BasicLoader() {
@@ -3603,6 +4563,176 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPayingOffDAO().present((PayingOff)data, tokens);
+			}
+			@Override
+			public SmartList<PayingOff> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getPayingOffDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)PayingOff.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("MobileApp", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getMobileAppDAO().load(id, MobileAppTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getMobileAppDAO().enhanceList((List<MobileApp>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getMobileAppDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getMobileAppDAO().present((MobileApp)data, tokens);
+			}
+			@Override
+			public SmartList<MobileApp> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getMobileAppDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)MobileApp.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("Page", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getPageDAO().load(id, PageTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getPageDAO().enhanceList((List<Page>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getPageDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getPageDAO().present((Page)data, tokens);
+			}
+			@Override
+			public SmartList<Page> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getPageDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Page.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("PageType", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getPageTypeDAO().load(id, PageTypeTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getPageTypeDAO().enhanceList((List<PageType>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getPageTypeDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getPageTypeDAO().present((PageType)data, tokens);
+			}
+			@Override
+			public SmartList<PageType> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getPageTypeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)PageType.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("Slide", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getSlideDAO().load(id, SlideTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSlideDAO().enhanceList((List<Slide>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getSlideDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getSlideDAO().present((Slide)data, tokens);
+			}
+			@Override
+			public SmartList<Slide> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSlideDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Slide.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("UiAction", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getUiActionDAO().load(id, UiActionTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getUiActionDAO().enhanceList((List<UiAction>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getUiActionDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getUiActionDAO().present((UiAction)data, tokens);
+			}
+			@Override
+			public SmartList<UiAction> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getUiActionDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)UiAction.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("Section", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getSectionDAO().load(id, SectionTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getSectionDAO().enhanceList((List<Section>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getSectionDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getSectionDAO().present((Section)data, tokens);
+			}
+			@Override
+			public SmartList<Section> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSectionDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)Section.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3623,6 +4753,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getUserDomainDAO().present((UserDomain)data, tokens);
 			}
+			@Override
+			public SmartList<UserDomain> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getUserDomainDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)UserDomain.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("UserWhiteList", new BasicLoader() {
@@ -3641,6 +4779,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getUserWhiteListDAO().present((UserWhiteList)data, tokens);
+			}
+			@Override
+			public SmartList<UserWhiteList> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getUserWhiteListDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)UserWhiteList.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3661,6 +4807,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getSecUserDAO().present((SecUser)data, tokens);
 			}
+			@Override
+			public SmartList<SecUser> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getSecUserDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)SecUser.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("UserApp", new BasicLoader() {
@@ -3679,6 +4833,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getUserAppDAO().present((UserApp)data, tokens);
+			}
+			@Override
+			public SmartList<UserApp> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getUserAppDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)UserApp.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3699,6 +4861,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getQuickLinkDAO().present((QuickLink)data, tokens);
 			}
+			@Override
+			public SmartList<QuickLink> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getQuickLinkDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)QuickLink.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("ListAccess", new BasicLoader() {
@@ -3717,6 +4887,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getListAccessDAO().present((ListAccess)data, tokens);
+			}
+			@Override
+			public SmartList<ListAccess> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getListAccessDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ListAccess.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3737,6 +4915,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getObjectAccessDAO().present((ObjectAccess)data, tokens);
 			}
+			@Override
+			public SmartList<ObjectAccess> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getObjectAccessDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)ObjectAccess.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("LoginHistory", new BasicLoader() {
@@ -3755,6 +4941,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getLoginHistoryDAO().present((LoginHistory)data, tokens);
+			}
+			@Override
+			public SmartList<LoginHistory> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getLoginHistoryDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)LoginHistory.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3775,6 +4969,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getGenericFormDAO().present((GenericForm)data, tokens);
 			}
+			@Override
+			public SmartList<GenericForm> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getGenericFormDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)GenericForm.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("FormMessage", new BasicLoader() {
@@ -3793,6 +4995,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormMessageDAO().present((FormMessage)data, tokens);
+			}
+			@Override
+			public SmartList<FormMessage> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getFormMessageDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)FormMessage.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3813,6 +5023,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormFieldMessageDAO().present((FormFieldMessage)data, tokens);
 			}
+			@Override
+			public SmartList<FormFieldMessage> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getFormFieldMessageDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)FormFieldMessage.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("FormField", new BasicLoader() {
@@ -3831,6 +5049,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormFieldDAO().present((FormField)data, tokens);
+			}
+			@Override
+			public SmartList<FormField> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getFormFieldDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)FormField.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3851,6 +5077,14 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormActionDAO().present((FormAction)data, tokens);
 			}
+			@Override
+			public SmartList<FormAction> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getFormActionDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)FormAction.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 		internalLoaderMap.put("CandidateContainer", new BasicLoader() {
@@ -3869,6 +5103,14 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCandidateContainerDAO().present((CandidateContainer)data, tokens);
+			}
+			@Override
+			public SmartList<CandidateContainer> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getCandidateContainerDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)CandidateContainer.withId(id)).collect(Collectors.toList());
 			}
 		});
 
@@ -3889,6 +5131,95 @@ public class DAOGroup {
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getCandidateElementDAO().present((CandidateElement)data, tokens);
 			}
+			@Override
+			public SmartList<CandidateElement> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getCandidateElementDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)CandidateElement.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("WechatWorkappIdentify", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getWechatWorkappIdentifyDAO().load(id, WechatWorkappIdentifyTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getWechatWorkappIdentifyDAO().enhanceList((List<WechatWorkappIdentify>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getWechatWorkappIdentifyDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getWechatWorkappIdentifyDAO().present((WechatWorkappIdentify)data, tokens);
+			}
+			@Override
+			public SmartList<WechatWorkappIdentify> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getWechatWorkappIdentifyDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)WechatWorkappIdentify.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("WechatMiniappIdentify", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getWechatMiniappIdentifyDAO().load(id, WechatMiniappIdentifyTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getWechatMiniappIdentifyDAO().enhanceList((List<WechatMiniappIdentify>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getWechatMiniappIdentifyDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getWechatMiniappIdentifyDAO().present((WechatMiniappIdentify)data, tokens);
+			}
+			@Override
+			public SmartList<WechatMiniappIdentify> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getWechatMiniappIdentifyDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)WechatMiniappIdentify.withId(id)).collect(Collectors.toList());
+			}
+		});
+
+		internalLoaderMap.put("TreeNode", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getTreeNodeDAO().load(id, TreeNodeTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getTreeNodeDAO().enhanceList((List<TreeNode>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getTreeNodeDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getTreeNodeDAO().present((TreeNode)data, tokens);
+			}
+			@Override
+			public SmartList<TreeNode> queryList(DAOGroup daoGoup, String sql, Object ... parmeters) throws Exception {
+				return daoGoup.getTreeNodeDAO().queryList(sql, parmeters);
+			}
+      @Override
+			public List<BaseEntity> wrapperList(DAOGroup daoGoup, List<String> ids) throws Exception{
+				return ids.stream().map(id-> (BaseEntity)TreeNode.withId(id)).collect(Collectors.toList());
+			}
 		});
 
 	}
@@ -3904,6 +5235,20 @@ public class DAOGroup {
 	    	return null;
 	    }
 	}
+
+	public List<BaseEntity> wrapperList(String type, List<String> ids){
+  	    BasicLoader loader = internalLoaderMap.get(type);
+  	    if (loader == null) {
+  	    	return null;
+  	    }
+  	    try{
+  	    	return loader.wrapperList(this, ids);
+  	    }catch(Exception e) {
+  	    	e.printStackTrace();
+  	    	return null;
+  	    }
+  	}
+
 	public BaseEntity loadBasicDataWithTokens(String type, String id, Map<String, Object> tokens){
 	    BasicLoader loader = internalLoaderMap.get(type);
 	    if (loader == null) {
@@ -3936,5 +5281,23 @@ public class DAOGroup {
 
 	    loader.enhanceList(this, list);
 	}
+
+	public void enhanceList(List list, String type) throws Exception{
+  	    BasicLoader loader = internalLoaderMap.get(type);
+  	    if (loader == null) {
+  	    	return ;
+  	    }
+
+  	    loader.enhanceList(this, list);
+  	}
+  	
+  	public SmartList<? extends BaseEntity> queryList(String type, String sql, Object ... parameters) throws Exception{
+  	    BasicLoader loader = internalLoaderMap.get(type);
+  	    if (loader == null) {
+  	    	return new SmartList();
+  	    }
+
+  	    return loader.queryList(this, sql, parameters);
+  	}
 }
 

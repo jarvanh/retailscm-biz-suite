@@ -110,6 +110,12 @@ import com.doublechaintech.retailscm.employeeeducation.EmployeeEducation;
 import com.doublechaintech.retailscm.employeeaward.EmployeeAward;
 import com.doublechaintech.retailscm.employeesalarysheet.EmployeeSalarySheet;
 import com.doublechaintech.retailscm.payingoff.PayingOff;
+import com.doublechaintech.retailscm.mobileapp.MobileApp;
+import com.doublechaintech.retailscm.page.Page;
+import com.doublechaintech.retailscm.pagetype.PageType;
+import com.doublechaintech.retailscm.slide.Slide;
+import com.doublechaintech.retailscm.uiaction.UiAction;
+import com.doublechaintech.retailscm.section.Section;
 import com.doublechaintech.retailscm.userdomain.UserDomain;
 import com.doublechaintech.retailscm.userwhitelist.UserWhiteList;
 import com.doublechaintech.retailscm.secuser.SecUser;
@@ -1452,6 +1458,84 @@ public class BaseRetailscmListOfViewScope {
 		;
 	}
 
+	/** MobileApp的简单属性序列化列表 */
+	protected SerializeScope getMobileAppSummaryScope() {
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(MobileApp.ID_PROPERTY)
+			.field(MobileApp.NAME_PROPERTY)
+			.field(MobileApp.VERSION_PROPERTY)
+		;
+	}
+
+	/** Page的简单属性序列化列表 */
+	protected SerializeScope getPageSummaryScope() {
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(Page.ID_PROPERTY)
+			.field(Page.PAGE_TITLE_PROPERTY)
+			.field(Page.LINK_TO_URL_PROPERTY)
+			.field(Page.VERSION_PROPERTY)
+		;
+	}
+
+	/** PageType的简单属性序列化列表 */
+	protected SerializeScope getPageTypeSummaryScope() {
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(PageType.ID_PROPERTY)
+			.field(PageType.NAME_PROPERTY)
+			.field(PageType.CODE_PROPERTY)
+			.field(PageType.FOOTER_TAB_PROPERTY)
+			.field(PageType.VERSION_PROPERTY)
+		;
+	}
+
+	/** Slide的简单属性序列化列表 */
+	protected SerializeScope getSlideSummaryScope() {
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(Slide.ID_PROPERTY)
+			.field(Slide.DISPLAY_ORDER_PROPERTY)
+			.field(Slide.NAME_PROPERTY)
+			.field(Slide.IMAGE_URL_PROPERTY)
+			.field(Slide.VIDEO_URL_PROPERTY)
+			.field(Slide.LINK_TO_URL_PROPERTY)
+			.field(Slide.VERSION_PROPERTY)
+		;
+	}
+
+	/** UiAction的简单属性序列化列表 */
+	protected SerializeScope getUiActionSummaryScope() {
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(UiAction.ID_PROPERTY)
+			.field(UiAction.CODE_PROPERTY)
+			.field(UiAction.ICON_PROPERTY)
+			.field(UiAction.TITLE_PROPERTY)
+			.field(UiAction.BRIEF_PROPERTY)
+			.field(UiAction.IMAGE_URL_PROPERTY)
+			.field(UiAction.LINK_TO_URL_PROPERTY)
+			.field(UiAction.EXTRA_DATA_PROPERTY)
+			.field(UiAction.VERSION_PROPERTY)
+		;
+	}
+
+	/** Section的简单属性序列化列表 */
+	protected SerializeScope getSectionSummaryScope() {
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(Section.ID_PROPERTY)
+			.field(Section.TITLE_PROPERTY)
+			.field(Section.BRIEF_PROPERTY)
+			.field(Section.ICON_PROPERTY)
+			.field(Section.VIEW_GROUP_PROPERTY)
+			.field(Section.LINK_TO_URL_PROPERTY)
+			.field(Section.PAGE_PROPERTY)
+			.field(Section.VERSION_PROPERTY)
+		;
+	}
+
 	/** UserDomain的简单属性序列化列表 */
 	protected SerializeScope getUserDomainSummaryScope() {
 		return SerializeScope.INCLUDE()
@@ -1728,7 +1812,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreCountryCenter.ADDRESS_PROPERTY)
 			.field(RetailStoreCountryCenter.OPERATED_BY_PROPERTY)
 			.field(RetailStoreCountryCenter.LEGAL_REPRESENTATIVE_PROPERTY)
-			.field(RetailStoreCountryCenter.DESCRIPTION_PROPERTY).as("brief")
+			.field(RetailStoreCountryCenter.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(RetailStoreCountryCenter.VERSION_PROPERTY)
 		;
 	}
@@ -1754,7 +1838,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(Catalog.NAME_PROPERTY).as("title")
 			.field(Catalog.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(Catalog.SUB_COUNT_PROPERTY)
-			.field(Catalog.AMOUNT_PROPERTY).as("brief")
+			.field(Catalog.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(Catalog.VERSION_PROPERTY)
 		;
 	}
@@ -1839,7 +1923,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(Product.ID_PROPERTY)
 			.field(Product.NAME_PROPERTY).as("title")
 			.field(Product.PARENT_CATEGORY_PROPERTY, getLevelThreeCategorySummaryScope())
-			.field(Product.ORIGIN_PROPERTY).as("brief")
+			.field(Product.ORIGIN_PROPERTY).as("brief").with_prefix("产地: ")
 			.field(Product.REMARK_PROPERTY)
 			.field(Product.BRAND_PROPERTY)
 			.field(Product.PICTURE_PROPERTY).as("imageUrl")
@@ -1850,7 +1934,7 @@ public class BaseRetailscmListOfViewScope {
 
 	/** Sku的ListOf时需要序列化的属性列表 */
 	protected SerializeScope getSkuListOfViewScope() {
-		// DisplayMode{name='auto', titleField=fieldesc{
+		// DisplayMode{name='product', titleField=fieldesc{
 		//	name='name';
 		//	type='string';
 		//	value='可乐-大罐的';
@@ -1868,7 +1952,7 @@ public class BaseRetailscmListOfViewScope {
 		//	value='coco.jpg';
 		//equired='true';
 		//}
-		//, imageListField=null, propList=[]}
+		//, imageListField=null, propList=[DisplayProperty{name='listPrice', level=null}]}
 		return SerializeScope.INCLUDE()
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(Sku.ID_PROPERTY)
@@ -1877,8 +1961,8 @@ public class BaseRetailscmListOfViewScope {
 			.field(Sku.PRODUCT_PROPERTY, getProductSummaryScope())
 			.field(Sku.BARCODE_PROPERTY)
 			.field(Sku.PACKAGE_TYPE_PROPERTY)
-			.field(Sku.NET_CONTENT_PROPERTY).as("brief")
-			.field(Sku.PRICE_PROPERTY)
+			.field(Sku.NET_CONTENT_PROPERTY).as("brief").with_prefix("净含量: ")
+			.field(Sku.PRICE_PROPERTY).as("listPrice")
 			.field(Sku.PICTURE_PROPERTY).as("imageUrl")
 			.field(Sku.VERSION_PROPERTY)
 		;
@@ -1903,7 +1987,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(RetailStoreProvinceCenter.ID_PROPERTY)
 			.field(RetailStoreProvinceCenter.NAME_PROPERTY).as("title")
-			.field(RetailStoreProvinceCenter.FOUNDED_PROPERTY).as("brief")
+			.field(RetailStoreProvinceCenter.FOUNDED_PROPERTY).as("brief").with_prefix("成立: ")
 			.field(RetailStoreProvinceCenter.COUNTRY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(RetailStoreProvinceCenter.LAST_UPDATE_TIME_PROPERTY)
 			.field(RetailStoreProvinceCenter.VERSION_PROPERTY)
@@ -1931,7 +2015,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ProvinceCenterDepartment.NAME_PROPERTY).as("title")
 			.field(ProvinceCenterDepartment.FOUNDED_PROPERTY)
 			.field(ProvinceCenterDepartment.PROVINCE_CENTER_PROPERTY, getRetailStoreProvinceCenterSummaryScope())
-			.field(ProvinceCenterDepartment.MANAGER_PROPERTY).as("brief")
+			.field(ProvinceCenterDepartment.MANAGER_PROPERTY).as("brief").with_prefix("经理: ")
 			.field(ProvinceCenterDepartment.VERSION_PROPERTY)
 		;
 	}
@@ -1955,7 +2039,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(ProvinceCenterEmployee.ID_PROPERTY)
 			.field(ProvinceCenterEmployee.NAME_PROPERTY).as("title")
-			.field(ProvinceCenterEmployee.MOBILE_PROPERTY).as("brief")
+			.field(ProvinceCenterEmployee.MOBILE_PROPERTY).as("brief").with_prefix("手机: ")
 			.field(ProvinceCenterEmployee.EMAIL_PROPERTY)
 			.field(ProvinceCenterEmployee.FOUNDED_PROPERTY)
 			.field(ProvinceCenterEmployee.DEPARTMENT_PROPERTY, getProvinceCenterDepartmentSummaryScope())
@@ -1983,7 +2067,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(RetailStoreCityServiceCenter.ID_PROPERTY)
 			.field(RetailStoreCityServiceCenter.NAME_PROPERTY).as("title")
-			.field(RetailStoreCityServiceCenter.FOUNDED_PROPERTY).as("brief")
+			.field(RetailStoreCityServiceCenter.FOUNDED_PROPERTY).as("brief").with_prefix("成立: ")
 			.field(RetailStoreCityServiceCenter.BELONGS_TO_PROPERTY, getRetailStoreProvinceCenterSummaryScope())
 			.field(RetailStoreCityServiceCenter.LAST_UPDATE_TIME_PROPERTY)
 			.field(RetailStoreCityServiceCenter.VERSION_PROPERTY)
@@ -2011,7 +2095,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(CityPartner.NAME_PROPERTY).as("title")
 			.field(CityPartner.MOBILE_PROPERTY)
 			.field(CityPartner.CITY_SERVICE_CENTER_PROPERTY, getRetailStoreCityServiceCenterSummaryScope())
-			.field(CityPartner.DESCRIPTION_PROPERTY).as("brief")
+			.field(CityPartner.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(CityPartner.LAST_UPDATE_TIME_PROPERTY)
 			.field(CityPartner.VERSION_PROPERTY)
 		;
@@ -2039,7 +2123,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(PotentialCustomer.MOBILE_PROPERTY)
 			.field(PotentialCustomer.CITY_SERVICE_CENTER_PROPERTY, getRetailStoreCityServiceCenterSummaryScope())
 			.field(PotentialCustomer.CITY_PARTNER_PROPERTY, getCityPartnerSummaryScope())
-			.field(PotentialCustomer.DESCRIPTION_PROPERTY).as("brief")
+			.field(PotentialCustomer.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(PotentialCustomer.LAST_UPDATE_TIME_PROPERTY)
 			.field(PotentialCustomer.VERSION_PROPERTY)
 		;
@@ -2066,7 +2150,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(PotentialCustomerContactPerson.NAME_PROPERTY).as("title")
 			.field(PotentialCustomerContactPerson.MOBILE_PROPERTY)
 			.field(PotentialCustomerContactPerson.POTENTIAL_CUSTOMER_PROPERTY, getPotentialCustomerSummaryScope())
-			.field(PotentialCustomerContactPerson.DESCRIPTION_PROPERTY).as("brief")
+			.field(PotentialCustomerContactPerson.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(PotentialCustomerContactPerson.VERSION_PROPERTY)
 		;
 	}
@@ -2095,7 +2179,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(PotentialCustomerContact.POTENTIAL_CUSTOMER_PROPERTY, getPotentialCustomerSummaryScope())
 			.field(PotentialCustomerContact.CITY_PARTNER_PROPERTY, getCityPartnerSummaryScope())
 			.field(PotentialCustomerContact.CONTACT_TO_PROPERTY, getPotentialCustomerContactPersonSummaryScope())
-			.field(PotentialCustomerContact.DESCRIPTION_PROPERTY).as("brief")
+			.field(PotentialCustomerContact.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(PotentialCustomerContact.LAST_UPDATE_TIME_PROPERTY)
 			.field(PotentialCustomerContact.VERSION_PROPERTY)
 		;
@@ -2122,7 +2206,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(CityEvent.NAME_PROPERTY).as("title")
 			.field(CityEvent.MOBILE_PROPERTY)
 			.field(CityEvent.CITY_SERVICE_CENTER_PROPERTY, getRetailStoreCityServiceCenterSummaryScope())
-			.field(CityEvent.DESCRIPTION_PROPERTY).as("brief")
+			.field(CityEvent.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(CityEvent.LAST_UPDATE_TIME_PROPERTY)
 			.field(CityEvent.VERSION_PROPERTY)
 		;
@@ -2149,7 +2233,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EventAttendance.NAME_PROPERTY).as("title")
 			.field(EventAttendance.POTENTIAL_CUSTOMER_PROPERTY, getPotentialCustomerSummaryScope())
 			.field(EventAttendance.CITY_EVENT_PROPERTY, getCityEventSummaryScope())
-			.field(EventAttendance.DESCRIPTION_PROPERTY).as("brief")
+			.field(EventAttendance.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(EventAttendance.VERSION_PROPERTY)
 		;
 	}
@@ -2186,7 +2270,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStore.FOUNDED_PROPERTY)
 			.field(RetailStore.LATITUDE_PROPERTY)
 			.field(RetailStore.LONGITUDE_PROPERTY)
-			.field(RetailStore.DESCRIPTION_PROPERTY).as("brief")
+			.field(RetailStore.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(RetailStore.LAST_UPDATE_TIME_PROPERTY)
 			.field(RetailStore.VERSION_PROPERTY)
 		;
@@ -2313,7 +2397,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(RetailStoreMember.ID_PROPERTY)
 			.field(RetailStoreMember.NAME_PROPERTY).as("title")
-			.field(RetailStoreMember.MOBILE_PHONE_PROPERTY).as("brief")
+			.field(RetailStoreMember.MOBILE_PHONE_PROPERTY).as("brief").with_prefix("移动电话: ")
 			.field(RetailStoreMember.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(RetailStoreMember.VERSION_PROPERTY)
 		;
@@ -2358,7 +2442,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(ConsumerOrderLineItem.ID_PROPERTY)
 			.field(ConsumerOrderLineItem.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
-			.field(ConsumerOrderLineItem.SKU_ID_PROPERTY).as("brief")
+			.field(ConsumerOrderLineItem.SKU_ID_PROPERTY).as("brief").with_prefix("产品ID: ")
 			.field(ConsumerOrderLineItem.SKU_NAME_PROPERTY).as("title")
 			.field(ConsumerOrderLineItem.PRICE_PROPERTY)
 			.field(ConsumerOrderLineItem.QUANTITY_PROPERTY)
@@ -2388,7 +2472,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ConsumerOrderShippingGroup.ID_PROPERTY)
 			.field(ConsumerOrderShippingGroup.NAME_PROPERTY).as("title")
 			.field(ConsumerOrderShippingGroup.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
-			.field(ConsumerOrderShippingGroup.AMOUNT_PROPERTY).as("brief")
+			.field(ConsumerOrderShippingGroup.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(ConsumerOrderShippingGroup.VERSION_PROPERTY)
 		;
 	}
@@ -2413,7 +2497,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ConsumerOrderPaymentGroup.ID_PROPERTY)
 			.field(ConsumerOrderPaymentGroup.NAME_PROPERTY).as("title")
 			.field(ConsumerOrderPaymentGroup.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
-			.field(ConsumerOrderPaymentGroup.CARD_NUMBER_PROPERTY).as("brief")
+			.field(ConsumerOrderPaymentGroup.CARD_NUMBER_PROPERTY).as("brief").with_prefix("卡号码: ")
 			.field(ConsumerOrderPaymentGroup.VERSION_PROPERTY)
 		;
 	}
@@ -2438,7 +2522,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ConsumerOrderPriceAdjustment.ID_PROPERTY)
 			.field(ConsumerOrderPriceAdjustment.NAME_PROPERTY).as("title")
 			.field(ConsumerOrderPriceAdjustment.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
-			.field(ConsumerOrderPriceAdjustment.AMOUNT_PROPERTY).as("brief")
+			.field(ConsumerOrderPriceAdjustment.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(ConsumerOrderPriceAdjustment.PROVIDER_PROPERTY)
 			.field(ConsumerOrderPriceAdjustment.VERSION_PROPERTY)
 		;
@@ -2464,7 +2548,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreMemberCoupon.ID_PROPERTY)
 			.field(RetailStoreMemberCoupon.NAME_PROPERTY).as("title")
 			.field(RetailStoreMemberCoupon.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
-			.field(RetailStoreMemberCoupon.NUMBER_PROPERTY).as("brief")
+			.field(RetailStoreMemberCoupon.NUMBER_PROPERTY).as("brief").with_prefix("数: ")
 			.field(RetailStoreMemberCoupon.LAST_UPDATE_TIME_PROPERTY)
 			.field(RetailStoreMemberCoupon.VERSION_PROPERTY)
 		;
@@ -2507,7 +2591,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(MemberRewardPoint.ID_PROPERTY)
 			.field(MemberRewardPoint.NAME_PROPERTY).as("title")
-			.field(MemberRewardPoint.POINT_PROPERTY).as("brief")
+			.field(MemberRewardPoint.POINT_PROPERTY).as("brief").with_prefix("点: ")
 			.field(MemberRewardPoint.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
 			.field(MemberRewardPoint.VERSION_PROPERTY)
 		;
@@ -2532,7 +2616,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(MemberRewardPointRedemption.ID_PROPERTY)
 			.field(MemberRewardPointRedemption.NAME_PROPERTY).as("title")
-			.field(MemberRewardPointRedemption.POINT_PROPERTY).as("brief")
+			.field(MemberRewardPointRedemption.POINT_PROPERTY).as("brief").with_prefix("点: ")
 			.field(MemberRewardPointRedemption.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
 			.field(MemberRewardPointRedemption.VERSION_PROPERTY)
 		;
@@ -2576,7 +2660,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreMemberAddress.ID_PROPERTY)
 			.field(RetailStoreMemberAddress.NAME_PROPERTY).as("title")
 			.field(RetailStoreMemberAddress.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
-			.field(RetailStoreMemberAddress.MOBILE_PHONE_PROPERTY).as("brief")
+			.field(RetailStoreMemberAddress.MOBILE_PHONE_PROPERTY).as("brief").with_prefix("移动电话: ")
 			.field(RetailStoreMemberAddress.ADDRESS_PROPERTY)
 			.field(RetailStoreMemberAddress.VERSION_PROPERTY)
 		;
@@ -2603,7 +2687,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreMemberGiftCard.NAME_PROPERTY).as("title")
 			.field(RetailStoreMemberGiftCard.OWNER_PROPERTY, getRetailStoreMemberSummaryScope())
 			.field(RetailStoreMemberGiftCard.NUMBER_PROPERTY)
-			.field(RetailStoreMemberGiftCard.REMAIN_PROPERTY).as("brief")
+			.field(RetailStoreMemberGiftCard.REMAIN_PROPERTY).as("brief").with_prefix("保持: ")
 			.field(RetailStoreMemberGiftCard.VERSION_PROPERTY)
 		;
 	}
@@ -2630,7 +2714,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreMemberGiftCardConsumeRecord.OWNER_PROPERTY, getRetailStoreMemberGiftCardSummaryScope())
 			.field(RetailStoreMemberGiftCardConsumeRecord.BIZ_ORDER_PROPERTY, getConsumerOrderSummaryScope())
 			.field(RetailStoreMemberGiftCardConsumeRecord.NUMBER_PROPERTY).as("title")
-			.field(RetailStoreMemberGiftCardConsumeRecord.AMOUNT_PROPERTY).as("brief")
+			.field(RetailStoreMemberGiftCardConsumeRecord.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(RetailStoreMemberGiftCardConsumeRecord.VERSION_PROPERTY)
 		;
 	}
@@ -2657,7 +2741,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(GoodsSupplier.SUPPLY_PRODUCT_PROPERTY)
 			.field(GoodsSupplier.BELONG_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(GoodsSupplier.CONTACT_NUMBER_PROPERTY)
-			.field(GoodsSupplier.DESCRIPTION_PROPERTY).as("brief")
+			.field(GoodsSupplier.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(GoodsSupplier.LAST_UPDATE_TIME_PROPERTY)
 			.field(GoodsSupplier.VERSION_PROPERTY)
 		;
@@ -2682,7 +2766,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(SupplierProduct.ID_PROPERTY)
 			.field(SupplierProduct.PRODUCT_NAME_PROPERTY).as("title")
-			.field(SupplierProduct.PRODUCT_DESCRIPTION_PROPERTY).as("brief")
+			.field(SupplierProduct.PRODUCT_DESCRIPTION_PROPERTY).as("brief").with_prefix("产品描述: ")
 			.field(SupplierProduct.PRODUCT_UNIT_PROPERTY)
 			.field(SupplierProduct.SUPPLIER_PROPERTY, getGoodsSupplierSummaryScope())
 			.field(SupplierProduct.VERSION_PROPERTY)
@@ -2709,7 +2793,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ProductSupplyDuration.ID_PROPERTY)
 			.field(ProductSupplyDuration.QUANTITY_PROPERTY)
 			.field(ProductSupplyDuration.DURATION_PROPERTY).as("title")
-			.field(ProductSupplyDuration.PRICE_PROPERTY).as("brief")
+			.field(ProductSupplyDuration.PRICE_PROPERTY).as("brief").with_prefix("价格: ")
 			.field(ProductSupplyDuration.PRODUCT_PROPERTY, getSupplierProductSummaryScope())
 			.field(ProductSupplyDuration.VERSION_PROPERTY)
 		;
@@ -2736,7 +2820,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(SupplyOrder.BUYER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(SupplyOrder.SELLER_PROPERTY, getGoodsSupplierSummaryScope())
 			.field(SupplyOrder.TITLE_PROPERTY).as("title")
-			.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY).as("brief")
+			.field(SupplyOrder.TOTAL_AMOUNT_PROPERTY).as("brief").with_prefix("总金额: ")
 			.field(SupplyOrder.LAST_UPDATE_TIME_PROPERTY)
 			.field(SupplyOrder.VERSION_PROPERTY)
 		;
@@ -2763,7 +2847,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(SupplyOrderLineItem.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
 			.field(SupplyOrderLineItem.SKU_ID_PROPERTY)
 			.field(SupplyOrderLineItem.SKU_NAME_PROPERTY).as("title")
-			.field(SupplyOrderLineItem.AMOUNT_PROPERTY).as("brief")
+			.field(SupplyOrderLineItem.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(SupplyOrderLineItem.QUANTITY_PROPERTY)
 			.field(SupplyOrderLineItem.UNIT_OF_MEASUREMENT_PROPERTY)
 			.field(SupplyOrderLineItem.VERSION_PROPERTY)
@@ -2790,7 +2874,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(SupplyOrderShippingGroup.ID_PROPERTY)
 			.field(SupplyOrderShippingGroup.NAME_PROPERTY).as("title")
 			.field(SupplyOrderShippingGroup.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
-			.field(SupplyOrderShippingGroup.AMOUNT_PROPERTY).as("brief")
+			.field(SupplyOrderShippingGroup.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(SupplyOrderShippingGroup.VERSION_PROPERTY)
 		;
 	}
@@ -2815,7 +2899,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(SupplyOrderPaymentGroup.ID_PROPERTY)
 			.field(SupplyOrderPaymentGroup.NAME_PROPERTY).as("title")
 			.field(SupplyOrderPaymentGroup.BIZ_ORDER_PROPERTY, getSupplyOrderSummaryScope())
-			.field(SupplyOrderPaymentGroup.CARD_NUMBER_PROPERTY).as("brief")
+			.field(SupplyOrderPaymentGroup.CARD_NUMBER_PROPERTY).as("brief").with_prefix("卡号码: ")
 			.field(SupplyOrderPaymentGroup.VERSION_PROPERTY)
 		;
 	}
@@ -2841,7 +2925,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreOrder.BUYER_PROPERTY, getRetailStoreSummaryScope())
 			.field(RetailStoreOrder.SELLER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(RetailStoreOrder.TITLE_PROPERTY).as("title")
-			.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY).as("brief")
+			.field(RetailStoreOrder.TOTAL_AMOUNT_PROPERTY).as("brief").with_prefix("总金额: ")
 			.field(RetailStoreOrder.LAST_UPDATE_TIME_PROPERTY)
 			.field(RetailStoreOrder.VERSION_PROPERTY)
 		;
@@ -2868,7 +2952,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreOrderLineItem.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
 			.field(RetailStoreOrderLineItem.SKU_ID_PROPERTY)
 			.field(RetailStoreOrderLineItem.SKU_NAME_PROPERTY).as("title")
-			.field(RetailStoreOrderLineItem.AMOUNT_PROPERTY).as("brief")
+			.field(RetailStoreOrderLineItem.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(RetailStoreOrderLineItem.QUANTITY_PROPERTY)
 			.field(RetailStoreOrderLineItem.UNIT_OF_MEASUREMENT_PROPERTY)
 			.field(RetailStoreOrderLineItem.VERSION_PROPERTY)
@@ -2895,7 +2979,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreOrderShippingGroup.ID_PROPERTY)
 			.field(RetailStoreOrderShippingGroup.NAME_PROPERTY).as("title")
 			.field(RetailStoreOrderShippingGroup.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
-			.field(RetailStoreOrderShippingGroup.AMOUNT_PROPERTY).as("brief")
+			.field(RetailStoreOrderShippingGroup.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(RetailStoreOrderShippingGroup.VERSION_PROPERTY)
 		;
 	}
@@ -2920,7 +3004,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailStoreOrderPaymentGroup.ID_PROPERTY)
 			.field(RetailStoreOrderPaymentGroup.NAME_PROPERTY).as("title")
 			.field(RetailStoreOrderPaymentGroup.BIZ_ORDER_PROPERTY, getRetailStoreOrderSummaryScope())
-			.field(RetailStoreOrderPaymentGroup.CARD_NUMBER_PROPERTY).as("brief")
+			.field(RetailStoreOrderPaymentGroup.CARD_NUMBER_PROPERTY).as("brief").with_prefix("卡号码: ")
 			.field(RetailStoreOrderPaymentGroup.VERSION_PROPERTY)
 		;
 	}
@@ -2944,7 +3028,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(Warehouse.ID_PROPERTY)
 			.field(Warehouse.LOCATION_PROPERTY).as("title")
-			.field(Warehouse.CONTACT_NUMBER_PROPERTY).as("brief")
+			.field(Warehouse.CONTACT_NUMBER_PROPERTY).as("brief").with_prefix("联系电话: ")
 			.field(Warehouse.TOTAL_AREA_PROPERTY)
 			.field(Warehouse.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(Warehouse.LATITUDE_PROPERTY)
@@ -2973,7 +3057,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(StorageSpace.ID_PROPERTY)
 			.field(StorageSpace.LOCATION_PROPERTY).as("title")
-			.field(StorageSpace.CONTACT_NUMBER_PROPERTY).as("brief")
+			.field(StorageSpace.CONTACT_NUMBER_PROPERTY).as("brief").with_prefix("联系电话: ")
 			.field(StorageSpace.TOTAL_AREA_PROPERTY)
 			.field(StorageSpace.WAREHOUSE_PROPERTY, getWarehouseSummaryScope())
 			.field(StorageSpace.LATITUDE_PROPERTY)
@@ -3002,7 +3086,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(SmartPallet.ID_PROPERTY)
 			.field(SmartPallet.LOCATION_PROPERTY).as("title")
-			.field(SmartPallet.CONTACT_NUMBER_PROPERTY).as("brief")
+			.field(SmartPallet.CONTACT_NUMBER_PROPERTY).as("brief").with_prefix("联系电话: ")
 			.field(SmartPallet.TOTAL_AREA_PROPERTY)
 			.field(SmartPallet.LATITUDE_PROPERTY)
 			.field(SmartPallet.LONGITUDE_PROPERTY)
@@ -3053,7 +3137,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(GoodsShelfStockCount.ID_PROPERTY)
 			.field(GoodsShelfStockCount.TITLE_PROPERTY).as("title")
 			.field(GoodsShelfStockCount.COUNT_TIME_PROPERTY)
-			.field(GoodsShelfStockCount.SUMMARY_PROPERTY).as("brief")
+			.field(GoodsShelfStockCount.SUMMARY_PROPERTY).as("brief").with_prefix("概览: ")
 			.field(GoodsShelfStockCount.SHELF_PROPERTY, getGoodsShelfSummaryScope())
 			.field(GoodsShelfStockCount.VERSION_PROPERTY)
 		;
@@ -3079,7 +3163,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(StockCountIssueTrack.ID_PROPERTY)
 			.field(StockCountIssueTrack.TITLE_PROPERTY).as("title")
 			.field(StockCountIssueTrack.COUNT_TIME_PROPERTY)
-			.field(StockCountIssueTrack.SUMMARY_PROPERTY).as("brief")
+			.field(StockCountIssueTrack.SUMMARY_PROPERTY).as("brief").with_prefix("概览: ")
 			.field(StockCountIssueTrack.STOCK_COUNT_PROPERTY, getGoodsShelfStockCountSummaryScope())
 			.field(StockCountIssueTrack.VERSION_PROPERTY)
 		;
@@ -3104,7 +3188,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(GoodsAllocation.ID_PROPERTY)
 			.field(GoodsAllocation.LOCATION_PROPERTY).as("title")
-			.field(GoodsAllocation.LATITUDE_PROPERTY).as("brief")
+			.field(GoodsAllocation.LATITUDE_PROPERTY).as("brief").with_prefix("纬度: ")
 			.field(GoodsAllocation.LONGITUDE_PROPERTY)
 			.field(GoodsAllocation.GOODS_SHELF_PROPERTY, getGoodsShelfSummaryScope())
 			.field(GoodsAllocation.VERSION_PROPERTY)
@@ -3132,7 +3216,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(Goods.NAME_PROPERTY).as("title")
 			.field(Goods.RFID_PROPERTY)
 			.field(Goods.UOM_PROPERTY)
-			.field(Goods.MAX_PACKAGE_PROPERTY).as("brief")
+			.field(Goods.MAX_PACKAGE_PROPERTY).as("brief").with_prefix("最大包装: ")
 			.field(Goods.EXPIRE_TIME_PROPERTY)
 			.field(Goods.SKU_PROPERTY, getSkuSummaryScope())
 			.field(Goods.RECEIVING_SPACE_PROPERTY, getReceivingSpaceSummaryScope())
@@ -3169,7 +3253,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(GoodsMovement.FACILITY_PROPERTY).as("title")
 			.field(GoodsMovement.FACILITY_ID_PROPERTY)
 			.field(GoodsMovement.FROM_IP_PROPERTY)
-			.field(GoodsMovement.USER_AGENT_PROPERTY).as("brief")
+			.field(GoodsMovement.USER_AGENT_PROPERTY).as("brief").with_prefix("用户代理: ")
 			.field(GoodsMovement.SESSION_ID_PROPERTY)
 			.field(GoodsMovement.LATITUDE_PROPERTY)
 			.field(GoodsMovement.LONGITUDE_PROPERTY)
@@ -3197,7 +3281,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(SupplierSpace.ID_PROPERTY)
 			.field(SupplierSpace.LOCATION_PROPERTY).as("title")
-			.field(SupplierSpace.CONTACT_NUMBER_PROPERTY).as("brief")
+			.field(SupplierSpace.CONTACT_NUMBER_PROPERTY).as("brief").with_prefix("联系电话: ")
 			.field(SupplierSpace.TOTAL_AREA_PROPERTY)
 			.field(SupplierSpace.WAREHOUSE_PROPERTY, getWarehouseSummaryScope())
 			.field(SupplierSpace.LATITUDE_PROPERTY)
@@ -3227,7 +3311,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ReceivingSpace.ID_PROPERTY)
 			.field(ReceivingSpace.LOCATION_PROPERTY).as("title")
 			.field(ReceivingSpace.CONTACT_NUMBER_PROPERTY)
-			.field(ReceivingSpace.DESCRIPTION_PROPERTY).as("brief")
+			.field(ReceivingSpace.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(ReceivingSpace.TOTAL_AREA_PROPERTY)
 			.field(ReceivingSpace.WAREHOUSE_PROPERTY, getWarehouseSummaryScope())
 			.field(ReceivingSpace.LATITUDE_PROPERTY)
@@ -3261,7 +3345,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ShippingSpace.WAREHOUSE_PROPERTY, getWarehouseSummaryScope())
 			.field(ShippingSpace.LATITUDE_PROPERTY)
 			.field(ShippingSpace.LONGITUDE_PROPERTY)
-			.field(ShippingSpace.DESCRIPTION_PROPERTY).as("brief")
+			.field(ShippingSpace.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(ShippingSpace.LAST_UPDATE_TIME_PROPERTY)
 			.field(ShippingSpace.VERSION_PROPERTY)
 		;
@@ -3286,7 +3370,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(DamageSpace.ID_PROPERTY)
 			.field(DamageSpace.LOCATION_PROPERTY).as("title")
-			.field(DamageSpace.CONTACT_NUMBER_PROPERTY).as("brief")
+			.field(DamageSpace.CONTACT_NUMBER_PROPERTY).as("brief").with_prefix("联系电话: ")
 			.field(DamageSpace.TOTAL_AREA_PROPERTY)
 			.field(DamageSpace.LATITUDE_PROPERTY)
 			.field(DamageSpace.LONGITUDE_PROPERTY)
@@ -3315,7 +3399,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(WarehouseAsset.ID_PROPERTY)
 			.field(WarehouseAsset.NAME_PROPERTY).as("title")
-			.field(WarehouseAsset.POSITION_PROPERTY).as("brief")
+			.field(WarehouseAsset.POSITION_PROPERTY).as("brief").with_prefix("位置: ")
 			.field(WarehouseAsset.OWNER_PROPERTY, getWarehouseSummaryScope())
 			.field(WarehouseAsset.LAST_UPDATE_TIME_PROPERTY)
 			.field(WarehouseAsset.VERSION_PROPERTY)
@@ -3341,7 +3425,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(TransportFleet.ID_PROPERTY)
 			.field(TransportFleet.NAME_PROPERTY).as("title")
-			.field(TransportFleet.CONTACT_NUMBER_PROPERTY).as("brief")
+			.field(TransportFleet.CONTACT_NUMBER_PROPERTY).as("brief").with_prefix("联系电话: ")
 			.field(TransportFleet.OWNER_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(TransportFleet.LAST_UPDATE_TIME_PROPERTY)
 			.field(TransportFleet.VERSION_PROPERTY)
@@ -3367,7 +3451,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(TransportTruck.ID_PROPERTY)
 			.field(TransportTruck.NAME_PROPERTY).as("title")
-			.field(TransportTruck.PLATE_NUMBER_PROPERTY).as("brief")
+			.field(TransportTruck.PLATE_NUMBER_PROPERTY).as("brief").with_prefix("车牌号码: ")
 			.field(TransportTruck.CONTACT_NUMBER_PROPERTY)
 			.field(TransportTruck.VEHICLE_LICENSE_NUMBER_PROPERTY)
 			.field(TransportTruck.ENGINE_NUMBER_PROPERTY)
@@ -3398,7 +3482,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(TruckDriver.ID_PROPERTY)
 			.field(TruckDriver.NAME_PROPERTY).as("title")
-			.field(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY).as("brief")
+			.field(TruckDriver.DRIVER_LICENSE_NUMBER_PROPERTY).as("brief").with_prefix("驾驶执照号码: ")
 			.field(TruckDriver.CONTACT_NUMBER_PROPERTY)
 			.field(TruckDriver.BELONGS_TO_PROPERTY, getTransportFleetSummaryScope())
 			.field(TruckDriver.VERSION_PROPERTY)
@@ -3424,7 +3508,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(TransportTask.ID_PROPERTY)
 			.field(TransportTask.NAME_PROPERTY).as("title")
-			.field(TransportTask.START_PROPERTY).as("brief")
+			.field(TransportTask.START_PROPERTY).as("brief").with_prefix("开始: ")
 			.field(TransportTask.BEGIN_TIME_PROPERTY)
 			.field(TransportTask.END_PROPERTY, getRetailStoreSummaryScope())
 			.field(TransportTask.DRIVER_PROPERTY, getTruckDriverSummaryScope())
@@ -3455,7 +3539,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(TransportTaskTrack.ID_PROPERTY)
 			.field(TransportTaskTrack.TRACK_TIME_PROPERTY).as("title")
-			.field(TransportTaskTrack.LATITUDE_PROPERTY).as("brief")
+			.field(TransportTaskTrack.LATITUDE_PROPERTY).as("brief").with_prefix("纬度: ")
 			.field(TransportTaskTrack.LONGITUDE_PROPERTY)
 			.field(TransportTaskTrack.MOVEMENT_PROPERTY, getTransportTaskSummaryScope())
 			.field(TransportTaskTrack.VERSION_PROPERTY)
@@ -3481,7 +3565,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(AccountSet.ID_PROPERTY)
 			.field(AccountSet.NAME_PROPERTY).as("title")
-			.field(AccountSet.YEAR_SET_PROPERTY).as("brief")
+			.field(AccountSet.YEAR_SET_PROPERTY).as("brief").with_prefix("年组: ")
 			.field(AccountSet.EFFECTIVE_DATE_PROPERTY)
 			.field(AccountSet.ACCOUNTING_SYSTEM_PROPERTY)
 			.field(AccountSet.DOMESTIC_CURRENCY_CODE_PROPERTY)
@@ -3516,7 +3600,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(AccountingSubject.ID_PROPERTY)
 			.field(AccountingSubject.ACCOUNTING_SUBJECT_CODE_PROPERTY)
 			.field(AccountingSubject.ACCOUNTING_SUBJECT_NAME_PROPERTY).as("title")
-			.field(AccountingSubject.ACCOUNTING_SUBJECT_CLASS_CODE_PROPERTY).as("brief")
+			.field(AccountingSubject.ACCOUNTING_SUBJECT_CLASS_CODE_PROPERTY).as("brief").with_prefix("会计科目类别代码: ")
 			.field(AccountingSubject.ACCOUNTING_SUBJECT_CLASS_NAME_PROPERTY)
 			.field(AccountingSubject.ACCOUNT_SET_PROPERTY, getAccountSetSummaryScope())
 			.field(AccountingSubject.VERSION_PROPERTY)
@@ -3542,7 +3626,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(AccountingPeriod.ID_PROPERTY)
 			.field(AccountingPeriod.NAME_PROPERTY).as("title")
-			.field(AccountingPeriod.START_DATE_PROPERTY).as("brief")
+			.field(AccountingPeriod.START_DATE_PROPERTY).as("brief").with_prefix("开始日期: ")
 			.field(AccountingPeriod.END_DATE_PROPERTY)
 			.field(AccountingPeriod.ACCOUNT_SET_PROPERTY, getAccountSetSummaryScope())
 			.field(AccountingPeriod.VERSION_PROPERTY)
@@ -3568,7 +3652,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(AccountingDocumentType.ID_PROPERTY)
 			.field(AccountingDocumentType.NAME_PROPERTY).as("title")
-			.field(AccountingDocumentType.DESCRIPTION_PROPERTY).as("brief")
+			.field(AccountingDocumentType.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(AccountingDocumentType.ACCOUNTING_PERIOD_PROPERTY, getAccountSetSummaryScope())
 			.field(AccountingDocumentType.VERSION_PROPERTY)
 		;
@@ -3593,7 +3677,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(AccountingDocument.ID_PROPERTY)
 			.field(AccountingDocument.NAME_PROPERTY).as("title")
-			.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY).as("brief")
+			.field(AccountingDocument.ACCOUNTING_DOCUMENT_DATE_PROPERTY).as("brief").with_prefix("会计凭证日期: ")
 			.field(AccountingDocument.ACCOUNTING_PERIOD_PROPERTY, getAccountingPeriodSummaryScope())
 			.field(AccountingDocument.DOCUMENT_TYPE_PROPERTY, getAccountingDocumentTypeSummaryScope())
 			.field(AccountingDocument.VERSION_PROPERTY)
@@ -3625,7 +3709,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(OriginalVoucher.ID_PROPERTY)
 			.field(OriginalVoucher.TITLE_PROPERTY).as("title")
-			.field(OriginalVoucher.MADE_BY_PROPERTY).as("brief")
+			.field(OriginalVoucher.MADE_BY_PROPERTY).as("brief").with_prefix("由: ")
 			.field(OriginalVoucher.RECEIVED_BY_PROPERTY)
 			.field(OriginalVoucher.VOUCHER_TYPE_PROPERTY)
 			.field(OriginalVoucher.VOUCHER_IMAGE_PROPERTY).as("imageUrl")
@@ -3655,7 +3739,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(AccountingDocumentLine.NAME_PROPERTY).as("title")
 			.field(AccountingDocumentLine.CODE_PROPERTY)
 			.field(AccountingDocumentLine.DIRECT_PROPERTY)
-			.field(AccountingDocumentLine.AMOUNT_PROPERTY).as("brief")
+			.field(AccountingDocumentLine.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(AccountingDocumentLine.BELONGS_TO_PROPERTY, getAccountingDocumentSummaryScope())
 			.field(AccountingDocumentLine.ACCOUNTING_SUBJECT_PROPERTY, getAccountingSubjectSummaryScope())
 			.field(AccountingDocumentLine.VERSION_PROPERTY)
@@ -3682,7 +3766,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(LevelOneDepartment.ID_PROPERTY)
 			.field(LevelOneDepartment.BELONGS_TO_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(LevelOneDepartment.NAME_PROPERTY).as("title")
-			.field(LevelOneDepartment.DESCRIPTION_PROPERTY).as("brief")
+			.field(LevelOneDepartment.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(LevelOneDepartment.MANAGER_PROPERTY)
 			.field(LevelOneDepartment.FOUNDED_PROPERTY)
 			.field(LevelOneDepartment.VERSION_PROPERTY)
@@ -3709,7 +3793,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(LevelTwoDepartment.ID_PROPERTY)
 			.field(LevelTwoDepartment.BELONGS_TO_PROPERTY, getLevelOneDepartmentSummaryScope())
 			.field(LevelTwoDepartment.NAME_PROPERTY).as("title")
-			.field(LevelTwoDepartment.DESCRIPTION_PROPERTY).as("brief")
+			.field(LevelTwoDepartment.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(LevelTwoDepartment.FOUNDED_PROPERTY)
 			.field(LevelTwoDepartment.VERSION_PROPERTY)
 		;
@@ -3735,7 +3819,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(LevelThreeDepartment.ID_PROPERTY)
 			.field(LevelThreeDepartment.BELONGS_TO_PROPERTY, getLevelTwoDepartmentSummaryScope())
 			.field(LevelThreeDepartment.NAME_PROPERTY).as("title")
-			.field(LevelThreeDepartment.DESCRIPTION_PROPERTY).as("brief")
+			.field(LevelThreeDepartment.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(LevelThreeDepartment.FOUNDED_PROPERTY)
 			.field(LevelThreeDepartment.VERSION_PROPERTY)
 		;
@@ -3761,7 +3845,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(SkillType.ID_PROPERTY)
 			.field(SkillType.CODE_PROPERTY).as("title")
 			.field(SkillType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
-			.field(SkillType.DESCRIPTION_PROPERTY).as("brief")
+			.field(SkillType.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(SkillType.VERSION_PROPERTY)
 		;
 	}
@@ -3786,7 +3870,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(ResponsibilityType.ID_PROPERTY)
 			.field(ResponsibilityType.CODE_PROPERTY).as("title")
 			.field(ResponsibilityType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
-			.field(ResponsibilityType.BASE_DESCRIPTION_PROPERTY).as("brief")
+			.field(ResponsibilityType.BASE_DESCRIPTION_PROPERTY).as("brief").with_prefix("基本描述: ")
 			.field(ResponsibilityType.DETAIL_DESCRIPTION_PROPERTY)
 			.field(ResponsibilityType.VERSION_PROPERTY)
 		;
@@ -3812,7 +3896,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(TerminationReason.ID_PROPERTY)
 			.field(TerminationReason.CODE_PROPERTY).as("title")
 			.field(TerminationReason.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
-			.field(TerminationReason.DESCRIPTION_PROPERTY).as("brief")
+			.field(TerminationReason.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(TerminationReason.VERSION_PROPERTY)
 		;
 	}
@@ -3837,7 +3921,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(TerminationType.ID_PROPERTY)
 			.field(TerminationType.CODE_PROPERTY).as("title")
 			.field(TerminationType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
-			.field(TerminationType.BASE_DESCRIPTION_PROPERTY).as("brief")
+			.field(TerminationType.BASE_DESCRIPTION_PROPERTY).as("brief").with_prefix("基本描述: ")
 			.field(TerminationType.DETAIL_DESCRIPTION_PROPERTY)
 			.field(TerminationType.VERSION_PROPERTY)
 		;
@@ -3863,7 +3947,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(OccupationType.ID_PROPERTY)
 			.field(OccupationType.CODE_PROPERTY).as("title")
 			.field(OccupationType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
-			.field(OccupationType.DESCRIPTION_PROPERTY).as("brief")
+			.field(OccupationType.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(OccupationType.DETAIL_DESCRIPTION_PROPERTY)
 			.field(OccupationType.VERSION_PROPERTY)
 		;
@@ -3889,7 +3973,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(LeaveType.ID_PROPERTY)
 			.field(LeaveType.CODE_PROPERTY).as("title")
 			.field(LeaveType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
-			.field(LeaveType.DESCRIPTION_PROPERTY).as("brief")
+			.field(LeaveType.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(LeaveType.DETAIL_DESCRIPTION_PROPERTY)
 			.field(LeaveType.VERSION_PROPERTY)
 		;
@@ -3916,7 +4000,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(SalaryGrade.CODE_PROPERTY)
 			.field(SalaryGrade.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(SalaryGrade.NAME_PROPERTY).as("title")
-			.field(SalaryGrade.DETAIL_DESCRIPTION_PROPERTY).as("brief")
+			.field(SalaryGrade.DETAIL_DESCRIPTION_PROPERTY).as("brief").with_prefix("详细描述: ")
 			.field(SalaryGrade.VERSION_PROPERTY)
 		;
 	}
@@ -3941,7 +4025,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(InterviewType.ID_PROPERTY)
 			.field(InterviewType.CODE_PROPERTY).as("title")
 			.field(InterviewType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
-			.field(InterviewType.DESCRIPTION_PROPERTY).as("brief")
+			.field(InterviewType.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(InterviewType.DETAIL_DESCRIPTION_PROPERTY)
 			.field(InterviewType.VERSION_PROPERTY)
 		;
@@ -3968,7 +4052,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(TrainingCourseType.CODE_PROPERTY)
 			.field(TrainingCourseType.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(TrainingCourseType.NAME_PROPERTY).as("title")
-			.field(TrainingCourseType.DESCRIPTION_PROPERTY).as("brief")
+			.field(TrainingCourseType.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(TrainingCourseType.VERSION_PROPERTY)
 		;
 	}
@@ -3994,7 +4078,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(PublicHoliday.CODE_PROPERTY)
 			.field(PublicHoliday.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(PublicHoliday.NAME_PROPERTY).as("title")
-			.field(PublicHoliday.DESCRIPTION_PROPERTY).as("brief")
+			.field(PublicHoliday.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(PublicHoliday.VERSION_PROPERTY)
 		;
 	}
@@ -4037,7 +4121,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(View.ID_PROPERTY)
 			.field(View.WHO_PROPERTY).as("title")
-			.field(View.ASSESSMENT_PROPERTY).as("brief")
+			.field(View.ASSESSMENT_PROPERTY).as("brief").with_prefix("评估: ")
 			.field(View.INTERVIEW_TIME_PROPERTY)
 			.field(View.VERSION_PROPERTY)
 		;
@@ -4064,7 +4148,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(Employee.COMPANY_PROPERTY, getRetailStoreCountryCenterSummaryScope())
 			.field(Employee.TITLE_PROPERTY).as("title")
 			.field(Employee.DEPARTMENT_PROPERTY, getLevelThreeDepartmentSummaryScope())
-			.field(Employee.FAMILY_NAME_PROPERTY).as("brief")
+			.field(Employee.FAMILY_NAME_PROPERTY).as("brief").with_prefix("姓: ")
 			.field(Employee.GIVEN_NAME_PROPERTY)
 			.field(Employee.EMAIL_PROPERTY)
 			.field(Employee.CITY_PROPERTY)
@@ -4098,7 +4182,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(Instructor.ID_PROPERTY)
 			.field(Instructor.TITLE_PROPERTY).as("title")
-			.field(Instructor.FAMILY_NAME_PROPERTY).as("brief")
+			.field(Instructor.FAMILY_NAME_PROPERTY).as("brief").with_prefix("姓: ")
 			.field(Instructor.GIVEN_NAME_PROPERTY)
 			.field(Instructor.CELL_PHONE_PROPERTY)
 			.field(Instructor.EMAIL_PROPERTY)
@@ -4132,7 +4216,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(CompanyTraining.INSTRUCTOR_PROPERTY, getInstructorSummaryScope())
 			.field(CompanyTraining.TRAINING_COURSE_TYPE_PROPERTY, getTrainingCourseTypeSummaryScope())
 			.field(CompanyTraining.TIME_START_PROPERTY)
-			.field(CompanyTraining.DURATION_HOURS_PROPERTY).as("brief")
+			.field(CompanyTraining.DURATION_HOURS_PROPERTY).as("brief").with_prefix("持续时间: ")
 			.field(CompanyTraining.LAST_UPDATE_TIME_PROPERTY)
 			.field(CompanyTraining.VERSION_PROPERTY)
 		;
@@ -4157,7 +4241,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(Scoring.ID_PROPERTY)
 			.field(Scoring.SCORED_BY_PROPERTY).as("title")
-			.field(Scoring.SCORE_PROPERTY).as("brief")
+			.field(Scoring.SCORE_PROPERTY).as("brief").with_prefix("分数: ")
 			.field(Scoring.COMMENT_PROPERTY)
 			.field(Scoring.VERSION_PROPERTY)
 		;
@@ -4235,7 +4319,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EmployeeWorkExperience.START_PROPERTY)
 			.field(EmployeeWorkExperience.END_PROPERTY)
 			.field(EmployeeWorkExperience.COMPANY_PROPERTY).as("title")
-			.field(EmployeeWorkExperience.DESCRIPTION_PROPERTY).as("brief")
+			.field(EmployeeWorkExperience.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(EmployeeWorkExperience.VERSION_PROPERTY)
 		;
 	}
@@ -4260,7 +4344,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EmployeeLeave.ID_PROPERTY)
 			.field(EmployeeLeave.WHO_PROPERTY, getEmployeeSummaryScope())
 			.field(EmployeeLeave.TYPE_PROPERTY, getLeaveTypeSummaryScope())
-			.field(EmployeeLeave.LEAVE_DURATION_HOUR_PROPERTY).as("brief")
+			.field(EmployeeLeave.LEAVE_DURATION_HOUR_PROPERTY).as("brief").with_prefix("请假时长: ")
 			.field(EmployeeLeave.REMARK_PROPERTY).as("title")
 			.field(EmployeeLeave.VERSION_PROPERTY)
 		;
@@ -4306,7 +4390,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EmployeeAttendance.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 			.field(EmployeeAttendance.ENTER_TIME_PROPERTY)
 			.field(EmployeeAttendance.LEAVE_TIME_PROPERTY)
-			.field(EmployeeAttendance.DURATION_HOURS_PROPERTY).as("brief")
+			.field(EmployeeAttendance.DURATION_HOURS_PROPERTY).as("brief").with_prefix("持续时间: ")
 			.field(EmployeeAttendance.REMARK_PROPERTY).as("title")
 			.field(EmployeeAttendance.VERSION_PROPERTY)
 		;
@@ -4333,7 +4417,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EmployeeQualifier.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 			.field(EmployeeQualifier.QUALIFIED_TIME_PROPERTY)
 			.field(EmployeeQualifier.TYPE_PROPERTY).as("title")
-			.field(EmployeeQualifier.LEVEL_PROPERTY).as("brief")
+			.field(EmployeeQualifier.LEVEL_PROPERTY).as("brief").with_prefix("水平: ")
 			.field(EmployeeQualifier.REMARK_PROPERTY)
 			.field(EmployeeQualifier.VERSION_PROPERTY)
 		;
@@ -4360,7 +4444,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EmployeeEducation.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 			.field(EmployeeEducation.COMPLETE_TIME_PROPERTY)
 			.field(EmployeeEducation.TYPE_PROPERTY).as("title")
-			.field(EmployeeEducation.REMARK_PROPERTY).as("brief")
+			.field(EmployeeEducation.REMARK_PROPERTY).as("brief").with_prefix("备注: ")
 			.field(EmployeeEducation.VERSION_PROPERTY)
 		;
 	}
@@ -4386,7 +4470,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EmployeeAward.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 			.field(EmployeeAward.COMPLETE_TIME_PROPERTY)
 			.field(EmployeeAward.TYPE_PROPERTY).as("title")
-			.field(EmployeeAward.REMARK_PROPERTY).as("brief")
+			.field(EmployeeAward.REMARK_PROPERTY).as("brief").with_prefix("备注: ")
 			.field(EmployeeAward.VERSION_PROPERTY)
 		;
 	}
@@ -4412,7 +4496,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(EmployeeSalarySheet.EMPLOYEE_PROPERTY, getEmployeeSummaryScope())
 			.field(EmployeeSalarySheet.CURRENT_SALARY_GRADE_PROPERTY, getSalaryGradeSummaryScope())
 			.field(EmployeeSalarySheet.BASE_SALARY_PROPERTY).as("title")
-			.field(EmployeeSalarySheet.BONUS_PROPERTY).as("brief")
+			.field(EmployeeSalarySheet.BONUS_PROPERTY).as("brief").with_prefix("奖金: ")
 			.field(EmployeeSalarySheet.REWARD_PROPERTY)
 			.field(EmployeeSalarySheet.PERSONAL_TAX_PROPERTY)
 			.field(EmployeeSalarySheet.SOCIAL_SECURITY_PROPERTY)
@@ -4444,8 +4528,177 @@ public class BaseRetailscmListOfViewScope {
 			.field(PayingOff.WHO_PROPERTY).as("title")
 			.field(PayingOff.PAID_FOR_PROPERTY, getEmployeeSummaryScope())
 			.field(PayingOff.PAID_TIME_PROPERTY)
-			.field(PayingOff.AMOUNT_PROPERTY).as("brief")
+			.field(PayingOff.AMOUNT_PROPERTY).as("brief").with_prefix("金额: ")
 			.field(PayingOff.VERSION_PROPERTY)
+		;
+	}
+
+	/** MobileApp的ListOf时需要序列化的属性列表 */
+	protected SerializeScope getMobileAppListOfViewScope() {
+		// DisplayMode{name='auto', titleField=fieldesc{
+		//	name='name';
+		//	type='string';
+		//	value='移动端配置';
+		//equired='true';
+		//}
+		//, briefField=null, imageUrlField=null, imageListField=null, propList=[]}
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(MobileApp.ID_PROPERTY)
+			.field(MobileApp.NAME_PROPERTY).as("title")
+			.field(MobileApp.VERSION_PROPERTY)
+		;
+	}
+
+	/** Page的ListOf时需要序列化的属性列表 */
+	protected SerializeScope getPageListOfViewScope() {
+		// DisplayMode{name='auto', titleField=fieldesc{
+		//	name='page_title';
+		//	type='string';
+		//	value='首页';
+		//equired='true';
+		//}
+		//, briefField=fieldesc{
+		//	name='page_type';
+		//	type='page_type';
+		//	value='$(object)';
+		//equired='true';
+		//}
+		//, imageUrlField=null, imageListField=null, propList=[]}
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(Page.ID_PROPERTY)
+			.field(Page.PAGE_TITLE_PROPERTY).as("title")
+			.field(Page.LINK_TO_URL_PROPERTY)
+			.field(Page.PAGE_TYPE_PROPERTY, SerializeScope.INCLUDE()
+				.field(PageType.NAME_PROPERTY).as("brief").with_prefix("页面类型: ")
+					).move_up()
+			.field(Page.MOBILE_APP_PROPERTY, getMobileAppSummaryScope())
+			.field(Page.VERSION_PROPERTY)
+		;
+	}
+
+	/** PageType的ListOf时需要序列化的属性列表 */
+	protected SerializeScope getPageTypeListOfViewScope() {
+		// DisplayMode{name='auto', titleField=fieldesc{
+		//	name='name';
+		//	type='string';
+		//	value='首页|我的|Generic Page|Listof Page|功能大厅|普通';
+		//equired='true';
+		//}
+		//, briefField=fieldesc{
+		//	name='code';
+		//	type='string';
+		//	value='home|me|generic-page|listof-page|service-center|simple';
+		//equired='true';
+		//}
+		//, imageUrlField=null, imageListField=null, propList=[]}
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(PageType.ID_PROPERTY)
+			.field(PageType.NAME_PROPERTY).as("title")
+			.field(PageType.CODE_PROPERTY).as("brief").with_prefix("代码: ")
+			.field(PageType.MOBILE_APP_PROPERTY, getMobileAppSummaryScope())
+			.field(PageType.FOOTER_TAB_PROPERTY)
+			.field(PageType.VERSION_PROPERTY)
+		;
+	}
+
+	/** Slide的ListOf时需要序列化的属性列表 */
+	protected SerializeScope getSlideListOfViewScope() {
+		// DisplayMode{name='auto', titleField=fieldesc{
+		//	name='name';
+		//	type='string';
+		//	value='首页Focus的内容';
+		//equired='true';
+		//}
+		//, briefField=fieldesc{
+		//	name='display_order';
+		//	type='int';
+		//	value='1|2|3';
+		//equired='true';
+		//}
+		//, imageUrlField=fieldesc{
+		//	name='image_url';
+		//	type='string_image';
+		//	value='https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_1.jpg|https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_2.jpg|https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_3.jpg|https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_4.jpg';
+		//equired='true';
+		//}
+		//, imageListField=null, propList=[]}
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(Slide.ID_PROPERTY)
+			.field(Slide.DISPLAY_ORDER_PROPERTY).as("brief").with_prefix("顺序: ")
+			.field(Slide.NAME_PROPERTY).as("title")
+			.field(Slide.IMAGE_URL_PROPERTY).as("imageUrl")
+			.field(Slide.VIDEO_URL_PROPERTY)
+			.field(Slide.LINK_TO_URL_PROPERTY)
+			.field(Slide.PAGE_PROPERTY, getPageSummaryScope())
+			.field(Slide.VERSION_PROPERTY)
+		;
+	}
+
+	/** UiAction的ListOf时需要序列化的属性列表 */
+	protected SerializeScope getUiActionListOfViewScope() {
+		// DisplayMode{name='auto', titleField=fieldesc{
+		//	name='title';
+		//	type='string';
+		//	value='提交|分享|查看|更多';
+		//equired='true';
+		//}
+		//, briefField=fieldesc{
+		//	name='brief';
+		//	type='string';
+		//	value='Submit|Share|View|View More';
+		//equired='true';
+		//}
+		//, imageUrlField=fieldesc{
+		//	name='image_url';
+		//	type='string_image';
+		//	value='https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_1.jpg|https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_2.jpg|https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_3.jpg|https://xubai-test.oss-cn-beijing.aliyuncs.com/app/test/slide_4.jpg';
+		//equired='true';
+		//}
+		//, imageListField=null, propList=[]}
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(UiAction.ID_PROPERTY)
+			.field(UiAction.CODE_PROPERTY)
+			.field(UiAction.ICON_PROPERTY)
+			.field(UiAction.TITLE_PROPERTY).as("title")
+			.field(UiAction.BRIEF_PROPERTY).as("brief").with_prefix("短暂的: ")
+			.field(UiAction.IMAGE_URL_PROPERTY).as("imageUrl")
+			.field(UiAction.LINK_TO_URL_PROPERTY)
+			.field(UiAction.EXTRA_DATA_PROPERTY)
+			.field(UiAction.PAGE_PROPERTY, getPageSummaryScope())
+			.field(UiAction.VERSION_PROPERTY)
+		;
+	}
+
+	/** Section的ListOf时需要序列化的属性列表 */
+	protected SerializeScope getSectionListOfViewScope() {
+		// DisplayMode{name='auto', titleField=fieldesc{
+		//	name='title';
+		//	type='string';
+		//	value='文章|作品';
+		//equired='true';
+		//}
+		//, briefField=fieldesc{
+		//	name='brief';
+		//	type='string';
+		//	value='Article|Artwork';
+		//equired='true';
+		//}
+		//, imageUrlField=null, imageListField=null, propList=[]}
+		return SerializeScope.INCLUDE()
+			.field(RetailscmBaseConstants.X_LINK_TO_URL)
+			.field(Section.ID_PROPERTY)
+			.field(Section.TITLE_PROPERTY).as("title")
+			.field(Section.BRIEF_PROPERTY).as("brief").with_prefix("短暂的: ")
+			.field(Section.ICON_PROPERTY)
+			.field(Section.VIEW_GROUP_PROPERTY)
+			.field(Section.LINK_TO_URL_PROPERTY)
+			.field(Section.PAGE_PROPERTY)
+			.field(Section.VERSION_PROPERTY)
 		;
 	}
 
@@ -4485,7 +4738,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(UserWhiteList.ID_PROPERTY)
 			.field(UserWhiteList.USER_IDENTITY_PROPERTY).as("title")
-			.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY).as("brief")
+			.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY).as("brief").with_prefix("用户特殊功能: ")
 			.field(UserWhiteList.DOMAIN_PROPERTY, getUserDomainSummaryScope())
 			.field(UserWhiteList.VERSION_PROPERTY)
 		;
@@ -4516,7 +4769,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(SecUser.WEIXIN_OPENID_PROPERTY)
 			.field(SecUser.WEIXIN_APPID_PROPERTY)
 			.field(SecUser.ACCESS_TOKEN_PROPERTY)
-			.field(SecUser.VERIFICATION_CODE_PROPERTY).as("brief")
+			.field(SecUser.VERIFICATION_CODE_PROPERTY).as("brief").with_prefix("验证码: ")
 			.field(SecUser.VERIFICATION_CODE_EXPIRE_PROPERTY)
 			.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
 			.field(SecUser.DOMAIN_PROPERTY, getUserDomainSummaryScope())
@@ -4544,7 +4797,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(UserApp.ID_PROPERTY)
 			.field(UserApp.TITLE_PROPERTY).as("title")
 			.field(UserApp.SEC_USER_PROPERTY, getSecUserSummaryScope())
-			.field(UserApp.APP_ICON_PROPERTY).as("brief")
+			.field(UserApp.APP_ICON_PROPERTY).as("brief").with_prefix("应用程序图标: ")
 			.field(UserApp.FULL_ACCESS_PROPERTY)
 			.field(UserApp.PERMISSION_PROPERTY)
 			.field(UserApp.OBJECT_TYPE_PROPERTY)
@@ -4579,7 +4832,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(QuickLink.ID_PROPERTY)
 			.field(QuickLink.NAME_PROPERTY).as("title")
-			.field(QuickLink.ICON_PROPERTY).as("brief")
+			.field(QuickLink.ICON_PROPERTY).as("brief").with_prefix("图标: ")
 			.field(QuickLink.IMAGE_PATH_PROPERTY).as("imageUrl")
 			.field(QuickLink.LINK_TARGET_PROPERTY)
 			.field(QuickLink.CREATE_TIME_PROPERTY)
@@ -4607,7 +4860,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(ListAccess.ID_PROPERTY)
 			.field(ListAccess.NAME_PROPERTY).as("title")
-			.field(ListAccess.INTERNAL_NAME_PROPERTY).as("brief")
+			.field(ListAccess.INTERNAL_NAME_PROPERTY).as("brief").with_prefix("内部名称: ")
 			.field(ListAccess.READ_PERMISSION_PROPERTY)
 			.field(ListAccess.CREATE_PERMISSION_PROPERTY)
 			.field(ListAccess.DELETE_PERMISSION_PROPERTY)
@@ -4637,7 +4890,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(ObjectAccess.ID_PROPERTY)
 			.field(ObjectAccess.NAME_PROPERTY).as("title")
-			.field(ObjectAccess.OBJECT_TYPE_PROPERTY).as("brief")
+			.field(ObjectAccess.OBJECT_TYPE_PROPERTY).as("brief").with_prefix("对象类型: ")
 			.field(ObjectAccess.LIST1_PROPERTY)
 			.field(ObjectAccess.LIST2_PROPERTY)
 			.field(ObjectAccess.LIST3_PROPERTY)
@@ -4672,7 +4925,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(LoginHistory.ID_PROPERTY)
 			.field(LoginHistory.LOGIN_TIME_PROPERTY)
 			.field(LoginHistory.FROM_IP_PROPERTY).as("title")
-			.field(LoginHistory.DESCRIPTION_PROPERTY).as("brief")
+			.field(LoginHistory.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(LoginHistory.SEC_USER_PROPERTY, getSecUserSummaryScope())
 			.field(LoginHistory.VERSION_PROPERTY)
 		;
@@ -4697,7 +4950,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(GenericForm.ID_PROPERTY)
 			.field(GenericForm.TITLE_PROPERTY).as("title")
-			.field(GenericForm.DESCRIPTION_PROPERTY).as("brief")
+			.field(GenericForm.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(GenericForm.VERSION_PROPERTY)
 		;
 	}
@@ -4722,7 +4975,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(FormMessage.ID_PROPERTY)
 			.field(FormMessage.TITLE_PROPERTY).as("title")
 			.field(FormMessage.FORM_PROPERTY, getGenericFormSummaryScope())
-			.field(FormMessage.LEVEL_PROPERTY).as("brief")
+			.field(FormMessage.LEVEL_PROPERTY).as("brief").with_prefix("水平: ")
 			.field(FormMessage.VERSION_PROPERTY)
 		;
 	}
@@ -4746,7 +4999,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(FormFieldMessage.ID_PROPERTY)
 			.field(FormFieldMessage.TITLE_PROPERTY).as("title")
-			.field(FormFieldMessage.PARAMETER_NAME_PROPERTY).as("brief")
+			.field(FormFieldMessage.PARAMETER_NAME_PROPERTY).as("brief").with_prefix("参数名称: ")
 			.field(FormFieldMessage.FORM_PROPERTY, getGenericFormSummaryScope())
 			.field(FormFieldMessage.LEVEL_PROPERTY)
 			.field(FormFieldMessage.VERSION_PROPERTY)
@@ -4778,7 +5031,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(FormField.FORM_PROPERTY, getGenericFormSummaryScope())
 			.field(FormField.PLACEHOLDER_PROPERTY)
 			.field(FormField.DEFAULT_VALUE_PROPERTY)
-			.field(FormField.DESCRIPTION_PROPERTY).as("brief")
+			.field(FormField.DESCRIPTION_PROPERTY).as("brief").with_prefix("描述: ")
 			.field(FormField.FIELD_GROUP_PROPERTY)
 			.field(FormField.MINIMUM_VALUE_PROPERTY)
 			.field(FormField.MAXIMUM_VALUE_PROPERTY)
@@ -4810,7 +5063,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(FormAction.ID_PROPERTY)
 			.field(FormAction.LABEL_PROPERTY).as("title")
-			.field(FormAction.LOCALE_KEY_PROPERTY).as("brief")
+			.field(FormAction.LOCALE_KEY_PROPERTY).as("brief").with_prefix("语言环境的关键: ")
 			.field(FormAction.ACTION_KEY_PROPERTY)
 			.field(FormAction.LEVEL_PROPERTY)
 			.field(FormAction.URL_PROPERTY)
@@ -4861,7 +5114,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(CandidateElement.ID_PROPERTY)
 			.field(CandidateElement.NAME_PROPERTY).as("title")
-			.field(CandidateElement.TYPE_PROPERTY).as("brief")
+			.field(CandidateElement.TYPE_PROPERTY).as("brief").with_prefix("类型: ")
 			.field(CandidateElement.IMAGE_PROPERTY).as("imageUrl")
 			.field(CandidateElement.CONTAINER_PROPERTY, getCandidateContainerSummaryScope())
 			.field(CandidateElement.VERSION_PROPERTY)
@@ -4887,7 +5140,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(WechatWorkappIdentify.ID_PROPERTY)
 			.field(WechatWorkappIdentify.CORP_ID_PROPERTY).as("title")
-			.field(WechatWorkappIdentify.USER_ID_PROPERTY).as("brief")
+			.field(WechatWorkappIdentify.USER_ID_PROPERTY).as("brief").with_prefix("用户Id: ")
 			.field(WechatWorkappIdentify.SEC_USER_PROPERTY, getSecUserSummaryScope())
 			.field(WechatWorkappIdentify.CREATE_TIME_PROPERTY)
 			.field(WechatWorkappIdentify.LAST_LOGIN_TIME_PROPERTY)
@@ -4914,7 +5167,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(WechatMiniappIdentify.ID_PROPERTY)
 			.field(WechatMiniappIdentify.OPEN_ID_PROPERTY).as("title")
-			.field(WechatMiniappIdentify.APP_ID_PROPERTY).as("brief")
+			.field(WechatMiniappIdentify.APP_ID_PROPERTY).as("brief").with_prefix("应用程序Id: ")
 			.field(WechatMiniappIdentify.SEC_USER_PROPERTY, getSecUserSummaryScope())
 			.field(WechatMiniappIdentify.CREATE_TIME_PROPERTY)
 			.field(WechatMiniappIdentify.LAST_LOGIN_TIME_PROPERTY)
@@ -4941,7 +5194,7 @@ public class BaseRetailscmListOfViewScope {
 			.field(RetailscmBaseConstants.X_LINK_TO_URL)
 			.field(TreeNode.ID_PROPERTY)
 			.field(TreeNode.NODE_ID_PROPERTY).as("title")
-			.field(TreeNode.NODE_TYPE_PROPERTY).as("brief")
+			.field(TreeNode.NODE_TYPE_PROPERTY).as("brief").with_prefix("节点类型: ")
 			.field(TreeNode.LEFT_VALUE_PROPERTY)
 			.field(TreeNode.RIGHT_VALUE_PROPERTY)
 			.field(TreeNode.VERSION_PROPERTY)
@@ -5026,68 +5279,16 @@ public class BaseRetailscmListOfViewScope {
 		scopes.put(TransportTask.class.getName(),getTransportTaskListOfViewScope());
 		scopes.put(TransportTaskTrack.class.getName(),getTransportTaskTrackListOfViewScope());
 		scopes.put(AccountSet.class.getName(),getAccountSetListOfViewScope());
-		scopes.put(AccountingSubject.class.getName(),getAccountingSubjectListOfViewScope());
-		scopes.put(AccountingPeriod.class.getName(),getAccountingPeriodListOfViewScope());
-		scopes.put(AccountingDocumentType.class.getName(),getAccountingDocumentTypeListOfViewScope());
-		scopes.put(AccountingDocument.class.getName(),getAccountingDocumentListOfViewScope());
-		scopes.put(OriginalVoucher.class.getName(),getOriginalVoucherListOfViewScope());
-		scopes.put(AccountingDocumentLine.class.getName(),getAccountingDocumentLineListOfViewScope());
-		scopes.put(LevelOneDepartment.class.getName(),getLevelOneDepartmentListOfViewScope());
-		scopes.put(LevelTwoDepartment.class.getName(),getLevelTwoDepartmentListOfViewScope());
-		scopes.put(LevelThreeDepartment.class.getName(),getLevelThreeDepartmentListOfViewScope());
-		scopes.put(SkillType.class.getName(),getSkillTypeListOfViewScope());
-		scopes.put(ResponsibilityType.class.getName(),getResponsibilityTypeListOfViewScope());
-		scopes.put(TerminationReason.class.getName(),getTerminationReasonListOfViewScope());
-		scopes.put(TerminationType.class.getName(),getTerminationTypeListOfViewScope());
-		scopes.put(OccupationType.class.getName(),getOccupationTypeListOfViewScope());
-		scopes.put(LeaveType.class.getName(),getLeaveTypeListOfViewScope());
-		scopes.put(SalaryGrade.class.getName(),getSalaryGradeListOfViewScope());
-		scopes.put(InterviewType.class.getName(),getInterviewTypeListOfViewScope());
-		scopes.put(TrainingCourseType.class.getName(),getTrainingCourseTypeListOfViewScope());
-		scopes.put(PublicHoliday.class.getName(),getPublicHolidayListOfViewScope());
-		scopes.put(Termination.class.getName(),getTerminationListOfViewScope());
-		scopes.put(View.class.getName(),getViewListOfViewScope());
-		scopes.put(Employee.class.getName(),getEmployeeListOfViewScope());
-		scopes.put(Instructor.class.getName(),getInstructorListOfViewScope());
-		scopes.put(CompanyTraining.class.getName(),getCompanyTrainingListOfViewScope());
-		scopes.put(Scoring.class.getName(),getScoringListOfViewScope());
-		scopes.put(EmployeeCompanyTraining.class.getName(),getEmployeeCompanyTrainingListOfViewScope());
-		scopes.put(EmployeeSkill.class.getName(),getEmployeeSkillListOfViewScope());
-		scopes.put(EmployeePerformance.class.getName(),getEmployeePerformanceListOfViewScope());
-		scopes.put(EmployeeWorkExperience.class.getName(),getEmployeeWorkExperienceListOfViewScope());
-		scopes.put(EmployeeLeave.class.getName(),getEmployeeLeaveListOfViewScope());
-		scopes.put(EmployeeInterview.class.getName(),getEmployeeInterviewListOfViewScope());
-		scopes.put(EmployeeAttendance.class.getName(),getEmployeeAttendanceListOfViewScope());
-		scopes.put(EmployeeQualifier.class.getName(),getEmployeeQualifierListOfViewScope());
-		scopes.put(EmployeeEducation.class.getName(),getEmployeeEducationListOfViewScope());
-		scopes.put(EmployeeAward.class.getName(),getEmployeeAwardListOfViewScope());
-		scopes.put(EmployeeSalarySheet.class.getName(),getEmployeeSalarySheetListOfViewScope());
-		scopes.put(PayingOff.class.getName(),getPayingOffListOfViewScope());
-		scopes.put(UserDomain.class.getName(),getUserDomainListOfViewScope());
-		scopes.put(UserWhiteList.class.getName(),getUserWhiteListListOfViewScope());
-		scopes.put(SecUser.class.getName(),getSecUserListOfViewScope());
-		scopes.put(UserApp.class.getName(),getUserAppListOfViewScope());
-		scopes.put(QuickLink.class.getName(),getQuickLinkListOfViewScope());
-		scopes.put(ListAccess.class.getName(),getListAccessListOfViewScope());
-		scopes.put(ObjectAccess.class.getName(),getObjectAccessListOfViewScope());
-		scopes.put(LoginHistory.class.getName(),getLoginHistoryListOfViewScope());
-		scopes.put(GenericForm.class.getName(),getGenericFormListOfViewScope());
-		scopes.put(FormMessage.class.getName(),getFormMessageListOfViewScope());
-		scopes.put(FormFieldMessage.class.getName(),getFormFieldMessageListOfViewScope());
-		scopes.put(FormField.class.getName(),getFormFieldListOfViewScope());
-		scopes.put(FormAction.class.getName(),getFormActionListOfViewScope());
-		scopes.put(CandidateContainer.class.getName(),getCandidateContainerListOfViewScope());
-		scopes.put(CandidateElement.class.getName(),getCandidateElementListOfViewScope());
-		scopes.put(WechatWorkappIdentify.class.getName(),getWechatWorkappIdentifyListOfViewScope());
-		scopes.put(WechatMiniappIdentify.class.getName(),getWechatMiniappIdentifyListOfViewScope());
-		scopes.put(TreeNode.class.getName(),getTreeNodeListOfViewScope());
-	}
-
-}
-
-
-
-
-
-
-
+		scopError#: ObjectCollection for retailscm failed with /home/philip/resin-3.1.12/webapps/sky/WEB-INF/work/_jsp/_javaweb/_java_0candidates_0util__jsp.java:26: error: cannot find symbol
+import com.terapico.system.CandidateQueryHelper;
+                          ^
+  symbol:   class CandidateQueryHelper
+  location: package com.terapico.system
+/javaweb/java_candidates_util.jsp:26: error: cannot find symbol
+	Map<String, Object> allData = CandidateQueryHelper.getQueryRelations(oc);
+	                              ^
+  symbol:   variable CandidateQueryHelper
+  location: class _java_0candidates_0util__jsp
+Note: /home/philip/resin-3.1.12/webapps/sky/WEB-INF/work/_jsp/_javaweb/_java_0candidates_0util__jsp.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+2 errors

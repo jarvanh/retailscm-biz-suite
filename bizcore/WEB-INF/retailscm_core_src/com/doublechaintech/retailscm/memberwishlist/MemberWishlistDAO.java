@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.memberwishlist;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -56,6 +57,7 @@ public interface MemberWishlistDAO extends BaseDAO{
 	
 	public SmartList<MemberWishlist> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateMemberWishlist executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<MemberWishlist> findMemberWishlistByOwner(String retailStoreMemberId, Map<String,Object> options);
  	public int countMemberWishlistByOwner(String retailStoreMemberId, Map<String,Object> options);

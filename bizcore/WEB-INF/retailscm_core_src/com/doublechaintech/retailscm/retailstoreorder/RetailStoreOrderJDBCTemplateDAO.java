@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -958,9 +962,15 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  			parameters[1] = retailStoreOrder.getSeller().getId();
  		}
  
+ 		
  		parameters[2] = retailStoreOrder.getTitle();
+ 		
+ 		
  		parameters[3] = retailStoreOrder.getTotalAmount();
- 		parameters[4] = retailStoreOrder.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[4] = retailStoreOrder.getLastUpdateTime();
+ 				
  		parameters[5] = retailStoreOrder.nextVersion();
  		parameters[6] = retailStoreOrder.getId();
  		parameters[7] = retailStoreOrder.getVersion();
@@ -983,9 +993,15 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
  		
  		}
  		
+ 		
  		parameters[3] = retailStoreOrder.getTitle();
+ 		
+ 		
  		parameters[4] = retailStoreOrder.getTotalAmount();
- 		parameters[5] = retailStoreOrder.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[5] = retailStoreOrder.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -1946,25 +1962,25 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
     public SmartList<RetailStoreOrder> requestCandidateRetailStoreOrderForRetailStoreOrderLineItem(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
+		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
     }
 		
     public SmartList<RetailStoreOrder> requestCandidateRetailStoreOrderForRetailStoreOrderShippingGroup(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
+		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
     }
 		
     public SmartList<RetailStoreOrder> requestCandidateRetailStoreOrderForRetailStoreOrderPaymentGroup(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
+		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
     }
 		
     public SmartList<RetailStoreOrder> requestCandidateRetailStoreOrderForGoods(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
+		return findAllCandidateByFilter(RetailStoreOrderTable.COLUMN_BUYER, RetailStoreOrderTable.COLUMN_BUYER, filterKey, pageNo, pageSize, getRetailStoreOrderMapper());
     }
 		
 
@@ -2107,6 +2123,30 @@ public class RetailStoreOrderJDBCTemplateDAO extends RetailscmBaseDAOImpl implem
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateRetailStoreOrder executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateRetailStoreOrder result = new CandidateRetailStoreOrder();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

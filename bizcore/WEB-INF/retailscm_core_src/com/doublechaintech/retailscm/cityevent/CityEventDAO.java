@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.cityevent;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -60,6 +61,7 @@ public interface CityEventDAO extends BaseDAO{
 	
 	public SmartList<CityEvent> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateCityEvent executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<CityEvent> findCityEventByCityServiceCenter(String retailStoreCityServiceCenterId, Map<String,Object> options);
  	public int countCityEventByCityServiceCenter(String retailStoreCityServiceCenterId, Map<String,Object> options);

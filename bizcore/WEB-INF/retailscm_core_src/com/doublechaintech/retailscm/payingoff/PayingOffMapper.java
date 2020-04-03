@@ -29,7 +29,9 @@ public class PayingOffMapper extends BaseRowMapper<PayingOff>{
 	protected void setId(PayingOff payingOff, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(PayingOffTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class PayingOffMapper extends BaseRowMapper<PayingOff>{
 	protected void setWho(PayingOff payingOff, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String who = rs.getString(PayingOffTable.COLUMN_WHO);
+		
 		if(who == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class PayingOffMapper extends BaseRowMapper<PayingOff>{
 	protected void setPaidTime(PayingOff payingOff, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date paidTime = rs.getDate(PayingOffTable.COLUMN_PAID_TIME);
+		
 		if(paidTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class PayingOffMapper extends BaseRowMapper<PayingOff>{
 	protected void setAmount(PayingOff payingOff, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal amount = rs.getBigDecimal(PayingOffTable.COLUMN_AMOUNT);
+		
 		if(amount == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class PayingOffMapper extends BaseRowMapper<PayingOff>{
 	protected void setVersion(PayingOff payingOff, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(PayingOffTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

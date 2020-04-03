@@ -28,7 +28,9 @@ public class SupplyOrderPaymentGroupMapper extends BaseRowMapper<SupplyOrderPaym
 	protected void setId(SupplyOrderPaymentGroup supplyOrderPaymentGroup, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(SupplyOrderPaymentGroupTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -40,7 +42,9 @@ public class SupplyOrderPaymentGroupMapper extends BaseRowMapper<SupplyOrderPaym
 	protected void setName(SupplyOrderPaymentGroup supplyOrderPaymentGroup, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(SupplyOrderPaymentGroupTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -70,7 +74,9 @@ public class SupplyOrderPaymentGroupMapper extends BaseRowMapper<SupplyOrderPaym
 	protected void setCardNumber(SupplyOrderPaymentGroup supplyOrderPaymentGroup, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String cardNumber = rs.getString(SupplyOrderPaymentGroupTable.COLUMN_CARD_NUMBER);
+		
 		if(cardNumber == null){
 			//do nothing when nothing found in database
 			return;
@@ -82,7 +88,9 @@ public class SupplyOrderPaymentGroupMapper extends BaseRowMapper<SupplyOrderPaym
 	protected void setVersion(SupplyOrderPaymentGroup supplyOrderPaymentGroup, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(SupplyOrderPaymentGroupTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.objectaccess;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -47,6 +48,7 @@ public interface ObjectAccessDAO extends BaseDAO{
 	
 	public SmartList<ObjectAccess> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateObjectAccess executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<ObjectAccess> findObjectAccessByApp(String userAppId, Map<String,Object> options);
  	public int countObjectAccessByApp(String userAppId, Map<String,Object> options);

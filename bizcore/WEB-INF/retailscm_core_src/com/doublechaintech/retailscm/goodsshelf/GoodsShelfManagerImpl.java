@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.goodsshelf;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.supplierspace.SupplierSpace;
 import com.doublechaintech.retailscm.damagespace.DamageSpace;
@@ -28,7 +45,7 @@ import com.doublechaintech.retailscm.goodsshelf.GoodsShelf;
 
 
 
-public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager implements GoodsShelfManager {
+public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager implements GoodsShelfManager, BusinessHandler{
 
   
 
@@ -232,7 +249,10 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		if(GoodsShelf.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfGoodsShelf(parseString(newValueExpr));
+		
+			
 		}		
 
 				
@@ -767,15 +787,21 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		if(GoodsShelfStockCount.TITLE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkTitleOfGoodsShelfStockCount(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsShelfStockCount.COUNT_TIME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkCountTimeOfGoodsShelfStockCount(parseDate(newValueExpr));
+		
 		}
 		
 		if(GoodsShelfStockCount.SUMMARY_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkSummaryOfGoodsShelfStockCount(parseString(newValueExpr));
+		
 		}
 		
 	
@@ -1015,15 +1041,21 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
 		
 
 		if(GoodsAllocation.LOCATION_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLocationOfGoodsAllocation(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsAllocation.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfGoodsAllocation(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(GoodsAllocation.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfGoodsAllocation(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -1078,6 +1110,369 @@ public class GoodsShelfManagerImpl extends CustomRetailscmCheckerManager impleme
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   GoodsShelf newGoodsShelf = this.createGoodsShelf(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newGoodsShelf
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, GoodsShelf.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<GoodsShelf> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+		List<StorageSpace> storageSpaceList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, StorageSpace.class);
+		userContext.getDAOGroup().enhanceList(storageSpaceList, StorageSpace.class);
+		List<SupplierSpace> supplierSpaceList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, SupplierSpace.class);
+		userContext.getDAOGroup().enhanceList(supplierSpaceList, SupplierSpace.class);
+		List<DamageSpace> damageSpaceList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, DamageSpace.class);
+		userContext.getDAOGroup().enhanceList(damageSpaceList, DamageSpace.class);
+
+
+    }
+	
+	public Object listByStorageSpace(RetailscmUserContext userContext,String storageSpaceId) throws Exception {
+		return listPageByStorageSpace(userContext, storageSpaceId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByStorageSpace(RetailscmUserContext userContext,String storageSpaceId, int start, int count) throws Exception {
+		SmartList<GoodsShelf> list = goodsShelfDaoOf(userContext).findGoodsShelfByStorageSpace(storageSpaceId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(GoodsShelf.class);
+		page.setContainerObject(StorageSpace.withId(storageSpaceId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货架列表");
+		page.setRequestName("listByStorageSpace");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByStorageSpace/%s/",  getBeanName(), storageSpaceId)));
+
+		page.assemblerContent(userContext, "listByStorageSpace");
+		return page.doRender(userContext);
+	}
+  
+	public Object listBySupplierSpace(RetailscmUserContext userContext,String supplierSpaceId) throws Exception {
+		return listPageBySupplierSpace(userContext, supplierSpaceId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageBySupplierSpace(RetailscmUserContext userContext,String supplierSpaceId, int start, int count) throws Exception {
+		SmartList<GoodsShelf> list = goodsShelfDaoOf(userContext).findGoodsShelfBySupplierSpace(supplierSpaceId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(GoodsShelf.class);
+		page.setContainerObject(SupplierSpace.withId(supplierSpaceId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货架列表");
+		page.setRequestName("listBySupplierSpace");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listBySupplierSpace/%s/",  getBeanName(), supplierSpaceId)));
+
+		page.assemblerContent(userContext, "listBySupplierSpace");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByDamageSpace(RetailscmUserContext userContext,String damageSpaceId) throws Exception {
+		return listPageByDamageSpace(userContext, damageSpaceId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByDamageSpace(RetailscmUserContext userContext,String damageSpaceId, int start, int count) throws Exception {
+		SmartList<GoodsShelf> list = goodsShelfDaoOf(userContext).findGoodsShelfByDamageSpace(damageSpaceId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(GoodsShelf.class);
+		page.setContainerObject(DamageSpace.withId(damageSpaceId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货架列表");
+		page.setRequestName("listByDamageSpace");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByDamageSpace/%s/",  getBeanName(), damageSpaceId)));
+
+		page.assemblerContent(userContext, "listByDamageSpace");
+		return page.doRender(userContext);
+	}
+  
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String goodsShelfId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getGoodsShelfDetailScope().clone();
+		GoodsShelf merchantObj = (GoodsShelf) this.view(userContext, goodsShelfId);
+    String merchantObjId = goodsShelfId;
+    String linkToUrl =	"goodsShelfManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "货架"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-location")
+				    .put("fieldName", "location")
+				    .put("label", "位置")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("location", merchantObj.getLocation());
+
+		propList.add(
+				MapUtil.put("id", "3-storageSpace")
+				    .put("fieldName", "storageSpace")
+				    .put("label", "存货区")
+				    .put("type", "object")
+				    .put("displayField", "location")
+				    .put("linkToUrl", "storageSpaceManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("storageSpace", merchantObj.getStorageSpace());
+
+		propList.add(
+				MapUtil.put("id", "4-supplierSpace")
+				    .put("fieldName", "supplierSpace")
+				    .put("label", "供应商的空间")
+				    .put("type", "object")
+				    .put("displayField", "location")
+				    .put("linkToUrl", "supplierSpaceManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("supplierSpace", merchantObj.getSupplierSpace());
+
+		propList.add(
+				MapUtil.put("id", "5-damageSpace")
+				    .put("fieldName", "damageSpace")
+				    .put("label", "残次货物存放区")
+				    .put("type", "object")
+				    .put("displayField", "location")
+				    .put("linkToUrl", "damageSpaceManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("damageSpace", merchantObj.getDamageSpace());
+
+		propList.add(
+				MapUtil.put("id", "6-lastUpdateTime")
+				    .put("fieldName", "lastUpdateTime")
+				    .put("label", "最后更新时间")
+				    .put("type", "date")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("lastUpdateTime", merchantObj.getLastUpdateTime());
+
+		//处理 sectionList
+
+		//处理Section：goodsShelfStockCountListSection
+		Map goodsShelfStockCountListSection = ListofUtils.buildSection(
+		    "goodsShelfStockCountListSection",
+		    "库存盘点清单",
+		    null,
+		    "",
+		    "__no_group",
+		    "goodsShelfStockCountManager/listByShelf/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(goodsShelfStockCountListSection);
+
+		result.put("goodsShelfStockCountListSection", ListofUtils.toShortList(merchantObj.getGoodsShelfStockCountList(), "goodsShelfStockCount"));
+		vscope.field("goodsShelfStockCountListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( GoodsShelfStockCount.class.getName(), null));
+
+		//处理Section：goodsAllocationListSection
+		Map goodsAllocationListSection = ListofUtils.buildSection(
+		    "goodsAllocationListSection",
+		    "货物分配列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "goodsAllocationManager/listByGoodsShelf/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(goodsAllocationListSection);
+
+		result.put("goodsAllocationListSection", ListofUtils.toShortList(merchantObj.getGoodsAllocationList(), "goodsAllocation"));
+		vscope.field("goodsAllocationListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( GoodsAllocation.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

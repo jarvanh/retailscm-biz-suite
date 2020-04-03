@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -751,15 +755,25 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
  	protected Object[] prepareGoodsSupplierUpdateParameters(GoodsSupplier goodsSupplier){
  		Object[] parameters = new Object[9];
  
+ 		
  		parameters[0] = goodsSupplier.getName();
- 		parameters[1] = goodsSupplier.getSupplyProduct(); 	
+ 		
+ 		
+ 		parameters[1] = goodsSupplier.getSupplyProduct();
+ 		 	
  		if(goodsSupplier.getBelongTo() != null){
  			parameters[2] = goodsSupplier.getBelongTo().getId();
  		}
  
+ 		
  		parameters[3] = goodsSupplier.getContactNumber();
+ 		
+ 		
  		parameters[4] = goodsSupplier.getDescription();
- 		parameters[5] = goodsSupplier.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[5] = goodsSupplier.getLastUpdateTime();
+ 				
  		parameters[6] = goodsSupplier.nextVersion();
  		parameters[7] = goodsSupplier.getId();
  		parameters[8] = goodsSupplier.getVersion();
@@ -772,16 +786,26 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 		goodsSupplier.setId(newGoodsSupplierId);
 		parameters[0] =  goodsSupplier.getId();
  
+ 		
  		parameters[1] = goodsSupplier.getName();
- 		parameters[2] = goodsSupplier.getSupplyProduct(); 	
+ 		
+ 		
+ 		parameters[2] = goodsSupplier.getSupplyProduct();
+ 		 	
  		if(goodsSupplier.getBelongTo() != null){
  			parameters[3] = goodsSupplier.getBelongTo().getId();
  		
  		}
  		
+ 		
  		parameters[4] = goodsSupplier.getContactNumber();
+ 		
+ 		
  		parameters[5] = goodsSupplier.getDescription();
- 		parameters[6] = goodsSupplier.getLastUpdateTime();		
+ 		
+ 		
+ 		parameters[6] = goodsSupplier.getLastUpdateTime();
+ 				
  				
  		return parameters;
  	}
@@ -1335,19 +1359,19 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
     public SmartList<GoodsSupplier> requestCandidateGoodsSupplierForSupplierProduct(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GoodsSupplierTable.COLUMN_NAME, filterKey, pageNo, pageSize, getGoodsSupplierMapper());
+		return findAllCandidateByFilter(GoodsSupplierTable.COLUMN_NAME, GoodsSupplierTable.COLUMN_BELONG_TO, filterKey, pageNo, pageSize, getGoodsSupplierMapper());
     }
 		
     public SmartList<GoodsSupplier> requestCandidateGoodsSupplierForSupplyOrder(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GoodsSupplierTable.COLUMN_NAME, filterKey, pageNo, pageSize, getGoodsSupplierMapper());
+		return findAllCandidateByFilter(GoodsSupplierTable.COLUMN_NAME, GoodsSupplierTable.COLUMN_BELONG_TO, filterKey, pageNo, pageSize, getGoodsSupplierMapper());
     }
 		
     public SmartList<GoodsSupplier> requestCandidateGoodsSupplierForAccountSet(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GoodsSupplierTable.COLUMN_NAME, filterKey, pageNo, pageSize, getGoodsSupplierMapper());
+		return findAllCandidateByFilter(GoodsSupplierTable.COLUMN_NAME, GoodsSupplierTable.COLUMN_BELONG_TO, filterKey, pageNo, pageSize, getGoodsSupplierMapper());
     }
 		
 
@@ -1467,6 +1491,30 @@ public class GoodsSupplierJDBCTemplateDAO extends RetailscmBaseDAOImpl implement
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateGoodsSupplier executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateGoodsSupplier result = new CandidateGoodsSupplier();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

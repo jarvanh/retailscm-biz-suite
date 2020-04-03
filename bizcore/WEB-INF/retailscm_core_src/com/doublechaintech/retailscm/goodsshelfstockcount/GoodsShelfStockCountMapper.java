@@ -29,7 +29,9 @@ public class GoodsShelfStockCountMapper extends BaseRowMapper<GoodsShelfStockCou
 	protected void setId(GoodsShelfStockCount goodsShelfStockCount, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(GoodsShelfStockCountTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class GoodsShelfStockCountMapper extends BaseRowMapper<GoodsShelfStockCou
 	protected void setTitle(GoodsShelfStockCount goodsShelfStockCount, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(GoodsShelfStockCountTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class GoodsShelfStockCountMapper extends BaseRowMapper<GoodsShelfStockCou
 	protected void setCountTime(GoodsShelfStockCount goodsShelfStockCount, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date countTime = rs.getDate(GoodsShelfStockCountTable.COLUMN_COUNT_TIME);
+		
 		if(countTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class GoodsShelfStockCountMapper extends BaseRowMapper<GoodsShelfStockCou
 	protected void setSummary(GoodsShelfStockCount goodsShelfStockCount, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String summary = rs.getString(GoodsShelfStockCountTable.COLUMN_SUMMARY);
+		
 		if(summary == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class GoodsShelfStockCountMapper extends BaseRowMapper<GoodsShelfStockCou
 	protected void setVersion(GoodsShelfStockCount goodsShelfStockCount, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(GoodsShelfStockCountTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

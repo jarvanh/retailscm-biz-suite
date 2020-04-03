@@ -29,7 +29,9 @@ public class ProductSupplyDurationMapper extends BaseRowMapper<ProductSupplyDura
 	protected void setId(ProductSupplyDuration productSupplyDuration, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ProductSupplyDurationTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class ProductSupplyDurationMapper extends BaseRowMapper<ProductSupplyDura
 	protected void setQuantity(ProductSupplyDuration productSupplyDuration, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer quantity = rs.getInt(ProductSupplyDurationTable.COLUMN_QUANTITY);
+		
 		if(quantity == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class ProductSupplyDurationMapper extends BaseRowMapper<ProductSupplyDura
 	protected void setDuration(ProductSupplyDuration productSupplyDuration, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String duration = rs.getString(ProductSupplyDurationTable.COLUMN_DURATION);
+		
 		if(duration == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class ProductSupplyDurationMapper extends BaseRowMapper<ProductSupplyDura
 	protected void setPrice(ProductSupplyDuration productSupplyDuration, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal price = rs.getBigDecimal(ProductSupplyDurationTable.COLUMN_PRICE);
+		
 		if(price == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class ProductSupplyDurationMapper extends BaseRowMapper<ProductSupplyDura
 	protected void setVersion(ProductSupplyDuration productSupplyDuration, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ProductSupplyDurationTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

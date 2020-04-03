@@ -31,7 +31,9 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
 	protected void setId(RetailStoreOrder retailStoreOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(RetailStoreOrderTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -79,7 +81,9 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
 	protected void setTitle(RetailStoreOrder retailStoreOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(RetailStoreOrderTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -91,7 +95,9 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
 	protected void setTotalAmount(RetailStoreOrder retailStoreOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal totalAmount = rs.getBigDecimal(RetailStoreOrderTable.COLUMN_TOTAL_AMOUNT);
+		
 		if(totalAmount == null){
 			//do nothing when nothing found in database
 			return;
@@ -103,7 +109,9 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
 	protected void setLastUpdateTime(RetailStoreOrder retailStoreOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(RetailStoreOrderTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -115,7 +123,9 @@ public class RetailStoreOrderMapper extends BaseRowMapper<RetailStoreOrder>{
 	protected void setVersion(RetailStoreOrder retailStoreOrder, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(RetailStoreOrderTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

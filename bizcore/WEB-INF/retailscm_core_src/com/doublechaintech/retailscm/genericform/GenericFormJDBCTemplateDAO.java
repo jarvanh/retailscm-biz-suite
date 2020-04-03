@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
 import java.math.BigDecimal;
+
+import com.terapico.caf.baseelement.CandidateQuery;
+import com.terapico.utils.TextUtil;
+
 import com.doublechaintech.retailscm.RetailscmBaseDAOImpl;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -752,8 +756,12 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
  	protected Object[] prepareGenericFormUpdateParameters(GenericForm genericForm){
  		Object[] parameters = new Object[5];
  
+ 		
  		parameters[0] = genericForm.getTitle();
- 		parameters[1] = genericForm.getDescription();		
+ 		
+ 		
+ 		parameters[1] = genericForm.getDescription();
+ 				
  		parameters[2] = genericForm.nextVersion();
  		parameters[3] = genericForm.getId();
  		parameters[4] = genericForm.getVersion();
@@ -766,8 +774,12 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 		genericForm.setId(newGenericFormId);
 		parameters[0] =  genericForm.getId();
  
+ 		
  		parameters[1] = genericForm.getTitle();
- 		parameters[2] = genericForm.getDescription();		
+ 		
+ 		
+ 		parameters[2] = genericForm.getDescription();
+ 				
  				
  		return parameters;
  	}
@@ -1290,25 +1302,25 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
     public SmartList<GenericForm> requestCandidateGenericFormForFormMessage(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getGenericFormMapper());
+		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, null, filterKey, pageNo, pageSize, getGenericFormMapper());
     }
 		
     public SmartList<GenericForm> requestCandidateGenericFormForFormFieldMessage(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getGenericFormMapper());
+		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, null, filterKey, pageNo, pageSize, getGenericFormMapper());
     }
 		
     public SmartList<GenericForm> requestCandidateGenericFormForFormField(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getGenericFormMapper());
+		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, null, filterKey, pageNo, pageSize, getGenericFormMapper());
     }
 		
     public SmartList<GenericForm> requestCandidateGenericFormForFormAction(RetailscmUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
-		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, filterKey, pageNo, pageSize, getGenericFormMapper());
+		return findAllCandidateByFilter(GenericFormTable.COLUMN_TITLE, null, filterKey, pageNo, pageSize, getGenericFormMapper());
     }
 		
 
@@ -1451,6 +1463,30 @@ public class GenericFormJDBCTemplateDAO extends RetailscmBaseDAOImpl implements 
 	@Override
 	public int count(String sql, Object... parameters) {
 	    return queryInt(sql, parameters);
+	}
+	@Override
+	public CandidateGenericForm executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception {
+
+		CandidateGenericForm result = new CandidateGenericForm();
+		int pageNo = Math.max(1, query.getPageNo());
+		result.setOwnerClass(TextUtil.toCamelCase(query.getOwnerType()));
+		result.setOwnerId(query.getOwnerId());
+		result.setFilterKey(query.getFilterKey());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase("displayName")));
+		result.setGroupByFieldName(TextUtil.uncapFirstChar(TextUtil.toCamelCase(query.getGroupBy())));
+
+		SmartList candidateList = queryList(sql, parmeters);
+		this.alias(candidateList);
+		result.setCandidates(candidateList);
+		int offSet = (pageNo - 1 ) * query.getPageSize();
+		if (candidateList.size() > query.getPageSize()) {
+			result.setTotalPage(pageNo+1);
+		}else {
+			result.setTotalPage(pageNo);
+		}
+		return result;
 	}
 	
 	

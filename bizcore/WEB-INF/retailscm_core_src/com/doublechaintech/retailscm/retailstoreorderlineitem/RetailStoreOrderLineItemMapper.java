@@ -31,7 +31,9 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
 	protected void setId(RetailStoreOrderLineItem retailStoreOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(RetailStoreOrderLineItemTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -61,7 +63,9 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
 	protected void setSkuId(RetailStoreOrderLineItem retailStoreOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String skuId = rs.getString(RetailStoreOrderLineItemTable.COLUMN_SKU_ID);
+		
 		if(skuId == null){
 			//do nothing when nothing found in database
 			return;
@@ -73,7 +77,9 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
 	protected void setSkuName(RetailStoreOrderLineItem retailStoreOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String skuName = rs.getString(RetailStoreOrderLineItemTable.COLUMN_SKU_NAME);
+		
 		if(skuName == null){
 			//do nothing when nothing found in database
 			return;
@@ -85,7 +91,9 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
 	protected void setAmount(RetailStoreOrderLineItem retailStoreOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal amount = rs.getBigDecimal(RetailStoreOrderLineItemTable.COLUMN_AMOUNT);
+		
 		if(amount == null){
 			//do nothing when nothing found in database
 			return;
@@ -97,7 +105,9 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
 	protected void setQuantity(RetailStoreOrderLineItem retailStoreOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer quantity = rs.getInt(RetailStoreOrderLineItemTable.COLUMN_QUANTITY);
+		
 		if(quantity == null){
 			//do nothing when nothing found in database
 			return;
@@ -109,7 +119,9 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
 	protected void setUnitOfMeasurement(RetailStoreOrderLineItem retailStoreOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String unitOfMeasurement = rs.getString(RetailStoreOrderLineItemTable.COLUMN_UNIT_OF_MEASUREMENT);
+		
 		if(unitOfMeasurement == null){
 			//do nothing when nothing found in database
 			return;
@@ -121,7 +133,9 @@ public class RetailStoreOrderLineItemMapper extends BaseRowMapper<RetailStoreOrd
 	protected void setVersion(RetailStoreOrderLineItem retailStoreOrderLineItem, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(RetailStoreOrderLineItemTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

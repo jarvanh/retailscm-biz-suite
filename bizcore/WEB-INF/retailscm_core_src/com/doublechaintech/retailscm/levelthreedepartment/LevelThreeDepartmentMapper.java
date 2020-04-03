@@ -29,7 +29,9 @@ public class LevelThreeDepartmentMapper extends BaseRowMapper<LevelThreeDepartme
 	protected void setId(LevelThreeDepartment levelThreeDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(LevelThreeDepartmentTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -59,7 +61,9 @@ public class LevelThreeDepartmentMapper extends BaseRowMapper<LevelThreeDepartme
 	protected void setName(LevelThreeDepartment levelThreeDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(LevelThreeDepartmentTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -71,7 +75,9 @@ public class LevelThreeDepartmentMapper extends BaseRowMapper<LevelThreeDepartme
 	protected void setDescription(LevelThreeDepartment levelThreeDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String description = rs.getString(LevelThreeDepartmentTable.COLUMN_DESCRIPTION);
+		
 		if(description == null){
 			//do nothing when nothing found in database
 			return;
@@ -83,7 +89,9 @@ public class LevelThreeDepartmentMapper extends BaseRowMapper<LevelThreeDepartme
 	protected void setFounded(LevelThreeDepartment levelThreeDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date founded = rs.getDate(LevelThreeDepartmentTable.COLUMN_FOUNDED);
+		
 		if(founded == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class LevelThreeDepartmentMapper extends BaseRowMapper<LevelThreeDepartme
 	protected void setVersion(LevelThreeDepartment levelThreeDepartment, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(LevelThreeDepartmentTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

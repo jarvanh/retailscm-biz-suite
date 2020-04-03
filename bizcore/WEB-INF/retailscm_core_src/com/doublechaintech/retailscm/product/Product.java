@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -62,6 +63,7 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 	
 	
 	protected		SmartList<Sku>      	mSkuList            ;
+
 	
 		
 	public 	Product(){
@@ -113,6 +115,7 @@ public class Product extends BaseEntity implements  java.io.Serializable{
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -122,12 +125,13 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeOriginProperty(String newValueExpr){
+	
 		String oldValue = getOrigin();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -137,12 +141,13 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		updateOrigin(newValue);
 		this.onChangeProperty(ORIGIN_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeRemarkProperty(String newValueExpr){
+	
 		String oldValue = getRemark();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -152,12 +157,13 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		updateRemark(newValue);
 		this.onChangeProperty(REMARK_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeBrandProperty(String newValueExpr){
+	
 		String oldValue = getBrand();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -167,12 +173,13 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		updateBrand(newValue);
 		this.onChangeProperty(BRAND_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changePictureProperty(String newValueExpr){
+	
 		String oldValue = getPicture();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -182,12 +189,13 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		updatePicture(newValue);
 		this.onChangeProperty(PICTURE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeLastUpdateTimeProperty(String newValueExpr){
+	
 		DateTime oldValue = getLastUpdateTime();
 		DateTime newValue = parseTimestamp(newValueExpr);
 		if(equalsTimestamp(oldValue , newValue)){
@@ -197,7 +205,7 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 		updateLastUpdateTime(newValue);
 		this.onChangeProperty(LAST_UPDATE_TIME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -543,7 +551,9 @@ public class Product extends BaseEntity implements  java.io.Serializable{
 			appendKeyValuePair(result, "skuCurrentPageNumber", getSkuList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

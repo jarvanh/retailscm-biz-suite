@@ -29,7 +29,9 @@ public class AccountingPeriodMapper extends BaseRowMapper<AccountingPeriod>{
 	protected void setId(AccountingPeriod accountingPeriod, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(AccountingPeriodTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class AccountingPeriodMapper extends BaseRowMapper<AccountingPeriod>{
 	protected void setName(AccountingPeriod accountingPeriod, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(AccountingPeriodTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class AccountingPeriodMapper extends BaseRowMapper<AccountingPeriod>{
 	protected void setStartDate(AccountingPeriod accountingPeriod, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date startDate = rs.getDate(AccountingPeriodTable.COLUMN_START_DATE);
+		
 		if(startDate == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class AccountingPeriodMapper extends BaseRowMapper<AccountingPeriod>{
 	protected void setEndDate(AccountingPeriod accountingPeriod, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date endDate = rs.getDate(AccountingPeriodTable.COLUMN_END_DATE);
+		
 		if(endDate == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class AccountingPeriodMapper extends BaseRowMapper<AccountingPeriod>{
 	protected void setVersion(AccountingPeriod accountingPeriod, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(AccountingPeriodTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

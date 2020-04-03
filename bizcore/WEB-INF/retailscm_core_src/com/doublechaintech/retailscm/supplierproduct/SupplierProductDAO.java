@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.supplierproduct;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -56,6 +57,7 @@ public interface SupplierProductDAO extends BaseDAO{
 	
 	public SmartList<SupplierProduct> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateSupplierProduct executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<SupplierProduct> findSupplierProductBySupplier(String goodsSupplierId, Map<String,Object> options);
  	public int countSupplierProductBySupplier(String goodsSupplierId, Map<String,Object> options);

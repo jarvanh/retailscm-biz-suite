@@ -37,7 +37,9 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
 	protected void setId(TransportTask transportTask, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(TransportTaskTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -49,7 +51,9 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
 	protected void setName(TransportTask transportTask, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(TransportTaskTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -61,7 +65,9 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
 	protected void setStart(TransportTask transportTask, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String start = rs.getString(TransportTaskTable.COLUMN_START);
+		
 		if(start == null){
 			//do nothing when nothing found in database
 			return;
@@ -73,7 +79,9 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
 	protected void setBeginTime(TransportTask transportTask, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date beginTime = rs.getDate(TransportTaskTable.COLUMN_BEGIN_TIME);
+		
 		if(beginTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -157,7 +165,9 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
 	protected void setLatitude(TransportTask transportTask, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(TransportTaskTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -169,7 +179,9 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
 	protected void setLongitude(TransportTask transportTask, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(TransportTaskTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -181,7 +193,9 @@ public class TransportTaskMapper extends BaseRowMapper<TransportTask>{
 	protected void setVersion(TransportTask transportTask, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(TransportTaskTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

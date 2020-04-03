@@ -14,6 +14,8 @@ public class SectionMapper extends BaseRowMapper<Section>{
  		setId(section, rs, rowNumber); 		
  		setTitle(section, rs, rowNumber); 		
  		setBrief(section, rs, rowNumber); 		
+ 		setIcon(section, rs, rowNumber); 		
+ 		setViewGroup(section, rs, rowNumber); 		
  		setLinkToUrl(section, rs, rowNumber); 		
  		setPage(section, rs, rowNumber); 		
  		setVersion(section, rs, rowNumber);
@@ -65,6 +67,34 @@ public class SectionMapper extends BaseRowMapper<Section>{
 		}
 		
 		section.setBrief(brief);
+	}
+		
+	protected void setIcon(Section section, ResultSet rs, int rowNumber) throws SQLException{
+	
+		//there will be issue when the type is double/int/long
+		
+		String icon = rs.getString(SectionTable.COLUMN_ICON);
+		
+		if(icon == null){
+			//do nothing when nothing found in database
+			return;
+		}
+		
+		section.setIcon(icon);
+	}
+		
+	protected void setViewGroup(Section section, ResultSet rs, int rowNumber) throws SQLException{
+	
+		//there will be issue when the type is double/int/long
+		
+		String viewGroup = rs.getString(SectionTable.COLUMN_VIEW_GROUP);
+		
+		if(viewGroup == null){
+			//do nothing when nothing found in database
+			return;
+		}
+		
+		section.setViewGroup(viewGroup);
 	}
 		
 	protected void setLinkToUrl(Section section, ResultSet rs, int rowNumber) throws SQLException{

@@ -32,7 +32,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setId(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(ProductTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -44,7 +46,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setName(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(ProductTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -74,7 +78,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setOrigin(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String origin = rs.getString(ProductTable.COLUMN_ORIGIN);
+		
 		if(origin == null){
 			//do nothing when nothing found in database
 			return;
@@ -86,7 +92,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setRemark(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String remark = rs.getString(ProductTable.COLUMN_REMARK);
+		
 		if(remark == null){
 			//do nothing when nothing found in database
 			return;
@@ -98,7 +106,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setBrand(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String brand = rs.getString(ProductTable.COLUMN_BRAND);
+		
 		if(brand == null){
 			//do nothing when nothing found in database
 			return;
@@ -110,7 +120,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setPicture(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String picture = rs.getString(ProductTable.COLUMN_PICTURE);
+		
 		if(picture == null){
 			//do nothing when nothing found in database
 			return;
@@ -122,7 +134,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setLastUpdateTime(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(ProductTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -134,7 +148,9 @@ public class ProductMapper extends BaseRowMapper<Product>{
 	protected void setVersion(Product product, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(ProductTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

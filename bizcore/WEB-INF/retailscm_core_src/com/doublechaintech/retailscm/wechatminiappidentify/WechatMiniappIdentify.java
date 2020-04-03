@@ -56,6 +56,7 @@ public class WechatMiniappIdentify extends BaseEntity implements  java.io.Serial
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	WechatMiniappIdentify(){
@@ -357,7 +358,9 @@ public class WechatMiniappIdentify extends BaseEntity implements  java.io.Serial
 		appendKeyValuePair(result, LAST_LOGIN_TIME_PROPERTY, getLastLoginTime());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

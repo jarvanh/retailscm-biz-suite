@@ -29,7 +29,9 @@ public class GoodsAllocationMapper extends BaseRowMapper<GoodsAllocation>{
 	protected void setId(GoodsAllocation goodsAllocation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(GoodsAllocationTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -41,7 +43,9 @@ public class GoodsAllocationMapper extends BaseRowMapper<GoodsAllocation>{
 	protected void setLocation(GoodsAllocation goodsAllocation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String location = rs.getString(GoodsAllocationTable.COLUMN_LOCATION);
+		
 		if(location == null){
 			//do nothing when nothing found in database
 			return;
@@ -53,7 +57,9 @@ public class GoodsAllocationMapper extends BaseRowMapper<GoodsAllocation>{
 	protected void setLatitude(GoodsAllocation goodsAllocation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal latitude = rs.getBigDecimal(GoodsAllocationTable.COLUMN_LATITUDE);
+		
 		if(latitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -65,7 +71,9 @@ public class GoodsAllocationMapper extends BaseRowMapper<GoodsAllocation>{
 	protected void setLongitude(GoodsAllocation goodsAllocation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		BigDecimal longitude = rs.getBigDecimal(GoodsAllocationTable.COLUMN_LONGITUDE);
+		
 		if(longitude == null){
 			//do nothing when nothing found in database
 			return;
@@ -95,7 +103,9 @@ public class GoodsAllocationMapper extends BaseRowMapper<GoodsAllocation>{
 	protected void setVersion(GoodsAllocation goodsAllocation, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(GoodsAllocationTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

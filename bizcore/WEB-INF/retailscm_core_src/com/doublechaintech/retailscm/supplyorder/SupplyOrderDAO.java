@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.supplyorder;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -121,6 +122,7 @@ public interface SupplyOrderDAO extends BaseDAO{
 	
 	public SmartList<SupplyOrder> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateSupplyOrder executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<SupplyOrder> findSupplyOrderByBuyer(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countSupplyOrderByBuyer(String retailStoreCountryCenterId, Map<String,Object> options);

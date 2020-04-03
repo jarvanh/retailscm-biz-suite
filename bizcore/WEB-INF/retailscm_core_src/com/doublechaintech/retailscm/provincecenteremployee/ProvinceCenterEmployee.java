@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -58,6 +59,7 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	ProvinceCenterEmployee(){
@@ -104,6 +106,7 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -113,12 +116,13 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeMobileProperty(String newValueExpr){
+	
 		String oldValue = getMobile();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -128,12 +132,13 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		updateMobile(newValue);
 		this.onChangeProperty(MOBILE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeEmailProperty(String newValueExpr){
+	
 		String oldValue = getEmail();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -143,12 +148,13 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		updateEmail(newValue);
 		this.onChangeProperty(EMAIL_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeFoundedProperty(String newValueExpr){
+	
 		Date oldValue = getFounded();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -158,7 +164,7 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		updateFounded(newValue);
 		this.onChangeProperty(FOUNDED_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -379,7 +385,9 @@ public class ProvinceCenterEmployee extends BaseEntity implements  java.io.Seria
 		appendKeyValuePair(result, PROVINCE_CENTER_PROPERTY, getProvinceCenter());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -55,6 +56,7 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	EmployeeWorkExperience(){
@@ -100,6 +102,7 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
     
     
 	protected void changeStartProperty(String newValueExpr){
+	
 		Date oldValue = getStart();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -109,12 +112,13 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		updateStart(newValue);
 		this.onChangeProperty(START_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeEndProperty(String newValueExpr){
+	
 		Date oldValue = getEnd();
 		Date newValue = parseDate(newValueExpr);
 		if(equalsDate(oldValue , newValue)){
@@ -124,12 +128,13 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		updateEnd(newValue);
 		this.onChangeProperty(END_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeCompanyProperty(String newValueExpr){
+	
 		String oldValue = getCompany();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -139,12 +144,13 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		updateCompany(newValue);
 		this.onChangeProperty(COMPANY_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeDescriptionProperty(String newValueExpr){
+	
 		String oldValue = getDescription();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -154,7 +160,7 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		updateDescription(newValue);
 		this.onChangeProperty(DESCRIPTION_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -342,7 +348,9 @@ public class EmployeeWorkExperience extends BaseEntity implements  java.io.Seria
 		appendKeyValuePair(result, DESCRIPTION_PROPERTY, getDescription());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

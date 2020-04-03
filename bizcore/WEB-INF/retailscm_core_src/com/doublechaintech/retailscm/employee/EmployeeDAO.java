@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.employee;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -191,6 +192,7 @@ public interface EmployeeDAO extends BaseDAO{
 	
 	public SmartList<Employee> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateEmployee executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<Employee> findEmployeeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);
  	public int countEmployeeByCompany(String retailStoreCountryCenterId, Map<String,Object> options);

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -58,6 +59,7 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 	
 	
 	protected		SmartList<AccountingDocumentLine>	mAccountingDocumentLineList;
+
 	
 		
 	public 	AccountingSubject(){
@@ -103,6 +105,7 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
     
     
 	protected void changeAccountingSubjectCodeProperty(String newValueExpr){
+	
 		String oldValue = getAccountingSubjectCode();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -112,12 +115,13 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		updateAccountingSubjectCode(newValue);
 		this.onChangeProperty(ACCOUNTING_SUBJECT_CODE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAccountingSubjectNameProperty(String newValueExpr){
+	
 		String oldValue = getAccountingSubjectName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -127,12 +131,13 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		updateAccountingSubjectName(newValue);
 		this.onChangeProperty(ACCOUNTING_SUBJECT_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAccountingSubjectClassCodeProperty(String newValueExpr){
+	
 		int oldValue = getAccountingSubjectClassCode();
 		int newValue = parseInt(newValueExpr);
 		if(equalsInt(oldValue , newValue)){
@@ -142,12 +147,13 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		updateAccountingSubjectClassCode(newValue);
 		this.onChangeProperty(ACCOUNTING_SUBJECT_CLASS_CODE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAccountingSubjectClassNameProperty(String newValueExpr){
+	
 		String oldValue = getAccountingSubjectClassName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -157,7 +163,7 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 		updateAccountingSubjectClassName(newValue);
 		this.onChangeProperty(ACCOUNTING_SUBJECT_CLASS_NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -463,7 +469,9 @@ public class AccountingSubject extends BaseEntity implements  java.io.Serializab
 			appendKeyValuePair(result, "accountingDocumentLineCurrentPageNumber", getAccountingDocumentLineList().getCurrentPageNumber());
 		}
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	

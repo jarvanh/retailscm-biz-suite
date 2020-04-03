@@ -3,13 +3,30 @@ package com.doublechaintech.retailscm.goods;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
+import com.terapico.caf.Password;
+import com.terapico.utils.MapUtil;
+import com.terapico.utils.ListofUtils;
+import com.terapico.utils.TextUtil;
+import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechaintech.retailscm.*;
+import com.doublechaintech.retailscm.tree.*;
+import com.doublechaintech.retailscm.treenode.*;
+import com.doublechaintech.retailscm.RetailscmUserContextImpl;
+import com.doublechaintech.retailscm.iamservice.*;
+import com.doublechaintech.retailscm.services.IamService;
+import com.doublechaintech.retailscm.secuser.SecUser;
+import com.doublechaintech.retailscm.userapp.UserApp;
+import com.doublechaintech.retailscm.BaseViewPage;
+import com.terapico.uccaf.BaseUserContext;
+
 
 import com.doublechaintech.retailscm.retailstore.RetailStore;
 import com.doublechaintech.retailscm.goodsmovement.GoodsMovement;
@@ -39,7 +56,7 @@ import com.doublechaintech.retailscm.goods.Goods;
 
 
 
-public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements GoodsManager {
+public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements GoodsManager, BusinessHandler{
 
   
 
@@ -282,19 +299,34 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		
 
 		if(Goods.NAME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkNameOfGoods(parseString(newValueExpr));
+		
+			
 		}
 		if(Goods.RFID_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkRfidOfGoods(parseString(newValueExpr));
+		
+			
 		}
 		if(Goods.UOM_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkUomOfGoods(parseString(newValueExpr));
+		
+			
 		}
 		if(Goods.MAX_PACKAGE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMaxPackageOfGoods(parseInt(newValueExpr));
+		
+			
 		}
 		if(Goods.EXPIRE_TIME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkExpireTimeOfGoods(parseDate(newValueExpr));
+		
+			
 		}		
 
 				
@@ -1255,35 +1287,51 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
 		
 
 		if(GoodsMovement.MOVE_TIME_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkMoveTimeOfGoodsMovement(parseTimestamp(newValueExpr));
+		
 		}
 		
 		if(GoodsMovement.FACILITY_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFacilityOfGoodsMovement(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsMovement.FACILITY_ID_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFacilityIdOfGoodsMovement(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsMovement.FROM_IP_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkFromIpOfGoodsMovement(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsMovement.USER_AGENT_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkUserAgentOfGoodsMovement(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsMovement.SESSION_ID_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkSessionIdOfGoodsMovement(parseString(newValueExpr));
+		
 		}
 		
 		if(GoodsMovement.LATITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLatitudeOfGoodsMovement(parseBigDecimal(newValueExpr));
+		
 		}
 		
 		if(GoodsMovement.LONGITUDE_PROPERTY.equals(property)){
+		
 			checkerOf(userContext).checkLongitudeOfGoodsMovement(parseBigDecimal(newValueExpr));
+		
 		}
 		
 	
@@ -1338,6 +1386,602 @@ public class GoodsManagerImpl extends CustomRetailscmCheckerManager implements G
   
   
 
+	// -----------------------------------//  登录部分处理 \\-----------------------------------
+	// 手机号+短信验证码 登录
+	public Object loginByMobile(RetailscmUserContextImpl userContext, String mobile, String verifyCode) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByMobile");
+		LoginData loginData = new LoginData();
+		loginData.setMobile(mobile);
+		loginData.setVerifyCode(verifyCode);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.MOBILE, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 账号+密码登录
+	public Object loginByPassword(RetailscmUserContextImpl userContext, String loginId, Password password) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(), "loginByPassword");
+		LoginData loginData = new LoginData();
+		loginData.setLoginId(loginId);
+		loginData.setPassword(password.getClearTextPassword());
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.PASSWORD, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 微信小程序登录
+	public Object loginByWechatMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 企业微信小程序登录
+	public Object loginByWechatWorkMiniProgram(RetailscmUserContextImpl userContext, String code) throws Exception {
+		LoginChannel loginChannel = LoginChannel.of(RetailscmBaseUtils.getRequestAppType(userContext), this.getBeanName(),
+				"loginByWechatWorkMiniProgram");
+		LoginData loginData = new LoginData();
+		loginData.setCode(code);
+
+		LoginContext loginContext = LoginContext.of(LoginMethod.WECHAT_WORK_MINIPROGRAM, loginChannel, loginData);
+		return processLoginRequest(userContext, loginContext);
+	}
+	// 调用登录处理
+	protected Object processLoginRequest(RetailscmUserContextImpl userContext, LoginContext loginContext) throws Exception {
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		LoginResult loginResult = iamService.doLogin(userContext, loginContext, this);
+		// 根据登录结果
+		if (!loginResult.isAuthenticated()) {
+			throw new Exception(loginResult.getMessage());
+		}
+		if (loginResult.isSuccess()) {
+			return onLoginSuccess(userContext, loginResult);
+		}
+		if (loginResult.isNewUser()) {
+			throw new Exception("请联系你的上级,先为你创建账号,然后再来登录.");
+		}
+		return new LoginForm();
+	}
+
+	@Override
+	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
+			throws IllegalAccessException {
+		RetailscmUserContextImpl userContext = (RetailscmUserContextImpl)baseUserContext;
+		IamService iamService = (IamService) userContext.getBean("iamService");
+		Map<String, Object> loginInfo = iamService.getCachedLoginInfo(userContext);
+
+		SecUser secUser = iamService.tryToLoadSecUser(userContext, loginInfo);
+		UserApp userApp = iamService.tryToLoadUserApp(userContext, loginInfo);
+		if (userApp != null) {
+			userApp.setSecUser(secUser);
+		}
+		if (secUser == null) {
+			iamService.onCheckAccessWhenAnonymousFound(userContext, loginInfo);
+		}
+		afterSecUserAppLoadedWhenCheckAccess(userContext, loginInfo, secUser, userApp);
+		if (!isMethodNeedLogin(userContext, methodName, parameters)) {
+			return accessOK();
+		}
+
+		return super.checkAccess(baseUserContext, methodName, parameters);
+	}
+
+	// 判断哪些接口需要登录后才能执行. 默认除了loginBy开头的,其他都要登录
+	protected boolean isMethodNeedLogin(RetailscmUserContextImpl userContext, String methodName, Object[] parameters) {
+		if (methodName.startsWith("loginBy")) {
+			return false;
+		}
+		if (methodName.startsWith("logout")) {
+			return false;
+		}
+		return true;
+	}
+
+	// 在checkAccess中加载了secUser和userApp后会调用此方法,用于定制化的用户数据加载. 默认什么也不做
+	protected void afterSecUserAppLoadedWhenCheckAccess(RetailscmUserContextImpl userContext, Map<String, Object> loginInfo,
+			SecUser secUser, UserApp userApp) throws IllegalAccessException{
+	}
+
+
+
+	protected Object onLoginSuccess(RetailscmUserContext userContext, LoginResult loginResult) throws Exception {
+		// by default, return the view of this object
+		UserApp userApp = loginResult.getLoginContext().getLoginTarget().getUserApp();
+		return this.view(userContext, userApp.getObjectId());
+	}
+
+	public void onAuthenticationFailed(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, failed is failed, nothing can do
+	}
+	// when user authenticated success, but no sec_user related, this maybe a new user login from 3-rd party service.
+	public void onAuthenticateNewUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// Generally speaking, when authenticated user logined, we will create a new account for him/her.
+		// you need do it like :
+		// First, you should create new data such as:
+		//   Goods newGoods = this.createGoods(userContext, ...
+		// Next, create a sec-user in your business way:
+		//   SecUser secUser = secUserManagerOf(userContext).createSecUser(userContext, login, mobile ...
+		// And set it into loginContext:
+		//   loginContext.getLoginTarget().setSecUser(secUser);
+		// Next, create an user-app to connect secUser and newGoods
+		//   UserApp uerApp = userAppManagerOf(userContext).createUserApp(userContext, secUser.getId(), ...
+		// Also, set it into loginContext:
+		//   loginContext.getLoginTarget().setUserApp(userApp);
+		// Since many of detailed info were depending business requirement, So,
+		throw new Exception("请重载函数onAuthenticateNewUserLogged()以处理新用户登录");
+	}
+	public void onAuthenticateUserLogged(RetailscmUserContext userContext, LoginContext loginContext,
+			LoginResult loginResult, IdentificationHandler idHandler, BusinessHandler bizHandler)
+			throws Exception {
+		// by default, find the correct user-app
+		SecUser secUser = loginResult.getLoginContext().getLoginTarget().getSecUser();
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(UserApp.SEC_USER_PROPERTY, secUser.getId());
+		key.put(UserApp.OBJECT_TYPE_PROPERTY, Goods.INTERNAL_TYPE);
+		SmartList<UserApp> userApps = userContext.getDAOGroup().getUserAppDAO().findUserAppWithKey(key, EO);
+		if (userApps == null || userApps.isEmpty()) {
+			throw new Exception("您的账号未关联销售人员,请联系客服处理账号异常.");
+		}
+		UserApp userApp = userApps.first();
+		userApp.setSecUser(secUser);
+		loginResult.getLoginContext().getLoginTarget().setUserApp(userApp);
+	}
+	// -----------------------------------\\  登录部分处理 //-----------------------------------
+
+
+	// -----------------------------------// list-of-view 处理 \\-----------------------------------
+    protected void enhanceForListOfView(RetailscmUserContext userContext,SmartList<Goods> list) throws Exception {
+    	if (list == null || list.isEmpty()){
+    		return;
+    	}
+		List<Sku> skuList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, Sku.class);
+		userContext.getDAOGroup().enhanceList(skuList, Sku.class);
+		List<ReceivingSpace> receivingSpaceList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, ReceivingSpace.class);
+		userContext.getDAOGroup().enhanceList(receivingSpaceList, ReceivingSpace.class);
+		List<GoodsAllocation> goodsAllocationList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, GoodsAllocation.class);
+		userContext.getDAOGroup().enhanceList(goodsAllocationList, GoodsAllocation.class);
+		List<SmartPallet> smartPalletList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, SmartPallet.class);
+		userContext.getDAOGroup().enhanceList(smartPalletList, SmartPallet.class);
+		List<ShippingSpace> shippingSpaceList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, ShippingSpace.class);
+		userContext.getDAOGroup().enhanceList(shippingSpaceList, ShippingSpace.class);
+		List<TransportTask> transportTaskList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, TransportTask.class);
+		userContext.getDAOGroup().enhanceList(transportTaskList, TransportTask.class);
+		List<RetailStore> retailStoreList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, RetailStore.class);
+		userContext.getDAOGroup().enhanceList(retailStoreList, RetailStore.class);
+		List<SupplyOrder> bizOrderList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, SupplyOrder.class);
+		userContext.getDAOGroup().enhanceList(bizOrderList, SupplyOrder.class);
+		List<RetailStoreOrder> retailStoreOrderList = RetailscmBaseUtils.collectReferencedObjectWithType(userContext, list, RetailStoreOrder.class);
+		userContext.getDAOGroup().enhanceList(retailStoreOrderList, RetailStoreOrder.class);
+
+
+    }
+	
+	public Object listBySku(RetailscmUserContext userContext,String skuId) throws Exception {
+		return listPageBySku(userContext, skuId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageBySku(RetailscmUserContext userContext,String skuId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsBySku(skuId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(Sku.withId(skuId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listBySku");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listBySku/%s/",  getBeanName(), skuId)));
+
+		page.assemblerContent(userContext, "listBySku");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByReceivingSpace(RetailscmUserContext userContext,String receivingSpaceId) throws Exception {
+		return listPageByReceivingSpace(userContext, receivingSpaceId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByReceivingSpace(RetailscmUserContext userContext,String receivingSpaceId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsByReceivingSpace(receivingSpaceId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(ReceivingSpace.withId(receivingSpaceId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listByReceivingSpace");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByReceivingSpace/%s/",  getBeanName(), receivingSpaceId)));
+
+		page.assemblerContent(userContext, "listByReceivingSpace");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByGoodsAllocation(RetailscmUserContext userContext,String goodsAllocationId) throws Exception {
+		return listPageByGoodsAllocation(userContext, goodsAllocationId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByGoodsAllocation(RetailscmUserContext userContext,String goodsAllocationId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsByGoodsAllocation(goodsAllocationId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(GoodsAllocation.withId(goodsAllocationId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listByGoodsAllocation");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByGoodsAllocation/%s/",  getBeanName(), goodsAllocationId)));
+
+		page.assemblerContent(userContext, "listByGoodsAllocation");
+		return page.doRender(userContext);
+	}
+  
+	public Object listBySmartPallet(RetailscmUserContext userContext,String smartPalletId) throws Exception {
+		return listPageBySmartPallet(userContext, smartPalletId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageBySmartPallet(RetailscmUserContext userContext,String smartPalletId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsBySmartPallet(smartPalletId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(SmartPallet.withId(smartPalletId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listBySmartPallet");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listBySmartPallet/%s/",  getBeanName(), smartPalletId)));
+
+		page.assemblerContent(userContext, "listBySmartPallet");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByShippingSpace(RetailscmUserContext userContext,String shippingSpaceId) throws Exception {
+		return listPageByShippingSpace(userContext, shippingSpaceId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByShippingSpace(RetailscmUserContext userContext,String shippingSpaceId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsByShippingSpace(shippingSpaceId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(ShippingSpace.withId(shippingSpaceId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listByShippingSpace");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByShippingSpace/%s/",  getBeanName(), shippingSpaceId)));
+
+		page.assemblerContent(userContext, "listByShippingSpace");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByTransportTask(RetailscmUserContext userContext,String transportTaskId) throws Exception {
+		return listPageByTransportTask(userContext, transportTaskId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByTransportTask(RetailscmUserContext userContext,String transportTaskId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsByTransportTask(transportTaskId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(TransportTask.withId(transportTaskId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listByTransportTask");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByTransportTask/%s/",  getBeanName(), transportTaskId)));
+
+		page.assemblerContent(userContext, "listByTransportTask");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByRetailStore(RetailscmUserContext userContext,String retailStoreId) throws Exception {
+		return listPageByRetailStore(userContext, retailStoreId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByRetailStore(RetailscmUserContext userContext,String retailStoreId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsByRetailStore(retailStoreId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(RetailStore.withId(retailStoreId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listByRetailStore");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByRetailStore/%s/",  getBeanName(), retailStoreId)));
+
+		page.assemblerContent(userContext, "listByRetailStore");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByBizOrder(RetailscmUserContext userContext,String bizOrderId) throws Exception {
+		return listPageByBizOrder(userContext, bizOrderId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByBizOrder(RetailscmUserContext userContext,String bizOrderId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsByBizOrder(bizOrderId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(SupplyOrder.withId(bizOrderId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listByBizOrder");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByBizOrder/%s/",  getBeanName(), bizOrderId)));
+
+		page.assemblerContent(userContext, "listByBizOrder");
+		return page.doRender(userContext);
+	}
+  
+	public Object listByRetailStoreOrder(RetailscmUserContext userContext,String retailStoreOrderId) throws Exception {
+		return listPageByRetailStoreOrder(userContext, retailStoreOrderId, 0, 20);
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object listPageByRetailStoreOrder(RetailscmUserContext userContext,String retailStoreOrderId, int start, int count) throws Exception {
+		SmartList<Goods> list = goodsDaoOf(userContext).findGoodsByRetailStoreOrder(retailStoreOrderId, start, count, new HashMap<>());
+		enhanceForListOfView(userContext, list);
+		RetailscmCommonListOfViewPage page = new RetailscmCommonListOfViewPage();
+		page.setClassOfList(Goods.class);
+		page.setContainerObject(RetailStoreOrder.withId(retailStoreOrderId));
+		page.setRequestBeanName(this.getBeanName());
+		page.setDataList((SmartList)list);
+		page.setPageTitle("货物列表");
+		page.setRequestName("listByRetailStoreOrder");
+		page.setRequestOffset(start);
+		page.setRequestLimit(count);
+		page.setDisplayMode("auto");
+		page.setLinkToUrl(TextUtil.encodeUrl(String.format("%s/listByRetailStoreOrder/%s/",  getBeanName(), retailStoreOrderId)));
+
+		page.assemblerContent(userContext, "listByRetailStoreOrder");
+		return page.doRender(userContext);
+	}
+  
+  // -----------------------------------\\ list-of-view 处理 //-----------------------------------v
+  
+ 	/**
+	 * miniprogram调用返回固定的detail class
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+ 	public Object wxappview(RetailscmUserContext userContext, String goodsId) throws Exception{
+	  SerializeScope vscope = RetailscmViewScope.getInstance().getGoodsDetailScope().clone();
+		Goods merchantObj = (Goods) this.view(userContext, goodsId);
+    String merchantObjId = goodsId;
+    String linkToUrl =	"goodsManager/wxappview/" + merchantObjId + "/";
+    String pageTitle = "货物"+"详情";
+		Map result = new HashMap();
+		List propList = new ArrayList();
+		List sections = new ArrayList();
+ 
+		propList.add(
+				MapUtil.put("id", "1-id")
+				    .put("fieldName", "id")
+				    .put("label", "序号")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("id", merchantObj.getId());
+
+		propList.add(
+				MapUtil.put("id", "2-name")
+				    .put("fieldName", "name")
+				    .put("label", "名称")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("name", merchantObj.getName());
+
+		propList.add(
+				MapUtil.put("id", "3-rfid")
+				    .put("fieldName", "rfid")
+				    .put("label", "RFID")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("rfid", merchantObj.getRfid());
+
+		propList.add(
+				MapUtil.put("id", "4-uom")
+				    .put("fieldName", "uom")
+				    .put("label", "计量单位")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("uom", merchantObj.getUom());
+
+		propList.add(
+				MapUtil.put("id", "5-maxPackage")
+				    .put("fieldName", "maxPackage")
+				    .put("label", "最大包装")
+				    .put("type", "text")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("maxPackage", merchantObj.getMaxPackage());
+
+		propList.add(
+				MapUtil.put("id", "6-expireTime")
+				    .put("fieldName", "expireTime")
+				    .put("label", "到期时间")
+				    .put("type", "date")
+				    .put("displayField", "")
+				    .put("linkToUrl", "")
+				    .into_map()
+		);
+		result.put("expireTime", merchantObj.getExpireTime());
+
+		propList.add(
+				MapUtil.put("id", "7-sku")
+				    .put("fieldName", "sku")
+				    .put("label", "SKU")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "skuManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("sku", merchantObj.getSku());
+
+		propList.add(
+				MapUtil.put("id", "8-receivingSpace")
+				    .put("fieldName", "receivingSpace")
+				    .put("label", "收货区")
+				    .put("type", "object")
+				    .put("displayField", "location")
+				    .put("linkToUrl", "receivingSpaceManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("receivingSpace", merchantObj.getReceivingSpace());
+
+		propList.add(
+				MapUtil.put("id", "9-goodsAllocation")
+				    .put("fieldName", "goodsAllocation")
+				    .put("label", "货位")
+				    .put("type", "object")
+				    .put("displayField", "location")
+				    .put("linkToUrl", "goodsAllocationManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("goodsAllocation", merchantObj.getGoodsAllocation());
+
+		propList.add(
+				MapUtil.put("id", "10-smartPallet")
+				    .put("fieldName", "smartPallet")
+				    .put("label", "智能托盘")
+				    .put("type", "object")
+				    .put("displayField", "location")
+				    .put("linkToUrl", "smartPalletManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("smartPallet", merchantObj.getSmartPallet());
+
+		propList.add(
+				MapUtil.put("id", "11-shippingSpace")
+				    .put("fieldName", "shippingSpace")
+				    .put("label", "发货区")
+				    .put("type", "object")
+				    .put("displayField", "location")
+				    .put("linkToUrl", "shippingSpaceManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("shippingSpace", merchantObj.getShippingSpace());
+
+		propList.add(
+				MapUtil.put("id", "12-transportTask")
+				    .put("fieldName", "transportTask")
+				    .put("label", "运输任务")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "transportTaskManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("transportTask", merchantObj.getTransportTask());
+
+		propList.add(
+				MapUtil.put("id", "13-retailStore")
+				    .put("fieldName", "retailStore")
+				    .put("label", "双链小超")
+				    .put("type", "object")
+				    .put("displayField", "name")
+				    .put("linkToUrl", "retailStoreManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("retailStore", merchantObj.getRetailStore());
+
+		propList.add(
+				MapUtil.put("id", "14-bizOrder")
+				    .put("fieldName", "bizOrder")
+				    .put("label", "订单")
+				    .put("type", "object")
+				    .put("displayField", "title")
+				    .put("linkToUrl", "supplyOrderManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("bizOrder", merchantObj.getBizOrder());
+
+		propList.add(
+				MapUtil.put("id", "15-retailStoreOrder")
+				    .put("fieldName", "retailStoreOrder")
+				    .put("label", "生超的订单")
+				    .put("type", "object")
+				    .put("displayField", "title")
+				    .put("linkToUrl", "retailStoreOrderManager/wxappview/:id/")
+				    .into_map()
+		);
+		result.put("retailStoreOrder", merchantObj.getRetailStoreOrder());
+
+		//处理 sectionList
+
+		//处理Section：goodsMovementListSection
+		Map goodsMovementListSection = ListofUtils.buildSection(
+		    "goodsMovementListSection",
+		    "运动商品列表",
+		    null,
+		    "",
+		    "__no_group",
+		    "goodsMovementManager/listByGoods/"+merchantObjId+"/",
+		    "auto"
+		);
+		sections.add(goodsMovementListSection);
+
+		result.put("goodsMovementListSection", ListofUtils.toShortList(merchantObj.getGoodsMovementList(), "goodsMovement"));
+		vscope.field("goodsMovementListSection", RetailscmListOfViewScope.getInstance()
+					.getListOfViewScope( GoodsMovement.class.getName(), null));
+
+		result.put("propList", propList);
+		result.put("sectionList", sections);
+		result.put("pageTitle", pageTitle);
+		result.put("linkToUrl", linkToUrl);
+
+		vscope.field("propList", SerializeScope.EXCLUDE())
+				.field("sectionList", SerializeScope.EXCLUDE())
+				.field("pageTitle", SerializeScope.EXCLUDE())
+				.field("linkToUrl", SerializeScope.EXCLUDE());
+		userContext.forceResponseXClassHeader("com.terapico.appview.DetailPage");
+		return BaseViewPage.serialize(result, vscope);
+	}
 
 }
 

@@ -34,7 +34,9 @@ public class CompanyTrainingMapper extends BaseRowMapper<CompanyTraining>{
 	protected void setId(CompanyTraining companyTraining, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(CompanyTrainingTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -46,7 +48,9 @@ public class CompanyTrainingMapper extends BaseRowMapper<CompanyTraining>{
 	protected void setTitle(CompanyTraining companyTraining, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String title = rs.getString(CompanyTrainingTable.COLUMN_TITLE);
+		
 		if(title == null){
 			//do nothing when nothing found in database
 			return;
@@ -112,7 +116,9 @@ public class CompanyTrainingMapper extends BaseRowMapper<CompanyTraining>{
 	protected void setTimeStart(CompanyTraining companyTraining, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date timeStart = rs.getDate(CompanyTrainingTable.COLUMN_TIME_START);
+		
 		if(timeStart == null){
 			//do nothing when nothing found in database
 			return;
@@ -124,7 +130,9 @@ public class CompanyTrainingMapper extends BaseRowMapper<CompanyTraining>{
 	protected void setDurationHours(CompanyTraining companyTraining, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer durationHours = rs.getInt(CompanyTrainingTable.COLUMN_DURATION_HOURS);
+		
 		if(durationHours == null){
 			//do nothing when nothing found in database
 			return;
@@ -136,7 +144,9 @@ public class CompanyTrainingMapper extends BaseRowMapper<CompanyTraining>{
 	protected void setLastUpdateTime(CompanyTraining companyTraining, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Date lastUpdateTime = rs.getTimestamp(CompanyTrainingTable.COLUMN_LAST_UPDATE_TIME);
+		
 		if(lastUpdateTime == null){
 			//do nothing when nothing found in database
 			return;
@@ -148,7 +158,9 @@ public class CompanyTrainingMapper extends BaseRowMapper<CompanyTraining>{
 	protected void setVersion(CompanyTraining companyTraining, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(CompanyTrainingTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

@@ -28,7 +28,9 @@ public class MemberRewardPointRedemptionMapper extends BaseRowMapper<MemberRewar
 	protected void setId(MemberRewardPointRedemption memberRewardPointRedemption, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String id = rs.getString(MemberRewardPointRedemptionTable.COLUMN_ID);
+		
 		if(id == null){
 			//do nothing when nothing found in database
 			return;
@@ -40,7 +42,9 @@ public class MemberRewardPointRedemptionMapper extends BaseRowMapper<MemberRewar
 	protected void setName(MemberRewardPointRedemption memberRewardPointRedemption, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		String name = rs.getString(MemberRewardPointRedemptionTable.COLUMN_NAME);
+		
 		if(name == null){
 			//do nothing when nothing found in database
 			return;
@@ -52,7 +56,9 @@ public class MemberRewardPointRedemptionMapper extends BaseRowMapper<MemberRewar
 	protected void setPoint(MemberRewardPointRedemption memberRewardPointRedemption, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer point = rs.getInt(MemberRewardPointRedemptionTable.COLUMN_POINT);
+		
 		if(point == null){
 			//do nothing when nothing found in database
 			return;
@@ -82,7 +88,9 @@ public class MemberRewardPointRedemptionMapper extends BaseRowMapper<MemberRewar
 	protected void setVersion(MemberRewardPointRedemption memberRewardPointRedemption, ResultSet rs, int rowNumber) throws SQLException{
 	
 		//there will be issue when the type is double/int/long
+		
 		Integer version = rs.getInt(MemberRewardPointRedemptionTable.COLUMN_VERSION);
+		
 		if(version == null){
 			//do nothing when nothing found in database
 			return;

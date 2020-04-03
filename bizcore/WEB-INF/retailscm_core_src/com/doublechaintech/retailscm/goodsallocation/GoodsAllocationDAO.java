@@ -3,6 +3,7 @@ package com.doublechaintech.retailscm.goodsallocation;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import com.terapico.caf.baseelement.CandidateQuery;
 import com.doublechaintech.retailscm.BaseDAO;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
@@ -88,6 +89,7 @@ public interface GoodsAllocationDAO extends BaseDAO{
 	
 	public SmartList<GoodsAllocation> queryList(String sql, Object ... parmeters);
 	public int count(String sql, Object ... parmeters);
+	public CandidateGoodsAllocation executeCandidatesQuery(CandidateQuery query, String sql, Object ... parmeters) throws Exception ;
  
  	public SmartList<GoodsAllocation> findGoodsAllocationByGoodsShelf(String goodsShelfId, Map<String,Object> options);
  	public int countGoodsAllocationByGoodsShelf(String goodsShelfId, Map<String,Object> options);

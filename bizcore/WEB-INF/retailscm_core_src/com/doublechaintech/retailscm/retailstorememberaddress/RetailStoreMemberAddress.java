@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
+import com.terapico.caf.Images;
 import com.doublechaintech.retailscm.BaseEntity;
 import com.doublechaintech.retailscm.SmartList;
 import com.doublechaintech.retailscm.KeyValuePair;
@@ -53,6 +54,7 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 	protected		int                 	mVersion            ;
 	
 	
+
 	
 		
 	public 	RetailStoreMemberAddress(){
@@ -95,6 +97,7 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
     
     
 	protected void changeNameProperty(String newValueExpr){
+	
 		String oldValue = getName();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -104,12 +107,13 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 		updateName(newValue);
 		this.onChangeProperty(NAME_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeMobilePhoneProperty(String newValueExpr){
+	
 		String oldValue = getMobilePhone();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -119,12 +123,13 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 		updateMobilePhone(newValue);
 		this.onChangeProperty(MOBILE_PHONE_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
 			
 	protected void changeAddressProperty(String newValueExpr){
+	
 		String oldValue = getAddress();
 		String newValue = parseString(newValueExpr);
 		if(equalsString(oldValue , newValue)){
@@ -134,7 +139,7 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 		updateAddress(newValue);
 		this.onChangeProperty(ADDRESS_PROPERTY, oldValue, newValue);
 		return;
-  
+   
 	}
 			
 			
@@ -309,7 +314,9 @@ public class RetailStoreMemberAddress extends BaseEntity implements  java.io.Ser
 		appendKeyValuePair(result, ADDRESS_PROPERTY, getAddress());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 
-		
+		if (this.valueByKey("valuesOfGroupBy") != null) {
+			appendKeyValuePair(result, "valuesOfGroupBy", this.valueByKey("valuesOfGroupBy"));
+		}
 		return result;
 	}
 	
